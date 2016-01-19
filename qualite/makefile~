@@ -1,0 +1,44 @@
+# Compilation
+all: pq pgc dsq gp
+
+pq:
+	make -C PQ
+
+pgc:
+	make -C PGC
+
+dsq:
+	make -C DSQ
+
+gp:	
+	make -C GP
+
+# Archivage
+archive: archivepq archivepgc archivedsq archivegp
+
+archivepq:
+	make -C PQ archive
+
+archivepgc:
+	make -C PGC archive
+
+archivedsq:
+	make -C DSQ archive
+
+archivegp:
+	make -C GP archive
+
+# Nettoyage
+clean : cleanpq cleanpgc cleandsq cleangp
+
+cleanpq:
+	make -C PQ clean
+
+cleanpgc:
+	make -C PGC clean
+
+cleandsq:
+	make -C DSQ clean
+
+cleangp:
+	make -C GP clean

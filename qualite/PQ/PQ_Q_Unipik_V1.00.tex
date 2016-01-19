@@ -1,0 +1,112 @@
+\documentclass[asi]{picINSA}
+\DeclareGraphicsRule{*}{pdf}{*}{}
+\usepackage{pdfpages}
+
+%\input{../../ressources/AjoutezVosPackagesIci.tex}
+\usepackage{../../ressources/Unipik/vocabulaire/vocabulaireUnipik}
+%\usepackage{../../ressources/Unipik/vocabulaire/vocabulaireEastpic}
+
+\setco
+unter{secnumdepth}{4}
+\setcounter{toc
+depth}{4}
+
+
+\title{\PQ{}}
+\author{\Pierre}
+
+
+\titreGeneral{\PQ}
+\sousTitreGeneral{\nomEquipe}
+\titreAcronyme{\PQCourt}
+\version{V2.02}
+\titreDetaille{\nomEquipe\_Q\_\PQCourt\_\versionPrive}
+\referenceVersion{\nomEquipe\_Q\_\PQCourt\_\versionPrive}
+\auteurs{\Melissa{} \& \Florian{} \& \Michel{} \& \Kafui{} \& \Julie{} \& \Pierre{}}
+\destinataires{\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
+\resume{Le présent document contient la présentation du \PQ \nomEquipe.}
+\motsCles{\PQCourt{}, référentiel, nommage}
+\natureDerniereModification{Correction}
+\modeDiffusionControle{}
+
+\begin{document}
+
+\couverture{}
+
+ \informationsGenerales{}
+\input{sources/page_de_service.tex}
+
+\tableofcontents
+
+\setcounter{chapter}{0}
+ 
+\chapter{Fiche projet}
+\label{fiche_projet}
+\input{sources/fiche_projet.tex}
+
+\chapter{Engagements}
+\label{egagements}
+\input{sources/engagements.tex}
+
+\chapter{Décomposition en fonction des membres (WBS)}
+\label{decomp_membre_WBS}
+\input{sources/decomp_membre_WBS.tex}
+
+\chapter{Procédures et description de la gestion de projet}
+\label{gestion_projet}
+\input{sources/gestion_projet.tex}
+
+\chapter{Procédures et description de la réalisation de produits}
+\label{realiser_les_produits}
+\input{sources/realiser_les_produits.tex}
+
+\chapter{Management de la qualité}
+\label{management_de_la_qualite}
+\input{sources/management_de_la_qualite.tex}
+ 
+\chapter{Vérification et validation}
+\label{verification_et_validation}
+\input{sources/verification_et_validation.tex}
+
+\chapter{Procédures et description de mesure d'analyse, Amélioration SMQ}
+\label{mesure_analyse_amelioration_SMQ}
+\input{sources/mesure_analyse_amelioration_SMQ.tex}
+ 
+\begin{appendix}
+\part*{Annexes}
+\addcontentsline{toc}{part}{Annexes}
+
+\chapter{Check-list de Vérification}
+\input{annexes/check-list_de_verification}
+
+\chapter{Fiches de Risque}
+\input{annexes/fiches_de_risques.tex}
+	
+\chapter{Fiche de Fait Technique}
+
+\chapter{Fiche d'Ordre de Correction}
+	
+\chapter{Fiches de Rôle}
+\label{annexeFichesRole}
+	
+\chapter{Fiches de Compétences}
+\label{annexeFichesCompetence}
+
+\chapter{Fiches d'Identification d'Indicateur}
+\label{annexeFichesIdentificationIndicateur}
+
+\chapter{Planning de principe}
+\label{annexePlanningDePrincipe}
+
+\chapter{Inventaire}
+\label{annexeInventaire}
+	
+\listoffigures
+\addcontentsline{toc}{chapter}{Table des figures}
+	 
+\listoftables
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+\end{appendix}
+\pageQuatriemeCouverture
+
+\end{document}

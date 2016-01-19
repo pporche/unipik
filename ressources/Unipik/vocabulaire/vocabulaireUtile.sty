@@ -1,0 +1,53 @@
+% Inclusion du package : \usepackage{vocabulaireUtile}
+
+\usepackage{color}
+\usepackage{soulutf8}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]
+\ProvidesPackage{vocabulaireUtile}
+
+%\RequirePackage{soul}
+
+\newif\if@debug \@debugfalse
+
+\DeclareOption{debug}{\@debugtrue}
+
+\ProcessOptions
+
+
+% Tableau de suivi des modifications des CR
+\newenvironment{suiviModifications}[1][Modifications CR]{
+  \section*{Suivi des modifications}
+  \normalsize{}
+    \begin{longtable}{|p{0.12\linewidth}|p{0.17\linewidth}|p{0.33\linewidth}|p{0.3\linewidth}|}
+      \hline
+	\rowcolor[gray]{0.8}
+	Date & Auteur & Modifications demandées & Modifications effectuées \\
+      \hline
+      \endhead
+    }
+    {
+    \end{longtable}
+}
+
+\newcommand{\uneModification}[4]{
+  #1 & #2 & #3 & #4 \\
+  \hline
+}
+% UTILISATION DU TABLEAU DE SUIVI :
+%\begin{suiviModifications}
+%	\uneModification{date 1}{auteur modif 1}{modif demandée 1}{modif effectuée 1 (ref ou ce que vous voulez)}
+%	\uneModification{date 2}{auteur modif 2}{modif demandée 2}{modif effectuée 2 (ref ou ce que vous voulez)}
+%\end{suiviModifications}
+
+
+% Commande de vérification
+\definecolor{rougeCorrection}{rgb}{1.0,0.4,0.5}
+\definecolor{bleuCommentaire}{rgb}{0.3,0.4,1.0}
+\newcommand{\corriger}[2]{\noindent{} \$\$ \\ \colorbox{rougeCorrection}{\parbox{\linewidth}{#1}} \colorbox{bleuCommentaire}{\parbox{\linewidth}{\textbf{COMMENTAIRE POUR CORRECTION :} \\ #2 ~\\}}}
+% UTILISATION DE LA COMMANDE \corriger{#1}{#2} :
+% Dans le document pdf, rechercher "$$" (CTRL + F)
+% Mettre entre les accolades du paramètre #1 le texte à corriger ou à vérifier. (si il y a un environnement il faut inclure le \begin ET le \end)
+% Mettre entre les accolades du paramètre #2 le(s) commentaire(s) lié à la vérification ou la correction du texte #1

@@ -1,19 +1,18 @@
 Dans le but d'identifier clairement et de manière unique les éléments de configuration du \picCourt{}, il est nécessaire de spécifier des règles de nommage. Chaque élément inclus dans un référentiel doit respecter la règle de nommage qui lui convient.\\
 
 L'ensemble des fichiers suit le modèle suivant :
-\begin{equation}
-  <Type>_<Référentiel>_<Nom du \PICCourt{}>_<Suffixe>
-\end{equation}
+\[
+  <Type>\_<Référentiel>\_Unipik\_<Suffixe>
+\]
 On utilisera des abrévations pour chaque élément.\\
-La première version du Plan de Gestion des Configurations par exemple aura pour
-nom de fichier :
-\begin{equation}
-PGC_Q_Unipik_v1.00
-\end{equation}
+La première version du Plan de Gestion des Configurations par exemple aura pour nom de fichier :
+\[
+PGC\_Q\_Unipik\_v1.00
+\]
 Et se trouvera dans le dossier :
-\begin{equation}
+\[
 Unipik/qualite/GP/PGC/
-\end{equation}
+\]
 
 \section{Nom du \picCourt{}}
 Ce champ indique l'appartenance du document au \PICCourt{}, qu'importe sa provenance
@@ -24,7 +23,7 @@ Ce champ indique l'appartenance du document au \PICCourt{}, qu'importe sa proven
 Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 référentiels suivants : Développement, Livraison, Qualité, Ressources et Spécification.
 \begin{table}[H]
 \centering
-	\begin{tabularx}{11cm}{|c|X|X|}
+	\begin{tabularx}{11cm}{|X|c|X|}
 	\hline
 	\rowcolor[gray]{0.85} Référentiel & Abréviation & Nom du dossier sous \git{} \\
 	\hline
@@ -45,9 +44,9 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
 
 \section{Types}
 
-\begin{table}[H]	
+\begin{table}[H]
 	\centering
-	\begin{tabularx}{16cm}{|X|p{2.5cm}|p{2cm}|}
+	\begin{tabularx}{18cm}{|X|c|c|}
     \hline
     \rowcolor[gray]{0.85} Documents et Enregistrements & Type & Suffixe\\
     \hline	
@@ -215,7 +214,7 @@ Lors du nommage nous utilisons des suffixes adaptés en fonction du type de docu
 
 	\begin{table}[H]
 		\centering
-		\begin{tabularx}{12cm}{|p{4cm}|p{4cm}|p{4cm}|}
+		\begin{tabularx}{10cm}{|X|c|c|}
 		\hline
 		\rowcolor[gray]{0.85} Suffixe & Abréviation & Format\\
 		\hline
@@ -281,7 +280,7 @@ Le suffixe rôle suit le format \textbf{rRole} où Role correspond au rôle conc
 \item RR : Responsable Réseau;
 \item RD : Responsable Développement;
 \item D : Développement;
-\item PR : Pilote de Risque.
+\item PR : Pilote de Risque.\\
 \end{itemize}
 
 Exemple : $rCP$

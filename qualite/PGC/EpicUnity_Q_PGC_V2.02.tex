@@ -1,0 +1,85 @@
+\documentclass[asi]{picINSA}
+
+% \input{commandes}
+
+\usepackage{vocabulaireEpicUnity}
+
+\definecolor{gris}{gray}{0.75}% utilisé dans les annexes A B et C
+\definecolor{gris2}{gray}{0.85}% utilisé dans les annexes A B et C
+
+\titreGeneral{\pgc}
+\sousTitreGeneral{\nomEquipe}
+\titreAcronyme{\pgcCourt}
+\version{V2.02}
+\referenceVersion{\nomEquipe\_Q\_\pgcCourt\_\versionPrive}
+\titreDetaille{\nomEquipe\_Q\_\pgcCourt\_\versionPrive}
+\auteurs{\Quentin{} \& \Zenan{}}
+\destinataires{\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC}
+\resume{Le présent document contient la présentation du système de gestion
+des configurations pour \nomEquipe.}
+\natureDerniereModification{Correction}
+\motsCles{\pgcCourt{}, référentiel, nommage}
+\modeDiffusionControle{}
+
+\newcommand{\elementRDF}[1]{\NoAutoSpaceBeforeFDP{#1}}
+
+%opening
+
+%Ces deux lignes empèche LaTeX de numéroter les chapitres qui sont inexistant dans le PQ
+%makeatletter\@addtoreset{section}{part}\makeatother
+%renewcommand{\thesection}{\arabic{section}}
+
+\begin{document}
+ \couverture{}
+ \informationsGenerales{}
+  \input{sources/ch00_pageService}
+ \tableofcontents
+ 
+ \chapter*{Introduction}
+ \input{sources/ch01_introduction}
+ 
+ \chapter{Règles de nommage}
+ \label{chap regle nommage}
+ \input{sources/ch1_reglesNommage}
+
+ \chapter{Structure des référentiels}
+ \label{chap struc ref}
+  \input{sources/ch2_StructureReferentiels}
+
+ \chapter{Règles spécifiques}
+ \label{chap regles specifiques}
+  \input{sources/ch3_reglesSpecifiques}
+
+ \chapter{Administration des configurations}
+  \input{sources/ch4_adminConf}
+
+ \chapter{Maîtrise des documents}
+  \input{sources/ch5_maitriseDesDocuments}
+
+\chapter{Maîtrise des enregistrements}
+ \input{sources/ch6_maitriseDesEnregistrements}
+
+ \chapter{Archivage}
+  \label{archivages}
+  \input{sources/ch7_archivage}
+
+
+ %\input{annexes/annexe_pageDeGarde}
+ \begin{appendix}
+	\part*{Annexes}
+	\addcontentsline{toc}{part}{Annexes}
+	\chapter{Modèle de l'État de configuration}
+	\input{annexes/annexe_EC}
+	
+	\listoffigures
+	 \addcontentsline{toc}{chapter}{Liste des figures}
+	 
+	\listoftables
+	 \addcontentsline{toc}{chapter}{Liste des tableaux}
+ \end{appendix}
+
+\newpage
+
+\pageQuatriemeCouverture{}
+
+\end{document}

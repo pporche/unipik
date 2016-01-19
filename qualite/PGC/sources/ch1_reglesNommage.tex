@@ -1,0 +1,302 @@
+Dans le but d'identifier clairement et de manière unique les éléments de configuration du \picCourt{}, il est nécessaire de spécifier des règles de nommage. Chaque élément inclus dans un référentiel doit respecter la règle de nommage qui lui convient.\\
+
+L'ensemble des fichiers suit le modèle suivant :
+\begin{equation}
+  <Type>_<Référentiel>_<Nom du \PICCourt{}>_<Suffixe>
+\end{equation}
+On utilisera des abrévations pour chaque élément.\\
+La première version du Plan de Gestion des Configurations par exemple aura pour
+nom de fichier :
+\begin{equation}
+PGC_Q_Unipik_v1.00
+\end{equation}
+Et se trouvera dans le dossier :
+\begin{equation}
+Unipik/qualite/PGC/
+\end{equation}
+
+\section{Nom du \picCourt{}}
+Ce champ indique l'appartenance du document au \PICCourt{}, qu'importe sa provenance
+ (\PICCourt{}, client, département \ASI{}, autres \dots{}). Il a pour valeur \textbf{\nomEquipe}.
+
+\section{Référentiels}
+
+Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 référentiels suivants : Développement, Livraison, Qualité, Ressources et Spécification.
+\begin{table}[H]
+\centering
+	\begin{tabularx}{11cm}{|c|X|X|}
+	\hline
+	\rowcolor[gray]{0.85} Référentiel & Abréviation & Nom du dossier sous \git{} \\
+	\hline
+	Spécifications & S & specifications\\ 
+	\hline
+	Qualité & Q & qualite\\
+	\hline
+	Développement & D & developpement\\
+	\hline	
+	Livraison & L & livraison\\
+	\hline 
+	Ressources & R & ressources\\
+	\hline
+	\end{tabularx}
+\caption{Abréviations associées à chaque type}
+\label{Référentiel}
+\end{table}
+
+\section{Types}
+
+\begin{table}[H]	
+	\centering
+	\begin{tabularx}{16cm}{|X|p{2.5cm}|p{2cm}|}
+    \hline
+    \rowcolor[gray]{0.85} Documents et Enregistrements & Type & Suffixe\\
+    \hline	
+    \multicolumn{3}{|c|}{\textbf{\bsc{Référentiel Qualité}}}\\
+    \hline
+    Dossier de Suivi de la Qualité & DSQ & -\\
+    \hline
+       Fiche de Fait Technique & FFT & n\\
+    \hline
+       Fiche de Compétences & FC & p-v\\
+    \hline
+       Fiche de Formation & FF & c\\
+    \hline
+       Fiche de Rôle & FR & r-v\\
+    \hline
+       Organigramme Fonctionnel & OF & v\\
+    \hline
+       Plan de Formation & PF & v\\
+    \hline
+       Questionnaire de Satisfaction Client & QSC & d\\
+    \hline
+       Rapport d'Audit Interne & RAI & d\\
+    \hline
+       Tableau de Bord & TB & s\\
+    \hline
+       Fiche d'Indicateurs & FI & n\\
+    \hline
+    Gestion de Projet & GP & -\\
+    \hline
+       Compte-Rendu & CR & -\\
+    \hline
+          Compte-Rendu de réunion Client & CRC & d\\
+    \hline
+          Compte-Rendu de réunion Exceptionnelle & CRE & d\\
+    \hline
+          Compte-Rendu de réunion Interne & CRI & d\\
+    \hline
+          Compte-Rendu de réunion Inter-PIC & CRIP & d\\
+    \hline
+          Compte-Rendu de réunion Tuteur Pédagogique & CRTP & d\\
+    \hline
+          Compte-Rendu de réunion Tuteur Qualité & CRTQ & d\\
+    \hline
+       E-mails & Mails & -\\
+    \hline
+          Mail du Client & MC & d\\
+    \hline
+          Mail du Directeur Qualité & MDQ & d\\
+    \hline
+          Mail de Livraison & ML & d\\
+    \hline
+          Mail de l'Unité P3 & MP3 & d\\
+    \hline
+          Mail du Tuteur Pédagogique & MTP & d\\
+    \hline
+          Mail du tuteur Qualité & MTQ & d\\
+    \hline
+       Procès-Verbal & PV & PV\\
+    \hline
+          Revue Formelle de Démarrage & RFD & -\\
+    \hline
+             Procès-Verval de Démarrage & PVD & d\\
+    \hline
+          Revue Formelle de Fin de Phase de Conception Préliminaire & RFFPCP & -\\
+    \hline
+             Procès-Verbal de Fin de Phase de Conception Préliminaire & PVFPCP & d\\
+    \hline
+          Revue Formelle de Fin de Phase d'Intégration & RFFPI & -\\
+    \hline
+             Procès-Verbal de Fin de Phase d'Intégration & PVFPI & d\\
+    \hline
+          Revue Formelle de Fin de Phase de Spécification & RFFPS & -\\
+    \hline
+             Procès-Verbal de Dossier de Spécifications Externes & PVDSE & d\\
+    \hline
+             Procès-Verbal de Dossier de Spécifications Internes & PVDSI & d\\
+    \hline
+             Procès-Verbal de Fin de Phase de Spécifications & PVFPS & d\\
+    \hline
+             Procès-Verbal de Plan de Tests de Validation & PVPTV & d\\
+    \hline
+          Revue Formelle de Recettes & RFR & -\\
+    \hline
+             Procès-Verbal de Recettes & PVR & d\\
+    \hline
+    Gestion des Configurations & GC & -\\
+    \hline
+       Etat de Configuration & EC & d-c\\
+    \hline
+       Fiche de Remise de Documents & FRD & d-c\\
+    \hline
+       Fiche de Remise de Matériels & FRM & d-c\\
+    \hline
+       Fiche Récapitulative de Référentiel & FRR & s\\
+    \hline
+       Plan de Gestion des Configurations & PGC & v\\
+    \hline
+    Portefeuille des Risques & PR & -\\
+    \hline
+       Fiche De Risque & FDR & n\\
+    \hline
+       Fiche D'Opportunité & FDO & n\\
+    \hline
+    Plan Qualité & PQ & v\\
+ \multicolumn{3}{|c|}{\textbf{\bsc{Référentiel Spécification}}}\\
+    \hline
+    LotX & LotX & -\\
+    \hline
+       Cahier De Recettes & CDR & n-v\\
+    \hline
+       Carnet de Produit & CP & n-v\\
+    \hline
+       Dossier de Spécifications Externes & DSE & n-v\\
+    \hline
+       Cahier De Spécifications Internes & DSI & n-v\\
+    \hline
+       Plan de Tests de Validation & PTV & n-v\\
+ \multicolumn{3}{|c|}{\textbf{\bsc{Référentiel Développement}}}\\
+    \hline
+    Dossier d'Audit de Code & DAC & d\\
+    \hline
+    Implémentation & I & -\\
+    \hline
+    LotX & LotX & -\\
+    \hline
+       Dossier de Conception & DC & v\\
+    \hline
+       Dossier de Tests & DT & -\\
+    \hline
+          Dossier de Tests d'Intégration & DTI & n-v \\
+    \hline
+          Dossier de Tests Unitaires & DTU & n-v \\
+    \hline
+          Plan de Tests d'Intégration & PTI & n-v \\
+    \hline
+          Plan de Tests d'Intégration & PTU & n-v \\
+    \hline
+          Rapport Jenkins & RJ & n-v \\
+    \hline
+       Guide Utilisateur & GU & v\\
+    \hline
+       Procédure d'Installation & PI & v\\
+ \multicolumn{3}{|c|}{\textbf{\bsc{Référentiel Livraison}}}\\
+    \hline
+    Livraisons Complémentaires & LC & d\\
+    \hline
+    Lots & Lots & -\\
+    \hline
+       Lot numéro X & LotX & d\\
+    \hline
+    Revue & Revues & -\\
+    \hline
+       Revue numéro X & RevuesX & -\\
+    \hline
+          Support Présentation & SP & n\\
+  \end{tabularx}
+  \caption{Formalisme des différents Types}
+  \label{Formalisme Types}  
+\end{table}
+\smallskip
+
+\section{Suffixes}
+
+Lors du nommage nous utilisons des suffixes adaptés en fonction du type de document. Un document peut avoir plusieurs suffixes, dans ce cas ils sont séparés par un "-". Les suffixes possibles sont les suivants : 
+
+	\begin{table}[H]
+		\centering
+		\begin{tabularx}{12cm}{|p{4cm}|p{4cm}|p{4cm}|}
+		\hline
+		\rowcolor[gray]{0.85} Suffixe & Abréviation & Format\\
+		\hline
+		date & d & dAA-MM-JJ\\
+		\hline
+		version & v & vX.YY\\
+		\hline
+		numéro & n & nXXX\\
+		\hline
+		semaine & s & sXX\\
+		\hline
+		rôle & r & rRole\\
+		\hline
+		personne & p & pNom\\
+		\hline
+		commentaire & c & cCommentaire\\
+		\hline
+		\end{tabularx}
+	\caption{Abréviations associées à chaque suffixe}
+	\label{Suffixes}
+	\end{table}
+	
+
+
+\subsection{Suffixe Date}
+\label{suffixe_date}
+
+Le suffixe de date suit le format \textbf{AA-MM-JJ}. AA pour l'année, MM pour le mois et JJ pour le jour. Ce format permet de classer les documents par ordre chronologique.\\
+
+Exemple : $d16-01-27$ 
+
+\subsection{Suffixe Version}
+\label{suffixe_version}
+
+Le suffixe version suit le format \textbf{vX.YY}. X correspond au numéro de version, YY au numéro de révision. Le numéro de version représente le numéro de semestre, en considérant que le semestre 4.2 est le numéro de semestre 1 du PIC et le semestre 5.1 est le numéro de semestre 2 du PIC. Le numéro de révision démarre à 00 et est modifié de la façon suivante : le chiffre des dizaines est incrémenté à chaque modification majeure et le chiffre des unités est incrémenté à chaque révision. Quand le numéro de version est incrémenté, celui des révision repasse à 00.\\
+
+Exemple : $v1.00$
+
+\subsection{Suffixe Numéro}
+\label{suffixe_numero}
+
+Le suffixe numéro suit le format \textbf{nXXX}. XXX est un nombre entier compris entre 001 et 999. Il commence à la valeur 001 et est incrémenté à chaque nouveau document.\\
+
+Exemple : $n042$
+
+\subsection{Suffixe Semaine}
+\label{suffixe_semaine}
+
+Le suffixe semaine suit le format \textbf{sXX}. XX correspond au numéro de la semaine en cours, la première semaine du PIC étant 01. Seules les semaines comportant au moins un jour ouvré sont numérotées.\\
+
+Exemple : $s09$
+
+\subsection{Suffixe Rôle}
+\label{suffixe_role}
+
+Le suffixe rôle suit le format \textbf{rRole} où Role correspond au rôle concerné par le document. Les valeurs possibles pour Role sont : 
+\begin{itemize}
+\item CP : Chef Projet;
+\item CPA : Chef Projet Adjoint;
+\item RGC : Responsable Gestion des Configurations;
+\item RQ : Responsable Qualité;
+\item RQA : Responsable Qualité Adjoint;
+\item RR : Responsable Réseau;
+\item RD : Responsable Développement;
+\item D : Développement;
+\item PR : Pilote de Risque.
+\end{itemize}
+
+Exemple : $rCP$
+
+\subsection{Suffixe Personne}
+\label{suffixe_personne}
+
+Le suffixe personne suit le format \textbf{pNom} où Nom correspond au nom de famille de la personne concernée par le document. Dans le cas où plusieurs personnes sont concernées le suffixe aura le format \textbf{pNom1Nom2}.\\
+
+Exemple : $pBaron$
+
+\subsection{Suffixe Commentaire}
+\label{suffixe_commentaire}
+
+Le suffixe commentaire suit le format \textbf{cX} où X est le commentaire correspondant au fichier. Par exemple le sujet de la formation pour une Fiche de Formation.\\
+
+Exemple : $cLaTeX$
+

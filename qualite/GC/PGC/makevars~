@@ -1,0 +1,19 @@
+# Définition du nom du document
+NOM_FICHIER=PGC_Q_Unipik_V1.00*
+
+# Récupération du chemin de la classe picINSA pour les documents LaTeX
+CLSPATH="$(shell pwd)/../../ressources/cls/"
+
+# Récupération du chemin du package vocabulaireEpicUnity.sty
+VOCPATH="$(shell pwd)/../../ressources/Unipik/vocabulaire/"
+
+# Dossiers dans PGC
+PDFDIR=pdf
+IMGDIR=images
+ARCHIVEDIR=/home/${USER}/archivage/qualite/PGC
+
+# Commandes
+CCTEX=rubber -d
+EPSPDF=ps2pdf
+DIA=dia
+

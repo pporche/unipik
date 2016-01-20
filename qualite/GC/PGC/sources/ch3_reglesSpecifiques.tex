@@ -1,29 +1,12 @@
-\section{Exceptions aux règles de nommage}\label{Regle specifique}
+\section{Exceptions aux règles de nommage}
 
-\subsection{Référentiels Ressources}
+\subsection{Référentiel Ressources}
 
-Le référentiel \textbf{Ressources} ne sera pas soumis aux règles de nommage de \nomEquipe.
+Le référentiel \textbf{Ressources} ne sera pas soumis aux règles de nommage de \nomEquipe mais leur nom doit toujours être évocateur du contenu.
 
-\subsection{Référentiel Livraison}
+\section{Dossiers spécifiques}
 
-Les répertoires lotN (N le numéro de lot) ne sont \textbf{en aucun cas} des répertoires de travail.
-Les fichiers contenus dans ces répertoires sont des fichiers compilés (notamment des \verb+pdf+).
-Exemple, pour le lot 1, le répertoire lot1/DateLivraison (format DAA-MM-JJ) pourrait par exemple contenir:
-	\begin{itemize}
-		\item le \DSE{}: \nomEquipe\_S\_DSE\_V1.00.pdf;
-		\item le \DSI{}: \nomEquipe\_S\_DSI\_V1.00.pdf;
-	\end{itemize}
-Remarque: Les documents contenus dans les répertoires de livraison  lotN respecteront
-obligatoirement la convention de nommage associée à leur \textbf{référentiel d'origine}.
-
-\section{Répertoires pdf, images, et sources}
-
-\subsection{pdf}
-
-\`{A} la racine du répertoire de chaque document se trouve un répertoire \textbf{pdf}. C'est
-le répertoire dans lequel est placé le \verb+pdf+ généré par la compilation \LaTeX{}. Le \verb+pdf+ n'est pas stocké sur \git{}.
-
-\subsection{images}
+\subsection{Dossiers images}
 
 \`{A} la racine du répertoire des documents nécessitant l'inclusion d'images, de diagrammes ou
 d'autres figures se trouve un répertoire \textbf{images}. Il est ajouté au \git{} par le
@@ -32,7 +15,7 @@ rédacteur du document si besoin est. Dans ce répertoire sont stockés les fich
 à la compilation par le \verb+makefile+.
 Les fichiers du répertoire \verb+images+ ne sont pas concernés par les règles de nommage.
 
-\subsection{sources}
+\subsection{Dossiers sources}
 
 \`{A} la racine du répertoire des documents nécessitant l'inclusion de sous-fichiers \verb+.tex+
 (correspondant à des chapitres, des sections, etc\dots) se trouve un répertoire \textbf{sources} pour
@@ -40,7 +23,27 @@ les documents longs nécessitant d'être subdivisés.
 Ces sous-fichiers \verb+.tex+ seront placés dans ce répertoire et ils seront inclus via
 le \verb+.tex+ général. Ces sous-fichiers ne sont pas concernés par les règles de nommage.
 
-\section{Comptes-rendus} \label{comptes-rendus}
+\subsection{Dossiers annexes}
 
-Les Comptes-Rendus seront écrits en \LaTeX{} et archivés au format pdf dans le serveur \textbf{SFTP}. Ils sont approuvés par courriel ou imprimés et signés.
+\`{A} la racine du répertoire des documents nécessitant l'inclusion d'annexes se trouve un répertoire \textbf{annexes}.
+Ces documents seront placés dans ce répertoire et ils seront inclus via
+le \verb+.tex+ général. Ces sous-fichiers ne sont pas concernés par les règles de nommage.
+
+\subsection{Dossiers pdf}
+
+\`{A} la racine du répertoire de chaque document se trouve un répertoire \textbf{pdf}. C'est
+le répertoire dans lequel est placé le \verb+pdf+ généré par la compilation \LaTeX{}. Le \verb+pdf+ n'est pas stocké sur \git{}.
+
+\subsection{Dossiers approbations}
+
+Lorsqu'un document est approuvé par une signature manuscrite, la copie papier de l'enregristrement est archivée dans la salle PIC de \nomEquipe et une numérisation de la page de signatures est effectuée et stockée dans le dossier \textbf{approbations}. Les numérisations seront nommées de la manière suivante:
+\[
+ApprobSignature\_<Nom\ du\ document>
+\]
+
+Exemple : $ApprobSignature\_PGC\_Q\_Unipik\_v1.00$
+
+\section{Règles de rédaction des dates}
+
+Les dates figurant dans les documents sont toutes au format \textbf{JJ/MM/AAAA}. Attention à ne pas confondre avec le format de date des  suffixes dans la convention de nommage (dAA-MM-JJ).
 

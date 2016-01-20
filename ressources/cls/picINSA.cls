@@ -925,9 +925,9 @@ linkcolor=black]{hyperref}
   \begin{picture}(0,0)
   
   \put(40,-350){\includegraphics[width=130mm]{images/epicunity.png}}
-  \put(-85,-760){\includegraphics[width=216mm]{images/Couverture.pdf}}
-  \put(300,-475){\includegraphics[width=50mm]{images/logoUnit.png}}  
-  \put(300,-550){\includegraphics[width=40mm]{images/logoasi.png}}
+  \put(-100,-760){\includegraphics[width=216mm]{images/Couverture.pdf}}
+  \put(300,-540){\includegraphics[width=50mm]{images/logoUnicef.png}}  
+  \put(315,-666){\includegraphics[width=40mm]{images/logoASINew.jpeg}}
   \put(-45,-260){\begin{minipage}[t]{150mm}\begin{flushleft}
       \textcolor{white}{
         \fontsize{50pt}{60pt}\selectfont \textbf{\titreGeneralPrive} \\

@@ -12,7 +12,7 @@ Le processus \textit{Planifier le projet} peut se découper en trois sous-proces
 \begin{itemize}
 \item Analyser le projet : consiste à établir la liste de l'ensemble des activités du projet.
 \item Modéliser le projet : consiste en la création des tâches.
-\item \textit{Ordonnancer les activités} : a pour objectif d'établir un planning du projet, sous la forme d'un diagramme GANTT.
+\item Ordonnancer les activités : a pour objectif d'établir un planning du projet, sous la forme d'un diagramme GANTT.
 \end{itemize}
 
 Nous étudierons tout d'abord ces trois sous-processus, puis nous présenterons le planning de principe et enfin nous verrons les outils  disposition pour la gestion de projet. 
@@ -42,12 +42,6 @@ Ce planning sera mis à jour par le \CP ou par son adjoint chaque semaine lors d
 
 Comme dit ci-dessus, le planning du \PICCourt est fait par le \CP et le \CPA. Le responsable développement pourra aussi être sollicité selon le type de tâche.
 
-%\indent Le planning de principe est généré par Ganttify. En ce qui concerne la planification du projet pour le premier semestre, c’est-à-dire de janvier à juin, le PIC comportera 12 semaines de travail. Pour le second semestre, de septembre à janvier, nous disposerons de 14 semaines de travail. La réalisation du PIC au sein de l'INSA est à temps partiel. \\
-%
-%\indent La planification du projet suit une planification de type Agile (SCRUM). Lors du premier semestre, le planning était divisé en "sprints" de durée constante, fixée par défaut à 4 semaines. Cette durée pouvait éventuellement être modifiée en accord avec le client en cas
-%de retard. Le Sprint 0 étant réservé à la mise en place du PIC et à la formation de l’équipe.
-%Pour le second semestre, aucune durée de sprint par défaut n'a été fixée, bien qu'une phase de mise en place et formation soit nécessaire.
-
 \subsection*{Semestre 1 : Janvier 2015 - Mai 2015}
 
 Durant le premier semestre, nous disposons de 12 semaines de \PICCourt. Le planning global sera donc le suivant : 
@@ -55,181 +49,164 @@ Durant le premier semestre, nous disposons de 12 semaines de \PICCourt. Le plann
 \item Installation, initialisation des procédures de qualité, prise en main des technologies internes (1 semaine);
 \item Premier sprint: réalisation de 1er lot (4 semaines);
 \item Deuxième sprint (4 semaines);
-\item Troisième sprint: Finalisation du 2ème lot (3 semaines);
+\item Troisième sprint: finalisation du 2ème lot (3 semaines);
 \end{itemize}
 
 \subsection*{Semestre 2 : Septembre 2015 - Janvier 2016}
 
 Durant le second semestre, nous disposons de 14 semaines de \PICCourt. Le planning global sera donc le suivant : 
 \begin{itemize}
-\item Premier sprint: réalisation de 1er lot (4 semaines);
-\item Deuxième sprint (4 semaines);
-\item Troisième sprint: Finalisation du 2ème lot (3 semaines);
+\item Quatrième sprint: réalisation de 3ème lot (6 semaines);
+\item Cinquième sprint (4 semaines);
+\item Sixième sprint: finalisation du 4ème lot (4 semaines);\\
 \end{itemize}
+
+Ce planning est théorique et pourra être modifié à l'avenir. 
 
 \subsection{Outils pour la gestion du projet}
 
+Nous allons présenter dans cette partie le logiciel et les méthodes utilisés pour la gestion du \PICCourt. \\
 
 \subsubsection*{PGPic}
 
-\subsubsection*{}
+PGPic est un logiciel développé initialement par l'équipe Geotopic, une équipe \PICCourt de l'\INSACourt. Il est utilisé pour une grande partie de la gestion de projet. \\
 
-\subsubsection*{}
+Il est disponible à l’adresse \url{https://pgpic.insa-rouen.fr}. Il possède de nombreuses fonctionnalités : 
+\begin{itemize}
+\item \textbf{Créer et attribuer les tâches}. Le \CP définit les tâches pour chaque membre du \PICCourt, et ceux-ci sélectionnent la tâche sur laquelle ils sont en train de travailler. Le \CP peut donc voir le temps passé par les membres de son équipe sur chaque tâche, étant donné que PGPic a également un outil de comptage du temps de travail installé sur les machines de la salle \PICCourt
+\item \textbf{Organiser les tâches}. Le \CP peut agencer les tâches en visualisant un diagramme GANTT. Il est possible de retrouver facilement le diagramme GANTT d'une journée partculière car celui-ci est sauvegardé tous les jours. 
+\item \textbf{Gérer le suivi des tâches}. Chaque membre peut consulter la fiche de tâche qui le concerne. Ces fiches évoluent chaque jour et sont enregistrées
+\item \textbf{Voir le temps de travail} sur la semaine de chaque membre du \PICCourt. Tous les membres doivent se connecter en arrivant en salle \PICCourt à PGPic, et rester connectés tout au long de leur travail. En fin de semaine, le \CP peut donc vérifier si chaque membre du PIC a bien réalisé le nombre d’heures requis
+\item \textbf{Voir le calendrier}. Le Chef PIC peut y ajouter les dates des réunions, audits, fins de sprint, livraison afin que chaque membre du PIC ait une vision globale des dates limites du semestre \\ 
+\end{itemize}
+
+En revanche, les réclamations du client doivent être prises en compte et PGPic ne permet pas ce suivi. Un autre outils de gestion devra donc être utilisé en parallèle. 
+
+
+\subsubsection*{Kanbanboards} 
+
+Les Kanbanboards sont des tableaux de suivi des tâches. Celles-ci sont triées dans quatre catégories :
+\begin{itemize}
+\item \`A faire
+\item En cours
+\item \`A vérifier
+\item Terminé \\ 
+\end{itemize}
+
+Nous utiliserons cet outil pour superviser l'avancement technique du projet.
 
 \section{Suivi du projet} 
 
+Dans cette partie, nous allons aborder le processus de \textit{Suivi du projet} en étudiant tout d'abord le suivi d'avancement du projet et enfin les communications internes et externes.  
 
 \subsection{Suivi d'avancement}
 
+Nous mettons en place un suivi hebdomadaire ayant pour objectif de mesurer l'avancement du \PICCourt. Nous organiserons entre autre des réunions hebdomadaire qui permettront d'établir et de discuter du planning à venir. Lors de ces réunion,  et de déclarer et analyser les risques potentiels. Avant chacunes de ces réunions, chaque membre du PIC doit décrire l'avancement des tâches qui lui sont attribuées.\\
+
+À la suite de ces réunions, le \CP{} distribue des éventuelles fiches de tâches modifiées et établit un diagramme de GANTT des tâches futures pour l'ensemble de l'équipe. Un compte rendu sera rédigé à chaque réunion et mis à disposition de l'équipe. \\
+
+De plus, des \textit{daily Scrum} sont mis en place les jours où nous sommes tous présents afin de coordonner les tâches en cours. Le suivi des tâches globales sera fait à l’aide de PGPic.
+
 \subsection{Communication}
-\subsubsection*{La communication avec le \tuteurPedagogique{}}
-\subsubsection*{La communication avec le \tuteurQualite{}}
+
+La communication est l'un des aspects les plus importants de la conduite de projet. Nous verrons tout d'abord comment nous communiquons avec les Tuteurs (\tuteurPedagogique \tuteurQualite), ensuite comment s'organise la communication avec le client et enfin les communications internes et inter\PICCourt.\\ 
+
+Toutes les réunions ne se déroulent pas de la même façon. Cependant, l’archivage d’un compte-rendu se fait toujours en version numérique et parfois en version papier (lorsqu’il est signé).
+
+\subsubsection*{La communication avec les Tuteurs}
+La communication se base sur des réunions hebdomadaires par tuteur dont le jour est définis en début de \PICCourt et en cas de besoin, l’envoi de courriels. Des réunions en dehors de ce créneau pourront être organisées exceptionnellement. Ces dernières se déroulent de la façon suivante :
+\begin{enumerate}
+\item Le \CP{} définit avant chaque réunion un ordre du jour qui recense toutes les questions et points à aborder pendant la réunion. Chaque membre du \PICCourt{} a la possibilité de consulter et de rajouter des éléments à cet ordre du jour. Cela peut se faire par oral ou bien via le bloc-notes de PGPic. 
+\item Un secrétaire est désigné à chaque début de réunion pour prendre des notes sur les points abordés et rédiger le compte-rendu au plus tard dans les 7 jours qui suivent.
+\item Une fois rédigé, le compte-rendu est soumis à vérification puis validation. Le compte-rendu doit être validé avant la prochaine réunion au plus tard.
+\item Une fois validé, le compte-rendu est envoyé au tuteur. Si le compte-rendu n’est pas approuvé, les modifications nécessaires sont apportées, puis il est renvoyé pour approbation.
+\item Si le compte-rendu n’est pas approuvé, il est réédité, vérifié, validé et soumis à approbation à la prochaine réunion.
+\item Une fois approuvé, le compte-rendu est archivé. 
+\end{enumerate}
+
 \subsubsection*{La communication avec le client}
+
+La communication avec le client repose sur : 
+\begin{itemize}
+\item Des courriels
+\item Des appels
+\item Des réunions entre l'équipe et le client \\
+\end{itemize}
+
+Le \CP est l’interlocuteur privilégié du client. En cas d’absence et de nécessité, le \CPA peut devenir cet interlocuteur. La fréquence des échanges sera au minimum hebdomadaire. En cas de nécessité, une prise de contact téléphonique peut être initiée par
+le client ou le \CP. L’échange d’e-mails est mené depuis l’adresse mise en place dans le cadre des \PICCourt, associée au \CP. Ces e-mails sont archivés et classés selon les libellés définis dans le \PGC. Les réunions avec le client sont prédéfinies à l’avance entre l’équipe \PICCourt et ce dernier. La réunion avec le client se déroule de la façon suivante :
+\begin{enumerate}
+\item Le \CP et le \CPA définissent avant chaque réunion un ordre du jour qui recense toutes les questions et points à aborder pendant la réunion. Chaque membre du \PICCourt a la possibilité de consulter et de rajouter des éléments à cet ordre du jour. Cela peut se faire par oral ou bien via le bloc-notes de PGPic.
+\item Un secrétaire est désigné à chaque début de réunion pour prendre des notes sur les points abordés et rédiger le compte-rendu au plus tard dans les 7 jours qui suivent.
+\item Une fois rédigé, le compte-rendu est envoyé pour vérification puis validation. La validation est obligatoirement effectuée par le \CP.
+\item Une fois validé, le compte-rendu est envoyé par courriel au client pour approbation. Si le client ne fait aucune remarque sur le compte-rendu dans les 7 jours suivants l’envoi du mail, le compte-rendu est considéré comme approuvé.
+\item Une fois approuvé, le compte-rendu est archivé.
+\end{enumerate}
+
+
 \subsubsection*{Les communications internes}
+
+La communication interne comprend :
+\begin{itemize}
+\item Des réunions hebdomadaires
+\item Des \textit{Daily Scrum}
+\item Courriels
+\item Groupe Facebook privé \\
+\end{itemize}
+
+Les réunions hebdomadaires auront lieu avec l’équipe au complet. Cette réunion aura pour but de traiter de l’avancement du projet ainsi que de la gestion des risques. Lors de cette réunion seront aussi inspectés les indicateurs de Qualité si ceux-ci sont disponibles au moment de la réunion. De plus, c’est lors de cette réunion que se fera l’attribution des tâches pour la semaine suivante. Avant chaque réunion, un secrétaire est désigné afin de prendre des notes et de rédigé par la suite un compte-rendu qui sera archivé sous forme numérique.\\
+
+Les \textit{Daily Scrum} sont des petites réunions quotidienne, d’une durée de 15 minutes maximum, s’effectuant debout, le matin. Lors de ces réunions, chaque membre de l’équipe prendra la parole à tour de rôle pour répondre aux questions suivantes :
+\begin{itemize}
+\item Qu’as-tu fait hier ?
+\item Quelles difficultés as-tu rencontré ? Et inversement, de quoi es-tu fier ?
+\item Que vas-tu faire aujourd’hui ?
+\end{itemize}
+Cette réunion permet d’avoir un suivi précis de l’avancement du projet, de soulever d'éventuels problèmes, et d’aider chaque membres à prendre du recul sur les tâches qu’il effectue.\\
+
+Les courriels et le groupe Facebook sont utilisés pour une communication moins formelle. 
+
 \subsubsection*{Les communications inter\picCourt{}}  
+
+Il est important que les équipes des différents \PICCourt puissent communiquer entre elles afin d’échanger des informations concernant le déroulement des \PICCourt et de partager leurs expériences. C'est pourquoi il est important d'organiser des réunions.\\
+
+Les réunions inter\PICCourt{} vont être effectuées soit entre les différents chefs \PICCourt{}, soit entre les différents Responsables Qualité. Le but de ces réunions est de définir des lignes directrices communes aux projets, répondre aux différentes questions qui peuvent survenir lors de la mise en place et du
+suivi de la Qualité dans les \PICCourt et prendre des décisions. Elles permettent également d’assurer la Qualité de manière uniforme dans tous les \PICCourt, et de constater les éven-
+tuelles différences de Management de la Qualité. Ces réunions donneront lieu à des comptes rendus ou des relevé de décision écrit.
 
 \section{Gestion des risques et opportunités} 
 
-\subsection{Identification des risques et opportunités}
-\subsection{Suivi des risques et opportunités}
-\subsection{Réduction des risques et opportunités}
+Le processus \textit{Gérer les risques et opportunités} est découpé en trois sous-parties : 
+\begin{itemize}
+\item identifier les risques et opportunités
+\item suivre les risques et opportunités
+\item réduire les risques et améliorer les oportunités \\
+\end{itemize}
 
-%\subsection{Outils pour la gestion du projet}
-%
-%\indent Nous allons vous présenter dans cette partie les logiciels et méthodes utilisés pour la gestion du PIC.
-%
-%\subsubsection*{PGPic}
-%
-%\indent PGPic est un logiciel développé initialement par l'équipe Geotopic, une équipe PIC de l'INSA. Il est utilisé pour une grande partie de la gestion de projet.
-%
-%\indent Cet outil intranet permet entre autre :
-%
-%\begin{itemize}
-%\item la création et le suivi des tâches;
-%\item le suivi des temps de travail par personne et par tâche;
-%\item l'organisation des tâches;
-%\item la création de diagramme de Gantt;
-%\item la gestion des riques;
-%\item la gestion des faits techniques;
-%\item le suivi des documents et de leur validation;
-%\item la planification de réunions.
-%\end{itemize}
-%
-%\subsubsection*{Kanbanboards} \label{Kanbanboards}
-%
-%\indent Les Kanbanboards sont des tableaux de suivi des tâches. Celles-ci sont triées dans quatre catégories : "à faire", "en cours", "à vérifier" et "terminées". Nous utiliserons cet outil pour superviser l'avancement technique du projet.
-%\section{Suivi du projet} 
-%\label{suivi}
-%
-%\indent Le processus \textit{Réaliser le suivi} est décomposé en quatre sous-processus.
-%
-%\begin{itemize}
-% \item \textit{Suivre les tâches ou suivi statique} ;
-%\item \textit{Réajuster le planning ou suivi dynamique} ;
-%\item \textit{Communiquer en interne et en externe} ;
-%\item \textit{Évaluer la conduite du projet ou suivi prévisionnel}.
-%\end{itemize}
-%
-%\subsection{Suivi d'avancement}
-%
-%\indent Nous mettons en place un suivi hebdomadaire ayant pour objectif de mesurer l'avancement du PIC. Il se traduit entre autre par des réunions régulières qui permettront d'établir et de discuter du planning à venir et de déclarer et analyser les risques potentiels. Avant chacun de ces réunions, chaque membre du PIC doit décrire l'avancement des tâches qui lui sont attribuées.\\
-%À la suite de ces réunions, le \CP{} distribue des éventuelles fiches de tâches modifiées et établit un diagramme de GANTT des tâches futures pour l'ensemble de l'équipe.
-%
-%\subsection{Communication}
-%\label{Communication}
-%Afin d’assurer une bonne communication, plusieurs échanges vont avoir lieu au sein et
-%à l'extérieur du \picCourt{}. Il y a cinq types d’échanges :
-%\begin{itemize}
-% \item les échanges internes au \PICCourt{};
-% \item les échanges inter\PICCourt{};
-% \item les échanges avec le tuteur Qualité;
-% \item les échanges avec le tuteur Pédagogique;
-% \item les échanges avec le client.
-%\end{itemize}
-%Toutes les réunions ne se déroulent pas de la même façon. Cependant, l’archivage d’un compte-rendu se fait toujours en version numérique et parfois en version papier (lorsqu’il est signé).
-%
-%\subsubsection*{La communication avec le \tuteurPedagogique{}:}
-%
-%La communication se base sur des réunions hebdomadaires et en cas de besoin, l’envoi de courriels. Des réunions en dehors de ce créneau pourront être organisées exceptionnellement. Ces dernières se déroulent de la façon suivante :
-%\begin{enumerate}
-% \item Le \CP{} définit avant chaque réunion un ordre du jour qui recense toutes les questions et points à aborder pendant la réunion. Chaque membre du \PICCourt{} a la possibilité de consulter et de 
-% rajouter des éléments à cet ordre du jour. Cela peut se faire par oral ou bien via le bloc-notes de \lintranet.
-% \item Un secrétaire est désigné à chaque début de réunion pour prendre des notes sur les points abordés et rédiger le compte-rendu au plus tard dans les 7 jours qui suivent.
-% \item Une fois rédigé, le compte-rendu est soumis à vérification puis validation. Le CR doit être validé avant la prochaine réunion au plus tard.
-% \item Le CR est soumis à l'approbation du tuteur Pédagogique en début de réunion, la semaine suivante.
-% \item Si le CR n’est pas approuvé, il est réédité, vérifié, validé et soumis à approbation à la prochaine réunion.
-% \item Si le CR est approuvé, il est archivé.
-%
-%\end{enumerate}
-%
-%\subsubsection*{La communication avec le \tuteurQualite{}:}
-%
-%La communication se base sur des réunions et en cas de besoin, l’envoi de courriels. Des réunions en dehors de ce créneau pourront être organisées exceptionnellement. Ces dernières se déroulent de la façon suivante :
-%\begin{enumerate}
-% \item Le \CP{} et le \RQ{} définissent avant chaque réunion un ordre du jour qui recense toutes les questions et points à aborder pendant la réunion. Chaque membre du \PICCourt{} a la possibilité de consulter et de rajouter des éléments cet ordre du jour. Cela peut se faire par oral ou bien via le bloc-notes de \lintranet.
-% \item Un secrétaire est désigné à chaque début de réunion pour prendre des notes sur les points abordés et rédiger le compte-rendu au plus tard dans les 7 jours qui suivent.
-% \item Une fois rédigé, le compte-rendu est soumis à vérification puis validation. Le CR doit être validé avant la prochaine réunion au plus tard.
-% \item Le CR est soumis à l'approbation du tuteur Qualité en début de réunion, la semaine suivante.
-% \item Si le CR n’est pas approuvé, il est réédité, vérifié, validé et soumis à approbation à la prochaine réunion.
-% \item Si le CR est approuvé, il est archivé.
-%\end{enumerate}
-%
-%\subsubsection*{La communication avec le client}
-%La communication avec le client est basée sur les éléments suivants :
-%\begin{itemize}
-% \item échanges de courriels entre le \CP{} et le client ;
-% \item appels téléphoniques entre le \CP{} et le client ;
-% \item visio-conférence entre le \CP{} et le client ;
-% \item visio-conférence entre l’équipe et le client.
-%\end{itemize}
-%
-%Le \CP{} est l’interlocuteur privilégié du client. En cas d’absence et de nécessité, le \CP{} Adjoint peut devenir cet interlocuteur. Les échanges se font sur une base hebdomadaire. 
-%Ces derniers regroupent les appels téléphoniques ou en visio-conférence et la communication par courriel. En cas de nécessité, une prise de contact téléphonique peut être initiée par le client ou le 
-%\CP{}. L’échange de courriels est mené depuis l’adresse du \CP{} puis par l'adresse mise en place dans le cadre des \PICCourt{}, associée au \CP{}. Ces courriels sont archivés sur 
-%l’ordinateur du \CP{}  et par conséquent, sur le serveur du \PICCourt. Les réunions avec le client sont prédéfinies à l’avance entre l’équipe \PICCourt{} et ce dernier.
-%La réunion avec le client se déroule de la façon suivante :
-%
-%\begin{enumerate}
-% \item Le \CP{} et le \CPA{} définissent avant chaque réunion un ordre du jour qui recense toutes les questions et points à aborder pendant la réunion. Chaque membre du \PICCourt{} a la 
-% possibilité de consulter et de rajouter des éléments à cet ordre du jour. Cela peut se faire par oral ou bien via le bloc-notes de \lintranet.
-% \item Un secrétaire est désigné à chaque début de réunion pour prendre des notes sur les points abordés et rédiger le compte-rendu au plus tard dans les 7 jours qui suivent.
-% \item Une fois rédigé, le compte-rendu est envoyé pour vérification puis validation.
-% \item Le compte-rendu est envoyé par courriel au client pour approbation. Si le client ne fait aucune remarque sur le compte-rendu dans les 7 jours suivants l’envoi du mail, le compte-rendu est 
-% considéré comme approuvé.
-% \item Si le compte-rendu n’est pas approuvé, il est réédité, vérifié et validé et soumis à approbation une nouvelle fois.
-% \item Si le compte-rendu est approuvé, il est archivé.
-%\end{enumerate}
-%
-%Pour ce compte-rendu, le \CP{} est forcément rédacteur ou validateur.
-%
-%\subsubsection*{Les communications internes} 
-%Comme précisé dans la partie précédente, une réunion d’avancement hebdomadaire aura lieu toutes les semaines. Au cours de cette réunion seront discutés entre autres l’avancement du projet et la gestion des 
-%risques. Le \RQ{} devra aussi avertir l’équipe \PICCourt{} de la disponibilité du nouveau tableau de bord (s’il est disponible au moment de la réunion). \\
-%Il n'y aura pas de compte rendu de ces réunions sauf si l'équipe le juge vraiment nécessaire.
-%
-%\subsubsection*{Les communications inter\picCourt{}} 
-%Les réunions inter\PICCourt{} vont être effectuées soit entre les différents chefs \PICCourt{}, soit entre les différents Responsables Qualité. Ces réunions se feront à minima toutes les 3 semaines et au cours de ces réunions 
-%seront discutés l'ensemble des problèmes rencontrés par les participants.
-%
-%Il n'y aura pas de compte rendu de ces réunions mais des OJ seront envoyés par mail avant la réunion.
-%
-%\section{Gestion des risques} 
-%
-%\indent Le processus \textit{Gérer les riques} se décompose en trois sous-processus.
-%
-%\begin{itemize}
-%\item \textit{Identifier les risques};
-%\item \textit{Suivre les risques};
-%\item \textit{Réduire les risques}.
-%\end{itemize}
-%
-%Ce processus permet au chef PIC et à son équipe de porter une attention particulière à certaines parties du projet qui pourraient être sensibles.
-%
+L'objectif de la gestion des risques et opportunités est de souligner les points du projet sur lesquels il faut porter une attention particulière. 
+
+\subsection{Identification des risques et opportunités}
+
+Tous les membres de l'équipe participent à l'identification des risques ou opportunités. Les risques sont iddentifiés en début de semestre et aboutissent à un portefeuille de risque. Un portefeuille d'opportunités est également associé aux opportunités identifiés. Cette identification se poursuit tout au long du semestre. \\ 
+
+L'identification des risques a un double objectif : 
+\begin{itemize}
+\item prévenir l'apparition d'écart par rapport à un objectif ;
+\item prévenir l'apparition d'une non-conformité. \\
+\end{itemize}
+Si un risque est découvert et validé par l'équipe \PICCourt{}, une Fiche de Risques sera rédigée et ajoutée au \PR.\\
+
+
+
+\subsection{Suivi des risques et opportunités}
+
+\subsection{Réduction des risques et améliorer les opportunités}
+
+
+
+
 %\subsection{Identification des risques} \label{identificationRisques}
-%
-%Tous les membres de l'équipe participent à l'identification des risques. Les risques sont identifiés en début de semestre et aboutissent à l'élaboration du Portefeuille de Risques (PR). 
-%	L'identification des risques se poursuit tout au long du semestre.\\
-%	\newline
+
 %	 L'identification des risques a un double objectif : 
 %	\begin{itemize}
 %		\item prévenir l'apparition d'écart par rapport à un objectif ;

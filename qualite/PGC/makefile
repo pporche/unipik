@@ -13,7 +13,7 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	$(CCTEX) $<
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
-imagespdf: $(IMGDIR)/I_arboDeveloppement.pdf $(IMGDIR)/I_arboGestionProjet.pdf $(IMGDIR)/I_arboLivraison.pdf $(IMGDIR)/I_arboQualite.pdf $(IMGDIR)/I_arboRessources.pdf $(IMGDIR)/I_arboSpecifications.pdf $(IMGDIR)/I_arboTrunk.pdf
+imagespdf: $(IMGDIR)/arboDeveloppement.pdf $(IMGDIR)/arboDSQ.pdf $(IMGDIR)/arboGP.pdf $(IMGDIR)/arboLivraison.pdf $(IMGDIR)/arboQualite.pdf $(IMGDIR)/arboRessources.pdf $(IMGDIR)/arboSpecifications.pdf $(IMGDIR)/arboTrunk.pdf
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@

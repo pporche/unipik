@@ -2,10 +2,10 @@ Dans le but d'identifier clairement et de manière unique les éléments de conf
 
 L'ensemble des fichiers suit le modèle suivant :
 \[
-  <Type>\_<Référentiel>\_Unipik\_<Suffixe>
+  <Type>\_<Referentiel>\_Unipik\_<Suffixe>
 \]
-On utilisera des abrévations pour chaque élément.\\
-La première version du Plan de Gestion des Configurations par exemple aura pour nom de fichier :
+On utilisera des abréviations pour chaque élément (Type, Référentiel et Suffixe).\\
+Par exemple la première version du Plan de Gestion des Configurations aura pour nom de fichier :
 \[
 PGC\_Q\_Unipik\_v1.00
 \]
@@ -15,12 +15,12 @@ Unipik/qualite/GP/PGC/
 \]
 
 \section{Nom du \picCourt{}}
-Ce champ indique l'appartenance du document au \PICCourt{}, qu'importe sa provenance
- (\PICCourt{}, client, département \ASI{}, autres \dots{}). Il a pour valeur \textbf{\nomEquipe}.
+Ce champ indique l'appartenance du document au \PICCourt{} peu importe sa provenance
+ (\PICCourt{}, client, département \ASI{}, etc). Il a pour valeur \textbf{\nomEquipe}.
 
 \section{Référentiels}
 
-Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 référentiels suivants : Développement, Livraison, Qualité, Ressources et Spécification.
+Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 référentiels suivants : Développement, Livraison, Qualité, Ressources et Spécifications.
 \begin{table}[H]
 \centering
 	\begin{tabularx}{11cm}{|X|c|X|}
@@ -44,169 +44,173 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
 
 \section{Types}
 
-\begin{table}[H]
-	\centering
-	\begin{tabularx}{18cm}{|X|c|c|}
+\begin{longtable}{|p{12cm}|c|c|}
     \hline
-    \rowcolor[gray]{0.85} Documents et Enregistrements & Type & Suffixe\\
+    \rowcolor[gray]{0.85} Documents et Enregistrements & Type & Suffixe 			\endfirsthead
     \hline	
+    \rowcolor[gray]{0.85} Documents et Enregistrements & Type & Suffixe \endhead
+    \hline
+    \multicolumn{3}{|c|}{\textbf{\bsc{suite ...}}}\endfoot
+    \hline
+    \endlastfoot
+    \hline
     \multicolumn{3}{|c|}{\textbf{\bsc{Référentiel Qualité}}}\\
     \hline
     Dossier de Suivi de la Qualité & DSQ & -\\
     \hline
-       Fiche de Fait Technique & FFT & n\\
+    	\hspace{1cm} Fiche de Fait Technique & FFT & n\\
     \hline
-       Fiche de Compétences & FC & p-v\\
+    \hspace{1cm} Fiche de Compétences & FC & p-v\\
     \hline
-       Fiche de Formation & FF & c\\
+    \hspace{1cm} Fiche de Formation & FF & c\\
     \hline
-       Fiche de Rôle & FR & r-v\\
+    \hspace{1cm} Fiche de Rôle & FR & r-v\\
     \hline
-       Organigramme Fonctionnel & OF & v\\
+    \hspace{1cm} Organigramme Fonctionnel & OF & v\\
     \hline
-       Plan de Formation & PF & v\\
+    \hspace{1cm} Plan de Formation & PF & v\\
     \hline
-       Questionnaire de Satisfaction Client & QSC & d\\
+    \hspace{1cm} Questionnaire de Satisfaction Client & QSC & d\\
     \hline
-       Rapport d'Audit Interne & RAI & d\\
+    \hspace{1cm} Rapport d'Audit Interne & RAI & d\\
     \hline
-       Tableau de Bord & TB & s\\
+    \hspace{1cm} Tableau de Bord & TB & s\\
     \hline
-       Fiche d'Indicateurs & FI & n\\
+    \hspace{1cm} Fiche d'Indicateurs & FI & n\\
     \hline
     Gestion de Projet & GP & -\\
     \hline
-       Compte-Rendu & CR & -\\
+    \hspace{1cm} Compte-Rendu & CR & -\\
     \hline
-          Compte-Rendu de réunion Client & CRC & d\\
+    \hspace{2cm} Compte-Rendu de réunion Client & CRC & d\\
     \hline
-          Compte-Rendu de réunion Exceptionnelle & CRE & d\\
+    \hspace{2cm} Compte-Rendu de réunion Exceptionnelle & CRE & d\\
     \hline
-          Compte-Rendu de réunion Interne & CRI & d\\
+    \hspace{2cm} Compte-Rendu de réunion Interne & CRI & d\\
     \hline
-          Compte-Rendu de réunion Inter-PIC & CRIP & d\\
+    \hspace{2cm} Compte-Rendu de réunion Inter-PIC & CRIP & d\\
     \hline
-          Compte-Rendu de réunion Tuteur Pédagogique & CRTP & d\\
+    \hspace{2cm} Compte-Rendu de réunion Tuteur Pédagogique & CRTP & d\\
     \hline
-          Compte-Rendu de réunion Tuteur Qualité & CRTQ & d\\
+    \hspace{2cm} Compte-Rendu de réunion Tuteur Qualité & CRTQ & d\\
     \hline
-       E-mails & Mails & -\\
+    \hspace{1cm} E-mails & mails & -\\
     \hline
-          Mail du Client & MC & d\\
+    \hspace{2cm} Mail du Client & MC & d\\
     \hline
-          Mail du Directeur Qualité & MDQ & d\\
+    \hspace{2cm} Mail du Directeur Qualité & MDQ & d\\
     \hline
-          Mail de Livraison & ML & d\\
+    \hspace{2cm} Mail de Livraison & ML & d\\
     \hline
-          Mail de l'Unité P3 & MP3 & d\\
+    \hspace{2cm} Mail de l'Unité P3 & MP3 & d\\
     \hline
-          Mail du Tuteur Pédagogique & MTP & d\\
+    \hspace{2cm} Mail du Tuteur Pédagogique & MTP & d\\
     \hline
-          Mail du tuteur Qualité & MTQ & d\\
+    \hspace{2cm} Mail du tuteur Qualité & MTQ & d\\
     \hline
-       Procès-Verbal & PV & PV\\
+    \hspace{1cm} Procès-Verbal & PV & PV\\
     \hline
-          Revue Formelle de Démarrage & RFD & -\\
+    \hspace{2cm} Revue Formelle de Démarrage & RFD & -\\
     \hline
-             Procès-Verval de Démarrage & PVD & d\\
+    \hspace{3cm} Procès-Verval de Démarrage & PVD & d\\
     \hline
-          Revue Formelle de Fin de Phase de Conception Préliminaire & RFFPCP & -\\
+    \hspace{2cm} Revue Formelle de Fin de Phase de Conception Préliminaire & RFFPCP & -\\
     \hline
-             Procès-Verbal de Fin de Phase de Conception Préliminaire & PVFPCP & d\\
+    \hspace{3cm} Procès-Verbal de Fin de Phase de Conception Préliminaire & PVFPCP & d\\
     \hline
-          Revue Formelle de Fin de Phase d'Intégration & RFFPI & -\\
+    \hspace{2cm} Revue Formelle de Fin de Phase d'Intégration & RFFPI & -\\
     \hline
-             Procès-Verbal de Fin de Phase d'Intégration & PVFPI & d\\
+    \hspace{3cm} Procès-Verbal de Fin de Phase d'Intégration & PVFPI & d\\
     \hline
-          Revue Formelle de Fin de Phase de Spécification & RFFPS & -\\
+    \hspace{2cm} Revue Formelle de Fin de Phase de Spécification & RFFPS & -\\
     \hline
-             Procès-Verbal de Dossier de Spécifications Externes & PVDSE & d\\
+    \hspace{3cm} Procès-Verbal de Dossier de Spécifications Externes & PVDSE & d\\
     \hline
-             Procès-Verbal de Dossier de Spécifications Internes & PVDSI & d\\
+    \hspace{3cm} Procès-Verbal de Dossier de Spécifications Internes & PVDSI & d\\
     \hline
-             Procès-Verbal de Fin de Phase de Spécifications & PVFPS & d\\
+    \hspace{3cm} Procès-Verbal de Fin de Phase de Spécifications & PVFPS & d\\
     \hline
-             Procès-Verbal de Plan de Tests de Validation & PVPTV & d\\
+    \hspace{3cm} Procès-Verbal de Plan de Tests de Validation & PVPTV & d\\
     \hline
-          Revue Formelle de Recettes & RFR & -\\
+    \hspace{2cm} Revue Formelle de Recettes & RFR & -\\
     \hline
-             Procès-Verbal de Recettes & PVR & d\\
+    \hspace{3cm} Procès-Verbal de Recettes & PVR & d\\
     \hline
     Gestion des Configurations & GC & -\\
     \hline
-       Etat de Configuration & EC & d-c\\
+    \hspace{1cm} Etat de Configuration & EC & d-c\\
     \hline
-       Fiche de Remise de Documents & FRD & d-c\\
+    \hspace{1cm} Fiche de Remise de Documents & FRD & d-c\\
     \hline
-       Fiche de Remise de Matériels & FRM & d-c\\
+    \hspace{1cm} Fiche de Remise de Matériels & FRM & d-c\\
     \hline
-       Fiche Récapitulative de Référentiel & FRR & s\\
+    \hspace{1cm} Fiche Récapitulative de Référentiel & FRR & s\\
     \hline
-       Plan de Gestion des Configurations & PGC & v\\
+    \hspace{1cm} Plan de Gestion des Configurations & PGC & v\\
     \hline
-    Portefeuille des Risques & PR & -\\
+    Portefeuille des Risques et Opportunités & PRO & -\\
     \hline
-       Fiche De Risque & FDR & n\\
+    \hspace{1cm} Fiche De Risque & FDR & n\\
     \hline
-       Fiche D'Opportunité & FDO & n\\
+    \hspace{1cm} Fiche D'Opportunité & FDO & n\\
     \hline
     Plan Qualité & PQ & v\\
+    \hline
  \multicolumn{3}{|c|}{\textbf{\bsc{Référentiel Spécification}}}\\
     \hline
-    LotX & LotX & -\\
+    LotX & lotX & -\\
     \hline
-       Cahier De Recettes & CDR & n-v\\
+    \hspace{1cm} Cahier De Recettes & CDR & n-v\\
     \hline
-       Carnet de Produit & CP & n-v\\
+    \hspace{1cm} Carnet de Produit & CP & n-v\\
     \hline
-       Dossier de Spécifications Externes & DSE & n-v\\
+    \hspace{1cm} Dossier de Spécifications Externes & DSE & n-v\\
     \hline
-       Cahier De Spécifications Internes & DSI & n-v\\
+    \hspace{1cm} Cahier De Spécifications Internes & DSI & n-v\\
     \hline
-       Plan de Tests de Validation & PTV & n-v\\
+    \hspace{1cm} Plan de Tests de Validation & PTV & n-v\\
+    \hline
  \multicolumn{3}{|c|}{\textbf{\bsc{Référentiel Développement}}}\\
     \hline
     Dossier d'Audit de Code & DAC & d\\
     \hline
     Implémentation & I & -\\
     \hline
-    LotX & LotX & -\\
+    LotX & lotX & -\\
     \hline
-       Dossier de Conception & DC & v\\
+    \hspace{1cm} Dossier de Conception & DC & v\\
     \hline
-       Dossier de Tests & DT & -\\
+    \hspace{1cm} Dossier de Tests & DT & -\\
     \hline
-          Dossier de Tests d'Intégration & DTI & n-v \\
+    \hspace{2cm} Dossier de Tests d'Intégration & DTI & n-v \\
     \hline
-          Dossier de Tests Unitaires & DTU & n-v \\
+    \hspace{2cm} Dossier de Tests Unitaires & DTU & n-v \\
     \hline
-          Plan de Tests d'Intégration & PTI & n-v \\
+    \hspace{2cm} Plan de Tests d'Intégration & PTI & n-v \\
     \hline
-          Plan de Tests d'Intégration & PTU & n-v \\
+    \hspace{2cm} Plan de Tests d'Intégration & PTU & n-v \\
     \hline
-          Rapport Jenkins & RJ & n-v \\
+    \hspace{1cm} Guide Utilisateur & GU & v\\
     \hline
-       Guide Utilisateur & GU & v\\
+    \hspace{1cm} Procédure d'Installation & PI & v\\
     \hline
-       Procédure d'Installation & PI & v\\
  \multicolumn{3}{|c|}{\textbf{\bsc{Référentiel Livraison}}}\\
     \hline
     Livraisons Complémentaires & LC & d\\
     \hline
-    Lots & Lots & -\\
+    Lots & lots & -\\
     \hline
-       Lot numéro X & LotX & d\\
+    \hspace{1cm} Lot numéro X & lotX & d\\
     \hline
-    Revue & Revues & -\\
+    Revue & revues & -\\
     \hline
-       Revue numéro X & RevuesX & -\\
+    \hspace{1cm} Revue numéro X & revuesX & -\\
     \hline
-          Support Présentation & SP & n\\
-  \end{tabularx}
+    \hspace{2cm} Support Présentation & SP & n\\
+    \hline
   \caption{Formalisme des différents Types}
   \label{Formalisme Types}  
-\end{table}
-\smallskip
+\end{longtable}
 
 \section{Suffixes}
 
@@ -249,7 +253,7 @@ Exemple : $d16-01-27$
 \subsection{Suffixe Version}
 \label{suffixe_version}
 
-Le suffixe version suit le format \textbf{vX.YY}. X correspond au numéro de version, YY au numéro de révision. Le numéro de version représente le numéro de semestre, en considérant que le semestre 4.2 est le numéro de semestre 1 du PIC et le semestre 5.1 est le numéro de semestre 2 du PIC. Le numéro de révision démarre à 00 et est modifié de la façon suivante : le chiffre des dizaines est incrémenté à chaque modification majeure et le chiffre des unités est incrémenté à chaque révision. Quand le numéro de version est incrémenté, celui des révision repasse à 00.\\
+Le suffixe version suit le format \textbf{vX.YY}. X correspond au numéro de version, YY au numéro de révision. Le numéro de version représente le numéro de semestre, en considérant que 1 correspond au semestre 4.2 et 2 au semestre 5.1. Le numéro de révision démarre à 00 et est modifié de la façon suivante : le chiffre des dizaines est incrémenté à chaque modification majeure et le chiffre des unités est incrémenté à chaque révision. Quand le numéro de version est incrémenté, celui des révision repasse à 00.\\
 
 Exemple : $v1.00$
 

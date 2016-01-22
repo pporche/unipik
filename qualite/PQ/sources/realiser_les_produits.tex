@@ -1,46 +1,216 @@
-	
-\begin{center}
-\begin{tabular}[h]{|p{0.1\textwidth}|p{0.5\textwidth}|p{0.25\textwidth}|}
-	\hline
-	\rowcolor[gray]{0.65}\textbf{N° WBS} & \textbf{Intitulé du processus / de l'activité / de la tâche} & \textbf{Procédure en référence}\\
-	\hline	
+\section{Les procédures et processus relatifs aux clients}
+\label{client}
 
-        1 & Réaliser les produits & DGQ - Chapitre 6 \\\hline
-        1.1 & Mener la phase de spécification & DGQ2 - Partie 6.2 \\\hline
-        1.1.1 & Imaginer une solution & DGQ2 - Partie 6.2 \\\hline
-        1.1.1.1 & Exécuter une revue formelle de fin de phase & DGQ2 - 		Partie 6.2.4 \\\hline
-        1.1.2 & Rédiger des fiches de faits techniques & DGQ2 - Partie 6.2.3 \\\hline
-        1.2 & Mener la phase de conception préliminaire & DGQ2 - Partie 6.3 \\\hline
-        1.2.1 & Concevoir l'architecture du lot &  Partie 6.3.1 ? \\\hline
-        1.2.1.1 & Définir les artefacts de conception & DGQ2 - Partie 6.3.1 \\\hline
-        1.2.1.2 & Définir l'architecture des packages & DGQ2 - Partie 6.3.3 \\\hline
-        1.2.2 & Rédiger le plan de test d'intégration(PTI) & DGQ2 - Partie 6.3.5\\\hline
-        1.2.3 & Etablir le dossier de conception préliminaire (DCP) & DGQ2 -  Partie 6.3.2 \\\hline
-        1.3 & Réalisation d'un Package & DGQ2 - Partie 6.4 \\\hline
-        1.3.1 & Mener la phase de conception détaillée & DGQ2 - Partie 6.4.1\\\hline
-        1.3.1.1 & Définir les classes et attributs & DGQ2 - Partie 6.4.1.1\\\hline
-        1.3.1.2 & Elaborer le pseudo-code et les commentaires des méthodes & DGQ2 - Partie 6.4.1.1\\\hline
-        1.3.1.3 & Préparer les Tests Unitaires & DGQ2 - Partie 6.4.1.1 \\\hline
-        1.3.2 & Phase de dévellopement & DGQ2 - Partie 6.4.2 \\\hline
-        1.3.2.1 & Déterminer le code source & DGQ2 - Partie 6.4.2 \\\hline
-        1.3.2.2 & Ecrire le code source & DGQ2 - Partie 6.4.2 \\\hline
-        1.3.2.3 & Dévelloper un package & DGQ2 - Partie 6.4.2\\\hline
-        1.3.3 & Mener la phase de développement unitaire & DGQ2 - Partie 6.4.3 \\\hline
-        1.3.3.1 & Exécuter les tests "boites blanches" & DGQ2 - Partie 6.4.3.1 \\\hline
-        1.3.3.2 & Exécuter les tests "boites noires" & DGQ2 - Partie 6.4.3.1 \\\hline
-        1.3.3.3 & Compléter le journal de test & DGQ2 - Partie 6.4.3.1 \\\hline
-        1.4 & Mener la phase de validation & DGQ2 - Partie 6.6 \\\hline
-        1.4.1 & Effectuer la séance de recette provisoire & DGQ2 - Partie 6.6.1 \\\hline
-        1.4.1.1 & Exécution de la totalité des essais prévus dans le cahier de charges & DGQ2 - Partie 6.6.1 \\\hline
-        1.4.1.2 & Etablir la liste exhaustive des écarts & DGQ2 - Partie 6.6.1 \\\hline
-        1.4.2 & Réaliser la période probatoire & DGQ2 - Partie 6.6.1 \\\hline
-        1.4.3 & Effectuer la séance de recette définitive & DGQ2 - Partie 6.6.1 \\\hline
-        
-         1.5 & Mener la phase d'intégration & DGQ2 - Partie 6.5 \\\hline
-         
-		 1.6 & Mener le plan de garantie & DGQ2 - Partie 6.7\\\hline         
-         
-\end{tabular}
-\end{center}
+\subsection{Déterminer les exigences concernant le produit, implicites et explicites}
+
+\begin{itemize}
+\item Les exigences explicites : exigences mentionnées dans le cahier des charges. (caractéristiques principales du produit, normes spécifiques au produit, dates et conditions de livraison, garanties)
+\item Les exigences implicites : exigences non mentionnées par le client (évolution des technologies, et des comportements des utilisateurs, de la concurrence).
+\item Toutes les autres exigences qui seront jugées nécessaires pour une bonne réalisation du produit.
+\end{itemize}
+
+\subsection{Revue des exigences}
+
+Vérifier que les exigences définies sont bien comprises à tous les niveaux de production du produit, vérifier qu’il n’y ait aucune ambiguïté. \\
+Avant de confirmer une commande, confirmer avec le client toutes les exigences, s’assurer que l’on a bien compris les besoins du client.\\
+Si une exigence est modifiée, s’assurer que tous les membres du développement du produit concerné par cette modification en soient bien informés.\\
+
+\subsection{Principe de réalisation : Méthode AGILE}
+Le principe du développement de produit du PIC \nomPIC{} se base sur la méthode
+AGILE. La réalisation des produits demandés par le client est donc décomposée en sprints de durée prédéfinie (cf Partie 4.1.4 : Planning de principe).
+
+
+\subsection{Communication avec le client}
+
+Mettre en place un système de communication interne et externe, afin de permettre une bonne communication entre le client et les membres du projet.\\
+ Le système doit assurer une bonne communication à propos : des informations sur le produit et du retour d’informations des clients.
+
+\section{Détails des processus utilisés relatifs au PIC}
+
+\subsection{Démarrage}
+
+\textbf{Entrée :} Besoins du client \\
+\textbf{Sorties :} DSE, DSI, PTU, PTI, PTV, architecture logicielle du produit
+La phase de démarrage a lieu au début du premier semestre et a pour but de lancer le projet. \\
+Plus précisément, cette phase permettra :
+\begin{itemize}
+
+
+\item L’installation de l’équipe dans sa salle PIC ;
+\item  La mise en place du réseau et de l’infrastructure logicielle et matérielle dans la salle ;
+\item La mise en place de l’environnement de développement ;
+\item  L’étude des besoins du client par des réunions et des échanges de mails avec ce dernier ;
+\item La formation et familiarisation de l’équipe de développement aux diverses technologies qui seront utilisées pour le produit.
+\end{itemize}
+Ces tâches seront réparties par le Chef PIC et le Chef PIC Adjoint aux divers membres de l’équipe.
+
+\subsection{Les Sprints}
+Au sein d’un sprint, différentes phases s’enchaîneront. Parmi elles :
+\begin{itemize}
+\item La phase de spécifications ;
+\item La phase de conception ;
+\item La phase de codage et de tests unitaires ;
+\item La phase d’intégration.
+\end{itemize}
+
+Une revue de sprint sera effectuée à la fin de chaque sprint. Elle aura pour but de modifier le Cahier de Produit et de vérifier le travail effectué lors de ce sprint. Le but du sprint suivant devra aussi être défini, c’est-à-dire définir quelles fonctionnalités seront implémentées. Une fois cette revue de fin de sprint achevée, un Procès-Verbal sera dressé.
+
+
+
+\subsubsection{Planification}
+
+\textbf{Entrée :} Besoins du client \\
+\textbf{Sorties :} Product Backlog mis à jour, Sprint Backlog pour le sprint.\\
+Chaque sprint commence par une réunion de planification de sprint avec l’équipe et le Product Owner . \\
+Durant cette réunion, le Client (Product Owner ) discute avec l’équipe de ses besoins et de quelles fonctionnalités il aimerait ajouter au Product Backlog. \\
+
+\subsubsection{Spécifications}
+
+\textbf{Entrée :} Sprint Backlog \\
+\textbf{Sorties :} DSE, DSI, PTV mis à jour \\
+Le sprint commence par une phase de spécification durant laquelle les documents suivants doivent être mis à jour : \\
+
+\textbf{Dossier de Spécifications Externes (DSE)} \\
+Ce document défini les fonctionnalités que le produit doit réaliser.\\
+
+\textbf{Dossier de Spécifications Internes (DSI)} \\
+Ce document décrit la façon dont seront implémentées les fonctionnalités présentes dans le DSE.\\
+\textbf{Plan de Tests de Validation (PTV)} \\
+Ce document défini comment sera menée la campagne de tests permettant de valider le respect du DSE par le produit. \\
+
+Le DSE doit être approuvé par le client pour pouvoir passer à la phase suivante. \\
+
+
+\subsubsection{Conception}
+
+\textbf{Entrées :} DSE, DSI \\
+\textbf{Sorties :} DCP, DCD, PTI, PTU mis à jour\\
+Cette phase permet d’analyser le problème et a pour but de spécifier ce qui sera codé en accord avec le DSE et le DSI. \\
+Pour cela, les documents suivants seront mis à jour. \\
+
+\textbf{Document de conception préliminaire (DCP)} \\
+Ce document définit l’architecture générale du programme. Il explicite les choix de conception, notamment à l’aide de diagrammes suivant la norme UML 2.0.\\ 
+Ce document se base particulièrement sur des choix réalisés dans le DSI. \\
+
+\textbf{Document de conception détaillée (DCD)} \\
+Ce document définit l’architecture détaillée du programme. Il contient la définition des attributs de chacune des classes à développer et le pseudo-code commenté des méthodes non-triviales.\\
+Il sera réalisé en accord avec la conception préliminaire définie dans le DCP.\\
+\textbf{Plan de Tests d’Intégration (PTI)} \\
+Ce document définit comment sera menée la campagne de tests d’intégration entre les divers composants du programme. Il permet de vérifier que les composants fonctionnent correctement les uns avec les autres.\\
+
+\textbf{Plan de Tests Unitaires (PTU)} \\
+
+Ce document définit comment sera menée la campagne de tests unitaires des fonctions développées. Il permet de vérifier que chaque fonction fait bien, unitairement, ce qu’il est prévu qu’elle fasse. \\
+
+
+\subsubsection{Réalisation et tests unitaires et d’intégration}
+
+\textbf{Entrées :} DC, PTU, PTI \\
+\textbf{Sorties :}code source, documentation mis à jour \\
+Cette phase a pour but de mettre à jour le code source de l’application afin d’intégrer les nouvelles fonctionnalités demandées par le client pour le sprint. Cette phase se déroulera en utilisant les méthode d’intégration, c’est à dire que le code source sera continuellementtesté afin de vérifier que les tests d’intégration sont validés.\\ 
+Cette phase se décompose en deux étapes :
+\begin{itemize}
+\item Programmation des tests
+\item Implémentation des nouvelles fonctions (écriture du code source)
+\end{itemize}
+
+\textbf{Programmation des tests} \\
+
+La phase de réalisation commence par la programmation des tests d’intégration et des tests unitaires détaillés dans les PTI et PTU. 
+La programmation des tests avant l’écriture du code testé permet de guider la programmation. 
+Par ailleurs, cette pratique permet de détecter tout écart vis-à-vis des tests d’intégration et de corriger la conception le cas échéant.\\
+
+\textbf{Implémentation des nouvelles fonctions (écriture du code source)} \\
+
+Cette étape consiste à implémenter l’intégralité des fonctions listées dans le DC, en accord avec celui-ci, dans le langage source adapté. Ce code source sera documenté afin de pouvoir être maintenable.
+Le code source sera testé grâce aux programmes de tests précédemment programmés.\\
+Ces programmes de tests pourront être complétés durant cette phase afin de tester de façon encore plus complète le code source, si les développeurs en ressentent la nécessité afin d’assurer la qualité du code source et le fonctionnement correct de l’application. \\
+Tout écart du code par rapport aux tests d’intégration dû à une mauvaise conception entraine le retour à la phase de conception afin de corriger la mauvaise conception avant de pouvoir passer à nouveau à la phase de réalisation.
+Afin d’assurer une bonne qualité du code source, des audits de code seront menés de façon automatique. De plus, un audit sera programmé au besoin par l’Unité P3.
+
+
+\subsubsection{Validation interne}
+
+\textbf{Entrées :} code source ayant passé les tests d’intégration, PTV \\
+\textbf{Sortie : } code source ayant passé les tests de validation \\
+Cette phase a pour but de vérifier que le code source développé pendant le sprint répond bien aux besoins du client restitués par le DSE, c’est à dire que la solution passe les tests de validation détaillées dans le PTV.\\
+Si le code source ne passe pas les tests de validation, il faut retourner à la phase de spécification afin de corriger les spécifications et les mettre en accord avec le DSE.
+
+\subsubsection{Revue de sprint}
+\textbf{Entrée :} code source ayant passé les tests de validation, avis client \\
+\textbf{Sortie :} code source revu par le client \\
+
+Un sprint se termine toujours par une revue de sprint organisée avec l’équipe de développement et le client. \\
+L’objectif de cette revue est de faire valider par le client les fonctionnalités développées durant le sprint.\\ 
+Il s’agit d’une validation informelle puisqu’il ne s’agit pas d’une séance de
+recette. Cette revue permet cependant d’assurer un bon déroulement de la séance de recette en permettant au client de pré-valider la solution qui lui est proposée, ou d’indiquer ses insatisfactions qui seront corrigées au sprint suivant. \\
+
+
+\section{Phase de recette}
+\label{recette}
+
+Dans cette phase, le client participe à la réalisation des tests de validation du \PTV{} afin de s’assurer que ce que l’équipe a produit correspond aux spécifications. Il pourra à la fin des tests accepter ou non le produit.
+Cette phase s’articule en trois étapes : 
+\begin{itemize}
+\item recette provisoire
+\item période probatoire 
+\item recette définitive
+\end{itemize}
+
+\subsubsection*{Recette provisoire}
+
+Cette phase correspond à l’exécution des différents tests par le client. Les tests menés par le client sont consignés dans le \CDR{}. Le \CDR{} aura été envoyé préalablement au client pour validation. \\
+
+Des Fiches de Faits Techniques peuvent être levées en cas d’écart constaté par rapport au \CDR{}.\\
+
+Si des \FFTCourt{} sont levées, nous entrons en période probatoire. Si aucun écart n’est relevé, la séance de recette provisoire est considérée comme définitive. Dans ce cas, il n’y a pas de période probatoire.
+
+\subsubsection*{Période probatoire}
+
+Cette phase d’une durée minimum de quatre jours ouvrés permet au client de tester à nouveau le produit pendant que l’équipe \PICCourt corrige les Faits Techniques à l’aide de Fiches de Faits Techniques et d’Ordres de Correction. De nouveaux Faits Techniques peuvent être émis par le client durant cette période probatoire.
+
+\subsubsection*{Recette définitive }
+
+Cette phase se déroule de la même façon que la recette provisoire mais prend en compte les différentes \FFTCourt{} générées pendant les phases précédentes. \\
+
+Le \CDRCourt{} est à nouveau déroulé au client. Différents scenario doivent permettre de montrer que les éventuels Faits Techniques soulevés par le client lors de la période probatoire ont bien été corrigés. À la fin de la séance, quatre alternatives peuvent se présenter :
+\begin{itemize}
+\item Le client valide la séance
+\item Le client valide la séance s’il émet des remarques mineures, et que l’équipe s’engage à les corriger. La recette définitive sera acceptée quand toutes les remarques auront été levées, et on ne retourne pas en période probatoire
+\item Le client valide la séance, et toutes les remarques émises seront traitées dans le prochain lot
+\item Le client ajourne la séance, et l’équipe retourne en période probatoire. Celle-ci sera par la suite suivie d’une nouvelle recette définitive \\
+\end{itemize}
+Les conditions de la recette définitive sont : 
+\begin{itemize}
+\item \'Exécution de tous les tests prévus dans le \CDR{}
+\item Aucun écart constaté \\
+\end{itemize}
+
+Il existe également le cas de figure où un client émet des remarques (le PIC passe donc en période probatoire), et qu’il se rétracte. Les remarques sont alors reportées sur le lot suivant qui doit être redéfini en conséquence. Ce cas doit être tracé très soigneusement. Les remarques émises entraînent des FFT mais pas de nouvelle phase de recette.
+
+\section{Livraisons non conformes}
+\label{livraison}
+
+\subsection{Livraison de code non conforme}
+
+Afin de pouvoir tenir le client au courant de l’avancement du projet s’il le désire, l’équipe \nomEquipe{} pourra lui faire parvenir des livraisons de code non conforme. Elles permettront au client de tester les fonctionnalités développées par l’équipe en dehors des livraisons prévues. Une livraison de code non conforme suivra le formalisme suivant :
+\begin{enumerate}
+\item Les développeurs annoncent l’aboutissement d’une fonctionnalité qui doit être stable, exécutable et portable 
+\item Le \RD{} vérifie les points cités ci-dessus
+\item Le \RD{} créé une archive du code
+\item Le \CP{} teste l’archive en se mettant à la place du client
+\item Le \CP{} livre l’archive au client
+
+\end{enumerate}
+
+\subsection{Livraison de documents non conformes}
+
+L’équipe \nomEquipe{} aura également la possibilité de livrer au client des documents faisant partie d’un sprint pendant ledit sprint, à condition qu’ils portent bien la mention copie de travail ainsi qu’un "brouillon" en arrière plan. Cela permettra à l’équipe de pouvoir avancer dans le développement en s’assurant que la conception est bien en accord avec le client.
+
+\section{Revue}
+\label{revue}
+
+L’équipe \PICCourt sera évaluée deux fois par semestre dans des revues. L’équipe présentera, lors de ces revues, son projet, son état d’avancement, son management de la qualité et sa gestion de projet.
+
 
 

@@ -58,7 +58,11 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
     \hline
     Dossier de Suivi de la Qualité & DSQ & -\\
     \hline
-    	\hspace{1cm} Fiche de Fait Technique & FFT & n\\
+    	\hspace{1cm} Commission de Traitement des Faits Techniques & CTFT & -\\
+    	\hline
+    	\hspace{2cm} Fiche de Fait Technique & FFT & n-d\\
+    	\hline
+    	\hspace{2cm} Fiche d'Ordre de Correction & FOC & n-d\\
     \hline
     \hspace{1cm} Fiche de Compétences & FC & p-v\\
     \hline
@@ -90,29 +94,31 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
     \hline
     \hspace{2cm} Compte-Rendu de réunion Inter-PIC & CRIP & d\\
     \hline
+    \hspace{2cm} Compte-Rendu de réunion de Fait Technique & CRFT & d\\
+    \hline
     \hspace{2cm} Compte-Rendu de réunion Tuteur Pédagogique & CRTP & d\\
     \hline
     \hspace{2cm} Compte-Rendu de réunion Tuteur Qualité & CRTQ & d\\
     \hline
     \hspace{1cm} E-mails & mails & -\\
     \hline
-    \hspace{2cm} Mail du Client & MC & d\\
+    \hspace{2cm} Mail du Client & MC & d-c\\
     \hline
-    \hspace{2cm} Mail du Directeur Qualité & MDQ & d\\
+    \hspace{2cm} Mail du Directeur Qualité & MDQ & d-c\\
     \hline
-    \hspace{2cm} Mail de Livraison & ML & d\\
+    \hspace{2cm} Mail de Livraison & ML & d-c\\
     \hline
-    \hspace{2cm} Mail de l'Unité P3 & MP3 & d\\
+    \hspace{2cm} Mail de l'Unité P3 & MP3 & d-c\\
     \hline
-    \hspace{2cm} Mail du Tuteur Pédagogique & MTP & d\\
+    \hspace{2cm} Mail du Tuteur Pédagogique & MTP & d-c\\
     \hline
-    \hspace{2cm} Mail du tuteur Qualité & MTQ & d\\
+    \hspace{2cm} Mail du tuteur Qualité & MTQ & d-c\\
     \hline
-    \hspace{1cm} Procès-Verbal & PV & PV\\
+    \hspace{1cm} Procès-Verbal & PV & -\\
     \hline
     \hspace{2cm} Revue Formelle de Démarrage & RFD & -\\
     \hline
-    \hspace{3cm} Procès-Verval de Démarrage & PVD & d\\
+    \hspace{3cm} Procès-Verbal de Démarrage & PVD & d\\
     \hline
     \hspace{2cm} Revue Formelle de Fin de Phase de Conception Préliminaire & RFFPCP & -\\
     \hline
@@ -124,9 +130,9 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
     \hline
     \hspace{2cm} Revue Formelle de Fin de Phase de Spécification & RFFPS & -\\
     \hline
-    \hspace{3cm} Procès-Verbal de Dossier de Spécifications Externes & PVDSE & d\\
+    \hspace{3cm} Procès-Verbal de Document de Spécifications Externes & PVDSE & d\\
     \hline
-    \hspace{3cm} Procès-Verbal de Dossier de Spécifications Internes & PVDSI & d\\
+    \hspace{3cm} Procès-Verbal de Document de Spécifications Internes & PVDSI & d\\
     \hline
     \hspace{3cm} Procès-Verbal de Fin de Phase de Spécifications & PVFPS & d\\
     \hline
@@ -164,9 +170,9 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
     \hline
     \hspace{1cm} Carnet de Produit & CP & n-v\\
     \hline
-    \hspace{1cm} Dossier de Spécifications Externes & DSE & n-v\\
+    \hspace{1cm} Document de Spécifications Externes & DSE & n-v\\
     \hline
-    \hspace{1cm} Cahier De Spécifications Internes & DSI & n-v\\
+    \hspace{1cm} Document De Spécifications Internes & DSI & n-v\\
     \hline
     \hspace{1cm} Plan de Tests de Validation & PTV & n-v\\
     \hline
@@ -188,7 +194,7 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
     \hline
     \hspace{2cm} Plan de Tests d'Intégration & PTI & n-v \\
     \hline
-    \hspace{2cm} Plan de Tests d'Intégration & PTU & n-v \\
+    \hspace{2cm} Plan de Tests Unitaires & PTU & n-v \\
     \hline
     \hspace{1cm} Guide Utilisateur & GU & v\\
     \hline
@@ -202,9 +208,9 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
     \hline
     \hspace{1cm} Lot numéro X & lotX & d\\
     \hline
-    Revue & revues & -\\
+    Revues & revues & -\\
     \hline
-    \hspace{1cm} Revue numéro X & revuesX & -\\
+    \hspace{1cm} Revue numéro X & revueX & -\\
     \hline
     \hspace{2cm} Support Présentation & SP & n\\
     \hline
@@ -214,7 +220,7 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
 
 \section{Suffixes}
 
-Lors du nommage nous utilisons des suffixes adaptés en fonction du type de document. Un document peut avoir plusieurs suffixes, dans ce cas ils sont séparés par un "-". Les suffixes possibles sont les suivants : 
+Lors du nommage nous utilisons des suffixes adaptés en fonction du type de document. Un document peut avoir plusieurs suffixes, dans ce cas ils sont séparés par un "$\_$". La présence de chaque suffixe demandé est obligatoire et dois respecter l'ordre indiqué. Les suffixes possibles sont les suivants : 
 
 	\begin{table}[H]
 		\centering
@@ -262,7 +268,9 @@ Exemple : $v1.00$
 
 Le suffixe numéro suit le format \textbf{nXXX}. XXX est un nombre entier compris entre 001 et 999. Il commence à la valeur 001 et est incrémenté à chaque nouveau document.\\
 
-Exemple : $n042$
+Exemple : $n042$\\
+
+Précision : Pour les documents archivés dans les dossiers "lotX", si un suffixe numéro est demandé alors celui-ci n'est pas incrémenté à chaque document, il a la valeur du "X" de "lotX".
 
 \subsection{Suffixe Semaine}
 \label{suffixe_semaine}

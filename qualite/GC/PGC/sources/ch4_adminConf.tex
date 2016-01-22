@@ -25,18 +25,17 @@ Sur cette page figurent les informations suivantes:
 
 \section{L'État de Configuration}
 
-Un État de Configuration est composé d'un ou plusieurs documents.
-Il sera effectué avant chaque livraison au \client. 
-Seront présents dans l'EC seulement les articles dont a besoin le destinataire 
-(cf. modèle présenté en Annexe \ref{modèle EC}).
- 
-
-Les informations suivantes seront spécifiées dans l'EC:
+Un État de configuration décrit l'état des documents demandés par leur destinateur à une date donnée. Un état de configuration doit être généré entre autres à chaque livraison. Ils suivent le modèle présenté en \ref{modèle EC}. Chaque fiche comprend un tableau indiquant les informations suivantes pour chaque document :
 \begin{itemize}
-	\item \textbf{les raisons} qui ont motivé la création de ce document ;
-	\item \textbf{le destinataire} des documents livrés ;
-	\item \textbf{date de création} de l'EC ;
-	\item \textbf{liste des documents} composant l'EC demandé.
+	\item \textbf{Type}: le type du document. \\
+	Exemple : $PQ$ ;
+	\item \textbf{Destinataire}: le destinataire du document;
+	\item \textbf{Référence du document}: la référence complète du document. \\
+	Exemple : $PGC\_Q\_Unipik\_v1.00$;
+	\item \textbf{Date de création}: date de création du document.\\
+	Format : $JJ/MM/AAAA$ ;
+	\item \textbf{Raisons}: le but de l'envoi de ce document.\\
+	Exemple : $Livraison\ lot\ 1$.
 \end{itemize}
 
 
@@ -44,4 +43,7 @@ Les informations suivantes seront spécifiées dans l'EC:
 Par sa signature, le vérificateur de l'État de Configuration atteste avoir vérifié la présence
 de tous les éléments nécessaires à la livraison ainsi que leur cohérence, tant au niveau de
 la forme que du fond.
+
+\paragraph{Précision du suffixe :}
+Le suffixe de l'état de configuration est de type commentaire. Ce commentaire doit définir le nom du destinataire. Ceci permettra de retrouver plus facilement les documents envoyés à une personne en particulier.
 

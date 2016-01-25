@@ -23,7 +23,7 @@ AGILE. La réalisation des produits demandés par le client est donc décomposé
 \subsection{Communication avec le client}
 
 Mettre en place un système de communication interne et externe, afin de permettre une bonne communication entre le client et les membres du projet.\\
- Le système doit assurer une bonne communication à propos : des informations sur le produit et du retour d’informations des clients.
+ Le système doit assurer une bonne communication à propos des informations sur le produit et du retour d’informations des clients.
 
 \section{Détails des processus utilisés relatifs au PIC}
 
@@ -42,7 +42,7 @@ Plus précisément, cette phase permettra :
 \item  L’étude des besoins du client par des réunions et des échanges de mails avec ce dernier ;
 \item La formation et familiarisation de l’équipe de développement aux diverses technologies qui seront utilisées pour le produit.
 \end{itemize}
-Ces tâches seront réparties par le \CP et le \CPA aux divers membres de l’équipe.
+Ces tâches seront réparties par le \CP et le \CPA{} aux divers membres de l’équipe.
 
 \subsection{Les Sprints}
 Au sein d’un sprint, différentes phases s’enchaîneront. Parmi elles :
@@ -53,7 +53,7 @@ Au sein d’un sprint, différentes phases s’enchaîneront. Parmi elles :
 \item La phase d’intégration.
 \end{itemize}
 
-Une revue de sprint sera effectuée à la fin de chaque sprint. Elle aura pour but de modifier le Cahier de Produit et de vérifier le travail effectué lors de ce sprint. Le but du sprint suivant devra aussi être défini, c’est-à-dire définir quelles fonctionnalités seront implémentées. Une fois cette revue de fin de sprint achevée, un \PV sera dressé.
+Une revue de sprint sera effectuée à la fin de chaque sprint. Elle aura pour but de modifier le Cahier de Produit et de vérifier le travail effectué lors de ce sprint. Le but du sprint suivant devra aussi être défini, c’est-à-dire définir quelles fonctionnalités seront implémentées. Une fois cette revue de fin de sprint achevée, un \PV{} sera dressé.
 
 
 
@@ -67,7 +67,7 @@ Le Product Backlog est une liste de travail, classée par priorité, définie en
 \subsubsection{Spécifications}
 \label{specification}
 \textbf{Entrée :} Sprint Backlog \\
-\textbf{Sorties :} \DSECourt , \DSICourt , \PTVCourt mis à jour \\
+\textbf{Sorties :} \DSECourt , \DSICourt , \PTVCourt{} mis à jour \\
 Le sprint commence par une phase de spécification durant laquelle les documents suivants doivent être mis à jour : \\
 
 \textbf{\DSE (\DSECourt)} \\
@@ -76,16 +76,16 @@ Ce document défini les fonctionnalités que le produit doit réaliser.\\
 \textbf{\DSI (\DSICourt)} \\
 Ce document décrit la façon dont seront implémentées les fonctionnalités présentes dans le \DSECourt.\\
 \textbf{\PTV (\PTVCourt)} \\
-Ce document défini comment sera menée la campagne de tests permettant de valider le respect du \DSECourt par le produit. \\
+Ce document défini comment sera menée la campagne de tests permettant de valider le respect du \DSECourt{} par le produit. \\
 
-Le \DSECourt doit être approuvé par le client pour pouvoir passer à la phase suivante. \\
+Le \DSECourt{} doit être approuvé par le client pour pouvoir passer à la phase suivante. \\
 
 
 \subsubsection{Conception}
 
 \textbf{Entrées :} \DSECourt, \DSICourt \\
 \textbf{Sorties :} \DCPCourt , \DCDCourt , \PTICourt , \PTUCourt mis à jour\\
-Cette phase permet d’analyser le problème et a pour but de spécifier ce qui sera codé en accord avec le \DSECourt et le \DSICourt. \\
+Cette phase permet d’analyser le problème et a pour but de spécifier ce qui sera codé en accord avec le \DSECourt{} et le \DSICourt. \\
 Pour cela, les documents suivants seront mis à jour. \\
 
 \textbf{\DCP (\DCPCourt)} \\
@@ -106,7 +106,7 @@ Ce document définit comment sera menée la campagne de tests unitaires des fonc
 \subsubsection{Réalisation et tests unitaires et d’intégration}
 
 \textbf{Entrées :} \DCCourt , \PTUCourt , \PTICourt \\
-\textbf{Sorties :}code source, documentation mis à jour \\
+\textbf{Sorties :} code source, documentation mis à jour \\
 Cette phase a pour but de mettre à jour le code source de l’application afin d’intégrer les nouvelles fonctionnalités demandées par le client pour le sprint. Cette phase se déroulera en utilisant les méthodes d’intégration, c’est-à-dire que le code source sera continuellement testé afin de vérifier que les tests d’intégration sont validés.\\ 
 Cette phase se décompose en deux étapes :
 \begin{itemize}
@@ -116,7 +116,7 @@ Cette phase se décompose en deux étapes :
 
 \textbf{Programmation des tests} \\
 
-La phase de réalisation commence par la programmation des tests d’intégration et des tests unitaires détaillés dans les \PTICourt et \PTUCourt . 
+La phase de réalisation commence par la programmation des tests d’intégration et des tests unitaires détaillés dans les \PTICourt{} et \PTUCourt . 
 La programmation des tests avant l’écriture du code testé permet de guider la programmation. 
 Par ailleurs, cette pratique permet de détecter tout écart vis-à-vis des tests d’intégration et de corriger la conception dans les cas échéants.\\
 

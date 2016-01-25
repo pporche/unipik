@@ -923,9 +923,9 @@ linkcolor=black]{hyperref}
 \newcommand{\couverture}{
   \thispagestyle{pageCouverture}
   \begin{picture}(0,0)
-  
-  \put(40,-350){\includegraphics[width=130mm]{images/epicunity.png}}
   \put(-100,-760){\includegraphics[width=216mm]{images/Couverture.pdf}}
+  \put(230,-115){\includegraphics[width=105mm]{images/logoUnipik.png}}
+  
   \put(300,-540){\includegraphics[width=50mm]{images/logoUnicef.png}}  
   \put(315,-666){\includegraphics[width=40mm]{images/logoASINew.jpeg}}
   \put(-45,-260){\begin{minipage}[t]{150mm}\begin{flushleft}

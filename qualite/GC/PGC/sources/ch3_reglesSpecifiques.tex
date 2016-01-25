@@ -1,14 +1,14 @@
 \section{Exception aux règles de nommage}
 
-Le référentiel \textbf{Ressources} ne sera pas soumis aux règles de nommage de \nomEquipe mais leur nom doit toujours être évocateur du contenu.
+Le référentiel \textbf{Ressources} ne sera pas soumis aux règles de nommage de \nomEquipe{} mais leurs noms doivent toujours être évocateurs du contenu.
 
 \section{Dossiers spécifiques}
 
 \subsection{Dossiers images}
 
 \`{A} la racine du répertoire des documents nécessitant l'inclusion d'images, de diagrammes ou
-d'autres figures se trouve un répertoire \textbf{images}. Il est ajouté au \git{} par le
-rédacteur du document si besoin est. Dans ce répertoire sont stockés les fichiers projet
+d'autres figures, se trouve un répertoire \textbf{images}. Il est ajouté au \git{} par le
+rédacteur du document si besoin est. Dans ce répertoire sont stockés les fichiers du projet
 (\verb+.dia+, \verb+.xcf+, \verb+.jpg+, etc\dots). Les \verb+.pdf+ de ces fichiers sont générés
 à la compilation par le \verb+makefile+.
 Les fichiers du répertoire \verb+images+ ne sont pas concernés par les règles de nommage.
@@ -34,14 +34,14 @@ le répertoire dans lequel est placé le \verb+pdf+ généré par la compilation
 
 \subsection{Dossiers approbations}
 
-Lorsqu'un document est approuvé par une signature manuscrite, la copie papier de l'enregistrement est archivée dans la salle PIC de  \nomEquipe$\ $et une numérisation de la page de signatures est effectuée et stockée dans le dossier \textbf{approbations}. Les numérisations seront nommées de la manière suivante:
-\[
-ApprobSignature\_<Nom\ du\ document>
-\]
+Lorsqu'un document est approuvé par une signature manuscrite, la copie papier de l'enregistrement est archivée dans la salle PIC de  \nomEquipe{} et une numérisation de la page de signatures est effectuée et stockée dans le dossier \verb+approbations+. Les numérisations seront nommées de la manière suivante:
+\begin{center}
+\verb+ApprobSignature_<Nom du document>+
+\end{center}
 
-Exemple : $ApprobSignature\_PGC\_Q\_Unipik\_v1.00$
+Exemple : \verb+ApprobSignature_PGC_Q_Unipik_v1.00+
 
 \section{Règles de rédaction des dates}
 
-Les dates figurant dans les documents sont toutes au format \textbf{JJ/MM/AAAA}. Attention à ne pas confondre avec le format de date des  suffixes dans la convention de nommage (dAA-MM-JJ).
+Les dates figurant dans les documents sont toutes au format \textbf{JJ/MM/AAAA}. Attention à ne pas confondre avec le format de date des  suffixes dans la convention de nommage (\verb+dAA-MM-JJ+).
 

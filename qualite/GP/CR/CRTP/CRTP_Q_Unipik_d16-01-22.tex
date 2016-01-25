@@ -4,9 +4,11 @@
 \usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
 \usepackage{fancyhdr}
 \usepackage{graphicx}
-\usepackage{color}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{../../../../ressources/Unipik/vocabulaire/vocabulaireUnipik}
 \pagestyle{fancy}
-
+\definecolor{Gray}{gray}{0.8}
 
 
 
@@ -14,12 +16,12 @@
 
 \renewcommand{\footrulewidth}{0,01cm}
 \rhead{}
-\chead{\huge{Compte-rendu de réunion interne}}					%titre
+\chead{\huge{Compte-rendu de réunion de Tutorat Pédagogique}}					%titre
 \begin{document}
 
 22/01/2015			 				%Date 
 \hfill   
-\hfill 	 16:03-17:12 				%Heure de d�but, heure de fin.
+\hfill 	 16:03 - 17:12 				%Heure de d�but, heure de fin.
 
 
 \lfoot{Rédacteur : Pierre Porche} 			% Rédacteur
@@ -31,79 +33,109 @@
 \section{Tour de table}
 Les fonctions sont réparties comme suit :
 \begin{itemize}
-	\item Mathieu Medici : Responsable de la Gestion des Configuration (RGC),
+	\item Mathieu Medici : \RGC (\RGCCourt),
 	\item Mélissa Bignoux : Développeuse,
 	\item Julie Pain : Développeuse,
 	\item Matthieu Martins-Baltar : Responsable Serveur et Réseau (RSR),
 	\item Kafui Atanley : Développeur,
-	\item Michel Cressant : Responsable Développement (RD),
+	\item Michel Cressant : \RD (\RDCourt),
 	\item Florian Leriche : Développeur,
-	\item Pierre Porche : Responsable Qualité (RQ) + Chef PIC Adjoint (CPA),
-	\item Sergi Colomies : Chef Pic (CP).
+	\item Pierre Porche : \RQ (\RQCourt) + \CPA (\CPACourt),
+	\item Sergi Colomies : \CP (\CPCourt).
 \end{itemize}
 M. Michel Mainguenaud sera le tuteur pédagogique de ce PIC.
 
 \section{Rôle du tuteur pédagogique}
 M. Mainguenaud explique la fonction de tuteur pédagogique.
-Celui ci ne se substitue pas au chef PIC qui dirige et organise comme il le souhaite.
-Si il y a un problème humain, il faut contacter Mme. Doriane Bareau. le tuteur pédagogique est à contacter en cas de problème technique et M. Benjamin Coelho de Matos (tuteur qualité) est là pour assurer la qualité et le bon renouvellement de l’accréditation. M. Mainguenaud nous conseille de tous voir le tuteur qualité.
+Celui ci ne se substitue pas au \CP qui dirige et organise comme il le souhaite.
+Si il y a un problème humain, il faut contacter Mme. Doriane Bareau. le tuteur pédagogique est à contacter en cas de problème technique et M. Benjamin Coelho de Matos (tuteur qualité) est là pour assurer la qualité et le bon renouvellement de la certification. M. Mainguenaud nous conseille de tous voir le tuteur qualité.
 M. Mainguenaud souhaite que toute l'équipe soit présente en réunion de tuteur pédagogique.
 \\
 Il est là pour s'assurer d'avoir une méthodologie ingénieur : analyse du problème, décision, action. Son rôle est de nous aider si jamais notre manière de réfléchir omet des détails importants mais il n'a, en théorie, pas de décision à prendre.
-Le client, lui, a son mot à dire sur l'organisation et la méthodologie.
+Le client, lui, peut influencer l'organisation et la méthodologie au travers du \PQCourt .
 \\
 Afin de suivre l'avancement du projet, il est essentiel de séparer l'observation en deux parties :
 \begin{itemize}
-\item Savoir où on en est : se repérer grâce au indicateurs, risques, opportunités (rôle du RQ)
-\item Suivre la partie technique en suivant les objectifs, l'avancement, le développement (rôle de chaque développeur)
+\item Savoir où nous en sommes : se repérer grâce au indicateurs, risques, opportunités (rôle du \RQCourt)
+\item Suivre la partie technique en suivant les objectifs, l'avancement, le développement (rôle de chaque Développeur)
 \end{itemize}
 
-Il ne pas oublier les fiches de taches, fiches d'avancement,.. \\
-Si il y a un problème en fin de PIC, on cherchera dans l'archivage des fiches. 
+Il ne faut pas oublier les fiches de taches, fiches d'avancement,.. \\
+Si il y a un problème en fin de PIC, l'unité P3 cherchera dans l'archivage des fiches. 
 \\
-Le CP est là pour organiser, répartir les taches et s'assurer que tout le monde travaille de manière uniforme. Il peut y avoir des problèmes (sous-estimer le temps d'une tache,..) mais il est de la responsabilité du CP de s'adapter
+Le \CPCourt est là pour organiser, répartir les taches et s'assurer que tout le monde travaille de manière uniforme. Il peut y avoir des problèmes (sous-estimer le temps d'une tache,..) mais il est de la responsabilité du \CPCourt de s'adapter.
 \\
 ~~\\
 \textbf{Questions}
-Les fiches de taches sont à créer de manière très complète mais seul un modèle très peu détaillé est à inclure dans le Plan Qualité (PQ) car elles sont spécifique à chaque tâche.
+Les fiches de taches sont à créer de manière très complète mais seul un modèle très peu détaillé est à inclure dans le \PQ (\PQCourt) car elles sont spécifiques à chaque tâche.
 \\
-Le RQ s'assure qu'il y a une évaluation à chaud pour les formations puis 3 à 4 semaines plus tard, une évaluation à froid. Grâce à ces évaluations, il convient d'adapter ensuite le type de formation à chaque personne.
+Le \RQCourt s'assure qu'il y a une évaluation à chaud pour les formations puis 3 à 4 semaines plus tard, une évaluation à froid. Grâce à ces évaluations, il convient d'adapter ensuite le type de formation à chaque personne.
 \\
-Le responsable développement organise des tests pour avoir un outil fonctionnel aux livraisons
+Le \RD organise des tests pour avoir un outil fonctionnel aux livraisons
 ex : Celui qui code une fonction la teste, une autre personne la teste...
 \\
-Le duo CP et RQ est important car il s'occupe des fiches de tache, de l'avancement, des indicateurs, des risques. C'est donc la gestion réelle du projet. Il est important d'éviter les problèmes (surtout sur le chemin critique) pour cela, il faut anticiper et agir contre. Le mot d'ordre est de prévoir les prévisibles, gérer au mieux les imprévisibles.
+Le duo \CPCourt et \RQCourt est important car il s'occupe des fiches de tâche, de l'avancement, des indicateurs, des risques. C'est donc la gestion réelle du projet. Il est important d'éviter les problèmes (surtout sur le chemin critique). Pour cela, il faut anticiper et agir contre. Le mot d'ordre est de prévoir les prévisibles, gérer au mieux les imprévisibles.
 \\
-Il ne faut pas de surprise lors de l'audit donc il faut satisfaire le client ou le faire changer d'avis sur ses demandes (suivant le temps prévu de chaque tache). Pour cela, il faut bien définir les priorités.
+Il ne faut pas de surprise lors de l'audit donc il faut satisfaire le client ou négocier avec lui (suivant le temps prévu de chaque tache). Pour cela, il faut bien définir les priorités.
 \\
-Il faut identifier les forces et faiblesse du groupe puis mettre en place les formations nécessaires (RQ) il faut donc un diagramme de PERT bien fait afin d'identifier le Chemin Critique.
+Il faut identifier les forces et faiblesse du groupe puis mettre en place les formations nécessaires (\RQCourt) il faut donc un diagramme de PERT bien fait afin d'identifier le Chemin Critique.
 \\
-Autour des dates de livraison, le stress augmente, il faut donc que le CP fasse baisser la pression. Après la livraison il serait souhaitable d'organiser des formations car il y a moins de stress. Il est possible de garder une semaine sans trop de contact avec le client afin d'éviter des ajouts de demandes qui augmenterait le stress.
+Autour des dates de livraison, le stress augmente, il faut donc que le \CPCourt fasse baisser la pression. Après la livraison il serait souhaitable d'organiser des formations car il y a moins de stress. Il est possible de garder une semaine sans trop de contact avec le client afin d'éviter des ajouts de demandes qui augmenterait le stress.
 Il est essentiel de lisser le stress!
 
 \section{Résumé de la semaine}
 \begin{itemize}
 \item Installation machine et réseau
-\item Rédaction du Plan Qualité (PQ)
-\item Rédaction du Plan de Gestion des Configurations (PGC)
+\item Rédaction du \PQ (\PQCourt)
+\item Rédaction du \PGC (\PGCCourt)
 \end{itemize}
 
-Concernant le PQ, il faut le faire valider par le client donc il faut le rédiger en coopération avec lui.
+Concernant le \PQCourt, il faut le faire valider par le client donc il faut le rédiger en coopération avec lui.
 \\
-Concernant le PGC, c'est un document interne et ne doit donc pas être validé
+Concernant le \PGCCourt, c'est un document interne et ne doit donc pas être validé par le client.
 
-La validation du cahier des charges (prévue mardi 26/01/2016) sert à expliquer ce qu'on a compris et à le confronter avec les attentes du client, à attirer l'attention sur les problèmes de dates, durées, priorités.. Il faut être clair sur le travail à faire.
-Il faudra rédiger le Document de Spécification Externe (DSE) qui explique ce qu'on a compris du travail à accomplir. 
-Il faudra rédiger le Plan de Test et de Validation (PTV) qui explique notre méthode de test au sens large.
+La validation du cahier des charges (prévue mardi 26/01/2016) sert à expliquer ce que nous avons compris et à le confronter avec les attentes du client, à attirer l'attention sur les problèmes de dates, durées, priorités.. Il faut être clair sur le travail à faire.
+Il faudra rédiger le \DSE (\DSECourt) qui explique ce que nous avons compris du travail à accomplir. 
+Il faudra rédiger le \PTV (\PTVCourt) qui explique notre méthode de test au sens large.
 Ces deux documents sont à rédiger en accord avec le client.
 \\
-Le cahier de recette est une déclinaison du PTV, il explique en détail les tests que nous allons effectuer pour tester chaque fonctionnalité (On simulera un login bon et un mdp pas bon ; l'inverse ; les deux pas bons...). cela permet une traçabilité des tests pour savoir d'où viennent les problèmes lorsqu'ils surviennent. Ce cahier de recette est à envoyer typiquement une semaine avant livraison au client.
+Le cahier de recette est une déclinaison du \PTVCourt, il explique en détail les tests que nous allons effectuer pour tester chaque fonctionnalité (Nous simulerons un login bon et un mdp pas bon ; l'inverse ; les deux pas bons...). cela permet une traçabilité des tests pour savoir d'où viennent les problèmes lorsqu'ils surviennent. Ce cahier de recette est à envoyer typiquement une semaine avant livraison au client.
 \\
-Une remarque du client entraîne l'émission d'une Fiche de Fait Technique (FFT) qui amènera une analyse des causes puis la création d'un Ordre de Correction (OC).
+Une remarque du client entraîne l'émission d'une \FFT (\FFTCourt) qui amènera une analyse des causes puis la création d'un \OC (\OCCourt).
 \\
-Remarque sur le PGC : il y aura un git sur monprojet, il sera interne (seul accès possible pour les membres du PIC). Il faudra réfléchir sur la possibilité de substituer à ce git monprojet un Git sur notre propre serveur.
+Remarque sur le \PGCCourt : il y aura un git sur monprojet, il sera interne (seul accès possible pour les membres du PIC). Il faudra réfléchir sur la possibilité de substituer à ce git monprojet un git sur notre propre serveur.
 \\
 Ne pas créer d'indicateurs superflus : il faut qu'ils servent !
 
 %--- fin de réunion ---%
+\newpage
+
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 25/01/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui & 25/01/2016 & courriel \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi & 25/01/2016 & courriel \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+
 \end{document}

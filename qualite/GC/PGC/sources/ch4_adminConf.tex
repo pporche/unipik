@@ -2,9 +2,7 @@
 
 Afin de permettre le suivi de ces documents ainsi que leur état en temps réel, \nomEquipe{} utilise l'intranet \lintranet. 
 Il permet de savoir quelle est la dernière version applicable d'un document et récapitule l'ensemble du contenu des référentiels. 
-Cette page est actualisée par la personne concernée lors de la création, la vérification, la validation, l'approbation, la diffusion et l'archivage d'un 
-document. 
-Sur cette page figurent les informations suivantes:
+Cette page est actualisée par la personne concernée lors de la création, la vérification, la validation, l'approbation, la diffusion et l'archivage d'un document. Sur cette page figurent les informations suivantes:
 \begin{itemize}
 	\item \textbf{référentiel}: nom du référentiel auquel le document appartient;
 	\item \textbf{document}: nom du document;
@@ -25,17 +23,34 @@ Sur cette page figurent les informations suivantes:
 
 \section{L'État de Configuration}
 
-Un État de configuration décrit l'état des documents demandés par leur destinateur à une date donnée. Un état de configuration doit être généré entre autres à chaque livraison. Ils suivent le modèle présenté en \ref{modèle EC}. Chaque fiche comprend un tableau indiquant les informations suivantes pour chaque document :
+Un État de configuration décrit l'état des documents demandés par leur destinataire à une date donnée. Un état de configuration doit être généré entre autres à chaque livraison. Ils suivent le modèle présenté en \ref{modèle EC}. Il doit être composé de tous les documents nécessaire à la livraison : 
+\begin{itemize}
+\item \textbf{Pour une livraison client:}
+	\begin{itemize}
+	\item les livrables (code source, procédure d'installation, documentation technique);
+	\item les documents de spécification.
+	\end{itemize}
+\item \textbf{Pour une inspection technique:}
+	\begin{itemize}
+	\item le code source;
+	\item les documents de spécification;
+	\item les documents qualité;
+	\item les documents de gestion de projet (exemple: comptes-rendus de réunion) nécessaires à la compréhension des autres documents.\\
+	\end{itemize}
+\end{itemize}
+
+
+Chaque fiche comprend un tableau indiquant les informations suivantes pour chaque document :
 \begin{itemize}
 	\item \textbf{Type}: le type du document. \\
-	Exemple : $PQ$ ;
+	Exemple : \verb+PQ+;
 	\item \textbf{Destinataire}: le destinataire du document;
 	\item \textbf{Référence du document}: la référence complète du document. \\
-	Exemple : $PGC\_Q\_Unipik\_v1.00$;
+	Exemple : \verb+PGC_Q_Unipik_v1.00+;
 	\item \textbf{Date de création}: date de création du document.\\
-	Format : $JJ/MM/AAAA$ ;
+	Format : \verb+JJ/MM/AAAA+ ;
 	\item \textbf{Raisons}: le but de l'envoi de ce document.\\
-	Exemple : $Livraison\ lot\ 1$.
+	Exemple : \verb+Livraison lot 1+.
 \end{itemize}
 
 

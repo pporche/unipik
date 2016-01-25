@@ -1,22 +1,17 @@
 Dans le but d'identifier clairement et de manière unique les éléments de configuration du \picCourt{}, il est nécessaire de spécifier des règles de nommage. Chaque élément inclus dans un référentiel doit respecter la règle de nommage qui lui convient.\\
 
 L'ensemble des fichiers suit le modèle suivant :
-\[
-  <Type>\_<Referentiel>\_Unipik\_<Suffixe>
-\]
+\begin{center}
+  \verb+<Type>_<Referentiel>_Unipik_<Suffixe>+
+\end{center}
 On utilisera des abréviations pour chaque élément (Type, Référentiel et Suffixe).\\
-Par exemple la première version du Plan de Gestion des Configurations aura pour nom de fichier :
-\[
-PGC\_Q\_Unipik\_v1.00
-\]
-Et se trouvera dans le dossier :
-\[
-Unipik/qualite/GP/PGC/
-\]
+Exemple de nommage: \verb+PGC_Q_Unipik_v1.00+\\
+Exemple de stockage : \verb+Unipik/qualite/GP/PGC/+
+
 
 \section{Nom du \picCourt{}}
 Ce champ indique l'appartenance du document au \PICCourt{} peu importe sa provenance
- (\PICCourt{}, client, département \ASI{}, etc). Il a pour valeur \textbf{\nomEquipe}.
+ (PIC, client, département \ASI{}, etc). Il a pour valeur \textbf{\nomEquipe}.
 
 \section{Référentiels}
 
@@ -25,17 +20,17 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
 \centering
 	\begin{tabularx}{11cm}{|X|c|X|}
 	\hline
-	\rowcolor[gray]{0.85} Référentiel & Abréviation & Nom du dossier sous \git{} \\
-	\hline
-	Spécifications & S & specifications\\ 
-	\hline
-	Qualité & Q & qualite\\
+	\rowcolor[gray]{0.85} Référentiels & Abréviations & Noms des dossiers sous \git{} \\
 	\hline
 	Développement & D & developpement\\
-	\hline	
+	\hline
 	Livraison & L & livraison\\
-	\hline 
+	\hline
+	Qualité & Q & qualite\\
+	\hline	
 	Ressources & R & ressources\\
+	\hline 
+	Spécifications & S & specifications\\ 
 	\hline
 	\end{tabularx}
 \caption{Abréviations associées à chaque type}
@@ -43,6 +38,7 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
 \end{table}
 
 \section{Types}
+Chaque document est défini par un type et sera stocké dans le dossier de même nom. Chaque type est associé à zéro, un ou deux suffixes. Voici l'ensemble des documents associé pour chacun à son type et ses suffixes:
 
 \begin{longtable}{|p{12cm}|c|c|}
     \hline
@@ -79,8 +75,6 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
     \hspace{1cm} Rapport d'Audit Interne & RAI & d\\
     \hline
     \hspace{1cm} Tableau de Bord & TB & s\\
-    \hline
-    \hspace{1cm} Fiche d'Indicateurs & FI & n\\
     \hline
     Gestion de Projet & GP & -\\
     \hline
@@ -145,12 +139,6 @@ Tous les éléments réalisés au cours du PIC appartiennent à l'un des 5 réf�
     Gestion des Configurations & GC & -\\
     \hline
     \hspace{1cm} Etat de Configuration & EC & d-c\\
-    \hline
-    \hspace{1cm} Fiche de Remise de Documents & FRD & d-c\\
-    \hline
-    \hspace{1cm} Fiche de Remise de Matériels & FRM & d-c\\
-    \hline
-    \hspace{1cm} Fiche Récapitulative de Référentiel & FRR & s\\
     \hline
     \hspace{1cm} Plan de Gestion des Configurations & PGC & v\\
     \hline
@@ -252,32 +240,37 @@ Lors du nommage nous utilisons des suffixes adaptés en fonction du type de docu
 \subsection{Suffixe Date}
 \label{suffixe_date}
 
-Le suffixe de date suit le format \textbf{AA-MM-JJ}. AA pour l'année, MM pour le mois et JJ pour le jour. Ce format permet de classer les documents par ordre chronologique.\\
+Le suffixe de date suit le format \textbf{AA-MM-JJ}, AA pour l'année, MM pour le mois et JJ pour le jour. Ce format permet de classer les documents par ordre chronologique.\\
 
-Exemple : $d16-01-27$ 
+Exemple : \verb+d16-01-27+
 
 \subsection{Suffixe Version}
 \label{suffixe_version}
 
 Le suffixe version suit le format \textbf{vX.YY}. X correspond au numéro de version, YY au numéro de révision. Le numéro de version représente le numéro de semestre, en considérant que 1 correspond au semestre 4.2 et 2 au semestre 5.1. Le numéro de révision démarre à 00 et est modifié de la façon suivante : le chiffre des dizaines est incrémenté à chaque modification majeure et le chiffre des unités est incrémenté à chaque révision. Quand le numéro de version est incrémenté, celui des révision repasse à 00.\\
 
-Exemple : $v1.00$
+Exemple : \verb+v1.00+
 
 \subsection{Suffixe Numéro}
 \label{suffixe_numero}
 
 Le suffixe numéro suit le format \textbf{nXXX}. XXX est un nombre entier compris entre 001 et 999. Il commence à la valeur 001 et est incrémenté à chaque nouveau document.\\
 
-Exemple : $n042$\\
+Exemple : \verb+n042+\\
 
 Précision : Pour les documents archivés dans les dossiers "lotX", si un suffixe numéro est demandé alors celui-ci n'est pas incrémenté à chaque document, il a la valeur du "X" de "lotX".
+
+Exemples :\\ 
+\verb+developpement/lot1/DT/DTI/DTI_D_Unipik_n001_v1.00+\\
+\verb+developpement/lot1/DT/DTI/DTI_D_Unipik_n001_v2.00+\\
+\verb+developpement/lot2/DT/DTI/DTI_D_Unipik_n002_v1.00+
 
 \subsection{Suffixe Semaine}
 \label{suffixe_semaine}
 
 Le suffixe semaine suit le format \textbf{sXX}. XX correspond au numéro de la semaine en cours, la première semaine du PIC étant 01. Seules les semaines comportant au moins un jour ouvré sont numérotées.\\
 
-Exemple : $s09$
+Exemple : \verb+s09+
 
 \subsection{Suffixe Rôle}
 \label{suffixe_role}
@@ -295,19 +288,49 @@ Le suffixe rôle suit le format \textbf{rRole} où Role correspond au rôle conc
 \item PR : Pilote de Risque.\\
 \end{itemize}
 
-Exemple : $rCP$
+Exemple : \verb+rCP+
 
 \subsection{Suffixe Personne}
 \label{suffixe_personne}
 
-Le suffixe personne suit le format \textbf{pNom} où Nom correspond au nom de famille de la personne concernée par le document. Dans le cas où plusieurs personnes sont concernées le suffixe aura le format \textbf{pNom1Nom2}.\\
+Le suffixe personne suit le format \textbf{pInitiales} où Initiales correspond aux initiales de la personne concernée par le document. Dans le cas où plusieurs personnes sont concernées le suffixe aura le format \textbf{pInitiales1-Initiales2}. Les initiaux possibles sont les suivants :
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{10cm}{|X|c|}
+	\hline
+	\rowcolor[gray]{0.85} Personnes & Initiales\\
+	\hline
+	François Decq & FD \\
+	\hline
+	Florian Leriche & FL \\
+	\hline
+	Julie Pain & JP \\
+	\hline
+	Kafui Atanley & KA \\
+	\hline
+	Mélissa Bignoux & MB \\
+	\hline
+	Michel Cressant & MC \\
+	\hline
+	Mathieu Medici & MM \\
+	\hline
+	Matthieu Martins-Baltar & MMB \\
+	\hline
+	Pierre Porche & PP \\
+	\hline
+	Sergi Colomies & SC \\
+	\hline
+	\end{tabularx}
+	\caption{Initiales associées à chaque personne}
+	\label{Initiales}
+\end{table}
 
-Exemple : $pBaron$
+Exemple : \verb+pFL+
 
 \subsection{Suffixe Commentaire}
 \label{suffixe_commentaire}
 
-Le suffixe commentaire suit le format \textbf{cX} où X est le commentaire correspondant au fichier. Par exemple le sujet de la formation pour une Fiche de Formation.\\
+Le suffixe commentaire suit le format \textbf{cX} où X est le commentaire correspondant au fichier. Par exemple le sujet de la formation pour une Fiche de Formation ou encore le sujet d'un mail.\\
 
-Exemple : $cLaTeX$
+Exemple : \verb+cLaTeX+
 

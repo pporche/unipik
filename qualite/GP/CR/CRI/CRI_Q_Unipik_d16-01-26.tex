@@ -1,0 +1,133 @@
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{../../../../ressources/Unipik/vocabulaire/vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion interne}}					%titre
+\begin{document}
+
+22/01/2015			 				%Date 
+\hfill   
+\hfill 	 13:48 - 14:34 				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% Rédacteur
+%--- Fin en-t�te et pied de page ---%
+
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 26/01/2016 & \Kafui & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Pierre & 27/01/2016 & courriel \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi & 27/01/2016 & courriel \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+		
+\newpage		
+
+
+
+%--- Réunion --%
+
+%\section{Tour de table}
+%Les fonctions sont réparties comme suit :
+%\begin{itemize}
+%	\item Michel Cressant : \RD (\RDCourt),
+%	\item Mathieu Medici : \RGC (\RGCCourt),
+%	\item Matthieu Martins-Baltar : Responsable Serveur et Réseau (RSR),
+%	\item Kafui Atanley : \RQCourt Développeur,
+%	\item Mélissa Bignoux : Développeuse,
+%	\item Julie Pain : Développeuse,
+%	\item Florian Leriche : Développeur.
+%\end{itemize}
+
+\section{Thèmes relevés}
+L'équipe s'est réunie afin de se concerter sur les préoccupations principales concernant le projet.
+\\
+Les thèmes qui en sont ressorties sont : 
+\begin{itemize}
+\item Les Bases de données,
+\item Le Site Web et ses fonctionnalités,
+\item Les langages informatiques,
+\item Module Statistique,
+\item La CNIL,
+\item Mécénat.
+\end{itemize}
+
+
+\section{Les Bases de données}
+Par rapport à la méthodologie, un modèle Entité/Association est suggéré.
+La base de données comportant des données sensibles(mot de passe) devra être sécurisée(cryptage). L'utilisation de MySql est évoqué. La collecte de données est un point à ne pas négliger?
+
+
+\section{Le Site Web et ses fonctionnalités}
+
+L'équipe s'accorde à l'unanimité pour dire qu'un site intuitif est une priorité. L'utilisation de checkbox devra être privilégié. Les pages ne devront pas être surchargés quitte à en faire un peu plus.L'équipe insiste sur le fait que le site devra proposé de l'auto-complétion  et vérifier les informations entrées par l'utilisateur le plus possible.\\
+L'équipe s'accorde à chercher à rendre le plus accessible possible étant donné l'audience visé. Des normes compte-tenu de l'accessibilité sont à rechercher. L'équipe suggère de mettre en place un onglet "contactez-nous" et d'élaborer des conditions générales d'utilisation.\\
+L'équipe est en accord sur le fait que le site devra être adaptable pour un accès via des supports divers (responsive design).
+\\
+
+L'équipe suggère des améliorations possibles par rapport au Cahier de charge actuel : 
+\begin{itemize}
+\item Un espace de discussion instantanée(chat),
+\item une foire aux questions,
+\item L'envoi de messages entre membres.
+\end{itemize}
+
+L'équipe suggère de commencer à penser au déploiement en s'informant auprès d’autorités compétentes.
+L'équipe suggère de mettre en place un plan de sauvegarde. 
+
+
+\section{Les langages informatiques}
+De nombreux langages informatiques ont été citées dont Java, PHP, Jquery,Javascript.
+Le framework Bootstrap a également été mentionné.Il en résulte que l'équipe devra peser ultérieurement les pour et les contres de chaque technologies web pour en sélectionner une qui convient au mieux.
+\\
+
+
+\section{Module Statistique}
+L'équipe est en accord pour dire que ce module sera fortement en relation avec les base de données. Les données concernées prendront en compte la gestion des stock, les lieux , les recette, la caisse initial et finale. \\
+IL devra y avoir un traitement  qui permettra d'afficher un graphique afin que l'interprétation de celle-ci soit simplifié.
+
+\section{La CNIL}
+L'équipe suggère de s'informer sur le temps de prise en compte d'un dossier, les délais. L'équipe se demande quel type de confidentialité elle devrait être capable de garantir (anonymisation des données).
+\\
+
+\section{Mécénat}
+
+L'équipe est en accord pour commencer à s'informer en récoltant les plaquettes. La préparation de dossier et d'argument afin de démarcher de futures entreprises est importante.
+
+%--- fin de réunion ---%
+
+
+\end{document}

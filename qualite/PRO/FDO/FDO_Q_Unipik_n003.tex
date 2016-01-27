@@ -1,34 +1,53 @@
+%\documentclass[a4paper] {article}
+
+%\usepackage{../../../ressources/Unipik/vocabulaire/vocabulaireUnipik}
+\documentclass[11pt]{article}
+\usepackage{pdfpages}
+\usepackage{supertabular}
+
+\usepackage{draftcopy}
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{../../../ressources/Unipik/vocabulaire/vocabulaireUnipik}
+\usepackage{longtable}
+
+
+
+\begin{document}
 \section*{Informations générales}
  
-\begin{table}[H]
+\begin{table}[h]
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	\rowcolor{gray!40} Numéro de l'opportunité & Type d'opportunité \\
+	Numéro de l'opportunité & Type d'opportunité \\
 	\hline
 	003 & bonne passation \\
 	\hline
 	\end{tabularx}
 \end{table}
 
-\begin{table}[H]
+\begin{table}[h]
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|X|}
 	\hline
-	\rowcolor{gray!40} Date & Visa du \RQ & Visa du \CP \\
+	Date & Visa du \RQ & Visa du \CP \\
 	\hline
 	 07/12/15 & pgpic & pgpic \\
 	\hline
 	\end{tabularx}
 \end{table}
 
-\begin{table}[H]
+\begin{table}[h]
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|X|X|}
 	\hline
-	\rowcolor{gray!40} Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
+	Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
 	\hline
-	 \Matthieu & Suivre les Risques et Opportunités & 1.2.3.2 & A partir de la fin du premier semestre.\\
+	 \Pierre & Suivre les Risques et Opportunités & 1.2.3.2 & A partir de la fin du premier semestre.\\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -43,9 +62,11 @@
 
 \subsection*{Criticité}
 
-\begin{table}[H]
+\begin{table}[h]
 \centering
-	\begin{tabularx}{16.8cm}{|>{\columncolor{gray!40}}X|X|}
+	\begin{tabularx}{12.8cm}{|>{
+	%\columncolor{gray!40}
+	}X|X|}
 	\hline
 	Bénéfice & 3\\
 	\hline
@@ -58,80 +79,52 @@
 \newpage
 
 \section*{Actions}
-\subsection*{Actions préventives}
+\subsection*{Actions proactives}
 
 %\begin{table}[H]
 \centering
 	\begin{longtable}{|p{7cm}|p{7cm}|}
 	\hline
-	\rowcolor{gray!40} Numéro de cause & Actions préventives \\
+	Cause & Actions proactives \\
 	\hline
-	 1 & \begin{itemize}
-	 	\item Boîte à idée
-	 	\item Faire des tickets
-	 	\item Réunions fréquentes
-	 	\item Laisser la parole à tout le monde
-	 	\item Hiérarchie bien définie
-	 	\item Choisir les bons outils
-	 	\item Faire des compte rendus de réunion à envoyer au client
-	 	\item Être en constante délibération
-	 	\item Reformulation des spécifications
-	 	\item Avoir un interlocuteur unique entre le client et le \PICCourt
-	 	\item Suivi hebdomadaire de l'avancement
+	 Rédaction de documents de passation & \begin{itemize}
+	 	\item Attribuer de cette tâche
+	 	\item Inclure de cette tâche dans le planning
+	 	\item Commencer cette tâche à temps
 	 \end{itemize} \\
 	\hline
-	2 & \\
-	\hline
-	3 & \begin{itemize}
-		\item Choisir de bonnes valeurs seuils
-		\item Présence et assiduité
-		\item Créneau horaire respecté
-		\item Objectifs personnels
+	Arrivée de la nouvelle équipe avant départ de l'ancienne & \begin{itemize}
+		\item Demander à la nouvelle équipe d'arriver au plus tôt
 	\end{itemize} \\
 	\hline
-	4 & \begin{itemize}
-		\item La personne qui fait les tests doit être différente de celle qui code
-		\item Faire un maximum de tests
-		\item Définir clairement les méthodes de travail dès le début du \PICCourt et faire vérifier par un référent
+	Communication préalable avec la nouvelle équipe & \begin{itemize}
+		\item Organiser des rendez-vous téléphoniques
+		\item Prévenir la nouvelle équipe de ces rendez-vous
 	\end{itemize} \\
 	\hline
-	5 & \begin{itemize}
-		\item Se former sur la réalisation d'un audit sécurité
-		\item Effectuer régulièrement des audits sécurité
-		\item Nommer un responsable sécurité
-		\item Faire des tests en boîte noire et boîte blanche
+	Passation prévue et organisée & \begin{itemize}
+		\item Réfléchir au processus de passation
+		\item Inclure la préparation de la passation dans le planning
+		\item Nommer un responsable de la passation
 	\end{itemize} \\
 	\hline
-	6 & \begin{itemize}
-		\item Faire les démarches nécessaires
-		\item Être économe
-		\item Faire un calcul du budget au début
+	Mise en place d'outils de communication performants & \begin{itemize}
+		\item Rechercher les outils les plus adaptés
+		\item Tester différents outils
 	\end{itemize} \\
 	\hline
-	7 & \begin{itemize}
-		\item Faire un planning
-		\item Faire un GANTT/PERT
-		\item Chacun respecte son rôle
-		\item Bien définir les rôles
-		\item Faire des réunions fréquentes
-		\item Utiliser les bons outils de partage
+	Bon investissement de la nouvelle équipe & 
+	 \\
+	\hline
+	Bonne planification & \begin{itemize}
+		\item Former le \CP à la planification
+		\item Bien prévoir les temps nécessaires à chaque tâche
 	\end{itemize} \\
 	\hline
-	8 & \begin{itemize}
-		\item Avoir une méthode de paiement de secours
-		\item Se renseigner auprès des prestataires
-		\item Demander au département les méthodes de paiement autorisées
-	\end{itemize} \\
+	Bon investissement de l'ancienne équipe & 
+	 \\
 	\hline
-	9 & \begin{itemize}
-		\item Former un bénévole
-	\end{itemize} \\
-	\hline
-	10 & \begin{itemize}
-		\item Actions de prévention et de formation
-		\item Effectuer des sauvegardes régulières
-	\end{itemize} \\
-	\hline
+
 	\end{longtable}
 %\end{table}
 
@@ -146,11 +139,11 @@
 
 \section*{Décision de clôture}
 Par le \CP{} et le pilote du risque.
-\begin{table}[H]
+\begin{table}[h]
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	\rowcolor{gray!40} Date de clôture & Raison de la clôture \\
+	Date de clôture & Raison de la clôture \\
 	\hline
 	  & \\
 	\hline
@@ -158,11 +151,11 @@ Par le \CP{} et le pilote du risque.
 \end{table}
 
 \section*{Historique des modifications}
-\begin{table}[H]
+\begin{table}[h]
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Date & Modification \\
+	Date & Modification \\%\rowcolor{gray!40} 
 	\hline
 	  & \\
 	\hline
@@ -170,9 +163,11 @@ Par le \CP{} et le pilote du risque.
 \end{table}
 \newpage
 
-\begin{landscape}
+
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.35]{images/AnalyseRisque_nPourquoi.png}
+	\includegraphics[scale=0.5]{../images/AnalyseRisque_nPourquoi_FDO003.png}
 \end{figure}
-\end{landscape}
+
+
+\end{document}

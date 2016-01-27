@@ -1,10 +1,29 @@
+%\documentclass[a4paper] {article}
+
+%\usepackage{../../../ressources/Unipik/vocabulaire/vocabulaireUnipik}
+\documentclass[11pt]{article}
+\usepackage{pdfpages}
+\usepackage{supertabular}
+
+\usepackage{draftcopy}
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{../../../ressources/Unipik/vocabulaire/vocabulaireUnipik}
+\usepackage{longtable}
+
+
+
+\begin{document}
 \section*{Informations générales}
  
-\begin{table}[H]
+\begin{table}[h]
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	\rowcolor{gray!40} Numéro de l'opportunité & Type de l'opportunité \\
+	Numéro de l'opportunité & Type de l'opportunité \\
 	\hline
 	001 & Acquisition d'un serveur gratuit pour le livrable \\
 	\hline
@@ -15,7 +34,7 @@
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|X|}
 	\hline
-	\rowcolor{gray!40} Date & Visa du \RQ & Visa du \CP \\
+	Date & Visa du \RQ & Visa du \CP \\
 	\hline
 	 07/12/15 & pgpic & pgpic \\
 	\hline
@@ -26,7 +45,7 @@
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|X|X|}
 	\hline
-	\rowcolor{gray!40} Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
+	Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
 	\hline
 	 \Matthieu & Suivre les Risques et Opportunités & 1.2.3.2 & Dès le début du PIC\\
 	\hline
@@ -45,7 +64,7 @@
 
 \begin{table}[H]
 \centering
-	\begin{tabularx}{16.8cm}{|>{\columncolor{gray!40}}X|X|}
+	\begin{tabularx}{16.8cm}{|>{}X|X|}
 	\hline
 	Bénéfice & 4\\
 	\hline
@@ -64,18 +83,18 @@
 \centering
 	\begin{longtable}{|p{7cm}|p{7cm}|}
 	\hline
-	\rowcolor{gray!40} Numéro de cause & Actions préventives \\
+	Numéro de cause & Actions préventives \\
 	\hline
 	 1 & \begin{itemize}
 	 	\item Formation sur les démarches nécessaires à la constitution d'un dossier de mécénat
 	 \end{itemize} \\
 	\hline
-	2 & \\
+	2 &
 	\begin{itemize}
 		\item Recherche d'un hébergeur
 		\item Comparaison des offres
 		\item Étudier leur susceptibilité à accepter un mécénat
-	\end{itemize}
+	\end{itemize} \\
 	\hline
 	3 & \begin{itemize}
 		\item Constitution d'un dossier de mécénat
@@ -84,7 +103,7 @@
 	4 & \begin{itemize}
 		\item Discuter de la possibilité avec l'unité P3
 		\item Faire une demande auprès de l'INSA
-	\end{itemize}
+	\end{itemize} \\
 	\hline
 	5 & \begin{itemize}
 		\item Faire une demande de mécénat auprès de l'hébergeur
@@ -106,7 +125,7 @@ Par le \CP{} et le pilote du risque.
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	\rowcolor{gray!40} Date de clôture & Raison de la clôture \\
+	Date de clôture & Raison de la clôture \\
 	\hline
 	  & \\
 	\hline
@@ -126,9 +145,11 @@ Par le \CP{} et le pilote du risque.
 \end{table}
 \newpage
 
-\begin{landscape}
+
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.35]{images/AnalyseRisque_nPourquoi_FDO001.png}
+	\includegraphics[scale=0.35]{../images/AnalyseRisque_nPourquoi_FDO001.png}
 \end{figure}
-\end{landscape}
+
+
+\end{document}

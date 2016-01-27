@@ -148,7 +148,7 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     \hline
     \hspace{1cm} Etat de Configuration & EC & d,c\\
     \hline
-    \hspace{1cm} Fiche de Remise de Documents & FRD & d,c\\    
+    \hspace{1cm} Fiche de Remise de Documents & FRD & d\\    
     \hline
     \hspace{1cm} Plan de Gestion des Configurations & PGC & v\\
     \hline
@@ -336,7 +336,11 @@ Exemple : \verb+pFL+
 \subsection{Suffixe Commentaire}
 \label{suffixe_commentaire}
 
-Le suffixe commentaire suit le format \textbf{cX} où X est le commentaire correspondant au fichier. Par exemple le sujet de la formation pour une Fiche de Formation ou encore le sujet d'un mail.\\
-
-Exemple : \verb+cLaTeX+
-
+Le suffixe commentaire suit le format \textbf{cX} où X est le commentaire correspondant au fichier. Ce commentaire a une valeur bien précise selon le type de document. Pour \nomEquipe, il y a trois documents différents ayant un suffixe \verb+commentaire+, voici leurs valeurs associées :
+\begin{itemize}
+\item Fiche de Formation (FF) : sujet de la formation;\\
+ Exemple : \verb+cLaTeX+
+\item mails (MC, MDQ, ML, MP3, MTP, MTQ) : sujet du mail;\\
+ Exemple : \verb+cdatesRevues+
+\item Fiche de Remise de Documents (FRD) : voir la partie \ref{FRD}.
+\end{itemize}

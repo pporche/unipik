@@ -23,7 +23,7 @@ Cette page est actualisée par la personne concernée lors de la création, la v
 
 \section{L'État de Configuration}
 
-Un État de configuration décrit l'état des documents demandés par leur destinataire à une date donnée. Un état de configuration doit être généré entre autres à chaque livraison. Ils suivent le modèle présenté en \ref{modèle EC}. Il doit être composé de tous les documents nécessaire à la livraison : 
+Un État de configuration décrit l'état des documents demandés par leur destinataire à une date donnée. Un état de configuration doit être généré entre autres à chaque livraison. Ils suivent le modèle présenté en Annexe \ref{modèle EC}. Il doit être composé de tous les documents nécessaire à la livraison : 
 \begin{itemize}
 \item \textbf{Pour une livraison client:}
 	\begin{itemize}
@@ -60,5 +60,25 @@ de tous les éléments nécessaires à la livraison ainsi que leur cohérence, t
 la forme que du fond.
 
 \paragraph{Précision du suffixe :}
-Le suffixe de l'état de configuration est de type commentaire. Ce commentaire doit définir le nom du destinataire. Ceci permettra de retrouver plus facilement les documents envoyés à une personne en particulier.
+Le suffixe de l'état de configuration est de type date et commentaire. Le suffixe \verb+date+ correspond à la date à laquelle les documents ont été envoyés par l’émetteur. Le suffixe \verb+commentaire+ doit définir la raison de la création de l'état de configuration. Les valeurs possibles sont :
+\begin{itemize}
+\item \verb+inspection+;
+\item \verb+livraison+;
+\item \verb+autre+.
+\end{itemize}
+Exemple : \verb+EC_Q_Unipik_d16-03-05_livraison+
 
+\section{Fiches de Remise de Documents}
+\label{FRD}
+
+Une fiche de remise de documents décrit les documents remis par des personnes extérieures au PIC. Elles suivent le modèle présenté en Annexe \ref{modèle FRD}. Chaque fiche comprend un tableau indiquant les informations suivantes pour chaque document :
+\begin{itemize}
+\item \textbf{Description} : la description du contenu du document;
+\item \textbf{Emetteur} : l'émetteur du document;
+\item \textbf{Référence} : la référence complète du document;
+\item \textbf{Date de réception} : la date de réception du document (format : \verb+JJ/MM/AAAA+);
+\item \textbf{Raisons} : le but de l'envoi de ce document.
+\end{itemize}
+
+\paragraph{Précision du suffixe :}
+Le suffixe de la fiche de remise de documents est de type date. Le suffixe \verb+date+ correspond à la date à laquelle les documents ont été envoyés par l’émetteur.

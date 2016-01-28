@@ -1,0 +1,17 @@
+# Définition du nom du document
+NOM_FICHIER=FRD_Q_Unipik_d16-01-25
+
+# Récupération du chemin de la classe picINSA pour les documents LaTeX
+CLSPATH="$(shell pwd)/../../../ressources/cls/"
+
+# Récupération du chemin du package vocabulaireUnipik.sty
+VOCPATH="$(shell pwd)/../../../ressources/Unipik/vocabulaire/"
+
+# Dossiers dans PGC
+PDFDIR=pdf
+ARCHIVEDIR=/home/${USER}/archivage/qualite/PQ
+
+# Commandes
+CCTEX=rubber -d
+EPSPDF=ps2pdf
+DIA=dia

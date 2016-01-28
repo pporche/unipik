@@ -28,7 +28,7 @@
 	\hline
 	\rowcolor{gray!40} Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
 	\hline
-	 \Matthieu & Suivre les Risques et Opportunités & 1.2.3.2 & En avance du lot2\\
+	 \Matthieu & Suivre les Risques et Opportunités & 1.2.3.2 & À partir de l’installation serveur\\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -36,7 +36,7 @@
 \section*{Description du risque}
 
 \subsection*{Résumé}
-	Le risque lié à l'absence de serveur gratuit pour déployer notre livrable nous obligerait à nous retourner vers une solution payante qui ne satisferait pas le client.
+	Le risque lié au crash du serveur peut entraîner la perte de toutes les données et l'impossibilité d'utiliser le service mis en place.
 	
 \subsection*{Analyse des causes}
 	voir figure.
@@ -49,7 +49,7 @@
 	\hline
 	Gravité & 4\\
 	\hline
-	Probabilité & 4\\
+	Probabilité & 1\\
 	\hline
 	Criticité & Critique\\
 	\hline
@@ -139,11 +139,10 @@
 \subsection*{Plan de contournement}
 
 \begin{enumerate}
-	\item Le client accepte d'avoir recours à une solution payante
-	\item Nous recherchons et comparons les offres des différents prestataires.
-	\item Nous sélectionnons une offre de serveur à un prix raisonnable
-	\item Nous confirmons auprès du client que l'offre et le prix sont acceptables
-	\item Nous utilisons ce serveur en remplacement à une solution gratuite
+	\item Bloquer le site
+	\item Demander un serveur temporaire
+	\item Faire les démarches nécessaires pour les réparations
+	\item Relancer le site
 \end{enumerate}
 
 \section*{Décision de clôture}

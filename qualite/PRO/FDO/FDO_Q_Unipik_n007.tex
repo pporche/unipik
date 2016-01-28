@@ -1,34 +1,34 @@
 \section*{Informations générales}
  
-\begin{table}[h]
+\begin{table}[H]
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Numéro de l'opportunité & Type d'opportunité \\
+	\rowcolor{gray!40} Numéro du risque & Type du risque \\
 	\hline
-	004 & Bonne communication client \\
+	001 & Crash du serveur \\
 	\hline
 	\end{tabularx}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|X|}
 	\hline
-	Date & Visa du \RQ & Visa du \CP \\
+	\rowcolor{gray!40} Date & Visa du \RQ & Visa du \CP \\
 	\hline
-	 27/01/16 & pgpic & pgpic \\
+	 07/12/15 & pgpic & pgpic \\
 	\hline
 	\end{tabularx}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|X|X|}
 	\hline
-	Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
+	\rowcolor{gray!40} Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
 	\hline
-	 \Florian & Suivre les Risques et Opportunités & 1.2.3.2 & Tout au long du projet.\\
+	 \Matthieu & Suivre les Risques et Opportunités & 1.2.3.2 & À partir de l’installation serveur\\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -36,87 +36,122 @@
 \section*{Description du risque}
 
 \subsection*{Résumé}
-	Une bonne communication avec le client peut entrainer une meilleure compréhension de ses besoins. Cela peut permettre à l'équipe \PICCourt de mieux répondre aux exigences du client et d'éviter d'éventuels retards dans les livraisons. \\
-        La bonne communication avec le client peut être due à une bonne gestion des différents outils de communication ou une bonne réactivité de sa part.
+	Le risque lié au crash du serveur peut entraîner la perte de toutes les données et l'impossibilité d'utiliser le service mis en place.
 	
 \subsection*{Analyse des causes}
 	voir figure.
 
 \subsection*{Criticité}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
-	\begin{tabularx}{12.8cm}{|>{
-	%\columncolor{gray!40}
-	}X|X|}
+	\begin{tabularx}{16.8cm}{|>{\columncolor{gray!40}}X|X|}
 	\hline
-	Bénéfice & 3\\
+	Gravité & 4\\
 	\hline
-	Probabilité & 3\\
+	Probabilité & 1\\
 	\hline
-	Criticité & Important\\
+	Criticité & Critique\\
 	\hline
 	\end{tabularx}
 \end{table}
 \newpage
 
 \section*{Actions}
-\subsection*{Actions proactives}
+\subsection*{Actions préventives}
 
 %\begin{table}[H]
 \centering
 	\begin{longtable}{|p{7cm}|p{7cm}|}
 	\hline
-	Cause & Actions proactives \\
+	\rowcolor{gray!40} Numéro de cause & Actions préventives \\
 	\hline
-	 Se faire comprendre par le client & \begin{itemize}
-	 	\item S'adapter aux connaissances du client.
-	 	\item Ne pas employer de vocabulaire trop spécifique.
+	 1 & \begin{itemize}
+	 	\item Boîte à idée
+	 	\item Faire des tickets
+	 	\item Réunions fréquentes
+	 	\item Laisser la parole à tout le monde
+	 	\item Hiérarchie bien définie
+	 	\item Choisir les bons outils
+	 	\item Faire des compte rendus de réunion à envoyer au client
+	 	\item Être en constante délibération
+	 	\item Reformulation des spécifications
+	 	\item Avoir un interlocuteur unique entre le client et le \PICCourt
+	 	\item Suivi hebdomadaire de l'avancement
 	 \end{itemize} \\
 	\hline
-	Respecter ses engagements et promesses & \begin{itemize}
-		\item Ne pas se surestimer.
-		\item Etre franc avec le client.
+	2 & \\
+	\hline
+	3 & \begin{itemize}
+		\item Choisir de bonnes valeurs seuils
+		\item Présence et assiduité
+		\item Créneau horaire respecté
+		\item Objectifs personnels
 	\end{itemize} \\
 	\hline
-	Bonne gestion des outils de communication & \begin{itemize}
-		\item Désigner un responsable de ces différents outils.
+	4 & \begin{itemize}
+		\item La personne qui fait les tests doit être différente de celle qui code
+		\item Faire un maximum de tests
+		\item Définir clairement les méthodes de travail dès le début du \PICCourt et faire vérifier par un référent
 	\end{itemize} \\
 	\hline
-	Gérer sa communication & \begin{itemize}
-		\item Ne pas se précipiter.
-		\item Se maîtriser et se préparer.
+	5 & \begin{itemize}
+		\item Se former sur la réalisation d'un audit sécurité
+		\item Effectuer régulièrement des audits sécurité
+		\item Nommer un responsable sécurité
+		\item Faire des tests en boîte noire et boîte blanche
 	\end{itemize} \\
 	\hline
-	Choix pertinents des outils de communication & \begin{itemize}
-		\item Rechercher les outils les plus adaptés.
-		\item Tester différents outils.
+	6 & \begin{itemize}
+		\item Faire les démarches nécessaires
+		\item Être économe
+		\item Faire un calcul du budget au début
 	\end{itemize} \\
 	\hline
-	Bonne maîtrise des outils de communication & \begin{itemize}
-		\item Former les membres de l'équipe à l'utilisation des ces outils
+	7 & \begin{itemize}
+		\item Faire un planning
+		\item Faire un GANTT/PERT
+		\item Chacun respecte son rôle
+		\item Bien définir les rôles
+		\item Faire des réunions fréquentes
+		\item Utiliser les bons outils de partage
 	\end{itemize} \\
 	\hline
-	Etre proche du client & \begin{itemize}
-		\item Prendre contact régulièrement avec le client.
-		\item Prendre en compte les remarques du client.
+	8 & \begin{itemize}
+		\item Avoir une méthode de paiement de secours
+		\item Se renseigner auprès des prestataires
+		\item Demander au département les méthodes de paiement autorisées
 	\end{itemize} \\
 	\hline
-	Mise en place d'outils de communication performants & \begin{itemize}
-		\item Rechercher les outils les plus adaptés
-		\item Tester différents outils
+	9 & \begin{itemize}
+		\item Former un bénévole
+	\end{itemize} \\
+	\hline
+	10 & \begin{itemize}
+		\item Actions de prévention et de formation
+		\item Effectuer des sauvegardes régulières
 	\end{itemize} \\
 	\hline
 	\end{longtable}
 %\end{table}
 
+\flushleft
+\subsection*{Plan de contournement}
+
+\begin{enumerate}
+	\item Bloquer le site
+	\item Demander un serveur temporaire
+	\item Faire les démarches nécessaires pour les réparations
+	\item Relancer le site
+\end{enumerate}
+
 \section*{Décision de clôture}
 Par le \CP{} et le pilote du risque.
-\begin{table}[h]
+\begin{table}[H]
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Date de clôture & Raison de la clôture \\
+	\rowcolor{gray!40} Date de clôture & Raison de la clôture \\
 	\hline
 	  & \\
 	\hline
@@ -124,11 +159,11 @@ Par le \CP{} et le pilote du risque.
 \end{table}
 
 \section*{Historique des modifications}
-\begin{table}[h]
+\begin{table}[H]
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Date & Modification \\%\rowcolor{gray!40} 
+	Date & Modification \\
 	\hline
 	  & \\
 	\hline
@@ -136,8 +171,9 @@ Par le \CP{} et le pilote du risque.
 \end{table}
 \newpage
 
-
+\begin{landscape}
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.5, angle=90]{../images/AnalyseOpportunite_nPourquoi_FDO004.png}
+	\includegraphics[scale=0.35]{images/AnalyseRisque_nPourquoi_FDR001.png}
 \end{figure}
+\end{landscape}

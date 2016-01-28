@@ -28,7 +28,7 @@
 	\hline
 	\rowcolor{gray!40} Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
 	\hline
-	 \Mathieu & Suivre les Risques et Opportunités & 1.2.3.2 & À partir du stokage du premier document (papier ou numérique)\\
+	 \Mathieu & Suivre les Risques et Opportunités & 1.2.3.2 & À partir du début du projet\\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -36,10 +36,10 @@
 \section*{Description du risque}
 
 \subsection*{Résumé}
-	Le risque lié au crash du serveur peut entraîner la perte de toutes les données et l'impossibilité d'utiliser le service mis en place.
+	Le risque lié à la perte de documents peut entrainer une perte du travail réalisé et donc une perte de temps sur l'avancement du projet.
 	
 \subsection*{Analyse des causes}
-	voir figure.
+	voir figure \ref{risque perte de document}.
 
 \subsection*{Criticité}
 
@@ -60,89 +60,37 @@
 \section*{Actions}
 \subsection*{Actions préventives}
 
-%\begin{table}[H]
 \centering
 	\begin{longtable}{|p{7cm}|p{7cm}|}
 	\hline
 	\rowcolor{gray!40} Numéro de cause & Actions préventives \\
 	\hline
-	 1 & \begin{itemize}
-	 	\item Boîte à idée
-	 	\item Faire des tickets
-	 	\item Réunions fréquentes
-	 	\item Laisser la parole à tout le monde
-	 	\item Hiérarchie bien définie
-	 	\item Choisir les bons outils
-	 	\item Faire des compte rendus de réunion à envoyer au client
-	 	\item Être en constante délibération
-	 	\item Reformulation des spécifications
-	 	\item Avoir un interlocuteur unique entre le client et le \PICCourt
-	 	\item Suivi hebdomadaire de l'avancement
-	 \end{itemize} \\
+	1 & \begin{itemize}
+		\item Formation des membres de l'équipe aux outils
+		\end{itemize} \\
 	\hline
-	2 & \\
+	2 & \begin{itemize}
+		\item Vérification du travail du \RGC{} par le \CP
+		\item Vérification du nommage et de l'archivage par le \RGC{} toutes les semaines
+		\end{itemize} \\
 	\hline
 	3 & \begin{itemize}
-		\item Choisir de bonnes valeurs seuils
-		\item Présence et assiduité
-		\item Créneau horaire respecté
-		\item Objectifs personnels
-	\end{itemize} \\
+		\item Formation du \RGC
+		\end{itemize} \\
 	\hline
 	4 & \begin{itemize}
-		\item La personne qui fait les tests doit être différente de celle qui code
-		\item Faire un maximum de tests
-		\item Définir clairement les méthodes de travail dès le début du \PICCourt et faire vérifier par un référent
-	\end{itemize} \\
-	\hline
-	5 & \begin{itemize}
-		\item Se former sur la réalisation d'un audit sécurité
-		\item Effectuer régulièrement des audits sécurité
-		\item Nommer un responsable sécurité
-		\item Faire des tests en boîte noire et boîte blanche
-	\end{itemize} \\
-	\hline
-	6 & \begin{itemize}
-		\item Faire les démarches nécessaires
-		\item Être économe
-		\item Faire un calcul du budget au début
-	\end{itemize} \\
-	\hline
-	7 & \begin{itemize}
-		\item Faire un planning
-		\item Faire un GANTT/PERT
-		\item Chacun respecte son rôle
-		\item Bien définir les rôles
-		\item Faire des réunions fréquentes
-		\item Utiliser les bons outils de partage
-	\end{itemize} \\
-	\hline
-	8 & \begin{itemize}
-		\item Avoir une méthode de paiement de secours
-		\item Se renseigner auprès des prestataires
-		\item Demander au département les méthodes de paiement autorisées
-	\end{itemize} \\
-	\hline
-	9 & \begin{itemize}
-		\item Former un bénévole
-	\end{itemize} \\
-	\hline
-	10 & \begin{itemize}
-		\item Actions de prévention et de formation
-		\item Effectuer des sauvegardes régulières
+		\item Faire un clone de l'archive toutes les semaines
 	\end{itemize} \\
 	\hline
 	\end{longtable}
-%\end{table}
 
 \flushleft
 \subsection*{Plan de contournement}
 
 \begin{enumerate}
-	\item Bloquer le site
-	\item Demander un serveur temporaire
-	\item Faire les démarches nécessaires pour les réparations
-	\item Relancer le site
+	\item Récupérer la version du document la plus récente possible
+	\item Ré-imprimer le document et le refaire valider si besoin
+	\item Refaire le travail perdu le plus vite possible
 \end{enumerate}
 
 \section*{Décision de clôture}
@@ -174,6 +122,7 @@ Par le \CP{} et le pilote du risque.
 \begin{landscape}
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.35]{images/AnalyseRisque_nPourquoi_FDR001.png}
+	\includegraphics[scale=0.35]{images/AnalyseRisque_nPourquoi_FDR007.png}
+	\caption{\label{risque perte de document}risque perte de document - méthode des n pourquoi}
 \end{figure}
 \end{landscape}

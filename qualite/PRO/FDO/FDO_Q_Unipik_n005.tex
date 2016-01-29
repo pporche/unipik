@@ -4,9 +4,9 @@
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Numéro de l'opportunité & Type d'opportunité \\
+	\rowcolor{gray!40} Numéro de l'opportunité & Type d'opportunité \\
 	\hline
-	004 & Bonne communication client \\
+	005 & Bonne planification \\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -15,9 +15,9 @@
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|X|}
 	\hline
-	Date & Visa du \RQ & Visa du \CP \\
+	\rowcolor{gray!40} Date & Visa du \RQ & Visa du \CP \\
 	\hline
-	 27/01/16 & pgpic & pgpic \\
+	 29/01/2016 & pgpic & pgpic \\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -26,7 +26,7 @@
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|X|X|}
 	\hline
-	Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
+	\rowcolor{gray!40} Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
 	\hline
 	 \Florian & Suivre les Risques et Opportunités & 1.2.3.2 & Tout au long du projet.\\
 	\hline
@@ -42,15 +42,13 @@ et peut être expliquée par une bonne implication du \CP. Elle permet de ne pas
 livraison des lots.
 	
 \subsection*{Analyse des causes}
-	voir figure.
+	voir figure \ref{opportunite bonne planification}.
 
 \subsection*{Criticité}
 
 \begin{table}[h]
 \centering
-	\begin{tabularx}{12.8cm}{|>{
-	%\columncolor{gray!40}
-	}X|X|}
+	\begin{tabularx}{16.8cm}{|>{\columncolor{gray!40}}X|X|}
 	\hline
 	Bénéfice & 4\\
 	\hline
@@ -66,10 +64,10 @@ livraison des lots.
 \subsection*{Actions proactives}
 
 %\begin{table}[H]
-\centering
+{\centering
 	\begin{longtable}{|p{7cm}|p{7cm}|}
 	\hline
-	Cause & Actions proactives \\
+	\rowcolor{gray!40}Cause & Actions proactives \\
 	\hline
 	 Choix des outils de plannification pertinent & \begin{itemize}
 	 	\item 
@@ -83,7 +81,7 @@ livraison des lots.
 	 	\item Avoir un \CP{} impliqué et compétent.
 	 \end{itemize} \\
 	\hline
-	\end{longtable}
+	\end{longtable}}
 %\end{table}
 
 \section*{Décision de clôture}
@@ -92,7 +90,7 @@ Par le \CP{} et le pilote du risque.
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Date de clôture & Raison de la clôture \\
+	\rowcolor{gray!40} Date de clôture & Raison de la clôture \\
 	\hline
 	  & \\
 	\hline
@@ -104,7 +102,7 @@ Par le \CP{} et le pilote du risque.
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Date & Modification \\%\rowcolor{gray!40} 
+	\rowcolor{gray!40} Date & Modification \\%\rowcolor{gray!40} 
 	\hline
 	  & \\
 	\hline
@@ -115,5 +113,6 @@ Par le \CP{} et le pilote du risque.
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.5, angle=90]{images/AnalyseOpportunite_nPourquoi_FDO005}
+	\includegraphics[scale=0.5]{images/AnalyseOpportunite_nPourquoi_FDO005}
+	\caption{\label{opportunite bonne planification}Opportunité bonne planification - méthode des n pourquoi}
 \end{figure}

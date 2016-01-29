@@ -2,6 +2,15 @@
 *.pdf
 *~
 *.log
+*.aux
+*.gz
+*.cb
+*.cb2
+*.lof
+*.lot
+*.out
+*.toc
+*.dvi
 
 
 

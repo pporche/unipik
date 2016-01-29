@@ -13,8 +13,7 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	$(CCTEX) $<
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
-# I have no idea what this thing is doing
-imagespdf: 
+imagespdf: $(IMGDIR)/AnalyseOpportunite_nPourquoi_FDO001.pdf $(IMGDIR)/AnalyseOpportunite_nPourquoi_FDO002.pdf $(IMGDIR)/AnalyseOpportunite_nPourquoi_FDO003.pdf $(IMGDIR)/AnalyseOpportunite_nPourquoi_FDO004.pdf $(IMGDIR)/AnalyseOpportunite_nPourquoi_FDO005.pdf $(IMGDIR)/AnalyseOpportunite_nPourquoi_FDO006.pdf $(IMGDIR)/AnalyseOpportunite_nPourquoi_FDO007.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR001.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR002.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR003.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR004.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR005.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR006.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR007.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR008.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR009.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR010.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR011.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR012.pdf $(IMGDIR)/AnalyseRisque_nPourquoi_FDR013.pdf
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@
@@ -27,6 +26,8 @@ clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
 	rm -f pdf/*.pdf
+	rm -f images/*.pdf
+	rm -f annexe/pdf/*.pdf
 
 # Nettoyage du répertoire
 cleanrep:
@@ -34,8 +35,6 @@ cleanrep:
 
 cleaneps :
 	rm -f images/*.eps
-	rm -f images/*.pdf
-	rm -f annexe/pdf/*.pdf
 
 # Archivage
 archive:

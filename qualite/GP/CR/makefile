@@ -1,5 +1,5 @@
 # Compilation
-all: cri crtp crtq
+all: cri crtp crtq crc
 
 cri:
 	make -C CRI
@@ -10,8 +10,11 @@ crtp:
 crtq:
 	make -C CRTQ
 
+crc:
+	make -C CRC
+
 # Archivage
-archive: archivecri archivecrtp archivecrtq
+archive: archivecri archivecrtp archivecrtq archivecrc
 
 archivecri:
 	make -C CRI archive
@@ -22,8 +25,11 @@ archivecrtp:
 archivecrtq:
 	make -C CRTQ archive
 
+archivecrc:
+	make -C CRC archive
+
 # Nettoyage
-clean: cleancri cleancrtp cleancrtq
+clean: cleancri cleancrtp cleancrtq cleancrc
 
 cleancri:
 	make -C CRI clean
@@ -33,3 +39,6 @@ cleancrtp:
 
 cleancrtq:
 	make -C CRTQ clean
+
+cleancrc:
+	make -C CRC clean

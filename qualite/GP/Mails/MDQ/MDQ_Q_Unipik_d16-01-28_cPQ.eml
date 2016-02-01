@@ -1,0 +1,124 @@
+Return-Path: <Pascal.meslier@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 4392923AD2
+	for <scolomies@insa-rouen.fr>; Thu, 28 Jan 2016 09:49:32 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0BmAgDh1KlWnA8V3cNeGQEBAQEPAQECjSCzKYYPAoFDTAEBAQEBARIBAQEBAQgUCU+EQgEBAQMjVRELBAEcFgsCAgkDAgECAQ04Bg0IAQGIG68Rjx8BCx6GC4Q2hzKBOgWFTIJDjl8TiXWBDotUhVKOPYJ1gViJZgEBAQ
+X-IPAS-Result: A0BmAgDh1KlWnA8V3cNeGQEBAQEPAQECjSCzKYYPAoFDTAEBAQEBARIBAQEBAQgUCU+EQgEBAQMjVRELBAEcFgsCAgkDAgECAQ04Bg0IAQGIG68Rjx8BCx6GC4Q2hzKBOgWFTIJDjl8TiXWBDotUhVKOPYJ1gViJZgEBAQ
+X-IronPort-AV: E=Sophos;i="5.22,357,1449529200"; 
+   d="scan'208,217";a="84939346"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 28 Jan 2016 09:49:32 +0100
+Received: from [193.49.8.38] (unknown [193.49.8.38])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id EE1211073B
+	for <sergi.colomies@insa-rouen.fr>; Thu, 28 Jan 2016 09:49:31 +0100 (CET)
+Subject: =?UTF-8?Q?Re:_Plan_Qualit=c3=a9_-_Unipik?=
+To: Colomies Sergi <sergi.colomies@insa-rouen.fr>
+References: <44fe-56a8a200-2f-29689140@232125157>
+From: Pascal MESLIER <Pascal.meslier@insa-rouen.fr>
+Message-ID: <56A9D61B.5000206@insa-rouen.fr>
+Date: Thu, 28 Jan 2016 09:49:31 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+ Thunderbird/38.2.0
+MIME-Version: 1.0
+In-Reply-To: <44fe-56a8a200-2f-29689140@232125157>
+Content-Type: multipart/alternative;
+ boundary="------------000903000005080904040806"
+
+This is a multi-part message in MIME format.
+--------------000903000005080904040806
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+
+Mes remarques sur le plan qualité :
+
+- Page de service, vous ne pouvez pas présumer de l'approbation du document.
+- Page 34 attention aux contrôle C, contrôle V malencontreux. Mettre à 
+jour les dates.
+- Page 43 5.1.3, mettre méthode _type_ agile.
+- Page 67 9.10.2 Ajouter qu'une attention particulière est apportée au 
+suivi des réclamations client.
+- Page 77 annexe D préciser qu'il s'agit d'un exemple à une date donnée. 
+Autrement vous devrez modifier le PQ à chaque changement du portefeuille.
+
+Salutations
+
+
+Pascal Meslier
+Responsable Mission qualité
+
+INSA de Rouen
+BP08- Avenue de l'université
+76801 Saint-Etienne-du-Rouvray
+
+tel : 02 32 95 66 15
+tel : 06 79 65 22 85
+
+Le 27/01/2016 11:54, Colomies Sergi a écrit :
+> Bonjour Monsieur,
+>
+> Veuillez trouver ci-joint le Plan Qualité de notre équipe PIC (Unipik).
+>
+> Cordialement,
+>
+> Sergi Colomies
+> Chef PIC - Unipik
+
+--------------000903000005080904040806
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Bonjour,<br>
+    <br>
+    Mes remarques sur le plan qualité :<br>
+    <br>
+    - Page de service, vous ne pouvez pas présumer de l'approbation du
+    document.<br>
+    - Page 34 attention aux contrôle C, contrôle V malencontreux. Mettre
+    à jour les dates.<br>
+    - Page 43 5.1.3, mettre méthode <u>type</u> agile.<br>
+    - Page 67 9.10.2 Ajouter qu'une attention particulière est apportée
+    au suivi des réclamations client.<br>
+    - Page 77 annexe D préciser qu'il s'agit d'un exemple à une date
+    donnée. Autrement vous devrez modifier le PQ à chaque changement du
+    portefeuille.<br>
+    <br>
+    Salutations<br>
+    <br>
+    <br>
+    <pre class="moz-signature" cols="72">Pascal Meslier
+Responsable Mission qualité
+
+INSA de Rouen
+BP08- Avenue de l'université
+76801 Saint-Etienne-du-Rouvray 
+
+tel : 02 32 95 66 15
+tel : 06 79 65 22 85</pre>
+    <div class="moz-cite-prefix">Le 27/01/2016 11:54, Colomies Sergi a
+      écrit :<br>
+    </div>
+    <blockquote cite="mid:44fe-56a8a200-2f-29689140@232125157"
+      type="cite">
+      <pre wrap="">Bonjour Monsieur,
+
+Veuillez trouver ci-joint le Plan Qualité de notre équipe PIC (Unipik).
+
+Cordialement,
+
+Sergi Colomies
+Chef PIC - Unipik
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------000903000005080904040806--

@@ -262,36 +262,7 @@
 \renewcommand{\headrulewidth}{0pt}
 
 
-% Définition de la charte graphique
-% pour appliquer : \AddToShipoutPicture{\BackgroundPic}
-% pour enlever :\pagebreak
-%		puis	\ClearShipoutPicture
-\newcommand\BackgroundPic
-{
-  \put(-60,-777)
-  {
-    \parbox[b][\paperheight]{\paperwidth}
-    {
-      \includegraphics[width=28cm,height=3cm, keepaspectratio=false]{images/Volutes3_v2.png}
-      \vfill
-    }
-  }
 
-  \put(50,780)
-  {
-    \line(1, 0){390}
-    \makebox(0,0)[t]{}
-  }
-
-  \put(470,-30)
-  {
-    \parbox[b][\paperheight]{\paperwidth}
-    {
-      \includegraphics[width=3cm, keepaspectratio]{images/logoINSAdeRouen.png}
-      \vfill
-    }
-  }
-}
 
 \newcommand\PageDeGarde
 {
@@ -304,18 +275,4 @@
   }
 }
 
-\newcommand\PagePart
-{
-  \put(0,0)
-  {
-    \parbox[b][\paperheight]{\paperwidth}
-    {
-      \includegraphics{images/Volutes1_v2.png}
-      \vfill
-    }
-  }
-}
-
-
-\endinput
 

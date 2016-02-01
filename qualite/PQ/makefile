@@ -14,7 +14,7 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
 # I have no idea what this thing is doing
-imagespdf: $(IMGDIR)/ConduireLeProjet.pdf $(IMGDIR)/organigrammeHierarchiePic.pdf $(IMGDIR)/organigrammeProcessusPic.pdf $(IMGDIR)/ProcessusFournisseur.pdf $(IMGDIR)/RealiserProduits.pdf $(IMGDIR)/CycleFT_EpicUnity.pdf $(IMGDIR)/organigramme.pdf $(IMGDIR)/managerQualite.pdf
+imagespdf:  
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@

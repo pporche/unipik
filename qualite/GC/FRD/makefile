@@ -1,17 +1,17 @@
 # Importation des variables
 include makevars
 
-.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
+#.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
 all : frd cleanrep cleaneps
 
-frd : $(PDFDIR)/$(NOM_FICHIER).pdf
+frd : $(PDFDIR)/FRD_Q_Unipik_d16-01-28.pdf $(PDFDIR)/FRD_Q_Unipik_d16-02-01.pdf
 
-$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
+$(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\
 	$(CCTEX) $<
-	mv $(NOM_FICHIER).pdf $(PDFDIR)
+	mv *.pdf $(PDFDIR)
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps

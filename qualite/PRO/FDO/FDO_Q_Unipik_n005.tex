@@ -4,9 +4,9 @@
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Numéro de l'opportunité & Type d'opportunité \\
+	\rowcolor{gray!40} Numéro de l'opportunité & Type d'opportunité \\
 	\hline
-	004 & Bonne communication client \\
+	005 & Bonne planification \\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -15,9 +15,9 @@
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|X|}
 	\hline
-	Date & Visa du \RQ & Visa du \CP \\
+	\rowcolor{gray!40} Date & Visa du \RQ & Visa du \CP \\
 	\hline
-	 27/01/16 & pgpic & pgpic \\
+	 29/01/2016 & pgpic & pgpic \\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -26,7 +26,7 @@
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|X|X|}
 	\hline
-	Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
+	\rowcolor{gray!40} Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
 	\hline
 	 \Florian & Suivre les Risques et Opportunités & 1.2.3.2 & Tout au long du projet.\\
 	\hline
@@ -36,21 +36,21 @@
 \section*{Description du risque}
 
 \subsection*{Résumé}
-	Une bonne communication avec le client peut entrainer une meilleure compréhension de ses besoins. Cela peut permettre à l'équipe \PICCourt de mieux répondre aux exigences du client et d'éviter d'éventuels retards dans les livraisons. \\
-        La bonne communication avec le client peut être due à une bonne gestion des différents outils de communication ou une bonne réactivité de sa part.
+
+	La bonne planification concerne principalement l’appréciation des délais des tâches
+et peut être expliquée par une bonne implication du \CP. Elle permet de ne pas prendre de retard de
+livraison des lots.
 	
 \subsection*{Analyse des causes}
-	voir figure.
+	voir figure \ref{opportunite bonne planification}.
 
 \subsection*{Criticité}
 
 \begin{table}[h]
 \centering
-	\begin{tabularx}{12.8cm}{|>{
-	%\columncolor{gray!40}
-	}X|X|}
+	\begin{tabularx}{16.8cm}{|>{\columncolor{gray!40}}X|X|}
 	\hline
-	Bénéfice & 3\\
+	Bénéfice & 4\\
 	\hline
 	Probabilité & 3\\
 	\hline
@@ -64,50 +64,24 @@
 \subsection*{Actions proactives}
 
 %\begin{table}[H]
-\centering
+{\centering
 	\begin{longtable}{|p{7cm}|p{7cm}|}
 	\hline
-	Cause & Actions proactives \\
+	\rowcolor{gray!40}Cause & Actions proactives \\
 	\hline
-	 Se faire comprendre par le client & \begin{itemize}
-	 	\item S'adapter aux connaissances du client.
-	 	\item Ne pas employer de vocabulaire trop spécifique.
+	 Choix des outils de plannification pertinent & \begin{itemize}
+	 	\item 
 	 \end{itemize} \\
 	\hline
-	Respecter ses engagements et promesses & \begin{itemize}
-		\item Ne pas se surestimer.
-		\item Etre franc avec le client.
-	\end{itemize} \\
+        Bonne prise en main des outils & \begin{itemize}
+	 	\item Former les membres de l'équipe \PICCourt{}.
+	 \end{itemize} \\
 	\hline
-	Bonne gestion des outils de communication & \begin{itemize}
-		\item Désigner un responsable de ces différents outils.
-	\end{itemize} \\
+        Bonne vision globale & \begin{itemize}
+	 	\item Avoir un \CP{} impliqué et compétent.
+	 \end{itemize} \\
 	\hline
-	Gérer sa communication & \begin{itemize}
-		\item Ne pas se précipiter.
-		\item Se maîtriser et se préparer.
-	\end{itemize} \\
-	\hline
-	Choix pertinents des outils de communication & \begin{itemize}
-		\item Rechercher les outils les plus adaptés.
-		\item Tester différents outils.
-	\end{itemize} \\
-	\hline
-	Bonne maîtrise des outils de communication & \begin{itemize}
-		\item Former les membres de l'équipe à l'utilisation des ces outils
-	\end{itemize} \\
-	\hline
-	Etre proche du client & \begin{itemize}
-		\item Prendre contact régulièrement avec le client.
-		\item Prendre en compte les remarques du client.
-	\end{itemize} \\
-	\hline
-	Mise en place d'outils de communication performants & \begin{itemize}
-		\item Rechercher les outils les plus adaptés
-		\item Tester différents outils
-	\end{itemize} \\
-	\hline
-	\end{longtable}
+	\end{longtable}}
 %\end{table}
 
 \section*{Décision de clôture}
@@ -116,7 +90,7 @@ Par le \CP{} et le pilote du risque.
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Date de clôture & Raison de la clôture \\
+	\rowcolor{gray!40} Date de clôture & Raison de la clôture \\
 	\hline
 	  & \\
 	\hline
@@ -128,7 +102,7 @@ Par le \CP{} et le pilote du risque.
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Date & Modification \\%\rowcolor{gray!40} 
+	\rowcolor{gray!40} Date & Modification \\%\rowcolor{gray!40} 
 	\hline
 	  & \\
 	\hline
@@ -139,5 +113,6 @@ Par le \CP{} et le pilote du risque.
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.5, angle=90]{images/AnalyseOpportunite_nPourquoi_FDO004}
+	\includegraphics[scale=0.5]{images/AnalyseOpportunite_nPourquoi_FDO005}
+	\caption{\label{opportunite bonne planification}Opportunité bonne planification - méthode des n pourquoi}
 \end{figure}

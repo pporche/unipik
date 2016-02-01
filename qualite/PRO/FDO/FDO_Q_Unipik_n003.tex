@@ -4,7 +4,7 @@
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Numéro de l'opportunité & Type d'opportunité \\
+	\rowcolor{gray!40} Numéro de l'opportunité & Type d'opportunité \\
 	\hline
 	003 & Bonne passation \\
 	\hline
@@ -15,9 +15,9 @@
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|X|}
 	\hline
-	Date & Visa du \RQ & Visa du \CP \\
+	\rowcolor{gray!40} Date & Visa du \RQ & Visa du \CP \\
 	\hline
-	 07/12/15 & pgpic & pgpic \\
+	 29/01/2016 & pgpic & pgpic \\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -26,7 +26,7 @@
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|X|X|}
 	\hline
-	Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
+	\rowcolor{gray!40} Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
 	\hline
 	 \Pierre & Suivre les Risques et Opportunités & 1.2.3.2 & A partir de la fin du premier semestre.\\
 	\hline
@@ -39,15 +39,13 @@
 	Grâce à une bonne passation, le temps de prise en main du projet par la nouvelle équipe pourrait être grandement réduit.
 	
 \subsection*{Analyse des causes}
-	voir figure.
+	voir figure \ref{opportunite bonne passation}.
 
 \subsection*{Criticité}
 
 \begin{table}[h]
 \centering
-	\begin{tabularx}{12.8cm}{|>{
-	%\columncolor{gray!40}
-	}X|X|}
+	\begin{tabularx}{16.8cm}{|>{\columncolor{gray!40}}X|X|}
 	\hline
 	Bénéfice & 3\\
 	\hline
@@ -63,14 +61,14 @@
 \subsection*{Actions proactives}
 
 %\begin{table}[H]
-\centering
+{\centering
 	\begin{longtable}{|p{7cm}|p{7cm}|}
 	\hline
-	Cause & Actions proactives \\
+	\rowcolor{gray!40} Cause & Actions proactives \\
 	\hline
 	 Rédaction de documents de passation & \begin{itemize}
-	 	\item Attribuer de cette tâche
-	 	\item Inclure de cette tâche dans le planning
+	 	\item Attribuer cette tâche
+	 	\item Inclure cette tâche dans le planning
 	 	\item Commencer cette tâche à temps
 	 \end{itemize} \\
 	\hline
@@ -106,17 +104,9 @@
 	 \\
 	\hline
 
-	\end{longtable}
+	\end{longtable}}
 %\end{table}
 
-\subsection*{Plan de contournement}
-
-\begin{enumerate}
-	\item Bloquer le site
-	\item Demander un serveur temporaire
-	\item Faire les démarches nécessaires pour les réparations
-	\item Relancer le site
-\end{enumerate}
 
 \section*{Décision de clôture}
 Par le \CP{} et le pilote du risque.
@@ -124,7 +114,7 @@ Par le \CP{} et le pilote du risque.
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Date de clôture & Raison de la clôture \\
+	\rowcolor{gray!40} Date de clôture & Raison de la clôture \\
 	\hline
 	  & \\
 	\hline
@@ -136,7 +126,7 @@ Par le \CP{} et le pilote du risque.
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
-	Date & Modification \\%\rowcolor{gray!40} 
+	\rowcolor{gray!40} Date & Modification \\%\rowcolor{gray!40} 
 	\hline
 	  & \\
 	\hline
@@ -147,5 +137,6 @@ Par le \CP{} et le pilote du risque.
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.5]{images/AnalyseRisque_nPourquoi_FDR001}
+	\includegraphics[scale=0.5]{images/AnalyseOpportunite_nPourquoi_FDO003}
+	\caption{\label{opportunite bonne passation}Opportunité bonne passation - méthode des n pourquoi}
 \end{figure}

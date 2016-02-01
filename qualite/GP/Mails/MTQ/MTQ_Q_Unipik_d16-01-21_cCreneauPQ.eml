@@ -1,0 +1,176 @@
+Return-Path: <benjamin.coelho-de-matos@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 43BF8238ED
+	for <scolomies@insa-rouen.fr>; Thu, 21 Jan 2016 11:35:38 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0ABBQDws6BW/w8V3cNeGQEBAQEPAQEBAYMKgT+IV7QIhg8CgStMAQEBAQEBgQuENQEBBCNVEQshFggDAgIJAwIBAgENJxEGDQYCAQGIG60Uj0MBCx6GO4RzhDIBAQVOgkuBOgWIE45xE4oDjHOFVo5DYoNoaYVigTABAQE
+X-IPAS-Result: A0ABBQDws6BW/w8V3cNeGQEBAQEPAQEBAYMKgT+IV7QIhg8CgStMAQEBAQEBgQuENQEBBCNVEQshFggDAgIJAwIBAgENJxEGDQYCAQGIG60Uj0MBCx6GO4RzhDIBAQVOgkuBOgWIE45xE4oDjHOFVo5DYoNoaYVigTABAQE
+X-IronPort-AV: E=Sophos;i="5.22,324,1449529200"; 
+   d="scan'208,217";a="84668757"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 21 Jan 2016 11:35:38 +0100
+Received: from [193.49.8.228] (darwin228.insa-rouen.fr [193.49.8.228])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 894C71073A
+	for <sergi.colomies@insa-rouen.fr>; Thu, 21 Jan 2016 11:35:37 +0100 (CET)
+Message-ID: <56A0B479.1070601@insa-rouen.fr>
+Date: Thu, 21 Jan 2016 11:35:37 +0100
+From: Benjamin COELHO DE MATOS <benjamin.coelho-de-matos@insa-rouen.fr>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.0.1
+MIME-Version: 1.0
+To: Colomies Sergi <sergi.colomies@insa-rouen.fr>
+Subject: Re: PQ - PIC Unicef
+References: <7f3b-569f6d00-15-1742a2c0@149072010> <56A0A09B.80804@insa-rouen.fr> <B6B4B815-C726-4D95-B449-4268B5304BA9@insa-rouen.fr>
+In-Reply-To: <B6B4B815-C726-4D95-B449-4268B5304BA9@insa-rouen.fr>
+Content-Type: multipart/alternative;
+ boundary="------------080306080407020205090301"
+
+This is a multi-part message in MIME format.
+--------------080306080407020205090301
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Je n'ai qu'un petit créneau de libre vendredi de 14h-15h.
+Je peux te le réserver si cela te convient.
+
+Cordialement,
+*Benjamin Coelho de Matos*
+/Ingénieur de la Mission Qualité de l'INSA de ROUEN
+Tuteur Qualité pour les PIC ASI et MRIE
+INSA de Rouen, bureau DA AR 110
+685 Avenue de l'Université BP 08,
+76801 Saint Etienne du Rouvray Cedex
+/ Tel: (33).02.32.95.66.95
+mail: benjamin.coelho-de-matos@insa-rouen.fr
+Le 21/01/2016 11:33, Colomies Sergi a écrit :
+>
+> Malheureusement je ne peux pas être présent en salle PIC aujourd'hui 
+> comme beaucoup de membres de mon équipe. Serait-il possible de vous 
+> appeler demain sinon ? Ou bien puis-je vous poser les questions par mail ?
+>
+> Merci d'avance.
+>
+>
+> Le 21 janv. 2016 à 10:10, Benjamin COELHO DE MATOS 
+> <benjamin.coelho-de-matos@insa-rouen.fr 
+> <mailto:benjamin.coelho-de-matos@insa-rouen.fr>> a écrit :
+>
+>> Bonjour,
+>>
+>> Serait-il possible de se voir plutôt aujourd'hui ?
+>> Je réserve le vendredi au PIC MRIE.
+>>
+>> Cordialement,
+>> *Benjamin Coelho de Matos*
+>> /Ingénieur de la Mission Qualité de l'INSA de ROUEN
+>> Tuteur Qualité pour les PIC ASI et MRIE
+>> INSA de Rouen, bureau DA AR 110
+>> 685 Avenue de l'Université BP 08,
+>> 76801 Saint Etienne du Rouvray Cedex
+>> / Tel: (33).02.32.95.66.95
+>> mail: benjamin.coelho-de-matos@insa-rouen.fr
+>> Le 20/01/2016 12:19, Colomies Sergi a écrit :
+>>> Bonjour Monsieur,
+>>>
+>>> Etant en pleine rédaction du PQ, plusieurs questions nous sont apparues. Serait-il possible de vous voir dans la journée du vendredi afin que vous puissiez nous orienter ?
+>>>
+>>> Cordialement,
+>>>
+>>> Sergi Colomies
+>>> Chef de projet
+>>>
+>>
+
+
+--------------080306080407020205090301
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">Je n'ai qu'un petit créneau de libre
+      vendredi de 14h-15h.<br>
+      Je peux te le réserver si cela te convient.<br>
+      <br>
+      Cordialement,<br>
+      <div class="moz-signature"><b>Benjamin Coelho de Matos</b><br>
+        <i>Ingénieur de la Mission Qualité de l'INSA de ROUEN<br>
+          Tuteur Qualité pour les PIC ASI et MRIE<br>
+          INSA de Rouen, bureau DA AR 110<br>
+          685 Avenue de l'Université BP 08,<br>
+          76801 Saint Etienne du Rouvray Cedex<br>
+        </i>
+        Tel: (33).02.32.95.66.95<br>
+        mail: <a class="moz-txt-link-abbreviated" href="mailto:benjamin.coelho-de-matos@insa-rouen.fr">benjamin.coelho-de-matos@insa-rouen.fr</a>
+      </div>
+      Le 21/01/2016 11:33, Colomies Sergi a écrit :<br>
+    </div>
+    <blockquote
+      cite="mid:B6B4B815-C726-4D95-B449-4268B5304BA9@insa-rouen.fr"
+      type="cite">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div><br>
+        Malheureusement je ne peux pas être présent en salle PIC
+        aujourd'hui comme beaucoup de membres de mon équipe. Serait-il
+        possible de vous appeler demain sinon ? Ou bien puis-je vous
+        poser les questions par mail ?</div>
+      <div id="AppleMailSignature"><br>
+      </div>
+      <div id="AppleMailSignature">Merci d'avance.<br>
+        <br>
+      </div>
+      <div><br>
+        Le 21 janv. 2016 à 10:10, Benjamin COELHO DE MATOS &lt;<a
+          moz-do-not-send="true"
+          href="mailto:benjamin.coelho-de-matos@insa-rouen.fr">benjamin.coelho-de-matos@insa-rouen.fr</a>&gt;
+        a écrit :<br>
+        <br>
+      </div>
+      <blockquote type="cite">
+        <div>
+          <meta content="text/html; charset=UTF-8"
+            http-equiv="Content-Type">
+          <div class="moz-cite-prefix">Bonjour,<br>
+            <br>
+            Serait-il possible de se voir plutôt aujourd'hui ?<br>
+            Je réserve le vendredi au PIC MRIE.<br>
+            <br>
+            Cordialement,<br>
+            <div class="moz-signature"><b>Benjamin Coelho de Matos</b><br>
+              <i>Ingénieur de la Mission Qualité de l'INSA de ROUEN<br>
+                Tuteur Qualité pour les PIC ASI et MRIE<br>
+                INSA de Rouen, bureau DA AR 110<br>
+                685 Avenue de l'Université BP 08,<br>
+                76801 Saint Etienne du Rouvray Cedex<br>
+              </i> Tel: (33).02.32.95.66.95<br>
+              mail: <a moz-do-not-send="true"
+                class="moz-txt-link-abbreviated"
+                href="mailto:benjamin.coelho-de-matos@insa-rouen.fr">benjamin.coelho-de-matos@insa-rouen.fr</a>
+            </div>
+            Le 20/01/2016 12:19, Colomies Sergi a écrit :<br>
+          </div>
+          <blockquote cite="mid:7f3b-569f6d00-15-1742a2c0@149072010"
+            type="cite">
+            <pre wrap="">Bonjour Monsieur,
+
+Etant en pleine rédaction du PQ, plusieurs questions nous sont apparues. Serait-il possible de vous voir dans la journée du vendredi afin que vous puissiez nous orienter ?
+
+Cordialement,
+
+Sergi Colomies
+Chef de projet
+
+</pre>
+          </blockquote>
+          <br>
+        </div>
+      </blockquote>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------080306080407020205090301--

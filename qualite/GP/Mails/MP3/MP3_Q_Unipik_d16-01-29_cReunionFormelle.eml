@@ -1,0 +1,115 @@
+Return-Path: <picasi-3-chef-owner@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 2F26923AC3;
+	Fri, 29 Jan 2016 11:15:32 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0BwAQCsOqtWnHIKMcFeGQEBAQEPAQEBAYNcXohnsyUdAQWHJkwBAQEBAQESAQEBAQEIFAlPhDgLBgEBIAkaAy8EAwEBAQYPAR0WCwICAwEFAwIBAgFLAQwIAQEBiBqwN48RKoYNi2mBOgWHUosZhAOcPI49hE+JZgEBAQ
+X-IPAS-Result: A0BwAQCsOqtWnHIKMcFeGQEBAQEPAQEBAYNcXohnsyUdAQWHJkwBAQEBAQESAQEBAQEIFAlPhDgLBgEBIAkaAy8EAwEBAQYPAR0WCwICAwEFAwIBAgFLAQwIAQEBiBqwN48RKoYNi2mBOgWHUosZhAOcPI49hE+JZgEBAQ
+X-IronPort-AV: E=Sophos;i="5.22,363,1449529200"; 
+   d="scan'208,217";a="84992991"
+Received: from smtpout.insa-rouen.fr ([193.49.10.114])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 29 Jan 2016 11:15:31 +0100
+Received: from newlistdiff.insa-rouen.fr (newlistdiff.insa-rouen.fr [193.49.10.34])
+	by smtpout.insa-rouen.fr (8.13.8/8.13.8) with ESMTP id u0TAFYJU018543;
+	Fri, 29 Jan 2016 11:15:34 +0100
+Received: from newlistdiff.insa-rouen.fr (localhost.localdomain [127.0.0.1])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id u0TAFVKi010004;
+	Fri, 29 Jan 2016 11:15:31 +0100
+Received: (from sympa@localhost)
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6/Submit) id u0TAFV5i009998;
+	Fri, 29 Jan 2016 11:15:31 +0100
+X-Authentication-Warning: newlistdiff.insa-rouen.fr: sympa set sender to picasi-3-chef-owner@insa-rouen.fr using -f
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id u0TAFPUO009985;
+	Fri, 29 Jan 2016 11:15:25 +0100
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0BuAQCsOqtWnA8V3cNeGQEBAQEPAQEBAYNcXohnsyoehyZMAQEBAQEBEgEBAQEBBhYJT4Q4MyYvHwEdFgsCCwMCAQIBSwEMCAEBiBuwN48RKoYNi2mBOgWHUosZhAOBEpsqjj2CdYFaiWYBAQE
+X-IPAS-Result: A0BuAQCsOqtWnA8V3cNeGQEBAQEPAQEBAYNcXohnsyoehyZMAQEBAQEBEgEBAQEBBhYJT4Q4MyYvHwEdFgsCCwMCAQIBSwEMCAEBiBuwN48RKoYNi2mBOgWHUosZhAOBEpsqjj2CdYFaiWYBAQE
+X-IronPort-AV: E=Sophos;i="5.22,363,1449529200"; 
+   d="scan'208,217";a="84992980"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 29 Jan 2016 11:15:25 +0100
+Received: from gasso-mac.insa-rouen.fr (asi-fwens.insa-rouen.fr [194.254.15.131])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 0D1B41073B;
+	Fri, 29 Jan 2016 11:15:25 +0100 (CET)
+To: Chefs PIC <picasi-chefs@insa-rouen.fr>, picasi-qualite@insa-rouen.fr
+From: Gilles Gasso <gilles.gasso@insa-rouen.fr>
+Message-ID: <56AB3BBC.3060204@insa-rouen.fr>
+Date: Fri, 29 Jan 2016 11:15:24 +0100
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+ Gecko/20100101 Thunderbird/38.5.1
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------020806040502050906070805"
+Subject: [picasi-3-chef] Point sur le =?UTF-8?Q?d=C3=A9marrage?= des PIC
+X-Loop: picasi-3-chef@insa-rouen.fr
+X-Sequence: 312
+Errors-to: picasi-3-chef-owner@insa-rouen.fr
+Precedence: list
+X-no-archive: yes
+List-Id: <picasi-3-chef.insa-rouen.fr>
+List-Help: <mailto:sympa@insa-rouen.fr?subject=help>
+List-Subscribe: <mailto:sympa@insa-rouen.fr?subject=subscribe%20picasi-3-chef>
+List-Unsubscribe: <mailto:sympa@insa-rouen.fr?subject=unsubscribe%20picasi-3-chef>
+List-Post: <mailto:picasi-3-chef@insa-rouen.fr>
+List-Owner: <mailto:picasi-3-chef-request@insa-rouen.fr>
+
+This is a multi-part message in MIME format.
+--------------020806040502050906070805
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+Je vous propose une réunion rapide (30-45 minutes max) le vendredi 5 
+février pour faire le point avec vous sur les premières semaines de PIC. 
+Pouvez-vous me proposer un créneau (hors du créneau 11h30-14h) ?
+
+Merci par avance.
+
+Cordialement,
+
+-- 
+-----------------------------------------------------
+Gilles GASSO
+Directeur du Département ASI
+INSA de Rouen www.insa-rouen.fr/
+Laboratoire LITIS http://www.litislab.eu/
+Tel : 33 (0)2 32 95 98 96 - Fax : 33 (0)2 32 95 97 08
+-----------------------------------------------------
+
+
+--------------020806040502050906070805
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <font size="+1">Bonjour,<br>
+      Je vous propose une réunion rapide (30-45 minutes max) le vendredi
+      5 février pour faire le point avec vous sur les premières semaines
+      de PIC. Pouvez-vous me proposer un créneau (hors du créneau
+      11h30-14h) ? <br>
+      <br>
+      Merci par avance.<br>
+      <br>
+      Cordialement,<br>
+      <br>
+    </font>
+    <pre class="moz-signature" cols="72">-- 
+-----------------------------------------------------
+Gilles GASSO
+Directeur du Département ASI
+INSA de Rouen <a class="moz-txt-link-abbreviated" href="http://www.insa-rouen.fr/">www.insa-rouen.fr/</a>
+Laboratoire LITIS <a class="moz-txt-link-freetext" href="http://www.litislab.eu/">http://www.litislab.eu/</a>
+Tel : 33 (0)2 32 95 98 96 - Fax : 33 (0)2 32 95 97 08
+-----------------------------------------------------
+</pre>
+  </body>
+</html>
+
+--------------020806040502050906070805--

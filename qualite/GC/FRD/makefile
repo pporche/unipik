@@ -7,7 +7,7 @@ all : frd cleanrep cleaneps
 
 frd : $(PDFDIR)/$(NOM_FICHIER).pdf
 
-$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
+$(PDFDIR)/$(NOM_FICHIER).pdf : sources/$(NOM_FICHIER).tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\
 	$(CCTEX) $<

@@ -3,24 +3,18 @@ include makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : imagespdf pq cleanrep cleaneps
+all : crtq cleanrep cleaneps
 
-pq : $(PDFDIR)/$(NOM_FICHIER).pdf
+crtq : $(PDFDIR)/CRTQ_Q_Unipik_d16-01-26.pdf 
 
-$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
+$(PDFDIR)/%.pdf : sources/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\
 	$(CCTEX) $<
-	mv $(NOM_FICHIER).pdf $(PDFDIR)
+	mv *.pdf $(PDFDIR)
 
 # I have no idea what this thing is doing
-imagespdf:  
 
-$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
-	$(EPSPDF) -dEPSCrop $< $@
-
-$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
-	$(DIA) -e $@ --filter=eps-builtin $<
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps

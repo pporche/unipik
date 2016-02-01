@@ -3,18 +3,17 @@ include makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : imagespdf pq cleanrep cleaneps
+all : fc cleanrep cleaneps
 
-pq : $(PDFDIR)/$(NOM_FICHIER).pdf
+fc : $(PDFDIR)/FC_Q_Unipik_pFL_v1.00.pdf $(PDFDIR)/FC_Q_Unipik_pJP_v1.00.pdf $(PDFDIR)/FC_Q_Unipik_pKA_v1.00.pdf $(PDFDIR)/FC_Q_Unipik_pMB_v1.00.pdf $(PDFDIR)/FC_Q_Unipik_pMC_v1.00.pdf $(PDFDIR)/FC_Q_Unipik_pMMB_v1.00.pdf $(PDFDIR)/FC_Q_Unipik_pMM_v1.00.pdf $(PDFDIR)/FC_Q_Unipik_pPP_v1.00.pdf $(PDFDIR)/FC_Q_Unipik_pSC_v1.00.pdf 
 
-$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
+$(PDFDIR)/%.pdf : sources/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\
 	$(CCTEX) $<
-	mv $(NOM_FICHIER).pdf $(PDFDIR)
+	mv *.pdf $(PDFDIR)
 
-# I have no idea what this thing is doing
-imagespdf:  
+
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@
@@ -27,6 +26,8 @@ clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
 	rm -f pdf/*.pdf
+	rm -f images/*.pdf
+	rm -f annexe/pdf/*.pdf
 
 # Nettoyage du répertoire
 cleanrep:
@@ -34,8 +35,6 @@ cleanrep:
 
 cleaneps :
 	rm -f images/*.eps
-	rm -f images/*.pdf
-	rm -f annexe/pdf/*.pdf
 
 # Archivage
 archive:

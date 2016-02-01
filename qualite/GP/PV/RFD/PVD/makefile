@@ -7,7 +7,7 @@ all : pvd cleanrep cleaneps
 
 pvd : $(PDFDIR)/$(NOM_FICHIER).pdf
 
-$(PDFDIR)/$(NOM_FICHIER).pdf : sources/$(NOM_FICHIER).tex
+$(PDFDIR)/$(NOM_FICHIER).pdf : enregistrements/$(NOM_FICHIER).tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\
 	$(CCTEX) $<

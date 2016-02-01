@@ -5,7 +5,9 @@ include makevars
 
 all : crtp cleanrep cleaneps
 
-crtp : $(PDFDIR)/CRTP_Q_Unipik_d16-01-22.pdf 
+crtp : $(PDFDIR)/CRTP_Q_Unipik_d16-01-22.pdf $(PDFDIR)/CRTP_Q_Unipik_d16-01-29.pdf
+
+#CRTP_Q_Unipik_d16-01-22.pdf 
 
 $(PDFDIR)/%.pdf : sources/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

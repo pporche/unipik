@@ -1,0 +1,19 @@
+# Définition du nom du document
+#réfléchir a une solution ici pour pouvoir faire plusieurs pdf d'un coup
+NOM_FICHIER=PTV_S_Unipik_v1.00
+
+# Récupération du chemin de la classe picINSA pour les documents LaTeX
+CLSPATH="$(shell pwd)/../../ressources/cls/"
+
+# Récupération du chemin du package vocabulaireUnipik.sty
+VOCPATH="$(shell pwd)/../../ressources/Unipik/vocabulaire/"
+
+# Dossiers dans PTV
+PDFDIR=pdf
+IMGDIR=images
+ARCHIVEDIR=/home/${USER}/archivage/specifications/PTV
+
+# Commandes
+CCTEX=rubber -d
+EPSPDF=ps2pdf
+DIA=dia

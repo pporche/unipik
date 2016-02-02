@@ -1,0 +1,93 @@
+\documentclass[asi]{picINSA}
+\DeclareGraphicsRule{*}{pdf}{*}{}
+\usepackage{pdfpages}
+
+%\input{../../ressources/AjoutezVosPackagesIci.tex}
+\usepackage{../../ressources/Unipik/vocabulaire/vocabulaireUnipik}
+%\usepackage{../../ressources/Unipik/vocabulaire/vocabulaireEastpic}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\newcommand{\ligneMaj}[3] {
+	\rowcolor[gray]{0.55} \textbf{\textit{#1}} & #2  &  #3\\
+	\hline
+}
+\newcommand{\ligneSup}[3] {
+	\rowcolor[gray]{0.65} |\textunderscore \textbf{\textit{#1}} & #2  &  #3\\
+	\hline
+}
+\newcommand{\ligneMed}[3] {
+	\rowcolor[gray]{0.75} \hspace{0.25cm} |\textunderscore #1  & #2 & #3 \\
+	\hline
+}
+\newcommand{\ligneSub}[3] {
+	\rowcolor[gray]{0.85}  \hspace{0.5cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\newcommand{\ligneSubSub}[3] {
+	\rowcolor[gray]{0.95}  \hspace{0.75cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\newcommand{\ligneTache}[3] {
+	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\title{\DSI{}}
+\author{\Pierre} %à changer
+
+
+\titreGeneral{\DSE}
+\sousTitreGeneral{\nomEquipe}
+\titreAcronyme{\DSECourt}
+\version{V1.00}
+\titreDetaille{\DSECourt\_S\_\nomEquipe\_\versionPrive}
+\referenceVersion{\DSECourt\_S\_\nomEquipe\_\versionPrive}
+\auteurs{\Matthieu{} \& \Kafui{} \& \Melissa{} \& \Sergi{} \& \Michel{} \& \Pierre{}}
+\destinataires{}%\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
+\resume{Le présent document contient la présentation du \DSE{} \nomEquipe.}
+\motsCles{\DSECourt{}}
+\natureDerniereModification{ }
+\modeDiffusionControle{}
+
+\begin{document}
+
+\couverture{}
+
+ \informationsGenerales{}
+%\input{sources/page_de_service.tex}
+
+\tableofcontents
+
+\setcounter{chapter}{0}
+
+
+\chapter*{Introduction}
+\label{intro}
+\input{sources/introduction.tex}
+
+\chapter{Architecture}
+\label{architecture}
+\input{sources/architecture.tex}
+
+\chapter{Présentation de la solution}
+\label{presentation}
+\input{sources/presentation_solution.tex}
+
+\chapter{Description détaillée des lots}
+\label{description}
+\input{sources/description_detaillee_lots.tex}
+
+
+\begin{appendix}
+\part*{Annexes}
+\addcontentsline{toc}{part}{Annexes}
+
+\listoffigures
+\addcontentsline{toc}{chapter}{Table des figures}
+	 
+\listoftables
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+\end{appendix}
+\pageQuatriemeCouverture
+
+\end{document}

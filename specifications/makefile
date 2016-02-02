@@ -1,5 +1,5 @@
 # Compilation
-all: dse dsi
+all: dse dsi ptv
 
 dse:
 	make -C DSE
@@ -7,15 +7,21 @@ dse:
 dsi:
 	make -C DSI
 
+ptv:
+	make -C PTV
+
 
 # Archivage
-archive: archivedse archivedsi
+archive: archivedse archivedsi archiveptv
 
 archivedse:
 	make -C DSE archive
 
 archivedsi:
 	make -C DSI archive
+
+archiveptv:
+	make -C PTV archive
 
 
 
@@ -28,4 +34,7 @@ cleandse:
 
 cleandsi:
 	make -C DSI clean
+
+cleanptv:
+	make -C PTV clean
 

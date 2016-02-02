@@ -1,0 +1,164 @@
+\section{Spécifications fonctionnelles}
+\label{spec_fonct}
+
+Cette application se décompose en 13 fonctionnalités distinctes.
+
+Cette partie a pour objectif de donner une description exhaustive du lot x : 
+date de livraison, fonctionnalités attendues. 
+
+4.1.x.y. Fonctionnalité y 
+Cette partie doit décrire de manière exhaustive la fonctionnalité y. Doivent 
+de plus être décrites l’ensemble des données reliées à cette fonctionna- 
+lité : nom, rôle, valeurs possibles, unités de mesures, etc. Il faut égale- 
+ment renseigner les relations de ces données avec les entrées/sorties, et 
+notamment le format d’affichage. 
+
+\subsection{Lot 1}
+
+
+Ce lot devra permettre de mettre en place l'architecture matérielle et logicielle pour le fonctionnement de l'application dans sa globalité.
+ Il devra être livré à T0 + 5 semaines au plus tard. Cette architecture devra être opérationnelle (en termes d'utilisateurs et de scripts mais pas en terme d'instances) sous la forme d'un exemple pour chacune des composantes retenues (envoi de mail, formulaire, base de données). 
+ \\
+ La structure peut être locale si l'hébergeur n'est pas encore opérationnel.
+En somme le client s'attend à ce que la/les bases de données soient opérationnelles et qu'il puissent manipuler leur contenu via des scripts.
+
+
+
+\subsection{Lot 2}
+Ce lot devra faire état de sept fonctionnalités additionnels. Il devra être impérativement livré au client avant le début des vacances scolaires soit avant le Lundi 21 Mai.
+
+\subsubsection{Fonctionnalité 1}
+L'application devra permettre les opérations conventionnelles de gestion
+individuelle comme la création d'un bénévole dans le système, la modification des caractéristiques le concernant, la suppression d'un bénévole.
+Un bénévole doit être identifié par une information personnelle. 
+Les informations associées à un bénévole sont :
+\begin{itemize}
+\item Son identifiant (adresse électronique en priorité sinon pseudo), \\
+\item son nom, \\
+\item son prénom, \\
+\item son adresse postale, \\
+\item son téléphone fixe et mobile, \\
+\item son ou ses domaines d'activités potentielles, \\
+\item sa ou ses responsabilités d'activité (si responsable). \\
+\end{itemize}
+
+Les activités potentielles sont :la vente (les actions ponctuelles), plaidoyer, frimousse, l'encadrement de projet (VAE, actions ponctuelles, projet d'élèves). Suivant les évolutions, ces actions pourronts'enrichir dans le temps. 
+La création / modification d'une caractéristique concernant un bénévole devra faire l'objet d'un envoi d'un mail au bénévole l'informant de la création / modification et donnant l'ensemble des informations le concernant. En l'absence d'adresse électronique, un mail sera envoyé au responsable de l'activité.\\
+Une contrainte d'intégrité du système est que toute action ayant été effectuée le soit par un bénévole existant. 
+Vous pourrez considérer qu'il existe un bénévole spécial pour les actions dont on ne connait pas pour l'instant le nom de l'intervenant. Il conviendra alors de prévoir une fonction d'interrogation permettant de donner la liste des interventions effectuées par ce bénévole fictif afin d'engager les actions nécessaires pour compléter l'information.
+\\
+Le nombre de bénévole est pour la Seine-Maritime de l'ordre de la centaine. Un fichier sera fourni pour initialiser la base de données. 
+La procédure de connexion au système sera basée sur le couple login(par l'identifiant) mot de passe.
+\\
+
+\subsubsection{Fonctionnalité 2}
+Le système devra permettre les opérations conventionnelles de gestion individuelle comme la création d'un établissement dans le système, la modification des
+caractéristiques le concernant, la suppression d'un établissement (la suppression devra être logique et non physique de façon à ne pas perdre l'historique des actions effectuées par dans cet établissement sachant que la disparition peut être temporaire en fonction de l'ouverture/fermeture de classes). 
+\\
+Les informations associées à un établissement sont :
+\begin{itemize}
+\item Sa ville de rattachement (unique), \\
+\item son nom lorsqu'il existe (attention dans la même ville il peut y avoir une école élémentaire
+et une école maternelle sans nom spécifique), \\
+\item son adresse (qui ne prend pas en compte la ville, mais doit prendre en compte le code postal, \\
+\item le nom du contact dans cette école (pas forcément unique). Il existe deux types de contact :
+le responsable de l'école et le contact pour une activité (plaidoyer, frimousse, ou activité ponctuelle), \\
+\item le numéro de téléphone fixe de l'établissement, \\
+\item le ou les emails de l'établissement (attention tous les emails ne sont pas forcément ceux définis par le rectorat notamment pour les établissements privés ou pour les centres de loisirs), \\
+\item le nom, numéro de fixe et/ou de portable de l'enseignant demandant une intervention, son adresse électronique (toutes ces informations ne sont pas forcément disponibles). Il peut y avoir plusieurs enseignants pour la même classe (donc plusieurs contacts possibles).\\
+\item Sa localisation géographique (Latitude-Longitude en WGS84) si elle est disponible
+(actuellement nous disposons de toutes les géolocalisations des établissements publics).\\
+
+\end{itemize}
+
+Le nombre d'établissement est pour la Seine-Maritime :
+\begin{itemize}
+\item Enseignement supérieur : non recensé \\
+\item Lycée : environ 70 \\
+\item Collège : environ 130 \\
+\item Elémentaire : environ 800 \\
+\item Maternelle : environ 600 \\
+\item Centres de loisirs : non recensé (1 ou 2 de disponible) \\
+\end{itemize}
+
+Tous les établissements sont disponibles (sauf l'enseignement supérieur mais il doit être pris en compte). Les centres de loisirs ne sont pas encore nombreux mais doivent être pris en compte.\\
+
+\subsubsection{Fonctionnalité 3}
+Le mailing se base sur l'envoi d'une lettre type aux établissements
+accompagnée d'une plaquette (pièce attachée en pdf et fonction du type d'établissement) alors que la lettre type doit être dans le corps du message. La fonction de mailing doit permettre un envoi ciblé en fonction de plusieurs critères (au choix et plusieurs peuvent être validés simultanément) :
+\begin{itemize}
+\item Le type de l'établissement(maternelle, élémentaire, centre de loisirs,...), \\
+\item La distance des villes suivantes : Rouen, Le Havre, Yvetot, Fécamp, Dieppe et Neuchâtel en Bray à la ville de l'établissement. \\
+\item La non réponse à une précédente sollicitation pour cette année scolaire (un mail de relance),
+\\
+\item la réponse à une précédente sollicitation pour cette année scolaire (les établissements ayant
+demandé une action de frimousses ou une action ponctuelle mais pas de plaidoyer), \\
+\item un sous-ensemble spécifique des adresses obtenues soit manuellement soit par l'application
+d'un critère (les écoles d'une ville donnée, un type donné). \\
+\item Exclure de la liste les établissements ayant fait une demande qui n'a pas pu être satisfaite par
+les plaideurs (pour des raisons d'emploi du temps, distance, ...). \\
+\end{itemize}
+
+Ce mailing invite l'établissement à se connecter à un lien (actif) contenant un formulaire à remplir pour effectuer une demande (à l'image du formulaire actuel :
+\url{https://docs.google.com/forms/d/1lEavFc7j4Xjmj6CRPqgi3VbArl4kh5GZ_6lRNRoNeJk/viewform
+?edit_requested=true}).
+\\
+Les champs de ce formulaire seront basés sur le formulaire actuellement utilisé.  Les réponses à ce formulaire viendront alimenter la base de données des demandes d'intervention. Les interventions doivent être individualisées par classe (compte tenu du fait que des interventions peuvent se dérouler en même temps dans un établissement par des plaideurs différents). 
+\\
+
+\subsubsection{Fonctionnalité 4}
+Le formulaire devra être conçu pour faciliter au maximum la saisie par
+l'établissement (complétion automatique du nom de la ville, de l'établissement, des niveaux scolaires – mais pas du numéro de téléphone ni de l'adresse électronique permettant au demandeur de mettre ses informations « personnelles »).\\
+En cas de données personnelles, elles doivent venir en complément des informations disponibles pour cet établissement (avec possibilité de suppression d'une année sur l'autre – suite à des mutations, retraite, ...). \\
+Lors de la validation de l'envoi du formulaire par l'établissement, un mail de confirmation de bonne prise en compte sera envoyé à l'adresse électronique fourni avec la possibilité d'une annulation. Une copie de ce mail sera adressé au responsable locale de chaque activité.
+\\
+
+\subsubsection{Fonctionnalité 5}
+La planification consiste à affecter une demande d'intervention à un plaideur.\\
+Cette affectation génère un mail d'information de prise en charge de la demande par l'équipe de
+plaideur au demandeur avec copie au niveau concerné .
+\\
+
+\subsubsection{Fonctionnalité 6}
+Une fois que le plaideur a défini une date pour son intervention il met à jour le
+planning le concernant avec éventuellement une mise à jour de certaines informations (nombre d'élèves, ...). Le demandeur reçoit alors un mail de confirmation du jour/heure et lieu de l'intervention avec le nom et coordonnées (email, téléphone) du plaideur. Le texte de ce message est à définir et à faire valider par le responsable des plaideurs. \\
+
+\subsubsection{Fonctionnalité 7}
+Une semaine avant l'intervention l'établissement reçoit un mail de rappel avec
+copie au contact si son email est différent de celui de l'établissement. Le texte de ce message est à définir et à faire valider par le responsable des plaideurs. Trois jours avant l'intervention le plaideur reçoit un mail de rappel avec les informations associées (lieu, thème, nombre d'élèves, ...). Si ce dernier ne dispose pas d'email, ce mail est envoyé au responsable des plaideurs. 
+\\
+
+\subsection{Lot 3}
+
+Le lot 3 couvre la gestion des frimousses sous la forme des fonctionnalités de F8 à F9. Il devra être livré à 6 semaines après la rentrée des vacances soit pendant la semaine du 10 octobre.
+\\
+
+\subsubsection{Fonctionnalité 8}
+Les frimousses suivent un principe très similaire aux plaideurs. Les demandes concernent aussi bien les établissements d'enseignement que les centres de loisirs (actuellement non recensés). Seul le spectre des établissements est réduit : maternelle et élémentaire. Le séquencement est similaire au plaidoyer.
+La principale différence avec les plaideurs vient du fait que les frimousses nécessitent du matériel (patron, bourre, décoration). \\
+ Il est alors nécessaire que le demandeur stipule les matériaux dont il a
+besoin.
+La plaquette sera rédigée par le responsable des frimousses devra être mise à disposition en format pdf. 
+\\
+
+\subsubsection{Fonctionnalité 9}
+A chaque demande d'intervention de frimousse sera affecté un bénévole en charge du dossier. Une date sera définie pour la vente des frimousses et un montant collecté sera à gérer (permettant un bilan en fin d'année).
+\\
+
+\subsection{Lot 4}
+Ce lot devra être livré deux semaines avant la fin du semestre d'automne 2016.  Soit il sera livré la semaine du Lundi 2 janvier 2017.Ce Lot comprendra trois fonctionnalités additionnels.
+\\
+
+\subsubsection{Fonctionnalités 11}
+L'UNICEF est amené à effectuer des ventes de produits (cartes de noël, calendrier, ...) dans des stands tenus par des bénévoles (vendeurs). Les ventes sont effectuées sur des lieux disposant d'une localisation géographique. Les affectations des vendeurs s'effectuent pour un lieu pour un (ou lusieurs) créneaux horaires en fonction de leurs disponibilités.
+\\
+Un outil similaire à la géolocalisation des demandes de plaidoyer doit permettre de proposer pour un créneau donné d'afficher une carte montrant les lieux des stands où des demandes sont faites pour ce créneau.
+\\
+
+\subsubsection{Fonctionnalités 12}
+Un module statistiques doit être défini prenant en compte un chiffre d'affaire par jour (à sommer sur la campagne pour ce stand) et nécessitant un approvisionnement en produits à vendre (gestion de stock entre le local et le stand).
+\\
+
+\subsubsection{Fonctionnalités 13}
+Un outil (simplifié) de gestion des stocks en fonction des diverses ventes déjà effectuées devra être mis en place.
+\\

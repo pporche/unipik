@@ -18,7 +18,9 @@
 
 \chapter{Description du modèle E-A}
 
-Le modèle Entité association réalisé est composé de plusieurs entités. Nous allons les décrire dans cette partie. \\ 
+Le modèle Entité association réalisé est composé de plusieurs entités et de plusieurs associations. Nous allons les décrire dans cette partie. \\ 
+
+\section{Les entités}
 
 \subsection*{Personne}
 
@@ -56,7 +58,7 @@ Cette entité a plusieurs attributs :
 
 \subsection*{Etablissement}
 
-L'entité ETABLISSEMENT est l'entité mère des entités ENSEIGNEMENT et CENTRE_DE_LOISIRS. \\
+L'entité ETABLISSEMENT est l'entité mère des entités ENSEIGNEMENT et CENTRE\_DE\_LOISIRS. \\
 Cette entité a plusieurs attributs : 
 \begin{itemize}
 \item un identifiant unique;
@@ -65,10 +67,37 @@ Cette entité a plusieurs attributs :
 \item un code postal;
 \item un numéro de téléphone fixe;
 \item une adress e-mail; % attribut multivalué
-\item une localisation WGS84; % Peut être NULL
-\item un responsable de la structure qui représente un contact; 
-\item un contact pour les plaidoyers qui représente un contact;
+\item une géolocalisation WGS84; % Peut être NULL
+\item un responsable de la structure qui représente un CONTACT; 
+\item un contact pour les plaidoyers qui représente un CONTACT;
+\item un contact pour les frimousses qui représente un CONTACT;
+\item un contact pour les activités ponctuelles qui représente un CONTACT.
 \end{itemize}
+
+\subsection*{Enseignement}
+L'entité ENSEIGNEMENT est une entité fille de l'entité ETABLISSEMENT. Cette entité décrit les établissements ayant un rapport avec l'éductation c'est à dire les écoles primaires, les collèges, les lycées, etc. \\
+Cette entité a plusieurs attributs : 
+\begin{itemize}
+\item un UAI (Unité Administrative Immatriculée) qui est une combinaison de chiffre et de lettres unique pour chaque enseignement;
+\item un type d'enseignement qui permet de déterminer si l'enseignement est une école maternelle, une école élémentaire, un collège, un lycée, ou un établissement supérieur. 
+\end{itemize} 
+
+
+\subsection*{Centre de loisirs}
+L'entité CENTRE\_DE\_LOISIRS est une entité fille de l'entité l'entité ETABLISSEMENT. Cette entité décrit les établissement ayant un rapport avec les loisirs. \\
+Cette entité a un attribut : 
+\begin{itemize}
+\item un type de centre de loisirs qui permet de déterminer si un centre de loisirs prend en charge des enfants d'école maternelle,d'école élémentaire ou des adolescents.
+\end{itemize}  
+
+\subsection*{Intervention}
+L'entité INTERVENTION est l'entité mère des entités PLAIDOYER et FRIMOUSSE. Cette entité décrit une intervention que peut demander un établissement. \\
+Cette entité a plusieurs attributs :
+\begin{itemize}
+\item
+\end{itemize}
+
+\section{Les associations}
 
 \chapter{Contraites d'intégrité}
 

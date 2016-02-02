@@ -38,7 +38,7 @@ archivegc:
 
 
 # Nettoyage
-clean : cleanpq cleanpro cleangp cleandsq cleangc
+clean: cleanpq cleanpro cleangp cleandsq cleangc
 
 cleanpq:
 	make -C PQ clean

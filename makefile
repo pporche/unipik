@@ -1,20 +1,38 @@
 # Compilation
-all: qualite
+all: Qualite Specifications Developpement
 
-qualite:
+Qualite:
 	make -C qualite
+
+Specifications:
+	make -C specifications
+
+Developpement:
+	make -C developpement
 
 
 # Archivage
-archive: archivequalite 
+archive: archiveQualite archiveSpecifications archiveDeveloppement
 
-archivequalite:
+archiveQualite:
 	make -C qualite archive
+
+archiveSpecifications:
+	make -C specifications archive
+
+archiveDeveloppement:
+	make -C developpement archive
 
 
 # Nettoyage
-clean : cleanqualite 
+clean: cleanQualite cleanSpecification cleanDeveloppement
 
-cleanqualite:
+cleanQualite:
 	make -C qualite clean
+
+cleanSpecification:
+	make -C specifications clean
+
+cleanDeveloppement:
+	make -C developpement clean
 

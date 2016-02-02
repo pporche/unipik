@@ -12,27 +12,65 @@
 
 \tableofcontents
 
-\section{Modèle Entité-Association}
+\chapter{Modèle Entité-Association}
 
 %% Inclure le modele E-A 
 
-\section{Description du modèle E-A}
+\chapter{Description du modèle E-A}
 
 Le modèle Entité association réalisé est composé de plusieurs entités. Nous allons les décrire dans cette partie. \\ 
 
-\subsection{Personne}
+\subsection*{Personne}
 
 L'entité PERSONNE est l'entité mère des entités UTILISATEUR et CONTACT. \\
 Cette entité possède plusieurs attributs : 
 \begin{itemize}
-\item un Identifiant unique;
+\item un identifiant unique;
 \item un nom; %Cdc - Non NULL
 \item un prénom; %Cdc - Non NULL
-\item un numéro de téléphone fixe; %Peut être NULL
-\item un numéro de téléphone portable; %Peut être NULL
+\item un numéro de téléphone fixe; %Entier - Peut être NULL
+\item un numéro de téléphone portable. %Entier - Peut être NULL
 \end{itemize}
 
-\section{Contraites d'intégrité}
+\subsection*{Utilisateur}
+
+L'entité UTILISATEUR est une entité fille de l'entité PERSONNE. Cette entité décrit les bénévoles de l'UNICEF qui gèreront le site ainsi que ceux qui effectueront des actions dans des structures. \\
+Cette entité a plusieurs attributs : 
+\begin{itemize}
+\item un identifiant unique pouvant être une adresse électronique ou un pseudo;  
+\item un type qui permet de déterminer si l'utilisateur est un administarteur global, un administrateur local, ou un bénévole;
+\item une adresse postale;
+\item une ou plusieurs activités potentielles (action ponctuelle, frimousse, plaidoyer); % attribut multivalué
+\item un ou plusieurs encadrement de projet (VAE, action ponctuelle, projet d'élève). % attribut multivalué
+\end{itemize}
+
+\subsection*{Contact}
+
+L'entité CONTACT est une entité fille de l'entité PERSONNE. Cette entité décrit les personnes travaillant dans un établissement. \\
+Cette entité a plusieurs attributs : 
+\begin{itemize}
+\item un identifiant unique;
+\item un type de contact qui permet de déterminer si un contact est un enseignant, un animateur ou a une autre fonction; 
+\item un type 
+\end{itemize} 
+
+\subsection*{Etablissement}
+
+L'entité ETABLISSEMENT est l'entité mère des entités ENSEIGNEMENT et CENTRE_DE_LOISIRS. \\
+Cette entité a plusieurs attributs : 
+\begin{itemize}
+\item un identifiant unique;
+\item la ville de l'établissement;
+\item une adresse sans le code postal;
+\item un code postal;
+\item un numéro de téléphone fixe;
+\item une adress e-mail; % attribut multivalué
+\item une localisation WGS84; % Peut être NULL
+\item un responsable de la structure qui représente un contact; 
+\item un contact pour les plaidoyers qui représente un contact;
+\end{itemize}
+
+\chapter{Contraites d'intégrité}
 
 
 \end{document}

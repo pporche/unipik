@@ -15,6 +15,13 @@
 \chapter{Modèle Entité-Association}
 
 %% Inclure le modele E-A 
+\begin{landscape}
+\begin{figure}
+	\centering
+	\includegraphics[scale=1]{images/modeleEA}
+	\caption{\label{modele}}
+\end{figure}
+\end{landscape}
 
 \chapter{Description du modèle E-A}
 
@@ -94,7 +101,9 @@ Cette entité a un attribut :
 L'entité INTERVENTION est l'entité mère des entités PLAIDOYER et FRIMOUSSE. Cette entité décrit une intervention que peut demander un établissement. \\
 Cette entité a plusieurs attributs :
 \begin{itemize}
-\item
+\item un identifiant unique;
+\item une date précise déterminée par les bénévoles lors de l'attribution des bénévoles aux interventions;
+\item le nombre de personnes concernées par cette intervention;
 \end{itemize}
 
 \section{Les associations}

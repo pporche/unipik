@@ -3,7 +3,7 @@ include makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : modeleEA cleanrep cleaneps
+all : imagespdf modeleEA cleanrep cleaneps
 
 modeleEA : $(PDFDIR)/$(NOM_FICHIER).pdf 
 
@@ -14,7 +14,13 @@ $(PDFDIR)/$(NOM_FICHIER).pdf :enregistrements/$(NOM_FICHIER).tex
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
 # I have no idea what this thing is doing
+imagespdf:  $(IMGDIR)/modeleEA.pdf
 
+$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
+	$(EPSPDF) -dEPSCrop $< $@
+
+$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
+	$(DIA) -e $@ --filter=eps-builtin $<
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps

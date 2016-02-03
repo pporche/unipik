@@ -7,7 +7,7 @@ all : cri cleanrep cleaneps
 
 cri : $(PDFDIR)/CRI_Q_Unipik_d16-01-22.pdf $(PDFDIR)/CRI_Q_Unipik_d16-01-26.pdf
 
-$(PDFDIR)/%.pdf : sources/%.tex
+$(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\
 	$(CCTEX) $<

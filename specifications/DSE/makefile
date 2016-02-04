@@ -3,7 +3,7 @@ include makevars
 
 #.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : dse cleanrep cleaneps
+all : imagespng dse cleanrep cleaneps
 
 dse : $(PDFDIR)/$(NOM_FICHIER).pdf
 
@@ -16,11 +16,16 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 # I have no idea what this thing is doing
 #imagespdf: $(IMGDIR)/ConduireLeProjet.pdf $(IMGDIR)/organigrammeHierarchiePic.pdf $(IMGDIR)/organigrammeProcessusPic.pdf $(IMGDIR)/ProcessusFournisseur.pdf $(IMGDIR)/RealiserProduits.pdf $(IMGDIR)/CycleFT_EpicUnity.pdf $(IMGDIR)/organigramme.pdf $(IMGDIR)/managerQualite.pdf
 
+imagespng: $(IMGDIR)/modele_dUsage.png
+
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@
 
 $(IMGDIR)/%.eps: $(IMGDIR)/%.dia
 	$(DIA) -e $@ --filter=eps-builtin $<
+
+$(IMGDIR)/%.png: $(IMGDIR)/%.uml
+	$(UML) $(shell pwd)/$<
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
@@ -35,6 +40,7 @@ cleanrep:
 cleaneps :
 	rm -f images/*.eps
 	rm -f images/*.pdf
+	rm -f images/*.png
 	rm -f annexe/pdf/*.pdf
 
 # Archivage

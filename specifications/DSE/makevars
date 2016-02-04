@@ -7,6 +7,9 @@ CLSPATH="$(shell pwd)/../../ressources/cls/"
 # Récupération du chemin du package vocabulaireEpicUnity.sty
 VOCPATH="$(shell pwd)/../../ressources/Unipik/vocabulaire/"
 
+# Récupération du chemin des logiciels
+SOFTPATH=$(shell pwd)/../../ressources/Unipik/logiciels/
+
 # Dossiers dans PGC
 PDFDIR=pdf
 IMGDIR=images
@@ -16,3 +19,4 @@ ARCHIVEDIR=/home/${USER}/archivage/qualite/PQ
 CCTEX=rubber -d
 EPSPDF=ps2pdf
 DIA=dia
+UML=java -jar $(SOFTPATH)/plantuml.jar

@@ -1,0 +1,33 @@
+@startuml
+
+(Gérer les\ninformations des\nbénévoles) as (info_ben)
+(Consulter les\nstatistiques) as (stat)  
+(Recevoir un mail\nde confirmation) as (mail_confirm)
+(Compléter le\nformulaire de demande\nd'intervention) as (form_demand)
+(Recevoir un mail\nde rappel) as (mail_rappel)
+(Recevoir un mail\navec formulaire\nà remplir) as (mail_form)
+(Gérer les\ninformations\ndes établissements) as (info_etab)
+(Choisir une\nintervention) as (choix_inter)
+(Changer la date\nd'une intervention) as (date_inter)
+
+:Administrateur: as admin
+:Bénévole: as ben
+:Établissement: as etab
+
+
+(info_ben) <-- admin
+admin -> (stat)
+admin --> (info_etab)
+
+ben --> (info_ben): son propre profil uniquement
+ben --> (mail_confirm)
+ben --> (choix_inter)
+ben --> (date_inter)
+ben --> (mail_rappel)
+
+(mail_rappel) <-- etab
+etab --> (form_demand)
+etab --> (mail_form)
+
+
+@enduml

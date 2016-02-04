@@ -145,6 +145,30 @@ Cette entité a plusieurs attributs :
 \end{itemize}
 \section{Les associations}
 
+\subsection*{est responsable}
+L'association EST RESPONSABLE relie UTILISATEUR et PROJET. Un utilisateur est responsable d'aucun, un ou plusieurs projets et un projet est sous la responsabilité d'un ou plusieurs utilisateurs.
+
+\subsection*{participe}
+L'association PARTICIPE relie CONTACT et PROJET. Un contact participe à aucun, un ou plusieurs projets et un projet a pour participant un ou plusieurs contacts.
+
+\subsection*{Réalise}
+
+L'association REALISE relie une VENTE et un ETABLISSEMENT. Un établissement peut réaliser aucune, une ou plusieurs ventes. Une vente peut être réalisée par un et un seul établissement. Cette association possède un attribut plaidoyer. Cet attribut correspond au plaidoyer qui a été effectué par les bénévoles à un moment passé, et qui a initié cette vente par l'établissement. 
+
+
+\subsection*{Demande}
+
+L'association DEMANDE relie un ETABLISSEMENT et une INTERVENTION. Un établissement peut demander aucune, une, ou plusieurs interventions. Une intervention peut être demandée par un et un seul établissement. Cette association possède deux attributs : un moment et une plage de date. Le moment correspond aux préférences de l'établissement en ce qui concerne le jour de la semaine et le moment (matin, après-midi) réservés à l'intervention, et la plage de date correspond à la période de temps dans laquelle l'établissement souhaiterait avoir cette intervention. 
+
+
+\subsection*{Effectue} 
+
+L'association EFFECTUE relie un UTILISATEUR et une INTERVENTION. Un utilisateur peut effectuer aucune, une ou plusieurs interventions. Une intervention peut être effectuée par un et un seul utilisateur. 
+
+\subsection*{Travaille}
+
+L'association TRAVAILLE relie un CONTACT et un ETABLISSEMENT. Un contact peut travailler dans un et un seul établissement. Un établissement peut avoir un ou plusieurs contacts.   
+
 \chapter{Contraites d'intégrité}
 
 

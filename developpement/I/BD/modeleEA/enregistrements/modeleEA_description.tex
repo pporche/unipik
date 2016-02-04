@@ -63,7 +63,7 @@ Cette entité a un attribut :
 
 \subsection*{Etablissement}
 
-L'entité ETABLISSEMENT est l'entité mère des entités ENSEIGNEMENT et CENTRE\_DE\_LOISIRS. \\
+L'entité ETABLISSEMENT est l'entité mère des entités ENSEIGNEMENT et CENTRE\_LOISIRS. \\
 Cette entité a plusieurs attributs : 
 \begin{itemize}
 \item un identifiant unique;
@@ -90,7 +90,7 @@ Cette entité a plusieurs attributs :
 
 
 \subsection*{Centre de loisirs}
-L'entité CENTRE\_DE\_LOISIRS est une entité fille de l'entité ETABLISSEMENT. Cette entité décrit les établissement ayant un rapport avec les loisirs. \\
+L'entité CENTRE\_LOISIRS est une entité fille de l'entité ETABLISSEMENT. Cette entité décrit les établissement ayant un rapport avec les loisirs. \\
 Cette entité a un attribut : 
 \begin{itemize}
 \item un type de centre de loisirs qui permet de déterminer si un centre de loisirs prend en charge des enfants d'école maternelle, d'école élémentaire ou des adolescents.
@@ -110,14 +110,39 @@ Cette entité a plusieurs attributs :
 
 \subsection*{Plaidoyer}
 L'entité PLAIDOYER est une entité fille de l'entité INTERVENTION. \\
-Cette entité à plusieurs attributs : 
+Cette entité a plusieurs attributs : 
 \begin{itemize}
 \item un thème qui dépend du type de l'établissement faisant une demande d'intervention;
 \item un niveaux qui correspond à la classe dans laquelle va se déroulée l'intervention, par exemple, pour une école primaire, la classe peut-être CE1 mais aussi CE1-CE2.
 \end{itemize}
 
-\subsection*{FRIMOUSSE}
-L'entité FRIMOUSSE est une entité fille 
+\subsection*{Frimousse}
+L'entité FRIMOUSSE est une entité fille de l'entité INTERVENTION. Une activité frimousse est réalisée avec des enfants étant en école élémentaire. \\
+Cette entité a plusieurs attributs :
+\begin{itemize}
+\item les matériaux nécessaires à la réalisation de l'activité (patron, bourre, décoration); % Attribut multivalué
+\item un niveau qui correspond à la classe dans laquelle va se dérouler l'intervention.
+\end{itemize}
+
+\subsection*{Projet}
+L'entité PROJET représente les projets réalisées par des étudiants, des élèves, etc. \\
+Cette entité possède plusieurs attributs : 
+\begin{itemize}
+\item un identifiant unique;
+\item  le type de projet permet de savoir si le projet est réalisé par des étudiants, des lycéens, ou des élèves d'école primaire ou de collège; 
+\item la description du projet est un champ permettant à l'utilisateur de saisir toutes les informations importantes sur le projet;
+\item les profits réalisés par ce projet.
+\end{itemize}
+
+\subsection*{Vente}
+L'entité VENTE représente les actions ponctuelles réalisées par les établissements. \\ 
+Cette entité a plusieurs attributs : 
+\begin{itemize}
+\item un identifiant unique; 
+\item les profits réalisés par cette vente;
+\item la date de la vente;
+\item un champ remarques permettant à l'utilisateur d'ajouter un des informations importantes. 
+\end{itemize}
 \section{Les associations}
 
 \chapter{Contraites d'intégrité}

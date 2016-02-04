@@ -18,7 +18,7 @@
 \begin{landscape}
 \begin{figure}
 	\centering
-	\includegraphics[scale=1]{images/modeleEA}
+	\includegraphics[scale=1]{images/modeleEAv2}
 	\caption{\label{modele}}
 \end{figure}
 \end{landscape}
@@ -38,29 +38,27 @@ Cette entité possède plusieurs attributs :
 \item un nom; %Cdc - Non NULL
 \item un prénom; %Cdc - Non NULL
 \item un numéro de téléphone fixe; %Entier - Peut être NULL
-\item un numéro de téléphone portable. %Entier - Peut être NULL
+\item un numéro de téléphone portable; %Entier - Peut être NULL
+\item un email. %Ne peut pas être NULL
 \end{itemize}
 
 \subsection*{Utilisateur}
 
 L'entité UTILISATEUR est une entité fille de l'entité PERSONNE. Cette entité décrit les bénévoles de l'UNICEF qui gèreront le site ainsi que ceux qui effectueront des actions dans des structures. \\
 Cette entité a plusieurs attributs : 
-\begin{itemize}
-\item un identifiant unique pouvant être une adresse électronique ou un pseudo;  
-\item un type qui permet de déterminer si l'utilisateur est un administarteur global, un administrateur local, ou un bénévole;
+\begin{itemize} 
+\item un type qui permet de déterminer si l'utilisateur est un administarteur global, un administrateur local, ou un simple bénévole;
 \item une adresse postale;
 \item une ou plusieurs activités potentielles (action ponctuelle, frimousse, plaidoyer); % attribut multivalué
-\item un ou plusieurs encadrement de projet (VAE, action ponctuelle, projet d'élève). % attribut multivalué
+\item une ou plusieurs responsabilités d'activité (action ponctuelle, frimousse, plaidoyer). 
 \end{itemize}
 
 \subsection*{Contact}
 
-L'entité CONTACT est une entité fille de l'entité PERSONNE. Cette entité décrit les personnes travaillant dans un établissement. \\
-Cette entité a plusieurs attributs : 
+L'entité CONTACT est une entité fille de l'entité PERSONNE. Cette entité décrit les personnes travaillant dans un établissement ainsi que les élèves participant à un projet. \\
+Cette entité a un attribut : 
 \begin{itemize}
-\item un identifiant unique;
-\item un type de contact qui permet de déterminer si un contact est un enseignant, un animateur ou a une autre fonction; 
-\item un type 
+\item un type de contact qui permet de déterminer si un contact est un enseignant, un animateur, un élève ou a une autre fonction; 
 \end{itemize} 
 
 \subsection*{Etablissement}
@@ -69,16 +67,17 @@ L'entité ETABLISSEMENT est l'entité mère des entités ENSEIGNEMENT et CENTRE\
 Cette entité a plusieurs attributs : 
 \begin{itemize}
 \item un identifiant unique;
+\item un nom;
 \item la ville de l'établissement;
 \item une adresse sans le code postal;
 \item un code postal;
 \item un numéro de téléphone fixe;
-\item une adress e-mail; % attribut multivalué
+\item une ou plusieurs adresses e-mail; % attribut multivalué
 \item une géolocalisation WGS84; % Peut être NULL
-\item un responsable de la structure qui représente un CONTACT; 
-\item un contact pour les plaidoyers qui représente un CONTACT;
-\item un contact pour les frimousses qui représente un CONTACT;
-\item un contact pour les activités ponctuelles qui représente un CONTACT.
+\item un responsable de la structure qui représente un CONTACT; % Peut être NULL
+\item un contact pour les plaidoyers qui représente un CONTACT; % Peut être NULL
+\item un contact pour les frimousses qui représente un CONTACT; % Peut être NULL
+\item un contact pour les activités ponctuelles qui représente un CONTACT. % Peut être NULL
 \end{itemize}
 
 \subsection*{Enseignement}
@@ -91,10 +90,10 @@ Cette entité a plusieurs attributs :
 
 
 \subsection*{Centre de loisirs}
-L'entité CENTRE\_DE\_LOISIRS est une entité fille de l'entité l'entité ETABLISSEMENT. Cette entité décrit les établissement ayant un rapport avec les loisirs. \\
+L'entité CENTRE\_DE\_LOISIRS est une entité fille de l'entité ETABLISSEMENT. Cette entité décrit les établissement ayant un rapport avec les loisirs. \\
 Cette entité a un attribut : 
 \begin{itemize}
-\item un type de centre de loisirs qui permet de déterminer si un centre de loisirs prend en charge des enfants d'école maternelle,d'école élémentaire ou des adolescents.
+\item un type de centre de loisirs qui permet de déterminer si un centre de loisirs prend en charge des enfants d'école maternelle, d'école élémentaire ou des adolescents.
 \end{itemize}  
 
 \subsection*{Intervention}
@@ -104,8 +103,21 @@ Cette entité a plusieurs attributs :
 \item un identifiant unique;
 \item une date précise déterminée par les bénévoles lors de l'attribution des bénévoles aux interventions;
 \item le nombre de personnes concernées par cette intervention;
+\item le matériel disponible pour l'intervention (présence ou non d'un rétroprojecteur, d'un tableau intéractif ou d'enceintes);
+\item un lieu dans l'établissement, c'est à dire la salle où aura lieu l'intervention;
+\item un champ remarque permettant à l'utilisateur de saisir des remarques spécifiques à cette intervention. 
 \end{itemize}
 
+\subsection*{Plaidoyer}
+L'entité PLAIDOYER est une entité fille de l'entité INTERVENTION. \\
+Cette entité à plusieurs attributs : 
+\begin{itemize}
+\item un thème qui dépend du type de l'établissement faisant une demande d'intervention;
+\item un niveaux qui correspond à la classe dans laquelle va se déroulée l'intervention, par exemple, pour une école primaire, la classe peut-être CE1 mais aussi CE1-CE2.
+\end{itemize}
+
+\subsection*{FRIMOUSSE}
+L'entité FRIMOUSSE est une entité fille 
 \section{Les associations}
 
 \chapter{Contraites d'intégrité}

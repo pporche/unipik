@@ -1,5 +1,6 @@
 # Définition du nom du document
 NOM_FICHIER=modeleEA_description
+MON_IMAGE=modeleEAv2
 
 # Récupération du chemin de la classe picINSA pour les documents LaTeX
 CLSPATH="$(shell pwd)/../../../../ressources/cls/"

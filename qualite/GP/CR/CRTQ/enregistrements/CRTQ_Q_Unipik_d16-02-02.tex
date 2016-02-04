@@ -83,31 +83,31 @@ Dans le \PTV{} est défini le déroulement de la recette. Sont décrits :
 Au début, un cahier de recette vierge est fourni au client afin qu'il valide les tests. Il y a un cahier de recette par lot et il faut à chaque fois effectuer des tests de non-régression.
 \\
 Le client approuve ensuite le cahier de recette vierge et déclenche à ce moment la livraison. Lors de cette phase, l'équipe présente un cahier de recette provisoire au client.
-~
+
+\section{Possibilités de recette}
+\subsection{approbation sans remarque du cahier de recette provisoire}
 Si celui-ci est approuvé sans remarque du client, il devient le cahier de recette définitif. Il est par ailleurs conseillé de faire figurer deux cases sur la première page des cahier de recettes : "recette provisoire" et "recette définitive" qui seront toutes deux cochées dans ce cas.
-~
+
+\subsection{approbation avec remarques du cahier de recette provisoire}
 Si le client a des remarques, nous devons les relever, lever des \FFT{}, les joindre au cahier de recette et nous passons en période probatoire. durant cette période, il nous faut corriger les remarques reçues lors de la présentation du cahier de recette ainsi que celles qui pourront être faite durant la période probatoire. Enfin, nous présentons un cahier de recette définitive au client.
-\\
+\subsubsection{Approbation sans réserve du cahier de recette définitive}
 Si le cahier de recette est approuvé sans réserves, le lot est terminé.
-\\
+\subsubsection{Approbation avec réserves du cahier de recette définitive}
 Si le cahier de recette est approuvé avec des réserves, la livraison se poursuit jusqu'à la levée de la dernière réserve qui vaut pour approbation. Ces réserves sont généralement des remarques de faible importance.
-\\
+\subsubsection{Approbation avec report de fonctionnalités}
 Si le lot est accepté avec report de fonctionnalités sur le prochain lot, il faut implémenter les fonctionnalités manquantes lors du prochain lot.
-\\
+\subsubsection{Refus total}
 Le lot peut également être refusé totalement par le client, le cycle recommence.
+
 ~
-A la fin de l'approbation des documents de spécifications, il faut un \PV{} du \CP{}. Concernant ces documents, si le client exprime son désire 
 
+A la fin de l'approbation des documents de spécifications, il faut un \PV{} du \CP{}. Concernant ces documents, si le client exprime son désire de les regrouper, c'est possible sous réserve d'acceptation par le tuteur 
 
+\section{\PTV{}}
+Ce document définit avec le client les conditions de réalisations de la livraison, les possibilités de validation (voir plus haut), les supports de livraison et la déscription des tests que nous ferons (sans entrer dans le détail du \CDR{}). Tout ce qui sera défini grossièrement dans le \PTV{} aidera à la rédaction du cahier de recette.
 
-a la fin de l'approbation des docs de specs, il faut un PV du CP 
-sur les docs de specs -> si le client trouve relou tous ces documents, on peut regrouper.
-simplification de DCD, DCP -> sous accord du tuteur, on peut fusionner les deux.
-
-PTV : comment le remplir? -> ca définit avec le client les conditions de réalisations de la livraison, possibilité de validation (voir plus haut), comment on livre (support), en décrivant les tests qu'on va faire (sans le détail du CDR) -> les trucs définis grossièrement dans le PTV vont aider à faire le CDR
-
-archivage : faire gaffe à ce que ce soit utile !
-
+\section{Autres}
+Il faut impérativement faire attention à ce que l'archivage soit utile et régulier.
 
 \end{document}
 

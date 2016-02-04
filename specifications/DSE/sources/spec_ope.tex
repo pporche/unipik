@@ -1,25 +1,21 @@
-Le but de cette partie est de décrire les spécifications opérationnelles du projet. Une première sous-partie permettra de décrire les demandes de performances du projet avec des exigences chiffrés précises, une seconde sous-partie permettra de décrire les besoins en sécurité, intégrité et sûreté tel que le chiffrage, la gestion des droit et les logs, enfin, une dernière sous-partie détaillera les besoins en terme de base de donnée tels que les contraintes d'intégrités ou les types d'accès.
-
 \subsection{Performances}
 
-Cette sous-partie a pour objectif de décrire les besoins en performances du projet avec des valeurs chiffrées précises.
+Dans un premier temps, l'application ne sera déployée qu'au niveau régional, puis cette dernière pourra se voir étendre au niveau national c'est pourquoi il faudrait qu'elle puisse supporter un nombre d'utilisateurs simultanés de l'ordre de la centaine. \\
 
-
-
+Ensuite, concernant les informations qui seront stockées dans la base de donnée, cette dernière devra pouvoir accuellir les données relatives aux différents bénévoles dont le nombre est de l'ordre de la dizaine ainsi qu'à environ 1600 établissements. La base de donnée devra aussi pouvoir gérer les données concernant les interventions réalisées par les bénévoles dont le nombre s'élève à environ 200 par an.
 
 \subsection{Sécurité, intégrité et sûreté}
 
-L'objectif de cette sous-partie est de détailler les besoins en sécurité, en intégrité et en sûreté du logiciel final.\\
+Les utilisateurs devront utiliser un compte sécurisé à l'aide d'un login et d'un mot de passe dans le but d'utiliser l'application. Les mots de passe seront hachés et salés avant d'être stocké dans la base de donnée. En effet, cette méthode permet de renforcer la sécurité des informations en leur rajoutant une donnée supplémentaire afin d'empêcher que deux informations identiques conduisent à la même empreinte. \\
 
-Les mots de passe des utilisateurs seront hachés et salés avant d'être stocké dans la base de donnée. La récupération du mot de passe devra se faire de manière sécurisé, soit par envoie par email d'un lien pour le réinitialiser, soit par le biais d'une question secrète (uniquement si l'utilisateur n'a pas d'email car moins sécurisé).\\
+ La récupération du mot de passe devra se faire de manière sécurisé, soit par envoie par email d'un lien pour le réinitialiser, soit par le biais d'une question secrète (uniquement si l'utilisateur n'a pas d'email car moins sécurisé).\\
 
-Il est important de conserver un historique de toutes les actions effectués par un bénévole, y-compris si le compte de celui-ci à été supprimé. 
-
-%Un fichier log sera conservé avec les connexion de chacun des bénévoles et leurs actions principales.
-%Aucun fichier de log n'est nécessaire…
+En outre, il est important de conserver un historique de toutes les actions effectués par un bénévole, y-compris si le compte de celui-ci à été supprimé. 
 
 \subsection{Base de données}
 
-Cette sous-partie permet de détailler les besoins concernant la base de données, tels que les logiques de comportement de chacune des données écrites, de la fréquence d'utilisation, des types d'accès ou encore des contraintes d'intégrité.\\
+Dans un premier temps, concernant les informations relatives aux utilisateurs , ces derniers devront pouvoir posséder une activité potentielle ( parmis les trois suivantes : Plaidoyer, Frimousse et Action ponctuelle), avoir la possibilité d'encadrer un projet d'élève ou un projet étudiant, et pourront posséder le statut de responsable d'une activité. Ils devront aussi obligatoirement posséder une adresse e-mail. \\
 
-Une contrainte d'intégration du système est que toute action ayant été effectuée le soit par un bénévole existant.
+Chacune des activités doit obligatoirement être liée à un ou plusieurs responsables. Ces derniers peuvent être en charge de plusieurs activités. De plus une autre contrainte d'intégration du système est que toute action ayant été effectuée le soit par un bénévole existant. \\
+
+Ensuite, concernant les informations relatives aux établissements, la base de donnée doit recenser le nom des contacts dans l'école. Il en existe deux types : le contact pour une activité en particulier ainsi que le responsable de l'école.

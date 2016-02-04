@@ -7,7 +7,7 @@ all : crtq cleanrep cleaneps
 
 crtq : $(PDFDIR)/CRTQ_Q_Unipik_d16-01-26.pdf $(PDFDIR)/CRTQ_Q_Unipik_d16-02-02.pdf
 
-$(PDFDIR)/%.pdf : sources/%.tex
+$(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\
 	$(CCTEX) $<

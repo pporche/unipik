@@ -12,7 +12,7 @@ En somme, le client veut que la base de données soit opérationnelle et pouvoir
 
 
 \subsection{Lot 2}
-Le lot 2 devra faire état de sept fonctionnalités additionnelles. Il devra être impérativement livré au client avant le début des vacances scolaires soit avant le lundi 21 mai 2016.
+Le lot 2 devra faire état de sept fonctionnalités additionnelles. Il devra être impérativement livré au client avant le début des vacances scolaires soit avant le lundi 21 mai 2016. Un hébergeur devra avoir été trouvé à la fin de ce lot et la livraison devra être effectuée sur celui-ci.
 
 \subsubsection{Fonctionnalité 1}
 La première fonctionnalité du système devra permettre les opérations conventionnelles de gestion individuelle comme la création d'un bénévole dans le système, la modification des caractéristiques le concernant et la suppression d'un bénévole. La suppression d'un bénévole devra être logique et non physique de façon à ne pas effacer l'historique des actions effectuées par ce bénévole. \\
@@ -94,7 +94,8 @@ La fonctionnalité 4 permettra également l'envoi d'un e-mail de confirmation à
 Si un établissement annule une demande d'intervention (grâce à l'e-mail de confirmation d'une demande d'intervention), une procédure supprimera cette demande et enverra des e-mails de confirmation de suppression de cette demande au responsable de l'activité initialement demandée et à l'établissement.  
 
 \subsubsection{Fonctionnalité 5}
-La fonctionnalité 5 consistera à planifier les interventions c'est-à-dire à attribuer une demande d'intervention à un plaideur.  
+La fonctionnalité 5 permettra d'afficher une carte montrant les lieux où des demandes d'intervention ont été faites pour un créneau que l'utilisateur aura entré.
+La fonctionnalité 5 consistera également à planifier les interventions c'est-à-dire à attribuer une demande d'intervention à un plaideur.  
 Lors de chaque affectation, un e-mail d'information de prise en charge de la demande par l'équipe de plaideur sera envoyé à l'établissement demandeur ainsi qu'au responsable de l'activité demandée .
 \\
 
@@ -103,41 +104,43 @@ Une fois que le plaideur a défini une date pour son intervention il met à jour
 planning le concernant avec éventuellement une mise à jour de certaines informations (nombre d'élèves, ...). Le demandeur reçoit alors un mail de confirmation du jour/heure et lieu de l'intervention avec le nom et coordonnées (email, téléphone) du plaideur. Le texte de ce message est à définir et à faire valider par le responsable des plaideurs. \\
 
 \subsubsection{Fonctionnalité 7}
-La fonctionnalité 7 permettra d'envoyer un e-mail de rappel à l'établissement et au contact dans l'établissement (si son adresse électronique est différente que celle de l'établissement), une semaine avant l'intervention.
-Le texte de ce message sera à définir et à faire valider par le responsable des plaideurs. Trois jours avant l'intervention le plaideur reçoit un mail de rappel avec les informations associées (lieu, thème, nombre d'élèves, ...). Si ce dernier ne dispose pas d'email, ce mail est envoyé au responsable des plaideurs. 
+La fonctionnalité 7 permettra d'envoyer un e-mail de rappel à l'établissement et au contact dans l'établissement (si son adresse électronique est différente de celle de l'établissement), une semaine avant l'intervention. Le texte de ce message sera à définir avec \nomClient{} et à faire valider par le responsable des plaideurs. \\
+Trois jours avant l'intervention, le plaideur recevra un e-mail de rappel avec les informations associées (date, moment, lieu, thème, nombre d'élèves, remarques, niveau des élèves). Si ce dernier ne dispose pas d'adresse électronique, cet e-mail sera envoyé au responsable des plaideurs. 
 \\
-NE PAS OUBLIER HEBERGEUR
 \subsection{Lot 3}
 
-Le lot 3 couvre la gestion des frimousses sous la forme des fonctionnalités de F8 à F9. Il devra être livré à six semaines après la rentrée des vacances soit pendant la semaine du 10 octobre.
+Le lot 3 couvre la gestion des frimousses. Il fera état de deux fonctionnalités (8 et 9) et devra être livré la semaine du 10 octobre.
 \\
 
 \subsubsection{Fonctionnalité 8}
-Les frimousses suivent un principe très similaire aux plaideurs. Les demandes concernent aussi bien les établissements d'enseignement que les centres de loisirs (actuellement non recensés). Seul le spectre des établissements est réduit : maternelle et élémentaire. Le séquencement est similaire au plaidoyer.
-La principale différence avec les plaideurs vient du fait que les frimousses nécessitent du matériel (patron, bourre, décoration). \\
- Il est alors nécessaire que le demandeur stipule les matériaux dont il a
-besoin.
-La plaquette sera rédigée par le responsable des frimousses devra être mise à disposition en format pdf. 
-\\
+La gestion des frimousses se fera de la manière que celle des plaidoyers sauf que :
+\begin{itemize}
+\item nous ne prendrons en compte seulement les écoles maternelles et élémentaires;
+\item nous demanderons, dans le formulaire à remplir par l'établissement pour effectuer une demande d'intervention frimousse, ce dont l'établissement a besoin concernant le matériel (patron, bourre, décoration). \\
+\end{itemize}
 
 \subsubsection{Fonctionnalité 9}
 A chaque demande d'intervention de frimousse sera affecté un bénévole en charge du dossier. Une date sera définie pour la vente des frimousses et un montant collecté sera à gérer (permettant un bilan en fin d'année).
 \\
 
 \subsection{Lot 4}
-Ce lot devra être livré deux semaines avant la fin du semestre d'automne 2016.  Il doit donc être livré la semaine du Lundi 2 janvier 2017. Ce Lot comprendra trois fonctionnalités additionnels.
+Le lot 4 devra être livré la semaine du lundi 2 janvier 2017. Ce lot comprendra trois fonctionnalités additionnelles (10 à 13). Il concerne la gestion des VAE. 
 \\
 
-\subsubsection{Fonctionnalités 11}
-L'UNICEF est amené à effectuer des ventes de produits (cartes de noël, calendrier, ...) dans des stands tenus par des bénévoles (vendeurs). Les ventes sont effectuées sur des lieux disposant d'une localisation géographique. Les affectations des vendeurs s'effectuent pour un lieu pour un (ou lusieurs) créneaux horaires en fonction de leurs disponibilités.
-\\
-Un outil similaire à la géolocalisation des demandes de plaidoyer doit permettre de proposer pour un créneau donné d'afficher une carte montrant les lieux des stands où des demandes sont faites pour ce créneau.
+\subsubsection{Fonctionnalité 10}
+La fonctionnalité 10 permettra d'afficher une carte montrant les lieux des stands où des demandes d'actions ponctuelles ont été faites pour un créneau que l'utilisateur aura entré.
 \\
 
-\subsubsection{Fonctionnalités 12}
-Un module statistiques doit être défini prenant en compte un chiffre d'affaire par jour (à sommer sur la campagne pour les differents stands lors des interventions) et gérant les approvisionnements en produità vendre (gestion de stock entre le local et le stand).
+\subsubsection{Fonctionnalité 11}
+La fonctionnalité 11 consistera à planifier les actions ponctuelles c'est-à-dire à attribuer pour une demande d'action ponctuelle, un créneau à un vendeur.\\
+Lors de chaque affectation, un e-mail d'information de prise en charge de la demande par \nomClient{} sera envoyé au responsable des VAE.\\
+La fonctionnalité 11 permettra aussi d'envoyer un e-mail de rappel trois jours avant l'intervention aux vendeurs avec les informations associées (date, créneau, lieu, description, remarques, objets vendus). Si ces derniers ne disposent pas d'adresse électronique, cet e-mail sera envoyé au responsable des VAE. 
+
+
+\subsubsection{Fonctionnalité 12}
+Un module statistiques doit être défini prenant en compte un chiffre d'affaire par jour (à sommer sur la campagne pour les différents stands lors des interventions) et gérant l'approvisionnement des produits à vendre (gestion de stock entre le local et le stand).
 \\
 
-\subsubsection{Fonctionnalités 13}
+\subsubsection{Fonctionnalité 13}
 Un outil (simplifié) de gestion des stocks en fonction des diverses ventes déjà effectuées devra être mis en place.
 \\

@@ -10,27 +10,95 @@
 \pagestyle{fancy}
 \definecolor{Gray}{gray}{0.8}
 
+
+
+%--- En-t�te et pied de page ---%
+\renewcommand{\footrulewidth}{0,01cm}
+
 \begin{document}
-Un FT -> 1 OC <- c'est mieux
-FFT pour le PQ? à chaque damnde de corrections dès approbation
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Qualité}}					%titre
+\hfill   
+\hfill 	9:03-9:56 				% Heure de d�but, heure de fin.
 
-2eme semestre : bien former les personnes qui arrivent <- formations pour le Portefeuille de formation. 
-Rq sur le RQ pas très graves.
 
-Indicateurs :
-L'indicateur sur la satisfaction client <- !!
-Le client ne donne pas qu'une note, il donne aussi un coeff sur les questionnaires.
-indicateur d'avancement <- pour savoir si on est en avance ou en retard. bien faire attention au calcul de l'indicateur (tache facile-difficile..)
-temps de présence : pas de valeur de surcharge mais faut faire gaffe.
-indicateur sur la répétition des FT <- pas le droit d'avoir + d'1 répétition d'UN FT sur la totalité du PIC et pas + de (5?) FT qui subissent une répet. Penser aux exclusions : tout FT qui ne dépend pas de nous (retards signature,..) ou traité par action curative.
-dans PGPIC : tableau récap des FT, colonne "analyse à froid" <- la remplir! "a été vue mais pas d'action curative" -> colonne au vert, pas de pbs durant les audits.
-Indicateurs pertinents pour le client et indicateurs au niveau du code genre avec des logiciels spécialisés (Sonar,..) indic sur le pourcentage de commentaire -> nul. sur le code dupliqué -> bien.
-Indicateur : SMART, valeur cible, valeur seuil, suivi régulièrement
+\lfoot{Version : 1.00} 			% version
 
-Recette :
-dans le PTV on défini comment se déroule la recette (qui, où, comment) livraison : document, app fournie,.. 
-cahier de recette vierge pour le client pour valider les tests,..    -> cahier de recette par lot. tests de non-régression <- c important tavu.
-approbation du vierge -> déclenchement de la livraison -> cahier de recette provisoire (deux cases "recette provisoire", "recette définitive") dans le PTV, si c'est approuvé sans remarque du client, ca passe en définitif (deux cases cochées) -> si le client a des remarques, on le marque, on met les FFT dans le cahier de recette, -> periode probatoire : correction des remarques + nouvelles remarques? -> on balance le cahier de recette définitive -> approbation sans reserve : approbation avec reserve (levée de la dernière reserve vaut pour approbation ("le bandeau il est bleu, je le veux vert"); acceptation du lot mais report des fonctionnalités sur le lot prochain (le lot, on le prend mais les fctnalités pas bien, on les décale) ; refus total (periode probatoire, correction définitive).
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 02/02/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui & 04/02/2016 & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi & 04/02/2016 & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Informations diverses}
+M. \nomTuteurQualite{} nous explique qu'il est souhaitable qu'un \OC{} ne soit lié qu'à un seul \FT{}. Nous lui demandons ensuite dans quel cas il nous faudrait faire une émission de \FFT{} pour modification du \PQ{}. Il nous répond qu'il faut le faire à chaque fois qu'il y a une demande de modification à partir de la première approbation. Par ailleurs, les remarques que nous avons reçues sur le \PQCourt{} sont d'une gravité relativement réduite.
+~
+Avant le début du second semestre, il est important de bien former les personnes qui arrivent et donc de remplir le \PF{}.
+
+\section{Indicateurs}
+Un des indicateurs les plus importants est l'indicateur de satisfaction client. Sur les questionnaires de satisfaction, le client ne donne pas qu'une note mais également un coefficient.
+\\
+Un autre indicateur important est l'indicateur d'avancement, utile pour savoir si nous sommes en avance ou en retard. Il faut toutefois faire attention au calcul de cet indicateur afin qu'il soit le plus significatif possible.
+\\
+Concernant l'indicateur de temps de présence, il n'est pas conseillé de mettre en place un seuil de surcharge mais il faut suivre ce problème avec attention.
+\\
+Un indicateur quasi-obligatoire est l'indicateur sur la répétition des \FTCourt{}. Un même \FT{} ne peut se répéter qu'au maximum une fois et au maximum cinq \FTCourt{}. Il faut toutefois penser aux exclusions qui concernent tout \FTCourt{} ne dépendant pas de l'équipe PIC (ex. : retards de signature par le client,..) ainsi que celles traitées par action curative. Dans PGPIC, il faut toujours remplir la colonne "analyse à froid", s'il n'y a pas eu d'action curative, y écrire "a été vue mais pas d'action curative" afin de minimiser les problèmes lors des audits.
+\\
+Un indicateur doit être pertinent pour les clients. Il existe des logiciels spécialisés permettant d'avoir des indicateurs sur le code (Sonar,..), notamment un indicateur sur le code dupliqué. Ne pas se fier à l'indicateur sur le pourcentage de commentaire. Un indicateur doit être "SMART", comporter une valeur cible, une valeur seuil et être suivi régulièrement.
+
+\section{Recette}
+
+Dans le \PTV{} est défini le déroulement de la recette. Sont décrits :
+\begin{itemize}
+\item Qui assiste à la recette ;
+\item Où a lieu la recette ;
+\item Comment se déroulera la recette ;
+\item Que contiendra la livraison.
+\end{itemize}
+~
+Au début, un cahier de recette vierge est fourni au client afin qu'il valide les tests. Il y a un cahier de recette par lot et il faut à chaque fois effectuer des tests de non-régression.
+\\
+Le client approuve ensuite le cahier de recette vierge et déclenche à ce moment la livraison. Lors de cette phase, l'équipe présente un cahier de recette provisoire au client.
+~
+Si celui-ci est approuvé sans remarque du client, il devient le cahier de recette définitif. Il est par ailleurs conseillé de faire figurer deux cases sur la première page des cahier de recettes : "recette provisoire" et "recette définitive" qui seront toutes deux cochées dans ce cas.
+~
+Si le client a des remarques, nous devons les relever, lever des \FFT{}, les joindre au cahier de recette et nous passons en période probatoire. durant cette période, il nous faut corriger les remarques reçues lors de la présentation du cahier de recette ainsi que celles qui pourront être faite durant la période probatoire. Enfin, nous présentons un cahier de recette définitive au client.
+\\
+Si le cahier de recette est approuvé sans réserves, le lot est terminé.
+\\
+Si le cahier de recette est approuvé avec des réserves, la livraison se poursuit jusqu'à la levée de la dernière reserve qui vaut pour approbation. Ces réserves sont généralement des remarques de faible importance.
+\\
+Si le lot est accepté avec report de fonctionnalités sur le prochain lot, il faut implémenter les fonctionnalités manquantes lors du prochain lot.
+\\
+Le lot peut également etre refusé totalement par le client, le cycle recommence.
+~
+A la fin de l'approbation des documents de spécifications, il faut un \PV{} du \CP{}. Concernant ces documents
+
+
 
 a la fin de l'approbation des docs de specs, il faut un PV du CP 
 sur les docs de specs -> si le client trouve relou tous ces documents, on peut regrouper.

@@ -1,0 +1,100 @@
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{../../../../ressources/Unipik/vocabulaire/vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion interne}}					%titre
+\begin{document}
+
+03/02/2016			 				%Date 
+\hfill   
+\hfill 	 13:59 - 15:30 				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% Rédacteur
+%--- Fin en-t�te et pied de page ---%
+
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 03/02/2016 & \Kafui & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Pierre &  & courriel \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi & & courriel \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+		
+\newpage		
+
+
+
+%--- Réunion --%
+
+%\section{Tour de table}
+%Les fonctions sont réparties comme suit :
+%\begin{itemize}
+%	\item Michel Cressant : \RD (\RDCourt),
+%	\item Matthieu Martins-Baltar : Responsable Serveur et Réseau (RSR),
+%	\item Mathieu Medici : \RGC (\RGCCourt),
+%	\item Kafui Atanley : \RQCourt Développeur,
+%	\item Mélissa Bignoux : Développeuse,
+%	\item Julie Pain : Développeuse,
+%	\item Florian Leriche : Développeur.
+%\end{itemize}
+
+\section{But de la réunion}
+L'équipe s'est réunie afin de se concerter autour du modèle Entité-Association réalisé par Julie Pain, Matthieu Medici et Florian Leriche. Ce modèle a permis de dégager plusieurs questions qui seront posés au client lors de la réunion prévu pour le jour suivant.
+
+\section{Explication du modèle Entité/Association}
+
+\subsection{Cas de l'entité utilisateur}
+Il a été décidé de séparer l'entité utilisateur et l'entité contact car un contact ne fait pas forcément parti de l'association contrairement à un utilisateur.
+Le type de l'entité utilisateur désigne son statut vis-à-vis de l'application développé là ou ce lui de l'entité contact désigne le métier du contact de l'établissement (enseignant de l'établissement, animateur).
+Le groupe pense que l'attribut clef id\_ utilisateur de l'entité Utilisateur et l'attribut clef id\_ contact de l'entité Contact est redondant. Ceux-ci seront donc enlevés du modèle final au profit de la l'attribut id\_ personne de l'entité Personne dont hérite les entités Utilisateur et Contact.
+
+\subsection{Cas de l'entité Etablissement et de ses enfants}
+Les entités Enseignement et Centre\_ loisirs ont été différentiés car les centres de loisirs ne dispose pas d'Unité administrative immatriculée d'ou la nécessité de créer un attribut UAI pour l'entité enseignement uniquement.
+\\
+L'équipe pense qu'il serait bien de faire de figurer le nom de chaque chef de l'établissement. Un attribut respo\_ structure sera donc ajouté à l'entité Etablissement.
+Une réflexion est menée autour des attributs contact\_ activité\_ ponctuelle, contact\_ frimousse et contact\_ plaidoyer. Ces attributs pourrait s'avérer vide assez souvent. La solution proposé serait de faire un attribut contact pouvant prendre comme valeur de 3 à Null, ces attributs contiendrait l'id chaque contact.
+
+\subsection{Cas de l'entité Actions Ponctuelle}
+L'entité action ponctuelle ne ressemble pas à l'entité Intervention d'où la différenciation. Les détails associés à cette entité ne sont pas assez clairs pour l'équipe. L'équipe décide donc qu'il sera redemandé au client d'explicité ce qui est attendu.
+\\
+L'équipe ayant travaillée sur le modèle a noté plusieurs questions qui seront également posées au client. 
+
+
+%--- fin de réunion ---%
+
+
+\end{document}

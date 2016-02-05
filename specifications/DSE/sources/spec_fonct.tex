@@ -18,19 +18,21 @@ Un bénévole sera identifié par son adresse électronique.\\
 Les informations associées à un bénévole sont :
 \begin{itemize}
 \item son identifiant (adresse électronique),
+\item son mot de passe,
 \item son nom,
 \item son prénom,
 \item son adresse postale,
 \item son type (administrateur global, administrateur local ou bénévole),
 \item son téléphone fixe et/ou mobile,
-\item son ou ses domaines d'activités potentielles,
+\item son ou ses domaines d'activités potentielles (si le bénévole en a),
 \item sa ou ses responsabilités d'activité (si responsable).
 \\
 \end{itemize}
 
 Un administrateur global est un utilisateur qui a tous les droits. \\ Un administrateur local est un responsable d'activité, il a des droits de lecture et de modification sur son activité. \\ Un bénévole a des droits de lecture et de modification sur ses informations personnelles et seulement des droits de lecture sur les informations concernant ses domaines d'activité. Il pourra également s'attribuer une activité, entrer et modifier des informations sur cette activité.\\
+Il pourra exister plusieurs administrateurs globaux, plusieurs administrateurs locaux et plusieurs bénévoles. 
 
-Les activités potentielles peuvent avoir plusieurs responsables et sont : les actions ponctuelles, les plaidoyers, les actions frimousses. \\
+Les activités potentielles pourront ainsi avoir plusieurs responsables et seront composées des actions ponctuelles, des plaidoyers et des actions frimousses. \\
 
 Un ou plusieurs utilisateurs peuvent être responsable d'un ou plusieurs projets (école, lycéen ou étudiant).\\
 
@@ -85,15 +87,28 @@ Cette fonctionnalité doit également permettre un envoi ciblé en fonction de p
 \item exclure de la liste les établissements ayant fait une demande qui n'a pas pu être satisfaite par les plaideurs (pour des raisons d'emploi du temps, distance, ...). \\
 \end{itemize}
 
-Chaque e-mail invitera l'établissement à se connecter à un lien (actif) contenant un formulaire à remplir pour effectuer une demande (à l'image du formulaire actuel :
-\url{https://docs.google.com/forms/d/1lEavFc7j4Xjmj6CRPqgi3VbArl4kh5GZ_6lRNRoNeJk/viewform
-?edit_requested=true}).
+Chaque e-mail invitera l'établissement à se connecter à un lien (actif) contenant un formulaire à remplir pour effectuer une demande d'intervention. Les champs à remplir seront : 
+\begin{itemize}
+\item la ville de l'établissement, 
+\item le nom de l'établissement, 
+\item le nom de la personne référente sur cette action, 
+\item l'adresse électronique de la personne référente sur cette action ou celle de l'établissement si la personne  référente n'en a pas, 
+\item le numéro de téléphone de la personne référente ou de l'établissement si la personne référente n'en a pas,
+\item les plages de dates souhaitées pour l'intervention (date de début et date de fin),
+\item les disponibilités (jours et les moments souhaités comme dans le formulaire actuel), 
+\item le matériel disponible (vidéo projecteur, TBI, enceinte ou  aucun), 
+\item le type de classes concernées (maternelle, élémentaire (ou centre de loisirs élémenaire), collège (ou centre de loisirs collège), lycée, enseignement supérieur)
+\item le niveau de la classe, 
+\item le thème dominant de l'intervention souhaité, 
+\item le nombre d'élèves à préciser si plusieurs classes,
+\item des remarques.
+\end{itemize}
+Les réponses à ce formulaire viendront alimenter la base de données des demandes d'intervention. \\
+Concernant le matériel disponible , plusieurs matériels pourront être choisis. \\
+Concernant le niveau de la classe, nous reprendrons ceux proposés dans le formulaire actuelle. Si la classe regroupe le niveau Grande Section et CP, l'information doit être précisée en remarque.
+Concernant les classes spéciales (classe pour l'inclusion scolaire, sections d'enseignement général et professionnel adapté, etc...), elles ne seront pas traitées comme les classes par défaut, elles seront précisées dans le champs remarque.
 \\
-Les champs de ce formulaire seront basés sur le formulaire actuellement utilisé.  Les réponses à ce formulaire viendront alimenter la base de données des demandes d'intervention. \\
-Les interventions seront individualisées par classe (compte tenu du fait que des interventions peuvent se dérouler en même temps dans un établissement par des plaideurs différents). Concernant les classes spéciales (classe pour l'inclusion scolaire, sections d'enseignement général et professionnel adapté, etc...), elles ne seront pas traitées comme les classes par défaut, elles seront précisées en remarque dans le formulaire.
-\\
-Si la classe regroupe le niveau Grande Section et CP, l'information doit être précisée en remarque.
-Les thèmes des interventions ne seront pas prédéfinis pour les lycées et l'enseignement supérieur. Ceux-ci seront renseignés dans un champs texte par l'établissement demandeur.
+Les thèmes des interventions ne seront pas prédéfinis pour les lycées et l'enseignement supérieur. Ceux-ci seront renseignés dans un champs texte par l'établissement demandeur. Pour les autres types d'établissement, nous reprendrons les thèmes du formulaire actuel.
 \subsubsection{Fonctionnalité 4}
 La fonctionnalité 4 consiste en premier lieu à faciliter le remplissage du formulaire par l'établissement. 
 Une complétion automatique du nom de la ville, de l'établissement, des niveaux scolaires devra être mise en place. Cependant, il n'y en aura pas pour les informations personnelles du demandeur (comme  par exemple son numéro de téléphone ou son adresse électronique).\\

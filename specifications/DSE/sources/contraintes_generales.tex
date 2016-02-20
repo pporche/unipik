@@ -1,0 +1,56 @@
+Dans cette partie, nous allons détailler l'ensemble des contraintes imposées par \nomClient{} pour le déroulement du projet. Nous commencerons, dans une première sous-partie par exposer les contraintes liées au développement telles que les limitations techniques ou les normes applicables. Puis une seconde sous-partie aura pour but d'exprimer les contraintes d'exploitation, c'est à dire la manière dont la solution finale sera utilisée et mis en service. Dans une troisième sous-partie, nous expliquerons les différentes normes et standards auxquels la solution finale devra répondre. Enfin, une dernière sous-partie permettra de lister l'ensemble des documentations qui devront être livrées avec le logiciel.
+
+
+\subsection{Contraintes de développement}
+Dans cette sous-partie, nous détaillerons les contraintes de développement. Il s'agit des contraintes de normes et de législation, de limitations liées au matériel ou encore du niveau de fiabilité demandé.\\
+
+
+Aucune limitation matérielle n'est précisée par le \client{} concernant le serveur. Mais il est à noter que le logiciel devra être hébergé, que l'équipe \PICCourt{} est chargé de trouver une solution d'hébergement et que ce dernier devra être gratuit si possible, très peu cher sinon. Il faut donc considérer que les limitations techniques réelles seront très fortes et que la solution finale ne devra consommer que très peu en ressources serveur.\\
+
+Concernant les utilisateurs, le parc informatique est hétérogène tant au niveau du matériel (constructeur, modèles, ancienneté), que du système d'exploitation (Windows, Linux, Mac OS) ou encore que du navigateur web (Chrome, Firefox, Internet Explorer, Safari, ...). Il est laissé à la charge de l'équipe \PICCourt{} de décider des versions minimums d'OS et de navigateur supportées, tout en restant raisonnable.\\
+
+
+Le choix du langage de développement de la logique métier est laissé libre, sans être exotique et doit permettre une maintenance aisée et faire l'objet d'une documentation, détaillé dans la partie \ref{doc}. Cependant, étant donné le nombre, la variétés des utilisateurs et le fait qu'ils sont tous équipés au minimum d'un navigateur web, une solution hébergée de type web peut être envisagée.\\
+
+Si la solution finale utilise des technologies de type web, il est demandé qu'elle réponde le plus possible aux ensembles des normes définies par l'organisation W3C.\\
+
+Pour la base de données, les logiciels PostgreSQL et PostGIS ainsi que le service OpenStreetMap sont à privilégier, mais MySQL est une solution envisageable.\\
+
+
+%Fiabilité?
+
+%Sécurité?
+
+
+\subsection{Contraintes d'exploitation}
+Cette sous-partie, nous permet de détailler les contraintes d'exploitation. Nous allons décrire ici la manière dont le logiciel sera utilisé et mis en services.\\
+
+Le logiciel sera utilisé par un grand nombre de personnes internes ou externes à \nomClient{}. Il s'agit de bénévoles, de collaborateurs (plaideurs), d'établissements scolaires et de villes. Par conséquent, il est demandé que la solution soit la moins intrusive possible et qu'elle ne devra nécessiter aucune installation particulière de la part des divers utilisateurs.\\
+
+Il est probable que le logiciel soit utilisé à partir d'un téléphone de type smartphone. Il est donc important de prendre ce type de matériel en compte lors du développement du logiciel, en particulier, en ce qui concerne l'adaptabilité de l'interface (responsive-design).\\
+
+Compte tenu du niveau hétérogène de connaissance informatique des divers utilisateurs, l'application devra être extrêmement facile d'utilisation. Une attention particulière sera portée sur le design de l'\IHM{} ainsi que sur l'aide apportée au remplissage des formulaires (champs pré-remplis, complétion automatique, validation avant envoie).\\
+
+Concernant la mise en service, un serveur sera très probablement nécessaire. Pour l'hébergement, si une solution payante doit être envisagée, une démarche devrait être menée auprès de l'hébergeur pour obtenir une gratuité de la mise à disposition, en utilisant éventuellement l'aspect mécénat pour l'hébergeur. L'équipe \PICCourt{} est chargée de trouver la solution d'hébergement et de faire les démarches nécessaires pour en obtenir la gratuité.\\
+
+Étant donné que \nomClient{} dédie la large majorité de ses moyens financiers à ses missions principales, la solution finale devra être le plus proche possible du gratuit. Il faut donc privilégier les technologies libres.
+
+
+\subsection{Conformité aux standards (normes)}
+Cette sous-partie a pour but de lister les normes et standards auxquels le logiciel devra répondre.\\
+
+Tout d'abord, si des technologies de type web sont nécessaires à la réalisation du projet, il est demandé de respecter au maximum les ensembles des normes définies par l'organisation W3C.\\
+
+Ensuite, étant donné l'utilisation de données qui pourraient s'apparenter à des données à caractères personnel, il est nécessaire d'être en règle vis-à-vis de la \loiInfoLib{} dite "\loiInfoLibCourt{}". Une démarche de vérification auprès de la CNIL concernant les informations nominatives du projet, devra être faite et si une déclaration est nécessaire, un dossier devra être préparé pour être soumis à la signature de la présidente du comité avec envoie à la CNIL.\\
+
+Enfin, les démarches et les méthodes de travail de l'équipe \PICCourt{} devra respecter la norme \ISOCourt{} 9001.
+
+\subsection{Documentation}
+\label{doc}
+Dans cette dernière sous-partie, nous allons décrire les différentes documentations à réaliser lors de ce projet.\\
+
+Il est demandé une documentation techniques à tous les niveaux du projet. Tout d'abord une documentation conceptuelle, une documentation des packages, une documentation détaillée, ainsi que des tests unitaires détaillés et documentés. Cette documentation doit permettre à une future équipe de développement de retravailler sur le projet sans aucune difficulté.\\
+
+Doit également être documenté, les règles de programmation, les conventions de nommage et des instructions permettant l'installation du logiciel.\\
+
+Enfin, une documentation utilisateur, accompagné d'une FAQ accessible à tous les utilisateurs peut s'avérer utile.

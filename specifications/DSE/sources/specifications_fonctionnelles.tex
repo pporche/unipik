@@ -1,0 +1,139 @@
+\label{spec_fonct}
+Dans cette partie, nous détaillerons les spécifications fonctionnelles données dans le cahier des charges par \nomClient. 
+L'application demandée peut se décomposer en treize fonctionnalités distinctes. La livraison s'effectuera en quatre lots. Nous décrirons pour l'instant les deux premiers lots de manière exhaustive en précisant la date de livraison et les fonctionnalités attendues. Les deux derniers lots seront précisés ultérieurement.
+
+\subsection{Lot 1}
+
+Le lot 1 devra permettre de mettre en place l'architecture matérielle et logicielle pour le fonctionnement de l'application dans sa globalité.
+Il devra être livré la semaine du lundi 7 mars 2016 au plus tard. Cette architecture devra être opérationnelle c'est-à-dire que la base pourra être remplie à partir de fichiers excel d'\nomClient{} grâce à des scripts que nous fournirons à \nomClient.\\
+La structure sera locale.\\
+
+
+\subsection{Lot 2}
+Le lot 2 devra faire état de sept fonctionnalités additionnelles. Il devra être impérativement livré au client avant le lundi 21 mai 2016. Un hébergeur devra avoir été trouvé à la fin de ce lot et la livraison devra être effectuée sur celui-ci.
+
+\subsubsection{Fonctionnalité 1}
+La première fonctionnalité du système devra permettre les opérations conventionnelles de gestion individuelle comme la création d'un bénévole dans le système, la modification des caractéristiques le concernant et la suppression d'un bénévole. La suppression d'un bénévole devra être logique et non physique de façon à ne pas effacer l'historique des actions effectuées par ce bénévole. \\
+Un bénévole sera identifié par son adresse électronique.\\ 
+Les informations associées à un bénévole sont :
+\begin{itemize}
+\item son identifiant (adresse électronique),
+\item son mot de passe,
+\item son nom,
+\item son prénom,
+\item son adresse postale,
+\item son type (administrateur global, administrateur local ou bénévole),
+\item son téléphone fixe et/ou mobile,
+\item son ou ses domaines d'activités potentielles (si le bénévole en a),
+\item sa ou ses responsabilités d'activité (si responsable).
+\\
+\end{itemize}
+
+Un administrateur global est un utilisateur qui a tous les droits. \\ Un administrateur local est un responsable d'activité, il a des droits de lecture et de modification sur son activité. \\ Un bénévole a des droits de lecture et de modification sur ses informations personnelles et seulement des droits de lecture sur les informations concernant ses domaines d'activité. Il pourra également s'attribuer une activité, entrer et modifier des informations sur cette activité.\\
+Il pourra exister plusieurs administrateurs globaux, plusieurs administrateurs locaux et plusieurs bénévoles. Un administrateur local peut être responsable de plusieurs activités.
+
+Les activités potentielles pourront ainsi avoir plusieurs responsables et seront composées des actions ponctuelles, des plaidoyers et des actions frimousses. \\
+
+Un ou plusieurs utilisateurs peuvent être responsable d'un, plusieurs ou aucun projets (école, lycéen ou étudiant).\\
+
+La création et la modification d'une caractéristique concernant un bénévole devront faire l'objet d'un envoi de mail au bénévole l'informant de la création ou modification voulue et donnant l'ensemble des informations le concernant. Un an après une modification sur une caractéristique sur un utilisateur, l'ancienne caractéristique sera supprimée. \\
+
+
+Une contrainte d'intégrité du système est que toute action effectuée doit avoir été réalisée par un bénévole existant. \\
+Si le nom de l'intervenant ayant effectué une action n'est pas connu, l'action sera attribuée a un bénévole spécial. Une fonction d'interrogation permettant de donner la liste des interventions effectuées par ce bénévole fictif sera implémentée afin d'engager les actions nécessaires pour trouver le nom du bénévole ayant effectué cette action. \\
+
+
+La procédure de connexion au système sera basée sur le couple login (adresse e-mail) / mot de passe.
+\\
+
+
+
+\subsubsection{Fonctionnalité 2}
+La fonctionnalité 2 du système devra permettre les opérations conventionnelles de gestion individuelle comme la création d'un établissement dans le système, la modification des
+caractéristiques le concernant, la suppression d'un établissement. Comme pour un bénévole, la suppression devra être logique et non physique de façon à ne pas perdre l'historique des actions effectuées dans cet établissement sachant que la disparition peut être temporaire en fonction de l'ouverture et la fermeture de classes. \\
+
+
+Les informations associées à un établissement sont :
+\begin{itemize}
+\item sa ville de rattachement (unique), 
+\item son nom lorsqu'il existe (attention dans la même ville il peut y avoir une école élémentaire et une école maternelle sans nom spécifique), 
+\item son adresse,
+\item son code postal,
+\item le responsable de l'établissement, 
+\item le contact plaidoyers (facultatif),
+\item le contact frimousse (facultatif),
+\item le contact pour les activités ponctuelles (facultatif),
+\item le numéro de téléphone fixe de l'établissement, 
+\item la ou les adresse(s) électronique(s) de l'établissement (attention toutes les adresses électroniques ne sont pas forcément celles définies par le rectorat notamment pour les établissements privés ou pour les centres de loisirs), 
+\item le nom, le numéro de téléphone fixe et/ou portable de l'enseignant demandant une intervention, son adresse électronique (toutes ces informations ne sont pas forcément disponibles). Il peut y avoir plusieurs enseignants pour la même classe (donc plusieurs contacts possibles).
+\item sa localisation géographique (Latitude-Longitude en WGS84) si elle est disponible.
+\item son type (enseignement ou centre de loisirs)
+\\
+\end{itemize}
+Les enseignements ont un UAI et un type d'enseignement (l'enseignement supérieur, les lycées, les collèges, les écoles élémentaires et maternelles). \\
+Les centres de loisirs ont un type de centre (maternelle, élémentaire et adolescent). 
+\\
+
+\subsubsection{Fonctionnalité 3}
+La fonctionnalité 3 permettra l'envoi de courriers électroniques aux établissements qui contiendront une lettre type accompagnée d'une plaquette en pièce jointe. La plaquette sera fonction du type d'établissement et envoyé au format pdf. Le corps de l'e-mail contiendra la lettre type. 
+
+Cette fonctionnalité doit également permettre un envoi ciblé en fonction de plusieurs critères qui pourront être sélectionnés simultanément :
+\begin{itemize}
+\item le type de l'établissement (maternelle, élémentaire, centre de loisirs,...), 
+\item la distance des villes suivantes : Rouen, Le Havre, Yvetot, Fécamp, Dieppe et Neuchâtel en Bray à la ville de l'établissement,
+\item la non-réponse à une précédente sollicitation pour cette année scolaire (un mail de relance),
+\item la réponse à une précédente sollicitation pour cette année scolaire (les établissements ayant demandé une action de frimousses ou une action ponctuelle mais pas de plaidoyer),
+\item un sous-ensemble spécifique des adresses obtenues soit manuellement soit par l'application d'un critère (les écoles d'une ville donnée, un type donné par exemple),
+\item exclure de la liste les établissements ayant fait une demande qui n'a pas pu être satisfaite par les plaideurs (pour des raisons d'emploi du temps, distance, ...). \\
+\end{itemize}
+
+Chaque e-mail invitera l'établissement à se connecter à un lien (actif) contenant un formulaire à remplir pour effectuer une demande d'intervention. Les champs à remplir seront : 
+\begin{itemize}
+\item la ville de l'établissement, 
+\item le nom de l'établissement, 
+\item le nom de la personne référente sur cette action, 
+\item l'adresse électronique de la personne référente sur cette action ou celle de l'établissement si la personne  référente n'en a pas, 
+\item le numéro de téléphone de la personne référente ou de l'établissement si la personne référente n'en a pas,
+\item les plages de dates souhaitées pour l'intervention (date de début et date de fin),
+\item les disponibilités (jours et les moments souhaités comme dans le formulaire actuel), 
+\item le matériel disponible (vidéo projecteur, TBI, enceinte ou  aucun), 
+\item le type de classes concernées (maternelle, élémentaire (ou centre de loisirs élémenaire), collège (ou centre de loisirs collège), lycée, enseignement supérieur)
+\item le niveau de la classe, 
+\item le thème dominant de l'intervention souhaité, 
+\item le nombre d'élèves à préciser si plusieurs classes,
+\item des remarques.
+\end{itemize}
+Les réponses à ce formulaire viendront alimenter la base de données des demandes d'intervention. \\
+Concernant le matériel disponible , plusieurs matériels pourront être choisis. \\
+Concernant le niveau de la classe, nous reprendrons ceux proposés dans le formulaire actuelle. Si la classe regroupe le niveau Grande Section et CP, l'information doit être précisée en remarque.
+Concernant les classes spéciales (classe pour l'inclusion scolaire, sections d'enseignement général et professionnel adapté, etc...), elles ne seront pas traitées comme les classes par défaut, elles seront précisées dans le champs remarque.
+\\
+Les thèmes des interventions ne seront pas prédéfinis pour les lycées et l'enseignement supérieur. Ceux-ci seront renseignés dans un champs texte par l'établissement demandeur. Pour les autres types d'établissement, nous reprendrons les thèmes du formulaire actuel.
+
+
+\subsubsection{Fonctionnalité 4}
+La fonctionnalité 4 consiste en premier lieu à faciliter le remplissage du formulaire par l'établissement. 
+Une complétion automatique du nom de la ville, de l'établissement, des niveaux scolaires devra être mise en place. Cependant, il n'y en aura pas pour les informations personnelles du demandeur (comme  par exemple son numéro de téléphone ou son adresse électronique).\\
+Les données personnelles concernant les contacts dans l'établissement seront seulement un complément des informations disponibles pour un établissement. Elles pourront être mises à jour chaque année dans différents cas comme par exemple lors d'une mutation ou d'un départ en retraite ou encore d'un nouvel enseignant.   \\
+
+La fonctionnalité 4 permettra également l'envoi d'un e-mail de confirmation à l'établissement lorsque ce dernier aura rempli et validé le formulaire. Cet e-mail proposera également à l'établissement d'annuler la demande l'intervention. \\ Une copie de cet e-mail sera adressé au responsable local de chaque activité.\\
+
+Si un établissement annule une demande d'intervention (grâce à l'e-mail de confirmation d'une demande d'intervention), une procédure supprimera cette demande et enverra des e-mails de confirmation de suppression de cette demande au responsable de l'activité initialement demandée et à l'établissement.  
+
+\subsubsection{Fonctionnalité 5}
+La fonctionnalité 5 permettra d'afficher une carte montrant les lieux où des demandes d'intervention ont été faites pour un créneau que l'utilisateur aura entré.
+La fonctionnalité 5 consistera également à planifier les interventions c'est-à-dire qu'un plaideur s'attribue une intervention.
+Lors de chaque affectation, un e-mail d'information de prise en charge de la demande par l'équipe de plaideur sera envoyé à l'établissement demandeur ainsi qu'au responsable de l'activité demandée.
+Une intervention ne peut être attribué qu'à un utilisateur.
+\\
+
+\subsubsection{Fonctionnalité 6}
+Une fois que le plaideur a défini une date pour son intervention (suite à échange de courriers électroniques avec le contact de l'établissement), il met à jour les informations concernant l'intervention (date, heure, nombre d'élèves, ...). Le demandeur reçoit alors un mail de confirmation l'informant du jour de l'heure et du lieu de l'intervention avec le nom et les coordonnées (adresse électronique, téléphone) du plaideur. Le texte de ce message est à définir et à faire valider par le responsable des plaideurs. \\
+
+\subsubsection{Fonctionnalité 7}
+La fonctionnalité 7 permettra d'envoyer un e-mail de rappel à l'établissement et au contact dans l'établissement (si son adresse électronique est différente de celle de l'établissement), une semaine avant l'intervention. Le texte de ce message sera à définir avec \nomClient{} et à faire valider par le responsable des plaideurs. \\
+Trois jours avant l'intervention, le plaideur recevra un e-mail de rappel avec les informations associées (date, heure, lieu, thème, nombre d'élèves, remarques, niveau des élèves). 
+\\
+
+
+

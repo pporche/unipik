@@ -1,6 +1,6 @@
 # version 1.00, date 20/02/16, auteur Michel Cressant
 # Compilation
-all: dse dsi ptv
+all: dse dsi ptv modeleea
 
 dse:
 	make -C DSE
@@ -11,9 +11,12 @@ dsi:
 ptv:
 	make -C PTV
 
+modeleea:
+	make -C ModeleEA
+
 
 # Archivage
-archive: archivedse archivedsi archiveptv
+archive: archivedse archivedsi archiveptv archivemodeleea
 
 archivedse:
 	make -C DSE archive
@@ -24,11 +27,14 @@ archivedsi:
 archiveptv:
 	make -C PTV archive
 
+archivemodeleea:
+	make -C ModeleEA archive
+
 
 
 
 # Nettoyage
-clean : cleandse clean dsi
+clean : cleandse cleandsi cleanptv cleanmodeleea
 
 cleandse:
 	make -C DSE clean
@@ -39,3 +45,5 @@ cleandsi:
 cleanptv:
 	make -C PTV clean
 
+cleanmodeleea:
+	make -C ModeleEA clean

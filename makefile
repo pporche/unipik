@@ -8,8 +8,8 @@ Qualite:
 Specifications:
 	make -C specifications
 
-Developpement:
-	make -C developpement
+#Developpement:
+#	make -C developpement
 
 
 # Archivage

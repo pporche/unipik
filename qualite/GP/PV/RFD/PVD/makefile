@@ -1,3 +1,4 @@
+# version 1.00, date 20/02/16, auteur Michel Cressant, Pierre Porche
 # Importation des variables
 include makevars
 

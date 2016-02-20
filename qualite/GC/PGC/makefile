@@ -1,3 +1,4 @@
+# version 1.00, date 20/02/16, auteur Mathieu Medicis
 # Importation des variables
 include makevars
 

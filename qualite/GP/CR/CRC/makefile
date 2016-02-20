@@ -1,3 +1,4 @@
+# version 1.00, date 20/02/16, auteur Michel Cressant, Pierre Porche
 # Importation des variables
 include makevars
 
@@ -5,7 +6,7 @@ include makevars
 
 all : crtq cleanrep cleaneps
 
-crtq : $(PDFDIR)/CRC_Q_Unipik_d16-01-26.pdf $(PDFDIR)/CRC_Q_Unipik_d16-02-03.pdf 
+crtq : $(PDFDIR)/CRC_Q_Unipik_d16-01-26.pdf  
 
 $(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

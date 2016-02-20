@@ -22,6 +22,11 @@ $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 $(IMGDIR)/%.eps: $(IMGDIR)/%.dia
 	$(DIA) -e $@ --filter=eps-builtin $<
 
+# Archivage
+archive:
+	mkdir -p ${ARCHIVEDIR}
+	cp pdf/*.pdf ${ARCHIVEDIR}
+
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
 
@@ -37,7 +42,4 @@ cleanrep:
 cleaneps :
 	rm -f images/*.eps
 
-# Archivage
-archive:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
+

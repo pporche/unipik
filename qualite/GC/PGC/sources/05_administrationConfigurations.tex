@@ -1,0 +1,88 @@
+\section{Suivi des configurations}
+
+Afin de permettre le suivi de ces documents ainsi que leur état en temps réel, \nomEquipe{} utilise l'intranet \lintranet. 
+Il permet de savoir quelle est la dernière version applicable d'un document et récapitule l'ensemble du contenu des référentiels. 
+Cette page est actualisée par la personne concernée lors de la création, la vérification, la validation, l'approbation, la diffusion et l'archivage d'un document. Sur cette page figurent les informations suivantes:
+\begin{itemize}
+	\item \textbf{référentiel}: nom du référentiel auquel le document appartient;
+	\item \textbf{document}: nom du document;
+	\item \textbf{rédacteur}: nom du rédacteur qui a initié le document;
+	\item \textbf{vérificateur}: nom du vérificateur;
+	\item \textbf{validateur}: nom du validateur;
+	\item \textbf{approbation}: le document a été approuvé ou non (case verte si le document a été
+	approuvé, rouge sinon);
+	\item \textbf{diffusion}: le document a été diffusé ou non (case verte si le document a été
+	diffusé, rouge sinon);
+	\item \textbf{archivage}: le document a été archivé ou non (case verte si le document a été
+	archivé, rouge sinon);
+	\item \textbf{référence}: nom complet du document;
+	\item \textbf{localisation}: où a été diffusé le document;
+	\item \textbf{chemin}: chemin complet d'accès au document sur le \git.
+\end{itemize}
+
+
+\section{État de Configuration}
+\label{EC}
+
+Un État de configuration décrit l'état des documents demandés par leur destinataire à une date donnée. Un état de configuration doit être généré entre autres à chaque livraison. Ils suivent le modèle présenté en Annexe \ref{modèle EC}. Il doit être composé de tous les documents nécessaire à la livraison : 
+\begin{itemize}
+\item \textbf{Pour une livraison client:}
+	\begin{itemize}
+	\item les livrables (code source, procédure d'installation, documentation technique);
+	\item les documents de spécification.
+	\end{itemize}
+\item \textbf{Pour une inspection technique:}
+	\begin{itemize}
+	\item le code source;
+	\item les documents de spécification;
+	\item les documents qualité;
+	\item les documents de gestion de projet (exemple: comptes-rendus de réunion) nécessaires à la compréhension des autres documents.\\
+	\end{itemize}
+\end{itemize}
+
+
+Chaque fiche comprend un tableau indiquant les informations suivantes pour chaque document :
+\begin{itemize}
+	\item \textbf{Type}: le type du document. \\
+	Exemple : \verb+PQ+;
+	\item \textbf{Destinataire}: le destinataire du document;
+	\item \textbf{Référence du document}: la référence complète du document. \\
+	Exemple : \verb+PGC_Q_Unipik_v1.00+;
+	\item \textbf{Date de création}: date de création du document.\\
+	Format : \verb+JJ/MM/AAAA+ ;
+	\item \textbf{Raisons}: le but de l'envoi de ce document.\\
+	Exemple : \verb+Livraison lot 1+.
+\end{itemize}
+
+
+\bigskip
+Par sa signature, le vérificateur de l'État de Configuration atteste avoir vérifié la présence
+de tous les éléments nécessaires à la livraison ainsi que leur cohérence, tant au niveau de
+la forme que du fond.
+
+\paragraph{Précision du suffixe :}
+Le suffixe de l'état de configuration est de type date et commentaire. Le suffixe \verb+date+ correspond à la date à laquelle les documents ont été envoyés par l’émetteur. Le suffixe \verb+commentaire+ doit définir la raison de la création de l'état de configuration. Les valeurs possibles sont :
+\begin{itemize}
+\item \verb+Inspection+;
+\item \verb+Livraison+;
+\item \verb+<NomDoc>+; \\
+Exemple : \verb+cPQ+
+\item \verb+Autre+.
+\end{itemize}
+Exemple : \verb+EC_Q_Unipik_d16-03-05_cLivraison+
+
+\section{Fiche de Réception de Documents}
+\label{FRD}
+
+Une fiche de réception de documents décrit les documents remis par des personnes extérieures au PIC. Elles suivent le modèle présenté en Annexe \ref{modèle FRD}. Chaque fiche comprend un tableau indiquant les informations suivantes pour chaque document :
+\begin{itemize}
+\item \textbf{Date de réception} : la date de réception du document (format : \verb+JJ/MM/AAAA+);
+\item \textbf{Emetteur} : l'émetteur du document;
+\item \textbf{Raisons} : le but de l'envoi de ce document;
+\item \textbf{Description du document} : la description du contenu du document;
+\item \textbf{Référence du document} : le nom complet du document;
+\item \textbf{Chemin du document} : le chemin complet du document (où il est stocké).
+\end{itemize}
+
+\paragraph{Précision du suffixe :}
+Le suffixe de la fiche de réception de documents est de type date. Le suffixe \verb+date+ correspond à la date à laquelle les documents ont été envoyés par l’émetteur.

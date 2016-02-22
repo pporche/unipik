@@ -1,3 +1,4 @@
+% version 1.00, date 20/02/16, auteur Michel Cressant
 \documentclass[asi]{picInsa}
 \DeclareGraphicsRule{*}{pdf}{*}{}
 \usepackage{pdfpages}
@@ -54,7 +55,7 @@
 \couverture{}
 
  \informationsGenerales{}
-\input{sources/page_de_service.tex}
+\input{sources/00_pageDeService.tex}
 
 \tableofcontents
 
@@ -63,24 +64,15 @@
 
 \chapter{Introduction}
 \label{introduction}
-\input{sources/introduction.tex}
+\input{sources/01_introduction.tex}
 
 \chapter{Lot 1}
 \label{lot1}
-\input{sources/lot1.tex}
+\input{sources/02_lot1.tex}
 
 
 
-\begin{appendix}
-\part*{Annexes}
-\addcontentsline{toc}{part}{Annexes}
 
-\listoffigures
-\addcontentsline{toc}{chapter}{Table des figures}
-	 
-\listoftables
-\addcontentsline{toc}{chapter}{Liste des tableaux}
-\end{appendix}
 \pageQuatriemeCouverture
 
 \end{document}

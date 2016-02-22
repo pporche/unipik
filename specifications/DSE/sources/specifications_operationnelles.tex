@@ -14,8 +14,34 @@ En outre, il est important de conserver un historique de toutes les actions effe
 
 \subsection{Base de données}
 
-Dans un premier temps, concernant les informations relatives aux utilisateurs , ces derniers devront pouvoir posséder une activité potentielle ( parmis les trois suivantes : Plaidoyer, Frimousse et Action ponctuelle), avoir la possibilité d'encadrer un projet d'élève ou un projet étudiant, et pourront posséder le statut de responsable d'une activité. Ils devront aussi obligatoirement posséder une adresse e-mail. \\
+Dans un premier temps, concernant les informations relatives aux utilisateurs , ces derniers devront pouvoir posséder au moins une activité potentielle (parmis Plaidoyer, Frimousse et Action ponctuelle), avoir la possibilité d'encadrer un projet élève ou un projet étudiant, et pourront posséder le statut de responsable d'une ou plusieurs activités. Ils devront aussi obligatoirement posséder une adresse e-mail. \\
 
 Chacune des activités doit obligatoirement être liée à un ou plusieurs responsables. Ces derniers peuvent être en charge de plusieurs activités. De plus une autre contrainte d'intégration du système est que toute action ayant été effectuée le soit par un bénévole existant. \\
 
-Ensuite, concernant les informations relatives aux établissements, la base de donnée doit recenser le nom des contacts dans l'école. Il en existe deux types : le contact pour une activité en particulier ainsi que le responsable de l'école.
+Ensuite, concernant les informations relatives aux établissements,il peuvent posséder plusieurs emails et la base de données doit recenser le nom des contacts dans l'école. Il en existe deux types : le contact pour une activité en particulier ainsi que le responsable de l'école. Un établissement est rattaché à une ville unique, est identifié par un UAI unique mais ne possède pas forcément de nom. Lorsque ces derniers souhaitent effectuer une demande d'intervention, ils peuvent proposer une plage de date et préciser pour chaque jour de la semaine le moment à privilégier (matin, après-midi, indifférent) et le moment à éviter. \\
+
+Enfin, pour les données liées aux interventions, il faudra pouvoir stocker les informations concernant le matériel disponible (présence ou non d'un rétroprojecteur, d'un tableau interactif ou d'enceintes). Les plaidoyers sont associés à un thème qui dépend du niveau de la classe concernée par l'intervention :
+
+\begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}
+  \hline
+  Maternelle & Primaire & Collège \\
+  \hline
+  Convention Internationale des Droits de l'Enfant & Convention Internationale des Droits de l'Enfant & Convention Internationale des Droits de l'Enfant \\
+  \hline
+  L'éducation & L'éducation & L'éducation \\
+  \hline
+  La santé - Alimentation & La santé - Alimentation & La santé - Alimentation \\
+  \hline
+  L'eau & L'eau & L'eau \\
+  \hline
+  Le harcèlement & Le harcèlement & Le harcèlement \\
+  \hline
+  & La santé (en général) & La santé (en général) \\
+  \hline
+  & Le travail des enfants & Le travail des enfants \\
+  \hline
+  & & Les enfants soldats \\
+  \hline
+  & & Les urgences mondiales \\
+  \hline
+\end{tabular}

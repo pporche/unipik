@@ -5,7 +5,7 @@ NOM_FICHIER=FRD_Q_Unipik_d16-01-28
 CLSPATH="../../../ressources/cls/"
 
 # Récupération du chemin du package vocabulaireUnipik.sty
-VOCPATH="../../../ressources/Unipik/vocabulaire/"
+VOCPATH="../../../ressources/unipik/vocabulaire/"
 
 # Dossiers dans PGC
 PDFDIR=pdf

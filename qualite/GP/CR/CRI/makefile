@@ -2,7 +2,7 @@
 # Importation des variables
 include makevars
 
-.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
+#.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
 all : cri cleanrep cleaneps
 
@@ -13,9 +13,6 @@ $(PDFDIR)/%.pdf : enregistrements/%.tex
 	export TEXINPUTS;\
 	$(CCTEX) $<
 	mv *.pdf $(PDFDIR)
-
-# I have no idea what this thing is doing
-
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps

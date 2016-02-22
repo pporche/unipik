@@ -2,20 +2,17 @@
 # Importation des variables
 include makevars
 
-.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
+#.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
 all : crtp cleanrep cleaneps
 
-crtp : $(PDFDIR)/CRTP_Q_Unipik_d16-01-22.pdf $(PDFDIR)/CRTP_Q_Unipik_d16-01-29.pdf
+crtp : $(PDFDIR)/CRTP_Q_Unipik_d16-01-22.pdf $(PDFDIR)/CRTP_Q_Unipik_d16-01-29.pdf $(PDFDIR)/CRTP_Q_Unipik_d16-02-05.pdf 
 
 $(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\
 	$(CCTEX) $<
 	mv *.pdf $(PDFDIR)
-
-# I have no idea what this thing is doing
-
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps

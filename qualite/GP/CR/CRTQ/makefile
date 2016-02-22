@@ -14,9 +14,6 @@ $(PDFDIR)/%.pdf : enregistrements/%.tex
 	$(CCTEX) $<
 	mv *.pdf $(PDFDIR)
 
-# I have no idea what this thing is doing
-
-
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
 

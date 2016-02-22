@@ -6,7 +6,7 @@
 \usepackage{graphicx}
 \usepackage{color, colortbl}
 \usepackage{longtable}
-\usepackage{../../../../ressources/Unipik/vocabulaire/vocabulaireUnipik}
+\usepackage{vocabulaireUnipik}
 \pagestyle{fancy}
 \definecolor{Gray}{gray}{0.8}
 
@@ -33,7 +33,7 @@
 				\rowcolor{Gray}
 				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
 				\hline
-				1.00 & 29/01/2016 & \Pierre & Création & Toutes \\
+				1.00 & 22/02/2016 & \Pierre, \Kafui & Création & Toutes \\
 		\hline		
 			\end{tabular}
 		\end{center}
@@ -46,74 +46,45 @@
 				\rowcolor{Gray}
 				Rôle & Fonction & Nom & Date & Visa		 \\
 				\hline
-				Vérificateur & \RQA & \Kafui & 29/01/2016 & pgpic \\[30pt]
+				Vérificateur & \RGC & \Mathieu & 23/02/2016 & pgpic \\[30pt]
 				\hline
-				Validateur & \CP & \Sergi & 29/01/2016 & pgpic \\[30pt]	
+				Validateur & \CP & \Sergi & 23/02/2016 & pgpic \\[30pt]	
 				\hline
 			\end{tabular}
 		\end{center}
 
 %--- Réunion --%
 
-
-\section{Résumé de la semaine}
-Nous avons fini le \PQ{} et le \PGC{} et nous les avons envoyés à M. Pascal Meslier pour approbation.
-Le mardi 26 Février, nous avons vu le client. Ce qui est ressorti de cette réunion, c'est que l'\nomClient{} ne se préoccupait pas de la méthode de réalisation du projet mais seulement du livrable. Concernant celui ci, le client nous a exprimé son vif désir d'avoir un livrable fonctionnel et utilisable à la fin du premier semestre de PIC.
+\section{Résumé semaine passée et questions}
+Cette semaine, quatre personnes ont travaillé sur le \DSE{}, dont \Michel{} qui s'est plus tard réorienté sur le \PTV{}. Le \DSECourt{} est très proche d'être terminé et nous avons des questions concernant le \PTVCourt{}.
+\paragraph{}
+Celui ci doit comprendre la manière employée pour valider les livrables. Il faut expliquer comment nous allons démontrer que chacune des affirmations (ex. : "l'ensemble des composant est interfaçable") que nous faisons. Le \PTVCourt{} dit uniquement ce que l'on va tester et comment (ex. : "La validation se fera au travers d'un programme qui montrera la connexion". Les détails sur les tests sont dans le \CDR{}.
 \\
-Nous avons revu avec le client le cahier des charges afin de lui soumettre nos questions et cela nous a éclairé sur les attentes du client.
-
-~
-
-Nous avons ensuite entamé la phase de spécification en nous séparant en trois groupes : 
-\begin{itemize}
-\item un groupe sur le \DSE{}, le \DSI{} et le \PTV{} ; 
-\item un groupe sur le modèle Entité/Association ;
-\item un groupe sur la réalisation d'une maquette.
-\end{itemize}
-
-Concernant le DSE, M. \nomTuteurPedago{} nous explique que celui ci sera assez rapide à faire puisque nous disposons d'un cahier des charges complet et précis. Il nous conseille donc de se concentrer sur le \PTV{}.
+Un exemple sur les tests de l'interface : "nous utiliserons tel logiciel" est une affirmation qui appartient au \PTVCourt{}. "nous cliqueront à tel et tel endroit" est une affirmation qui appartient au \CDR{}. \nomTuteurPedago{} nous demande de lui envoyer le \PTV{} en même temps qu'au client.
 \\
-Concernant la réalisation de la maquette, \nomTuteurPedago{} nous explique qu'elle n'a de sens qu'une fois les fonctionnalités de notre application définies. Il faut donc réaliser le \DSICourt{} et définir l'architecture avant. Cela permettra de réaliser les maquettes en ayant hiérarchisé nos fonctionnalités en terme de dépendances.
+Il faudra tester indépendamment le modèle, la vue et le contrôleur. Pour la vue, il existe des "logiciels de clic" et pour la Base de Données, il faudra l'interroger.
+\paragraph{}
+La période probatoire dure une semaine durant laquelle des tests ont lieu avec le client qui nous tient informé de leur déroulement. au bout d'une semaine, sans nouvelles de la part du client, la recette est acceptée.
+\paragraph{}
+Une réunion s'est tenue dans les locaux du client le 03/02/2016. Ceux-ci sont de petite taille et ne sont que peu équipés donc peu pratiques. La réunion a été trop longue pour plusieurs raisons, parmi lesquelles le fait que nous soyons trop nombreux. Il n'y avait pas d'heure de fin prévue et la conduite de réunion était trop "souple". Afin de remédier à ces problèmes, il faut réduire le nombre de participants, fixer une heure de fin, établir un \OJ{}, prévoir un timing et servir des cafés et des biscuits.
+\\
+Nous avons ensuite rapporté à \nomTuteurPedago{} les modifications sur le \CDC{} suite à la réunion client (Cf. CRC_Q_Unipik_d16-02-03).
+\paragraph{}
+Concernant les formations, il existe le site coursenligne.insa-rouen.fr qui pourra nous aider à trouver du contenu adapté. Il faut également ajouter des formations à l'UML dans le plan de formation.
+\paragraph{}
+Au sujet du serveur mis à disposition, M. Bonnegent nous a fait comprendre que cela ne serait pas possible. \nomTuteurPedago{} nous explique que nous aurions du nous adresser plus haut dans la hiérarchie, mettre en avant l'aspect mécénat et arriver avec une solution "clef en main". L'idée serait d'aller parler de cela avec des personnes comme Anne Caldin et Maxime Reynet puis de signer une convention avec un professeur référent en passant par des personnes clef : Gilles Gasso, Jean Macquet, UNICEF France, etc. .
 
-~
 
-Nous avons également fait une analyse des risques et opportunités (13 risques et 7 opportunités) que nous avons succinctement présenté à \nomTuteurPedago{}.
+\section{Revue du modèle E/A}
 
-~
-
-Le dimensionnement total du système n'a pas été fait. Nous aurions dû demander au client un ordre de grandeur du nombre de tuples pour chaque niveau (local, régional, national). Cela permettra de définir les technologies à utiliser et d'avancer sur le \DSICourt{}. Une fois fait, cela permet de proposer une architecture qui a du sens en raisonnant sur les structures physiques de nos données. Il faudra mettre l'architecture en couches et de ce fait, pouvoir faire des sous-groupes selon le même découpage. Il est important de monter en puissance sur le dimensionnement et l'architecture des systèmes d'information.
-
-~
-
-Concernant les fiches de compétences, il faut enlever les compétences qui ne sont pas pertinentes concernant le projet. Il faut se former sur l'IHM en terme de design et les bases de données. Pour cela, le \RQCourt{} doit remplir les fiches de formation avec au moins deux des trois thèmes suivants :
-\begin{itemize}
-\item dimensionnement et architecture des systèmes d'information;
-\item Bases de Données;
-\item IHM design.
-\end{itemize}
-Il faudra ensuite planifier ces formations au plus vite et les mettre en place afin d'éviter de se retrouver au pied du mur.
 
 
 \section{Revue du GIT}
+\nomTuteurPedago{} a regardé le git et certains problèmes persistent : il faut mettre des commentaires dans tous les fichiers pour spécifier leur rédacteur, leur version et leur date de rédaction. Les conventions de nommage n'ont pas été définies ou respectées. Les makefile se répètent ou font référence à des dossiers inexistants.
+\\
+Le modèle E/A doit se trouver dans le dossier spécifications.
 
-\nomTuteurPedago{} a fait une "inspection technique" sur le dossier qualité.
-\\
-Il est à noter qu'il y a des problèmes de chemins absolus. Il n'en faut pas et il faut donc les repérer et les remplacer par des chemins relatifs.
-\\
-Un autre gros problème est la présence de fichiers inutiles (archives des années passées, doublons, CLS inutiles,...). Ceux ci sont à supprimer.
-\\
-Les makefile ne fonctionnent pas tous et certains ont des numéros de version directement dans les chemins d'accès. Il faut donc les refaire afin qu'à tout moment, ils soient fonctionnels et modifiables. La prise de bonnes habitudes concernant notre GIT est essentielle puisqu'elle nous permettra d'avancer plus sereinement à l'avenir. Le \RD{}
-est responsable de l'exécution de ces actions.
 
-\section{Objectifs semaine prochaine}
-Les points à travailler pour la semaine prochaine sont :
-\begin{itemize}
-\item Traiter toutes les remarques de \nomTuteurPedago{} remontées par la présente réunion ;
-\item Avancer, voir terminer, la rédaction du \PTV{} ;
-\item Avancer, voir terminer, la rédaction du \DSI{} ;
-\item Terminer la rédaction du \DSE{} ;
-\item Terminer la conception du modèle E/A, de préférence avant jeudi, afin de l'envoyer à \nomTuteurPedago{}.
-\end{itemize}
 
 
 %--- fin de réunion ---%

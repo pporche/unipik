@@ -6,7 +6,7 @@ include makevars
 
 all : frd cleanrep cleaneps
 
-frd : $(PDFDIR)/FRD_Q_Unipik_d16-01-28.pdf $(PDFDIR)/FRD_Q_Unipik_d16-02-01.pdf $(PDFDIR)/FRD_Q_Unipik_d16-02-22.pdf
+frd : $(PDFDIR)/FRD_Q_Unipik_d16-01-28.pdf $(PDFDIR)/FRD_Q_Unipik_d16-01-30.pdf $(PDFDIR)/FRD_Q_Unipik_d16-02-06.pdf $(PDFDIR)/FRD_Q_Unipik_d16-02-03.pdf
 
 $(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

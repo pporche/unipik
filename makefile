@@ -1,6 +1,6 @@
 # version 1.00, date 20/02/16, auteur Michel Cressant
 # Compilation
-all: Qualite Specifications
+all: Qualite Specifications # Developpement
 
 Qualite:
 	make -C qualite

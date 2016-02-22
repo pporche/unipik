@@ -5,7 +5,7 @@ NOM_FICHIER=PVD_Q_Unipik_d16-01-26
 CLSPATH="$(shell pwd)/../../../../../ressources/cls/"
 
 # Récupération du chemin du package vocabulaireUnipik.sty
-VOCPATH="$(shell pwd)/../../../../../ressources/Unipik/vocabulaire/"
+VOCPATH="$(shell pwd)/../../../../../ressources/unipik/vocabulaire/"
 
 # Dossiers dans PGC
 PDFDIR=pdf

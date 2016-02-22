@@ -8,13 +8,13 @@ Ensuite, concernant les informations qui seront stockées dans la base de donné
 
 Les utilisateurs devront utiliser un compte sécurisé à l'aide d'un login et d'un mot de passe dans le but d'utiliser l'application. Les mots de passe seront hashés et salés avant d'être stocké dans la base de données. En effet, cette méthode permet de renforcer la sécurité des informations en leur rajoutant une donnée supplémentaire afin d'empêcher que deux informations identiques conduisent à la même empreinte. \\
 
- La récupération du mot de passe devra se faire de manière sécurisée, soit par envoi par email d'un lien pour le réinitialiser, soit par le biais d'une question secrète (uniquement si l'utilisateur n'a pas d'email car moins sécurisé).\\
+ La récupération du mot de passe devra se faire de manière sécurisée, soit par envoi par email d'un lien pour le réinitialiser, soit par le biais d'une question secrète (uniquement si l'utilisateur n'a pas d'email car cette solution est moins sécurisé).\\
 
-En outre, il est important de conserver un historique de toutes les actions effectués par un bénévole, y-compris si le compte de celui-ci à été supprimé. 
+En outre, il est important de conserver un historique de toutes les actions effectués par un bénévole, y compris si le compte de celui-ci a été supprimé. 
 
 \subsection{Base de données}
 
-Dans un premier temps, concernant les informations relatives aux utilisateurs , ces derniers devront pouvoir posséder au moins une activité potentielle (parmi Plaidoyer, Frimousse et Action ponctuelle), avoir la possibilité d'encadrer un projet élève ou un projet étudiant et pourront posséder le statut de responsable d'une ou plusieurs activités. Ils devront aussi obligatoirement posséder une adresse e-mail. \\
+Dans un premier temps, concernant les informations relatives aux utilisateurs, ces derniers devront pouvoir posséder au moins une activité potentielle (parmi Plaidoyer, Frimousse et Action ponctuelle), avoir la possibilité d'encadrer un projet élève ou un projet étudiant et pourront posséder le statut de responsable d'une ou plusieurs activités. Ils devront aussi obligatoirement posséder une adresse e-mail. \\
 
 Chacune des activités doit obligatoirement être liée à un ou plusieurs responsables. Ces derniers peuvent être en charge de plusieurs activités. De plus, une autre contrainte d'intégration du système est que toute action ayant été effectuée le soit par un bénévole existant. \\
 

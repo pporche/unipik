@@ -6,7 +6,7 @@ NOM_FICHIER=PTV_S_Unipik_v1.00
 CLSPATH="$(shell pwd)/../../ressources/cls/"
 
 # Récupération du chemin du package vocabulaireUnipik.sty
-VOCPATH="$(shell pwd)/../../ressources/Unipik/vocabulaire/"
+VOCPATH="$(shell pwd)/../../ressources/unipik/vocabulaire/"
 
 # Dossiers dans PTV
 PDFDIR=pdf

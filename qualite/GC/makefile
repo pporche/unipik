@@ -3,7 +3,7 @@
 all: frd pgc
 
 frd:
-	make -C FRD
+	make -C FEDC
 
 pgc:
 	make -C PGC
@@ -13,7 +13,7 @@ pgc:
 archive: archivefrd archivepgc 
 
 archivefrd:
-	make -C FRD archive
+	make -C FEDC archive
 
 archivepgc:
 	make -C PGC archive
@@ -23,7 +23,7 @@ archivepgc:
 clean : cleanfrd cleanpgc 
 
 cleanfrd:
-	make -C FRD clean
+	make -C FEDC clean
 
 cleanpgc:
 	make -C PGC clean

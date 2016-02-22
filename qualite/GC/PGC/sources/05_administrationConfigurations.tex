@@ -71,18 +71,17 @@ Exemple : \verb+cPQ+
 \end{itemize}
 Exemple : \verb+EC_Q_Unipik_d16-03-05_cLivraison+
 
-\section{Fiche de Réception de Documents}
-\label{FRD}
+\section{Fiche d'Etat des Données Client}
+\label{FEDC}
 
-Une fiche de réception de documents décrit les documents remis par des personnes extérieures au PIC. Elles suivent le modèle présenté en Annexe \ref{modèle FRD}. Chaque fiche comprend un tableau indiquant les informations suivantes pour chaque document :
+Une Fiche d'Etat des Données Client (FEDC) décrit l'ensemble des documents envoyées par le client. Elle suit le modèle présenté en Annexe \ref{modèle FEDC}. Pour chaque document, la FEDC comprend un tableau indiquant les informations suivantes :
 \begin{itemize}
-\item \textbf{Date de réception} : la date de réception du document (format : \verb+JJ/MM/AAAA+);
 \item \textbf{Emetteur} : l'émetteur du document;
-\item \textbf{Raisons} : le but de l'envoi de ce document;
-\item \textbf{Description du document} : la description du contenu du document;
-\item \textbf{Référence du document} : le nom complet du document;
-\item \textbf{Chemin du document} : le chemin complet du document (où il est stocké).
+\item \textbf{Date} : la date de réception du document (format : \verb+JJ/MM/AAAA+);
+\item \textbf{Stockage} : le chemin complet du document (où il est stocké);
+\item \textbf{Détruit} : indique si le document a été détruit ou s'il est encore possédé par \nomEquipe. Les valeurs possibles sont \{Oui, Non\};
+\item \textbf{Date de destruction} : indique la date de destruction si elle a eu lieu (format : \verb+JJ/MM/AAAA+).
 \end{itemize}
 
-\paragraph{Précision du suffixe :}
-Le suffixe de la fiche de réception de documents est de type date. Le suffixe \verb+date+ correspond à la date à laquelle les documents ont été envoyés par l’émetteur.
+\paragraph{Précision sur le suffixe :}
+La FEDC ne possède pas de suffixe. En effet il n'y a qu'une seule FEDC qui sera mise à jour au fur et à mesure que nous recevons de nouvelles données ou que des données sont déplacées ou supprimées.

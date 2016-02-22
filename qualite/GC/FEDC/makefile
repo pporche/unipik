@@ -1,4 +1,4 @@
-# version 1.00, date 20/02/16, auteur Sergi COLOMIES
+# version 1.00, date 22/02/16, auteur Mathieu MEDICI
 # Importation des variables
 include makevars
 
@@ -6,7 +6,7 @@ include makevars
 
 all : frd cleanrep cleaneps
 
-frd : $(PDFDIR)/FRD_Q_Unipik_d16-01-28.pdf $(PDFDIR)/FRD_Q_Unipik_d16-01-30.pdf $(PDFDIR)/FRD_Q_Unipik_d16-02-06.pdf $(PDFDIR)/FRD_Q_Unipik_d16-02-03.pdf
+frd : $(PDFDIR)/FEDC_Q_Unipik.pdf
 
 $(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

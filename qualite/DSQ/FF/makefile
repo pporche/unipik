@@ -1,12 +1,12 @@
-# version 1.00, date 20/02/16, auteur Michel Cressant, Pierre Porche
+# version 1.00, date 22/02/16, auteur Pierre Porche
 # Importation des variables
 include makevars
 
 #.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : crtp cleanrep cleaneps
+all : ff cleanrep cleaneps
 
-crtp : $(PDFDIR)/CRTP_Q_Unipik_d16-01-22.pdf $(PDFDIR)/CRTP_Q_Unipik_d16-01-29.pdf $(PDFDIR)/CRTP_Q_Unipik_d16-02-05.pdf
+ff : $(PDFDIR)/FF_Q_Unipik_cBaseDeDonnees.pdf
 
 $(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
@@ -14,11 +14,21 @@ $(PDFDIR)/%.pdf : enregistrements/%.tex
 	$(CCTEX) $<
 	mv *.pdf $(PDFDIR)
 
+
+
+$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
+	$(EPSPDF) -dEPSCrop $< $@
+
+$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
+	$(DIA) -e $@ --filter=eps-builtin $<
+
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
 	rm -f pdf/*.pdf
+	rm -f images/*.pdf
+	rm -f annexe/pdf/*.pdf
 
 # Nettoyage du répertoire
 cleanrep:
@@ -26,8 +36,6 @@ cleanrep:
 
 cleaneps :
 	rm -f images/*.eps
-	rm -f images/*.pdf
-	rm -f annexe/pdf/*.pdf
 
 # Archivage
 archive:

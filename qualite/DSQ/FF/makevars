@@ -1,8 +1,8 @@
 # Définition du nom du document
-NOM_FICHIER=PRO_Q_Unipik_V1.00
+NOM_FICHIER=FF_Q_Unipik_cBaseDeDonnees
 
 # Récupération du chemin de la classe picINSA pour les documents LaTeX
-CLSPATH="$(shell pwd)/../../ressources/cls/"
+CLSPATH="$(shell pwd)/../../../ressources/cls/"
 
 # Récupération du chemin du package vocabulaireUnipik.sty
 VOCPATH="$(shell pwd)/../../../ressources/unipik/vocabulaire/"

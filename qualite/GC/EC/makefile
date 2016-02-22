@@ -1,9 +1,10 @@
+# version 1.00, date 20/02/16, auteur Michel Cressant
 # Importation des variables
 include makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : ec cleanrep cleaneps
+all : ec cleanrep 
 
 ec : $(PDFDIR)/$(NOM_FICHIER).pdf
 
@@ -14,7 +15,7 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
 # Clean commands
-clean : cleanpdf cleanrep cleaneps
+clean : cleanpdf cleanrep 
 
 cleanpdf :
 	rm -f pdf/*.pdf
@@ -24,8 +25,6 @@ cleanpdf :
 cleanrep:	
 	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof
 
-cleaneps :
-	rm -f images/*.eps
 
 # Archivage
 archive:

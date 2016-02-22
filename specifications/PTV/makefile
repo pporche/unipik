@@ -4,7 +4,7 @@ include makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : ptv cleanrep cleaneps
+all : ptv cleanrep 
 
 ptv : $(PDFDIR)/$(NOM_FICHIER).pdf 
 
@@ -18,7 +18,7 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 
 
 # Clean commands
-clean : cleanpdf cleanrep cleaneps
+clean : cleanpdf cleanrep 
 
 cleanpdf :
 	rm -f pdf/*.pdf
@@ -27,10 +27,7 @@ cleanpdf :
 cleanrep:
 	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
 
-cleaneps :
-	rm -f images/*.eps
-	rm -f images/*.pdf
-	rm -f annexe/pdf/*.pdf
+
 
 # Archivage
 archive:

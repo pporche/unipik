@@ -1,0 +1,179 @@
+
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]
+\ProvidesPackage{eastpic/vocabulaireEastpic}
+
+\ProcessOptions
+
+% nom équipe
+\newcommand{\nomPIC}{TUDOR}
+\newcommand{\geotopic}{\textsc{Géotopic}}
+\newcommand{\nomEquipe}{\textsc{EastPIC}}
+\newcommand{\nomEquipeSoutraitante}{\textsc{WestPIC}}
+\newcommand{\opensource}{Open Source}
+\newcommand{\bi}{Business Intelligence}
+\newcommand{\geobi}{Business Intelligence Géographique}
+\newcommand{\geobiCourt}{GéoBI}
+\newcommand{\olap}{Online Analytical Processing}
+\newcommand{\crp}{Centre de recherche public}
+\newcommand{\nomClient}{\crp{} Henri-Tudor}
+\newcommand{\representantClient}{Laurent \textsc{Vergnol}}
+\newcommand{\nomTuteurPedago}{Michel \textsc{Mainguenaud}}
+\newcommand{\nomTuteurQualite}{Benjamin \textsc{C\oe lho De Matos}}
+\newcommand{\nomApprobateur}{Pascal \textsc{Meslier}}
+\newcommand{\adresseSalle}{\vocabulaireDebug{Saint-\'Etienne-du-Rouvray, Bâtiment Bougainville, salle A-RC-08}}
+
+% rôles A REMPLACER PAR CEUX CI DESSOUS
+\newcommand{\chefPICAdjoint}{\chefPIC{} adjoint}
+\newcommand{\responsableQualite}{Responsable qualité}
+\newcommand{\responsableQualiteAdjoint}{\responsableQualite{} adjoint}
+\newcommand{\responsableDev}{Responsable Développement}
+
+% Ces désigniations de fonctions sont celles utilisées dans le PGC
+\newcommand{\cpCourt}{CP}
+\newcommand{\cp}{Chef \picCourt}
+\newcommand{\cpaCourt}{CPA}
+\newcommand{\cpa}{\cp{} Adjoint}
+\newcommand{\rdevCourt}{RD}
+\newcommand{\rdev}{Responsable Développement}
+\newcommand{\resqCourt}{RQ}
+\newcommand{\resq}{Responsable Qualité}
+\newcommand{\rqaCourt}{RQA}
+\newcommand{\rqa}{\resq{} Adjoint}
+\newcommand{\rgcCourt}{RGC}
+\newcommand{\rgc}{Responsable Gestion des Configurations}
+\newcommand{\rrsCourt}{RRS}
+\newcommand{\rrs}{Responsable Réseau et Serveur}
+\newcommand{\devCourt}{D}
+\newcommand{\dev}{Développeur}
+\newcommand{\rIndic}{Responsable Indicateur}
+\newcommand{\pRisque}{Pilote de Risque}
+
+% scrum
+\newcommand{\productOwner}{\emph{Product Owner}}
+\newcommand{\userStories}{\emph{User Stories}}
+\newcommand{\scrumMaster}{\emph{Scrum Master}}
+\newcommand{\scrum}{\emph{mêlée}}
+\newcommand{\productBacklog}{\emph{Product Backlog}}
+\newcommand{\sprintBacklog}{\emph{Sprint Backlog}}
+\newcommand{\burndownChart}{\emph{Burn Down Chart}}
+\newcommand{\srumBoard}{\emph{Scrum Board}}
+
+% outils
+\newcommand{\geomondrian}{GeoMondrian}
+\newcommand{\GeoNode}{GeoNode}
+\newcommand{\GeoNodeUrl}{\url{http://www.geonode.org}}
+\newcommand{\DTrois}{D3.js}
+\newcommand{\DTroisLong}{Data-Driven Documents}
+\newcommand{\DC}{DC.js}
+\newcommand{\Crossfilter}{crossfilter}
+
+\newcommand{\lintranet}{PGPic}
+\newcommand{\Lintranet}{PGPic}
+\newcommand{\nomLogicielAgile}{PivotalTracker}
+\newcommand{\svnLong}{Subversion}
+\newcommand{\svn}{SVN}
+\newcommand{\banquise}{LaBanquise}
+\newcommand{\git}{Git}
+\newcommand{\gitHub}{GitHub}
+\newcommand{\sonar}{SonarQube}
+\newcommand{\jenkins}{Jenkins}
+
+% membre équipe
+\newcommand{\Eva}{Eva \textsc{Kolici}}
+\newcommand{\ThomasR}{Thomas \textsc{Robert}}
+\newcommand{\ThomasS}{Thomas \textsc{Szymanski}}
+\newcommand{\Jonathan}{Jonathan \textsc{Le Bloas}}
+\newcommand{\Mihai}{Mihai \textsc{Hodorogea}}
+\newcommand{\Mickael}{Mickael \textsc{Deprez}}
+\newcommand{\Nicolas}{Nicolas \textsc{Miller}}
+
+% membre équipe court
+\newcommand{\evaCourt}{EK}
+\newcommand{\thomasRCourt}{TR}
+\newcommand{\thomasSCourt}{TS}
+\newcommand{\jonathanCourt}{JL}
+\newcommand{\mihaiCourt}{MH}
+\newcommand{\mickaelCourt}{MD}
+\newcommand{\nicolasCourt}{NM}
+
+% FT
+\newcommand{\ft}{\vocabulaireDebug{Fait Technique}}
+\newcommand{\fts}{\vocabulaireDebug{Faits Techniques}}
+\newcommand{\ftCourt}{\vocabulaireDebug{FT}}
+\newcommand{\oc}{\vocabulaireDebug{Ordre de Correction}}
+
+% noms documents qualité (définition des termes dans le PGC
+
+% Référentiel Qualité
+\newcommand{\tbCourt}{TB}
+\newcommand{\tb}{Tableau de Bord}
+\newcommand{\ctftCourt}{CTFT}
+\newcommand{\ctft}{Comission de Traitement des Faits Techniques}
+\newcommand{\pdf}{Plan de Formation}
+\newcommand{\pdfCourt}{PDF}
+\newcommand{\ffCourt}{FF}
+\newcommand{\ff}{Fiche de Formation}
+\newcommand{\fcCourt}{FC}
+\newcommand{\fc}{Fiche de Compétences}
+\newcommand{\focCourt}{FOC}
+\newcommand{\foc}{Fiche d'Ordre de Correction}
+
+\newcommand{\frCourt}{FR}
+\newcommand{\fr}{Fiche de Rôle}
+\newcommand{\fiiCourt}{FII}
+\newcommand{\fii}{Fiche d'Identification d'Indicateur}
+\newcommand{\fiiPls}{Fiches d'Identification d'Indicateurs}
+
+\newcommand{\prCourt}{PR}
+\newcommand{\pr}{Portefeuille de Risques}
+\newcommand{\crtpCourt}{CRTP}
+\newcommand{\crtp}{Compte-Rendu de réunion Tuteur Pédagogique}
+\newcommand{\crtqCourt}{CRTQ}
+\newcommand{\crtq}{Compte-Rendu de réunion Tuteur Qualité}
+\newcommand{\crrqCourt}{CRRQ}
+\newcommand{\crrq}{Compte-Rendu de réunion Responsables Qualité}
+
+\newcommand{\crcCourt}{CRC}
+\newcommand{\crc}{Compte-Rendu de réunion avec le Client}
+\newcommand{\criCourt}{CRI}
+\newcommand{\cri}{Compte-Rendu de réunion Interne}
+\newcommand{\cripCourt}{CRIP}
+\newcommand{\crip}{Compte-Rendu de réunion Inter-\picCourt}
+
+\newcommand{\creCourt}{CRE}
+\newcommand{\cre}{Compte-Rendu de réunion Exceptionnelle}
+\newcommand{\pvdCourt}{PVD}
+\newcommand{\pvd}{Procès-Verbal de fin de Phase de Démarrage}
+\newcommand{\pvlCourt}{PVL}
+\newcommand{\pvl}{Procès-Verbal de Livraison}
+
+\newcommand{\pvrmCourt}{PVRM}
+\newcommand{\pvrm}{Procès-Verbal de Réception de Matériel}
+\newcommand{\pvvvCourt}{PVVV}
+\newcommand{\pvvv}{Procès-Verbal de Vérification et de Validation}
+\newcommand{\pvfsCourt}{PVFS}
+\newcommand{\pvfs}{Procès-Verbal de Fin de Sprint}
+
+\newcommand{\wbs}{Work Breakdown Structure}
+\newcommand{\wbsCourt}{WBS}
+
+\newcommand{\rfdCourt}{RFD}
+\newcommand{\rfd}{Revue Formelle de Démarrage}
+\newcommand{\dcCourt}{DC}
+\newcommand{\dc}{Document de Conception}
+\newcommand{\agile}{Agile}
+
+% Référentiel Développement
+\newcommand{\guCourt}{GU}
+\newcommand{\gu}{Guide Utilisateur}
+\newcommand{\pinCourt}{PI}
+\newcommand{\pin}{Procédure d'Installation}
+
+% Fonctions utiles
+\newcommand{\embedPDF}[1]{\includepdf[scale=0.82,pages={-},frame,pagecommand={\thispagestyle{fancy}}]{#1}}
+\newcommand{\cdr}{Cahier de Recette}
+
+\pdfminorversion=4
+
+\endinput
+

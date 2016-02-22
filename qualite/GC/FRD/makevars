@@ -2,10 +2,10 @@
 NOM_FICHIER=FRD_Q_Unipik_d16-01-28
 
 # Récupération du chemin de la classe picINSA pour les documents LaTeX
-CLSPATH="$(shell pwd)/../../../ressources/cls/"
+CLSPATH="../../../ressources/cls/"
 
 # Récupération du chemin du package vocabulaireUnipik.sty
-VOCPATH="$(shell pwd)/../../../ressources/Unipik/vocabulaire/"
+VOCPATH="../../../ressources/Unipik/vocabulaire/"
 
 # Dossiers dans PGC
 PDFDIR=pdf

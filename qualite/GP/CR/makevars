@@ -1,11 +1,8 @@
-# Définition du nom du document
-NOM_FICHIER=CRTQ_Q_Unipik_d16-01-29 CRTQ_Q_Unipik_d16-01-29 
-
 # Récupération du chemin de la classe picINSA pour les documents LaTeX
-CLSPATH="$(shell pwd)/../../../../ressources/cls/"
+CLSPATH="$(shell pwd)/../../../ressources/cls/"
 
 # Récupération du chemin du package vocabulaireUnipik.sty
-VOCPATH="$(shell pwd)/../../../../ressources/unipik/vocabulaire/"
+VOCPATH="$(shell pwd)/../../../ressources/unipik/vocabulaire/"
 
 # Dossiers dans CRTP
 PDFDIR=pdf

@@ -5,10 +5,10 @@ NOM_FICHIER=DSE_S_Unipik_v1.00
 CLSPATH="$(shell pwd)/../../ressources/cls/"
 
 # Récupération du chemin du package vocabulaireEpicUnity.sty
-VOCPATH="$(shell pwd)/../../ressources/Unipik/vocabulaire/"
+VOCPATH="$(shell pwd)/../../ressources/unipik/vocabulaire/"
 
 # Récupération du chemin des logiciels
-SOFTPATH=$(shell pwd)/../../ressources/Unipik/logiciels/
+SOFTPATH=$(shell pwd)/../../ressources/unipik/logiciels
 
 # Dossiers dans PGC
 PDFDIR=pdf
@@ -19,4 +19,4 @@ ARCHIVEDIR=/home/${USER}/archivage/qualite/PQ
 CCTEX=rubber -d
 EPSPDF=ps2pdf
 DIA=dia
-UML=java -jar $(SOFTPATH)/plantuml.jar
+UML=java -jar $(SOFTPATH)/plantUml.jar

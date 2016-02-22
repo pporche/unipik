@@ -317,7 +317,7 @@ linkcolor=black]{hyperref}
   \fancyhf{}
   \fancyfoot[CE]{
     \begin{picture}(0,0)
-      \put(-160,-52){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
+      \put(-160,-52){\includegraphics[width=49mm]{images/piedDePage.pdf}}
       \put(-155,-41){\texteBasGauche{}}
       \put(-110,-40){
         \begin{minipage}{10cm}
@@ -332,7 +332,7 @@ linkcolor=black]{hyperref}
 
   \fancyfoot[CO]{
   \begin{picture}(0,0)
-  \put(-160,-52){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
+  \put(-160,-52){\includegraphics[width=49mm]{images/piedDePage.pdf}}
   \put(-155,-41){\texteBasGauche{}}
   \put(-170,-40){
         \begin{minipage}{10cm}
@@ -402,7 +402,7 @@ linkcolor=black]{hyperref}
 
   \fancyfoot[CE]{
     \begin{picture}(0,0)
-      \put(-160,-52){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
+      \put(-160,-52){\includegraphics[width=49mm]{images/piedDePage.pdf}}
       \put(-155,-44){\texteBasGauche{}}
       \put(-340,-40){\texteBasDroite{}}
       \put(-300,-30){
@@ -416,7 +416,7 @@ linkcolor=black]{hyperref}
 
   \fancyfoot[CO]{
     \begin{picture}(0,0)
-      \put(-160,-52){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
+      \put(-160,-52){\includegraphics[width=49mm]{images/piedDePage.pdf}}
       \put(-155,-44){\texteBasGauche{}}
       \put(-340,-40){\texteBasDroite{}}
       \put(-300,-30){
@@ -923,11 +923,11 @@ linkcolor=black]{hyperref}
 \newcommand{\couverture}{
   \thispagestyle{pageCouverture}
   \begin{picture}(0,0)
-  \put(-100,-760){\includegraphics[width=216mm]{images/Couverture.pdf}}
+  \put(-100,-760){\includegraphics[width=216mm]{images/couverture.pdf}}
   \put(280,-137){\includegraphics[width=105mm]{images/logoUnipik.png}}
   
   \put(305,-540){\includegraphics[width=50mm]{images/logoUnicef.png}}  
-  \put(315,-666){\includegraphics[width=40mm]{images/logoASINew.jpeg}}
+  \put(315,-666){\includegraphics[width=40mm]{images/logoAsiNew.jpeg}}
   \put(-45,-260){\begin{minipage}[t]{150mm}\begin{flushleft}
       \textcolor{white}{
         \fontsize{50pt}{60pt}\selectfont \textbf{\titreGeneralPrive} \\
@@ -1059,7 +1059,7 @@ linkcolor=black]{hyperref}
   
   
   \begin{picture}(0,0)
-    \put(-100,-770){\includegraphics[width=225mm]{images/QuatriemeDeCouverture.pdf}}
+    \put(-100,-770){\includegraphics[width=225mm]{images/quatriemeDeCouverture.pdf}}
     \put(-55,-430){
       \begin{minipage}[t]{115mm}\textcolor{INSA_MARINE}{\begin{flushleft}
       % Renseignements
@@ -1081,7 +1081,7 @@ linkcolor=black]{hyperref}
     \textbf{www.insa-rouen.fr}\\
             \end{flushleft}}\end{minipage}
     }
-    \put(63, -759){\includegraphics[width=49mm]{images/PiedDePage.pdf}}
+    \put(63, -759){\includegraphics[width=49mm]{images/piedDePage.pdf}}
          
   \end{picture}
 

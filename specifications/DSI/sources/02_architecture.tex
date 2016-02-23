@@ -1,9 +1,9 @@
 % version 1.01, date 23/02/16, auteur Matthieu Martins-Baltar
 Cette partie a pour but de décrire l'architecture globale de l'application.\\
 
-L'architecture du projet est une architecture 3 tiers, l'utilisateur accède à l'application avec un navigateur web, qui communique avec un serveur distant qui hébergera la partie serveur de notre application (backend), cette application pourra interroger une base de donnée qui se trouvera possiblement sur un serveur séparé.\\
+L'architecture du projet est une architecture trois tiers, l'utilisateur accède à l'application avec un navigateur web, qui communique avec un serveur distant qui hébergera la partie serveur de notre application (backend), cette application pourra interroger une base de données qui se trouvera possiblement sur un serveur séparé.\\
 
-De plus, l'application serveur sera structuré selon le modèle MVC, c'est à dire qu'elle s'orientera autour de 3 modules qui sont, les vues, les contrôleurs et le modèle. Le rôle du modèle est de faire le lien avec la base de donnée et de représenter l'ensemble des données selon le modèle du domaine produit en phase de spécification. Les vues ont pour but de représenter la partie IHM. Enfin, les contrôleurs correspondent à la logique métier de l'application. 
+De plus, l'application serveur sera structurée selon le modèle MVC, c'est-à-dire qu'elle s'orientera autour de trois couches qui sont : les vues, les contrôleurs et le modèle. Le rôle du modèle est de faire le lien avec la base de données et de représenter l'ensemble des données selon le modèle du domaine produit en phase de spécification. Les vues ont pour but de représenter la partie interface homme-machine. Enfin, les contrôleurs correspondent à la logique métier de l'application. 
 
 
 \begin{figure}[!h]

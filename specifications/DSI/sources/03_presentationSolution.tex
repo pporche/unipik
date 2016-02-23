@@ -2,10 +2,10 @@
 
 L'application devant prendre la forme d'un client léger, nous avons dû faire le choix des technologies. Les seules contraintes imposées sont que les technologies utilisées doivent être open source et l'utilisation d'OpenStreetMap (carte géographique regroupant les données cartographiques).
 
-\subsection{Langage de développement et framework}
+\section{Langage de développement et framework}
 Il a été décidé d'utiliser un framework afin de faciliter la maintenance et la réutilisation du code.
 Nous avons choisi d'utiliser le langage de programmation PHP ainsi que le framework Symfony. Le framework a été choisi pour son patron de conception modèle-vue-contrôleur facilitant la division des tâches entre les membres de l'équipe et sa grande communauté facilitant l'accès aux ressources utiles au développement ou à la maintenance future de l'application.
 Le framework Symfony nécessite d'utiliser le langage de développement PHP. 
 
-\subsection{Persistance des données}
+\section{Persistance des données}
 Nous avons choisi d'utiliser le système de gestion de base de données PostgreSQL car celui-ci s'intègre bien avec l'outil de mapping objet-relationnel utilisé par Symfony. PostgreSQL dispose également d'une extension nommée PostGIS s'intégrant bien avec OpenStreetMap.

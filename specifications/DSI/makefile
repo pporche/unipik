@@ -4,7 +4,7 @@ include makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : dsi cleanrep cleaneps
+all : imagespdf dsi cleanrep cleaneps
 
 dsi : $(PDFDIR)/$(NOM_FICHIER).pdf 
 
@@ -15,6 +15,13 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
 # I have no idea what this thing is doing
+imagespdf: $(IMGDIR)/schema_architecture.pdf
+
+$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
+	$(EPSPDF) -dEPSCrop $< $@
+
+$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
+	$(DIA) -e $@ --filter=eps-builtin $<
 
 
 # Clean commands

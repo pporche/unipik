@@ -1,12 +1,12 @@
 # Définition du nom du document
-NOM_FICHIER=modeleEA_description
-MON_IMAGE=modeleEAv2
+NOM_FICHIER=descriptionSchemaModeleEA
+MON_IMAGE=modeleEAv3
 
 # Récupération du chemin de la classe picINSA pour les documents LaTeX
-CLSPATH="$(shell pwd)/../../ressources/cls/"
+CLSPATH="$(shell pwd)/../../../../ressources/cls/"
 
 # Récupération du chemin du package vocabulaireUnipik.sty
-VOCPATH="$(shell pwd)/../../ressources/unipik/vocabulaire/"
+VOCPATH="$(shell pwd)/../../../../ressources/unipik/vocabulaire/"
 
 # Dossiers dans BD
 PDFDIR=pdf

@@ -1,4 +1,4 @@
-%version 1.00, date 22/02/16, auteur Mathieu MEDICI, Julie PAIN
+%version 2.00, date 23/02/16, auteur Mathieu MEDICI, Julie PAIN
 
 \documentclass[asi, sansVersion]{picInsa}
 
@@ -20,7 +20,7 @@
 \begin{landscape}
 \begin{figure}
 	\centering
-	\includegraphics[scale=1]{images/modeleEAv2}
+	\includegraphics[scale=1]{images/modeleEAv3}
 	\caption{\label{modele}modèle Entité/Association}
 \end{figure}
 \end{landscape}
@@ -33,7 +33,7 @@ Le schéma du modèle Entité association réalisé est composé de plusieurs en
 
 \subsection*{Personne}
 
-L'entité PERSONNE est l'entité mère des entités UTILISATEUR et CONTACT. \\
+L'entité PERSONNE est l'entité mère des entités UTILISATEUR, CONTACTPROJET et CONTACTETABLISSEMENT. \\
 Cette entité possède plusieurs attributs : 
 \begin{itemize}
 \item un nom; %Cdc - Non NULL
@@ -57,17 +57,22 @@ Cette entité a plusieurs attributs :
 \item un mot de passe. 
 \end{itemize}
 
-\subsection*{Contact}
+\subsection*{ContactEtablissement}
 
-L'entité CONTACT est une entité fille de l'entité PERSONNE. Cette entité décrit les personnes travaillant dans un établissement ainsi que les élèves participant à un projet. \\
+L'entité CONTACTETABLISSEMENT est une entité fille de l'entité PERSONNE. Cette entité décrit les personnes travaillant dans un établissement ainsi que les élèves participant à un projet. \\
 Cette entité a un attribut : 
 \begin{itemize}
-\item un type de contact qui permet de déterminer si un contact est un enseignant, un animateur, un élève ou a une autre fonction; 
+\item un type de contact qui permet de déterminer si un contact est un enseignant, un animateur, un contact frimousse, un contact plaidoyer, un contact activité ponctuelle ou un responsable d'établissement; 
 \end{itemize} 
+
+\subsection*{ContactProjet}
+
+L'entité CONTACTPROJET est une entité fille de l'entité PERSONNE. Cette entité décrit les élèves participant à un projet.
+
 
 \subsection*{Etablissement}
 
-L'entité ETABLISSEMENT est l'entité mère des entités ENSEIGNEMENT et CENTRE\_LOISIRS. \\
+L'entité ETABLISSEMENT est l'entité mère des entités ENSEIGNEMENT et CENTRELOISIRS. \\
 Cette entité a plusieurs attributs : 
 \begin{itemize}
 \item un identifiant unique;
@@ -78,10 +83,6 @@ Cette entité a plusieurs attributs :
 \item un numéro de téléphone fixe;
 \item une ou plusieurs adresses e-mail; % attribut multivalué
 \item une géolocalisation WGS84; % Peut être NULL
-\item un responsable de la structure qui représente un CONTACT; % Peut être NULL
-\item un contact pour les plaidoyers qui représente un CONTACT; % Peut être NULL
-\item un contact pour les frimousses qui représente un CONTACT; % Peut être NULL
-\item un contact pour les activités ponctuelles qui représente un CONTACT. % Peut être NULL
 \end{itemize}
 
 \subsection*{Enseignement}
@@ -94,14 +95,14 @@ Cette entité a plusieurs attributs :
 
 
 \subsection*{Centre de loisirs}
-L'entité CENTRE\_LOISIRS est une entité fille de l'entité ETABLISSEMENT. Cette entité décrit les établissements ayant un rapport avec les loisirs. \\
+L'entité CENTRELOISIRS est une entité fille de l'entité ETABLISSEMENT. Cette entité décrit les établissements ayant un rapport avec les loisirs. \\
 Cette entité a un attribut : 
 \begin{itemize}
 \item un type de centre de loisirs qui permet de déterminer si un centre de loisirs prend en charge des enfants d'école maternelle, d'école élémentaire ou des adolescents.
 \end{itemize}  
 
 \subsection*{Intervention}
-L'entité INTERVENTION est l'entité mère des entités PLAIDOYER et FRIMOUSSE. Cette entité décrit une intervention que peut demander un établissement ou un contact. \\
+L'entité INTERVENTION est l'entité mère des entités PLAIDOYER et FRIMOUSSE. Il s'agit d'une entité faible. Cette entité décrit une intervention que peut demander un établissement ou un contact. \\
 Cette entité a plusieurs attributs :
 \begin{itemize}
 \item un identifiant unique;
@@ -113,7 +114,7 @@ Cette entité a plusieurs attributs :
 \end{itemize}
 
 \subsection*{Plaidoyer}
-L'entité PLAIDOYER est une entité fille de l'entité INTERVENTION. \\
+L'entité PLAIDOYER est une entité fille de l'entité INTERVENTION. C'est une entité faible. \\
 Cette entité a plusieurs attributs : 
 \begin{itemize}
 \item un thème qui dépend du type de l'établissement faisant une demande d'intervention;
@@ -121,7 +122,7 @@ Cette entité a plusieurs attributs :
 \end{itemize}
 
 \subsection*{Frimousse}
-L'entité FRIMOUSSE est une entité fille de l'entité INTERVENTION. Une activité frimousse est réalisée avec des enfants étant en école élémentaire. \\
+L'entité FRIMOUSSE est une entité fille de l'entité INTERVENTION. C'est une entité faible. Une activité frimousse est réalisée avec des enfants étant en école élémentaire. \\
 Cette entité a plusieurs attributs :
 \begin{itemize}
 \item les matériaux nécessaires à la réalisation de l'activité (patron, bourre, décoration); % Attribut multivalué
@@ -129,7 +130,7 @@ Cette entité a plusieurs attributs :
 \end{itemize}
 
 \subsection*{Projet}
-L'entité PROJET représente les projets réalisées par des étudiants, des élèves, etc. \\
+L'entité PROJET représente les projets réalisées par des étudiants ou des lycéens. Il s'agit d'une entité faible.\\
 Cette entité possède plusieurs attributs : 
 \begin{itemize}
 \item un identifiant unique;
@@ -139,7 +140,7 @@ Cette entité possède plusieurs attributs :
 \end{itemize}
 
 \subsection*{Vente}
-L'entité VENTE représente les actions ponctuelles réalisées par les établissements. \\ 
+L'entité VENTE représente les actions ponctuelles réalisées par les établissements. Il s'agit d'une entité faible.\\ 
 Cette entité a plusieurs attributs : 
 \begin{itemize}
 \item un identifiant unique; 
@@ -149,20 +150,20 @@ Cette entité a plusieurs attributs :
 \end{itemize}
 \section{Les associations}
 
-\subsection*{est responsable}
-L'association EST RESPONSABLE relie un UTILISATEUR et un PROJET. Un utilisateur est responsable d'aucun, un ou plusieurs projets et un projet est sous la responsabilité d'un ou plusieurs utilisateurs.
+\subsection*{estResponsable}
+L'association ESTRESPONSABLE relie un UTILISATEUR et un PROJET. Un utilisateur est responsable d'aucun, un ou plusieurs projets et un projet est sous la responsabilité d'un ou plusieurs utilisateurs.
 
 \subsection*{participe}
-L'association PARTICIPE relie un CONTACT et un PROJET. Un contact participe à aucun, un ou plusieurs projets et un projet a pour participant un ou plusieurs contacts.
+L'association PARTICIPE relie un CONTACTPROJET et un PROJET. Un contact participe à aucun, un ou plusieurs projets et un projet a pour participant un ou plusieurs contacts.
 
 \subsection*{réalise}
 
-L'association REALISE relie une VENTE et un ETABLISSEMENT. Un établissement réalise aucune, une ou plusieurs ventes. Une vente est réalisée par un et un seul établissement. Cette association possède un attribut plaidoyer. Cet attribut correspond au plaidoyer qui a réalisé une intervention et entraîné la demande d'une vente par l'établissement. Cet attribut peut être nul.
+L'association REALISE est une association ternaire qui relie une VENTE, un ETABLISSEMENT et un PLAIDOYER. Un établissement réalise aucune, une ou plusieurs ventes. Une vente est réalisée par un et un seul établissement. Un plaidoyer réalise aucune ou une intervention dans un établissement générant par la suite une vente. Une vente est réalisé grâce à l'intervention de un et un seul plaidoyer.
 
 
 \subsection*{demande}
 
-L'association DEMANDE relie un ETABLISSEMENT et une INTERVENTION. Un établissement demande aucune, une, ou plusieurs interventions. Une intervention est demandée par un et un seul établissement. Cette association possède deux attributs : un moment et une plage de date. Le moment correspond aux préférences de l'établissement en ce qui concerne le jour de la semaine et le moment (matin, après-midi) réservés à l'intervention, et la plage de date correspond à la période de temps pour laquelle l'établissement souhaiterait avoir cette intervention. 
+L'association DEMANDE est une association ternaire qui relie un ETABLISSEMENT, un CONTACTETABLISSEMENT et une INTERVENTION. Un établissement demande aucune, une ou plusieurs interventions. Une intervention est demandée par un et un seul établissement ou un et un seul contactEtablissement. Un contactEtablissement demande aucune, une ou plusieurs interventions. Cette association possède trois attributs : les moments souhaités, les moments à éviter et une plage de date. Les moments souhaités correspondent aux préférences de l'établissement en ce qui concerne le jour de la semaine et le moment (matin, après-midi) réservés à l'intervention, les moments à éviter correspondent aux jours et moments (matin, après-midi) qui n'arrange pas l'établissement et la plage de date correspond à la période de temps pour laquelle l'établissement souhaiterait avoir cette intervention. 
 
 
 \subsection*{effectue} 

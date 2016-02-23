@@ -7,6 +7,7 @@
 \usepackage{color, colortbl}
 \usepackage{longtable}
 \usepackage{vocabulaireUnipik}
+\usepackage{hyperref}
 \pagestyle{fancy}
 \definecolor{Gray}{gray}{0.8}
 
@@ -64,22 +65,22 @@
 \nomTuteurPedago{} nous signale qu'aucun mot de passe n'a été considéré pour les utilisateurs dans le modèle entité/association. Ceci aurait pu être résolu en pensant à regarder les design pattern. 
 Le modèle entité/association présenté au client doit seulement prendre en compte le modèle conceptuel. Le modèle logique ne servira qu'à l'équipe de développement. 
 Les structures "adresse de l'établissement" et "adresse de la personne" doivent être ramenées au même niveau d'abstraction afin de faciliter la recherche de proximité.
-\nomTuteurPedago{} rappelle au \RGC que les règles de nommage sont à respecter partout en commençant notamment par le modèle entité/association actuel où les attributs ne les respectent pas.
+\nomTuteurPedago{} rappelle au \RGC{} que les règles de nommage sont à respecter partout en commençant notamment par le modèle entité/association actuel où les attributs ne les respectent pas.
 \\ ~
-Il manque des entités faibles qui seraient pertinentes sémantiquement (projet et vente notamment), "plaidoyer" est une entité mais aussi un attribut de "réalise", il pourrait donc y avoir association ternaire. Dans l'entité "Établissement", trois attributs contiennent le mot "contact", il pourrait donc y avoir une structure ou une association ternaire. \nomTuteurPedago{} nous rappelle que lorsque deux concepts sont reliés logiquement, ils doivent être reliés structurellement. Concernant les dates souhaitées par le demandeur, afin de ne pas avoir de produit cartésien à faire sur les tables, il est souhaitable de créer deux attributs : "momentSouhaite" et "momentAEviter".
+Il manque des entités faibles qui seraient pertinentes sémantiquement ("projet" et "vente" notamment), "plaidoyer" est une entité mais aussi un attribut de "réalise", il pourrait donc y avoir association ternaire. Dans l'entité "Établissement", trois attributs contiennent le mot "contact", il pourrait donc y avoir une structure ou une association ternaire. \nomTuteurPedago{} nous rappelle que lorsque deux concepts sont reliés logiquement, ils doivent être reliés structurellement. Concernant les dates souhaitées par le demandeur, afin de ne pas avoir de produit cartésien à faire sur les tables, il est souhaitable de créer deux attributs : "momentSouhaite" et "momentAEviter".
 \\
 Concernant les cardinalités, "contact" devrait avoir une cardinalité (0,N) avec "établissement".
 \\
 Nous faisons de la généralisation (regrouper des entités proches en sens), il faut donc modifier le schéma en conséquence.
 \\ ~
-Il ne faut pas utiliser de "etc." dans le texte. Il faut dire "on réalise un schéma selon le modèle E/A" et non "on réalise un modèle E/A".
+Il ne faut pas utiliser de "etc." dans le texte. De plus, il faut dire "nous réalisons un schéma selon le modèle E/A" et non "nous réalisons un modèle E/A".
 
 
 
 \section{Résumé semaine passée et questions}
 Cette semaine, quatre personnes ont travaillé sur le \DSE{}, dont \Michel{} qui s'est plus tard réorienté sur le \PTV{}. Le \DSECourt{} est très proche d'être terminé et nous avons des questions concernant le \PTVCourt{}.
 \paragraph{}
-Celui ci doit comprendre la manière employée pour valider les livrables. Il faut expliquer comment nous allons démontrer que chacune des affirmations (ex. : "l'ensemble des composant est interfaçable") que nous faisons. Le \PTVCourt{} dit uniquement ce que l'on va tester et comment (ex. : "La validation se fera au travers d'un programme qui montrera la connexion". Les détails sur les tests sont dans le \CDR{}.
+Celui ci doit comprendre la manière employée pour valider les livrables. Il faut expliquer comment nous allons démontrer que chacune des affirmations (ex. : "l'ensemble des composant est interfaçable") que nous faisons. Le \PTVCourt{} dit uniquement ce que l'on va tester et comment (ex. : "La validation se fera au travers d'un programme qui montrera la connexion"). Les détails sur les tests sont dans le \CDR{}.
 \\
 Un exemple sur les tests de l'interface : "nous utiliserons tel logiciel" est une affirmation qui appartient au \PTVCourt{}. "nous cliqueront à tel et tel endroit" est une affirmation qui appartient au \CDR{}. \nomTuteurPedago{} nous demande de lui envoyer le \PTV{} en même temps qu'au client.
 \\
@@ -91,7 +92,7 @@ Une réunion s'est tenue dans les locaux du client le 03/02/2016. Ceux-ci sont d
 \\
 Nous avons ensuite rapporté à \nomTuteurPedago{} les modifications sur le Cahier des Charges suite à la réunion client (Cf. CRC\_Q\_Unipik\_d16-02-03).
 \paragraph{}
-Concernant les formations, il existe le site coursenligne.insa-rouen.fr qui pourra nous aider à trouver du contenu adapté. Il faut également ajouter des formations à l'UML dans le plan de formation.
+Concernant les formations, il existe le site \url{coursenligne.insa-rouen.fr} qui pourra nous aider à trouver du contenu adapté. Il faut également ajouter des formations à l'UML dans le plan de formation.
 \paragraph{}
 Au sujet du serveur mis à disposition, M. Bonnegent nous a fait comprendre que cela ne serait pas possible. \nomTuteurPedago{} nous explique que nous aurions du nous adresser plus haut dans la hiérarchie, mettre en avant l'aspect mécénat et arriver avec une solution "clef en main". L'idée serait d'aller parler de cela avec des personnes comme Anne Caldin et Maxime Reynet puis de signer une convention avec un professeur référent en passant par des personnes clef : Gilles Gasso, Jean Macquet, UNICEF France, etc. .
 

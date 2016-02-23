@@ -27,7 +27,7 @@
 
 \chapter{Description du modèle E-A}
 
-Le modèle Entité association réalisé est composé de plusieurs entités et de plusieurs associations. Nous allons les décrire dans cette partie. \\ 
+Le schéma du modèle Entité association réalisé est composé de plusieurs entités et de plusieurs associations. Nous allons les décrire dans cette partie. \\ 
 
 \section{Les entités}
 
@@ -36,12 +36,11 @@ Le modèle Entité association réalisé est composé de plusieurs entités et d
 L'entité PERSONNE est l'entité mère des entités UTILISATEUR et CONTACT. \\
 Cette entité possède plusieurs attributs : 
 \begin{itemize}
-\item un identifiant unique;
 \item un nom; %Cdc - Non NULL
 \item un prénom; %Cdc - Non NULL
 \item un numéro de téléphone fixe; %Entier - Peut être NULL
 \item un numéro de téléphone portable; %Entier - Peut être NULL
-\item un email. %Ne peut pas être NULL
+\item un email. %Ne peut pas être NULL (Clé)
 \end{itemize}
 
 \subsection*{Utilisateur}
@@ -49,10 +48,13 @@ Cette entité possède plusieurs attributs :
 L'entité UTILISATEUR est une entité fille de l'entité PERSONNE. Cette entité décrit les bénévoles de l'UNICEF qui gèreront le site ainsi que ceux qui effectueront des actions dans des structures. \\
 Cette entité a plusieurs attributs : 
 \begin{itemize} 
-\item un type qui permet de déterminer si l'utilisateur est un administarteur global, un administrateur local ou un simple bénévole;
-\item une adresse postale;
-\item une ou plusieurs activités potentielles (action ponctuelle, frimousse, plaidoyer); % attribut multivalué
-\item une ou plusieurs responsabilités d'activité (action ponctuelle, frimousse, plaidoyer). 
+\item un type qui permet de déterminer si l'utilisateur est un administarteur global (plusieurs administrateurs globaux possibles), un administrateur local ou un simple bénévole;
+\item une adresse correspondant à la rue et au numéro;
+\item un code postal;
+\item une ville;
+\item aucune, une ou plusieurs activités potentielles (action ponctuelle, frimousse, plaidoyer); % attribut multivalué
+\item aucune, une ou plusieurs responsabilités d'activité (action ponctuelle, frimousse, plaidoyer);
+\item un mot de passe. 
 \end{itemize}
 
 \subsection*{Contact}
@@ -83,7 +85,7 @@ Cette entité a plusieurs attributs :
 \end{itemize}
 
 \subsection*{Enseignement}
-L'entité ENSEIGNEMENT est une entité fille de l'entité ETABLISSEMENT. Cette entité décrit les établissements ayant un rapport avec l'éducation c'est à dire les écoles primaires, les collèges, les lycées, etc. \\
+L'entité ENSEIGNEMENT est une entité fille de l'entité ETABLISSEMENT. Cette entité décrit les établissements qui relève de l'éducation nationale c'est à dire les écoles primaires, les collèges, les lycées, etc. \\
 Cette entité a plusieurs attributs : 
 \begin{itemize}
 \item un UAI (Unité Administrative Immatriculée) qui est une combinaison de chiffres et de lettres unique pour chaque enseignement;
@@ -99,7 +101,7 @@ Cette entité a un attribut :
 \end{itemize}  
 
 \subsection*{Intervention}
-L'entité INTERVENTION est l'entité mère des entités PLAIDOYER et FRIMOUSSE. Cette entité décrit une intervention que peut demander un établissement. \\
+L'entité INTERVENTION est l'entité mère des entités PLAIDOYER et FRIMOUSSE. Cette entité décrit une intervention que peut demander un établissement ou un contact. \\
 Cette entité a plusieurs attributs :
 \begin{itemize}
 \item un identifiant unique;
@@ -132,7 +134,7 @@ Cette entité possède plusieurs attributs :
 \begin{itemize}
 \item un identifiant unique;
 \item  le type de projet permet de savoir si le projet est réalisé par des étudiants, des lycéens, des élèves d'école primaire ou de collège; 
-\item la description du projet est un champ permettant à l'utilisateur de saisir toutes les informations importantes sur le projet (le nom du projet, s'il y a un tuteur, etc);
+\item la description du projet est un champ permettant à l'utilisateur de saisir toutes les informations importantes sur le projet (le nom du projet, s'il y a un tuteur);
 \item les profits réalisés par ce projet.
 \end{itemize}
 
@@ -155,21 +157,21 @@ L'association PARTICIPE relie un CONTACT et un PROJET. Un contact participe à a
 
 \subsection*{réalise}
 
-L'association REALISE relie une VENTE et un ETABLISSEMENT. Un établissement peut réaliser aucune, une ou plusieurs ventes. Une vente peut être réalisée par un et un seul établissement. Cette association possède un attribut plaidoyer. Cet attribut correspond au plaidoyer qui a réalisé une intervention et entraîné la demande d'une vente par l'établissement. Cet attribut peut être nul.
+L'association REALISE relie une VENTE et un ETABLISSEMENT. Un établissement réalise aucune, une ou plusieurs ventes. Une vente est réalisée par un et un seul établissement. Cette association possède un attribut plaidoyer. Cet attribut correspond au plaidoyer qui a réalisé une intervention et entraîné la demande d'une vente par l'établissement. Cet attribut peut être nul.
 
 
 \subsection*{demande}
 
-L'association DEMANDE relie un ETABLISSEMENT et une INTERVENTION. Un établissement peut demander aucune, une, ou plusieurs interventions. Une intervention peut être demandée par un et un seul établissement. Cette association possède deux attributs : un moment et une plage de date. Le moment correspond aux préférences de l'établissement en ce qui concerne le jour de la semaine et le moment (matin, après-midi) réservés à l'intervention, et la plage de date correspond à la période de temps pour laquelle l'établissement souhaiterait avoir cette intervention. 
+L'association DEMANDE relie un ETABLISSEMENT et une INTERVENTION. Un établissement demande aucune, une, ou plusieurs interventions. Une intervention est demandée par un et un seul établissement. Cette association possède deux attributs : un moment et une plage de date. Le moment correspond aux préférences de l'établissement en ce qui concerne le jour de la semaine et le moment (matin, après-midi) réservés à l'intervention, et la plage de date correspond à la période de temps pour laquelle l'établissement souhaiterait avoir cette intervention. 
 
 
 \subsection*{effectue} 
 
-L'association EFFECTUE relie un UTILISATEUR et une INTERVENTION. Un utilisateur peut effectuer aucune, une ou plusieurs interventions. Une intervention peut être effectuée par un et un seul utilisateur. 
+L'association EFFECTUE relie un UTILISATEUR et une INTERVENTION. Un utilisateur effectue aucune, une ou plusieurs interventions. Une intervention est effectuée par un et un seul utilisateur. 
 
 \subsection*{travaille}
 
-L'association TRAVAILLE relie un CONTACT et un ETABLISSEMENT. Un contact peut travailler dans un et un seul établissement. Un établissement peut avoir un ou plusieurs contacts.   
+L'association TRAVAILLE relie un CONTACT et un ETABLISSEMENT. Un contact travaille dans aucun, un ou plusieurs établissements. Un établissement a un ou plusieurs contacts.   
 
 \chapter{Contraites d'intégrité}
 

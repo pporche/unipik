@@ -1,0 +1,97 @@
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+\renewcommand{\footrulewidth}{0,01cm}
+
+\begin{document}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Qualité}}					%titre
+\hfill   
+\hfill 	9:03-9:56 				% Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 02/02/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui & 04/02/2016 & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi & 04/02/2016 & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Informations diverses}
+la diffusion c'est l'envoie aux destinataires. il ne peut etre diffusé qu'après approbation. une fois seulement que le doc est approuvé, on peut remplir les champs diffusion
+DSE DSI PTV PQ PGD CDR <- On peut globaliser les noms genre "unipik" au lieu de "machin machin et machin"
+
+Diffusion contrôlée / non contrôlée  :
+Si le client ne veut qu'une version pour voir, c'est non controlée, si on met en place une contrôlée, il faut envoyer le document à chaque version. DSE DSI PQ : forcément mettre l'équipe.
+
+Attention aux versions des documents! (Audit) -> ne pas conserver les anciennes versions en tant que doc de référence.
+
+
+
+FFT/Cycle correctif : quand on rencontre un problème, stocker la démarche
+Identification : FFT, décrire la MaJ ou problème
+Analyse des causes : déterminer des actions
+Ordre de correction : Synthétise les actions (curatif/correctif) -> correctif= a la source + tracer la vérif. des correction
+Cloture de l'OC puis du FT
+Analyse à froid : vérif. que tout FT corrigé par du correctif ne réapparaît pas.
+S'il réapparait, l'OC inclut une action différente. !
+CTFT : minimum 3 pers (CP, RQ, RGC)
+
+kanban : pas mal mais attention avec les post it : Trelo ca peut etre pas mal
+
+
+CNIL : se renseigner auprès du juriste pour savoir si Sergi a le droit de faire la demande.  ->  lire la iso 27005 
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

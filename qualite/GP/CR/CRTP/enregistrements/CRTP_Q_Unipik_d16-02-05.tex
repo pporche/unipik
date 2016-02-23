@@ -29,7 +29,7 @@
 %--- Fin en-t�te et pied de page ---%
 \section*{Historique des révisions}
 \begin{center}
-			\begin{tabular}{| c | c | c | c | p{4cm} |}
+			\begin{tabular}{| p{2.5cm} | p{3cm} | p{3cm} | p{3cm} | p{3.5cm} |}
 				\hline
 				\rowcolor{Gray}
 				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
@@ -42,7 +42,7 @@
 \section*{Signatures}
 
 		\begin{center}
-			\begin{tabular}{| c | c | c | c | p{4cm} |}
+			\begin{tabular}{| p{2.5cm} | p{4cm} | p{3cm} | p{3cm} | p{2.5cm} |}
 				\hline
 				\rowcolor{Gray}
 				Rôle & Fonction & Nom & Date & Visa		 \\
@@ -59,9 +59,9 @@
 \section{Présentation du modèle Entité/Association}
 
 \Julie{} prend la parole pour commencer à expliquer le modèle entité/association.
-\nomTuteurPedago{} intervient pour nous signifier que nous aurions dû considérer toutes les alternatives possibles avant de  faire le choix d'utiliser un modèle Entité/Association. Le tuteur pédagogique suggère à l'équipe d'utiliser la méthode MERISE car le modèle Entité/association est très peu utilisé en entreprise. \\
-\nomTuteurPedago{} conseille de changer d'outil pour la modélisation car dia n'est pas adapté au formalisme requis. \nomTuteurPedago{} nous conseille de bien faire la différence entre une clef structurelle (indépendante de l'application) et une clef sémantique (dépendante de l'application) dans notre modèle entité/association car celle-ci n'est actuellement pas faite de manière correcte.
-\nomTuteurPedago{} nous demande de corriger la contrainte d'administrateur globale en en assignant plusieurs car si il est unique son absence spontanée peut poser problème. \\
+\nomTuteurPedago{} intervient pour nous signifier que nous aurions dû considérer toutes les alternatives possibles avant de  faire le choix d'utiliser un modèle Entité/Association. Le tuteur pédagogique suggère à l'équipe d'utiliser une autre méthode comme la méthode MERISE ou l'UML car le modèle Entité/association est très peu utilisé en entreprise. \\
+\nomTuteurPedago{} conseille de changer d'outil pour la modélisation car dia n'est pas adapté au formalisme requis. \nomTuteurPedago{} nous conseille de bien faire la différence entre une clef structurelle et une clef sémantique dans notre modèle entité/association.
+\nomTuteurPedago{} nous demande de corriger la contrainte d'administrateur globale unique, l'application doit pouvoir assigner plusieurs administrateurs globales si besoin. \\
 \nomTuteurPedago{} nous signale qu'aucun mot de passe n'a été considéré pour les utilisateurs dans le modèle entité/association. Ceci aurait pu être résolu en pensant à regarder les design pattern. 
 Le modèle entité/association présenté au client doit seulement prendre en compte le modèle conceptuel. Le modèle logique ne servira qu'à l'équipe de développement. 
 Les structures "adresse de l'établissement" et "adresse de la personne" doivent être ramenées au même niveau d'abstraction afin de faciliter la recherche de proximité.
@@ -71,24 +71,22 @@ Il manque des entités faibles qui seraient pertinentes sémantiquement ("projet
 \\
 Concernant les cardinalités, "contact" devrait avoir une cardinalité (0,N) avec "établissement".
 \\
-Nous faisons de la généralisation (regrouper des entités proches en sens), il faut donc modifier le schéma en conséquence.
+Nous faisons de la généralisation (regrouper des entités proches en sens) et non de la spécialisation, il faut donc modifier le schéma en conséquence (les flèches ne sont pas les bonnes).
 \\ ~
-Il ne faut pas utiliser de "etc." dans le texte. De plus, il faut dire "nous réalisons un schéma selon le modèle E/A" et non "nous réalisons un modèle E/A".
+Il ne faut pas utiliser de "etc." dans le texte. Il faut dire "nous réalisons un schéma selon le modèle E/A" et non "nous réalisons un modèle E/A".
 
 
 
 \section{Résumé semaine passée et questions}
 Cette semaine, quatre personnes ont travaillé sur le \DSE{}, dont \Michel{} qui s'est plus tard réorienté sur le \PTV{}. Le \DSECourt{} est très proche d'être terminé et nous avons des questions concernant le \PTVCourt{}.
 \paragraph{}
-Celui ci doit comprendre la manière employée pour valider les livrables. Il faut expliquer comment nous allons démontrer que chacune des affirmations (ex. : "l'ensemble des composant est interfaçable") que nous faisons. Le \PTVCourt{} dit uniquement ce que l'on va tester et comment (ex. : "La validation se fera au travers d'un programme qui montrera la connexion"). Les détails sur les tests sont dans le \CDR{}.
+Celui ci doit comprendre la manière employée pour valider les livrables. Il faut expliquer comment nous allons démontrer que chacune des affirmations (ex. : "l'ensemble des composant est interfaçable") que nous faisons. Le \PTVCourt{} dit uniquement ce que l'on va tester et comment (ex. : "La validation se fera au travers d'un programme qui montrera la connexion"). Les détails sur les tests sont dans le \CDR{}. Ainsi "nous utiliserons tel logiciel" est une affirmation qui appartient au \PTVCourt{} mais "nous cliquerons à tel et tel endroit" est une affirmation qui appartient au \CDR{}. \nomTuteurPedago{} nous demande de lui envoyer le \PTV{} en même temps qu'au client.
 \\
-Un exemple sur les tests de l'interface : "nous utiliserons tel logiciel" est une affirmation qui appartient au \PTVCourt{}. "nous cliqueront à tel et tel endroit" est une affirmation qui appartient au \CDR{}. \nomTuteurPedago{} nous demande de lui envoyer le \PTV{} en même temps qu'au client.
-\\
-Il faudra tester indépendamment le modèle, la vue et le contrôleur. Pour la vue, il existe des "logiciels de clic" et pour la Base de Données, il faudra l'interroger. Il faudra ensuite tester les liaisons entre les composants du MVC.
+Il faudra tester indépendamment le modèle, la vue et le contrôleur. Pour la vue, il existe des "logiciels de clic" et pour la Base de Données, il faudra l'interroger.
 \paragraph{}
 La période probatoire dure une semaine durant laquelle des tests ont lieu avec le client qui nous tient informé de leur déroulement. au bout d'une semaine, sans nouvelles de la part du client, la recette est acceptée.
 \paragraph{}
-Une réunion s'est tenue dans les locaux du client le 03/02/2016. Ceux-ci sont de petite taille et ne sont que peu équipés donc peu pratiques. La réunion a été trop longue pour plusieurs raisons, parmi lesquelles le fait que nous soyons trop nombreux. Il n'y avait pas d'heure de fin prévue et la conduite de réunion était trop "souple". Afin de remédier à ces problèmes, il faut réduire le nombre de participants, fixer une heure de fin, établir un Ordre du Jour, prévoir un timing et servir des cafés et des biscuits.
+Une réunion s'est tenue dans les locaux du client le 03/02/2016. Ceux-ci sont de petites tailles et ne sont que peu équipés donc peu pratiques. La réunion a été trop longue pour plusieurs raisons, parmi lesquelles le fait que nous soyons trop nombreux. Il n'y avait pas d'heure de fin prévue et la conduite de réunion était trop "souple". Afin de remédier à ces problèmes, il faut réduire le nombre de participants, fixer une heure de fin, établir un Ordre du Jour, prévoir un timing et servir des cafés et des biscuits.
 \\
 Nous avons ensuite rapporté à \nomTuteurPedago{} les modifications sur le Cahier des Charges suite à la réunion client (Cf. CRC\_Q\_Unipik\_d16-02-03).
 \paragraph{}

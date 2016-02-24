@@ -27,6 +27,8 @@ Les informations associées à un bénévole sont :
 \\
 \end{itemize}
 
+
+% Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{images/maquettes/fonctionnalite1CreationDUnProfil.png}
@@ -34,6 +36,7 @@ Les informations associées à un bénévole sont :
 	 \label{fonctionnalite1creationDUnUtilisateurs}
 \end{figure}
 
+% Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{images/maquettes/fonctionnalite1ModificationDUnProfil.png}
@@ -92,6 +95,7 @@ Les centres de loisirs ont un type de centre (maternelle, élémentaire et adole
 \subsection{Fonctionnalité 3}
 La fonctionnalité 3 permettra l'envoi de courriers électroniques aux établissements qui contiendront une lettre type accompagnée d'une plaquette en pièce jointe. La plaquette sera fonction du type d'établissement et envoyé au format pdf. Le corps de l'e-mail contiendra la lettre type. 
 
+% Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.57]{images/maquettes/fonctionnalite3MailType}
@@ -127,6 +131,7 @@ Chaque e-mail invitera l'établissement à se connecter à un lien (actif) conte
 \item des remarques.
 \end{itemize}
 
+% Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.415]{images/maquettes/fonctionnalite3FormulaireDeDemandeDInterventions.png}
@@ -149,6 +154,7 @@ Les données personnelles concernant les contacts dans l'établissement seront s
 
 La fonctionnalité 4 permettra également l'envoi d'un e-mail de confirmation à l'établissement lorsque ce dernier aura rempli et validé le formulaire. Cet e-mail proposera également à l'établissement d'annuler la demande d'intervention. \\ Une copie de cet e-mail sera adressée au responsable local de chaque activité.\\
 
+% Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.615]{images/maquettes/fonctionnalite4MailConfirmationReceptionDemande.png}
@@ -157,25 +163,37 @@ La fonctionnalité 4 permettra également l'envoi d'un e-mail de confirmation à
 
 Si un établissement annule une demande d'intervention (grâce à l'e-mail de confirmation d'une demande d'intervention), une procédure supprimera cette demande et enverra des e-mails de confirmation de suppression de cette demande au responsable de l'activité initialement demandée et à l'établissement.  
 
+% Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{images/maquettes/fonctionnalite4MailConfirmationSuppressionDemandePourEtablissement.png}
 	\caption{Maquette~: Email de confirmation d'annulation d'une intervention pour un établissement}
 \end{figure}
 
+% Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{images/maquettes/fonctionnalite4MailConfirmationSuppresionDemandePourAdmin.png}
+	\includegraphics[scale=0.7]{images/maquettes/fonctionnalite4MailConfirmationSuppressionDemandePourAdmin.png}
 	\caption{Maquette~: Email de confirmation d'annulation d'une intervention pour le responsable d'activité}
 
 \end{figure}
 
 \subsection{Fonctionnalité 5}
 La fonctionnalité 5 permettra d'afficher une carte montrant les lieux où des demandes d'intervention ont été faites pour un créneau que l'utilisateur aura entré.
+
+% Figure : version 1.00, date 24/02/16, auteur Mélissa Bignoux
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.575]{images/maquettes/fonctionnalite5CarteDesInterventions.png}
+	\caption{Maquette~: Carte des interventions en fonction d'une date choisie et du moment de la journée}
+\end{figure}
+
 La fonctionnalité 5 consistera également à planifier les interventions c'est-à-dire qu'un plaideur s'attribue une intervention.
 Lors de chaque affectation, un e-mail d'information de prise en charge de la demande par l'équipe de plaideur sera envoyé à l'établissement demandeur ainsi qu'au responsable de l'activité demandée.
 Une intervention ne peut être attribuée qu'à un utilisateur.
 \\
+
+% Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.675]{images/maquettes/fonctionnalite5MailDePriseEnCharge.png}
@@ -185,6 +203,7 @@ Une intervention ne peut être attribuée qu'à un utilisateur.
 \subsection{Fonctionnalité 6}
 Une fois que le plaideur a défini une date pour son intervention (suite à échange de courriers électroniques avec le contact de l'établissement), il met à jour les informations concernant l'intervention (date, heure, nombre d'élèves, ...). Le demandeur reçoit alors un mail de confirmation l'informant du jour de l'heure et du lieu de l'intervention avec le nom et les coordonnées (adresse électronique, téléphone) du plaideur. Le texte de ce message est à définir et à faire valider par le responsable des plaideurs. \\
 
+% Figure : version 1.00, date 24/02/16, auteur Mélissa Bignoux
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{images/maquettes/fonctionnalite6MailDInformationPourLEtablissement.png}
@@ -194,6 +213,7 @@ Une fois que le plaideur a défini une date pour son intervention (suite à éch
 \subsection{Fonctionnalité 7}
 La fonctionnalité 7 permettra d'envoyer un e-mail de rappel à l'établissement et au contact dans l'établissement (si son adresse électronique est différente de celle de l'établissement), une semaine avant l'intervention. Le texte de ce message sera à définir avec \nomClient{} et à faire valider par le responsable des plaideurs. \\
 
+% Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.675]{images/maquettes/fonctionnalite7MailDeRappelPourLEtablissement.png}
@@ -203,6 +223,7 @@ La fonctionnalité 7 permettra d'envoyer un e-mail de rappel à l'établissement
 Trois jours avant l'intervention, le plaideur recevra un e-mail de rappel avec les informations associées (date, heure, lieu, thème, nombre d'élèves, remarques, niveau des élèves). 
 \\
 
+% Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.65]{images/maquettes/fonctionnalite7MailDeRappelPourLePlaideur.png}

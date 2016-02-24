@@ -56,16 +56,16 @@
 
 %--- Réunion --%
 
-\section{Présentation du modèle Entité/Association}
+\section{Présentation du modèle \EA{}}
 
-\Julie{} prend la parole pour commencer à expliquer le modèle entité/association.
-\nomTuteurPedago{} intervient pour nous signifier que nous aurions dû considérer toutes les alternatives possibles avant de  faire le choix d'utiliser un modèle Entité/Association. Le tuteur pédagogique suggère à l'équipe d'utiliser une autre méthode comme la méthode MERISE ou l'UML car le modèle Entité/association est très peu utilisé en entreprise. \\
-\nomTuteurPedago{} conseille de changer d'outil pour la modélisation car dia n'est pas adapté au formalisme requis. \nomTuteurPedago{} nous conseille de bien faire la différence entre une clef structurelle et une clef sémantique dans notre modèle entité/association.
-\nomTuteurPedago{} nous demande de corriger la contrainte d'administrateur globale unique, l'application doit pouvoir assigner plusieurs administrateurs globales si besoin. \\
-\nomTuteurPedago{} nous signale qu'aucun mot de passe n'a été considéré pour les utilisateurs dans le modèle entité/association. Ceci aurait pu être résolu en pensant à regarder les design pattern. 
-Le modèle entité/association présenté au client doit seulement prendre en compte le modèle conceptuel. Le modèle logique ne servira qu'à l'équipe de développement. 
+\Julie{} prend la parole pour commencer à expliquer le modèle \EA{}.
+\nomTuteurPedago{} intervient pour nous signifier que nous aurions dû considérer toutes les alternatives possibles avant de  faire le choix d'utiliser un modèle \EA{}. Le tuteur pédagogique suggère à l'équipe d'utiliser une autre méthode comme la méthode MERISE ou l'UML car le modèle \EA{} est très peu utilisé en entreprise. \\
+\nomTuteurPedago{} conseille de changer d'outil pour la modélisation car dia n'est pas adapté au formalisme requis. \nomTuteurPedago{} nous conseille de bien faire la différence entre une clef structurelle et une clef sémantique dans notre modèle \EA{}.
+\nomTuteurPedago{} nous demande de corriger la contrainte d'administrateur global unique, l'application doit pouvoir assigner plusieurs administrateurs globaux si besoin. \\
+\nomTuteurPedago{} nous signale qu'aucun mot de passe n'a été considéré pour les utilisateurs dans le modèle \EA{}. Ceci aurait pu être résolu en pensant à regarder les design pattern. 
+Le modèle \EA{} présenté au client doit seulement prendre en compte le modèle conceptuel. Le modèle logique ne servira qu'à l'équipe de développement. 
 Les structures "adresse de l'établissement" et "adresse de la personne" doivent être ramenées au même niveau d'abstraction afin de faciliter la recherche de proximité.
-\nomTuteurPedago{} rappelle au \RGC{} que les règles de nommage sont à respecter partout en commençant notamment par le modèle entité/association actuel où les attributs ne les respectent pas.
+\nomTuteurPedago{} rappelle au \RGC{} que les règles de nommage sont à respecter partout en commençant notamment par le modèle \EA{} actuel où les attributs ne les respectent pas.
 \\ ~
 Il manque des entités faibles qui seraient pertinentes sémantiquement ("projet" et "vente" notamment), "plaidoyer" est une entité mais aussi un attribut de "réalise", il pourrait donc y avoir association ternaire. Dans l'entité "Établissement", trois attributs contiennent le mot "contact", il pourrait donc y avoir une structure ou une association ternaire. \nomTuteurPedago{} nous rappelle que lorsque deux concepts sont reliés logiquement, ils doivent être reliés structurellement. Concernant les dates souhaitées par le demandeur, afin de ne pas avoir de produit cartésien à faire sur les tables, il est souhaitable de créer deux attributs : "momentSouhaite" et "momentAEviter".
 \\
@@ -73,14 +73,14 @@ Concernant les cardinalités, "contact" devrait avoir une cardinalité (0,N) ave
 \\
 Nous faisons de la généralisation (regrouper des entités proches en sens) et non de la spécialisation, il faut donc modifier le schéma en conséquence (les flèches ne sont pas les bonnes).
 \\ ~
-Il ne faut pas utiliser de "etc." dans le texte. Il faut dire "nous réalisons un schéma selon le modèle E/A" et non "nous réalisons un modèle E/A".
+Il ne faut pas utiliser de "etc." dans le texte. Il faut dire "nous réalisons un schéma selon le modèle \EACourt" et non "nous réalisons un modèle \EACourt".
 
 
 
 \section{Résumé semaine passée et questions}
 Cette semaine, quatre personnes ont travaillé sur le \DSE{}, dont \Michel{} qui s'est plus tard réorienté sur le \PTV{}. Le \DSECourt{} est très proche d'être terminé et nous avons des questions concernant le \PTVCourt{}.
 \paragraph{}
-Celui ci doit comprendre la manière employée pour valider les livrables. Il faut expliquer comment nous allons démontrer que chacune des affirmations (ex. : "l'ensemble des composant est interfaçable") que nous faisons. Le \PTVCourt{} dit uniquement ce que l'on va tester et comment (ex. : "La validation se fera au travers d'un programme qui montrera la connexion"). Les détails sur les tests sont dans le \CDR{}. Ainsi "nous utiliserons tel logiciel" est une affirmation qui appartient au \PTVCourt{} mais "nous cliquerons à tel et tel endroit" est une affirmation qui appartient au \CDR{}. \nomTuteurPedago{} nous demande de lui envoyer le \PTV{} en même temps qu'au client.
+Celui ci doit comprendre la manière employée pour valider les livrables. Il faut expliquer comment nous allons démontrer que chacune des affirmations (ex. : "l'ensemble des composants est interfaçable") que nous faisons est vraie. Le \PTVCourt{} dit uniquement ce que l'on va tester et comment (ex. : "La validation se fera au travers d'un programme qui montrera la connexion"). Les détails sur les tests sont dans le \CDR{}. Ainsi "nous utiliserons tel logiciel" est une affirmation qui appartient au \PTVCourt{} mais "nous cliquerons à tel et tel endroit" est une affirmation qui appartient au \CDR{}. \nomTuteurPedago{} nous demande de lui envoyer le \PTV{} en même temps qu'au client.
 \\
 Il faudra tester indépendamment le modèle, la vue et le contrôleur. Pour la vue, il existe des "logiciels de clic" et pour la Base de Données, il faudra l'interroger.
 \paragraph{}
@@ -95,14 +95,11 @@ Concernant les formations, il existe le site \url{coursenligne.insa-rouen.fr} qu
 Au sujet du serveur mis à disposition, M. Bonnegent nous a fait comprendre que cela ne serait pas possible. \nomTuteurPedago{} nous explique que nous aurions du nous adresser plus haut dans la hiérarchie, mettre en avant l'aspect mécénat et arriver avec une solution "clef en main". L'idée serait d'aller parler de cela avec des personnes comme Anne Caldin et Maxime Reynet puis de signer une convention avec un professeur référent en passant par des personnes clef : Gilles Gasso, Jean Macquet, UNICEF France, etc. .
 
 
-\section{Revue du modèle E/A}
-
-
 
 \section{Revue du GIT}
 \nomTuteurPedago{} a regardé le git et certains problèmes persistent : il faut mettre des commentaires dans tous les fichiers pour spécifier leur rédacteur, leur version et leur date de rédaction. Les conventions de nommage n'ont pas été définies ou respectées. Les makefile se répètent ou font référence à des dossiers inexistants.
 \\
-Le modèle E/A doit se trouver dans le dossier spécifications.
+Le modèle \EACourt{} doit se trouver dans le dossier spécifications.
 
 
 

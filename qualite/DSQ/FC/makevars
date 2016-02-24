@@ -11,7 +11,7 @@ VOCPATH="$(shell pwd)/../../../ressources/unipik/vocabulaire/"
 # Dossiers dans PRO
 PDFDIR=pdf
 IMGDIR=images
-ARCHIVEDIR=/home/${USER}/archivage/qualite/PQ
+ARCHIVEDIR=/net/archives/archivage/qualite/PQ
 
 # Commandes
 CCTEX=rubber -d

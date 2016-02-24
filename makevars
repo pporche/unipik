@@ -1,0 +1,19 @@
+# version 1.00, date 24/02/16, auteur Pierre Porche
+
+
+# Récupération du chemin de la classe picINSA pour les documents LaTeX
+CLSPATHGEN="ressources/cls/"
+
+# Récupération du chemin du package vocabulaireUnipik.sty
+VOCPATHGEN="ressources/unipik/vocabulaire/"
+
+ARCHIVEDIRGEN=/net/archives/archivage
+
+# Commandes
+CCTEX=rubber -d
+EPSPDF=ps2pdf
+DIA=dia
+
+# Dossiers
+PDFDIR=pdf
+IMGDIR=images

@@ -1,4 +1,4 @@
-# version 2.00, date 20/02/16, auteur Michel Cressant, Pierre Porche
+# version 2.01, date 20/02/16, auteur Michel Cressant, Pierre Porche
 # Définition du nom du document
 NOM_FICHIER=descriptionSchemaModeleEA
 MON_IMAGE=modeleEAv3
@@ -6,12 +6,4 @@ MON_IMAGE=modeleEAv3
 LOCPATH=developpement/lot1/DCP/modeleEA
 GENPATH=$(shell pwd)/../../../..
 
-# Récupération du chemin de la classe picINSA pour les documents LaTeX
-CLSPATH="${GENPATH}/${CLSPATHGEN}"
-
-# Récupération du chemin du package vocabulaireUnipik.sty
-VOCPATH="${GENPATH}/${VOCPATHGEN}"
-
-# Dossiers dans BD
-ARCHIVEDIR=${ARCHIVEDIRGEN}/${LOCPATH}
 

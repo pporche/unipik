@@ -54,30 +54,37 @@
 
 %--- Réunion --%
 
-\section{Informations diverses}
-la diffusion c'est l'envoie aux destinataires. il ne peut etre diffusé qu'après approbation. une fois seulement que le doc est approuvé, on peut remplir les champs diffusion
-DSE DSI PTV PQ PGD CDR <- On peut globaliser les noms genre "unipik" au lieu de "machin machin et machin"
+\section{Diffusion}
+La diffusion est l'envoi aux destinataires d'un document. Celui ci ne peut être diffusé qu'après approbation, donc seulement après que le document soit approuvé, l'équipe peut remplir les champs "diffusion". \\
+Dans les \DSE{}, \DSI{}, \PTV{}, \PQ{}, \PGC{} et \CDR{}, il est possible de globaliser les noms (ex.: "Unipik" au lieu de citer chaque membre de l'équipe).
 
-Diffusion contrôlée / non contrôlée  :
-Si le client ne veut qu'une version pour voir, c'est non controlée, si on met en place une contrôlée, il faut envoyer le document à chaque version. DSE DSI PQ : forcément mettre l'équipe.
+\paragraph*{Diffusion contrôlée / non contrôlée}
+Si le client (ou autre personne) ne veut disposer que d'une version d'un document, c'est une diffusion non contrôlée. Si on met en place une diffusion contrôlée, il faut envoyer le document à tous les destinataires à chaque nouvelle version. Pour les \DSE{}, \DSI{} et \PQ{}, il faut forcément mettre l'équipe comme destinataire en diffusion contrôlée.
 
-Attention aux versions des documents! (Audit) -> ne pas conserver les anciennes versions en tant que doc de référence.
-
-
-
-FFT/Cycle correctif : quand on rencontre un problème, stocker la démarche
-Identification : FFT, décrire la MaJ ou problème
-Analyse des causes : déterminer des actions
-Ordre de correction : Synthétise les actions (curatif/correctif) -> correctif= a la source + tracer la vérif. des correction
-Cloture de l'OC puis du FT
-Analyse à froid : vérif. que tout FT corrigé par du correctif ne réapparaît pas.
-S'il réapparait, l'OC inclut une action différente. !
-CTFT : minimum 3 pers (CP, RQ, RGC)
-
-kanban : pas mal mais attention avec les post it : Trelo ca peut etre pas mal
+\paragraph*{}
+Lors des audits, il faut faire attention aux versions des documents. En effet, il ne faut pas conserver les anciennes versions en tant que document de référence.
 
 
-CNIL : se renseigner auprès du juriste pour savoir si Sergi a le droit de faire la demande.  ->  lire la iso 27005 
+\section{\FT}
+Lorsque l'équipe rencontre un problème, elle doit stocker la démarche.  Celle ci se déroule comme suit :
+
+\begin{itemize}
+\item Identification : émission de \FFT{}, décription de la Mise à Jour ou du problème ;
+\item Analyse des causes : méthode des n-pourquoi, apparition d'actions possibles ;
+\item \OC : Synthèse des actions curatives et correctives. Pour mémoire, les actions correctives éliminent la source du problème. Il faut aussi tracer la vérification des corrections ;
+\item Clôture de l'\OC{} puis du \FT{} ;
+\item Analyse à froid : vérification que tout \FT{} corrigé par des actions correctives ne réapparaisse pas. S'il réapparaît, le nouvel \OC{} inclut une action corrective différente.
+\end{itemize}
+
+Pour une \CTFT{}, il faut au minimum 3 personnes (\CP{}, \RQ{} et \RGC{}) mais le plus possible sera le mieux.
+
+
+\section{Divers}
+
+Utiliser un kanban n'est pas une mauvaise idée mais il faut faire attention avec les post-it. Pour résoudre ce problème, le logiciel Trelo peut aider.
+
+\paragraph*{}
+Concernant la demande auprès de la CNIL, il faut se renseigner auprès du juriste de l'INSA pour savoir si \Sergi a le droit de faire la demande. \nomTuteurQualite se charge de le contacter et nous conseille de lire la norme ISO 27005.
 
 \end{document}
 

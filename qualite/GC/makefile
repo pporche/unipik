@@ -1,30 +1,37 @@
-# version 1.00, date 20/02/16, auteur Michel Cressant
+# version 1.01, date 24/02/16, auteur Michel Cressant, Pierre Porche
 # Compilation
-all: frd pgc
+all: fedc pgc ec 
 
-frd:
+fedc:
 	make -C FEDC
 
 pgc:
 	make -C PGC
 
+ec:
+	make -C EC
+
 
 # Archivage
-archive: archivefrd archivepgc 
+archive: archivefedc archivepgc archiveec
 
-archivefrd:
+archivefedc:
 	make -C FEDC archive
 
 archivepgc:
 	make -C PGC archive
 
+archiveec:
+	make -C EC archive
 
 # Nettoyage
-clean : cleanfrd cleanpgc 
+clean : cleanfedc cleanpgc cleanec
 
-cleanfrd:
+cleanfedc:
 	make -C FEDC clean
 
 cleanpgc:
 	make -C PGC clean
 
+cleanec:
+	make -C EC clean

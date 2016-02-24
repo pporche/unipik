@@ -1,10 +1,9 @@
-# version 1.00, date 24/02/16, auteur Pierre Porche
+# version 1.00, date 24/02/16, auteur Pierre Porche, Michel Cressant
 # Compilation
-all: lot1
+all: Lot1
 
-lot1:
+Lot1:
 	make -C lot1
-
 
 
 # Archivage

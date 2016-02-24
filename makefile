@@ -1,6 +1,6 @@
-# version 1.00, date 20/02/16, auteur Michel Cressant
+# version 1.01, date 24/02/16, auteur Michel Cressant, Pierre Porche
 # Compilation
-all: Qualite Specifications # Developpement
+all: Qualite Specifications Developpement
 
 Qualite:
 	make -C qualite
@@ -8,8 +8,8 @@ Qualite:
 Specifications:
 	make -C specifications
 
-#Developpement:
-#	make -C developpement
+Developpement:
+	make -C developpement
 
 
 # Archivage

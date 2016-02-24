@@ -1,0 +1,23 @@
+# version 1.00, date 24/02/16, auteur Pierre Porche
+# Compilation
+all: lot1
+
+lot1:
+	make -C lot1
+
+
+
+# Archivage
+archive: archivelot1
+
+archivelot1:
+	make -C lot1 archive
+
+
+
+# Nettoyage
+clean: cleanlot1
+
+cleanlot1:
+	make -C lot1 clean
+

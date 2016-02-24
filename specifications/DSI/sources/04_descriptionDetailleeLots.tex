@@ -11,7 +11,7 @@ Cette partie décrit les différents lots du projet.
 
 
 \subsection{Fonctionnalité 1}
-La première fonctionnalité du système devra permettre les opérations conventionnelles de gestion individuelle comme la création d'un bénévole (voir figure 3.1) dans le système, la modification des caractéristiques le concernant (voir figure 3.2) et la suppression d'un bénévole. La suppression d'un bénévole devra être logique et non physique de façon à ne pas effacer l'historique des actions effectuées par ce bénévole. \\
+La première fonctionnalité du système devra permettre les opérations conventionnelles de gestion individuelle comme la création d'un bénévole (voir figure \ref{creationDUnUtilisateurs}) dans le système, la modification des caractéristiques le concernant (voir figure \ref{modificationDUnProfil}) et la suppression d'un bénévole. La suppression d'un bénévole devra être logique et non physique de façon à ne pas effacer l'historique des actions effectuées par ce bénévole. \\
 Un bénévole sera identifié par son adresse électronique.\\ 
 Les informations associées à un bénévole sont :
 \begin{itemize}
@@ -26,6 +26,19 @@ Les informations associées à un bénévole sont :
 \item sa ou ses responsabilités d'activité (si responsable).
 \\
 \end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/f1UtilisateurNonConnecte.png}
+	 \caption{Cas d'utilisation  d'un utilisateur non connecté}
+	 \label{utilisateurNonConnecte}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/f1UtilisateurConnecte.png}
+	 \caption{Cas d'utilisation  d'un utilisateur connecté}
+	 \label{utilisateurConnecte}
+\end{figure}
 
 \begin{figure}[H]
 	\centering
@@ -67,6 +80,12 @@ La procédure de connexion au système sera basée sur le couple login (adresse 
 La fonctionnalité 2 du système devra permettre les opérations conventionnelles de gestion individuelle comme la création d'un établissement dans le système, la modification des
 caractéristiques le concernant, la suppression d'un établissement. Comme pour un bénévole, la suppression devra être logique et non physique de façon à ne pas perdre l'historique des actions effectuées dans cet établissement sachant que la disparition peut être temporaire en fonction de l'ouverture et la fermeture de classes. \\
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/f2Etablissement.png}
+	 \caption{Cas d'utilisation~: créer un établissement}
+	 \label{creationDunEtablissement}
+\end{figure}
 
 Les informations associées à un établissement sont :
 \begin{itemize}
@@ -87,6 +106,7 @@ Les informations associées à un établissement sont :
 \end{itemize}
 Les enseignements ont un UAI et un type d'enseignement (l'enseignement supérieur, les lycées, les collèges, les écoles élémentaires et maternelles). \\
 Les centres de loisirs ont un type de centre (maternelle, élémentaire et adolescent). 
+
 
 
 \subsection{Fonctionnalité 3}
@@ -121,6 +141,13 @@ Chaque e-mail invitera l'établissement à se connecter à un lien (actif) conte
 
 \begin{figure}[H]
 	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/f3Mailing.png}
+	 \caption{Cas d'utilisation~: Envoyer des e-mails ciblés}
+	 \label{envoiMailsCibles}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
 	\includegraphics[scale=0.415]{images/maquettes/fonctionnalite3FormulaireDeDemandeDInterventions.png}
 	\caption{Maquette~: Formulaire de demande d'intervention}
 \end{figure}
@@ -148,21 +175,44 @@ La fonctionnalité 4 permettra également l'envoi d'un e-mail de confirmation à
 
 Si un établissement annule une demande d'intervention (grâce à l'e-mail de confirmation d'une demande d'intervention), une procédure supprimera cette demande et enverra des e-mails de confirmation de suppression de cette demande au responsable de l'activité initialement demandée et à l'établissement.  
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/f4ReceptionIntervention.png}
+	 \caption{Cas d'utilisation~: Recevoir la demande d'intervention d'un établissement}
+	 \label{recevoirDemandesDIntervention}
+\end{figure}
+
 \subsection{Fonctionnalité 5}
 La fonctionnalité 5 permettra d'afficher une carte montrant les lieux où des demandes d'intervention ont été faites pour un créneau que l'utilisateur aura entré.
 La fonctionnalité 5 consistera également à planifier les interventions c'est-à-dire qu'un plaideur s'attribue une intervention.
 Lors de chaque affectation, un e-mail d'information de prise en charge de la demande par l'équipe de plaideur sera envoyé à l'établissement demandeur ainsi qu'au responsable de l'activité demandée.
 Une intervention ne peut être attribuée qu'à un utilisateur.
 \\
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/f5Attribution.png}
+	 \caption{Cas d'utilisation~: Visualiser les demandes et s'attribuer des interventions}
+	 \label{visualiserESAttribuer}
+\end{figure}
 \subsection{Fonctionnalité 6}
 Une fois que le plaideur a défini une date pour son intervention (suite à échange de courriers électroniques avec le contact de l'établissement), il met à jour les informations concernant l'intervention (date, heure, nombre d'élèves, ...). Le demandeur reçoit alors un mail de confirmation l'informant du jour de l'heure et du lieu de l'intervention avec le nom et les coordonnées (adresse électronique, téléphone) du plaideur. Le texte de ce message est à définir et à faire valider par le responsable des plaideurs. \\
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/f6MiseAJourIntervention.png}
+	 \caption{Cas d'utilisation~: mettre à jour les informations d'interventions}
+	 \label{mettreAJourInterventions}
+\end{figure}
 
 \subsection{Fonctionnalité 7}
 La fonctionnalité 7 permettra d'envoyer un e-mail de rappel à l'établissement et au contact dans l'établissement (si son adresse électronique est différente de celle de l'établissement), une semaine avant l'intervention. Le texte de ce message sera à définir avec \nomClient{} et à faire valider par le responsable des plaideurs. \\
 Trois jours avant l'intervention, le plaideur recevra un e-mail de rappel avec les informations associées (date, heure, lieu, thème, nombre d'élèves, remarques, niveau des élèves). 
 \\
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/f7Rappels.png}
+	 \caption{Cas d'utilisation~: Envoyer des rappels}
+	 \label{envoiRappel}
+\end{figure}
 
 \input{sources/descriptionDetailleeLots/01_contraintesProduits.tex}
  

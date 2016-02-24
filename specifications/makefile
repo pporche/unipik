@@ -1,6 +1,6 @@
-# version 1.00, date 20/02/16, auteur Michel Cressant
+# version 1.01, date 24/02/16, auteur Michel Cressant, Pierre Porche
 # Compilation
-all: dse dsi ptv modeleea
+all: dse dsi ptv
 
 dse:
 	make -C DSE
@@ -11,8 +11,6 @@ dsi:
 ptv:
 	make -C PTV
 
-modeleea:
-	make -C ModeleEA
 
 
 # Archivage
@@ -27,8 +25,6 @@ archivedsi:
 archiveptv:
 	make -C PTV archive
 
-archivemodeleea:
-	make -C ModeleEA archive
 
 
 
@@ -45,5 +41,3 @@ cleandsi:
 cleanptv:
 	make -C PTV clean
 
-cleanmodeleea:
-	make -C ModeleEA clean

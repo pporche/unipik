@@ -26,6 +26,20 @@ Les informations associées à un bénévole sont :
 \item sa ou ses responsabilités d'activité (si responsable).
 \\
 \end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/fonctionnalite1UtilisateurNonConnecte.png}
+	 \caption{Cas d'utilisation  d'un utilisateur non connecté}
+	 \label{utilisateurNonConnecte}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/fonctionnalite1UtilisateurConnecte.png}
+	 \caption{Cas d'utilisation  d'un utilisateur connecté}
+	 \label{utilisateurConnecte}
+
+\end{figure}
 
 
 % Figure : version 1.00, date 24/02/16, auteur Michel Cressant
@@ -70,6 +84,13 @@ La procédure de connexion au système sera basée sur le couple login (adresse 
 La fonctionnalité 2 du système devra permettre les opérations conventionnelles de gestion individuelle comme la création d'un établissement dans le système, la modification des
 caractéristiques le concernant, la suppression d'un établissement. Comme pour un bénévole, la suppression devra être logique et non physique de façon à ne pas perdre l'historique des actions effectuées dans cet établissement sachant que la disparition peut être temporaire en fonction de l'ouverture et la fermeture de classes. \\
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/fonctionnalite2Etablissement.png}
+	 \caption{Cas d'utilisation~: créer un établissement}
+	 \label{creationDunEtablissement}
+\end{figure}
+
 
 Les informations associées à un établissement sont :
 \begin{itemize}
@@ -94,6 +115,14 @@ Les centres de loisirs ont un type de centre (maternelle, élémentaire et adole
 
 \subsection{Fonctionnalité 3}
 La fonctionnalité 3 permettra l'envoi de courriers électroniques aux établissements qui contiendront une lettre type accompagnée d'une plaquette en pièce jointe. La plaquette sera fonction du type d'établissement et envoyé au format pdf. Le corps de l'e-mail contiendra la lettre type. 
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/fonctionnalite3Mailing.png}
+	 \caption{Cas d'utilisation~: Envoyer des e-mails ciblés}
+	 \label{envoiMailsCibles}
+\end{figure}
 
 % Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}
@@ -153,6 +182,12 @@ Une complétion automatique du nom de la ville, de l'établissement, des niveaux
 Les données personnelles concernant les contacts dans l'établissement seront seulement un complément des informations disponibles pour un établissement. Elles pourront être mises à jour chaque année dans différents cas comme par exemple lors d'une mutation ou d'un départ en retraite ou encore d'un nouvel enseignant.   \\
 
 La fonctionnalité 4 permettra également l'envoi d'un e-mail de confirmation à l'établissement lorsque ce dernier aura rempli et validé le formulaire. Cet e-mail proposera également à l'établissement d'annuler la demande d'intervention. \\ Une copie de cet e-mail sera adressée au responsable local de chaque activité.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/fonctionnalite4ReceptionIntervention.png}
+	 \caption{Cas d'utilisation~: Recevoir la demande d'intervention d'un établissement}
+	 \label{recevoirDemandesDIntervention}
+\end{figure}
 
 % Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
@@ -161,7 +196,9 @@ La fonctionnalité 4 permettra également l'envoi d'un e-mail de confirmation à
 	\caption{Maquette~: Email de confirmation de reception d'une demande d'une école élémentaire}
 \end{figure}
 
-Si un établissement annule une demande d'intervention (grâce à l'e-mail de confirmation d'une demande d'intervention), une procédure supprimera cette demande et enverra des e-mails de confirmation de suppression de cette demande au responsable de l'activité initialement demandée et à l'établissement.  
+Si un établissement annule une demande d'intervention (grâce à l'e-mail de confirmation d'une demande d'intervention), une procédure supprimera cette demande et enverra des e-mails de confirmation de suppression de cette demande au responsable de l'activité initialement demandée et à l'établissement.
+  
+
 
 % Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
@@ -178,6 +215,7 @@ Si un établissement annule une demande d'intervention (grâce à l'e-mail de co
 
 \end{figure}
 
+
 \subsection{Fonctionnalité 5}
 La fonctionnalité 5 permettra d'afficher une carte montrant les lieux où des demandes d'intervention ont été faites pour un créneau que l'utilisateur aura entré.
 
@@ -193,6 +231,13 @@ Lors de chaque affectation, un e-mail d'information de prise en charge de la dem
 Une intervention ne peut être attribuée qu'à un utilisateur.
 \\
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/fonctionnalite5Attribution.png}
+	 \caption{Cas d'utilisation~: Visualiser les demandes et s'attribuer des interventions}
+	 \label{visualiserESAttribuer}
+\end{figure}
+
 % Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
 	\centering
@@ -202,6 +247,14 @@ Une intervention ne peut être attribuée qu'à un utilisateur.
 
 \subsection{Fonctionnalité 6}
 Une fois que le plaideur a défini une date pour son intervention (suite à échange de courriers électroniques avec le contact de l'établissement), il met à jour les informations concernant l'intervention (date, heure, nombre d'élèves, ...). Le demandeur reçoit alors un mail de confirmation l'informant du jour de l'heure et du lieu de l'intervention avec le nom et les coordonnées (adresse électronique, téléphone) du plaideur. Le texte de ce message est à définir et à faire valider par le responsable des plaideurs. \\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/fonctionnalite6MiseAJourIntervention.png}
+	 \caption{Cas d'utilisation~: mettre à jour les informations d'interventions}
+	 \label{mettreAJourInterventions}
+\end{figure}
+
 
 % Figure : version 1.00, date 24/02/16, auteur Mélissa Bignoux
 \begin{figure}[H]
@@ -229,6 +282,14 @@ Trois jours avant l'intervention, le plaideur recevra un e-mail de rappel avec l
 	\includegraphics[scale=0.65]{images/maquettes/fonctionnalite7MailDeRappelPourLePlaideur.png}
 	\caption{Maquette~: Email de rappel d'intervention pour le plaideur}
 \end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/casDUtilisation/fonctionnalite7Rappels.png}
+	 \caption{Cas d'utilisation~: Envoyer des rappels}
+	 \label{envoiRappel}
+\end{figure}
+
 
 \input{sources/descriptionDetailleeLots/01_contraintesProduits.tex}
  

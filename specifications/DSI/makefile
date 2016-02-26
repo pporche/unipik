@@ -16,13 +16,18 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 
 # I have no idea what this thing is doing
 
-imagespdf: $(IMGDIR)/schemaArchitecture.pdf $(IMGDIR)/fonctionsIDEF0.pdf
+imagespdf: $(IMGDIR)/schemaArchitecture.pdf
+
+imagespng: $(IMGDIR)/fonctionsIDEF0.png
+
+$(IMGDIR)/%.png: $(IMGDIR)/%.dia
+	$(DIA) -e $@ --filter=png $<
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@
 
 $(IMGDIR)/%.eps: $(IMGDIR)/%.dia
-	$(DIA) -e $@ --filter=tex $<
+	$(DIA) -e $@ --filter=eps-builtin $<
 
 
 # Clean commands

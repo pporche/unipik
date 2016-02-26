@@ -14,7 +14,7 @@ ptv:
 
 
 # Archivage
-archive: archivedse archivedsi archiveptv archivemodeleea
+archive: archivedse archivedsi archiveptv
 
 archivedse:
 	make -C DSE archive
@@ -30,7 +30,7 @@ archiveptv:
 
 
 # Nettoyage
-clean : cleandse cleandsi cleanptv cleanmodeleea
+clean : cleandse cleandsi cleanptv
 
 cleandse:
 	make -C DSE clean

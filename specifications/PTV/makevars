@@ -1,20 +1,8 @@
-# version 1.00, date 20/02/16, auteur Michel Cressant
+# version 2.00, date 26/02/16, auteur  Pierre Porche, Michel Cressant
 # Définition du nom du document
-#réfléchir a une solution ici pour pouvoir faire plusieurs pdf d'un coup
 NOM_FICHIER=PTV_S_Unipik_v1.00
 
-# Récupération du chemin de la classe picINSA pour les documents LaTeX
-CLSPATH="$(shell pwd)/../../ressources/cls/"
+LOCPATH=specifications/PTV
+GENPATH=$(shell pwd)/../..
 
-# Récupération du chemin du package vocabulaireUnipik.sty
-VOCPATH="$(shell pwd)/../../ressources/unipik/vocabulaire/"
 
-# Dossiers dans PTV
-PDFDIR=pdf
-IMGDIR=images
-ARCHIVEDIR=/home/${USER}/archivage/specifications/PTV
-
-# Commandes
-CCTEX=rubber -d
-EPSPDF=ps2pdf
-DIA=dia

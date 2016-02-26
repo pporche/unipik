@@ -4,7 +4,7 @@ include makevars ../../makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : imagespdf dsi cleanrep cleaneps
+all : imagespdf dsi cleanrep cleaneps cleanpng
 
 dsi : $(PDFDIR)/$(NOM_FICHIER).pdf 
 
@@ -15,7 +15,13 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
 # I have no idea what this thing is doing
-imagespdf: $(IMGDIR)/schemaArchitecture.pdf $(IMGDIR)/fonctionsIDEF0.pdf
+
+imagespdf: $(IMGDIR)/schemaArchitecture.pdf
+
+imagespng: $(IMGDIR)/fonctionsIDEF0.png
+
+$(IMGDIR)/%.png: $(IMGDIR)/%.dia
+	$(DIA) -e $@ --filter=png $<
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@
@@ -38,6 +44,9 @@ cleaneps :
 	rm -f images/*.eps
 	rm -f images/*.pdf
 	rm -f annexe/pdf/*.pdf
+
+cleanpng:
+	rm -f images/fonctionsIDEF0.png
 
 # Archivage
 archive:

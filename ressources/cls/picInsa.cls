@@ -39,7 +39,8 @@
 \RequirePackage{calc}
 \RequirePackage{listings}
 \RequirePackage{array,multirow,makecell}
-\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage[usenames, dvipsnames]{xcolor}
+%\RequirePackage[usenames, dvipsnames]{color}
 \RequirePackage{xr} % Références externes
 \RequirePackage[colorlinks=true,urlcolor=blue,linktoc=all,hypertexnames=true,pdfmenubar=true,frenchlinks=true,citecolor=blue,
 linkcolor=black]{hyperref}
@@ -68,9 +69,10 @@ linkcolor=black]{hyperref}
 \definecolor{INSA_MARINE}{cmyk}{0.95,0.69,0.35,0.19}
 \definecolor{INSA_GREY}{cmyk}{0.71,0.65,064,0.19}
 
-\xdefinecolor{ajout}{named}{ForestGreen}
-\xdefinecolor{modif}{named}{Orange}
-\xdefinecolor{suppr}{named}{Red}
+\definecolor{ajout}{named}{ForestGreen}
+\definecolor{modif}{named}{Orange}
+\definecolor{suppr}{rgb}{1,0,0}
+
 % La gris a été mis à une valeur moyenne et pas selon la charte (la valeur donnée est une valeur en jaune cyan magenta difficile à utiliser)
 \definecolor{grisInsa}{gray}{0.5}
 

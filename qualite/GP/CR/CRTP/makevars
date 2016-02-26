@@ -1,19 +1,8 @@
-# version 1.00, date 20/02/16, auteur Michel Cressant
+# version 2.00, date 26/02/16, auteur  Pierre Porche
 # Définition du nom du document
-NOM_FICHIER=CRTP_Q_Unipik_d16-01-29 CRTP_Q_Unipik_d16-01-29 
+NOM_FICHIER=CRTP			# trouver un truc là.
 
-# Récupération du chemin de la classe picINSA pour les documents LaTeX
-CLSPATH="$(shell pwd)/../../../../ressources/cls/"
+LOCPATH=qualite/GP/CR/CRTP
+GENPATH=$(shell pwd)/../../../..
 
-# Récupération du chemin du package vocabulaireUnipik.sty
-VOCPATH="$(shell pwd)/../../../../ressources/unipik/vocabulaire/"
 
-# Dossiers dans CRTP
-PDFDIR=pdf
-IMGDIR=images
-ARCHIVEDIR=/home/${USER}/archivage/qualite/GP/CR/CRTP
-
-# Commandes
-CCTEX=rubber -d
-EPSPDF=ps2pdf
-DIA=dia

@@ -1,20 +1,8 @@
-# version 1.00, date 20/02/16, auteur Michel Cressant
+# version 2.00, date 26/02/16, auteur  Pierre Porche, Michel Cressant
 # Définition du nom du document
 NOM_FICHIER=EC_Q_Unipik_d16-01-25_cPQ
 
-# Récupération du chemin de la classe picINSA pour les documents LaTeX
-CLSPATH="$(shell pwd)/../../../ressources/cls/"
+LOCPATH=qualite/GC/EC
+GENPATH=$(shell pwd)/../../..
 
-# Récupération du chemin du package vocabulaireEpicUnity.sty
-VOCPATH="$(shell pwd)/../../../ressources/unipik/vocabulaire/"
-
-# Dossiers dans EC
-PDFDIR=pdf
-IMGDIR=images
-ARCHIVEDIR=/home/${USER}/archivage/qualite/GC/EC
-
-# Commandes
-CCTEX=rubber -d
-EPSPDF=ps2pdf
-DIA=dia
 

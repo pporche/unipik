@@ -1,19 +1,8 @@
-# version 1.00, date 20/02/16, auteur Michel Cressant, Pierre Porche
+# version 2.00, date 26/02/16, auteur  Pierre Porche
 # Définition du nom du document
-NOM_FICHIER=PRO_Q_Unipik_V1.00
+NOM_FICHIER=FC			# trouver un truc là.
 
-# Récupération du chemin de la classe picINSA pour les documents LaTeX
-CLSPATH="$(shell pwd)/../../ressources/cls/"
+LOCPATH=qualite/DSQ/FC
+GENPATH=$(shell pwd)/../../..
 
-# Récupération du chemin du package vocabulaireUnipik.sty
-VOCPATH="$(shell pwd)/../../../ressources/unipik/vocabulaire/"
 
-# Dossiers dans PRO
-PDFDIR=pdf
-IMGDIR=images
-ARCHIVEDIR=/net/archives/archivage/qualite/PQ
-
-# Commandes
-CCTEX=rubber -d
-EPSPDF=ps2pdf
-DIA=dia

@@ -1,18 +1,8 @@
-# version 1.00, date 20/02/16, auteur Michel Cressant
+# version 2.00, date 26/02/16, auteur  Pierre Porche Michel Cressant
 # Définition du nom du document
 NOM_FICHIER=FRD_Q_Unipik_d16-01-28
 
-# Récupération du chemin de la classe picINSA pour les documents LaTeX
-CLSPATH="../../../ressources/cls/"
+LOCPATH=qualite/GC/FEDC
+GENPATH=$(shell pwd)/../../..
 
-# Récupération du chemin du package vocabulaireUnipik.sty
-VOCPATH="../../../ressources/unipik/vocabulaire/"
 
-# Dossiers dans PGC
-PDFDIR=pdf
-ARCHIVEDIR=/home/${USER}/archivage/qualite/FRD
-
-# Commandes
-CCTEX=rubber -d
-EPSPDF=ps2pdf
-DIA=dia

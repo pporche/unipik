@@ -1,6 +1,6 @@
-# version 1.00, date 20/02/16, auteur Mathieu Medici
+# version 1.01, date 26/02/16, auteur Mathieu Medici, Pierre Porche
 # Importation des variables
-include makevars
+include makevars ../../../makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 

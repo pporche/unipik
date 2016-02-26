@@ -1,0 +1,151 @@
+% version 1.00	Auteur Pierre Porche date 26/02/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\usepackage{hyperref}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Pédagogique}}					%titre
+\begin{document}
+
+26/02/2016			 				%Date 
+\hfill   
+\hfill 	 9:00 - 10:15 				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{3cm} | p{3cm} | p{3cm} | p{3.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 26/02/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{4cm} | p{3cm} | p{3cm} | p{2.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RGC & \Mathieu & 29/02/2016 & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi & 29/02/2016 & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Résumé semaine passée}
+Le \DSE{} et le \PTV{} sont terminés. Ils n'ont par contre pas été envoyés car nous attendons une réponse de la part du client concernant le report de l'échéance pour le lot 1. Le \DSI{}, quand à lui est proche d'être terminé.
+\\
+Nous avons également choisi le framework que nous allions utiliser ainsi que le logiciel d'édition de diagrammes UML. Nous avons posé des questions à \nomTuteurQualite{} au sujet de notre demande auprès de la CNIL et avancé sur les remarques faites par \nomTuteurPedago{} la semaine dernière sur notre git.
+
+\paragraph*{Choix du framework}
+Nous avons choisi le framework Symfony. Pour cela, nous avons d'abord regardé les pour et les contre du PHP et du JAVA puis pour chaque framework dans chacun. Or, le PHP, plus utilisé en développement web, permet un hébergement plus low-cost et donc un "don" de la part de l'hébergeur, comme suggéré par le cahier des charges. Il est également plus adapté à l'envergure de notre projet.
+\\
+Nous choisissons de travailler avec du PHP non typé mais en ajoutant des règles de programmation afin de pouvoir contrôler les entrées utilisateur.
+\\
+Nous travaillerons avec une architecture trois tiers :
+\begin{itemize}
+\item Une partie navigateur ;
+\item Une partie en BD ;
+\item Une partie en logique métier.
+\end{itemize}
+Ces deux dernière pourront être regroupées sur la même machine afin de réduire les coûts. La logique métier sera conçue en MVC.
+
+\paragraph*{Mécénat}
+Nous attendons la réunion avec \nomTuteurCom{} pour élaborer notre stratégie de sensibilisation auprès des personnes à convaincre. \nomTuteurPedago{} nous informe qu'il faut préparer des éléments précis sur lesquels poser des questions ainsi que les démarches, problèmes et arguments que nous avons en tête. Il nous dit également que les réunions ne sont faites, en général, que pour acter des décisions déjà prises. Les réunions de travail sont beaucoup moins formelles et plus courtes.
+
+\paragraph*{logiciel d'édition de diagrammes UML}
+Nous avons choisi le logiciel ArgoUML car il permet d'obtenir du code PHP en sortie, il est open source et dispose d'un plug-in UML2Symfony qui produit directement du code pour Symfony. \nomTuteurPedago{} nous informe que le code en sortie de ce type de logiciel n'est pas fiable mais que nous pouvons tout de même le regarder pour se faire une idée sur le PHP que nous devrions produire.
+\\
+Une formation sur cet outil est essentiel et au plus vite car c'est essentiel pour débuter la phase de conception qui contient beaucoup de diagrammes UML. Pour cela, il faut faire le \PF{} afin d’être sûrs d’être prêts au moment auquel nous aurons besoin de l'outil afin de réduire le stress. Il faut \emph{anticiper les formations}.
+
+
+\section{Diagramme de classes}
+\nomTuteurPedago{} a des remarques sur le diagramme de classe que \Julie{} a créé. Tout d'abord, il nous rappelle la différence entre des constantes de type et des constantes de domaine : la manipulation est beaucoup plus intéressante (ordonnancement,..) sur les constantes de type. Celles ci ne seront pas interprétés comme des chaînes de caractères mais représentées comme tel. \\
+Un code postal peut pas être un entier : par exemple dans « 01520 », le 0 est significatif. \\
+\emph{Il faut respecter une cohérence de nommage} \\
+Sur "niveau scolaire complet", le fait que ce soit une énumération n'est pas cohérente car une école maternelle ne peut pas cocher comme niveau "6ème". Il faut donc gérer les contraintes opérationnelles dès la conception afin de moins avoir d'exceptions à gérer plus tard. De manière générale, un investissement plus important au moment de la modélisation facilitera de bien plus notre travail dans le futur. \\
+Les adresses postales et les adresses d’établissement sont la même chose. Encore une fois, il faut faire attention à la cohérence de nommage.\\
+Concernant les attributs multivalués, le logiciel ne les fait pas apparaître donc il faut mettre des commentaires.\\
+Les « Moments » et « moments à éviter » sont des entiers et c'est une erreur. \\
+La géolocalisation ne peut pas être une string c'est un type spécial sur postGis.\\
+Les E-mail et les numéros de téléphone sont des entiers, c'est une erreur .\\
+Bien différencier profit et Chiffre d'Affaire, ici, on parle de chiffre d'affaire.\\
+Il y a quelques typos : "La palge de date", "les protables",...\\
+Bien songer à la notion de région/national ? (1.3 du CdC) \\
+Pour le type utilisateur, il faut faire une hiérarchisation. Il existe deux familles d'utilisateurs : contact et bénévole, or, s'il y a différents types, c'est qu'il y a différents comportements. l'administrateur a des d'autres méthodes en plus des simples utilisateurs. Les méthodes sont à différentier en fonction du type d'utilisateur.
+
+
+
+Pas d'association entre frimousse et vente ? → les frimousses sont vendues non ?   Si l'établissement fait une vente, savoir si ca vient d'un plaidoyer.               → savoir quelles sont les stats qu'il faut au client.
+
+
+L'intervention se présente comme un ensemble d'intervention sur les classes.  Il faut que ca soit un ensemble de demandes.
+
+Il manque les contraintes d'intégrité. « Une adresse électronique c'est genre « XXX@XXX.XX » »
+
+Lors de l'acces à la ressource, il faut que ca soit efficace, si on fait une requete nulle, on utilise des ressources pour « rien »
+La ressource modèle est critique → on envoie des requetes qui ont un sens ! Donc la vue contrôle.
+		Non		  → on déporte le contrôle en bas.
+
+Là, on a le choix.
+
+Les SGBD fonctionnent bien parce que ils sont en FN3, il faut donc des dépendances fonctionnelles !!
+→ il faut se poser plein de questions sur les FN3
+
+
+Dans le CdC, Sergi doit faire une demande à la CNIL,    Se pencher sur les dispositions spécifiques aux assoc.
+
+
+%--- fin de réunion ---%
+\newpage
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

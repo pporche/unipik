@@ -98,28 +98,15 @@ Les E-mail et les numéros de téléphone sont des entiers, c'est une erreur .\\
 Bien différencier profit et Chiffre d'Affaire, ici, on parle de chiffre d'affaire.\\
 Il y a quelques typos : "La palge de date", "les protables",...\\
 Bien songer à la notion de région/national ? (1.3 du CdC) \\
-Pour le type utilisateur, il faut faire une hiérarchisation. Il existe deux familles d'utilisateurs : contact et bénévole, or, s'il y a différents types, c'est qu'il y a différents comportements. l'administrateur a des d'autres méthodes en plus des simples utilisateurs. Les méthodes sont à différentier en fonction du type d'utilisateur.
+Pour le type utilisateur, il faut faire une hiérarchisation. Il existe deux familles d'utilisateurs : contact et bénévole, or, s'il y a différents types, c'est qu'il y a différents comportements. l'administrateur a des d'autres méthodes en plus des simples utilisateurs. Les méthodes sont à différentier en fonction du type d'utilisateur.\\
+Il faut déterminer exactement quelles sont les demande du client concernant les statistiques voulues, notamment au sujet des frimousses. En effet, la création de ces dernières donne lieu à une vente et il faut savoir si celle ci est à compter avec les autres "ventes".\\
+Il faut, coté BD, considérer une demande d'intervention par un établissement comme un ensemble de demandes.\\
+Il manque des contraintes d'intégrité (à mettre en commentaire) comme par exemple sur les adresses électroniques (XYZ@WXYZ.XY).\\
+Lors de l'accès à la ressource, il faut être efficace. Si on fait une requête invalide, on utilise des ressources pour rien. Si le modèle est une ressource critique, il faut contrôler la validité des requêtes sur la vue. S'il n'est pas une ressource critique, on déporte le contrôle vers le bas. Dans le cas de ce projet, nous avons le choix.\\
+Afin que notre BD fonctionne, il faut qu'elle soit en troisième forme normale. Il faut donc se poser des questions afin d'adapter le modèle à la FN3.
 
-
-
-Pas d'association entre frimousse et vente ? → les frimousses sont vendues non ?   Si l'établissement fait une vente, savoir si ca vient d'un plaidoyer.               → savoir quelles sont les stats qu'il faut au client.
-
-
-L'intervention se présente comme un ensemble d'intervention sur les classes.  Il faut que ca soit un ensemble de demandes.
-
-Il manque les contraintes d'intégrité. « Une adresse électronique c'est genre « XXX@XXX.XX » »
-
-Lors de l'acces à la ressource, il faut que ca soit efficace, si on fait une requete nulle, on utilise des ressources pour « rien »
-La ressource modèle est critique → on envoie des requetes qui ont un sens ! Donc la vue contrôle.
-		Non		  → on déporte le contrôle en bas.
-
-Là, on a le choix.
-
-Les SGBD fonctionnent bien parce que ils sont en FN3, il faut donc des dépendances fonctionnelles !!
-→ il faut se poser plein de questions sur les FN3
-
-
-Dans le CdC, Sergi doit faire une demande à la CNIL,    Se pencher sur les dispositions spécifiques aux assoc.
+\section{CNIL}
+Selon le cahier des charges, \Sergi{} doit faire la demande à la CNIL pour le traitement des données. La question est la suivante : "doit il impliquer l'INSA lors de la demande?". \nomTuteurPedago{} répond que non, que \Sergi{} fait la demande au nom de l'\nomClient{}. Il faut également se pencher sur les dispositions spécifiques aux association loi 1901.
 
 
 %--- fin de réunion ---%

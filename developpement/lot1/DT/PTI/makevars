@@ -1,0 +1,6 @@
+# version 1.00, date 29/02/16, auteur Michel Cressant
+# Définition du nom du document
+NOM_FICHIER=PTI_D_Unipik_v1.00
+
+LOCPATH=specifications/DSE
+GENPATH=$(shell pwd)/../../../..

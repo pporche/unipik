@@ -15,6 +15,7 @@ $(PDFDIR)/%.pdf : enregistrements/%.tex
 	mv *.pdf $(PDFDIR)
 
 
+imagespdf:
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@

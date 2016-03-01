@@ -1,6 +1,6 @@
-# version 1.01, date 26/02/16, auteur Michel Cressant, Pierre Porche
+# version 1.02, date 01/03/16, auteur Michel Cressant, Pierre Porche
 # Compilation
-all: fc ff
+all: fc ff pf
  
 fc:
 	make -C FC
@@ -8,8 +8,11 @@ fc:
 ff:
 	make -C FF
 
+pf:
+	make -C PF
+
 # Archivage
-archive: archivefc archiveff
+archive: archivefc archiveff archivepf
 
 archivefc:
 	make -C FC archive
@@ -17,10 +20,13 @@ archivefc:
 archiveff:
 	make -C FF archive
 
+archivepf:
+	make -C PF archive
+
 
 
 # Nettoyage
-clean : cleanfc cleanff
+clean : cleanfc cleanff cleanpf
 
 cleanfc:
 	make -C FC clean
@@ -28,4 +34,6 @@ cleanfc:
 cleanff:
 	make -C FF clean
 
+cleanpf:
+	make -C PF clean
 

@@ -17,13 +17,13 @@
 \chapter{Diagramme de classe}
 
 %% Inclure le  diagramme de classe
-%\begin{landscape}
-%\begin{figure}
-%	\centering
-%	\includegraphics[scale=1]{images/}
-%	\caption{\label{modele}Diagramme de classe}
-%\end{figure}
-%\end{landscape}
+\begin{landscape}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.3]{images/Diagrammedeclasses}
+	\caption{\label{modele}Diagramme de classe}
+\end{figure}
+\end{landscape}
 
 \chapter{Description du Diagramme de classe}
 
@@ -308,6 +308,186 @@ L'association INTERVENTIONSESITUE relie une INTERVENTION et un DEPARTEMENT. Une 
 L'association ESTASSOCIE relie un DEPARTEMENT à lui-même. Un département est associé à aucun, un ou plusieurs départements.
 
 \chapter{Contraites d'intégrité}
+
+\section{Les contraintes d'intégrité intra-classe}
+Dans cette partie, nous allons décrire les différentes contraintes d'intégrité de chaque classe et classe-association.
+ 
+\subsection*{Personne}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+ 	\item \textbf{nom :} chaine de caractère de longueur de 100 caractères au maximum, attribut non nul;
+	\item \textbf{prénom :} chaine de caractère de longueur de 100 caractères au maximum, attribut non nul;
+	\item \textbf{email :} chaine de caractère de longueur de 100 caractères au maximum, la syntaxe de l'e-mail doit être la suivante : user@host.domain\\
+	user : contient des chiffres/lettres ainsi que les symboles "\_", "-", "." \\
+	host : contient des chiffres/lettres \\
+	domain : chaine de caractère composée de 2 ou 3 lettres. \\
+	attribut non nul;  
+	\item \textbf{telFixe :} chaine de caractère composée de 10 chiffres commençant par "0", attribut peut être nul;
+	\item \textbf{telPortable :} chaine de caractère composée de 10 chiffres commençant par "0", attribut peut être nul.\\
+\end{itemize}  
+
+\subsection*{Benevole}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+ 	\item \textbf{adresse :} constante de type \textbf{Adresse}, attribut non nul;
+	\item \textbf{mdp :} chaine de caractère de longueur de 50 caractères au maximum, de 8 caractères au minimum, attribut non nul;  
+	\item \textbf{activitesPotentielles :} constante de type \textbf{Activite}, atrribut multivalué, peut être nul.\\
+\end{itemize}  
+
+\subsection*{AdminLocal}
+Contraintes de domaine et de nullité des attributs :\\
+ \indent \indent \textbf{responsabiliteActivite :} constante de type \textbf{Activite}, attribut multivalué, peut être nul.\\
+
+ 
+\subsection*{Contact}
+Contraintes de domaine et de nullité des attributs :\\
+\indent \indent \textbf{type :} constante de type \textbf{TypeContact},attribut non nul.\\
+
+\subsection*{Etablissement}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+ 	\item \textbf{idEtablissement :} chaine de caractère de longueur de 100 caractères au maximum, attribut non nul;
+	\item \textbf{nom :} chaine de caractère de longueur de 100 caractères au maximum, attribut non nul;
+	\item \textbf{telFixe :} chaine de caractère composée de 10 chiffres commençant par "0", attribut peut être nul;
+	\item \textbf{email :} chaine de caractère de longueur de 100 caractères au maximum, la syntaxe de l'e-mail doit être la suivante : user@host.domain\\
+	user : contient des chiffres/lettres ainsi que les symboles "\_", "-", "." \\
+	host : contient des chiffres/lettres \\
+	domain : chaine de caractère composée de 2 ou 3 lettres. \\
+	attribut multivalué, non nul; 
+	\item \textbf{adresse :} constante de type \textbf{Adresse}, attribut non nul; 
+	\item \textbf{geolocalisation :} constante de type \textbf{LocalistaionWGS84}, attribut non nul.\\
+\end{itemize}  
+
+\subsection*{Enseignement}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{UAI :} chaine de caractères composée de lettre et de chiffres, attribut non nul;
+	\item \textbf{type :} constante de type \textbf{TypeEnseignement}, attribut non nul.\\
+\end{itemize}
+
+\subsection*{Centre de Loisirs}
+Contraintes de domaine et de nullité des attributs :\\
+\indent \indent \textbf{type :} constante de type \textbf{TypeCentre}, peut être nul.\\
+
+\subsection*{Intervention} 
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+ 	\item \textbf{idIntervention :} entier, attribut non nul;
+	\item \textbf{date :} chaine de caractère de longueur de 10 caractères ayant la syntaxe suivante "JJ/MM/AAAA", attribut non nul;
+	\item \textbf{lieu :} chaine de caractère composée de chiffres et de lettres, attribut peut être nul;
+	\item \textbf{nbPersonnes :} entier, attribut non nul;  
+	\item \textbf{materielDispo :} constante de type \textbf{Matériel}, attribut multivalué non nul; 
+	\item \textbf{remarques :} chaine de caractères de longueur de 1000 caractères au maximum;
+	\item \textbf{moment :} constante de type \textbf{MomentJournalier}, attribut peut être nul;\\
+\end{itemize}  
+
+\subsection*{Plaidoyer}
+Contraintes de domaine et de nullité des attributs :\\
+\indent \indent \textbf{niveauThème :} constante de type \textbf{niveauThème}, attribut non nul.\\
+
+\subsection*{Frimousse}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{materiaux :} constante de type \textbf{MaterielFrimousse}, attribut multivalué non nul;
+	\item \textbf{niveaux :} constante de type \textbf{NiveauScolaireLimite}, attribut non nul.\\
+\end{itemize}
+
+\subsection*{Projet}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+ 	\item \textbf{idProjet :} entier, attribut non nul;
+	\item \textbf{chiffreDAffaire :} Entier, attribut non nul;
+	\item \textbf{description :} chaine de caractère composée de longueur de 1000 caractères au maximum, attribut ne peut être nul;
+	\item \textbf{type :} constante de type \textbf{TypeProjet}, attribut non nul. \\  
+\end{itemize} 
+
+\subsection*{Vente}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+ 	\item \textbf{idVente :} entier, attribut non nul;
+	\item \textbf{chiffreDAffaire :} Entier, attribut non nul;
+	\item \textbf{date :} chaine de caractère de longueur de 10 caractères ayant la syntaxe suivante "JJ/MM/AAAA", attribut non nul;
+	\item \textbf{remarques :} chaine de caractères de longueur de 1000 caractères au maximum. \\  
+\end{itemize} 
+
+\subsection*{Demande}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+ 	\item \textbf{idDemande :} entier, attribut non nul;
+	\item \textbf{momentsVoulus :} constante de type \textbf{MomentHebdomadaire}, attribut multivalué non nul;
+	\item \textbf{momentsVoulus :} constante de type \textbf{MomentHebdomadaire}, attribut multivalué non nul;
+	\item \textbf{date :} chaine de caractère de longueur de 10 caractères ayant la syntaxe suivante "JJ/MM/AAAA", attribut non nul. \\
+\end{itemize} 
+
+\subsection*{Departement}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{idDepartement :} Entier, attribut non nul;
+	\item \textbf{nom :} chaine de caractère de longueur de 100 caractères au maximum, attribut non nul.\\
+\end{itemize}
+
+\subsection*{Adresse}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+ 	\item \textbf{ville :} chaine de caractère de longueur de 100 caractères au maximum, attribut non nul;
+	\item \textbf{rue :} chaine de caractère de longueur de 500 caractères au maximum, attribut non nul;
+	\item \textbf{numeroDeRue :} chaine de caractère composée d'un numéro et, si besoin, de "bis", "ter", "quater", attribut non nul; 
+	\item \textbf{complement : } chaine de caractère de longueur de 100 caractères au maximum;
+	\item \textbf{codePostale :} chaine de caractère composée de 5 chiffres, attribut non nul.\\
+\end{itemize}
+
+\subsection*{NiveauTheme}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{niveau :} constante de type \textbf{NiveauScolaireComplet}, attribut non nul;
+	\item \textbf{theme :} constante de type \textbf{Theme}, attribut non nul.\\
+\end{itemize}
+
+Autres contraintes :
+
+Si le niveau est "petiteSection", "petiteMoyenneSection", "moyenneSection", "moyenneGrandeSection", "grandeSection", ou "petiteMoyenneGrandeSection", le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteAlimentation", "eau" et "harcelement". 
+
+Si le niveau est "CP", "CPCE1", "CE1", "CE1CE2", "CE2", "CE2CM1", "CM1", "CM1CM2" ou "CM2", le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteEnGeneral", "santeAlimentation", "eau", "travailDesEnfants" et "harcelement".
+
+Si le niveau est "6eme", "5eme", "4eme" ou "3eme", le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteEnGeneral", "santeAlimentation", "eau", "urgencesMondiales", "travailDesEnfants", "enfantsSoldats" et "harcelement".
+
+Si le niveau est "2nde", "1ere", "terminale", "L1", "L2", "L3", "M1", "M2" ou "autre" le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteEnGeneral", "santeAlimentation", "vihSida", "eau", "urgencesMondiales", "travailDesEnfants", "enfantsSoldats", "harcelement", "roleDeLUnicef" et "millenairePourLeDeveloppement".\\
+
+\subsection*{Participe}
+Contraintes de domaine et de nullité des attributs :\\
+\indent \indent \textbf{estTuteur :} Booléen, attribut non nul.\\
+
+
+\subsection*{Appartient}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{respoEtablissement :} , attribut non nul;
+	\item \textbf{type :} constante de type \textbf{Activite}, attribut multivalué peut être nul.
+\end{itemize}
+
+\section{Les contraintes d'intégrités inter-classe}
+
+\subsection*{Etablissement - Enseignement}
+L'\textbf{idEtablissement} d'un établissement doit correspondre à l'\textbf{UAI} si cette établissement est une instance d'enseignement.\\
+
+\subsection*{Intervention - Plaidoyer}
+Le \textbf{niveau} d'une intervention frimousse ainsi que le \textbf{niveau} (de NiveauTheme) d'une intervention plaidoyer doit être en correspondance avec le \textbf{type} de l'établissement.  
+
+Si l'établissement est un enseignement, le \textbf{niveau} peut prendre différentes valeurs selon le \textbf{type}:
+\begin{itemize}
+\item Si le \textbf{type} est "maternelle", le \textbf{niveau} peut être : "petiteSection", "petiteMoyenneSection", "moyenneSection", "moyenneGrandeSection", "grandeSection", "petiteMoyenneGrandeSection" ou "autre";
+\item Si le \textbf{type} est "elementaire", le \textbf{niveau} peut être : "CP", "CPCE1", "CE1", "CE1CE2", "CE2", "CE2CM1", "CM1", "CM1CM2", "CM2" ou "autre";
+\item Si le \textbf{type} est "college", le \textbf{niveau} peut être : "6eme", "5eme", "4eme", "3eme" ou "autre";
+\item Si le \textbf{type} est "lycee", le \textbf{niveau} peut être : "2nde", "1ere", "terminale" ou "autre";
+\item Si le \textbf{type} est "superieur", le \textbf{niveau} peut être : "L1", "L2", "L3", "M1", "M2" ou "autre".
+\end{itemize}
+
+Si l'établissement est un centre de loisirs, le \textbf{niveau} peut prendre différentes valeurs selon le \textbf{type}:
+\begin{itemize}
+\item Si le \textbf{type} est "maternelle", le \textbf{niveau} peut être : "petiteSection", "petiteMoyenneSection", "moyenneSection", "moyenneGrandeSection", "grandeSection", "petiteMoyenneGrandeSection" ou "autre";
+\item Si le \textbf{type} est "elementaire", le \textbf{niveau} peut être : "CP", "CPCE1", "CE1", "CE1CE2", "CE2", "CE2CM1", "CM1", "CM1CM2", "CM2" ou "autre";
+\item Si le \textbf{type} est "adolescent", le \textbf{niveau} peut être : "6eme", "5eme", "4eme", "3eme", "2nde", "1ere", "terminale" ou "autre".
+\end{itemize}
 
 
 \end{document}

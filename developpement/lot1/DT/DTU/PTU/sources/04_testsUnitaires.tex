@@ -1,9 +1,82 @@
 Ici sont décris les différents tests unitaires qui seront effectués sur le lot 1 :
 
 \section{Test Unitaire TU001}
-Description du tests, qu'est ce que je test, que fait ce tests(appel tel ou tel donctions ou truc), mon résultat attendu
-
-
+	Ce test a pour but de se connecter à la base de données via un terminal. Ce test vérifie donc l'existante de la base de données. Afin de se connecter, entrez la commande suivante dans un terminal :\\
+	
+	 psql -U USER -d UNIBASE -h 127.0.0.1 -W suivi du mot de passe nécessaire. \\
+	
+	Résultat attendu : La connexion à la base de données UNIBASE. Le terminal devra afficher l'élément suivant : UNIBASE =>
 
 \section{Test Unitaire TU002}
-Idem, etc pour chaque tests	
+	Ce test a pour but de vérifier si la base de données est remplie via un terminal. Pour cela connecter vous à la base de données UNIBASE et effectuez les commandes suivantes : \\
+	
+	\begin{itemize}
+		\item SELECT * FROM BENEVOLE;
+		\item SELECT * FROM ENSEIGNEMENT;
+		\item SELECT * FROM CONTACT; 
+		\item SELECT * FROM PROJET;
+		\item SELECT * FROM CENTRELOISIRS
+		\item SELECT * FROM FRIMOUSSE;
+		\item SELECT * FROM PLAIDOYER;
+		\item SELECT * FROM THEME;
+	\end{itemize} 
+	
+	Résultat attendu : Les tables affichées devront être non vide.	
+	
+\section{Test Unitaire TU003}
+	Ce test a pour but de vérifier qu'il est possible d'ajouter et de supprimer un établissement dans la table ETABLISSEMENT. Pour cela connecter vous à la base UNIBASE et effectuez les commandes suivantes : \\
+	
+	\begin{itemize}
+		\item INSERT INTO ETABLISSEMENT VALUES ('valeur 1', 'valeur 2', ...)
+		\item SELECT * FROM ETABLISSEMENT WHERE nom = valeur1 AND telfixe = valeur2 etc;
+	\end{itemize}
+	
+	Résultat attendu : L'établissement ajouté devra apparaître à l'écran. \\
+	
+	Supprimer ensuite cette établissement : \\
+	
+	\begin{itemize}
+		\item DELETE FROM ETABLISSIMENT WHERE idEtablissement=celui trouvé juste avant
+		\item SELECT * FROM ETABLISSEMENT WHERE id= celui trouvé juste avant
+	\end{itemize}	 
+	
+	Résultat attendu : Aucun n'est établissment affiché à l'écran.
+	
+\section{Test Unitaire TU004}
+	Ce test a pour but de vérifier qu'il est possible d'ajouter et de supprimer un bénévole dans la table BENEVOLE. Pour cela connecter vous à la base UNIBASE et effectuez les commandes suivantes : \\
+	
+	\begin{itemize}
+		\item INSERT INTO BENEVOLE VALUES ('valeur 1', 'valeur 2', ...)
+		\item SELECT * FROM BENEVOLE WHERE email=valeur1;
+	\end{itemize}
+	
+	Résultat attendu : Le bénévole ajouté devra apparaître à l'écran. \\
+	
+	Supprimer ensuite ce bénévole : \\
+	
+	\begin{itemize}
+		\item DELETE FROM BENEVOLE WHERE email=valeur1
+		\item SELECT * FROM BENEVOLE WHERE email=valeur1
+	\end{itemize}	 
+	
+	Résultat attendu : Aucun bénévole n'est affiché à l'écran.
+	
+	
+\section{Test Unitaire TU005}
+	Ce test a pour but de vérifier qu'il est possible d'ajouter et de supprimer un intervention dans la table INTERVENTION. Pour cela connecter vous à la base UNIBASE et effectuez les commandes suivantes : \\
+	
+	\begin{itemize}
+		\item INSERT INTO INTERVENTION VALUES ('valeur 1', 'valeur 2', ...)
+		\item SELECT * FROM INTERVENTION WHERE ...;
+	\end{itemize}
+	
+	Résultat attendu : L'intervention ajoutée devra apparaître à l'écran. \\
+	
+	Supprimer ensuite cette intervention : \\
+	
+	\begin{itemize}
+		\item DELETE FROM INTERVENTION WHERE ...
+		\item SELECT * FROM INTERVENTION WHERE ...
+	\end{itemize}	 
+	
+	Résultat attendu : Aucune intervention n'est affichée à l'écran.

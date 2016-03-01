@@ -1,0 +1,8 @@
+# version 1.00, date 03/01/16, auteur  Pierre Porche
+# Définition du nom du document
+NOM_FICHIER=	# trouver un truc là.
+
+LOCPATH=qualite/DSQ/TB
+GENPATH=$(shell pwd)/../../..
+
+

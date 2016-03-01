@@ -1,6 +1,6 @@
 # version 1.00, date 20/02/16, auteur Michel Cressant
 # Compilation
-all: pro pq gp dsq gc
+all: pro gp dsq gc pq
 
 pro:
 	make -C PRO

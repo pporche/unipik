@@ -1,0 +1,130 @@
+% version 1.00	Auteur Pierre Porche
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+\renewcommand{\footrulewidth}{0,01cm}
+
+\begin{document}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Qualité}}					%titre
+
+23/02/2016
+\hfill   
+\hfill 	9:03 - 9:56 				% Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 24/02/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui & 24/02/2016 & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi & 25/02/2016 & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Diffusion}
+Volumétrie, pouvoir d'expression de la BD -> ca tombe tout le temps en revue.
+Démarche ingénieur! -> on a une problématique avec plusieurs solution et on doit définir la bonne solution. tableau récap avec critères genre, et on choppe la solution qui va bien.
+
+Harmonie sur les cravates.
+
+Audit AFNOR : courant mi-mars
+9h -10h30 un mardi matin de la semaine du 14 mars ou du 21. 
+Un plan d'Audit avec les chapitres vérifiés Pascal Meslier et Benjamin CDM avec rédactrion d'un rapport préliminaier d'audit avec remarques (on a un peu droit), non-qualité (on va se faire démonter frère) -> ce qui y passe : GC, Qualité et GP.
+
+
+\section{Recette}
+Le CDR c'est le support ou on marque les remarques du client sur les amélioratinos ou les pbs sur le travail.
+on envoie un CDR au client qui doit valider les différents test. c'est une liste de test où ca passe ou pas. "l'ensemble des champs de la BD convient?" -> approbation CDR vierge puis recette provisoire. (envoie lot + CDR)
+
+Lot approuvé : Recette provisoire devient définitive
+
+Pas tout d'approuvé -> on liste les problèmes, on annote les remarques avec des FFT (1 pour chaque)		Recette provisoire commence quand tout est listé
+
+Période probatoire où le client peut encore faire des remarques. pdt cette période, on corrige les remarques. Lorsque tout a été corrigé et qu'on est surs de nous, -> recette définitive 4 cas pioss
+
+
+- Approbation (validation du client)
+
+- Validationa avce reserve : remarques mineures (FFT) -> on corrige et on lève la dernière -> fin
+
+- Le lot ne convient pas du tout : lot retyoqué et on repasse en période probatoire
+
+- Le lot est accepté avec repport de fonctionnalités : certaines fonctionnalités "glissent" sur le lot suivant.
+
+
+Page de garde : identifier à quel niveau on est (cases à cocher, conseil) recette provisoire ou recette définitive.
+
+
+
+PTI : tests d'intégration : on créé la BD, on fait des trucs avec Symfony et on regarde si la BD a bien changé
+
+
+DTU : c'est un document alors que le PTU c'est un dossier informatique -> on stocke les rapports de test dedans 
+
+
+Les documents de conception, approuvés par qui? -> par personne
+
+
+EC : il faut faire gaffe, ca tombe en inspection technique.  -> pas d'EC
+
+
+Indicateur satisfaction client : on peut faire un questionnaire interne mais l'existant est assez complet et il est INTERDIT de reprendre des questions 	BRIEFER LE CLIENT sur le fait qu'il va en recevoir un. aller voir Romain Hérault pour récupérer les résultat.
+DGQ3 : Gasso est pilote de la DGQ3 mais c'est Romain Hérault qui se charge des questionnaires.
+
+Afficher le tableau de bord! 
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

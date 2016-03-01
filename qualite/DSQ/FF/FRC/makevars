@@ -1,0 +1,8 @@
+# version 1.00, date 01/03/16, auteur  Pierre Porche
+# Définition du nom du document
+NOM_FICHIER=FF_Q_Unipik_cBaseDeDonnees		# trouver un truc là.
+
+LOCPATH=qualite/DSQ/FF/FRC
+GENPATH=$(shell pwd)/../../../..
+
+

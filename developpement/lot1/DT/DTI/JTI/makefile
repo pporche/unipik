@@ -1,6 +1,6 @@
 # version 1.00, date 29/02/16, auteur Michel Cressant
 # Importation des variables
-include makevars ../../../../makevars
+include makevars ../../../../../makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 

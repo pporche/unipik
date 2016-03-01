@@ -51,7 +51,7 @@
 				\hline
 				Vérificateur & \RGC & \Mathieu & 29/02/2016 & pgpic \\[30pt]
 				\hline
-				Validateur & \CP & \Sergi & 29/02/2016 & pgpic \\[30pt]	
+				Validateur & \CP & \Sergi & 01/03/2016 & pgpic \\[30pt]	
 				\hline
 			\end{tabular}
 		\end{center}
@@ -64,9 +64,9 @@ Le \DSE{} et le \PTV{} sont terminés. Ils n'ont par contre pas été envoyés c
 Nous avons également choisi le framework que nous allions utiliser ainsi que le logiciel d'édition de diagrammes UML. Nous avons posé des questions à \nomTuteurQualite{} au sujet de notre demande auprès de la CNIL et avancé sur les remarques faites par \nomTuteurPedago{} la semaine dernière sur notre dépôt de version.
 
 \paragraph*{Choix du framework}
-Nous avons choisi le framework Symfony. Pour cela, nous avons d'abord regardé les pour et les contre du PHP et du JAVA puis pour chaque framework dans chacun. Or, le PHP, plus utilisé en développement web, permet un hébergement à bas prix et donc un "don" de la part de l'hébergeur, comme suggéré par le cahier des charges. Il est également plus adapté à l'envergure de notre projet.
+Nous avons choisi le framework Symfony. Pour cela, nous avons d'abord regardé les pour et les contre du PHP et du JAVA puis pour chaque framework dans chacun de ces deux langages. Or, le PHP, plus utilisé en développement web, permet un hébergement à bas prix et donc un "don" de la part de l'hébergeur, comme suggéré par le cahier des charges. Il est également plus adapté à l'envergure de notre projet.
 \\
-Nous choisissons de travailler avec du PHP(language non typé) mais en ajoutant des règles de programmation afin de pouvoir contrôler les entrées utilisateurs.
+Nous choisissons de travailler avec du PHP(langage non typé) mais en ajoutant des règles de programmation afin de pouvoir contrôler les entrées utilisateurs.
 \\
 Nous travaillerons avec une architecture trois tiers :
 \begin{itemize}
@@ -79,7 +79,7 @@ Ces deux dernières pourront être regroupées sur la même machine afin de réd
 \paragraph*{Mécénat}
 Nous attendons la réunion avec \nomTuteurCom{} pour élaborer notre stratégie de sensibilisation auprès des personnes à convaincre. \nomTuteurPedago{} nous informe qu'il faut préparer des éléments précis sur lesquels poser des questions ainsi que les démarches, problèmes et arguments que nous avons en tête. Il nous dit également que les réunions ne sont faites, en général, que pour acter des décisions déjà prises. Les réunions de travail sont beaucoup moins formelles et plus courtes.
 
-\paragraph*{logiciel d'édition de diagrammes UML}
+\paragraph*{Logiciel d'édition de diagrammes UML}
 Nous avons choisi le logiciel ArgoUML car il permet d'obtenir du code PHP en sortie, il est open source et dispose d'un plug-in UML2Symfony qui produit directement du code pour Symfony. \nomTuteurPedago{} nous informe que le code en sortie de ce type de logiciel n'est pas fiable mais que nous pouvons tout de même le regarder pour se faire une idée sur le PHP que nous devrions produire.
 \\
 Une formation sur cet outil est essentielle pour débuter la phase de conception qui contient beaucoup de diagrammes UML. Pour cela, il faut faire le \PF{} afin d’être sûr d’être prêt au moment où nous aurons besoin de l'outil afin de réduire le stress. Il faut \emph{anticiper les formations}.
@@ -87,15 +87,15 @@ Une formation sur cet outil est essentielle pour débuter la phase de conception
 
 \section{Diagramme de classes}
 \nomTuteurPedago{} a des remarques sur le diagramme de classe que \Julie{} a créé. Tout d'abord, il nous rappelle la différence entre des constantes de type et des constantes de domaine : la manipulation est beaucoup plus intéressante (ordonnancement,..) sur les constantes de type. Celles-ci ne seront pas interprétées comme des chaînes de caractères mais représentées comme tel. \\
-Un code postal peut pas être un entier : par exemple dans « 01520 », le 0 est significatif. \\
+Un code postal ne peut pas être un entier : par exemple dans « 01520 », le 0 est significatif. \\
 \emph{Il faut respecter une cohérence de nommage} \\
-Sur "niveau scolaire complet", le fait que ce soit une énumération n'est pas cohérente car une école maternelle ne peut pas cocher comme niveau "6ème". Il faut donc gérer les contraintes opérationnelles dès la conception afin d'avoir moins d'exceptions à gérer plus tard. De manière générale, un investissement plus important au moment de la modélisation facilitera de bien plus notre travail dans le futur. \\
+Sur "niveau scolaire complet", le fait que ce soit une énumération n'est pas cohérent car une école maternelle ne peut pas cocher comme niveau "6ème". Il faut donc gérer les contraintes opérationnelles dès la conception afin d'avoir moins d'exceptions à gérer plus tard. De manière générale, un investissement plus important au moment de la modélisation facilitera de bien plus notre travail dans le futur. \\
 Les adresses postales et les adresses d’établissement sont la même chose. Encore une fois, il faut faire attention à la cohérence de nommage.\\
 Concernant les attributs multivalués, le logiciel ne les fait pas apparaître donc il faut mettre des commentaires.\\
-Les « Moments » et « moments à éviter » sont des entiers et c'est une erreur. \\
-La géolocalisation ne peut pas être une chaîne de caractère c'est un type spécial sur postGis.\\
-Les E-mail et les numéros de téléphone sont des entiers, c'est une erreur .\\
-Bien différencier profit et chiffre d'affaire, ici, on parle de chiffre d'affaire.\\
+Les attributs « moment » et « moment\_a\_eviter » sont des entiers et c'est une erreur. \\
+La géolocalisation ne peut pas être une chaîne de caractère : c'est un type spécial sur postGis.\\
+Les e-mails et les numéros de téléphone sont des entiers : c'est une erreur.\\
+Bien différencier profit et chiffre d'affaire. Ici on parle de chiffre d'affaire.\\
 Il y a quelques typos : "La palge de date", "les protables",...\\
 Bien songer à la notion de région/national ? (1.3 du CdC) \\
 Pour le type utilisateur, il faut faire une hiérarchisation. Il existe deux familles d'utilisateurs : contact et bénévole, or, s'il y a différents types, c'est qu'il y a différents comportements. L'administrateur a d'autres méthodes en plus des simples utilisateurs. Les méthodes sont à différencier en fonction du type d'utilisateur.\\
@@ -106,7 +106,7 @@ Lors de l'accès à la ressource, il faut être efficace. Si on fait une requêt
 Afin que notre BD fonctionne, il faut qu'elle soit en troisième forme normale. Il faut donc se poser des questions afin d'adapter le modèle à la troisième forme normale.
 
 \section{CNIL}
-Selon le cahier des charges, \Sergi{} doit faire la demande à la CNIL pour le traitement des données. La question est la suivante : "doit il impliquer l'INSA lors de la demande?". \nomTuteurPedago{} répond que non, que \Sergi{} fait la demande au nom de l'\nomClient{}. Il faut également se pencher sur les dispositions spécifiques aux association loi 1901.
+Selon le cahier des charges, \Sergi{} doit faire la demande à la CNIL pour le traitement des données. La question est la suivante : "doit il impliquer l'INSA lors de la demande?". \nomTuteurPedago{} répond que non, que \Sergi{} fait la demande au nom de l'\nomClient{}. Il faut également se pencher sur les dispositions spécifiques aux associations loi 1901.
 
 
 %--- fin de réunion ---%

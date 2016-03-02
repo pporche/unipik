@@ -20,7 +20,7 @@
 \begin{landscape}
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.3]{images/Diagrammedeclasses}
+	\includegraphics[scale=0.3]{images/diagrammeDeClasses}
 	\caption{\label{modele}Diagramme de classe}
 \end{figure}
 \end{landscape}
@@ -179,7 +179,7 @@ Cette classe a plusieurs attributs :
 \end{itemize} 
 
 
-\subsection*{Centre de loisirs}
+\subsection*{CentreLoisirs}
 La classe CENTRELOISIRS est une classe fille de la classe ETABLISSEMENT. Cette classe décrit les établissements ayant un rapport avec les loisirs. \\
 Cette classe a un attribut : 
 \begin{itemize}
@@ -365,7 +365,7 @@ Contraintes de domaine et de nullité des attributs :
 	\item \textbf{type :} constante de type \textbf{TypeEnseignement}, attribut non nul.\\
 \end{itemize}
 
-\subsection*{Centre de Loisirs}
+\subsection*{CentreLoisirs}
 Contraintes de domaine et de nullité des attributs :\\
 \indent \indent \textbf{type :} constante de type \textbf{TypeCentre}, peut être nul.\\
 
@@ -486,8 +486,115 @@ Si l'établissement est un centre de loisirs, le \textbf{niveau} peut prendre di
 \begin{itemize}
 \item Si le \textbf{type} est "maternelle", le \textbf{niveau} peut être : "petiteSection", "petiteMoyenneSection", "moyenneSection", "moyenneGrandeSection", "grandeSection", "petiteMoyenneGrandeSection" ou "autre";
 \item Si le \textbf{type} est "elementaire", le \textbf{niveau} peut être : "CP", "CPCE1", "CE1", "CE1CE2", "CE2", "CE2CM1", "CM1", "CM1CM2", "CM2" ou "autre";
-\item Si le \textbf{type} est "adolescent", le \textbf{niveau} peut être : "6eme", "5eme", "4eme", "3eme", "2nde", "1ere", "terminale" ou "autre".
+\item Si le \textbf{type} est "adolescent", le \textbf{niveau} peut être : "6eme", "5eme", "4eme", "3eme", "2nde", "1ere", "terminale" ou "autre". 
 \end{itemize}
+
+\chapter{Les dépendances fonctionnelles}
+
+Dans cette partie, nous allons déterminer les dépendances fonctionnelles de chaque classe. \\ 
+
+\subsection*{Personne}
+\begin{itemize}
+\item[] email $\rightarrow$ nom 
+\item[] email $\rightarrow$ prenom 
+\item[] email $\rightarrow$ telFixe 
+\item[] email $\rightarrow$ telPortable 
+\item[] telPortable $\rightarrow$ nom
+\item[] telPortable $\rightarrow$ prenom
+\item[] telFixe $\rightarrow$ nom
+\end{itemize}
+
+
+\subsection*{Contact}
+\begin{itemize}
+\item[] email $\rightarrow$ type 
+\end{itemize}
+
+\subsection*{Benevole}
+\begin{itemize}
+\item[] email $\rightarrow$ adresse 
+\item[] email $\rightarrow$ mdp 
+\item[] email $\rightarrow$ activitesPotentielles 
+\end{itemize}
+
+
+\subsection*{AdminLocal}
+\begin{itemize}
+\item[]email $\rightarrow$ activitesPotentielles 
+\end{itemize}
+
+\subsection*{Etablissement}
+\begin{itemize}
+\item[] idEtablissement $\rightarrow$ nom 
+\item[] idEtablissement $\rightarrow$ telFixe
+\item[] idEtablissement $\rightarrow$ email
+\item[] idEtablissement $\rightarrow$ adresse
+\item[] idEtablissement $\rightarrow$ geolocalisation
+\item[] geolocalisation $\rightarrow$ adresse
+\item[] telFixe $\rightarrow$ nom
+\item[] adresse $\rightarrow$ nom
+\end{itemize}
+
+\subsection*{CentreLoisirs}
+\begin{itemize}
+\item[]	idEtablissement $\rightarrow$ type
+\end{itemize}
+
+\subsection*{Enseignement}
+\begin{itemize}
+\item[]	idEtablissement $\rightarrow$ type
+\item[] idEtablissement $\rightarrow$ UAI
+\item[] UAI $\rightarrow$ type
+\end{itemize}
+
+\subsection*{Intervention}
+\begin{itemize}
+\item[]	idIntervention $\rightarrow$ date
+\item[]	idIntervention $\rightarrow$ lieu
+\item[]	idIntervention $\rightarrow$ nbPersonnes
+\item[]	idIntervention $\rightarrow$ materielDispo
+\item[]	idIntervention $\rightarrow$ remarques
+\item[]	idIntervention $\rightarrow$ moment
+\end{itemize}
+
+\subsection*{Plaidoyer}
+\begin{itemize}
+\item[]	idIntervention $\rightarrow$ niveauTheme
+\end{itemize}
+
+\subsection*{Frimousse}
+\begin{itemize}
+\item[]	idIntervention $\rightarrow$ materiaux
+\item[] idIntervention $\rightarrow$ niveau
+\end{itemize}
+
+\subsection*{Projet}
+\begin{itemize}
+\item[] idProjet $\rightarrow$ chiffreDaffaire
+\item[] idProjet $\rightarrow$ description
+\item[] idProjet $\rightarrow$ type
+\end{itemize}
+
+\subsection*{Vente}
+\begin{itemize}
+\item[]	idVente $\rightarrow$ chiffreDaffaire
+\item[]	idVente $\rightarrow$ date
+\item[]	idVente $\rightarrow$ remarques
+\end{itemize}
+
+\subsection*{Departement}
+\begin{itemize}
+\item[] idDepartement $\rightarrow$ nom
+\end{itemize}
+
+\subsection*{Demande}
+\begin{itemize}
+\item[] idDemande $\rightarrow$ listeDemaines 
+\item[] idDemande $\rightarrow$ momentsVoulus
+\item[] idDemande $\rightarrow$ momentsAEviter
+\end{itemize}
+ 
+
 
 
 \end{document}

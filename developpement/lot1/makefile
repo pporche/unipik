@@ -18,6 +18,6 @@ archivedcp:
 # Nettoyage
 clean: cleandcp
 
-cleanlot1:
+cleandcp:
 	make -C DCP clean
 

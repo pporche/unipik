@@ -8,7 +8,8 @@ CLSPATHGEN="ressources/cls/"
 VOCPATHGEN="ressources/unipik/vocabulaire/"
 
 
-ARCHIVEDIRGEN=/net/archives/archivage
+
+ARCHIVEDIRGEN="/net/archives/archivage_$(shell date +%y-%m-%d)"
 SOFTPATHGEN="ressources/unipik/logiciels"
 
 # Commandes

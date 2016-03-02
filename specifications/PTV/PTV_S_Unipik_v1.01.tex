@@ -1,4 +1,5 @@
 % version 1.00, date 20/02/16, auteur Michel Cressant
+% version 1.01, date 02/03/16, auteur Michel Cressant
 \documentclass[asi]{picInsa}
 \DeclareGraphicsRule{*}{pdf}{*}{}
 \usepackage{pdfpages}
@@ -40,7 +41,7 @@
 \titreGeneral{\PTV}
 \sousTitreGeneral{\nomEquipe}
 \titreAcronyme{\PTVCourt}
-\version{V1.00}
+\version{V1.01}
 \titreDetaille{\PTVCourt\_S\_\nomEquipe\_\versionPrive}
 \referenceVersion{\PTVCourt\_S\_\nomEquipe\_\versionPrive}
 \auteurs{\Matthieu{} \& \Kafui{} \& \Melissa{} \& \Sergi{} \& \Michel{} \& \Pierre{}}
@@ -71,6 +72,13 @@
 \input{sources/02_lot1.tex}
 
 
+\begin{appendix}
+\part*{Annexes}
+\addcontentsline{toc}{part}{Annexes}
+\listoffigures
+\addcontentsline{toc}{chapter}{Table des figures}
+
+\end{appendix}
 
 
 \pageQuatriemeCouverture

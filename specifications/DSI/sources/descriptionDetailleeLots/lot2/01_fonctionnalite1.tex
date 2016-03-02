@@ -1,6 +1,7 @@
 \subsection{Fonctionnalité 1}
 La première fonctionnalité du système devra permettre les opérations conventionnelles de gestion individuelle comme la création d'un bénévole dans le système, la modification des caractéristiques le concernant et la suppression d'un bénévole. La suppression d'un bénévole devra être logique et non physique de façon à ne pas effacer l'historique des actions effectuées par ce bénévole. \\
 Un bénévole sera identifié par son adresse électronique.\\ 
+Un cas spécial sera prévu pour un bénévole spécial qui ne sera rattaché à aucune information personnelle mais dont les actions seront tracées.\\
 Les informations associées à un bénévole sont :
 \begin{itemize}
 \item son identifiant (adresse électronique),
@@ -14,6 +15,8 @@ Les informations associées à un bénévole sont :
 \item sa ou ses responsabilités d'activité (si responsable).
 \\
 \end{itemize}
+
+Les figures \ref{utilisateurNonConnecte} et \ref{utilisateurConnecte} présentent les cas d'utilisation propres aux actions possibles pour un utilisateur connecté et un utilisateur non connecté.
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{images/casDUtilisation/fonctionnalite1UtilisateurNonConnecte.png}

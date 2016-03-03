@@ -1,14 +1,16 @@
 \subsection{Fonctionnalité 7}
-La fonctionnalité 7 permettra d'envoyer un e-mail de rappel à l'établissement et au contact dans l'établissement (si son adresse électronique est différente de celle de l'établissement), une semaine avant l'intervention. Le texte de ce message sera à définir avec \nomClient{} et à faire valider par le responsable des plaideurs. \\
+La fonctionnalité 7 permettra d'envoyer un e-mail de rappel à l'établissement et au contact dans l'établissement (si son adresse électronique est différente de celle de l'établissement), une semaine avant l'intervention. Le texte de ce message sera à définir avec \nomClient{} et à faire valider par le responsable des plaideurs. La maquette de cet email est présenté dans la figure \ref{courrielRappelEtablissement}. \\
 
 % Figure : version 1.00, date 24/02/16, auteur Michel Cressant
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.675]{images/maquettes/fonctionnalite7MailDeRappelPourLEtablissement.png}
 	\caption{Maquette~: Email de rappel d'intervention pour un établissement}
+	\label{courrielRappelEtablissement}
 \end{figure}
 
 Trois jours avant l'intervention, le plaideur recevra un e-mail de rappel avec les informations associées (date, heure, lieu, thème, nombre d'élèves, remarques, niveau des élèves). 
+La maquette de cet email est présenté dans la figure \ref{courrielRappelPlaideur}. \\
 \\
 
 % Figure : version 1.00, date 24/02/16, auteur Michel Cressant
@@ -16,8 +18,11 @@ Trois jours avant l'intervention, le plaideur recevra un e-mail de rappel avec l
 	\centering
 	\includegraphics[scale=0.65]{images/maquettes/fonctionnalite7MailDeRappelPourLePlaideur.png}
 	\caption{Maquette~: Email de rappel d'intervention pour le plaideur}
+	\label{courrielRappelPlaideur}
 \end{figure}
 
+La figure \ref{envoiRappel} présente le diagramme de cas d'utilisation concernant l'envoi d'email de rappel.
+ 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{images/casDUtilisation/fonctionnalite7Rappels.png}

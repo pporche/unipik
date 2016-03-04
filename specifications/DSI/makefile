@@ -1,10 +1,10 @@
-# version 1.01, date 26/02/16, auteur Michel Cressant, Pierre Porche 
+# version 1.02, date 04/03/16, auteur Michel Cressant, Pierre Porche, Mathieu Medici
 # Importation des variables
 include makevars ../../makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : imagespdf imagespng dsi cleanrep cleaneps cleanpng
+all : imagespdf dsi cleanrep cleaneps cleanpng
 
 dsi : $(PDFDIR)/$(NOM_FICHIER).pdf 
 
@@ -17,8 +17,6 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 # I have no idea what this thing is doing
 
 imagespdf: $(IMGDIR)/schemaArchitecture.pdf
-
-imagespng: $(IMGDIR)/fonctionsIDEF0.png
 
 $(IMGDIR)/%.png: $(IMGDIR)/%.dia
 	$(DIA) -e $@ --filter=png $<

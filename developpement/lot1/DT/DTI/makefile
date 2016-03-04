@@ -3,7 +3,7 @@
 all: jti pti
 
 jti:
-	make -C DTI
+	make -C JTI
 
 pti:
 	make -C PTI

@@ -1,0 +1,70 @@
+\documentclass[compress,xcolor=dvipsnames]{beamer}
+
+\usepackage[french]{babel}
+\selectlanguage{french}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usepackage{multirow}
+%\usepackage{pgf-pie}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
+\usepackage{vocabulaireUnipikPresentation}
+\usepackage{commun/vocabulaireCommun}
+\usepackage{hyperref}
+\usepackage{movie15}
+\usepackage{xcolor}
+
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
+\usetheme{eastpic}%{Berlin}%{Madrid}
+
+ 
+ 
+%Information to be included in the title page:
+\title{Sample title}
+\date{\today}
+\author{Unipik}
+\institute{\insa}
+
+\setbeameroption{show notes}
+
+ 
+\begin{document}
+
+\speaker{\Sergi} 
+
+\begin{frame}[plain]
+	\titlepage
+\end{frame}
+
+\begin{frame}{Sommaire}
+	\tableofcontents[hideallsubsections]
+\end{frame}
+ 
+
+\speaker{\Sergi}
+\section[Presentation]{Présentation}
+\input{1_presentation.tex}
+
+\speaker{\Sergi}
+\section[Cahier des charges]{Cahier des charges}
+\input{2_cahierDesCharges.tex}
+
+\speaker{\Sergi}
+\section[Avancement]{Avancement du projet}
+\input{3_AvancementProjet.tex}
+
+\speaker{\Sergi}
+\section[Gestion projet]{Gestion de projet}
+\input{4_gestionProjet.tex}
+
+
+\speaker{\Sergi}
+\section[Qualité]{Démarche Qualité}
+\input{5_demarcheQualite.tex}
+
+ 
+\end{document}
+

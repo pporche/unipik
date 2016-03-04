@@ -1,0 +1,8 @@
+# version 1.00, date 04/03/16, auteur  Sergi Colomiès
+# Définition du nom du document
+NOM_FICHIER=FS			# trouver un truc là.
+
+LOCPATH=qualite/GP/FS
+GENPATH=$(shell pwd)/../../..
+
+

@@ -17,7 +17,7 @@ Les informations associées à un bénévole sont :
 \end{itemize}
 
 Les figures \ref{utilisateurNonConnecte} et \ref{utilisateurConnecte} présentent les diagrammes de cas d'utilisation propres aux actions possibles pour un utilisateur connecté et un utilisateur non connecté.\\
-Les figures \ref{fonctionnalite1creationDUnUtilisateurs}  et \ref{fonctionnalite1modificationDUnProfil} présentent respectivement la maquette de l'interface de création de profil et celle de la modification de profil. \\
+Les figures \ref{fonctionnalite1creationDUnUtilisateurs}, \ref{fonctionnalite1modificationDUnProfil}  et \ref{fonctionnalite1modificationDUnProfilAdmin} présentent respectivement la maquette de l'interface de création de profil et celles de la modification de profil (par un l'utilisateur puis par l'administrateur). \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{images/casDUtilisation/fonctionnalite1UtilisateurNonConnecte.png}
@@ -46,10 +46,18 @@ Les figures \ref{fonctionnalite1creationDUnUtilisateurs}  et \ref{fonctionnalite
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{images/maquettes/fonctionnalite1ModificationDUnProfil.png}
-	 \caption{Maquette~: Modification des informations d'un utilisateur}
+	 \caption{Maquette~: Modification des informations d'un utilisateur par l'utilisateur}
 	 \label{fonctionnalite1modificationDUnProfil}
 \end{figure}
 
+
+% Figure : version 1.00, date 24/02/16, auteur Michel Cressant
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/maquettes/fonctionnalite1ModificationDUnProfilAdmin.png}
+	 \caption{Maquette~: Modification des informations d'un utilisateur par l'administrateur}
+	 \label{fonctionnalite1modificationDUnProfilAdmin}
+\end{figure}
 
 Un administrateur global est un utilisateur qui a tous les droits. \\ Un administrateur local est un responsable d'activité, il a des droits de lecture et de modification sur son activité. \\ Un bénévole a des droits de lecture et de modification sur ses informations personnelles et seulement des droits de lecture sur les informations concernant ses domaines d'activité. Il pourra également s'attribuer une activité, entrer et modifier des informations sur cette activité.\\
 Il pourra exister plusieurs administrateurs globaux, plusieurs administrateurs locaux et plusieurs bénévoles. Un administrateur local peut être responsable de plusieurs activités.

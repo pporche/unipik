@@ -1,0 +1,9 @@
+# version 1.00, date 04/03/16, auteur Pierre Porche
+# Définition du nom du document
+NOM_FICHIER=diagrammePackage
+MON_IMAGE=
+
+LOCPATH=developpement/lot1/DCP/diagrammePackage
+GENPATH=$(shell pwd)/../../../..
+
+

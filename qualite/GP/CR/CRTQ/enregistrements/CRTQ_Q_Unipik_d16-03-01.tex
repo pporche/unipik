@@ -51,7 +51,7 @@
 				\hline
 				Vérificateur & \RQA & \Kafui & 03/03/2016 & pgpic \\[30pt]
 				\hline
-				Validateur & \CP & \Sergi & 03/03/2016 & pgpic \\[30pt]	
+				Validateur & \CP & \Sergi & 04/03/2016 & pgpic \\[30pt]	
 				\hline
 			\end{tabular}
 		\end{center}
@@ -59,23 +59,23 @@
 %--- Réunion --%
 
 \section{Revue}
-Lors de la revue, \nomTuteurQualite{} nous explique que les points qui seront surement évoqués sont la volumétrie et le pouvoir d'expression de la BD ainsi que la démarche ingénieur. Ce dernier point consiste à exposer une problématique à laquelle nous avons été confrontés, les plusieurs solutions qui s'offrait à nous et comment nous avons choisi la solution en fonction de différents critères importants.\\
+Lors de la revue, \nomTuteurQualite{} nous explique que les points qui seront sûrement évoqués sont la volumétrie et le pouvoir d'expression de la base de données ainsi que la démarche ingénieur. Ce dernier point consiste à exposer une problématique à laquelle nous avons été confrontés, les différentes solutions qui s'offraient à nous et comment nous avons choisi la solution en fonction des différents critères importants sélectionnés.\\
 Selon \nomTuteurQualite{}, il faut une harmonisation au sujet des cravates : soit tout le monde en met, soit personne n'en met.
 
 
 \section{Audit}
-Un audit interne de préparation aura lieu courant mi-mars. L'heure sera certainement de 9h à 10h30 un mardi (le 15 ou le 22). Nous recevrons un plan d'audit contenant les chapitres vérifiés lors de l'audit. Les personnes réalisant l'audit seront \nomTuteurQualite{} et \nomApprobateur{}, il y aura rédaction d'un rapport préliminaire d'audit avec les remarques (peu grave) et les non-qualités (grave) relevées. Les élements examinés seront la Gestion des Configurations, la Qualité et la Gestion de Projet.
+Un audit interne de préparation à l'audit AFNOR aura lieu courant mi-mars. L'heure sera certainement de 9h à 10h30 un mardi (le 15 ou le 22). Nous recevrons un plan d'audit contenant les chapitres vérifiés lors de l'audit. Les personnes réalisant l'audit seront \nomTuteurQualite{} et \nomApprobateur{}. Il y aura rédaction d'un rapport préliminaire d'audit avec les remarques (peu grave) et les non-qualités (grave) relevées. Les élements examinés seront la gestion des configurations, la qualité et la gestion de projet.
 
 
 \section{Livraison}
-Le \CDR{} est le support où sont écrites toutes les remarques du client et ses réclamations. Lors de la phase de livraison, nous devons envoyer un \CDR{} vierge au client afin qu'il valide les différents tests. Le \CDR{} vierge est une liste de test qui peuvent soit être réussis, soit échouer. Si le \CDR{} vierge est approuvé (ex. : l'ensemble des champs de la BD convient au client.), nous passons en recette provisoire et devons envoyer le lot ainsi que le \CDR{} provisoire au client.\\
-Si le lot est approuvé, la recette provisoire devient recette définitive. Sinon, on liste les problèmes et on annote les remarques avec des \FFT{} (une \FFTCourt{} par problème). La période probatoire commence dès que tout est listé, lors de celle ci, le client peut encore faire des remarques. Pendant cette période, l'équipe corrige les remarques et elle prend fin lors de l'envoie du \CDR{} définitive après correction de tous les problèmes.\\
+Le \CDR{} est le support où sont écrites toutes les remarques du client et ses réclamations. Lors de la phase de livraison, nous devons envoyer un \CDR{} vierge au client afin qu'il valide les différents tests. Le \CDR{} vierge est une liste de tests qui peuvent soit être réussis, soit échoués. Si le \CDR{} vierge est approuvé (ex. : l'ensemble des champs de la BD convient au client.), nous passons en recette provisoire et devons envoyer le lot ainsi que le \CDR{} provisoire au client.\\
+Si le lot est approuvé, la recette provisoire devient recette définitive. Sinon, on liste les problèmes et on annote les remarques avec des \FFT{} (une \FFTCourt{} par problème). La période probatoire commence dès que tout est listé, lors de celle ci, le client peut encore faire des remarques. Pendant cette période, l'équipe corrige les remarques et elle prend fin lors de l'envoi du \CDR{} définitive après correction de tous les problèmes.\\
 A ce moment là, il y a quatre possibilités :
 \begin{itemize}
 \item Si le cahier de recette est approuvé sans réserves, le lot est terminé.
 \item Si le cahier de recette est approuvé avec des réserves, la livraison se poursuit jusqu'à la levée de la dernière réserve qui vaut pour approbation. Ces réserves sont généralement des remarques de faible importance.
 \item Si le lot est accepté avec report de fonctionnalités sur le prochain lot, il faut implémenter les fonctionnalités manquantes lors du prochain lot.
-\item Le lot peut également être refusé totalement par le client, le cycle recommence.
+\item Le lot peut également être totalement refusé par le client, le cycle recommence dès lors.
 \end{itemize}
 Sur la page de garde du \CDR{}, il faut savoir en un coup d'oeil s'il s'agit d'un \CDR{} provisoire ou un \CDR{} définitive.
 
@@ -84,20 +84,13 @@ Sur la page de garde du \CDR{}, il faut savoir en un coup d'oeil s'il s'agit d'u
 
 Le \PTI{} contient les tests d'intégration du type "On créé la BD, on fait des modifications avec Symfony et on regarde si la BD a bien changé".\\
 
-Le \DTU{} est un document alors que le \PTU{} est un dossier informatique dans lequel sont stockés les rapports de tests. \\
+Le \PTU{} est un document alors que le \DTU{} est un dossier informatique dans lequel sont stockés les rapports de tests. \\
 
 Les documents de conception n'ont pas à être approuvés.\\
 
-Concernant l'indicateur de satisfaction client, il est possible de faire un questionnaire interne mais celui qui existe est complet et il est \textbf{interdit} de reprendre des questions de ce dernier. Il faut \textbf{briefer le client} sur le fait qu'il va recevoir un questionnaire. Il faudra ensuite aller voir Romain Hérault pour récupérer les résultat.\\
+Concernant l'indicateur de satisfaction client, il est possible de faire un questionnaire interne mais celui qui existe est complet et il est \textbf{interdit} de reprendre des questions de ce dernier. Il faut \textbf{briefer le client} sur le fait qu'il va recevoir un questionnaire. Il faudra ensuite aller voir Romain Hérault pour récupérer les résultats.\\
 
-Il faut \textbf{afficher le tableau de bord}.
-
-
-Indicateur satisfaction client : on peut faire un questionnaire interne mais l'existant est assez complet et il est INTERDIT de reprendre des questions 	BRIEFER LE CLIENT sur le fait qu'il va en recevoir un. aller voir Romain Hérault pour récupérer les résultat.
-DGQ3 : Gasso est pilote de la DGQ3 mais c'est Romain Hérault qui se charge des questionnaires.
-
-Afficher le tableau de bord! 
-
+Il faut \textbf{afficher le tableau de bord} dans la salle.
 
 
 \end{document}

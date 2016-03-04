@@ -1,4 +1,4 @@
-# version 1.01, date 26/02/16, auteur Michel Cressant, Pierre Porche
+# version 1.02, date 26/02/16, auteur Michel Cressant, Pierre Porche, Mathieu Medici
 # Importation des variables
 include makevars ../../../makevars
 
@@ -8,7 +8,7 @@ all : ec cleanrep
 
 ec : $(PDFDIR)/$(NOM_FICHIER).pdf
 
-$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
+$(PDFDIR)/$(NOM_FICHIER).pdf : enregistrements/$(NOM_FICHIER).tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\
 	$(CCTEX) $<

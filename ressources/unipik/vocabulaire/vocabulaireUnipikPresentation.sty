@@ -1,0 +1,265 @@
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]
+
+\ProcessOptions
+
+% nom équipe
+\newcommand{\nomPIC}{UNICEF}
+\newcommand{\nomEquipe}{\textsc{Unipik}}
+\newcommand{\opensource}{Open Source}
+\newcommand{\nomClient}{UNICEF}
+\newcommand{\representantClient}{Véronique \textsc{Barbier}}
+\newcommand{\nomTuteurPedago}{Michel \textsc{Mainguenaud}}
+\newcommand{\nomTuteurQualite}{Benjamin \textsc{C\oe lho De Matos}}
+\newcommand{\nomTuteurCom}{Doriane \textsc{Bareau}}
+\newcommand{\nomApprobateur}{Pascal \textsc{Meslier}}
+\newcommand{\adresseSalle}{\vocabulaireDebug{Saint-\'Etienne-du-Rouvray, Bâtiment Bougainville, salle A-RC-04}}
+
+% rôles A REMPLACER PAR CEUX CI DESSOUS
+
+\newcommand{\CP}{Chef PIC}
+\newcommand{\CPs}{Chefs PIC}
+\newcommand{\CPCourt}{CP}
+\newcommand{\CPA}{\CP{} Adjoint}
+\newcommand{\CPACourt}{CPA}
+\newcommand{\RD}{Responsable Développement}
+\newcommand{\RDCourt}{RD}
+\newcommand{\RQ}{Responsable Qualité}
+\newcommand{\RQs}{Responsables Qualité}
+\newcommand{\RQCourt}{RQ}
+\newcommand{\RQA}{\RQ{} Adjoint}
+\newcommand{\RQACourt}{RQA}
+\newcommand{\RGC}{Responsable Gestion des Configurations}
+\newcommand{\RGCCourt}{RGC}
+\newcommand{\RRS}{Responsable Réseau et Serveur}
+\newcommand{\RRSCourt}{RRS}
+\newcommand{\D}{Développeur}
+\newcommand{\DCourt}{D}
+\newcommand{\RI}{Responsable Indicateur}
+\newcommand{\RICourt}{RI}
+
+% scrum
+\newcommand{\productOwner}{\emph{Product Owner}}
+\newcommand{\userStories}{\emph{User Stories}}
+\newcommand{\scrumMaster}{\emph{Scrum Master}}
+\newcommand{\scrum}{\emph{mêlée}}
+\newcommand{\productBacklog}{\emph{Product Backlog}}
+\newcommand{\sprintBacklog}{\emph{Sprint Backlog}}
+\newcommand{\burndownChart}{\emph{Burn Down Chart}}
+\newcommand{\srumBoard}{\emph{Scrum Board}}
+
+% outils
+\newcommand{\lintranet}{PGPic}
+\newcommand{\Lintranet}{PGPic}
+\newcommand{\SVN}{Subversion}
+\newcommand{\SVNCourt}{SVN}
+\newcommand{\banquise}{LaBanquise}
+\newcommand{\nomLogicielAgile}{PivotalTracker}
+\newcommand{\git}{Git}
+\newcommand{\gitHub}{GitHub}
+
+% membre équipe
+\newcommand{\Melissa}{Mélissa \textsc{Bignoux}}
+\newcommand{\Mathieu}{Mathieu \textsc{Medici}}
+\newcommand{\Matthieu}{Matthieu \textsc{Martins-Baltar}}
+\newcommand{\Pierre}{Pierre \textsc{Porche}}
+\newcommand{\Michel}{Michel \textsc{Cressant}}
+\newcommand{\Sergi}{Sergi  \textsc{Colomies}}
+\newcommand{\Florian}{Florian \textsc{Leriche}}
+\newcommand{\Kafui}{Kafui \textsc{Atanley}}
+\newcommand{\Francois}{François \textsc{Decq}}
+\newcommand{\Julie}{Julie \textsc{Pain}}
+
+
+
+% Terminologies générales (inscrite dans la DGQ2)
+
+\newcommand{\ASI}{Architecture des Systèmes d'Information}
+\newcommand{\ASICourt}{ASI}
+\newcommand{\BS}{Breakdown Structure}
+\newcommand{\BSCourt}{BS}
+\newcommand{\CTFT}{Commission de Traitement des Faits Techniques}
+\newcommand{\CTFTCourt}{CTFT}
+\newcommand{\DCD}{Document de Conception Détaillée}
+\newcommand{\DCDCourt}{DCD}
+\newcommand{\DCP}{Document de Conception Préliminaire}
+\newcommand{\DCPCourt}{DCP}
+\newcommand{\DGP}{Dossier de Gestion de Projet}
+\newcommand{\DGPCourt}{DGP}
+\newcommand{\DGQ}{Disposition Générale de Qualité}
+\newcommand{\DGQCourt}{DGQ}
+\newcommand{\DGQUN}{Processus \textit{Rechercher, choisir et contractualiser les PIC}}
+\newcommand{\DGQUNCourt}{DGQ1}
+\newcommand{\DGQDEUX}{Processus \textit{Réaliser les PIC}}
+\newcommand{\DGQDEUXCourt}{DGQ2}
+\newcommand{\DGQTROIS}{Processus \textit{Manager la Qualité}}
+\newcommand{\DGQTROISCourt}{DGQ3}
+\newcommand{\DSE}{Document de Spécifications Externes}
+\newcommand{\DSECourt}{DSE}
+\newcommand{\DSI}{Document de Spécifications Internes}
+\newcommand{\DSICourt}{DSI}
+\newcommand{\DSL}{Document de Spécifications Logiciel}
+\newcommand{\DSLCourt}{DSL}
+\newcommand{\DSQ}{Dossier de Suivi de la Qualité}
+\newcommand{\DSQCourt}{DSQ}
+\newcommand{\DTI}{Dossier de Tests d'Intégration}
+\newcommand{\DTICourt}{DTI}
+\newcommand{\DTU}{Dossier de Tests Unitaires}
+\newcommand{\DTUCourt}{DTU}
+\newcommand{\DTV}{Dossier de Tests de Validation}
+\newcommand{\DTVCourt}{DTV}
+\newcommand{\EACourt}{E/A}
+\newcommand{\EA}{Entité/Association}
+\newcommand{\FBS}{Functional Breakdown Structure}
+\newcommand{\FBSCourt}{FBS}
+\newcommand{\FFT}{Fiche de Fait Technique}
+\newcommand{\FFTCourt}{FFT}
+\newcommand{\FT}{Fait Technique}
+\newcommand{\FTCourt}{FT}
+\newcommand{\FRC}{Fiche Récapitulative de Cours}
+\newcommand{\FRCCourt}{FRC}
+\newcommand{\IHM}{Interface Homme-Machine}
+\newcommand{\IHMCourt}{IHM}
+\newcommand{\INSA}{Institut National des Sciences Appliquées}
+\newcommand{\INSACourt}{INSA}
+\newcommand{\ISO}{International Standard Organisation}
+\newcommand{\ISOCourt}{ISO}
+\newcommand{\JUnit}{Java Unit}
+\newcommand{\JUnitCourt}{JUnit}
+\newcommand{\MGPI}{Maîtrise des Grands Projets Informatiques}
+\newcommand{\MGPICourt}{MGPI}
+\newcommand{\MQ}{Manuel Qualité de l'Unité P3}
+\newcommand{\MQCourt}{MQ}
+\newcommand{\OSB}{Object Breackdown Structure}
+\newcommand{\OSBCourt}{OSB}
+\newcommand{\OC}{Ordre de Correction}
+\newcommand{\OCCourt}{OC}
+\newcommand{\PAQ}{Plan d'Assurance Qualité}
+\newcommand{\PAQCourt}{PAQ}
+\newcommand{\PERT}{Program Evaluation and Review Technique}
+\newcommand{\PERTCourt}{PERT}
+\newcommand{\PGC}{Plan de Gestion des Configurations}
+\newcommand{\PGCCourt}{PGC}
+\newcommand{\PIC}{Projet INSA Certifié}
+\newcommand{\PICCourt}{PIC }
+\newcommand{\PQ}{Plan Qualité}
+\newcommand{\PQCourt}{PQ}
+
+\newcommand{\JTV}{Journal de Tests de Validation}
+\newcommand{\JTVCourt}{JTV}
+\newcommand{\JTI}{Journal de Tests d'Intégration}
+\newcommand{\JTICourt}{JTI}
+\newcommand{\JTU}{Journal de Tests Unitaires}
+\newcommand{\JTUCourt}{JTU}
+\newcommand{\PTI}{Plan de Tests d'Intégration}
+\newcommand{\PTICourt}{PTI}
+\newcommand{\PTV}{Plan de Tests de Validation}
+\newcommand{\PTVCourt}{PTV}
+\newcommand{\PTU}{Plan de Tests Unitaires}
+\newcommand{\PTUCourt}{PTU}
+\newcommand{\PV}{Procès-Verbal}
+\newcommand{\PVCourt}{PV}
+\newcommand{\QCM}{Questionnaire à Choix Multiples}
+\newcommand{\QCMCourt}{QCM}
+\newcommand{\RBS}{Ressource Breakdown Structure}
+\newcommand{\RBSCourt}{RBS}
+\newcommand{\RDSE}{Revue du Dossier des Spécifications Externes}
+\newcommand{\RDSECourt}{RDSE}
+\newcommand{\RDSI}{Revue du Dossier des Spécifications Internes}
+\newcommand{\RDSICourt}{RDSI}
+\newcommand{\RFFPCP}{Revue Formelle de Fin de Phase de Conception Prémiminaire}
+\newcommand{\RFFPCPCourt}{RFFPCP}
+\newcommand{\RFFPS}{Revue Formelle de Fin de Phase de Spécification}
+\newcommand{\RFFPSCourt}{RFFPS}
+\newcommand{\RPTV}{Revue du Plan de Tests de Validation}
+\newcommand{\RPTVCourt}{RPTV}
+\newcommand{\SMQ}{Système de Management de la Qualité}
+\newcommand{\SMQCourt}{SMQ}
+\newcommand{\UML}{Unified Modeling Language}
+\newcommand{\UMLCourt}{UML}
+
+% noms documents qualité (définition des termes dans le PGC)
+
+% Référentiel Qualité
+\newcommand{\TBCourt}{TB}
+\newcommand{\TB}{Tableau de Bord}
+\newcommand{\PDFCourt}{PDF}
+\newcommand{\PDF}{Plan de Formation}
+\newcommand{\FFCourt}{FF}
+\newcommand{\FF}{Fiche de Formation}
+\newcommand{\FCCourt}{FC}
+\newcommand{\FC}{Fiche de Compétences}
+\newcommand{\FOCCourt}{FOC}
+\newcommand{\FOC}{Fiche d'Ordre de Correction}
+
+\newcommand{\FRCourt}{FR}
+\newcommand{\FR}{Fiche de Rôle}
+\newcommand{\FRDCourt}{FRD}
+\newcommand{\FRD}{Fiche de Réception de Documents}
+\newcommand{\FIICourt}{FII}
+\newcommand{\FII}{Fiche d'Identification d'Indicateur}
+\newcommand{\FIIPls}{Fiches d'Identification d'Indicateurs}
+
+\newcommand{\PRCourt}{PR}
+\newcommand{\PR}{Portefeuille de Risques}
+\newcommand{\POCourt}{PO}
+\newcommand{\PO}{Portefeuille d'Opportunités}
+\newcommand{\PRO}{Portefeuille des Risques et Opportunités}
+\newcommand{\PROCourt}{PRO}
+\newcommand{\CRTPCourt}{CRTP}
+\newcommand{\CRTP}{Compte-rendu de Réunion Tuteur Pédagogique}
+\newcommand{\CRTQCourt}{CRTQ}
+\newcommand{\CRTQ}{Compte-rendu de Réunion Tuteur Qualité}
+\newcommand{\CRRQCourt}{CRRQ}
+\newcommand{\CRRQ}{Compte-rendu de Réunion Responsables Qualité}
+
+\newcommand{\CRCCourt}{CRC}
+\newcommand{\CRC}{Compte-rendu de Réunion avec le Client}
+\newcommand{\CRICourt}{CRI}
+\newcommand{\CRI}{Compte-rendu de Réunion Interne}
+\newcommand{\CRIPCourt}{CRIP}
+\newcommand{\CRIP}{Compte-rendu de Réunion Inter-\PICCourt}
+
+\newcommand{\CRECourt}{CRE}
+\newcommand{\CRE}{Compte-rendu de Réunion Exceptionnelle}
+\newcommand{\PF}{Plan de Formation}
+\newcommand{\PFCourt}{PF}
+\newcommand{\PVDCourt}{PVD}
+\newcommand{\PVD}{Procès-Verbal de fin de Phase de Démarrage}
+\newcommand{\PVLCourt}{PVL}
+\newcommand{\PVL}{Procès-Verbal de Livraison}
+
+\newcommand{\PVRMCourt}{PVRM}
+\newcommand{\PVRM}{Procès-Verbal de Réception de Matériel}
+\newcommand{\PVVVCourt}{PVVV}
+\newcommand{\PVVV}{Procès-Verbal de Vérification et de Validation}
+\newcommand{\PVVCourt}{PVV}
+\newcommand{\PVV}{Procès-Verbal de Validation}
+\newcommand{\PVFSCourt}{PVFS}
+\newcommand{\PVFS}{Procès-Verbal de Fin de Sprint}
+
+\newcommand{\WBS}{Work Breakdown Structure}
+\newcommand{\WBSCourt}{WBS}
+
+\newcommand{\RFDCourt}{RFD}
+\newcommand{\RFD}{Revue Formelle de Démarrage}
+\newcommand{\DCCourt}{DC}
+\newcommand{\DdC}{Document de Conception}
+\newcommand{\agile}{Agile}
+
+% Référentiel Développement
+\newcommand{\GUCourt}{GU}
+\newcommand{\GU}{Guide Utilisateur}
+\newcommand{\PICourt}{PI}
+\newcommand{\PI}{Procédure d'Installation}
+\newcommand{\DOC}{Documentation}
+\newcommand{\DOCCourt}{DOC}
+
+% Fonctions utiles
+\newcommand{\embedPDF}[1]{\includepdf[scale=0.82,pages={-},frame,pagecommand={\thispagestyle{fancy}}]{#1}}
+\newcommand{\CDRCourt}{CDR}
+\newcommand{\CDR}{Cahier de Recette}
+
+\newcommand{\loiInfoLib}{loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés}
+\newcommand{\loiInfoLibCourt}{loi informatique et liberté}
+
+

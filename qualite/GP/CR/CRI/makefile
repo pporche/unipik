@@ -1,4 +1,4 @@
-# version 1.01, date 26/02/16, auteur Michel Cressant, Pierre Porche
+# version 1.02, date 04/03/16, auteur Michel Cressant, Pierre Porche
 # Importation des variables
 include makevars ../../../../makevars
 
@@ -6,7 +6,7 @@ include makevars ../../../../makevars
 
 all : cri cleanrep cleaneps
 
-cri : $(PDFDIR)/CRI_Q_Unipik_d16-01-22.pdf $(PDFDIR)/CRI_Q_Unipik_d16-02-02.pdf $(PDFDIR)/CRI_Q_Unipik_d16-02-23.pdf
+cri : $(PDFDIR)/CRI_Q_Unipik_d16-01-22.pdf $(PDFDIR)/CRI_Q_Unipik_d16-02-02.pdf $(PDFDIR)/CRI_Q_Unipik_d16-02-23.pdf $(PDFDIR)/CRI_Q_Unipik_d16-03-04.pdf
 
 $(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

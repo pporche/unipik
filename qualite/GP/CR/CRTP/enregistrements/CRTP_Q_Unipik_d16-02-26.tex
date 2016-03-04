@@ -103,7 +103,8 @@ Il faut déterminer exactement quelles sont les demandes du client concernant le
 Il faut, côté BD, considérer une demande d'intervention par un établissement comme un ensemble de demandes.\\
 Il manque des contraintes d'intégrité (à mettre en commentaire) comme par exemple sur les adresses électroniques (XYZ@WXYZ.XY).\\
 Lors de l'accès à la ressource, il faut être efficace. Si on fait une requête invalide, on utilise des ressources pour rien. Si le modèle est une ressource critique, il faut contrôler la validité des requêtes sur la vue. S'il n'est pas une ressource critique, on peu déporter le contrôle à plus bas niveau. Dans le cadre de ce projet, nous avons le choix.\\
-Afin que notre BD fonctionne, il faut qu'elle soit en troisième forme normale. Il faut donc se poser des questions afin d'adapter le modèle à la troisième forme normale.
+Afin que notre BD fonctionne, il faut qu'elle soit en troisième forme normale. Il faut donc renseigner les dépendances fonctionnelles permettant au concepteur de générer un schéma en 3eme forme normale.
+
 
 \section{CNIL}
 Selon le cahier des charges, \Sergi{} doit faire la demande à la CNIL pour le traitement des données. La question est la suivante : "doit il impliquer l'INSA lors de la demande?". \nomTuteurPedago{} répond que non, que \Sergi{} fait la demande au nom de l'\nomClient{}. Il faut également se pencher sur les dispositions spécifiques aux associations loi 1901.

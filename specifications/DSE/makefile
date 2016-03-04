@@ -17,7 +17,7 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 # I have no idea what this thing is doing
 #imagespdf: $(IMGDIR)/ConduireLeProjet.pdf $(IMGDIR)/organigrammeHierarchiePic.pdf $(IMGDIR)/organigrammeProcessusPic.pdf $(IMGDIR)/ProcessusFournisseur.pdf $(IMGDIR)/RealiserProduits.pdf $(IMGDIR)/CycleFT_EpicUnity.pdf $(IMGDIR)/organigramme.pdf $(IMGDIR)/managerQualite.pdf
 
-imagespng: $(IMGDIR)/modele_dUsage.png
+imagespng: $(IMGDIR)/modeleDUsage.png
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@

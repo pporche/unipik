@@ -56,7 +56,9 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     \hline
     Dossier de Suivi de la Qualité & DSQ & -\\
     \hline
-    	\hspace{1cm} Commission de Traitement des Faits Techniques & CTFT & -\\
+    	\hspace{1cm} Faits Techniques & FT & -\\
+    	\hline   
+    	\hspace{2cm} Commission de Traitement des Faits Techniques & CTFT & n,d\\
     	\hline
     	\hspace{2cm} Fiche de Fait Technique & FFT & n,d\\
     	\hline
@@ -65,6 +67,8 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     \hspace{1cm} Fiche de Compétences & FC & p,v\\
     \hline
     \hspace{1cm} Fiche de Formation & FF & c\\
+    \hline
+    \hspace{2cm} Fiche Récapitulative de Cours & FRC & c\\    
     \hline
     \hspace{1cm} Fiche de Rôle & FR & r,v\\
     \hline
@@ -87,6 +91,8 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     \hspace{1cm} Tableau de Bord & TB & s\\
     \hline
     Gestion de Projet & GP & -\\
+    \hline
+    \hspace{1cm} Fiche de Suivi & FS & p\\
     \hline
     \hspace{1cm} Compte-Rendu & CR & -\\
     \hline
@@ -190,13 +196,17 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     \hline    
     \hspace{1cm} Dossier de Tests & DT & -\\
     \hline
-    \hspace{2cm} Dossier de Tests d'Intégration & DTI & n,v \\
+    \hspace{2cm} Dossier de Tests d'Intégration & DTI & v \\
     \hline
-    \hspace{2cm} Dossier de Tests Unitaires & DTU & n,v \\
+    \hspace{3cm} Journal de Tests d'Intégration & JTI & v \\ 
     \hline
-    \hspace{2cm} Plan de Tests d'Intégration & PTI & n,v \\
+    \hspace{3cm} Plan de Tests d'Intégration & PTI & v \\
     \hline
-    \hspace{2cm} Plan de Tests Unitaires & PTU & n,v \\
+    \hspace{2cm} Dossier de Tests Unitaires & DTU & v \\
+    \hline
+    \hspace{3cm} Journal de Tests Unitaires & JTU & v \\
+    \hline
+    \hspace{3cm} Plan de Tests Unitaires & PTU & v \\
     \hline
     \hspace{1cm} Guide Utilisateur & GU & v\\
     \hline
@@ -259,7 +269,7 @@ Exemple : \verb+d16-01-27+
 \subsection{Suffixe Version}
 \label{suffixe_version}
 
-Le suffixe version suit le format \textbf{vX.YY}. X correspond au numéro de version, YY au numéro de révision. Le numéro de version représente le numéro de semestre, en considérant que 1 correspond au semestre 4.2 et 2 au semestre 5.1. Le numéro de révision démarre à 00 et est modifié de la façon suivante : le chiffre des dizaines est incrémenté à chaque modification majeure et le chiffre des unités est incrémenté à chaque révision. Quand le numéro de version est incrémenté, celui des révision repasse à 00.\\
+Le suffixe version suit le format \textbf{vX.YY}. X correspond au numéro de version, YY au numéro de révision. Le numéro de version représente le numéro du lot, en considérant que 1 correspond au lot 1 et qu'il y a quatre lots. Le numéro de révision démarre à 00 et est modifié de la façon suivante : le chiffre des dizaines est incrémenté à chaque modification majeure et le chiffre des unités est incrémenté à chaque révision. Quand le numéro de version est incrémenté, celui des révision repasse à 00.\\
 
 Exemple : \verb+v1.00+
 
@@ -269,13 +279,6 @@ Exemple : \verb+v1.00+
 Le suffixe numéro suit le format \textbf{nXXX}. XXX est un nombre entier compris entre 001 et 999. Il commence à la valeur 001 et est incrémenté à chaque nouveau document.\\
 
 Exemple : \verb+n042+\\
-
-Précision : Pour les documents archivés dans les dossiers "lotX", si un suffixe numéro est demandé alors celui-ci n'est pas incrémenté à chaque document, il a la valeur du "X" de "lotX".
-
-Exemples :\\ 
-\verb+developpement/lot1/DT/DTI/DTI_D_Unipik_n001_v1.00+\\
-\verb+developpement/lot1/DT/DTI/DTI_D_Unipik_n001_v2.00+\\
-\verb+developpement/lot2/DT/DTI/DTI_D_Unipik_n002_v1.00+
 
 \subsection{Suffixe Semaine}
 \label{suffixe_semaine}
@@ -312,8 +315,6 @@ Le suffixe personne suit le format \textbf{pInitiales} où Initiales correspond 
 	\hline
 	\rowcolor[gray]{0.85} Personnes & Initiales\\
 	\hline
-	François Decq & FD \\
-	\hline
 	Florian Leriche & FL \\
 	\hline
 	Julie Pain & JP \\
@@ -342,9 +343,11 @@ Exemple : \verb+pFL+
 \subsection{Suffixe Commentaire}
 \label{suffixe_commentaire}
 
-Le suffixe commentaire suit le format \textbf{cX} où X est le commentaire correspondant au fichier. Ce commentaire a une valeur bien précise selon le type de document. Pour \nomEquipe, il y a trois documents différents ayant un suffixe \verb+commentaire+, voici leurs valeurs associées :
+Le suffixe commentaire suit le format \textbf{cX} où X est le commentaire correspondant au fichier. Ce commentaire a une valeur bien précise selon le type de document. Pour \nomEquipe, il y a quatres documents différents ayant un suffixe \verb+commentaire+, voici leurs valeurs associées :
 \begin{itemize}
 \item Fiche de Formation (FF) : sujet de la formation;\\
+ Exemple : \verb+cLaTeX+
+ \item Fiche Récapitulative de Cours (FRC) : sujet du cours;\\
  Exemple : \verb+cLaTeX+
 \item mails (MC, MDQ, ML, MP3, MTC, MTP, MTQ) : sujet du mail;\\
  Exemple : \verb+cdatesRevues+

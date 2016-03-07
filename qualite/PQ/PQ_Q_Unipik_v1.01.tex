@@ -1,0 +1,156 @@
+% version 1.01	Auteur Julie Pain, Pierre Porche
+
+\documentclass[asi]{picInsa}
+\DeclareGraphicsRule{*}{pdf}{*}{}
+\usepackage{pdfpages}
+
+%\input{../../ressources/AjoutezVosPackagesIci.tex}
+\usepackage{vocabulaireUnipik}
+%\usepackage{../../ressources/Unipik/vocabulaire/vocabulaireEastpic}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\newcommand{\ligneMaj}[3] {
+	\rowcolor[gray]{0.55} \textbf{\textit{#1}} & #2  &  #3\\
+	\hline
+}
+\newcommand{\ligneSup}[3] {
+	\rowcolor[gray]{0.65} |\textunderscore \textbf{\textit{#1}} & #2  &  #3\\
+	\hline
+}
+\newcommand{\ligneMed}[3] {
+	\rowcolor[gray]{0.75} \hspace{0.25cm} |\textunderscore #1  & #2 & #3 \\
+	\hline
+}
+\newcommand{\ligneSub}[3] {
+	\rowcolor[gray]{0.85}  \hspace{0.5cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\newcommand{\ligneSubSub}[3] {
+	\rowcolor[gray]{0.95}  \hspace{0.75cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\newcommand{\ligneTache}[3] {
+	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\title{\PQ{}}
+\author{\Pierre}
+
+
+\titreGeneral{\PQ}
+\sousTitreGeneral{\nomEquipe}
+\titreAcronyme{\PQCourt}
+\version{v1.01}
+\titreDetaille{\PQCourt\_Q\_\nomEquipe\_\versionPrive}
+\referenceVersion{\PQCourt\_Q\_\nomEquipe\_\versionPrive}
+\auteurs{\Kafui{} \& \Melissa{} \& \Sergi{} \& \Michel{} \& \Florian{} \&  \Julie{} \& \Pierre{}}
+\destinataires{\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
+\resume{Le présent document contient la présentation du \PQ{} \nomEquipe.}
+\motsCles{\PQCourt{}, référentiel, nommage}
+\natureDerniereModification{ }
+\modeDiffusionControle{}
+
+\begin{document}
+
+\couverture{}
+
+ \informationsGenerales{}
+\input{sources/00_pageService.tex}
+
+\tableofcontents
+
+\setcounter{chapter}{0}
+ 
+\chapter{Fiche projet}
+\label{fiche_projet}
+\input{sources/01_ficheProjet.tex}
+
+\chapter{Engagements}
+\label{egagements}
+\input{sources/02_engagements.tex}
+
+\chapter{Décomposition en fonction des membres (WBS)}
+\label{decomposition_membre_WBS}
+\input{sources/03_decompositionMembreWBS.tex}
+
+\chapter{Procédures et description de la gestion de projet}
+\label{gestion_projet}
+\input{sources/04_gestionProjet.tex}
+
+\chapter{Procédures et description de la réalisation de produits}
+\label{realiser_les_produits}
+\input{sources/05_realiserLesProduits.tex}
+
+\chapter{Management de la qualité}
+\label{management_de_la_qualite}
+\input{sources/06_managementDeLaQualite.tex}
+ 
+\chapter{Vérification et validation}
+\label{verification_et_validation}
+\input{sources/07_verificationEtValidation.tex}
+
+\chapter{Procédures et description de mesure d'analyse, Amélioration SMQ}
+\label{mesure_analyse_amelioration_SMQ}
+\input{sources/08_mesureAnalyseAmeliorationSMQ.tex}
+
+\chapter{Management des ressources du projet}
+\label{ressources}
+\input{sources/09_ressources.tex}
+ 
+\begin{appendix}
+\part*{Annexes}
+\addcontentsline{toc}{part}{Annexes}
+
+\chapter{Check-list de Vérification}
+\label{annexeCheckList}
+\input{annexes/checkListeVerification.tex}
+
+
+\chapter{Fiche de Risque}
+\label{annexeFRi}
+\input{annexes/ficheRisque.tex}
+
+\chapter{Fiche d'opportunité}
+\label{annexeFO}
+\input{annexes/ficheOpportunite.tex}
+
+\chapter{Exemple de Portefeuille de Risques et d'Opportunités}
+\input{annexes/portefeuilleRisqueOpportunite.tex}
+
+\chapter{Fiche de Fait Technique}
+\label{annexeFFT}
+\input{annexes/ficheFaitTechnique.tex}
+
+\chapter{Fiche de Commission de Traitement des Faits Techniques}
+\label{annexeFCTFT}
+\input{annexes/ficheCommissionTraitementFaitTechnique.tex}
+
+\chapter{Fiche d'Ordre de Correction}
+\label{annexeFOC}
+\input{annexes/ordreCorrection.tex}
+
+\chapter{Fiches de Rôle}
+\label{annexeFRo}
+\input{annexes/ficheRole.tex}	
+
+\chapter{Fiche de Compétences}
+\label{annexeFC}
+\input{annexes/ficheCompetences.tex}
+
+\chapter{Fiche Bilan de projet}
+\input{annexes/ficheBilan.tex}
+
+\chapter{Inventaire}
+\label{annexeInventaire}
+\input{annexes/inventaire.tex}
+	
+\listoffigures
+\addcontentsline{toc}{chapter}{Table des figures}
+	 
+\listoftables
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+\end{appendix}
+\pageQuatriemeCouverture
+
+\end{document}

@@ -9,7 +9,7 @@ VOCPATHGEN="ressources/unipik/vocabulaire/"
 
 
 
-ARCHIVEDIRGEN="/net/archives/archivageGit/archivage_$(shell date +%y-%m-%d)"
+ARCHIVEDIRGEN="/net/archives/archivage/archivageGit/archivage_$(shell date +%y-%m-%d)"
 SOFTPATHGEN="ressources/unipik/logiciels"
 
 # Commandes

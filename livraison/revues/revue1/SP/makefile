@@ -16,9 +16,9 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 
 # I have no idea what this thing is doing
 
-imagespdf: #$(IMGDIR)/...
+imagespdf: $(IMGDIR)/cycleCorrectionFT.pdf
 
-imagespng: #$(IMGDIR)/...
+imagespng: $(IMGDIR)/organigrammeFonctionnel.png $(IMGDIR)/cycleCorrectionFT.png $(IMGDIR)/modeleSpirale.png
 
 $(IMGDIR)/%.png: $(IMGDIR)/%.dia
 	$(DIA) -e $@ --filter=png $<

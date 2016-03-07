@@ -24,7 +24,7 @@ archivepti:
 # Nettoyage
 clean: cleanjti cleanpti
 
-cleandti:
+cleanjti:
 	make -C JTI clean
 
 cleanpti:

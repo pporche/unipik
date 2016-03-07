@@ -1,4 +1,4 @@
-%version 1.00, date 01/03/16, auteur Mathieu MEDICI, Julie PAIN
+%version 1.01, date 07/03/16, auteur Mathieu MEDICI, Julie PAIN
 
 \documentclass[asi, sansVersion]{picInsa}
 
@@ -33,19 +33,15 @@ Le diagramme de classe réalisé est composé de plusieurs types, de plusieurs c
 
 \subsection*{Geometry}
 
-Le type geometry est un data type spatial issu de PostGIS qui définit la localisation en respectant la norme WGS84.
+Le type geometry est un type de données respectant la norme de l'OGC (Open Geospatial Consortium) et qui définit la géolocalisation.
 
-\subsection*{Theme}
+%\subsection*{Theme}
 
-Le type Theme est une énumération qui définit les différents thèmes possibles pour les plaidoyers.
+%Le type Theme est une énumération qui définit les différents thèmes possibles pour les plaidoyers.
 
-\subsection*{NiveauScolaireComplet}
+\subsection*{NiveauScolaire}
 
-Le type NiveauScolaireComplet est une énumération qui définit tous les niveaux possibles pour les interventions plaidoyer. Ce type comporte aussi des combinaisons des niveaux comme par exemple "CPCE1" ou "CM1CM2". La valeur "autre" est utilisée pour des cas particuliers (niveau CLIS, CM26eme).
-
-\subsection*{NiveauScolaireLimite}
-
-Le type NiveauScolaireLimite est une énumération qui définit tous les niveaux possibles pour les interventions frimousse en se limitant à l'école primaire. Ce type comporte aussi des combinaisons des niveaux comme par exemple "CPCE1" ou "CM1CM2". La valeur "autre" est utilisée pour des cas particuliers (niveau CLIS, CM26eme).
+Le type NiveauScolaire est une énumération qui définit tous les niveaux possibles pour les interventions. Ce type comporte aussi des combinaisons des niveaux comme par exemple "CPCE1" ou "CM1CM2". La valeur "autre" est utilisée pour des cas particuliers (niveau CLIS, CM26eme).
 
 \subsection*{TypeCentre}
 
@@ -65,7 +61,7 @@ Le type TypeContact est une énumération qui définit les différents contacts 
 
 \subsection*{Materiel}
 
-Le type Materiel est une énumération qui définit les différents types de matériel possibles pour une intervention.
+Le type Materiel est une énumération qui définit les différents types de matériel possibles pour les interventions plaidoyers.
 
 \subsection*{MaterielFrimousse}
 
@@ -75,21 +71,30 @@ Le type MaterielFrimousse est une énumération qui définit les différents mat
 
 Le type Activite est une énumération qui définit les différentes activités que peuvent réaliser les bénévoles.
 
-\subsection*{MomentHebdomadaire}
+\subsection*{Jour}
 
-Le type MomentHebdomadaire est une énumération qui définit les différents moments possibles dans une semaine, un moment étant soit le matin soit l'après-midi.
+Le type Jour est une énumération qui définit les différents jours possibles pour une intervention.
 
 \subsection*{MomentQuotidien}
 
 Le type MomentQuotidien est une énumération qui définit les différents moments possibles dans une journée, donc matin ou après-midi.
+
+\subsection*{MomentHebdomadaire}
+
+La classe MomentHebdomadaire définit un type qui est la combinaison d'un jour et d'un moment quotidien.\\
+Cette classe a plusieurs attributs :
+\begin{itemize}
+\item un jour qui appartient à l'énumération Jour;
+\item un moment qui appartient à l'énumération MomentQuotidien.
+\end{itemize}
 
 \subsection*{NiveauTheme}
 
 La classe NiveauTheme définit un type qui est la combinaison d'un thème et d'un niveau.\\
 Cette classe a plusieurs attributs : 
 \begin{itemize}
-\item un niveau qui appartient à l'énumération NiveauScolaireComplet;
-\item un thème qui appartient à l'énumération Theme.
+\item un niveau qui appartient à l'énumération NiveauScolaire;
+\item un thème.
 \end{itemize}
 
 \subsection*{Semaine}
@@ -105,12 +110,24 @@ Cette classe a un attribut :
 La classe Adresse définit un type qui est l'adresse d'une personne ou d'un établissement.\\
 Cette classe a plusieurs attributs : 
 \begin{itemize}
-\item une rue;
-\item un numéro de rue avec si besoin le supplément "bis", "ter" ou "quater";
-\item un code postal;
 \item une ville;
-\item un complément si besoin.
+\item une rue;
+\item un code postal;
+\item un numéro de rue avec si besoin le supplément "bis", "ter" ou "quater";
+\item un complément si besoin;
+\item la géolocalisation associée à cette adresse.
 \end{itemize}
+
+\subsection*{Date}
+
+La classe Date définit un type qui est une date.\\
+Cette classe a plusieurs attributs : 
+\begin{itemize}
+\item un jour;
+\item un mois;
+\item une année.
+\end{itemize}
+
 
 \section{Les classes}
 
@@ -119,59 +136,62 @@ Cette classe a plusieurs attributs :
 La classe Personne est la classe mère des classes Benevole et Contact. C'est une généralisation, c'est à dire que la classe Personne est une classe abstraite et donc une Personne est soit un contact, soit un bénévole. \\
 Cette classe a plusieurs attributs : 
 \begin{itemize}
-\item un nom; %Cdc - Non NULL
-\item un prénom; %Cdc - Non NULL
-\item un numéro de téléphone fixe; %Cdc - Peut être NULL
-\item un numéro de téléphone portable; %Cdc - Peut être NULL
-\item un email. %Ne peut pas être NULL (Clé)
+\item un nom;
+\item un prénom;
+\item un email;
+\item un numéro de téléphone fixe;
+\item un numéro de téléphone portable.
 \end{itemize}
 
 \subsection*{Benevole}
 
-La classe Benevole est une classe fille de la classe Personne et la classe mère des classes AdminLocal et AdminGlobal. Cette classe décrit les bénévoles de l'UNICEF qui réaliseront des interventions mais aussi ceux qui géreront des activités (AdminLocalL) ou des départements (AdminGlobal). L'héritage est ici une spécialisation, c'est à dire qu'une personne peut être simplement bénévole sans être ni administrateur global, ni administrateur local. \\
+La classe Benevole est une classe fille de la classe Personne et la classe mère des classes AdminActivite, AdminComite et AdminRegion. Cette classe décrit les bénévoles de l'UNICEF qui réaliseront des interventions mais aussi ceux qui géreront des activités (AdminActivite), des comités (AdminComite) ou des régions (AdminRegion). L'héritage est ici une spécialisation, c'est à dire qu'une personne peut être simplement bénévole sans être administrateur. \\
 Cette classe a plusieurs attributs : 
 \begin{itemize}
-\item une adresse correspondant à la rue, au numéro de rue, au code postal, à la ville et au complément si besoin; %Adresse est une classe
-\item aucune, une ou plusieurs activités potentielles (action ponctuelle, frimousse, plaidoyer); % attribut multivalué
-\item un mot de passe. 
+\item une adresse correspondant à la rue, au numéro de rue, au code postal, à la ville, au complément si besoin et à une géolocalisation;
+\item un mot de passe;
+\item aucune, une ou plusieurs activités potentielles (action ponctuelle, frimousse, plaidoyer ou autre).
 \end{itemize}
 
-\subsection*{AdminLocal}
+\subsection*{AdminActivite}
 
-La classe AdminLocal permet de représenter un administrateur local. Cette classe est une classe fille de la classe Benevole.\\
+La classe AdminActivite permet de représenter un administrateur d'une ou plusieurs activités (administrateur local du cahier des charges). Cette classe est une classe fille de la classe Benevole.\\
 Cette classe a un attribut :
 \begin{itemize}
-\item aucune, une ou plusieurs responsabilités d'activité (action ponctuelle, frimousse, plaidoyer). 
+\item une ou plusieurs responsabilités d'activité (action ponctuelle, frimousse, plaidoyer ou autre). 
 \end{itemize}
 
-\subsection*{AdminGlobal}
+\subsection*{AdminComite}
 
-La classe AdminGlobal permet de représenter un administrateur global. Cette classe est une classe fille de la classe Benevole. 
+La classe AdminComite permet de représenter un administrateur de comité (ou d'un département, c'est la même chose). Cette classe est une classe fille de la classe Benevole. 
+
+\subsection*{AdminRegion}
+
+La classe AdminRegion permet de représenter un administrateur de région, une région ayant en générale plusieurs comités. Cette classe est une classe fille de la classe Benevole. 
 
 \subsection*{Contact}
 
 La classe Contact est une classe fille de la classe Personne. Cette classe décrit les personnes étant reliées à un établissement comme le personnel y travaillant ou encore les élèves. \\
 Cette classe a un attribut : 
 \begin{itemize}
-\item un type de contact qui permet de déterminer si un contact est un enseignant, un animateur, un contact frimousse, un contact plaidoyer, un contact activité ponctuelle ou un responsable d'établissement.
+\item un type de contact qui permet de déterminer si un contact est un enseignant, un animateur, un élève ou autre.
 \end{itemize} 
 
 
 \subsection*{Etablissement}
 
-La classe Etablissement est la classe mère des classes Enseignement et CentreLoisirs. C'est une généralisation, c'est à dire que la classe Etablissement est une classe abstraite et donc un établissement est soit un enseignement, soit un centre de loisirs. \\
+La classe Etablissement est la classe mère des classes Enseignement et CentreLoisirs. C'est une spécialisation, c'est à dire qu'un établissement peut être ni un enseignement ni un centre de loisirs. Ce sera le cas pour les mairies par exemple. \\
 Cette classe a plusieurs attributs : 
 \begin{itemize}
 \item un identifiant unique;
 \item un nom;
-\item une adresse correspondant à la rue, au numéro de rue, au code postal, à la ville et au complément si besoin; %Adresse est une classe
 \item un numéro de téléphone fixe;
-\item une ou plusieurs adresses e-mail; % attribut multivalué
-\item une géolocalisation WGS84. % Peut être NULL
+\item une ou plusieurs adresses e-mail;
+\item une adresse correspondant à la rue, au numéro de rue, au code postal, à la ville, au complément si besoin et à une géolocalisation.
 \end{itemize}
 
 \subsection*{Enseignement}
-La classe Enseignement est une classe fille de la classe Etablissement. Cette classe décrit les établissements qui relèvent de l'éducation nationale. \\
+La classe Enseignement est une classe fille de la classe Etablissement. Cette classe décrit les établissements qui relèvent de l'Education Nationale. \\
 Cette classe a plusieurs attributs : 
 \begin{itemize}
 \item un UAI (Unité Administrative Immatriculée) qui est une combinaison de chiffres et de lettres unique pour chaque enseignement;
@@ -187,31 +207,29 @@ Cette classe a un attribut :
 \end{itemize}  
 
 \subsection*{Intervention}
-La classe Intervention est la classe mère des classes Plaidoyer et Frimousse. Cette classe décrit une intervention que peut demander un établissement ou un contact. \\
+La classe Intervention est la classe mère des classes Plaidoyer et Frimousse. Cette classe décrit une intervention que peut demander un contact. \\
 Cette classe a plusieurs attributs :
 \begin{itemize}
-\item un identifiant unique;
 \item une date précise déterminée par les bénévoles lors de l'attribution des bénévoles aux interventions;
-\item un moment indiquant si l'intervention a lieu le matin ou l'après-midi;
-\item le nombre de personnes concernées par cette intervention (exemple : le nombre d'élève d'une classe);
-\item le matériel disponible pour l'intervention (présence ou non d'un rétroprojecteur, d'un tableau intéractif ou d'enceintes);
+\item un identifiant unique;
 \item un lieu dans l'établissement, c'est à dire la salle où aura lieu l'intervention;
-\item un champ remarque permettant à l'utilisateur de saisir des remarques spécifiques à cette intervention. 
+\item le nombre de personnes concernées par cette intervention (exemple : le nombre d'élève d'une classe);
+\item un champ remarque permettant au contact de saisir des remarques spécifiques à cette intervention;
+\item un moment indiquant si l'intervention a lieu le matin, l'après-midi ou les deux.
 \end{itemize}
 
 \subsection*{Plaidoyer}
 La classe Plaidoyer est une classe fille de la classe Intervention. \\
 Cette classe a un attribut : 
 \begin{itemize}
-\item un niveau-thème qui indique à la fois le thème de l'intervention et le niveau de la classe dans laquelle va se dérouler l'intervention, par exemple, pour une école primaire, la classe peut être CE1 mais aussi CE1-CE2.
+\item le matériel disponible pour l'intervention (présence ou non d'un vidéoprojecteur, d'un tableau intéractif, d'enceintes ou autre).
 \end{itemize}
 
 \subsection*{Frimousse}
 La classe Frimousse est une classe fille de la classe Intervention. Une activité frimousse est réalisée avec des enfants d'école élémentaire. \\
-Cette classe a plusieurs attributs :
+Cette classe a un attribut :
 \begin{itemize}
-\item les matériaux nécessaires à la réalisation de l'activité (patron, bourre, décoration); % Attribut multivalué
-\item un niveau qui correspond à la classe dans laquelle va se dérouler l'intervention (CP, CE1, etc).
+\item les matériaux nécessaires à la réalisation de l'activité (patron, bourre, décoration).
 \end{itemize}
 
 \subsection*{Projet}
@@ -219,9 +237,8 @@ La classe Projet représente les projets réalisées par des étudiants ou des l
 Cette classe a plusieurs attributs : 
 \begin{itemize}
 \item un identifiant unique;
-\item le type de projet permet de savoir si le projet est réalisé par des étudiants, des lycéens, des élèves d'école primaire ou de collège; 
-\item la description du projet est un champ permettant à l'utilisateur de saisir toutes les informations importantes sur le projet (le nom du projet, s'il y a un tuteur);
-\item le chiffre d'affaire réalisés par ce projet.
+\item le chiffre d'affaire réalisés par ce projet;\item la description du projet est un champ permettant au(x) bénévole(s) de saisir d'autres informations importantes sur le projet (nom du projet par exemple);
+\item le type de projet permet de savoir si le projet est réalisé par des étudiants, des lycéens, des élèves d'école primaire ou de collège.
 \end{itemize}
 
 \subsection*{Vente}
@@ -229,9 +246,9 @@ La classe Vente représente les actions ponctuelles réalisées par les établis
 Cette classe a plusieurs attributs : 
 \begin{itemize}
 \item un identifiant unique; 
-\item le chiffre d'affaire réalisés par cette vente;
+\item le chiffre d'affaire réalisé par cette vente;
 \item la date de la vente;
-\item un champ remarques permettant à l'utilisateur d'ajouter des informations importantes. 
+\item un champ remarques permettant aux bénévoles d'ajouter des informations importantes. 
 \end{itemize}
 
 \subsection*{Demande}
@@ -245,12 +262,30 @@ Cette classe a plusieurs attributs :
 \item les moments à éviter pour une semaine type. 
 \end{itemize}
 
-\subsection*{Departement}
+\subsection*{Comite}
 
-La classe Departement représente les départements français.\\
+La classe Comite représente les comités de bénévoles, il y a un comité par département.\\
 Cette classe a plusieurs attributs :
 \begin{itemize}
-\item un identifiant unique (le numéro du département). 
+\item un identifiant unique (le numéro du département sous la forme XXX);
+\item le nom du département;
+\item la liste des thèmes du comité avec les niveaux associés à chaque thème.
+\end{itemize}
+
+\subsection*{Region}
+
+La classe Region représente les régions françaises.\\
+Cette classe a un attribut :
+\begin{itemize}
+\item le nom de la région.
+\end{itemize}
+
+\subsection*{Pays}
+
+La classe Pays représente la France.\\
+Cette classe a un attribut :
+\begin{itemize}
+\item le nom du pays (donc "France").
 \end{itemize}
 
 
@@ -259,8 +294,8 @@ Cette classe a plusieurs attributs :
 \subsection*{estResponsable}
 L'association \textit{estResponsable} relie un Benevole et un Projet. Un benévole est responsable d'aucun, un ou plusieurs projets et un projet est sous la responsabilité d'aucun (si le projet est en attente), un ou plusieurs bénévoles.
 
-\subsection*{participe}
-L'association \textit{participe} relie un Contact et un Projet. Un contact participe à aucun, un ou plusieurs projets et un projet a pour participant aucun (si le projet est en attente), un ou plusieurs contacts.\\
+\subsection*{Participe}
+L'association \textit{Participe} relie un Contact et un Projet. Un contact participe à aucun, un ou plusieurs projets et un projet a pour participant aucun (si le projet est en attente), un ou plusieurs contacts.\\
 Cette association a un attribut :
 \begin{itemize}
 \item un booléen qui indique si le contact est ou non un tuteur du projet (un professeur tuteur des élèves réalisant le projet par exemple). 
@@ -268,7 +303,7 @@ Cette association a un attribut :
 
 \subsection*{realise}
 
-L'association \textit{realise} est une association ternaire qui relie une Vente, un Etablissement et une Intervention. Un établissement réalise aucune, une ou plusieurs ventes. Une vente est réalisée par un et un seul établissement. La vente est à l'origine d'aucune ou une intervention.
+L'association \textit{realise} est une association ternaire qui relie une Vente, un Etablissement et une Intervention. Un établissement réalise aucune, une ou plusieurs ventes. Une vente est réalisée par un et un seul établissement. La vente a été réalisée suite à aucune ou une intervention.
 
 \subsection*{fait}
 
@@ -276,19 +311,19 @@ L'association \textit{fait} relie un Contact et une Demande. Un contact fait auc
 
 \subsection*{cree}
 
-L'association \textit{cree} relie une Demande et une INTERVENTION. Une demande crée une ou plusieurs interventions, une intervention est créée par une et une seule demande.
+L'association \textit{cree} relie une Demande et une Intervention. Une demande crée une ou plusieurs interventions, une intervention est créée par une et une seule demande.
 
 \subsection*{effectue} 
 
-L'association \textit{effectue} relie un Benevole et une Intervention. Un bénévole effectue aucune, une ou plusieurs interventions. Une intervention est effectuée par un et un seul utilisateur. 
+L'association \textit{effectue} relie un Benevole et une Intervention. Un bénévole effectue aucune, une ou plusieurs interventions. Une intervention est effectuée par un et un seul bénévole. 
 
 \subsection*{Appartient}
 
-L'association \textit{appartient} relie un Contact et un Etablissement. Un contact appartient à aucun, un ou plusieurs établissements. Un établissement a un ou plusieurs contacts.\\
+L'association \textit{Appartient} relie un Contact et un Etablissement. Un contact appartient à aucun, un ou plusieurs établissements. Un établissement a un ou plusieurs contacts.\\
 Cette association a plusieurs attributs :
 \begin{itemize}
 \item un booléen qui indique si le contact est ou non le responsable de l'établissement; 
-\item un type qui indique si le contact est responsable d'aucune, une ou plusieurs activités.
+\item un type qui indique quelles sont les responsabilités du contact par rapport aux activités.
 \end{itemize}
 
 \subsection*{effectuerDans}
@@ -303,9 +338,13 @@ L'association \textit{benevoleSeSitue} relie un Benevole et un Departement. Un b
 
 L'association \textit{interventionSeSitue} relie une Intervention et un Departement. Une intervention se situe dans un et un seul département, un département a aucune, une ou plusieurs interventions.
 
-\subsection*{estAssocie}
+\subsection*{regionContient}
 
-L'association \textit{estAssocie} relie un Departement à lui-même. Un département est associé à aucun, un ou plusieurs départements.
+L'association \textit{regionContient} relie une Region et un Comite. Une région contient aucun, un ou plusieurs comités, un comité est dans une et une seule région.
+
+\subsection*{paysContient}
+
+L'association \textit{paysContient} relie un Pays et une Region. Un pays contient aucune, une ou plusieurs régions, une région est dans un et un seul pays.
 
 \chapter{Contraites d'intégrité}
 

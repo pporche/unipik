@@ -4,11 +4,7 @@
 \colorlet{lcfree}{Gray}
 \colorlet{lcnorm}{Gray}
 \colorlet{lccong}{Gray}
-\colorlet{lcinput}{Green}
-\colorlet{lcoutput}{Red}
-\colorlet{lcprero}{Blue}
-\colorlet{lcpostro}{Purple}
-\colorlet{lcforward}{Orange}
+\colorlet{lccyan}{Cyan}
 % -------------------------------------------------
 % Set up a new layer for the debugging marks, and make sure it is on
 % top
@@ -30,7 +26,7 @@
     >=triangle 60,              % Nice arrows; your taste may be different
     start chain=going below,    % General flow is top-to-bottom
     node distance=6mm and 60mm, % Global setup of box spacing
-    every join/.style={prero},   % Default linetype for connecting boxes
+    every join/.style={double},   % Default linetype for connecting boxes
     ]
 % ------------------------------------------------- 
 % A few box styles 
@@ -48,22 +44,14 @@
   %nmark/.style={draw, cyan, circle, font={\sffamily\bfseries}},
   % -------------------------------------------------
   % Connector line styles for different parts of the diagram
-  prero/.style={->, draw, lcprero},
-  input/.style={->, draw, lcinput},
-  forward/.style={->, draw, lcforward},
-  output/.style={->, draw, lcoutput},
-  postro/.style={->, draw, lcpostro},
-  norm/.style={->, draw, lcnorm},
-  free/.style={->, draw, lcfree},
-  cong/.style={->, draw, lccong},
-  it/.style={font={\small\itshape}}
+  double/.style={<->, draw, lccyan}
 }
 % -------------------------------------------------
 % Start by placing the nodes
-\node [rule, fill=lcprero!25] (P)			{Présentation\\ (navigateur Web)};
+\node [rule, fill=lccyan!25] (P)			{Présentation\\ (navigateur Web)};
 % Use join to connect a node to the previous one 
-\node [rule, fill=lcforward!25, join] (S)	{Métier\\ (Serveur Web)};
-\node [rule, fill=lcinput!25, join]	(DB)		{Données\\ (Serveur SQL)};
+\node [rule, fill=lccyan!25, join=by double] (S)	{Métier\\ (Serveur Web)};
+\node [rule, fill=lccyan!25, join]	(DB)		{Données\\ (Serveur SQL)};
 
 
 \end{tikzpicture}

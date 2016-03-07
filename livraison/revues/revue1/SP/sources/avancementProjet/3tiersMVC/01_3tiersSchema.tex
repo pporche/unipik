@@ -1,0 +1,69 @@
+% version 1.01, date 07/03/16, auteur Matthieu Martins-Baltar
+% =================================================
+% Set up a few colours
+\colorlet{lcfree}{Gray}
+\colorlet{lcnorm}{Gray}
+\colorlet{lccong}{Gray}
+\colorlet{lcinput}{Green}
+\colorlet{lcoutput}{Red}
+\colorlet{lcprero}{Blue}
+\colorlet{lcpostro}{Purple}
+\colorlet{lcforward}{Orange}
+% -------------------------------------------------
+% Set up a new layer for the debugging marks, and make sure it is on
+% top
+\pgfdeclarelayer{marx}
+\pgfsetlayers{background,main,marx}
+% A macro for marking coordinates (specific to the coordinate naming
+% scheme used here). Swap the following 2 definitions to deactivate
+% marks.
+%\providecommand{\cmark}[2][]{%
+%   \begin{pgfonlayer}{marx}
+%   \node [nmark] at (c#2#1) {#2};
+%  \end{pgfonlayer}{marx}
+%  } 
+\providecommand{\cmark}[2][]{\relax} 
+% -------------------------------------------------
+
+\begin{tikzpicture}[%
+	auto,
+    >=triangle 60,              % Nice arrows; your taste may be different
+    start chain=going below,    % General flow is top-to-bottom
+    node distance=6mm and 60mm, % Global setup of box spacing
+    every join/.style={prero},   % Default linetype for connecting boxes
+    ]
+% ------------------------------------------------- 
+% A few box styles 
+% <on chain> *and* <on grid> reduce the need for manual relative
+% positioning of nodes
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=4ex},
+  rule/.style={base, rectangle, text width=8em, font={\scriptsize}},
+  proc/.style={base, rectangle, text width=8em},
+  test/.style={base, diamond, aspect=2, text width=5em},
+  term/.style={proc, rounded corners},
+  % coord node style is used for placing corners of connecting lines
+  coord/.style={coordinate, on chain, on grid, node distance=6mm and 25mm},
+  % nmark node style is used for coordinate debugging marks
+  %nmark/.style={draw, cyan, circle, font={\sffamily\bfseries}},
+  % -------------------------------------------------
+  % Connector line styles for different parts of the diagram
+  prero/.style={->, draw, lcprero},
+  input/.style={->, draw, lcinput},
+  forward/.style={->, draw, lcforward},
+  output/.style={->, draw, lcoutput},
+  postro/.style={->, draw, lcpostro},
+  norm/.style={->, draw, lcnorm},
+  free/.style={->, draw, lcfree},
+  cong/.style={->, draw, lccong},
+  it/.style={font={\small\itshape}}
+}
+% -------------------------------------------------
+% Start by placing the nodes
+\node [rule, fill=lcprero!25] (P)			{Présentation\\ (navigateur Web)};
+% Use join to connect a node to the previous one 
+\node [rule, fill=lcforward!25, join] (S)	{Métier\\ (Serveur Web)};
+\node [rule, fill=lcinput!25, join]	(DB)		{Données\\ (Serveur SQL)};
+
+
+\end{tikzpicture}

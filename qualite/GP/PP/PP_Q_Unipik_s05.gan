@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Unipik" company="UNICEF" webLink="http://" view-date="2016-02-25" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.7.1" locale="fr">
+<?xml version="1.0" encoding="UTF-8"?><project name="Unipik" company="UNICEF" webLink="http://" view-date="2016-03-07" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.7.1" locale="fr">
     <description><![CDATA[Outil de gestion des interventions externes]]></description>
-    <view zooming-state="default:1" id="gantt-chart">
+    <view zooming-state="default:0" id="gantt-chart">
         <field id="tpd3" name="Nom" width="57" order="0"/>
         <field id="tpd4" name="Date de début" width="21" order="1"/>
         <field id="tpd5" name="Date de fin" width="21" order="2"/>
@@ -147,18 +147,46 @@
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
         <task id="0" name="E/A" color="#8cb6ce" meeting="false" start="2016-01-29" duration="5" complete="0" expand="true"/>
-        <task id="2" name="DSE" color="#8cb6ce" meeting="false" start="2016-02-01" duration="5" complete="0" priority="2" expand="true"/>
-        <task id="5" name="DSI" color="#8cb6ce" meeting="false" start="2016-02-01" duration="18" complete="0" expand="true"/>
-        <task id="11" name="PTV" color="#8cb6ce" meeting="false" start="2016-02-04" duration="16" complete="0" expand="true"/>
+        <task id="2" name="DSE" color="#8cb6ce" meeting="false" start="2016-02-01" duration="5" complete="0" priority="2" expand="true">
+            <depend id="11" type="2" difference="0" hardness="Strong"/>
+            <depend id="15" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="5" name="DSI" color="#8cb6ce" meeting="false" start="2016-02-01" duration="18" complete="0" expand="true">
+            <depend id="11" type="2" difference="0" hardness="Strong"/>
+            <depend id="15" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="11" name="PTV" color="#8cb6ce" meeting="false" start="2016-02-25" duration="5" complete="0" expand="true">
+            <depend id="17" type="2" difference="0" hardness="Strong"/>
+        </task>
         <task id="12" name="Formation" color="#8cb6ce" meeting="false" start="2016-02-26" duration="1" complete="0" expand="true"/>
-        <task id="15" name="DCP" color="#8cb6ce" meeting="false" start="2016-02-29" duration="5" complete="0" expand="true"/>
-        <task id="17" name="PTI" color="#8cb6ce" meeting="false" start="2016-02-29" duration="5" complete="0" expand="true"/>
-        <task id="19" name="DCD" color="#8cb6ce" meeting="false" start="2016-03-07" duration="5" complete="0" expand="true"/>
-        <task id="21" name="PTU" color="#8cb6ce" meeting="false" start="2016-03-07" duration="5" complete="0" expand="true"/>
-        <task id="23" name="Developpement + Tests" color="#8cb6ce" meeting="false" start="2016-03-14" duration="5" complete="0" expand="true"/>
-        <task id="24" name="PTV" color="#8cb6ce" meeting="false" start="2016-03-21" duration="5" complete="0" expand="true"/>
-        <task id="26" name="PTI" color="#8cb6ce" meeting="false" start="2016-03-21" duration="5" complete="0" expand="true"/>
-        <task id="28" name="PTU" color="#8cb6ce" meeting="false" start="2016-03-29" duration="4" complete="0" expand="true"/>
+        <task id="15" name="DCP - lot1" color="#8cb6ce" meeting="false" start="2016-02-25" duration="5" complete="0" expand="true">
+            <depend id="19" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="17" name="PTI - lot1" color="#8cb6ce" meeting="false" start="2016-03-03" duration="5" complete="0" expand="true">
+            <depend id="21" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="19" name="DCD - lot1" color="#8cb6ce" meeting="false" start="2016-03-03" duration="5" complete="0" expand="true">
+            <depend id="23" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="21" name="PTU - lot1" color="#8cb6ce" meeting="false" start="2016-03-10" duration="5" complete="0" expand="true"/>
+        <task id="23" name="Developpement + Tests - lot1" color="#8cb6ce" meeting="false" start="2016-03-10" duration="5" complete="0" expand="true">
+            <depend id="24" type="2" difference="0" hardness="Strong"/>
+            <depend id="29" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="24" name="PTV - lot2" color="#8cb6ce" meeting="false" start="2016-03-17" duration="5" complete="0" expand="true">
+            <depend id="26" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="29" name="DCP - lot2" color="#8cb6ce" meeting="false" start="2016-03-17" duration="5" complete="0" expand="true">
+            <depend id="54" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="26" name="PTI - lot2" color="#8cb6ce" meeting="false" start="2016-03-24" duration="5" complete="0" expand="true">
+            <depend id="28" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="54" name="DCD - lot2" color="#8cb6ce" meeting="false" start="2016-03-24" duration="5" complete="0" expand="true">
+            <depend id="59" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="28" name="PTU - lot2" color="#8cb6ce" meeting="false" start="2016-04-01" duration="16" complete="0" expand="true"/>
+        <task id="59" name="Developpement + tests - lot2" color="#8cb6ce" meeting="false" start="2016-04-01" duration="16" complete="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Melissa Bignoux" function="SoftwareDevelopment:2" contacts="melissa.bignoux@insa-rouen.fr" phone="0647282552"/>

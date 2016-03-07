@@ -19,6 +19,7 @@
 \RequirePackage{array}
 \RequirePackage{color}
 \RequirePackage{colortbl}
+\RequirePackage{booktabs}
 \RequirePackage{makeidx}
 \RequirePackage{float}
 \RequirePackage{eurosym}

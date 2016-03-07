@@ -18,7 +18,7 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 
 imagespdf: $(IMGDIR)/cycleCorrectionFT.pdf $(IMGDIR)/planningProjet2.pdf
 
-imagespng: $(IMGDIR)/organigrammeFonctionnel.png $(IMGDIR)/cycleCorrectionFT.png $(IMGDIR)/modeleSpirale.png
+imagespng: $(IMGDIR)/organigrammeFonctionnel.png $(IMGDIR)/cycleCorrectionFT.png $(IMGDIR)/modeleSpirale.png $(IMGDIR)/risque.png
 
 $(IMGDIR)/%.png: $(IMGDIR)/%.dia
 	$(DIA) -e $@ --filter=png $<

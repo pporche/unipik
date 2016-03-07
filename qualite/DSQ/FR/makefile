@@ -6,9 +6,9 @@ include makevars ../../../makevars
 
 all : fr cleanrep cleaneps
 
-fr : $(PDFDIR)/ficheRole.pdf
+fr : $(PDFDIR)/FR_Q_Unipik_rCPA_v1.00.pdf $(PDFDIR)/FR_Q_Unipik_rCP_v1.00.pdf $(PDFDIR)/FR_Q_Unipik_rRD_v1.00.pdf $(PDFDIR)/FR_Q_Unipik_rRGC_v1.00.pdf $(PDFDIR)/FR_Q_Unipik_rRQA_v1.00.pdf $(PDFDIR)/FR_Q_Unipik_rRQ_v1.00.pdf $(PDFDIR)/FR_Q_Unipik_rRRS_v1.00.pdf 
 
-$(PDFDIR)/%.pdf : %.tex
+$(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\
 	$(CCTEX) $<
@@ -40,4 +40,4 @@ cleaneps :
 # Archivage
 archive:
 	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
+	/cp pdf/*.pdf ${ARCHIVEDIR}

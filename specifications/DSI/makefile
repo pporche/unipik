@@ -4,7 +4,7 @@ include makevars ../../makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : imagespdf dsi cleanrep cleaneps cleanpng
+all : imagespdf dcp cleanrep cleaneps cleanpng
 
 dsi : $(PDFDIR)/$(NOM_FICHIER).pdf 
 

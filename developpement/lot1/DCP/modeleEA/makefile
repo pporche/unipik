@@ -15,6 +15,9 @@ $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 $(IMGDIR)/%.eps: $(IMGDIR)/%.dia
 	$(DIA) -e $@ --filter=eps-builtin $<
 
+$(IMGDIR)/%.png: $(IMGDIR)/%.dia
+	$(DIA) -e $@ --filter=png $<
+
 modeleEA : $(PDFDIR)/$(NOM_FICHIER).pdf 
 
 $(PDFDIR)/$(NOM_FICHIER).pdf :enregistrements/$(NOM_FICHIER).tex

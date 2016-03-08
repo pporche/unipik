@@ -1,6 +1,20 @@
-# version 1.02, date 04/03/16, auteur Pierre Porche et Sergi Colomiès
+# version 1.02, date 04/03/16, auteur Mélissa Bignoux, Pierre Porche et Sergi Colomiès
+# Importation des variables
+include makevars ../../../makevars
+.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
+
+
 # Compilation
-all: modeleea diagrammeclasse diagrammepackage diagrammesequence
+
+all: modeleea diagrammeclasse diagrammepackage diagrammesequence dcp cleanrep
+
+dcp : $(PDFDIR)/$(NOM_FICHIER).pdf 
+
+$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
+	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
+	export TEXINPUTS;\
+	$(CCTEX) $<
+	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
 modeleea:
 	make -C modeleEA
@@ -33,7 +47,10 @@ archivediagrammesequence:
 
 
 # Nettoyage
-clean: cleanmodeleea cleandiagrammeclasse cleandiagrammepackage cleandiagrammesequence
+clean: cleanrep cleanmodeleea cleandiagrammeclasse cleandiagrammepackage cleandiagrammesequence
+
+cleanrep:
+	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
 
 cleanmodeleea:
 	make -C modeleEA clean

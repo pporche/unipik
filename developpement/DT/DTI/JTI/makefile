@@ -1,10 +1,10 @@
 # version 1.00, date 29/02/16, auteur Michel Cressant
 # Importation des variables
-include makevars ../../../../../makevars
+include makevars ../../../../makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all :  imagespdf pti cleanrep cleaneps 
+all :  pti cleanrep
 
 pti : $(PDFDIR)/$(NOM_FICHIER).pdf 
 
@@ -15,16 +15,8 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
 
-imagespdf:  $(IMGDIR)/modeleMVC.pdf $(IMGDIR)/testControleur.pdf $(IMGDIR)/testModele.pdf $(IMGDIR)/testBaseDeDonnees.pdf
-
-$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
-	$(EPSPDF) -dEPSCrop $< $@
-
-$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
-	$(DIA) -e $@ --filter=eps-builtin $<
-
 # Clean commands
-clean : cleanpdf cleanrep  cleaneps
+clean : cleanpdf cleanrep 
 
 cleanpdf :
 	rm -f pdf/*.pdf
@@ -32,10 +24,6 @@ cleanpdf :
 # Nettoyage du répertoire
 cleanrep:
 	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
-
-cleaneps :
-	rm -f images/*.eps
-	rm -f images/*.pdf
 
 
 # Archivage

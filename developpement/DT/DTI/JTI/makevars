@@ -3,4 +3,4 @@
 NOM_FICHIER=JTI_D_Unipik_v1.00
 
 LOCPATH=developpement/lot1/DT/DTI/JTI
-GENPATH=$(shell pwd)/../../../../..
+GENPATH=$(shell pwd)/../../../..

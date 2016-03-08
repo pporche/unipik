@@ -1,4 +1,4 @@
-% version 1.01, date 23/02/16, auteur Matthieu Martins-Baltar
+% version 1.00, date 07/03/16, auteur Mélissa Bignoux
 \documentclass[asi]{picInsa}
 
 %Pour le schéma d'architecture
@@ -45,16 +45,16 @@
 \author{\Pierre} %à changer
 
 
-\titreGeneral{\DSI}
+\titreGeneral{\DCP}
 \sousTitreGeneral{\nomEquipe}
-\titreAcronyme{\DSICourt}
-\version{v1.00}
-\titreDetaille{\DSICourt\_S\_\nomEquipe\_\versionPrive}
-\referenceVersion{\DSICourt\_S\_\nomEquipe\_\versionPrive}
+\titreAcronyme{\DCPCourt}
+\version{V1.00}
+\titreDetaille{\DCPCourt\_D\_\nomEquipe\_\versionPrive}
+\referenceVersion{\DCPCourt\_D\_\nomEquipe\_\versionPrive}
 \auteurs{\Matthieu{} \& \Kafui{} \& \Melissa{} \& \Sergi{} \& \Michel{} \& \Pierre{}}
 \destinataires{\nomEquipe, \nomClient{}}
-\resume{Le présent document contient la présentation du \DSI{} \nomEquipe.}
-\motsCles{\DSICourt{}}
+\resume{Le présent document contient la présentation du \DCP{} \nomEquipe.}
+\motsCles{\DCPCourt{}}
 \natureDerniereModification{ }
 \modeDiffusionControle{}
 
@@ -74,18 +74,17 @@
 \label{intro}
 \input{sources/01_introduction.tex}
 
-\chapter{Architecture}
-\label{architecture}
-\input{sources/02_architecture.tex}
+\chapter*{Diagramme de séquence}
+\label{diagrammeSequence}
+\input{sources/02_diagrammeSequence.tex}
 
-\chapter{Présentation de la solution}
-\label{presentation}
-\input{sources/03_presentationSolution.tex}
+\chapter*{Diagramme de classes}
+\label{diagrammeClasse}
+\input{sources/04_diagrammeClasse.tex}
 
-\chapter{Description détaillée des lots}
-\label{description}
-\input{sources/04_descriptionDetailleeLots.tex}
-
+\chapter*{Diagramme de packages}
+\label{diagrammePackage}
+\input{sources/05_diagrammePackage.tex}
 
 \begin{appendix}
 \part*{Annexes}

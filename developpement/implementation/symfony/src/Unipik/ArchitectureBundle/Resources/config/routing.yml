@@ -1,3 +1,9 @@
 architecture_homepage:
-    path:     /
-    defaults: { _controller: ArchitectureBundle:Default:index }
+    path:     /accueil
+    defaults:
+        _controller: ArchitectureBundle:Volunteer:index
+
+architecture_add:
+  path: /ajouter
+  defaults:
+      _controller: ArchitectureBundle:Volunteer:add

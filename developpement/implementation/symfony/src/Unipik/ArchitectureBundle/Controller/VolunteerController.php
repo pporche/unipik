@@ -9,7 +9,7 @@ use Unipik\ArchitectureBundle\Entity\Volunteer;
 
 class VolunteerController extends Controller {
 
-    public function indexAction(Request $request) {
+    public function indexAction() {
         return $this->render('ArchitectureBundle:Volunteer:index.html.twig');
     }
 

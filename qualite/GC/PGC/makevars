@@ -1,6 +1,6 @@
-# version 1.01, date 26/02/16, auteur  Pierre Porche, Michel Cressant, Mathieu Medici
+# version 1.01, date 08/03/16, auteur  Pierre Porche, Michel Cressant, Mathieu Medici
 # Définition du nom du document
-NOM_FICHIER=PGC_Q_Unipik_v1.00
+NOM_FICHIER=PGC_Q_Unipik_v1.01
 
 LOCPATH=qualite/GC/PGC
 GENPATH=$(shell pwd)/../../..

@@ -1,12 +1,12 @@
-# version 1.00, date 01/03/16, auteur Michel Cressant
+# version 1.00, date 29/02/16, auteur Michel Cressant
 # Importation des variables
-include makevars ../../../../../makevars
+include makevars ../../../../makevars
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all :  ptu cleanrep
+all :  pti cleanrep
 
-ptu : $(PDFDIR)/$(NOM_FICHIER).pdf 
+pti : $(PDFDIR)/$(NOM_FICHIER).pdf 
 
 $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

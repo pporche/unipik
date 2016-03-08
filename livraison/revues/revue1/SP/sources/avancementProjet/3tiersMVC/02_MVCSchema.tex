@@ -1,0 +1,33 @@
+% version 1.01, date 07/03/16, auteur Matthieu Martins-Baltar
+% =================================================
+% Set up a few colours
+\colorlet{lcfree}{Gray}
+\colorlet{lcnorm}{Gray}
+\colorlet{lccong}{Gray}
+\colorlet{lccyan}{Cyan}
+% -------------------------------------------------
+% Set up a new layer for the debugging marks, and make sure it is on
+% top
+\pgfsetlayers{main}
+% -------------------------------------------------
+
+\begin{tikzpicture}[%
+	%<->,
+    >=triangle 60,              % Nice arrows; your taste may be different   % General flow is top-to-bottom
+    sibling distance=10em, % Global setup of box spacing
+    ]
+
+
+\tikzset{
+  base/.style={draw, align=center, minimum height=4ex},
+  rule/.style={base, rectangle, text width=8em, font={\scriptsize}, fill=lccyan!25},
+}
+% -------------------------------------------------
+% Start by placing the nodes
+\node [rule] 		{Contrôleur}
+	child { { node [rule] {Modèle} } }
+	child { { node [rule] {Vues} } };
+
+
+
+\end{tikzpicture}

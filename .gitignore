@@ -11,7 +11,7 @@
 *.out
 *.toc
 *.dvi
-
-
+.idea
+.idea/*
 
 

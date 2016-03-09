@@ -1,0 +1,6 @@
+# version 1.00, date 01/03/16, auteur Michel Cressant
+# Définition du nom du document
+NOM_FICHIER=DCP_D_Unipik_v1.00
+
+LOCPATH=developpement/lot1/DCP
+GENPATH=$(shell pwd)/../../..

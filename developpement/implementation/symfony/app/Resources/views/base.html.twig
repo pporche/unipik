@@ -22,7 +22,15 @@
         <div id="header"></div>
 
 
-        {% block body %}{% endblock %}
+        <div class="container">
+
+            {% use '::alert.html.twig' %}
+            {{ block('alert') }}
+
+            {% block body %}{% endblock %}
+        </div>
+
+
 
     </div>
         {% block javascripts %}

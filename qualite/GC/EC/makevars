@@ -1,6 +1,6 @@
 # version 2.00, date 26/02/16, auteur  Pierre Porche, Michel Cressant
 # Définition du nom du document
-NOM_FICHIER=EC_Q_Unipik_d16-01-25_cPQ
+NOM_FICHIER=modeleEC
 
 LOCPATH=qualite/GC/EC
 GENPATH=$(shell pwd)/../../..

@@ -7,14 +7,16 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
 
         {% block stylesheets %}
-            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+            <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />-->
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
         {% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
 
-    {{ include ("::navbar.html.twig") }}
+    {%  use '::navbar.html.twig' %}
+    {{ block('navbar') }}
 
     <div class="container">
         <div id="header"></div>

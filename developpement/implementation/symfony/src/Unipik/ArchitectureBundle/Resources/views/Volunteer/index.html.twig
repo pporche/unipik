@@ -8,17 +8,33 @@
 
     <h2>Liste des volontaires :</h2>
 
-    {% for volunteer in volunteers %}
-        <div>
-            <ul>
-                <li>Nom : {{ volunteer.nom }}</li>
-                <li>Prenom : {{ volunteer.prenom }}</li>
-                <li>Email : {{ volunteer.email }}</li>
-                <li>Téléphone Fixe : {{ volunteer.telFixe }}</li>
-                <li>Téléphone Portable: {{ volunteer.telPortable }}</li>
-            </ul>
-        </div>
-    {% endfor %}
+    <table class="table table-striped table-hover ">
+
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Téléphone Fixe</th>
+            <th>Téléphone Portable</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for volunteer in volunteers %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ volunteer.nom }}</td>
+                <td>{{ volunteer.prenom }}</td>
+                <td>{{ volunteer.email }}</td>
+                <td>{{ volunteer.telFixe }}</td>
+                <td>{{ volunteer.telPortable }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
 
 
 {% endblock %}

@@ -9,66 +9,65 @@
  \section{Fonctionnalités à tester}
 	Ce paragraphe décrit l'organisation d'un modèle MVC ainsi que les différents tests d'intégration qui devront être réalisés. \\ 	
  	
- 	La figure \ref{modeleMVC} représente l'organisation d'un modèle MVC. Les flèches représente comment communique les différentes parties du modèle. Les tests d'intégration devront vérifier que ces parties communiquent correctement.
+ 	La figure \ref{modeleMVC} représente l'organisation d'un modèle MVC communiquant avec une base de données. Les flèches représente comment communique les différentes parties du modèle. Les tests d'intégration devront vérifier que ces parties communiquent correctement.
  	
  	\begin{figure}[H]
  		\centering
- 		\includegraphics[scale=0.85]{images/modeleMVC.pdf}
+ 		\includegraphics[scale=0.85]{images/modeleMVCPlusBD.pdf}
  		\caption{Représentation d'un Modèle Vue Contrôleur}
  		\label{modeleMVC}
  	\end{figure}
  	
  Les différents tests seront :\\
  
- \subsection*{Tests d'Intégration du Contrôleur}
+ \subsection*{Tests d'Intégration Contrôleur Vue}
   \begin{center}
     \begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
-	\hline
-	ID & Test d'intégration \\\hline
+		\hline
+		ID & Test d'intégration \\\hline
         TI001 & Contrôleur -> Vue \\\hline
-        TI002 & Contrôleur -> Modèle \\\hline
      \end{tabular}
   \end{center}
   
   \begin{figure}[H]
   	\centering
-  	\includegraphics[scale=0.7]{images/testControleur.pdf}
-  	\caption{Tests d'intégration sur le Contrôleur}
-  	\label{testControleur}
+  	\includegraphics[scale=0.8]{images/testControleurVue.pdf}
+  	\caption{Tests d'intégration du Contrôleur et des Vues}
+  	\label{testControleurEtVue}
   \end{figure}
   
   
- \subsection*{Tests d'Intégration du Modèle}
+ \subsection*{Tests d'Intégration du Modèle Vue Contrôleur}
   \begin{center}
     \begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
 	\hline
 	ID & Test d'intégration \\\hline
-        TI003 & Modèle -> Contrôleur\\\hline
-        TI004 & Modèle -> Base de Données \\\hline
+        TI002 & Contrôleur -> Modèle \\ & Modèle -> Contrôleur \\\hline 
      \end{tabular}
   \end{center}
   
   \begin{figure}[H]
   	\centering
-  	\includegraphics[scale=1.15]{images/testModele.pdf}
-  	\caption{Tests d'intégration sur le Modèle}
+  	\includegraphics[scale=0.8]{images/testControleurModele.pdf}
+  	\caption{Tests d'intégration sur le Modèle Vue Contrôleur}
   	\label{testModele}
   \end{figure}    
   
   
-  \subsection*{Tests d'Intégration de la Base de Données}
+  \subsection*{Tests d'Intégration du Modèle Vue Contrôleur communiquant avec la Base de Données}
   \begin{center}
     \begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
 	\hline
-	ID & Test d'intégration \\\hline
-        TI005 & Base de données -> Modèle \\\hline
+		ID & Test d'intégration \\\hline
+		TI003 & Modèle -> Base de données \\
+         & Base de données -> Modèle \\\hline
      \end{tabular}
   \end{center}
   
   \begin{figure}[H]
   	\centering
-  	\includegraphics[scale=0.75]{images/testBaseDeDonnees.pdf}
-  	\caption{Test d'intégration sur la Base de Données}
+  	\includegraphics[scale=1.15]{images/testModeleBD.pdf}
+  	\caption{Test d'intégration sur le Modèle Vue Contrôleur avec la Base de Données}
   	\label{testBaseDeDonnees}
   \end{figure}
   
@@ -82,7 +81,7 @@
   	Les éléments suivant doivent être livrés avant que les tests d'intégrations puissent commencer :
   	\begin{itemize}
   		\item Le \PTU,
-  		\item Les chapitres 1,2 et 3 de ce document.
+  		\item Les chapitres 1, 2 et 3 de ce document.
   	\end{itemize}
   	
   	Les éléments suivant doivent être livrés avant qu'un test d'intégration spécifique ne commence :

@@ -2,12 +2,10 @@
 
 namespace Unipik\ArchitectureBundle\Controller;
 
-use Doctrine\DBAL\Types\StringType;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Unipik\ArchitectureBundle\Entity\Volunteer;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class VolunteerController extends Controller {
 
@@ -19,7 +17,6 @@ class VolunteerController extends Controller {
 
         //Création d'un objet Volunteer (Un bénévole)
         $volunteer = new Volunteer();
-
         $formBuilder = $this->createFormBuilder($volunteer)
             ->add('prenom', 'Symfony\Component\Form\Extension\Core\Type\TextType')
             ->add('nom', 'Symfony\Component\Form\Extension\Core\Type\TextType')
@@ -40,7 +37,7 @@ class VolunteerController extends Controller {
 
             $session =$request->getSession();
             $session->getFlashBag()->add('success', 'Bénévole bien enregistré.');
-            return $this->redirect($this->generateUrl('architecture_homepage'));
+            return $this->redirectToRoute('architecture_homepage');
         }
         return $this->render('ArchitectureBundle:Volunteer:add.html.twig', array(
             'form' => $form->createView(),

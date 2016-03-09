@@ -1,0 +1,13 @@
+{% block alert %}
+    {% if app.session.started %}
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+
+        <div class="alert alert-dimissible alert-{{ flashMessage.alert }}">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4>{{ flashMessage.title }}</h4>
+            <p>{{ flashMessage.message }}</p>
+        </div>
+
+        {% endfor %}
+    {% endif %}
+{% endblock %}

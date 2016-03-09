@@ -1,0 +1,8 @@
+<?php
+
+function traitementTheme(&$theme){
+
+
+
+}
+?>

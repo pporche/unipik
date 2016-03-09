@@ -14,7 +14,9 @@
 
 \tableofcontents
 
-\chapter{Diagramme de classe}
+\chapter{Diagramme de classes}
+
+Le formalisme utilisé dans ce document pour le diagramme de classe est UML.
 
 %% Inclure le  diagramme de classe
 \begin{landscape}
@@ -25,9 +27,9 @@
 \end{figure}
 \end{landscape}
 
-\chapter{Description du Diagramme de classe}
+\chapter{Description du Diagramme de classes}
 
-Le diagramme de classe réalisé est composé de plusieurs types, de plusieurs classes et de plusieurs associations. Nous allons les décrire dans cette partie. \\ 
+Le diagramme de classes réalisé est composé de plusieurs types, de plusieurs classes et de plusieurs associations. Nous allons les décrire dans cette partie. \\ 
 
 \section{Les types}
 
@@ -35,13 +37,17 @@ Le diagramme de classe réalisé est composé de plusieurs types, de plusieurs c
 
 Le type geometry est un type de données respectant la norme de l'OGC (Open Geospatial Consortium) et qui définit la géolocalisation.
 
-%\subsection*{Theme}
+\subsection*{Theme}
 
-%Le type Theme est une énumération qui définit les différents thèmes possibles pour les plaidoyers.
+Le type Theme est une énumération qui définit les différents thèmes possibles pour les plaidoyers.
 
-\subsection*{NiveauScolaire}
+\subsection*{NiveauScolaireComplet}
 
-Le type NiveauScolaire est une énumération qui définit tous les niveaux possibles pour les interventions. Ce type comporte aussi des combinaisons des niveaux comme par exemple "CPCE1" ou "CM1CM2". La valeur "autre" est utilisée pour des cas particuliers (niveau CLIS, CM26eme).
+Le type NiveauScolaireComplet est une énumération qui définit tous les niveaux possibles pour les interventions. Ce type comporte aussi des combinaisons des niveaux comme par exemple "CPCE1" ou "CM1CM2". La valeur "autre" est utilisée pour des cas particuliers (niveau CLIS, CM26eme).
+
+\subsection*{NiveauScolaireLimite}
+
+Le type NiveauScolaireLimite est une énumération qui définit tous les niveaux possibles pour les interventions frimousse en se limitant à l'école primaire. Ce type comporte aussi des combinaisons des niveaux comme par exemple "CPCE1" ou "CM1CM2". La valeur "autre" est utilisée pour des cas particuliers (niveau CLIS, CM26eme).
 
 \subsection*{TypeCentre}
 
@@ -59,7 +65,7 @@ Le type TypeProjet est une énumération qui définit les différents niveaux po
 
 Le type TypeContact est une énumération qui définit les différents contacts possibles.
 
-\subsection*{Materiel}
+\subsection*{MaterielPaidoyer}
 
 Le type Materiel est une énumération qui définit les différents types de matériel possibles pour les interventions plaidoyers.
 
@@ -163,7 +169,7 @@ Cette classe a un attribut :
 
 \subsection*{AdminComite}
 
-La classe AdminComite permet de représenter un administrateur de comité (ou d'un département, c'est la même chose). Cette classe est une classe fille de la classe Benevole. 
+La classe AdminComite permet de représenter un administrateur de comité. Cette classe est une classe fille de la classe Benevole. 
 
 \subsection*{AdminRegion}
 
@@ -192,9 +198,8 @@ Cette classe a plusieurs attributs :
 
 \subsection*{Enseignement}
 La classe Enseignement est une classe fille de la classe Etablissement. Cette classe décrit les établissements qui relèvent de l'Education Nationale. \\
-Cette classe a plusieurs attributs : 
+Cette classe a un attribut : 
 \begin{itemize}
-\item un UAI (Unité Administrative Immatriculée) qui est une combinaison de chiffres et de lettres unique pour chaque enseignement;
 \item un type d'enseignement qui permet de déterminer si l'enseignement est une école maternelle, une école élémentaire, un collège, un lycée ou un établissement supérieur. 
 \end{itemize} 
 
@@ -213,23 +218,25 @@ Cette classe a plusieurs attributs :
 \item une date précise déterminée par les bénévoles lors de l'attribution des bénévoles aux interventions;
 \item un identifiant unique;
 \item un lieu dans l'établissement, c'est à dire la salle où aura lieu l'intervention;
-\item le nombre de personnes concernées par cette intervention (exemple : le nombre d'élève d'une classe);
-\item un champ remarque permettant au contact de saisir des remarques spécifiques à cette intervention;
+\item le nombre de personnes concernées par cette intervention (exemple : le nombre d'élèves d'une classe);
+\item un champ remarques permettant au contact de saisir des remarques spécifiques à cette intervention;
 \item un moment indiquant si l'intervention a lieu le matin, l'après-midi ou les deux.
 \end{itemize}
 
 \subsection*{Plaidoyer}
 La classe Plaidoyer est une classe fille de la classe Intervention. \\
-Cette classe a un attribut : 
+Cette classe a plusieurs attributs : 
 \begin{itemize}
-\item le matériel disponible pour l'intervention (présence ou non d'un vidéoprojecteur, d'un tableau intéractif, d'enceintes ou autre).
+\item le matériel disponible pour l'intervention (présence ou non d'un vidéoprojecteur, d'un tableau interactif, d'enceintes ou autre);
+\item un niveau-thème qui indique à la fois le thème de l'intervention et le niveau de la classe dans laquelle va se dérouler l'intervention, par exemple, pour une école primaire, la classe peut être CE1 mais aussi CE1-CE2.
 \end{itemize}
 
 \subsection*{Frimousse}
 La classe Frimousse est une classe fille de la classe Intervention. Une activité frimousse est réalisée avec des enfants d'école élémentaire. \\
-Cette classe a un attribut :
+Cette classe a plusieurs attributs :
 \begin{itemize}
-\item les matériaux nécessaires à la réalisation de l'activité (patron, bourre, décoration).
+\item les matériaux nécessaires à la réalisation de l'activité (patron, bourre, décoration);
+\item un niveau qui correspond à la classe dans laquelle va se dérouler l'intervention (CP, CE1, etc).
 \end{itemize}
 
 \subsection*{Projet}
@@ -237,7 +244,8 @@ La classe Projet représente les projets réalisées par des étudiants ou des l
 Cette classe a plusieurs attributs : 
 \begin{itemize}
 \item un identifiant unique;
-\item le chiffre d'affaire réalisés par ce projet;\item la description du projet est un champ permettant au(x) bénévole(s) de saisir d'autres informations importantes sur le projet (nom du projet par exemple);
+\item le chiffre d'affaire réalisé par ce projet;
+\item la description du projet est un champ permettant au(x) bénévole(s) de saisir d'autres informations importantes sur le projet (nom du projet par exemple);
 \item le type de projet permet de savoir si le projet est réalisé par des étudiants, des lycéens, des élèves d'école primaire ou de collège.
 \end{itemize}
 
@@ -256,43 +264,45 @@ Cette classe a plusieurs attributs :
 La classe Demande représente les demandes d'intervention effectuées par les contacts.\\
 Cette classe a plusieurs attributs :
 \begin{itemize}
-\item un identifiant unique; 
 \item une liste des semaines correspondant aux semaines où le contact est disponible; 
 \item les moments voulus pour une semaine type (sera donc valable pour toutes les semaines où le contact est disponible);
-\item les moments à éviter pour une semaine type. 
+\item les moments à éviter pour une semaine type;
+\item un identifiant unique.
 \end{itemize}
 
 \subsection*{Comite}
 
-La classe Comite représente les comités de bénévoles, il y a un comité par département.\\
+La classe Comite représente les comités de bénévoles, il y a en général un comité par département. Il peut arriver qu'un département ne possède pas do comité.\\
 Cette classe a plusieurs attributs :
 \begin{itemize}
-\item un identifiant unique (le numéro du département sous la forme XXX);
+\item un identifiant unique représentant le numéro du département;
 \item le nom du département;
-\item la liste des thèmes du comité avec les niveaux associés à chaque thème.
+\item la liste des thèmes du comité avec les niveaux associés à chaque thème. Un comité ne présente pas forcément les mêmes thèmes qu'un autre comité et, pour un même thème, les niveaux associés ne sont pas obligatoirement les mêmes en fonction des comités. 
 \end{itemize}
 
 \subsection*{Region}
 
 La classe Region représente les régions françaises.\\
-Cette classe a un attribut :
+Cette classe a plusieurs attributs :
 \begin{itemize}
-\item le nom de la région.
+\item le nom de la région;
+\item un identifiant unique.
 \end{itemize}
 
 \subsection*{Pays}
 
 La classe Pays représente la France.\\
-Cette classe a un attribut :
+Cette classe a plusieurs attributs :
 \begin{itemize}
-\item le nom du pays (donc "France").
+\item le nom du pays (donc "France");
+\item un identifiant unique.
 \end{itemize}
 
 
 \section{Les associations}
 
 \subsection*{estResponsable}
-L'association \textit{estResponsable} relie un Benevole et un Projet. Un benévole est responsable d'aucun, un ou plusieurs projets et un projet est sous la responsabilité d'aucun (si le projet est en attente), un ou plusieurs bénévoles.
+L'association \textit{estResponsable} relie un Benevole et un Projet. Un bénévole est responsable d'aucun, un ou plusieurs projets et un projet est sous la responsabilité d'aucun (si le projet est en attente), un ou plusieurs bénévoles.
 
 \subsection*{Participe}
 L'association \textit{Participe} relie un Contact et un Projet. Un contact participe à aucun, un ou plusieurs projets et un projet a pour participant aucun (si le projet est en attente), un ou plusieurs contacts.\\
@@ -311,7 +321,7 @@ L'association \textit{fait} relie un Contact et une Demande. Un contact fait auc
 
 \subsection*{cree}
 
-L'association \textit{cree} relie une Demande et une Intervention. Une demande crée une ou plusieurs interventions, une intervention est créée par une et une seule demande.
+L'association \textit{cree} relie une Demande et une Intervention. Une demande créée une ou plusieurs interventions, une intervention est créée par une et une seule demande.
 
 \subsection*{effectue} 
 
@@ -326,7 +336,7 @@ Cette association a plusieurs attributs :
 \item un type qui indique quelles sont les responsabilités du contact par rapport aux activités.
 \end{itemize}
 
-\subsection*{effectuerDans}
+\subsection*{estEffectueDans}
 
 L'association \textit{estEffectueDans} relie une Intervention et un Etablissement. Une intervention est effectuée dans un et un seul établissement, un établissement peut être le lieu d'aucune, une ou plusieurs interventions.
 
@@ -354,89 +364,95 @@ Dans cette partie, nous allons décrire les différentes contraintes d'intégrit
 \subsection*{Personne}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
- 	\item \textbf{nom :} chaine de caractère de longueur de 100 caractères au maximum, attribut non nul;
-	\item \textbf{prénom :} chaine de caractère de longueur de 100 caractères au maximum, attribut non nul;
-	\item \textbf{email :} chaine de caractère de longueur de 100 caractères au maximum, la syntaxe de l'e-mail doit être la suivante : user@host.domain\\
+ 	\item \textbf{nom :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul;
+	\item \textbf{prénom :} chaîne de caractère de longueur de 100 caractères au maximum, attribut peut être nul;
+	\item \textbf{email :} chaîne de caractère de longueur de 100 caractères au maximum, la syntaxe de l'e-mail doit être la suivante : user@host.domain\\
 	user : contient des chiffres/lettres ainsi que les symboles "\_", "-", "." \\
 	host : contient des chiffres/lettres \\
-	domain : chaine de caractère composée de 2 ou 3 lettres. \\
+	domain : chaine de caractère composée de 2 lettres au minimum et 3 lettres au maximum. \\
 	attribut non nul;  
-	\item \textbf{telFixe :} chaine de caractère composée de 10 chiffres commençant par "0", attribut peut être nul;
-	\item \textbf{telPortable :} chaine de caractère composée de 10 chiffres commençant par "0", attribut peut être nul.\\
+	\item \textbf{telFixe :} chaîne de caractère composée de 10 chiffres commençant par "0", attribut peut être nul;
+	\item \textbf{telPortable :} chaîne de caractère composée de 10 chiffres commençant par "0", attribut peut être nul.\\
 \end{itemize}  
 
 \subsection*{Benevole}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
- 	\item \textbf{adresse :} constante de type \textbf{Adresse}, attribut non nul;
-	\item \textbf{mdp :} chaine de caractère de longueur de 50 caractères au maximum, de 8 caractères au minimum, attribut non nul;  
-	\item \textbf{activitesPotentielles :} constante de type \textbf{Activite}, atrribut multivalué, peut être nul.\\
+ 	\item \textbf{adresse :} variable de type \textbf{Adresse}, attribut non nul;
+	\item \textbf{mdp :} chaîne de caractère de longueur de 50 caractères au maximum, de 8 caractères au minimum, attribut non nul;  
+	\item \textbf{activitesPotentielles :} constante de type \textbf{Activite}, attribut multivalué, attribut  peut être nul.\\
 \end{itemize}  
 
-\subsection*{AdminLocal}
-Contraintes de domaine et de nullité des attributs :\\
- \indent \indent \textbf{responsabiliteActivite :} constante de type \textbf{Activite}, attribut multivalué, peut être nul.\\
+\subsection*{AdminActivite}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+\item \textbf{responsabiliteActivite :} constante de type \textbf{Activite}, attribut multivalué, peut être nul.\\
+\end{itemize}
 
  
 \subsection*{Contact}
-Contraintes de domaine et de nullité des attributs :\\
-\indent \indent \textbf{type :} constante de type \textbf{TypeContact},attribut non nul.\\
+Contraintes de domaine et de nullité des attributs :
+ \begin{itemize}
+ \item \textbf{type :} constante de type \textbf{TypeContact},attribut non nul.\\
+ \end{itemize}
 
 \subsection*{Etablissement}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
- 	\item \textbf{idEtablissement :} chaine de caractère de longueur de 100 caractères au maximum, attribut non nul;
-	\item \textbf{nom :} chaine de caractère de longueur de 100 caractères au maximum, attribut non nul;
-	\item \textbf{telFixe :} chaine de caractère composée de 10 chiffres commençant par "0", attribut peut être nul;
-	\item \textbf{email :} chaine de caractère de longueur de 100 caractères au maximum, la syntaxe de l'e-mail doit être la suivante : user@host.domain\\
+ 	\item \textbf{idEtablissement :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul. Cet attribut doit correspondre à l'\textbf{UAI} si cette établissement est une instance d'Enseignement. L'UAI (Unité Administrative Immatriculée) qui est une combinaison de chiffres et de lettres unique pour chaque enseignement;
+	\item \textbf{nom :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul;
+	\item \textbf{telFixe :} chaîne de caractère composée de 10 chiffres commençant par "0", attribut peut être nul;
+	\item \textbf{emails :} chaîne de caractère de longueur de 100 caractères au maximum, la syntaxe de l'e-mail doit être la suivante : user@host.domain\\
 	user : contient des chiffres/lettres ainsi que les symboles "\_", "-", "." \\
 	host : contient des chiffres/lettres \\
-	domain : chaine de caractère composée de 2 ou 3 lettres. \\
+	domain : chaîne de caractère composée de 2 ou 3 lettres. \\
 	attribut multivalué, non nul; 
-	\item \textbf{adresse :} constante de type \textbf{Adresse}, attribut non nul; 
-	\item \textbf{geolocalisation :} constante de type \textbf{geometry}, attribut non nul.\\
+	\item \textbf{adresse :} constante de type \textbf{Adresse}, attribut non nul.\\
 \end{itemize}  
 
 \subsection*{Enseignement}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
-	\item \textbf{UAI :} chaine de caractères composée de lettre et de chiffres, attribut non nul;
 	\item \textbf{type :} constante de type \textbf{TypeEnseignement}, attribut non nul.\\
 \end{itemize}
 
 \subsection*{CentreLoisirs}
-Contraintes de domaine et de nullité des attributs :\\
-\indent \indent \textbf{type :} constante de type \textbf{TypeCentre}, peut être nul.\\
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{type :} constante de type \textbf{TypeCentre}, peut être nul.\\
+\end{itemize}
 
 \subsection*{Intervention} 
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
+	\item \textbf{date :} chaîne de caractère de longueur de 10 caractères ayant la syntaxe suivante "JJ/MM/AAAA", attribut peut être nul;
  	\item \textbf{idIntervention :} entier, attribut non nul;
-	\item \textbf{date :} chaine de caractère de longueur de 10 caractères ayant la syntaxe suivante "JJ/MM/AAAA", attribut non nul;
-	\item \textbf{lieu :} chaine de caractère composée de chiffres et de lettres, attribut peut être nul;
+	\item \textbf{lieu :} chaîne de caractère composée de chiffres et de lettres, attribut peut être nul;
 	\item \textbf{nbPersonnes :} entier, attribut non nul;  
-	\item \textbf{materielDispo :} constante de type \textbf{Matériel}, attribut multivalué non nul; 
-	\item \textbf{remarques :} chaine de caractères de longueur de 1000 caractères au maximum;
-	\item \textbf{moment :} constante de type \textbf{MomentJournalier}, attribut peut être nul;\\
+	\item \textbf{remarques :} chaîne de caractères de longueur de 1000 caractères au maximum;
+	\item \textbf{moment :} constante de type \textbf{MomentQuotidien}, attribut peut être nul;\\
 \end{itemize}  
 
 \subsection*{Plaidoyer}
-Contraintes de domaine et de nullité des attributs :\\
-\indent \indent \textbf{niveauThème :} constante de type \textbf{niveauThème}, attribut non nul.\\
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{materielDispo :} constante de type \textbf{Matériel}, attribut multivalué peut être nul; 
+	\item \textbf{niveauTheme :} constante de type \textbf{niveauTheme}, attribut non nul.\\
+\end{itemize}
 
 \subsection*{Frimousse}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{materiaux :} constante de type \textbf{MaterielFrimousse}, attribut multivalué non nul;
-	\item \textbf{niveaux :} constante de type \textbf{NiveauScolaireLimite}, attribut non nul.\\
+	\item \textbf{niveau :} constante de type \textbf{NiveauScolaireLimite}, attribut non nul.\\
 \end{itemize}
 
 \subsection*{Projet}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
  	\item \textbf{idProjet :} entier, attribut non nul;
-	\item \textbf{chiffreDAffaire :} Entier, attribut non nul;
-	\item \textbf{description :} chaine de caractère composée de longueur de 1000 caractères au maximum, attribut ne peut être nul;
+	\item \textbf{chiffreDAffaire :} réel positif, attribut non nul;
+	\item \textbf{description :} chaîne de caractère composée de longueur de 1000 caractères au maximum, attribut ne peut être nul;
 	\item \textbf{type :} constante de type \textbf{TypeProjet}, attribut non nul. \\  
 \end{itemize} 
 
@@ -444,35 +460,53 @@ Contraintes de domaine et de nullité des attributs :
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
  	\item \textbf{idVente :} entier, attribut non nul;
-	\item \textbf{chiffreDAffaire :} Entier, attribut non nul;
-	\item \textbf{date :} chaine de caractère de longueur de 10 caractères ayant la syntaxe suivante "JJ/MM/AAAA", attribut non nul;
-	\item \textbf{remarques :} chaine de caractères de longueur de 1000 caractères au maximum. \\  
+	\item \textbf{chiffreDAffaire :} réel positif, attribut non nul;
+	\item \textbf{date :} chaîne de caractère de longueur de 10 caractères ayant la syntaxe suivante "JJ/MM/AAAA", attribut non nul;
+	\item \textbf{remarques :} chaîne de caractères de longueur de 1000 caractères au maximum. \\  
 \end{itemize} 
 
 \subsection*{Demande}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
- 	\item \textbf{idDemande :} entier, attribut non nul;
-	\item \textbf{momentsVoulus :} constante de type \textbf{MomentHebdomadaire}, attribut multivalué non nul;
-	\item \textbf{momentsVoulus :} constante de type \textbf{MomentHebdomadaire}, attribut multivalué non nul;
-	\item \textbf{date :} chaine de caractère de longueur de 10 caractères ayant la syntaxe suivante "JJ/MM/AAAA", attribut non nul. \\
+ 	\item \textbf{listeSemaines :} constante de type \textbf{Semaine}, attribut multivalué non nul; 
+	\item \textbf{momentsVoulus :} constante de type \textbf{MomentHebdomadaire}, attribut multivalué peut être nul;
+	\item \textbf{momentsAEviter :} constante de type \textbf{MomentHebdomadaire}, attribut multivalué peut être nul;
+	\item \textbf{idDemande :} entier, attribut non nul.
 \end{itemize} 
 
-\subsection*{Departement}
+\subsection*{Comite}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
-	\item \textbf{idDepartement :} Entier, attribut non nul;
-	\item \textbf{nom :} chaine de caractère de longueur de 100 caractères au maximum, attribut non nul.\\
+	\item \textbf{idDepartement :} chaîne de caractère représentant le numéro du département sous la forme XXX, attribut non nul;
+	\item \textbf{nomDepartement :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul;
+	\item \textbf{listeNiveauTheme :} constante de type \textbf{NiveauTheme}, attribut multivalué peut être nul. \\
 \end{itemize}
+
+
 
 \subsection*{Adresse}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
- 	\item \textbf{ville :} chaine de caractère de longueur de 100 caractères au maximum, attribut non nul;
-	\item \textbf{rue :} chaine de caractère de longueur de 500 caractères au maximum, attribut non nul;
-	\item \textbf{numeroDeRue :} chaine de caractère composée d'un numéro et, si besoin, de "bis", "ter", "quater", attribut non nul; 
-	\item \textbf{complement : } chaine de caractère de longueur de 100 caractères au maximum;
-	\item \textbf{codePostale :} chaine de caractère composée de 5 chiffres, attribut non nul.\\
+ 	\item \textbf{ville :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul;
+	\item \textbf{rue :} chaîne de caractère de longueur de 500 caractères au maximum, attribut non nul;
+	\item \textbf{codePostal :} chaîne de caractère composée de 5 chiffres, attribut non nul;
+	\item \textbf{numeroDeRue :} chaîne de caractère composée d'un numéro et, si besoin, de "bis", "ter", "quater", attribut non nul; 
+	\item \textbf{complement : } chaîne de caractère de longueur de 100 caractères au maximum, attribut peut être nul;
+	\item \textbf{geolocalisation : } attribut de type geometry, peut être nul.\\
+\end{itemize}
+
+\subsection*{Semaine}
+Contraintes de domaine et de nullité des attributs : 
+\begin{itemize}
+	\item \textbf{idSemaine :} entier de valeur minimale 1 et de valeur maximale 53, attribut non nul.
+\end{itemize}
+
+\subsection*{Date}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{jour :} chaîne de caractère de la forme XX, attribut non nul;
+	\item \textbf{mois :} chaîne de caractère de la forme XX, attribut non nul;  
+	\item \textbf{annee :} chaîne de caractère de la forme XXXX, attribut non nul. 
 \end{itemize}
 
 \subsection*{NiveauTheme}
@@ -484,32 +518,34 @@ Contraintes de domaine et de nullité des attributs :
 
 Autres contraintes :
 
-Si le niveau est "petiteSection", "petiteMoyenneSection", "moyenneSection", "moyenneGrandeSection", "grandeSection", ou "petiteMoyenneGrandeSection", le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteAlimentation", "eau" et "harcelement". 
+C'est le comité qui définira l'association entre les thèmes et les niveaux. Il pourra par exemple définir des contraintes de la forme suivante :
 
-Si le niveau est "CP", "CPCE1", "CE1", "CE1CE2", "CE2", "CE2CM1", "CM1", "CM1CM2" ou "CM2", le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteEnGeneral", "santeAlimentation", "eau", "travailDesEnfants" et "harcelement".
+Si le niveau est "petiteSection", "petiteMoyenneSection", "moyenneSection", "moyenneGrandeSection", "grandeSection", ou "petiteMoyenneGrandeSection", le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteAlimentation", "eau" et "harcelement". \\
 
-Si le niveau est "6eme", "5eme", "4eme" ou "3eme", le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteEnGeneral", "santeAlimentation", "eau", "urgencesMondiales", "travailDesEnfants", "enfantsSoldats" et "harcelement".
-
-Si le niveau est "2nde", "1ere", "terminale", "L1", "L2", "L3", "M1", "M2" ou "autre" le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteEnGeneral", "santeAlimentation", "vihSida", "eau", "urgencesMondiales", "travailDesEnfants", "enfantsSoldats", "harcelement", "roleDeLUnicef" et "millenairePourLeDeveloppement".\\
+%Si le niveau est "CP", "CPCE1", "CE1", "CE1CE2", "CE2", "CE2CM1", "CM1", "CM1CM2" ou "CM2", le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteEnGeneral", "santeAlimentation", "eau", "travailDesEnfants" et "harcelement".
+%
+%Si le niveau est "6eme", "5eme", "4eme" ou "3eme", le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteEnGeneral", "santeAlimentation", "eau", "urgencesMondiales", "travailDesEnfants", "enfantsSoldats" et "harcelement".
+%
+%Si le niveau est "2nde", "1ere", "terminale", "L1", "L2", "L3", "M1", "M2" ou "autre" le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteEnGeneral", "santeAlimentation", "vihSida", "eau", "urgencesMondiales", "travailDesEnfants", "enfantsSoldats", "harcelement", "roleDeLUnicef" et "millenairePourLeDeveloppement".\\
 
 \subsection*{Participe}
-Contraintes de domaine et de nullité des attributs :\\
-\indent \indent \textbf{estTuteur :} Booléen, attribut non nul.\\
-
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{estTuteur :} booléen, attribut non nul.\\
+\end{itemize}
 
 \subsection*{Appartient}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
-	\item \textbf{respoEtablissement :} , attribut non nul;
+	\item \textbf{respoEtablissement :} booléen, attribut non nul;
 	\item \textbf{type :} constante de type \textbf{Activite}, attribut multivalué peut être nul.
 \end{itemize}
 
+
 \section{Les contraintes d'intégrités inter-classe}
 
-\subsection*{Etablissement - Enseignement}
-L'\textbf{idEtablissement} d'un établissement doit correspondre à l'\textbf{UAI} si cette établissement est une instance d'enseignement.\\
 
-\subsection*{Intervention - Plaidoyer}
+\subsection*{Intervention - Plaidoyer - Frimousse}
 Le \textbf{niveau} d'une intervention frimousse ainsi que le \textbf{niveau} (de NiveauTheme) d'une intervention plaidoyer doit être en correspondance avec le \textbf{type} de l'établissement.  
 
 Si l'établissement est un enseignement, le \textbf{niveau} peut prendre différentes valeurs selon le \textbf{type}:
@@ -528,9 +564,16 @@ Si l'établissement est un centre de loisirs, le \textbf{niveau} peut prendre di
 \item Si le \textbf{type} est "adolescent", le \textbf{niveau} peut être : "6eme", "5eme", "4eme", "3eme", "2nde", "1ere", "terminale" ou "autre". 
 \end{itemize}
 
-\chapter{Les dépendances fonctionnelles}
+\subsection*{Plaidoyer - Comite}
+Le \textbf{niveauTheme} de Plaidoyer doit faire parti de \textbf{listeNiveauTheme} de Comite.  
 
-Dans cette partie, nous allons déterminer les dépendances fonctionnelles de chaque classe. \\ 
+\chapter{Les dépendances}
+
+Dans cette partie, nous allons déterminer les dépendances fonctionnelles, les dépendances multivaluées ainsi que les dépendances d'inclusion. \\
+
+\section{Les dépendances fonctionnelles}
+
+Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles des classes et des associations.  
 
 \subsection*{Personne}
 \begin{itemize}
@@ -553,7 +596,6 @@ Dans cette partie, nous allons déterminer les dépendances fonctionnelles de ch
 \begin{itemize}
 \item[] email $\rightarrow$ adresse 
 \item[] email $\rightarrow$ mdp 
-\item[] email $\rightarrow$ activitesPotentielles 
 \end{itemize}
 
 
@@ -568,8 +610,6 @@ Dans cette partie, nous allons déterminer les dépendances fonctionnelles de ch
 \item[] idEtablissement $\rightarrow$ telFixe
 \item[] idEtablissement $\rightarrow$ email
 \item[] idEtablissement $\rightarrow$ adresse
-\item[] idEtablissement $\rightarrow$ geolocalisation
-\item[] geolocalisation $\rightarrow$ adresse
 \item[] telFixe $\rightarrow$ nom
 \item[] adresse $\rightarrow$ nom
 \end{itemize}
@@ -634,6 +674,16 @@ Dans cette partie, nous allons déterminer les dépendances fonctionnelles de ch
 \end{itemize}
  
 
+\subsection*{réalise}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Les dépendances multivaluées}
+
+\subsection*{Benevole}
+\begin{itemize}
+\item[] email $\rightarrow > $ activitesPotentielles 
+\end{itemize}
+
+\section{Les dépendances d'inclusion}
 
 \end{document}

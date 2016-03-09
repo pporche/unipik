@@ -6,11 +6,19 @@
 
 {% block body %}
 
-    <h2>Hello world!</h2>
+    <h2>Liste des volontaires :</h2>
 
+    {% for volunteer in volunteers %}
+        <div>
+            <ul>
+                <li>Nom : {{ volunteer.nom }}</li>
+                <li>Prenom : {{ volunteer.prenom }}</li>
+                <li>Email : {{ volunteer.email }}</li>
+                <li>Téléphone Fixe : {{ volunteer.telFixe }}</li>
+                <li>Téléphone Portable: {{ volunteer.telPortable }}</li>
+            </ul>
+        </div>
+    {% endfor %}
 
-    <p>
-        Bonjour le monde!
-    </p>
 
 {% endblock %}

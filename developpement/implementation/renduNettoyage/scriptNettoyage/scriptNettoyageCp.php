@@ -11,7 +11,7 @@ require_once ('traitement/traitementCp.php');
 $csv = array_map('str_getcsv',file('fichierNettoyer/codePostalCommunes.csv'));
 $out = fopen('fichierNettoyer/donneeEpureeCp.csv', 'w+');
 foreach($csv as $cp) {
-    if(count(array_filter($cp))  == 2 && $cp[0] !='') {
+    if(count(array_filter($cp))  == 2) {
 	traitementCp($cp);
         fputcsv($out, $cp);
     }

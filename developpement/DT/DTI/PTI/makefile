@@ -15,7 +15,7 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
 
-imagespdf:  $(IMGDIR)/modeleMVC.pdf $(IMGDIR)/testControleur.pdf $(IMGDIR)/testModele.pdf $(IMGDIR)/testBaseDeDonnees.pdf
+imagespdf:  $(IMGDIR)/modeleMVCPlusBD.pdf $(IMGDIR)/testControleurVue.pdf $(IMGDIR)/testControleurModele.pdf $(IMGDIR)/testModeleBD.pdf
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@

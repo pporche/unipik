@@ -1,3 +1,8 @@
+architecture_root:
+  path: /
+  defaults:
+      _controller: ArchitectureBundle:Volunteer:index
+
 architecture_homepage:
     path:     /accueil
     defaults:

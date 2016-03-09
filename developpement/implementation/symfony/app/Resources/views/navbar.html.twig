@@ -12,8 +12,9 @@
         </div>
         <div style="height: 1px;" aria-expanded="false" class="navbar-collapse collapse" id="bs-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="./accueil">Accueil<span class="sr-only">(current)</span></a></li>
-                <li><a href="./ajouter">Ajouter</a></li>
+                {% block navbarButtons %}
+                    <li><a href="#">link</a></li>
+                {% endblock %}
             </ul>
         </div>
     </div>

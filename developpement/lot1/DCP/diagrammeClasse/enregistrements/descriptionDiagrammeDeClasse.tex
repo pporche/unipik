@@ -57,6 +57,10 @@ Le type TypeCentre est une énumération qui définit les différents niveaux po
 
 Le type TypeEnseignement est une énumération qui définit les différents niveaux pour les enseignements.
 
+\subsection*{TypeEnseignement}
+
+Le type TypeEnseignement est une énumération qui définit la nature des établissements, par exemple une mairie ou une maison de retraite.
+
 \subsection*{TypeProjet}
 
 Le type TypeProjet est une énumération qui définit les différents niveaux pour les projets.
@@ -186,7 +190,7 @@ Cette classe a un attribut :
 
 \subsection*{Etablissement}
 
-La classe Etablissement est la classe mère des classes Enseignement et CentreLoisirs. C'est une spécialisation, c'est à dire qu'un établissement peut être ni un enseignement ni un centre de loisirs. Ce sera le cas pour les mairies par exemple. \\
+La classe Etablissement est la classe mère des classes Enseignement, CentreLoisirs et AutreEtablissement. C'est une généralisation, c'est à dire qu'un établissement ne peut être qu'un enseignement, un centre de loisirs ou un autre établissement. Ce sera le cas pour les mairies par exemple. \\
 Cette classe a plusieurs attributs : 
 \begin{itemize}
 \item un identifiant unique;
@@ -209,6 +213,13 @@ La classe CentreLoisirs est une classe fille de la classe Etablissement. Cette c
 Cette classe a un attribut : 
 \begin{itemize}
 \item un type de centre de loisirs qui permet de déterminer si un centre de loisirs prend en charge des enfants d'école maternelle, d'école élémentaire ou des adolescents.
+\end{itemize}  
+
+\subsection*{AutreEtablissement}
+La classe CentreLoisirs est une classe fille de la classe Etablissement. Cette classe décrit les établissements ayant un rapport avec les loisirs. \\
+Cette classe a un attribut : 
+\begin{itemize}
+\item un type qui permet de déterminer si la structure est une mairie, une maison de retraite, ou un autre établissement.
 \end{itemize}  
 
 \subsection*{Intervention}
@@ -245,8 +256,9 @@ Cette classe a plusieurs attributs :
 \begin{itemize}
 \item un identifiant unique;
 \item le chiffre d'affaire réalisé par ce projet;
-\item la description du projet est un champ permettant au(x) bénévole(s) de saisir d'autres informations importantes sur le projet (nom du projet par exemple);
-\item le type de projet permet de savoir si le projet est réalisé par des étudiants, des lycéens, des élèves d'école primaire ou de collège.
+\item un champs remarques permettant au(x) bénévole(s) de saisir d'autres informations importantes sur le projet;
+\item le type de projet permet de savoir si le projet est réalisé par des étudiants, des lycéens, des élèves d'école primaire ou de collège;
+\item le nom du projet.
 \end{itemize}
 
 \subsection*{Vente}
@@ -267,7 +279,8 @@ Cette classe a plusieurs attributs :
 \item une liste des semaines correspondant aux semaines où le contact est disponible; 
 \item les moments voulus pour une semaine type (sera donc valable pour toutes les semaines où le contact est disponible);
 \item les moments à éviter pour une semaine type;
-\item un identifiant unique.
+\item un identifiant unique;
+\item une date correspondant au moment où la demande a été faite.
 \end{itemize}
 
 \subsection*{Comite}
@@ -375,6 +388,10 @@ Contraintes de domaine et de nullité des attributs :
 	\item \textbf{telPortable :} chaîne de caractère composée de 10 chiffres commençant par "0", attribut peut être nul.\\
 \end{itemize}  
 
+Clés : 
+
+L'\textbf{email} est unique.\\
+
 \subsection*{Benevole}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
@@ -399,7 +416,7 @@ Contraintes de domaine et de nullité des attributs :
 \subsection*{Etablissement}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
- 	\item \textbf{idEtablissement :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul. Cet attribut doit correspondre à l'\textbf{UAI} si cette établissement est une instance d'Enseignement. L'UAI (Unité Administrative Immatriculée) qui est une combinaison de chiffres et de lettres unique pour chaque enseignement;
+ 	\item \textbf{idEtablissement :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul. Cet attribut doit correspondre à l'UAI si cet établissement est une instance d'Enseignement. L'UAI (Unité Administrative Immatriculée) qui est une combinaison de chiffres et de lettres unique pour chaque enseignement;
 	\item \textbf{nom :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul;
 	\item \textbf{telFixe :} chaîne de caractère composée de 10 chiffres commençant par "0", attribut peut être nul;
 	\item \textbf{emails :} chaîne de caractère de longueur de 100 caractères au maximum, la syntaxe de l'e-mail doit être la suivante : user@host.domain\\
@@ -409,6 +426,12 @@ Contraintes de domaine et de nullité des attributs :
 	attribut multivalué, non nul; 
 	\item \textbf{adresse :} constante de type \textbf{Adresse}, attribut non nul.\\
 \end{itemize}  
+
+Clés : 
+\begin{itemize}
+\item clé structurelle : \textbf{idEtablissement} est unique;
+\item clé sémantique : \textbf{adresse} et \textbf{type} est une autre clé candidate. \\ 
+\end{itemize}
 
 \subsection*{Enseignement}
 Contraintes de domaine et de nullité des attributs :
@@ -422,16 +445,28 @@ Contraintes de domaine et de nullité des attributs :
 	\item \textbf{type :} constante de type \textbf{TypeCentre}, peut être nul.\\
 \end{itemize}
 
+\subsection*{AutreEtablissement}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{type :} constante de type \textbf{TypeAutreEtablissement}, peut être nul.\\
+\end{itemize}
+
 \subsection*{Intervention} 
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{date :} chaîne de caractère de longueur de 10 caractères ayant la syntaxe suivante "JJ/MM/AAAA", attribut peut être nul;
- 	\item \textbf{idIntervention :} entier, attribut non nul;
+ 	\item \textbf{idIntervention :} entier positif ou nul, attribut non nul;
 	\item \textbf{lieu :} chaîne de caractère composée de chiffres et de lettres, attribut peut être nul;
-	\item \textbf{nbPersonnes :} entier, attribut non nul;  
+	\item \textbf{nbPersonnes :} entier positif non nul, attribut non nul;  
 	\item \textbf{remarques :} chaîne de caractères de longueur de 1000 caractères au maximum;
 	\item \textbf{moment :} constante de type \textbf{MomentQuotidien}, attribut peut être nul;\\
 \end{itemize}  
+
+Clés : 
+\begin{itemize}
+\item clé structurelle : \textbf{idIntervention} est unique;
+\item clé sémantique : \textbf{moment} (Intervention), \textbf{date} (Intervention), \textbf{nom} (Benevole), \textbf{prenom} (Benevole), \textbf{type} (Etablissement) et \textbf{adresse} (Etablissement) est une autre clé candidate. \\ 
+\end{itemize}
 
 \subsection*{Plaidoyer}
 Contraintes de domaine et de nullité des attributs :
@@ -450,20 +485,31 @@ Contraintes de domaine et de nullité des attributs :
 \subsection*{Projet}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
- 	\item \textbf{idProjet :} entier, attribut non nul;
+ 	\item \textbf{idProjet :} entier positif ou nul, attribut non nul;
 	\item \textbf{chiffreDAffaire :} réel positif, attribut non nul;
-	\item \textbf{description :} chaîne de caractère composée de longueur de 1000 caractères au maximum, attribut ne peut être nul;
-	\item \textbf{type :} constante de type \textbf{TypeProjet}, attribut non nul. \\  
+	\item \textbf{remarques :} chaîne de caractère composée de longueur de 1000 caractères au maximum, attribut peut être nul;
+	\item \textbf{type :} constante de type \textbf{TypeProjet}, attribut non nul;
+	\textbf{nom :} chaîne de caractère composée de longueur de 1000 caractères au maximum, attribut non nul.\\  
 \end{itemize} 
+
+Clés : 
+\begin{itemize}
+\item clé structurelle : \textbf{idProjet} est unique;
+\item clé sémantique : \textbf{nom} (Projet), \textbf{nom} (Benevole), \textbf{prenom} (Benevole), \textbf{nom} (Contact) et \textbf{prenom} (Contact) est une autre clé candidate. \\ 
+\end{itemize}
 
 \subsection*{Vente}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
- 	\item \textbf{idVente :} entier, attribut non nul;
+ 	\item \textbf{idVente :} entier positif ou nul, attribut non nul;
 	\item \textbf{chiffreDAffaire :} réel positif, attribut non nul;
 	\item \textbf{date :} chaîne de caractère de longueur de 10 caractères ayant la syntaxe suivante "JJ/MM/AAAA", attribut non nul;
 	\item \textbf{remarques :} chaîne de caractères de longueur de 1000 caractères au maximum. \\  
 \end{itemize} 
+
+Clés : 
+
+L'\textbf{idVente} est unique.\\
 
 \subsection*{Demande}
 Contraintes de domaine et de nullité des attributs :
@@ -471,8 +517,15 @@ Contraintes de domaine et de nullité des attributs :
  	\item \textbf{listeSemaines :} constante de type \textbf{Semaine}, attribut multivalué non nul; 
 	\item \textbf{momentsVoulus :} constante de type \textbf{MomentHebdomadaire}, attribut multivalué peut être nul;
 	\item \textbf{momentsAEviter :} constante de type \textbf{MomentHebdomadaire}, attribut multivalué peut être nul;
-	\item \textbf{idDemande :} entier, attribut non nul.
+	\item \textbf{idDemande :} entier positif ou nul, attribut non nul;
+	\item \textbf{date :} chaîne de caractère de longueur de 10 caractères ayant la syntaxe suivante "JJ/MM/AAAA", attribut non nul.\\
 \end{itemize} 
+
+Clés : 
+\begin{itemize}
+\item clé structurelle : \textbf{idDemande} est unique;
+\item clé sémantique : \textbf{date} (Demande), \textbf{type} (Etablissement), \textbf{adresse} (Etablissement), \textbf{nom} (Contact) et \textbf{prenom} (Contact) est une autre clé candidate. \\ 
+\end{itemize}
 
 \subsection*{Comite}
 Contraintes de domaine et de nullité des attributs :
@@ -482,6 +535,39 @@ Contraintes de domaine et de nullité des attributs :
 	\item \textbf{listeNiveauTheme :} constante de type \textbf{NiveauTheme}, attribut multivalué peut être nul. \\
 \end{itemize}
 
+Clés : 
+\begin{itemize}
+\item clé structurelle : \textbf{idDepartement} est unique;
+\item clé sémantique : \textbf{nomDepartement} est une autre clé candidate. \\ 
+\end{itemize}
+
+\subsection*{Region}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{nom :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul;
+	\item \textbf{idRegion :} entier positif ou nul, attribut non nul. \\
+\end{itemize}
+
+Clés : 
+\begin{itemize}
+\item clé structurelle : \textbf{idRegion} est unique;
+\item clé sémantique : \textbf{nom} est une autre clé candidate. \\ 
+\end{itemize}
+
+
+
+\subsection*{Pays}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{nom :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul;
+	\item \textbf{idPays :} entier positif ou nul, attribut non nul. \\
+\end{itemize}
+
+Clés : 
+\begin{itemize}
+\item clé structurelle : \textbf{idPays} est unique;
+\item clé sémantique : \textbf{nom} est une autre clé candidate. \\ 
+\end{itemize}
 
 
 \subsection*{Adresse}
@@ -563,9 +649,7 @@ Si l'établissement est un centre de loisirs, le \textbf{niveau} peut prendre di
 \item Si le \textbf{type} est "elementaire", le \textbf{niveau} peut être : "CP", "CPCE1", "CE1", "CE1CE2", "CE2", "CE2CM1", "CM1", "CM1CM2", "CM2" ou "autre";
 \item Si le \textbf{type} est "adolescent", le \textbf{niveau} peut être : "6eme", "5eme", "4eme", "3eme", "2nde", "1ere", "terminale" ou "autre". 
 \end{itemize}
-
-\subsection*{Plaidoyer - Comite}
-Le \textbf{niveauTheme} de Plaidoyer doit faire parti de \textbf{listeNiveauTheme} de Comite.  
+  
 
 \chapter{Les dépendances}
 
@@ -599,19 +683,15 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 \end{itemize}
 
 
-\subsection*{AdminLocal}
-\begin{itemize}
-\item[]email $\rightarrow$ activitesPotentielles 
-\end{itemize}
-
 \subsection*{Etablissement}
 \begin{itemize}
 \item[] idEtablissement $\rightarrow$ nom 
 \item[] idEtablissement $\rightarrow$ telFixe
-\item[] idEtablissement $\rightarrow$ email
 \item[] idEtablissement $\rightarrow$ adresse
 \item[] telFixe $\rightarrow$ nom
 \item[] adresse $\rightarrow$ nom
+\item[] adresse, type $\rightarrow$ nom
+\item[] adresse, type $\rightarrow$ telFixe
 \end{itemize}
 
 \subsection*{CentreLoisirs}
@@ -622,8 +702,6 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 \subsection*{Enseignement}
 \begin{itemize}
 \item[]	idEtablissement $\rightarrow$ type
-\item[] idEtablissement $\rightarrow$ UAI
-\item[] UAI $\rightarrow$ type
 \end{itemize}
 
 \subsection*{Intervention}
@@ -631,9 +709,11 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 \item[]	idIntervention $\rightarrow$ date
 \item[]	idIntervention $\rightarrow$ lieu
 \item[]	idIntervention $\rightarrow$ nbPersonnes
-\item[]	idIntervention $\rightarrow$ materielDispo
 \item[]	idIntervention $\rightarrow$ remarques
 \item[]	idIntervention $\rightarrow$ moment
+\item[] moment (Intervention), date (Intervention), type (Etablissement), adresse (Etablissement), nom (Benevole), prenom (Benevole) $\rightarrow$ lieu (Intervention)
+\item[] moment (Intervention), date (Intervention), type (Etablissement), adresse (Etablissement), nom (Benevole), prenom (Benevole) $\rightarrow$ nbPersonnes (Intervention)
+\item[] moment (Intervention), date (Intervention), type (Etablissement), adresse (Etablissement), nom (Benevole), prenom (Benevole) $\rightarrow$ remarques (Intervention)
 \end{itemize}
 
 \subsection*{Plaidoyer}
@@ -643,39 +723,54 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 
 \subsection*{Frimousse}
 \begin{itemize}
-\item[]	idIntervention $\rightarrow$ materiaux
 \item[] idIntervention $\rightarrow$ niveau
 \end{itemize}
 
 \subsection*{Projet}
 \begin{itemize}
-\item[] idProjet $\rightarrow$ chiffreDaffaire
-\item[] idProjet $\rightarrow$ description
+\item[] idProjet $\rightarrow$ chiffreDAffaire
+\item[] idProjet $\rightarrow$ remarques
+\item[] idProjet $\rightarrow$ nom
 \item[] idProjet $\rightarrow$ type
+\item[]	nom (Projet), nom (Benevole), prenom (Benevole), nom (Contact), prenom (Contact) $\rightarrow$ chiffreDAffaire (Projet)
+\item[]	nom (Projet), nom (Benevole), prenom (Benevole), nom (Contact), prenom (Contact) $\rightarrow$ description (Projet)
+\item[]	nom (Projet), nom (Benevole), prenom (Benevole), nom (Contact), prenom (Contact) $\rightarrow$ type (Projet)
+\item[]	nom (Projet), nom (Benevole), prenom (Benevole), nom (Contact), prenom (Contact) $\rightarrow$ estTuteur (Participe)
 \end{itemize}
 
 \subsection*{Vente}
 \begin{itemize}
-\item[]	idVente $\rightarrow$ chiffreDaffaire
+\item[]	idVente $\rightarrow$ chiffreDAffaire
 \item[]	idVente $\rightarrow$ date
 \item[]	idVente $\rightarrow$ remarques
 \end{itemize}
 
-\subsection*{Departement}
-\begin{itemize}
-\item[] idDepartement $\rightarrow$ nom
-\end{itemize}
-
 \subsection*{Demande}
 \begin{itemize}
-\item[] idDemande $\rightarrow$ listeDemaines 
-\item[] idDemande $\rightarrow$ momentsVoulus
-\item[] idDemande $\rightarrow$ momentsAEviter
+\item[] idDemande $\rightarrow$ date
+\end{itemize}
+
+\subsection*{Comite}
+\begin{itemize}
+\item[] idDepartement $\rightarrow$ nomDepartement
+\end{itemize}
+
+\subsection*{Region}
+\begin{itemize}
+\item[] idRegion $\rightarrow$ nom
+\end{itemize}
+
+\subsection*{Pays}
+\begin{itemize}
+\item[] idPays $\rightarrow$ nom
 \end{itemize}
  
 
 \subsection*{réalise}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+\item[] adresse (Etablissement), type (Etablissement), date (Vente) $\rightarrow$ chiffreDAffaire (Vente)
+\item[] adresse (Etablissement), type (Etablissement), date (Vente) $\rightarrow$ date (Intervention), moment (Intervention)
+\end{itemize}
 
 \section{Les dépendances multivaluées}
 
@@ -684,6 +779,46 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 \item[] email $\rightarrow > $ activitesPotentielles 
 \end{itemize}
 
+\subsection*{AdminActivite}
+\begin{itemize}
+\item[]email $\rightarrow >$ activitesPotentielles 
+\end{itemize}
+
+\subsection*{Etablissement}
+\begin{itemize}
+\item[] idEtablissement $\rightarrow >$ emails
+\item[] adresse, type $\rightarrow$ emails
+\end{itemize}
+
+\subsection*{Plaidoyer}
+\begin{itemize}
+\item[]	idIntervention $\rightarrow >$ materielDispo
+\end{itemize}
+
+\subsection*{Frimousse}
+\begin{itemize}
+\item[]	idIntervention $\rightarrow >$ materiaux
+\end{itemize}
+
+\subsection*{Demande}
+\begin{itemize}
+\item[] idDemande $\rightarrow$ momentsVoulus
+\item[] idDemande $\rightarrow$ momentsAEviter
+\item[] idDemande $\rightarrow$ listeSemaines
+\item[] nom (Contact), prenom (Contact), adresse (Etablissement), type (Etablissement), date (Demande) $\rightarrow$ listeSemaines (Demande) 
+\item[] nom (Contact), prenom (Contact), adresse (Etablissement), type (Etablissement), date (Demande) $\rightarrow$ momentsAEviter (Demande) 
+\item[] nom (Contact), prenom (Contact), adresse (Etablissement), type (Etablissement), date (Demande) $\rightarrow$ momentsVoulus (Demande) 
+\end{itemize}
+
+\subsection*{Comite}
+\begin{itemize}
+\item[] idDepartement $\rightarrow >$ listeNiveauTheme
+\item[] nomDepartement $\rightarrow >$ listeNiveauTheme
+\end{itemize}
+
 \section{Les dépendances d'inclusion}
+
+\subsection*{Plaidoyer - Comite}
+Le \textbf{niveauTheme} de Plaidoyer doit faire parti de \textbf{listeNiveauTheme} de Comite.
 
 \end{document}

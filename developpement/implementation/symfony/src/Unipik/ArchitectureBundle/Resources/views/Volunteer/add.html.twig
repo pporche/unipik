@@ -1,11 +1,15 @@
 {% extends "ArchitectureBundle::layoutArchitecture.html.twig" %}
 
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
 
 {% block title %}
     Accueil - {{ parent() }}
 {% endblock %}
 
 {% block body %}
+
+    {% use '::formTheme.html.twig' %}
+    {{ block('formTheme') }}
+
     {{ form(form) }}
 {% endblock %}

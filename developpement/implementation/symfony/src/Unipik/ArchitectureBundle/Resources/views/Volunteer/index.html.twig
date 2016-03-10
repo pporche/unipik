@@ -6,11 +6,35 @@
 
 {% block body %}
 
-    <h2>Hello world!</h2>
+    <h2>Liste des volontaires :</h2>
 
+    <table class="table table-striped table-hover ">
 
-    <p>
-        Bonjour le monde!
-    </p>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Téléphone Fixe</th>
+            <th>Téléphone Portable</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for volunteer in volunteers %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ volunteer.nom }}</td>
+                <td>{{ volunteer.prenom }}</td>
+                <td>{{ volunteer.email }}</td>
+                <td>{{ volunteer.telFixe }}</td>
+                <td>{{ volunteer.telPortable }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
 
 {% endblock %}

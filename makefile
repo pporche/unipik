@@ -1,6 +1,6 @@
-# version 1.01, date 24/02/16, auteur Michel Cressant, Pierre Porche
+# version 1.02, date 11/04/16, auteur Michel Cressant, Pierre Porche
 # Compilation
-all: Qualite Specifications Developpement
+all: Qualite Specifications Developpement Livraison
 
 Qualite:
 	make -C qualite
@@ -11,9 +11,12 @@ Specifications:
 Developpement:
 	make -C developpement
 
+Livraison:
+	make -C livraison
+
 
 # Archivage
-archive: archiveQualite archiveSpecifications archiveDeveloppement
+archive: archiveQualite archiveSpecifications archiveDeveloppement archiveLivraison
 
 archiveQualite:
 	make -C qualite archive
@@ -24,9 +27,12 @@ archiveSpecifications:
 archiveDeveloppement:
 	make -C developpement archive
 
+archiveLivraison:
+	make -C livraison archive
+
 
 # Nettoyage
-clean: cleanQualite cleanSpecification cleanDeveloppement
+clean: cleanQualite cleanSpecification cleanDeveloppement cleanLivraison
 
 cleanQualite:
 	make -C qualite clean
@@ -36,4 +42,7 @@ cleanSpecification:
 
 cleanDeveloppement:
 	make -C developpement clean
+
+cleanLivraison:
+	make -C livraison clean
 

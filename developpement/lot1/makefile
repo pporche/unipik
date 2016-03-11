@@ -1,30 +1,23 @@
-# version 1.00, date 24/02/16, auteur Pierre Porche
+# version 1.01, date 11/04/16, auteur Pierre Porche
 # Compilation
-all: dcp dt
+all: dcp
 
 dcp:
 	make -C DCP
 
-dt:
-	make -C DT
 
 
 # Archivage
-archive: archivedcp archivedt
+archive: archivedcp
 
 archivedcp:
 	make -C DCP archive
 
-archivedt:
-	make -C DT archive
-
 
 
 # Nettoyage
-clean: cleandcp cleandt
+clean: cleandcp
 
 cleandcp:
 	make -C DCP clean
 
-cleandt:
-	make -C DT clean

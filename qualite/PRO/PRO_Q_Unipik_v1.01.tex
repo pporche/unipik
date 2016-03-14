@@ -84,6 +84,8 @@
 \input{FDR/FDR_Q_Unipik_n012.tex}
 \chapter*{Fiche de Risque 013}
 \input{FDR/FDR_Q_Unipik_n013.tex}
+\chapter*{Fiche de Risque 014}
+\input{FDR/FDR_Q_Unipik_n014.tex}
 
 
 \chapter*{Fiche d'Opportunités 001}
@@ -110,19 +112,35 @@
 			\hline
 			\rowcolor{gray!40}
 			\No & Nom & Pilote & Probabilité & Impact & Priorité & Visa \RQCourt{} & Visa \CPCourt{} & Clôture \\\hline
+			
 			 1 & Crash du serveur & \Matthieu & Peu probable & Maximum & Critique & pgpic & pgpic & \\\hline
-			 2 & Mauvaise ambiance interne & \Michel & Possible & Important & À surveiller & pgpic & pgpic & \\\hline
-			 3 & Abscebce collective & \Pierre & Peu probable & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
+			 2 & Mauvaise ambiance interne & \Michel & Peu probable & Important & À surveiller & pgpic & pgpic & \\\hline
+			 
+			 3 & Absence collective & \Pierre & Peu probable & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
 			 4 & Mauvaise communication client & \Julie & Probable & Important & Critique & pgpic & pgpic & \\\hline
-			 5 & Mauvaise planification & \Florian & Possible & Important & À surveiller & pgpic & pgpic & \\\hline
-			 6 & Mauvaise mise en route du second semestre & \Melissa & Probable & Important & Critique & pgpic & pgpic & \\\hline
+			 
+			 5 & Mauvaise planification & \Florian & Possible & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
+			 6 & Mauvaise mise en route du second semestre & \Melissa & Possible & Important & À surveiller & pgpic & pgpic & \\\hline
+			 
 			 7 & Perte de documents & \Mathieu & Peu probable & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
 			 8 & Indisponibilité du client pour la remise des recettes & \Julie & possible & important & À surveiller & pgpic & pgpic & \\\hline
+			 
 			 9 & Serveur extérieur non trouvé & \Matthieu & Probable & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
 			 10 & Problème avec la CNIL & \Pierre & Possible & Important & À surveiller & pgpic & pgpic & \\\hline
-			 11 & Retard de remise des données & \Sergi & Possible & Moyen & À surveiller & pgpic & pgpic & \\\hline
+			 
+			 11 & Retard de remise des données & \Sergi & Possible & Moyen & À surveiller & pgpic & pgpic & Clôturé \\\hline
+			 
 			 12 & Retard de remise du livrable & \Kafui & Possible & Important & À surveiller & pgpic & pgpic & \\\hline
-			 13 & Le livrable ne fonctionne pas chez le client & \Melissa & Peu probable & Important & À surveiller & pgpic & pgpic & \\\hline
+			 
+			 13 & Le livrable ne fonctionne pas chez le client & \Melissa & Possible & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
+			 14 & Le serveur n’implémente pas PostgreSQL ni PostGis & \Sergi & Possible & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
 \end{longtable}
 
 \chapter*{Suivi des Opportunités}
@@ -131,13 +149,13 @@
 			\hline
 			\rowcolor{gray!40}
 			\No & Nom & Pilote & Probabilité & Impact & Priorité & Visa \RQCourt{} & Visa \CPCourt{} & Clôture \\\hline
-			 1 & Serveur gratuit & \Matthieu & Peu probable & Maximum & Important & pgpic & pgpic & \\\hline
-			 2 & Livrable terminé en avance & \Kafui & Possible & Maximum & Important & pgpic & pgpic & \\\hline
-			 3 & Bonne passation inter-semestre & \Pierre & Probable & Important & Important & pgpic & pgpic & \\\hline
-			 4 & Bonne communication client & \Florian & Probable & Important & Important & pgpic & pgpic & \\\hline
-			 5 & Bonne planification & \Pierre & Très probable & Important & Important & pgpic & pgpic & \\\hline
+			 1 & Serveur gratuit & \Matthieu & Possible & Maximum & Important & pgpic & pgpic & \\\hline
+			 2 & Livrable terminé en avance & \Kafui & Peu probable & Maximum & Important & pgpic & pgpic & \\\hline
+			 3 & Bonne passation inter-semestre & \Pierre & Possible & Important & Moyen & pgpic & pgpic & \\\hline
+			 4 & Bonne communication client & \Florian & Très probable & Important & Important & pgpic & pgpic & \\\hline
+			 5 & Bonne planification & \Pierre & Possible & Important & Moyen & pgpic & pgpic & \\\hline
 			 6 & Bonne ambiance interne & \Michel & Très probable & Moyen & Important & pgpic & pgpic & \\\hline
-			 7 & Remise des données en avance & \Sergi & Probable & Moyen & Moyen & pgpic & pgpic &  \\\hline
+			 7 & Remise des données en avance & \Sergi & Probable & Moyen & Moyen & pgpic & pgpic & Clôturé \\\hline
 \end{longtable}
 
 \end{document}

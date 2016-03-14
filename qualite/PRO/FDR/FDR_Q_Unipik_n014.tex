@@ -1,14 +1,14 @@
-% version 1.01	date 29/01/2016  	Auteur Florian Leriche Pierre Porche
+% version 1.00	date 14/03/2016  	Auteur Pierre Porche
 
 \section*{Informations générales}
- 
+
 \begin{table}[H]
 \centering
 	\begin{tabularx}{16.8cm}{|X|X|}
 	\hline
 	\rowcolor{gray!40} Numéro du risque & Type du risque \\
 	\hline
-	005 & Mauvaise plannification \\
+	014 & Le serveur n’implémente pas PostgreSQL ni PostGis \\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -19,7 +19,7 @@
 	\hline
 	\rowcolor{gray!40} Date & Visa du \RQ & Visa du \CP \\
 	\hline
-	 28/01/2016 & pgpic & pgpic \\
+	 14/03/16 & pgpic & pgpic \\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -30,7 +30,7 @@
 	\hline
 	\rowcolor{gray!40} Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
 	\hline
-	 \Florian & Suivre les Risques et Opportunités & 1.2.3.2 & À partir du début du projet\\
+	 \Sergi & Suivre les Risques et Opportunités & 1.2.3.2 & À l'obtention du serveur. \\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -38,10 +38,10 @@
 \section*{Description du risque}
 
 \subsection*{Résumé}
-	La mauvaise planification concerne principalement l’appréciation des délais des tâches et peut être expliquée par l’inexpérience du Chef PIC. Elle peut entrainer des retards de livraison des lots.
-
+	Le fait d'obtenir un serveur qui n’implémenterait pas PostgreSQL ni PostGis remettrait tout notre travail en question et en échec.
+	
 \subsection*{Analyse des causes}
-	voir figure \ref{risque perte de document}.
+	voir figure \ref{serveur pas postgre}.
 
 \subsection*{Criticité}
 
@@ -53,7 +53,7 @@
 	\hline
 	Probabilité & 2\\
 	\hline
-	Criticité & A surveiller\\
+	Criticité & Critique\\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -61,22 +61,38 @@
 
 \section*{Actions}
 \subsection*{Actions préventives}
-{\centering
+
+%\begin{table}[H]
+\centering
 	\begin{longtable}{|p{7cm}|p{7cm}|}
 	\hline
 	\rowcolor{gray!40} Numéro de cause & Actions préventives \\
 	\hline
 	1 & \begin{itemize}
-		\item Formation au logiciel PGPIC.
-                \item Mise en place de mêlées quotidiennes.
-		\end{itemize} \\
+	 	\item 
+	 \end{itemize} \\
 	\hline
 	2 & \begin{itemize}
-		\item Le \CPACourt{} doit se tenir au courant des actions du \CPCourt{}.
-		\end{itemize} \\
+		\item 
+	\end{itemize}	 \\
+	\hline
+	3 & \begin{itemize}
+		\item 
+	\end{itemize} \\
+	\hline
+	4 & \begin{itemize}
+		\item 
+	\end{itemize} \\
 	\hline
 	\end{longtable}
-}
+%\end{table}
+
+\flushleft
+\subsection*{Plan de contournement}
+
+\begin{enumerate}
+	\item Chercher un serveur qui implémente ces outils. 
+\end{enumerate}
 
 \section*{Décision de clôture}
 Par le \CP{} et le pilote du risque.
@@ -98,15 +114,15 @@ Par le \CP{} et le pilote du risque.
 	\hline
 	\rowcolor{gray!40} Date & Modification \\
 	\hline
-	 14/03/2016 & modification de la probabilité\\
+	  & \\
 	\hline
 	\end{tabularx}
 \end{table}
 \newpage
 
+
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.35]{images/AnalyseRisque_nPourquoi_FDR005}
-	\caption{\label{risque perte de document}risque mauvaise planification - méthode des n pourquoi}
+	%\includegraphics[scale=1.2]{images/AnalyseRisque_nPourquoi_FDR014}
+	\caption{\label{serveur pas postgre}risque serveur n'implémente pas postgreSQL - méthode des n pourquoi}
 \end{figure}
-

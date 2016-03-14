@@ -10,6 +10,8 @@ class VolunteerControllerTest extends WebTestCase {
 	public function testIndexAction() {
 		$client = static::createClient();
 
+		$this->assertTrue(TRUE);
+
 	}
 
 }

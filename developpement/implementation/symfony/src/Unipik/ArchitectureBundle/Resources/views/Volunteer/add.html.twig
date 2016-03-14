@@ -3,13 +3,11 @@
 
 
 {% block title %}
-    Accueil - {{ parent() }}
+    Ajouter un bénévole - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-    {% use '::formTheme.html.twig' %}
-    {{ block('formTheme') }}
-
     {{ form(form) }}
+
 {% endblock %}

@@ -1,6 +1,6 @@
 # version 1.00, date 20/02/16, auteur Michel Cressant
 # Compilation
-all: cr pv
+all: cr pv fs
 
 cr:
 	make -C CR
@@ -8,14 +8,20 @@ cr:
 pv:
 	make -C PV
 
+fs:
+	make -C FS
+
 # Archivage
-archive: archivecr archivepv
+archive: archivecr archivepv archivefs
 
 archivecr:
 	make -C CR archive
 
 archivepv:
 	make -C PV archive
+
+archivefs:
+	make -C FS archive
 
 # Nettoyage
 clean: cleancr cleanpv
@@ -25,3 +31,6 @@ cleancr:
 
 cleanpv:
 	make -C PV clean
+
+cleanfs:
+	make -C FS clean

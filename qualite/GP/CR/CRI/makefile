@@ -6,7 +6,7 @@ include makevars ../../../../makevars
 
 all : cri cleanrep cleaneps
 
-cri : $(PDFDIR)/CRI_Q_Unipik_d16-01-22.pdf $(PDFDIR)/CRI_Q_Unipik_d16-01-29.pdf $(PDFDIR)/CRI_Q_Unipik_d16-02-02.pdf $(PDFDIR)/CRI_Q_Unipik_d16-02-23.pdf $(PDFDIR)/CRI_Q_Unipik_d16-03-04.pdf $(PDFDIR)/CRI_Q_Unipik_d16-03-10.pdf
+cri : $(PDFDIR)/CRI_Q_Unipik_d16-01-22.pdf $(PDFDIR)/CRI_Q_Unipik_d16-01-29.pdf $(PDFDIR)/CRI_Q_Unipik_d16-02-02.pdf $(PDFDIR)/CRI_Q_Unipik_d16-02-23.pdf $(PDFDIR)/CRI_Q_Unipik_d16-03-04.pdf $(PDFDIR)/CRI_Q_Unipik_d16-03-10.pdf $(PDFDIR)/CRI_Q_Unipik_d16-03-14.pdf
 
 $(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

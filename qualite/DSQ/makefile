@@ -1,6 +1,6 @@
 # version 1.02, date 01/03/16, auteur Michel Cressant, Pierre Porche
 # Compilation
-all: fc ff pf fr
+all: fc ff pf fr of tb
  
 fc:
 	make -C FC
@@ -14,8 +14,15 @@ pf:
 fr:
 	make -C FR
 
+of:
+	make -C OF
+
+tb:
+	make -C TB
+
+
 # Archivage
-archive: archivefc archiveff archivepf archivefr
+archive: archivefc archiveff archivepf archivefr archiveof archivetb
 
 archivefc:
 	make -C FC archive
@@ -29,11 +36,17 @@ archivepf:
 archivefr:
 	make -C FR archive
 
+archiveof:
+	make -C OF archive
+
+archivetb:
+	make -C TB archive
+
 
 
 
 # Nettoyage
-clean : cleanfc cleanff cleanpf cleanfr
+clean : cleanfc cleanff cleanpf cleanfr cleanof cleantb
 
 cleanfc:
 	make -C FC clean
@@ -46,3 +59,23 @@ cleanpf:
 
 cleanfr:
 	make -C FR clean
+
+cleanof:
+	make -C OF clean
+
+cleantb:
+	make -C TB clean
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,117 @@
+Return-Path: <asi4-owner@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 0B9EE23AC1;
+	Tue,  2 Feb 2016 10:21:17 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CaAQBYdLBWnHIKMcFeGQEBAQEPAQEBAYNcbYhZs0giAQmHLEwBAQEBAQESAQEBAQEIFAktIoRDBgEBKRoyBAMBAQEGEAEcFg8DAQUDAgECAQ1LBgIBAQGIGgq+FgSGEIhJAQFpg24FiBCOYROFNIRBjGOFUY4/ghgBAQiCLmmIO4EwAQEB
+X-IPAS-Result: A0CaAQBYdLBWnHIKMcFeGQEBAQEPAQEBAYNcbYhZs0giAQmHLEwBAQEBAQESAQEBAQEIFAktIoRDBgEBKRoyBAMBAQEGEAEcFg8DAQUDAgECAQ1LBgIBAQGIGgq+FgSGEIhJAQFpg24FiBCOYROFNIRBjGOFUY4/ghgBAQiCLmmIO4EwAQEB
+X-IronPort-AV: E=Sophos;i="5.22,384,1449529200"; 
+   d="scan'208,217";a="85117969"
+Received: from smtpout.insa-rouen.fr ([193.49.10.114])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 02 Feb 2016 10:21:17 +0100
+Received: from newlistdiff.insa-rouen.fr (newlistdiff.insa-rouen.fr [193.49.10.34])
+	by smtpout.insa-rouen.fr (8.13.8/8.13.8) with ESMTP id u129LI9P017463;
+	Tue, 2 Feb 2016 10:21:18 +0100
+Received: from newlistdiff.insa-rouen.fr (localhost.localdomain [127.0.0.1])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id u129LG8x008775;
+	Tue, 2 Feb 2016 10:21:16 +0100
+Received: (from sympa@localhost)
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6/Submit) id u129LG6s008773;
+	Tue, 2 Feb 2016 10:21:16 +0100
+X-Authentication-Warning: newlistdiff.insa-rouen.fr: sympa set sender to asi4-owner@insa-rouen.fr using -f
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id u129LCw1008770
+	for <asi4@newlistdiff.insa-rouen.fr>; Tue, 2 Feb 2016 10:21:12 +0100
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0BQAQDOc7BWnA8V3cNeGQEBAQEPAQEBAYNcbYhZr02DewoYAQmHLEwBAQEBAQESAQEBAQEGFglPhUAgARwWGAMCAQIBDUsGAgEBiBsKnySecwSGEIhJAQFpgXwLQIEnBYgQjmETf4Q1hEGMY4VRjj+CGF6BWmmIO4EwAQEB
+X-IPAS-Result: A0BQAQDOc7BWnA8V3cNeGQEBAQEPAQEBAYNcbYhZr02DewoYAQmHLEwBAQEBAQESAQEBAQEGFglPhUAgARwWGAMCAQIBDUsGAgEBiBsKnySecwSGEIhJAQFpgXwLQIEnBYgQjmETf4Q1hEGMY4VRjj+CGF6BWmmIO4EwAQEB
+X-IronPort-AV: E=Sophos;i="5.22,384,1449529200"; 
+   d="scan'208,217";a="94676694"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 02 Feb 2016 10:21:12 +0100
+Received: from [172.18.18.161] (natwifiinsa.insa-rouen.fr [194.254.15.136])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 0A8D41073C
+	for <asi4@insa-rouen.fr>; Tue,  2 Feb 2016 10:21:12 +0100 (CET)
+Message-ID: <56B07508.7040706@insa-rouen.fr>
+Date: Tue, 02 Feb 2016 10:21:12 +0100
+From: Benjamin COELHO DE MATOS <benjamin.coelho-de-matos@insa-rouen.fr>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.0.1
+MIME-Version: 1.0
+To: asi4@insa-rouen.fr
+Content-Type: multipart/alternative;
+ boundary="------------090603080908000408010302"
+Subject: [asi4] Envoi =?WINDOWS-1252?Q?d=92un?= =?WINDOWS-1252?Q?message=A0?=: SCRIPT couleur et correction
+X-Loop: asi4@insa-rouen.fr
+X-Sequence: 2995
+Errors-to: asi4-owner@insa-rouen.fr
+Precedence: list
+X-no-archive: yes
+List-Id: <asi4.insa-rouen.fr>
+List-Help: <mailto:sympa@insa-rouen.fr?subject=help>
+List-Owner: <mailto:asi4-request@insa-rouen.fr>
+List-Post: <mailto:asi4@insa-rouen.fr>
+List-Subscribe: <mailto:sympa@insa-rouen.fr?subject=subscribe%20asi4>
+List-Unsubscribe: <mailto:sympa@insa-rouen.fr?subject=unsubscribe%20asi4>
+
+This is a multi-part message in MIME format.
+--------------090603080908000408010302
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+
+Veuillez trouver ci-joint le script permettant de mettre en relief les 
+corrections de vos documents.
+https://ent.normandie-univ.fr/filex/get?k=ncr4KyjMRuGiKgQDlTe
+
+Cordialement,
+
+
+-- 
+*Benjamin Coelho de Matos*
+/Ingénieur de la Mission Qualité de l'INSA de ROUEN
+Tuteur Qualité pour les PIC ASI et MRIE
+INSA de Rouen, bureau DA AR 110
+685 Avenue de l'Université BP 08,
+76801 Saint Etienne du Rouvray Cedex
+/ Tel: (33).02.32.95.66.95
+mail: benjamin.coelho-de-matos@insa-rouen.fr
+
+
+--------------090603080908000408010302
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Bonjour,<br>
+    <br>
+    Veuillez trouver ci-joint le script permettant de mettre en relief
+    les corrections de vos documents.<br>
+    <a
+      href="https://ent.normandie-univ.fr/filex/get?k=ncr4KyjMRuGiKgQDlTe">https://ent.normandie-univ.fr/filex/get?k=ncr4KyjMRuGiKgQDlTe</a><br>
+    <br>
+    Cordialement,<br>
+    <br>
+    <br>
+    <div class="moz-signature">-- <br>
+      <b>Benjamin Coelho de Matos</b><br>
+      <i>Ingénieur de la Mission Qualité de l'INSA de ROUEN<br>
+        Tuteur Qualité pour les PIC ASI et MRIE<br>
+        INSA de Rouen, bureau DA AR 110<br>
+        685 Avenue de l'Université BP 08,<br>
+        76801 Saint Etienne du Rouvray Cedex<br>
+      </i> Tel: (33).02.32.95.66.95<br>
+      mail: <a class="moz-txt-link-abbreviated"
+        href="mailto:benjamin.coelho-de-matos@insa-rouen.fr">benjamin.coelho-de-matos@insa-rouen.fr</a>
+    </div>
+    <br>
+  </body>
+</html>
+
+--------------090603080908000408010302--

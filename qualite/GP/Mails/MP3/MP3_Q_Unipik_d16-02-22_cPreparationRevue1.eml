@@ -1,0 +1,59 @@
+Return-Path: <clement.chatelain@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 2989B238DC;
+	Mon, 22 Feb 2016 12:48:49 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CrAACQ9MpWlw8V3cNeGQEBAg8BAQKDXF4QgnC5VCGHJkwBAQEBAQESAQEBAQEGFglQhFQXDwEFQBocAgUWCwILAwIBAgFLAQwIAQGIGgqLVp0Tjnd7hReLb4E6BZcHhVeKLYZ7hVKOSYIYAQsBUYFRiRkBAQE
+X-IPAS-Result: A0CrAACQ9MpWlw8V3cNeGQEBAg8BAQKDXF4QgnC5VCGHJkwBAQEBAQESAQEBAQEGFglQhFQXDwEFQBocAgUWCwILAwIBAgFLAQwIAQGIGgqLVp0Tjnd7hReLb4E6BZcHhVeKLYZ7hVKOSYIYAQsBUYFRiRkBAQE
+X-IronPort-AV: E=Sophos;i="5.22,484,1449529200"; 
+   d="scan'208";a="85837746"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 22 Feb 2016 12:48:49 +0100
+Received: from [172.30.6.208] (asi-fwens.insa-rouen.fr [194.254.15.131])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id DCA1F10752;
+	Mon, 22 Feb 2016 12:48:48 +0100 (CET)
+To: Guenoux Ophelie <ophelie.guenoux@insa-rouen.fr>,
+ Prevoteaux Simon <simon.prevoteaux@insa-rouen.fr>,
+ Billiotte Mickael <mickael.billiotte@insa-rouen.fr>,
+ Colomies Sergi <sergi.colomies@insa-rouen.fr>
+From: clement chatelain <clement.chatelain@insa-rouen.fr>
+Subject: =?UTF-8?Q?Pr=c3=a9paration_revue_1?=
+Message-ID: <56CAF5A0.3000604@insa-rouen.fr>
+Date: Mon, 22 Feb 2016 12:48:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+ Thunderbird/38.5.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour à tous,
+
+La préparation de la revue N°1 pourra se faire avec le soutien de vos 
+tuteurs pédagogiques, qualité et communication.
+Ils sont à votre disposition pour vérifer votre plan, relire vos slides 
+et vérifier leur contenu.
+En revanche, ils ne devront pas assister aux répétitions.
+
+Je vous rappelle que la présentation doit durer 30 minutes, et contenir 
+a minima les points suivants (dans le désordre) :
+
+- présentation du client, de l'équipe, du sujet
+- cahiers des charges
+- gestion de projet
+- démarche qualité
+- avancement du projet
+
+Je suis dispo si vous avez des questions.
+
+Cordialement,
+
+-- 
+Clément Chatelain
+laboratoire LITIS, EA4108
+INSA de Rouen, département ASI
+http://pagesperso.litislab.fr/cchatelain/
+
+tel  : 02 32 95 97 03
+fax  : 02 32 95 97 08
+

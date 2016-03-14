@@ -1,0 +1,72 @@
+Return-Path: <florence.aubry@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 8E6C523AC1;
+	Tue,  2 Feb 2016 10:04:38 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CTAQAhcLBWnA8V3cNeGQEBAQEPAQECg1xeiGiqQYkRh01MAQEBAQEBEgEBAQEBBhYJT4RrRgEOPRYLAgsDAgECAS8cAQwIAQGIG68JjxIIhg+ISgEBgx2BOgWIEI5hgnqBY4UrjGOFUY4/gnaBWokkgTABAQE
+X-IPAS-Result: A0CTAQAhcLBWnA8V3cNeGQEBAQEPAQECg1xeiGiqQYkRh01MAQEBAQEBEgEBAQEBBhYJT4RrRgEOPRYLAgsDAgECAS8cAQwIAQGIG68JjxIIhg+ISgEBgx2BOgWIEI5hgnqBY4UrjGOFUY4/gnaBWokkgTABAQE
+X-IronPort-AV: E=Sophos;i="5.22,384,1449529200"; 
+   d="vcf'?scan'208";a="94675408"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 02 Feb 2016 10:04:38 +0100
+Received: from [172.30.6.163] (asi-fwens.insa-rouen.fr [194.254.15.131])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 480DA1073C;
+	Tue,  2 Feb 2016 10:04:38 +0100 (CET)
+To: Prevoteaux Simon <simon.prevoteaux@insa-rouen.fr>,
+ Billiotte Mickael <mickael.billiotte@insa-rouen.fr>,
+ Guenoux Ophelie <ophelie.guenoux@insa-rouen.fr>,
+ Colomies Sergi <sergi.colomies@insa-rouen.fr>
+From: Florence Aubry <florence.aubry@insa-rouen.fr>
+Subject: Budget PIC
+Message-ID: <56B07126.2070609@insa-rouen.fr>
+Date: Tue, 2 Feb 2016 10:04:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+ Thunderbird/38.4.0
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="------------020302010103000508020804"
+
+This is a multi-part message in MIME format.
+--------------020302010103000508020804
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour
+
+Vous disposez d'un budget de 700 euros TTC par PIC
+
+Pour :
+l'achat de fournitures de bureau
+vos déplacements éventuels chez le client
+l'achat de livres
+
+Les commandes sont effectuées au niveau du secrétariat
+Vous pouvez me faire part de vos besoins par mail
+
+Cordialement
+Florence
+
+--------------020302010103000508020804
+Content-Type: text/x-vcard; charset=utf-8;
+ name="florence_aubry.vcf"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="florence_aubry.vcf"
+
+begin:vcard
+fn:Florence Aubry
+n:Aubry;Florence
+org;quoted-printable:INSA de Rouen;Architecture des Syst=C3=A8mes d'Information
+adr;quoted-printable:;;avenue de l'universit=C3=A9;Saint Etienne du Rouvray;;76800;France
+email;internet:florence.aubry@insa-rouen.fr
+title:Assistante de direction
+tel;work:02 32 95 97 79
+tel;fax:02 32 95 97 08
+x-mozilla-html:FALSE
+url:http://asi.insa-rouen.fr
+version:2.1
+end:vcard
+
+
+--------------020302010103000508020804--

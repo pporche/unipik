@@ -1,0 +1,158 @@
+Return-Path: <sebastien.bonnegent@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 279EC23ADA
+	for <scolomies@insa-rouen.fr>; Fri,  5 Feb 2016 13:48:08 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0BtAQDGmbRWnA8V3cNeGQEBAQEQAQICg1ptiFuzAR2FcAKBMEwBAQEBAQESAQEBAQEGFglPhEIBAQEDI1URCxgJFgsCAgIHAwIBAgFFBg0GAgEBiBuwdo5qAQsBFQiKSYQTAQELKIJqgToFlnUBgn2BZGqKKYxOjj6CdoFRaYhMgTABAQE
+X-IPAS-Result: A0BtAQDGmbRWnA8V3cNeGQEBAQEQAQICg1ptiFuzAR2FcAKBMEwBAQEBAQESAQEBAQEGFglPhEIBAQEDI1URCxgJFgsCAgIHAwIBAgFFBg0GAgEBiBuwdo5qAQsBFQiKSYQTAQELKIJqgToFlnUBgn2BZGqKKYxOjj6CdoFRaYhMgTABAQE
+X-IronPort-AV: E=Sophos;i="5.22,400,1449529200"; 
+   d="p7s'?scan'208";a="94838434"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 05 Feb 2016 13:48:00 +0100
+Received: from quenotte.insa-rouen.fr (natwifiinsa.insa-rouen.fr [194.254.15.136])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 0DAA01074F
+	for <sergi.colomies@insa-rouen.fr>; Fri,  5 Feb 2016 13:48:00 +0100 (CET)
+Subject: =?UTF-8?Q?Re:_Probl=c3=a8me_imprimante_-_Salle_PIC?=
+To: Colomies Sergi <sergi.colomies@insa-rouen.fr>
+References: <7cc0-56b47b00-a3-49fc4d80@185886731>
+From: "S. Bonnegent" <sebastien.bonnegent@insa-rouen.fr>
+Organization: INSA de Rouen
+Message-ID: <56B499FF.7090308@insa-rouen.fr>
+Date: Fri, 5 Feb 2016 13:47:59 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+ Thunderbird/38.5.0
+MIME-Version: 1.0
+In-Reply-To: <7cc0-56b47b00-a3-49fc4d80@185886731>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256; boundary="------------ms070101030003090102090404"
+
+This is a cryptographically signed message in MIME format.
+
+--------------ms070101030003090102090404
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Ok, donc vous pouvez cr=C3=A9er un ticket sur support.insa-rouen.fr
+
+
+
+Le 05/02/2016 11:36, Colomies Sergi a =C3=A9crit :
+>=20
+> Oui il reste encore de l'encre.
+>=20
+> On Friday, February 5, 2016 09:50 CET, S=C3=A9bastien Bonnegent<sebasti=
+en.bonnegent@insa-rouen.fr> wrote:=20
+> =20
+>> Bonjour,
+>>
+>> Il y a-t-il encore de l'encre dans votre toner ?
+>>
+>> Cordialement, Sebastien BONNEGENT.
+>>
+>>
+>> Direction des Syst=C3=A8mes d'information de l'INSA de Rouen
+>>
+>>
+>> Le 5 f=C3=A9vr. 2016 08:34, Colomies Sergi <sergi.colomies@insa-rouen.=
+fr> a =C3=A9crit :
+>>>
+>>> Bonjour,=20
+>>>
+>>> Je vous =C3=A9crit ce mail car nous avons un soucis d'imprimante. En =
+effet =C3=A0 chaque fois que nous lan=C3=A7ons une impression, une colonn=
+e blanche appara=C3=AEt sur toute la feuille.=20
+>>>
+>>> Nous sommes en salle PIC BOARC04.=20
+>>>
+>>> Merci d'avance.=20
+>>>
+>>> Cordialement,=20
+>>>
+>>> Sergi COLOMIES=20
+>>> Chef PIC - Unipik=20
+>>>
+> =20
+> =20
+> =20
+> =20
+>=20
+>=20
+
+--=20
+Cordialement, S. Bonnegent
+Administrateur syst=C3=A8me - DSI de l'INSA de Rouen
+
+try:
+    http://wiki.insa-rouen.fr
+except DoesNotExist:
+    http://support.insa-rouen.fr
+
+
+--------------ms070101030003090102090404
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: Signature cryptographique S/MIME
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCC
+CXgwggStMIIDlaADAgECAhAxn8A5hVjMJyeVw8PnZYHWMA0GCSqGSIb3DQEBBQUAMDsxCzAJ
+BgNVBAYTAk5MMQ8wDQYDVQQKEwZURVJFTkExGzAZBgNVBAMTElRFUkVOQSBQZXJzb25hbCBD
+QTAeFw0xNDAzMTEwMDAwMDBaFw0xNzAzMTAyMzU5NTlaMGgxCzAJBgNVBAYTAkZSMRMwEQYD
+VQQKEwpJTlNBIFJPVUVOMRwwGgYDVQQDExNTZWJhc3RpZW4gQm9ubmVnZW50MSYwJAYJKoZI
+hvcNAQkCFhdib25uZWdlbnRAaW5zYS1yb3Vlbi5mcjCCASIwDQYJKoZIhvcNAQEBBQADggEP
+ADCCAQoCggEBAMrcOQVT9lr57QDTH+UOdc29j2+4RGAp0TXyAm6dxI9x2dhuZpb//jL5HfAY
+dIfvVRPC8jYJ7P/jJCHzw4QruQ6SN1PgHDgvZRNzh8UJtrQ2iTFPcN904bxMWhrAxD/lm6jE
+HZvoYT4Y/Szx6odNbynX8/1083+bEMI98EnFp6TOdBfSLhS7jMC/0aFFBCCEFVPfvqsTuMEd
+x0b4Y9eCJFiXv0qMQWAzioxZWEikOb58J+OqAKBXkIuAunnEEsM64KsDY2hyTayZWIgXSQJ/
+sHth7mtqnOR6xAQy7M8UOKnGK7e/qywXuRYyK1nvv7fNVwQqNhmx2sMkRPErzV6vc60CAwEA
+AaOCAX4wggF6MB8GA1UdIwQYMBaAFGNNQ1oZSD/ERsECur/uDuWCt2amMB0GA1UdDgQWBBSV
+44lt98c7kQNu7L2RrcvplBD7WDAOBgNVHQ8BAf8EBAMCBaAwDAYDVR0TAQH/BAIwADAdBgNV
+HSUEFjAUBggrBgEFBQcDBAYIKwYBBQUHAwIwGAYDVR0gBBEwDzANBgsrBgEEAbIxAQICHTA/
+BgNVHR8EODA2MDSgMqAwhi5odHRwOi8vY3JsLnRjcy50ZXJlbmEub3JnL1RFUkVOQVBlcnNv
+bmFsQ0EuY3JsMHIGCCsGAQUFBwEBBGYwZDA6BggrBgEFBQcwAoYuaHR0cDovL2NydC50Y3Mu
+dGVyZW5hLm9yZy9URVJFTkFQZXJzb25hbENBLmNydDAmBggrBgEFBQcwAYYaaHR0cDovL29j
+c3AudGNzLnRlcmVuYS5vcmcwLAYDVR0RBCUwI4Ehc2ViYXN0aWVuLmJvbm5lZ2VudEBpbnNh
+LXJvdWVuLmZyMA0GCSqGSIb3DQEBBQUAA4IBAQC4UP9H8Z7MQaSs1PM7BUjcvcN/Ij/ZE035
+qVPXPiTg+4SAdYV1E5F0FJ5XmkEnz9kXAomsuKa0rpd8okHSOJOJA6yC3kQ2FRLPVWA2Umde
+xhL9emOmvKBpf2cFkki8tCAIFn7zcTaJVS+ZAR2W6EwoX2/Ob04UPN6xS/bH1uMRkFNbbkXB
+I+Uqq12PO32cQpXog6D70HHLFGtmQatM227Gv1Glnc96gOnB89PlfyS3bEIbIbqGVxYJ9gAO
+oUV328cbIoM3lg2p0p6iAOjNIudrOB1xnCMjnPoi7skmyAN1Ob4GsXI9TCTH15Tr3wMzi0z+
+Tm+X456n2d08TP3HXdyiMIIEwzCCA6ugAwIBAgIQc/5X+t+4xQiBe2a5a/At7zANBgkqhkiG
+9w0BAQUFADCBrjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAlVUMRcwFQYDVQQHEw5TYWx0IExh
+a2UgQ2l0eTEeMBwGA1UEChMVVGhlIFVTRVJUUlVTVCBOZXR3b3JrMSEwHwYDVQQLExhodHRw
+Oi8vd3d3LnVzZXJ0cnVzdC5jb20xNjA0BgNVBAMTLVVUTi1VU0VSRmlyc3QtQ2xpZW50IEF1
+dGhlbnRpY2F0aW9uIGFuZCBFbWFpbDAeFw0wOTA1MTgwMDAwMDBaFw0yODEyMzEyMzU5NTla
+MDsxCzAJBgNVBAYTAk5MMQ8wDQYDVQQKEwZURVJFTkExGzAZBgNVBAMTElRFUkVOQSBQZXJz
+b25hbCBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMgV2fUzaiOhkA3PuwVE
+w6sfSjWFGiGFoE/48EDiSkOb/luxsL+0V9x1gEFLZBr2209vj9AlRTX56stK+vva0+1FiBGU
+NuTMqA3vxT037RZ748KVnlgzfyL7+P/s5r7brgplJSKH2m+Ei0boQIYoP79WCOJK6YOi6SL7
+Lfq2KB+RwcNx+1PAK06kDKFunVXt7OEkhzoI4g0c5MRN0Msn+oRk5tGXnVYkW5O7KS5D4kFq
+PeJKZfyaX1qGh7yHx3mAlplRxpAPZJGZfRDdrCwDKuF4ZP7OPU70K1ARS9FY1JsD8H/1O1Ow
+U0P7xS/EBCkaOqzXVenRDpXROzF/eE+uKS0CAwEAAaOCAU0wggFJMB8GA1UdIwQYMBaAFImC
+Z33EnSZwAEu0UEh83j2uBG59MB0GA1UdDgQWBBRjTUNaGUg/xEbBArq/7g7lgrdmpjAOBgNV
+HQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBADAYBgNVHSAEETAPMA0GCysGAQQBsjEB
+AgIdMFgGA1UdHwRRME8wTaBLoEmGR2h0dHA6Ly9jcmwudXNlcnRydXN0LmNvbS9VVE4tVVNF
+UkZpcnN0LUNsaWVudEF1dGhlbnRpY2F0aW9uYW5kRW1haWwuY3JsMG8GCCsGAQUFBwEBBGMw
+YTA4BggrBgEFBQcwAoYsaHR0cDovL2NydC51c2VydHJ1c3QuY29tL1VUTkFBQUNsaWVudF9D
+QS5jcnQwJQYIKwYBBQUHMAGGGWh0dHA6Ly9vY3NwLnVzZXJ0cnVzdC5jb20wDQYJKoZIhvcN
+AQEFBQADggEBAAYrqVMvE9xcORbMhp9eTHty++yNVYpemgr/U0x29AY9UM9X8KLPr5mMqv6g
+GXY+mQMy+nWDOIq7a5qlDBOy1Bt25pQuZ5hZ45FsApCanMhgS1WryohajSvlaZUDB9HUDvwk
+Ii5ZsWOkX+3ZI3LknM46XGwfT6kAyR3++n9FLbYuhN0PJ6BZGE7VdiVF9JkmedtvnyP3Q7sr
+DwSjgSYst3s1+T13X0Ah5n8dpZZavdDLFjpsu2GLiv0EOUQKyyzhy84uEJga2+CT7UlkZAgg
+n7ejUPCi3cq0xnwMPedeFdwnhuQ6O1JaF6upBlMrnQlzZBwBw/0w0ocDb+QVA3o5X2gxggMX
+MIIDEwIBATBPMDsxCzAJBgNVBAYTAk5MMQ8wDQYDVQQKEwZURVJFTkExGzAZBgNVBAMTElRF
+UkVOQSBQZXJzb25hbCBDQQIQMZ/AOYVYzCcnlcPD52WB1jANBglghkgBZQMEAgEFAKCCAZkw
+GAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTYwMjA1MTI0ODAw
+WjAvBgkqhkiG9w0BCQQxIgQgu+y1omVo9+FRBPWQCIVHtCL7yn9CBGPAXJUD+3EcHSAwXgYJ
+KwYBBAGCNxAEMVEwTzA7MQswCQYDVQQGEwJOTDEPMA0GA1UEChMGVEVSRU5BMRswGQYDVQQD
+ExJURVJFTkEgUGVyc29uYWwgQ0ECEDGfwDmFWMwnJ5XDw+dlgdYwYAYLKoZIhvcNAQkQAgsx
+UaBPMDsxCzAJBgNVBAYTAk5MMQ8wDQYDVQQKEwZURVJFTkExGzAZBgNVBAMTElRFUkVOQSBQ
+ZXJzb25hbCBDQQIQMZ/AOYVYzCcnlcPD52WB1jBsBgkqhkiG9w0BCQ8xXzBdMAsGCWCGSAFl
+AwQBKjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwDgYIKoZIhvcNAwICAgCAMA0GCCqGSIb3
+DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMA0GCSqGSIb3DQEBAQUABIIBACJj7Gtg
+l5tbCfmj8K3d42hjXXdMSaMY2Upvwa4dwQCTwTG1/o+7kPyT5zHB9OP0IjEA1SW6uyhRyR+o
+fdXaCfIR2Z4V5QMFK9GRU/hX6jjlXLsssLos9VMDRMErDWlV7CsrnD3wMT50tjRXw+ejFmdT
+zpGJoplkA1rFAKD7hU37tNCzg2fodmd7i1Wugj1GhBxmy04BL/HsC0h47g7sdlmnFBCyEImO
+oPapyvtGIen0Ti6bYyjqX7hT9/Zo6XZGdEN42dWolNtRc3MP2KBMfhnDQxCuvbFXkv7dlhFN
+ttMArEFSxgcz9fD/4frdA0GOIJ5BJXECVm16ASG5JkTiKP4AAAAAAAA=
+--------------ms070101030003090102090404--

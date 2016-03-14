@@ -1,0 +1,179 @@
+Return-Path: <baptiste.blondel-angot@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 6CBE123ADB;
+	Wed,  9 Mar 2016 16:39:11 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0C7AQAYQ+BWjg8V3cNeGQEBAg8BAQEBg11tgnWzPIYeHYVyAoFHTAEBAQEBARIBAQEBCRQJUIRCAQEBAwwXJiABDgEQCSMWCwICCQMCAQIBOgsGAQwBBQIBAYgkkyudF48rAQEBAQEBAQMBAQEBAQEBAQEXj1KCQoE6BYgbjxyKLIxxhVGOXoJ2gVFpiVMBAQE
+X-IPAS-Result: A0C7AQAYQ+BWjg8V3cNeGQEBAg8BAQEBg11tgnWzPIYeHYVyAoFHTAEBAQEBARIBAQEBCRQJUIRCAQEBAwwXJiABDgEQCSMWCwICCQMCAQIBOgsGAQwBBQIBAYgkkyudF48rAQEBAQEBAQMBAQEBAQEBAQEXj1KCQoE6BYgbjxyKLIxxhVGOXoJ2gVFpiVMBAQE
+X-IronPort-AV: E=Sophos;i="5.24,311,1454972400"; 
+   d="scan'208,217";a="96193533"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 09 Mar 2016 16:39:12 +0100
+Received: from [194.254.14.52] (poste-blondel01.insa-rouen.fr [194.254.14.52])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id DFDC61075B;
+	Wed,  9 Mar 2016 16:39:10 +0100 (CET)
+Message-ID: <56E043E7.2070206@insa-rouen.fr>
+Date: Wed, 09 Mar 2016 16:40:23 +0100
+From: Blondel-Angot Baptiste <baptiste.blondel-angot@insa-rouen.fr>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+MIME-Version: 1.0
+To: "S. Bonnegent" <sebastien.bonnegent@insa-rouen.fr>, 
+ Colomies Sergi <sergi.colomies@insa-rouen.fr>
+CC: Alexandre Pauchet <Alexandre.Pauchet@insa-rouen.fr>, 
+ clement chatelain <clement.chatelain@insa-rouen.fr>,
+ Gasso Gilles <gilles.gasso@insa-rouen.fr>
+Subject: usages de licence =?UTF-8?B?w6l0dWRpYW50ZS9ww6lkYWdvZ2lxdWUgZGFu?=
+ =?UTF-8?B?cyBsZSBjYWRyZSBkZXMgUElD?=
+References: <56D5568F.1080508@insa-rouen.fr>
+In-Reply-To: <56D5568F.1080508@insa-rouen.fr>
+Content-Type: multipart/alternative;
+ boundary="------------090405010503080908070409"
+
+This is a multi-part message in MIME format.
+--------------090405010503080908070409
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+
+Comme suite à l'appel de Gilles GASSO, je résume ici ma réflexion, tout 
+en vous indiquant n'avoir pas eu le temps de lire les licences 
+d'utilisation des logiciels évoqués.
+
+  * Résumé sur le principe des licences logicielles
+
+Une *licence *est l'autorisation par laquelle le titulaire des droits de 
+propriété intellectuelle sur un logiciel définit les *usages possibles 
+dudit logiciel* par les acheteurs/locataires de la licence.
+TOUT CE QUI N'EST PAS AUTORISE _EXPRESSEMENT _PAR LA LICENCE _EST 
+INTERDIT_. Les contrevenants, à titre personnel, et l'organisme qu'il 
+représente ou pour lequel ils agissent, engagent leur responsabilité 
+civile. Les indemnités peuvent se chiffrer, en fonction de l'usage non 
+autorisé, de plusieurs milliers à quelques millions d'euros... De plus, 
+si la responsabilité de l'INSA était engagée du fait du non-respect des 
+termes d'une licence, dans le cadre de ses activités ou de celles 
+confiées à ses étudiants ou personnels, cela constituerait une faute 
+susceptible de poursuite disciplinaire.
+L'achat ou la location d'un licence doit donc toujours correspondre à 
+l'usage que l'on souhaite en faire, à sa finalité, et pas uniquement au 
+coût le moins-disant.
+
+  * Dans le cadre des PIC
+
+Les PIC constituent à la fois une convention de prestation de service 
+entre l'INSA et le client, et un projet pédagogique intégré au cursus 
+des étudiants. Ce sont deux activités généralement distinctes, et qui 
+impliquent chacune des obligations différentes, compatibles ou non.
+S'agissant de l'usage de logiciel sous licence étudiante/pédagogique _ou 
+_professionnelle, au vu du caractère bivalent des PIC, il me semble 
+possible que les étudiants participants à un PIC puissent utiliser 
+indifféremment ces deux types de licence.
+En revanche, l'utilisateur final, le client du PIC, lui, doit disposer 
+d'une licence correspondant à l'usage qu'il souhaite faire du logiciel 
+(si le Livrable ne peut tourner qu'avec ce logiciel), c'est-à-dire un 
+usage professionnel (il existe peut-être des finalités particulières 
+pour certains logiciels, de type industrielle, recherche, etc).
+
+J'espère avoir pu éclairer quelque peu vos interrogations, tout en 
+sachant que je ne pourrai pas me pencher spécifiquement sur chaque licence.
+
+
+Cordialement
+
+-- 
+Baptiste BLONDEL-ANGOT
+Responsable du service juridique et des affaires générales
+Bureau DU-A-R2-26
+
+Institut national des sciences appliquées de Rouen (INSA Rouen)
+BP8
+685 Avenue de l'Université
+76801 SAINT ETIENNE DU ROUVRAY CEDEX
+
+Courriel: baptiste.blondel-angot@insa-rouen.fr
+Tél. : 02 32 95 65 20
+
+www.insa-rouen.fr
+
+
+--------------090405010503080908070409
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Bonjour,<br>
+    <br>
+    Comme suite à l'appel de Gilles GASSO, je résume ici ma réflexion,
+    tout en vous indiquant n'avoir pas eu le temps de lire les licences
+    d'utilisation des logiciels évoqués.<br>
+    <br>
+    <ul>
+      <li>Résumé sur le principe des licences logicielles</li>
+    </ul>
+    Une <b>licence </b>est l'autorisation par laquelle le titulaire
+    des droits de propriété intellectuelle sur un logiciel définit les <b>usages
+      possibles dudit logiciel</b> par les acheteurs/locataires de la
+    licence.<br>
+    TOUT CE QUI N'EST PAS AUTORISE <u>EXPRESSEMENT </u>PAR LA LICENCE
+    <u>EST INTERDIT</u>. Les contrevenants, à titre personnel, et
+    l'organisme qu'il représente ou pour lequel ils agissent, engagent
+    leur responsabilité civile. Les indemnités peuvent se chiffrer, en
+    fonction de l'usage non autorisé, de plusieurs milliers à quelques
+    millions d'euros... De plus, si la responsabilité de l'INSA était
+    engagée du fait du non-respect des termes d'une licence, dans le
+    cadre de ses activités ou de celles confiées à ses étudiants ou
+    personnels, cela constituerait une faute susceptible de poursuite
+    disciplinaire.<br>
+    L'achat ou la location d'un licence doit donc toujours correspondre
+    à l'usage que l'on souhaite en faire, à sa finalité, et pas
+    uniquement au coût le moins-disant.<br>
+    <ul>
+      <li>Dans le cadre des PIC</li>
+    </ul>
+    <p>Les PIC constituent à la fois une convention de prestation de
+      service entre l'INSA et le client, et un projet pédagogique
+      intégré au cursus des étudiants. Ce sont deux activités
+      généralement distinctes, et qui impliquent chacune des obligations
+      différentes, compatibles ou non.<br>
+      S'agissant de l'usage de logiciel sous licence
+      étudiante/pédagogique <u>ou </u>professionnelle, au vu du
+      caractère bivalent des PIC, il me semble possible que les
+      étudiants participants à un PIC puissent utiliser indifféremment
+      ces deux types de licence.<br>
+      En revanche, l'utilisateur final, le client du PIC, lui, doit
+      disposer d'une licence correspondant à l'usage qu'il souhaite
+      faire du logiciel (si le Livrable ne peut tourner qu'avec ce
+      logiciel), c'est-à-dire un usage professionnel (il existe
+      peut-être des finalités particulières pour certains logiciels, de
+      type industrielle, recherche, etc).<br>
+    </p>
+    <p>J'espère avoir pu éclairer quelque peu vos interrogations, tout
+      en sachant que je ne pourrai pas me pencher spécifiquement sur
+      chaque licence.<br>
+    </p>
+    <br>
+    Cordialement<br>
+    <pre class="moz-signature" cols="72">-- 
+Baptiste BLONDEL-ANGOT
+Responsable du service juridique et des affaires générales
+Bureau DU-A-R2-26
+
+Institut national des sciences appliquées de Rouen (INSA Rouen)
+BP8
+685 Avenue de l'Université 
+76801 SAINT ETIENNE DU ROUVRAY CEDEX
+
+Courriel: <a class="moz-txt-link-abbreviated" href="mailto:baptiste.blondel-angot@insa-rouen.fr">baptiste.blondel-angot@insa-rouen.fr</a>
+Tél. : 02 32 95 65 20
+
+<a class="moz-txt-link-abbreviated" href="http://www.insa-rouen.fr">www.insa-rouen.fr</a>
+</pre>
+  </body>
+</html>
+
+--------------090405010503080908070409--

@@ -1,0 +1,67 @@
+Return-Path: <michel.mainguenaud@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id D128723AC2
+	for <scolomies@insa-rouen.fr>; Wed, 24 Feb 2016 14:07:49 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CBAADOqs1Wkg8V3cNeGQEBAQEPAQEBAYNcXg+8Zh2FcAKBPEwBAQEBAQESAQEBAQcWCVCEQgEBAQMjBAsBRRELEggCBRYLAgIJAwIBAgENKg4GDQYCAQGIH68fhiCISQEBAQEGAQEBAQEBGnuJUYEegmcRAS2CcYE6BYgUjnMUigeEI44VjX5LgnaBUWmGL4ExAQEB
+X-IPAS-Result: A0CBAADOqs1Wkg8V3cNeGQEBAQEPAQEBAYNcXg+8Zh2FcAKBPEwBAQEBAQESAQEBAQcWCVCEQgEBAQMjBAsBRRELEggCBRYLAgIJAwIBAgENKg4GDQYCAQGIH68fhiCISQEBAQEGAQEBAQEBGnuJUYEegmcRAS2CcYE6BYgUjnMUigeEI44VjX5LgnaBUWmGL4ExAQEB
+X-IronPort-AV: E=Sophos;i="5.22,493,1449529200"; 
+   d="scan'208";a="95550512"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 24 Feb 2016 14:07:40 +0100
+Received: from asi-101.insa-rouen.fr (asi-fwens.insa-rouen.fr [194.254.15.131])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id AB3A910753
+	for <sergi.colomies@insa-rouen.fr>; Wed, 24 Feb 2016 14:07:39 +0100 (CET)
+Reply-To: michel.mainguenaud@insa-rouen.fr
+Subject: Re: Unipik - Report lot 1
+References: <17cb-56cd6680-2f-194fd120@118148162>
+To: Colomies Sergi <sergi.colomies@insa-rouen.fr>
+From: MAINGUENAUD Michel <michel.mainguenaud@insa-rouen.fr>
+Organization: Institut National des Sciences Appliquees - Rouen
+Message-ID: <56CDABF7.2090702@insa-rouen.fr>
+Date: Wed, 24 Feb 2016 14:11:19 +0100
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:38.0)
+ Gecko/20100101 Thunderbird/38.5.1
+MIME-Version: 1.0
+In-Reply-To: <17cb-56cd6680-2f-194fd120@118148162>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+
+Le lot 1 c'etait l'architecture il me semble -> si vous etes en retard
+il faut le rassurer sur l'échéance du lot 2 qui lui tient à coeur dans
+le message envoyé. Il faudra donc lui faire part de l'avancement du
+lot 2 des que vous commencerez ou si vous avez commencé il faut lui
+dire ou vous en etes pour être transparent vis à vis du retard que vous
+avez pris.
+
+A+
+
+MM
+
+
+Le 24/02/16 09:14, Colomies Sergi a écrit :
+> Bonjour Monsieur,
+> 
+> Au vue de l'avancement du projet et de la date prévue du premier livrable dans le cahier des charges (fin de la semaine prochaine), je pense que nous n'arriverons pas à être dans les temps. En effet, il nous reste encore à mener la phase de conception préliminaire, la phase de conception détaillée et la phase de développement. Par conséquent je souhaiterais demander au client un report de deux semaines du premier livrable sans que cela impacte le second livrable.
+> 
+> Pouvez-vous, s'il vous plaît, me donner votre avis concernant cette décision avant que j'écrive au client ?
+> 
+> Merci d'avance,
+> 
+
+-- 
+Michel MAINGUENAUD
+Institut National des Sciences Appliquees de Rouen (INSA-Rouen)
+
+Dep. Architecture des Systemes d'Information / LITIS
+685 Avenue de l'Universite BP 08
+F76801 Saint-Etienne du Rouvray - France
++ 33 (0)2 32 95 98 51
++ 33 (0)2 32 95 97 08 (fax)
++ 33 (0)2 32 95 97 79 (secr)
+
+email : michel.mainguenaud@insa-rouen.fr
+http://www.insa-rouen.fr

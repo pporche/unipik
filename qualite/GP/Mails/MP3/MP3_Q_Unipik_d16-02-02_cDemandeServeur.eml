@@ -1,0 +1,153 @@
+Return-Path: <sebastien.bonnegent@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 2C1FE23ABB;
+	Tue,  2 Feb 2016 13:11:15 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DAAQBtnLBWnA8V3cNeGQEBAQEPAQEBAYNcbYJvhWqvV4QFIYVsAoFETAEBAQEBARIBAQEBAQYWCU+EQgEBAQECDBdVARAJAiEWCwICAgcDAgECAUUGDQgBAReIBAqSFp0TjnIBAQEHAgEVCIpGglSBdIJqgToFiBCOYQGCeYFjaoRBhWiMTI4/gnaBUWkBiWoBAQE
+X-IPAS-Result: A0DAAQBtnLBWnA8V3cNeGQEBAQEPAQEBAYNcbYJvhWqvV4QFIYVsAoFETAEBAQEBARIBAQEBAQYWCU+EQgEBAQECDBdVARAJAiEWCwICAgcDAgECAUUGDQgBAReIBAqSFp0TjnIBAQEHAgEVCIpGglSBdIJqgToFiBCOYQGCeYFjaoRBhWiMTI4/gnaBUWkBiWoBAQE
+X-IronPort-AV: E=Sophos;i="5.22,384,1449529200"; 
+   d="p7s'?scan'208";a="85128923"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 02 Feb 2016 13:11:16 +0100
+Received: from quenotte.insa-rouen.fr (dsi-171.insa-rouen.fr [193.49.11.171])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id D15951073C;
+	Tue,  2 Feb 2016 13:11:14 +0100 (CET)
+Subject: Re: Serveur UNICEF
+To: Colomies Sergi <sergi.colomies@insa-rouen.fr>
+References: <6325-56b08b80-53-28f73c80@231770154>
+Cc: Michel MAINGUENAUD <michel.mainguenaud@insa-rouen.fr>,
+ Gilles GASSO <gilles.gasso@insa-rouen.fr>
+From: "S. Bonnegent" <sebastien.bonnegent@insa-rouen.fr>
+Organization: INSA de Rouen
+Message-ID: <56B09CE2.2020102@insa-rouen.fr>
+Date: Tue, 2 Feb 2016 13:11:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+ Thunderbird/38.5.0
+MIME-Version: 1.0
+In-Reply-To: <6325-56b08b80-53-28f73c80@231770154>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256; boundary="------------ms020804040003020904020305"
+
+This is a cryptographically signed message in MIME format.
+
+--------------ms020804040003020904020305
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour,
+
+Concernant l'aspect post-pic, =C3=A0 priori, l'INSA n'a aucune solution =C3=
+=A0
+proposer.
+
+Concernant ce serveur sur la dur=C3=A9e du pic, quel est son but ?
+1/ =C3=AAtre accessible du client ?
+2/ est-il administrer par ce dernier ?
+
+
+Le 02/02/2016 11:57, Colomies Sergi a =C3=A9crit :
+> Bonjour Monsieur,
+>=20
+> Voici un r=C3=A9sum=C3=A9 du probl=C3=A8me dont on a discut=C3=A9 ce ma=
+tin :
+>=20
+> Dans le cadre de notre PIC, nous devons r=C3=A9aliser une base de donn=C3=
+=A9es avec interface web. Cependant notre client ne poss=C3=A8de pas de s=
+erveur. Cela n'est pas d=C3=A9rangeant pour le d=C3=A9but, nous pouvons e=
+n effet travailler directement sur nos ordinateurs en salle PIC, mais =C3=
+=A0 terme il va falloir trouver un serveur pour l'apr=C3=A8s-PIC. Dans le=
+s contraintes impos=C3=A9es par le client se trouve la gratuit=C3=A9 de l=
+'h=C3=A9bergement, quitte =C3=A0 utiliser l'aspect m=C3=A9c=C3=A9nat*. Av=
+ant d'aller chercher des serveurs ext=C3=A9rieurs, ma question est la sui=
+vante : l'INSA pourrait-il h=C3=A9berger cette application ?
+>=20
+>=20
+> Merci d'avance,
+>=20
+> Cordialement,
+>=20
+> Sergi Colomies
+> Chef PIC - Unipik
+>=20
+>=20
+> * http://www.associations.gouv.fr/IMG/pdf/mecenat_guide_juridique.pdf
+>=20
+
+--=20
+Cordialement, S. Bonnegent
+Administrateur syst=C3=A8me - DSI de l'INSA de Rouen
+
+try:
+    http://wiki.insa-rouen.fr
+except DoesNotExist:
+    http://support.insa-rouen.fr
+
+
+--------------ms020804040003020904020305
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: Signature cryptographique S/MIME
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCC
+CXgwggStMIIDlaADAgECAhAxn8A5hVjMJyeVw8PnZYHWMA0GCSqGSIb3DQEBBQUAMDsxCzAJ
+BgNVBAYTAk5MMQ8wDQYDVQQKEwZURVJFTkExGzAZBgNVBAMTElRFUkVOQSBQZXJzb25hbCBD
+QTAeFw0xNDAzMTEwMDAwMDBaFw0xNzAzMTAyMzU5NTlaMGgxCzAJBgNVBAYTAkZSMRMwEQYD
+VQQKEwpJTlNBIFJPVUVOMRwwGgYDVQQDExNTZWJhc3RpZW4gQm9ubmVnZW50MSYwJAYJKoZI
+hvcNAQkCFhdib25uZWdlbnRAaW5zYS1yb3Vlbi5mcjCCASIwDQYJKoZIhvcNAQEBBQADggEP
+ADCCAQoCggEBAMrcOQVT9lr57QDTH+UOdc29j2+4RGAp0TXyAm6dxI9x2dhuZpb//jL5HfAY
+dIfvVRPC8jYJ7P/jJCHzw4QruQ6SN1PgHDgvZRNzh8UJtrQ2iTFPcN904bxMWhrAxD/lm6jE
+HZvoYT4Y/Szx6odNbynX8/1083+bEMI98EnFp6TOdBfSLhS7jMC/0aFFBCCEFVPfvqsTuMEd
+x0b4Y9eCJFiXv0qMQWAzioxZWEikOb58J+OqAKBXkIuAunnEEsM64KsDY2hyTayZWIgXSQJ/
+sHth7mtqnOR6xAQy7M8UOKnGK7e/qywXuRYyK1nvv7fNVwQqNhmx2sMkRPErzV6vc60CAwEA
+AaOCAX4wggF6MB8GA1UdIwQYMBaAFGNNQ1oZSD/ERsECur/uDuWCt2amMB0GA1UdDgQWBBSV
+44lt98c7kQNu7L2RrcvplBD7WDAOBgNVHQ8BAf8EBAMCBaAwDAYDVR0TAQH/BAIwADAdBgNV
+HSUEFjAUBggrBgEFBQcDBAYIKwYBBQUHAwIwGAYDVR0gBBEwDzANBgsrBgEEAbIxAQICHTA/
+BgNVHR8EODA2MDSgMqAwhi5odHRwOi8vY3JsLnRjcy50ZXJlbmEub3JnL1RFUkVOQVBlcnNv
+bmFsQ0EuY3JsMHIGCCsGAQUFBwEBBGYwZDA6BggrBgEFBQcwAoYuaHR0cDovL2NydC50Y3Mu
+dGVyZW5hLm9yZy9URVJFTkFQZXJzb25hbENBLmNydDAmBggrBgEFBQcwAYYaaHR0cDovL29j
+c3AudGNzLnRlcmVuYS5vcmcwLAYDVR0RBCUwI4Ehc2ViYXN0aWVuLmJvbm5lZ2VudEBpbnNh
+LXJvdWVuLmZyMA0GCSqGSIb3DQEBBQUAA4IBAQC4UP9H8Z7MQaSs1PM7BUjcvcN/Ij/ZE035
+qVPXPiTg+4SAdYV1E5F0FJ5XmkEnz9kXAomsuKa0rpd8okHSOJOJA6yC3kQ2FRLPVWA2Umde
+xhL9emOmvKBpf2cFkki8tCAIFn7zcTaJVS+ZAR2W6EwoX2/Ob04UPN6xS/bH1uMRkFNbbkXB
+I+Uqq12PO32cQpXog6D70HHLFGtmQatM227Gv1Glnc96gOnB89PlfyS3bEIbIbqGVxYJ9gAO
+oUV328cbIoM3lg2p0p6iAOjNIudrOB1xnCMjnPoi7skmyAN1Ob4GsXI9TCTH15Tr3wMzi0z+
+Tm+X456n2d08TP3HXdyiMIIEwzCCA6ugAwIBAgIQc/5X+t+4xQiBe2a5a/At7zANBgkqhkiG
+9w0BAQUFADCBrjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAlVUMRcwFQYDVQQHEw5TYWx0IExh
+a2UgQ2l0eTEeMBwGA1UEChMVVGhlIFVTRVJUUlVTVCBOZXR3b3JrMSEwHwYDVQQLExhodHRw
+Oi8vd3d3LnVzZXJ0cnVzdC5jb20xNjA0BgNVBAMTLVVUTi1VU0VSRmlyc3QtQ2xpZW50IEF1
+dGhlbnRpY2F0aW9uIGFuZCBFbWFpbDAeFw0wOTA1MTgwMDAwMDBaFw0yODEyMzEyMzU5NTla
+MDsxCzAJBgNVBAYTAk5MMQ8wDQYDVQQKEwZURVJFTkExGzAZBgNVBAMTElRFUkVOQSBQZXJz
+b25hbCBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMgV2fUzaiOhkA3PuwVE
+w6sfSjWFGiGFoE/48EDiSkOb/luxsL+0V9x1gEFLZBr2209vj9AlRTX56stK+vva0+1FiBGU
+NuTMqA3vxT037RZ748KVnlgzfyL7+P/s5r7brgplJSKH2m+Ei0boQIYoP79WCOJK6YOi6SL7
+Lfq2KB+RwcNx+1PAK06kDKFunVXt7OEkhzoI4g0c5MRN0Msn+oRk5tGXnVYkW5O7KS5D4kFq
+PeJKZfyaX1qGh7yHx3mAlplRxpAPZJGZfRDdrCwDKuF4ZP7OPU70K1ARS9FY1JsD8H/1O1Ow
+U0P7xS/EBCkaOqzXVenRDpXROzF/eE+uKS0CAwEAAaOCAU0wggFJMB8GA1UdIwQYMBaAFImC
+Z33EnSZwAEu0UEh83j2uBG59MB0GA1UdDgQWBBRjTUNaGUg/xEbBArq/7g7lgrdmpjAOBgNV
+HQ8BAf8EBAMCAQYwEgYDVR0TAQH/BAgwBgEB/wIBADAYBgNVHSAEETAPMA0GCysGAQQBsjEB
+AgIdMFgGA1UdHwRRME8wTaBLoEmGR2h0dHA6Ly9jcmwudXNlcnRydXN0LmNvbS9VVE4tVVNF
+UkZpcnN0LUNsaWVudEF1dGhlbnRpY2F0aW9uYW5kRW1haWwuY3JsMG8GCCsGAQUFBwEBBGMw
+YTA4BggrBgEFBQcwAoYsaHR0cDovL2NydC51c2VydHJ1c3QuY29tL1VUTkFBQUNsaWVudF9D
+QS5jcnQwJQYIKwYBBQUHMAGGGWh0dHA6Ly9vY3NwLnVzZXJ0cnVzdC5jb20wDQYJKoZIhvcN
+AQEFBQADggEBAAYrqVMvE9xcORbMhp9eTHty++yNVYpemgr/U0x29AY9UM9X8KLPr5mMqv6g
+GXY+mQMy+nWDOIq7a5qlDBOy1Bt25pQuZ5hZ45FsApCanMhgS1WryohajSvlaZUDB9HUDvwk
+Ii5ZsWOkX+3ZI3LknM46XGwfT6kAyR3++n9FLbYuhN0PJ6BZGE7VdiVF9JkmedtvnyP3Q7sr
+DwSjgSYst3s1+T13X0Ah5n8dpZZavdDLFjpsu2GLiv0EOUQKyyzhy84uEJga2+CT7UlkZAgg
+n7ejUPCi3cq0xnwMPedeFdwnhuQ6O1JaF6upBlMrnQlzZBwBw/0w0ocDb+QVA3o5X2gxggMX
+MIIDEwIBATBPMDsxCzAJBgNVBAYTAk5MMQ8wDQYDVQQKEwZURVJFTkExGzAZBgNVBAMTElRF
+UkVOQSBQZXJzb25hbCBDQQIQMZ/AOYVYzCcnlcPD52WB1jANBglghkgBZQMEAgEFAKCCAZkw
+GAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTYwMjAyMTIxMTE0
+WjAvBgkqhkiG9w0BCQQxIgQg0UN4l4e4gOPc3xaG2ZgP0p8PsitUul8HtDbSH04O314wXgYJ
+KwYBBAGCNxAEMVEwTzA7MQswCQYDVQQGEwJOTDEPMA0GA1UEChMGVEVSRU5BMRswGQYDVQQD
+ExJURVJFTkEgUGVyc29uYWwgQ0ECEDGfwDmFWMwnJ5XDw+dlgdYwYAYLKoZIhvcNAQkQAgsx
+UaBPMDsxCzAJBgNVBAYTAk5MMQ8wDQYDVQQKEwZURVJFTkExGzAZBgNVBAMTElRFUkVOQSBQ
+ZXJzb25hbCBDQQIQMZ/AOYVYzCcnlcPD52WB1jBsBgkqhkiG9w0BCQ8xXzBdMAsGCWCGSAFl
+AwQBKjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwDgYIKoZIhvcNAwICAgCAMA0GCCqGSIb3
+DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMA0GCSqGSIb3DQEBAQUABIIBALHO5IBU
+4bBicJBXYfsZK3S5zywZwX2i6B+eJpFLDnMDd+jI5s1s+lwzYYjVLuRLffxMsEOp7dY65mya
+u4yeowt4RixhzRwkEIa+zQmw9ZKciKqLQDVimQGwgMei1s9xGvLjTXKEbIeHHca00Mflf7I2
+M57UlCJOavzWOpTjF5//Fm61BiP7PQ2+vv0icV6W5xpRX1v3XwkauBYuuJ2UpIHHkSuseTjL
+sfbpg+Hp93SG/rAIefEe5b9eeIQRQQijmIs+u7dOvbwHNTDO1nMQh1OAsJ36BJFBP7v/VaOe
+XzSpP0HFJjHOTgoQg7ifUslozvVSZw5s0aVXOlz3BRY0lFcAAAAAAAA=
+--------------ms020804040003020904020305--

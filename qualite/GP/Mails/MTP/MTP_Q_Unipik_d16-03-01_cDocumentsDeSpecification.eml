@@ -1,0 +1,46 @@
+Return-Path: <michel.mainguenaud@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 949A8238DF
+	for <scolomies@insa-rouen.fr>; Tue,  1 Mar 2016 16:37:30 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CoAADxttVWkg8V3cNeGQEBAQEPAQEBAYQ6gwOwHokWhhMCgUlMAQEBAQEBEgEBAQEHFglQhEIBAQEDDBcPAUURCQIaAgUWCwICCQMCAQIBDTgGDQgBAYgfk1mdE4YgiHoBAQgBAQEBARt7iVGHNYE6AQSIFY55AROKCYUQh1uFUI4BS4J2gVGJKgEBAQ
+X-IPAS-Result: A0CoAADxttVWkg8V3cNeGQEBAQEPAQEBAYQ6gwOwHokWhhMCgUlMAQEBAQEBEgEBAQEHFglQhEIBAQEDDBcPAUURCQIaAgUWCwICCQMCAQIBDTgGDQgBAYgfk1mdE4YgiHoBAQgBAQEBARt7iVGHNYE6AQSIFY55AROKCYUQh1uFUI4BS4J2gVGJKgEBAQ
+X-IronPort-AV: E=Sophos;i="5.22,523,1449529200"; 
+   d="scan'208";a="86193290"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 01 Mar 2016 16:37:30 +0100
+Received: from [192.168.1.16] (ARouen-256-1-57-10.w90-51.abo.wanadoo.fr [90.51.216.10])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 47C3110750
+	for <sergi.colomies@insa-rouen.fr>; Tue,  1 Mar 2016 16:37:30 +0100 (CET)
+Reply-To: michel.mainguenaud@insa-rouen.fr
+Subject: Re: Unipik - DSE, DSI et PTV
+References: <36cf-56d48700-19-166854e0@53754479>
+To: Colomies Sergi <sergi.colomies@insa-rouen.fr>
+From: "MAINGUENAUD Michel (Prof)" <michel.mainguenaud@insa-rouen.fr>
+Organization: Institut National des Sciences Appliquees - Rouen
+Message-ID: <56D5B739.2080101@insa-rouen.fr>
+Date: Tue, 1 Mar 2016 16:37:29 +0100
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+ Gecko/20100101 Thunderbird/38.6.0
+MIME-Version: 1.0
+In-Reply-To: <36cf-56d48700-19-166854e0@53754479>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+
+envoyez moi un DSE compilé deux fois pour avoir aussi les figures
+merci
+
+MM
+
+
+Le 29/02/2016 18:59, Colomies Sergi a écrit :
+> 
+> Bonjour Monsieur,
+> 
+> Veuillez trouver ci-joint les trois différents dossiers de spécification. Pour le DSE et le DSI nous avons regroupé les deux premiers lots. Pour le PTV, seul le premier lot est présent, il sera complété lorsque nous attaquerons les lots suivants.
+> 
+> Cordialement, 
+> 

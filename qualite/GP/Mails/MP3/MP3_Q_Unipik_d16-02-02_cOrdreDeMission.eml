@@ -1,0 +1,83 @@
+Return-Path: <florence.aubry@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id EA9EC238DC;
+	Tue,  2 Feb 2016 13:58:49 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0BrAQD5prBWnA8V3cNeGQEBAQEPAQEBAYNciUazXIYNAoFATAEBAQEBARIBAQEBAQYWCU+EQgEBAQMjVQEQCyEWCwICCQMCAQIBRQYNCAEBiBuvMY5zAQEBAQEBBAEBAQEBEwiGD4Q3hCCDEoE6BZZxgnqBY5IOhVGOP4J2gVGKVAEBAQ
+X-IPAS-Result: A0BrAQD5prBWnA8V3cNeGQEBAQEPAQEBAYNciUazXIYNAoFATAEBAQEBARIBAQEBAQYWCU+EQgEBAQMjVQEQCyEWCwICCQMCAQIBRQYNCAEBiBuvMY5zAQEBAQEBBAEBAQEBEwiGD4Q3hCCDEoE6BZZxgnqBY5IOhVGOP4J2gVGKVAEBAQ
+X-IronPort-AV: E=Sophos;i="5.22,384,1449529200"; 
+   d="vcf'?scan'208";a="85131171"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 02 Feb 2016 13:58:49 +0100
+Received: from [172.30.6.163] (asi-fwens.insa-rouen.fr [194.254.15.131])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 8CC8D1073C;
+	Tue,  2 Feb 2016 13:58:49 +0100 (CET)
+Subject: Re: Ordre de mission - Unipik
+To: Colomies Sergi <sergi.colomies@insa-rouen.fr>
+References: <5207-56b08600-8d-4277cd00@60121064>
+From: Florence Aubry <florence.aubry@insa-rouen.fr>
+Cc: julie.pain@insa-rouen.fr, Cressant Michel
+ <michel.cressant@insa-rouen.fr>,
+ Martins-Baltar Matthieu <matthieu.martinsbaltar@insa-rouen.fr>,
+ Porche Pierre <pierre.porche@insa-rouen.fr>,
+ Leriche Florian <florian.leriche@insa-rouen.fr>
+Message-ID: <56B0A809.6010104@insa-rouen.fr>
+Date: Tue, 2 Feb 2016 13:58:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+ Thunderbird/38.4.0
+MIME-Version: 1.0
+In-Reply-To: <5207-56b08600-8d-4277cd00@60121064>
+Content-Type: multipart/mixed;
+ boundary="------------050006050705030604040609"
+
+This is a multi-part message in MIME format.
+--------------050006050705030604040609
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+merci
+
+vos ordres de mission sans frais sont prêts, vous pouvez passer les signer
+
+pour ceux qui n'ont pas de tickets je peux prêter une carte 10 voyages 
+qu'il faudra me rendre
+
+Florence
+
+Le 02/02/2016 11:34, Colomies Sergi a écrit :
+> Bonjour Madame,
+>
+> Nous envisageons de nous rendre chez notre client (UNICEF) demain, mercredi 03 février. Six personnes se déplaceront : Julie Pain, Michel Cressant, Matthieu Martins-Baltar, Pierre Porche, Florian Leriche et moi-même. Nous envisageons de prendre les transports en commun mais trois de ces personnes n'ont pas ticket de métro.
+> Nous avons rendez-vous avec le client au 26 Rue Saint-Nicolas, 76000 Rouen, de 10h à 11h. Nous partirons donc de l'INSA entre 9h00 et 9h15.
+>
+> Cordialement,
+>
+> Sergi Colomies
+> Chef PIC - Unipik
+>
+
+
+--------------050006050705030604040609
+Content-Type: text/x-vcard; charset=utf-8;
+ name="florence_aubry.vcf"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="florence_aubry.vcf"
+
+begin:vcard
+fn:Florence Aubry
+n:Aubry;Florence
+org;quoted-printable:INSA de Rouen;Architecture des Syst=C3=A8mes d'Information
+adr;quoted-printable:;;avenue de l'universit=C3=A9;Saint Etienne du Rouvray;;76800;France
+email;internet:florence.aubry@insa-rouen.fr
+title:Assistante de direction
+tel;work:02 32 95 97 79
+tel;fax:02 32 95 97 08
+x-mozilla-html:FALSE
+url:http://asi.insa-rouen.fr
+version:2.1
+end:vcard
+
+
+--------------050006050705030604040609--

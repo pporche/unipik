@@ -1,0 +1,52 @@
+Return-Path: <unicef76@unicef.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id DC59A238D8
+	for <scolomies@insa-rouen.fr>; Mon,  7 Mar 2016 16:03:54 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0APAQAul91WkiNDES5dGQEBAgcIAQECg1xtBrMfiRIZhXYCCBSBWQEBAQEBARIBAQEBCRQJUIRCAQEBAyMRFUACAQgSCAIGIAICAh0TFQIOAgQTCIgesCWOfAEBAQEGAQEBAQEBARl7iVmEGwEBHRZNgh0rgQ8FlyIIFoECm0+OVYJ2gVBqiAs0AX0BAQE
+X-IPAS-Result: A0APAQAul91WkiNDES5dGQEBAgcIAQECg1xtBrMfiRIZhXYCCBSBWQEBAQEBARIBAQEBCRQJUIRCAQEBAyMRFUACAQgSCAIGIAICAh0TFQIOAgQTCIgesCWOfAEBAQEGAQEBAQEBARl7iVmEGwEBHRZNgh0rgQ8FlyIIFoECm0+OVYJ2gVBqiAs0AX0BAQE
+X-IronPort-AV: E=Sophos;i="5.22,551,1449529200"; 
+   d="scan'208";a="86443545"
+Received: from webmail2.unicef.fr (HELO autodiscover.unicef.fr) ([46.17.67.35])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 07 Mar 2016 16:03:54 +0100
+Received: from UNC-SRV-EXC1.cfu.local ([10.30.42.11]) by unc-srv-exc1
+ ([10.30.42.11]) with mapi id 14.03.0181.006; Mon, 7 Mar 2016 16:03:23 +0100
+From: 76 UNICEF Seine Maritime <unicef76@unicef.fr>
+To: =?utf-8?B?U2VyZ2kgQ29sb21pw6hz?= <sergi.colomies@insa-rouen.fr>
+Subject: RE:Revue de PIC
+Thread-Topic: Revue de PIC
+Thread-Index: AQHRdFZ2S0hCnkIecEeINU5+2zv7E59OHAl0
+Date: Mon, 7 Mar 2016 15:03:23 +0000
+Message-ID: <168ED66FB5C258489BADAE2218B264D575003564@unc-srv-exc1>
+References: <56D6984B.502@insa-rouen.fr>
+In-Reply-To: <56D6984B.502@insa-rouen.fr>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-originating-ip: [90.108.178.166]
+x-c2processedorg: 36648b07-e705-4ef6-b55d-bc0567a78858
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+
+Qm9uam91ciBTZXJnaSwNCk5vdXMgc2Vyb25zIDMgcGVyc29ubmVzOiBDYXRoZXJpbmUgR3Vlc3Qs
+IElzYWJlbGxlIEJlY3F1YXJ0IGV0IG1vaS1tw6ptZS4NCkJvbm5lIHNlbWFpbmUgZGUgdHJhdmFp
+bCwgVsOpcm9uaXF1ZSBCYXJiaWVyDQoNCjc2IFVOSUNFRiBTZWluZSBNYXJpdGltZSAgIFJvdWVu
+DQoNCiszMyAyIDM1IDg4IDk4IDg4DQoyNiBydWUgU2FpbnQgTmljb2xhcyA3NjAwMCBST1VFTg0K
+d3d3LnVuaWNlZi5mcg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
+RGUgOiBTZXJnaSBDb2xvbWnDqHMgW3NlcmdpLmNvbG9taWVzQGluc2Etcm91ZW4uZnJdDQpFbnZv
+ecOpIDogbWVyY3JlZGkgMiBtYXJzIDIwMTYgMDg6MzcNCsOAIDogNzYgVU5JQ0VGIFNlaW5lIE1h
+cml0aW1lDQpPYmpldCA6IFJldnVlIGRlIFBJQw0KDQpCb25qb3VyIE1hZGFtZSwNCg0KSmUgdm91
+cyDDqWNyaXMgcG91ciB2b3VzIHJhcHBlbGVyIHF1ZSBsYSBzZW1haW5lIHByb2NoYWluZSwgdmVu
+ZHJlZGkgMTENCm1hcnMsIHNlIHRpZW5kcmEgbGEgcHJlbWnDqHJlIHJldnVlIGR1IFBJQyDDoCBs
+J0lOU0EuIENlbGxlLWNpIHNlDQpkw6lyb3VsZXJhIGRlIDE1aDMwIMOgIDE3aC4NCg0KRGFucyBs
+ZSBjYWRyZSBkdSBwbGFuIHZpZ2lwaXJhdGUsIGwnSU5TQSBzb3VoYWl0ZXJhaXQgb2J0ZW5pciBs
+ZSBub20gZGVzDQpwZXJzb25uZXMgZXh0w6lyaWV1cmVzIHF1aSB2aWVuZHJvbnQuIFBhciBjb25z
+w6lxdWVudCwgcG91dmV6LXZvdXMgbWUNCnRyYW5zbWV0dHJlIGxlIG5vbSBkZXMgcGVyc29ubmVz
+IHF1aSBzb3VoYWl0ZW50IGFzc2lzdGVyIMOgIG5vdHJlIHJldnVlID8NCg0KQ29yZGlhbGVtZW50
+LA0KDQotLQ0KU2VyZ2kgQ29sb21pw6hzDQrDiXR1ZGlhbnQgNMOobWUgYW5uw6llIElOU0EgZGUg
+Um91ZW4NCkTDqXBhcnRlbWVudCBBcmNoaXRlY3R1cmUgZGVzIFN5c3TDqG1lcyBkJ0luZm9ybWF0
+aW9uDQoNClTDqWwgOiAwNiA3NCA5MiA5NCA4Ng0KTWFpbCA6IHNlcmdpLmNvbG9taWVzQGluc2Et
+cm91ZW4uZnINCg0K

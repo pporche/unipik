@@ -2,13 +2,19 @@
 # Importation des variables
 include makevars ../../../makevars
 
-all : imagespdf cleanrep cleaneps
+all : imagespdf of cleanrep cleaneps
 
+of : $(PDFDIR)/OF_Q_Unipik_v1.00.pdf
 
+imagespdf:  $(IMGDIR)/organigrammeFonctionnel.pdf
 
-imagespdf:  $(PDFDIR)/$(NOM_FICHIER).pdf
+$(PDFDIR)/%.pdf : ./%.tex
+	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
+	export TEXINPUTS;\
+	$(CCTEX) $<
+	mv *.pdf $(PDFDIR)
 
-$(PDFDIR)/%.pdf : $(IMGDIR)/%.eps
+$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@
 
 $(IMGDIR)/%.eps: $(IMGDIR)/%.dia

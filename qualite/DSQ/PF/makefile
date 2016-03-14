@@ -6,7 +6,7 @@ include makevars ../../../makevars
 
 all : pf cleanrep cleaneps
 
-pf : $(PDFDIR)/PF_Q_Unipik_v1.00.pdf
+pf : $(PDFDIR)/PF_Q_Unipik_v1.01.pdf
 
 $(PDFDIR)/%.pdf : %.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

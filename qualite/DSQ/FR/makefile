@@ -40,4 +40,4 @@ cleaneps :
 # Archivage
 archive:
 	mkdir -p ${ARCHIVEDIR}
-	/cp pdf/*.pdf ${ARCHIVEDIR}
+	cp pdf/*.pdf ${ARCHIVEDIR}

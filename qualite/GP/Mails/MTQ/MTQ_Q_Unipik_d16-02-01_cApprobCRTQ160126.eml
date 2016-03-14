@@ -1,0 +1,113 @@
+Return-Path: <benjamin.coelho-de-matos@insa-rouen.fr>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id CCB3723A11
+	for <pporche@insa-rouen.fr>; Mon,  1 Feb 2016 10:20:11 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0BYAQAWIq9WnA8V3cNdGQEBAQEPAQEBAYRJiFivQYQEhg8CgS5MAQEBAQEBEgEBAQEBBhYJT4RCAQEBAyNmCwQBHCECAg8CDjgGDQYCAQGIG64Fjj8BAQgCAR2GEIQ2hBMBAYMdgToFiBCOXxOJdYxihVGOPoJ1gVpph02BMAEBAQ
+X-IPAS-Result: A0BYAQAWIq9WnA8V3cNdGQEBAQEPAQEBAYRJiFivQYQEhg8CgS5MAQEBAQEBEgEBAQEBBhYJT4RCAQEBAyNmCwQBHCECAg8CDjgGDQYCAQGIG64Fjj8BAQgCAR2GEIQ2hBMBAYMdgToFiBCOXxOJdYxihVGOPoJ1gVpph02BMAEBAQ
+X-IronPort-AV: E=Sophos;i="5.22,379,1449529200"; 
+   d="scan'208,217";a="94623643"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 01 Feb 2016 10:20:11 +0100
+Received: from [193.49.8.228] (darwin228.insa-rouen.fr [193.49.8.228])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 271C410736
+	for <pierre.porche@insa-rouen.fr>; Mon,  1 Feb 2016 10:20:11 +0100 (CET)
+Message-ID: <56AF234B.70004@insa-rouen.fr>
+Date: Mon, 01 Feb 2016 10:20:11 +0100
+From: Benjamin COELHO DE MATOS <benjamin.coelho-de-matos@insa-rouen.fr>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.0.1
+MIME-Version: 1.0
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+Subject: Re: CRTQ 26/01/2016
+References: <56AB5CFC.4010000@insa-rouen.fr>
+In-Reply-To: <56AB5CFC.4010000@insa-rouen.fr>
+Content-Type: multipart/alternative;
+ boundary="------------030306050305050305020008"
+
+This is a multi-part message in MIME format.
+--------------030306050305050305020008
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour Pierre,
+
+J'approuve ce jour, le 01/02/2016, le compte-rendu : 
+CRTQ_Q_Unipik_d16-01-26.
+
+Cordialement,
+*Benjamin Coelho de Matos*
+/Ingénieur de la Mission Qualité de l'INSA de ROUEN
+Tuteur Qualité pour les PIC ASI et MRIE
+INSA de Rouen, bureau DA AR 110
+685 Avenue de l'Université BP 08,
+76801 Saint Etienne du Rouvray Cedex
+/ Tel: (33).02.32.95.66.95
+mail: benjamin.coelho-de-matos@insa-rouen.fr
+Le 29/01/2016 13:37, Pierre Porche a écrit :
+> Bonjour,
+>
+> Ci - joint, le compte rendu de la réunion de tutorat pédagogique du 
+> 26/01/2016.
+>
+> Bien respectueusement,
+>
+>
+> Pierre Porche
+> Sous-chef PIC UNIPIK
+> ASI4
+> INSA Rouen
+
+
+--------------030306050305050305020008
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">Bonjour Pierre,<br>
+      <br>
+      J'approuve ce jour, le 01/02/2016, le compte-rendu :
+      CRTQ_Q_Unipik_d16-01-26.<br>
+      <br>
+      Cordialement,<br>
+      <div class="moz-signature"><b>Benjamin Coelho de Matos</b><br>
+        <i>Ingénieur de la Mission Qualité de l'INSA de ROUEN<br>
+          Tuteur Qualité pour les PIC ASI et MRIE<br>
+          INSA de Rouen, bureau DA AR 110<br>
+          685 Avenue de l'Université BP 08,<br>
+          76801 Saint Etienne du Rouvray Cedex<br>
+        </i>
+        Tel: (33).02.32.95.66.95<br>
+        mail: <a class="moz-txt-link-abbreviated" href="mailto:benjamin.coelho-de-matos@insa-rouen.fr">benjamin.coelho-de-matos@insa-rouen.fr</a>
+      </div>
+      Le 29/01/2016 13:37, Pierre Porche a écrit :<br>
+    </div>
+    <blockquote cite="mid:56AB5CFC.4010000@insa-rouen.fr" type="cite">Bonjour,
+      <br>
+      <br>
+      Ci - joint, le compte rendu de la réunion de tutorat pédagogique
+      du 26/01/2016.
+      <br>
+      <br>
+      Bien respectueusement,
+      <br>
+      <br>
+      <br>
+      Pierre Porche
+      <br>
+      Sous-chef PIC UNIPIK
+      <br>
+      ASI4
+      <br>
+      INSA Rouen
+      <br>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------030306050305050305020008--

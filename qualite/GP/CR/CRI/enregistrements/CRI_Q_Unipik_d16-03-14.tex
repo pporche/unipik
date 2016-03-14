@@ -1,0 +1,140 @@
+% version 1.00	Auteur Pierre Porche
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+\definecolor{White}{gray}{1.0}
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion interne}}					%titre
+\begin{document}
+
+14/03/2016			 				%Date 
+\hfill   
+\hfill 	 15:21 - 15:47 				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% Version
+%--- Fin en-t�te et pied de page ---%
+
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 14/03/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui &  & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi &  & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+		
+\newpage		
+
+
+
+\section{\FS}
+\Sergi{} rappelle aux membres de l'équipe que les \FS{} sont à remplir chaque vendredi.
+
+\section{Échéances + livrable}
+Le premier livrable est à rendre cette semaine, de plus, la moitié du semestre est aujourd'hui. \\
+Où en sommes nous? Le \PTI{} ne sera pas modifié et le développement s'y adaptera. Nous n'utiliserons pas PHP Unit pour les tests d'intégration de ce livrable mais nous l'utiliserons pour les tests unitaires. Le \PTU{} sera rédigé cette semaine au fur et à mesure que les tests seront codés. \\
+Le développement est à finir pour mardi 15/03/2016 au soir, les tests sont à coder du mercredi 16/03/2016 au jeudi 17/03/2016. Le \CDR{} est à rédiger avant jeudi 17/03/2016 et il ne faut pas oublier de contacter le client pour lui rappeler que la phase de livraison approche. \\
+Il serait souhaitable de se renseigner auprès de \nomTuteurPedago{} pour savoir ce que nous livrons.
+
+\section{Équipes Front End / Back End}
+La séparation de l'équipe sur le front end et le back end se fait de la manière suivante : \\
+	\begin{tabular}{| p{5cm} | p{5cm} |}
+		\hline
+		\rowcolor{Gray}
+		Front End & Back End		 \\
+		\hline
+		\Matthieu & \Florian \\
+		\Mathieu & \Kafui \\
+		\Julie & \Michel \\
+		 & \Melissa \\
+		\hline
+	\end{tabular}
+
+
+\section{Formations}
+Il y aura deux formations pour Symfony, une pour chaque équipe (FrontEnd/BackEnd, voir tableau ci-dessus). Une formation BootStrap et IHM Design pour l'équipe FrontEnd sont à prévoir, de même, tout le monde sera formé aux tests unitaires sur PHP Unit. La moitié de chaque équipe sera formé sur les tests d'intégration sur PHP Unit. Nou pouvons récapituler les formations dans ce tableau : \\
+\begin{tabular}{| p{5cm} | p{5cm} |}
+		\hline
+		\rowcolor{Gray}
+		Formation & Formés		 \\
+		\hline
+		Symfony pour Front End & \Matthieu, \Mathieu, \Julie \\ \hline
+		Symfony pour Back End & \Kafui, \Florian, \Michel, \Melissa \\ \hline
+		BootStrap & \Matthieu, \Mathieu, \Julie \\ \hline
+		PHP Unit Tests Unitaires & Tout le monde \\ \hline
+		PHP Unit Tests d'Intégration & \Michel, \Florian, \Kafui, \Matthieu \\ \hline
+		IHM Design & \Matthieu, \Mathieu, \Julie \\ \hline
+	\end{tabular}
+
+
+\section{Analyse des risques et opportunités}
+Après revue des risques et opportunités, nous avons décidé d'effectuer les changements suivants :
+\begin{itemize}
+\item La FDR 002 passe à une probabilité de 1 ;
+\item La FDR 005 passe à une gravité de 4 ;
+\item La FDR 006 passe à une probabilité de 2 ;
+\item Il faut clôturer la FDR 011 ;
+\item La FDR 012 passe à une probabilité de 2 ;
+\item La FDR 013 passe à une gravité de 4 ;
+\item La FDO 001 passe à une probabilité de 2 ;
+\item La FDO 002 passe à une probabilité de 1 ;
+\item La FDO 003 passe à une probabilité de 2 ;
+\item La FDO 004 passe à une probabilité 4 ;
+\item La FDO 005 passe à une probabilité 2 ;
+\item La FDO 006 passe à une probabilité de 4 et son nouveau pilote est \Michel ;
+\item Il faut clôturer la FDO 007 ;
+
+
+\item Ajouter un risque : "Le serveur n'implémente pas PostgreSQL ni PostGis" dont le pilote est \Sergi.
+\end{itemize}
+
+FDR 004 Julie
+FDR008
+
+
+
+
+%--- fin de réunion ---%
+
+
+\end{document}
+
+
+
+
+
+
+

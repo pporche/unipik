@@ -5,11 +5,12 @@ namespace Unipik\ArchitectureBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Unipik\ArchitectureBundle\Entity\Volunteer;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Unipik\ArchitectureBundle\Form\VolunteerType;
 
+//Contrôleur en charge de la gestion des managers
 class VolunteerController extends Controller {
 
+    // Permet de récupérer tout les volontaires
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
         $volunteersRepository = $em->getRepository('ArchitectureBundle:Volunteer');
@@ -18,10 +19,12 @@ class VolunteerController extends Controller {
         return $this->render('ArchitectureBundle:Volunteer:index.html.twig', array('volunteers'=>$volunteers));
     }
 
+    // Permet d'ajouter un volontaire
     public function addAction(Request $request) {
 
         //Création d'un objet Volunteer (Un bénévole)
         $volunteer = new Volunteer();
+
         $form =  $this->createForm(VolunteerType::class, $volunteer);
         $form->handleRequest($request);
 
@@ -43,4 +46,15 @@ class VolunteerController extends Controller {
             'form' => $form->createView(),
         ));
     }
+
+    // Permet de détailler un volontaire en le récupérant
+    public function viewAction(Request $request){
+
+    }
+
+    //Permet de supprimer un volontaire en le récupérant
+    public function deleteAction(Request $request){
+
+    }
+
 }

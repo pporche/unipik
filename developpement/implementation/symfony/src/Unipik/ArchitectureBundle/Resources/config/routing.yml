@@ -36,6 +36,11 @@ architecture_school_root:
     defaults:
         _controller: ArchitectureBundle:School:index
 
+architecture_school_add:
+    path:     /etablissement/ajouter
+    defaults:
+        _controller: ArchitectureBundle:School:index
+
 architecture_school_homepage:
     path:     /etablissement/accueil
     defaults:

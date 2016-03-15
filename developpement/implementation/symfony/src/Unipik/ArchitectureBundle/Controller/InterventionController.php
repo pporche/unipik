@@ -62,9 +62,9 @@ class InterventionController extends Controller {
             ->getRepository('ArchitectureBundle:Intervention')
         ;
 
-        $volunteer = $repository->find($id);
+        $intervention= $repository->find($id);
 
-        if($volunteer == null)
+        if($intervention == null)
             throw new NotFoundHttpException("L'intervention d'id ".$id." n'existe pas.");
 
         return $this->render('ArchitectureBundle:Intervention:view.html.twig', array('intervention' => $intervention));

@@ -31,13 +31,6 @@ class School
     /**
      * @var int
      *
-     * @ORM\Column(name="idEtablissement", type="integer", unique=true)
-     */
-    private $idEtablissement;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="nbEleve", type="integer")
      */
     private $nbEleve;
@@ -89,30 +82,6 @@ class School
     public function getNom()
     {
         return $this->nom;
-    }
-
-    /**
-     * Set idEtablissement
-     *
-     * @param integer $idEtablissement
-     *
-     * @return School
-     */
-    public function setIdEtablissement($idEtablissement)
-    {
-        $this->idEtablissement = $idEtablissement;
-
-        return $this;
-    }
-
-    /**
-     * Get idEtablissement
-     *
-     * @return int
-     */
-    public function getIdEtablissement()
-    {
-        return $this->idEtablissement;
     }
 
     /**

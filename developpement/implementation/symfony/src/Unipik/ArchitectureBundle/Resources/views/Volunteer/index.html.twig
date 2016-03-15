@@ -32,8 +32,8 @@
                 <td>{{ volunteer.email }}</td>
                 <td>{{ volunteer.telFixe }}</td>
                 <td>{{ volunteer.telPortable }}</td>
-                <td>{{ path('architecture_volunteer_view') ~ '/' ~ volunteer.id }}</td>
-                <td>{{ path('architecture_volunteer_delete') ~ '/' ~ volunteer.id }}</td>
+                <td>{{ path('architecture_volunteer_view', {id: volunteer.id}) }}</td>
+                <td>{{ path('architecture_volunteer_delete', {id: volunteer.id}) }}</td>
 
             </tr>
         {% endfor %}

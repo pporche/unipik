@@ -15,9 +15,6 @@
             <th>#</th>
             <th>Nom</th>
             <th>Prenom</th>
-            <th>Email</th>
-            <th>Téléphone Fixe</th>
-            <th>Téléphone Portable</th>
             <th>Voir détails</th>
             <th>Supprimer</th>
         </tr>
@@ -29,10 +26,7 @@
                 <td>{{ loop.index }}</td>
                 <td>{{ volunteer.nom }}</td>
                 <td>{{ volunteer.prenom }}</td>
-                <td>{{ volunteer.email }}</td>
-                <td>{{ volunteer.telFixe }}</td>
-                <td>{{ volunteer.telPortable }}</td>
-                <td><a href="{{ path('architecture_volunteer_view', {id: volunteer.id}) }}" class="btn btn-primary">voir détails</a></td>
+                <td><a href="{{ path('architecture_volunteer_view', {id: volunteer.id}) }}" class="btn btn-primary">Voir détails</a></td>
                 <td><a href="{{ path('architecture_volunteer_delete', {id: volunteer.id}) }}" class="btn btn-danger">Supprimer</a></td>
 
             </tr>

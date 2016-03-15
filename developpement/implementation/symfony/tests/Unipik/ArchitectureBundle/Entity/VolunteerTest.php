@@ -2,67 +2,33 @@
 
 namespace Tests\Unipik\ArchitectureBundle\Entity;
 
+use Symfony\Bundle\SecurityBundle\Tests\Functional\WebTestCase;
 use Unipik\ArchitectureBundle\Entity\Volunteer;
 use Unipik\ArchitectureBundle\Controller\VolunteerController;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class VolunteerTest extends KernelTestCase {
+class VolunteerTest extends \PHPUnit_Framework_TestCase {
 
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $em;
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function setUp()
-    {
-        self::bootKernel();
 
-        $this->em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
+    public function testsetteurEtGetteur() {
+        $volunteer = new Volunteer();
+        $volunteer->setNom('onch');
+        $this->assertEquals($volunteer->getNom(), 'onch');
+
+        $volunteer->setPrenom('tuveuxduponch');
+        $this->assertEquals($volunteer->getPrenom(), 'tuveuxduponch');
+
+        $volunteer->setEmail('onch@tuveuxduponch.com');
+        $this->assertEquals($volunteer->getEmail(), 'onch@tuveuxduponch.com');
+
+        $volunteer->setTelPortable('0102030405');
+        $this->assertEquals($volunteer->getTelPortable(),'0102030405');
+
+        $volunteer->setTelFixe('0102030405');
+        $this->assertEquals($volunteer->getTelFixe(),'0102030405');
     }
 
-    /**
-     * @param $em
-     */
-    public function testLol($em)
-    {
-    	self::bootKernel();
+    public function testBD() {
 
-        $this->em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-
-    	$volunteer = new Volunteer();
-		$volunteer->setPrenom("onch");
-
-		$em->persist($volunteer);
-        $em->flush();
-        $products = $this->em
-            ->getRepository('ArchitectureBundle:Volunteer')
-            ->findOneBy(array('prenom' => 'onch'))
-        ;
-
-        $this->assertCount(1, $products);
-    }
-
-    /**
-     *
-     */
-    public function testPk() {
-        $this->assertTrue(TRUE);
-
-    }
-
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function tearDown() {
-        parent::tearDown();
-        $this->em->close();
     }
 }

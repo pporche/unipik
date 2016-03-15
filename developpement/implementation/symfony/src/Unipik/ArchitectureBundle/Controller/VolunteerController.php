@@ -41,7 +41,7 @@ class VolunteerController extends Controller {
                 'alert'=>'success'
             ));
 
-            return $this->redirectToRoute('architecture_homepage');
+            return $this->redirectToRoute('architecture_volunteer_homepage');
         }
         return $this->render('ArchitectureBundle:Volunteer:add.html.twig', array(
             'form' => $form->createView(),
@@ -49,7 +49,7 @@ class VolunteerController extends Controller {
     }
 
     // Permet de détailler un volontaire en le récupérant
-    public function viewAction(Request $request, $id){
+    public function viewAction($id){
         $repository = $this->getDoctrine()
             ->getManager()
             ->getRepository('ArchitectureBundle:Volunteer')
@@ -64,8 +64,29 @@ class VolunteerController extends Controller {
     }
 
     //Permet de supprimer un volontaire en le récupérant
-    public function deleteAction(Request $request){
+    public function deleteAction(Request $request, $id){
+        $em = $this->getDoctrine()
+            ->getManager()
+        ;
 
+        $repository = $em->getRepository('ArchitectureBundle:Volunteer');
+
+        $volunteer = $repository->find($id);
+
+        if($volunteer == null)
+            throw new NotFoundHttpException("Le bénévole d'id ".$id." n'existe pas.");
+
+        $em->remove($volunteer);
+        $em->flush();
+
+        $session =$request->getSession();
+        $session->getFlashBag()->add('notice', array(
+            'title'=>'Félicitation',
+            'message'=>'Bénévole bien supprimé.',
+            'alert'=>'success'
+        ));
+
+        return $this->redirectToRoute('architecture_volunteer_homepage');
     }
 
 }

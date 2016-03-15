@@ -39,12 +39,22 @@ architecture_school_root:
 architecture_school_add:
     path:     /etablissement/ajouter
     defaults:
-        _controller: ArchitectureBundle:School:index
+        _controller: ArchitectureBundle:School:add
 
 architecture_school_homepage:
     path:     /etablissement/accueil
     defaults:
         _controller: ArchitectureBundle:School:index
+
+architecture_school_view:
+    path: /etablissement/details/{id}
+    defaults:
+        _controller: ArchitectureBundle:School:view
+
+architecture_school_delete:
+    path: /etablissement/supprimer/{id}
+    defaults:
+        _controller: ArchitectureBundle:School:delete
 
 #Routes pour les interventions.
 architecture_intervention_homepage:

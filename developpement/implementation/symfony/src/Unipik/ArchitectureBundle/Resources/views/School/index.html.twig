@@ -13,8 +13,8 @@
         <thead>
         <tr>
             <th>#</th>
+            <th>Ville</th>
             <th>Nom</th>
-            <th>Prenom</th>
             <th>Voir détails</th>
             <th>Supprimer</th>
         </tr>
@@ -25,7 +25,7 @@
             <tr>
                 <td>{{ loop.index }}</td>
                 <td>{{ school.nom }}</td>
-                <td>{{ school.prenom }}</td>
+                <td>{{ school.ville }}</td>
                 <td><a href="{{ path('architecture_school_view', {id: school.id}) }}" class="btn btn-primary">Voir détails</a></td>
                 <td><a href="{{ path('architecture_school_delete', {id: school.id}) }}" class="btn btn-danger">Supprimer</a></td>
 

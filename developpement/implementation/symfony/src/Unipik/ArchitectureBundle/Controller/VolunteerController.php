@@ -14,8 +14,8 @@ class VolunteerController extends Controller {
     // Permet de récupérer tout les volontaires
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
-        $volunteersRepository = $em->getRepository('ArchitectureBundle:Volunteer');
-        $volunteers=$volunteersRepository->findAll();
+        $volunteerRepository = $em->getRepository('ArchitectureBundle:Volunteer');
+        $volunteers=$volunteerRepository->findAll();
 
         return $this->render('ArchitectureBundle:Volunteer:index.html.twig', array('volunteers'=>$volunteers));
     }

@@ -1,4 +1,4 @@
-#chemin générale pour l'accueil
+#Routes générales pour l'accueil.
 architecture_root:
     path: /
     defaults:
@@ -9,7 +9,7 @@ architecture_homepage:
     defaults:
         _controller: ArchitectureBundle:Home:index
 
-#chemin pour les volontaires
+#Routes pour les bénévoles.
 architecture_volunteer_homepage:
     path:     /benevole/accueil
     defaults:
@@ -30,7 +30,7 @@ architecture_volunteer_delete:
     defaults:
         _controller: ArchitectureBundle:Volunteer:delete
 
-#chemin pour les écoles
+#Routes pour les établissements.
 architecture_school_root:
     path:     /etablissement/
     defaults:
@@ -41,3 +41,23 @@ architecture_school_homepage:
     defaults:
         _controller: ArchitectureBundle:School:index
 
+#Routes pour les interventions.
+architecture_intervention_homepage:
+    path:     /intervention/accueil
+    defaults:
+        _controller: ArchitectureBundle:Intervention:index
+
+architecture_intervention_add:
+    path: /intervention/ajouter
+    defaults:
+        _controller: ArchitectureBundle:Intervention:add
+
+architecture_intervention_view:
+    path: /intervention/details/{id}
+    defaults:
+        _controller: ArchitectureBundle:Intervention:view
+
+architecture_intervention_delete:
+    path: /intervention/supprimer/{id}
+    defaults:
+        _controller: ArchitectureBundle:Intervention:delete

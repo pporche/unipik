@@ -21,8 +21,8 @@ class SchoolController extends Controller {
     public function indexAction() {
 
         $em = $this->getDoctrine()->getManager();
-        $schoolsRepository = $em->getRepository('ArchitectureBundle:School');
-        $schools=$schoolsRepository->findAll();
+        $schoolRepository = $em->getRepository('ArchitectureBundle:School');
+        $schools=$schoolRepository->findAll();
         return $this->render('ArchitectureBundle:School:index.html.twig', array('schools'=>$schools));
     }
 
@@ -30,13 +30,13 @@ class SchoolController extends Controller {
     public function addAction(Request $request) {
 
         //On crée un objet School
-        $School = new School();
+        $school = new School();
 
-        $form = $this->createForm(SchoolType::class,$School);
+        $form = $this->createForm(SchoolType::class,$school);
         $form->handleRequest($request);
         if($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($School);
+            $em->persist($school);
             $em->flush();
 
             $session =$request->getSession();
@@ -47,13 +47,13 @@ class SchoolController extends Controller {
             ));
 
 
-            return $this->redirectToRoute('architecture_homepage');
+            return $this->redirectToRoute('architecture_school_homepage');
         }
 
         return $this->render('ArchitectureBundle:School:add.html.twig', array(
             'form' => $form->createView(),
         ));
-        }
+    }
 
 
 
@@ -68,15 +68,13 @@ class SchoolController extends Controller {
         $school = $repository->find($id);
 
         if($school == null)
-            throw new NotFoundHttpException("L'établissement ayant pour id ".$id." n'existe pas.");
+            throw new NotFoundHttpException("L'établissement d'id ".$id." n'existe pas.");
 
         return $this->render('ArchitectureBundle:School:view.html.twig', array('school' => $school));
-
-
     }
 
     //Permet de supprimer un établissement en le récupérant
-    public function deleteAction(Request $request,$id){
+    public function deleteAction(Request $request, $id){
 
         $em = $this->getDoctrine()
             ->getManager()
@@ -87,7 +85,7 @@ class SchoolController extends Controller {
         $school = $repository->find($id);
 
         if($school == null)
-            throw new NotFoundHttpException("L'établissement ayant pour id ".$id." n'existe pas.");
+            throw new NotFoundHttpException("L'établissement d'id ".$id." n'existe pas.");
 
         $em->remove($school);
         $em->flush();
@@ -95,7 +93,7 @@ class SchoolController extends Controller {
         $session =$request->getSession();
         $session->getFlashBag()->add('notice', array(
             'title'=>'Félicitation',
-            'message'=>'Bénévole bien supprimé.',
+            'message'=>'Etablissement bien supprimé.',
             'alert'=>'success'
         ));
 

@@ -1,0 +1,13 @@
+{% extends "ArchitectureBundle:Hello:layout.html.twig" %}
+
+{% block title %}
+    Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <h2>Hello {{ name.name }}!</h2>
+
+    {{ form(form) }}
+
+{% endblock %}

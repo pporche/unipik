@@ -1,0 +1,28 @@
+{% extends "ArchitectureBundle:Volunteer:layout.html.twig" %}
+
+{% block title %}
+    Détails - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <h2>Détails bénévole</h2>
+
+    <table class="table table-striped table-hover ">
+        <tbody>
+            <tr><td>Nom</td><td>{{ volunteer.nom }}</td></tr>
+            <tr><td>Prenom</td><td>{{ volunteer.prenom }}</td></tr>
+            <tr><td>Email</td><td>{{ volunteer.email }}</td></tr>
+            <tr><td>Téléphone Fixe</td><td>{{ volunteer.telFixe }}</td></tr>
+            <tr><td>Téléphone Portable</td><td>{{ volunteer.telPortable }}</td></tr>
+            <tr>
+                <td>{{ path('architecture_volunteer_homepage') }}</td>
+                <td>{{ path('architecture_volunteer_delete', {'ID': volunteer.id}) }}</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+{% endblock %}

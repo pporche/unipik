@@ -3,6 +3,7 @@
 namespace Unipik\ArchitectureBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Unipik\ArchitectureBundle\Entity\Volunteer;
 use Symfony\Component\HttpFoundation\Request;
 use Unipik\ArchitectureBundle\Form\VolunteerType;
@@ -49,7 +50,17 @@ class VolunteerController extends Controller {
 
     // Permet de détailler un volontaire en le récupérant
     public function viewAction(Request $request, $id){
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('ArchitectureBundle:Volunteer')
+        ;
 
+        $volunteer = $repository->find($id);
+
+        if($volunteer == null)
+            throw new NotFoundHttpException("Le bénévole d'id ".$id." n'existe pas.");
+
+        return $this->render('ArchitectureBundle:Volunteer:view.html.twig', array('volunteer' => $volunteer));
     }
 
     //Permet de supprimer un volontaire en le récupérant

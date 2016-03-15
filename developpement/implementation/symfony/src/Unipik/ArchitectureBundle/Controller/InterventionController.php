@@ -9,7 +9,6 @@
 namespace Unipik\ArchitectureBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use Unipik\ArchitectureBundle\Entity\Intervention;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Unipik\ArchitectureBundle\Entity\Intervention;

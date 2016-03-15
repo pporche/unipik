@@ -9,6 +9,17 @@ architecture_homepage:
     defaults:
         _controller: ArchitectureBundle:Home:index
 
+#Routes pour les hello worlds
+architecture_helloUnicef:
+    path: /hello
+    defaults:
+        _controller: ArchitectureBundle:Hello:helloUnicef
+
+architecture_helloName:
+    path: /hello/name
+    defaults:
+        _controller: ArchitectureBundle:Hello:helloName
+
 #Routes pour les bénévoles.
 architecture_volunteer_homepage:
     path:     /benevole/accueil

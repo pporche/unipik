@@ -2,13 +2,12 @@
 architecture_root:
     path: /
     defaults:
-        _controller: ArchitectureBundle:Accueil:index
+        _controller: ArchitectureBundle:Home:index
 
-architecture_accueil:
+architecture_homepage:
     path: /accueil
     defaults:
-        _controller: ArchitectureBundle:Volunteer:index
-
+        _controller: ArchitectureBundle:Home:index
 
 #chemin pour les volontaires
 architecture_volunteer_homepage:
@@ -17,19 +16,19 @@ architecture_volunteer_homepage:
         _controller: ArchitectureBundle:Volunteer:index
 
 architecture_volunteer_add:
-  path: /benevole/ajouter
-  defaults:
-      _controller: ArchitectureBundle:Volunteer:add
+    path: /benevole/ajouter
+    defaults:
+        _controller: ArchitectureBundle:Volunteer:add
 
 architecture_volunteer_view:
-  path: /benevole/details/{id}
-  defaults:
-      _controller: ArchitectureBundle:Volunteer:view
+    path: /benevole/details/{id}
+    defaults:
+        _controller: ArchitectureBundle:Volunteer:view
 
 architecture_volunteer_delete:
-  path: /benevole/supprimer/{id}
-  defaults:
-      _controller: ArchitectureBundle:Volunteer:delete
+    path: /benevole/supprimer/{id}
+    defaults:
+        _controller: ArchitectureBundle:Volunteer:delete
 
 #chemin pour les écoles
 architecture_school_root:

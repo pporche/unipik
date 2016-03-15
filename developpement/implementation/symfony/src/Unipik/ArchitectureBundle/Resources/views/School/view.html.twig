@@ -1,4 +1,4 @@
-{% extends "ArchitectureBundle:Volunteer:layout.html.twig" %}
+{% extends "ArchitectureBundle:School:layout.html.twig" %}
 
 {% block title %}
     Détails - {{ parent() }}
@@ -6,18 +6,18 @@
 
 {% block body %}
 
-    <h2>Détails bénévole</h2>
+    <h2>Détails établissement</h2>
 
     <table class="table table-striped table-hover ">
         <tbody>
-            <tr><td>Nom</td><td>{{ volunteer.nom }}</td></tr>
-            <tr><td>Prenom</td><td>{{ volunteer.prenom }}</td></tr>
-            <tr><td>Email</td><td>{{ volunteer.email }}</td></tr>
-            <tr><td>Téléphone Fixe</td><td>{{ volunteer.telFixe }}</td></tr>
-            <tr><td>Téléphone Portable</td><td>{{ volunteer.telPortable }}</td></tr>
+            <tr><td>Nom</td><td>{{ school.nom }}</td></tr>
+            <tr><td>Prenom</td><td>{{ school.prenom }}</td></tr>
+            <tr><td>Email</td><td>{{ school.email }}</td></tr>
+            <tr><td>Téléphone Fixe</td><td>{{ school.telFixe }}</td></tr>
+            <tr><td>Téléphone Portable</td><td>{{ school.telPortable }}</td></tr>
             <tr>
-                <td><a href="{{ path('architecture_volunteer_homepage') }}" class="btn btn-primary">retour à l'accueil</a></td>
-                <td><a href="{{ path('architecture_volunteer_delete', {id: volunteer.id}) }}" class="btn btn-danger">Supprimer le Bénévole</a></td>
+                <td><a href="{{ path('architecture_school_homepage') }}" class="btn btn-primary">retour à l'accueil</a></td>
+                <td><a href="{{ path('architecture_school_delete', {id: school.id}) }}" class="btn btn-danger">Supprimer l'établissement</a></td>
             </tr>
 
         </tbody>

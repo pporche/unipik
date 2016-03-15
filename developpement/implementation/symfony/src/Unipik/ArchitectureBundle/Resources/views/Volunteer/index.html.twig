@@ -32,8 +32,8 @@
                 <td>{{ volunteer.email }}</td>
                 <td>{{ volunteer.telFixe }}</td>
                 <td>{{ volunteer.telPortable }}</td>
-                <td>{{ path('architecture_volunteer_view', {id: volunteer.id}) }}</td>
-                <td>{{ path('architecture_volunteer_delete', {id: volunteer.id}) }}</td>
+                <td><a href="{{ path('architecture_volunteer_view', {id: volunteer.id}) }}" class="btn btn-primary">voir détails</a></td>
+                <td><a href="{{ path('architecture_volunteer_delete', {id: volunteer.id}) }}" class="btn btn-danger">Supprimer</a></td>
 
             </tr>
         {% endfor %}

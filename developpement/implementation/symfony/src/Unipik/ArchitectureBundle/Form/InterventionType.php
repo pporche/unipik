@@ -15,11 +15,12 @@ class InterventionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('materielDispo')
-            ->add('remarques')
-            ->add('lieu')
-            ->add('nbPersonnes')
-            ->add('moment')
+            ->add('materielDispo', 'Symfony\Component\Form\Extension\Core\Type\TextType')
+            ->add('remarques', 'Symfony\Component\Form\Extension\Core\Type\TextType')
+            ->add('lieu', 'Symfony\Component\Form\Extension\Core\Type\TextType')
+            ->add('nbPersonnes', 'Symfony\Component\Form\Extension\Core\Type\IntegerType')
+            ->add('moment', 'Symfony\Component\Form\Extension\Core\Type\TextType')
+            ->add('save', 'Symfony\Component\Form\Extension\Core\Type\SubmitType')
         ;
     }
     

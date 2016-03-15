@@ -16,8 +16,8 @@
             <tr><td>Téléphone Fixe</td><td>{{ volunteer.telFixe }}</td></tr>
             <tr><td>Téléphone Portable</td><td>{{ volunteer.telPortable }}</td></tr>
             <tr>
-                <td>{{ path('architecture_volunteer_homepage') }}</td>
-                <td>{{ path('architecture_volunteer_delete', {'id': volunteer.id}) }}</td>
+                <td><a href="{{ path('architecture_volunteer_homepage') }}" class="btn btn-primary">retour à l'accueil</a></td>
+                <td><a href="{{ path('architecture_volunteer_delete', {id: volunteer.id}) }}" class="btn btn-danger">Supprimer le Bénévole</a></td>
             </tr>
 
         </tbody>

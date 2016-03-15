@@ -48,7 +48,7 @@ class VolunteerController extends Controller {
     }
 
     // Permet de détailler un volontaire en le récupérant
-    public function viewAction(Request $request){
+    public function viewAction(Request $request, $id){
 
     }
 

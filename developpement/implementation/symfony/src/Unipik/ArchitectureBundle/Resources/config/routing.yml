@@ -14,16 +14,11 @@ architecture_volunteer_add:
       _controller: ArchitectureBundle:Volunteer:add
 
 architecture_volunteer_view:
-  path: /benevole/{id}
+  path: /benevole/details/{id}
   defaults:
       _controller: ArchitectureBundle:Volunteer:view
-      id: 1
-  requirements:
-      id: \d
 
 architecture_volunteer_delete:
   path: /benevole/supprimer/{id}
   defaults:
       _controller: ArchitectureBundle:Volunteer:delete
-  requirements:
-      id: \d

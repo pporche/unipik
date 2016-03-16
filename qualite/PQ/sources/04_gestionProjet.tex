@@ -22,7 +22,7 @@ Nous étudierons tout d'abord ces trois sous-processus, puis nous présenterons 
 
 \subsection{Analyse du projet}
 \label{analyse}
-Le but de l'analyse est de préparer et de faciliter la modélisation. Nous utiliserons pour cela la structure WBS qui permet de décomposer chaque activité en allant du plus général au particulier. Chaque feuille de la WBS représente une activité. Les WBS proviennent du besoin du client exprimé dans le Cahier des charges et au début de chaque sprint. \\
+Le but de l'analyse est de préparer et de faciliter la modélisation. Nous utiliserons pour cela la structure WBS qui permet de décomposer chaque activité en allant du plus général au particulier. Chaque feuille de la WBS représente une activité. Les WBS proviennent du besoin du client exprimé dans le Cahier des charges et au début de chaque réalisation de lot. \\
 
 Dans le cadre de la planification, nous pourrons également utiliser d’autres structures hiérarchiques comme la \FBSCourt (\FBS), l’ OBS (Object \BS) ou encore la \RBSCourt (\RBS). L’analyse du projet va nous permettre de bien préparer l’étape suivante, c’est-à-dire la modélisation.
 
@@ -32,7 +32,7 @@ Dans le cadre de la planification, nous pourrons également utiliser d’autres 
 
 Au cours de cette modélisation, nous allons reprendre le WBS réalisé lors de l’analyse du projet et nous allons décomposer chaque activité en une ou plusieurs tâches de manière à établir une liste des différentes tâches. Ensuite nous allons définir chaque tâche en précisant sa durée, sa charge, les effectifs en ressources nécessaires et les prédécesseurs de cette tâche. Cette étape va nous aider à préparer l’ordonnancement des tâches.\\
 
-Chaque attribution de tâche se fera via PGPic et/ou sur le kanbanboard utilisé par les membres de l'équipe, notamment pour les tâches de réalisation d’un Sprint. Les tâches seront attribuées aux différents membres de l’équipe PIC en prenant en compte des compétences et des disponibilités de chacun.
+Chaque attribution de tâche se fera via PGPic et/ou sur le kanbanboard utilisé par les membres de l'équipe, notamment pour les tâches de réalisation d’un livrable. Les tâches seront attribuées aux différents membres de l’équipe PIC en prenant en compte des compétences et des disponibilités de chacun.
 
 \subsection{Ordonnancement}
 \label{ordonnancement}
@@ -54,18 +54,16 @@ Comme dit ci-dessus, le planning du \PICCourt est fait par le \CP{}  et le \CPA{
 Durant le premier semestre, nous disposons de 12 semaines de \PICCourt. Le planning global sera donc le suivant : 
 \begin{itemize}
 \item Installation, initialisation des procédures de qualité, prise en main des technologies internes (1 semaine);
-\item Premier sprint: réalisation du 1er lot (4 semaines);
-\item Deuxième sprint (4 semaines);
-\item Troisième sprint: finalisation du 2ème lot (3 semaines);
+\item Premier cycle: réalisation du 1er lot (6 semaines);
+\item Deuxième cycle: réalisation du 2ème lot (5 semaines);
 \end{itemize}
 
 \subsection*{Semestre 2 : Septembre 2016 - Janvier 2017}
 
 Durant le second semestre, nous disposons de 14 semaines de \PICCourt. Le planning global sera donc le suivant : 
 \begin{itemize}
-\item Quatrième sprint: réalisation du 3ème lot (6 semaines);
-\item Cinquième sprint (4 semaines);
-\item Sixième sprint: finalisation du 4ème lot (4 semaines);\\
+\item Troisième cycle: réalisation du 3ème lot (6 semaines);
+\item Quatrième cycle: réalisation du 4ème lot (8 semaines);\\
 \end{itemize}
 
 Ce planning est théorique et pourra être modifié à l'avenir. 
@@ -83,9 +81,9 @@ Il est disponible à l’adresse \url{https://pgpic.insa-rouen.fr}. Il possède 
 \begin{itemize}
 \item \textbf{Créer et attribuer les tâches}. Le \CP{} définit les tâches pour chaque membre du \PICCourt, et ceux-ci sélectionnent la tâche sur laquelle ils sont en train de travailler. Le \CP{} peut donc voir le temps passé par les membres de son équipe sur chaque tâche, étant donné que PGPic a également un outil de comptage du temps de travail installé sur les machines de la salle \PICCourt ,
 \item \textbf{Organiser les tâches}. Le \CP{} peut agencer les tâches en visualisant un diagramme GANTT. Il est possible de retrouver facilement le diagramme GANTT d'une semaine particulière car celui-ci est sauvegardé toutes les semaines, 
-\item \textbf{Gérer le suivi des tâches}. Chaque membre peut consulter la fiche de tâche qui le concerne. Ces fiches évoluent chaque jour et sont enregistrées,
+\item \textbf{Gérer le suivi des tâches}. Chaque membre peut consulter les tâches qui lui sont attribuées,
 \item \textbf{Voir le temps de travail} sur la semaine de chaque membre du \PICCourt. Tous les membres doivent se connecter en arrivant en salle \PICCourt à PGPic, et rester connectés tout au long de leur travail. En fin de semaine, le \CP{} peut donc vérifier si chaque membre du PIC a bien réalisé le nombre d’heures requis,
-\item \textbf{Voir le calendrier}. Le Chef PIC peut y ajouter les dates des réunions, audits, fins de sprint, livraisons afin que chaque membre du PIC ait une vision globale des dates limites du semestre. \\ 
+\item \textbf{Voir le calendrier}. Le Chef PIC peut y ajouter les dates des réunions, audits, fins de cycle, livraisons afin que chaque membre du PIC ait une vision globale des dates limites du semestre. \\ 
 \end{itemize}
 
 En revanche, les réclamations du client doivent être prises en compte et PGPic ne permet pas ce suivi. Un autre outil de gestion devra donc être utilisé en parallèle. 
@@ -113,9 +111,9 @@ Dans cette partie, nous allons aborder le processus de \textit{Suivi du projet} 
 
 Nous mettons en place un suivi hebdomadaire ayant pour objectif de mesurer l'avancement du \PICCourt. Nous organiserons entre autre des réunions hebdomadaires qui permettront d'établir et de discuter du planning à venir. Lors de ces réunions, le but est de déclarer et analyser les risques potentiels. Avant chacune de ces réunions, chaque membre du PIC doit décrire l'avancement des tâches qui lui sont attribuées.\\
 
-À la suite de ces réunions, le \CP{} distribue des éventuelles fiches de tâches modifiées et établit un diagramme de GANTT des tâches futures pour l'ensemble de l'équipe. Un compte rendu sera rédigé à chaque réunion et mis à disposition de l'équipe. \\
+À la suite de ces réunions, le \CP{} distribue des tâches à chacun et établit un diagramme de GANTT des tâches futures pour l'ensemble de l'équipe. Un compte rendu sera rédigé à chaque réunion et mis à disposition de l'équipe. \\
 
-De plus, des \textit{daily Scrum} sont mis en place les jours où nous sommes tous présents afin de coordonner les tâches en cours. Le suivi des tâches globales sera fait à l’aide de PGPic.
+De plus, des réunions non-formelles sont mis en place les jours où nous sommes tous présents afin de coordonner les tâches en cours. Le suivi des tâches globales sera fait à l’aide de PGPic.
 
 \subsection{Communication}
 \label{communication}
@@ -160,19 +158,14 @@ le client ou le \CP. L’échange d’e-mails est mené depuis l’adresse mise 
 La communication interne comprend :
 \begin{itemize}
 \item Des réunions hebdomadaires,
-\item Des \textit{Daily Scrum},
+\item Des réunions informelles quotidiennes,
 \item Des courriels,
 \item Groupe Facebook privé. \\
 \end{itemize}
 
 Les réunions hebdomadaires auront lieu avec l’équipe au complet. Cette réunion aura pour but de traiter de l’avancement du projet ainsi que de la gestion des risques. Lors de cette réunion seront aussi inspectés les indicateurs de Qualité si ceux-ci sont disponibles au moment de la réunion. De plus, c’est lors de cette réunion que se fera l’attribution des tâches pour la semaine suivante. Avant chaque réunion, un secrétaire est désigné afin de prendre des notes et de rédiger par la suite un compte-rendu qui sera archivé sous forme numérique.\\
 
-Les \textit{Daily Scrum} sont des petites réunions quotidiennes, d’une durée de 15 minutes maximum, s’effectuant debout, le matin. Lors de ces réunions, chaque membre de l’équipe prendra la parole à tour de rôle pour répondre aux questions suivantes :
-\begin{itemize}
-\item Qu’as-tu fait hier ?
-\item Quelles difficultés as-tu rencontré ? Et inversement, de quoi es-tu fier ?
-\item Que vas-tu faire aujourd’hui ?
-\end{itemize}
+Les réunions informelles sont des petites réunions quotidiennes, d’une durée variable, s’effectuant debout. \\
 Cette réunion permet d’avoir un suivi précis de l’avancement du projet, de soulever d'éventuels problèmes, et d’aider chaque membres à prendre du recul sur les tâches qu’il effectue.\\
 
 Les courriels et le groupe Facebook sont utilisés pour une communication moins formelle. 

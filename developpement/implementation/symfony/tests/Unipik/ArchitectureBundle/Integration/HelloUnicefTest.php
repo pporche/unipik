@@ -12,7 +12,7 @@ class HelloUnicefTest extends WebTestCase {
 
         $crawler = $client->request('GET', '/unicef/accueil');
 
-        $link = $crawler->filter('a[href*=/]')
+        $link = $crawler->filter('a[href*=/]');
 
 
 

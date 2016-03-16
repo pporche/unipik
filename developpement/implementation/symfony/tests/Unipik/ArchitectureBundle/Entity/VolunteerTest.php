@@ -9,12 +9,7 @@ use Unipik\ArchitectureBundle\Controller\VolunteerController;
 
 class VolunteerTest extends KernelTestCase {
 
-
-
-
-
-
-    public function testCreationDUnVolontaireEtAjoutDansLaBD() {
+    public function volunteerTest() {
 
         self::bootKernel();
 
@@ -22,45 +17,32 @@ class VolunteerTest extends KernelTestCase {
             ->get('doctrine')
             ->getManager();
 
+        // Création du bénévole.
         $volunteer = new Volunteer();
-        $volunteer->setNom('onch');
-        $volunteer->setPrenom('tuveuxduponch');
-        $volunteer->setEmail('onch@tuVeuxduponch.com');
-        $volunteer->setTelPortable('0102030405');
+        $volunteer->setNom('Dupont');
+        $volunteer->setPrenom('Simone');
+        $volunteer->setEmail('dupont.simone@gmail.com');
+        $volunteer->setTelPortable('0602030405');
         $volunteer->setTelFixe('0102030405');
 
-        $volunteerRepository = $em
-            ->getRepository('ArchitectureBundle:Volunteer')
-        ;
+        // Ajout en BD.
         $em->persist($volunteer);
         $em->flush();
 
-        $bidule = $volunteerRepository->findOneBy(array('nom' => 'onch'));
-        $this->assertEquals($bidule->getNom(),'onch');
-    }
+        // Recupération du repository pour bénévole.
+        $volunteerRepository = $em
+            ->getRepository('ArchitectureBundle:Volunteer')
+        ;
 
+        // On récupère le bénévole en BD.
+        $volunteer = $volunteerRepository->findOneBy(array('email' => 'dupont.simone@gmail.com'));
 
-/*
-    public function testsetteurEtGetteur() {
-        $volunteer = new Volunteer();
-        $volunteer->setNom('onch');
-        $this->assertEquals($volunteer->getNom(), 'onch');
-
-        $volunteer->setPrenom('tuveuxduponch');
-        $this->assertEquals($volunteer->getPrenom(), 'tuveuxduponch');
-
-        $volunteer->setEmail('onch@tuveuxduponch.com');
-        $this->assertEquals($volunteer->getEmail(), 'onch@tuveuxduponch.com');
-
-        $volunteer->setTelPortable('0102030405');
-        $this->assertEquals($volunteer->getTelPortable(),'0102030405');
-
-        $volunteer->setTelFixe('0102030405');
+        $this->assertEquals($volunteer->getNom(),'Dupont');
+        $this->assertEquals($volunteer->getPrenom(),'Simone');
+        $this->assertEquals($volunteer->getTelPortable(),'0602030405');
         $this->assertEquals($volunteer->getTelFixe(),'0102030405');
+
+        $em->remove($volunteer);
+        $em->flush();
     }
-
-*/
-
-
-
 }

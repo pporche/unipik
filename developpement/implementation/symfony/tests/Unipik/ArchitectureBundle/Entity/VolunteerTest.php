@@ -29,6 +29,6 @@ class VolunteerTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testBD() {
-
+        $this->assertTrue(TRUE);
     }
 }

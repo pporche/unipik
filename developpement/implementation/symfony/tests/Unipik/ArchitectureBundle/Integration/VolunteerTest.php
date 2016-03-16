@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class volunteerTest extends WebTestCase {
 
-    public function testLinkFromIndexAction() {
+    public function testLinkFromIndex() {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/accueil');
@@ -23,7 +23,7 @@ class volunteerTest extends WebTestCase {
 
     }
 
-    public function testLinkFromNavbarAction() {
+    public function testLinkFromNavbar() {
         $client = static::createClient();
 
 
@@ -49,7 +49,7 @@ class volunteerTest extends WebTestCase {
 
     }
 
-    public function testLinkFromVolunteerIndexAction() {
+    public function testLinkFromVolunteerIndex() {
         $client = static::createClient();
 
 
@@ -66,7 +66,7 @@ class volunteerTest extends WebTestCase {
 
 
 
-    public function testFormAction() {
+    public function testForm() {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/benevole/ajouter');
@@ -126,7 +126,7 @@ class volunteerTest extends WebTestCase {
 
     }
 
-    public function testAddViewDeleteAction() {
+    public function testAddViewDelete() {
         $client = static::createClient();
 
 

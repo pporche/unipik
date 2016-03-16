@@ -12,12 +12,42 @@ class HelloUnicefTest extends WebTestCase {
 
         $crawler = $client->request('GET', '/unicef/accueil');
 
-        $link = $crawler->filter('a[href*=/]');
+        $link = $crawler->filter('.navbar+div a[href*="/unicef/hello"]')->eq(1)->link();
 
+        $crawler = $client->click($link);
 
+        $this->assertContains(
+            'Hello Unicef !',
+            $client->getResponse()->getContent()
+        );
 
+    }
 
-        //$this->assertTrue(TRUE);
+    public function testLinkFromNavbarAction() {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/unicef/accueil');
+
+        $link = $crawler->filter('.navbar a[href*="/unicef/hello"]')->eq(1)->link();
+
+        $crawler = $client->click($link);
+
+        $this->assertContains(
+            'Hello Unicef !',
+            $client->getResponse()->getContent()
+        );
+
+    }
+
+    public function testHelloUnicefAction() {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/unicef/hello');
+
+        $this->assertContains(
+            'Hello Unicef !',
+            $client->getResponse()->getContent()
+        );
 
     }
 

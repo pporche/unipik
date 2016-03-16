@@ -10,12 +10,12 @@ architecture_homepage:
         _controller: ArchitectureBundle:Home:index
 
 #Routes pour les hello worlds
-architecture_helloUnicef:
+architecture_hello_simple:
     path: /hello
     defaults:
         _controller: ArchitectureBundle:Hello:helloUnicef
 
-architecture_helloName:
+architecture_hello_complex:
     path: /hello/name
     defaults:
         _controller: ArchitectureBundle:Hello:helloName

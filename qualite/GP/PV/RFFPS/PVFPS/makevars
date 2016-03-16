@@ -1,0 +1,8 @@
+# version 1.00, date 15/03/16, auteur Sergi Colomies
+# Définition du nom du document
+NOM_FICHIER=PVFPS_Q_Unipik_d16-03-07
+
+LOCPATH=qualite/GP/PV/RFFPS/PVFPS
+GENPATH=$(shell pwd)/../../../../..
+
+

@@ -1,0 +1,3 @@
+##### version 1.00, date 16/03/16, auteur Pierre Porche #####
+
+Pour modifier le chemin d'archivage de ce git lors de l'éxecution d'un "make archive", veuillez modifier la variable "ARCHIVEPATH" dans le fichier "makevars" que vous trouverez dans le dossier général "pic_unicef/".

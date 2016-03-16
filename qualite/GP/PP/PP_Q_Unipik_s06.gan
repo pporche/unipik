@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Unipik" company="UNICEF" webLink="http://" view-date="2016-03-01" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.7.1" locale="fr">
+<?xml version="1.0" encoding="UTF-8"?><project name="Unipik" company="UNICEF" webLink="http://" view-date="2016-02-23" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.7.1" locale="fr_FR">
     <description><![CDATA[Outil de gestion des interventions externes]]></description>
     <view zooming-state="default:0" id="gantt-chart">
         <field id="tpd3" name="Nom" width="57" order="0"/>
         <field id="tpd4" name="Date de début" width="21" order="1"/>
         <field id="tpd5" name="Date de fin" width="21" order="2"/>
-        <timeline><![CDATA[21,19,26,17,12,15]]></timeline>
+        <timeline><![CDATA[17,15,26,21,19,12]]></timeline>
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="50" order="0"/>

@@ -3,13 +3,11 @@
 namespace Tests\Unipik\ArchitectureBundle\Entity;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Bundle\SecurityBundle\Tests\Functional\WebTestCase;
 use Unipik\ArchitectureBundle\Entity\Volunteer;
-use Unipik\ArchitectureBundle\Controller\VolunteerController;
 
 class VolunteerTest extends KernelTestCase {
 
-    public function volunteerTest() {
+    public function testVolunteer() {
 
         self::bootKernel();
 

@@ -222,7 +222,7 @@ class volunteerTest extends WebTestCase {
         );
 
         $this->assertContains(
-            'retour à la liste',
+            'Retour à la liste',
             $client->getResponse()->getContent()
         );
 

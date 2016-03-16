@@ -60,7 +60,7 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     	\hline   
     	\hspace{2cm} Commission de Traitement des Faits Techniques & CTFT & n,d\\
     	\hline
-    	\hspace{2cm} Fiche de Fait Technique & FFT & n,d\\
+    	\hspace{2cm} Fiche de Fait Technique & FFT & c,n,d\\
     	\hline
     	\hspace{2cm} Fiche d'Ordre de Correction & FOC & n,d\\
     \hline
@@ -144,17 +144,7 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     \hline
     \hspace{2cm} Revue Formelle de Fin de Phase de Spécifications & RFFPS & -\\
     \hline
-    \hspace{3cm} Procès-Verbal de Document de Spécifications Externes & PVDSE & d\\
-    \hline
-    \hspace{3cm} Procès-Verbal de Document de Spécifications Internes & PVDSI & d\\
-    \hline
     \hspace{3cm} Procès-Verbal de Fin de Phase de Spécifications & PVFPS & d\\
-    \hline
-    \hspace{3cm} Procès-Verbal de Plan de Tests de Validation & PVPTV & d\\
-    \hline
-    \hspace{2cm} Revue Formelle de Recettes & RFR & -\\
-    \hline
-    \hspace{3cm} Procès-Verbal de Recettes & PVR & d\\
     \hline
     Gestion des Configurations & GC & -\\
     \hline
@@ -240,19 +230,19 @@ Lors du nommage nous utilisons des suffixes adaptés en fonction du type de docu
 		\hline
 		\rowcolor[gray]{0.85} Suffixe & Abréviation & Format\\
 		\hline
-		date & d & dAA-MM-JJ\\
+		Date & d & dAA-MM-JJ\\
 		\hline
-		version & v & vX.YY\\
+		Version & v & vXX.YY\\
 		\hline
-		numéro & n & nXXX\\
+		Numéro & n & nXXX\\
 		\hline
-		semaine & s & sXX\\
+		Semaine & s & sXX\\
 		\hline
-		rôle & r & rRole\\
+		Rôle & r & rRole\\
 		\hline
-		personne & p & pInitiales\\
+		Personne & p & pInitiales\\
 		\hline
-		commentaire & c & cCommentaire\\
+		Commentaire & c & cCommentaire\\
 		\hline
 		\end{tabularx}
 	\caption{Abréviations associées à chaque suffixe}
@@ -264,35 +254,38 @@ Lors du nommage nous utilisons des suffixes adaptés en fonction du type de docu
 \subsection{Suffixe Date}
 \label{suffixe_date}
 
-Le suffixe de date suit le format \textbf{AA-MM-JJ}, AA pour l'année, MM pour le mois et JJ pour le jour. Ce format permet de classer les documents par ordre chronologique.\\
+Le suffixe \verb+Date+ suit le format \textbf{AA-MM-JJ}, AA pour l'année, MM pour le mois et JJ pour le jour. Ce format permet de classer les documents par ordre chronologique.\\
 
 Exemple : \verb+d16-01-27+
 
 \subsection{Suffixe Version}
 \label{suffixe_version}
 
-Le suffixe version suit le format \textbf{vX.YY}. X correspond au numéro de version, YY au numéro de révision. Le numéro de version représente le numéro du semestre, en considérant que 1 correspond au semestre 1 et 2 correspond au semestre 2. Le numéro de révision démarre à 00 et est modifié de la façon suivante : le chiffre des dizaines est incrémenté à chaque modification majeure et le chiffre des unités est incrémenté à chaque révision. Quand le numéro de version est incrémenté, celui des révision repasse à 00.\\
+Le suffixe \verb+Version+ suit le format \textbf{vXX.YY}. XX correspond au numéro de version, YY au numéro de révision. Le numéro de version représente le numéro de la dernière approbation du document et commence à \verb+01+. Le numéro de révision représente toute modification du document, simple modification suite à une remarque mais aussi modification majeure, et commence à \verb+00+.  Quand le numéro de version est incrémenté, celui des révision repasse à 00.\\
 
-Exemple : \verb+v1.00+
+Exemples :\\
+\verb+v01.00+ est le suffixe version du PQ après sa première approbation.\\
+\verb+v01.01+ est le suffixe version du PQ après une première modification du document approuvé.\\
+\verb+v02.00+ est le suffixe version du PQ après approbation de la modification ci-desus.\\
 
 \subsection{Suffixe Numéro}
 \label{suffixe_numero}
 
-Le suffixe numéro suit le format \textbf{nXXX}. XXX est un nombre entier compris entre 001 et 999. Il commence à la valeur 001 et est incrémenté à chaque nouveau document.\\
+Le suffixe \verb+Numéro+ suit le format \textbf{nXXX}. XXX est un nombre entier compris entre 001 et 999. Il commence à la valeur 001 et est incrémenté à chaque nouveau document.\\
 
 Exemple : \verb+n042+\\
 
 \subsection{Suffixe Semaine}
 \label{suffixe_semaine}
 
-Le suffixe semaine suit le format \textbf{sXX}. XX correspond au numéro de la semaine en cours, la première semaine du PIC étant 01. Seules les semaines comportant au moins un jour ouvré sont numérotées.\\
+Le suffixe \verb+Semaine+ suit le format \textbf{sXX}. XX correspond au numéro de la semaine en cours, la première semaine du PIC étant 01. Seules les semaines comportant au moins un jour ouvré sont numérotées.\\
 
 Exemple : \verb+s09+
 
 \subsection{Suffixe Rôle}
 \label{suffixe_role}
 
-Le suffixe rôle suit le format \textbf{rRole} où Role correspond au rôle concerné par le document. Les valeurs possibles pour Role sont : 
+Le suffixe \verb+Rôle+ suit le format \textbf{rRole} où Role correspond au rôle concerné par le document. Les valeurs possibles pour Role sont : 
 \begin{itemize}
 \item CP :  \CP;
 \item CPA : \CPA;
@@ -310,7 +303,7 @@ Exemple : \verb+rCP+
 \subsection{Suffixe Personne}
 \label{suffixe_personne}
 
-Le suffixe personne suit le format \textbf{pInitiales} où Initiales correspond aux initiales de la personne concernée par le document. Dans le cas où plusieurs personnes sont concernées le suffixe aura le format \textbf{pInitiales1-Initiales2}. Les initiaux possibles sont les suivants :
+Le suffixe \verb+Personne+ suit le format \textbf{pInitiales} où Initiales correspond aux initiales de la personne concernée par le document. Dans le cas où plusieurs personnes sont concernées le suffixe aura le format \textbf{pInitiales1-Initiales2}. Les initiaux possibles sont les suivants :
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{8cm}{|X|c|}
@@ -345,7 +338,7 @@ Exemple : \verb+pFL+
 \subsection{Suffixe Commentaire}
 \label{suffixe_commentaire}
 
-Le suffixe commentaire suit le format \textbf{cX} où X est le commentaire correspondant au fichier. Ce commentaire a une valeur bien précise selon le type de document. Pour \nomEquipe, il y a quatres documents différents ayant un suffixe \verb+commentaire+, voici leurs valeurs associées :
+Le suffixe \verb+Commentaire+ suit le format \textbf{cCommentaire} où Commentaire a une valeur bien précise selon le type de document. Pour \nomEquipe, il y a cinq documents différents ayant un suffixe \verb+commentaire+, voici leurs valeurs associées :
 \begin{itemize}
 \item Fiche de Formation (FF) : sujet de la formation;\\
  Exemple : \verb+cLaTeX+
@@ -353,5 +346,7 @@ Le suffixe commentaire suit le format \textbf{cX} où X est le commentaire corre
  Exemple : \verb+cLaTeX+
 \item mails (MC, MDQ, ML, MP3, MTC, MTP, MTQ) : sujet du mail;\\
  Exemple : \verb+cdatesRevues+
+\item Fiche de Fait Technique (FFT) : peut prendre deux valeurs, \verb+RC+ si c'est un fait technique suite à une réclamation client, \verb+autre+ sinon;\\
+ Exemple : \verb+cRC+
 \item Etat de Configuration (EC) : voir la partie \ref{EC}.
 \end{itemize}

@@ -1,14 +1,38 @@
-Les tests unitaires se divisent en deux types :
+% version 1.00, date 15/03/16, auteur Michel Cressant
+
+Ce chapitre décrit les deux types de tests unitaires ainsi que la stratégie mis en place concernant les tests unitaires.
 
 \section{Les tests "boîte blanche"}
+	Ici est décrit ce qu'est un test dit "boîte blanche". \\	
+		
 	Ce sont les tests structurels. Ils permettent de tester la structure du composant, ils sont donc la base de la fiabilité du produit. Le composant est considéré comme testé de manière structurée lorsque les résultats attendus et les résultats obtenus concordent. \\
 	
 	Tous les défauts et défaillances détectés sont corrigés.
 	
 \section{Les tests "boîte noire"}
+	Ici est décrit ce qu'est un test dit "boîte noire". \\	
+		
 	Ce sont les tests fonctionnels. Ils sont utilisés pour l’analyse partitionnelle, le graphe de cause à effet et les tests aux limites. Il est recommendé de tester tous les appels à des fonctionnalités externes au composant. \\
 	
 	La préparation des jeux d’essais, scénarios et résultats attendus doit être réalisée avant de les mettre en œuvre. \\
 	
 	Tous les défauts et défaillances détectés sont corrigés.
 	
+	
+\section{Stratégie de test}
+	Ces paragraphes décrivent la validation des tests unitaires et des packages ainsi que l'écriture des tests. \\
+		
+	Le code est réparti en plusieurs classes réparties dans différents packages. Chaque classe devra faire l'objet de tests unitaires. Une classe est considérée comme valide si tous ses tests unitaires et assertions ne produisent aucune erreur ou warning. Un package sera considéré comme valide que lorsque toutes ses classes valideront leurs tests unitaires, c'est à dire quand toutes ses classes seront considérées comme valides. \\
+	
+	La personne qui écrira le test unitaire d'une classe devra être une personne différente de celle qui a écrit la classe en question.
+	
+\section{Suivi des tests}
+	Ce paragraphe explique comment sera effectué le suivi des tests. \\
+	
+	Le \JTU{} reporte tous les tests unitaires effectués. Lorsqu'un test unitaire est effectué, le \JTU{} doit être mis à jour, en inscrivant :
+	 \begin{itemize}
+		\item L'identifiant du test;
+		\item La date à laquelle le test a été effectué;
+		\item L'auteur du test;
+		\item Le résultat.
+	\end{itemize}	 

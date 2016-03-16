@@ -12,7 +12,7 @@ class HelloUnicefTest extends WebTestCase {
 
         $crawler = $client->request('GET', '/unicef/accueil');
 
-        $link = $crawler->filter('.navbar+div a[href*="/unicef/hello"]')->eq(1)->link();
+        $link = $crawler->filter('.navbar+div a[href*="/unicef/hello"]')->eq(0)->link();
 
         $crawler = $client->click($link);
 
@@ -28,7 +28,7 @@ class HelloUnicefTest extends WebTestCase {
 
         $crawler = $client->request('GET', '/unicef/accueil');
 
-        $link = $crawler->filter('.navbar a[href*="/unicef/hello"]')->eq(1)->link();
+        $link = $crawler->filter('.navbar a[href*="/unicef/hello"]')->eq(0)->link();
 
         $crawler = $client->click($link);
 

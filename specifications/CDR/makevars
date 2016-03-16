@@ -1,0 +1,6 @@
+# version 1.00, date 15/03/16, auteur Michel Cressant
+# Définition du nom du document
+NOM_FICHIER=CDR_S_Unipik_v1.00
+
+LOCPATH=specifications/CDR
+GENPATH=$(shell pwd)/../..

@@ -4,19 +4,19 @@ namespace Tests\Unipik\ArchitectureBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class volunteerTest extends WebTestCase {
+class interventionTest extends WebTestCase {
 
     public function testLinkFromIndex() {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/accueil');
 
-        $link = $crawler->filter('.navbar+div a[href*="/unicef/benevole/accueil"]')->eq(0)->link();
+        $link = $crawler->filter('.navbar+div a[href*="/unicef/intervention/accueil"]')->eq(0)->link();
 
         $crawler = $client->click($link);
 
         $this->assertContains(
-            'Liste des bénévoles',
+            'Liste des interventions',
             $client->getResponse()->getContent()
         );
 
@@ -27,37 +27,37 @@ class volunteerTest extends WebTestCase {
 
 
         $crawler = $client->request('GET', '/unicef/accueil');
-        $link = $crawler->filter('.navbar a[href*="/unicef/benevole/accueil"]')->eq(0)->link();
+        $link = $crawler->filter('.navbar a[href*="/unicef/intervention/accueil"]')->eq(0)->link();
         $crawler = $client->click($link);
 
         $this->assertContains(
-            'Liste des bénévoles',
+            'Liste des interventions',
             $client->getResponse()->getContent()
         );
 
 
         $crawler = $client->request('GET', '/unicef/accueil');
-        $link = $crawler->filter('.navbar a[href*="/unicef/benevole/ajouter"]')->eq(0)->link();
+        $link = $crawler->filter('.navbar a[href*="/unicef/intervention/ajouter"]')->eq(0)->link();
         $crawler = $client->click($link);
 
 
         $this->assertContains(
-            'Prenom',
+            'Lieu',
             $client->getResponse()->getContent()
         );
 
     }
 
-    public function testLinkFromVolunteerIndex() {
+    public function testLinkFromInterventionIndex() {
         $client = static::createClient();
 
 
-        $crawler = $client->request('GET', '/unicef/benevole/accueil');
-        $link = $crawler->filter('table a[href*="/unicef/benevole/ajouter"]')->eq(0)->link();
+        $crawler = $client->request('GET', '/unicef/intervention/accueil');
+        $link = $crawler->filter('table a[href*="/unicef/intervention/ajouter"]')->eq(0)->link();
         $crawler = $client->click($link);
 
         $this->assertContains(
-            'Prenom',
+            'Materiel dispo',
             $client->getResponse()->getContent()
         );
 
@@ -68,30 +68,30 @@ class volunteerTest extends WebTestCase {
     public function testForm() {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/unicef/benevole/ajouter');
+        $crawler = $client->request('GET', '/unicef/intervention/ajouter');
 
         $this->assertContains(
-            'Prenom',
+            'Materiel dispo',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Nom',
+            'Remarques',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Tel fixe',
+            'Lieu',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Tel portable',
+            'Nb personnes',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Email',
+            'Moment',
             $client->getResponse()->getContent()
         );
 
@@ -101,15 +101,15 @@ class volunteerTest extends WebTestCase {
     public function testListe() {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/unicef/benevole/accueil');
+        $crawler = $client->request('GET', '/unicef/intervention/accueil');
 
         $this->assertContains(
-            'Nom',
+            'Lieu',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Prenom',
+            'Date',
             $client->getResponse()->getContent()
         );
 
@@ -129,13 +129,13 @@ class volunteerTest extends WebTestCase {
         $client = static::createClient();
 
 
-        $crawler = $client->request('GET', '/unicef/benevole/ajouter');
-        $form = $crawler->selectButton('volunteer_save')->form();
-        $form['volunteer[prenom]'] = 'Toto';
-        $form['volunteer[nom]'] = 'Legrand';
-        $form['volunteer[telFixe]'] = '0200000000';
-        $form['volunteer[telPortable]'] = '0600000000';
-        $form['volunteer[email]'] = 'toto.legrand@trucbidouille.com';
+        $crawler = $client->request('GET', '/unicef/intervention/ajouter');
+        $form = $crawler->selectButton('intervention_save')->form();
+        $form['intervention[materielDispo]'] = 'Que dalle!';
+        $form['intervention[remarques]'] = 'Une remarque pertinante.';
+        $form['intervention[lieu]'] = 'Nulle part';
+        $form['intervention[nbPersonnes]'] = '75';
+        $form['intervention[moment]'] = 'jamais';
         $crawler = $client->submit($form);
 
         $this->assertTrue($client->getResponse()->isRedirect());
@@ -147,77 +147,77 @@ class volunteerTest extends WebTestCase {
         );
 
         $this->assertContains(
-            'Bénévole bien enregistré.',
+            'Intervention bien enregistrée.',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Legrand',
+            'Nulle part',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Toto',
+            'jamais',
             $client->getResponse()->getContent()
         );
 
 
 
-        $link = $crawler->filter('.navbar+div a[href*="/unicef/benevole/details"]')->last()->link();
+        $link = $crawler->filter('.navbar+div a[href*="/unicef/intervention/details"]')->last()->link();
         $crawler = $client->click($link);
 
         $this->assertContains(
-            'Legrand',
+            'Nulle part',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Toto',
+            'jamais',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'toto.legrand@trucbidouille.com',
+            '75',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            '0200000000',
+            'Que dalle!',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            '0600000000',
+            'Une remarque pertinante',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Nom',
+            'Lieu',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Prenom',
+            'Date',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Email',
+            'Nombre de personnes',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Téléphone Fixe',
+            'Matériel disponible',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Téléphone Portable',
+            'Remarques',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Supprimer le bénévole',
+            'Supprimer l\'intervention',
             $client->getResponse()->getContent()
         );
 
@@ -228,9 +228,9 @@ class volunteerTest extends WebTestCase {
 
 
 
-        $link = $crawler->filter('table a[href*="/unicef/benevole/accueil"]')->last()->link();
+        $link = $crawler->filter('table a[href*="/unicef/intervention/accueil"]')->last()->link();
         $crawler = $client->click($link);
-        $link = $crawler->filter('.navbar+div a[href*="/unicef/benevole/supprimer"]')->last()->link();
+        $link = $crawler->filter('.navbar+div a[href*="/unicef/intervention/supprimer"]')->last()->link();
         $crawler = $client->click($link);
         $this->assertTrue($client->getResponse()->isRedirect());
         $crawler = $client->followRedirect();
@@ -241,12 +241,12 @@ class volunteerTest extends WebTestCase {
         );
 
         $this->assertContains(
-            'Bénévole bien supprimé',
+            'Intervention bien supprimé',
             $client->getResponse()->getContent()
         );
 
         $this->assertNotContains(
-            'Toto',
+            'Nulle part',
             $client->getResponse()->getContent()
         );
 

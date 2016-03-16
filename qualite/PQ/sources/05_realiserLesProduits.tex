@@ -18,7 +18,7 @@ Avant de confirmer une commande, confirmer avec le client toutes les exigences, 
 Si une exigence est modifiée, s’assurer que tous les membres du développement du produit concernés par cette modification en soient bien informés.\\
 
 \subsection{Principe de réalisation : Méthode en spirale}
-Le principe du développement de produit du PIC \nomPIC{} se base sur une méthode en spirale. La réalisation des produits demandés par le client est donc décomposée en sprints de durée prédéfinie (cf Partie 4.1.4 : Planning de principe).
+Le principe du développement de produit du PIC \nomPIC{} se base sur une méthode en spirale. La réalisation des produits demandés par le client est donc décomposée en cycles de durée prédéfinie (cf Partie 4.1.4 : Planning de principe).
 
 
 \subsection{Communication avec le client}
@@ -45,8 +45,8 @@ Plus précisément, cette phase permettra :
 \end{itemize}
 Ces tâches seront réparties par le \CP et le \CPA{} aux divers membres de l’équipe.
 
-\subsection{Les Sprints}
-Au sein d’un sprint, différentes phases s’enchaîneront. Parmi elles :
+\subsection{Les Cycles}
+Au sein d’un cycle, différentes phases s’enchaîneront. Parmi elles :
 \begin{itemize}
 \item La phase de spécifications ;
 \item La phase de conception ;
@@ -54,22 +54,22 @@ Au sein d’un sprint, différentes phases s’enchaîneront. Parmi elles :
 \item La phase d’intégration.
 \end{itemize}
 
-Une revue de sprint sera effectuée à la fin de chaque sprint. Elle aura pour but de modifier le Cahier de Produit et de vérifier le travail effectué lors de ce sprint. Le but du sprint suivant devra aussi être défini, c’est-à-dire définir quelles fonctionnalités seront implémentées. Une fois cette revue de fin de sprint achevée, un \PV{} sera dressé.
+Une revue des résultats sera effectuée à la fin de chaque cycle. Elle aura pour but de modifier le Cahier de Produit et de vérifier le travail effectué lors de ce cycle. Le but du cycle suivant devra aussi être défini, c’est-à-dire définir quelles fonctionnalités seront implémentées. Une fois cette revue de fin des résultats achevée, un \PV{} sera dressé.
 
 
 
 \subsubsection{Planification}
 
 \textbf{Entrée :} Besoins du client \\
-\textbf{Sorties :} Product Backlog mis à jour, Sprint Backlog pour le sprint.\\
-Chaque sprint commence par une réunion de planification de sprint avec l’équipe et le Product Owner . \\
-Durant cette réunion, le Client (Product Owner ) discute avec l’équipe de ses besoins et de quelles fonctionnalités il aimerait ajouter au Product Backlog. \\
+\textbf{Sorties :} Product Backlog mis à jour, objectifs du cycle.\\
+Chaque cycle commence par une réunion de planification avec l’équipe et le client. \\
+Durant cette réunion, le client discute avec l’équipe de ses besoins et de quelles fonctionnalités il aimerait ajouter au Product Backlog. \\
 Le Product Backlog est une liste de travail, classée par priorité, définie en accord avec le client et l'équipe de développement.
 \subsubsection{Spécifications}
 \label{specification}
-\textbf{Entrée :} Sprint Backlog \\
+\textbf{Entrée :} Objectifs du cycle \\
 \textbf{Sorties :} \DSECourt , \DSICourt , \PTVCourt{} mis à jour \\
-Le sprint commence par une phase de spécification durant laquelle les documents suivants doivent être mis à jour : \\
+Le cycle commence par une phase de spécification durant laquelle les documents suivants doivent être mis à jour : \\
 
 \textbf{\DSE (\DSECourt)} \\
 Ce document défini les fonctionnalités que le produit doit réaliser.\\
@@ -108,7 +108,7 @@ Ce document définit comment sera menée la campagne de tests unitaires des fonc
 
 \textbf{Entrées :} \DCCourt , \PTUCourt , \PTICourt \\
 \textbf{Sorties :} code source, documentation mis à jour \\
-Cette phase a pour but de mettre à jour le code source de l’application afin d’intégrer les nouvelles fonctionnalités demandées par le client pour le sprint. Cette phase se déroulera en utilisant les méthodes d’intégration, c’est-à-dire que le code source sera continuellement testé afin de vérifier que les tests d’intégration sont validés.\\ 
+Cette phase a pour but de mettre à jour le code source de l’application afin d’intégrer les nouvelles fonctionnalités demandées par le client pour le cycle. Cette phase se déroulera en utilisant les méthodes d’intégration, c’est-à-dire que le code source sera continuellement testé afin de vérifier que les tests d’intégration sont validés.\\ 
 Cette phase se décompose en deux étapes :
 \begin{itemize}
 \item Programmation des tests;
@@ -134,17 +134,17 @@ Afin d’assurer une bonne qualité du code source, des audits de code seront me
 
 \textbf{Entrées :} code source ayant passé les tests d’intégration, \PTVCourt \\
 \textbf{Sortie : } code source ayant passé les tests de validation \\
-Cette phase a pour but de vérifier que le code source développé pendant le sprint répond bien aux besoins du client restitués par le \DSECourt, c’est-à-dire que la solution passe les tests de validation détaillées dans le \PTVCourt .\\
+Cette phase a pour but de vérifier que le code source développé pendant le cycle répond bien aux besoins du client restitués par le \DSECourt, c’est-à-dire que la solution passe les tests de validation détaillées dans le \PTVCourt .\\
 Si le code source ne passe pas les tests de validation, il faut retourner à la phase de spécification afin de corriger les spécifications et les mettre en accord avec le \DSECourt.
 
-\subsubsection{Revue de sprint}
+\subsubsection{Revue des résultats}
 \textbf{Entrée :} code source ayant passé les tests de validation, avis client \\
 \textbf{Sortie :} code source revu par le client \\
 
-Un sprint se termine toujours par une revue de sprint organisée avec l’équipe de développement et le client. \\
-L’objectif de cette revue est de faire valider par le client les fonctionnalités développées durant le sprint.\\ 
+Un cycle se termine toujours par une revue des résultats organisée avec l’équipe de développement et le client. \\
+L’objectif de cette revue est de faire valider par le client les fonctionnalités développées durant le cycle.\\ 
 Il s’agit d’une validation informelle puisqu’il ne s’agit pas d’une séance de
-recette. Cette revue permet cependant d’assurer un bon déroulement de la séance de recette en permettant au client de pré-valider la solution qui lui est proposée, ou d’indiquer ses insatisfactions qui seront corrigées au sprint suivant. \\
+recette. Cette revue permet cependant d’assurer un bon déroulement de la séance de recette en permettant au client de pré-valider la solution qui lui est proposée, ou d’indiquer ses insatisfactions qui seront corrigées au cycle suivant. \\
 
 
 \section{Phase de recette}
@@ -206,7 +206,7 @@ Afin de pouvoir tenir le client au courant de l’avancement du projet s’il le
 
 \subsection{Livraison de documents non conformes}
 
-L’équipe \nomEquipe{} aura également la possibilité de livrer au client des documents faisant partie d’un sprint pendant le dit sprint, à condition qu’ils portent bien la mention copie de travail ainsi qu’un \og brouillon \fg{} en arrière plan. Cela permettra à l’équipe de pouvoir avancer dans le développement en s’assurant que la conception est bien en accord avec le client.
+L’équipe \nomEquipe{} aura également la possibilité de livrer au client des documents faisant partie d’un cycle pendant le dit cycle, à condition qu’ils portent bien la mention copie de travail ainsi qu’un \og brouillon \fg{} en arrière plan. Cela permettra à l’équipe de pouvoir avancer dans le développement en s’assurant que la conception est bien en accord avec le client.
 
 \section{Revue}
 \label{revue}

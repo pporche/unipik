@@ -3,6 +3,7 @@
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Volunteer
@@ -25,6 +26,7 @@ class Volunteer
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=50)
+     * @Assert\Length(max = 50)
      */
     private $prenom;
 
@@ -32,6 +34,7 @@ class Volunteer
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=50)
+     * @Assert\Length(max = 50)
      */
     private $nom;
 
@@ -39,6 +42,7 @@ class Volunteer
      * @var string
      *
      * @ORM\Column(name="telFixe", type="string", length=10)
+     * @Assert\Length(min = 10, max = 10)
      */
     private $telFixe;
 
@@ -46,6 +50,7 @@ class Volunteer
      * @var string
      *
      * @ORM\Column(name="telPortable", type="string", length=10)
+     * @Assert\Length(min = 10, max = 10)
      */
     private $telPortable;
 
@@ -53,6 +58,7 @@ class Volunteer
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @Assert\Length(max = 255)
      */
     private $email;
 

@@ -3,6 +3,7 @@
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Intervention
@@ -25,6 +26,8 @@ class Intervention
      * @var string
      *
      * @ORM\Column(name="materielDispo", type="string", length=255)
+     * @Assert\Length(max = 255)
+     * @Assert\NotBlank()
      */
     private $materielDispo;
 
@@ -32,6 +35,7 @@ class Intervention
      * @var string
      *
      * @ORM\Column(name="remarques", type="string", length=255, nullable=true)
+     * @Assert\Length(max = 255)
      */
     private $remarques;
 
@@ -39,6 +43,8 @@ class Intervention
      * @var string
      *
      * @ORM\Column(name="lieu", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max = 100)
      */
     private $lieu;
 
@@ -46,6 +52,7 @@ class Intervention
      * @var int
      *
      * @ORM\Column(name="nbPersonnes", type="integer")
+     * @Assert\Range(min = "1", max = "100000000")
      */
     private $nbPersonnes;
 
@@ -53,6 +60,8 @@ class Intervention
      * @var string
      *
      * @ORM\Column(name="moment", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max = 50)
      */
     private $moment;
 

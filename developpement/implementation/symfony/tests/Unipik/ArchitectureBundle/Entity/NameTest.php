@@ -15,8 +15,7 @@ class NameTest extends \PHPUnit_Framework_TestCase {
     public function testName() {
         $nameTest = new Name();
 
-        $nameTest->setName('Florian');
-        $this->assertEquals($nameTest->getName(),'Florian');
-
+        $nameTest->setNom('Florian');
+        $this->assertEquals($nameTest->getNom(),'Florian');
     }
 }

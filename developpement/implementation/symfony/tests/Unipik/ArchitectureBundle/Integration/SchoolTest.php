@@ -1,22 +1,29 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 17/03/16
+ * Time: 10:35
+ */
 
 namespace Tests\Unipik\ArchitectureBundle\Controller;
 
+
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class interventionTest extends WebTestCase {
+class SchoolTest extends WebTestCase {
 
     public function testLinkFromIndex() {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/accueil');
 
-        $link = $crawler->filter('.navbar+div a[href*="/unicef/intervention/accueil"]')->eq(0)->link();
+        $link = $crawler->filter('.navbar+div a[href*="/unicef/etablissement/accueil"]')->eq(0)->link();
 
         $crawler = $client->click($link);
 
         $this->assertContains(
-            'Liste des interventions',
+            'Liste des établissements',
             $client->getResponse()->getContent()
         );
 
@@ -27,37 +34,37 @@ class interventionTest extends WebTestCase {
 
 
         $crawler = $client->request('GET', '/unicef/accueil');
-        $link = $crawler->filter('.navbar a[href*="/unicef/intervention/accueil"]')->eq(0)->link();
+        $link = $crawler->filter('.navbar a[href*="/unicef/etablissement/accueil"]')->eq(0)->link();
         $crawler = $client->click($link);
 
         $this->assertContains(
-            'Liste des interventions',
+            'Liste des établissements',
             $client->getResponse()->getContent()
         );
 
 
         $crawler = $client->request('GET', '/unicef/accueil');
-        $link = $crawler->filter('.navbar a[href*="/unicef/intervention/ajouter"]')->eq(0)->link();
+        $link = $crawler->filter('.navbar a[href*="/unicef/etablissement/ajouter"]')->eq(0)->link();
         $crawler = $client->click($link);
 
 
         $this->assertContains(
-            'Lieu',
+            'Ville',
             $client->getResponse()->getContent()
         );
 
     }
 
-    public function testLinkFromInterventionIndex() {
+    public function testLinkFromSchoolIndex() {
         $client = static::createClient();
 
 
-        $crawler = $client->request('GET', '/unicef/intervention/accueil');
-        $link = $crawler->filter('table a[href*="/unicef/intervention/ajouter"]')->eq(0)->link();
+        $crawler = $client->request('GET', '/unicef/etablissement/accueil');
+        $link = $crawler->filter('table a[href*="/unicef/etablissement/ajouter"]')->eq(0)->link();
         $crawler = $client->click($link);
 
         $this->assertContains(
-            'Materiel dispo',
+            'Nom',
             $client->getResponse()->getContent()
         );
 
@@ -66,48 +73,41 @@ class interventionTest extends WebTestCase {
     public function testForm() {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/unicef/intervention/ajouter');
+        $crawler = $client->request('GET', '/unicef/etablissement/ajouter');
 
         $this->assertContains(
-            'Materiel dispo',
+            'Nom',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Remarques',
+            'Nb eleve',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Lieu',
+            'Chef etablissement',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Nb personnes',
+            'Ville',
             $client->getResponse()->getContent()
         );
-
-        $this->assertContains(
-            'Moment',
-            $client->getResponse()->getContent()
-        );
-
-
     }
 
     public function testListe() {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/unicef/intervention/accueil');
+        $crawler = $client->request('GET', '/unicef/etablissement/accueil');
 
         $this->assertContains(
-            'Lieu',
+            'Ville',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Date',
+            'Nom',
             $client->getResponse()->getContent()
         );
 
@@ -126,14 +126,12 @@ class interventionTest extends WebTestCase {
     public function testAddViewDelete() {
         $client = static::createClient();
 
-
-        $crawler = $client->request('GET', '/unicef/intervention/ajouter');
-        $form = $crawler->selectButton('intervention_save')->form();
-        $form['intervention[materielDispo]'] = 'Que dalle!';
-        $form['intervention[remarques]'] = 'Une remarque pertinante.';
-        $form['intervention[lieu]'] = 'Nulle part';
-        $form['intervention[nbPersonnes]'] = '75';
-        $form['intervention[moment]'] = 'jamais';
+        $crawler = $client->request('GET', '/unicef/etablissement/ajouter');
+        $form = $crawler->selectButton('school_save')->form();
+        $form['school[nom]'] = 'INSA';
+        $form['school[ville]'] = 'Rouen';
+        $form['school[chefEtablissement]'] = 'Moi';
+        $form['school[nbEleve]'] = '5000';
         $crawler = $client->submit($form);
 
         $this->assertTrue($client->getResponse()->isRedirect());
@@ -145,77 +143,67 @@ class interventionTest extends WebTestCase {
         );
 
         $this->assertContains(
-            'Intervention bien enregistrée.',
+            'Etablissement bien enregistrée.',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Nulle part',
+            'INSA',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'jamais',
+            'Rouen',
             $client->getResponse()->getContent()
         );
 
 
 
-        $link = $crawler->filter('.navbar+div a[href*="/unicef/intervention/details"]')->last()->link();
+        $link = $crawler->filter('.navbar+div a[href*="/unicef/etablissement/details"]')->last()->link();
         $crawler = $client->click($link);
 
         $this->assertContains(
-            'Nulle part',
+            'INSA',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'jamais',
+            'Rouen',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            '75',
+            'Moi',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Que dalle!',
+            '5000',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Une remarque pertinante',
+            'Nom',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Lieu',
+            'Ville',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Date',
+            'Chef d\'établissement',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Nombre de personnes',
+            'Nombre d\'élèves',
             $client->getResponse()->getContent()
         );
 
         $this->assertContains(
-            'Matériel disponible',
-            $client->getResponse()->getContent()
-        );
-
-        $this->assertContains(
-            'Remarques',
-            $client->getResponse()->getContent()
-        );
-
-        $this->assertContains(
-            'Supprimer l\'intervention',
+            'Supprimer l\'établissement',
             $client->getResponse()->getContent()
         );
 
@@ -226,9 +214,9 @@ class interventionTest extends WebTestCase {
 
 
 
-        $link = $crawler->filter('table a[href*="/unicef/intervention/accueil"]')->last()->link();
+        $link = $crawler->filter('table a[href*="/unicef/etablissement/accueil"]')->last()->link();
         $crawler = $client->click($link);
-        $link = $crawler->filter('.navbar+div a[href*="/unicef/intervention/supprimer"]')->last()->link();
+        $link = $crawler->filter('.navbar+div a[href*="/unicef/etablissement/supprimer"]')->last()->link();
         $crawler = $client->click($link);
         $this->assertTrue($client->getResponse()->isRedirect());
         $crawler = $client->followRedirect();
@@ -239,15 +227,13 @@ class interventionTest extends WebTestCase {
         );
 
         $this->assertContains(
-            'Intervention bien supprimé',
+            'Etablissement bien supprimé',
             $client->getResponse()->getContent()
         );
 
         $this->assertNotContains(
-            'Nulle part',
+            'INSA',
             $client->getResponse()->getContent()
         );
-
     }
-
 }

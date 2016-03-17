@@ -6,22 +6,17 @@
  * Time: 09:31
  */
 
-
-
 namespace Tests\Unipik\ArchitectureBundle\Entity;
 
 use Unipik\ArchitectureBundle\Entity\Name;
 
-
 class NameTest extends \PHPUnit_Framework_TestCase {
 
-    public function testsetteurEtGetteur() {
+    public function testName() {
         $nameTest = new Name();
 
         $nameTest->setName('Florian');
         $this->assertEquals($nameTest->getName(),'Florian');
 
     }
-
-
 }

@@ -63,8 +63,6 @@ class volunteerTest extends WebTestCase {
 
     }
 
-
-
     public function testForm() {
         $client = static::createClient();
 
@@ -161,8 +159,6 @@ class volunteerTest extends WebTestCase {
             $client->getResponse()->getContent()
         );
 
-
-
         $link = $crawler->filter('.navbar+div a[href*="/unicef/benevole/details"]')->last()->link();
         $crawler = $client->click($link);
 
@@ -226,8 +222,6 @@ class volunteerTest extends WebTestCase {
             $client->getResponse()->getContent()
         );
 
-
-
         $link = $crawler->filter('table a[href*="/unicef/benevole/accueil"]')->last()->link();
         $crawler = $client->click($link);
         $link = $crawler->filter('.navbar+div a[href*="/unicef/benevole/supprimer"]')->last()->link();
@@ -249,7 +243,5 @@ class volunteerTest extends WebTestCase {
             'Toto',
             $client->getResponse()->getContent()
         );
-
     }
-
 }

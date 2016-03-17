@@ -5,6 +5,9 @@
 \usepackage{etex}
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows,chains,backgrounds,fit}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 %FIN Pour le shéma d'architecture
 
 
@@ -41,20 +44,20 @@
 	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
 	\hline
 }
-\title{\PTU{}}
+\title{\CDR{}}
 \author{\Michel} %à changer
 
 
-\titreGeneral{\PTU}
+\titreGeneral{\CDR}
 \sousTitreGeneral{\nomEquipe}
-\titreAcronyme{\PTUCourt}
+\titreAcronyme{\CDRCourt}
 \version{v1.00}
-\titreDetaille{\PTUCourt\_D\_\nomEquipe\_\versionPrive}
-\referenceVersion{\PTUCourt\_D\_\nomEquipe\_\versionPrive}
+\titreDetaille{\CDRCourt\_D\_\nomEquipe\_\versionPrive}
+\referenceVersion{\CDRCourt\_D\_\nomEquipe\_\versionPrive}
 \auteurs{\Michel{} }
-\destinataires{\nomEquipe}%\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
-\resume{Le présent document contient la présentation du \PTU{} du Lot 1 de \nomEquipe.}
-\motsCles{\PTUCourt{}}
+\destinataires{}%\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
+\resume{Le présent document contient la présentation du \CDR{} du Lot 1 de \nomEquipe.}
+\motsCles{\CDRCourt{}}
 \natureDerniereModification{ }
 \modeDiffusionControle{}
 
@@ -69,25 +72,11 @@
 
 \setcounter{chapter}{0}
 
-\chapter*{Introduction}
-\label{introduction}
-\input{sources/01_introduction.tex}
+\chapter{Application}
+\label{application}
+\input{sources/01_application.tex}
 
-\chapter{Stratégie des tests unitaires}
-\label{strategieDeTest}
-\input{sources/02_strategieDeTest.tex}
 
-\chapter{Données de Tests}
-\label{donneesDeTests}
-\input{sources/03_donneesDeTests.tex}
-
-\chapter{Outil de test}
-\label{outilDeTest}
-\input{sources/04_outilDeTest.tex}
-
-\chapter{Tests Unitaires}
-\label{testsUnitaires}
-\input{sources/05_testsUnitaires.tex}
 
 \pageQuatriemeCouverture
 

@@ -21,7 +21,7 @@ class InterventionController extends Controller {
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
         $interventionRepository = $em->getRepository('ArchitectureBundle:Intervention');
-        $interventions=$interventionRepository->findAll();
+        $interventions=$interventionRepository->findBy(array(), array('id' => 'ASC'));
 
         return $this->render('ArchitectureBundle:Intervention:index.html.twig', array('interventions'=>$interventions));
     }

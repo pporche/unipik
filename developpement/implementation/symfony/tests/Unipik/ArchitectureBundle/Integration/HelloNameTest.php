@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class HelloNameTest extends WebTestCase {
 
-    public function testLinkFromIndexAction() {
+    public function testLinkFromIndex() {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/accueil');
@@ -23,7 +23,7 @@ class HelloNameTest extends WebTestCase {
 
     }
 
-    public function testLinkFromNavbarAction() {
+    public function testLinkFromNavbar() {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/accueil');
@@ -39,7 +39,7 @@ class HelloNameTest extends WebTestCase {
 
     }
 
-    public function testHelloUnicefAction() {
+    public function testHelloUnicef() {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/hello/name');
@@ -66,7 +66,7 @@ class HelloNameTest extends WebTestCase {
 
     }
 
-    public function testHelloNameAction()
+    public function testHelloName()
     {
         $client = static::createClient();
 

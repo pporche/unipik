@@ -3,13 +3,11 @@
 namespace Tests\Unipik\ArchitectureBundle\Entity;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Bundle\SecurityBundle\Tests\Functional\WebTestCase;
 use Unipik\ArchitectureBundle\Entity\Volunteer;
-use Unipik\ArchitectureBundle\Controller\VolunteerController;
 
 class VolunteerTest extends KernelTestCase {
 
-    public function volunteerTest() {
+    public function testVolunteer() {
 
         self::bootKernel();
 
@@ -35,12 +33,13 @@ class VolunteerTest extends KernelTestCase {
         ;
 
         // On récupère le bénévole en BD.
-        $volunteer = $volunteerRepository->findOneBy(array('email' => 'dupont.simone@gmail.com'));
+        $volunteer = $volunteerRepository->findOneBy(array('id' => $volunteer->getId()));
 
         $this->assertEquals($volunteer->getNom(),'Dupont');
         $this->assertEquals($volunteer->getPrenom(),'Simone');
         $this->assertEquals($volunteer->getTelPortable(),'0602030405');
         $this->assertEquals($volunteer->getTelFixe(),'0102030405');
+        $this->assertEquals($volunteer->getEmail(), 'dupont.simone@gmail.com');
 
         $em->remove($volunteer);
         $em->flush();

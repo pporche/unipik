@@ -1,4 +1,10 @@
-# version 1.01, date 24/02/16, auteur Pierre Porche ; Michel Cressant
+# version 1.02, date 16/03/16, auteur Pierre Porche ; Michel Cressant
+
+
+### Chemin d'archivage  MODIFIABLE ###
+ARCHIVEPATH="/net/archives/archivage/archivageGit"
+
+
 
 
 # Récupération du chemin de la classe picINSA pour les documents LaTeX
@@ -7,9 +13,6 @@ CLSPATHGEN="ressources/cls/"
 # Récupération du chemin du package vocabulaireUnipik.sty
 VOCPATHGEN="ressources/unipik/vocabulaire/"
 
-
-
-ARCHIVEDIRGEN="/net/archives/archivage/archivageGit/archivage_$(shell date +%y-%m-%d)"
 SOFTPATHGEN="ressources/unipik/logiciels"
 
 # Commandes
@@ -30,8 +33,8 @@ CLSPATH="${GENPATH}/${CLSPATHGEN}"
 # Récupération du chemin du package vocabulaireUnipik.sty
 VOCPATH="${GENPATH}/${VOCPATHGEN}"
 
-# Dossiers dans BD
-ARCHIVEDIR=${ARCHIVEDIRGEN}/${LOCPATH}
+# Chemin d'archivage
+ARCHIVEDIR=${ARCHIVEPATH}/archivage_$(shell date +%y-%m-%d)/${LOCPATH}
 
 # Récupération du chemin du jar plantUml.jar
 SOFTPATH="${GENPATH}/${SOFTPATHGEN}"

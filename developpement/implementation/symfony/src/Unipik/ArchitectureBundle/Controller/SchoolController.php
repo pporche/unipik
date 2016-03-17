@@ -22,14 +22,15 @@ class SchoolController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $schoolRepository = $em->getRepository('ArchitectureBundle:School');
-        $schools=$schoolRepository->findAll();
+        $schools=$schoolRepository->findBy(array(), array('id' => 'ASC'));
+
         return $this->render('ArchitectureBundle:School:index.html.twig', array('schools'=>$schools));
     }
 
     // Permet d'ajouter un établissement
     public function addAction(Request $request) {
 
-        //On crée un objet School
+        //On créé un objet School
         $school = new School();
 
         $form = $this->createForm(SchoolType::class,$school);

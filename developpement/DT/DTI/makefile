@@ -12,7 +12,7 @@ pti:
 # Archivage
 archive: archivejti archivepti
 
-archivedti:
+archivejti:
 	make -C JTI archive
 
 archivepti:

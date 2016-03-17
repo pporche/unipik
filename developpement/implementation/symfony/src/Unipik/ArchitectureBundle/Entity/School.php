@@ -3,6 +3,7 @@
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * School
@@ -25,6 +26,8 @@ class School
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=100)
+     * @Assert\Length(max = 50)
+     * @Assert\NotBlank()
      */
     private $nom;
 
@@ -32,6 +35,7 @@ class School
      * @var int
      *
      * @ORM\Column(name="nbEleve", type="integer")
+     * @Assert\Range(min = "1", max = "100000000")
      */
     private $nbEleve;
 
@@ -39,6 +43,8 @@ class School
      * @var string
      *
      * @ORM\Column(name="chefEtablissement", type="string", length=100)
+     * @Assert\Length(max = 50)
+     * @Assert\NotBlank()
      */
     private $chefEtablissement;
 
@@ -46,6 +52,8 @@ class School
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=100)
+     * @Assert\Length(max = 100)
+     * @Assert\NotBlank()
      */
     private $ville;
 

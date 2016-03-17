@@ -29,6 +29,7 @@ class Volunteer
      *
      * @ORM\Column(name="prenom", type="string", length=50)
      * @Assert\Length(max = 50)
+     * @Assert\NotBlank()
      */
     private $prenom;
 
@@ -37,6 +38,7 @@ class Volunteer
      *
      * @ORM\Column(name="nom", type="string", length=50)
      * @Assert\Length(max = 50)
+     * @Assert\NotBlank()
      */
     private $nom;
 

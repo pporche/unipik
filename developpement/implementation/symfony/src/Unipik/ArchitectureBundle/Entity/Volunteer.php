@@ -45,7 +45,7 @@ class Volunteer
      *
      * @ORM\Column(name="telFixe", type="string", length=10)
      * @Assert\Length(min = 10, max = 10)
-     * @Assert\Regex("/\[0-9]/")
+     * @Assert\Regex("/(0)[0-9]{9}/")
      */
     private $telFixe;
 
@@ -54,6 +54,7 @@ class Volunteer
      *
      * @ORM\Column(name="telPortable", type="string", length=10)
      * @Assert\Length(min = 10, max = 10)
+     * @Assert\Regex("/(0)[0-9]{9}/")
      */
     private $telPortable;
 

@@ -1,1 +1,1 @@
-php bin/console doctrine:schema:update --force
+sudo php bin/console doctrine:schema:update --force

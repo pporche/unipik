@@ -50,7 +50,7 @@ class HelloNameTest extends WebTestCase {
         );
 
         $this->assertContains(
-            'Name',
+            'Nom',
             $client->getResponse()->getContent()
         );
 
@@ -60,7 +60,7 @@ class HelloNameTest extends WebTestCase {
         );
 
         $this->assertContains(
-            'name="name[name]',
+            'name="name[nom]',
             $client->getResponse()->getContent()
         );
 
@@ -74,7 +74,7 @@ class HelloNameTest extends WebTestCase {
 
         $form = $crawler->selectButton('name_Go')->form();
 
-        $form['name[name]'] = 'Superman';
+        $form['name[nom]'] = 'Superman';
 
         $crawler = $client->submit($form);
 

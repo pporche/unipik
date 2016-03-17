@@ -159,7 +159,7 @@ class volunteerTest extends WebTestCase {
             $client->getResponse()->getContent()
         );
 
-        $link = $crawler->filter('.navbar+div a[href*="/unicef/benevole/details"]')->eq(0)->link();
+        $link = $crawler->filter('.navbar+div a[href*="/unicef/benevole/details"]')->last()->link();
         $crawler = $client->click($link);
 
         $this->assertContains(

@@ -15,7 +15,7 @@ class VolunteerController extends Controller {
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
         $volunteerRepository = $em->getRepository('ArchitectureBundle:Volunteer');
-        $volunteers=$volunteerRepository->findAll();
+        $volunteers=$volunteerRepository->findBy(array(), array('id' => 'ASC'));
 
         return $this->render('ArchitectureBundle:Volunteer:index.html.twig', array('volunteers'=>$volunteers));
     }

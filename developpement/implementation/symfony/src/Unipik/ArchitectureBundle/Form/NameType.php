@@ -15,11 +15,11 @@ class NameType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'Symfony\Component\Form\Extension\Core\Type\TextType')
+            ->add('nom', 'Symfony\Component\Form\Extension\Core\Type\TextType')
             ->add('Go', 'Symfony\Component\Form\Extension\Core\Type\SubmitType')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

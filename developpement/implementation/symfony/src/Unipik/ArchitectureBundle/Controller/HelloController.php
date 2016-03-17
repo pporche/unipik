@@ -28,7 +28,7 @@ class HelloController extends Controller{
         if($form->isValid())
             return $this->render('ArchitectureBundle:Hello:helloName.html.twig', array('name' => $name));
 
-        $name->setName("Unicef");
+        $name->setNom("Unicef");
         return $this->render('ArchitectureBundle:Hello:helloNameForm.html.twig', array('name' => $name, 'form' => $form->createView()));
     }
 

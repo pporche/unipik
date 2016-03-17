@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Name
  *
- * @ORM\Table(name="name")
+ * @ORM\Table(name="nom")
  * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\NameRepository")
  */
 class Name
@@ -24,9 +24,9 @@ class Name
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
-    private $name;
+    private $nom;
 
 
     /**
@@ -40,27 +40,27 @@ class Name
     }
 
     /**
-     * Set name
+     * Set nom
      *
-     * @param string $name
+     * @param string $nom
      *
-     * @return Name
+     * @return Nom
      */
-    public function setName($name)
+    public function setNom($nom)
     {
-        $this->name = $name;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get nom
      *
      * @return string
      */
-    public function getName()
+    public function getNom()
     {
-        return $this->name;
+        return $this->nom;
     }
 }
 

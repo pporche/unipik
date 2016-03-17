@@ -1,6 +1,6 @@
 # version 2.00, date 26/02/16, auteur  Pierre Porche, Michel Cressant
 # Définition du nom du document
-NOM_FICHIER=DSI_S_Unipik_v1.00
+NOM_FICHIER=DSI_S_Unipik_v1.01
 
 LOCPATH=specifications/DSE
 GENPATH=$(shell pwd)/../..

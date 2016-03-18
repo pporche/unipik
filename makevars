@@ -3,6 +3,9 @@
 
 
 # UNIPIKARCHIVEPATH="/net/archives/archivage/archivageGit"
+# GENPATH=$($(shell pwd)%%"pic_unicef"*)pic_unicef
+
+GENPATH=$(UNIPIKGENPATH)/pic_unicef
 
 
 

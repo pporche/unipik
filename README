@@ -2,17 +2,29 @@
 # version 1.00 date 16/03/2016 auteur(s) Pierre Porche
 
 
-Afin de paramétrer le chemin d'archivage de ce git, vous devez définir la variable UNIPIKARCHIVEPATH dans votre .profile. pour cela, tapez dans un terminal  : 
 
-nano ~/.profile
-
+##### Espace de travail #####
+Afin de paramétrer le chemin vers l'espace de travail, vous devez définir la variable UNIPIKGENPATH dans votre .profile. pour cela, tapez dans un terminal  :  
+	nano ~/.profile
 
 Puis rajoutez à la fin une ligne du type :
-
-export UNIPIKARCHIVEPATH="/net/archives/archivage/archivageGit"
-
+	export UNIPIKGENPATH="/home/pporche"
 
 Enfin, relancez votre .profile avec la commande:
+	. ~/.profile
 
-. ~/.profile
+
+
+
+
+##### Archivage #####
+Afin de paramétrer le chemin d'archivage de ce git, vous devez définir la variable UNIPIKARCHIVEPATH dans votre .profile. pour cela, tapez dans un terminal  : 
+	nano ~/.profile
+
+Puis rajoutez à la fin une ligne du type :
+	export UNIPIKARCHIVEPATH="/net/archives/archivage/archivageGit"
+
+Enfin, relancez votre .profile avec la commande:
+	. ~/.profile
+
 

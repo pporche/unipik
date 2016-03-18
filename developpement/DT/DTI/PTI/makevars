@@ -5,4 +5,3 @@
 NOM_FICHIER=PTI_D_Unipik_$(VERSIONPTI)
 
 LOCPATH=developpement/lot1/DT/DTI/PTI
-GENPATH=$(shell pwd)/../../../..

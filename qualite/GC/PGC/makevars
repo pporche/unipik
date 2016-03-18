@@ -5,6 +5,5 @@
 NOM_FICHIER=PGC_Q_Unipik_$(VERSIONPGC)
 
 LOCPATH=qualite/GC/PGC
-GENPATH=$(shell pwd)/../../..
 
 

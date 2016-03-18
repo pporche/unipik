@@ -7,6 +7,5 @@ NOM_FICHIER=PRO_Q_Unipik_$(VERSIONPRO)
 
 # version 2.00, date 26/02/16, auteur  Pierre Porche
 LOCPATH=qualite/PRO
-GENPATH=$(shell pwd)/../..
 
 

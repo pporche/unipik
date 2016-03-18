@@ -5,6 +5,5 @@
 NOM_FICHIER=PQ_Q_Unipik_$(VERSIONPQ)
 
 LOCPATH=qualite/PQ
-GENPATH=$(shell pwd)/../..
 
 

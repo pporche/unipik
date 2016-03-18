@@ -4,6 +4,5 @@
 NOM_FICHIER=PVD_Q_Unipik_d16-01-26
 
 LOCPATH=qualite/GP/PV/RFD/PVD
-GENPATH=$(shell pwd)/../../../../..
 
 

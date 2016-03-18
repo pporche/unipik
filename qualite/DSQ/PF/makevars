@@ -5,6 +5,5 @@
 NOM_FICHIER=PF_Q_Unipik_$(VERSIONPF)
 
 LOCPATH=qualite/DSQ/PF
-GENPATH=$(shell pwd)/../../..
 
 

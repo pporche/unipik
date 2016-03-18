@@ -4,7 +4,6 @@
 NOM_FICHIER=SP_L_Unipik_n1
 
 LOCPATH=livraison/revues/revue1/SP/
-GENPATH=$(shell pwd)/../../../..
 IMGDIR=images
 
 THEMEPATH="$(GENPATH)/ressources/unipik/presentation"

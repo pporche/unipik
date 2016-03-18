@@ -5,6 +5,4 @@
 NOM_FICHIER=DSE_S_Unipik_$(VERSIONDSE)
 
 LOCPATH=specifications/DSE
-GENPATH=$(shell pwd)/../..
-
 

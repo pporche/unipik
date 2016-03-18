@@ -1,9 +1,8 @@
 # version 1.00 date 26/02/2016 auteur(s) Pierre Porche
 
 # Définition du nom du document
-NOM_FICHIER=CRTP			# trouver un truc là.
+NOM_FICHIER=CRTP		
 
 LOCPATH=qualite/GP/CR/CRTP
-GENPATH=$(shell pwd)/../../../..
 
 

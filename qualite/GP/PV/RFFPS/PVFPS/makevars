@@ -4,6 +4,5 @@
 NOM_FICHIER=PVFPS_Q_Unipik_d16-03-07
 
 LOCPATH=qualite/GP/PV/RFFPS/PVFPS
-GENPATH=$(shell pwd)/../../../../..
 
 

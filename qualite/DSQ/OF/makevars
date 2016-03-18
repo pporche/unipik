@@ -4,6 +4,5 @@
 NOM_FICHIER=organigrammeFonctionnel
 
 LOCPATH=qualite/DSQ/OF
-GENPATH=$(shell pwd)/../../..
 
 

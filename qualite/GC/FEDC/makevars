@@ -4,6 +4,5 @@
 NOM_FICHIER=FRD_Q_Unipik_d16-01-28
 
 LOCPATH=qualite/GC/FEDC
-GENPATH=$(shell pwd)/../../..
 
 

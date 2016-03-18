@@ -4,4 +4,3 @@
 NOM_FICHIER=CDR_S_Unipik_v1.00
 
 LOCPATH=specifications/CDR
-GENPATH=$(shell pwd)/../..

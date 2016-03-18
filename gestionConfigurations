@@ -1,8 +1,28 @@
 # version 1.00, date 18/03/2016, Mathieu Medici
 
 
-### Definition de la version des documents courants du projet ###
+##### Definition de la version des documents courants du projet #####
 
+
+## Référentiel qualite ##
 
 VERSIONPGC=v1.01
+VERSIONPQ=v1.01
+VERSIONPF=v1.01
+VERSIONPRO=v1.01
 
+
+## Référentiel specifications ##
+
+VERSIONDSE=1.00
+VERSIONDSI=1.00
+VERSIONPTV=1.01
+
+
+## Référentiel developpement ##
+
+VERSIONPTU=1.00
+VERSIONJTU=1.00
+VERSIONPTI=1.00
+VERSIONJTI=1.00
+VERSIONDCP=1.00

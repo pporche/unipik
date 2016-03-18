@@ -1,8 +1,8 @@
 # version 1.02 date 16/03/2016 auteur(s) Pierre Porche, Michel Cressant
 
 
-### Chemin d'archivage  MODIFIABLE ###
-ARCHIVEPATH="/net/archives/archivage/archivageGit"
+
+# UNIPIKARCHIVEPATH="/net/archives/archivage/archivageGit"
 
 
 
@@ -34,7 +34,7 @@ CLSPATH="${GENPATH}/${CLSPATHGEN}"
 VOCPATH="${GENPATH}/${VOCPATHGEN}"
 
 # Chemin d'archivage
-ARCHIVEDIR=${ARCHIVEPATH}/archivage_$(shell date +%y-%m-%d)/${LOCPATH}
+ARCHIVEDIR=${UNIPIKARCHIVEPATH}/archivage_$(shell date +%y-%m-%d)/${LOCPATH}
 
 # Récupération du chemin du jar plantUml.jar
 SOFTPATH="${GENPATH}/${SOFTPATHGEN}"

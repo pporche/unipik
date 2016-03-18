@@ -4,8 +4,6 @@
 # Importation des variables
 include makevars ../../../makevars ../../../gestionConfigurations
 
-#.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
-
 all : pf cleanrep cleaneps
 
 pf : $(PDFDIR)/$(NOM_FICHIER).pdf
@@ -15,9 +13,6 @@ $(PDFDIR)/%.pdf : %.tex
 	export TEXINPUTS;\
 	$(CCTEX) $<
 	mv *.pdf $(PDFDIR)
-
-
-imagespdf:
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@
@@ -33,7 +28,6 @@ cleanpdf :
 	rm -f images/*.pdf
 	rm -f annexe/pdf/*.pdf
 
-# Nettoyage du répertoire
 cleanrep:
 	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
 

@@ -3,26 +3,9 @@
 # Importation des variables
 include makevars ../../../../makevars
 
-.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
-
 all : imagespdf imagespng sp cleanrep cleaneps cleanpng
 
-sp : $(PDFDIR)/$(NOM_FICHIER).pdf 
-
-$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH):$(THEMEPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv $(NOM_FICHIER).pdf $(PDFDIR)
-
-# I have no idea what this thing is doing
-
 imagespdf: $(IMGDIR)/cycleCorrectionFT.pdf $(IMGDIR)/planningProjet2.pdf $(IMGDIR)/schemaArchitecture.pdf
-
-imagespng: $(IMGDIR)/organigrammeFonctionnel.png $(IMGDIR)/cycleCorrectionFT.png $(IMGDIR)/modeleSpirale.png $(IMGDIR)/risque.png
-
-$(IMGDIR)/%.png: $(IMGDIR)/%.dia
-	$(DIA) -e $@ --filter=png $<
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@
@@ -30,6 +13,18 @@ $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 $(IMGDIR)/%.eps: $(IMGDIR)/%.dia
 	$(DIA) -e $@ --filter=eps-builtin $<
 
+imagespng: $(IMGDIR)/organigrammeFonctionnel.png $(IMGDIR)/cycleCorrectionFT.png $(IMGDIR)/modeleSpirale.png $(IMGDIR)/risque.png
+
+$(IMGDIR)/%.png: $(IMGDIR)/%.dia
+	$(DIA) -e $@ --filter=png $<
+
+sp : $(PDFDIR)/$(NOM_FICHIER).pdf 
+
+$(PDFDIR)/%.pdf : %.tex
+	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH):$(THEMEPATH);\
+	export TEXINPUTS;\
+	$(CCTEX) $<
+	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps cleanpng
@@ -37,7 +32,6 @@ clean : cleanpdf cleanrep cleaneps cleanpng
 cleanpdf :
 	rm -f pdf/*.pdf
 
-# Nettoyage du répertoire
 cleanrep:
 	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0 *.nav *.snm
 

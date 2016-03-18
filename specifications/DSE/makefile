@@ -4,9 +4,14 @@
 # Importation des variables
 include makevars ../../makevars ../../gestionConfigurations
 
-#.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
+.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
 all : imagespng dse cleanrep cleaneps
+
+imagespng: $(IMGDIR)/modeleDUsage.png
+
+$(IMGDIR)/%.png: $(IMGDIR)/%.uml
+	$(UML) $(shell pwd)/$<
 
 dse : $(PDFDIR)/$(NOM_FICHIER).pdf
 
@@ -16,27 +21,12 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	$(CCTEX) $<
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
-# I have no idea what this thing is doing
-#imagespdf: $(IMGDIR)/ConduireLeProjet.pdf $(IMGDIR)/organigrammeHierarchiePic.pdf $(IMGDIR)/organigrammeProcessusPic.pdf $(IMGDIR)/ProcessusFournisseur.pdf $(IMGDIR)/RealiserProduits.pdf $(IMGDIR)/CycleFT_EpicUnity.pdf $(IMGDIR)/organigramme.pdf $(IMGDIR)/managerQualite.pdf
-
-imagespng: $(IMGDIR)/modeleDUsage.png
-
-$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
-	$(EPSPDF) -dEPSCrop $< $@
-
-$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
-	$(DIA) -e $@ --filter=eps-builtin $<
-
-$(IMGDIR)/%.png: $(IMGDIR)/%.uml
-	$(UML) $(shell pwd)/$<
-
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
 	rm -f pdf/*.pdf
 
-# Nettoyage du répertoire
 cleanrep:
 	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
 

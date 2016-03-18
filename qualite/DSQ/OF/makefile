@@ -5,15 +5,7 @@ include makevars ../../../makevars
 
 all : imagespdf of cleanrep cleaneps
 
-of : $(PDFDIR)/OF_Q_Unipik_v1.00.pdf
-
 imagespdf:  $(IMGDIR)/organigrammeFonctionnel.pdf
-
-$(PDFDIR)/%.pdf : ./%.tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv *.pdf $(PDFDIR)
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@
@@ -21,13 +13,20 @@ $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 $(IMGDIR)/%.eps: $(IMGDIR)/%.dia
 	$(DIA) -e $@ --filter=eps-builtin $<
 
+of : $(PDFDIR)/OF_Q_Unipik_v1.00.pdf
+
+$(PDFDIR)/%.pdf : ./%.tex
+	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
+	export TEXINPUTS;\
+	$(CCTEX) $<
+	mv *.pdf $(PDFDIR)
+
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
 	rm -f pdf/*.pdf
 
-# Nettoyage du répertoire
 cleanrep:
 	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
 

@@ -6,7 +6,7 @@ include makevars ../../makevars ../../gestionConfigurations
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : imagespdf dsi cleanrep cleaneps cleanpng
+all : imagespdf dsi cleanrep cleaneps
 
 imagespdf: $(IMGDIR)/schemaArchitecture.pdf
 

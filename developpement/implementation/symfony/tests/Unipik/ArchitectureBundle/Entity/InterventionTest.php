@@ -23,7 +23,7 @@ class InterventionTest extends KernelTestCase {
 
         // Création d'une intervention.
         $intervention = new Intervention();
-        $intervention->setMaterielDispo('Bourrage');
+        $intervention->setMaterielDispo('TBI');
         $intervention->setRemarques('');
         $intervention->setLieu('Rouen');
         $intervention->setNbPersonnes('25');
@@ -41,7 +41,7 @@ class InterventionTest extends KernelTestCase {
         // On récupère l'intervention en BD.
         $intervention = $interventionRepository->findOneBy(array('id' => $intervention->getId()));
 
-        $this->assertEquals($intervention->getMaterielDispo(),'Bourrage');
+        $this->assertEquals($intervention->getMaterielDispo(),'TBI');
         $this->assertEquals($intervention->getRemarques(),'');
         $this->assertEquals($intervention->getLieu(),'Rouen');
         $this->assertEquals($intervention->getNbPersonnes(),'25');

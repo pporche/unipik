@@ -1,12 +1,14 @@
-# version 1.00, date 29/02/16, auteur Pierre Porche
+# version 1.01 date 18/03/2016 auteur(s) Mathieu Medici
+# version 1.00 date 29/02/2016 auteur(s) Pierre Porche
+
 # Importation des variables
-include makevars ../../../makevars
+include makevars ../../../makevars ../../../gestionConfigurations
 
 #.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
 all : pf cleanrep cleaneps
 
-pf : $(PDFDIR)/PF_Q_Unipik_v1.01.pdf
+pf : $(PDFDIR)/$(NOM_FICHIER).pdf
 
 $(PDFDIR)/%.pdf : %.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

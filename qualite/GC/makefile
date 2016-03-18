@@ -1,4 +1,5 @@
-# version 1.01, date 24/02/16, auteur Michel Cressant, Pierre Porche
+# version 1.01 date 24/02/2016 auteur(s) Michel Cressant, Pierre Porche
+
 # Compilation
 all: fedc pgc ec 
 

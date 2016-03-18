@@ -1,4 +1,5 @@
-# version 1.01, date 26/02/16, auteur Pierre Porche
+# version 1.01 date 26/02/2016 auteur(s) Pierre Porche
+
 # Importation des variables
 include makevars ../../../makevars
 

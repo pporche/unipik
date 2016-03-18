@@ -1,4 +1,5 @@
-# version 1.01, date 04/03/16, auteur Matthieu Martins-Baltar, Mathieu Medici
+# version 1.01 date 04/03/2016 auteur(s) Matthieu Martins-Baltar, Mathieu Medici
+
 # Importation des variables
 include makevars ../../../../makevars
 

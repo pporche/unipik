@@ -1,4 +1,6 @@
-# version 1.01, date 14/03/16, auteur Mathieu Medici, Pierre Porche
+# version 1.02 date 18/03/2016 auteur(s) Mathieu Medici
+# version 1.01 date 14/03/2016 auteur(s) Mathieu Medici, Pierre Porche
+
 # Importation des variables
 include makevars ../../../makevars ../../../gestionConfigurations
 

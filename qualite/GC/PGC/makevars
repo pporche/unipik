@@ -1,4 +1,6 @@
-# version 1.01, date 14/03/16, auteur  Pierre Porche, Michel Cressant, Mathieu Medici
+# version 1.02 date 18/03/2016 auteur(s) Mathieu Medici
+# version 1.01 date 14/03/2016 auteur(s) Pierre Porche, Michel Cressant, Mathieu Medici
+
 # Définition du nom du document
 NOM_FICHIER=PGC_Q_Unipik_$(VERSIONPGC)
 

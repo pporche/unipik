@@ -1,4 +1,4 @@
-# version 1.00, date 18/03/2016, Mathieu Medici
+# version 1.00 date 18/03/2016 auteur(s) Mathieu Medici
 
 
 ##### Definition de la version des documents courants du projet #####
@@ -14,15 +14,15 @@ VERSIONPRO=v1.01
 
 ## Référentiel specifications ##
 
-VERSIONDSE=1.00
-VERSIONDSI=1.00
-VERSIONPTV=1.01
+VERSIONDSE=v1.00
+VERSIONDSI=v1.01
+VERSIONPTV=v1.01
 
 
 ## Référentiel developpement ##
 
-VERSIONPTU=1.00
-VERSIONJTU=1.00
-VERSIONPTI=1.00
-VERSIONJTI=1.00
-VERSIONDCP=1.00
+VERSIONPTU=v1.00
+VERSIONJTU=v1.00
+VERSIONPTI=v1.00
+VERSIONJTI=v1.00
+VERSIONDCP=v1.00

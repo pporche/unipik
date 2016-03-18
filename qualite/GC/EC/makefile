@@ -1,4 +1,5 @@
-# version 1.02, date 26/02/16, auteur Michel Cressant, Pierre Porche, Mathieu Medici
+# version 1.02 date 26/02/2016 auteur(s) Michel Cressant, Pierre Porche, Mathieu Medici
+
 # Importation des variables
 include makevars ../../../makevars
 

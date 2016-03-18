@@ -1,4 +1,5 @@
-# version 1.00, date 15/03/16, auteur Michel Cressant
+# version 1.00 date 15/03/2016 auteur(s) Michel Cressant
+
 # Importation des variables
 include makevars ../../makevars
 

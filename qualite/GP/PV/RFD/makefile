@@ -1,4 +1,5 @@
-# version 1.00, date 20/02/16, auteur Michel Cressant
+# version 1.00 date 20/02/2016 auteur(s) Michel Cressant
+
 # Compilation
 all: pvd
 

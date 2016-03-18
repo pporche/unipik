@@ -4,11 +4,13 @@
 
 
 ##### Espace de travail #####
-Afin de paramétrer le chemin vers l'espace de travail, vous devez définir la variable UNIPIKGENPATH dans votre .profile. pour cela, tapez dans un terminal  :  
+Afin de paramétrer le chemin vers l'espace de travail, vous devez définir la variable UNIPIKGENPATH, qui correspond à l'emplacement de votre dossier de git, dans votre .profile. pour cela, tapez dans un terminal  :  
 	nano ~/.profile
 
 Puis rajoutez à la fin une ligne du type :
-	export UNIPIKGENPATH="/home/pporche"
+	export UNIPIKGENPATH="/home/utilisateur"
+
+si le chemin du dossier "pic_unicef" est "/home/utilisateur/pic_unicef".
 
 Enfin, relancez votre .profile avec la commande:
 	. ~/.profile

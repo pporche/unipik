@@ -1,0 +1,88 @@
+% version 1.01 Date 14/03/2016	Auteur Mathieu Medici
+
+\section{Référentiels spécifiques}
+
+Le référentiel \textbf{Ressources} ne sera pas soumis aux conventions de nommage mais certaines règles doivent être respectées. Chaque dossier et chaque fichier devra être nommé en lowerCamelCase et de manière évoquateur quant au contenu. 
+
+\section{Dossiers spécifiques}
+
+\subsection{Dossiers images}
+
+\`{A} la racine du répertoire des documents nécessitant l'inclusion d'images, de diagrammes ou
+d'autres figures, se trouve un répertoire \textbf{images}. Il est ajouté au \git{} par le
+rédacteur du document si besoin est. Dans ce répertoire sont stockés les fichiers du projet
+(\verb+.dia+, \verb+.xcf+, \verb+.jpg+, etc\dots). Les \verb+.pdf+ de ces fichiers sont générés
+à la compilation par le \verb+makefile+.
+Les fichiers du répertoire \verb+images+ ne sont pas soumis aux conventions de nommage mais certaines règles doivent être respectées. Chaque fichier devra être nommé en lowerCamelCase et de manière évoquateur quant au contenu. 
+
+\subsection{Dossiers sources}
+
+\`{A} la racine du répertoire des documents nécessitant l'inclusion de sous-fichiers \verb+.tex+
+(correspondant à des chapitres, des sections, etc\dots) se trouve un répertoire \textbf{sources} pour
+les documents longs nécessitant d'être subdivisés. 
+Ces sous-fichiers \verb+.tex+ seront placés dans ce répertoire et ils seront inclus via
+le \verb+.tex+ général. Ces sous-fichiers ne sont pas soumis aux conventions de nommage mais certaines règles doivent être respectées.\\
+Chaque fichier devra être nommé de la manière suivante :
+\begin{center}
+\verb+<Numéro>_<Nom>+
+\end{center}
+\begin{itemize} 
+\item Numéro : numéro du document variant de \verb+01+ à \verb+99+ et prenant la valeur particulière \verb+00+ pour les pages de services;
+\item Nom : nom du document en lowerCamelCase et évocateur quant au contenu.\\
+\end{itemize}
+Exemples : \\
+\verb+00_pageService.tex+\\
+\verb+01_introduction.tex+\\
+\verb+02_partie1.tex+\\
+
+Remarque : si un fichier source appelle d'autres sources, il faut créer un dossier du même nom que le nom du document et dont les fichiers respectent aussi les règles ci-dessus.\\
+Exemple : \\
+\verb+\partie1+\\
+\hspace*{1cm} \verb+01_sousPartie1.tex+\\
+\hspace*{1cm} \verb+02_sousPartie2.tex+\\
+\hspace*{1cm} \verb+03_sousPartie3.tex+\\
+
+\subsection{Dossiers annexes}
+
+\`{A} la racine du répertoire des documents nécessitant l'inclusion d'annexes se trouve un répertoire \textbf{annexes}.
+Ces documents seront placés dans ce répertoire et ils seront inclus via
+le \verb+.tex+ général. Ces sous-fichiers ne sont pas soumis aux conventions de nommage mais certaines règles doivent être respectées. Chaque fichier devra être nommé en lowerCamelCase et de manière évoquateur quant au contenu. 
+
+\subsection{Dossiers pdf}
+
+\`{A} la racine du répertoire de chaque document se trouve un répertoire \textbf{pdf}. C'est
+le répertoire dans lequel est placé le \verb+pdf+ généré par la compilation \LaTeX{}. Le \verb+pdf+ n'est pas stocké sur le \git{}.
+
+\subsection{Dossiers enregistrements}
+
+Les dossiers \textbf{enregistrements} permettent de stocker les sources des documents présents dans le répertoire associé à ces documents.\\
+Exemple : Le répertoire \verb+pic_unicef/qualite/GP/CR/CRC+ regroupe l'ensemble des Comptes Rendus Client, on y trouve alors un dossier \verb+enregistrements+ qui contient l'ensemble des sources, un dossier \verb+pdf+ pour le stockage sur SA MACHINE des pdf et le makefile qui compile toutes les sources en même temps.
+
+
+\section{Précisions sur les répertoires de l'arborescence}
+
+\subsection{Répertoire implementation}
+
+Localisation : \verb+pic_unicef/developpement/implementation+\\
+
+Le répertoire implementation est constitué de dossiers représentatifs des différentes applications à produire par le PIC. Le nom de ces dossiers et leur organisation sont gérés par le responsable développement.
+
+\subsection{Répertoire lotX}
+
+Localisations : \\
+\verb+pic_unicef/developpement/lotX+\\
+\verb+pic_unicef/livraison/lots/lotX+\\
+
+Les répertoires lotX contiendront, en plus des livraisons officielles prévues, le Cahier De Recette du lot concerné annoté par le client.
+
+\subsection{Répertoire client}
+
+Localisation : \verb+pic_unicef/ressources/client+\\
+
+Le répertoire client contient l’ensemble des documents fournis par le client à \nomEquipe.
+
+
+\section{Règles de rédaction des dates}
+
+Les dates figurant dans les documents sont toutes au format \textbf{JJ/MM/AAAA}. Attention à ne pas confondre avec le format de date des  suffixes dans la convention de nommage (\verb+dAA-MM-JJ+).
+

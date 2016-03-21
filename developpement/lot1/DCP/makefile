@@ -1,6 +1,8 @@
-# version 1.02, date 04/03/16, auteur Mélissa Bignoux, Pierre Porche et Sergi Colomiès
+# version 1.02 date 18/03/2016 auteur(s) Mathieu Medici
+# version 1.01 date 04/03/2016 auteur(s) Mélissa Bignoux, Pierre Porche et Sergi Colomiès
+
 # Importation des variables
-include makevars ../../../makevars
+include makevars ../../../makevars ../../../gestionConfigurations
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
 

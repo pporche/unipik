@@ -1,8 +1,8 @@
-# version 2.00, date 26/02/16, auteur  Pierre Porche Michel Cressant
+# version 1.00 date 26/02/2016 auteur(s) Pierre Porche Michel Cressant
+
 # Définition du nom du document
 NOM_FICHIER=FRD_Q_Unipik_d16-01-28
 
 LOCPATH=qualite/GC/FEDC
-GENPATH=$(shell pwd)/../../..
 
 

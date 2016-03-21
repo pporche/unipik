@@ -1,8 +1,9 @@
-# version 2.01, date 02/03/16, auteur  Pierre Porche, Michel Cressant
+# version 1.02 date 18/03/2016 auteur(s) Mathieu Medici
+# version 1.01 date 02/03/2016 auteur(s) Pierre Porche, Michel Cressant
+
 # Définition du nom du document
-NOM_FICHIER=PTV_S_Unipik_v1.01
+NOM_FICHIER=PTV_S_Unipik_$(VERSIONPTV)
 
 LOCPATH=specifications/PTV
-GENPATH=$(shell pwd)/../..
 
 

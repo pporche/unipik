@@ -1,4 +1,5 @@
-# version 1.02, date 01/03/16, auteur Michel Cressant, Pierre Porche
+# version 1.02 date 01/03/2016 auteur(s) Michel Cressant, Pierre Porche
+
 # Compilation
 all: fc ff pf fr of tb
  

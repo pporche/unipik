@@ -1,4 +1,5 @@
-# version 1.00, date 01/03/16, auteur Pierre Porche
+# version 1.00 date 01/03/2016 auteur(s) Pierre Porche
+
 # Importation des variables
 include makevars ../../../makevars
 
@@ -14,8 +15,6 @@ $(PDFDIR)/%.pdf : enregistrements/%.tex
 	$(CCTEX) $<
 	mv *.pdf $(PDFDIR)
 
-
-
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@
 
@@ -30,7 +29,6 @@ cleanpdf :
 	rm -f images/*.pdf
 	rm -f annexe/pdf/*.pdf
 
-# Nettoyage du répertoire
 cleanrep:
 	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
 

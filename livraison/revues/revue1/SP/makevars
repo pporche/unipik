@@ -1,9 +1,9 @@
-# version 1.00, date 26/02/16, auteur Matthieu Martins-Baltar
+# version 1.00 date 26/02/2016 auteur(s) Matthieu Martins-Baltar
+
 # Définition du nom du document
 NOM_FICHIER=SP_L_Unipik_n1
 
 LOCPATH=livraison/revues/revue1/SP/
-GENPATH=$(shell pwd)/../../../..
 IMGDIR=images
 
 THEMEPATH="$(GENPATH)/ressources/unipik/presentation"

@@ -1,4 +1,5 @@
-# version 1.00, date 24/02/16, auteur Pierre Porche, Michel Cressant
+# version 1.00 date 24/02/2016 auteur(s) Pierre Porche, Michel Cressant
+
 # Compilation
 all: Lot1 dt
 

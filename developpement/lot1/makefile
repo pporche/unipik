@@ -1,4 +1,5 @@
-# version 1.01, date 11/04/16, auteur Pierre Porche
+# version 1.01 date 11/03/2016 auteur(s) Pierre Porche
+
 # Compilation
 all: dcp
 

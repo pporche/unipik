@@ -1,4 +1,5 @@
-# version 1.00, date 20/02/16, auteur Sergi Colomies
+# version 1.00 date 20/02/2016 auteur(s) Sergi Colomies
+
 # Compilation
 all: pvfps
 

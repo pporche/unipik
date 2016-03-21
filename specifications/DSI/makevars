@@ -1,8 +1,9 @@
-# version 2.00, date 26/02/16, auteur  Pierre Porche, Michel Cressant
+# version 1.02 date 18/03/2016 auteur(s) Mathieu Medici
+# version 1.01 date 26/02/2016 auteur(s) Pierre Porche, Michel Cressant
+
 # Définition du nom du document
-NOM_FICHIER=DSI_S_Unipik_v1.01
+NOM_FICHIER=DSI_S_Unipik_$(VERSIONDSI)
 
 LOCPATH=specifications/DSE
-GENPATH=$(shell pwd)/../..
 
 

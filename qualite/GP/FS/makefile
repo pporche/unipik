@@ -1,4 +1,5 @@
-# version 1.00, date 04/03/16, auteur Sergi Colomiès
+# version 1.00 date 04/03/2016 auteur(s) Sergi Colomiès
+
 # Importation des variables
 include makevars ../../../makevars
 

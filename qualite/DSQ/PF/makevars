@@ -1,8 +1,9 @@
-# version 2.00, date 26/02/16, auteur  Pierre Porche
-# Définition du nom du document
-NOM_FICHIER=	# trouver un truc là.
+# version 1.01 date 18/03/2016 auteur(s) Mathieu Medici
+# version 1.00 date 26/02/2016 auteur(s)  Pierre Porche
 
-LOCPATH=qualite/DSQ/FF
-GENPATH=$(shell pwd)/../../..
+# Définition du nom du document
+NOM_FICHIER=PF_Q_Unipik_$(VERSIONPF)
+
+LOCPATH=qualite/DSQ/PF
 
 

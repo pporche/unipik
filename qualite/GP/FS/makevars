@@ -1,8 +1,8 @@
-# version 1.00, date 04/03/16, auteur  Sergi Colomiès
+# version 1.00 date 04/03/2016 auteur(s) Sergi Colomiès
+
 # Définition du nom du document
-NOM_FICHIER=FS			# trouver un truc là.
+NOM_FICHIER=FS			
 
 LOCPATH=qualite/GP/FS
-GENPATH=$(shell pwd)/../../..
 
 

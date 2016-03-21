@@ -1,3 +1,32 @@
-##### version 1.00, date 16/03/16, auteur Pierre Porche #####
+# version 2.00 date 18/03/2016 auteur(s) Pierre Porche
+# version 1.00 date 16/03/2016 auteur(s) Pierre Porche
 
-Pour modifier le chemin d'archivage de ce git lors de l'éxecution d'un "make archive", veuillez modifier la variable "ARCHIVEPATH" dans le fichier "makevars" que vous trouverez dans le dossier général "pic_unicef/".
+
+
+##### Espace de travail #####
+Afin de paramétrer le chemin vers l'espace de travail, vous devez définir la variable UNIPIKGENPATH, qui correspond à l'emplacement de votre dossier de git, dans votre .profile. pour cela, tapez dans un terminal  :  
+	nano ~/.profile
+
+Puis rajoutez à la fin une ligne du type :
+	export UNIPIKGENPATH="/home/utilisateur"
+
+si le chemin du dossier "pic_unicef" est "/home/utilisateur/pic_unicef".
+
+Enfin, relancez votre .profile avec la commande:
+	. ~/.profile
+
+
+
+
+
+##### Archivage #####
+Afin de paramétrer le chemin d'archivage de ce git, vous devez définir la variable UNIPIKARCHIVEPATH dans votre .profile. pour cela, tapez dans un terminal  : 
+	nano ~/.profile
+
+Puis rajoutez à la fin une ligne du type :
+	export UNIPIKARCHIVEPATH="/net/archives/archivage/archivageGit"
+
+Enfin, relancez votre .profile avec la commande:
+	. ~/.profile
+
+

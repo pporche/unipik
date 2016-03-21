@@ -1,8 +1,8 @@
-# version 1.00, date 01/03/16, auteur  Pierre Porche
+# version 1.00 date 01/03/2016 auteur(s) Pierre Porche
+
 # Définition du nom du document
 NOM_FICHIER=organigrammeFonctionnel
 
 LOCPATH=qualite/DSQ/OF
-GENPATH=$(shell pwd)/../../..
 
 

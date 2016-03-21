@@ -1,4 +1,5 @@
-# version 1.00, date 04/03/16, auteur Pierre Porche
+# version 1.00 date 04/03/2016 auteur(s) Pierre Porche
+
 # Compilation
 all: revuesUn
 

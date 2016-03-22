@@ -1,0 +1,99 @@
+% version 1.00	date 02/03/2016	Auteur Pierre Porche
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+\renewcommand{\footrulewidth}{0,01cm}
+
+\begin{document}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Qualité}}					%titre
+
+01/03/2016
+\hfill   
+\hfill 	9:30 - 10:06 				% Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 02/03/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui & 03/03/2016 & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi & 04/03/2016 & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Versionnage}
+Suite aux revues, lorsqu'on créé un document, on le commence à 0.00 puis 0.01, 0.02,... et dès l'approbation, on apsse a 1.00 et c'est celle là que l'on diffuse.
+Changer l'intitulé des mails. On envoie une version 1.01 qui est la première modification et puis on incrémznte. Pour les documents sui n'ont pas à etre approuvés, on n'a que des X.00 car pas d'approbation et ils commencent à 1.00 . Il faut communiquer auprès des clients pour leur expliquer.
+
+Suivi des évolutions, sur les pages de service, on doit marquer les modifs dans le tableau. Pour faciliter tout ca, on ne met que les versions approuvées avec TOUTES les modifications entre les deux.
+
+Toutes les révisions sont conservées.
+
+
+\section{Audit}
+Manque de rigueur, en tete, date de diffusion, etc. 
+Chaque remarque déclenche une FFT individuelle et un OC individuel.
+On rempli la fiche, on la scan et on l'envoie en pdf, BCDM nous la renvoie avec un récapitulatif.
+
+
+\section{Livraison}
+Fiche d'autoévaluation à chaud
+
+
+\section{Avancement}
+CDR vierge envoyé, le client passe mercredi pour faire
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

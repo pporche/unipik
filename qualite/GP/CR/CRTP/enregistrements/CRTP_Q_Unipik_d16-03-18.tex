@@ -1,0 +1,114 @@
+% version 1.00	Auteur Pierre Porche date 22/03/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\usepackage{hyperref}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Pédagogique}}					%titre
+\begin{document}
+
+18/03/2016			 				%Date 
+\hfill   
+\hfill 	 9:00 - 10:07 				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{3cm} | p{3cm} | p{3cm} | p{3.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 22/03/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{4cm} | p{3cm} | p{3cm} | p{2.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui &  & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi &  & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Résumé semaine passée}
+Nous avons fini de tester le premier livrable jeudi 21/03/2016, avons envoyé le \CDR{} vierge le même jour et avons demandé au client de passer jeudi pour la phase de livraison/tests. \nomTuteurPedago{} nous indique que nous aurions du nous y prendre plus à l'avance afin de ne pas presser le client et nous demande de lui envoyer une copie du \CDR{}. \\
+Il faut montrer que notre architecture fonctionne, c'est l'essence du lot 1. Nous devons montrer que plusieurs utilisateurs peuvent utiliser l'outil en même temps, pour cela il faut un modèle de transaction qui sert à gérer les accès concurrents. \\
+Ce lot étant une architecture seule, il n'y a rien à rendre physiquement donc si la démonstration fonctionne, le lot est terminé. \nomTuteurPedago{} viendra tester l'outil lundi 21/03/2016 à 14h. \\
+Cette semaine a aussi été l'occasion de faire la séparation entre l'équipe Front-End et l'équipe Back-End.
+
+
+\section{Audit}
+Un audit qualité a eu lieu mardi 15/03/2016, nous avons eu 5 remarques mais l'audit s'est dans l'ensemble bien passé.
+
+
+\section{Planning semaine prochaine}
+La semaine prochaine, nous effectuerons la livraison ainsi que la correction des éventuelles remarques faites par le client. Nous organiserons également des formations à Symfony et PHP Unit. \\
+Il faut se pencher sur la cohésion entre l'équipe Front-End et l'équipe Back-End.
+
+
+\section{Revue}
+\nomTuteurPedago{} nous informe que ce n'était pas une mauvaise revue pour une première revue. Il ne faut pas oublier de dire des phrases telles que "nous nous sommes approprié votre problématique" et faire comprendre au client que lorsque l'on parle de "nous", il s'agit de l'équipe ET du client. \\
+Dans le schéma appelé "cycle de correction d'un FT", ce n'est pas un cycle.
+
+
+
+\section{Commentaires sur le GIT}
+Il faut vérifier le problème du make directement après un git clone. \nomTuteurPedago{} a un message du type "nothing to be made" après un git clone. \\
+Il serait souhaitable de séparer ce qui concerne l'unité P3 et ce qui concerne le client car la livraison finale correspond à l'équivalent du git.
+
+
+%--- fin de réunion ---%
+\newpage
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

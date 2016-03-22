@@ -1,0 +1,120 @@
+% version 1.00	Auteur Pierre Porche		Date 22/03/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+\definecolor{White}{gray}{1.0}
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion interne}}					%titre
+\begin{document}
+
+14/03/2016			 				%Date 
+\hfill   
+\hfill 	 15:21 - 15:47 				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% Version
+%--- Fin en-t�te et pied de page ---%
+
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 14/03/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui & 15/03/2016 & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi & 16/03/2016 & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+		
+\newpage		
+
+
+
+\section{Planning des prochaines semaines}
+Cette semaine est une semaine de formation sur Symfony, qu'il faudrait avoir fini d'ici la fin de la semaine. \Florian{} fait les \FF{} dès ce matin. Mercredi 13:30, le client vient pour la livraison puis nous reprenons notre spirale.
+
+
+\section{Gestion des configurations}
+1er point : la variable UNIPIKGENPATH
+2eme point : pour les versions, changer dans Gestion des config, dans le nom du .tex et dans le .tex en lui meme, "version{vX.YY}"
+Pour les fichiers de code, mettre tout ca dans la doc.
+
+
+\section{Remarques Michel Mainguenaud}
+Revue de code
+Passer au relationnel (relationnel étendu et relationnel normal) -> normal : attribut multivaluié = plusieurs relations pour attributs atomiques, dans l'étendu, il y a le concept d'objet donc ils peuvent etre des classes. Symfony a l'air plus fait pour du relationnel classique. Relations bidirectionnelles sur Symfony.
+
+Modélisation du schéma relationnel : soit à la main, soit avec un dump postgreSQL, pour cette dernière option, il faut coder la BD sur Symfony. On va donc coder la BD sur Symfony, exporter le schéma et le retoucher si besoin.
+
+Conventions de nommage, diagrammes UML, graphique des fonctions, etc..
+
+
+\section{Technologie pour le Front End}
+Bootstrap vs les autres : bootstrap sort du lot car ca s'integre dans Symfony (par ex : formulaires) Bootstrap a pas mal de thèmes jolis.
+Bootstrap est assez générique au niveau look & feel. 
+Plus facile à apprendre
+
+
+\section{Revu des risques et opportunités}
+CRITICITE
+
+Risque 3 : proba 1 -> proba 3 car il y a des épidémies
+Risque 4 : proba 1 -> proba 2 car vacances du client
+Risque 5 planification
+Risque 10 : proba 2 -> 1 car deuxième demande acceptée
+Risque 12 : proba 2 -> 4 car on est déjà en retard sur le lot 1
+Risque 13 proba 2 -> proba 1
+
+Fiche d'op 6 : pilote Michel Bénéfice 2 -> 3 meilleure complicité
+
+Ajouter risque PC cassé. Sergi est pilote 
+
+
+Faire les n-
+
+
+
+
+
+
+%--- fin de réunion ---%
+
+
+\end{document}
+
+
+
+
+
+
+

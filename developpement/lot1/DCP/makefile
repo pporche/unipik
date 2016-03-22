@@ -33,7 +33,7 @@ diagrammesequence:
 
 
 # Archivage
-archive: archivemodeleea archivediagrammeclasse archivediagrammepackage archivediagrammesequence
+archive: archivemodeleea archivediagrammeclasse archivediagrammepackage archivediagrammesequence archivedcp
 
 archivemodeleea:
 	make -C modeleEA archive
@@ -47,9 +47,13 @@ archivediagrammepackage:
 archivediagrammesequence:
 	make -C diagrammeSequence archive
 
+archivedcp:
+	mkdir -p ${ARCHIVEDIR}
+	cp pdf/*.pdf ${ARCHIVEDIR}
+
 
 # Nettoyage
-clean: cleanrep cleanmodeleea cleandiagrammeclasse cleandiagrammepackage cleandiagrammesequence
+clean: cleanrep cleanpdf cleanmodeleea cleandiagrammeclasse cleandiagrammepackage cleandiagrammesequence
 
 cleanrep:
 	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
@@ -65,4 +69,11 @@ cleandiagrammepackage:
 
 cleandiagrammesequence:
 	make -C diagrammeSequence clean
+
+cleanpdf:
+	rm -f pdf/*.pdf
+
+
+
+
 

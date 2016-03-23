@@ -1,4 +1,4 @@
-% version 1.00	Auteur Pierre Porche
+% version 1.02	Auteur Pierre Porche
 
 \documentclass[asi]{picInsa}
 \DeclareGraphicsRule{*}{pdf}{*}{}
@@ -41,7 +41,7 @@
 \titreGeneral{\PRO}
 \sousTitreGeneral{\nomEquipe}
 \titreAcronyme{\PROCourt}
-\version{V1.00}
+\version{V1.02}
 \titreDetaille{\PROCourt\_Q\_\nomEquipe\_\versionPrive}
 \referenceVersion{\PROCourt\_Q\_\nomEquipe\_\versionPrive}
 \auteurs{\Kafui{} \& \Melissa{} \& \Sergi{} \& \Michel{} \& \Florian{} \&  \Julie{} \& \Pierre{}}
@@ -117,9 +117,9 @@
 			 
 			 2 & Mauvaise ambiance interne & \Michel & Peu probable & Important & À surveiller & pgpic & pgpic & \\\hline
 			 
-			 3 & Absence collective & \Pierre & Peu probable & Maximum & Critique & pgpic & pgpic & \\\hline
+			 3 & Absence collective & \Pierre & Probable & Maximum & Critique & pgpic & pgpic & \\\hline
 			 
-			 4 & Mauvaise communication client & \Julie & Probable & Important & Critique & pgpic & pgpic & \\\hline
+			 4 & Mauvaise communication client & \Julie & Possible & Important & À surveiller & pgpic & pgpic & \\\hline
 			 
 			 5 & Mauvaise planification & \Florian & Possible & Maximum & Critique & pgpic & pgpic & \\\hline
 			 
@@ -131,21 +131,25 @@
 			 
 			 9 & Serveur extérieur non trouvé & \Matthieu & Probable & Maximum & Critique & pgpic & pgpic & \\\hline
 			 
-			 10 & Problème avec la CNIL & \Pierre & Possible & Important & À surveiller & pgpic & pgpic & \\\hline
+			 10 & Problème avec la CNIL & \Pierre & Peu probable & Important & À surveiller & pgpic & pgpic & \\\hline
 			 
 			 11 & Retard de remise des données & \Sergi & Possible & Moyen & À surveiller & pgpic & pgpic & Clôturé \\\hline
 			 
-			 12 & Retard de remise du livrable & \Kafui & Possible & Important & À surveiller & pgpic & pgpic & \\\hline
+			 12 & Retard de remise du livrable & \Kafui & Très probable & Important & Critique & pgpic & pgpic & \\\hline
 			 
-			 13 & Le livrable ne fonctionne pas chez le client & \Melissa & Possible & Maximum & Critique & pgpic & pgpic & \\\hline
+			 13 & Le livrable ne fonctionne pas chez le client & \Melissa & Peu probable & Maximum & Critique & pgpic & pgpic & \\\hline
 			 
 			 14 & Le serveur n’implémente pas PostgreSQL ni PostGis & \Sergi & Possible & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
+			 15 & Un PC d'un membre de l'équipe tombe en panne & \Sergi & Possible & Important & À surveiller & pgpic & pgpic & \\\hline
+			 
+			 
 			 
 \end{longtable}
 
 \chapter*{Suivi des Opportunités}
 
-\begin{longtable}{|p{0.3cm}|p{2.5cm}|p{2cm}|p{2cm}|p{1.8cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1.5cm}|}
+\begin{longtable}{|p{0.3cm}|p{2.5cm}|p{2cm}|p{2cm}|p{1.8cm}|p{1.8cm}|p{1cm}|p{1cm}|p{1.5cm}|}
 			\hline
 			\rowcolor{gray!40}
 			\No & Nom & Pilote & Probabilité & Impact & Priorité & Visa \RQCourt{} & Visa \CPCourt{} & Clôture \\\hline
@@ -154,8 +158,8 @@
 			 3 & Bonne passation inter-semestre & \Pierre & Possible & Important & Moyen & pgpic & pgpic & \\\hline
 			 4 & Bonne communication client & \Florian & Très probable & Important & Important & pgpic & pgpic & \\\hline
 			 5 & Bonne planification & \Pierre & Possible & Important & Moyen & pgpic & pgpic & \\\hline
-			 6 & Bonne ambiance interne & \Michel & Très probable & Moyen & Important & pgpic & pgpic & \\\hline
-			 7 & Remise des données en avance & \Sergi & Probable & Moyen & Moyen & pgpic & pgpic & Clôturé \\\hline
+			 6 & Bonne ambiance interne & \Michel & Très probable & Important & Important & pgpic & pgpic & \\\hline
+			 7 & Remise des données en avance & \Sergi & Probable & Moyen & Important & pgpic & pgpic & Clôturé \\\hline
 \end{longtable}
 
 \end{document}

@@ -1,4 +1,5 @@
-% version 1.01, date 14/03/16, auteur Michel Cressant Pierre Porche
+% version 1.00	date 23/03/2016  	Auteur Pierre Porche
+
 \section*{Informations générales}
 
 \begin{table}[H]
@@ -7,7 +8,7 @@
 	\hline
 	\rowcolor{gray!40} Numéro du risque & Type du risque \\
 	\hline
-	002 & Mauvaise ambiance dans l'équipe / problème de cohésion \\
+	015 & Un PC d’un membre de l’équipe tombe en panne \\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -18,7 +19,7 @@
 	\hline
 	\rowcolor{gray!40} Date & Visa du \RQ & Visa du \CP \\
 	\hline
-	 28/01/16 & pgpic & pgpic \\
+	 23/03/16 & pgpic & pgpic \\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -29,7 +30,7 @@
 	\hline
 	\rowcolor{gray!40} Pilote & Activité WBS & Compte WBS & Phase d'apparition \\
 	\hline
-	 \Michel & Suivre les Risques et Opportunités & 1.2.3.2 & À partir du début du projet\\
+	 \Sergi & Suivre les Risques et Opportunités & 1.2.3.2 & À l'obtention du serveur. \\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -37,10 +38,10 @@
 \section*{Description du risque}
 
 \subsection*{Résumé}
-	Le risque lié à la mauvaise ambiance dans le \PICCourt{} ou au problème de cohésion  peut entraîner une mauvaise façon de travailler et donc influencer la qualité du produit finale.
+	Le fait qu'un PC tombe en panne dans l'équipe empêcherait un des membres de l'équipe de travailler pendant une durée indéterminée.
 	
 \subsection*{Analyse des causes}
-	voir figure \ref{risque mauvaise ambiance dans l'équipe et mauvaise cohesion}. 
+	voir figure \ref{PC en panne}.
 
 \subsection*{Criticité}
 
@@ -48,11 +49,11 @@
 \centering
 	\begin{tabularx}{16.8cm}{|>{\columncolor{gray!40}}X|X|}
 	\hline
-	Gravité & 3\\
+	Gravité & 4\\
 	\hline
-	Probabilité & 1\\
+	Probabilité & 2\\
 	\hline
-	Criticité & A surveiller\\
+	Criticité & Critique\\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -67,22 +68,22 @@
 	\hline
 	\rowcolor{gray!40} Numéro de cause & Actions préventives \\
 	\hline
-	 1 & \begin{itemize}
-	 	\item Mettre en place des Team Building
-	 	\item L'équipe établit des règles communes de fonctionnement des \PICCourt{}
-	 	\item Le chef projet met en place des règles de communication de type DESC
+	1 & \begin{itemize}
+	 	\item 
 	 \end{itemize} \\
 	\hline
 	2 & \begin{itemize}
-		\item Entraide de l'équipe
-		\item Partage du travail
+		\item 
 	\end{itemize}	 \\
 	\hline
 	3 & \begin{itemize}
-		\item Soutien moral
+		\item 
 	\end{itemize} \\
 	\hline
-	
+	4 & \begin{itemize}
+		\item 
+	\end{itemize} \\
+	\hline
 	\end{longtable}
 %\end{table}
 
@@ -90,8 +91,8 @@
 \subsection*{Plan de contournement}
 
 \begin{enumerate}
-	\item Le chef de projet identifie l'objet du conflit et interroge chaque membre concerné.
-	\item Le chef de projet prend le rôle de médiateur et convoque les membres concernés à une réunion de négociation puis leur demande de mettre en œuvre la méthode DESC.
+	\item Travailler sur un PC personnel si possible
+	\item Créer un ticket pour que la réparation se fasse au plus vite
 \end{enumerate}
 
 \section*{Décision de clôture}
@@ -114,14 +115,15 @@ Par le \CP{} et le pilote du risque.
 	\hline
 	\rowcolor{gray!40} Date & Modification \\
 	\hline
-	 14/03/2016 & modification de la probabilité\\
+	  & \\
 	\hline
 	\end{tabularx}
 \end{table}
 \newpage
 
+
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.6]{images/nPourquoiFDR002}
-	\caption{\label{risque mauvaise ambiance dans l'équipe et mauvaise cohesion}Risque mauvaise ambiance dans l'équipe et mauvaise cohésion - méthode des n pourquoi}
+	%\includegraphics[scale=1.2]{images/nPourquoiFDR015}
+	\caption{\label{PC en panne}risque PC en panne - méthode des n pourquoi}
 \end{figure}

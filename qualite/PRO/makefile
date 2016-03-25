@@ -16,7 +16,7 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	$(CCTEX) $<
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
-imagespdf: $(IMGDIR)/nPourquoiFDO001.pdf $(IMGDIR)/nPourquoiFDO002.pdf $(IMGDIR)/nPourquoiFDO003.pdf $(IMGDIR)/nPourquoiFDO004.pdf $(IMGDIR)/nPourquoiFDO005.pdf $(IMGDIR)/nPourquoiFDO006.pdf $(IMGDIR)/nPourquoiFDO007.pdf $(IMGDIR)/nPourquoiFDR001.pdf $(IMGDIR)/nPourquoiFDR002.pdf $(IMGDIR)/nPourquoiFDR003.pdf $(IMGDIR)/nPourquoiFDR004.pdf $(IMGDIR)/nPourquoiFDR005.pdf $(IMGDIR)/nPourquoiFDR006.pdf $(IMGDIR)/nPourquoiFDR007.pdf $(IMGDIR)/nPourquoiFDR008.pdf $(IMGDIR)/nPourquoiFDR009.pdf $(IMGDIR)/nPourquoiFDR010.pdf $(IMGDIR)/nPourquoiFDR011.pdf $(IMGDIR)/nPourquoiFDR012.pdf $(IMGDIR)/nPourquoiFDR013.pdf $(IMGDIR)/nPourquoiFDR014.pdf
+imagespdf: $(IMGDIR)/nPourquoiFDO001.pdf $(IMGDIR)/nPourquoiFDO002.pdf $(IMGDIR)/nPourquoiFDO003.pdf $(IMGDIR)/nPourquoiFDO004.pdf $(IMGDIR)/nPourquoiFDO005.pdf $(IMGDIR)/nPourquoiFDO006.pdf $(IMGDIR)/nPourquoiFDO007.pdf $(IMGDIR)/nPourquoiFDR001.pdf $(IMGDIR)/nPourquoiFDR002.pdf $(IMGDIR)/nPourquoiFDR003.pdf $(IMGDIR)/nPourquoiFDR004.pdf $(IMGDIR)/nPourquoiFDR005.pdf $(IMGDIR)/nPourquoiFDR006.pdf $(IMGDIR)/nPourquoiFDR007.pdf $(IMGDIR)/nPourquoiFDR008.pdf $(IMGDIR)/nPourquoiFDR009.pdf $(IMGDIR)/nPourquoiFDR010.pdf $(IMGDIR)/nPourquoiFDR011.pdf $(IMGDIR)/nPourquoiFDR012.pdf $(IMGDIR)/nPourquoiFDR013.pdf $(IMGDIR)/nPourquoiFDR014.pdf $(IMGDIR)/nPourquoiFDR015.pdf
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@

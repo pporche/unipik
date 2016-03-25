@@ -1,7 +1,0 @@
-# version 1.01 date 18/03/2016 auteur(s) Mathieu Medici
-# version 1.00 date 01/03/2016 auteur(s) Michel Cressant
-
-# Définition du nom du document
-NOM_FICHIER=JTI_D_Unipik_$(VERSIONJTI)
-
-LOCPATH=developpement/DT/DTI/JTI

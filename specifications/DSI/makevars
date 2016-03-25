@@ -4,6 +4,6 @@
 # Définition du nom du document
 NOM_FICHIER=DSI_S_Unipik_$(VERSIONDSI)
 
-LOCPATH=specifications/DSE
+LOCPATH=specifications/DSI
 
 

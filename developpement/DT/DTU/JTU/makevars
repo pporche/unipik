@@ -4,4 +4,4 @@
 # Définition du nom du document
 NOM_FICHIER=JTU_D_Unipik_$(VERSIONJTU)
 
-LOCPATH=developpement/lot1/DT/DTU/JTU
+LOCPATH=developpement/DT/DTU/JTU

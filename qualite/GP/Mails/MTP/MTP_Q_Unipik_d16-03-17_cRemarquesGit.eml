@@ -1,0 +1,100 @@
+Return-Path: <michel.mainguenaud@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 164A323AE1
+	for <scolomies@insa-rouen.fr>; Thu, 17 Mar 2016 09:28:13 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0AkAQAvaupWjg8V3cNeGQEBAgcNg2hfD4J2pQCUDx2HJUwBAQEBAQESAQEBAQcWCVCEVBcEURoUDxMDCwIEBwMCAQIBDR4MFA0GAgEBiCeTUI06j12GIYkiAQEIAQEBARQIimKEDBEBgx6BOgWXUheBEoFzgWZtiHWOIo43S4J2gVJpiSoHFweBFAEBAQ
+X-IPAS-Result: A0AkAQAvaupWjg8V3cNeGQEBAgcNg2hfD4J2pQCUDx2HJUwBAQEBAQESAQEBAQcWCVCEVBcEURoUDxMDCwIEBwMCAQIBDR4MFA0GAgEBiCeTUI06j12GIYkiAQEIAQEBARQIimKEDBEBgx6BOgWXUheBEoFzgWZtiHWOIo43S4J2gVJpiSoHFweBFAEBAQ
+X-IronPort-AV: E=Sophos;i="5.24,349,1454972400"; 
+   d="scan'208";a="86884400"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 17 Mar 2016 09:28:14 +0100
+Received: from miniMac.local (ARouen-256-1-24-136.w90-51.abo.wanadoo.fr [90.51.151.136])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 4297710766
+	for <sergi.colomies@insa-rouen.fr>; Thu, 17 Mar 2016 09:28:12 +0100 (CET)
+Reply-To: michel.mainguenaud@insa-rouen.fr
+To: Colomies Sergi <sergi.colomies@insa-rouen.fr>
+From: MAINGUENAUD Michel <michel.mainguenaud@insa-rouen.fr>
+Subject: Retour sur le GIT
+Organization: INSA-Rouen
+Message-ID: <56EA69DD.3020103@insa-rouen.fr>
+Date: Thu, 17 Mar 2016 09:25:01 +0100
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+ Gecko/20100101 Thunderbird/38.6.0
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="------------000207020700000800010906"
+
+This is a multi-part message in MIME format.
+--------------000207020700000800010906
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+
+-- 
+Michel MAINGUENAUD
+Institut National des Sciences Appliquees de Rouen (INSA-Rouen)
+
+Dep. Architecture des Systemes d'Information / LITIS
+685 Avenue de l'Universite - BP 08
+76801 Saint-Etienne du Rouvray Cedex
++ 33 (0)2 32 95 98 51
++ 33 (0)2 32 95 97 08 (fax)
++ 33 (0)2 32 95 97 79 (secr)
+
+email : michel.mainguenaud@insa-rouen.fr
+http://asi.insa-rouen.fr
+http://www.litislab.eu
+
+
+--------------000207020700000800010906
+Content-Type: text/plain; charset=UTF-8; x-mac-type="0"; x-mac-creator="0";
+ name="retour"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="retour"
+
+UmV0b3VyIHN1ciBsZSBHSVQgOiAxNy8zCgpwaWNfdW5pY2VmCiAgIG1ha2V2YXJzOgogICAg
+IExPQ1BBVEggbm9uIGTDqWZpbmkgPT4gbmUgZG9pdCBwYXMgYXBwYXJhaXRyZSDDoCBjZSBu
+aXZlYXUKCgpwaWNfdW5pY2VmL3Jlc3NvdXJjZXMvdW5pcGlrL3ByZXNlbnRhdGlvbgoKLT4g
+ZGVzIGZpY2hpZXJzIGxvZ29YWFggYWxvcnMgcXUnYXUgbml2ZWF1IGF1IGRlc3N1cyBpbCB5
+IGEgdW5lIGRpcmVjdG9yeSBsb2dvcyAodmlkZSkKCgoKcmVzc291cmNlcy9jbHMvYXNpCi0+
+IGRlIGxhIHJlZG9uZGFuY2UgZGFucyB2b2NhYnVsYWlyZUFTSS5zdHkgYXZlYyB2b2NhYnVs
+YWlyZVVuaXBpay5zdHkKCnJlc3NvdXJjZXMvY2xzL2NvbW11bgotPiBkZSBsYSByZWRvbmRh
+bmNlIGRhbnMgdm9jYWJ1bGFpcmVDb21tdW4uc3R5IGF2ZWMgdm9jYWJ1bGFpcmVVbmlwaWsu
+c3R5Cgo9PiBkw6lmaW5pc3NleiB1bmUgcG9saXRpcXVlIHBvdXIgdG91dCBjZSBxdWkgY29u
+Y2VybmUgbGVzIERHUSwgTVEsIC4uLiBxdWkgc29udApob3JzIGR1IHDDqXJpbcOodHJlIGR1
+IFBJQyAodm90cmUgY2xpZW50IG4nYXVyYSBwYXMgYmVzb2luIGRlIGNlcwppbmZvcm1hdGlv
+bnMgdW5lIGZvaXMgbGEgbGl2cmFpc29uIGZpbmFsZSBhc3N1csOpZSkgLT4gZCd1biBjb3TD
+qSBsZSBwcm9kdWl0IGRlIGwnYXV0cmUKY2UgcXVpIHRvdWNoZSDDoCBsJ2ludGVybmUgZGUg
+bCciZW50cmVwcmlzZSIuCgoKcmVzc291cmNlcy91bmlwaWs6b3JnYW5pZ3JhbW1lIDogdmlk
+ZSBhbG9ycyBxdWUKbGl2cmFpc29uL3JldnVlcy9yZXZ1ZTEvU1AvaW1hZ2VzIGNvbnRpZW50
+IHVuIG9yZ2FuaWdyYW1tZQoKCnF1YWxpdGUvUFEKIG1ha2V2YXJzIDogKGV0IGEgcGxlaW4g
+ZCdlbmRyb2l0cykKICAgTk9NX0ZJQ0hJRVI9UFFfUV9VbmlwaWtfdjEuMDEKICAgLT4gZGUg
+bm9tIGRlIGZpY2hpZXIgZW4gZHVyIGRhbnMgbGVzIG1ha2UKICAgLT4gZmljaGllciBkZSBj
+b25maWd1cmF0aW9uIGF2ZWMgbGVzIHZlcnNpb25zIGNvdXJhbnRlcyBldCBjb25zdHJ1Y3Rp
+b24KICAgICAgICBkdSBub20gYXZlYyBsYSByYWNpbmUrbGEgdmVyc2lvbiBjb25mb3Jtw6lt
+ZW50IGF1IFBHQwoJLT4gdHJhdmFpbCBkdSByZXNwb25zYWJsZSBkZXMgY29uZmlndXJhdGlv
+bnMKCnF1YWxpdGUvUFEvaW1hZ2VzCiAgIG1ha2VmaWxlIDogYXVjdW5lIHRyYcOnYWJpbGl0
+ZQogICAtPiB0cmF2YWlsIGR1IHJlc3BvbnNhYmxlIGRldmVsb3BwZW1lbnQgZGUgdG91dCB2
+ZXJpZmllciBwb3VyIGNlIHByb2Jsw6htZQogICAgICBxdWkgYSBkw6lqw6Agw6l0w6kgc291
+bGV2w6kKICAgbWFrZWZpbGUgOiBjb2jDqXJlbmNlIGRhbnMgbGVzIGFwcGVscyBkZXMgbG9n
+aWNpZWxzIHRpZXJzIChleCBkaWEgdnMgJChESUEpIGFpbGxldXJzKQogICAtPiB0cmF2YWls
+IGR1IHJlc3BvbnNhYmxlIGRldmVsb3BwZW1lbnQgZGUgdG91dCB2w6lyaWZpZXIgYXZhbnQg
+dmFsaWRhdGlvbiBzdXIKICAgICAgbGUgc3ZuCgpzcGVjaWZpY2F0aW9ucy9DRFIKICBtYWtl
+dmFycyA6CiAgICBHRU5QQVRIPSQoc2hlbGwgcHdkKS8uLi8uLgogICAgLT4gdm91cyBuZSBw
+b3V2ZXogcGFzIGF2b2lyIGRlcyBtb2RpZmljYXRpb25zIGRlIHZhcmlhYmxlcyBkdSBuaXZl
+YXUgcHJvamV0CiAgICAKCgpEJ3VuZSBmYcOnb24gZ8OpbsOpcmFsZSBzdXIgbGVzIG1ha2Vm
+aWxlIDoKICBwcmVuZXogdW5lIHN0cnVjdHVyZSBldCB1bmUgc2V1bGUgZXQgdGVuZXogdm91
+cyB5CiAgICBvcmRyZSBjb21waWxhdGlvbiAvIGFyY2hpdmFnZSAvIG5ldHRveWFnZQogIC0+
+IGxlIFJEIGVzdCByZXNwb25zYWJsZSBkZSDDp2EuCiAgLT4gdm91cyBhdmV6IGRlcyBtaWxs
+aWVycyBkZSBkdXBsaWNhdGlvbiBkZSBjb2RlIHN1ciBsZSBuZXR0b3lhZ2UgZXQgbCdhcmNo
+aXZhZ2UKICAgICAgIGZhaXRlcyB1biBzaGVsbCBzY3JpcHQgcGFyYW3DqXRyw6kgcGFyIGxh
+IGRpcmVjdG9yeSBjb3VyYW50ZSBldCBjZWxhIHRpZW5kcmEKICAgICAgIGVuIHVuZSBsaWdu
+ZSwgZmFjaWxpdGVyYSBsYSBsZWN0dXJlIGV0IHVuaWZpZXJhIGxhIGNvbmNlcHRpb24gZGVz
+IG1ha2VmaWxlCiAgICAgICBwb3VyIG5lIHNlIGNvbmNlbnRyZXIgcXVlIHN1ciBsJ2ltcG9y
+dGFudCBjJ2VzdCDDoCBkaXJlIGxhIGNvbXBpbGF0aW9uIGxvY2FsZS4KICAgICAgIElkZW0g
+cG91ciBsZSB0cmFpdGVtZW50IGRlcyBkaWEvZXBzL3BkZgoKClBvaW50IGZvcnRzIDoKCnZv
+Y2FidWxhaXJlVW5pcGlrLnN0eQo=
+--------------000207020700000800010906--

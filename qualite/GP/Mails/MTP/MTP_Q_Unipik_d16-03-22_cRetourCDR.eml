@@ -1,0 +1,82 @@
+Return-Path: <michel.mainguenaud@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id F2ECA23AB9
+	for <scolomies@insa-rouen.fr>; Tue, 22 Mar 2016 12:21:17 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CAAQBuKvFWjg8V3cNeGgEBAYNpaw8BgnS5TiGFbAKBQ0wBAQEBAQESAQEBAQkUCVCEQgEBAQMMFwQLAUURCQISCAIFEwMLAgIJAwIBAgENHgwOBg0GAgEBiCcKkUedF4YhiT8BAQEHAQEBARx8iWaEDBEBgx6CVgWXVxeFWoh2gU+MV448S4J2gVJpiFSBMgEBAQ
+X-IPAS-Result: A0CAAQBuKvFWjg8V3cNeGgEBAYNpaw8BgnS5TiGFbAKBQ0wBAQEBAQESAQEBAQkUCVCEQgEBAQMMFwQLAUURCQISCAIFEwMLAgIJAwIBAgENHgwOBg0GAgEBiCcKkUedF4YhiT8BAQEHAQEBARx8iWaEDBEBgx6CVgWXVxeFWoh2gU+MV448S4J2gVJpiFSBMgEBAQ
+X-IronPort-AV: E=Sophos;i="5.24,376,1454972400"; 
+   d="scan'208";a="87092009"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 22 Mar 2016 12:20:59 +0100
+Received: from MacBookAir.local (ARouen-256-1-24-44.w90-51.abo.wanadoo.fr [90.51.151.44])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 3892C10762
+	for <sergi.colomies@insa-rouen.fr>; Tue, 22 Mar 2016 12:20:57 +0100 (CET)
+Reply-To: michel.mainguenaud@insa-rouen.fr
+Subject: Re: Unipik - Cahier de recette
+References: <56F12270.7090600@insa-rouen.fr>
+To: =?UTF-8?Q?Sergi_Colomi=c3=a8s?= <sergi.colomies@insa-rouen.fr>
+From: MAINGUENAUD Michel <michel.mainguenaud@insa-rouen.fr>
+Organization: Institut National des Sciences Appliquees - Rouen
+Message-ID: <56F12BAF.3060606@insa-rouen.fr>
+Date: Tue, 22 Mar 2016 12:25:35 +0100
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:38.0)
+ Gecko/20100101 Thunderbird/38.6.0
+MIME-Version: 1.0
+In-Reply-To: <56F12270.7090600@insa-rouen.fr>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+p.5 Document en référence vous voyez bien
+que pour le MQ (sur la même page) vous
+utilisez la référence donnée à savoir
+ASI-MQ-MQASI
+donc vous n'utilisez pas Octobre 2015
+pour référencer la 9000 et a fortiori
+deux référence identiques pour des documents
+différents (9000 et 9001).
+
+
+Question : quel est l'objectif de ce cahier de recette ?
+que cherchez vous à montrer à votre client ?
+l'architecture, l'interface, les fonctionnalités, ... ?
+
+Le lot 1 c'est l'architecture donc vu du coté back end
+il faut montrer ce dont nous avons parlé hier
+si c'est du coté front end vous devez montrer les problèmes
+de concurrence et de la traversée des informations selon
+les 3 tiers et le MVC
+
+Dans tous les cas de figure il doit y avoir un parallèle entre
+l'opération et la visualisation de la base de donnée pour montrer
+que les informations sont ajoutées, supprimées, modifiées.
+=> le cahier de recette doit donc montrer cette dualité
+action -> résultat de l'action
+
+
+MM
+
+Le 22/03/16 11:46, Sergi Colomiès a écrit :
+> Bonjour Monsieur,
+> 
+> Je vous mets en pièce jointe le cahier de recette vierge. Il me semble
+> que vous souhaitiez y jeter un coup d’œil.
+> 
+> Cordialement,
+> 
+
+-- 
+Michel MAINGUENAUD
+Institut National des Sciences Appliquees de Rouen (INSA-Rouen)
+
+Dep. Architecture des Systemes d'Information / LITIS
+685 Avenue de l'Universite BP 08
+F76801 Saint-Etienne du Rouvray - France
++ 33 (0)2 32 95 98 51
++ 33 (0)2 32 95 97 08 (fax)
++ 33 (0)2 32 95 97 79 (secr)
+
+email : michel.mainguenaud@insa-rouen.fr
+http://www.insa-rouen.fr
+http://pagesperso.litislab.fr/mmainguenaud/

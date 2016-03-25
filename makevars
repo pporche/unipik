@@ -2,10 +2,7 @@
 
 
 
-
 GENPATH=$(UNIPIKGENPATH)/pic_unicef
-
-
 
 # Récupération du chemin de la classe picINSA pour les documents LaTeX
 CLSPATHGEN="ressources/cls/"

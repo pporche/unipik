@@ -4,4 +4,4 @@
 # Définition du nom du document
 NOM_FICHIER=PTI_D_Unipik_$(VERSIONPTI)
 
-LOCPATH=developpement/lot1/DT/DTI/PTI
+LOCPATH=developpement/DT/DTI/PTI

@@ -1,0 +1,125 @@
+% version 1.00, date 09/03/16, auteur Michel Cressant
+  
+  Ce chapitre a pour but de présenter les éléments de test, les fonctionnalités qui devront être testées, les documents et éléments nécessaires à la réalisation des tests d'intégration, la procédure à suivre une fois un test exécuté, l'environnement de travail nécessaire à la réalisation d'un test et la validation d'un test. 
+ 
+ 
+ \section{Elements de test}
+ 	Les éléments qui seront testés permettront de vérifier l'intégration des modules de code développés par l'équipe \nomEquipe.
+ 	
+ \section{Fonctionnalités à tester}
+	Ce paragraphe décrit l'organisation d'un modèle MVC ainsi que les différents tests d'intégration qui devront être réalisés. \\ 	
+ 	
+ 	La figure \ref{modeleMVC} représente l'organisation d'un modèle MVC communiquant avec une base de données. Les flèches représentent comment communiquent les différentes parties du modèle. Les tests d'intégration devront vérifier que ces parties communiquent correctement.
+ 	
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[scale=0.85]{images/modeleMVCPlusBD.pdf}
+ 		\caption{Représentation d'un Modèle Vue Contrôleur}
+ 		\label{modeleMVC}
+ 	\end{figure}
+ 
+ 
+ Les différents tests seront :\\
+ 
+ \subsection*{Tests d'Intégration Contrôleur Vue}
+  \begin{center}
+    \begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
+		\hline
+		ID & Test d'intégration \\\hline
+        TI001 & Contrôleur -> Vue \\\hline
+     \end{tabular}
+  \end{center}
+  
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[scale=0.8]{images/testControleurVue.pdf}
+  	\caption{Tests d'intégration du Contrôleur et des Vues}
+  	\label{testControleurEtVue}
+  \end{figure}
+  
+  
+ \subsection*{Tests d'Intégration du Modèle Vue Contrôleur}
+  \begin{center}
+    \begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
+	\hline
+	ID & Test d'intégration \\\hline
+        TI002 & Contrôleur -> Modèle \\ & Modèle -> Contrôleur \\\hline 
+     \end{tabular}
+  \end{center}
+  
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[scale=0.8]{images/testControleurModele.pdf}
+  	\caption{Tests d'intégration sur le Modèle Vue Contrôleur}
+  	\label{testModele}
+  \end{figure}    
+  
+  
+  \subsection*{Tests d'Intégration du Modèle Vue Contrôleur communiquant avec la Base de Données}
+  \begin{center}
+    \begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
+	\hline
+		ID & Test d'intégration \\\hline
+		TI003 & Modèle -> Base de données \\
+         & Base de données -> Modèle \\\hline
+     \end{tabular}
+  \end{center}
+  
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[scale=1.15]{images/testModeleBD.pdf}
+  	\caption{Test d'intégration sur le Modèle Vue Contrôleur avec la Base de Données}
+  	\label{testBaseDeDonnees}
+  \end{figure}
+  
+  
+  
+  
+  
+  \section{Eléments nécessaires pour les Test d'Intégration}
+  	Ce paragraphe décrit les éléments livrés nécessaires à la réalisation des tests d'intégration. \\
+  	
+  	Les éléments suivant doivent être livrés avant que les tests d'intégrations puissent commencer :
+  	\begin{itemize}
+  		\item Le \PTU,
+  		\item Les chapitres 1, 2 et 3 de ce document.
+  	\end{itemize}
+  	
+  	Les éléments suivant doivent être livrés avant qu'un test d'intégration spécifique ne commence :
+  	\begin{itemize}
+  		\item Le \JTU,
+  		\item Les composants impliqués,
+  		\item Les données tests spécifiques à ce test d'intégration.
+  	\end{itemize}
+  
+  \section{Rapport de Test d'Intégration}  
+  	Ce paragraphe décrit la procédure à exécuter une fois un test exécuté.  \\
+  	
+  	Les éléments suivants sont à réaliser lorsqu'un test d'intégration spécifique est fini : 
+  	\begin{itemize}
+  		\item Remplir le rapport du test dans le \JTU, qui listera tous les tests d'intégration,
+  		\item Rapporter les problèmes rencontrés (si nécessaire).
+  	\end{itemize}
+  	
+  	Les éléments suivant sont à réaliser  lorsque la session de test sur tous les modules de code sont finis : 
+  	\begin{itemize}
+  		\item Remplir tous les rapports de test dans le \JTU.
+  	\end{itemize}
+  
+  \section{Environnement de Test}
+	  Ce paragraphe décrit l'environnement nécessaire à la réalisation des tests d'intégration. \\
+	  
+	  L'installation des éléments suivants sont nécessaires à la réalisations des tests d'intégration : 
+	  \begin{itemize}
+	  	\item php5,
+	  	\item apache2 (à configurer),
+	  	\item postgresql,
+	  	\item Symfony (framework).
+	  \end{itemize}
+  
+  \section{Validation d'un Test}
+	Ce paragraphe décrit les conditions à remplir pour qu'un test d'intégration soit validé.\\
+  
+  	Un test d'intégration est validé s'il ne provoque aucune erreur, et retourne les résultats escomptés. 
+  	
+  	

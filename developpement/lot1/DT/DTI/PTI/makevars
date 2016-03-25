@@ -1,0 +1,7 @@
+# version 1.02 date 18/03/2016 auteur(s) Mathieu Medici
+# version 1.01 date 01/03/2016 auteur(s) Michel Cressant
+
+# Définition du nom du document
+NOM_FICHIER=PTI_D_Unipik_l1
+
+LOCPATH=developpement/lot1/DT/DTI/PTI

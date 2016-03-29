@@ -6,10 +6,15 @@ include makevars ../../../../../makevars ../../../../../gestionConfigurations
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
+
+# Compilation
+
 all :  ptu cleanrep
 
 ptu : $(PDFDIR)/$(NOM_FICHIER).pdf 
 
+
+# LaTex to pdf
 $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\

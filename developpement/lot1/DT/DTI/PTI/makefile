@@ -6,15 +6,21 @@ include makevars ../../../../../makevars ../../../../../gestionConfigurations
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all :  imagespdf pti cleanrep cleaneps 
 
-pti : $(PDFDIR)/$(NOM_FICHIER).pdf 
+# Compilation
 
+all :  pti cleanrep cleaneps
+
+pti : imagespdf $(PDFDIR)/$(NOM_FICHIER).pdf 
+
+
+# LaTex to pdf
 $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\
 	$(CCTEX) $<
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
+
 
 
 imagespdf:  $(IMGDIR)/modeleMVCPlusBD.pdf $(IMGDIR)/testControleurVue.pdf $(IMGDIR)/testControleurModele.pdf $(IMGDIR)/testModeleBD.pdf
@@ -24,6 +30,7 @@ $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 
 $(IMGDIR)/%.eps: $(IMGDIR)/%.dia
 	$(DIA) -e $@ --filter=eps-builtin $<
+
 
 # Clean commands
 clean : cleanpdf cleanrep  cleaneps

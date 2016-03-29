@@ -8,15 +8,9 @@ include makevars ../../../makevars ../../../gestionConfigurations
 
 # Compilation
 
-all: modeleea diagrammeclasse diagrammepackage diagrammesequence dcp cleanrep
+all: dcp modeleea diagrammeclasse diagrammepackage diagrammesequence cleanrep
 
 dcp : $(PDFDIR)/$(NOM_FICHIER).pdf 
-
-$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
 modeleea:
 	make -C modeleEA
@@ -31,9 +25,20 @@ diagrammesequence:
 	make -C diagrammeSequence
 
 
+# LaTex to pdf
+$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
+	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
+	export TEXINPUTS;\
+	$(CCTEX) $<
+	mv $(NOM_FICHIER).pdf $(PDFDIR)
+
 
 # Archivage
-archive: archivemodeleea archivediagrammeclasse archivediagrammepackage archivediagrammesequence archivedcp
+archive: archivedcp archivemodeleea archivediagrammeclasse archivediagrammepackage archivediagrammesequence 
+
+archivedcp:
+	mkdir -p ${ARCHIVEDIR}
+	cp pdf/*.pdf ${ARCHIVEDIR}
 
 archivemodeleea:
 	make -C modeleEA archive
@@ -47,16 +52,13 @@ archivediagrammepackage:
 archivediagrammesequence:
 	make -C diagrammeSequence archive
 
-archivedcp:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
 
 
-# Nettoyage
-clean: cleanrep cleanpdf cleanmodeleea cleandiagrammeclasse cleandiagrammepackage cleandiagrammesequence
+# Clean commands
 
-cleanrep:
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
+clean: cleandcp cleanmodeleea cleandiagrammeclasse cleandiagrammepackage cleandiagrammesequence
+
+cleandcp: cleanpdf cleanrep
 
 cleanmodeleea:
 	make -C modeleEA clean
@@ -73,7 +75,8 @@ cleandiagrammesequence:
 cleanpdf:
 	rm -f pdf/*.pdf
 
-
+cleanrep:
+	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
 
 
 

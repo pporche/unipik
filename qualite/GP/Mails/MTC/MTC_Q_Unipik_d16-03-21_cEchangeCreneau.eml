@@ -1,0 +1,80 @@
+Return-Path: <dbareau@altedia.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 6DB4223AB9
+	for <scolomies@insa-rouen.fr>; Mon, 21 Mar 2016 18:14:35 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0A3AQAtK/BWk3HqN51ehHkGtXSGKYYNAhyBWwEBAQEBARIBAQEBCQsJCSEvhEIBAQEDEgEQEQwBATgPAgEIEggCIwMCAgIdExQBAgMLAgQTCBqHcAMSBKFaAYEnARxhBSgCimcBAWaEQQEEhgQYhEkBAQEBBgEBAQEBAQETBnyFIoREhB0BAR0WgmorgiuXXBecdI8GglgegVFqiGM0AX0BAQE
+X-IPAS-Result: A0A3AQAtK/BWk3HqN51ehHkGtXSGKYYNAhyBWwEBAQEBARIBAQEBCQsJCSEvhEIBAQEDEgEQEQwBATgPAgEIEggCIwMCAgIdExQBAgMLAgQTCBqHcAMSBKFaAYEnARxhBSgCimcBAWaEQQEEhgQYhEkBAQEBBgEBAQEBAQETBnyFIoREhB0BAR0WgmorgiuXXBecdI8GglgegVFqiGM0AX0BAQE
+X-IronPort-AV: E=Sophos;i="5.24,372,1454972400"; 
+   d="scan'208";a="87058954"
+Received: from mail-db3on0113.outbound.protection.outlook.com (HELO emea01-db3-obe.outbound.protection.outlook.com) ([157.55.234.113])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 21 Mar 2016 18:14:35 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=inoffice.onmicrosoft.com; s=selector1-altedia-fr;
+ h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=5pjY2uklpxC14PFL4lXuw+N5hVUrvCzAFMQiKxQTqV8=;
+ b=N/V65MiFl3oBW6wKTanboDcPJENbTJ8gEMkNoYS5vCGRL1AZ2AY6oE6MnYuQB+zSmpTrfMzenfxqVBjqTgZ1M4CBt0pMCPzIeyv6VZuC6UEllQVkzwZL2AGFui4GkGaq7Roj+TUK+lwKaXOvyphMkS9/6DlkSazWyWw5quG+G+U=
+Received: from DB4PR06MB0720.eurprd06.prod.outlook.com (10.161.14.144) by
+ DB4PR06MB0718.eurprd06.prod.outlook.com (10.161.14.142) with Microsoft SMTP
+ Server (TLS) id 15.1.434.16; Mon, 21 Mar 2016 17:14:34 +0000
+Received: from DB4PR06MB0720.eurprd06.prod.outlook.com ([10.161.14.144]) by
+ DB4PR06MB0720.eurprd06.prod.outlook.com ([10.161.14.144]) with mapi id
+ 15.01.0434.021; Mon, 21 Mar 2016 17:14:34 +0000
+From: Doriane BAREAU <dbareau@altedia.fr>
+To: =?utf-8?B?U2VyZ2kgQ29sb21pw6hz?= <sergi.colomies@insa-rouen.fr>
+Subject: =?utf-8?B?UkU6IFBJQyAtIMOJY2hhbmdlIGNyw6luZWF1eCB0dXRvcmF0IGNvbW11bmlj?=
+ =?utf-8?Q?ation?=
+Thread-Topic: =?utf-8?B?UElDIC0gw4ljaGFuZ2UgY3LDqW5lYXV4IHR1dG9yYXQgY29tbXVuaWNhdGlv?=
+ =?utf-8?Q?n?=
+Thread-Index: AQHRg0Zzq5NKNER3LkC4ZZadAIRfWp9kI24g
+Date: Mon, 21 Mar 2016 17:14:34 +0000
+Message-ID: <DB4PR06MB0720D514BBAC872918552C5ED48F0@DB4PR06MB0720.eurprd06.prod.outlook.com>
+References: <56EFA7DC.8080107@insa-rouen.fr>
+In-Reply-To: <56EFA7DC.8080107@insa-rouen.fr>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: insa-rouen.fr; dkim=none (message not signed)
+ header.d=none;insa-rouen.fr; dmarc=none action=none header.from=altedia.fr;
+x-originating-ip: [80.215.156.190]
+x-ms-office365-filtering-correlation-id: 7cdd7e2b-64b7-45c5-c836-08d351ac4648
+x-microsoft-exchange-diagnostics: 1;DB4PR06MB0718;5:ZomN2WyA2o8hgYUq3xQslMaoG19mPCY6+rMBdCXLf+0ZscC0jwZIuF4txXb5y4TCNwd2KGhe7nH4GFUDxIK7yhFpPFfzivzqmkcGMgxJwxci8BXBIuNJE/mDHRfmWaJ+bv9Bo8r6m71bJ7gTExjAvw==;24:LpHVxAzXL+ZfIeoP3dLykBeCO3IqL/7MW6qmZCL/Is3R5jYrRzheY8iO3Yc0dJAq839j3s28jxsMbHpcYYkBlS7k2GA7PXzZHCpBZSUz9ck=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DB4PR06MB0718;
+x-microsoft-antispam-prvs: <DB4PR06MB0718D8CE8F30E43473423F82D48F0@DB4PR06MB0718.eurprd06.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:(601004)(2401047)(5005006)(8121501046)(10201501046)(3002001);SRVR:DB4PR06MB0718;BCL:0;PCL:0;RULEID:;SRVR:DB4PR06MB0718;
+x-forefront-prvs: 0888B1D284
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(6009001)(5008740100001)(3280700002)(224313004)(50986999)(87936001)(76176999)(106116001)(224303003)(3660700001)(74316001)(19580405001)(5002640100001)(19580395003)(189998001)(66066001)(92566002)(5003600100002)(76576001)(110136002)(54356999)(107886002)(77096005)(2950100001)(2900100001)(81166005)(74482002)(450100001)(5004730100002)(2906002)(33656002)(1096002)(102836003)(6116002)(86362001)(122556002)(3846002)(1220700001)(11100500001)(10400500002)(586003);DIR:OUT;SFP:1102;SCL:1;SRVR:DB4PR06MB0718;H:DB4PR06MB0720.eurprd06.prod.outlook.com;FPR:;SPF:None;MLV:sfv;LANG:fr;
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: altedia.fr
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Mar 2016 17:14:34.3677
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f30ac191-b8b4-45f2-9a9b-e5466cb90c2f
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB4PR06MB0718
+
+Qm9uc29pciwgDQpDJ2VzdCBwYXJmYWl0LCBtZXJjaSENCkNvcmRpYWxlbWVudA0KDQpEb3JpYW5l
+IEJhcmVhdQ0KQ29uc3VsdGFudGUgQWx0ZWRpYSBMSEgNCjcgYmlzIHJ1ZSBKZWFubmUgZCdBcmMs
+IDc2MDAwIFJPVUVOIA0KMDYgNzUgMDQgMzMgNjAgLSAwMiAzMiAxMiA3MCAxMCANCg0KQWx0ZWRp
+YSBmYWl0IHBhcnRpZSBkZSBMZWUgSGVjaHQgSGFycmlzb24sIA0KbGEgbGlnbmUgZCdhY3Rpdml0
+w6lzIG1vbmRpYWxlIGRlIGNvbnNlaWwgZW4gcmVzc291cmNlcyBodW1haW5lcyBkdSBncm91cGUg
+QWRlY2NvLg0KDQotLS0tLU1lc3NhZ2UgZCdvcmlnaW5lLS0tLS0NCkRlwqA6IFNlcmdpIENvbG9t
+acOocyBbbWFpbHRvOnNlcmdpLmNvbG9taWVzQGluc2Etcm91ZW4uZnJdIA0KRW52b3nDqcKgOiBs
+dW5kaSAyMSBtYXJzIDIwMTYgMDg6NTENCsOAwqA6IERvcmlhbmUgQkFSRUFVDQpDY8KgOiBQcmV2
+b3RlYXV4IFNpbW9uDQpPYmpldMKgOiBQSUMgLSDDiWNoYW5nZSBjcsOpbmVhdXggdHV0b3JhdCBj
+b21tdW5pY2F0aW9uDQoNCg0KQm9uam91ciBNYWRhbWUsDQoNCkFwcsOocyBjb25jZXJ0YXRpb24g
+YXZlYyBsJ8OpcXVpcGUgUElDIFRyb3BpYywgbm91cyBub3VzIHNvbW1lcyBtaXMgZCdhY2NvcmQg
+cG91ciDDqWNoYW5nZXIgbm9zIGNyw6luZWF1eCBkZSB0dXRvcmF0IGNvbW11bmljYXRpb24uIE5v
+dXMgYXVyaW9ucyBkb25jIGxlcyBjcsOpbmVhdXggc3VpdmFudHMgOg0KLSAxMGgtMTFoIDogVHJv
+cGljDQotIDExaC0xMmggOiBVbmlwaWsNCg0KUG91dmV6LXZvdXMgbm91cyBkaXJlIHNpIGNldCDD
+qWNoYW5nZSB2b3VzIGNvbnZpZW50ID8NCg0KTWVyY2kgZCdhdmFuY2UuDQoNCkNvcmRpYWxlbWVu
+dCwNCg0KLS0NClNlcmdpIENvbG9tacOocw0Kw4l0dWRpYW50IDTDqG1lIGFubsOpZSBJTlNBIGRl
+IFJvdWVuDQpEw6lwYXJ0ZW1lbnQgQXJjaGl0ZWN0dXJlIGRlcyBTeXN0w6htZXMgZCdJbmZvcm1h
+dGlvbg0KDQpUw6lsIDogMDYgNzQgOTIgOTQgODYNCk1haWwgOiBzZXJnaS5jb2xvbWllc0BpbnNh
+LXJvdWVuLmZyDQoNCg==

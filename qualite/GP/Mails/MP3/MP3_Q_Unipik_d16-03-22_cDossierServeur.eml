@@ -1,0 +1,91 @@
+Return-Path: <gilles.gasso@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 582A023AC7
+	for <scolomies@insa-rouen.fr>; Tue, 22 Mar 2016 16:23:55 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0AhAgAiY/FWjg8V3cNeHINqg2+5Th2FcAKBRkwBAQEBAQESAQEBAQkUCVCEQgEBAQMMFw8BBREvEQkCGgIFFgsCAgkDAgECAUUGDQgBAYgnkxmdF5BvAQEIAQEBARx8hSKERIQdAQGDHYJWBYdgj3eBUps7jweCdoFSiT2BMgEBAQ
+X-IPAS-Result: A0AhAgAiY/FWjg8V3cNeHINqg2+5Th2FcAKBRkwBAQEBAQESAQEBAQkUCVCEQgEBAQMMFw8BBREvEQkCGgIFFgsCAgkDAgECAUUGDQgBAYgnkxmdF5BvAQEIAQEBARx8hSKERIQdAQGDHYJWBYdgj3eBUps7jweCdoFSiT2BMgEBAQ
+X-IronPort-AV: E=Sophos;i="5.24,377,1454972400"; 
+   d="scan'208";a="96763836"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 22 Mar 2016 16:23:52 +0100
+Received: from MacBook-Pro-de-Gilles-2.local (LAubervilliers-656-1-1-94.w80-15.abo.wanadoo.fr [80.15.195.94])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 4397A10781
+	for <sergi.colomies@insa-rouen.fr>; Tue, 22 Mar 2016 16:23:52 +0100 (CET)
+Subject: Re: Unipik - Serveur
+To: =?UTF-8?Q?Sergi_Colomi=c3=a8s?= <sergi.colomies@insa-rouen.fr>
+References: <56F0EED0.2010301@insa-rouen.fr> <56F0FA27.9080607@insa-rouen.fr>
+ <56F1000C.1080409@insa-rouen.fr>
+From: Gilles Gasso <gilles.gasso@insa-rouen.fr>
+Message-ID: <56F16387.4090803@insa-rouen.fr>
+Date: Tue, 22 Mar 2016 16:23:51 +0100
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+ Gecko/20100101 Thunderbird/38.7.0
+MIME-Version: 1.0
+In-Reply-To: <56F1000C.1080409@insa-rouen.fr>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+La réponse de la direction est la suivante :
+- élaborer un dossier technique de la demande et préciser la finalité du 
+projet
+- soumettre ce dossier à la DSI pour étudier la faisabilité et les 
+contraintes techniques et au service juridique pour les engagements de 
+l'école
+- la direction prendra une décision au vu des retours de la DSI et du 
+service juridique
+
+Cordialement,
+> Nous développons un service web permettant de gérer informatiquement 
+> les interventions externes des bénévoles. Par conséquent nous 
+> souhaiterions un hébergement d'une base de données et de notre service 
+> web. La base de données sera en PostgreSQL et PostGIS. Elle devra 
+> également être capable d'utiliser des cartes via OpenStreetMap. En ce 
+> qui concerne la taille de la BD, nous aurions une dizaine de bénévole 
+> pour 1500 établissements. Enfin notre service web est développé en PHP.
+>
+> En contre partie de l'hébergement, l'UNICEF est prêt à monter un 
+> partenariat avec l'INSA. Sur le service web apparaitra une mention à 
+> l'INSA. De plus des interventions par des bénévoles pourraient être 
+> réalisés ainsi que tout autre services de sensibilisation de l'UNICEF.
+>
+> En espérant que cela réponde à vos questions.
+>
+> Le 22/03/2016 08:54, Gilles Gasso a écrit :
+>> Bonjour
+>> Pouvez-vous me préciser l'utilisation envisagée pour le serveur. 
+>> Quelle application, quels services seront hébergés sur le serveur 
+>> pour que je puisse expliquer le projet au directeur.
+>>
+>> Merci.
+>>
+>>
+>>>
+>>> Bonjour Monsieur,
+>>>
+>>> Je me permets de vous écrire ce mail suite à notre entrevue de la 
+>>> semaine dernière concernant le possible hébergement du service que 
+>>> nous développons pour l'UNICEF par les serveurs de l'INSA. Nous 
+>>> apprécierions énormément si  vous puissiez ne serait-ce qu'en parler 
+>>> pendant votre réunion d'aujourd'hui.
+>>>
+>>> Merci d'avance pour votre aide.
+>>>
+>>> Cordialement,
+>>>
+>>
+>>
+>
+
+
+-- 
+-----------------------------------------------------
+Gilles GASSO
+Directeur du Département ASI
+INSA de Rouen www.insa-rouen.fr/
+Laboratoire LITIS http://www.litislab.eu/
+Tel : 33 (0)2 32 95 98 96 - Fax : 33 (0)2 32 95 97 08
+-----------------------------------------------------
+

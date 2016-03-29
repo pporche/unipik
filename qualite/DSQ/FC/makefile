@@ -7,7 +7,7 @@ include makevars ../../../makevars
 
 all : fc cleanrep cleaneps
 
-fc : $(PDFDIR)/FC_Q_Unipik_pFL_v1.01.pdf $(PDFDIR)/FC_Q_Unipik_pJP_v1.01.pdf $(PDFDIR)/FC_Q_Unipik_pKA_v1.01.pdf $(PDFDIR)/FC_Q_Unipik_pMB_v1.01.pdf $(PDFDIR)/FC_Q_Unipik_pMC_v1.01.pdf $(PDFDIR)/FC_Q_Unipik_pMMB_v1.01.pdf $(PDFDIR)/FC_Q_Unipik_pMM_v1.01.pdf $(PDFDIR)/FC_Q_Unipik_pPP_v1.01.pdf $(PDFDIR)/FC_Q_Unipik_pSC_v1.01.pdf 
+fc : $(PDFDIR)/FC_Q_Unipik_pFL_v1.02.pdf $(PDFDIR)/FC_Q_Unipik_pJP_v1.02.pdf $(PDFDIR)/FC_Q_Unipik_pKA_v1.02.pdf $(PDFDIR)/FC_Q_Unipik_pMB_v1.02.pdf $(PDFDIR)/FC_Q_Unipik_pMC_v1.02.pdf $(PDFDIR)/FC_Q_Unipik_pMMB_v1.02.pdf $(PDFDIR)/FC_Q_Unipik_pMM_v1.02.pdf $(PDFDIR)/FC_Q_Unipik_pPP_v1.02.pdf $(PDFDIR)/FC_Q_Unipik_pSC_v1.02.pdf 
 
 $(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

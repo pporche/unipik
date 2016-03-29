@@ -1,0 +1,58 @@
+\documentclass[asi,sansVersion]{picInsa}
+
+\usepackage{vocabulaireUnipik}
+
+\definecolor{gris}{gray}{0.75}
+\definecolor{gris2}{gray}{0.85}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1\textwidth}}
+
+\titreGeneral{\PF}
+\sousTitreGeneral{}
+\titreAcronyme{\PFCourt}
+\version{v1.02}
+\referenceVersion{\PFCourt\_Q\_\nomEquipe\_\versionPrive}
+\auteurs{\Pierre{}}
+\destinataires{}
+\resume{Le présent document est le \PF{} du \picCourt{} \nomEquipe{}.}
+\motsCles{\planQualite{}, PQ, PIC, \nomEquipe{}, \PF}
+\natureDerniereModification{Création}
+\modeDiffusionControle{}
+
+\begin{document}
+
+	\begin{center}
+		\LARGE
+		\textsc{
+			\PF{}\\
+		}
+	\end{center}
+	\vspace{0.5cm}
+
+	\section*{Suivi des modifications}
+	\begin{table}[H]
+		\centering
+		\begin{tabularx}{18cm}{|p{1.7cm}|p{4cm}|X|}
+		\hline
+		\rowcolor[gray]{0.85} Date & Origine & Nature de la modification\\\hline
+		25/03/16 & Modification & modifications date et nature des formations \\ \hline
+		14/03/16 & Modification & Ajout des formations Symfony FE, Symfony BE, BootStrap, PHP Unit Tests U, PHP Unit Tests d'I et IHM Design \\ \hline
+		29/02/16 & Création & Ajout de la formation ArgoUML\\ \hline
+		
+		\end{tabularx}
+	\end{table}
+	
+	\section*{Liste des formations}
+	%\begin{landscape}
+		\begin{longtable}{|p{2cm}|p{3.5cm}|p{2cm}|p{2cm}|p{2cm}|c|p{2cm}|}
+			\hline
+			\rowcolor{gris2}
+			\No{} de \FFCourt{} associée & Intitulé & Date prévue & Date effective & Personnes reçues & Formateur & Statut \\\hline
+			01 & ArgoUML & 29/02/2016 & 29/02/2016 & tous & \Julie{} & Évaluation à chaud faite\\\hline
+			02 & Symfony pour Front End & 21/03/2016 &  &  &  & \\\hline
+			03 & BootStrap & 29/03/2016 &  &  &  & \\\hline
+			04 & PHP Unit pour tests unitaires & 29/03/2016 &  &  &  & \\\hline
+			05 & IHM Design & 31/03/2016 &  &  &  & \\\hline
+		\end{longtable}
+	%\end{landscape}
+\end{document}

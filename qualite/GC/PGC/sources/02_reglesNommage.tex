@@ -1,4 +1,4 @@
-% version 1.01 Date 14/03/2016	Auteur Mathieu Medici
+% version 1.01 Date 24/03/2016	Auteur Mathieu Medici
 
 Dans le but d'identifier clairement et de manière unique les éléments de configuration du \picCourt{}, il est nécessaire de spécifier des règles de nommage. Chaque élément inclus dans un référentiel doit respecter la règle de nommage qui lui convient.\\
 
@@ -164,8 +164,6 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     \hline
  \multicolumn{3}{|c|}{\textbf{\bsc{Référentiel Spécifications}}}\\
     \hline
-    Cahier De Recettes & CDR & v\\
-    \hline
     Carnet de Produit & CP & v\\
     \hline
     Document de Spécifications Externes & DSE & v\\
@@ -179,30 +177,32 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     Dossier d'Audit de Code & DAC & d\\
     \hline
     Implémentation & implementation & -\\
-    \hline    
-    Dossier de Tests & DT & -\\
-    \hline
-    \hspace{1cm} Dossier de Tests d'Intégration & DTI & v \\
-    \hline
-    \hspace{2cm} Journal de Tests d'Intégration & JTI & v \\ 
-    \hline
-    \hspace{2cm} Plan de Tests d'Intégration & PTI & v \\
-    \hline
-    \hspace{1cm} Dossier de Tests Unitaires & DTU & v \\
-    \hline
-    \hspace{2cm} Journal de Tests Unitaires & JTU & v \\
-    \hline
-    \hspace{2cm} Plan de Tests Unitaires & PTU & v \\
     \hline
     LotX & lotX & -\\
     \hline
-    \hspace{1cm} Dossier de Conception Détaillée & DCD & v\\
+    \hspace{1cm} Cahier De Recettes & CDR & l\\
     \hline
-    \hspace{1cm} Dossier de Conception Préliminaire & DCP & v\\
+    \hspace{1cm} Dossier de Conception Détaillée & DCD & l\\
     \hline
-    \hspace{1cm} Guide Utilisateur & GU & v\\
+    \hspace{1cm} Dossier de Conception Préliminaire & DCP & l\\
+    \hline    
+    \hspace{1cm} Dossier de Tests & DT & -\\
     \hline
-    \hspace{1cm} Procédure d'Installation & PI & v\\
+    \hspace{2cm} Dossier de Tests d'Intégration & DTI & l \\
+    \hline
+    \hspace{3cm} Journal de Tests d'Intégration & JTI & l \\ 
+    \hline
+    \hspace{3cm} Plan de Tests d'Intégration & PTI & l \\
+    \hline
+    \hspace{2cm} Dossier de Tests Unitaires & DTU & l \\
+    \hline
+    \hspace{3cm} Journal de Tests Unitaires & JTU & l \\
+    \hline
+    \hspace{3cm} Plan de Tests Unitaires & PTU & l \\
+    \hline
+    \hspace{1cm} Guide Utilisateur & GU & l\\
+    \hline
+    \hspace{1cm} Procédure d'Installation & PI & l\\
     \hline
  \multicolumn{3}{|c|}{\textbf{\bsc{Référentiel Livraison}}}\\
     \hline
@@ -232,7 +232,9 @@ Lors du nommage nous utilisons des suffixes adaptés en fonction du type de docu
 		\hline
 		Date & d & dAA-MM-JJ\\
 		\hline
-		Version & v & vXX.YY\\
+		Version & v & vX.YY\\
+		\hline
+		Lot & l & lX\\		
 		\hline
 		Numéro & n & nXXX\\
 		\hline
@@ -261,12 +263,47 @@ Exemple : \verb+d16-01-27+
 \subsection{Suffixe Version}
 \label{suffixe_version}
 
-Le suffixe \verb+Version+ suit le format \textbf{vXX.YY}. XX correspond au numéro de version, YY au numéro de révision. Le numéro de version représente le numéro de la dernière approbation du document et commence à \verb+01+. Le numéro de révision représente toute modification du document, simple modification suite à une remarque mais aussi modification majeure, et commence à \verb+00+.  Quand le numéro de version est incrémenté, celui des révision repasse à 00.\\
+Le suffixe \verb+Version+ suit le format \textbf{vX.YY}. La gestion des versions et des révisions n'étant pas la même selon si le document doit être approuvé ou non, nous allons séparer la convention du suffixe \verb+Version+ en deux parties. \\
 
-Exemples :\\
-\verb+v01.00+ est le suffixe version du PQ après sa première approbation.\\
-\verb+v01.01+ est le suffixe version du PQ après une première modification du document approuvé.\\
-\verb+v02.00+ est le suffixe version du PQ après approbation de la modification ci-desus.\\
+\paragraph{Cas des documents avec approbation\\}
+
+Dans le cas des documents à approuver (par exemple PQ ou PGC), X est le numéro d'approbation et commence à 0, YY est le numéro de correction et commence à 00. Lorsqu'un document est approuvé, le numéro d'approbation est incrémenté et le numéro de correction revient à 00. Lorsqu'un document est corrigé suite à une demande de correction, le numéro de correction est incrémenté.
+
+Pour plus de clarté, voici le mode de fonctionnement étape par étape : 
+\begin{itemize}
+\item[$\rightarrow$] Création d'un document en v0.00;
+\item[$\rightarrow$] Envoi du document en v0.00 pour approbation;
+\item[$\rightarrow$] Demande de correction sur le document en v0.00;
+\item[$\rightarrow$] Correction du document en v0.01;
+\item[$\rightarrow$] Envoi du document en v0.01 pour approbation;
+\item[$\rightarrow$] ...;
+\item[$\rightarrow$] Approbation du document en v1.00 et diffusion obligatoire du document en version v1.00;
+\item[$\rightarrow$] Envoi du document en v1.01 pour approbation;
+\item[$\rightarrow$] Demande de correction sur le document en v1.01;
+\item[$\rightarrow$] Correction du document en v1.02;
+\item[$\rightarrow$] Envoi du document en v1.02 pour approbation;
+\item[$\rightarrow$] ...;
+\item[$\rightarrow$] Approbation du document en v2.00 et diffusion obligatoire du document en version v2.00;
+\end{itemize}
+
+\paragraph{Cas des documents sans approbation\\}
+
+Dans le cas des documents n'ayant pas besoin d'être approuvé (par exemple DSI), X est le numéro de version classique et commence à 1, YY n'est pas utilisé.
+
+Pour plus de clarté, voici le mode de fonctionnement étape par étape :
+\begin{itemize}
+\item[$\rightarrow$] Création du document en v1.00;
+\item[$\rightarrow$] Modification du document en v2.00;
+\item[$\rightarrow$] Modification du document en v3.00;
+\item[$\rightarrow$] ...
+\end{itemize}
+
+\subsection{Suffixe Lot}
+\label{suffixe_lot}
+
+Le suffixe \verb+Lot+ suit le format \textbf{lX}. X correspond au numéro du lot.\\
+
+Exemple : \verb+l1+\\
 
 \subsection{Suffixe Numéro}
 \label{suffixe_numero}
@@ -274,6 +311,10 @@ Exemples :\\
 Le suffixe \verb+Numéro+ suit le format \textbf{nXXX}. XXX est un nombre entier compris entre 001 et 999. Il commence à la valeur 001 et est incrémenté à chaque nouveau document.\\
 
 Exemple : \verb+n042+\\
+
+Remarque : Petit cas particulier pour les numéros des documents situés dans un dossier \verb+revuesX+. Le suffixe numéro correspond dans ce cas précis au numéro de la revue et suit le format \textbf{vX} avec X le numéro de la revue.\\
+
+Exemple : \verb+n1+\\
 
 \subsection{Suffixe Semaine}
 \label{suffixe_semaine}

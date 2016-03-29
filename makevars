@@ -2,13 +2,7 @@
 
 
 
-# UNIPIKARCHIVEPATH="/net/archives/archivage/archivageGit"
-# GENPATH=$($(shell pwd)%%"pic_unicef"*)pic_unicef
-
 GENPATH=$(UNIPIKGENPATH)/pic_unicef
-
-
-
 
 # Récupération du chemin de la classe picINSA pour les documents LaTeX
 CLSPATHGEN="ressources/cls/"

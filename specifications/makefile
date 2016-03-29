@@ -1,7 +1,7 @@
 # version 1.01 date 24/02/2016 auteur(s) Michel Cressant, Pierre Porche
 
 # Compilation
-all: dse dsi ptv cdr
+all: dse dsi ptv
 
 dse:
 	make -C DSE
@@ -12,13 +12,11 @@ dsi:
 ptv:
 	make -C PTV
 
-cdr:
-	make -C CDR
 
 
 
 # Archivage
-archive: archivedse archivedsi archiveptv archivecdr
+archive: archivedse archivedsi archiveptv 
 
 archivedse:
 	make -C DSE archive
@@ -29,15 +27,13 @@ archivedsi:
 archiveptv:
 	make -C PTV archive
 
-archivecdr:
-	make -C CDR archive
 
 
 
 
 
 # Nettoyage
-clean : cleandse cleandsi cleanptv cleancdr
+clean : cleandse cleandsi cleanptv 
 
 cleandse:
 	make -C DSE clean
@@ -47,9 +43,6 @@ cleandsi:
 
 cleanptv:
 	make -C PTV clean
-
-cleancdr:
-	make -C CDR clean
 
 
 

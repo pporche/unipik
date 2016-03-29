@@ -12,7 +12,7 @@ Puis rajoutez à la fin une ligne du type :
 
 si le chemin du dossier "pic_unicef" est "/home/utilisateur/pic_unicef".
 
-Enfin, relancez votre .profile avec la commande:
+Enfin, relancez votre session ou, uniquement pour un terminal, votre .profile avec la commande:
 	. ~/.profile
 
 

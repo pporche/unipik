@@ -1,7 +1,7 @@
 # version 1.00 date 01/03/2016 auteur(s) Pierre Porche
 
 # Importation des variables
-include makevars ../../../makevars
+include makevars ../../../makevars ../../../gestionConfigurations
 
 all : imagespdf of cleanrep cleaneps
 
@@ -13,7 +13,7 @@ $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 $(IMGDIR)/%.eps: $(IMGDIR)/%.dia
 	$(DIA) -e $@ --filter=eps-builtin $<
 
-of : $(PDFDIR)/OF_Q_Unipik_v1.00.pdf
+of : $(PDFDIR)/OF_Q_Unipik_$(VERSIONOF).pdf
 
 $(PDFDIR)/%.pdf : ./%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

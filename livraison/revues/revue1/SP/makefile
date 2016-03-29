@@ -3,9 +3,25 @@
 # Importation des variables
 include makevars ../../../../makevars
 
-all : imagespdf imagespng sp cleanrep cleaneps cleanpng
+
+# Compilation
+
+all : sp imagespdf imagespng cleanrep cleaneps cleanpng
+
+sp : $(PDFDIR)/$(NOM_FICHIER).pdf 
+
+
+# LaTex to pdf
+$(PDFDIR)/%.pdf : %.tex
+	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH):$(THEMEPATH);\
+	export TEXINPUTS;\
+	$(CCTEX) $<
+	mv $(NOM_FICHIER).pdf $(PDFDIR)
+
 
 imagespdf: $(IMGDIR)/cycleCorrectionFT.pdf $(IMGDIR)/planningProjet2.pdf $(IMGDIR)/schemaArchitecture.pdf
+
+imagespng: $(IMGDIR)/organigrammeFonctionnel.png $(IMGDIR)/cycleCorrectionFT.png $(IMGDIR)/modeleSpirale.png $(IMGDIR)/risque.png
 
 $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 	$(EPSPDF) -dEPSCrop $< $@
@@ -13,18 +29,10 @@ $(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
 $(IMGDIR)/%.eps: $(IMGDIR)/%.dia
 	$(DIA) -e $@ --filter=eps-builtin $<
 
-imagespng: $(IMGDIR)/organigrammeFonctionnel.png $(IMGDIR)/cycleCorrectionFT.png $(IMGDIR)/modeleSpirale.png $(IMGDIR)/risque.png
-
 $(IMGDIR)/%.png: $(IMGDIR)/%.dia
 	$(DIA) -e $@ --filter=png $<
 
-sp : $(PDFDIR)/$(NOM_FICHIER).pdf 
 
-$(PDFDIR)/%.pdf : %.tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH):$(THEMEPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps cleanpng

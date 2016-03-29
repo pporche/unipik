@@ -5,10 +5,14 @@ include makevars ../../../makevars ../../../gestionConfigurations
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
+
+# Compilation
+
 all :  cdr cleanrep
 
 cdr : $(PDFDIR)/$(NOM_FICHIER).pdf 
 
+# LaTex to pdf
 $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\

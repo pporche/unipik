@@ -6,10 +6,15 @@ include makevars ../../../../../makevars ../../../../../gestionConfigurations
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
+
+# Compilation
+
 all :  ptu cleanrep
 
 ptu : $(PDFDIR)/$(NOM_FICHIER).pdf 
 
+
+# LaTex to pdf
 $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
 	export TEXINPUTS;\
@@ -23,7 +28,6 @@ clean : cleanpdf cleanrep
 cleanpdf :
 	rm -f pdf/*.pdf
 
-# Nettoyage du répertoire
 cleanrep:
 	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
 

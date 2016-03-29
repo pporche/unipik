@@ -5,7 +5,7 @@ include makevars ../../../makevars
 
 all : ff cleanrep cleaneps
 
-ff : $(PDFDIR)/FF_Q_Unipik_cBaseDeDonnees.pdf $(PDFDIR)/FF_Q_Unipik_cArgoUml.pdf $(PDFDIR)/FF_Q_Unipik_cPHPUnit.pdf $(PDFDIR)/FF_Q_Unipik_cSymfony.pdf
+ff : $(PDFDIR)/FF_Q_Unipik_cBaseDeDonnees.pdf $(PDFDIR)/FF_Q_Unipik_cArgoUml.pdf $(PDFDIR)/FF_Q_Unipik_cPHPUnit.pdf $(PDFDIR)/FF_Q_Unipik_cSymfony.pdf $(PDFDIR)/FF_Q_Unipik_cBootstrap.pdf
 
 $(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

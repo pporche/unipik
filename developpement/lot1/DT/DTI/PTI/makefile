@@ -9,9 +9,9 @@ include makevars ../../../../../makevars ../../../../../gestionConfigurations
 
 # Compilation
 
-all :  pti imagespdf cleanrep cleaneps
+all :  pti cleanrep cleaneps
 
-pti : $(PDFDIR)/$(NOM_FICHIER).pdf 
+pti : imagespdf $(PDFDIR)/$(NOM_FICHIER).pdf 
 
 
 # LaTex to pdf

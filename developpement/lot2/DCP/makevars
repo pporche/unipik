@@ -1,0 +1,6 @@
+# version 1.00 date 29/03/2016 auteur(s) Michel Cressant
+
+# Définition du nom du document
+NOM_FICHIER=DCP_D_Unipik_l2
+
+LOCPATH=developpement/lot2/DCP

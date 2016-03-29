@@ -1,0 +1,167 @@
+% version 1.02	Auteur Pierre Porche
+
+\documentclass[asi]{picInsa}
+\DeclareGraphicsRule{*}{pdf}{*}{}
+\usepackage{pdfpages}
+\usepackage{supertabular}
+
+%\input{../../ressources/AjoutezVosPackagesIci.tex}
+\usepackage{vocabulaireUnipik}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\newcommand{\ligneMaj}[3] {
+	\rowcolor[gray]{0.55} \textbf{\textit{#1}} & #2  &  #3\\
+	\hline
+}
+\newcommand{\ligneSup}[3] {
+	\rowcolor[gray]{0.65} |\textunderscore \textbf{\textit{#1}} & #2  &  #3\\
+	\hline
+}
+\newcommand{\ligneMed}[3] {
+	\rowcolor[gray]{0.75} \hspace{0.25cm} |\textunderscore #1  & #2 & #3 \\
+	\hline
+}
+\newcommand{\ligneSub}[3] {
+	\rowcolor[gray]{0.85}  \hspace{0.5cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\newcommand{\ligneSubSub}[3] {
+	\rowcolor[gray]{0.95}  \hspace{0.75cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\newcommand{\ligneTache}[3] {
+	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\title{\PRO{}}
+\author{\Pierre}
+
+
+\titreGeneral{\PRO}
+\sousTitreGeneral{\nomEquipe}
+\titreAcronyme{\PROCourt}
+\version{v1.03}
+\titreDetaille{\PROCourt\_Q\_\nomEquipe\_\versionPrive}
+\referenceVersion{\PROCourt\_Q\_\nomEquipe\_\versionPrive}
+\auteurs{\Kafui{} \& \Melissa{} \& \Sergi{} \& \Michel{} \& \Florian{} \&  \Julie{} \& \Pierre{}}
+\destinataires{\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
+\resume{Le présent document contient un exemple du \PRO{} \nomEquipe{} daté du 29 janvier 2016.}
+\motsCles{\PROCourt{}, risques, opportunités}
+\natureDerniereModification{ }
+\modeDiffusionControle{}
+
+\begin{document}
+
+\couverture{}
+
+\informationsGenerales{}
+
+ 
+\chapter*{Fiche de Risque 001}
+\input{FDR/FDR_Q_Unipik_n001.tex}
+\chapter*{Fiche de Risque 002}
+\input{FDR/FDR_Q_Unipik_n002.tex}
+\chapter*{Fiche de Risque 003}
+\input{FDR/FDR_Q_Unipik_n003.tex}
+\chapter*{Fiche de Risque 004}
+\input{FDR/FDR_Q_Unipik_n004.tex}
+\chapter*{Fiche de Risque 005}
+\input{FDR/FDR_Q_Unipik_n005.tex}
+\chapter*{Fiche de Risque 006}
+\input{FDR/FDR_Q_Unipik_n006.tex}
+\chapter*{Fiche de Risque 007}
+\input{FDR/FDR_Q_Unipik_n007.tex}
+\chapter*{Fiche de Risque 008}
+\input{FDR/FDR_Q_Unipik_n008.tex}
+\chapter*{Fiche de Risque 009}
+\input{FDR/FDR_Q_Unipik_n009.tex}
+\chapter*{Fiche de Risque 010}
+\input{FDR/FDR_Q_Unipik_n010.tex}
+\chapter*{Fiche de Risque 011}
+\input{FDR/FDR_Q_Unipik_n011.tex}
+\chapter*{Fiche de Risque 012}
+\input{FDR/FDR_Q_Unipik_n012.tex}
+\chapter*{Fiche de Risque 013}
+\input{FDR/FDR_Q_Unipik_n013.tex}
+\chapter*{Fiche de Risque 014}
+\input{FDR/FDR_Q_Unipik_n014.tex}
+\chapter*{Fiche de Risque 015}
+\input{FDR/FDR_Q_Unipik_n015.tex}
+
+
+\chapter*{Fiche d'Opportunités 001}
+\input{FDO/FDO_Q_Unipik_n001.tex}
+\chapter*{Fiche d'Opportunités 002}
+\input{FDO/FDO_Q_Unipik_n002.tex}
+\chapter*{Fiche d'Opportunités 003}
+\input{FDO/FDO_Q_Unipik_n003.tex}
+\chapter*{Fiche d'Opportunités 004}
+\input{FDO/FDO_Q_Unipik_n004.tex}
+\chapter*{Fiche d'Opportunités 005}
+\input{FDO/FDO_Q_Unipik_n005.tex}
+\chapter*{Fiche d'Opportunités 006}
+\input{FDO/FDO_Q_Unipik_n006.tex}
+\chapter*{Fiche d'Opportunités 007}
+\input{FDO/FDO_Q_Unipik_n007.tex}
+
+
+
+
+
+\chapter*{Suivi des Risques}
+\begin{longtable}{|p{0.3cm}|p{2.5cm}|p{2cm}|p{2cm}|p{1.8cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1.5cm}|}
+			\hline
+			\rowcolor{gray!40}
+			\No & Nom & Pilote & Probabilité & Impact & Priorité & Visa \RQCourt{} & Visa \CPCourt{} & Clôture \\\hline
+			
+			 1 & Crash du serveur & \Matthieu & Peu probable & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
+			 2 & Mauvaise ambiance interne & \Michel & Peu probable & Important & À surveiller & pgpic & pgpic & \\\hline
+			 
+			 3 & Absence collective & \Pierre & Probable & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
+			 4 & Mauvaise communication client & \Julie & Probable & Important & Critique & pgpic & pgpic & \\\hline
+			 
+			 5 & Mauvaise planification & \Florian & Possible & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
+			 6 & Mauvaise mise en route du second semestre & \Melissa & Possible & Important & À surveiller & pgpic & pgpic & \\\hline
+			 
+			 7 & Perte de documents & \Mathieu & Peu probable & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
+			 8 & Indisponibilité du client pour la remise des recettes & \Julie & possible & important & À surveiller & pgpic & pgpic & \\\hline
+			 
+			 9 & Serveur extérieur non trouvé & \Matthieu & Probable & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
+			 10 & Problème avec la CNIL & \Pierre & Peu probable & Important & À surveiller & pgpic & pgpic & \\\hline
+			 
+			 11 & Retard de remise des données & \Sergi & Possible & Moyen & À surveiller & pgpic & pgpic & Clôturé \\\hline
+			 
+			 12 & Retard de remise du livrable & \Kafui & Très probable & Important & Critique & pgpic & pgpic & \\\hline
+			 
+			 13 & Le livrable ne fonctionne pas chez le client & \Melissa & Peu probable & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
+			 14 & Le serveur n’implémente pas PostgreSQL ni PostGis & \Sergi & Possible & Maximum & Critique & pgpic & pgpic & \\\hline
+			 
+			 15 & Un PC d'un membre de l'équipe tombe en panne & \Sergi & Possible & Important & À surveiller & pgpic & pgpic & \\\hline
+			 
+			 
+			 
+\end{longtable}
+
+\chapter*{Suivi des Opportunités}
+
+\begin{longtable}{|p{0.3cm}|p{2.5cm}|p{2cm}|p{2cm}|p{1.8cm}|p{1.8cm}|p{1cm}|p{1cm}|p{1.5cm}|}
+			\hline
+			\rowcolor{gray!40}
+			\No & Nom & Pilote & Probabilité & Impact & Priorité & Visa \RQCourt{} & Visa \CPCourt{} & Clôture \\\hline
+			 1 & Serveur gratuit & \Matthieu & Possible & Maximum & Important & pgpic & pgpic & \\\hline
+			 2 & Livrable terminé en avance & \Kafui & Peu probable & Maximum & Important & pgpic & pgpic & \\\hline
+			 3 & Bonne passation inter-semestre & \Sergi & Possible & Important & Moyen & pgpic & pgpic & \\\hline
+			 4 & Bonne communication client & \Florian & Très probable & Important & Important & pgpic & pgpic & \\\hline
+			 5 & Bonne planification & \Sergi & Possible & Important & Moyen & pgpic & pgpic & \\\hline
+			 6 & Bonne ambiance interne & \Michel & Très probable & Important & Important & pgpic & pgpic & \\\hline
+			 7 & Remise des données en avance & \Sergi & Probable & Moyen & Important & pgpic & pgpic & Clôturé \\\hline
+\end{longtable}
+
+\end{document}

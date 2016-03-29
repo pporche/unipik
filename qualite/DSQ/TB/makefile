@@ -5,7 +5,7 @@ include makevars ../../../makevars
 
 all : tb cleanrep cleaneps
 
-tb : $(PDFDIR)/TB_Q_Unipik_s01.pdf $(PDFDIR)/TB_Q_Unipik_s02.pdf $(PDFDIR)/TB_Q_Unipik_s03.pdf $(PDFDIR)/TB_Q_Unipik_s04.pdf $(PDFDIR)/TB_Q_Unipik_s05.pdf $(PDFDIR)/TB_Q_Unipik_s06.pdf $(PDFDIR)/TB_Q_Unipik_s07.pdf 
+tb : $(PDFDIR)/TB_Q_Unipik_s01.pdf $(PDFDIR)/TB_Q_Unipik_s02.pdf $(PDFDIR)/TB_Q_Unipik_s03.pdf $(PDFDIR)/TB_Q_Unipik_s04.pdf $(PDFDIR)/TB_Q_Unipik_s05.pdf $(PDFDIR)/TB_Q_Unipik_s06.pdf $(PDFDIR)/TB_Q_Unipik_s07.pdf $(PDFDIR)/TB_Q_Unipik_s08.pdf 
 
 $(PDFDIR)/%.pdf : enregistrements/%.tex
 	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\

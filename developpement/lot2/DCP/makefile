@@ -1,5 +1,4 @@
-# version 1.02 date 18/03/2016 auteur(s) Mathieu Medici
-# version 1.01 date 04/03/2016 auteur(s) Mélissa Bignoux, Pierre Porche et Sergi Colomiès
+# version 1.00 date 29/03/2016 auteur(s) Michel Cressant
 
 # Importation des variables
 include makevars ../../../makevars ../../../gestionConfigurations
@@ -8,7 +7,7 @@ include makevars ../../../makevars ../../../gestionConfigurations
 
 # Compilation
 
-all: modeleea diagrammeclasse diagrammepackage diagrammesequence dcp cleanrep
+all:  dcp cleanrep
 
 dcp : $(PDFDIR)/$(NOM_FICHIER).pdf 
 

@@ -15,8 +15,6 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	export TEXINPUTS;\
 	$(CCTEX) $<
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
-  
-# $(GENPATH)/ressources/unipik/scriptsMake/imagespdf.sh 
 
 
 # Clean commands

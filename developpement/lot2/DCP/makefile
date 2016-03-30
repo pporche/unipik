@@ -17,34 +17,11 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	$(CCTEX) $<
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
-modeleea:
-	make -C modeleEA
-
-diagrammeclasse:
-	make -C diagrammeClasse
-
-diagrammepackage:
-	make -C diagrammePackage
-
-diagrammesequence:
-	make -C diagrammeSequence
 
 
 
 # Archivage
-archive: archivemodeleea archivediagrammeclasse archivediagrammepackage archivediagrammesequence archivedcp
-
-archivemodeleea:
-	make -C modeleEA archive
-
-archivediagrammeclasse:
-	make -C diagrammeClasse archive
-
-archivediagrammepackage:
-	make -C diagrammePackage archive
-
-archivediagrammesequence:
-	make -C diagrammeSequence archive
+archive: archivedcp
 
 archivedcp:
 	mkdir -p ${ARCHIVEDIR}
@@ -52,22 +29,10 @@ archivedcp:
 
 
 # Nettoyage
-clean: cleanrep cleanpdf cleanmodeleea cleandiagrammeclasse cleandiagrammepackage cleandiagrammesequence
+clean: cleanrep cleanpdf
 
 cleanrep:
 	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
-
-cleanmodeleea:
-	make -C modeleEA clean
-
-cleandiagrammeclasse:
-	make -C diagrammeClasse clean
-
-cleandiagrammepackage:
-	make -C diagrammePackage clean
-
-cleandiagrammesequence:
-	make -C diagrammeSequence clean
 
 cleanpdf:
 	rm -f pdf/*.pdf

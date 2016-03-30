@@ -1,7 +1,6 @@
 #!/bin/bash
 # Imagespdf script
 
-
 IMGDIR="$1"
 
 

@@ -16,13 +16,9 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	$(CCTEX) $<
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
-imagespdf: $(IMGDIR)/nPourquoiFDO001.pdf $(IMGDIR)/nPourquoiFDO002.pdf $(IMGDIR)/nPourquoiFDO003.pdf $(IMGDIR)/nPourquoiFDO004.pdf $(IMGDIR)/nPourquoiFDO005.pdf $(IMGDIR)/nPourquoiFDO006.pdf $(IMGDIR)/nPourquoiFDO007.pdf $(IMGDIR)/nPourquoiFDR001.pdf $(IMGDIR)/nPourquoiFDR002.pdf $(IMGDIR)/nPourquoiFDR003.pdf $(IMGDIR)/nPourquoiFDR004.pdf $(IMGDIR)/nPourquoiFDR005.pdf $(IMGDIR)/nPourquoiFDR006.pdf $(IMGDIR)/nPourquoiFDR007.pdf $(IMGDIR)/nPourquoiFDR008.pdf $(IMGDIR)/nPourquoiFDR009.pdf $(IMGDIR)/nPourquoiFDR010.pdf $(IMGDIR)/nPourquoiFDR011.pdf $(IMGDIR)/nPourquoiFDR012.pdf $(IMGDIR)/nPourquoiFDR013.pdf $(IMGDIR)/nPourquoiFDR014.pdf $(IMGDIR)/nPourquoiFDR015.pdf $(IMGDIR)/nPourquoiFDR016.pdf
+imagespdf:
+	$(BASHMAKEPATH)/imagespdf.sh $(IMGDIR) nPourquoiFDR001 nPourquoiFDR002 nPourquoiFDR003 nPourquoiFDR004 nPourquoiFDR005 nPourquoiFDR006 nPourquoiFDR007 nPourquoiFDR008 nPourquoiFDR009 nPourquoiFDR010 nPourquoiFDR011 nPourquoiFDR012 nPourquoiFDR013 nPourquoiFDR014 nPourquoiFDR015 nPourquoiFDR016 nPourquoiFDO001 nPourquoiFDO002 nPourquoiFDO003 nPourquoiFDO004 nPourquoiFDO005 nPourquoiFDO006 nPourquoiFDO007
 
-$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
-	$(EPSPDF) -dEPSCrop $< $@
-
-$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
-	$(DIA) -e $@ --filter=eps-builtin $<
 
 # Archivage
 archive:

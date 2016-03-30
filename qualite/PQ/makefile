@@ -6,7 +6,7 @@ include makevars ../../makevars  ../../gestionConfigurations
 
 .PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : imagespdf pq cleanrep cleaneps 
+all : pq cleanrep cleaneps 
 
 pq : $(PDFDIR)/$(NOM_FICHIER).pdf
 
@@ -16,18 +16,6 @@ $(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
 	$(CCTEX) $<
 	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
-#hello:
-#	./scripttest.sh
-
-# I have no idea what this thing is doing
-imagespdf:  
-# $(GENPATH)/ressources/unipik/scriptsMake/imagespdf.sh 
-
-$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
-	$(EPSPDF) -dEPSCrop $< $@
-
-$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
-	$(DIA) -e $@ --filter=eps-builtin $<
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps

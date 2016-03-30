@@ -991,10 +991,10 @@ linkcolor=black]{hyperref}
         \textit{\bfseries{Nature de la dernière modification}} & \natureDerniereModificationPrive \\
         &\\
         \cline{1-1}
-        \textit{\bfseries{Référence}} & \referenceVersionPrive ,     	\ifthenelse{\boolean{modeVersion}}{
-    	 version \versionPrive }{}
+        \textit{\bfseries{Référence}} & \referenceVersionPrive     	\ifthenelse{\boolean{modeVersion}}{
+    	 , version \versionPrive }{}
     	\ifthenelse{\boolean{modeDate}}{
-    	 \datePrive }{}\\
+    	 , \datePrive }{}\\
       \end{tabular}
     \end{minipage}
   \end{center}

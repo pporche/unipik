@@ -1,8 +1,8 @@
 #!/bin/bash
 # Imagespdf script
 
-$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
-	$(EPSPDF) -dEPSCrop $< $@
+NAME="$1"
 
-$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
-	$(DIA) -e $@ --filter=eps-builtin $<
+$(DIA) -e $(IMGDIR)/$(NAME).eps --filter=eps-builtin $(IMGDIR)/$(NAME).dia
+
+$(EPSPDF) -dEPSCrop $(IMGDIR)/$(NAME).eps $(IMGDIR)/$(NAME).pdf

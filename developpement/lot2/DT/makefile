@@ -1,7 +1,7 @@
 # version 1.00 date 30/03/2016 auteur(s) Michel Cressant
 
 # Compilation
-all: dti 
+all: dti dtu
 
 dti:
 	make -C DTI

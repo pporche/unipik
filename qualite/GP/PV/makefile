@@ -1,7 +1,7 @@
-# version 1.00 date 20/02/2016 auteur(s) Michel Cressant, Sergi Colomies
+# version 1.01 date 30/03/2016 auteur(s) Michel Cressant, Sergi Colomies
 
 # Compilation
-all: rfd rffps
+all: rfd rffps rfr
 
 rfd:
 	make -C RFD
@@ -9,8 +9,11 @@ rfd:
 rffps:
 	make -C RFFPS
 
+rfr:
+	make -C RFR
+
 # Archivage
-archive: archiverfd archiverffps
+archive: archiverfd archiverffps archiverfr
 
 archiverfd:
 	make -C RFD archive
@@ -18,12 +21,18 @@ archiverfd:
 archiverffps:
 	make -C RFFPS archive
 
+archiverfr:
+	make -C RFR archive
+
 
 # Nettoyage
-clean: cleanrfd cleanrffps
+clean: cleanrfd cleanrffps cleanrfr
 
 cleanrfd:
 	make -C RFD clean
 
 cleanrffps:
 	make -C RFFPS clean
+
+cleanrfr:
+	make -C RFR clean

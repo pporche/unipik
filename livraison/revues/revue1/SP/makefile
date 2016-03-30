@@ -6,7 +6,7 @@ include makevars ../../../../makevars
 
 # Compilation
 
-all : sp imagespdf imagespng cleanrep cleaneps cleanpng
+all : imagespdf imagespng sp cleanrep cleaneps cleanpng
 
 sp : $(PDFDIR)/$(NOM_FICHIER).pdf 
 

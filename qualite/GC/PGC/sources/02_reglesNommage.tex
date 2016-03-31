@@ -1,4 +1,4 @@
-% version 1.01 Date 24/03/2016	Auteur Mathieu Medici
+% version 1.01 Date 31/03/2016	Auteur Mathieu Medici
 
 Dans le but d'identifier clairement et de manière unique les éléments de configuration du \picCourt{}, il est nécessaire de spécifier des règles de nommage. Chaque élément inclus dans un référentiel doit respecter la règle de nommage qui lui convient.\\
 
@@ -8,7 +8,7 @@ L'ensemble des fichiers suit le modèle suivant :
 \end{center}
 On utilisera des abréviations pour chaque élément (Type, Référentiel et Suffixe).\\
 Exemple de nommage: \verb+PGC_Q_Unipik_v1.00+\\
-Exemple de stockage : \verb+Unipik/qualite/GP/PGC/+
+Exemple de stockage : \verb+Unipik/qualite/GC/PGC/+
 
 
 \section{Nom du \picCourt{}}
@@ -144,7 +144,17 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     \hline
     \hspace{2cm} Revue Formelle de Fin de Phase de Spécifications & RFFPS & -\\
     \hline
+    \hspace{3cm} Procès-Verbal de Document de Spécifications Externes & PVDSE & d\\
+    \hline
+    \hspace{3cm} Procès-Verbal de Document de Spécifications Internes & PVDSI & d\\
+    \hline
     \hspace{3cm} Procès-Verbal de Fin de Phase de Spécifications & PVFPS & d\\
+    \hline
+    \hspace{3cm} Procès-Verbal de Plan de Tests de Validation & PVPTV & d\\
+    \hline
+    \hspace{2cm} Revue Formelle de Recettes & RFR & -\\
+    \hline
+    \hspace{3cm} Procès-Verbal de Recettes & PVR & d\\
     \hline
     Gestion des Configurations & GC & -\\
     \hline
@@ -164,8 +174,6 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     \hline
  \multicolumn{3}{|c|}{\textbf{\bsc{Référentiel Spécifications}}}\\
     \hline
-    Carnet de Produit & CP & v\\
-    \hline
     Document de Spécifications Externes & DSE & v\\
     \hline
     Document De Spécifications Internes & DSI & v\\
@@ -180,7 +188,7 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     \hline
     LotX & lotX & -\\
     \hline
-    \hspace{1cm} Cahier De Recettes & CDR & l\\
+    \hspace{1cm} \CDR & CDR & l,v\\
     \hline
     \hspace{1cm} Dossier de Conception Détaillée & DCD & l\\
     \hline
@@ -205,10 +213,16 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     \hspace{1cm} Procédure d'Installation & PI & l\\
     \hline
  \multicolumn{3}{|c|}{\textbf{\bsc{Référentiel Livraison}}}\\
-    \hline
+    \hline   
     Lots & lots & -\\
     \hline
     \hspace{1cm} Lot numéro X & lotX & d\\
+    \hline
+    Réunion Bilan & RB & -\\
+    \hline
+    \hspace{1cm} Réunion Bilan \CP & RBCP & -\\
+    \hline
+    \hspace{1cm} Réunion Bilan \RQ & RBRQ & -\\
     \hline
     Revues & revues & -\\
     \hline

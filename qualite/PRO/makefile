@@ -11,7 +11,7 @@ all : imagespdf pro cleanrep cleaneps
 
 
 imagespdf:
-	$(BASHMAKEPATH)/imagespdf.sh $(IMGDIR) nPourquoiFDR001 nPourquoiFDR002 nPourquoiFDR003 nPourquoiFDR004 nPourquoiFDR005 nPourquoiFDR006 nPourquoiFDR007 nPourquoiFDR008 nPourquoiFDR009 nPourquoiFDR010 nPourquoiFDR011 nPourquoiFDR012 nPourquoiFDR013 nPourquoiFDR014 nPourquoiFDR015 nPourquoiFDR016 nPourquoiFDO001 nPourquoiFDO002 nPourquoiFDO003 nPourquoiFDO004 nPourquoiFDO005 nPourquoiFDO006 nPourquoiFDO007
+	$(BASHMAKEPATH)/imagespdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf nPourquoiFDR001 nPourquoiFDR002 nPourquoiFDR003 nPourquoiFDR004 nPourquoiFDR005 nPourquoiFDR006 nPourquoiFDR007 nPourquoiFDR008 nPourquoiFDR009 nPourquoiFDR010 nPourquoiFDR011 nPourquoiFDR012 nPourquoiFDR013 nPourquoiFDR014 nPourquoiFDR015 nPourquoiFDR016 nPourquoiFDO001 nPourquoiFDO002 nPourquoiFDO003 nPourquoiFDO004 nPourquoiFDO005 nPourquoiFDO006 nPourquoiFDO007
 
 
 pro:

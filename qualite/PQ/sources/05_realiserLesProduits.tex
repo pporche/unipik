@@ -54,17 +54,17 @@ Au sein d’un cycle, différentes phases s’enchaîneront. Parmi elles :
 \item La phase d’intégration.
 \end{itemize}
 
-Une revue des résultats sera effectuée à la fin de chaque cycle. Elle aura pour but de modifier le Cahier de Produit et de vérifier le travail effectué lors de ce cycle. Le but du cycle suivant devra aussi être défini, c’est-à-dire définir quelles fonctionnalités seront implémentées. Une fois cette revue de fin des résultats achevée, un \PV{} sera dressé.
+Une revue des résultats sera effectuée à la fin de chaque cycle. Elle aura pour but de vérifier le travail effectué lors de ce cycle. Le but du cycle suivant devra aussi être défini, c’est-à-dire définir quelles fonctionnalités seront implémentées. Une fois cette revue de fin des résultats achevée, un \PV{} sera dressé.
 
 
 
 \subsubsection{Planification}
 
 \textbf{Entrée :} Besoins du client \\
-\textbf{Sorties :} Product Backlog mis à jour, objectifs du cycle.\\
+\textbf{Sorties :} GANTT mis à jour, objectifs du cycle.\\
 Chaque cycle commence par une réunion de planification avec l’équipe et le client. \\
-Durant cette réunion, le client discute avec l’équipe de ses besoins et de quelles fonctionnalités il aimerait ajouter au Product Backlog. \\
-Le Product Backlog est une liste de travail, classée par priorité, définie en accord avec le client et l'équipe de développement.
+Durant cette réunion, le client discute avec l’équipe de ses besoins et de quelles fonctionnalités il aimerait ajouter au GANTT. \\
+Le GANTT est un planning de tâches, classées par priorité, définies en accord avec le client et l'équipe de développement.
 \subsubsection{Spécifications}
 \label{specification}
 \textbf{Entrée :} Objectifs du cycle \\
@@ -72,10 +72,11 @@ Le Product Backlog est une liste de travail, classée par priorité, définie en
 Le cycle commence par une phase de spécification durant laquelle les documents suivants doivent être mis à jour : \\
 
 \textbf{\DSE (\DSECourt)} \\
-Ce document défini les fonctionnalités que le produit doit réaliser.\\
+Ce document définit les fonctionnalités que le produit doit réaliser.\\
 
 \textbf{\DSI (\DSICourt)} \\
 Ce document décrit la façon dont seront implémentées les fonctionnalités présentes dans le \DSECourt.\\
+
 \textbf{\PTV (\PTVCourt)} \\
 Ce document définit comment sera menée la campagne de tests permettant de valider le respect du \DSECourt{} par le produit. \\
 
@@ -96,11 +97,11 @@ Ce document se base particulièrement sur des choix réalisés dans le \DSICourt
 \textbf{\DCD (\DCDCourt)} \\
 Ce document définit l’architecture détaillée du programme. Il contient la définition des attributs de chacune des classes à développer et le pseudo-code commenté des méthodes non-triviales.\\
 Il sera réalisé en accord avec la conception préliminaire définie dans le \DCPCourt.\\
+
 \textbf{\PTI (\PTICourt)} \\
 Ce document définit comment sera menée la campagne de tests d’intégration entre les divers composants du programme. Il permet de vérifier que les composants fonctionnent correctement les uns avec les autres.\\
 
 \textbf{\PTU (\PTUCourt)} \\
-
 Ce document définit comment sera menée la campagne de tests unitaires des fonctions développées. Il permet de vérifier que chaque fonction fait bien, unitairement, ce qu’il est prévu qu’elle fasse. \\
 
 
@@ -112,17 +113,15 @@ Cette phase a pour but de mettre à jour le code source de l’application afin 
 Cette phase se décompose en deux étapes :
 \begin{itemize}
 \item Programmation des tests;
-\item Implémentation des nouvelles fonctions (écriture du code source).
+\item Implémentation des nouvelles fonctions (écriture du code source).\\
 \end{itemize}
 
 \textbf{Programmation des tests} \\
-
 La phase de réalisation commence par la programmation des tests d’intégration et des tests unitaires détaillés dans les \PTICourt{} et \PTUCourt . 
 La programmation des tests avant l’écriture du code testé permet de guider la programmation. 
 Par ailleurs, cette pratique permet de détecter tout écart vis-à-vis des tests d’intégration et de corriger la conception dans les cas échéants.\\
 
 \textbf{Implémentation des nouvelles fonctions (écriture du code source)} \\
-
 Cette étape consiste à implémenter l’intégralité des fonctions listées dans le \DCCourt, en accord avec celui-ci, dans le langage source adapté. Ce code source sera documenté afin de pouvoir être maintenable.
 Le code source sera testé grâce aux programmes de tests précédemment programmés.\\
 Ces programmes de tests pourront être complétés durant cette phase afin de tester de façon encore plus complète le code source si les développeurs en ressentent la nécessité, afin d’assurer la qualité du code source et le fonctionnement correct de l’application. \\

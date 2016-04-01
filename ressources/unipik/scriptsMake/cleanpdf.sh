@@ -1,5 +1,5 @@
 #!/bin/bash
-# Textopdf script
+# Cleanpdf script
 
 
 for i in ${@:1}

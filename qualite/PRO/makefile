@@ -30,9 +30,9 @@ cleanpdf :
 
 # Nettoyage du répertoire
 cleanrep:
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
+	$(BASHMAKEPATH)/cleanrep.sh
 
 cleaneps :
-	rm -f images/*.eps
+	$(BASHMAKEPATH)/cleaneps.sh
 
 

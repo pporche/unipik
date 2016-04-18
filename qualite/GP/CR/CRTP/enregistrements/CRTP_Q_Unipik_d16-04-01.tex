@@ -1,0 +1,108 @@
+% version 1.00	Auteur Pierre Porche date 18/04/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\usepackage{hyperref}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Pédagogique}}					%titre
+\begin{document}
+
+18/04/2016			 				%Date 
+\hfill   
+\hfill 	 9:00 - 9:50 				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{3cm} | p{3cm} | p{3cm} | p{3.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 18/04/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{4cm} | p{3cm} | p{3cm} | p{2.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui &  & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi &  & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Résumé de la semaine passée}
+\paragraph*{}
+\Florian{} est le nouveau \RS{} du projet. Il a pu regarder ce qui était géré par Symfony pour la sécurité et avancer sur le sujet de l'envoi d'emails. \\
+Il ne faut pas qu'il oublie de faire de la recherche sur les types d'attaques dont notre outil pourrait être victime.
+
+\paragraph*{}
+\Melissa, \Matthieu, \Michel, \Julie{} et \Florian{} ont avancé le \DCP{} qui est presque terminé. \nomTuteurPedago{} nous rappelle que les frimousses sont proches en sens des plaidoyers et qu'il serait intéressant de les inclure dès maintenant dans le \DCP{}.
+
+\paragraph*{}
+\Kafui{} a pu avancer le modèle relationnel en le rentrant dans Symfony, qui gère les jointures. \nomTuteurPedago{} nous explique que le dump n'est pas forcément assez fiable pour être conforme aux formes normales et qu'il serait plus intéressant de procéder selon une approche bottom-up en partant de la BD pour remonter vers l'application. Un ORM peut marcher dans le cadre d'un projet de taille modeste comme le notre mais il ne fonctionne pas pour des plus gros outils.
+
+\paragraph*{}
+L'équipe Front End a été formée sur Bootstrap par \Matthieu{} grâce à une formation de OpenClassRoom. \nomTuteurPedago{} nous explique qu'il faut adapter les coefficients de notations aux points que l'on veut vraiment évaluer.
+
+\paragraph*{}
+\Michel{} a réalisé le \PTV{} du lot 2. Les différences sont notamment sur les modalités de la recette mais \nomTuteurPedago{} nous explique que nous devrions avoir deux \PTVCourt{} très différents car nos lots sont très différents.
+
+\paragraph*{}
+Nous avons reçu le questionnaire de satisfaction client qui est très positif. Il faudra cependant faire attention pour le second. \\
+Nous avons également fait des scripts pour éviter la redondance dans les makefile.
+
+%--- fin de réunion ---%
+\newpage
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

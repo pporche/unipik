@@ -16,6 +16,7 @@ pro:
 	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) . $(NOM_FICHIER)
 
 
+
 # Archivage
 archive:
 	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
@@ -25,6 +26,7 @@ clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
 	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
+
 
 # Nettoyage du répertoire
 cleanrep:

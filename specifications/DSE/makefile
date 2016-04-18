@@ -5,7 +5,7 @@
 include makevars $(UNIPIKGENPATH)/pic_unicef/makevars  $(UNIPIKGENPATH)/pic_unicef/gestionConfigurations
 
 
-all : imagespng dse cleanrep cleaneps
+all : imagespng dse cleanrep cleaneps cleanpng
 
 imagespng: 
 	$(UML) $(IMGDIR)/modeleDUsage.uml
@@ -19,7 +19,7 @@ archive:
 	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
 
 # Clean commands
-clean : cleanpdf cleanrep cleaneps
+clean : cleanpdf cleanrep cleaneps cleanpng
 
 cleanpdf :
 	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
@@ -30,5 +30,8 @@ cleanrep:
 
 cleaneps :
 	$(BASHMAKEPATH)/cleanEps.sh
+
+cleanpng :
+	$(BASHMAKEPATH)/cleanPng.sh
 
 

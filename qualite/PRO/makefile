@@ -4,8 +4,6 @@
 # Importation des variables
 include makevars $(UNIPIKGENPATH)/pic_unicef/makevars  $(UNIPIKGENPATH)/pic_unicef/gestionConfigurations
 
-.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
-
 
 all : imagespdf pro cleanrep cleaneps
 
@@ -15,7 +13,7 @@ imagespdf:
 
 
 pro:
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) $(NOM_FICHIER)
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) . $(NOM_FICHIER)
 
 
 # Archivage

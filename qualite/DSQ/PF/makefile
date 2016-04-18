@@ -1,40 +1,30 @@
+# version 1.02 date 18/04/2016 auteur(s) Pierre Porche
 # version 1.01 date 18/03/2016 auteur(s) Mathieu Medici
 # version 1.00 date 29/02/2016 auteur(s) Pierre Porche
 
 # Importation des variables
-include makevars ../../../makevars ../../../gestionConfigurations
+include makevars $(UNIPIKGENPATH)/pic_unicef/makevars $(UNIPIKGENPATH)/pic_unicef/gestionConfigurations
 
 all : pf cleanrep cleaneps
 
-pf : $(PDFDIR)/$(NOM_FICHIER).pdf
+pf : 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) . $(NOM_FICHIER)
 
-$(PDFDIR)/%.pdf : %.tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv *.pdf $(PDFDIR)
 
-$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
-	$(EPSPDF) -dEPSCrop $< $@
-
-$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
-	$(DIA) -e $@ --filter=eps-builtin $<
+# Archivage
+archive:
+	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
-	rm -f pdf/*.pdf
-	rm -f images/*.pdf
-	rm -f annexe/pdf/*.pdf
+	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
 
+# Nettoyage du répertoire
 cleanrep:
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
+	$(BASHMAKEPATH)/cleanRep.sh
 
 cleaneps :
-	rm -f images/*.eps
+	$(BASHMAKEPATH)/cleanEps.sh
 
-# Archivage
-archive:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}

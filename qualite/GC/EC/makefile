@@ -1,33 +1,32 @@
+# version 1.03 date 18/04/2016 auteur(s) Pierre Porche
 # version 1.02 date 26/02/2016 auteur(s) Michel Cressant, Pierre Porche, Mathieu Medici
 
 # Importation des variables
-include makevars ../../../makevars
+include makevars $(UNIPIKGENPATH)/pic_unicef/makevars
 
-.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
+
 
 all : ec cleanrep 
 
-ec : $(PDFDIR)/$(NOM_FICHIER).pdf
-
-$(PDFDIR)/$(NOM_FICHIER).pdf : enregistrements/$(NOM_FICHIER).tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv $(NOM_FICHIER).pdf $(PDFDIR)
-
-# Clean commands
-clean : cleanpdf cleanrep 
-
-cleanpdf :
-	rm -f pdf/*.pdf
-	rm -f images/*.pdf
-
-# Nettoyage du répertoire
-cleanrep:	
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof
+ec : 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements $(NOM_FICHIER)
 
 
 # Archivage
 archive:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
+	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
+
+# Clean commands
+clean : cleanpdf cleanrep cleaneps
+
+cleanpdf :
+	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
+
+# Nettoyage du répertoire
+cleanrep:
+	$(BASHMAKEPATH)/cleanRep.sh
+
+cleaneps :
+	$(BASHMAKEPATH)/cleanEps.sh
+
+

@@ -1,7 +1,7 @@
 # version 1.00 date 01/03/2016 auteur(s) Pierre Porche
 
 # Définition du nom du document
-NOM_FICHIER=organigrammeFonctionnel
+NOM_FICHIER=OF_Q_Unipik_$(VERSIONOF)
 
 LOCPATH=qualite/DSQ/OF
 

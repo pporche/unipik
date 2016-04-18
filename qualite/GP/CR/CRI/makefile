@@ -1,36 +1,33 @@
-# version 1.02 date 04/03/2016 auteur(s) Michel Cressant, Pierre Porche
+# version 1.02 date 18/04/2016 auteur(s) Pierre Porche
+# version 1.01 date 04/03/2016 auteur(s) Michel Cressant, Pierre Porche
 
 # Importation des variables
-include makevars ../../../../makevars
+include makevars $(UNIPIKGENPATH)/pic_unicef/makevars 
 
-#.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
+
 
 all : cri cleanrep cleaneps
 
-cri : $(PDFDIR)/CRI_Q_Unipik_d16-01-22.pdf $(PDFDIR)/CRI_Q_Unipik_d16-01-29.pdf $(PDFDIR)/CRI_Q_Unipik_d16-02-02.pdf $(PDFDIR)/CRI_Q_Unipik_d16-02-23.pdf $(PDFDIR)/CRI_Q_Unipik_d16-03-04.pdf $(PDFDIR)/CRI_Q_Unipik_d16-03-10.pdf $(PDFDIR)/CRI_Q_Unipik_d16-03-14.pdf $(PDFDIR)/CRI_Q_Unipik_d16-03-22.pdf $(PDFDIR)/CRI_Q_Unipik_d16-03-29.pdf
 
-$(PDFDIR)/%.pdf : enregistrements/%.tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv *.pdf $(PDFDIR)
+cri : 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements CRI_Q_Unipik_d16-01-22 CRI_Q_Unipik_d16-01-29 CRI_Q_Unipik_d16-02-02 CRI_Q_Unipik_d16-02-23 CRI_Q_Unipik_d16-03-04 CRI_Q_Unipik_d16-03-10 CRI_Q_Unipik_d16-03-14 CRI_Q_Unipik_d16-03-22 CRI_Q_Unipik_d16-03-29 
+
+
+# Archivage
+archive:
+	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
-	rm -f pdf/*.pdf
+	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
 
 # Nettoyage du répertoire
 cleanrep:
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
+	$(BASHMAKEPATH)/cleanRep.sh
 
 cleaneps :
-	rm -f images/*.eps
-	rm -f images/*.pdf
-	rm -f annexe/pdf/*.pdf
+	$(BASHMAKEPATH)/cleanEps.sh
 
-# Archivage
-archive:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
+

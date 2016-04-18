@@ -1,39 +1,31 @@
+# version 1.01 date 18/04/2016 auteur(s) Pierre Porche
 # version 1.00 date 29/02/2016 auteur(s) Pierre Porche
 
 # Importation des variables
-include makevars ../../../makevars
+include makevars $(UNIPIKGENPATH)/pic_unicef/makevars
+
 
 all : tb cleanrep cleaneps
 
-tb : $(PDFDIR)/TB_Q_Unipik_s01.pdf $(PDFDIR)/TB_Q_Unipik_s02.pdf $(PDFDIR)/TB_Q_Unipik_s03.pdf $(PDFDIR)/TB_Q_Unipik_s04.pdf $(PDFDIR)/TB_Q_Unipik_s05.pdf $(PDFDIR)/TB_Q_Unipik_s06.pdf $(PDFDIR)/TB_Q_Unipik_s07.pdf $(PDFDIR)/TB_Q_Unipik_s08.pdf $(PDFDIR)/TB_Q_Unipik_s09.pdf 
+tb : 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements TB_Q_Unipik_s01 TB_Q_Unipik_s02 TB_Q_Unipik_s03 TB_Q_Unipik_s04 TB_Q_Unipik_s05 TB_Q_Unipik_s06 TB_Q_Unipik_s07 TB_Q_Unipik_s08 TB_Q_Unipik_s09 
 
-$(PDFDIR)/%.pdf : enregistrements/%.tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv *.pdf $(PDFDIR)
 
-$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
-	$(EPSPDF) -dEPSCrop $< $@
-
-$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
-	$(DIA) -e $@ --filter=eps-builtin $<
+# Archivage
+archive:
+	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
-	rm -f pdf/*.pdf
-	rm -f images/*.pdf
-	rm -f annexe/pdf/*.pdf
+	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
 
+# Nettoyage du répertoire
 cleanrep:
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
+	$(BASHMAKEPATH)/cleanRep.sh
 
 cleaneps :
-	rm -f images/*.eps
+	$(BASHMAKEPATH)/cleanEps.sh
 
-# Archivage
-archive:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
+

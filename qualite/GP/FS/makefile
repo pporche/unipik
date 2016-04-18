@@ -1,36 +1,32 @@
+# version 1.01 date 18/04/2016 auteur(s) Pierre Porche
 # version 1.00 date 04/03/2016 auteur(s) Sergi Colomiès
 
 # Importation des variables
-include makevars ../../../makevars
+include makevars $(UNIPIKGENPATH)/pic_unicef/makevars
 
-#.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
+
 
 all : fs cleanrep cleaneps
 
-fs : $(PDFDIR)/FS_Q_Unipik_pSC.pdf $(PDFDIR)/FS_Q_Unipik_pMB.pdf $(PDFDIR)/FS_Q_Unipik_pJP.pdf $(PDFDIR)/FS_Q_Unipik_pMC.pdf $(PDFDIR)/FS_Q_Unipik_pMMB.pdf $(PDFDIR)/FS_Q_Unipik_pPP.pdf $(PDFDIR)/FS_Q_Unipik_pMM.pdf $(PDFDIR)/FS_Q_Unipik_pFL.pdf $(PDFDIR)/FS_Q_Unipik_pKA.pdf
+fs : 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements FS_Q_Unipik_pSC FS_Q_Unipik_pMB FS_Q_Unipik_pJP FS_Q_Unipik_pMC FS_Q_Unipik_pMMB FS_Q_Unipik_pPP FS_Q_Unipik_pMM FS_Q_Unipik_pFL FS_Q_Unipik_pKA 
 
-$(PDFDIR)/%.pdf : enregistrements/%.tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv *.pdf $(PDFDIR)
+
+# Archivage
+archive:
+	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
-	rm -f pdf/*.pdf
+	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
 
 # Nettoyage du répertoire
 cleanrep:
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
+	$(BASHMAKEPATH)/cleanRep.sh
 
 cleaneps :
-	rm -f images/*.eps
-	rm -f images/*.pdf
-	rm -f annexe/pdf/*.pdf
+	$(BASHMAKEPATH)/cleanEps.sh
 
-# Archivage
-archive:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
+

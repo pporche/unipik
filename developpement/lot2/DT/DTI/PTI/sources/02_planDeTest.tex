@@ -6,6 +6,53 @@
   \section{Elements de test}
  	Les éléments qui seront testés permettront de vérifier l'intégration des modules de code développés par l'équipe \nomEquipe.
  	
+ \section{Fonctionnalités à tester}
+ 	Ce paragraphe décrit l'organisation de notre application ainsi que les différents tests d'intégrations qui devront être réalisés. \\
+ 	
+ 	La figure suivante (figure \ref{diagrammeDeBundles}) représente le diagramme de package (ici ce sont des bundles) de notre application.
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[scale=0.49]{images/diagrammeDeBundles.png}
+ 		\caption{Diagramme de package}
+ 		\label{diagrammeDeBundles}
+ 	\end{figure}
+ 	
+ 	Le but des tests d'intégration est de vérifier la bonne communication entre les bundles. Les tests seront donc les suivants :
+ 	
+ 	\subsection*{Tests d'Intégration entre le package FOSUserBundle et le package InterventionBundle}
+ 	
+ 	\begin{center}
+    		\begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
+		\hline
+			ID & Test d'intégration \\\hline
+			TI001 & FOSUserBundle <-> InterventionBundle \\\hline
+    	 	\end{tabular}
+  	\end{center}
+  	
+  	
+  	\subsection*{Tests d'Intégration entre le package FOSUserBundle et le package SwiftMailerBundle}
+ 	
+ 	\begin{center}
+    		\begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
+		\hline
+			ID & Test d'intégration \\\hline
+			TI002 & FOSUserBundle <-> SwiftMailerBundle \\\hline
+    	 	\end{tabular}
+  	\end{center}
+  	
+  	\subsection*{Tests d'Intégration entre le package InterventionBundle et le package SwiftMailerBundle}
+ 	
+ 	\begin{center}
+    		\begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
+		\hline
+			ID & Test d'intégration \\\hline
+			TI003 & InterventionBundle <-> SwiftMailerBundle \\\hline
+    	 	\end{tabular}
+  	\end{center}
+  	
+  	
+  	
+ 	
   \section{Eléments nécessaires pour les Test d'Intégration}
   	Ce paragraphe décrit les éléments livrés nécessaires à la réalisation des tests d'intégration. \\
   	

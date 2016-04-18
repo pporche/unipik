@@ -1,36 +1,32 @@
+# version 1.02 date 18/04/2016 auteur(s) Pierre Porche
 # version 1.01 date 26/02/2016 auteur(s) Mathieu Medici, Pierre Porche
 
 # Importation des variables
-include makevars ../../../makevars
+include makevars $(UNIPIKGENPATH)/pic_unicef/makevars
 
-#.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
+
 
 all : frd cleanrep cleaneps
 
-frd : $(PDFDIR)/FEDC_Q_Unipik.pdf
+frd : 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements FEDC_Q_Unipik
 
-$(PDFDIR)/%.pdf : enregistrements/%.tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv *.pdf $(PDFDIR)
+
+# Archivage
+archive:
+	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
-	rm -f pdf/*.pdf
+	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
 
 # Nettoyage du répertoire
 cleanrep:
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
+	$(BASHMAKEPATH)/cleanRep.sh
 
 cleaneps :
-	rm -f images/*.eps
-	rm -f images/*.pdf
-	rm -f annexe/pdf/*.pdf
+	$(BASHMAKEPATH)/cleanEps.sh
 
-# Archivage
-archive:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
+

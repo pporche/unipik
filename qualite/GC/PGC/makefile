@@ -8,37 +8,31 @@ include makevars ../../../makevars ../../../gestionConfigurations
 
 all : imagespdf pgc cleanrep cleaneps
 
-pgc : $(PDFDIR)/$(NOM_FICHIER).pdf
 
-$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv $(NOM_FICHIER).pdf $(PDFDIR)
+imagespdf:
+	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf arboDeveloppement arboDSQ arboGP arboLivraison arboQualite arboRessources arboSpecifications arboTrunk
 
-imagespdf: $(IMGDIR)/arboDeveloppement.pdf $(IMGDIR)/arboDSQ.pdf $(IMGDIR)/arboGP.pdf $(IMGDIR)/arboLivraison.pdf $(IMGDIR)/arboQualite.pdf $(IMGDIR)/arboRessources.pdf $(IMGDIR)/arboSpecifications.pdf $(IMGDIR)/arboTrunk.pdf
 
-$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
-	$(EPSPDF) -dEPSCrop $< $@
 
-$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
-	$(DIA) -e $@ --filter=eps-builtin $<
+pgc : 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) . $(NOM_FICHIER)
+
+
+# Archivage
+archive:
+	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
-	rm -f pdf/*.pdf
-	rm -f images/*.pdf
+	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
 
 # Nettoyage du répertoire
-cleanrep:	
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof
+cleanrep:
+	$(BASHMAKEPATH)/cleanRep.sh
 
 cleaneps :
-	rm -f images/*.eps
+	$(BASHMAKEPATH)/cleanEps.sh
 
-# Archivage
-archive:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
+

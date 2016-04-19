@@ -2,41 +2,36 @@
 # version 1.01 date 26/02/2016 auteur(s) Michel Cressant, Pierre Porche
 
 # Importation des variables
-include makevars ../../makevars ../../gestionConfigurations
+include makevars $(UNIPIKGENPATH)/pic_unicef/makevars  $(UNIPIKGENPATH)/pic_unicef/gestionConfigurations
 
-.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
 
-all : imagespng dse cleanrep cleaneps
+all : imagespng dse cleanrep cleaneps cleanpng
 
-imagespng: $(IMGDIR)/modeleDUsage.png
+imagespng: 
+	$(UML) $(IMGDIR)/modeleDUsage.uml
 
-$(IMGDIR)/%.png: $(IMGDIR)/%.uml
-	$(UML) $(shell pwd)/$<
+dse : 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) . $(NOM_FICHIER)
 
-dse : $(PDFDIR)/$(NOM_FICHIER).pdf
-
-$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv $(NOM_FICHIER).pdf $(PDFDIR)
-
-# Clean commands
-clean : cleanpdf cleanrep cleaneps
-
-cleanpdf :
-	rm -f pdf/*.pdf
-
-cleanrep:
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
-
-cleaneps :
-	rm -f images/*.eps
-	rm -f images/*.pdf
-	rm -f images/*.png
-	rm -f annexe/pdf/*.pdf
 
 # Archivage
 archive:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
+	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
+
+# Clean commands
+clean : cleanpdf cleanrep cleaneps cleanpng
+
+cleanpdf :
+	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
+
+# Nettoyage du répertoire
+cleanrep:
+	$(BASHMAKEPATH)/cleanRep.sh
+
+cleaneps :
+	$(BASHMAKEPATH)/cleanEps.sh
+
+cleanpng :
+	$(BASHMAKEPATH)/cleanPng.sh
+
+

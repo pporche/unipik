@@ -1,43 +1,31 @@
 # version 1.00 date 29/03/2016 auteur(s) Michel Cressant
 
 # Importation des variables
-include makevars ../../../makevars ../../../gestionConfigurations
-.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
+include makevars $(UNIPIKGENPATH)/pic_unicef/makevars $(UNIPIKGENPATH)/pic_unicef/gestionConfigurations
 
 
-# Compilation
 
 all:  dcp cleanrep
 
-dcp : $(PDFDIR)/$(NOM_FICHIER).pdf 
-
-$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv $(NOM_FICHIER).pdf $(PDFDIR)
-
+dcp : 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) . $(NOM_FICHIER)
 
 
 
 # Archivage
-archive: archivedcp
+archive:
+	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
 
-archivedcp:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
+# Clean commands
+clean : cleanpdf cleanrep
+
+cleanpdf :
+	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
 
 
-# Nettoyage
-clean: cleanrep cleanpdf
-
+# Nettoyage du répertoire
 cleanrep:
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
-
-cleanpdf:
-	rm -f pdf/*.pdf
-
-
+	$(BASHMAKEPATH)/cleanRep.sh
 
 
 

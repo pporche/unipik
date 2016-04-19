@@ -1,16 +1,16 @@
+# version 1.03, date 19/04/16, auteur Pierre Porche
 # version 1.02 date 18/03/2016 auteur(s) Mathieu Medici
 # version 1.01 date 04/03/2016 auteur(s) Mélissa Bignoux, Pierre Porche et Sergi Colomiès
 
 # Importation des variables
-include makevars ../../../makevars ../../../gestionConfigurations
-.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
+include makevars $(UNIPIKGENPATH)/pic_unicef/makevars  $(UNIPIKGENPATH)/pic_unicef/gestionConfigurations
 
-
-# Compilation
 
 all: dcp modeleea diagrammeclasse diagrammepackage diagrammesequence cleanrep
 
-dcp : $(PDFDIR)/$(NOM_FICHIER).pdf 
+
+dcp : 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) . $(NOM_FICHIER)
 
 modeleea:
 	make -C modeleEA
@@ -25,20 +25,12 @@ diagrammesequence:
 	make -C diagrammeSequence
 
 
-# LaTex to pdf
-$(PDFDIR)/$(NOM_FICHIER).pdf : $(NOM_FICHIER).tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv $(NOM_FICHIER).pdf $(PDFDIR)
-
 
 # Archivage
 archive: archivedcp archivemodeleea archivediagrammeclasse archivediagrammepackage archivediagrammesequence 
 
 archivedcp:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
+	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
 
 archivemodeleea:
 	make -C modeleEA archive
@@ -73,10 +65,10 @@ cleandiagrammesequence:
 	make -C diagrammeSequence clean
 
 cleanpdf:
-	rm -f pdf/*.pdf
+	$(BASHMAKEPATH)/cleanPdf.sh pdf
 
 cleanrep:
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
+	$(BASHMAKEPATH)/cleanRep.sh
 
 
 

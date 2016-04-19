@@ -1,46 +1,35 @@
+#version 1.01, date 19/04/16, auteur Pierre Porche
 #version 1.00, date 04/03/16, auteur Pierre Porche
 # Importation des variables
-include makevars ../../../../makevars
+include makevars $(UNIPIKGENPATH)/pic_unicef/makevars
 
-.PHONY: $(PDFDIR)/$(NOM_FICHIER).pdf
+
 
 all :  diagClasse cleanrep cleaneps
 
-# I have no idea what this thing is doing
-#imagespdf:  $(IMGDIR)/$(MON_IMAGE).pdf
-
-#$(IMGDIR)/%.pdf : $(IMGDIR)/%.eps
-#	$(EPSPDF) -dEPSCrop $< $@
-
-#$(IMGDIR)/%.eps: $(IMGDIR)/%.dia
-	#$(DIA) -e $@ --filter=eps-builtin $<
-
-diagClasse : $(PDFDIR)/$(NOM_FICHIER).pdf 
-
-$(PDFDIR)/$(NOM_FICHIER).pdf :enregistrements/$(NOM_FICHIER).tex
-	TEXINPUTS=${TEXINPUTS}:$(CLSPATH):$(VOCPATH);\
-	export TEXINPUTS;\
-	$(CCTEX) $<
-	mv $(NOM_FICHIER).pdf $(PDFDIR)
 
 
+diagClasse : 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) . $(NOM_FICHIER)
+
+
+
+# Archivage
+archive:
+	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
 
 # Clean commands
 clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
-	rm -f pdf/*.pdf
+	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
+
 
 # Nettoyage du répertoire
 cleanrep:
-	rm -f *.aux *.cb *.cb2 *.log *.toc *.out *.lot *.lof *.maf *.mtc *.mtc0
+	$(BASHMAKEPATH)/cleanRep.sh
 
 cleaneps :
-	rm -f images/*.eps
-	rm -f images/*.pdf
-	rm -f annexe/pdf/*.pdf
+	$(BASHMAKEPATH)/cleanEps.sh
 
-# Archivage
-archive:
-	mkdir -p ${ARCHIVEDIR}
-	cp pdf/*.pdf ${ARCHIVEDIR}
+

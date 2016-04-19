@@ -1,7 +1,7 @@
 # version 1.00, date 04/03/16, auteur Pierre Porche
 # Définition du nom du document
 NOM_FICHIER=diagrammeSequence
-MON_IMAGE=
+
 
 LOCPATH=developpement/lot1/DCP/diagrammeSequence
 GENPATH=$(shell pwd)/../../../..

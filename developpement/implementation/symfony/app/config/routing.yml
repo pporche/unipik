@@ -1,3 +1,15 @@
+mail:
+    resource: "@MailBundle/Resources/config/routing.yml"
+    prefix:   /
+
+intervention:
+    resource: "@InterventionBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 architecture:
     resource: "@ArchitectureBundle/Resources/config/routing.yml"
     prefix:   /unicef

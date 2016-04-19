@@ -6,15 +6,15 @@ include makevars ../../../../makevars
 
 # Compilation
 
-all : imagespdf imagespng sp cleanrep cleaneps cleanpng
+all : imagespdf sp cleanrep cleaneps cleanpng
 
 
 imagespdf : 
-	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf cycleCorrectionFT planningProjet2 schemaArchitecture
+	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf cycleCorrectionFT planningProjet2 schemaArchitecture organigrammeFonctionnel cycleCorrectionFT modeleSpirale risque
 
 
-imagespng : 
-	$(BASHMAKEPATH)/imagesPng.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf organigrammeFonctionnel cycleCorrectionFT modeleSpirale risque
+#imagespng : 
+#	$(BASHMAKEPATH)/imagesPng.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf organigrammeFonctionnel cycleCorrectionFT modeleSpirale risque
 
 sp : 
 	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH):$(THEMEPATH) . $(NOM_FICHIER)

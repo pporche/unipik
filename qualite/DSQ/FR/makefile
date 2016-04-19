@@ -1,3 +1,4 @@
+# version 1.03 date 19/04/2016 auteur(s) Sergi Colomies
 # version 1.02 date 18/04/2016 auteur(s) Pierre Porche
 # version 1.00 date 01/03/2016 auteur(s) Pierre Porche
 
@@ -9,7 +10,7 @@ include makevars $(UNIPIKGENPATH)/pic_unicef/makevars
 all : fr cleanrep cleaneps
 
 fr : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements FR_Q_Unipik_rCPA_v1.00 FR_Q_Unipik_rCP_v1.00 FR_Q_Unipik_rRD_v1.00 FR_Q_Unipik_rRGC_v1.00 FR_Q_Unipik_rRQA_v1.00 FR_Q_Unipik_rRQ_v1.00 FR_Q_Unipik_rRRS_v1.00 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements FR_Q_Unipik_rCPA_v1.00 FR_Q_Unipik_rCP_v1.00 FR_Q_Unipik_rRD_v1.00 FR_Q_Unipik_rRGC_v1.00 FR_Q_Unipik_rRQA_v1.00 FR_Q_Unipik_rRQ_v1.00 FR_Q_Unipik_rRRS_v1.00 FR_Q_Unipik_rRS_v1.00
 
 
 # Archivage

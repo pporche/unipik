@@ -1,20 +1,6 @@
 %version 1.01, date 07/03/16, auteur Mathieu MEDICI, Julie PAIN
 
-\documentclass[asi, sansVersion]{picInsa}
-
-\usepackage{vocabulaireUnipik}
-
-\begin{document}
-
-\title{Dictionnaire de données}
-\author{\Mathieu, \Julie}
-\date{19/04/2016} 
-
-\maketitle
-
-\tableofcontents
-
-\chapter{Diagramme de classes}
+\section{Diagramme de classes}
 
 Le formalisme utilisé dans ce document pour le diagramme de classe est UML.
 
@@ -22,22 +8,22 @@ Le formalisme utilisé dans ce document pour le diagramme de classe est UML.
 \begin{landscape}
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.3]{images/diagrammeDeClasses}
+	\includegraphics[scale=0.3]{images/diagrammeDeClasses.png}
 	\caption{\label{modele}Diagramme de classes}
 \end{figure}
 \end{landscape}
 
-\chapter{Description du Diagramme de classes}
+\section{Description du Diagramme de classes}
 
 Le diagramme de classes réalisé est composé de plusieurs types, de plusieurs classes et de plusieurs associations. \\ 
 
-\section{Les types}
+\subsection{Les types}
 
-\subsection*{Geometry}
+\subsubsection*{Geometry}
 
 Le type Geometry est un type de données respectant la norme de l'OGC (Open Geospatial Consortium) et qui définit la géolocalisation.
 
-\subsection*{Adresse}
+\subsubsection*{Adresse}
 
 La classe Adresse définit un type qui est l'adresse d'un bénévole ou d'un établissement.\\
 Cette classe a plusieurs attributs : 
@@ -50,7 +36,7 @@ Cette classe a plusieurs attributs :
 \item la géolocalisation associée à cette adresse.
 \end{itemize}
 
-\subsection*{Semaine}
+\subsubsection*{Semaine}
 
 La classe Semaine définit un type qui est une semaine du calendrier.\\
 Cette classe a un attribut : 
@@ -58,7 +44,7 @@ Cette classe a un attribut :
 \item un identifiant.
 \end{itemize}
 
-\subsection*{Date}
+\subsubsection*{Date}
 
 La classe Date définit un type qui est une date.\\
 Cette classe a plusieurs attributs : 
@@ -68,11 +54,11 @@ Cette classe a plusieurs attributs :
 \item une année.
 \end{itemize}
 
-\subsection*{Jour}
+\subsubsection*{Jour}
 
 Le type Jour est une énumération qui définit les différents jours possibles pour une intervention.
 
-\subsection*{MomentHebdomadaire}
+\subsubsection*{MomentHebdomadaire}
 
 La classe MomentHebdomadaire définit un type qui est la combinaison d'un jour et d'un moment quotidien.\\
 Cette classe a plusieurs attributs :
@@ -81,55 +67,55 @@ Cette classe a plusieurs attributs :
 \item un moment qui appartient à l'énumération MomentQuotidien.
 \end{itemize}
 
-\subsection*{MomentQuotidien}
+\subsubsection*{MomentQuotidien}
 
 Le type MomentQuotidien est une énumération qui définit les différents moments possibles dans une journée, donc matin ou après-midi ou soir.
 
-\subsection*{TypeContact}
+\subsubsection*{TypeContact}
 
 Le type TypeContact est une énumération qui définit les différents contacts possibles.
 
-\subsection*{Activite}
+\subsubsection*{Activite}
 
 Le type Activite est une énumération qui définit les différentes activités que peuvent réaliser les bénévoles. il représente également l'Activité dont un Contact travaillant dans un Etablissement peut être responsable.
 
-\subsection*{TypeProjet}
+\subsubsection*{TypeProjet}
 
 Le type TypeProjet est une énumération qui définit les différents niveaux pour les projets.
 
-\subsection*{TypeEnseignement}
+\subsubsection*{TypeEnseignement}
 
 Le type TypeEnseignement est une énumération qui définit les différents niveaux pour les enseignements.
 
-\subsection*{TypeCentre}
+\subsubsection*{TypeCentre}
 
 Le type TypeCentre est une énumération qui définit les différents niveaux pour les centres de loisirs.
 
-\subsection*{TypeAutreEtablissement}
+\subsubsection*{TypeAutreEtablissement}
 
 Le type TypeAutreEtablissement est une énumération qui définit la nature des établissements qui ne sont pas des enseignements ou des centres de loisirs, par exemple une mairie ou une maison de retraite.
 
-\subsection*{MaterielPlaidoyer}
+\subsubsection*{MaterielPlaidoyer}
 
 Le type MaterielPlaidoyer est une énumération qui définit les différents types de matériel possibles pour les interventions plaidoyers.
 
-\subsection*{MaterielFrimousse}
+\subsubsection*{MaterielFrimousse}
 
 Le type MaterielFrimousse est une énumération qui définit les différents matériaux possibles pour les interventions frimousses.
 
-\subsection*{NiveauScolaireComplet}
+\subsubsection*{NiveauScolaireComplet}
 
 Le type NiveauScolaireComplet est une énumération qui définit tous les niveaux possibles pour les interventions plaidoyer. Ce type comporte aussi des combinaisons des niveaux comme par exemple "CP/CE1" ou "CM1/CM2". La valeur "autre" est utilisée pour des cas particuliers (niveau CLIS, CM2/6eme par exemple).
 
-\subsection*{NiveauScolaireLimite}
+\subsubsection*{NiveauScolaireLimite}
 
 Le type NiveauScolaireLimite est une énumération qui définit tous les niveaux possibles pour les interventions frimousse en se limitant à l'école primaire. Ce type comporte aussi des combinaisons des niveaux comme par exemple "CP/CE1" ou "CM1/CM2". La valeur "autre" est utilisée pour des cas particuliers (niveau CLIS, CM2/6eme par exemple).
 
-\subsection*{Theme}
+\subsubsection*{Theme}
 
 Le type Theme est une énumération qui définit les différents thèmes possibles pour les plaidoyers. Ce type est global pour l'ensemble des interventions quelle que soit la région.  
 
-\subsection*{NiveauTheme}
+\subsubsection*{NiveauTheme}
 
 La classe NiveauTheme définit un type qui est la combinaison d'un thème et d'un niveau. En effet, un thème pour un plaidoyer n'est pas forcément présenté à tout type de niveau, cette classe permet donc de faire les liaisons entre les thèmes et les niveaux associés à ces thèmes.\\
 Cette classe a plusieurs attributs : 
@@ -139,9 +125,9 @@ Cette classe a plusieurs attributs :
 \end{itemize}
 
 
-\section{Les classes}
+\subsection{Les classes}
 
-\subsection*{Personne}
+\subsubsection*{Personne}
 
 La classe Personne est la classe mère des classes Benevole et Contact. C'est une généralisation, c'est à dire que la classe Personne est une classe abstraite et donc une Personne est soit un contact, soit un bénévole. \\
 Cette classe a plusieurs attributs : 
@@ -153,7 +139,7 @@ Cette classe a plusieurs attributs :
 \item un numéro de téléphone portable.
 \end{itemize}
 
-\subsection*{Benevole}
+\subsubsection*{Benevole}
 
 La classe Benevole est une classe fille de la classe Personne et la classe mère des classes AdminActivite, AdminComite et AdminRegion. Cette classe décrit les bénévoles de l'UNICEF qui réaliseront des interventions mais aussi ceux qui géreront des activités (AdminActivite), des comités (AdminComite) ou des régions (AdminRegion). L'héritage est ici une spécialisation, c'est à dire qu'une personne peut être simplement bénévole sans être administrateur. \\
 Cette classe a plusieurs attributs : 
@@ -163,7 +149,7 @@ Cette classe a plusieurs attributs :
 \item aucune, une ou plusieurs activités potentielles (action ponctuelle, plaidoyer, frimousse, projet ou autre).
 \end{itemize}
 
-\subsection*{AdminActivite}
+\subsubsection*{AdminActivite}
 
 La classe AdminActivite permet de représenter un administrateur d'une ou plusieurs activités (administrateur local du cahier des charges). Cette classe est une classe fille de la classe Benevole.\\
 Cette classe a un attribut :
@@ -171,15 +157,15 @@ Cette classe a un attribut :
 \item une ou plusieurs responsabilités d'activité (action ponctuelle, plaidoyer, frimousse, projet ou autre). 
 \end{itemize}
 
-\subsection*{AdminComite}
+\subsubsection*{AdminComite}
 
 La classe AdminComite permet de représenter un administrateur de comité. Cette classe est une classe fille de la classe Benevole. 
 
-\subsection*{AdminRegion}
+\subsubsection*{AdminRegion}
 
 La classe AdminRegion permet de représenter un administrateur de région, une région ayant en générale plusieurs comités. Cette classe est une classe fille de la classe Benevole. 
 
-\subsection*{Contact}
+\subsubsection*{Contact}
 
 La classe Contact est une classe fille de la classe Personne. Cette classe décrit les personnes étant reliées à un établissement comme le personnel y travaillant ou encore les élèves ou étudiants participant à des projets. \\
 Cette classe a un attribut : 
@@ -187,7 +173,7 @@ Cette classe a un attribut :
 \item un type de contact qui permet de déterminer si un contact est un enseignant, un animateur, un élève, un étudiant ou autre.
 \end{itemize} 
 
-\subsection*{Etablissement}
+\subsubsection*{Etablissement}
 
 La classe Etablissement est la classe mère des classes Enseignement, CentreLoisirs et AutreEtablissement. C'est une généralisation, c'est à dire qu'un établissement ne peut être qu'un enseignement, un centre de loisirs ou un autre établissement (pour les mairies par exemple).\\
 Cette classe a plusieurs attributs : 
@@ -199,7 +185,7 @@ Cette classe a plusieurs attributs :
 \item une adresse correspondant à la rue, au numéro de rue, au code postal, à la ville, au complément si besoin et à une géolocalisation.
 \end{itemize}
 
-\subsection*{Enseignement}
+\subsubsection*{Enseignement}
 La classe Enseignement est une classe fille de la classe Etablissement. Cette classe décrit les établissements qui relèvent de l'Education Nationale. \\
 Cette classe a un attribut : 
 \begin{itemize}
@@ -207,21 +193,21 @@ Cette classe a un attribut :
 \end{itemize} 
 
 
-\subsection*{CentreLoisirs}
+\subsubsection*{CentreLoisirs}
 La classe CentreLoisirs est une classe fille de la classe Etablissement. Cette classe décrit les établissements ayant un rapport avec les loisirs. \\
 Cette classe a un attribut : 
 \begin{itemize}
 \item un type de centre de loisirs qui permet de déterminer si un centre de loisirs prend en charge des enfants d'école maternelle, d'école élémentaire, des adolescents ou autre.
 \end{itemize}  
 
-\subsection*{AutreEtablissement}
+\subsubsection*{AutreEtablissement}
 La classe AutreEtablissement est une classe fille de la classe Etablissement. Cette classe décrit les établissements n'étant ni un enseignement, ni un centre de loisirs. \\
 Cette classe a un attribut : 
 \begin{itemize}
 \item un type qui permet de déterminer si la structure est une mairie, une maison de retraite, ou un autre établissement.
 \end{itemize}  
 
-\subsection*{Intervention}
+\subsubsection*{Intervention}
 La classe Intervention est la classe mère des classes Plaidoyer, Frimousse et AutreIntervention. Cette classe décrit une intervention que peut demander un contact. \\
 Cette classe a plusieurs attributs :
 \begin{itemize}
@@ -233,7 +219,7 @@ Cette classe a plusieurs attributs :
 \item un moment indiquant si l'intervention a lieu le matin, l'après-midi ou le soir.
 \end{itemize}
 
-\subsection*{Plaidoyer}
+\subsubsection*{Plaidoyer}
 La classe Plaidoyer est une classe fille de la classe Intervention. \\
 Cette classe a plusieurs attributs : 
 \begin{itemize}
@@ -241,7 +227,7 @@ Cette classe a plusieurs attributs :
 \item un niveauTheme qui indique à la fois le thème de l'intervention et le niveau de la classe dans laquelle va se dérouler l'intervention, par exemple, pour une école primaire, la classe peut être CE1 mais aussi CE1/CE2.
 \end{itemize}
 
-\subsection*{Frimousse}
+\subsubsection*{Frimousse}
 La classe Frimousse est une classe fille de la classe Intervention. Une activité frimousse est réalisée avec des enfants d'école élémentaire. \\
 Cette classe a plusieurs attributs :
 \begin{itemize}
@@ -249,14 +235,14 @@ Cette classe a plusieurs attributs :
 \item un niveau qui correspond à la classe dans laquelle va se dérouler l'intervention (CP, CE1, etc).
 \end{itemize}
 
-\subsection*{AutreIntervention}
+\subsubsection*{AutreIntervention}
 La classe AutreIntervention est une classe fille de la classe Intervention. Une AutreIntervention peut être réalisée dans un dans un établissement et n'est ni un plaidoyer ni une activité frimousse. Elle a la particularité de pouvoir être effectuée le soir contrairement aux Plaidoyers et aux Frimousses. \\
 Cette classe possède un attribut :
 \begin{itemize}
 \item une description permettant de décrire cette intervention, en quoi elle consiste et son public par exemple.
 \end{itemize}
 
-\subsection*{Projet}
+\subsubsection*{Projet}
 La classe Projet représente les projets réalisés par des étudiants ou des élèves.\\
 Cette classe a plusieurs attributs : 
 \begin{itemize}
@@ -267,7 +253,7 @@ Cette classe a plusieurs attributs :
 \item le nom du projet.
 \end{itemize}
 
-\subsection*{Vente}
+\subsubsection*{Vente}
 La classe Vente représente les actions ponctuelles réalisées par les établissements.\\ 
 Cette classe a plusieurs attributs : 
 \begin{itemize}
@@ -277,7 +263,7 @@ Cette classe a plusieurs attributs :
 \item un champ remarques permettant aux bénévoles d'ajouter des informations importantes. 
 \end{itemize}
 
-\subsection*{Demande}
+\subsubsection*{Demande}
 
 La classe Demande représente les demandes d'intervention effectuées par les contacts pour un Etablissement.\\
 Cette classe a plusieurs attributs :
@@ -289,7 +275,7 @@ Cette classe a plusieurs attributs :
 \item une date correspondant au moment où la demande a été faite.
 \end{itemize}
 
-\subsection*{Comite}
+\subsubsection*{Comite}
 
 La classe Comite représente les comités de bénévoles, il y a en général un comité par département. Il peut arriver qu'un département ne possède pas de comité.\\
 Cette classe a plusieurs attributs :
@@ -299,7 +285,7 @@ Cette classe a plusieurs attributs :
 \item la liste des thèmes du comité avec les niveaux associés à chaque thème. Un comité ne présente pas forcément les mêmes thèmes qu'un autre comité et, pour un même thème, les niveaux associés ne sont pas obligatoirement les mêmes en fonction des comités. 
 \end{itemize}
 
-\subsection*{Region}
+\subsubsection*{Region}
 
 La classe Region représente les régions de l'UNICEF qui peuvent être différentes des régions administratives.\\
 Cette classe a plusieurs attributs :
@@ -308,7 +294,7 @@ Cette classe a plusieurs attributs :
 \item le nom de la région.
 \end{itemize}
 
-\subsection*{Pays}
+\subsubsection*{Pays}
 
 La classe Pays représente la France.\\
 Cette classe a plusieurs attributs :
@@ -318,35 +304,35 @@ Cette classe a plusieurs attributs :
 \end{itemize}
 
 
-\section{Les associations}
+\subsection{Les associations}
 
-\subsection*{estResponsable}
+\subsubsection*{estResponsable}
 L'association \textit{estResponsable} relie un Benevole et un Projet. Un bénévole est responsable d'aucun, un ou plusieurs projets et un projet est sous la responsabilité d'aucun (si le projet est en attente), un ou plusieurs bénévoles.
 
-\subsection*{Participe}
+\subsubsection*{Participe}
 L'association \textit{Participe} relie un Contact et un Projet. Un contact participe à aucun, un ou plusieurs projets et un projet a pour participant aucun (si le projet est en attente), un ou plusieurs contacts.\\
 Cette association a un attribut :
 \begin{itemize}
 \item un booléen qui indique si le contact est ou non un tuteur du projet (un professeur tuteur des élèves réalisant le projet par exemple). 
 \end{itemize}
 
-\subsection*{realise}
+\subsubsection*{realise}
 
 L'association \textit{realise} est une association ternaire qui relie une Vente, un Etablissement et une Intervention. Un établissement réalise aucune, une ou plusieurs ventes. Une vente est réalisée par un et un seul établissement. La vente a été réalisée suite à aucune ou une intervention.
 
-\subsection*{fait}
+\subsubsection*{fait}
 
 L'association \textit{fait} relie un Contact et une Demande. Un contact fait aucune, une ou plusieurs demandes, une demande est faite par un et un seul contact.
 
-\subsection*{cree}
+\subsubsection*{cree}
 
 L'association \textit{cree} relie une Demande et une Intervention. Une demande crée une ou plusieurs interventions, une intervention est créée par une et une seule demande.
 
-\subsection*{effectue} 
+\subsubsection*{effectue} 
 
 L'association \textit{effectue} relie un Benevole et une Intervention. Un bénévole effectue aucune, une ou plusieurs interventions. Une intervention est effectuée par un et un seul bénévole. 
 
-\subsection*{Appartient}
+\subsubsection*{Appartient}
 
 L'association \textit{Appartient} relie un Contact et un Etablissement. Un contact appartient à aucun, un ou plusieurs établissements. Un établissement a un ou plusieurs contacts.\\
 Cette association a plusieurs attributs :
@@ -356,32 +342,32 @@ Cette association a plusieurs attributs :
 \end{itemize}
 
 
-\subsection*{benevoleSeSitue}
+\subsubsection*{benevoleSeSitue}
 
 L'association \textit{benevoleSeSitue} relie un Benevole et un Comite. Un bénévole se situe dans un ou plusieurs comités, un comité a aucun, un ou plusieurs bénévoles.
 
-\subsection*{interventionSeSitue}
+\subsubsection*{interventionSeSitue}
 
 L'association \textit{interventionSeSitue} relie une Intervention et un Comite. Une intervention se situe dans un et un seul comité, un comité a aucune, une ou plusieurs interventions.
 
-\subsection*{regionContient}
+\subsubsection*{regionContient}
 
 L'association \textit{regionContient} relie une Region et un Comite. Une région contient aucun, un ou plusieurs comités, un comité est dans une et une seule région.
 
-\subsection*{paysContient}
+\subsubsection*{paysContient}
 
 L'association \textit{paysContient} relie un Pays et une Region. Un pays contient aucune, une ou plusieurs régions, une région est dans un et un seul pays.
 
-\chapter{Contraites d'intégrité}
+\section{Contraintes d'intégrité}
 
 Les contraintes d'intégrité portent sur l'intra-classe et l'inter-classe.
 
-\section{Les contraintes d'intégrité intra-classe}
+\subsection{Les contraintes d'intégrité intra-classe}
 Dans cette partie, nous allons décrire les différentes contraintes d'intégrité de chaque classe et classe-association.
 
-\subsection{Classe} 
+\subsubsection{Classe} 
  
-\subsection*{Personne}
+\subsubsection*{Personne}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{email :} chaîne de caractère de longueur de 100 caractères au maximum, la syntaxe de l'e-mail doit être la suivante : user@host.domain\\
@@ -399,7 +385,7 @@ Clés :
 
 L'\textbf{email} est unique.\\
 
-\subsection*{Benevole}
+\subsubsection*{Benevole}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
  	\item \textbf{adresse :} variable de type \textbf{Adresse}, attribut non nul;
@@ -407,20 +393,20 @@ Contraintes de domaine et de nullité des attributs :
 	\item \textbf{activitesPotentielles :} constante de type \textbf{Activite}, attribut multivalué, attribut  peut être nul.\\
 \end{itemize}  
 
-\subsection*{AdminActivite}
+\subsubsection*{AdminActivite}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 \item \textbf{responsabilitesActivite :} constante de type \textbf{Activite}, attribut multivalué, peut être nul.\\
 \end{itemize}
 
  
-\subsection*{Contact}
+\subsubsection*{Contact}
 Contraintes de domaine et de nullité des attributs :
  \begin{itemize}
  \item \textbf{type :} constante de type \textbf{TypeContact},attribut non nul.\\
  \end{itemize}
 
-\subsection*{Etablissement}
+\subsubsection*{Etablissement}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
  	\item \textbf{idEtablissement :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul. Cet attribut doit correspondre à l'UAI si cet établissement est une instance d'Enseignement. L'UAI (Unité Administrative Immatriculée) qui est une combinaison de chiffres et de lettres unique pour chaque enseignement;
@@ -440,25 +426,25 @@ Clés :
 \item clé sémantique : \textbf{adresse} et \textbf{type} est une autre clé candidate. \\ 
 \end{itemize}
 
-\subsection*{Enseignement}
+\subsubsection*{Enseignement}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{type :} constante de type \textbf{TypeEnseignement}, attribut non nul.\\
 \end{itemize}
 
-\subsection*{CentreLoisirs}
+\subsubsection*{CentreLoisirs}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{type :} constante de type \textbf{TypeCentre}, peut être nul.\\
 \end{itemize}
 
-\subsection*{AutreEtablissement}
+\subsubsection*{AutreEtablissement}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{type :} constante de type \textbf{TypeAutreEtablissement}, peut être nul.\\
 \end{itemize}
 
-\subsection*{Intervention} 
+\subsubsection*{Intervention} 
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
  	\item \textbf{idIntervention :} entier positif ou nul, attribut non nul;
@@ -475,27 +461,27 @@ Clés :
 \item clé sémantique : \textbf{moment} (Intervention), \textbf{date} (Intervention), \textbf{nom} (Benevole), \textbf{prenom} (Benevole), \textbf{type} (Etablissement) et \textbf{adresse} (Etablissement) est une autre clé candidate. \\ 
 \end{itemize}
 
-\subsection*{Plaidoyer}
+\subsubsection*{Plaidoyer}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{materielDispo :} constante de type \textbf{MatérielPlaidoyer}, attribut multivalué peut être nul; 
 	\item \textbf{niveauTheme :} constante de type \textbf{niveauTheme}, attribut non nul.\\
 \end{itemize}
 
-\subsection*{Frimousse}
+\subsubsection*{Frimousse}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{materiaux :} constante de type \textbf{MaterielFrimousse}, attribut multivalué peut être nul;
 	\item \textbf{niveau :} constante de type \textbf{NiveauScolaireLimite}, attribut non nul.\\
 \end{itemize}
 
-\subsection*{AutreIntervention}
+\subsubsection*{AutreIntervention}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 \item \textbf{description :} chaîne de caractères de longueur de 5000 caractères au maximum.\\
 \end{itemize}
 
-\subsection*{Projet}
+\subsubsection*{Projet}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
  	\item \textbf{idProjet :} entier positif ou nul, attribut non nul;
@@ -511,7 +497,7 @@ Clés :
 \item clé sémantique : \textbf{nom} (Projet), \textbf{nom} (Benevole), \textbf{prenom} (Benevole), \textbf{nom} (Contact) et \textbf{prenom} (Contact) est une autre clé candidate. \\ 
 \end{itemize}
 
-\subsection*{Vente}
+\subsubsection*{Vente}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
  	\item \textbf{idVente :} entier positif ou nul, attribut non nul;
@@ -524,7 +510,7 @@ Clés :
 
 L'\textbf{idVente} est unique.\\
 
-\subsection*{Demande}
+\subsubsection*{Demande}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{idDemande :} entier positif ou nul, attribut non nul;
@@ -540,7 +526,7 @@ Clés :
 \item clé sémantique : \textbf{date} (Demande), \textbf{type} (Etablissement), \textbf{adresse} (Etablissement), \textbf{nom} (Contact) et \textbf{prenom} (Contact) est une autre clé candidate. \\ 
 \end{itemize}
 
-\subsection*{Comite}
+\subsubsection*{Comite}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{idDepartement :} chaîne de caractère représentant le numéro du département sous la forme XXX, attribut non nul;
@@ -554,7 +540,7 @@ Clés :
 \item clé sémantique : \textbf{nomDepartement} est une autre clé candidate. \\ 
 \end{itemize}
 
-\subsection*{Region}
+\subsubsection*{Region}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{idRegion :} entier positif ou nul, attribut non nul;
@@ -569,7 +555,7 @@ Clés :
 
 
 
-\subsection*{Pays}
+\subsubsection*{Pays}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{idPays :} entier positif ou nul, attribut non nul;
@@ -583,7 +569,7 @@ Clés :
 \end{itemize}
 
 
-\subsection*{Adresse}
+\subsubsection*{Adresse}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
  	\item \textbf{ville :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul;
@@ -594,13 +580,13 @@ Contraintes de domaine et de nullité des attributs :
 	\item \textbf{geolocalisation : } attribut de type geometry, peut être nul.\\
 \end{itemize}
 
-\subsection*{Semaine}
+\subsubsection*{Semaine}
 Contraintes de domaine et de nullité des attributs : 
 \begin{itemize}
 	\item \textbf{idSemaine :} entier de valeur minimale 1 et de valeur maximale 53, attribut non nul.
 \end{itemize}
 
-\subsection*{Date}
+\subsubsection*{Date}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{jour :} chaîne de caractère de la forme XX, attribut non nul;
@@ -608,7 +594,7 @@ Contraintes de domaine et de nullité des attributs :
 	\item \textbf{annee :} chaîne de caractère de la forme XXXX, attribut non nul. 
 \end{itemize}
 
-\subsection*{NiveauTheme}
+\subsubsection*{NiveauTheme}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{niveau :} constante de type \textbf{NiveauScolaireComplet}, attribut non nul;
@@ -627,15 +613,15 @@ Si le niveau est "petite section", "petite/moyenne section", "moyenne section", 
 %
 %Si le niveau est "2nde", "1ere", "terminale", "L1", "L2", "L3", "M1", "M2" ou "autre" le thème associé doit être un des thèmes suivants : "conventionInternationaleDesDroitsDeLEnfant", "education", "laSanteEnGeneral", "santeAlimentation", "vihSida", "eau", "urgencesMondiales", "travailDesEnfants", "enfantsSoldats", "harcelement", "roleDeLUnicef" et "millenairePourLeDeveloppement".\\
 
-\subsection{Classe-association}
+\subsubsection{Classe-association}
 
-\subsection*{Participe}
+\subsubsection*{Participe}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{estTuteur :} booléen, attribut non nul.\\
 \end{itemize}
 
-\subsection*{Appartient}
+\subsubsection*{Appartient}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{respoEtablissement :} booléen, attribut non nul;
@@ -643,10 +629,10 @@ Contraintes de domaine et de nullité des attributs :
 \end{itemize}
 
 
-\section{Les contraintes d'intégrités inter-classe}
+\subsection{Les contraintes d'intégrités inter-classe}
 
 
-\subsection*{Intervention - Etablissement}
+\subsubsection*{Intervention - Etablissement}
 Le \textbf{niveau} d'une intervention frimousse ainsi que le \textbf{niveau} (de NiveauTheme) d'une intervention plaidoyer doit être en correspondance avec le \textbf{type} de l'établissement.  
 
 Si l'établissement est un enseignement, le \textbf{niveau} peut prendre différentes valeurs selon le \textbf{type}:
@@ -665,19 +651,19 @@ Si l'établissement est un centre de loisirs, le \textbf{niveau} peut prendre di
 \item Si le \textbf{type} est "adolescent", le \textbf{niveau} peut être : "6eme", "5eme", "4eme", "3eme", "2nde", "1ere", "terminale" ou "autre". 
 \end{itemize}
 
-\subsection*{Intervention - Demande}
+\subsubsection*{Intervention - Demande}
 Les \textbf{momentsVoulus} et \textbf{momentsAEviter} sont dépendants de l'Intervention demandée. En effet, si l'intervention demandée est un Plaidoyer ou une Frimousse, alors les \textbf{momentsQuotidien} dans \textbf{momentHebdomadaire} peuvent être "matin" ou "après-midi". En revanche, si l'intervention demandée est une AutreIntervention, alors les \textbf{momentsQuotidien} dans \textbf{momentHebdomadaire} peuvent être "matin", "après-midi" ou "soir". 
   
 
-\chapter{Les dépendances}
+\section{Les dépendances}
 
 Dans cette partie, nous allons déterminer les dépendances fonctionnelles, les dépendances multivaluées,  les dépendances d'inclusion et les dépendances d'exclusion. \\
 
-\section{Les dépendances fonctionnelles}
+\subsection{Les dépendances fonctionnelles}
 
 Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles des classes et des associations.  
 
-\subsection*{Personne}
+\subsubsection*{Personne}
 \begin{itemize}
 \item[] email $\rightarrow$ nom 
 \item[] email $\rightarrow$ prenom 
@@ -689,19 +675,19 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 \end{itemize}
 
 
-\subsection*{Contact}
+\subsubsection*{Contact}
 \begin{itemize}
 \item[] email $\rightarrow$ type 
 \end{itemize}
 
-\subsection*{Benevole}
+\subsubsection*{Benevole}
 \begin{itemize}
 \item[] email $\rightarrow$ adresse 
 \item[] email $\rightarrow$ mdp 
 \end{itemize}
 
 
-\subsection*{Etablissement}
+\subsubsection*{Etablissement}
 \begin{itemize}
 \item[] idEtablissement $\rightarrow$ nom 
 \item[] idEtablissement $\rightarrow$ telFixe
@@ -712,17 +698,17 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 \item[] adresse, type $\rightarrow$ telFixe
 \end{itemize}
 
-\subsection*{CentreLoisirs}
+\subsubsection*{CentreLoisirs}
 \begin{itemize}
 \item[]	idEtablissement $\rightarrow$ type
 \end{itemize}
 
-\subsection*{Enseignement}
+\subsubsection*{Enseignement}
 \begin{itemize}
 \item[]	idEtablissement $\rightarrow$ type
 \end{itemize}
 
-\subsection*{Intervention}
+\subsubsection*{Intervention}
 \begin{itemize}
 \item[]	idIntervention $\rightarrow$ date
 \item[]	idIntervention $\rightarrow$ lieu
@@ -734,22 +720,22 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 \item[] moment (Intervention), date (Intervention), type (Etablissement), adresse (Etablissement), nom (Benevole), prenom (Benevole) $\rightarrow$ remarques (Intervention)
 \end{itemize}
 
-\subsection*{Plaidoyer}
+\subsubsection*{Plaidoyer}
 \begin{itemize}
 \item[]	idIntervention $\rightarrow$ niveauTheme
 \end{itemize}
 
-\subsection*{Frimousse}
+\subsubsection*{Frimousse}
 \begin{itemize}
 \item[] idIntervention $\rightarrow$ niveau
 \end{itemize}
 
-\subsection*{AutreIntervention}
+\subsubsection*{AutreIntervention}
 \begin{itemize}
 \item[] idIntervention $\rightarrow$ description
 \end{itemize}
 
-\subsection*{Projet}
+\subsubsection*{Projet}
 \begin{itemize}
 \item[] idProjet $\rightarrow$ chiffreDAffaire
 \item[] idProjet $\rightarrow$ remarques
@@ -761,69 +747,69 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 \item[]	nom (Projet), nom (Benevole), prenom (Benevole), nom (Contact), prenom (Contact) $\rightarrow$ estTuteur (Participe)
 \end{itemize}
 
-\subsection*{Vente}
+\subsubsection*{Vente}
 \begin{itemize}
 \item[]	idVente $\rightarrow$ chiffreDAffaire
 \item[]	idVente $\rightarrow$ date
 \item[]	idVente $\rightarrow$ remarques
 \end{itemize}
 
-\subsection*{Demande}
+\subsubsection*{Demande}
 \begin{itemize}
 \item[] idDemande $\rightarrow$ date
 \end{itemize}
 
-\subsection*{Comite}
+\subsubsection*{Comite}
 \begin{itemize}
 \item[] idDepartement $\rightarrow$ nomDepartement
 \end{itemize}
 
-\subsection*{Region}
+\subsubsection*{Region}
 \begin{itemize}
 \item[] idRegion $\rightarrow$ nom
 \end{itemize}
 
-\subsection*{Pays}
+\subsubsection*{Pays}
 \begin{itemize}
 \item[] idPays $\rightarrow$ nom
 \end{itemize}
  
 
-\subsection*{réalise}
+\subsubsection*{réalise}
 \begin{itemize}
 \item[] adresse (Etablissement), type (Etablissement), date (Vente) $\rightarrow$ chiffreDAffaire (Vente)
 \item[] adresse (Etablissement), type (Etablissement), date (Vente) $\rightarrow$ date (Intervention), moment (Intervention)
 \end{itemize}
 
-\section{Les dépendances multivaluées}
+\subsection{Les dépendances multivaluées}
 
-\subsection*{Benevole}
+\subsubsection*{Benevole}
 \begin{itemize}
 \item[] email $\rightarrow > $ activitesPotentielles 
 \end{itemize}
 
-\subsection*{AdminActivite}
+\subsubsection*{AdminActivite}
 \begin{itemize}
 \item[]email $\rightarrow >$ activitesPotentielles 
 \end{itemize}
 
-\subsection*{Etablissement}
+\subsubsection*{Etablissement}
 \begin{itemize}
 \item[] idEtablissement $\rightarrow >$ emails
 \item[] adresse, type $\rightarrow$ emails
 \end{itemize}
 
-\subsection*{Plaidoyer}
+\subsubsection*{Plaidoyer}
 \begin{itemize}
 \item[]	idIntervention $\rightarrow >$ materielDispo
 \end{itemize}
 
-\subsection*{Frimousse}
+\subsubsection*{Frimousse}
 \begin{itemize}
 \item[]	idIntervention $\rightarrow >$ materiaux
 \end{itemize}
 
-\subsection*{Demande}
+\subsubsection*{Demande}
 \begin{itemize}
 \item[] idDemande $\rightarrow$ momentsVoulus
 \item[] idDemande $\rightarrow$ momentsAEviter
@@ -833,22 +819,20 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 \item[] nom (Contact), prenom (Contact), adresse (Etablissement), type (Etablissement), date (Demande) $\rightarrow$ momentsVoulus (Demande) 
 \end{itemize}
 
-\subsection*{Comite}
+\subsubsection*{Comite}
 \begin{itemize}
 \item[] idDepartement $\rightarrow >$ listeNiveauTheme
 \item[] nomDepartement $\rightarrow >$ listeNiveauTheme
 \end{itemize}
 
-\section{Les dépendances d'inclusion}
+\subsection{Les dépendances d'inclusion}
 
-\subsection*{Plaidoyer - Comite}
+\subsubsection*{Plaidoyer - Comite}
 Le \textbf{niveauTheme} de Plaidoyer doit faire parti de \textbf{listeNiveauTheme} de Comite.\\
 \indent \indent Plaidoyer[niveauTheme] $ \subseteq $ Comite[listeNiveauTheme]
 
-\section{Les dépendances d'exclusion}
+\subsection{Les dépendances d'exclusion}
 
-\subsection*{Demande}
+\subsubsection*{Demande}
 L'intersection entre \textbf{momentsVoulus} et \textbf{momentsAEviter} dans Demande doit être nulle. \\
 \indent \indent Demande[momentsVoulus] $ \cap $ Demande[momentsAEviter] = 0
-
-\end{document}

@@ -66,3 +66,12 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+fos_user:
+    db_driver:     orm
+    firewall_name: main
+    use_listener: false
+    user_class:   Unipik\UserBundle\Entity\MyUser
+    registration:
+            form:
+                type: Unipik\UserBundle\Form\RegistrationType

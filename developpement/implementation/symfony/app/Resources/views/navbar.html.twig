@@ -11,11 +11,9 @@
             <a class="navbar-brand" href="#">{% block brand %}Brand{% endblock %}</a>
         </div>
         <div style="height: 1px;" aria-expanded="false" class="navbar-collapse collapse" id="bs-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                {% block navbarButtons %}
-                    <li><a href="#">link</a></li>
-                {% endblock %}
-            </ul>
+            {% block navbarButtons %}
+                <li><a href="#">link</a></li>
+            {% endblock %}
         </div>
     </div>
 </nav>

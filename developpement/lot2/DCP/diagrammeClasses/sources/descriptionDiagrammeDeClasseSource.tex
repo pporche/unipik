@@ -1,5 +1,5 @@
-%version 1.01, date 07/03/16, auteur Mathieu MEDICI, Julie PAIN
 
+\newpage
 \section{Diagramme de classes}
 
 Le formalisme utilisé dans ce document pour le diagramme de classe est UML.
@@ -290,7 +290,6 @@ Cette classe a plusieurs attributs :
 La classe Region représente les régions de l'UNICEF qui peuvent être différentes des régions administratives.\\
 Cette classe a plusieurs attributs :
 \begin{itemize}
-\item un identifiant;
 \item le nom de la région.
 \end{itemize}
 
@@ -299,7 +298,6 @@ Cette classe a plusieurs attributs :
 La classe Pays représente la France.\\
 Cette classe a plusieurs attributs :
 \begin{itemize}
-\item un identifiant;
 \item le nom du pays (donc "France").
 \end{itemize}
 
@@ -435,13 +433,13 @@ Contraintes de domaine et de nullité des attributs :
 \subsubsection*{CentreLoisirs}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
-	\item \textbf{type :} constante de type \textbf{TypeCentre}, peut être nul.\\
+	\item \textbf{type :} constante de type \textbf{TypeCentre}, attribut non nul.\\
 \end{itemize}
 
 \subsubsection*{AutreEtablissement}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
-	\item \textbf{type :} constante de type \textbf{TypeAutreEtablissement}, peut être nul.\\
+	\item \textbf{type :} constante de type \textbf{TypeAutreEtablissement}, attribut non nul.\\
 \end{itemize}
 
 \subsubsection*{Intervention} 
@@ -451,7 +449,7 @@ Contraintes de domaine et de nullité des attributs :
 	\item \textbf{date :} variable de type \textbf{Date}, attribut peut être nul;
 	\item \textbf{lieu :} chaîne de caractère composée de chiffres et de lettres, attribut peut être nul;
 	\item \textbf{nbPersonnes :} entier positif non nul, attribut non nul;  
-	\item \textbf{remarques :} chaîne de caractères de longueur de 1000 caractères au maximum;
+	\item \textbf{remarques :} chaîne de caractères de longueur de 1000 caractères au maximum, peut être nul;
 	\item \textbf{moment :} constante de type \textbf{MomentQuotidien}, attribut peut être nul;\\
 \end{itemize}  
 
@@ -478,7 +476,7 @@ Contraintes de domaine et de nullité des attributs :
 \subsubsection*{AutreIntervention}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
-\item \textbf{description :} chaîne de caractères de longueur de 5000 caractères au maximum.\\
+\item \textbf{description :} chaîne de caractères de longueur de 5000 caractères au maximum, attribut non nul.\\
 \end{itemize}
 
 \subsubsection*{Projet}
@@ -503,7 +501,7 @@ Contraintes de domaine et de nullité des attributs :
  	\item \textbf{idVente :} entier positif ou nul, attribut non nul;
 	\item \textbf{chiffreDAffaire :} réel positif, attribut non nul;
 	\item \textbf{date :} variable de type \textbf{Date}, attribut non nul;
-	\item \textbf{remarques :} chaîne de caractères de longueur de 1000 caractères au maximum. \\  
+	\item \textbf{remarques :} chaîne de caractères de longueur de 1000 caractères au maximum, peut être nul. \\  
 \end{itemize} 
 
 Clés : 
@@ -529,7 +527,7 @@ Clés :
 \subsubsection*{Comite}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
-	\item \textbf{idDepartement :} chaîne de caractère représentant le numéro du département sous la forme XXX, attribut non nul;
+	\item \textbf{id :} entier positif ou nul, attribut non;
 	\item \textbf{nomDepartement :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul;
 	\item \textbf{listeNiveauTheme :} constante de type \textbf{NiveauTheme}, attribut multivalué peut être nul. \\
 \end{itemize}
@@ -543,14 +541,12 @@ Clés :
 \subsubsection*{Region}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
-	\item \textbf{idRegion :} entier positif ou nul, attribut non nul;
-	\item \textbf{nom :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul.\\
+	\item \textbf{nom :} chaîne de caractère unique de longueur de 100 caractères au maximum, attribut non nul.\\
 \end{itemize}
 
 Clés : 
 \begin{itemize}
-\item clé structurelle : \textbf{idRegion} est unique;
-\item clé sémantique : \textbf{nom} est une autre clé candidate. \\ 
+\item clé structurelle :  \textbf{nom} est une autre clé candidate. \\ 
 \end{itemize}
 
 
@@ -558,14 +554,12 @@ Clés :
 \subsubsection*{Pays}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
-	\item \textbf{idPays :} entier positif ou nul, attribut non nul;
-	\item \textbf{nom :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul. \\
+	\item \textbf{nom :} chaîne de caractère unique de longueur de 100 caractères au maximum, attribut non nul. \\
 \end{itemize}
 
 Clés : 
 \begin{itemize}
-\item clé structurelle : \textbf{idPays} est unique;
-\item clé sémantique : \textbf{nom} est une autre clé candidate. \\ 
+\item clé structurelle : \textbf{nom} est une autre clé candidate. \\ 
 \end{itemize}
 
 
@@ -761,20 +755,10 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 
 \subsubsection*{Comite}
 \begin{itemize}
-\item[] idDepartement $\rightarrow$ nomDepartement
+\item[] id $\rightarrow$ nomDepartement
 \end{itemize}
 
-\subsubsection*{Region}
-\begin{itemize}
-\item[] idRegion $\rightarrow$ nom
-\end{itemize}
-
-\subsubsection*{Pays}
-\begin{itemize}
-\item[] idPays $\rightarrow$ nom
-\end{itemize}
  
-
 \subsubsection*{réalise}
 \begin{itemize}
 \item[] adresse (Etablissement), type (Etablissement), date (Vente) $\rightarrow$ chiffreDAffaire (Vente)

@@ -1,4 +1,4 @@
-# version 1.00 date 19/04/2016 auteur(s) Michel Cressant
+# version 1.00 date 21/04/2016 auteur(s) Michel Cressant
 
 # Importation des variables
 include makevars $(UNIPIKGENPATH)/pic_unicef/makevars $(UNIPIKGENPATH)/pic_unicef/gestionConfigurations

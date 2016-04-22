@@ -1,0 +1,16 @@
+{% extends "ArchitectureBundle:Home:layout.html.twig" %}
+
+{% block title %}
+
+    Accueil - {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+
+    <h2>Bienvenue !</h2>
+
+    {% use 'UserBundle:Connexion:form.html.twig' %}
+    {{ block('connexion') }}
+
+{% endblock %}

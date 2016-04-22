@@ -14,7 +14,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class ArchitectureController extends Controller {
 
     public function indexAction() {
-        return $this->render('ArchitectureBundle::layoutArchitecture.html.twig');
+
+
+        return $this->render('ArchitectureBundle:Home:index.html.twig');
     }
 
     public function profileAction() {

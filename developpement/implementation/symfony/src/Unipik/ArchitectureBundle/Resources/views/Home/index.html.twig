@@ -10,7 +10,6 @@
 
     <h2>Bienvenue !</h2>
 
-    {% use 'UserBundle:Connexion:form.html.twig' %}
-    {{ block('connexion') }}
+    {{ render(controller("UserBundle:Security:login")) }}
 
 {% endblock %}

@@ -5,7 +5,8 @@ Ce fichier d'installation a été réalisé pour Ubuntu, des différences peuven
 
 Préalable :
 
---> avoir suivi le guide installationEspaceTravail.txt
+1) installer php5 (apache2 sera automatiquement installé) :
+--> sudo apt-get install php5
 
 
 

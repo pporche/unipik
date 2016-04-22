@@ -6,15 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class UserController extends Controller {
 
-    public function connectionAction() {
-
-    }
-
-    public function deconnectionAction() {
-
-    }
-
-    public function viewProfileAction() {
+   public function viewProfileAction() {
 
     }
 

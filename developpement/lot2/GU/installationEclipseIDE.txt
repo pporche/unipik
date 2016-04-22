@@ -3,6 +3,12 @@ Ce fichier d'installation a été réalisé pour Ubuntu, des différences peuven
 
 
 
+Préalable :
+
+--> avoir suivi le guide installationEspaceTravail.txt
+
+
+
 Installation et configuration d'Eclipse :
 
 1) télécharger eclispe, choisir "Eclipse for PHP Developers" sur le site :
@@ -21,7 +27,14 @@ https://eclipse.org/downloads/
 6) Dans le menu "Window/Preferences/PHP/Servers", cliquer sur "Default PHP Web Server", remplir le champ :
 *Document Root: /votreChemin/pic_unicef/developpement/implementation/symfony
 
-7) Relancer Eclipse au cas où, il est maintenant possible de créé un projet Symfony
+7) Dans le menu "Window/Preferences/PHP/Executables", cliquer sur "Add" et remplir les champs :
+*Name: PHP 5
+*Executable path: /usr/bin/php5
+*PHP ini file (optional): /etc/php5/apache2/php.ini
+*ne pas cocher "Use system default php.ini configuration"
+*SAPI Type: CLI
+
+8) Relancer Eclipse au cas où, il est maintenant possible de créé un projet Symfony
 
 
 

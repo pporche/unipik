@@ -3,5 +3,5 @@ architecture_homepage:
     defaults: { _controller: ArchitectureBundle:Architecture:index }
 
 architecture_test:
-    path:     /test
+    path:     /test/{id}
     defaults: { _controller: ArchitectureBundle:Architecture:test }

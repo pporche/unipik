@@ -32,9 +32,13 @@ class ArchitectureController extends Controller {
     public function mailAction() {
 
     }
-    
-    public function testAction() {
-        return $this->render('ArchitectureBundle::accueilBenevole.html.twig');
+
+    public function testAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('UserBundle:MyUser');
+
+        $user = $repository->find($id);
+        return $this->render('ArchitectureBundle::accueilBenevole.html.twig', array('user' => $user));
     }
-    
+
 }

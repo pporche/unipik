@@ -1,0 +1,18 @@
+{% extends "::base.html.twig" %}
+
+
+{% block title %}
+    Unicef
+{% endblock %}
+
+
+{% block brand %}
+    <img src="{{ asset("img/unicef-logo.gif") }}" />
+{% endblock %}
+
+
+{% block body %}
+    {{ render(controller("UserBundle:Security:login")) }}
+{% endblock %}
+
+

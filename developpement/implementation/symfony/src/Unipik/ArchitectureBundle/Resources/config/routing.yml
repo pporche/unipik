@@ -1,3 +1,8 @@
 architecture_homepage:
     path:     /
     defaults: { _controller: ArchitectureBundle:Architecture:index }
+
+architecture_school_add:
+    path:     /demande
+    defaults:
+        _controller: ArchitectureBundle:Architecture:demandeIntervention

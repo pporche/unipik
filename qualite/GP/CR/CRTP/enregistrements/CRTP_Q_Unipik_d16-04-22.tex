@@ -1,0 +1,112 @@
+% version 1.00	Auteur Pierre Porche date 22/04/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\usepackage{hyperref}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Pédagogique}}					%titre
+\begin{document}
+
+22/04/2016			 				%Date 
+\hfill   
+\hfill 	 9:00 - 10:14				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{3cm} | p{3cm} | p{3cm} | p{3.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 22/04/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{4cm} | p{3cm} | p{3cm} | p{2.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui &  & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi &  & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Résumé de la semaine passée}
+\paragraph*{}
+Les \DCP{} et \DCD{} sont faits, la phase de conception est donc finie. Pour les réaliser, nous avons notamment fait un diagramme de packages à partir des Bundles Symfony, qui sont des sortes de packages directement inclus dans Symfony, ainsi qu'une carte de navigation qui correspond à un diagramme d'États-Transition.
+\paragraph*{}
+Les \PTI{} et \PTU{} sont faits.
+\paragraph*{}
+Nous programmons avec \nomTuteurPedago{} une inspection technique le mardi 10 mai à 10h30.
+\paragraph*{}
+En ce qui concerne l'IDE utilisé, puisque celui-ci n'est pas libre, nous devons fournir au client une marche à suivre pour qu'il puisse réviser notre projet avec un outil libre.
+\paragraph*{}
+Concernant le développement, l'inscription est fonctionnelle avec stockage du mot de passe dans la BD hashé et salé. Il serait intéressant de prévenir le client d'un éventuel retard sur la livraison.
+\paragraph*{}
+Le dossier de demande d'hébergement est fini et montré à l'UNICEF pour approbation. Il serait intéressant de leur demander si le partenariat pourrait inclure des avantages matériels comme par exemple un reversement d'une partie de leur taxe d'apprentissage.
+
+\section{Modèle du domaine}
+\paragraph*{}
+\nomTuteurPedago{} nous effectue un retour sur le modèle du domaine et le dictionnaire de données que nous lui avons fourni.
+\paragraph*{}
+Tout d'abord, le document SQL que nous lui avons envoyé est illisible : il aurait fallu le mettre mieux en page. Ensuite, les CHECK ne servent à rien s'il n'y a pas de domaine. Ceux ci devraient exister puisque nous avons des types énumérés. Il faut créer les constantes de types avant la création des tables et non pendant.\\
+
+
+
+
+
+
+%--- fin de réunion ---%
+\newpage
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

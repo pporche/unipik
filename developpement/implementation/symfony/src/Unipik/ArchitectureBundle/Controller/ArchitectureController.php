@@ -32,4 +32,9 @@ class ArchitectureController extends Controller {
     public function mailAction() {
 
     }
+    
+    public function testAction() {
+        return $this->render('ArchitectureBundle::accueilBenevole.html.twig');
+    }
+    
 }

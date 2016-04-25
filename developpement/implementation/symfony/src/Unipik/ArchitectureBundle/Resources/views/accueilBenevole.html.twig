@@ -1,0 +1,15 @@
+{% extends "ArchitectureBundle::layoutArchitecture.html.twig" %}
+
+{% block title %}
+
+    Accueil - {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+
+    <h2>Bienvenue !</h2>
+
+    {{ render(controller("UserBundle:Security:login")) }}
+
+{% endblock %}

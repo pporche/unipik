@@ -1,3 +1,7 @@
 architecture_homepage:
     path:     /
     defaults: { _controller: ArchitectureBundle:Architecture:index }
+
+architecture_test:
+    path:     /test
+    defaults: { _controller: ArchitectureBundle:Architecture:test }

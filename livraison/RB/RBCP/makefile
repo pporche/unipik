@@ -9,7 +9,7 @@ all : rbcp cleanrep cleaneps
 
 
 rbcp : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements debriefing_L_Unipik_d16-05-23 poster_L_Unipik_d16-05-23 resumePic_L_Unipik_d16-05-23
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements debriefing_L_Unipik_d16-05-23_rCP poster_L_Unipik_d16-05-23 resumePic_L_Unipik_d16-05-23
 
 
 # Archivage

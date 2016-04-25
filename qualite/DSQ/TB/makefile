@@ -8,7 +8,7 @@ include makevars $(UNIPIKGENPATH)/pic_unicef/makevars
 all : tb cleanrep cleaneps
 
 tb : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements TB_Q_Unipik_s01 TB_Q_Unipik_s02 TB_Q_Unipik_s03 TB_Q_Unipik_s04 TB_Q_Unipik_s05 TB_Q_Unipik_s06 TB_Q_Unipik_s07 TB_Q_Unipik_s08 TB_Q_Unipik_s09 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements TB_Q_Unipik_s01 TB_Q_Unipik_s02 TB_Q_Unipik_s03 TB_Q_Unipik_s04 TB_Q_Unipik_s05 TB_Q_Unipik_s06 TB_Q_Unipik_s07 TB_Q_Unipik_s08 TB_Q_Unipik_s09 TB_Q_Unipik_s10 
 
 
 # Archivage

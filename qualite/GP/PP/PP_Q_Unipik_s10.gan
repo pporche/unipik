@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Unipik" company="UNICEF" webLink="http://" view-date="2016-04-01" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.7.1" locale="fr">
+<?xml version="1.0" encoding="UTF-8"?><project name="Unipik" company="UNICEF" webLink="http://" view-date="2016-04-13" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.7.1" locale="fr">
     <description><![CDATA[Outil de gestion des interventions externes]]></description>
     <view zooming-state="default:0" id="gantt-chart">
         <field id="tpd3" name="Nom" width="57" order="0"/>
         <field id="tpd4" name="Date de début" width="21" order="1"/>
         <field id="tpd5" name="Date de fin" width="21" order="2"/>
-        <timeline><![CDATA[21,26,15,17,12]]></timeline>
-        <option id="color.recent"><![CDATA[#33ff00 #ffff00 #ff9900 #ff0033]]></option>
+        <timeline><![CDATA[21,12,26,15,17]]></timeline>
+        <option id="color.recent"><![CDATA[#ff0033 #33ff00 #ffff00 #ff9900]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="50" order="0"/>
@@ -175,17 +175,20 @@
         <task id="24" name="PTV - lot2" color="#33ff00" meeting="false" start="2016-03-29" duration="4" complete="100" expand="true">
             <depend id="26" type="2" difference="10" hardness="Strong"/>
         </task>
-        <task id="29" name="DCP - lot2" color="#ffff00" meeting="false" start="2016-03-29" duration="16" complete="90" expand="true"/>
+        <task id="29" name="DCP - lot2" color="#33ff00" meeting="false" start="2016-03-29" duration="16" complete="100" expand="true"/>
         <task id="105" name="Formation PHP Unit TI" color="#ff0033" meeting="false" start="2016-03-29" duration="4" complete="0" expand="true"/>
         <task id="106" name="Formation Bootstrap" color="#33ff00" meeting="false" start="2016-03-29" duration="4" complete="100" expand="true"/>
         <task id="26" name="PTI - lot2" color="#33ff00" meeting="false" start="2016-04-18" duration="1" complete="100" expand="true">
             <depend id="28" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="54" name="DCD - lot2" color="#ffff00" meeting="false" start="2016-03-29" duration="16" complete="90" expand="true">
+        <task id="54" name="DCD - lot2" color="#33ff00" meeting="false" start="2016-03-29" duration="16" complete="100" expand="true">
             <depend id="59" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="28" name="PTU - lot2" color="#ff0033" meeting="false" start="2016-04-19" duration="5" complete="0" expand="true"/>
-        <task id="59" name="Developpement + tests - lot2" color="#ff0033" meeting="false" start="2016-04-20" duration="18" complete="0" expand="true"/>
+        <task id="28" name="PTU - lot2" color="#33ff00" meeting="false" start="2016-04-19" duration="2" complete="100" expand="true"/>
+        <task id="112" name="Modèle relationnel" color="#ff0033" meeting="false" start="2016-04-18" duration="10" complete="0" expand="true">
+            <depend id="59" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="59" name="Developpement + tests - lot2" color="#ff0033" meeting="false" start="2016-05-02" duration="18" complete="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Melissa Bignoux" function="SoftwareDevelopment:2" contacts="melissa.bignoux@insa-rouen.fr" phone="0647282552"/>

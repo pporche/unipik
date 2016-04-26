@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LoginType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
@@ -22,12 +23,21 @@ class LoginType extends AbstractType {
         ;*/
 
         $builder
+            ->setAction($options['action'])
+            ->setMethod('POST')
             ->add('username', TextType::class, array('label' => 'Nom d\'utilisateur'))
             ->add('password', PasswordType::class, array('label' => 'Mot de passe' ))
             ->add('remember_me', CheckboxType::class, array('label' => 'Rester connecté'))
             ->add('submit', SubmitType::class, array('label' => 'Connexion'))
         ;
 
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'action' => '/',
+        ));
     }
 
     public function getBlockPrefix() {

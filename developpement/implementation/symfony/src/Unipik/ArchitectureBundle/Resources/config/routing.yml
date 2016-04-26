@@ -12,7 +12,3 @@ architecture_profile:
     defaults: { _controller: ArchitectureBundle:Architecture:profile }
     requirements:
             id: \d+
-
-logout:
-    path:   /logout
-    defaults: { _controller: ArchitectureBundle:Architecture:logout}

@@ -1,15 +1,17 @@
-# version 1.00 date 25/04/2016 auteur(s) Sergi Colomies
+# version 1.00 date 25/04/2016 auteur(s) Pierre Porche
 
 # Importation des variables
 include makevars $(UNIPIKGENPATH)/pic_unicef/makevars 
 
 
 
-all : rbcp cleanrep cleaneps
+all : imagespdf rbrq cleanrep cleaneps
 
+imagespdf: 
+	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf organigrammeFonctionnel
 
-rbcp : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements debriefing_L_Unipik_d16-05-23_rCP poster_L_Unipik_d16-05-23 resumePic_L_Unipik_d16-05-23
+rbrq : 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements debriefing_L_Unipik_d16-05-23_rRQ 
 
 
 # Archivage

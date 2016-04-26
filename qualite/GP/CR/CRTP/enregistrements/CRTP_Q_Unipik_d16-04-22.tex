@@ -60,7 +60,7 @@
 
 \section{Résumé de la semaine passée}
 \paragraph*{}
-Les \DCP{} et \DCD{} sont faits, la phase de conception est donc finie. Pour les réaliser, nous avons notamment fait un diagramme de packages à partir des Bundles Symfony, qui sont des sortes de packages directement inclus dans Symfony, ainsi qu'une carte de navigation qui correspond à un diagramme d'États-Transition.
+Les \DCP{} et \DCD{} sont faits, la phase de conception est donc finie. Pour les réaliser, nous avons notamment fait un diagramme de packages à partir des bundles Symfony, qui sont des sortes de packages directement inclus dans Symfony, ainsi qu'une carte de navigation qui correspond à un diagramme d'États-Transition.
 \paragraph*{}
 Les \PTI{} et \PTU{} sont faits.
 \paragraph*{}
@@ -68,7 +68,7 @@ Nous programmons avec \nomTuteurPedago{} une inspection technique le mardi 10 ma
 \paragraph*{}
 En ce qui concerne l'IDE utilisé, puisque celui-ci n'est pas libre, nous devons fournir au client une marche à suivre pour qu'il puisse réviser notre projet avec un outil libre.
 \paragraph*{}
-Concernant le développement, l'inscription est fonctionnelle avec stockage du mot de passe dans la BD hashé et salé. Il serait intéressant de prévenir le client d'un éventuel retard sur la livraison.
+Concernant le développement, l'inscription est fonctionnelle avec stockage du mot de passe dans la base de données hashé et salé. Il serait intéressant de prévenir le client d'un éventuel retard sur la livraison.
 \paragraph*{}
 Le dossier de demande d'hébergement est fini et montré à l'UNICEF pour approbation. Il serait intéressant de leur demander si le partenariat pourrait inclure des avantages matériels comme par exemple un reversement d'une partie de leur taxe d'apprentissage.
 
@@ -76,18 +76,18 @@ Le dossier de demande d'hébergement est fini et montré à l'UNICEF pour approb
 \paragraph*{}
 \nomTuteurPedago{} nous effectue un retour sur le modèle du domaine et le dictionnaire de données que nous lui avons fourni.
 \paragraph*{}
-Tout d'abord, le document SQL que nous lui avons envoyé est illisible : il aurait fallu le mettre mieux en page. Ensuite, les CHECK ne servent à rien s'il n'y a pas de domaine. Ceux ci devraient exister puisque nous avons des types énumérés. Il faut créer les constantes de types avant la création des tables et non pendant. De plus, une clef primaire est par définition NOT NULL.
+Tout d'abord, le document SQL que nous lui avons envoyé est illisible : il aurait fallu le mettre mieux en page. Ensuite, les CHECK ne servent à rien s'il n'y a pas de domaine. Ceux-ci devraient exister puisque nous avons des types énumérés. Il faut créer les constantes de types avant la création des tables et non pendant. De plus, une clef primaire est par définition NOT NULL.
 \paragraph*{}
 Les classes abstraites qui apparaissent sur notre diagramme de classes ne doivent pas être des tables, elles doivent être des vues. \\
-Un héritage sur une table doit se retrouver lors de la création de la table. L'ORM gère la notion d'héritage mais pas avec des INGERITS, pour "personne" par exemple, il rajoute une colonne "type" qui prend la valeur "bénévole" ou "contact". \nomTuteurPedago{} nous explique que ça n'est pas propre du tout.
+Un héritage sur une table doit se retrouver lors de la création de la table. L'ORM gère la notion d'héritage mais pas avec des INHERITS, pour "personne" par exemple, il rajoute une colonne "type" qui prend la valeur "bénévole" ou "contact". \nomTuteurPedago{} nous explique que ça n'est pas propre du tout.
 \paragraph*{}
 Les contraintes d'intégrité référentielles ne doivent pas être à la fin car il n'est pas possible de s’apercevoir des cycles de contrôles. Elles doivent se situer au niveau des créations de tables.
 \paragraph*{}
-Il faut effectuer un contrôle de cohérence sur les définitions de types. Par exemple, nous avons défini l'email comme une simple chaîne de caractère alors qu'il aurait fallu le gérer avec une regEx directement dans la BD. Il faut également faire attention à la logique de nommage, notamment aux "_" avant certains noms.
+Il faut effectuer un contrôle de cohérence sur les définitions de types. Par exemple, nous avons défini l'email comme une simple chaîne de caractère alors qu'il aurait fallu le gérer avec une regEx directement dans la BD. Il faut également faire attention à la logique de nommage, notamment aux "\_" avant certains noms.
 \paragraph*{}
 L'utilisation de l'ORM n'est pas bonne, il va falloir faire du bottom-up et modifier le mapping s'il n'est pas suffisant. Pour cela il faudra définir proprement les domaines, régler les problèmes de classes abstraites et d'héritage puis gérer les associations de type M-N.
 \paragraph*{}
-Sur la suppression de tuples, il ne faudrait pas le gérer en cascade à chaque fois car la suppression d'un bénévole est logique et non-physique (Cf. \CDC). Il faut donc gérer cela avec des triggers.
+Sur la suppression de tuples, il ne faudrait pas le gérer en cascade à chaque fois car la suppression d'un bénévole est logique et non-physique (Cf. cahier des charges). Il faut donc gérer cela avec des triggers.
 \paragraph*{}
 La marche à suivre est la suivante :
 \begin{itemize}

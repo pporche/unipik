@@ -1,0 +1,135 @@
+% version 1.00	Auteur Sergi Colomies
+
+\documentclass[asi]{picInsa}
+\DeclareGraphicsRule{*}{pdf}{*}{}
+\usepackage{pdfpages}
+
+
+\usepackage{vocabulaireUnipik}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\newcommand{\ligneMaj}[3] {
+	\rowcolor[gray]{0.55} \textbf{\textit{#1}} & #2  &  #3\\
+	\hline
+}
+\newcommand{\ligneSup}[3] {
+	\rowcolor[gray]{0.65} |\textunderscore \textbf{\textit{#1}} & #2  &  #3\\
+	\hline
+}
+\newcommand{\ligneMed}[3] {
+	\rowcolor[gray]{0.75} \hspace{0.25cm} |\textunderscore #1  & #2 & #3 \\
+	\hline
+}
+\newcommand{\ligneSub}[3] {
+	\rowcolor[gray]{0.85}  \hspace{0.5cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\newcommand{\ligneSubSub}[3] {
+	\rowcolor[gray]{0.95}  \hspace{0.75cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\newcommand{\ligneTache}[3] {
+	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+
+
+\titreGeneral{Débriefing \RQ{}}
+\sousTitreGeneral{\nomEquipe}
+\titreAcronyme{\Huge{Débriefing}}
+\version{v1.00}
+\titreDetaille{\large{debriefing\_L\_Unipik\_d16-05-23\_rRQ}}
+\referenceVersion{debriefing\_L\_Unipik\_d16-05-23\_rRQ}
+\auteurs{\Pierre{}}
+\destinataires{Unité P3}
+\resume{Le présent document contient la présentation du débriefing \RQ{} \nomEquipe.}
+\motsCles{débriefing, \RQ, gestion de projet}
+\natureDerniereModification{Création}
+\modeDiffusionControle{}
+
+\begin{document}
+
+\couverture{}
+
+\informationsGenerales{}
+%\input{sources/00_pageService.tex}
+\begin{pagesService}
+	\begin{historique}
+		% nouvelles versions à rajouter AU-DESSUS en recopiant les lignes suivantes et en les modifiant :
+		\unHistorique{1.00}{25/04/2016}{\Pierre{}}{Création}{Toutes}
+
+	\end{historique}
+
+
+%%Signataires
+        \begin{signatures}
+	   \uneSignature{Vérificateur}{\RQA}{\Kafui}{}{pgpic}
+       \uneSignature{Validateur}{\CP}{\Sergi}{}{pgpic}
+	   \uneSignature{Approbateur}{}{}{}{}
+        \end{signatures}
+\end{pagesService}
+
+\tableofcontents
+
+\setcounter{chapter}{0}
+
+\chapter{Introduction}
+\label{Introduction}
+
+
+\chapter{Le projet PIC UNICEF}
+\label{le_projet}
+\section{Présentation du projet}
+\subsection*{Le client}
+L'\nomClient{} Seine Maritime est un comité de l'\nomClient{} qui est une agence de l'Organisation des Nations Unies (ONU) consacrée à l'amélioration et à la promotion de la condition des enfants. Elle a activement participé à la rédaction, la conception et la promotion de la Convention relative aux droits de l'enfant (CIDE), adoptée lors du sommet de New York le 20 novembre 1989. L'\nomClient{} a reçu le prix Nobel de la paix le 12 janvier 1965. \\
+Les principales actions de l'\nomClient{} sont : \begin{itemize}
+\item l'éducation des filles,
+\item la vaccination et la lutte contre le SIDA et le VIH,
+\item la protection de l'enfance,
+\item la santé des nouveau-nés,
+\item l'égalité hommes-femmes.
+\end{itemize}
+Les autres priorités traitent de la place de l'enfant dans la famille, de la pratique sportive.\\
+En particulier, l'\nomClient{} Seine Maritime met en place des actions de plaidoyer afin de sensibiliser les enfants des écoles du département aux problèmes ci-dessus. Ce comité organise également des actions de ventes afin de lever des fonds pour l'\nomClient{} ainsi que des actions ponctuelles pour sensibiliser un public le plus large possible.
+
+\subsection*{Ses besoins}
+Dans le cadre des activités citées précédemment, l'\nomClient{} Seine Maritime et, à plus long terme, l'\nomClient{} France a besoin d'un outil afin d'en informatiser la gestion. Les utilisateurs de l'outil ayant un niveau de connaissance en informatique et un parc informatique très hétérogène, notre outil se devra d'être le plus portable et le plus intuitif possible. Les fonds de l'\nomClient{} ont vocation à remplir les missions qui lui sont attribuées, ainsi, la solution apportée devra être le plus proche possible de la gratuité avec, notamment, l'utilisation de technologies issues du monde libre. \newpage
+
+\section{Présentation de l'équipe}
+A l’issue de la réunion de répartition des sujets PIC, notre équipe était composée de
+neuf personnes. Le choix du \CP{} s’est fait au bénéfice de \Sergi{}, qui était la personne la plus apte à remplir ce poste.
+Le poste de \RQ{} m'a attiré pour son côté gestion du projet ainsi que pour la partie organisation et formalisation.
+L’organisation de l’équipe pour ce premier semestre était donc la suivante : Figure \ref{organigramme}.
+
+\begin{figure}[H]
+	\includegraphics[scale=0.38]{images/organigrammeFonctionnel.pdf}
+	\caption{Organigramme fonctionnel}
+	\label{organigramme}
+\end{figure}
+~\\
+
+
+\section{Résultats attendus}
+Après concertation avec le client, il a été décidé que pour des raisons de portabilité et d'accessibilité, une application web serait développée. Celle ci sera concue en PHP avec utilisation du Framework Symfony et reposera sur une architecture 3 tiers et un patron de conception MVC. Le lot 1 comprend l'architecture physique du projet et le lot 2 recouvre toutes les fonctions de gestion des utilisateurs et des plaidoyers.
+
+
+
+
+\chapter{Descriptif du poste de \RQ}
+\label{Descriptif}
+
+\chapter{Résultats de l'audit}
+\label{Resultats}
+
+ 
+\begin{appendix}
+\listoffigures
+\addcontentsline{toc}{chapter}{Table des figures}
+	 
+\listoftables
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+\end{appendix}
+\pageQuatriemeCouverture
+
+\end{document}

@@ -15,6 +15,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\SecurityContext;
 use Unipik\UserBundle\Form\LoginType;
+use Unipik\UserBundle\Form\RegistrationType;
 
 class SecurityController extends BaseController {
 
@@ -78,5 +79,5 @@ class SecurityController extends BaseController {
 
     public function logoutAction() {
         return parent::logoutAction();
-    }
+    }l
 }

@@ -18,6 +18,9 @@ use Unipik\UserBundle\Form\LoginType;
 
 class SecurityController extends BaseController {
 
+    private $_loginForm;
+
+
     public function loginAction(Request $request) {
         /*$session = $request->getSession();
 
@@ -46,7 +49,7 @@ class SecurityController extends BaseController {
         $form = $this->createForm(LoginType::class);
         $form->handleRequest($request);
 
-        if($form->isValid()) {
+        /*if($form->isValid()) {
 
             $session =$request->getSession();
             $session->getFlashBag()->add('notice', array(
@@ -56,19 +59,21 @@ class SecurityController extends BaseController {
             ));
 
 
-            return $this->RedirectToRoute('architecture_homepage');
-        }
+            return $this->RedirectToRoute('fos_user_security_check');
+        }*/
+
+        $this->_loginForm = $form->createView();
 
 
-        return $this->render('UserBundle:Security:login.html.twig', array(
-            'form' => $form->createView(),
-        ));
-
-        //return parent::loginAction($request);
+        return parent::loginAction($request);
     }
 
     protected function renderLogin(array $data) {
-        return $this->render('UserBundle:Security:login.html.twig', $data);
+        //return $this->render('UserBundle:Security:login.html.twig', $data);
+
+        return $this->render('UserBundle:Security:login.html.twig', array(
+            'form' => $this->_loginForm,
+        ));
     }
 
     public function logoutAction() {

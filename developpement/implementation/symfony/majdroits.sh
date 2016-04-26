@@ -1,3 +1,7 @@
+if [ "$USER" == "root" ]
+then
+echo "Attention ! Vous etes en root !"
+else
 sudo chmod 755 -R ./
 sudo chown $USER -R ./
 sudo chgrp $USER -R ./
@@ -6,3 +10,4 @@ sudo chmod 777 -R var/cache/
 sudo chmod 777 -R var/sessions/
 sudo chmod +x *.sh
 sudo chown www-data -R var/sessions/
+fi

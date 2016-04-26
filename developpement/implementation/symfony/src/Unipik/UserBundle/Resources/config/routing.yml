@@ -32,3 +32,5 @@ fos_user_profile_show:
 
 fos_user_profile_edit:
     path: /profil/edit
+    defaults:
+        _controller: UserBundle:User:editProfile

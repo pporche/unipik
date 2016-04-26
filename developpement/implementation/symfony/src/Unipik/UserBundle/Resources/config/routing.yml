@@ -22,9 +22,17 @@ fos_user_security_check:
 fos_user_security_logout:
     path: /logout
     defaults:
-        _controller: FOS\UserBundle:Security:logout
+        _controller: UserBundle:Security:logout
 
 fos_user_security_login:
     path: /login
     defaults:
         _controller: UserBundle:Security:login
+
+fos_user_profile_show:
+    path: /profil
+    defaults:
+        _controller: UserBundle:User:viewProfile
+
+fos_user_profile_edit:
+    path: /profil

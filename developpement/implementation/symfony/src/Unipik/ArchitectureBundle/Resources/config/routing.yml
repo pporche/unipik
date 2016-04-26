@@ -14,6 +14,6 @@ architecture_profile:
             id: \d+
 
 archiecture_home_volunteer:
-    path: /accueil
+    path: /
     defaults:
-        _controller: ArchitectureBundle:Architecture:homeVolunteer
+        _controller: ArchitectureBundle:Architecture:index

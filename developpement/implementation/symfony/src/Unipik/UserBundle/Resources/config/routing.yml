@@ -28,10 +28,10 @@ fos_user_security_login:
 fos_user_profile_show:
     path: /profil
     defaults:
-        _controller: UserBundle:User:viewProfile
+        _controller: FOSUserBundle:Profile:show
 
 fos_user_profile_edit:
     path: /profil/edit
     defaults:
-        _controller: UserBundle:User:editProfile
+        _controller: FOSUserBundle:Profile:edit
 

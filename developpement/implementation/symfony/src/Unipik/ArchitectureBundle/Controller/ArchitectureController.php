@@ -19,17 +19,17 @@ use Unipik\ArchitectureBundle\Form\DemandeInterventionType;
 class ArchitectureController extends Controller {
 
     public function indexAction() {
-        return $this->render('ArchitectureBundle::accueilAnonyme.html.twig');
-    }
-
-    public function homeVolunteerAction() {
         $user = $this->getUser();
 
         if (!is_object($user) || !$user instanceof UserInterface) {
-            throw new AccessDeniedException("Cet utilisateur n'a pas accès à cette section.");
+            return $this->render('ArchitectureBundle::accueilAnonyme.html.twig');
         }
 
         return $this->render('ArchitectureBundle::accueilBenevole.html.twig', array('user' => $user));
+    }
+
+    public function homeVolunteerAction() {
+
     }
 
     public function demandeInterventionAction(Request $request) {

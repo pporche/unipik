@@ -14,6 +14,7 @@ use Unipik\UserBundle\Form\RegistrationType;
 
 class RegistrationController extends BaseController {
 
+
     public function registerController(Request $request) {
         $form = $this->createForm(RegistrationType::class);
         $form->handleRequest($request);

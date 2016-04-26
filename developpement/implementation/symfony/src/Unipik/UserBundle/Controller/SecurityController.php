@@ -69,7 +69,7 @@ class SecurityController extends BaseController {
     protected function renderLogin(array $data) {
         //return $this->render('UserBundle:Security:login.html.twig', $data);
 
-        $form = $this->createForm(LoginType::class, array("action" => $this->generateUrl("fos_user_security_check")))
+        $form = $this->createForm(LoginType::class, null,  array("action" => $this->generateUrl("fos_user_security_check")))
             ->createView();
 
 

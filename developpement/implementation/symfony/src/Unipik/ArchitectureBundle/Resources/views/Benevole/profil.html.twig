@@ -5,3 +5,31 @@
     Profil - {{ parent() }}
 
 {% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        // Infos personnelles
+        <section class="col-sm-12">
+            <div class="well">
+                <legend>Nom Prénom</legend>
+                email :
+                </br>
+                téléphone fixe :
+                </br>
+                téléphone protable :
+                </br>
+                adresse :
+            </div>
+        </section>
+    </div>
+   <div class="row">
+        // Infos complémentaires
+       <h2>Commité(s) de rattachement : </h2>
+       <h2>Domaines d'activités : </h2>
+       <h2>Projets en cours : </h2>
+    </div>
+</div>
+
+{% endblock %}

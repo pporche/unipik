@@ -12,11 +12,20 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Entity(repositoryClass="Unipik\UserBundle\Repository\MyUserRepository")
  */
 class MyUser extends BaseUser {
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $_id;
+
     /**
      * @var string
      *
      * @ORM\Column(name="mail", type="string", length=100)
-     * @ORM\Id
      */
     protected $mail;
 
@@ -26,12 +35,12 @@ class MyUser extends BaseUser {
      * @ORM\Column(name="nom", type="string", length=100)
      */
     private $nom;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=100)
-     */   
+     */
     private $prenom;
 
      /**
@@ -40,7 +49,7 @@ class MyUser extends BaseUser {
      * @ORM\Column(name="telFixe", type="string", length=10)
      */
     private $telFixe;
-    
+
      /**
      * @var string
      *
@@ -49,17 +58,20 @@ class MyUser extends BaseUser {
     private $telPortable;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Adresse")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $adresse;
-    
-    /**
      * @var string
      *
      * @ORM\Column(name="mdp", type="string", length=50)
      */
     private $mdp;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId() {
+        return $this->_id;
+    }
 
     /**
      * Set nom
@@ -179,31 +191,6 @@ class MyUser extends BaseUser {
     public function getMdp()
     {
         return $this->mdp;
-    }
-
-
-    /**
-     * Set adresse
-     *
-     * @param \Unipik\UserBundle\Entity\Adresse $adresse
-     *
-     * @return MyUser
-     */
-    public function setAdresse(\Unipik\UserBundle\Entity\Adresse $adresse)
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    /**
-     * Get adresse
-     *
-     * @return \Unipik\UserBundle\Entity\Adresse
-     */
-    public function getAdresse()
-    {
-        return $this->adresse;
     }
 
     /**

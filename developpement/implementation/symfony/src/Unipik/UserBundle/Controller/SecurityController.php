@@ -19,7 +19,9 @@ use Unipik\UserBundle\Form\RegistrationType;
 
 class SecurityController extends BaseController {
 
-
+    public function loginPageAction() {
+        return $this->render('UserBundle:Security:loginPage.html.twig');
+    }
 
     public function loginAction(Request $request) {
         /*$session = $request->getSession();

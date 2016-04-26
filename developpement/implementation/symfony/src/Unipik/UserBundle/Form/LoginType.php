@@ -25,10 +25,10 @@ class LoginType extends AbstractType {
         $builder
             ->setAction($options['action'])
             ->setMethod('POST')
-            ->add('username', TextType::class, array('label' => 'Nom d\'utilisateur'))
-            ->add('password', PasswordType::class, array('label' => 'Mot de passe' ))
-            ->add('remember_me', CheckboxType::class, array('label' => 'Rester connecté'))
-            ->add('submit', SubmitType::class, array('label' => 'Connexion'))
+            ->add('_username', TextType::class, array('label' => 'Nom d\'utilisateur'))
+            ->add('_password', PasswordType::class, array('label' => 'Mot de passe' ))
+            ->add('_remember_me', CheckboxType::class, array('label' => 'Rester connecté'))
+            ->add('_submit', SubmitType::class, array('label' => 'Connexion'))
         ;
 
     }
@@ -41,7 +41,7 @@ class LoginType extends AbstractType {
     }
 
     public function getBlockPrefix() {
-        return 'user_login';
+        return '';
     }
 
     public function getName() {

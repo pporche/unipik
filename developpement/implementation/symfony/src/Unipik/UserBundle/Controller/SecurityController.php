@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\SecurityContext;
+use Unipik\UserBundle\Form\LoginType;
 
 class SecurityController extends BaseController {
 
@@ -42,7 +43,28 @@ class SecurityController extends BaseController {
             $error = null; // The value does not come from the security component.
         }*/
 
-        return parent::loginAction($request);
+        $form = $this->createForm(LoginType::class);
+        $form->handleRequest($request);
+
+        if($form->isValid()) {
+
+            $session =$request->getSession();
+            $session->getFlashBag()->add('notice', array(
+                'title'=>'Rebonjour !',
+                'message'=>'Connexion réussi.',
+                'alert'=>'success'
+            ));
+
+
+            return $this->RedirectToRoute('architecture_homepage');
+        }
+
+
+        return $this->render('UserBundle:Security:login.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
+        //return parent::loginAction($request);
     }
 
     protected function renderLogin(array $data) {

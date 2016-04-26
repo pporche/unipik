@@ -6,6 +6,7 @@
 
 {#{%  endblock %}#}
 
+{#
 <form action="{{ path("fos_user_security_check") }}" method="post">
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
@@ -20,3 +21,10 @@
 
     <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
 </form>
+#}
+
+{% extends "UserBundle::layout.html.twig" %}
+
+{% block body %}
+{{ form(form) }}
+{% endblock %}

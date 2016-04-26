@@ -22,6 +22,8 @@ class LoginType extends AbstractType {
         ;*/
 
         $builder
+            ->setAction($options['action'])
+            ->setMethod('GET')
             ->add('username', TextType::class, array('label' => 'Nom d\'utilisateur'))
             ->add('password', PasswordType::class, array('label' => 'Mot de passe' ))
             ->add('remember_me', CheckboxType::class, array('label' => 'Rester connecté'))

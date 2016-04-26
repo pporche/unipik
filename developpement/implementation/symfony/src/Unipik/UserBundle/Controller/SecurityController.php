@@ -18,7 +18,6 @@ use Unipik\UserBundle\Form\LoginType;
 
 class SecurityController extends BaseController {
 
-    private $_loginForm;
 
 
     public function loginAction(Request $request) {
@@ -46,8 +45,7 @@ class SecurityController extends BaseController {
             $error = null; // The value does not come from the security component.
         }*/
 
-        $form = $this->createForm(LoginType::class);
-        $form->handleRequest($request);
+
 
         /*if($form->isValid()) {
 
@@ -62,7 +60,7 @@ class SecurityController extends BaseController {
             return $this->RedirectToRoute('fos_user_security_check');
         }*/
 
-        $this->_loginForm = $form->createView();
+
 
 
         return parent::loginAction($request);
@@ -71,8 +69,12 @@ class SecurityController extends BaseController {
     protected function renderLogin(array $data) {
         //return $this->render('UserBundle:Security:login.html.twig', $data);
 
+        $form = $this->createForm(LoginType::class, array("action" => $this->generateUrl("fos_user_security_check")))
+            ->createView();
+
+
         return $this->render('UserBundle:Security:login.html.twig', array(
-            'form' => $this->_loginForm,
+            'form' => $form,
         ));
     }
 

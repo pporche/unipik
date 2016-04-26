@@ -10,6 +10,8 @@ architecture_school_add:
 architecture_profile:
     path:     /profil/{id}
     defaults: { _controller: ArchitectureBundle:Architecture:profile }
+    requirements:
+            id: \d+
 
 logout:
     path:   /logout

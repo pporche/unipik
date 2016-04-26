@@ -11,6 +11,7 @@ namespace Unipik\ArchitectureBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Unipik\ArchitectureBundle\Form\DemandeInterventionType;
 
 class ArchitectureController extends Controller {
@@ -46,7 +47,12 @@ class ArchitectureController extends Controller {
         $repository = $em->getRepository('UserBundle:MyUser');
 
         $user = $repository->find($id);
-        return $this->render('ArchitectureBundle::profile.html.twig', array('user' => $user));
+
+        if($user === null) {
+            throw new NotFoundHttpException("User ".$id." not found.");
+        }
+
+        return $this->render('ArchitectureBundle:Benevole:profil.html.twig', array('user' => $user));
     }
 
     public function plaidoyerAction() {

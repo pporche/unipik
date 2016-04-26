@@ -41,7 +41,6 @@ class SecurityController extends BaseController {
         if (!$error instanceof AuthenticationException) {
             $error = null; // The value does not come from the security component.
         }*/
-
         return parent::loginAction($request);
     }
 
@@ -49,4 +48,7 @@ class SecurityController extends BaseController {
         return $this->render('UserBundle:Security:login.html.twig', $data);
     }
 
+    public function logoutAction() {
+        return parent::logoutAction();
+    }
 }

@@ -7,9 +7,9 @@ architecture_school_add:
     defaults:
         _controller: ArchitectureBundle:Architecture:demandeIntervention
 
-architecture_test:
-    path:     /test/{id}
-    defaults: { _controller: ArchitectureBundle:Architecture:test }
+architecture_profile:
+    path:     /profil/{id}
+    defaults: { _controller: ArchitectureBundle:Architecture:profile }
 
 logout:
     path:   /logout

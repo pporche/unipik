@@ -12,3 +12,8 @@ architecture_profile:
     defaults: { _controller: ArchitectureBundle:Architecture:profile }
     requirements:
             id: \d+
+
+archiecture_home_volunteer:
+    path: /accueil
+    defaults:
+        _controller: ArchitectureBundle:Architecture:homeVolunteer

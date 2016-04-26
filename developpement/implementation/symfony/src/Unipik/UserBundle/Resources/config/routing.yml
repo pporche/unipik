@@ -34,3 +34,8 @@ fos_user_profile_edit:
     path: /profil/edit
     defaults:
         _controller: UserBundle:User:editProfile
+
+register:
+    path: /regi
+    defaults:
+        _controller: UserBundle:Registration:register

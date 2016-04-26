@@ -10,6 +10,7 @@ namespace Unipik\UserBundle\Controller;
 
 
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
+use Symfony\Component\HttpFoundation\Request;
 use Unipik\UserBundle\Form\RegistrationType;
 
 class RegistrationController extends BaseController {
@@ -18,5 +19,6 @@ class RegistrationController extends BaseController {
         $form = $this->createForm(RegistrationType::class);
         $form->handleRequest($request);
         $form->createView();
+        return parent::registerAction($request);
     }
 }

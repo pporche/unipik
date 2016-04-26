@@ -20,7 +20,7 @@ class MyUser extends BaseUser {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $_id;
+    protected $id;
 
     /**
      * @var string
@@ -58,19 +58,12 @@ class MyUser extends BaseUser {
     private $telPortable;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="mdp", type="string", length=50)
-     */
-    private $mdp;
-
-    /**
      * Get id
      *
      * @return int
      */
     public function getId() {
-        return $this->_id;
+        return $this->id;
     }
 
     /**
@@ -167,30 +160,6 @@ class MyUser extends BaseUser {
     public function getTelPortable()
     {
         return $this->telPortable;
-    }
-
-    /**
-     * Set mdp
-     *
-     * @param string $mdp
-     *
-     * @return MyUser
-     */
-    public function setMdp($mdp)
-    {
-        $this->mdp = $mdp;
-
-        return $this;
-    }
-
-    /**
-     * Get mdp
-     *
-     * @return string
-     */
-    public function getMdp()
-    {
-        return $this->mdp;
     }
 
     /**

@@ -17,6 +17,10 @@ class RegistrationType extends AbstractType {
         parent::buildForm($builder, $options);
         $builder
             ->add('nom')
+            ->add('prenom')
+            ->add('telFixe')
+            ->add('telPortable')
+            ->add('mail')
         ;
     }
 

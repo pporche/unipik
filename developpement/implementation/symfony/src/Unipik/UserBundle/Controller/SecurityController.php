@@ -81,5 +81,5 @@ class SecurityController extends BaseController {
 
     public function logoutAction() {
         return parent::logoutAction();
-    }l
+    }
 }

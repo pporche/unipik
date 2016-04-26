@@ -11,3 +11,6 @@ architecture_test:
     path:     /test/{id}
     defaults: { _controller: ArchitectureBundle:Architecture:test }
 
+logout:
+    path:   /logout
+    defaults: { _controller: ArchitectureBundle:Architecture:logout}

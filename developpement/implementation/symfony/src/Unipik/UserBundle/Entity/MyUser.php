@@ -13,31 +13,53 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 class MyUser extends BaseUser {
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="mail", type="string", length=100)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    protected $mail;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=100)
      */
     private $nom;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=100)
+     */   
+    private $prenom;
 
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="telFixe", type="string", length=10)
+     */
+    private $telFixe;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="telPortable", type="string", length=10)
+     */
+    private $telPortable;
 
     /**
-     * Get id
-     *
-     * @return int
+     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Adresse")
+     * @ORM\JoinColumn(nullable=false)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $adresse;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mdp", type="string", length=50)
+     */
+    private $mdp;
 
     /**
      * Set nom
@@ -62,5 +84,149 @@ class MyUser extends BaseUser {
     {
         return $this->nom;
     }
-}
 
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return MyUser
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set telFixe
+     *
+     * @param string $telFixe
+     *
+     * @return MyUser
+     */
+    public function setTelFixe($telFixe)
+    {
+        $this->telFixe = $telFixe;
+
+        return $this;
+    }
+
+    /**
+     * Get telFixe
+     *
+     * @return string
+     */
+    public function getTelFixe()
+    {
+        return $this->telFixe;
+    }
+
+    /**
+     * Set telPortable
+     *
+     * @param string $telPortable
+     *
+     * @return MyUser
+     */
+    public function setTelPortable($telPortable)
+    {
+        $this->telPortable = $telPortable;
+
+        return $this;
+    }
+
+    /**
+     * Get telPortable
+     *
+     * @return string
+     */
+    public function getTelPortable()
+    {
+        return $this->telPortable;
+    }
+
+    /**
+     * Set mdp
+     *
+     * @param string $mdp
+     *
+     * @return MyUser
+     */
+    public function setMdp($mdp)
+    {
+        $this->mdp = $mdp;
+
+        return $this;
+    }
+
+    /**
+     * Get mdp
+     *
+     * @return string
+     */
+    public function getMdp()
+    {
+        return $this->mdp;
+    }
+
+
+    /**
+     * Set adresse
+     *
+     * @param \Unipik\UserBundle\Entity\Adresse $adresse
+     *
+     * @return MyUser
+     */
+    public function setAdresse(\Unipik\UserBundle\Entity\Adresse $adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return \Unipik\UserBundle\Entity\Adresse
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set mail
+     *
+     * @param string $mail
+     *
+     * @return MyUser
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * Get mail
+     *
+     * @return string
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+}

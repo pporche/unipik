@@ -62,11 +62,11 @@ drop table canard;
 drop domain triche_activite;
 
 CREATE DOMAIN triche_activite AS VARCHAR(300)
-CHECK (VALUE ~ '^((plaidoyers)?((frimousses)?(actions-ponctuelles)?(projets)?(autres)?))(,((plaidoyers)?((frimousses)?(actions-ponctuelles)?(projets)?(autres)?))){0,4}$');
+CHECK (VALUE ~ '^((plaidoyers)|((frimousses)|(actions-ponctuelles)|(projets)|(autres)))(,((plaidoyers)|((frimousses)|(actions-ponctuelles)|(projets)|(autres)))){0,4}$');
 
 create table canard (id SERIAL PRIMARY KEY, activiteTableau triche_activite);
 
-insert into canard values ('1', 'plaidoyers');
+insert into canard values ('1', 'plaidoyers,frimousses');
 
 
 

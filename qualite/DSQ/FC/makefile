@@ -8,7 +8,7 @@ include makevars $(UNIPIKGENPATH)/pic_unicef/makevars
 all : fc cleanrep cleaneps
 
 fc : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements FC_Q_Unipik_pFL_v1.02 FC_Q_Unipik_pJP_v1.02 FC_Q_Unipik_pKA_v1.02 FC_Q_Unipik_pMB_v1.02 FC_Q_Unipik_pMC_v1.02 FC_Q_Unipik_pMMB_v1.02 FC_Q_Unipik_pMM_v1.02 FC_Q_Unipik_pPP_v1.02 FC_Q_Unipik_pSC_v1.02 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements FC_Q_Unipik_pFL_v1.03 FC_Q_Unipik_pJP_v1.03 FC_Q_Unipik_pKA_v1.03 FC_Q_Unipik_pMB_v1.03 FC_Q_Unipik_pMC_v1.03 FC_Q_Unipik_pMMB_v1.03 FC_Q_Unipik_pMM_v1.03 FC_Q_Unipik_pPP_v1.03 FC_Q_Unipik_pSC_v1.03 
 
 
 # Archivage

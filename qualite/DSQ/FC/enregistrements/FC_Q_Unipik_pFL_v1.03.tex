@@ -1,4 +1,5 @@
-% version 1.00, date 20/01/16, auteur Michel Cressant
+% version 1.02	Auteur Florian Leriche
+
 \documentclass[11pt]{article}
 \usepackage{draftcopy}
 \usepackage[francais]{babel}
@@ -7,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage[table]{xcolor}
 \usepackage{fancyhdr}
+\usepackage[margin=0.5in]{geometry}
 \usepackage{vocabulaireUnipik}
 \usepackage{longtable}
 
@@ -24,8 +26,8 @@
 	\hline
 	\end{tabularx}
 	\begin{tabularx}{\linewidth}{|X|X|}
-	Nom : Cressant & Date : 25/01/2016 \\ 
-	Prénom : Michel & \\
+	Nom : Leriche &  \\ 
+	Prénom : Florian & \\
 	Semestre : 8 & \\
 	\hline
 	\end{tabularx}
@@ -66,22 +68,23 @@
 	\end{tabularx}
 \end{table}
 
+
 \begin{table}[!hp]
 \centering
 	\begin{tabularx}{\linewidth}{|X|X|X|X|}
 	\hline
 	\rowcolor{gray!40} Référence & Compétence & Justificatif & Niveau \\
 	\hline
-	 BD & Base de donées & Examen & Bon \\
+	 ProgAv & Programmation avancée JAVA & Examen & Bon \\
 	\hline
+	 Stat & Méthodes statistiques pour l'ingénieur & Examen & Moyen \\
+	 \hline
+	 BD & Base de données & Examen et projet & Moyen \\
+	 \hline
+	 RI & Réseau informatique & Examen et projet & Bon \\
+	 \hline
 	 SE & Système d'exploitation & Examen & Moyen \\
-	\hline
-	 Prograv & JAVA & Examen & Bon \\
-	\hline
-	 RI & Fondamentaux des réseaux informatiques & Examen & Bon \\
-	\hline
-	 TW & Technologie Web & Examen & Moyen \\
-	\hline
+	 \hline
 	\end{tabularx}
 \end{table}
 
@@ -91,7 +94,7 @@
 	\hline
 	\rowcolor{gray!40} Compétences à acquérir par formation complémentaire \\
 	\hline
-	Symfony, ArgoUML  \\
+	ArgoUML.  \\
 	\hline
 	\end{tabularx}
 \end{table}
@@ -100,11 +103,13 @@
 
 %\begin{table}[!hp]
 \centering
-	\begin{longtable}{|p{1.9cm}|p{1.9cm}|p{1.9cm}|p{1.9cm}|p{1cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+	\begin{longtable}{|p{0.11\textwidth}|p{0.11\textwidth}|p{0.12\textwidth}|p{0.09\textwidth}|p{0.11\textwidth}|p{0.06\textwidth}|p{0.12\textwidth}|p{0.12\textwidth}|}
 	\hline
 	\rowcolor{gray!40} \tiny Date début & \tiny Date fin & \tiny Intitulé Formation & \tiny Nature Formation & \tiny Evaluateur & \tiny Avis & \tiny Signature & \tiny Évaluation à froid \\
 	\hline
-	07/03/2016 &07/03/2016 &ArgoUML &formation en ligne &\Julie &reçu \\
+	07/03/2016 &07/03/2016 &ArgoUML &formation en ligne &\Julie &reçu & & \\
+	\hline
+	17/03/2016 & 17/03/2016 & Symfony &auto formation & N/A & terminé & &  \\
 	\hline
 	\end{longtable}
 %\end{table}

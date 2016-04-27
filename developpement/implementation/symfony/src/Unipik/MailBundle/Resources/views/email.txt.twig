@@ -1,1 +1,12 @@
-coucou belle {{ name }}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block subject %}
+{% autoescape false %}
+{{ user.username}} Coucou {{ confirmationUrl }}
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+{{ user.username }} Lol {{ confirmationUrl }}
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}{% endblock %}

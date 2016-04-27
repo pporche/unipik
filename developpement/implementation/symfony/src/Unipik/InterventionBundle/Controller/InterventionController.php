@@ -12,8 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class InterventionController extends Controller {
 
-    public function viewAction() {
+    public function consultationAction($id) {
 
+        return $this->render('InterventionBundle::consultation.html.twig');
     }
 
     public function addAction() {

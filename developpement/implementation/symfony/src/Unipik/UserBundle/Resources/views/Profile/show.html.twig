@@ -12,31 +12,48 @@
         <div class="row">
             <section class="jumbotron col-sm-12">
                 <div >
-                    <h2>Nom Prénom</h2>
+                    <div class="row">
+                        <h2 class="col-lg-offset-1 col-lg-9">{{ user.nom}} {{ user.prenom}}</h2>
+                    </div>
+
+                    <hr>
+                    <!--<div class="progress">
+                        <div class="progress-bar" style="width: 0%;"></div>
+                    </div>-->
+
+
                     <div class="row">
                         <dl class="dl-horizontal">
-                            <dt  class="col-sm-6 col-xs-12">
-                                <span class="glyphicon glyphicon-envelope"></span>  Email :
-                            </dt>
-                            <div  class="col-sm-6">
-                                BLABLA
+                            <div class="col-sm-3 col-xs-12">
+                                <dt>
+                                    <span class="glyphicon glyphicon-envelope"></span>  Email :
+                                </dt>
                             </div>
-                            <dt  class="col-sm-6 col-xs-12">
-                                <span class="glyphicon glyphicon-phone-alt"></span>  Téléphone fixe :
-                            </dt>
-                            <div  class="col-sm-6">
-                                BLABLA
+                            <div  class="col-sm-9">
+                               <a href="">{{ user.email}}</a>
                             </div>
-                            <dt  class="col-sm-6 col-xs-12">
-                            <td><span class="glyphicon glyphicon-phone"></span>  Téléphone protable : </td>
-                            </dt>
-                            <div  class="col-sm-6">
-                                BLABLA
+                            <div class="col-sm-3 col-xs-12">
+                                <dt >
+                                    <span class="glyphicon glyphicon-phone-alt"></span>  Téléphone fixe :
+                                </dt>
                             </div>
-                            <dt  class="col-sm-6 col-xs-12">
-                                <span class="glyphicon glyphicon-home"></span>  Adresse :</td>
-                            </dt>
-                            <div  class="col-sm-6">
+                            <div  class="col-sm-9">
+                                {{ user.telFixe}}
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                <dt>
+                                    <span class="glyphicon glyphicon-phone"></span>  Téléphone portable : </dt>
+                                </dt>
+                            </div>
+                            <div  class="col-sm-9">
+                                {{ user.telPortable}}
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                <dt >
+                                    <span class="glyphicon glyphicon-home"></span>  Adresse :</td>
+                                </dt>
+                            </div>
+                            <div  class="col-sm-9">
                                 BLABLA
                             </div>
                         </dl>
@@ -46,9 +63,50 @@
             </section>
         </div>
         <div class="row">
-            <h3>Commité(s) de rattachement : </h3>
-            <h3>Domaines d'activités : </h3>
-            <h3>Projets en cours : </h3>
+            <div class="col-sm-6">
+                <h3>Commité(s) de rattachement : </h3>
+                <div class="row">
+                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                        <li class="list-group-item">
+                            Seine-Maritime
+                        </li>
+                        <li class="list-group-item">
+                            Eure
+                        </li>
+                    </ul>
+                </div>
+                <h3>Domaines d'activités : </h3>
+                <div class="row">
+                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                        <li class="list-group-item">
+                            <span class="glyphicon glyphicon-ok"></span>  Plaidoyer
+                        </li>
+                        <li class="list-group-item">
+                            <span class="glyphicon glyphicon-ok"></span>  Frimousse
+                        </li>
+                        <li class="list-group-item">
+                            <span class="glyphicon glyphicon-remove"></span>  Actions ponctuelles
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h3>Projets en cours : </h3>
+                <div class="row">
+                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                        <li class="list-group-item">
+                            <i> Nom du projet 1 </i>
+                        </li>
+                        <li class="list-group-item">
+                            <i> Nom du projet 2</i>
+                        </li>
+                        <li class="list-group-item">
+                            <i> Nom du projet 3</i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 

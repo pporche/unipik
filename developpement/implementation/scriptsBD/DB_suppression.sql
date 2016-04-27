@@ -27,13 +27,13 @@ DROP TABLE IF EXISTS admin_activite;
 DROP TABLE IF EXISTS benevole;
 
 -- Suppression des types -- 
-DROP TYPE type_semaine;
-DROP TYPE type_moment;
-DROP TYPE type_niveau_theme;
-DROP TYPE type_materiel_plaidoyer;
-DROP TYPE type_materiel_frimousse;
-DROP TYPE type_email;
-DROP TYPE type_activite;
+--DROP TYPE type_semaine;
+--DROP TYPE type_moment;
+--DROP TYPE type_niveau_theme;
+--DROP TYPE type_materiel_plaidoyer;
+--DROP TYPE type_materiel_frimousse;
+--DROP TYPE type_email;
+--DROP TYPE type_activite;
 
 -- Suppression des tables correspondants à des types --
 DROP TABLE IF EXISTS moment_hebdomadaire;
@@ -41,24 +41,30 @@ DROP TABLE IF EXISTS niveau_theme;
 DROP TABLE IF EXISTS adresse;
 
 -- Suppression des domaines --
-DROP DOMAIN IF EXISTS email;
-DROP DOMAIN IF EXISTS theme;
-DROP DOMAIN IF EXISTS niveau_scolaire_limite;
-DROP DOMAIN IF EXISTS niveau_scolaire_complet;
-DROP DOMAIN IF EXISTS materiel_frimousse;
-DROP DOMAIN IF EXISTS materiel_plaidoyer;
-DROP DOMAIN IF EXISTS type_autre_etablissement;
-DROP DOMAIN IF EXISTS type_centre;
-DROP DOMAIN IF EXISTS type_enseignement;
-DROP DOMAIN IF EXISTS type_projet;
-DROP DOMAIN IF EXISTS activite;
-DROP DOMAIN IF EXISTS type_contact;
-DROP DOMAIN IF EXISTS moment_quotidien;
-DROP DOMAIN IF EXISTS jour;
-DROP DOMAIN IF EXISTS semaine;
-DROP DOMAIN IF EXISTS region_de_france;
-DROP DOMAIN IF EXISTS departement_de_france;
-DROP DOMAIN IF EXISTS code_postal;
-DROP DOMAIN IF EXISTS tel_portable;
-DROP DOMAIN IF EXISTS tel_fixe;
+DROP DOMAIN IF EXISTS domaine_email;
+DROP DOMAIN IF EXISTS domaine_theme;
+DROP DOMAIN IF EXISTS domaine_niveau_scolaire_limite;
+DROP DOMAIN IF EXISTS domaine_niveau_scolaire_complet;
+DROP DOMAIN IF EXISTS domaine_materiel_frimousse;
+DROP DOMAIN IF EXISTS domaine_materiel_plaidoyer;
+DROP DOMAIN IF EXISTS domaine_type_autre_etablissement;
+DROP DOMAIN IF EXISTS domaine_type_centre;
+DROP DOMAIN IF EXISTS domaine_type_enseignement;
+DROP DOMAIN IF EXISTS domaine_type_projet;
+DROP DOMAIN IF EXISTS domaine_activite;
+DROP DOMAIN IF EXISTS domaine_type_contact;
+DROP DOMAIN IF EXISTS domaine_moment_quotidien;
+DROP DOMAIN IF EXISTS domaine_jour;
+DROP DOMAIN IF EXISTS domaine_semaine;
+DROP DOMAIN IF EXISTS domaine_region_de_france;
+DROP DOMAIN IF EXISTS domaine_departement_de_france;
+DROP DOMAIN IF EXISTS domaine_code_postal;
+DROP DOMAIN IF EXISTS domaine_tel_portable;
+DROP DOMAIN IF EXISTS domaine_tel_fixe;
+
+DROP DOMAIN IF EXISTS domaine_type_activite;
+DROP DOMAIN IF EXISTS domaine_type_email;
+DROP DOMAIN IF EXISTS domaine_type_materiel_frimousse;
+DROP DOMAIN IF EXISTS domaine_type_materiel_plaidoyer;
+DROP DOMAIN IF EXISTS domaine_type_semaine;
 

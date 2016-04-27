@@ -1,39 +1,39 @@
 -- Définition des Domaines --
 
-CREATE DOMAIN  semaine AS INT
+CREATE DOMAIN  domaine_semaine AS INT
 CHECK (VALUE <54 AND VALUE >0);
 
-CREATE DOMAIN jour AS VARCHAR(10)
+CREATE DOMAIN domaine_jour AS VARCHAR(10)
 CHECK (VALUE IN ('lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'));
 
-CREATE DOMAIN moment_quotidien AS VARCHAR(15)
+CREATE DOMAIN domaine_moment_quotidien AS VARCHAR(15)
 CHECK (VALUE IN ('matin', 'apres-midi', 'soir'));
 
-CREATE DOMAIN type_contact AS VARCHAR(20)
+CREATE DOMAIN domaine_type_contact AS VARCHAR(20)
 CHECK (VALUE IN ('enseignant', 'animateur', 'eleve', 'etudiant', 'autre'));
 
-CREATE DOMAIN activite AS VARCHAR(30)
+CREATE DOMAIN domaine_activite AS VARCHAR(30)
 CHECK (VALUE IN ('actions ponctuelles', 'plaidoyers', 'frimousses', 'projets', 'autre'));
 
-CREATE DOMAIN type_projet AS VARCHAR(20)
+CREATE DOMAIN domaine_type_projet AS VARCHAR(20)
 CHECK (VALUE IN ('primaire', 'college', 'lycee', 'superieur'));
 
-CREATE DOMAIN type_enseignement AS VARCHAR(25)
+CREATE DOMAIN domaine_type_enseignement AS VARCHAR(25)
 CHECK (VALUE IN ('maternelle', 'elementaire', 'college', 'lycee', 'superieur'));
 
-CREATE DOMAIN type_centre AS VARCHAR(25)
+CREATE DOMAIN domaine_type_centre AS VARCHAR(25)
 CHECK (VALUE IN ('maternelle', 'elémentaire', 'adolescent', 'autre'));
 
-CREATE DOMAIN type_autre_etablissement AS VARCHAR(20)
+CREATE DOMAIN domaine_type_autre_etablissement AS VARCHAR(20)
 CHECK (VALUE IN ('mairie', 'maison de retraite', 'autre'));
 
-CREATE DOMAIN materiel_plaidoyer AS VARCHAR(30)
+CREATE DOMAIN domaine_materiel_plaidoyer AS VARCHAR(30)
 CHECK (VALUE IN ('videoprojecteur', 'tableau interactif', 'enceinte', 'autre'));
 
-CREATE DOMAIN materiel_frimousse AS VARCHAR(20)
+CREATE DOMAIN domaine_materiel_frimousse AS VARCHAR(20)
 CHECK (VALUE IN ('patron', 'bourre', 'decoration'));
 
-CREATE DOMAIN niveau_scolaire_complet AS VARCHAR(50)
+CREATE DOMAIN domaine_niveau_scolaire_complet AS VARCHAR(50)
 CHECK (VALUE IN ('petite section', 'petie-moyenne section', 'moyenne section', 'moyenne-grande section', 'grande section', 'petite-moyenne-grande section',
                  'CP', 'CP-CE1', 'CE1', 'CE1-CE2', 'CE2', 'CE2-CM1', 'CM1', 'CM1-CM2', 'CM2', 
                  '6eme', '5eme', '4eme', '3eme', '2nde', '1ere', 'terminale', 
@@ -41,74 +41,21 @@ CHECK (VALUE IN ('petite section', 'petie-moyenne section', 'moyenne section', '
                  'autre'
       ));
 
-CREATE DOMAIN niveau_scolaire_limite AS VARCHAR(15)
+CREATE DOMAIN domaine_niveau_scolaire_limite AS VARCHAR(15)
 CHECK (VALUE IN ('CP', 'CP-CE1', 'CE1', 'CE1-CE2', 'CE2', 'CE2-CM1', 'CM1', 'CM1-CM2', 'CM2', 'autre'));
 
-CREATE DOMAIN theme AS VARCHAR(100)
+CREATE DOMAIN domaine_theme AS VARCHAR(100)
 CHECK (VALUE IN ('convention internationale des droits de l enfant', 'education', 'sante en generale', 'sante et alimentation', 'VIH et sida', 'eau', 'urgences mondiales', 'travail des enfants', 'enfants et soldats', 'harcelement', 'role de l Unicef', 'millenaire pour le developpement' ));
 
-drop table nulll;
-drop domain email;
-
-CREATE DOMAIN email AS VARCHAR(100)
+CREATE DOMAIN domaine_email AS VARCHAR(100)
 CHECK (VALUE ~ '^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$' );
 
-create table nulll (email email);
-insert into nulll values ('mich@insa-rouenfr');
-
--- #triche --
-
-drop table canard;
-drop domain triche_activite;
-CREATE DOMAIN triche_activite AS VARCHAR(300)
-CHECK (VALUE ~ '^((plaidoyers)|((frimousses)|(actions-ponctuelles)|(projets)|(autres)))(,((plaidoyers)|((frimousses)|(actions-ponctuelles)|(projets)|(autres)))){0,4}$');
-create table canard (id SERIAL PRIMARY KEY, activiteTableau triche_activite);
-insert into canard values ('1', 'plaidoyers,frimousses');
-
-drop table swag;
-drop domain triche_email;
-CREATE DOMAIN triche_email AS VARCHAR(200)
-CHECK (VALUE ~ '^(([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+)( , [a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+)*)?$' );
-CREATE TABLE swag (lll triche_email);
-INSERT INTO swag values ('mich@insa-rouen.fr , julie@jolie.fr , onch@onch.com');
-
-drop table iii ;
-drop domain triche_materiel_frimousse;
-CREATE DOMAIN triche_materiel_frimousse AS VARCHAR(24)
-CHECK (VALUE ~ '^((patron)|((bourre)|(decoration)))(,((patron)|((bourre)|(decoration)))){0,2}$');
-create table iii (iii triche_materiel_frimousse);
-insert into iii values ('patron,bourre,decoration');
-
-drop table ffff;
-drop domain triche_materiel_plaidoyer;
-CREATE DOMAIN triche_materiel_plaidoyer AS VARCHAR(49)
-CHECK (VALUE ~ '^((videoprojecteur)|((tableau-interactif)|(enceinte)|(autre)))(,((videoprojecteur)|((tableau-interactif)|(enceinte)|(autre)))){0,3}$');
-create table ffff (fff triche_materiel_plaidoyer);
-insert into ffff values('videoprojecteur,enceinte,autre,tableau-interactif');
-
-
-drop table aaa;
-drop domain triche_semaine;
-CREATE DOMAIN triche_semaine AS VARCHAR(100)
-CHECK (VALUE ~ '^((([1-4][0-9]?)|(5[0-3]?)|([6-9]))(\,(([1-4][0-9]?)|(5[0-3]?)|([6-9]))){0,52})$');
-create table aaa (aaa triche_semaine);
-insert into aaa values ('1,2,7,53');
-
-------- ^(([1-5][0-9]?)(,[1-5][0-9]?)*)$
-
-------- ^(([1-4][0-9]?)|(5[0-3]?))$			mieux
-
--------  ^((([1-4][0-9]?)|(5[0-3]?)|([6-9]))(\,(([1-4][0-9]?)|(5[0-3]?)|([6-9]))){0,52})$	parfait
-
-
-
-
-CREATE DOMAIN region_de_france AS VARCHAR(100)
+CREATE DOMAIN domaine_region_de_france AS VARCHAR(100)
 CHECK (VALUE IN ('Nord-Pas-de-Calais Picardie', 'Normandie', 'Bretagne', 'Ile de France', 'Alsace Lorraine Champagne-Ardennes', 'Pays-de-la-Loire', 'Centre',
 				 'Bourgogne Franche-Comte', 'Aquitaine Limousin Poitou-Charentes', 'Auvergne Rhone-Alpes', 'Midi-Pyrenees Languedoc-Roussillon', 'Corse', 'Provence-Alpes-Cote-D Azur'
 		));
 
-CREATE DOMAIN departement_de_france AS VARCHAR(100)
+CREATE DOMAIN domaine_departement_de_france AS VARCHAR(100)
 CHECK (VALUE IN ('Ain', 'Aisne', 'Allier','Alpes-de-Haute-Provence', 'Hautes-Alpes', 'Alpes-Maritimes', 'Ardeche', 'Ardennes', 'Ariege', 'Aube', 'Aude', 'Aveyron', 'Bouches-du-Rhone',
 				 'Calvados', 'Cantal', 'Charente', 'Charente-Maritime', 'Cher', 'Correze', 'Corse-du-Sud', 'Haute-Corse', 'Cote-d or', 'Cotes-d Armor', 'Creuse', 'Dordogne', 'Doubs',
 				 'Drome', 'Eure', 'Eure-et-Loir', 'Finistere', 'Gard', 'Haute-Garonne', 'Gers', 'Gironde', 'Herault', 'Ille-et-Vilaine', 'Indre', 'Indre-et-Loire', 'Isere', 'Jura', 'Landres',
@@ -120,14 +67,32 @@ CHECK (VALUE IN ('Ain', 'Aisne', 'Allier','Alpes-de-Haute-Provence', 'Hautes-Alp
 	));
 
 
-CREATE DOMAIN code_postal AS VARCHAR(5)
+CREATE DOMAIN domaine_code_postal AS VARCHAR(5)
 CHECK (VALUE ~ '^[0-9]{5}$');
 
-CREATE DOMAIN tel_portable AS VARCHAR(10)
+CREATE DOMAIN domaine_tel_portable AS VARCHAR(10)
 CHECK (VALUE ~ '^[0-9]{10}$');
 
-CREATE DOMAIN tel_fixe AS VARCHAR(10)
+CREATE DOMAIN domaine_tel_fixe AS VARCHAR(10)
 CHECK (VALUE ~ '^[0-9]{10}$');
+
+
+
+
+CREATE DOMAIN domaine_type_activite AS VARCHAR(300)
+CHECK (VALUE ~ '^((plaidoyers)|((frimousses)|(actions-ponctuelles)|(projets)|(autres)))(,((plaidoyers)|((frimousses)|(actions-ponctuelles)|(projets)|(autres)))){0,4}$');
+
+CREATE DOMAIN domaine_type_email AS VARCHAR(200)
+CHECK (VALUE ~ '^(([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+)( , [a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+)*)?$' );
+
+CREATE DOMAIN domaine_type_materiel_frimousse AS VARCHAR(24)
+CHECK (VALUE ~ '^((patron)|((bourre)|(decoration)))(,((patron)|((bourre)|(decoration)))){0,2}$');
+
+CREATE DOMAIN domaine_type_materiel_plaidoyer AS VARCHAR(49)
+CHECK (VALUE ~ '^((videoprojecteur)|((tableau-interactif)|(enceinte)|(autre)))(,((videoprojecteur)|((tableau-interactif)|(enceinte)|(autre)))){0,3}$');
+
+CREATE DOMAIN domaine_type_semaine AS VARCHAR(100)
+CHECK (VALUE ~ '^((([1-4][0-9]?)|(5[0-3]?)|([6-9]))(\,(([1-4][0-9]?)|(5[0-3]?)|([6-9]))){0,52})$');
 
 
 -- Définition des tables correspondant à des types -- 
@@ -136,7 +101,7 @@ CREATE TABLE IF NOT EXISTS adresse (
 	id SERIAL PRIMARY KEY, 
 	ville VARCHAR(100) NOT NULL, 
 	rue VARCHAR(500) NOT NULL, 
-	code_postal code_postal NOT NULL, 
+	code_postal domaine_code_postal NOT NULL, 
 	numero_de_rue VARCHAR(15) NOT NULL, 
 	complement VARCHAR(100) DEFAULT NULL, 
 	geolocalisation VARCHAR(255) DEFAULT NULL
@@ -145,14 +110,14 @@ CREATE TABLE IF NOT EXISTS adresse (
 
 CREATE TABLE IF NOT EXISTS niveau_theme (
 	id SERIAL PRIMARY KEY,
-	niveau niveau_scolaire_complet,
-	theme theme
+	niveau domaine_niveau_scolaire_complet,
+	theme domaine_theme
 );
 
 CREATE TABLE IF NOT EXISTS moment_hebdomadaire (
 	id SERIAL PRIMARY KEY,
-	jour jour NOT NULL, 
-	moment moment_quotidien NOT NULL
+	jour domaine_jour NOT NULL, 
+	moment domaine_moment_quotidien NOT NULL
 );
 
 
@@ -170,22 +135,18 @@ CREATE TABLE IF NOT EXISTS moment_hebdomadaire (
 -- Création des tables --
 
 CREATE TABLE IF NOT EXISTS benevole (
-	email email PRIMARY KEY,
+	email domaine_email PRIMARY KEY,
 	nom VARCHAR(100) NOT NULL,
 	prenom VARCHAR(100) DEFAULT NULL, 
-	tel_fixe tel_fixe DEFAULT NULL, 
-	tel_portable tel_portable DEFAULT NULL,
+	tel_fixe domaine_tel_fixe DEFAULT NULL, 
+	tel_portable domaine_tel_portable DEFAULT NULL,
 	adresse_id INT REFERENCES adresse(id) ON DELETE CASCADE, 
 	mdp VARCHAR(50) NOT NULL,
-	activites_potentielles type_activite[] DEFAULT NULL
+	activites_potentielles domaine_type_activite DEFAULT NULL
 );
-/* utilisation avec l'attribut multivalué : 
-#insert into benevole values ('unEmail@gmail.com','unNom','unPrenom','0235363738','0607080910', 1,'blabla',  '{(frimousses),(projets)}');
-*/
-
 
 CREATE TABLE IF NOT EXISTS admin_activite (
-	responsabilite_activite type_activite[] NOT NULL
+	responsabilite_activite domaine_type_activite NOT NULL
 )INHERITS(benevole);
 
 
@@ -200,12 +161,12 @@ CREATE TABLE IF NOT EXISTS admin_region (
 
 
 CREATE TABLE IF NOT EXISTS contact (
-	email VARCHAR(100) PRIMARY KEY,
+	email domaine_email PRIMARY KEY,
 	nom VARCHAR(100) NOT NULL,
 	prenom VARCHAR(100) DEFAULT NULL, 
-	tel_fixe tel_fixe DEFAULT NULL, 
-	tel_portable tel_portable DEFAULT NULL,
-	type_contact type_contact NOT NULL
+	tel_fixe domaine_tel_fixe DEFAULT NULL, 
+	tel_portable domaine_tel_portable DEFAULT NULL,
+	type_contact domaine_type_contact NOT NULL
 );
 
 
@@ -214,7 +175,7 @@ CREATE TABLE IF NOT EXISTS projet (
 	id SERIAL PRIMARY KEY, 
 	chiffre_affaire DOUBLE PRECISION NOT NULL, 
 	remarques TEXT DEFAULT NULL, 
-	type type_projet NOT NULL, 
+	type domaine_type_projet NOT NULL, 
 	nom VARCHAR(1000) NOT NULL
 );
 
@@ -224,12 +185,9 @@ CREATE TABLE IF NOT EXISTS pays (
 	nom VARCHAR(100) PRIMARY KEY
 );
 
---ici j'ai fais des changements --
---avant--
--- nom VARCHAR(100) PRIMARY KEY, --
 
 CREATE TABLE IF NOT EXISTS region (
-	nom region_de_france PRIMARY KEY, 
+	nom domaine_region_de_france PRIMARY KEY, 
 	pays_id VARCHAR(100) REFERENCES pays(nom) ON DELETE CASCADE
 );
 
@@ -237,14 +195,14 @@ CREATE TABLE IF NOT EXISTS region (
 CREATE TABLE IF NOT EXISTS comite (
 	id SERIAL PRIMARY KEY, 
 	region_id VARCHAR(100) REFERENCES region(nom) ON DELETE CASCADE, 
-	nom_departement departement_de_france NOT NULL
+	nom_departement domaine_departement_de_france NOT NULL
 );
 
 -- yaura du trigger ici --
 
 CREATE TABLE IF NOT EXISTS comite_niveau_theme (
-	id_comite REFERENCES comite(id) ON DELETE CASCADE,
-	id_niveau_theme REFERENCES niveau_theme(id) ON DELETE CASCADE,
+	id_comite VARCHAR(100) REFERENCES comite(id) ON DELETE CASCADE,
+	id_niveau_theme VARCHAR(100) REFERENCES niveau_theme(id) ON DELETE CASCADE,
 	PRIMARY KEY (id_comite, id_niveau_theme)
 );
 
@@ -253,22 +211,20 @@ CREATE TABLE IF NOT EXISTS demande (
 	id SERIAL PRIMARY KEY, 
 	contact_id VARCHAR(100) REFERENCES contact(email) ON DELETE CASCADE, 
 	date DATE NOT NULL,
---	liste_semaine type_semaine[] NOT NULL, 
-	moments_voulus type_moment[],
-	moments_a_eviter type_moment[]	
+	liste_semaine domaine_type_semaine NOT NULL
 );
 
 -- yaura du trigger ici --
 
 CREATE TABLE IF NOT EXISTS demande_moments_voulus (
-	id_demande REFERENCES demande(id) ON DELETE CASCADE,
-	id_moment_hebdomadaire REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
+	id_demande VARCHAR(100) REFERENCES demande(id) ON DELETE CASCADE,
+	id_moment_hebdomadaire VARCHAR(100) REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
 	PRIMARY KEY (id_demande, id_moment_hebdomadaire)
 );
 
 CREATE TABLE IF NOT EXISTS demande_moments_voulus (
-	id_demande REFERENCES demande(id) ON DELETE CASCADE,
-	id_moment_hebdomadaire REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
+	id_demande VARCHAR(100) REFERENCES demande(id) ON DELETE CASCADE,
+	id_moment_hebdomadaire VARCHAR(100) REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
 	PRIMARY KEY (id_demande, id_moment_hebdomadaire)
 );
 
@@ -277,25 +233,25 @@ CREATE TABLE IF NOT EXISTS etablissement (
 	id VARCHAR(100) PRIMARY KEY, 
 	adresse_id INT REFERENCES adresse(id) ON DELETE CASCADE, 
 	nom VARCHAR(100) DEFAULT NULL, 
-	tel_fixe tel_fixe DEFAULT NULL,
-	emails type_email[] NOT NULL
+	tel_fixe domaine_tel_fixe DEFAULT NULL,
+	emails domaine_type_email NOT NULL
 );
 
 
 CREATE TABLE IF NOT EXISTS enseignement (
-	type_enseignement type_enseignement NOT NULL
+	type_enseignement domaine_type_enseignement NOT NULL
 )INHERITS(etablissement);
 
 
 
 CREATE TABLE IF NOT EXISTS centre_loisirs (
-	type_centre type_centre NOT NULL
+	type_centre domaine_type_centre NOT NULL
 )INHERITS(etablissement);
 
 
 
 CREATE TABLE IF NOT EXISTS autre_etablissement (
-	type_autre_etablissement type_autre_etablissement NOT NULL
+	type_autre_etablissement domaine_type_autre_etablissement NOT NULL
 )INHERITS(etablissement);
 
 
@@ -312,7 +268,7 @@ CREATE TABLE IF NOT EXISTS intervention (
 	lieu VARCHAR(40) DEFAULT NULL, 
 	nb_personne INT NOT NULL, 
 	remarques TEXT DEFAULT NULL, 
-	moment moment_quotidien DEFAULT NULL, 
+	moment domaine_moment_quotidien DEFAULT NULL, 
 	type VARCHAR(255) NOT NULL
 );
 
@@ -320,13 +276,13 @@ CREATE TABLE IF NOT EXISTS intervention (
 
 CREATE TABLE IF NOT EXISTS plaidoyer (
 	niveau_theme_id INT NOT NULL REFERENCES niveau_theme ON DELETE CASCADE,
-	materiel_dispo type_materiel_plaidoyer[]
+	materiel_dispo domaine_type_materiel_plaidoyer
 )INHERITS(intervention); 
 
 
 CREATE TABLE IF NOT EXISTS frimousse (
-	niveau niveau_scolaire_limite NOT NULL,
-	materiaux type_materiel_frimousse[]
+	niveau domaine_niveau_scolaire_limite NOT NULL,
+	materiaux domaine_type_materiel_frimousse
 )INHERITS(intervention); 
 
 
@@ -365,7 +321,7 @@ CREATE TABLE IF NOT EXISTS appartient (
 	etablissement_id VARCHAR(100) REFERENCES etablissement(id) ON DELETE CASCADE, 
 	contact_id VARCHAR(100) REFERENCES contact(email) ON DELETE CASCADE, 
 	respo_etablissement BOOLEAN NOT NULL,
-	type_activite type_activite[],
+	type_activite domaine_type_activite,
 	PRIMARY KEY(etablissement_id, contact_id)
 ); 
 

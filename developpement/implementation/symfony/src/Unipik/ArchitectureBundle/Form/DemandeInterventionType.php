@@ -19,7 +19,7 @@ class DemandeInterventionType extends AbstractType {
         $builder
             ->add('ville_etablissement', VilleType::class, array('label' => 'Ville de l\'établissement'))
             ->add('nom', TextType::class)
-            ->add('adresse', AdresseType::class, array('fieldset' => true, 'legend' => 'adresse'))
+            ->add('adresse', AdresseType::class, array('fieldset' => true, 'legend' => 'Adresse'))
         ;
     }
 

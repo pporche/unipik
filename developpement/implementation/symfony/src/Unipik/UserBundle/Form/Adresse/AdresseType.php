@@ -27,6 +27,8 @@ class AdresseType extends AbstractType {
             ->add('ville', VilleType::class)
             ->add('rue', RueType::class)
             ->add('codePostal', CodePostalType::class)
+            ->add('numeroDeRue', NumeroDeRueType::class, array('label' => "N° de rue"))
+            ->add('complement', ComplementType::class, array('label' => "Complément"))
         ;
     }
 

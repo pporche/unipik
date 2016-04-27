@@ -37,8 +37,9 @@ class InterventionController extends Controller {
     }
 
     public function consultationAction($id) {
-
-        return $this->render('InterventionBundle::consultation.html.twig');
+        // Faire la vérication si l'intervention est un plaidoyer, frimousse ou autre
+        // Et appeler la vue correspondante
+        return $this->render('InterventionBundle:consultation:consultationPlaidoyer.html.twig');
     }
 
     public function addAction() {

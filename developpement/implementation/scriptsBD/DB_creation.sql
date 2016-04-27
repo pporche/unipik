@@ -60,29 +60,45 @@ insert into nulll values ('mich@insa-rouenfr');
 
 drop table canard;
 drop domain triche_activite;
-
 CREATE DOMAIN triche_activite AS VARCHAR(300)
 CHECK (VALUE ~ '^((plaidoyers)|((frimousses)|(actions-ponctuelles)|(projets)|(autres)))(,((plaidoyers)|((frimousses)|(actions-ponctuelles)|(projets)|(autres)))){0,4}$');
-
 create table canard (id SERIAL PRIMARY KEY, activiteTableau triche_activite);
-
 insert into canard values ('1', 'plaidoyers,frimousses');
-
-
 
 drop table swag;
 drop domain triche_email;
-
 CREATE DOMAIN triche_email AS VARCHAR(200)
 CHECK (VALUE ~ '^(([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+)( , [a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+)*)?$' );
-
 CREATE TABLE swag (lll triche_email);
-
 INSERT INTO swag values ('mich@insa-rouen.fr , julie@jolie.fr , onch@onch.com');
 
--------
+drop table iii ;
+drop domain triche_materiel_frimousse;
+CREATE DOMAIN triche_materiel_frimousse AS VARCHAR(24)
+CHECK (VALUE ~ '^((patron)|((bourre)|(decoration)))(,((patron)|((bourre)|(decoration)))){0,2}$');
+create table iii (iii triche_materiel_frimousse);
+insert into iii values ('patron,bourre,decoration');
+
+drop table ffff;
+drop domain triche_materiel_plaidoyer;
+CREATE DOMAIN triche_materiel_plaidoyer AS VARCHAR(49)
+CHECK (VALUE ~ '^((videoprojecteur)|((tableau-interactif)|(enceinte)|(autre)))(,((videoprojecteur)|((tableau-interactif)|(enceinte)|(autre)))){0,3}$');
+create table ffff (fff triche_materiel_plaidoyer);
+insert into ffff values('videoprojecteur,enceinte,autre,tableau-interactif');
 
 
+drop table aaa;
+drop domain triche_semaine;
+CREATE DOMAIN triche_semaine AS VARCHAR(100)
+CHECK (VALUE ~ '^((([1-4][0-9]?)|(5[0-3]?)|([6-9]))(\,(([1-4][0-9]?)|(5[0-3]?)|([6-9]))){0,52})$');
+create table aaa (aaa triche_semaine);
+insert into aaa values ('1,2,7,53');
+
+------- ^(([1-5][0-9]?)(,[1-5][0-9]?)*)$
+
+------- ^(([1-4][0-9]?)|(5[0-3]?))$			mieux
+
+-------  ^((([1-4][0-9]?)|(5[0-3]?)|([6-9]))(\,(([1-4][0-9]?)|(5[0-3]?)|([6-9]))){0,52})$	parfait
 
 
 
@@ -133,7 +149,6 @@ CREATE TABLE IF NOT EXISTS niveau_theme (
 	theme theme
 );
 
-
 CREATE TABLE IF NOT EXISTS moment_hebdomadaire (
 	id SERIAL PRIMARY KEY,
 	jour jour NOT NULL, 
@@ -144,13 +159,13 @@ CREATE TABLE IF NOT EXISTS moment_hebdomadaire (
 
 -- Création des types pour les attributs multivalués -- 
 
-CREATE TYPE type_activite as (activite_potentielle activite);
-CREATE TYPE type_email as (email  email);
-CREATE TYPE type_materiel_frimousse as (materiel_frimousse materiel_frimousse);
-CREATE TYPE type_materiel_plaidoyer as (materiel_plaidoyer materiel_plaidoyer);
-CREATE TYPE type_niveau_theme as (niveau_theme niveau_theme);
-CREATE TYPE type_moment as (moment_hebdomadaire moment_hebdomadaire);
---CREATE TYPE type_semaine as (semaine semaine);--
+--CREATE TYPE type_activite as (activite_potentielle activite);  						-- done
+--CREATE TYPE type_email as (email  email);												-- done
+--CREATE TYPE type_materiel_frimousse as (materiel_frimousse materiel_frimousse);		-- done
+--CREATE TYPE type_materiel_plaidoyer as (materiel_plaidoyer materiel_plaidoyer);		-- done
+--CREATE TYPE type_niveau_theme as (niveau_theme niveau_theme);							-- done avec table intermediaire
+--CREATE TYPE type_moment as (moment_hebdomadaire moment_hebdomadaire);					-- done avec table intermediaire
+--CREATE TYPE type_semaine as (semaine semaine);										-- done
 
 -- Création des tables --
 
@@ -222,8 +237,15 @@ CREATE TABLE IF NOT EXISTS region (
 CREATE TABLE IF NOT EXISTS comite (
 	id SERIAL PRIMARY KEY, 
 	region_id VARCHAR(100) REFERENCES region(nom) ON DELETE CASCADE, 
-	nom_departement departement_de_france NOT NULL,
-	liste_niveau_theme type_niveau_theme[] NOT NULL
+	nom_departement departement_de_france NOT NULL
+);
+
+-- yaura du trigger ici --
+
+CREATE TABLE IF NOT EXISTS comite_niveau_theme (
+	id_comite REFERENCES comite(id) ON DELETE CASCADE,
+	id_niveau_theme REFERENCES niveau_theme(id) ON DELETE CASCADE,
+	PRIMARY KEY (id_comite, id_niveau_theme)
 );
 
 
@@ -234,6 +256,20 @@ CREATE TABLE IF NOT EXISTS demande (
 --	liste_semaine type_semaine[] NOT NULL, 
 	moments_voulus type_moment[],
 	moments_a_eviter type_moment[]	
+);
+
+-- yaura du trigger ici --
+
+CREATE TABLE IF NOT EXISTS demande_moments_voulus (
+	id_demande REFERENCES demande(id) ON DELETE CASCADE,
+	id_moment_hebdomadaire REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
+	PRIMARY KEY (id_demande, id_moment_hebdomadaire)
+);
+
+CREATE TABLE IF NOT EXISTS demande_moments_voulus (
+	id_demande REFERENCES demande(id) ON DELETE CASCADE,
+	id_moment_hebdomadaire REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
+	PRIMARY KEY (id_demande, id_moment_hebdomadaire)
 );
 
 

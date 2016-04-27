@@ -12,14 +12,15 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Unipik\UserBundle\Form\Adresse\AdresseType;
-use Unipik\UserBundle\Form\Adresse\VilleType;
+use Unipik\InterventionBundle\Form\Etablissement\PersonneReferenteType;
+use Unipik\InterventionBundle\Form\Etablissement\InfoEtablissementType;
 
 class DemandeInterventionType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('ville_etablissement', VilleType::class, array('label' => 'Ville de l\'établissement'))
-            ->add('nom', TextType::class)
-            ->add('adresse', AdresseType::class, array('fieldset' => true, 'legend' => 'Adresse'))
+            ->add('nomEtablissement', InfoEtablissementType::class, array('fieldset' => true, 'legend' => 'Infos établissement'))
+            ->add('personneReferente', PersonneReferenteType::class, array('fieldset' => true, 'legend' => 'Personne Référente'))
+            ->add('adresse', AdresseType::class, array('fieldset' => true, 'legend' => "Adresse de l'établissement"))
         ;
     }
 

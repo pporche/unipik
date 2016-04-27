@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: florian
+ * User: matthieu
  * Date: 26/04/16
  * Time: 08:12
  */
 
-namespace Unipik\ArchitectureBundle\Form;
+namespace Unipik\UserBundle\Form\Adresse;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

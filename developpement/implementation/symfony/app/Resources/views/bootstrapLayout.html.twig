@@ -1,0 +1,20 @@
+{% use "bootstrap_3_horizontal_layout.html.twig" %}
+
+{% block form_row -%}
+    {% if fieldset is defined and fieldset is same as(true) %}
+        <fieldset>
+            {% if legend is defined %}
+                <legend>{{ translation_domain is same as(false) ? legend : legend|trans({}, translation_domain) }}</legend>
+            {% endif %}
+            {{- form_widget(form) -}}
+        </fieldset>
+    {% else %}
+        <div class="form-group{% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+            {{- form_label(form) -}}
+            <div class="{{ block('form_group_class') }}">
+                {{- form_widget(form) -}}
+                {{- form_errors(form) -}}
+            </div>
+        </div>
+    {% endif %}
+{%- endblock form_row %}

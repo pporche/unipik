@@ -12,4 +12,5 @@ parameters:
     mailer_port: 587
     mailer_encryption: tls
     mailer_auth_mode: login
+    locale: en
     secret: ThisTokenIsNotSoSecretChangeIt

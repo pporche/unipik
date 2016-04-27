@@ -47,8 +47,35 @@ CHECK (VALUE IN ('CP', 'CP-CE1', 'CE1', 'CE1-CE2', 'CE2', 'CE2-CM1', 'CM1', 'CM1
 CREATE DOMAIN theme AS VARCHAR(100)
 CHECK (VALUE IN ('convention internationale des droits de l enfant', 'education', 'sante en generale', 'sante et alimentation', 'VIH et sida', 'eau', 'urgences mondiales', 'travail des enfants', 'enfants et soldats', 'harcelement', 'role de l Unicef', 'millenaire pour le developpement' ));
 
+drop table nulll;
+drop domain email;
+
 CREATE DOMAIN email AS VARCHAR(100)
 CHECK (VALUE ~ '^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$' );
+
+create table nulll (email email);
+insert into nulll values ('mich@insa-rouenfr');
+
+
+
+-- #triche --
+
+drop table swag;
+drop domain triche_email;
+
+CREATE DOMAIN triche_email AS VARCHAR(200)
+CHECK (VALUE ~ '^(([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+)( , [a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+)*)?$' );
+
+CREATE TABLE swag (lll triche_email);
+
+INSERT INTO swag values ('mich@insa-rouen.fr , julie@jolie.fr , onch@onch.com');
+
+-------
+
+
+
+
+
 
 CREATE DOMAIN region_de_france AS VARCHAR(100)
 CHECK (VALUE IN ('Nord-Pas-de-Calais Picardie', 'Normandie', 'Bretagne', 'Ile de France', 'Alsace Lorraine Champagne-Ardennes', 'Pays-de-la-Loire', 'Centre',
@@ -102,8 +129,7 @@ CREATE TABLE IF NOT EXISTS moment_hebdomadaire (
 	jour jour NOT NULL, 
 	moment moment_quotidien NOT NULL
 );
-COMMENT ON COLUMN moment_hebdomadaire.jour IS '(DC2Type:JourType)';
-COMMENT ON COLUMN moment_hebdomadaire.moment IS '(DC2Type:MomentQuotidienType)';
+
 
 
 -- Création des types pour les attributs multivalués -- 
@@ -114,7 +140,7 @@ CREATE TYPE type_materiel_frimousse as (materiel_frimousse materiel_frimousse);
 CREATE TYPE type_materiel_plaidoyer as (materiel_plaidoyer materiel_plaidoyer);
 CREATE TYPE type_niveau_theme as (niveau_theme niveau_theme);
 CREATE TYPE type_moment as (moment_hebdomadaire moment_hebdomadaire);
-CREATE TYPE type_semaine as (semaine semaine);
+--CREATE TYPE type_semaine as (semaine semaine);--
 
 -- Création des tables --
 
@@ -156,7 +182,7 @@ CREATE TABLE IF NOT EXISTS contact (
 	tel_portable tel_portable DEFAULT NULL,
 	type_contact type_contact NOT NULL
 );
-COMMENT ON COLUMN contact.type_contact IS '(DC2Type:ContactType)';
+
 
 
 CREATE TABLE IF NOT EXISTS projet (
@@ -166,7 +192,7 @@ CREATE TABLE IF NOT EXISTS projet (
 	type type_projet NOT NULL, 
 	nom VARCHAR(1000) NOT NULL
 );
-COMMENT ON COLUMN projet.type IS '(DC2Type:ProjetType)';
+
 
 
 CREATE TABLE IF NOT EXISTS pays (
@@ -195,7 +221,7 @@ CREATE TABLE IF NOT EXISTS demande (
 	id SERIAL PRIMARY KEY, 
 	contact_id VARCHAR(100) REFERENCES contact(email) ON DELETE CASCADE, 
 	date DATE NOT NULL,
-	liste_semaine type_semaine[] NOT NULL, 
+--	liste_semaine type_semaine[] NOT NULL, 
 	moments_voulus type_moment[],
 	moments_a_eviter type_moment[]	
 );
@@ -213,19 +239,21 @@ CREATE TABLE IF NOT EXISTS etablissement (
 CREATE TABLE IF NOT EXISTS enseignement (
 	type_enseignement type_enseignement NOT NULL
 )INHERITS(etablissement);
-COMMENT ON COLUMN enseignement.type_enseignement IS '(DC2Type:EnseignementType)';
+
 
 
 CREATE TABLE IF NOT EXISTS centre_loisirs (
 	type_centre type_centre NOT NULL
 )INHERITS(etablissement);
-COMMENT ON COLUMN centre_loisirs.type_centre IS '(DC2Type:CentreType)';
+
 
 
 CREATE TABLE IF NOT EXISTS autre_etablissement (
 	type_autre_etablissement type_autre_etablissement NOT NULL
 )INHERITS(etablissement);
-COMMENT ON COLUMN autre_etablissement.type_autre_etablissement IS '(DC2Type:AutreEtablissementType)';
+
+
+
 
 
 CREATE TABLE IF NOT EXISTS intervention (
@@ -241,7 +269,7 @@ CREATE TABLE IF NOT EXISTS intervention (
 	moment moment_quotidien DEFAULT NULL, 
 	type VARCHAR(255) NOT NULL
 );
-COMMENT ON COLUMN intervention.moment IS '(DC2Type:MomentQuotidienType)';
+
 
 
 CREATE TABLE IF NOT EXISTS plaidoyer (
@@ -254,7 +282,6 @@ CREATE TABLE IF NOT EXISTS frimousse (
 	niveau niveau_scolaire_limite NOT NULL,
 	materiaux type_materiel_frimousse[]
 )INHERITS(intervention); 
-COMMENT ON COLUMN frimousse.niveau IS '(DC2Type:NiveauScolaireLimiteType)';
 
 
 CREATE TABLE IF NOT EXISTS autre_intervention (

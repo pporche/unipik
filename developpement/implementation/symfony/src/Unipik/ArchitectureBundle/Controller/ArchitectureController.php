@@ -32,28 +32,6 @@ class ArchitectureController extends Controller {
 
     }
 
-    public function demandeInterventionAction(Request $request) {
-
-        $form = $this->createForm(DemandeInterventionType::class);
-        $form->handleRequest($request);
-
-        if($form->isValid()) {
-
-            $session =$request->getSession();
-            $session->getFlashBag()->add('notice', array(
-                'title'=>'Félicitation',
-                'message'=>'Intervention bien enregistrée.',
-                'alert'=>'success'
-            ));
-
-
-            return $this->RedirectToRoute('');
-        }
-        return $this->render('ArchitectureBundle:Intervention:demande.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
-
     public function profileAction($id) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('UserBundle:MyUser');

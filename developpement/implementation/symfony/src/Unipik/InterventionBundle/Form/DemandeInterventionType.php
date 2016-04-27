@@ -6,7 +6,7 @@
  * Time: 08:35
  */
 
-namespace Unipik\ArchitectureBundle\Form;
+namespace Unipik\InterventionBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

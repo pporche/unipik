@@ -15,7 +15,7 @@ class MailController extends Controller {
     public function sendFormAction($name) {
         $message = \Swift_Message::newInstance()
             ->setSubject('Hello Email')
-            ->setFrom('unipik.unicef@laposte.net')
+            ->setFrom('')
             ->setTo('onch@yopmail.com')
             ->setBody(
                 $this->renderView(

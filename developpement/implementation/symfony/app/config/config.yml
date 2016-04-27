@@ -8,8 +8,7 @@ imports:
 
 framework:
     #esi:             ~
-    translator:
-        fallbacks: "%locale%"
+    #translator: { fallback: en }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -80,7 +79,7 @@ fos_user:
                     type: Unipik\UserBundle\Form\RegistrationType
             confirmation:
                     enabled: true
-                    template:   FOSUserBundle:Registration:email.txt.twig
+                    template:   MailBundle::email.txt.twig
                     from_email:
                          address:        unipik.unicef@laposte.net
                          sender_name:    unipik.unicef@laposte.net

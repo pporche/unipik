@@ -30,7 +30,7 @@
                                 </dt>
                             </div>
                             <div  class="col-sm-9">
-                                {{ user.email}}
+                               <a href="">{{ user.email}}</a>
                             </div>
                             <div class="col-sm-3 col-xs-12">
                                 <dt >
@@ -62,24 +62,52 @@
                 </div>
             </section>
         </div>
-
-        <h3>Commité(s) de rattachement : </h3>
-        <h3>Domaines d'activités : </h3>
         <div class="row">
-            <ul class="list-group col-lg-offset-1 col-sm-3 ">
-                <li class="list-group-item">
-                    <span class="glyphicon glyphicon-ok"></span>  Plaidoyer
-                </li>
-                <li class="list-group-item">
-                    <span class="glyphicon glyphicon-ok"></span>  Frimousse
-                </li>
-                <li class="list-group-item">
-                    <span class="glyphicon glyphicon-remove"></span>  Actions ponctuelles
-                </li>
-            </ul>
+            <div class="col-sm-6">
+                <h3>Commité(s) de rattachement : </h3>
+                <div class="row">
+                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                        <li class="list-group-item">
+                            Seine-Maritime
+                        </li>
+                        <li class="list-group-item">
+                            Eure
+                        </li>
+                    </ul>
+                </div>
+                <h3>Domaines d'activités : </h3>
+                <div class="row">
+                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                        <li class="list-group-item">
+                            <span class="glyphicon glyphicon-ok"></span>  Plaidoyer
+                        </li>
+                        <li class="list-group-item">
+                            <span class="glyphicon glyphicon-ok"></span>  Frimousse
+                        </li>
+                        <li class="list-group-item">
+                            <span class="glyphicon glyphicon-remove"></span>  Actions ponctuelles
+                        </li>
+                    </ul>
 
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h3>Projets en cours : </h3>
+                <div class="row">
+                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                        <li class="list-group-item">
+                            <i> Nom du projet 1 </i>
+                        </li>
+                        <li class="list-group-item">
+                            <i> Nom du projet 2</i>
+                        </li>
+                        <li class="list-group-item">
+                            <i> Nom du projet 3</i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <h3>Projets en cours : </h3>
     </div>
 
 {% endblock %}

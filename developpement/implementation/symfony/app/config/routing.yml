@@ -8,7 +8,7 @@ mail:
 
 intervention:
     resource: "@InterventionBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /intervention/
 
 user:
     resource: "@UserBundle/Resources/config/routing.yml"

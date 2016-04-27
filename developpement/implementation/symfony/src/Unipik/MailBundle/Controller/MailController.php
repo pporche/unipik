@@ -12,8 +12,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class MailController extends Controller {
 
-    public function sendFormAction() {
+    public function sendFormAction($name) {
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('unipik.unicef@laposte.net')
+            ->setTo('onch@yopmail.com')
+            ->setBody(
+                $this->renderView(
+                    'MailBundle::email.txt.twig',
+                    array('name' => $name)
+                ),
+                'text/html'
+            )
+        ;
+        $this->get('mailer')->send($message);
 
+        return $this->render('ArchitectureBundle::connexion.html.twig');
     }
 
     public function sendNewInterventionAction() {

@@ -1,0 +1,4 @@
+mail_send_form:
+    path: /mail/{name}
+    defaults:
+        _controller: MailBundle:Mail:sendForm

@@ -1,3 +1,9 @@
-architecture_intervention_view:
+intervention_view:
     path: /{id}
     defaults: {_controller: InterventionBundle:Intervention:consultation}
+
+
+intervention_request:
+    path:     /demande/{id}
+    defaults:
+        _controller: InterventionBundle:Intervention:demande

@@ -56,9 +56,19 @@ CHECK (VALUE ~ '^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$' );
 create table nulll (email email);
 insert into nulll values ('mich@insa-rouenfr');
 
-
-
 -- #triche --
+
+drop table canard;
+drop domain triche_activite;
+
+CREATE DOMAIN triche_activite AS VARCHAR(300)
+CHECK (VALUE ~ '^((plaidoyers)|((frimousses)|(actions-ponctuelles)|(projets)|(autres)))(,((plaidoyers)|((frimousses)|(actions-ponctuelles)|(projets)|(autres)))){0,4}$');
+
+create table canard (id SERIAL PRIMARY KEY, activiteTableau triche_activite);
+
+insert into canard values ('1', 'plaidoyers,frimousses');
+
+
 
 drop table swag;
 drop domain triche_email;

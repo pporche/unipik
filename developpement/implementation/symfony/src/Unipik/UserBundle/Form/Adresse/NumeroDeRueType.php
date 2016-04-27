@@ -1,28 +1,19 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: matthieu
+ * User: mmartinsbaltar
  * Date: 27/04/16
- * Time: 08:31
+ * Time: 10:31
  */
 
-namespace Unipik\ArchitectureBundle\Form;
+
+namespace Unipik\UserBundle\Form\Adresse;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class VilleType extends AbstractType {
-
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder
-            ->add('', TextType::class)
-        ;
-    }
+class NumeroDeRueType extends AbstractType {
 
     /**
      * {@inheritdoc}
@@ -35,7 +26,7 @@ class VilleType extends AbstractType {
      * {@inheritdoc}
      */
     public function getBlockPrefix() {
-        return 'addresse';
+        return 'numeroDeRue';
     }
 
     public function getName() {

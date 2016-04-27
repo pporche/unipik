@@ -1,0 +1,90 @@
+% version 1.00	date 26/04/2016	Auteur Pierre Porche
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+\renewcommand{\footrulewidth}{0,01cm}
+
+\begin{document}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Qualité}}					%titre
+
+26/04/2016
+\hfill   
+\hfill 	9:33 - 10:16 				% Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 26/04/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui &  & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi &  & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Résumé de la semaine}
+\paragraph*{}
+\nomTuteurQualite{} nous explique que l'utilisation du script de coloration des documents pour les nouvelles versions des documents devrait être utilisé à chaque fois. Changer d'outil est peu recommandé car celui ci est qualifié alors qu'un nouvel outil ne serait pas sûr.
+
+\paragraph*{}
+L'évaluation par les pairs est à faire aussi tôt que possible. \nomTuteurQualite{} nous explique que l'outil est peu maintenable et qu'il serait certainement remplacé dès l'année prochaine par l'outil de la mission qualité.
+
+\paragraph*{}
+Notre BD n'étant pas définie manuellement, il est important d'effectuer des tests en "worst case scenario" afin d'être certains de prendre en compte toutes les éventualités.
+
+\paragraph*{}
+\Pierre{} rend compte à \nomTuteurQualite{} de la réunion des \RQ{} lors de laquelle le sujet de la "passation qualité" a été évoqué. Selon les \RQCourt{}, il serait souhaitable pour les étudiants suivants d'avoir le point de vue des \RQ{} et \CP{} de cette année sur la gestion des PICs. \nomTuteurQualite{} propose l'idée de faire passer les étudiants dans un cours de MGPI.
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

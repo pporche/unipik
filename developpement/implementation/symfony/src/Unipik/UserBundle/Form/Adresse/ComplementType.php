@@ -1,17 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: florian
- * Date: 26/04/16
- * Time: 08:12
+ * User: mmartinsbaltar
+ * Date: 27/04/16
+ * Time: 10:34
  */
 
-namespace Unipik\ArchitectureBundle\Form;
+namespace Unipik\UserBundle\Form\Adresse;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class VilleType extends AbstractType {
+class ComplementType extends AbstractType {
 
     /**
      * {@inheritdoc}
@@ -25,7 +25,7 @@ class VilleType extends AbstractType {
      * {@inheritdoc}
      */
     public function getBlockPrefix() {
-        return 'ville';
+        return 'complement';
     }
 
     public function getName() {

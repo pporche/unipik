@@ -15,16 +15,17 @@ DROP TABLE IF EXISTS autre_etablissement;
 DROP TABLE IF EXISTS centre_loisirs;
 DROP TABLE IF EXISTS enseignement;
 DROP TABLE IF EXISTS etablissement;
-DROP TABLE IF EXISTS demande;
-DROP TABLE IF EXISTS comite;
-DROP TABLE IF EXISTS region;
+DROP TABLE IF EXISTS demande CASCADE;
+DROP TABLE IF EXISTS comite CASCADE;
+DROP TABLE IF EXISTS region CASCADE;
 DROP TABLE IF EXISTS pays;
 DROP TABLE IF EXISTS projet;
-DROP TABLE IF EXISTS contact;
+DROP TABLE IF EXISTS contact CASCADE;
 DROP TABLE IF EXISTS admin_region;
 DROP TABLE IF EXISTS admin_comite;
 DROP TABLE IF EXISTS admin_activite;
 DROP TABLE IF EXISTS benevole;
+
 
 -- Suppression des types -- 
 --DROP TYPE type_semaine;
@@ -36,10 +37,13 @@ DROP TABLE IF EXISTS benevole;
 --DROP TYPE type_activite;
 
 -- Suppression des tables correspondants à des types --
-DROP TABLE IF EXISTS moment_hebdomadaire;
-DROP TABLE IF EXISTS niveau_theme;
+DROP TABLE IF EXISTS moment_hebdomadaire CASCADE;
+DROP TABLE IF EXISTS niveau_theme CASCADE;
 DROP TABLE IF EXISTS adresse;
 
+DROP TABLE IF EXISTS comite_niveau_theme CASCADE;
+
+-- contact, moment_hebdomadaire
 -- Suppression des domaines --
 DROP DOMAIN IF EXISTS domaine_email;
 DROP DOMAIN IF EXISTS domaine_theme;
@@ -66,5 +70,5 @@ DROP DOMAIN IF EXISTS domaine_type_activite;
 DROP DOMAIN IF EXISTS domaine_type_email;
 DROP DOMAIN IF EXISTS domaine_type_materiel_frimousse;
 DROP DOMAIN IF EXISTS domaine_type_materiel_plaidoyer;
-DROP DOMAIN IF EXISTS domaine_type_semaine;
+DROP DOMAIN IF EXISTS domaine_type_semaine CASCADE;
 

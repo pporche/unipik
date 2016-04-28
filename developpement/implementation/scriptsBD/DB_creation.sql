@@ -135,7 +135,8 @@ CREATE TABLE IF NOT EXISTS moment_hebdomadaire (
 -- Création des tables --
 
 CREATE TABLE IF NOT EXISTS benevole (
-	email domaine_email PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
+	email domaine_email,
 	nom VARCHAR(100) NOT NULL,
 	prenom VARCHAR(100) DEFAULT NULL, 
 	tel_fixe domaine_tel_fixe DEFAULT NULL, 
@@ -161,7 +162,8 @@ CREATE TABLE IF NOT EXISTS admin_region (
 
 
 CREATE TABLE IF NOT EXISTS contact (
-	email domaine_email PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
+	email domaine_email,
 	nom VARCHAR(100) NOT NULL,
 	prenom VARCHAR(100) DEFAULT NULL, 
 	tel_fixe domaine_tel_fixe DEFAULT NULL, 
@@ -182,34 +184,36 @@ CREATE TABLE IF NOT EXISTS projet (
 
 
 CREATE TABLE IF NOT EXISTS pays (
-	nom VARCHAR(100) PRIMARY KEY
+	id SERIAL PRIMARY KEY,
+	nom VARCHAR(100)
 );
 
 
 CREATE TABLE IF NOT EXISTS region (
-	nom domaine_region_de_france PRIMARY KEY, 
-	pays_id VARCHAR(100) REFERENCES pays(nom) ON DELETE CASCADE
+	id SERIAL PRIMARY KEY,
+	nom domaine_region_de_france, 
+	pays_id INT REFERENCES pays(id) ON DELETE CASCADE
 );
 
 
 CREATE TABLE IF NOT EXISTS comite (
 	id SERIAL PRIMARY KEY, 
-	region_id VARCHAR(100) REFERENCES region(nom) ON DELETE CASCADE, 
+	region_id INT REFERENCES region(id) ON DELETE CASCADE, 
 	nom_departement domaine_departement_de_france NOT NULL
 );
 
 -- yaura du trigger ici --
 
 CREATE TABLE IF NOT EXISTS comite_niveau_theme (
-	id_comite VARCHAR(100) REFERENCES comite(id) ON DELETE CASCADE,
-	id_niveau_theme VARCHAR(100) REFERENCES niveau_theme(id) ON DELETE CASCADE,
+	id_comite INT REFERENCES comite(id) ON DELETE CASCADE,
+	id_niveau_theme INT REFERENCES niveau_theme(id) ON DELETE CASCADE,
 	PRIMARY KEY (id_comite, id_niveau_theme)
 );
 
 
 CREATE TABLE IF NOT EXISTS demande (
 	id SERIAL PRIMARY KEY, 
-	contact_id VARCHAR(100) REFERENCES contact(email) ON DELETE CASCADE, 
+	contact_id INT REFERENCES contact(id) ON DELETE CASCADE, 
 	date DATE NOT NULL,
 	liste_semaine domaine_type_semaine NOT NULL
 );
@@ -217,20 +221,21 @@ CREATE TABLE IF NOT EXISTS demande (
 -- yaura du trigger ici --
 
 CREATE TABLE IF NOT EXISTS demande_moments_voulus (
-	id_demande VARCHAR(100) REFERENCES demande(id) ON DELETE CASCADE,
-	id_moment_hebdomadaire VARCHAR(100) REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
+	id_demande INT REFERENCES demande(id) ON DELETE CASCADE,
+	id_moment_hebdomadaire INT REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
 	PRIMARY KEY (id_demande, id_moment_hebdomadaire)
 );
 
 CREATE TABLE IF NOT EXISTS demande_moments_voulus (
-	id_demande VARCHAR(100) REFERENCES demande(id) ON DELETE CASCADE,
-	id_moment_hebdomadaire VARCHAR(100) REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
+	id_demande INT REFERENCES demande(id) ON DELETE CASCADE,
+	id_moment_hebdomadaire INT REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
 	PRIMARY KEY (id_demande, id_moment_hebdomadaire)
 );
 
 
 CREATE TABLE IF NOT EXISTS etablissement (
-	id VARCHAR(100) PRIMARY KEY, 
+	id SERIAL PRIMARY KEY,
+	uai VARCHAR(100), 
 	adresse_id INT REFERENCES adresse(id) ON DELETE CASCADE, 
 	nom VARCHAR(100) DEFAULT NULL, 
 	tel_fixe domaine_tel_fixe DEFAULT NULL,
@@ -261,9 +266,9 @@ CREATE TABLE IF NOT EXISTS autre_etablissement (
 CREATE TABLE IF NOT EXISTS intervention (
 	id SERIAL PRIMARY KEY, 
 	demande_id INT REFERENCES demande(id) ON DELETE CASCADE, 
-	benevole_id VARCHAR(100) REFERENCES benevole(email) ON DELETE CASCADE, 
+	benevole_id INT REFERENCES benevole(id) ON DELETE CASCADE, 
 	comite_id INT REFERENCES comite(id) ON DELETE CASCADE, 
-	etablissement_id VARCHAR(100) REFERENCES etablissement(id) ON DELETE CASCADE, 
+	etablissement_id INT REFERENCES etablissement(id) ON DELETE CASCADE, 
 	date DATE DEFAULT NULL, 
 	lieu VARCHAR(40) DEFAULT NULL, 
 	nb_personne INT NOT NULL, 
@@ -293,7 +298,7 @@ CREATE TABLE IF NOT EXISTS autre_intervention (
 
 CREATE TABLE IF NOT EXISTS vente (
 	id SERIAL PRIMARY KEY, 
-	etablissement_id VARCHAR(100) REFERENCES etablissement(id) ON DELETE CASCADE, 
+	etablissement_id INT REFERENCES etablissement(id) ON DELETE CASCADE, 
 	intervention_id INT DEFAULT NULL REFERENCES intervention(id) ON DELETE CASCADE, 
 	chiffre_affaire DOUBLE PRECISION NOT NULL, 
 	date DATE NOT NULL, 
@@ -304,31 +309,31 @@ CREATE TABLE IF NOT EXISTS vente (
 -- Relations Many-To-Many --
 
 CREATE TABLE IF NOT EXISTS benevole_comite (
-	benevole_id VARCHAR(100) REFERENCES benevole(email) ON DELETE CASCADE, 
+	benevole_id INT REFERENCES benevole(id) ON DELETE CASCADE, 
 	projet_id INT REFERENCES projet(id) ON DELETE CASCADE, 
 	PRIMARY KEY(benevole_id, projet_id)
 );
 
 
 CREATE TABLE IF NOT EXISTS benevole_projet (
-	benevole_id VARCHAR(100) REFERENCES benevole(email) ON DELETE CASCADE, 
+	benevole_id INT REFERENCES benevole(id) ON DELETE CASCADE, 
 	comite_id INT REFERENCES comite(id) ON DELETE CASCADE, 
 	PRIMARY KEY(benevole_id, comite_id)
 );
 
 
 CREATE TABLE IF NOT EXISTS appartient (
-	etablissement_id VARCHAR(100) REFERENCES etablissement(id) ON DELETE CASCADE, 
-	contact_id VARCHAR(100) REFERENCES contact(email) ON DELETE CASCADE, 
+	etablissement_id INT REFERENCES etablissement(id) ON DELETE CASCADE, 
+	contact_id INT REFERENCES contact(id) ON DELETE CASCADE, 
 	respo_etablissement BOOLEAN NOT NULL,
 	type_activite domaine_type_activite,
 	PRIMARY KEY(etablissement_id, contact_id)
 ); 
 
 
-CREATE TABLE participe (
+CREATE TABLE IF NOT EXISTS participe (
 	projet_id INT REFERENCES projet(id) ON DELETE CASCADE, 
-	contact_id VARCHAR(100) REFERENCES contact(email) ON DELETE CASCADE, 
+	contact_id INT REFERENCES contact(id) ON DELETE CASCADE, 
 	est_tuteur BOOLEAN NOT NULL, 
 	PRIMARY KEY(projet_id, contact_id)
 );

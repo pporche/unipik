@@ -28,19 +28,6 @@ class ArchitectureController extends Controller {
         return $this->render('ArchitectureBundle::accueilBenevole.html.twig', array('user' => $user));
     }
 
-    public function profileAction($id) {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('UserBundle:MyUser');
-
-        $user = $repository->find($id);
-
-        if($user === null) {
-            throw new NotFoundHttpException("User ".$id." not found.");
-        }
-
-        return $this->render('ArchitectureBundle:Benevole:profil.html.twig', array('user' => $user));
-    }
-
     public function plaidoyerAction() {
 
     }

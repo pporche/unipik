@@ -14,3 +14,4 @@
 !var/SymfonyRequirements.php
 /web/config.php
 /vendor/
+composer.lock

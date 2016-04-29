@@ -41,14 +41,9 @@ https://eclipse.org/downloads/
 
 Création du projet pic_unicef :
 
-1) Dans le menu "File/New/Project...", selectionner "Symfony Project"
+1) Dans le menu "File/import...", selectionner "PHP/Symfony Project"
 
-2) Remplir les champs :
-*Project name: ce que vous voulez
-*selectionner "Create project on a local server"
-*Target directory: choisir le chemin "/votreChemin/pic_unicef/developpement/implementation/symfony"
-*cocher "Custom hostname" et mettre "http://localhost"
-*selectionner "PHP 5.6"
-*selectionner "dev-master"
+2) Remplir le champ :
+*Source folder: /votreChemin/pic_unicef/developpement/implementation/symfony
 
-3) Cliquer sur "next" puis "Finish", le projet est maintenant créé
+3) Cliquer sur "Finish", le projet est maintenant créé

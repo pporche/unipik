@@ -69,17 +69,19 @@
                                 {{ block('contenu') }}
                             </dl>
                         </div>
-                        <div class="panel panel-default col-sm-offset-2 col-sm-4 col-xs-offset-0 col-xs-12">
-                            <div class="panel-body">
-                                <i>Il y aura la Map</i>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
+                        {#<div class="panel panel-default col-sm-offset-2 col-sm-4 col-xs-offset-0 col-xs-12">
+                         #}
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="row-fuild">
+                            {#<div class="panel-body">#}
+                                <iframe class="container span12"
+                                    {#width="425" height="350"#} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                        src="http://www.openstreetmap.org/export/embed.html?bbox=8.5628,50.0781,8.8217,50.1877&amp;layer=mapnik"
+                                        style="
+                                        border: 1px solid black;
+                                        height: 350px ;
+                                        padding: 0px;
+                                        "></iframe>
                             </div>
                         </div>
                     </div>

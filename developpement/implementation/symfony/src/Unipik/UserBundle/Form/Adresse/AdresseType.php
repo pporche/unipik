@@ -40,7 +40,7 @@ class AdresseType extends AbstractFieldsetType {
         parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
-            'data_class' => 'Unipik\UserBundle\Entity\Adresse',
+            'data_class' => 'Unipik\ArchitectureBundle\Entity\Adresse',
         ));
     }
 

@@ -1,4 +1,7 @@
 
+
+
+/*Correction hr dans un jumbotron*/
 .jumbotron  hr {
     border-top: 1px solid #666666;
 }
@@ -9,6 +12,7 @@
     margin: 5px;
 }
 
+/*Couleurs unicef*/
 .navbar-inverse {
     background-color: #09F; /*#2780e3*/
     border-color: #0083db; /*#1967be*/
@@ -113,3 +117,31 @@ fieldset[disabled] .navbar-inverse .btn-link:hover,
 fieldset[disabled] .navbar-inverse .btn-link:focus {
     color: #ffffff;
 }
+/*Fin couleurs unicef*/
+
+
+
+
+/*Navbar vertical*/
+.navbar-fixed-left {
+    width: 200px;
+    position: fixed;
+    border-radius: 0;
+    height: 100%;
+}
+
+.navbar-fixed-left .navbar-nav > li {
+    float: none;  /* Cancel default li float: left */
+    width: 199px;
+}
+
+.navbar-fixed-left + .container {
+    padding-left: 100px;
+}
+
+/* On using dropdown menu (To right shift popuped) */
+.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+    margin-top: -50px;
+    margin-left: 200px;
+}
+/*Fin navbar vertical*/

@@ -154,9 +154,11 @@ Le deuxième lotissement va couvrir les fondamentaux et la gestion des plaidoyer
 
 \section{Réalisations du premier semestre}
 \subsection{Lot 1 : l'architecture}
-
+Le premier lotissement correspond à l'architecture logicielle et matérielle du service demandé. Nous avons décidé de réaliser une architecture trois tiers composée d'un client, un serveur et une base de données. Le client représente les ordinateurs des bénévoles qui auront accès à l'interface du service et pourront l'utiliser sans se soucier de la logique métier et de la base données. Le serveur hébergera notre service et répondra aux requêtes des clients. Enfin la base de données sera séparée du serveur d'application afin de bien délimiter les différents cadres de développement. Nous avons également décidé de mettre en place le patron de conception Modèle-Vue-Contrôleur (MVC).\vspace{0.5cm}\\
+En ce qui concerne la base de données, le client nous a imposé de la développer en PostgreSQL. Elle doit également pouvoir utiliser des objets spatiaux via la technologie PostGIS. Nous avons aussi pris en considération la faible volumétrie de la base : au niveau de la Seine-Maritime ne sont dénombrés qu'une dizaine de plaideurs pour 1500 établissements et un taux de connexion qui ne dépassera pas les dix connexions par seconde.
 
 \subsection{Lot 2 : les plaidoyers}
+
 
 
 \subsection{Éléments non traités}

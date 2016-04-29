@@ -2,13 +2,3 @@ architecture_homepage:
     path:     /
     defaults: { _controller: ArchitectureBundle:Architecture:index }
 
-architecture_profile:
-    path:     /profil/{id}
-    defaults: { _controller: ArchitectureBundle:Architecture:profile }
-    requirements:
-            id: \d+
-
-archiecture_home_volunteer:
-    path: /
-    defaults:
-        _controller: ArchitectureBundle:Architecture:index

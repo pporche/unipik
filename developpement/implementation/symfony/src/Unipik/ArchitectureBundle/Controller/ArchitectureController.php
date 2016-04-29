@@ -28,10 +28,6 @@ class ArchitectureController extends Controller {
         return $this->render('ArchitectureBundle::accueilBenevole.html.twig', array('user' => $user));
     }
 
-    public function homeVolunteerAction() {
-
-    }
-
     public function profileAction($id) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('UserBundle:MyUser');

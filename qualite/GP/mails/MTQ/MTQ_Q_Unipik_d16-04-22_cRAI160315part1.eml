@@ -1,0 +1,115 @@
+Return-Path: <benjamin.coelho-de-matos@insa-rouen.fr>
+Delivered-To: pporche@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 599C12388D
+	for <pporche@insa-rouen.fr>; Fri, 22 Apr 2016 13:40:52 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DnAADvDBpXig8V3cNeHAGEa7UThnSGDgKBJEwBAQEBAQETAQEBChQJUEESAYNuAQEBAyNVEQsEARwWCwICCQMCAQIBDTgGDQYCAQGIKq1/kSwBAQEHAQEBARyKbIQgAQGDHYJWAQSINI9bF4owjQaFV48vgniBV2qDG4QngTUBAQE
+X-IPAS-Result: A0DnAADvDBpXig8V3cNeHAGEa7UThnSGDgKBJEwBAQEBAQETAQEBChQJUEESAYNuAQEBAyNVEQsEARwWCwICCQMCAQIBDTgGDQYCAQGIKq1/kSwBAQEHAQEBARyKbIQgAQGDHYJWAQSINI9bF4owjQaFV48vgniBV2qDG4QngTUBAQE
+X-IronPort-AV: E=Sophos;i="5.24,517,1454972400"; 
+   d="scan'208,217";a="88420426"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 22 Apr 2016 13:40:52 +0200
+Received: from [193.49.8.228] (darwin228.insa-rouen.fr [193.49.8.228])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id F37681076A
+	for <pierre.porche@insa-rouen.fr>; Fri, 22 Apr 2016 13:40:51 +0200 (CEST)
+Message-ID: <571A0DC3.9000808@insa-rouen.fr>
+Date: Fri, 22 Apr 2016 13:40:51 +0200
+From: Benjamin COELHO DE MATOS <benjamin.coelho-de-matos@insa-rouen.fr>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.0.1
+MIME-Version: 1.0
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+Subject: Re: Rapport d'audit interne du 15/03/2016
+References: <5719E67C.9000308@insa-rouen.fr>
+In-Reply-To: <5719E67C.9000308@insa-rouen.fr>
+Content-Type: multipart/alternative;
+ boundary="------------000405040409020905050402"
+
+This is a multi-part message in MIME format.
+--------------000405040409020905050402
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour Pierre,
+
+Peux tu me compléter le fichier en précisant la nature des actions?
+
+Merci
+
+Cordialement,
+*Benjamin Coelho de Matos*
+/Ingénieur de la Mission Qualité de l'INSA de ROUEN
+Tuteur Qualité pour les PIC ASI et MRIE
+INSA de Rouen, bureau DA AR 110
+685 Avenue de l'Université BP 08,
+76801 Saint Etienne du Rouvray Cedex
+/ Tel: (33).02.32.95.66.95
+mail: benjamin.coelho-de-matos@insa-rouen.fr
+Le 22/04/2016 10:53, Pierre Porche a écrit :
+> Bonjour,
+>
+> Suite à l'audit interne du 15/03/2016, je vous joins le rapport rempli 
+> ainsi qu'un fichier pdf qui résume, pour chaque remarque, les numéros 
+> de FT et d'OC ainsi que les actions mises en place.
+>
+> Bien respectueusement,
+>
+>
+> Pierre Porche
+> Responsable Qualité
+> PIC ASI UNICEF
+
+
+--------------000405040409020905050402
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">Bonjour Pierre,<br>
+      <br>
+      Peux tu me compléter le fichier en précisant la nature des
+      actions?<br>
+      <br>
+      Merci<br>
+      <br>
+      Cordialement,<br>
+      <div class="moz-signature"><b>Benjamin Coelho de Matos</b><br>
+        <i>Ingénieur de la Mission Qualité de l'INSA de ROUEN<br>
+          Tuteur Qualité pour les PIC ASI et MRIE<br>
+          INSA de Rouen, bureau DA AR 110<br>
+          685 Avenue de l'Université BP 08,<br>
+          76801 Saint Etienne du Rouvray Cedex<br>
+        </i>
+        Tel: (33).02.32.95.66.95<br>
+        mail: <a class="moz-txt-link-abbreviated" href="mailto:benjamin.coelho-de-matos@insa-rouen.fr">benjamin.coelho-de-matos@insa-rouen.fr</a>
+      </div>
+      Le 22/04/2016 10:53, Pierre Porche a écrit :<br>
+    </div>
+    <blockquote cite="mid:5719E67C.9000308@insa-rouen.fr" type="cite">Bonjour,
+      <br>
+      <br>
+      Suite à l'audit interne du 15/03/2016, je vous joins le rapport
+      rempli ainsi qu'un fichier pdf qui résume, pour chaque remarque,
+      les numéros de FT et d'OC ainsi que les actions mises en place.
+      <br>
+      <br>
+      Bien respectueusement,
+      <br>
+      <br>
+      <br>
+      Pierre Porche
+      <br>
+      Responsable Qualité
+      <br>
+      PIC ASI UNICEF
+      <br>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------000405040409020905050402--

@@ -11,7 +11,7 @@
 /*Couleurs unicef*/
 .navbar-inverse {
     background-color: #09F; /*#2780e3*/
-    border-color: #0083db; /*#1967be*/
+    border-color: #0099ff; /*#1967be*/
 
 }
 
@@ -32,13 +32,13 @@
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
     color: #ffffff;
-    background-color:  #0083db; /*#1967be*/
+    background-color:  #0099ff; /*#1967be*/
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
     color: #ffffff;
-    background-color:  #0083db; /*#1967be*/
+    background-color:  #0099ff; /*#1967be*/
 }
 .navbar-inverse .navbar-nav > .disabled > a,
 .navbar-inverse .navbar-nav > .disabled > a:hover,
@@ -51,7 +51,7 @@
 }
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-    background-color  #0083db; /*#1967be*/
+    background-color  #0099ff; /*#1967be*/
 }
 .navbar-inverse .navbar-toggle .icon-bar {
     background-color: #ffffff;
@@ -63,15 +63,15 @@
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
-    background-color:  #0083db; /*#1967be*/
+    background-color:  #0099ff; /*#1967be*/
     color: #ffffff;
 }
 @media (max-width: 767px) {
     .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
-        border-color:  #0083db; /*#1967be*/
+        border-color:  #0099ff; /*#1967be*/
     }
     .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
-        background-color:  #0083db; /*#1967be*/
+        background-color:  #0099ff; /*#1967be*/
     }
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
         color: #ffffff;
@@ -79,13 +79,13 @@
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
         color: #ffffff;
-        background-color:  #0083db; /*#1967be*/
+        background-color:  #0099ff; /*#1967be*/
     }
     .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
     .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
     .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
         color: #ffffff;
-        background-color:  #0083db; /*#1967be*/
+        background-color:  #0099ff; /*#1967be*/
     }
     .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,
     .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,

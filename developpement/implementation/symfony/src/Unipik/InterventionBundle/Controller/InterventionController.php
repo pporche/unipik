@@ -54,8 +54,14 @@ class InterventionController extends Controller {
 
     }
 
-    public function listViewAction() {
+    public function listPlaidoyersViewAction() {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('ArchitectureBundle:Intervention');
+        $listPlaidoyers = $repository->findby(array('type' => 'plaidoyer'));
 
+        return $this->render('InterventionBundle:liste.html.twig', array(
+            'listPlaidoyers' => $listPlaidoyers
+        ));
     }
 
     public function locationAction() {

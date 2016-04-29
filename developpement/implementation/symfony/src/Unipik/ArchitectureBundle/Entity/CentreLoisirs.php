@@ -1,25 +1,25 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use CoreBundle\DBAL\Types\CentreType;
-use CoreBundle\Entity\Etablissement;
+use Unipik\ArchitectureBundle\DBAL\Types\CentreType;
+use Unipik\ArchitectureBundle\Entity\Etablissement;
 
 /**
  * CentreLoisirs
  *
  * @ORM\Table(name="centre_loisirs")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\CentreLoisirsRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\CentreLoisirsRepository")
  */
 class CentreLoisirs extends Etablissement {
-    
+
      /**
      * Note, that type of a field should be same as you set in Doctrine config
      *
      * @ORM\Column(name="type_centre", type="CentreType", nullable=false)
-     * @DoctrineAssert\Enum(entity="CoreBundle\DBAL\Types\CentreType")     
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\CentreType")
      */
     private $_typeCentre;
 
@@ -83,11 +83,11 @@ class CentreLoisirs extends Etablissement {
     /**
      * Add contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      *
      * @return CentreLoisirs
      */
-    public function addContact(\CoreBundle\Entity\Contact $contact) {
+    public function addContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->contacts[] = $contact;
         return $this;
     }
@@ -95,9 +95,9 @@ class CentreLoisirs extends Etablissement {
     /**
      * Remove contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      */
-    public function removeContact(\CoreBundle\Entity\Contact $contact) {
+    public function removeContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->contacts->removeElement($contact);
     }
 
@@ -113,11 +113,11 @@ class CentreLoisirs extends Etablissement {
     /**
      * Set adresse
      *
-     * @param \CoreBundle\Entity\Adresse $adresse
+     * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse
      *
      * @return CentreLoisirs
      */
-    public function setAdresse(\CoreBundle\Entity\Adresse $adresse) {
+    public function setAdresse(\Unipik\ArchitectureBundle\Entity\Adresse $adresse) {
         $this->adresse = $adresse;
 
         return $this;

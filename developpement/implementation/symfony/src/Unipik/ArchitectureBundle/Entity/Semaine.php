@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Semaine
  *
  * @ORM\Table(name="semaine")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\SemaineRepository")
- * 
- * 
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\SemaineRepository")
+ *
+ *
  */
 class Semaine {
     /**
@@ -18,7 +18,7 @@ class Semaine {
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * 
+     *
      */
     private $_id;
 

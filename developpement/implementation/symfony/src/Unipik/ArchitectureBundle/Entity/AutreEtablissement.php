@@ -1,26 +1,26 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use CoreBundle\Entity\Etablissement;
-use CoreBundle\Entity\Vente;
+use Unipik\ArchitectureBundle\Entity\Etablissement;
+use Unipik\ArchitectureBundle\Entity\Vente;
 
 /**
  * AutreEtablissement
  *
  * @ORM\Table(name="autre_etablissement")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\CentreLoisirsRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\CentreLoisirsRepository")
  */
 class AutreEtablissement extends Etablissement {
-    
+
     /**
      * Note, that type of a field should be same as you set in Doctrine config
      *
      * @ORM\Column(name="type_autre_etablissement", type="AutreEtablissementType", nullable=false)
-     * @DoctrineAssert\Enum(entity="CoreBundle\DBAL\Types\AutreEtablissementType") 
-     * 
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\AutreEtablissementType")
+     *
      */
     private $_typeAutreEtablissement;
 
@@ -73,11 +73,11 @@ class AutreEtablissement extends Etablissement {
     /**
      * Add adresse
      *
-     * @param \CoreBundle\Entity\Adresse $adresse
+     * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse
      *
      * @return AutreEtablissement
      */
-    public function addAdresse(\CoreBundle\Entity\Adresse $adresse) {
+    public function addAdresse(\Unipik\ArchitectureBundle\Entity\Adresse $adresse) {
         $this->adresse[] = $adresse;
 
         return $this;
@@ -86,11 +86,11 @@ class AutreEtablissement extends Etablissement {
     /**
      * Add contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      *
      * @return AutreEtablissement
      */
-    public function addContact(\CoreBundle\Entity\Contact $contact) {
+    public function addContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->contacts[] = $contact;
 
         return $this;
@@ -99,9 +99,9 @@ class AutreEtablissement extends Etablissement {
     /**
      * Remove contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      */
-    public function removeContact(\CoreBundle\Entity\Contact $contact) {
+    public function removeContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->contacts->removeElement($contact);
     }
 
@@ -117,11 +117,11 @@ class AutreEtablissement extends Etablissement {
     /**
      * Set adresse
      *
-     * @param \CoreBundle\Entity\Adresse $adresse
+     * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse
      *
      * @return AutreEtablissement
      */
-    public function setAdresse(\CoreBundle\Entity\Adresse $adresse) {
+    public function setAdresse(\Unipik\ArchitectureBundle\Entity\Adresse $adresse) {
         $this->adresse = $adresse;
 
         return $this;

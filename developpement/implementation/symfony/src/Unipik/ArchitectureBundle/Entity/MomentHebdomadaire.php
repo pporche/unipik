@@ -1,17 +1,17 @@
-<?php 
+<?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use CoreBundle\DBAL\Types\JourType;
-use CoreBundle\DBAL\Types\MomentQuotidienType;
+use Unipik\ArchitectureBundle\DBAL\Types\JourType;
+use Unipik\ArchitectureBundle\DBAL\Types\MomentQuotidienType;
 
 /**
  * MomentHebdomadaire
  *
  * @ORM\Table(name="moment_hebdomadaire")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\MomentHebdomadaireRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\MomentHebdomadaireRepository")
  */
 class MomentHebdomadaire {
 
@@ -23,18 +23,18 @@ class MomentHebdomadaire {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $_id;
-    
+
      /**
      *
      * @ORM\Column(name="jour", type="JourType", nullable=false)
-     * @DoctrineAssert\Enum(entity="CoreBundle\DBAL\Types\JourType")     
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\JourType")
      */
     private $_jour;
-    
+
     /**
      *
      * @ORM\Column(name="moment", type="MomentQuotidienType", nullable=false)
-     * @DoctrineAssert\Enum(entity="CoreBundle\DBAL\Types\MomentQuotidienType")     
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\MomentQuotidienType")
      */
     private $_moment;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Region
  *
  * @ORM\Table(name="region")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\RegionRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\RegionRepository")
  */
 class Region {
 
@@ -21,7 +21,7 @@ class Region {
     private $_nom;
 
    /**
-    * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Pays")
+    * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Pays")
     * @ORM\JoinColumn(nullable=false)
     */
    private $_pays;
@@ -51,11 +51,11 @@ class Region {
     /**
      * Set pays
      *
-     * @param \CoreBundle\Entity\Pays $pays
+     * @param \Unipik\ArchitectureBundle\Entity\Pays $pays
      *
      * @return Region
      */
-    public function setPays(\CoreBundle\Entity\Pays $pays) {
+    public function setPays(\Unipik\ArchitectureBundle\Entity\Pays $pays) {
         $this->_pays = $pays;
 
         return $this;
@@ -64,7 +64,7 @@ class Region {
     /**
      * Get pays
      *
-     * @return \CoreBundle\Entity\Pays
+     * @return \Unipik\ArchitectureBundle\Entity\Pays
      */
     public function getPays() {
         return $this->_pays;

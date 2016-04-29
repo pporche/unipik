@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Projet
  *
  * @ORM\Table(name="projet")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\ProjetRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\ProjetRepository")
  */
 class Projet {
 
@@ -50,15 +50,15 @@ class Projet {
     private $_nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\Benevole", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Benevole", cascade={"persist"})
      */
     private $_benevoles;
 
     /**
-     * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\Contact", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Contact", cascade={"persist"})
      */
     private $_contacts;
-  
+
     /**
      * Get id
      *
@@ -67,7 +67,7 @@ class Projet {
     public function getId() {
         return $this->_id;
     }
-    
+
     /**
      * Set chiffreDaffaire
      *
@@ -167,11 +167,11 @@ class Projet {
     /**
      * Add benevole
      *
-     * @param \CoreBundle\Entity\Benevole $benevole
+     * @param \Unipik\ArchitectureBundle\Entity\Benevole $benevole
      *
      * @return Projet
      */
-    public function addBenevole(\CoreBundle\Entity\Benevole $benevole) {
+    public function addBenevole(\Unipik\ArchitectureBundle\Entity\Benevole $benevole) {
         $this->_benevoles[] = $benevole;
 
         return $this;
@@ -180,9 +180,9 @@ class Projet {
     /**
      * Remove benevole
      *
-     * @param \CoreBundle\Entity\Benevole $benevole
+     * @param \Unipik\ArchitectureBundle\Entity\Benevole $benevole
      */
-    public function removeBenevole(\CoreBundle\Entity\Benevole $benevole) {
+    public function removeBenevole(\Unipik\ArchitectureBundle\Entity\Benevole $benevole) {
         $this->_benevoles->removeElement($benevole);
     }
 
@@ -198,11 +198,11 @@ class Projet {
     /**
      * Add contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      *
      * @return Projet
      */
-    public function addContact(\CoreBundle\Entity\Contact $contact) {
+    public function addContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->_contacts[] = $contact;
 
         return $this;
@@ -211,9 +211,9 @@ class Projet {
     /**
      * Remove contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      */
-    public function removeContact(\CoreBundle\Entity\Contact $contact) {
+    public function removeContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->_contacts->removeElement($contact);
     }
 

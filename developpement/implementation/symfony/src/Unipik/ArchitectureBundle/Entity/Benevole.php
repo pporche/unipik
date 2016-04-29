@@ -1,10 +1,10 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use CoreBundle\Entity\Activite;
-use CoreBundle\Entity\Personne;
+use Unipik\ArchitectureBundle\Entity\Activite;
+use Unipik\ArchitectureBundle\Entity\Personne;
 
 /**
  * Benevole
@@ -12,36 +12,36 @@ use CoreBundle\Entity\Personne;
  * @ORM\Table(name="benevole")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="statut", type="string")
- * @ORM\DiscriminatorMap({"admregion" = "AdminRegion","admcomite"="AdminComite","admactivite"="AdminActivite","benevole"="Benevole"}) 
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\BenevoleRepository")
+ * @ORM\DiscriminatorMap({"admregion" = "AdminRegion","admcomite"="AdminComite","admactivite"="AdminActivite","benevole"="Benevole"})
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\BenevoleRepository")
  */
 class Benevole extends Personne {
 
      /**
-     * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Adresse", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Adresse", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     protected $adresse;
-    
+
     /**
-     * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\Activite", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Activite", cascade={"persist"})
      *
      */
     protected $activitesPotentielles;
-    
+
     /**
-     * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\Comite")
-     * 
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Comite")
+     *
      */
     protected $comite;
-    
+
     /**
      * @var string $mdp
      *
      * @ORM\Column(name="mdp", type="string", length=50, nullable=false)
      */
     protected $mdp;
-    
+
      /**
      * Constructor
      */
@@ -134,7 +134,7 @@ class Benevole extends Personne {
     /**
      * Get comite
      *
-     * @return \CoreBundle\Entity\Comite
+     * @return \Unipik\ArchitectureBundle\Entity\Comite
      */
     public function getComite() {
         return $this->comite;
@@ -143,11 +143,11 @@ class Benevole extends Personne {
     /**
      * Add activitesPotentielle
      *
-     * @param \CoreBundle\Entity\Activite $activitesPotentielle
+     * @param \Unipik\ArchitectureBundle\Entity\Activite $activitesPotentielle
      *
      * @return Benevole
      */
-    public function addActivitesPotentielle(\CoreBundle\Entity\Activite $activitesPotentielle) {
+    public function addActivitesPotentielle(\Unipik\ArchitectureBundle\Entity\Activite $activitesPotentielle) {
         $this->activitesPotentielles[] = $activitesPotentielle;
         return $this;
     }
@@ -155,9 +155,9 @@ class Benevole extends Personne {
     /**
      * Remove activitesPotentielle
      *
-     * @param \CoreBundle\Entity\Activite $activitesPotentielle
+     * @param \Unipik\ArchitectureBundle\Entity\Activite $activitesPotentielle
      */
-    public function removeActivitesPotentielle(\CoreBundle\Entity\Activite $activitesPotentielle) {
+    public function removeActivitesPotentielle(\Unipik\ArchitectureBundle\Entity\Activite $activitesPotentielle) {
         $this->activitesPotentielles->removeElement($activitesPotentielle);
     }
 
@@ -173,11 +173,11 @@ class Benevole extends Personne {
     /**
      * Set adresse
      *
-     * @param \CoreBundle\Entity\Adresse $adresse
+     * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse
      *
      * @return Benevole
      */
-    public function setAdresse(\CoreBundle\Entity\Adresse $adresse) {
+    public function setAdresse(\Unipik\ArchitectureBundle\Entity\Adresse $adresse) {
         $this->adresse = $adresse;
 
         return $this;
@@ -186,7 +186,7 @@ class Benevole extends Personne {
     /**
      * Get adresse
      *
-     * @return \CoreBundle\Entity\Adresse
+     * @return \Unipik\ArchitectureBundle\Entity\Adresse
      */
     public function getAdresse() {
         return $this->adresse;
@@ -195,11 +195,11 @@ class Benevole extends Personne {
     /**
      * Add comite
      *
-     * @param \CoreBundle\Entity\Comite $comite
+     * @param \Unipik\ArchitectureBundle\Entity\Comite $comite
      *
      * @return Benevole
      */
-    public function addComite(\CoreBundle\Entity\Comite $comite) {
+    public function addComite(\Unipik\ArchitectureBundle\Entity\Comite $comite) {
         $this->comite[] = $comite;
 
         return $this;
@@ -208,11 +208,11 @@ class Benevole extends Personne {
     /**
      * Remove comite
      *
-     * @param \CoreBundle\Entity\Comite $comite
+     * @param \Unipik\ArchitectureBundle\Entity\Comite $comite
      */
-    public function removeComite(\CoreBundle\Entity\Comite $comite) {
+    public function removeComite(\Unipik\ArchitectureBundle\Entity\Comite $comite) {
         $this->comite->removeElement($comite);
     }
-   
+
 
 }

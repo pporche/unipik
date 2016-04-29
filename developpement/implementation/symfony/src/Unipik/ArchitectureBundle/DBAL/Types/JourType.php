@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace CoreBundle\DBAL\Types;
+namespace Unipik\ArchitectureBundle\DBAL\Types;
 
 use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
 

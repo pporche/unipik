@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Demande
  *
  * @ORM\Table(name="demande")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\DemandeRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\DemandeRepository")
  */
 class Demande {
 
@@ -29,26 +29,26 @@ class Demande {
     private $_date;
 
     /**
-    * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Contact")
+    * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Contact")
     * @ORM\JoinColumn(nullable=false)
     */
     private $_contact;
 
     /**
-    * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\MomentHebdomadaire", cascade={"persist"})
+    * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", cascade={"persist"})
     * @ORM\JoinTable(name="demande_moments_voulus")
     */
     private $_momentsVoulus;
 
     /**
-    * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\MomentHebdomadaire", cascade={"persist"})
+    * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", cascade={"persist"})
     *@ORM\JoinTable(name="demande_moments_a_eviter")
     */
     private $_mommentsAEviter;
 
-	
+
      /**
-    * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\Semaine", cascade={"persist"})
+    * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Semaine", cascade={"persist"})
     *
     */
     private $_listesemaine;
@@ -95,11 +95,11 @@ class Demande {
     /**
      * Set contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      *
      * @return Demande
      */
-    public function setContact(\CoreBundle\Entity\Contact $contact) {
+    public function setContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->_contact = $contact;
         return $this;
     }
@@ -107,7 +107,7 @@ class Demande {
     /**
      * Get contact
      *
-     * @return \CoreBundle\Entity\Contact
+     * @return \Unipik\ArchitectureBundle\Entity\Contact
      */
     public function getContact() {
         return $this->_contact;
@@ -116,11 +116,11 @@ class Demande {
     /**
      * Add momentsVoulus
      *
-     * @param \CoreBundle\Entity\MomentHebdomadaire $momentsVoulus
+     * @param \Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus
      *
      * @return Demande
      */
-    public function addMomentsVoulus(\CoreBundle\Entity\MomentHebdomadaire $momentsVoulus) {
+    public function addMomentsVoulus(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus) {
         $this->_momentsVoulus[] = $momentsVoulus;
         return $this;
     }
@@ -128,9 +128,9 @@ class Demande {
     /**
      * Remove momentsVoulus
      *
-     * @param \CoreBundle\Entity\MomentHebdomadaire $momentsVoulus
+     * @param \Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus
      */
-    public function removeMomentsVoulus(\CoreBundle\Entity\MomentHebdomadaire $momentsVoulus) {
+    public function removeMomentsVoulus(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus) {
         $this->_momentsVoulus->removeElement($momentsVoulus);
     }
 
@@ -146,11 +146,11 @@ class Demande {
     /**
      * Add mommentsAEviter
      *
-     * @param \CoreBundle\Entity\MomentHebdomadaire $mommentsAEviter
+     * @param \Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $mommentsAEviter
      *
      * @return Demande
      */
-    public function addMommentsAEviter(\CoreBundle\Entity\MomentHebdomadaire $mommentsAEviter) {
+    public function addMommentsAEviter(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $mommentsAEviter) {
         $this->_mommentsAEviter[] = $mommentsAEviter;
         return $this;
     }
@@ -158,9 +158,9 @@ class Demande {
     /**
      * Remove mommentsAEviter
      *
-     * @param \CoreBundle\Entity\MomentHebdomadaire $mommentsAEviter
+     * @param \Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $mommentsAEviter
      */
-    public function removeMommentsAEviter(\CoreBundle\Entity\MomentHebdomadaire $mommentsAEviter) {
+    public function removeMommentsAEviter(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $mommentsAEviter) {
         $this->_mommentsAEviter->removeElement($mommentsAEviter);
     }
 
@@ -176,11 +176,11 @@ class Demande {
     /**
      * Add listesemaine
      *
-     * @param \CoreBundle\Entity\Semaine $listesemaine
+     * @param \Unipik\ArchitectureBundle\Entity\Semaine $listesemaine
      *
      * @return Demande
      */
-    public function addListesemaine(\CoreBundle\Entity\Semaine $listesemaine) {
+    public function addListesemaine(\Unipik\ArchitectureBundle\Entity\Semaine $listesemaine) {
         $this->_listesemaine[] = $listesemaine;
 
         return $this;
@@ -189,9 +189,9 @@ class Demande {
     /**
      * Remove listesemaine
      *
-     * @param \CoreBundle\Entity\Semaine $listesemaine
+     * @param \Unipik\ArchitectureBundle\Entity\Semaine $listesemaine
      */
-    public function removeListesemaine(\CoreBundle\Entity\Semaine $listesemaine) {
+    public function removeListesemaine(\Unipik\ArchitectureBundle\Entity\Semaine $listesemaine) {
         $this->_listesemaine->removeElement($listesemaine);
     }
 

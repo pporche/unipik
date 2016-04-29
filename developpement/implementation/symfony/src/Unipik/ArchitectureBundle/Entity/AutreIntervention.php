@@ -1,20 +1,20 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use CoreBundle\DBAL\Types\ActiviteType;
-use CoreBundle\Entity\Intervention;
+use Unipik\ArchitectureBundle\DBAL\Types\ActiviteType;
+use Unipik\ArchitectureBundle\Entity\Intervention;
 
 /**
  * AutreIntervention
  *
  * @ORM\Table(name="autre_intervention")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\AutreInterventionRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\AutreInterventionRepository")
  */
 class AutreIntervention extends Intervention {
-    
+
     /**
      * @var text $description
      *
@@ -48,11 +48,11 @@ class AutreIntervention extends Intervention {
     /**
      * Set demande
      *
-     * @param \CoreBundle\Entity\Demande $demande
+     * @param \Unipik\ArchitectureBundle\Entity\Demande $demande
      *
      * @return AutreIntervention
      */
-    public function setDemande(\CoreBundle\Entity\Demande $demande) {
+    public function setDemande(\Unipik\ArchitectureBundle\Entity\Demande $demande) {
         $this->demande = $demande;
 
         return $this;
@@ -127,11 +127,11 @@ class AutreIntervention extends Intervention {
     /**
      * Set vente
      *
-     * @param \CoreBundle\Entity\Vente $vente
+     * @param \Unipik\ArchitectureBundle\Entity\Vente $vente
      *
      * @return AutreIntervention
      */
-    public function setVente(\CoreBundle\Entity\Vente $vente) {
+    public function setVente(\Unipik\ArchitectureBundle\Entity\Vente $vente) {
         $this->vente = $vente;
 
         return $this;
@@ -140,7 +140,7 @@ class AutreIntervention extends Intervention {
     /**
      * Get vente
      *
-     * @return \CoreBundle\Entity\Vente
+     * @return \Unipik\ArchitectureBundle\Entity\Vente
      */
     public function getVente() {
         return $this->vente;
@@ -149,11 +149,11 @@ class AutreIntervention extends Intervention {
     /**
      * Set benevole
      *
-     * @param \CoreBundle\Entity\Benevole $benevole
+     * @param \Unipik\ArchitectureBundle\Entity\Benevole $benevole
      *
      * @return AutreIntervention
      */
-    public function setBenevole(\CoreBundle\Entity\Benevole $benevole = null) {
+    public function setBenevole(\Unipik\ArchitectureBundle\Entity\Benevole $benevole = null) {
         $this->benevole = $benevole;
 
         return $this;
@@ -162,11 +162,11 @@ class AutreIntervention extends Intervention {
     /**
      * Set comite
      *
-     * @param \CoreBundle\Entity\Comite $comite
+     * @param \Unipik\ArchitectureBundle\Entity\Comite $comite
      *
      * @return AutreIntervention
      */
-    public function setComite(\CoreBundle\Entity\Comite $comite) {
+    public function setComite(\Unipik\ArchitectureBundle\Entity\Comite $comite) {
         $this->comite = $comite;
 
         return $this;
@@ -175,11 +175,11 @@ class AutreIntervention extends Intervention {
     /**
      * Set etablissement
      *
-     * @param \CoreBundle\Entity\Etablissement $etablissement
+     * @param \Unipik\ArchitectureBundle\Entity\Etablissement $etablissement
      *
      * @return AutreIntervention
      */
-    public function setEtablissement(\CoreBundle\Entity\Etablissement $etablissement) {
+    public function setEtablissement(\Unipik\ArchitectureBundle\Entity\Etablissement $etablissement) {
         $this->etablissement = $etablissement;
 
         return $this;

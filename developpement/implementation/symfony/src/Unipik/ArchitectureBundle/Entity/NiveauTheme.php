@@ -1,17 +1,17 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use CoreBundle\DBAL\Types\NiveauScolaireCompletType;
-use CoreBundle\DBAL\Types\ThemeType;
+use Unipik\ArchitectureBundle\DBAL\Types\NiveauScolaireCompletType;
+use Unipik\ArchitectureBundle\DBAL\Types\ThemeType;
 
 /**
  * NiveauTheme
  *
  * @ORM\Table(name="niveau_theme")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\NiveauThemeRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\NiveauThemeRepository")
  */
 class NiveauTheme {
 
@@ -23,18 +23,18 @@ class NiveauTheme {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $_id;
-    
+
      /**
      *
      * @ORM\Column(name="niveau", type="NiveauScolaireCompletType", nullable=false)
-     * @DoctrineAssert\Enum(entity="CoreBundle\DBAL\Types\NiveauScolaireCompletType")     
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\NiveauScolaireCompletType")
      */
     private $_niveau;
-    
+
     /**
      *
      * @ORM\Column(name="theme", type="ThemeType", nullable=false)
-     * @DoctrineAssert\Enum(entity="CoreBundle\DBAL\Types\ThemeType")     
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\ThemeType")
      */
     private $_theme;
 

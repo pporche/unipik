@@ -1,25 +1,25 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use CoreBundle\DBAL\Types\EnseignementType;
-use CoreBundle\Entity\Etablissement;
+use Unipik\ArchitectureBundle\DBAL\Types\EnseignementType;
+use Unipik\ArchitectureBundle\Entity\Etablissement;
 
 /**
  * Enseignement
  *
  * @ORM\Table(name="enseignement")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\BenevoleRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\BenevoleRepository")
  */
 class Enseignement extends Etablissement {
-    
+
      /**
      * Note, that type of a field should be same as you set in Doctrine config
      *
      * @ORM\Column(name="type_enseignement", type="EnseignementType",nullable=false)
-     * @DoctrineAssert\Enum(entity="CoreBundle\DBAL\Types\EnseignementType")     
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\EnseignementType")
      */
     private $_typeEnseignement;
 
@@ -43,7 +43,7 @@ class Enseignement extends Etablissement {
     public function getTypeEnseignement() {
         return $this->_typeEnseignement;
     }
- 
+
     /**
      * Set nom
      *
@@ -83,11 +83,11 @@ class Enseignement extends Etablissement {
     /**
      * Add adresse
      *
-     * @param \CoreBundle\Entity\Adresse $adresse
+     * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse
      *
      * @return Enseignement
      */
-    public function addAdresse(\CoreBundle\Entity\Adresse $adresse) {
+    public function addAdresse(\Unipik\ArchitectureBundle\Entity\Adresse $adresse) {
         $this->adresse[] = $adresse;
         return $this;
     }
@@ -95,11 +95,11 @@ class Enseignement extends Etablissement {
     /**
      * Add contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      *
      * @return Enseignement
      */
-    public function addContact(\CoreBundle\Entity\Contact $contact) {
+    public function addContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->contacts[] = $contact;
         return $this;
     }
@@ -107,9 +107,9 @@ class Enseignement extends Etablissement {
     /**
      * Remove contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      */
-    public function removeContact(\CoreBundle\Entity\Contact $contact) {
+    public function removeContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->contacts->removeElement($contact);
     }
 
@@ -125,11 +125,11 @@ class Enseignement extends Etablissement {
     /**
      * Set adresse
      *
-     * @param \CoreBundle\Entity\Adresse $adresse
+     * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse
      *
      * @return Enseignement
      */
-    public function setAdresse(\CoreBundle\Entity\Adresse $adresse) {
+    public function setAdresse(\Unipik\ArchitectureBundle\Entity\Adresse $adresse) {
         $this->adresse = $adresse;
 
         return $this;

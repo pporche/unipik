@@ -1,15 +1,15 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use CoreBundle\DBAL\Types\ActiviteType;
+use Unipik\ArchitectureBundle\DBAL\Types\ActiviteType;
 
 /**
  * Appartient
  *
  * @ORM\Table(name="appartient")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\AppartientRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\AppartientRepository")
  */
 class Appartient {
 
@@ -31,22 +31,22 @@ class Appartient {
 
 
     /**
-    * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Etablissement")
+    * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Etablissement")
     * @ORM\JoinColumn(nullable=false)
     */
     private $_etablissement;
 
 
     /**
-    * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Contact")
+    * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Contact")
     * @ORM\JoinColumn(nullable=false)
     */
 
     private $_contact;
 
      /**
-     * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\Activite", cascade={"persist"})
-     * 
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Activite", cascade={"persist"})
+     *
      */
     private $_typeActivite;
 
@@ -91,11 +91,11 @@ class Appartient {
     /**
      * Set etablissement
      *
-     * @param \CoreBundle\Entity\Etablissement $etablissement
+     * @param \Unipik\ArchitectureBundle\Entity\Etablissement $etablissement
      *
      * @return Appartient
      */
-    public function setEtablissement(\CoreBundle\Entity\Etablissement $etablissement) {
+    public function setEtablissement(\Unipik\ArchitectureBundle\Entity\Etablissement $etablissement) {
         $this->_etablissement = $etablissement;
 
         return $this;
@@ -104,7 +104,7 @@ class Appartient {
     /**
      * Get etablissement
      *
-     * @return \CoreBundle\Entity\Etablissement
+     * @return \Unipik\ArchitectureBundle\Entity\Etablissement
      */
     public function getEtablissement() {
         return $this->etablissement;
@@ -113,11 +113,11 @@ class Appartient {
     /**
      * Set contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      *
      * @return Appartient
      */
-    public function setContact(\CoreBundle\Entity\Contact $contact) {
+    public function setContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->_contact = $contact;
 
         return $this;
@@ -126,7 +126,7 @@ class Appartient {
     /**
      * Get contact
      *
-     * @return \CoreBundle\Entity\Contact
+     * @return \Unipik\ArchitectureBundle\Entity\Contact
      */
     public function getContact() {
         return $this->_contact;
@@ -135,11 +135,11 @@ class Appartient {
     /**
      * Add typeActivite
      *
-     * @param \CoreBundle\DBAL\Types\ActiviteType $typeActivite
+     * @param \Unipik\ArchitectureBundle\DBAL\Types\ActiviteType $typeActivite
      *
      * @return Appartient
      */
-    public function addTypeActivite(\CoreBundle\DBAL\Types\ActiviteType $typeActivite) {
+    public function addTypeActivite(\Unipik\ArchitectureBundle\DBAL\Types\ActiviteType $typeActivite) {
         $this->_typeActivite[] = $typeActivite;
 
         return $this;
@@ -148,9 +148,9 @@ class Appartient {
     /**
      * Remove typeActivite
      *
-     * @param \CoreBundle\DBAL\Types\ActiviteType $typeActivite
+     * @param \Unipik\ArchitectureBundle\DBAL\Types\ActiviteType $typeActivite
      */
-    public function removeTypeActivite(\CoreBundle\DBAL\Types\ActiviteType $typeActivite) {
+    public function removeTypeActivite(\Unipik\ArchitectureBundle\DBAL\Types\ActiviteType $typeActivite) {
         $this->_typeActivite->removeElement($typeActivite);
     }
 
@@ -162,5 +162,5 @@ class Appartient {
     public function getTypeActivite() {
         return $this->_typeActivite;
     }
-    
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Vente
  *
  * @ORM\Table(name="vente")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\VenteRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\VenteRepository")
  */
 class Vente {
 
@@ -43,13 +43,13 @@ class Vente {
     private $_remarques;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Etablissement")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Etablissement")
      * @ORM\JoinColumn(nullable=false)
      */
      private $_etablissement;
 
      /**
-     * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Intervention")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Intervention")
      * @ORM\JoinColumn(nullable=true)
      */
      private $_intervention;
@@ -132,11 +132,11 @@ class Vente {
     /**
      * Set etablissement
      *
-     * @param \CoreBundle\Entity\Etablissement $etablissement
+     * @param \Unipik\ArchitectureBundle\Entity\Etablissement $etablissement
      *
      * @return Vente
      */
-    public function setEtablissement(\CoreBundle\Entity\Etablissement $etablissement) {
+    public function setEtablissement(\Unipik\ArchitectureBundle\Entity\Etablissement $etablissement) {
         $this->_etablissement = $etablissement;
 
         return $this;
@@ -145,7 +145,7 @@ class Vente {
     /**
      * Get etablissement
      *
-     * @return \CoreBundle\Entity\Etablissement
+     * @return \Unipik\ArchitectureBundle\Entity\Etablissement
      */
     public function getEtablissement() {
         return $this->_etablissement;
@@ -154,11 +154,11 @@ class Vente {
     /**
      * Set intervention
      *
-     * @param \CoreBundle\Entity\Intervention $intervention
+     * @param \Unipik\ArchitectureBundle\Entity\Intervention $intervention
      *
      * @return Vente
      */
-    public function setIntervention(\CoreBundle\Entity\Intervention $intervention = null) {
+    public function setIntervention(\Unipik\ArchitectureBundle\Entity\Intervention $intervention = null) {
         $this->_intervention = $intervention;
 
         return $this;
@@ -167,7 +167,7 @@ class Vente {
     /**
      * Get intervention
      *
-     * @return \CoreBundle\Entity\Intervention
+     * @return \Unipik\ArchitectureBundle\Entity\Intervention
      */
     public function getIntervention() {
         return $this->_intervention;

@@ -1,17 +1,17 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use CoreBundle\DBAL\Types\ContactType;
-use CoreBundle\Entity\Personne;
+use Unipik\ArchitectureBundle\DBAL\Types\ContactType;
+use Unipik\ArchitectureBundle\Entity\Personne;
 
 /**
  * Contact
  *
  * @ORM\Table(name="contact")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\ContactRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\ContactRepository")
  */
 class Contact extends Personne {
 
@@ -19,10 +19,10 @@ class Contact extends Personne {
      * Note, that type of a field should be same as you set in Doctrine config
      *
      * @ORM\Column(name="type_contact", type="ContactType", nullable=false)
-     * @DoctrineAssert\Enum(entity="CoreBundle\DBAL\Types\ContactType")     
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\ContactType")
      */
     private $_typeContact;
-   
+
     /**
      * Set typeContact
      *

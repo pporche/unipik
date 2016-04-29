@@ -5,6 +5,7 @@ namespace Unipik\InterventionBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Unipik\InterventionBundle\Form\DemandeInterventionType;
+use Unipik\ArchitectureBundle\Repository;
 
 /**
  * Created by PhpStorm.
@@ -56,8 +57,8 @@ class InterventionController extends Controller {
 
     public function listPlaidoyersAction() {
         $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('ArchitectureBundle:Intervention');
-        $listPlaidoyers = $repository->findby(array('type' => 'plaidoyer'));
+        $repository = $em->getRepository('ArchitectureBundle:Plaidoyer');
+        $listPlaidoyers = $repository->findAll();
 
         return $this->render('InterventionBundle:Plaidoyer:liste.html.twig', array(
             'listPlaidoyers' => $listPlaidoyers

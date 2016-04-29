@@ -8,7 +8,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ path('architecture_homepage') }}">{% block brand %}Brand{% endblock %}</a>
+            <a class="navbar-brand" href="{{ path('architecture_homepage') }}">
+                {% block brand %}Brand{% endblock %}
+            </a>
         </div>
         <div style="height: 1px;" aria-expanded="false" class="navbar-collapse collapse" id="bs-navbar-collapse-1">
             {% block navbarButtons %}

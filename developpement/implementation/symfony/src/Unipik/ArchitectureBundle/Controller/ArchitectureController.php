@@ -41,13 +41,6 @@ class ArchitectureController extends Controller {
         return $this->render('ArchitectureBundle:Benevole:profil.html.twig', array('user' => $user));
     }
 
-    public function plaidoyerAction() {
-
-    }
-
-    public function frimousseAction() {
-
-    }
 
     public function mailAction() {
 

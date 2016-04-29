@@ -1,28 +1,28 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use CoreBundle\DBAL\Types\MaterielPlaidoyerType;
-use CoreBundle\Entity\NiveauTheme;
-use CoreBundle\Entity\Intervention;
+use Unipik\ArchitectureBundle\DBAL\Types\MaterielPlaidoyerType;
+use Unipik\ArchitectureBundle\Entity\NiveauTheme;
+use Unipik\ArchitectureBundle\Entity\Intervention;
 
 /**
  * Plaidoyer
  *
  * @ORM\Table(name="plaidoyer")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\PlaidoyerRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\PlaidoyerRepository")
  */
 class Plaidoyer extends Intervention {
      /**
-     * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\MaterielPlaidoyer", cascade={"persist"})
-     * 
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MaterielPlaidoyer", cascade={"persist"})
+     *
      */
     private $_materielDispo;
 
      /**
-      * @ORM\OneToOne(targetEntity="CoreBundle\Entity\NiveauTheme", cascade={"persist"})
+      * @ORM\OneToOne(targetEntity="Unipik\ArchitectureBundle\Entity\NiveauTheme", cascade={"persist"})
       * @ORM\JoinColumn(nullable=false)
       */
     private $_niveauTheme;
@@ -38,11 +38,11 @@ class Plaidoyer extends Intervention {
     /**
      * Set niveauTheme
      *
-     * @param \CoreBundle\Entity\NiveauTheme $niveauTheme
+     * @param \Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme
      *
      * @return Plaidoyer
      */
-    public function setNiveauTheme(\CoreBundle\Entity\NiveauTheme $niveauTheme = null) {
+    public function setNiveauTheme(\Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme = null) {
         $this->_niveauTheme = $niveauTheme;
 
         return $this;
@@ -51,7 +51,7 @@ class Plaidoyer extends Intervention {
     /**
      * Get niveauTheme
      *
-     * @return \CoreBundle\Entity\NiveauTheme
+     * @return \Unipik\ArchitectureBundle\Entity\NiveauTheme
      */
     public function getNiveauTheme() {
         return $this->_niveauTheme;
@@ -125,11 +125,11 @@ class Plaidoyer extends Intervention {
     /**
      * Set demande
      *
-     * @param \CoreBundle\Entity\Demande $demande
+     * @param \Unipik\ArchitectureBundle\Entity\Demande $demande
      *
      * @return Plaidoyer
      */
-    public function setDemande(\CoreBundle\Entity\Demande $demande) {
+    public function setDemande(\Unipik\ArchitectureBundle\Entity\Demande $demande) {
         $this->demande = $demande;
 
         return $this;
@@ -138,11 +138,11 @@ class Plaidoyer extends Intervention {
     /**
      * Add materielDispo
      *
-     * @param \CoreBundle\Entity\MaterielPlaidoyer $materielDispo
+     * @param \Unipik\ArchitectureBundle\Entity\MaterielPlaidoyer $materielDispo
      *
      * @return Plaidoyer
      */
-    public function addMaterielDispo(\CoreBundle\Entity\MaterielPlaidoyer $materielDispo) {
+    public function addMaterielDispo(\Unipik\ArchitectureBundle\Entity\MaterielPlaidoyer $materielDispo) {
         $this->_materielDispo[] = $materielDispo;
 
         return $this;
@@ -151,9 +151,9 @@ class Plaidoyer extends Intervention {
     /**
      * Remove materielDispo
      *
-     * @param \CoreBundle\Entity\MaterielPlaidoyer $materielDispo
+     * @param \Unipik\ArchitectureBundle\Entity\MaterielPlaidoyer $materielDispo
      */
-    public function removeMaterielDispo(\CoreBundle\Entity\MaterielPlaidoyer $materielDispo)
+    public function removeMaterielDispo(\Unipik\ArchitectureBundle\Entity\MaterielPlaidoyer $materielDispo)
     {
         $this->_materielDispo->removeElement($materielDispo);
     }
@@ -171,11 +171,11 @@ class Plaidoyer extends Intervention {
     /**
      * Set comite
      *
-     * @param \CoreBundle\Entity\Comite $comite
+     * @param \Unipik\ArchitectureBundle\Entity\Comite $comite
      *
      * @return Plaidoyer
      */
-    public function setComite(\CoreBundle\Entity\Comite $comite) {
+    public function setComite(\Unipik\ArchitectureBundle\Entity\Comite $comite) {
         $this->comite = $comite;
 
         return $this;
@@ -184,7 +184,7 @@ class Plaidoyer extends Intervention {
     /**
      * Get comite
      *
-     * @return \CoreBundle\Entity\Comite
+     * @return \Unipik\ArchitectureBundle\Entity\Comite
      */
     public function getComite() {
         return $this->comite;
@@ -193,11 +193,11 @@ class Plaidoyer extends Intervention {
     /**
      * Set etablissement
      *
-     * @param \CoreBundle\Entity\Etablissement $etablissement
+     * @param \Unipik\ArchitectureBundle\Entity\Etablissement $etablissement
      *
      * @return Plaidoyer
      */
-    public function setEtablissement(\CoreBundle\Entity\Etablissement $etablissement) {
+    public function setEtablissement(\Unipik\ArchitectureBundle\Entity\Etablissement $etablissement) {
         $this->etablissement = $etablissement;
 
         return $this;
@@ -206,7 +206,7 @@ class Plaidoyer extends Intervention {
     /**
      * Get etablissement
      *
-     * @return \CoreBundle\Entity\Etablissement
+     * @return \Unipik\ArchitectureBundle\Entity\Etablissement
      */
     public function getEtablissement() {
         return $this->etablissement;
@@ -215,11 +215,11 @@ class Plaidoyer extends Intervention {
     /**
      * Set benevole
      *
-     * @param \CoreBundle\Entity\Benevole $benevole
+     * @param \Unipik\ArchitectureBundle\Entity\Benevole $benevole
      *
      * @return Plaidoyer
      */
-    public function setBenevole(\CoreBundle\Entity\Benevole $benevole = null) {
+    public function setBenevole(\Unipik\ArchitectureBundle\Entity\Benevole $benevole = null) {
         $this->benevole = $benevole;
 
         return $this;

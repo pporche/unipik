@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Pays
  *
  * @ORM\Table(name="pays")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\PaysRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\PaysRepository")
  */
 class Pays {
 
@@ -42,5 +42,5 @@ class Pays {
         return $this->_nom;
     }
 
-   
+
 }

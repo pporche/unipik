@@ -1,33 +1,33 @@
 <?php
 
-namespace ArchitectureBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ArchitectureBundle\Entity\Benevole;
+use Unipik\ArchitectureBundle\Entity\Benevole;
 
 /**
  * AdminActivite
  *
  * @ORM\Entity
  * @ORM\Table(name="admin_activite")
- * @ORM\Entity(repositoryClass="ArchitectureBundle\Repository\AdminActiviteRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\AdminActiviteRepository")
  */
 
  class AdminActivite extends Benevole {
 
     /**
-     * @ORM\ManyToMany(targetEntity="ArchitectureBundle\Entity\Activite", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Activite", cascade={"persist"})
      */
     private $_responsableActivite;
 
     /**
      * Add responsableActivite
      *
-     * @param \ArchitectureBundle\Entity\Activite $responsableActivite
+     * @param \Unipik\ArchitectureBundle\Entity\Activite $responsableActivite
      *
      * @return AdminActivite
      */
-    public function addResponsableActivite(\ArchitectureBundle\Entity\Activite $responsableActivite) {
+    public function addResponsableActivite(\Unipik\ArchitectureBundle\Entity\Activite $responsableActivite) {
         $this->_responsableActivite[] = $responsableActivite;
 
         return $this;
@@ -36,9 +36,9 @@ use ArchitectureBundle\Entity\Benevole;
     /**
      * Remove responsableActivite
      *
-     * @param \ArchitectureBundle\Entity\Activite $responsableActivite
+     * @param \Unipik\ArchitectureBundle\Entity\Activite $responsableActivite
      */
-    public function removeResponsableActivite(\ArchitectureBundle\Entity\Activite $responsableActivite) {
+    public function removeResponsableActivite(\Unipik\ArchitectureBundle\Entity\Activite $responsableActivite) {
         $this->_responsableActivite->removeElement($responsableActivite);
     }
 

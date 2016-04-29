@@ -1,16 +1,16 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use CoreBundle\DBAL\Types\MaterielFrimousseType;
+use Unipik\ArchitectureBundle\DBAL\Types\MaterielFrimousseType;
 
 /**
  * MaterielFrimousse
  * @ORM\Entity
  * @ORM\Table(name="materiel_frimousse")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\MaterielFrimousseRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\MaterielFrimousseRepository")
  */
 class MaterielFrimousse {
 
@@ -22,11 +22,11 @@ class MaterielFrimousse {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $_id;
-    
+
      /**
      *
      * @ORM\Column(name="materiel_frimousse", type="MaterielFrimousseType")
-     * @DoctrineAssert\Enum(entity="CoreBundle\DBAL\Types\MaterielFrimousseType") 
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\MaterielFrimousseType")
      */
     private $_materielFrimousse;
 

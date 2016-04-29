@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace CoreBundle\DBAL\Types;
+namespace Unipik\ArchitectureBundle\DBAL\Types;
 
 use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
 
@@ -33,7 +33,7 @@ final class NiveauScolaireCompletType extends AbstractEnumType {
     const MAS1 = 'M1';
     const MAS2 = 'M2';
     const AUTRE = 'autre';
-    
+
     protected static $choices = [
      self::PETITESEC    => 'petite section',
      self::PSMS => 'petite-moyenne section',

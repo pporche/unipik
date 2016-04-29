@@ -1,23 +1,23 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Comite
- * 
+ *
  * @ORM\Table(name="comite")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\ComiteRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\ComiteRepository")
  */
 class Comite {
-	
+
     /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * 
+     *
      */
     private $_id;
 
@@ -27,19 +27,19 @@ class Comite {
      * @ORM\Column(name="nom_departement", type="string", length=100, nullable=false)
      */
     private $_nomDepartement;
-    
+
    /**
-    * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Region")
+    * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Region")
     * @ORM\JoinColumn(nullable=false)
     */
     private $_region;
 
    /**
-    * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\NiveauTheme")
-    * 
+    * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\NiveauTheme")
+    *
     */
     private $_listeNiveauTheme;
-   
+
 
     /**
      * Get id
@@ -86,11 +86,11 @@ class Comite {
     /**
      * Set region
      *
-     * @param \CoreBundle\Entity\Region $region
+     * @param \Unipik\ArchitectureBundle\Entity\Region $region
      *
      * @return Comite
      */
-    public function setRegion(\CoreBundle\Entity\Region $region) {
+    public function setRegion(\Unipik\ArchitectureBundle\Entity\Region $region) {
         $this->_region = $region;
         return $this;
     }
@@ -98,7 +98,7 @@ class Comite {
     /**
      * Get region
      *
-     * @return \CoreBundle\Entity\Region
+     * @return \Unipik\ArchitectureBundle\Entity\Region
      */
     public function getRegion() {
         return $this->_region;
@@ -114,11 +114,11 @@ class Comite {
     /**
      * Add listeNiveauTheme
      *
-     * @param \CoreBundle\Entity\NiveauTheme $listeNiveauTheme
+     * @param \Unipik\ArchitectureBundle\Entity\NiveauTheme $listeNiveauTheme
      *
      * @return Comite
      */
-    public function addListeNiveauTheme(\CoreBundle\Entity\NiveauTheme $listeNiveauTheme) {
+    public function addListeNiveauTheme(\Unipik\ArchitectureBundle\Entity\NiveauTheme $listeNiveauTheme) {
         $this->_listeNiveauTheme[] = $listeNiveauTheme;
         return $this;
     }
@@ -126,9 +126,9 @@ class Comite {
     /**
      * Remove listeNiveauTheme
      *
-     * @param \CoreBundle\Entity\NiveauTheme $listeNiveauTheme
+     * @param \Unipik\ArchitectureBundle\Entity\NiveauTheme $listeNiveauTheme
      */
-    public function removeListeNiveauTheme(\CoreBundle\Entity\NiveauTheme $listeNiveauTheme) {
+    public function removeListeNiveauTheme(\Unipik\ArchitectureBundle\Entity\NiveauTheme $listeNiveauTheme) {
         $this->_listeNiveauTheme->removeElement($listeNiveauTheme);
     }
 
@@ -141,5 +141,5 @@ class Comite {
         return $this->_listeNiveauTheme;
     }
 
-   
+
 }

@@ -1,17 +1,17 @@
 <?php
-namespace CoreBundle\Entity;
- 
+namespace Unipik\ArchitectureBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
-use CoreBundle\DBAL\Types\MomentQuotidienType;
+use Unipik\ArchitectureBundle\DBAL\Types\MomentQuotidienType;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
     /**
      * Intervention
-     * 
+     *
      * @ORM\Entity
      * @ORM\Table(name="intervention")
      * @ORM\InheritanceType("JOINED")
      * @ORM\DiscriminatorColumn(name="type", type="string")
-     * @ORM\DiscriminatorMap({"plaidoyer" = "Plaidoyer","frimousse"="Frimousse","autres"="AutreIntervention"}) 
+     * @ORM\DiscriminatorMap({"plaidoyer" = "Plaidoyer","frimousse"="Frimousse","autres"="AutreIntervention"})
      */
 abstract class Intervention {
 
@@ -23,67 +23,67 @@ abstract class Intervention {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @var date $date
      *
      * @ORM\Column(name="date", type="date", unique=false, nullable=true)
      */
     protected $date;
-    
+
     /**
      * @var string $lieu
      *
      * @ORM\Column(name="lieu", type="string", length=40, nullable=true)
      */
     protected $lieu;
-    
+
     /**
      * @var int $nbPersonne
      *
      * @ORM\Column(name="nb_personne", type="integer", nullable=false)
      */
     protected $nbPersonne;
-    
+
     /**
      * @var string $remarques
      *
      * @ORM\Column(name="remarques", type="text", nullable=true)
      */
     protected $remarques;
-    
+
     /**
      *
      * @ORM\Column(name="moment", type="MomentQuotidienType", nullable=true)
-     * @DoctrineAssert\Enum(entity="CoreBundle\DBAL\Types\MomentQuotidienType")     
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\MomentQuotidienType")
      */
     protected $moment;
-    
+
     /**
-     * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Demande")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Demande")
      * @ORM\JoinColumn(nullable=false)
      */
     protected $demande;
-    
+
     /**
-     * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Benevole")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Benevole")
      * @ORM\JoinColumn(nullable=false)
      */
      protected $benevole;
-    
+
     /**
-     * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Comite")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Comite")
      * @ORM\JoinColumn(nullable=false)
      */
     protected $comite;
-    
+
      /**
-     * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Etablissement")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Etablissement")
      * @ORM\JoinColumn(nullable=false)
      */
     protected $etablissement;
-    
-    
+
+
     /**
      * Get id
      *
@@ -137,11 +137,11 @@ abstract class Intervention {
     public function getMoment() {
         return $this->moment;
     }
-    
+
       /**
      * Get demande
      *
-     * @return \CoreBundle\Entity\Demande
+     * @return \Unipik\ArchitectureBundle\Entity\Demande
      */
     public function getDemande() {
         return $this->demande;
@@ -189,7 +189,7 @@ abstract class Intervention {
     /**
      * Get benevole
      *
-     * @return \CoreBundle\Entity\Benevole
+     * @return \Unipik\ArchitectureBundle\Entity\Benevole
      */
     public function getBenevole() {
         return $this->benevole;
@@ -198,7 +198,7 @@ abstract class Intervention {
     /**
      * Get comite
      *
-     * @return \CoreBundle\Entity\Comite
+     * @return \Unipik\ArchitectureBundle\Entity\Comite
      */
     public function getComite() {
         return $this->comite;
@@ -207,7 +207,7 @@ abstract class Intervention {
     /**
      * Get etablissement
      *
-     * @return \CoreBundle\Entity\Etablissement
+     * @return \Unipik\ArchitectureBundle\Entity\Etablissement
      */
     public function getEtablissement() {
         return $this->etablissement;

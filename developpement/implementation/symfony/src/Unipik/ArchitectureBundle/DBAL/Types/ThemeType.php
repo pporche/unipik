@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace CoreBundle\DBAL\Types;
+namespace Unipik\ArchitectureBundle\DBAL\Types;
 
 use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
 
@@ -17,7 +17,7 @@ final class ThemeType extends AbstractEnumType {
     const HARCELEMENT = 'harcelement';
     const ROLUNICEF = 'role de l Unicef';
     const MILDVT = 'millenaire pour le developpement';
-    
+
     protected static $choices = [
      self::CONVINTER => 'convention internationale des droits de l enfant',
      self::EDUCATION => 'education',

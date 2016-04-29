@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace CoreBundle\DBAL\Types;
+namespace Unipik\ArchitectureBundle\DBAL\Types;
 
 use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
 
@@ -9,7 +9,7 @@ final class CentreType extends AbstractEnumType {
     const ELEMENTAIRE    = 'elementaire';
     const ADOLESCENT = 'adolelescent';
     const AUTRE  = 'autre';
-  
+
 
     protected static $choices = [
      self::MATERNELLE    => 'maternelle',

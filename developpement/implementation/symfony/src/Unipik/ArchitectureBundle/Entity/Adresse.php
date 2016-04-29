@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Adresse
  *
  * @ORM\Table(name="adresse")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\AdresseRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\AdresseRepository")
  */
 class Adresse {
 

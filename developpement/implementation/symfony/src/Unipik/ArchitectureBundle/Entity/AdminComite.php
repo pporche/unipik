@@ -1,15 +1,15 @@
 <?php
 
-namespace ArchitectureBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ArchitectureBundle\Entity\Benevole;
+use Unipik\ArchitectureBundle\Entity\Benevole;
 
 /**
  * AdminComite
  * @ORM\Entity
  * @ORM\Table(name="admin_comite")
- * @ORM\Entity(repositoryClass="ArchitectureBundle\Repository\AdminComiteRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\AdminComiteRepository")
  */
 
  class AdminComite extends Benevole {

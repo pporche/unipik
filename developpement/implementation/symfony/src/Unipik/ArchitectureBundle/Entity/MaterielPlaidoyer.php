@@ -1,16 +1,16 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use CoreBundle\DBAL\Types\MaterielPlaidoyerType;
+use Unipik\ArchitectureBundle\DBAL\Types\MaterielPlaidoyerType;
 
 /**
  * MaterielPlaidoyer
  * @ORM\Entity
  * @ORM\Table(name="materiel_plaidoyer")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\MaterielPlaidoyerRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\MaterielPlaidoyerRepository")
  */
 class MaterielPlaidoyer {
 
@@ -22,13 +22,13 @@ class MaterielPlaidoyer {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $_id;
-    
+
      /**
      *
      *
      *
      * @ORM\Column(name="materiel_plaidoyer", type="MaterielPlaidoyerType")
-     * @DoctrineAssert\Enum(entity="CoreBundle\DBAL\Types\MaterielPlaidoyerType") 
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\MaterielPlaidoyerType")
      */
     private $materielPlaidoyer;
 

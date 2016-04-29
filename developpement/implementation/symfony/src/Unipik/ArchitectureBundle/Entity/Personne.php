@@ -1,8 +1,8 @@
 <?php
-namespace CoreBundle\Entity;
- 
+namespace Unipik\ArchitectureBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
- 
+
 /**
  * Personne
  *
@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="personne")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"benevole" = "Benevole","contact"="Contact"}) 
+ * @ORM\DiscriminatorMap({"benevole" = "Benevole","contact"="Contact"})
  */
 abstract class Personne {
 
@@ -19,31 +19,31 @@ abstract class Personne {
      *
      * @ORM\Column(name="id", type="string", length=100, unique=true, nullable=false)
      * @ORM\Id
-     * 
+     *
      */
     protected $email;
-    
+
     /**
      * @var string $nom
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
     protected $nom;
-    
+
     /**
      * @var string $prenom
      *
      * @ORM\Column(name="prenom", type="string", length=100, nullable=true)
      */
     protected $prenom;
-    
+
     /**
      * @var string $telFixe
      *
      * @ORM\Column(name="tel_fixe", type="string", length=10, nullable=true)
      */
     protected $telFixe;
-    
+
     /**
      * @var string $telPortable
      *

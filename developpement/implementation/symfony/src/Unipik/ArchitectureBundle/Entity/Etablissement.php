@@ -1,16 +1,16 @@
-<?php 
+<?php
 
-namespace CoreBundle\Entity;
- 
+namespace Unipik\ArchitectureBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
- 
+
 /**
  *Etablissement
  *
  * @ORM\Entity
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"enseignement" = "Enseignement","autre"="AutreEtablissement","centre"="CentreLoisirs"}) 
+ * @ORM\DiscriminatorMap({"enseignement" = "Enseignement","autre"="AutreEtablissement","centre"="CentreLoisirs"})
  *
  */
 abstract class Etablissement {
@@ -20,42 +20,42 @@ abstract class Etablissement {
      *
      * @ORM\Column(name="id", type="string", length=100)
      * @ORM\Id
-     * 
+     *
      */
     protected $id;
-    
+
     /**
      * @var string $nom
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=true)
      */
     protected $nom;
-    
+
     /**
      * @var string $telFixe
      *
      * @ORM\Column(name="tel_fixe", type="string", length=10, nullable=true)
      */
     protected $telFixe;
-    
+
     /**
-     * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Adresse", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Adresse", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     protected $adresse;
-    
+
      /**
-     * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\Contact", cascade={"persist"})
-     * 
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Contact", cascade={"persist"})
+     *
      */
     protected $contacts;
-    
+
     /**
-     * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\Email", cascade={"persist"})
-     * 
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Email", cascade={"persist"})
+     *
      */
     protected $emails;
-    
+
       /**
      * Get id
      *
@@ -86,9 +86,9 @@ abstract class Etablissement {
     /**
      * Remove adresse
      *
-     * @param \CoreBundle\Entity\Adresse $adresse
+     * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse
      */
-    public function removeAdresse(\CoreBundle\Entity\Adresse $adresse) {
+    public function removeAdresse(\Unipik\ArchitectureBundle\Entity\Adresse $adresse) {
         $this->adresse->removeElement($adresse);
     }
 
@@ -100,8 +100,8 @@ abstract class Etablissement {
     public function getAdresse() {
         return $this->adresse;
     }
-    
-    
+
+
     /**
      * Constructor
      */
@@ -140,11 +140,11 @@ abstract class Etablissement {
     /**
      * Add adresse
      *
-     * @param \CoreBundle\Entity\Adresse $adresse
+     * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse
      *
      * @return Etablissement
      */
-    public function addAdresse(\CoreBundle\Entity\Adresse $adresse) {
+    public function addAdresse(\Unipik\ArchitectureBundle\Entity\Adresse $adresse) {
         $this->adresse[] = $adresse;
 
         return $this;
@@ -153,11 +153,11 @@ abstract class Etablissement {
     /**
      * Add contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      *
      * @return Etablissement
      */
-    public function addContact(\CoreBundle\Entity\Contact $contact) {
+    public function addContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->contacts[] = $contact;
 
         return $this;
@@ -166,9 +166,9 @@ abstract class Etablissement {
     /**
      * Remove contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      */
-    public function removeContact(\CoreBundle\Entity\Contact $contact) {
+    public function removeContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->contacts->removeElement($contact);
     }
 
@@ -184,11 +184,11 @@ abstract class Etablissement {
     /**
      * Add email
      *
-     * @param \CoreBundle\Entity\Email $email
+     * @param \Unipik\ArchitectureBundle\Entity\Email $email
      *
      * @return Etablissement
      */
-    public function addEmail(\CoreBundle\Entity\Email $email) {
+    public function addEmail(\Unipik\ArchitectureBundle\Entity\Email $email) {
         $this->emails[] = $email;
 
         return $this;
@@ -197,9 +197,9 @@ abstract class Etablissement {
     /**
      * Remove email
      *
-     * @param \CoreBundle\Entity\Email $email
+     * @param \Unipik\ArchitectureBundle\Entity\Email $email
      */
-    public function removeEmail(\CoreBundle\Entity\Email $email) {
+    public function removeEmail(\Unipik\ArchitectureBundle\Entity\Email $email) {
         $this->emails->removeElement($email);
     }
 

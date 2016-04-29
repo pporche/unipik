@@ -6,6 +6,9 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 
+parameters:
+    locale: en
+
 framework:
     #esi:             ~
     #translator: { fallback: en }
@@ -54,19 +57,19 @@ doctrine:
         mapping_types:
             enum: string
         types:
-            ActiviteType: CoreBundle\DBAL\Types\ActiviteType
-            JourType: CoreBundle\DBAL\Types\JourType
-            MaterielFrimousseType: CoreBundle\DBAL\Types\MaterielFrimousseType
-            MaterielPlaidoyerType: CoreBundle\DBAL\Types\MaterielPlaidoyerType
-            MomentQuotidienType: CoreBundle\DBAL\Types\MomentQuotidienType
-            NiveauScolaireCompletType: CoreBundle\DBAL\Types\NiveauScolaireCompletType
-            NiveauScolaireLimiteType: CoreBundle\DBAL\Types\NiveauScolaireLimiteType
-            ThemeType: CoreBundle\DBAL\Types\ThemeType
-            AutreEtablissementType: CoreBundle\DBAL\Types\AutreEtablissementType
-            CentreType: CoreBundle\DBAL\Types\CentreType
-            ContactType: CoreBundle\DBAL\Types\ContactType
-            EnseignementType: CoreBundle\DBAL\Types\EnseignementType
-            ProjetType : CoreBundle\DBAL\Types\ProjetType
+            ActiviteType: Unipik\ArchitectureBundle\DBAL\Types\ActiviteType
+            JourType: Unipik\ArchitectureBundle\DBAL\Types\JourType
+            MaterielFrimousseType: Unipik\ArchitectureBundle\DBAL\Types\MaterielFrimousseType
+            MaterielPlaidoyerType: Unipik\ArchitectureBundle\DBAL\Types\MaterielPlaidoyerType
+            MomentQuotidienType: Unipik\ArchitectureBundle\DBAL\Types\MomentQuotidienType
+            NiveauScolaireCompletType: Unipik\ArchitectureBundle\DBAL\Types\NiveauScolaireCompletType
+            NiveauScolaireLimiteType: Unipik\ArchitectureBundle\DBAL\Types\NiveauScolaireLimiteType
+            ThemeType: Unipik\ArchitectureBundle\DBAL\Types\ThemeType
+            AutreEtablissementType:  Unipik\ArchitectureBundle\DBAL\Types\AutreEtablissementType
+            CentreType: Unipik\ArchitectureBundle\DBAL\Types\CentreType
+            ContactType: Unipik\ArchitectureBundle\DBAL\Types\ContactType
+            EnseignementType: Unipik\ArchitectureBundle\DBAL\Types\EnseignementType
+            ProjetType : Unipik\ArchitectureBundle\DBAL\Types\ProjetType
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"

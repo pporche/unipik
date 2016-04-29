@@ -1,16 +1,16 @@
 <?php
 
-namespace ArchitectureBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use ArchitectureBundle\DBAL\Types\ActiviteType;
+use Unipik\ArchitectureBundle\DBAL\Types\ActiviteType;
 
 /**
  * Activite
  * @ORM\Entity
  * @ORM\Table(name="activite")
- * @ORM\Entity(repositoryClass="ArchitectureBundle\Repository\ActiviteRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\ActiviteRepository")
  */
 class Activite {
 
@@ -28,7 +28,7 @@ class Activite {
      *
      *
      * @ORM\Column(name="activite", type="ActiviteType")
-     * @DoctrineAssert\Enum(entity="ArchitectureBundle\DBAL\Types\ActiviteType")
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\ActiviteType")
      */
     private $_activite;
 

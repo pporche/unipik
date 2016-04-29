@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Participe
  *
  * @ORM\Table(name="participe")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\ParticipeRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\ParticipeRepository")
  */
 class Participe {
 
@@ -27,16 +27,16 @@ class Participe {
      * @ORM\Column(name="est_tuteur", type="boolean", nullable=false)
      */
     private $_estTuteur;
-    
+
    /**
-    * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Projet")
+    * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Projet")
     * @ORM\JoinColumn(nullable=false)
     */
     private $_projet;
 
 
     /**
-    * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Contact")
+    * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Contact")
     * @ORM\JoinColumn(nullable=false)
     */
     private $_contact;
@@ -75,11 +75,11 @@ class Participe {
     /**
      * Set projet
      *
-     * @param \CoreBundle\Entity\Projet $projet
+     * @param \Unipik\ArchitectureBundle\Entity\Projet $projet
      *
      * @return Participe
      */
-    public function setProjet(\CoreBundle\Entity\Projet $projet) {
+    public function setProjet(\Unipik\ArchitectureBundle\Entity\Projet $projet) {
         $this->_projet = $projet;
 
         return $this;
@@ -88,7 +88,7 @@ class Participe {
     /**
      * Get projet
      *
-     * @return \CoreBundle\Entity\Projet
+     * @return \Unipik\ArchitectureBundle\Entity\Projet
      */
     public function getProjet() {
         return $this->_projet;
@@ -97,11 +97,11 @@ class Participe {
     /**
      * Set contact
      *
-     * @param \CoreBundle\Entity\Contact $contact
+     * @param \Unipik\ArchitectureBundle\Entity\Contact $contact
      *
      * @return Participe
      */
-    public function setContact(\CoreBundle\Entity\Contact $contact) {
+    public function setContact(\Unipik\ArchitectureBundle\Entity\Contact $contact) {
         $this->_contact = $contact;
 
         return $this;
@@ -110,7 +110,7 @@ class Participe {
     /**
      * Get contact
      *
-     * @return \CoreBundle\Entity\Contact
+     * @return \Unipik\ArchitectureBundle\Entity\Contact
      */
     public function getContact() {
         return $this->_contact;

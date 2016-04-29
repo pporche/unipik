@@ -1,32 +1,32 @@
 <?php
 
-namespace CoreBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use CoreBundle\DBAL\Types\MaterielFrimousseType;
-use CoreBundle\DBAL\Types\NiveauScolaireLimiteType;
-use CoreBundle\Entity\Intervention;
+use Unipik\ArchitectureBundle\DBAL\Types\MaterielFrimousseType;
+use Unipik\ArchitectureBundle\DBAL\Types\NiveauScolaireLimiteType;
+use Unipik\ArchitectureBundle\Entity\Intervention;
 
 /**
  * Frimousse
  *
  * @ORM\Table(name="frimousse")
- * @ORM\Entity(repositoryClass="CoreBundle\Repository\FrimousseRepository")
+ * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\FrimousseRepository")
  */
 class Frimousse extends Intervention {
 
     /**
-     * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\MaterielFrimousse", cascade={"persist"})
-     * 
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MaterielFrimousse", cascade={"persist"})
+     *
      */
     private $_materiaux;
 
     /**
      *
      * @ORM\Column(name="niveau", type="NiveauScolaireLimiteType")
-     * @DoctrineAssert\Enum(entity="CoreBundle\DBAL\Types\NiveauScolaireLimiteType")
-     *     
+     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\NiveauScolaireLimiteType")
+     *
      */
     private $_niveau;
 
@@ -120,11 +120,11 @@ class Frimousse extends Intervention {
     /**
      * Set demande
      *
-     * @param \CoreBundle\Entity\Demande $demande
+     * @param \Unipik\ArchitectureBundle\Entity\Demande $demande
      *
      * @return Frimousse
      */
-    public function setDemande(\CoreBundle\Entity\Demande $demande) {
+    public function setDemande(\Unipik\ArchitectureBundle\Entity\Demande $demande) {
         $this->demande = $demande;
 
         return $this;
@@ -140,11 +140,11 @@ class Frimousse extends Intervention {
     /**
      * Add materiaux
      *
-     * @param \CoreBundle\Entity\MaterielFrimousse $materiaux
+     * @param \Unipik\ArchitectureBundle\Entity\MaterielFrimousse $materiaux
      *
      * @return Frimousse
      */
-    public function addMateriaux(\CoreBundle\Entity\MaterielFrimousse $materiaux) {
+    public function addMateriaux(\Unipik\ArchitectureBundle\Entity\MaterielFrimousse $materiaux) {
         $this->_materiaux[] = $materiaux;
 
         return $this;
@@ -153,9 +153,9 @@ class Frimousse extends Intervention {
     /**
      * Remove materiaux
      *
-     * @param \CoreBundle\Entity\MaterielFrimousse $materiaux
+     * @param \Unipik\ArchitectureBundle\Entity\MaterielFrimousse $materiaux
      */
-    public function removeMateriaux(\CoreBundle\Entity\MaterielFrimousse $materiaux) {
+    public function removeMateriaux(\Unipik\ArchitectureBundle\Entity\MaterielFrimousse $materiaux) {
         $this->_materiaux->removeElement($materiaux);
     }
 
@@ -171,11 +171,11 @@ class Frimousse extends Intervention {
     /**
      * Set comite
      *
-     * @param \CoreBundle\Entity\Comite $comite
+     * @param \Unipik\ArchitectureBundle\Entity\Comite $comite
      *
      * @return Frimousse
      */
-    public function setComite(\CoreBundle\Entity\Comite $comite) {
+    public function setComite(\Unipik\ArchitectureBundle\Entity\Comite $comite) {
         $this->comite = $comite;
 
         return $this;
@@ -184,7 +184,7 @@ class Frimousse extends Intervention {
     /**
      * Get comite
      *
-     * @return \CoreBundle\Entity\Comite
+     * @return \Unipik\ArchitectureBundle\Entity\Comite
      */
     public function getComite() {
         return $this->comite;
@@ -193,11 +193,11 @@ class Frimousse extends Intervention {
     /**
      * Set etablissement
      *
-     * @param \CoreBundle\Entity\Etablissement $etablissement
+     * @param \Unipik\ArchitectureBundle\Entity\Etablissement $etablissement
      *
      * @return Frimousse
      */
-    public function setEtablissement(\CoreBundle\Entity\Etablissement $etablissement) {
+    public function setEtablissement(\Unipik\ArchitectureBundle\Entity\Etablissement $etablissement) {
         $this->etablissement = $etablissement;
 
         return $this;
@@ -206,7 +206,7 @@ class Frimousse extends Intervention {
     /**
      * Get etablissement
      *
-     * @return \CoreBundle\Entity\Etablissement
+     * @return \Unipik\ArchitectureBundle\Entity\Etablissement
      */
     public function getEtablissement() {
         return $this->etablissement;
@@ -215,11 +215,11 @@ class Frimousse extends Intervention {
     /**
      * Set benevole
      *
-     * @param \CoreBundle\Entity\Benevole $benevole
+     * @param \Unipik\ArchitectureBundle\Entity\Benevole $benevole
      *
      * @return Frimousse
      */
-    public function setBenevole(\CoreBundle\Entity\Benevole $benevole = null) {
+    public function setBenevole(\Unipik\ArchitectureBundle\Entity\Benevole $benevole = null) {
         $this->benevole = $benevole;
 
         return $this;

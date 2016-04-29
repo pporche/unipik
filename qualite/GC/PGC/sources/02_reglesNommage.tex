@@ -8,7 +8,7 @@ L'ensemble des fichiers suit le modèle suivant :
 \end{center}
 On utilisera des abréviations pour chaque élément (Type, Référentiel et Suffixe).\\
 Exemple de nommage: \verb+PGC_Q_Unipik_v1.00+\\
-Exemple de stockage : \verb+pic_unicef/qualite/GC/PGC/+
+Exemple de stockage : \verb+pic_unicef/qualite/GC/PGC/+ 
 
 
 \section{Nom du \picCourt{}}
@@ -188,7 +188,7 @@ Chaque document est défini par un type et sera stocké dans le dossier de même
     \hline
     LotX & lotX & -\\
     \hline
-    \hspace{1cm} \CDR & CDR & l,v\\
+    \hspace{1cm} \CDR & CDR & l, v\\
     \hline
     \hspace{1cm} Dossier de Conception Détaillée & DCD & l\\
     \hline
@@ -276,7 +276,6 @@ Exemple : \verb+d16-01-27+
 
 \subsection{Suffixe Version}
 \label{suffixe_version}
-
 Le suffixe \verb+Version+ suit le format \textbf{vX.YY}. La gestion des versions et des révisions n'étant pas la même selon si le document doit être approuvé ou non, nous allons séparer la convention du suffixe \verb+Version+ en deux parties. \\
 
 \paragraph{Cas des documents avec approbation\\}
@@ -312,12 +311,15 @@ Pour plus de clarté, voici le mode de fonctionnement étape par étape :
 \item[$\rightarrow$] ...
 \end{itemize}
 
+
 \subsection{Suffixe Lot}
 \label{suffixe_lot}
+
 
 Le suffixe \verb+Lot+ suit le format \textbf{lX}. X correspond au numéro du lot.\\
 
 Exemple : \verb+l1+\\
+
 
 \subsection{Suffixe Numéro}
 \label{suffixe_numero}
@@ -327,6 +329,7 @@ Le suffixe \verb+Numéro+ suit le format \textbf{nXXX}. XXX est un nombre entier
 Exemple : \verb+n042+\\
 
 Remarque : Petit cas particulier pour les numéros des documents situés dans un dossier \verb+revuesX+. Le suffixe numéro correspond dans ce cas précis au numéro de la revue et suit le format \textbf{vX} avec X le numéro de la revue.\\
+
 
 Exemple : \verb+n1+\\
 

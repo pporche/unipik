@@ -51,6 +51,22 @@ doctrine:
         #   2. Uncomment database_path in parameters.yml.dist
         #   3. Uncomment next line:
         #     path:     "%database_path%"
+        mapping_types:
+            enum: string
+        types:
+            ActiviteType: CoreBundle\DBAL\Types\ActiviteType
+            JourType: CoreBundle\DBAL\Types\JourType
+            MaterielFrimousseType: CoreBundle\DBAL\Types\MaterielFrimousseType
+            MaterielPlaidoyerType: CoreBundle\DBAL\Types\MaterielPlaidoyerType
+            MomentQuotidienType: CoreBundle\DBAL\Types\MomentQuotidienType
+            NiveauScolaireCompletType: CoreBundle\DBAL\Types\NiveauScolaireCompletType
+            NiveauScolaireLimiteType: CoreBundle\DBAL\Types\NiveauScolaireLimiteType
+            ThemeType: CoreBundle\DBAL\Types\ThemeType
+            AutreEtablissementType: CoreBundle\DBAL\Types\AutreEtablissementType
+            CentreType: CoreBundle\DBAL\Types\CentreType
+            ContactType: CoreBundle\DBAL\Types\ContactType
+            EnseignementType: CoreBundle\DBAL\Types\EnseignementType
+            ProjetType : CoreBundle\DBAL\Types\ProjetType
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"

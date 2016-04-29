@@ -6,25 +6,63 @@
 
 {% endblock %}
 
-{% block body %}
-    <div class="container">
+{% block misc2 %}
+    {#
+        <nav class="navbar navbar-inverse navbar-fixed-left" role="navigation">
 
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <h2>Bonjour {{ user.prenom }} !</h2>
-            </div>
-        </div>
-
-        <section class="col-lg-3 col-md-3 col-sm-3 ">
-            <div class="jumbotron">
-                <ul class="nav nav-pills nav-stacked">
-                    <li>
+                <form class="navbar-form  inline-form">
+                    <div class="form-group">
                         <div class="input-group">
                             <input class="form-control input-sm" placeholder="Rechercher" type="text">
                             <span class="input-group-btn">
                                 <button class="btn btn-default btn-sm" type="button"><i class="glyphicon glyphicon-search"></i></button>
                             </span>
                         </div>
+                    </div>
+                    <div class="col-xs-12 imgContainer">
+                        <a class="lienImage img-responsive" href="https://www.unicef.fr/" target="_blank">
+                            <img src="{{ asset("img/unicef-logo.gif") }}" class="center-block img-responsive img-rounded"/>
+                        </a>
+                    </div>
+                </form>
+
+        </nav>#}
+
+{% endblock %}
+
+{% block misc %}
+
+
+    <div class="container" style="margin: 0px; padding: 0px;">
+        <div class="row">
+
+        <section class="col-lg-3 col-md-3 col-sm-3 ">
+
+            <form>
+                <div class="input-group">
+                    <input class="form-control input-sm" placeholder="Rechercher" type="text">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-sm" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                            </span>
+                </div>
+            </form>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="https://www.unicef.fr/"> Accéder au site Unicef France </a>
+                </li>
+                <li class="list-group-item">
+                    Dapibus ac facilisis in
+                </li>
+                <li class="list-group-item">
+                    Morbi leo risus
+                </li>
+            </ul>
+
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li>
+
                     </li>
                     <li>
                         <a href="https://www.unicef.fr/"> Accéder au site Unicef France </a>
@@ -33,37 +71,56 @@
                         <a href="https://www.facebook.com/UnicefRouen/"> Accéder à la page Facebook d'Unicef Seine-Maritime </a>
                     </li>
                 </ul>
-            </div>
+
+
+
+
         </section>
 
-        <section class="col-lg-9 col-md-9 col-sm-9 ">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <h2> <a href=""> Liste des interventions en cours </a> </h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <ul>
-                        <li>Aucune interventions</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <h2> <a href=""> Votre planning </a> </h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <ul>
-                        <li>Trop dur à faire</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        <div class="col-sm-6 col-sm-offset-1" />
+            <div class="container" style="
+              margin-right: auto;
+              margin-left: auto;
+              padding-left: 15px;
+              padding-right: 15px;
+            ">
 
-      </div>
+            <section class="col-lg-offset-1 col-lg-8 col-md-9 col-sm-9 ">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <h2>Bonjour {{ user.prenom }} !</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <h2> <a href=""> Liste des interventions en cours </a> </h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <ul>
+                            <li>Aucune interventions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <h2> <a href=""> Votre planning </a> </h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <ul>
+                            <li>Trop dur à faire</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            </div>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}

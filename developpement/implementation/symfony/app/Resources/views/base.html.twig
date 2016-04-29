@@ -24,7 +24,10 @@
     {%  use '::navbar.html.twig' %}
     {{ block('navbar') }}
 
+    {% block misc %}
+
     <div class="container">
+
         <div id="header"></div>
 
 
@@ -37,8 +40,10 @@
         </div>
 
 
-
     </div>
+
+    {% endblock %}
+
         {% block javascripts %}
             <script src="{{ asset('js/jquery.js') }}"></script>
 

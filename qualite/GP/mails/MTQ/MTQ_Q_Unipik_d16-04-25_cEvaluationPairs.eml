@@ -1,0 +1,184 @@
+Return-Path: <picasi-3-owner@insa-rouen.fr>
+Delivered-To: pporche@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 26BA8238B9;
+	Mon, 25 Apr 2016 09:19:16 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DuAACDxB1XinIKMcFEGhwBg259tQKGaSQBCocOTAEBAQEBARMBAQEKFAlQhEMGAQEJIBoyAQMDAQEBBhAdFg8DAQUDAgECAQ1LAQUCAQEBiCkKLL9mASUEjwwBAWmFCgWINI9bF4VlhEyNBoVXjy+ET2oBhzCBNQEBAQ
+X-IPAS-Result: A0DuAACDxB1XinIKMcFEGhwBg259tQKGaSQBCocOTAEBAQEBARMBAQEKFAlQhEMGAQEJIBoyAQMDAQEBBhAdFg8DAQUDAgECAQ1LAQUCAQEBiCkKLL9mASUEjwwBAWmFCgWINI9bF4VlhEyNBoVXjy+ET2oBhzCBNQEBAQ
+X-IronPort-AV: E=Sophos;i="5.24,531,1454972400"; 
+   d="scan'208,217";a="88492341"
+Received: from smtpout.insa-rouen.fr ([193.49.10.114])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 25 Apr 2016 09:19:16 +0200
+Received: from newlistdiff.insa-rouen.fr (newlistdiff.insa-rouen.fr [193.49.10.34])
+	by smtpout.insa-rouen.fr (8.13.8/8.13.8) with ESMTP id u3P7JGPh011818;
+	Mon, 25 Apr 2016 09:19:16 +0200
+Received: from newlistdiff.insa-rouen.fr (localhost.localdomain [127.0.0.1])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id u3P7JFpY012525;
+	Mon, 25 Apr 2016 09:19:15 +0200
+Received: (from sympa@localhost)
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6/Submit) id u3P7JFqW012524;
+	Mon, 25 Apr 2016 09:19:15 +0200
+X-Authentication-Warning: newlistdiff.insa-rouen.fr: sympa set sender to picasi-3-owner@insa-rouen.fr using -f
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id u3P7JEtG012521
+	for <picasi-3@newlistdiff.insa-rouen.fr>; Mon, 25 Apr 2016 09:19:14 +0200
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DtAACDxB1Xig8V3cNEGhwBg259pz2NRYZ2EhCFbIEiTAEBAQEBARMBAQEKFAlQhFRsAR8dFhgDAgECAQ1LAQUCAQGIKgosv2YBAQgCGgSPDAEBaYUKBYg0j1sXhWWETI0GhVePL4J4gVdqAYcwgTUBAQE
+X-IPAS-Result: A0DtAACDxB1Xig8V3cNEGhwBg259pz2NRYZ2EhCFbIEiTAEBAQEBARMBAQEKFAlQhFRsAR8dFhgDAgECAQ1LAQUCAQGIKgosv2YBAQgCGgSPDAEBaYUKBYg0j1sXhWWETI0GhVePL4J4gVdqAYcwgTUBAQE
+X-IronPort-AV: E=Sophos;i="5.24,531,1454972400"; 
+   d="scan'208,217";a="88492335"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 25 Apr 2016 09:19:11 +0200
+Received: from [193.49.8.228] (darwin228.insa-rouen.fr [193.49.8.228])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id DCC2F1075A;
+	Mon, 25 Apr 2016 09:19:10 +0200 (CEST)
+Message-ID: <571DC4EE.8060908@insa-rouen.fr>
+Date: Mon, 25 Apr 2016 09:19:10 +0200
+From: Benjamin COELHO DE MATOS <benjamin.coelho-de-matos@insa-rouen.fr>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.0.1
+MIME-Version: 1.0
+To: picasi-3@insa-rouen.fr
+CC: Doriane BAREAU <dbareau@altedia.fr>
+Content-Type: multipart/alternative;
+ boundary="------------050306030500020009010805"
+Subject: [picasi-3] Evaluation "par les pairs" sur les PIC
+X-Loop: picasi-3@insa-rouen.fr
+X-Sequence: 1169
+Errors-to: picasi-3-owner@insa-rouen.fr
+Precedence: list
+X-no-archive: yes
+List-Id: <picasi-3.insa-rouen.fr>
+List-Help: <mailto:sympa@insa-rouen.fr?subject=help>
+List-Subscribe: <mailto:sympa@insa-rouen.fr?subject=subscribe%20picasi-3>
+List-Unsubscribe: <mailto:sympa@insa-rouen.fr?subject=unsubscribe%20picasi-3>
+List-Post: <mailto:picasi-3@insa-rouen.fr>
+List-Owner: <mailto:picasi-3-request@insa-rouen.fr>
+
+This is a multi-part message in MIME format.
+--------------050306030500020009010805
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+
+Je vous suis reconnaissant de bien vouloir évaluer, par rapport à 
+vous-même, vos camarades de l'équipe PIC au travers du questionnaire 
+suivant :
+
+https://pic-eval.insa-rouen.fr/Student/QuestionName.php?id=537368
+
+L'objectif d'une telle démarche est de vous faire bénéficier d'un outil 
+de connaissance de soi afin de vous préparer à votre intégration futur à 
+l'environnement professionnel.
+
+En cas de problème sur l'exécution de ce questionnaire ou si vous 
+souhaitez changer vos réponses, veuillez contacter Benjamin COELHO DE MATOS.
+
+Bien cordialement,
+-- 
+*Benjamin Coelho de Matos*
+/Ingénieur de la Mission Qualité de l'INSA de ROUEN
+Tuteur Qualité pour les PIC ASI et MRIE
+INSA de Rouen, bureau DA AR 110
+685 Avenue de l'Université BP 08,
+76801 Saint Etienne du Rouvray Cedex
+/ Tel: (33).02.32.95.66.95
+mail: benjamin.coelho-de-matos@insa-rouen.fr
+
+--------------050306030500020009010805
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;
+      charset=ISO-8859-1">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt">Bonjour,
+
+
+
+
+
+
+
+
+
+
+
+
+      <o:p></o:p></p>
+    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt">Je
+
+
+
+
+
+
+
+
+
+
+
+
+      vous suis reconnaissant de bien vouloir &eacute;valuer, par rapport &agrave;
+      vous-m&ecirc;me, vos camarades de l'&eacute;quipe PIC au travers du
+      questionnaire suivant :<br>
+    </p>
+    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt"><a
+href="https://pic-eval.insa-rouen.fr/Student/QuestionName.php?id=537368">https://pic-eval.insa-rouen.fr/Student/QuestionName.php?id=537368</a><br>
+      <o:p></o:p></p>
+    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt"><o:p></o:p>L'objectif
+d'une
+
+
+
+
+
+
+
+
+
+
+
+
+      telle d&eacute;marche est de vous faire b&eacute;n&eacute;ficier d'un outil de
+      connaissance de soi afin de vous pr&eacute;parer &agrave; votre int&eacute;gration
+      futur &agrave; l'environnement professionnel.<o:p></o:p></p>
+    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt">En
+
+
+
+
+
+
+
+
+
+
+
+
+      cas de probl&egrave;me sur l'ex&eacute;cution de ce questionnaire ou si vous
+      souhaitez changer vos r&eacute;ponses, veuillez contacter Benjamin COELHO
+      DE MATOS.<o:p></o:p></p>
+    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+    <p class="MsoNormal" style="margin-bottom:0cm;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+    Bien cordialement,
+    <div class="moz-signature">-- <br>
+      <b>Benjamin Coelho de Matos</b><br>
+      <i>Ing&eacute;nieur de la Mission Qualit&eacute; de l'INSA de ROUEN<br>
+        Tuteur Qualit&eacute; pour les PIC ASI et MRIE<br>
+        INSA de Rouen, bureau DA AR 110<br>
+        685 Avenue de l'Universit&eacute; BP 08,<br>
+        76801 Saint Etienne du Rouvray Cedex<br>
+      </i> Tel: (33).02.32.95.66.95<br>
+      mail: <a class="moz-txt-link-abbreviated"
+        href="mailto:benjamin.coelho-de-matos@insa-rouen.fr">benjamin.coelho-de-matos@insa-rouen.fr</a>
+    </div>
+  </body>
+</html>
+
+--------------050306030500020009010805--

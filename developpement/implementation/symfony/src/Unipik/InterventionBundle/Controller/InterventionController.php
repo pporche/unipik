@@ -31,7 +31,7 @@ class InterventionController extends Controller {
 
             return $this->RedirectToRoute('');
         }
-        return $this->render('InterventionBundle::demande.html.twig', array(
+        return $this->render('InterventionBundle:Demande:demande.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -39,7 +39,7 @@ class InterventionController extends Controller {
     public function consultationAction($id) {
         // Faire la vérication si l'intervention est un plaidoyer, frimousse ou autre
         // Et appeler la vue correspondante
-        return $this->render('InterventionBundle:consultation:consultationPlaidoyer.html.twig');
+        return $this->render('InterventionBundle:Consultation:consultationPlaidoyer.html.twig');
     }
 
     public function addAction() {
@@ -54,8 +54,14 @@ class InterventionController extends Controller {
 
     }
 
-    public function listViewAction() {
+    public function listPlaidoyersViewAction() {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('ArchitectureBundle:Intervention');
+        $listPlaidoyers = $repository->findby(array('type' => 'plaidoyer'));
 
+        return $this->render('InterventionBundle:liste.html.twig', array(
+            'listPlaidoyers' => $listPlaidoyers
+        ));
     }
 
     public function locationAction() {

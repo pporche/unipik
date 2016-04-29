@@ -1,3 +1,8 @@
+-- Suppression des id_seq --
+DROP SEQUENCE IF EXISTS admin_activite_id_seq;
+DROP SEQUENCE IF EXISTS admin_region_id_seq;
+DROP SEQUENCE IF EXISTS admin_comite_id_seq;
+
 -- Suppression des vues --
 DROP VIEW IF EXISTS personne;
 
@@ -21,9 +26,9 @@ DROP TABLE IF EXISTS region CASCADE;
 DROP TABLE IF EXISTS pays;
 DROP TABLE IF EXISTS projet;
 DROP TABLE IF EXISTS contact CASCADE;
-DROP TABLE IF EXISTS admin_region;
-DROP TABLE IF EXISTS admin_comite;
-DROP TABLE IF EXISTS admin_activite;
+DROP TABLE IF EXISTS admin_region CASCADE;
+DROP TABLE IF EXISTS admin_comite CASCADE;
+DROP TABLE IF EXISTS admin_activite CASCADE;
 DROP TABLE IF EXISTS benevole;
 
 

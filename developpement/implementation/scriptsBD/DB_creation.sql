@@ -146,19 +146,40 @@ CREATE TABLE IF NOT EXISTS benevole (
 	activites_potentielles domaine_type_activite DEFAULT NULL
 );
 
+--------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS admin_activite (
 	responsabilite_activite domaine_type_activite NOT NULL
 )INHERITS(benevole);
 
+ALTER TABLE admin_activite
+	add CONSTRAINT id_admin_activite
+ 	PRIMARY KEY (id);
+
+CREATE SEQUENCE admin_activite_id_seq;
+
+--------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS admin_comite (
 
 )INHERITS(benevole);
 
+ALTER TABLE admin_comite
+	add CONSTRAINT id_admin_comite
+	PRIMARY KEY (id);
+
+CREATE SEQUENCE admin_comite_id_seq;
+
+--------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS admin_region (
 
 )INHERITS(benevole);
+
+ALTER TABLE admin_region
+	add CONSTRAINT id_admin_region
+	PRIMARY KEY(id);
+
+CREATE SEQUENCE admin_region_id_seq;
 
 
 CREATE TABLE IF NOT EXISTS contact (

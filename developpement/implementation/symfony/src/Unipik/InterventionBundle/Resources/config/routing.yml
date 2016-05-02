@@ -1,13 +1,13 @@
 intervention_request:
-    path:     /demande/{id}/
+    path:     /demande/{id}
     defaults:
         _controller: InterventionBundle:Intervention:demande
 
 intervention_list:
-    path:   /plaidoyer/
+    path:   /plaidoyer
     defaults:
         _controller: InterventionBundle:Intervention:listPlaidoyers
 
 intervention_view:
-    path: /{id}/
+    path: /{id}
     defaults: {_controller: InterventionBundle:Intervention:consultation}

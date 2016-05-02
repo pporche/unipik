@@ -1,10 +1,11 @@
-% version 1.01 Date 31/03/2016	Auteur Mathieu Medici
+% version 3.00 Date 02/05/2016	Auteur Mathieu Medici
+% version 2.00 Date 31/03/2016	Auteur Mathieu Medici
 
-\section{Référentiels spécifiques}
+\section{Référentiels et dossiers spécifiques}
+
+\subsection{Référenctiel ressources}
 
 Le référentiel \textbf{Ressources} ne sera pas soumis aux conventions de nommage mais certaines règles doivent être respectées. Chaque dossier et chaque fichier devra être nommé en lowerCamelCase et de manière évocatrice quant au contenu. 
-
-\section{Dossiers spécifiques}
 
 \subsection{Dossiers images}
 
@@ -59,9 +60,8 @@ Les dossiers \textbf{enregistrements} permettent de stocker les sources des docu
 Exemple : Le répertoire \verb+pic_unicef/qualite/GP/CR/CRC+ regroupe l'ensemble des Comptes Rendus Client, on y trouve alors un dossier \verb+enregistrements+ qui contient l'ensemble des sources, un dossier \verb+pdf+ pour le stockage sur SA MACHINE des pdf et le makefile qui compile toutes les sources en même temps.
 
 
+
 \section{Précisions sur les répertoires de l'arborescence}
-
-
 
 \subsection{Répertoire implementation}
 
@@ -88,3 +88,37 @@ Le répertoire client contient l’ensemble des documents fournis par le client 
 
 Les dates figurant dans les documents sont toutes au format \textbf{JJ/MM/AAAA}. Attention à ne pas confondre avec le format de date des  suffixes dans la convention de nommage (\verb+dAA-MM-JJ+).
 
+
+\section{Formalisme de codage}
+
+Afin d'avoir du code cohérent dans son ensemble, nous avons défini un certain formalisme de rédaction. Chaque langage utilisée pour notre projet aura ses propres règles. 
+
+\subsection{Formalisme pour la base de données}
+
+Du côté de la base de données, le formalisme suivant devra être respecté : 
+\begin{itemize}
+\item Les noms de tous les éléments de la BD seront écrits en minuscule, en français de préférence et si un nom possède plusieurs mots, la séparation se fera par des underscores.\\
+\end{itemize}
+Exemple : \verb+classe_d_exemple+\\
+
+\subsection{Formalisme pour le langage PHP}
+
+Du côté du code PHP, le formalisme suivant devra être respecté : 
+\begin{itemize}
+\item Les classes respecteront le UpperCamelCase;
+\item Les attributs et les méthodes respecteront le lowerCamelCase;
+\item Les attributs privés ("private") débuteront en plus par un underscore;
+\item Les noms des classes, des méthodes et des attributs devront correspondre au maximum aux noms présents dans la BD tout en respectant le formalisme décrit ci-dessus. \\
+\end{itemize}
+Exemple : \\
+\begin{verbatim}
+\@ORM\Table(name="classe_d_exemple")
+class ClasseDExemple {
+	private $_attributDExemple:
+	public function getAttributDExemple() {
+		return $this->_attributDExemple;
+	}
+	public function setAttributDExemple($attributDExemple) {
+		$this->_attributDExemple = $attributDExemple;
+	}
+\end{verbatim}

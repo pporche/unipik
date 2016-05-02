@@ -5,6 +5,7 @@ DROP SEQUENCE IF EXISTS admin_comite_id_seq;
 
 -- Suppression des vues --
 DROP VIEW IF EXISTS personne;
+DROP VIEW IF EXISTS plaidoyer;
 
 -- Suppression des tables --
 DROP TABLE IF EXISTS participe;
@@ -30,6 +31,7 @@ DROP TABLE IF EXISTS admin_region CASCADE;
 DROP TABLE IF EXISTS admin_comite CASCADE;
 DROP TABLE IF EXISTS admin_activite CASCADE;
 DROP TABLE IF EXISTS benevole;
+DROP TABLE IF EXISTS demande_moments_voulus;
 
 
 -- Suppression des types -- 

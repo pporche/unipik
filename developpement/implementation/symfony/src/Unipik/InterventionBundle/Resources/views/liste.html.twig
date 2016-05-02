@@ -2,7 +2,7 @@
 
 {% block title %}
 
-    Liste des plaidoyers - {{ parent() }}
+    {{ parent() }}
 
 {% endblock %}
 
@@ -15,7 +15,9 @@
             <th>Lieu</th>
             <th>Date</th>
             <th>Voir détails</th>
-            <th>Supprimer</th>
+            {% if is_granted('ROLE_ADMIN') %}
+                <th>Supprimer</th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
@@ -25,12 +27,16 @@
                 <td>{{ plaidoyerlieu }}</td>
                 <td>{{ plaidoyermoment }}</td>
                 <td><a href="{#{ path('architecture_intervention_view', {id: plaidoyerid}) }#}" class="btn btn-primary">Voir détails</a></td>
-                <td><a href="{#{ path('architecture_intervention_delete', {id: plaidoyerid}) }#}" class="btn btn-danger">Supprimer</a></td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td><a href="{#{ path('architecture_intervention_delete', {id: plaidoyerid}) }#}" class="btn btn-danger">Supprimer</a></td>
+                {% endif %}
             </tr>
         {% endfor %}
-        <tr>
-            <td colspan="5" class="text-center"><a href="{#{ path('architecture_intervention_add') }#}" class="btn btn-primary">Ajouter une intervention</a></td>
-        </tr>
+        {% if is_granted('ROLE_ADMIN') %}
+            <tr>
+                <td colspan="5" class="text-center"><a href="{#{ path('architecture_intervention_add') }#}" class="btn btn-primary">Ajouter une intervention</a></td>
+            </tr>
+        {% endif %}
         </tbody>
     </table>
 {% endblock %}

@@ -61,7 +61,7 @@ class InterventionController extends Controller {
         $repository = $em->getRepository('ArchitectureBundle:Intervention');//('ArchitectureBundle:Plaidoyer');
         $listPlaidoyers = $repository->findAll();
 
-        return $this->render('InterventionBundle:Plaidoyer:liste.html.twig', array(
+        return $this->render('InterventionBundle:Liste:listePlaidoyer.html.twig', array(
             'listPlaidoyers' => $listPlaidoyers
         ));
     }

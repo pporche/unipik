@@ -1,0 +1,127 @@
+% version 1.00	Auteur Pierre Porche date 02/05/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\usepackage{hyperref}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Pédagogique}}					%titre
+\begin{document}
+
+29/04/2016			 				%Date 
+\hfill   
+\hfill 	 9:02 - 10:14				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{3cm} | p{3cm} | p{3cm} | p{3.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 02/05/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{4cm} | p{3cm} | p{3cm} | p{2.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui & 25/04/2016 & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi & 26/04/2016 & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Résumé de la semaine passée}
+Cette semaine s'est orientée principalement sur trois axes : 
+\begin{itemize}
+\item la génération de code via l'ORM en bottom-up ;
+\item la réalisation de vues ;
+\item l'appel au client.
+\end{itemize} 
+
+\section{Bottom-Up}
+Nous avons conçu un modèle de base de données propre et avons rencontré quelques problèmes lors de la génération de code via l'ORM. Le premier est que ce dernier ne semble pas gérer les types. La solution est de mettre une relation en tant qu'attribut dans les tables concernées. \\
+PostgreSQL ne prend pas en compte les contraintes d'intégrité référentielles sur les INHERITS. Il y a trois solution possible :
+\begin{itemize}
+\item faire des tables pour les classes abstraites au lieu de vues ;
+\item ajouter un typage sur l'association ;
+\item utiliser des triggers : au lieu de faire trois jointures, faire des jointures successives sur chaque fils.
+\end{itemize}
+
+Le dernier problème est que Symfony ne gère pas les primary keys qui ne sont pas des serials. \nomTuteurPedago{} nous explique que nos schémas exterieur et logique doivent être propres et en formes normales mais que lors du passage sur le schéma physique, il est possible de dénormaliser sans perdre la trace des problèmes introduits. Mettre un id en serial est possible sur la table utilisateur en ajoutant un UNIQUE NOT NULL sur email.
+
+\section{Réalisation de vues}
+Certaines vues et formulaires ont été réalisées :
+\begin{itemize}
+\item formulaire d'inscription de bénévole ;
+\item afficher un profil ;
+\item se connecter ;
+\item consulter fiche établissement ;
+\item consulter fiche d'intervention.
+\end{itemize}
+Ainsi que des tests de vues : 
+\begin{itemize}
+\item éditer un profil ;
+\item changer de mot de passe.
+\end{itemize}
+
+L'envoi d'emails fonctionne pour la confirmation de l'inscription.
+
+\section{Appel au client}
+Le client n'a pas répondu aux questions de \Sergi{} qui l'a donc appelé. Le client est donc au courant du possible retard mais \nomTuteurPedago{} nous explique qu'il aurait fallu mettre plus l'accent sur la prise en compte des fonctionnalités importantes pour le client.
+
+
+%--- fin de réunion ---%
+\newpage
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

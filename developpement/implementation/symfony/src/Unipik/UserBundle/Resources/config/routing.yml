@@ -1,38 +1,38 @@
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
-    prefix: /register/
+    prefix: /register
 
 fos_user_resetting:
     resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-    prefix: /resetting/
+    prefix: /resetting
 
 fos_user_security_check:
-    path: /login_check/
+    path: /login_check
     defaults:
-        _controller: FOS\UserBundle:Security:check
+        _controller: FOSUserBundle:Security:check
 
 fos_user_security_logout:
-    path: /logout/
+    path: /logout
     defaults:
-        _controller: UserBundle:Security:logout
+        _controller: FOSUserBundle:Security:logout
 
 fos_user_security_login:
-    path: /login/
+    path: /login
     defaults:
         _controller: UserBundle:Security:loginPage
 
 fos_user_profile_show:
-    path: /profil/
+    path: /profil
     defaults:
         _controller: FOSUserBundle:Profile:show
 
 fos_user_profile_edit:
-    path: /profil/edit/
+    path: /profil/edit
     defaults:
         _controller: FOSUserBundle:Profile:edit
 
 fos_user_change_password:
-    path: /change-password/
+    path: /change-password
     defaults:
         _controller: FOSUserBundle:ChangePassword:changePassword
 

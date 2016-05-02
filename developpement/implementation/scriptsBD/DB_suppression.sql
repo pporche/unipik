@@ -6,6 +6,11 @@ DROP SEQUENCE IF EXISTS admin_comite_id_seq;
 -- Suppression des vues --
 DROP VIEW IF EXISTS personne;
 DROP VIEW IF EXISTS plaidoyer;
+DROP VIEW IF EXISTS frimousse;
+DROP VIEW IF EXISTS autre_intervention;
+DROP VIEW IF EXISTS enseignement;
+DROP VIEW IF EXISTS centre_loisirs;
+DROP VIEW IF EXISTS autre_etablissement;
 
 -- Suppression des tables --
 DROP TABLE IF EXISTS participe;

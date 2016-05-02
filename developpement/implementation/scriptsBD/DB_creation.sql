@@ -263,24 +263,32 @@ CREATE TABLE IF NOT EXISTS etablissement (
 	emails domaine_type_email NOT NULL
 );
 
+ALTER TABLE etablissement
+	add type_enseignement domaine_type_enseignement;
 
-CREATE TABLE IF NOT EXISTS enseignement (
-	type_enseignement domaine_type_enseignement NOT NULL
-)INHERITS(etablissement);
+CREATE VIEW enseignement AS (
+	SELECT id, uai, adresse_id, nom, tel_fixe, emails, type_enseignement
+	FROM etablissement
+	WHERE type_enseignement is not null
+);
 
+ALTER TABLE etablissement
+	add type_centre domaine_type_centre;
 
+CREATE VIEW centre_loisirs AS (
+	SELECT id, uai, adresse_id, nom, tel_fixe, emails, type_centre
+	FROM etablissement
+	WHERE type_centre is not null
+);
 
-CREATE TABLE IF NOT EXISTS centre_loisirs (
-	type_centre domaine_type_centre NOT NULL
-)INHERITS(etablissement);
+ALTER TABLE etablissement 
+	add type_autre_etablissement domaine_type_autre_etablissement;
 
-
-
-CREATE TABLE IF NOT EXISTS autre_etablissement (
-	type_autre_etablissement domaine_type_autre_etablissement NOT NULL
-)INHERITS(etablissement);
-
-
+CREATE VIEW autre_etablissement AS (
+	SELECT id, uai, adresse_id, nom, tel_fixe, emails, type_autre_etablissement
+	FROM etablissement
+	WHERE type_autre_etablissement is not null
+);
 
 
 
@@ -298,23 +306,26 @@ CREATE TABLE IF NOT EXISTS intervention (
 	type VARCHAR(255) NOT NULL
 );
 
+-- Attributs de plaidoyer
+ALTER TABLE intervention 
+	add niveau_theme_id INT REFERENCES niveau_theme ON DELETE CASCADE; --  NOT NULL
 
+ALTER TABLE intervention
+	add materiel_dispo_plaidoyer domaine_type_materiel_plaidoyer;
 
-CREATE TABLE IF NOT EXISTS plaidoyer (
-	niveau_theme_id INT NOT NULL REFERENCES niveau_theme ON DELETE CASCADE,
-	materiel_dispo domaine_type_materiel_plaidoyer
-)INHERITS(intervention); 
+-- Atributs de frimousse
+ALTER TABLE intervention
+	add niveau_frimousse domaine_niveau_scolaire_limite; --not null
 
+ALTER TABLE intervention
+	add materiaux_frimousse domaine_type_materiel_frimousse;
 
-CREATE TABLE IF NOT EXISTS frimousse (
-	niveau domaine_niveau_scolaire_limite NOT NULL,
-	materiaux domaine_type_materiel_frimousse
-)INHERITS(intervention); 
+-- Attributs de autreIntervention
+ALTER TABLE intervention
+	add description VARCHAR(250);
 
+----------------------
 
-CREATE TABLE IF NOT EXISTS autre_intervention (
-	description TEXT NOT NULL
-)INHERITS(intervention);
 
 
 CREATE TABLE IF NOT EXISTS vente (
@@ -369,6 +380,25 @@ CREATE VIEW personne AS (
 	SELECT email, prenom, tel_fixe, tel_portable
 	FROM benevole                               
 );
+
+CREATE VIEW plaidoyer AS (
+	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, niveau_theme_id, materiel_dispo_plaidoyer
+	FROM intervention
+	WHERE niveau_theme_id is not null AND materiel_dispo_plaidoyer is not null
+);
+
+CREATE VIEW frimousse AS (
+	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, niveau_frimousse, materiaux_frimousse
+	FROM intervention
+	WHERE niveau_frimousse is not null AND materiaux_frimousse is not null
+);
+
+CREATE VIEW autre_intervention AS (
+	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, description
+	FROM intervention
+	WHERE description is not null
+);
+
 
 
 

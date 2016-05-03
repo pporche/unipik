@@ -40,13 +40,13 @@ DROP TABLE IF EXISTS demande_moments_voulus;
 
 
 -- Suppression des types -- 
---DROP TYPE type_semaine;
---DROP TYPE type_moment;
---DROP TYPE type_niveau_theme;
---DROP TYPE type_materiel_plaidoyer;
---DROP TYPE type_materiel_frimousse;
---DROP TYPE type_email;
---DROP TYPE type_activite;
+DROP TYPE type_semaine;
+DROP TYPE type_moment;
+DROP TYPE type_niveau_theme;
+DROP TYPE type_materiel_plaidoyer;
+DROP TYPE type_materiel_frimousse;
+DROP TYPE type_email;
+DROP TYPE type_activite;
 
 -- Suppression des tables correspondants à des types --
 DROP TABLE IF EXISTS moment_hebdomadaire CASCADE;

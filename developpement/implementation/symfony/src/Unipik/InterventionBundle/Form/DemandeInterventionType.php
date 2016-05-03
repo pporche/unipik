@@ -23,6 +23,7 @@ class DemandeInterventionType extends AbstractType {
             ->add('personneReferente', PersonneReferenteType::class, array('fieldset' => true, 'legend' => 'Personne Référente'))
             ->add('adresse', AdresseType::class, array('fieldset' => true, 'legend' => "Adresse de l'établissement"))
             ->add('intervention', InterventionType::class, array('fieldset' => true, 'legend' => "Intervention"))
+            ->add('remarques', RemarquesType::class, array('fieldset' => true, 'legend' => 'Remarques éventuelles'))
         ;
     }
 

@@ -1,4 +1,9 @@
 services:
+    unipik_user.listener.flash:
+        class: Unipik\UserBundle\EventListener\FlashListener
+        tags:
+            - { name: kernel.event_subscriber }
+        arguments: ['@session', '@translator']
     app.form.registration:
         class: Unipik\UserBundle\Form\RegistrationType
         tags:

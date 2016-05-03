@@ -78,6 +78,7 @@ class SecurityController extends BaseController {
 
         return $this->render('UserBundle:Security:login.html.twig', array(
             'form' => $form,
+            'error' => $data['error']
         ));
     }
 

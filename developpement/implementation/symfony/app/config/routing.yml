@@ -13,3 +13,13 @@ intervention:
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /
+
+
+admin_architecture:
+    resource: "@ArchitectureBundle/Resources/config/routingAdmin.yml"
+    prefix:   /admin/
+
+
+admin_intervention:
+    resource: "@InterventionBundle/Resources/config/routingAdmin.yml"
+    prefix:   /admin/

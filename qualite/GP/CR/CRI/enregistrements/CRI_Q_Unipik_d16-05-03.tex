@@ -1,0 +1,81 @@
+% version 1.00	Auteur Pierre Porche		Date 03/05/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+\definecolor{White}{gray}{1.0}
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion interne}}					%titre
+\begin{document}
+
+03/05/2016			 				%Date 
+\hfill   
+\hfill 	 8:49 - 9:25				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% Version
+%--- Fin en-t�te et pied de page ---%
+
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 03/05/2016 & \Pierre & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQA & \Kafui &  & pgpic \\[30pt]
+				\hline
+				Validateur & \CP & \Sergi &  & pgpic \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+
+\section{Planning}
+Les \FS{} sont faites. Il reste deux semaines en comptant la semaine d'examens. La revue est pour le 20 mai, il faut préparer ça à l'avance.
+
+\section{BD}
+Les solutions de \nomTuteurPedago{} sont testées et l'objectif de la fin du semestre est réussir à linker la BD à Symfony pour générer du PHP.
+
+
+\section{Front end}
+Vues : beaucoup de problèmes ont été résolus. Pas mal de questions d’esthétique à résoudre encore.
+
+
+%--- fin de réunion ---%
+
+
+\end{document}
+
+
+
+
+
+
+

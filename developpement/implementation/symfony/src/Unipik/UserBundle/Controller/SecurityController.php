@@ -66,19 +66,66 @@ class SecurityController extends BaseController {
 
 
 
-        return parent::loginAction($request);
+        $data = parent::loginAction($request);
+
+
+        $form = $this->createForm(LoginType::class, null,  array("action" => $this->generateUrl("fos_user_security_check")));
+
+
+        if($form->isValid()) {
+            $session =$request->getSession();
+            $session->getFlashBag()->add('notice', array(
+                'title'=>'Rebonjour !',
+                'message'=>'Connexion réussi.',
+                'alert'=>'success'
+            ));
+        } else {
+            $session =$request->getSession();
+            $session->getFlashBag()->add('notice', array(
+                'title'=>'Echec',
+                'message'=> 'Echec de connexion…',
+                'alert'=>'danger'
+            ));
+        }
+
+
+            return $this->render('UserBundle:Security:login.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
+
+        //return $ans;
     }
 
     protected function renderLogin(array $data) {
         //return $this->render('UserBundle:Security:login.html.twig', $data);
 
-        $form = $this->createForm(LoginType::class, null,  array("action" => $this->generateUrl("fos_user_security_check")))
-            ->createView();
+       /* $form = $this->createForm(LoginType::class, null,  array("action" => $this->generateUrl("fos_user_security_check")))
+            ->createView();*/
 
 
-        return $this->render('UserBundle:Security:login.html.twig', array(
+        /*if(isset($data['error'])){
+            $session =$request->getSession();
+            $session->getFlashBag()->add('notice', array(
+                'title'=>'Echec de connexion…',
+                'message'=>$data['error'],
+                'alert'=>'danger'
+            ));
+        } else {
+            $session =$request->getSession();
+            $session->getFlashBag()->add('notice', array(
+                'title'=>'Rebonjour !',
+                'message'=>'Connexion réussi.',
+                'alert'=>'success'
+            ));
+        }*/
+
+
+        /*return $this->render('UserBundle:Security:login.html.twig', array(
             'form' => $form,
-        ));
+        ));*/
+
+        return $data;
     }
 
     public function logoutAction() {

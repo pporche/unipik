@@ -1,3 +1,5 @@
+
+
 -- Définition des Domaines --
 
 CREATE DOMAIN  domaine_semaine AS INT
@@ -11,6 +13,7 @@ CHECK (VALUE IN ('matin', 'apres-midi', 'soir'));
 
 CREATE DOMAIN domaine_type_contact AS VARCHAR(20)
 CHECK (VALUE IN ('enseignant', 'animateur', 'eleve', 'etudiant', 'autre'));
+
 
 CREATE DOMAIN domaine_activite AS VARCHAR(30)
 CHECK (VALUE IN ('actions ponctuelles', 'plaidoyers', 'frimousses', 'projets', 'autre'));
@@ -124,13 +127,11 @@ CREATE TABLE IF NOT EXISTS moment_hebdomadaire (
 
 -- Création des types pour les attributs multivalués -- 
 
---CREATE TYPE type_activite as (activite_potentielle activite);  						-- done
---CREATE TYPE type_email as (email  email);												-- done
---CREATE TYPE type_materiel_frimousse as (materiel_frimousse materiel_frimousse);		-- done
---CREATE TYPE type_materiel_plaidoyer as (materiel_plaidoyer materiel_plaidoyer);		-- done
---CREATE TYPE type_niveau_theme as (niveau_theme niveau_theme);							-- done avec table intermediaire
---CREATE TYPE type_moment as (moment_hebdomadaire moment_hebdomadaire);					-- done avec table intermediaire
---CREATE TYPE type_semaine as (semaine semaine);										-- done
+CREATE TYPE type_activite as (activite_potentielle domaine_activite);  						-- done
+CREATE TYPE type_email as (email  domaine_email);												-- done
+CREATE TYPE type_materiel_frimousse as (materiel_frimousse domaine_materiel_frimousse);		-- done-
+CREATE TYPE type_materiel_plaidoyer as (materiel_plaidoyer domaine_materiel_plaidoyer);		-- done
+CREATE TYPE type_semaine as (semaine domaine_semaine);										-- done
 
 -- Création des tables --
 
@@ -143,43 +144,45 @@ CREATE TABLE IF NOT EXISTS benevole (
 	tel_portable domaine_tel_portable DEFAULT NULL,
 	adresse_id INT REFERENCES adresse(id) ON DELETE CASCADE, 
 	mdp VARCHAR(50) NOT NULL,
-	activites_potentielles domaine_type_activite DEFAULT NULL
+	activites_potentielles type_activite[] DEFAULT NULL,
+	responsabilite_activite type_activite[] DEFAULT NULL,
+	isAdminRegion BOOLEAN DEFAULT NULL,
+	isAdminComite BOOLEAN DEFAULT NULL
 );
 
 --------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS admin_activite (
-	responsabilite_activite domaine_type_activite NOT NULL
-)INHERITS(benevole);
+--CREATE TABLE IF NOT EXISTS admin_activite (
+--	responsabilite_activite type_activite[] DEFAULT NULL
+--)INHERITS(benevole);
 
-ALTER TABLE admin_activite
-	add CONSTRAINT id_admin_activite
- 	PRIMARY KEY (id);
+--ALTER TABLE admin_activite
+--	add CONSTRAINT id 	PRIMARY KEY (id);
 
-CREATE SEQUENCE admin_activite_id_seq;
-
---------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS admin_comite (
-
-)INHERITS(benevole);
-
-ALTER TABLE admin_comite
-	add CONSTRAINT id_admin_comite
-	PRIMARY KEY (id);
-
-CREATE SEQUENCE admin_comite_id_seq;
+--CREATE SEQUENCE admin_activite_id_seq;
 
 --------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS admin_region (
+--CREATE TABLE IF NOT EXISTS admin_comite (
 
-)INHERITS(benevole);
+--)INHERITS(benevole);
 
-ALTER TABLE admin_region
-	add CONSTRAINT id_admin_region
-	PRIMARY KEY(id);
+--ALTER TABLE admin_comite
+--	add CONSTRAINT id_admin_comite
+--	PRIMARY KEY (id);
 
-CREATE SEQUENCE admin_region_id_seq;
+--CREATE SEQUENCE admin_comite_id_seq;
+
+--------------------------------------------------------------
+
+--CREATE TABLE IF NOT EXISTS admin_region (
+
+--)INHERITS(benevole);
+
+--ALTER TABLE admin_region
+--	add CONSTRAINT id_admin_region
+--	PRIMARY KEY(id);
+
+--CREATE SEQUENCE admin_region_id_seq;
 
 
 CREATE TABLE IF NOT EXISTS contact (
@@ -223,12 +226,10 @@ CREATE TABLE IF NOT EXISTS comite (
 	nom_departement domaine_departement_de_france NOT NULL
 );
 
--- yaura du trigger ici --
-
 CREATE TABLE IF NOT EXISTS comite_niveau_theme (
-	id_comite INT REFERENCES comite(id) ON DELETE CASCADE,
+	id_comite int REFERENCES comite(id) ON DELETE CASCADE,
 	id_niveau_theme INT REFERENCES niveau_theme(id) ON DELETE CASCADE,
-	PRIMARY KEY (id_comite, id_niveau_theme)
+	PRIMARY KEY(id_comite,id_niveau_theme)
 );
 
 
@@ -236,22 +237,23 @@ CREATE TABLE IF NOT EXISTS demande (
 	id SERIAL PRIMARY KEY, 
 	contact_id INT REFERENCES contact(id) ON DELETE CASCADE, 
 	date DATE NOT NULL,
-	liste_semaine domaine_type_semaine NOT NULL
+	liste_semaine type_semaine[] NOT NULL
+
 );
 
--- yaura du trigger ici --
-
-CREATE TABLE IF NOT EXISTS demande_moments_voulus (
+CREATE TABLE demande_moments_voulus (
 	id_demande INT REFERENCES demande(id) ON DELETE CASCADE,
-	id_moment_hebdomadaire INT REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
-	PRIMARY KEY (id_demande, id_moment_hebdomadaire)
+	id_moments_voulus INT REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
+	PRIMARY KEY(id_demande, id_moments_voulus)
 );
 
-CREATE TABLE IF NOT EXISTS demande_moments_voulus (
+
+CREATE TABLE demande_moments_a_eviter (
 	id_demande INT REFERENCES demande(id) ON DELETE CASCADE,
-	id_moment_hebdomadaire INT REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
-	PRIMARY KEY (id_demande, id_moment_hebdomadaire)
+	id_moments_a_eviter INT REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
+	PRIMARY KEY(id_demande, id_moments_a_eviter)
 );
+
 
 
 CREATE TABLE IF NOT EXISTS etablissement (
@@ -260,35 +262,21 @@ CREATE TABLE IF NOT EXISTS etablissement (
 	adresse_id INT REFERENCES adresse(id) ON DELETE CASCADE, 
 	nom VARCHAR(100) DEFAULT NULL, 
 	tel_fixe domaine_tel_fixe DEFAULT NULL,
-	emails domaine_type_email NOT NULL
+	emails type_email[] NOT NULL
 );
 
 ALTER TABLE etablissement
 	add type_enseignement domaine_type_enseignement;
 
-CREATE VIEW enseignement AS (
-	SELECT id, uai, adresse_id, nom, tel_fixe, emails, type_enseignement
-	FROM etablissement
-	WHERE type_enseignement is not null
-);
+
 
 ALTER TABLE etablissement
 	add type_centre domaine_type_centre;
 
-CREATE VIEW centre_loisirs AS (
-	SELECT id, uai, adresse_id, nom, tel_fixe, emails, type_centre
-	FROM etablissement
-	WHERE type_centre is not null
-);
+
 
 ALTER TABLE etablissement 
 	add type_autre_etablissement domaine_type_autre_etablissement;
-
-CREATE VIEW autre_etablissement AS (
-	SELECT id, uai, adresse_id, nom, tel_fixe, emails, type_autre_etablissement
-	FROM etablissement
-	WHERE type_autre_etablissement is not null
-);
 
 
 
@@ -311,14 +299,14 @@ ALTER TABLE intervention
 	add niveau_theme_id INT REFERENCES niveau_theme ON DELETE CASCADE; --  NOT NULL
 
 ALTER TABLE intervention
-	add materiel_dispo_plaidoyer domaine_type_materiel_plaidoyer;
+	add materiel_dispo_plaidoyer type_materiel_plaidoyer[];
 
 -- Atributs de frimousse
 ALTER TABLE intervention
 	add niveau_frimousse domaine_niveau_scolaire_limite; --not null
 
 ALTER TABLE intervention
-	add materiaux_frimousse domaine_type_materiel_frimousse;
+	add materiaux_frimousse type_materiel_frimousse;
 
 -- Attributs de autreIntervention
 ALTER TABLE intervention
@@ -358,7 +346,7 @@ CREATE TABLE IF NOT EXISTS appartient (
 	etablissement_id INT REFERENCES etablissement(id) ON DELETE CASCADE, 
 	contact_id INT REFERENCES contact(id) ON DELETE CASCADE, 
 	respo_etablissement BOOLEAN NOT NULL,
-	type_activite domaine_type_activite,
+	type_activite type_activite[],
 	PRIMARY KEY(etablissement_id, contact_id)
 ); 
 
@@ -387,11 +375,7 @@ CREATE VIEW plaidoyer AS (
 	WHERE niveau_theme_id is not null AND materiel_dispo_plaidoyer is not null
 );
 
-CREATE VIEW frimousse AS (
-	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, niveau_frimousse, materiaux_frimousse
-	FROM intervention
-	WHERE niveau_frimousse is not null AND materiaux_frimousse is not null
-);
+
 
 CREATE VIEW autre_intervention AS (
 	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, description
@@ -399,11 +383,30 @@ CREATE VIEW autre_intervention AS (
 	WHERE description is not null
 );
 
+CREATE VIEW enseignement AS (
+	SELECT id, uai, adresse_id, nom, tel_fixe, emails, type_enseignement
+	FROM etablissement
+	WHERE type_enseignement is not null
+);
+CREATE VIEW centre_loisirs AS (
+	SELECT id, uai, adresse_id, nom, tel_fixe, emails, type_centre
+	FROM etablissement
+	WHERE type_centre is not null
+);
+CREATE VIEW autre_etablissement AS (
+	SELECT id, uai, adresse_id, nom, tel_fixe, emails, type_autre_etablissement
+	FROM etablissement
+	WHERE type_autre_etablissement is not null
+);
+
 
 
 
 -- Définition des Triggers --
-
-
-
-
+CREATE VIEW frimousse AS (
+	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, niveau_frimousse, materiaux_frimousse
+	FROM intervention
+	WHERE niveau_frimousse is not null AND materiaux_frimousse is not null
+);
+--ALTER TABLE frimousse
+--	add PRIMARY KEY (id);

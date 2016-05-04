@@ -11,3 +11,8 @@ intervention_list:
 intervention_view:
     path: /{id}
     defaults: {_controller: InterventionBundle:Intervention:consultation}
+
+etablissement_list:
+    path:   /etablissement
+    defaults:
+        _controller: InterventionBundle:Intervention:listEtablissement

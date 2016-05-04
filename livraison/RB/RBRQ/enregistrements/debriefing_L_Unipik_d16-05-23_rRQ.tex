@@ -66,7 +66,6 @@
         \begin{signatures}
 	   \uneSignature{Vérificateur}{\RQA}{\Kafui}{}{pgpic}
        \uneSignature{Validateur}{\CP}{\Sergi}{}{pgpic}
-	   \uneSignature{Approbateur}{}{}{}{}
         \end{signatures}
 \end{pagesService}
 
@@ -77,9 +76,21 @@
 \chapter{Introduction}
 \label{Introduction}
 
+Les \PIC{} sont organisés par l'unité P3 du département \ASI{} de l'INSA de Rouen à partir du deuxième semestre de la quatrième année. Un produit conforme à un cahier des charges fourni par un client devra être réalisé par une équipe de neuf étudiants. Afin de structurer le travail au sein de l'équipe, différents rôles ainsi qu'une hiérarchie ont été mis en place, parmis lesquels ceux de \CP{} et \RQ{}. Ce document traite de ce dernier, que j'ai occupé ce semestre.
+\paragraph*{}
+L'unité P3 prétendant à la certification ISO 9001 : 2015, la gestion de la Qualité est un des enjeux majeurs des \PICCourt{}. Le rôle du \RQ{} est de veiller au respect de cette norme via notamment le respect de la DGQ2 et l'établissement de trois principales mission du \RQCourt{} :
+\begin{itemize}
+\item la mise en place d'un \SMQ{} ; 
+\item l'amélioration continue ;
+\item le suivi de la Qualité.
+\end{itemize}
+\paragraph*{}
+Ce document va d’abord présenter le projet du PIC \nomEquipe{} pour lequel j’ai exercé le rôle de \RQ{}, puis s’étendra sur les différentes tâches qui ont été attribuées à mon rôle, pour conclure sur le résultat de l’audit qualité et son explication.
+
 
 \chapter{Le projet PIC UNICEF}
 \label{le_projet}
+
 \section{Présentation du projet}
 \subsection*{Le client}
 L'\nomClient{} Seine Maritime est un comité de l'\nomClient{} qui est une agence de l'Organisation des Nations Unies (ONU) consacrée à l'amélioration et à la promotion de la condition des enfants. Elle a activement participé à la rédaction, la conception et la promotion de la Convention relative aux droits de l'enfant (CIDE), adoptée lors du sommet de New York le 20 novembre 1989. L'\nomClient{} a reçu le prix Nobel de la paix le 12 janvier 1965. \\
@@ -121,8 +132,10 @@ Après concertation avec le client, il a été décidé que pour des raisons de 
 
 La majeure partie du projet en terme de fonctions sera donc effectué au premier semestre et le second semestre se concentrera plus sur la partie IHM design et finalisation du projet, ce qui est cohérent avec la légère baisse d’effectif entre semestres.
 
+
 \chapter{Descriptif du poste de \RQ}
 \label{Descriptif}
+
 \section{Objectifs qualité}
 Une des priorités du PIC étant la satisfaction du client, nous y avons porté une attention particulière dès la mise en place du \SMQ{} en début de semestre 1. Afin d’identifier les besoins de notre client, qui n'est pas un client technique, et d'y répondre, nous avons mis en place de nombreux outils de gestion de la Qualité. Cette attention particulière se reflète dans les objectifs qualités que nous avons définis dans notre Plan Qualité dès la première version (PQ\_Q\_Unipik\_v1.00).
 
@@ -188,7 +201,8 @@ Les indicateurs fixés pour le projet \nomEquipe{} sont donc liés à ces object
 
 
 \section{Suivi des risques et opportunités}
-Lors de l'accomplissement d'un projet, la gestion des risques permet de minimiser les probabilité d’apparition d'une difficulté et d'être prêts à mettre en place les actions permettant de passer outre. La gestion des opportunités, quand à elle, permet d'augmenter les probabilité d’apparition d'un fait bénéfique pour le projet et de profiter au maximum de son apparition. Les risques et opportunités sont ensuite consigné dans un \PRO{}. A la fin du semestre, ce dernier comportait les risques suivants :
+Lors de l'accomplissement d'un projet, la gestion des risques permet de minimiser les probabilité d’apparition d'une difficulté et d'être prêts à mettre en place les actions permettant de passer outre. La gestion des opportunités, quand à elle, permet d'augmenter les probabilité d’apparition d'un fait bénéfique pour le projet et de profiter au maximum de son apparition. \\
+Les risques et opportunités sont ensuite consigné dans un \PRO{}. A la fin du semestre, ce dernier comportait les risques suivants :
 \begin{itemize}
 \item Crash du serveur ;
 \item Mauvaise ambiance interne ;
@@ -218,22 +232,99 @@ Le \PRO{} contenait également les opportunités suivantes :
 \item Bonne ambiance interne ;
 \item Remise des données en avance (clôturé le 14/03/2016 après remise des données par le client).
 \end{itemize}
+~\\
+\indent Pour chacun de ces risques et opportunités, une \FDR{} ou \FDO{} a été rédigée contenant la probabilité d'apparition, le niveau d'impact, la criticité ainsi qu'un arbre des causes. \\
+\indent Chaque semaine, lors de la réunion hebdomadaire, chaque pilote de risque ou opportunité est interrogé sur l'évolution de son risque ou opportunité par rapport à la semaine précédente et les changements sont reportés dans le \PRO{} via les \FDR{} et \FDO{}.
 
-\section{Fiches de compétences}
-
+\section{Formations et compétences}
+Une autre direction pour laquelle le rôle de \RQ{} comprend de la gestion de projet est la planification des formations en fonction des compétences de chacun et des nécessités imposées par le projet. Pour cela, avons utilisé la démarche suivante :
+\begin{itemize}
+\item Un ou deux membres de l’équipe se sont formés sur une technologie via des cours, des documentations ou des tutoriels ;
+\item Ces membres ont formé les autres personnes en leur confectionnant un support synthétique ;
+\item Les personnes formées ont été évaluées par un QCM, lui aussi réalisé par les membres formateurs.
+\end{itemize}
+Une fois les formations passées et réussies, les \FC{} ont été modifiées en conséquence.
 
 
 \chapter{Résultats de l'audit}
 \label{Resultats}
 
- 
-\begin{appendix}
-\listoffigures
-\addcontentsline{toc}{chapter}{Table des figures}
-	 
-\listoftables
-\addcontentsline{toc}{chapter}{Liste des tableaux}
-\end{appendix}
+\section{Remarques soulevées}
+L’audit Qualité du PIC a été réalisé le 15/03/2016 par \nomApprobateur{} et \nomTuteurQualite. Durant cet audit, cinq remarques ont été soulevées :
+\begin{itemize}
+\item Une incohérence entre les noms de certains documents et leurs entêtes a été remarquée ;
+\item Les formations complémentaires à acquérir ne sont pas renseignées dans les \FC{} ;
+\item Les documents de référence ne sont pas stockés de manière claire ;
+\item La planification ne comprend pas les tâches de formation ;
+\item Certains documents laissent place à l'interprétation ou aux doutes à cause de champs non complétés.
+\end{itemize}
+
+\section{Analyse}
+\subsection{Première remarque}
+\paragraph*{Causes} Cette erreur est due à une inattention de la part du rédacteur du document et de son vérificateur. Le champ contenant l'en-tête n'a pas été modifié, et cette erreur n’a pas été détectée durant la phase de vérification du document.
+
+\paragraph*{Conséquences} Une incohérence dans les en-têtes peut provoquer une mauvaise lecture du document et une confusion concernant la version de référence de celui ci. Dans le cas présent, les conséquences de cette erreur sont limitées voire nulles. Il est cependant important de la corriger et de sensibiliser l’équipe à ce genre de problèmes afin d’éviter de potentielles futures incohérences.
+
+\paragraph*{Actions mises en place}
+\begin{itemize}
+\item Action curative : modification de l'en tête sur les documents incriminés ;
+\item Action corrective : sensibilisation de l'équipe à la rédaction des documents et à la vérification.
+\end{itemize}
+
+
+\subsection{Deuxième remarque}
+\paragraph*{Causes} Cette erreur est due à un manque de rigueur de la part de chaque membre de l'équipe et du \RQ{} qui n'a pas relevé cette erreur.
+
+\paragraph*{Conséquences} Un manque de renseignement sur les formations nécessaires peut amener à un déficit de formation qui peut mener à une mauvaise réalisation des lots.
+
+\paragraph*{Actions mises en place} 
+\begin{itemize}
+\item Action curative : renseignement des formations complémentaires à acquérir ;
+\end{itemize}
+
+
+\subsection{Troisième remarque}
+\paragraph*{Causes} Cette erreur est due à la présence de différents espaces de stockages et absence de précision concernant la place des documents de référence.
+
+\paragraph*{Conséquences} Un manque de clarté sur le stockage des documents de référence peut mener à la modification et à la diffusion des mauvais documents.
+
+\paragraph*{Actions mises en place}
+\begin{itemize}
+\item Action corrective : modification du \PGC{} en conséquence afin de clarifier le stockage ;
+\end{itemize}
+
+\subsection{Quatrième remarque}
+\paragraph*{Causes} Cette erreur est due à un manque de rigueur de la part du \CP{} et du \CPA{} lors du remplissage du planning.
+
+\paragraph*{Conséquences} Une absence de renseignement des tâches de formations dans le planning peut mener à une mauvaise planification et à des retards.
+
+\paragraph*{Actions mises en place}
+\begin{itemize}
+\item Action curative : modification de la planification en conséquence ;
+\item Action corrective : changement des habitudes de planification de la part du \CP{}.
+\end{itemize}
+
+
+\subsection{Cinquième remarque}
+\paragraph*{Causes} Cette erreur est due à une inattention de la part des rédacteurs des documents et de leurs vérificateurs. Les champs non complétés n'ont pas été supprimés ou remplis avec "N/A", et cette erreur n’a pas été détectée durant la phase de vérification du document.
+
+\paragraph*{Conséquences} Une interprétation personnelle d'un document peut mener à une erreur de compréhension de la part du lecteur.
+
+\paragraph*{Actions mises en place}
+\begin{itemize}
+\item Action curative : modification des documents incriminés ;
+\item Action corrective : sensibilisation de l'équipe à la rédaction des documents et à la vérification.
+\end{itemize}
+
+\chapter{Conclusion et avis personnel}
+\paragraph*{} Comme nous avons pu le voir, la gestion de la Qualité est un des enjeux principaux des \PIC{} car elle permet de garantir des méthodes de travail, de communication et de livraison au client afin de maximiser la satisfaction de ce dernier. De plus, la mise en place de la norme ISO 9001 : 2015 permet d'assurer une traçabilité complète des décisions, documents, remarques et réclamations client.
+
+\paragraph*{} L'attribution du poste de \RQ{} a été une expérience très enrichissante. En effet, ce poste correspond tout à fait à mon profil et m'a permis de mettre en application les connaissances acquises au cours de ma formation dans le département \ASI{}. De plus, l'équipe dans laquelle j'ai eu la chance de travailler était soudée et pleine de bonne humeur malgré les difficultés ponctuelles. Nous avons formé un bon binôme avec \Sergi{}, le \CP{}, en mettant en commun les différentes tâches de gestion de projet et de gestion de la Qualité. Enfin, tenir ce rôle ainsi que celui de \CPA{} m'a permis de monter en puissance au niveau de la gestion de projet et de travailler dans une équipe avec une hiérarchie établie pour la première fois dans mon cursus.
+
+\paragraph*{} Cependant, la mise en place du \SMQ{} au sein du projet n'a pas été chose facile. En effet, du fait du contexte de formation des \PIC{}, le complément de formation sur la gestion de la Qualité qu'il nous manquait après les cours traitant de ce sujet n'a pu être acquise que "sur le tas". Toutefois, l'accompagnement tutoral étant bien encadré et suffisant, cette montée en puissance s'est faite rapidement.
+
+\paragraph*{} Je tire de ce semestre en tant que \RQ{} une expérience très positive et une réelle envie de développer mes compétence dans ce domaine afin d'y exercer éventuellement un emploi. La répartition des rôles et des projets a donc été très bénéfique pour mon équipe et moi même.
+
 \pageQuatriemeCouverture
 
 \end{document}

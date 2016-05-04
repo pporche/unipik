@@ -8,6 +8,10 @@ intervention_list:
     defaults:
         _controller: InterventionBundle:Intervention:liste
 
+intervention_attributed:
+    path: /intervention/attribuees
+    defaults: {_controller: InterventionBundle:Intervention:attribuees}
+
 intervention_view:
     path: /intervention/{id}
     defaults: {_controller: InterventionBundle:Intervention:consultation}

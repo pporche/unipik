@@ -79,6 +79,14 @@ class InterventionController extends Controller {
 
     }
 
+    public function attribueesAction() {
+
+        return $this->render('InterventionBundle:Liste:listeAttribuees.html.twig', array(
+            'liste' => null
+        ));
+
+    }
+
     public function locationAction() {
 
     }

@@ -21,14 +21,14 @@
         </tr>
         </thead>
         <tbody>
-        {% for plaidoyer in listPlaidoyers %}
+        {% for intervention in liste %}
             <tr>
                 <td>{{ loop.index }}</td>
-                <td>{{ plaidoyerlieu }}</td>
-                <td>{{ plaidoyermoment }}</td>
-                <td><a href="{#{ path('architecture_intervention_view', {id: plaidoyerid}) }#}" class="btn btn-primary">Voir détails</a></td>
+                <td>{{ intervention.lieu }}</td>
+                <td>{{ intervention.moment }}</td>
+                <td><a href="{#{ path('architecture_intervention_view', {id: intervention.id}) }#}" class="btn btn-primary">Voir détails</a></td>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <td><a href="{#{ path('architecture_intervention_delete', {id: plaidoyerid}) }#}" class="btn btn-danger">Supprimer</a></td>
+                    <td><a href="{#{ path('architecture_intervention_delete', {id: intervention.id}) }#}" class="btn btn-danger">Supprimer</a></td>
                 {% endif %}
             </tr>
         {% endfor %}

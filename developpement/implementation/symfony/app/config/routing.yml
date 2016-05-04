@@ -8,7 +8,7 @@ mail:
 
 intervention:
     resource: "@InterventionBundle/Resources/config/routing.yml"
-    prefix:   /intervention/
+    prefix:   /
 
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
@@ -22,4 +22,8 @@ admin_architecture:
 
 admin_intervention:
     resource: "@InterventionBundle/Resources/config/routingAdmin.yml"
+    prefix:   /admin/
+
+admin_user:
+    resource: "@UserBundle/Resources/config/routingAdmin.yml"
     prefix:   /admin/

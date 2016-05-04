@@ -56,7 +56,7 @@ class InterventionController extends Controller {
 
     }
 
-    public function listPlaidoyersAction() {
+    public function listePlaidoyersAction() {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('ArchitectureBundle:Intervention');//('ArchitectureBundle:Plaidoyer');
         $listPlaidoyers = $repository->findAll();

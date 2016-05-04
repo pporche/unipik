@@ -1,2 +1,6 @@
-{{ path('benevoles_list') }}">Liste</a></li>
-                    <li><a href="{{ path('benevoles_admin_add') }}
+fos_user_admin_list:
+    path: /benevoles
+
+fos_user_admin_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register

@@ -1,18 +1,25 @@
 intervention_request:
-    path:     /demande/{id}
+    path:     /intervention/demande/{id}
     defaults:
         _controller: InterventionBundle:Intervention:demande
 
 intervention_list:
-    path:   /plaidoyer
+    path:   /intervention/plaidoyer
     defaults:
-        _controller: InterventionBundle:Intervention:listPlaidoyers
+        _controller: InterventionBundle:Intervention:listePlaidoyers
 
 intervention_view:
-    path: /{id}
+    path: /intervention/{id}
     defaults: {_controller: InterventionBundle:Intervention:consultation}
+
+
 
 etablissement_list:
     path:   /etablissement
     defaults:
-        _controller: InterventionBundle:Intervention:listEtablissement
+        _controller: InterventionBundle:Etablissement:liste
+
+etablissement_view:
+    path:   /etablissement/{id}
+    defaults:
+        _controller: InterventionBundle:Etablissement:consultation

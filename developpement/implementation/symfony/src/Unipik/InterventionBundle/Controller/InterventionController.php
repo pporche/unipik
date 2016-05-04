@@ -5,8 +5,7 @@ namespace Unipik\InterventionBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Unipik\InterventionBundle\Form\DemandeInterventionType;
-//use Unipik\ArchitectureBundle\Repository\PlaidoyerRepository;
-use Unipik\ArchitectureBundle\Entity\Plaidoyer;
+
 
 /**
  * Created by PhpStorm.
@@ -33,15 +32,19 @@ class InterventionController extends Controller {
 
             return $this->RedirectToRoute('');
         }
-        return $this->render('InterventionBundle:Demande:demande.html.twig', array(
+        return $this->render('InterventionBundle:Intervention:demande.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    public function getConsultationVue(){
+        return $this->render('InterventionBundle:Intervention:consultation.html.twig');
     }
 
     public function consultationAction($id) {
         // Faire la vérication si l'intervention est un plaidoyer, frimousse ou autre
         // Et appeler la vue correspondante
-        return $this->render('InterventionBundle:Consultation:consultationPlaidoyer.html.twig');
+        return $this->getConsultationVue();
     }
 
     public function addAction() {
@@ -56,14 +59,32 @@ class InterventionController extends Controller {
 
     }
 
-    public function listPlaidoyersAction() {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('ArchitectureBundle:Intervention');//('ArchitectureBundle:Plaidoyer');
-        $listPlaidoyers = $repository->findAll();
+    public function getListeVue($liste){
 
-        return $this->render('InterventionBundle:Liste:listePlaidoyer.html.twig', array(
-            'listPlaidoyers' => $listPlaidoyers
+        return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+            'liste' => $liste
         ));
+    }
+
+    public function getListeRepository(){
+        $em = $this->getDoctrine()->getManager();
+        return $em->getRepository('ArchitectureBundle:Intervention');
+    }
+
+    public function listeAction() {
+        $repository = $this->getListeRepository();
+        $listIntervention = $repository->findAll();
+
+        return $this->getListeVue($listIntervention);
+
+    }
+
+    public function attribueesAction() {
+
+        return $this->render('InterventionBundle:Intervention/Attribuees:liste.html.twig', array(
+            'liste' => null
+        ));
+
     }
 
     public function locationAction() {

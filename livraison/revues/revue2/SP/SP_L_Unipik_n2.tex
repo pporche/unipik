@@ -1,0 +1,84 @@
+% version 1.01, date 07/03/16, auteur Matthieu Martins-Baltar
+\documentclass[compress,xcolor=dvipsnames]{beamer}
+
+%Pour les schémas d'architecture
+\usepackage{etex}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,chains,backgrounds,fit}
+%FIN Pour les shémas d'architecture
+
+\usepackage[french]{babel}
+\selectlanguage{french}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usepackage{multirow}
+%\usepackage{pgf-pie}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
+\usepackage{vocabulaireUnipikPresentation}
+\usepackage{commun/vocabulaireCommun}
+\usepackage{hyperref}
+\usepackage{movie15}
+\usepackage{xcolor}
+\usepackage{lscape}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
+\usetheme{eastpic}%{Berlin}%{Madrid}
+
+ 
+ 
+%Information to be included in the title page:
+\title{Revue de PIC}
+\date{\today}
+\author{Unipik}
+\institute{\insa}
+
+\setbeameroption{show notes}
+
+ 
+\begin{document}
+
+\speaker{\Sergi} 
+
+\begin{frame}[plain]
+	\titlepage
+\end{frame}
+
+\begin{frame}{Sommaire}
+	\tableofcontents[hideallsubsections]
+\end{frame}
+ 
+
+\speaker{\Sergi}
+\section[Présentation]{Présentation}
+\input{sources/01_presentation.tex}
+
+
+\section[Cahier des charges]{Cahier des Charges}
+\input{sources/02_cahierDesCharges.tex}
+
+\speaker{\Sergi}
+\section[Avancement]{Avancement du Projet}
+\input{sources/03_avancementProjet.tex}
+
+\speaker{\Sergi}
+\section[Conduite du projet]{Conduite du Projet}
+\input{sources/04_gestionProjet.tex}
+
+
+\speaker{\Sergi}
+\section[Qualité]{Démarche Qualité}
+\input{sources/05_demarcheQualite.tex}
+
+\speaker{\Sergi}
+\section[Conclusion]{Conclusion}
+\input{sources/06_conclusion.tex}
+
+\end{document}
+

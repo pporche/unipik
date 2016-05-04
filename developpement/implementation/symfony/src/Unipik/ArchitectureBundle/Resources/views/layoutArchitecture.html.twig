@@ -61,7 +61,7 @@
                     <li><a href="{{ path('intervention_attributed') }}">Mes interventions</a></li>
                     <li><a href="#" class="btn disabled" >Mon planning</a></li>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <li><a href="{{ path('intervention_admin_add') }}" class="bg-danger">Ajouter</a></li>
+                        <li><a href="{{ path('intervention_admin_add') }}" class="bg-danger"><i class="glyphicon glyphicon-alert"></i> Ajouter</a></li>
                     {% endif %}
                 </ul>
             </li>
@@ -69,8 +69,8 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bénévoles<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="{{ path('benevoles_list') }}">Liste</a></li>
-                    <li><a href="{{ path('benevoles_admin_add') }}" class="bg-danger">Ajouter</a></li>
+                    <li><a href="{{ path('user_admin_list') }}" class="bg-danger"><i class="glyphicon glyphicon-alert"></i> Liste</a></li>
+                    <li><a href="{{ path('user_admin_register') }}" class="bg-danger"><i class="glyphicon glyphicon-alert"></i> Ajouter</a></li>
                 </ul>
             </li>
             {% endif %}
@@ -79,7 +79,7 @@
     <ul class="nav navbar-nav navbar-right">
         {% if is_granted('ROLE_ADMIN') %}
             <li class="dropdown">
-                <i class="glyphicon glyphicon-alert"></i><a href="#" class="dropdown-toggle bg-danger" data-toggle="dropdown" role="button" aria-expanded="false">Espace Admin</a>
+                <a href="#" class="dropdown-toggle bg-danger" data-toggle="dropdown" role="button" aria-expanded="false"><i class="glyphicon glyphicon-alert"></i> Espace Admin</a>
             </li>
         {% endif %}
         {% include "ArchitectureBundle::boutonDeConnexion.html.twig" %}

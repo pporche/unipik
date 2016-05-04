@@ -8,15 +8,21 @@ intervention_list:
     defaults:
         _controller: InterventionBundle:Intervention:liste
 
-
-plaidoyer_list:
-    path:   /intervention/plaidoyer
-    defaults:
-        _controller: InterventionBundle:Plaidoyer:liste
-
 intervention_view:
     path: /intervention/{id}
     defaults: {_controller: InterventionBundle:Intervention:consultation}
+
+
+
+plaidoyer_list:
+    path:   /plaidoyer
+    defaults:
+        _controller: InterventionBundle:Plaidoyer:liste
+
+plaidoyer_view:
+    path: /plaidoyer/{id}
+    defaults: {_controller: InterventionBundle:Plaidoyer:consultation}
+
 
 
 etablissement_list:

@@ -16,12 +16,12 @@ class PlaidoyerController extends InterventionController
 {
 
     public function getConsultationVue(){
-        return $this->render('InterventionBundle:Consultation:consultationPlaidoyer.html.twig');
+        return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig');
     }
 
     public function getListeVue($listePlaidoyers){
 
-        return $this->render('InterventionBundle:Liste:listePlaidoyer.html.twig', array(
+        return $this->render('InterventionBundle:Intervention/Plaidoyer:liste.html.twig', array(
             'liste' => $listePlaidoyers
         ));
     }

@@ -1,4 +1,4 @@
-{% extends "InterventionBundle::consultation.html.twig" %}
+{% extends "InterventionBundle:Intervention:consultation.html.twig" %}
 
 
 
@@ -13,17 +13,26 @@
     </div>
     <div class="col-sm-6 col-xs-12">
         <dt>
+            <span class="glyphicon glyphicon-picture"></span> Thème :
+        </dt>
+    </div>
+    <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+        <i>santé et alimentation</i>
+    </div>
+    <div class="col-sm-6 col-xs-12">
+        <dt>
             <span class="glyphicon glyphicon-picture"></span> Matériel dispo. :
         </dt>
     </div>
     <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
         <ul class="list-unstyled">
-            <li> <span class="glyphicon glyphicon-ok"></span> <i>patron</i></li>
+            <li> <span class="glyphicon glyphicon-ok"></span> <i>vidéo-projecteur</i></li>
+            <li> <span class="glyphicon glyphicon-ok"></span> <i>tableau intéractif</i></li>
             <li> <span class="glyphicon glyphicon-remove"></span> <i>enceintes</i></li>
             <li> <span class="glyphicon glyphicon-remove"></span> <i>autre</i></li>
         </ul>
 
     </div>
 
-
 {%  endblock %}
+

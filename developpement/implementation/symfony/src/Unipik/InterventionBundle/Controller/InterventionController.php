@@ -32,13 +32,13 @@ class InterventionController extends Controller {
 
             return $this->RedirectToRoute('');
         }
-        return $this->render('InterventionBundle:Demande:demande.html.twig', array(
+        return $this->render('InterventionBundle:Intervention:demande.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
     public function getConsultationVue(){
-        return $this->render('InterventionBundle::consultation.html.twig');
+        return $this->render('InterventionBundle:Intervention:consultation.html.twig');
     }
 
     public function consultationAction($id) {
@@ -61,7 +61,7 @@ class InterventionController extends Controller {
 
     public function getListeVue($liste){
 
-        return $this->render('InterventionBundle::liste.html.twig', array(
+        return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
             'liste' => $liste
         ));
     }
@@ -81,7 +81,7 @@ class InterventionController extends Controller {
 
     public function attribueesAction() {
 
-        return $this->render('InterventionBundle:Liste:listeAttribuees.html.twig', array(
+        return $this->render('InterventionBundle:Intervention/Attribuees:liste.html.twig', array(
             'liste' => null
         ));
 

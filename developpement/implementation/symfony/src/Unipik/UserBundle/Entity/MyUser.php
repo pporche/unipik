@@ -4,6 +4,7 @@ namespace Unipik\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use FOS\UserBundle\Model\UserInterface;
 
 /**
  * MyUser
@@ -11,7 +12,7 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Table(name="my_user")
  * @ORM\Entity(repositoryClass="Unipik\UserBundle\Repository\MyUserRepository")
  */
-class MyUser extends BaseUser {
+class MyUser extends BaseUser implements UserInterface {
 
     /**
      * @var int

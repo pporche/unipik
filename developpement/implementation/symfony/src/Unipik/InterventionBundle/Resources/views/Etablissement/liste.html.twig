@@ -22,6 +22,11 @@
         </thead>
         <tbody>
 
+        {% if is_granted('ROLE_ADMIN') %}
+            <tr>
+                <td colspan="5" class="text-center"><a href="{#{ path('architecture_intervention_add') }#}" class="btn btn-primary btn-danger"><i class="glyphicon glyphicon-alert"></i> Ajouter un établissement</a></td>
+            </tr>
+        {% endif %}
         </tbody>
     </table>
 {% endblock %}

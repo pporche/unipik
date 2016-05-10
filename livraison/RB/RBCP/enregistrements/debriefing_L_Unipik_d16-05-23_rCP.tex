@@ -63,19 +63,10 @@
 
 	\end{historique}
 
-        \begin{suiviDiffusions}
-
-            % On place ici les diffusions
-        	\unSuivi{1.00}{}{}
-          
-       
-        \end{suiviDiffusions}
-
 %%Signataires
         \begin{signatures}
 	   \uneSignature{Vérificateur}{}{}{}{pgpic}
        \uneSignature{Validateur}{\CPA{}, \newline \RQ{}}{\Pierre}{}{pgpic}
-	   \uneSignature{Approbateur}{}{}{}{}
         \end{signatures}
 \end{pagesService}
 
@@ -85,7 +76,9 @@
 
 \chapter{Introduction}
 \label{Introduction}
-
+Le présent document constitue le rapport de débriefing du \CP{} de l'équipe \nomEquipe{} pour le premier semestre du Projet INSA Certifié dans le département Architecture des Systèmes d'Information. Dans ce document sera décrit la fonction de \CP{} et les expériences acquises à ce poste.\vspace{0.5cm}\\
+Le \CP{} a pour fonction principale la gestion d'équipe et la relation client. Il est également présent dans la démarche qualité et sert d'intermédiaire entre l'équipe et l'extérieur : INSA ou client.\vspace{0.5cm}\\
+Dans un premier temps une description du PIC dans sa généralité sera effectuée avec une présentation du client et du sujet du projet. Dans un deuxième temps sera décrit l'avancement du projet et les points non traités ce semestre. Puis dans un troisième temps seront décrites les méthodes mises en place pour la gestion d'équipe et la gestion de projet. Finalement, ce document sera conclu par mon ressenti personnel sur ce semestre passé en tant que \CP.
 
 
 
@@ -107,13 +100,13 @@ Pour notre projet nous travaillons avec l'\nomClient{} Seine-Maritime. Les fonct
 
 
 \section{Ses besoins}
-Afin de pouvoir gérer ses différentes actions (plaidoyer, frimousse, actions ponctuelles,...), l'\nomClient{} Seine-Maritime a besoin d'un outil de gestion des interventions externes de ses bénévoles. Cette outil devra être capable de gérer l'ensemble des bénévoles du comité et de les relier aux différentes interventions externes de manière intelligente.\\
-Le parc informatique étant assez hétérogène, tant au niveau matériel que logique, notre service devra fonctionner dans différents environnements (Windows, Linux, MAC). De plus les connaissances informatiques du client étant limitées dans certains cas, nous devrons produire un service intuitif et facile à prendre en main.
+Afin de pouvoir gérer ses différentes actions (plaidoyer, frimousse, actions ponctuelles,...), l'\nomClient{} Seine-Maritime a besoin d'un outil de gestion des interventions externes de ses bénévoles. Cet outil devra être capable de gérer l'ensemble des bénévoles du comité et de les relier aux différentes interventions externes de manière intelligente.\\
+Le parc informatique étant assez hétérogène, tant au niveau matériel que logique, notre service devra fonctionner sous différents environnements (Windows, Linux, MAC). De plus les connaissances informatiques du client étant limitées dans certains cas, nous devrons produire un service intuitif et facile à prendre en main.
 
 
 
 \section{Les livrables}
-Le projet à réaliser a été découpé en quatre livrables sur la période des deux semestres.\vspace{0.5cm}\\
+Le projet à réaliser a été découpé en quatre livrables sur la période de deux semestres.\vspace{0.5cm}\\
 Le premier livrable constate de l'architecture matérielle et logicielle de l'outil final. Nous avons décidé de réaliser un service web développé en PHP avec une base de données en PostgreSQL. Le framework Symfony permettra de faire le lien entre les deux. Nous utiliserons une architecture trois tiers avec le patron de conception Modèle-Vue-Contrôleur (MVC).\vspace{0.5cm}\\
 Le deuxième livrable couvre toute la partie de gestion des plaidoyers. Le livrable doit fonctionner à la fin du semestre pour pouvoir commencer à être utilisé par l'UNICEF dès la rentrée scolaire.\vspace{0.5cm}\\
 Le troisième livrable couvrira la partie gestion des frimousses.\vspace{0.5cm}\\
@@ -122,7 +115,7 @@ Enfin le dernier livrable couvrira la partie gestion des actions ponctuelles et 
 
 
 \section{L'équipe}
-L'équipe PIC se décompose suivant l'organigramme fonctionnel ci-dessous (figure \ref{organigramme} :
+L'équipe PIC se décompose suivant l'organigramme fonctionnel ci-dessous (figure \ref{organigramme}) :
 \begin{figure}[!h]
 	\begin{center}
 	\includegraphics[scale=0.35]{images/organigrammeFonctionnel.pdf}
@@ -142,7 +135,7 @@ En collaboration avec notre client, l'\nomClient{} Seine-Maritime, nous avons di
 Dans les parties suivantes vont être décrits les lots du premier semestre tels qu'ils ont été déterminés initialement.
 
 \subsection{Lot 1}
-Le premier lotissement est décrit de la manière suivante dans le cahier des charges : <<Le lot 1 couvre l'architecture matérielle et logicielle à mettre en place pour le fonctionnement de l'application dans sa globalité>>. Pour ce livrable il est donc attendu une réflexion de l'équipe sur l'architecture du système à mettre en place, non pas au niveau des langages de développement mais au niveau structurel et physique. Cette architecture a également été mise en place sur un exemple de base que l'on a développé. Ce livrable doit être rendu à $T_{0}+5$. 
+Le premier lotissement est décrit de la manière suivante dans le cahier des charges : <<Le lot 1 couvre l'architecture matérielle et logicielle à mettre en place pour le fonctionnement de l'application dans sa globalité>>. Pour ce livrable il est donc attendu une réflexion de l'équipe sur l'architecture du système à mettre en place, non pas au niveau des langages de développement mais au niveau structurel et physique. Cette architecture a également été mise en place sur un exemple basique que l'on a développé. Ce livrable doit être rendu à $T_{0}+5$. 
 
 \subsection{Lot 2}
 Le deuxième lotissement va couvrir les fondamentaux et la gestion des plaidoyers. Il implémente sept fonctionnalités et doit être achevé pour la fin du premier semestre. Les fonctionnalités demandées sont les suivantes :
@@ -216,10 +209,6 @@ Ce dernier livrable devra être rendu à la fin du temps imparti pour le PIC.
 
 
 
-\section{Frise récapitulative}
-
-
-
 
 
 \chapter{La gestion du projet et de l'équipe}
@@ -236,10 +225,10 @@ Dans cette partie vont être décrites les différentes méthodes mises en place
 	\end{center}
 \end{figure}
 
-Initialement nous souhaitions mettre en place une méthodologie de type agile. Cependant nous nous sommes vite rendus compte qu'une telle méthodologie n'était pas adaptée à notre projet et au respect de la qualité décrite dans la DGQ2. Nous avons donc mis en place une méthodologie qui correspond mieux à notre projet : la méthodologie en spirale. La méthodologie peut être assimiler à une succession de petits cycles en V. Elle se décompose en 6 étapes différentes : spécifications du problème, analyses des solutions possibles et existantes, conception de la solution choisie, implémentation de cette solution, tests sur le code développé et pour finir validation de notre solution par le client. Cette succession d'étapes est réalisée quatre fois pour les quatre lots.
+Initialement nous souhaitions mettre en place une méthodologie de type Agile. Cependant nous nous sommes vite rendus compte qu'une telle méthodologie n'était pas adaptée à notre projet et au respect de la Qualité décrite dans la DGQ2. Nous avons donc mis en place une méthodologie qui correspond mieux à notre projet : la méthodologie en spirale. Cette méthodologie peut être assimilée à une succession de petits cycles en V. Elle se décompose en 6 étapes différentes : spécifications du problème, analyse des solutions possibles et existantes, conception de la solution choisie, implémentation de cette solution, tests sur le code développé et pour finir validation de notre solution par le client. Cette succession d'étapes est réalisée quatre fois pour les quatre lots.
 
 \subsection{Front-end / Back-end}
-Au fur et à mesure que le projet a avancé, il est apparu la nécessité de diviser l'équipe de développeurs en deux. Une équipe s'occuperait du front-end, c'est-à-dire des vues et de l'interface de notre service, tandis que l'autre équipe s'occuperait du back-end, c'est-à-dire des contrôleurs et de la logique métier permettant de faire remonter les résultats vers les vues. Dans chaque équipe ont été nommés un responsable afin de structurer le travail et d'avancer de manière efficace.
+Au fur et à mesure que le projet a avancé, il est apparu la nécessité de diviser l'équipe de développeurs en deux. Une équipe s'occuperait du front-end, c'est-à-dire des vues et de l'interface de notre service, tandis que l'autre équipe s'occuperait du back-end, c'est-à-dire des contrôleurs et de la logique métier permettant de faire remonter les résultats vers les vues. Dans chaque équipe ont été nommé un responsable afin de structurer le travail et d'avancer de manière efficace.
 
 
 
@@ -258,20 +247,20 @@ Dès le début du PIC nous avons décidé d'attribuer des rôles au maximum de p
 \end{itemize}
 
 \subsection{Temps de travail}
-À cause des différentes spécialités et des différents cours de chaque membre du PIC, nous évitons au maximum d'imposer des créneaux horaires obligatoires. Cependant nous avons mis en place avec le \RQ{} des indicateurs de temps de travail en salle PIC. Ainsi, pour l'ensemble de l'équipe excepté le \CP{} et le \RQ{}, le seuil minimum de temps de présence a été fixé à 17h et la valeur cible à 22h. Pour le \CP{} et le \RQ{}, le seuil minimum est de 22h et la valeur cible est de 27h.
+À cause des différentes spécialités et des différents cours de chaque membre du PIC, nous évitons au maximum d'imposer des créneaux horaires obligatoires. Cependant nous avons mis en place avec le \RQ{} des indicateurs de temps de travail en salle PIC. Ainsi, pour l'ensemble de l'équipe, excepté le \CP{} et le \RQ{}, le seuil minimum de temps de présence a été fixé à 17h et la valeur cible à 22h. Pour le \CP{} et le \RQ{}, le seuil minimum est de 22h et la valeur cible est de 27h.
 
 \subsection{Team Building}
-L'environnement de travail est quelque chose de réellement important si l'on souhaite faire avancer le projet rapidement. Une bonne cohésion d'équipe se traduit par un travail rapide et efficace. C'est pourquoi régulièrement nous effectuons du team building, telles que des sorties au restaurant, afin de souder le groupe et d'éviter les conflits.
+L'environnement de travail est quelque chose de réellement important si l'on souhaite faire avancer le projet rapidement. Une bonne cohésion d'équipe se traduit par un travail rapide et efficace. C'est pourquoi régulièrement nous effectuons du team building, tels que des sorties au restaurant, afin de souder le groupe et d'éviter les conflits.
 
 
 
 \section{Gestion des tâches et du temps}
-\subsection{Diagramme de gantt}
+\subsection{Diagramme de Gantt}
 La base de toute gestion de projet est la décomposition de celui-ci en un ensemble de sous-tâches minimales auxquelles sont associées des durées de réalisation et des ressources humaines et matérielles. Toutes ces sous-tâches peuvent ensuite être mises bout à bout afin d'estimer la durée du projet et de réaliser un planning d'avancement.\\
-Dans le cadre du PIC, nous avons décidé de mettre en place un diagramme de gantt grâce au logiciel open source GanttProject. Ce diagramme, mis à jour de manière hebdomadaire, nous permet de suivre l'avancement du PIC en temps réel et de planifier l'ensemble des tâches à venir dans le temps imparti.
+Dans le cadre du PIC, nous avons décidé de mettre en place un diagramme de Gantt grâce au logiciel open source GanttProject. Ce diagramme, mis à jour de manière hebdomadaire, nous permet de suivre l'avancement du PIC en temps réel et de planifier l'ensemble des tâches à venir dans le temps imparti.
 
-\subsection{Diagramme de pert}
-Le logiciel GanttProject nous permet également de réaliser à partir du diagramme de gantt un diagramme de Pert. Ce diagramme nous permet de visualiser le chemin critique de manière plus aisée et donc la fin estimée du projet. Tout comme le diagramme de gantt, ce diagramme est mis à jour régulièrement afin de suivre l'avancement en temps réel.
+\subsection{Diagramme de Pert}
+Le logiciel GanttProject nous permet également de réaliser à partir du diagramme de Gantt un diagramme de Pert. Ce diagramme nous permet de visualiser le chemin critique de manière plus aisée et donc la fin estimée du projet. Tout comme le diagramme de Gantt, ce diagramme est mis à jour régulièrement afin de suivre l'avancement en temps réel.
 
 \subsection{Kanban}
 En interne, même si nous n'avons pas mis en place une méthodologie de travail de type Agile, nous avons conservé quelques uns de ses éléments tels que le kanban. Le kanban est un tableau de quatre colonnes permettant de regrouper les tâches à accomplir. Les quatre colonnes sont : à faire, en cours, à vérifier et fait. Ainsi lorsqu'une tâche est rajoutée au programme, elle va se situer dans la colonne à faire. Si un membre de l'équipe décide de réaliser cette tâche, il la fait passer dans la colonne en cours. Une fois qu'il finit la tâche, celle ci passe dans la colonne à vérifier. Un autre membre de l'équipe décidera alors de vérifier le travail réalisé pour finalement placer la tâche dans la colonne fait.\\
@@ -285,25 +274,28 @@ La communication est un point essentiel pour la réussite d'un projet. Que ce so
 
 \subsection{Communication interne}
 Sur le plan de la communication interne, entre membres de l'équipe, nous effectuons des réunions hebdomadaires d'une heure pour revenir sur les points de la semaine passée, définir les points à réaliser la semaine prochaine et faire remonter les éventuelles remarques. Cette réunion permet à chaque membre de l'équipe de s'exprimer et de donner son avis. En plus de cette réunion, des réunions informelles sont effectuées lorsque le besoin s'en fait ressentir.\vspace{0.5cm}\\
+Afin de communiquer hors des réunions, plusieurs dispositifs ont été mis en places. Tout d'abord, la salle PIC étant organisée en open-space, il est assez aisé de communiquer avec un tiers directement. Nous utilisons également des conversations par mails pour les communications officielles qui nécessitent un suivi. Pour les autres communications nous utilisons le logiciel libre Discord. L'avantage de ce logiciel est qu'il comporte une messagerie instantanée avec possibilité de conversations audio.\vspace{0.5cm}\\
 Nous avons également mis en place une boîte à idée. Cette boîte à idée permet de faire remonter de nouvelles idées dans l'optique d'améliorer l'environnement du PIC. Elle permet également d'effectuer des remarques anonymes. Les idées déposées dans la boîte sont lues une fois par semaine.
 
-
 \subsection{Communication tuteurs}
+Dès les toutes premières semaines du PIC, il a été défini des réunions hebdomadaires avec nos trois tuteurs : communication, qualité et pédagogique. Ces réunions permettent de faire le point chaque semaine et de s'assurer qu'on aille dans la bonne direction pour la réalisation du projet. Ces réunions sont également un apport important pour la réalisation du PIC puisque nos tuteurs partagent avec nous leurs expériences.\\
+En plus des réunions, une communication régulière par mails ou par téléphone permet de faire parvenir aux tuteurs les remarques et questions plus importantes rapidement.
 
 \subsection{Communication client}
-%WARNING ! Remarques ET réclamations client
+La communication avec le client est un point clé de l'aboutissement d'un projet. En effet sans une bonne communication, la compréhension du projet peut ne pas être la même entre les deux parties et nous pourrions développer un service qui ne corresponde pas aux attentes. Afin de contrecarrer cette problématique, nous avons effectué des réunions régulières lors de nos phases de spécifications et de conception. Ainsi avant de se lancer dans le développement, nous nous assurons de bien avoir compris et cerné les attentes du client. Bien évidemment nous conversons avec le client par mail et par téléphone pour les autres remarques qui ne nécessitent pas d'effectuer des réunions.
 
 
 
 
 
-\begin{appendix}
-\listoffigures
-\addcontentsline{toc}{chapter}{Table des figures}
-	 
-\listoftables
-\addcontentsline{toc}{chapter}{Liste des tableaux}
-\end{appendix}
+\chapter{Conclusion}
+Le rôle de \CP{} est un des rôles les plus formateurs du PIC. L'apport en expérience est réellement important sur différents fronts. J'ai ainsi pu acquérir des compétences en gestion de projet, en communication, en travail de groupe et en relation client. J'ai été affronté à certains problèmes mais le PIC m'a appris à les résoudre.\vspace{0.5cm}\\
+La gestion de projet n'a pas été chose aisée pour cause du manque d’expérience à l'initiation du PIC. Cependant, au fur et à mesure que le projet avançait et grâce à la collaboration de mon \CPA{} \Pierre, nous sommes montés en puissance en gestion de projet.\vspace{0.5cm}\\
+Une composante majeure du rôle de \CP{} est la relation client. Une nouvelle fois, l'expérience initiale étant nulle, le PIC a été l'occasion d'acquérir des compétences dans ce domaine. La grande difficulté qui est apparue est le manque de connaissances techniques du client. Il a fallu apprendre à communiquer sans utiliser de termes techniques afin de pouvoir être compris par le client. De plus les clients étant des bénévoles, leurs différentes activités ont limité en temps leurs présences et leur rapidité de réponse.\vspace{0.5cm}\\
+La passation avec mon \CPA{}, \Pierre, se fera de manière assez naturelle étant donnée que nous avons œuvré en collaboration étroite tout au long du PIC. Nous partagions également le même bureau : il pouvait ainsi garder un œil sur le travail que j'effectuais afin de se préparer pour son futur rôle.\vspace{0.5cm}\\
+Je me suis porté volontaire au début du PIC pour assumer la fonction de \CP{} car je souhaitais obtenir de l'expérience dans ce domaine et je ressors pleinement satisfait de ce semestre. Mon seul regret aura été de m'être trop détaché du développement et par conséquent d'avoir la sensation de ne pas pouvoir aider mon équipe lors des phases de développement.
+
+
 \pageQuatriemeCouverture
 
 \end{document}

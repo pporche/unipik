@@ -11,7 +11,7 @@ imagespdf:
 	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf organigrammeFonctionnel
 
 rbrq : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements debriefing_L_Unipik_d16-05-23_rRQ 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements debriefing_L_Unipik_d16-05-23_rRQ SPD_L_Unipik_d16-05-23_rRQ
 
 
 # Archivage

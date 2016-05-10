@@ -37,7 +37,7 @@ CREATE DOMAIN domaine_materiel_frimousse AS VARCHAR(20)
 CHECK (VALUE IN ('patron', 'bourre', 'decoration'));
 
 CREATE DOMAIN domaine_niveau_scolaire_complet AS VARCHAR(50)
-CHECK (VALUE IN ('petite section', 'petie-moyenne section', 'moyenne section', 'moyenne-grande section', 'grande section', 'petite-moyenne-grande section',
+CHECK (VALUE IN ('petite section', 'petite-moyenne section', 'moyenne section', 'moyenne-grande section', 'grande section', 'petite-moyenne-grande section',
                  'CP', 'CP-CE1', 'CE1', 'CE1-CE2', 'CE2', 'CE2-CM1', 'CM1', 'CM1-CM2', 'CM2', 
                  '6eme', '5eme', '4eme', '3eme', '2nde', '1ere', 'terminale', 
                  'L1', 'L2', 'L3', 'M1', 'M2',

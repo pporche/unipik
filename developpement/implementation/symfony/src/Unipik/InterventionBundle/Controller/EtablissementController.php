@@ -10,10 +10,14 @@ namespace Unipik\InterventionBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\BrowserKit\Response;
 
 class EtablissementController extends Controller {
 
-
+    /**
+     * @param $id integer Id de l'établissement souhaitant réaliser une demande.
+     * @return Response Renvoie vers la page de consultation liée à l'établissement.
+     */
     public function consultationAction($id) {
 
         return $this->render('InterventionBundle:Etablissement:consultation.html.twig');
@@ -31,6 +35,9 @@ class EtablissementController extends Controller {
 
     }
 
+    /**
+     * @return Response Renvoie vers la page de consultation liée à l'établissement.
+     */
     public function listeAction() {
         /*$em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('ArchitectureBundle:Intervention');//('ArchitectureBundle:Plaidoyer');

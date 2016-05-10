@@ -33,20 +33,22 @@
 	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
 	\hline
 }
+\renewcommand{\thesection}{\arabic{section}}
+
 \title{\PQ{}}
 \author{\Pierre}
 
 
 \titreGeneral{Résumé du PIC}
 \sousTitreGeneral{\nomEquipe}
-\titreAcronyme{résumé}
+\titreAcronyme{Résumé}
 \version{v1.00}
-\titreDetaille{resumePic\_L\_Unipik\_d16-05-23}
+\titreDetaille{\large{resumePic\_L\_Unipik\_d16-05-23}}
 \referenceVersion{resumePic\_L\_Unipik\_d16-05-23}
 \auteurs{\Sergi{}}
 \destinataires{Unité P3}
 \resume{Le présent document contient la présentation du résumé du PIC \nomEquipe}
-\motsCles{résumé, PIC}
+\motsCles{Résumé, PIC, \nomClient, Technologies}
 \natureDerniereModification{Création}
 \modeDiffusionControle{}
 
@@ -54,33 +56,68 @@
 
 \couverture{}
 
- \informationsGenerales{}
+\informationsGenerales{}
 %\input{sources/00_pageService.tex}
 
-\tableofcontents
+%\tableofcontents
 
-\setcounter{chapter}{0}
+%\setcounter{section}{1}
+
+\section{Contexte du PIC}
+L'\nomClient{} Seine Maritime est un comité de l'\nomClient{},  agence de l'Organisation des Nations unies consacrée à l'amélioration et à la promotion de la condition des enfants.  L'\nomClient{} a activement participé à la rédaction, la conception et la promotion de la Convention relative aux droits de l'enfant (CIDE), adoptée lors du sommet de New York le 20 novembre 1989. L'\nomClient{} a reçu le prix Nobel de la paix le 12 janvier 1965. L'\nomClient{} s'est donné les objectifs prioritaires suivants :
+\begin{itemize}
+	\item l'éducation des filles,
+	\item la vaccination et la lutte contre le SIDA et le VIH,
+	\item la protection de l'enfance,
+	\item la santé des nouveau-nés,
+	\item l'égalité hommes-femmes\vspace{0.5cm}.
+\end{itemize}
+
+Pour notre projet nous travaillons avec l'\nomClient{} Seine-Maritime. Les fonctions de ce comité sont : l'organisation de plaidoyers dans les écoles sur des thèmes centraux de l'\nomClient, l'organisation d'opérations frimousses consistant à la fabrication de poupées "frimousses" par des élèves afin d'être revendues par la suite, et des actions ponctuelles telles que des ventes lors d’événements particuliers.
+
+
+
+\section{Attendus du PIC}
+Afin de pouvoir gérer ses différentes actions (plaidoyer, frimousse, actions ponctuelles,...), l'\nomClient{} Seine-Maritime a besoin d'un outil de gestion des interventions externes de ses bénévoles. Cet outil devra être capable de gérer l'ensemble des bénévoles du comité et de les relier aux différentes interventions externes de manière intelligente.\\
+Le parc informatique étant assez hétérogène, tant au niveau matériel que logique, notre service devra fonctionner sous différents environnements (Windows, Linux, MAC). De plus les connaissances informatiques du client étant limitées dans certains cas, nous devrons produire un service intuitif et facile à prendre en main.\\
+Le projet à réaliser a été découpé en quatre livrables sur la période de deux semestres.\\
+Le premier livrable constate de l'architecture matérielle et logicielle de l'outil final. Nous avons décidé de réaliser un service web développé en PHP avec une base de données en PostgreSQL. Le framework Symfony permettra de faire le lien entre les deux. Nous utiliserons une architecture trois tiers avec le patron de conception Modèle-Vue-Contrôleur (MVC).\\
+Le deuxième livrable couvre toute la partie de gestion des plaidoyers. Le livrable doit fonctionner à la fin du semestre pour pouvoir commencer à être utilisé par l'UNICEF dès la rentrée scolaire.\\
+Le troisième livrable couvrira la partie gestion des frimousses.\\
+Enfin le dernier livrable couvrira la partie gestion des actions ponctuelles et devra être rendu pour la fin du second semestre de PIC.
+
+
+
+\section{Choix techniques}
+En ce qui concerne la base de données, le client nous a imposé de la développer en PostgreSQL. Elle doit également pouvoir utiliser des objets spatiaux via la technologie PostGIS et OpenStreetMap.\\
+En ce qui concerne le service web, nous avons décidé de le développer en PHP.\\
+Enfin afin de faire le lien entre notre base de données et notre application web, nous avons pris la décision d'utiliser le framework Symfony. En effet celui-ci possède de nombreux avantages dont celui de générer du code PHP à partir d'une base de données.\\
+Le schéma situé ci-après (figure \ref{schéma}) représente la structure de notre service.
+\begin{figure}[!h]
+	\begin{center}
+	\includegraphics[scale=0.2]{images/schemaArchitecture.pdf}
+	\label{schéma}
+	\caption{Schéma de l'architercture du service}
+	\end{center}
+\end{figure}
+
+
+\section{Réalisations effectuées}
+\subsection{Lot 1 : l'architecture}
+Le premier lotissement correspond à l'architecture logicielle et matérielle du service demandé. Nous avons décidé de réaliser une architecture trois tiers composée d'un client, un serveur et une base de données. Le client représente les ordinateurs des bénévoles qui auront accès à l'interface du service et pourront l'utiliser sans se soucier de la logique métier et de la base données. Le serveur hébergera notre service et répondra aux requêtes des clients. Enfin la base de données sera séparée du serveur d'application afin de bien délimiter les différents cadres de développement. Nous avons également décidé de mettre en place le patron de conception Modèle-Vue-Contrôleur (MVC).\\
+
+\subsection{Lot 2 : les plaidoyers}
+%Le second livrable couvre toute la partie gestion des plaidoyers. Pour rappel, les plaidoyers sont des interventions menées par des bénévoles de l'\nomClient{} 76 dans des établissements scolaires sur des thèmes précis. Les grandes fonctionnalités à développer sont : la création de bénévoles dans la base de données, la création d'établissements dans la base de données, la création d'interventions dans la base de données et l'association de ces trois grandes entités pour former une intervention par un bénévole dans un établissement. Sont aussi demandées l'envoi de mails automatiques et la géolocalisation des interventions.
+
+
  
-%\chapter{Présentation du PIC}
-%\label{presentation_PIC}
-%\input{sources/01_presentationPIC.tex}
-
-%\chapter{L'avancement du PIC}
-%\label{avancement}
-%\input{sources/02_avancement.tex}
-
-%\chapter{La gestion d'équipe}
-%\label{gestion_equipe}
-%\input{sources/03_gestionDEquipe.tex}
-
- 
-\begin{appendix}
-\listoffigures
-\addcontentsline{toc}{chapter}{Table des figures}
+%\begin{appendix}
+%\listoffigures
+%\addcontentsline{toc}{chapter}{Table des figures}
 	 
-\listoftables
-\addcontentsline{toc}{chapter}{Liste des tableaux}
-\end{appendix}
+%\listoftables
+%\addcontentsline{toc}{chapter}{Liste des tableaux}
+%\end{appendix}
 \pageQuatriemeCouverture
 
 \end{document}

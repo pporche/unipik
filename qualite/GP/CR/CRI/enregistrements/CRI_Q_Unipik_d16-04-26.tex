@@ -49,9 +49,9 @@
 				\rowcolor{Gray}
 				Rôle & Fonction & Nom & Date & Visa		 \\
 				\hline
-				Vérificateur & \RQA & \Kafui &  & pgpic \\[30pt]
+				Vérificateur & \RQA & \Kafui & 10/05/2016 & pgpic \\[30pt]
 				\hline
-				Validateur & \CP & \Sergi &  & pgpic \\[30pt]	
+				Validateur & \CP & \Sergi & 10/05/2016 & pgpic \\[30pt]	
 				\hline
 			\end{tabular}
 		\end{center}
@@ -65,16 +65,16 @@ Dans l'éventualité où \Pierre{} redoublerait, il faudrait un \CP{} de secours
 
 
 \section{Top down / Bottom up}
-Concernant le bottom-up, le modèle de la base de données est fini à part les triggers mais même avec des tables les plus simples possible, l'ORM ne génère rien malgré les recherches intensives de \Michel. \\
-\Kafui a réussi à faire marcher l'ORM en utilisant du MySQL avec des tables très simples mais, l'ORM génère du code de mauvaise qualité avec des tables plus complexes. \\
+Concernant le bottom-up, le modèle de la base de données est fini, mis à part les triggers, mais même avec des tables les plus simples possible, l'ORM ne génère rien malgré les recherches intensives de \Michel. \\
+\Kafui{} a réussi à faire marcher l'ORM en utilisant du MySQL avec des tables très simples mais l'ORM génère du code de mauvaise qualité avec des tables plus complexes. \\
 La solution est d'aller voir \nomTuteurPedago{} et de lui expliquer notre manque de solution autre que de repartir en top-down.
 
 
 \section{Vues}
-Plutôt que développer des vues à la chaîne, l'équipe FrontEnd fait des vues "types" pour pouvoir les intégrer plus tard . 
+Plutôt que de développer des vues à la chaîne, l'équipe FrontEnd fait des vues "types" pour pouvoir les intégrer plus tard . 
 
 
-\section{Revue de risques et opportunités}
+\section{Revue des risques et opportunités}
 
 La \FDR{} 001 (Crash du serveur) passe d'une probabilité de 1 à 2 car la méthode de programmation choisie peut augmenter la probabilité d'apparition de ce problème. \\
 
@@ -92,17 +92,17 @@ La \FDR{} 015 (Un PC d’un membre de l’équipe tombe en panne) passe d'une pr
 
 La \FDO{} 005 (Bonne planification) passe d'un bénéfice de 3 à 2 car même avec une excellente planification, le timing sera difficile à tenir.
 
-La \FDO{} 006 (Bonne ambiance interne) passe d'une probabilité de 4 à 2 car l'ensemble des membres de l'équipe est fatiguée par cette fin de semestre.
+La \FDO{} 006 (Bonne ambiance interne) passe d'une probabilité de 4 à 2 car l'ensemble des membres de l'équipe est fatigué par cette fin de semestre.
 
 
 
 \section{Organisation de la semaine}
 \Matthieu, \Julie{} et \Mathieu{} font des vues.\\
 \Melissa{} cherche un autre ORM.\\
-\Florian{} et \Kafui{} fait du contrôleur.\\
-\Michel cherche des solutions au problème de bottom-up.\\
+\Florian{} et \Kafui{} font du contrôleur.\\
+\Michel{} cherche des solutions au problème de bottom-up.\\
 
-En ce qui concerne la documentation, nous utiliserons PHPdoc et nous ajouterons des commentaires dans le code si celui-ci n'est pas assez clair.
+En ce qui concerne la documentation, nous utiliserons PHPDoc et nous ajouterons des commentaires dans le code si celui-ci n'est pas assez clair.
 
 
 

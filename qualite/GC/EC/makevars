@@ -1,8 +1,7 @@
+# version 2.00 date 10/05/2016 auteur(s) Mathieu Medici
 # version 1.00 date 26/02/2016 auteur(s) Pierre Porche, Michel Cressant
 
 # Définition du nom du document
-NOM_FICHIER=modeleEC
+NOM_FICHIER=EC_Q_Unipik_d16-05-10_cInspection
 
 LOCPATH=qualite/GC/EC
-
-

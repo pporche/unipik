@@ -36,7 +36,7 @@ class EtablissementController extends Controller {
     }
 
     /**
-     * @return Response Renvoie vers la page de consultation liée à l'établissement.
+     * @return Response Renvoie vers la page affichant la liste des données des établissements.
      */
     public function listeAction() {
         /*$em = $this->getDoctrine()->getManager();

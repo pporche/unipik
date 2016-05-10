@@ -75,7 +75,7 @@ PostgreSQL ne prend pas en compte les contraintes d'intégrité référentielles
 \item utiliser des triggers : au lieu de faire trois jointures, faire des jointures successives sur chaque fils.
 \end{itemize}
 
-Le dernier problème est que Symfony ne gère pas les primary keys qui ne sont pas des serials. \nomTuteurPedago{} nous explique que nos schémas exterieur et logique doivent être propres et en formes normales mais que lors du passage sur le schéma physique, il est possible de dénormaliser sans perdre la trace des problèmes introduits. Mettre un id en serial est possible sur la table utilisateur en ajoutant un UNIQUE NOT NULL sur email.
+Le dernier problème est que Symfony ne gère pas les primary keys qui ne sont pas des serials. \nomTuteurPedago{} nous explique que nos schémas exterieurs et logiques doivent être propres et en forme normale mais que lors du passage sur le schéma physique, il est possible de dénormaliser sans perdre la trace des problèmes introduits. Mettre un id en serial est possible sur la table utilisateur en ajoutant un UNIQUE NOT NULL sur email.
 
 \section{Réalisation de vues}
 Certaines vues et formulaires ont été réalisées :

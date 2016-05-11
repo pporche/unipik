@@ -16,8 +16,8 @@ VERSIONOF=v1.01
 ## Référentiel specifications ##
 
 VERSIONDSE=v1.01 #v2.00
-VERSIONDSI=v1.01 #v2.00
-VERSIONPTV=v1.02 #v2.00
+VERSIONDSI=v2.00 #v2.00
+VERSIONPTV=v2.00 #v2.00
 
 
 ## Référentiel developpement ##

@@ -1,7 +1,13 @@
-% version 1.00, date 20/02/16, auteur Michel Cressant
-% version 1.01, date 02/03/16, auteur Michel Cressant
-% version 1.02, date 29/03/16, auteur Michel Cressant
+% version 1.01, date 23/02/16, auteur Matthieu Martins-Baltar
 \documentclass[asi]{picInsa}
+
+%Pour le schéma d'architecture
+\usepackage{etex}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,chains,backgrounds,fit}
+%FIN Pour le shéma d'architecture
+
+
 \DeclareGraphicsRule{*}{pdf}{*}{}
 \usepackage{pdfpages}
 
@@ -35,21 +41,21 @@
 	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
 	\hline
 }
-\title{\PTV{}}
-\author{\Michel} %à changer
+\title{\DSI{}}
+\author{\Pierre} %à changer
 
 
-\titreGeneral{\PTV}
+\titreGeneral{\DSI}
 \sousTitreGeneral{\nomEquipe}
-\titreAcronyme{\PTVCourt}
-\version{v1.02}
-\titreDetaille{\PTVCourt\_S\_\nomEquipe\_\versionPrive}
-\referenceVersion{\PTVCourt\_S\_\nomEquipe\_\versionPrive}
+\titreAcronyme{\DSICourt}
+\version{v2.00}
+\titreDetaille{\DSICourt\_S\_\nomEquipe\_\versionPrive}
+\referenceVersion{\DSICourt\_S\_\nomEquipe\_\versionPrive}
 \auteurs{\Matthieu{} \& \Kafui{} \& \Melissa{} \& \Sergi{} \& \Michel{} \& \Pierre{}}
-\destinataires{\nomClient{}, \nomEquipe{}}%\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
-\resume{Le présent document contient la présentation du \PTV{} \nomEquipe.}
-\motsCles{\PTVCourt{}}
-\natureDerniereModification{Ajout du lot 2}
+\destinataires{\nomEquipe}
+\resume{Le présent document contient la présentation du \DSI{} \nomEquipe.}
+\motsCles{\DSICourt{}}
+\natureDerniereModification{ }
 \modeDiffusionControle{}
 
 \begin{document}
@@ -64,28 +70,30 @@
 \setcounter{chapter}{0}
 
 
-\chapter{Introduction}
-\label{introduction}
+\chapter*{Introduction}
+\label{intro}
 \input{sources/01_introduction.tex}
 
-\chapter{Lot 1}
-\label{lot1}
-\input{sources/02_lot1.tex}
+\chapter{Architecture}
+\label{architecture}
+\input{sources/02_architecture.tex}
 
-\chapter{Lot 2}
-\label{lot2}
-\input{sources/03_lot2.tex}
+\chapter{Présentation de la solution}
+\label{presentation}
+\input{sources/03_presentationSolution.tex}
+
+\chapter{Description détaillée des lots}
+\label{description}
+\input{sources/04_descriptionDetailleeLots.tex}
 
 
 \begin{appendix}
 \part*{Annexes}
 \addcontentsline{toc}{part}{Annexes}
+
 \listoffigures
 \addcontentsline{toc}{chapter}{Table des figures}
-
 \end{appendix}
-
-
 \pageQuatriemeCouverture
 
 \end{document}

@@ -49,9 +49,9 @@
 				\rowcolor{Gray}
 				Rôle & Fonction & Nom & Date & Visa		 \\
 				\hline
-				Vérificateur & \RQA & \Kafui & 25/04/2016 & pgpic \\[30pt]
+				Vérificateur & \RQA & \Kafui & 10/05/2016 & pgpic \\[30pt]
 				\hline
-				Validateur & \CP & \Sergi & 26/04/2016 & pgpic \\[30pt]	
+				Validateur & \CP & \Sergi & 10/05/2016 & pgpic \\[30pt]	
 				\hline
 			\end{tabular}
 		\end{center}
@@ -68,7 +68,7 @@ Cette semaine s'est orientée principalement sur trois axes :
 
 \section{Bottom-Up}
 Nous avons conçu un modèle de base de données propre et avons rencontré quelques problèmes lors de la génération de code via l'ORM. Le premier est que ce dernier ne semble pas gérer les types. La solution est de mettre une relation en tant qu'attribut dans les tables concernées. \\
-PostgreSQL ne prend pas en compte les contraintes d'intégrité référentielles sur les INHERITS. Il y a trois solution possible :
+PostgreSQL ne prend pas en compte les contraintes d'intégrité référentielles sur les INHERITS. Il y a trois solutions possibles :
 \begin{itemize}
 \item faire des tables pour les classes abstraites au lieu de vues ;
 \item ajouter un typage sur l'association ;

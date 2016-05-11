@@ -1,4 +1,4 @@
-% version 1.00	Auteur Pierre Porche		Date 03/05/2016
+% version 1.00	Auteur Pierre Porche		Date 10/05/2016
 
 \documentclass [a4paper] {article}
 \usepackage[utf8]{inputenc}
@@ -21,7 +21,7 @@
 \chead{\huge{Compte-rendu de réunion interne}}					%titre
 \begin{document}
 
-03/05/2016			 				%Date 
+10/05/2016			 				%Date 
 \hfill   
 \hfill 	 8:49 - 9:25				%Heure de d�but, heure de fin.
 
@@ -36,7 +36,7 @@
 				\rowcolor{Gray}
 				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
 				\hline
-				1.00 & 03/05/2016 & \Pierre & Création & Toutes \\
+				1.00 & 10/05/2016 & \Pierre & Création & Toutes \\
 		\hline		
 			\end{tabular}
 		\end{center}
@@ -49,36 +49,35 @@
 				\rowcolor{Gray}
 				Rôle & Fonction & Nom & Date & Visa		 \\
 				\hline
-				Vérificateur & \RQA & \Kafui &  & pgpic \\[30pt]
+				Vérificateur & \RQA & \Kafui & 11/05/2016 & pgpic \\[30pt]
 				\hline
-				Validateur & \CP & \Sergi &  & pgpic \\[30pt]	
+				Validateur & \CP & \Sergi & 11/05/2016 & pgpic \\[30pt]	
 				\hline
 			\end{tabular}
 		\end{center}
 
 
 \section{Planning}
-Remplissez le planning. Il reste 2 semaines avant la revue. 
+\Sergi{} nous demande de tous remplir le planning à temps et nous rappelle qu'il ne reste que deux semaines avant la revue.
 
 \section{Serveur}
-Sergi est allé voir la DSI et le service juridique qui n'est pas très très chaud. Il faut trouver un administrateur pour ce service. Serait il possible de créer un PAO? -> c'est chiant parce que c'est pas sur qu'il soit pris + vacances. A l'INSA, ils savent pas faire de 24/24 7/7. Ils sont en SentOS7 -> pas de changement de techno mais c'est chaud pour installer un Symfony. L'idée serait du coup de revoir vers une solution payante -> Si c'est chez OVH, il faut peut etre un admin
+\Sergi{} est allé voir la DSI et le service juridique. Ils ne sont pas très favorables à notre demande car il faut trouver un administrateur pour ce service. Il serait possible de créer un PAO mais il n'est pas sûr qu'il soit pris et l'indisponibilité de l'élève pendant les vacances est un problème. À l'INSA, les serveurs ne sont pas en 7/7-24/24. De plus, les serveurs sont sur SentOS7 et ne changeront pas donc ça va être difficile d'installer Symfony. Nous aborderons donc la solution payante avec le client.
 
 
-\section{BD}
-Ca y est presque mais ca a pris un gros coup de stop à cause d'un problème.
-
+\section{Base de données}
+Le développement structurel du schéma de la base de données est presque terminé mais s'est arreté brutalement la semaine dernière à cause d'un problème qui sera résolu cette semaine.
 
 \section{Inspection Technique}
-Faites de la doc parce que sinon ca va etre chaud. Il faudrait DROP les trucs en BD limites limites.
-
+\Michel{} demande à l'équipe de générer de la documentation en vue de l'inspection technique et demande de supprimer les jeux de tests de la base de données.
 
 \section{Revue}
+Nous avons fait un plan pour la revue.
 
 \section{PRO}
-FDR 005 -> Déclenché
-FDR 013 -> proba 3 - 4 parce que c'est pas très stable
-FDO 005 -> proba 2 - 1 Pare que fin du semestre
-FDO 006 -> proba 2 - 3 parce que le stress est retombé
+Le Risque 005 est déclenché. \\
+La \FDR{} 013 passe d'une probabilité de 3 à 4 parce que nous ne sommes pas sûrs du fonctionnement de notre livrable. \\
+La \FDO{} 005 passe d'une probabilité de 2 à 1 parce que la fin du semestre approche. \\
+La \FDO{} 006 passe d'une probabilité de 2 à 3 parce que le stress est retombé.
 
 
 %--- fin de réunion ---%

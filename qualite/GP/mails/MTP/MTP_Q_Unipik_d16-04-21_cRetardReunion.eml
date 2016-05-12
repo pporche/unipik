@@ -1,0 +1,47 @@
+Return-Path: <michel.mainguenaud@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 3B05E2388D
+	for <scolomies@insa-rouen.fr>; Thu, 21 Apr 2016 19:51:35 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CCAQBcEhlXig8V3cNeHAGEXLwMhg4CgTRMAQEBAQEBEwEBAQoUCVBBEgGDbgEBAQMjDwFFEQsaAgUWCwICCQMCAQIBDTgGDQgBAYgqrwWGIYp+AQEIAQEBAQEbfIlwhz+CVgEEmA8BFo9NAYdohVeOZEqCd4FWgWiHeAEBAQ
+X-IPAS-Result: A0CCAQBcEhlXig8V3cNeHAGEXLwMhg4CgTRMAQEBAQEBEwEBAQoUCVBBEgGDbgEBAQMjDwFFEQsaAgUWCwICCQMCAQIBDTgGDQgBAYgqrwWGIYp+AQEIAQEBAQEbfIlwhz+CVgEEmA8BFo9NAYdohVeOZEqCd4FWgWiHeAEBAQ
+X-IronPort-AV: E=Sophos;i="5.24,513,1454972400"; 
+   d="scan'208";a="88388631"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 21 Apr 2016 19:51:35 +0200
+Received: from [192.168.1.16] (ARouen-256-1-57-51.w90-51.abo.wanadoo.fr [90.51.216.51])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id BFFEC1076C
+	for <sergi.colomies@insa-rouen.fr>; Thu, 21 Apr 2016 19:51:34 +0200 (CEST)
+Reply-To: michel.mainguenaud@insa-rouen.fr
+Subject: =?UTF-8?Q?Re:_Dump_et_dictionnaire_de_donn=c3=a9es_version_finale?=
+References: <5718E00C.6040604@insa-rouen.fr>
+To: =?UTF-8?Q?Sergi_Colomi=c3=a8s?= <sergi.colomies@insa-rouen.fr>
+From: "MAINGUENAUD Michel (Prof)" <michel.mainguenaud@insa-rouen.fr>
+Organization: Institut National des Sciences Appliquees - Rouen
+Message-ID: <57191325.7020502@insa-rouen.fr>
+Date: Thu, 21 Apr 2016 19:51:33 +0200
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+ Gecko/20100101 Thunderbird/38.7.1
+MIME-Version: 1.0
+In-Reply-To: <5718E00C.6040604@insa-rouen.fr>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Bonsoir,
+
+je serai un petit peu en retard demain pour notre réunion.
+
+A+
+
+MM
+
+
+Le 21/04/2016 16:13, Sergi Colomiès a écrit :
+> Bonjour Monsieur,
+> 
+> Veuillez trouver ci-joint le dump de notre base de données ainsi que le
+> dictionnaire de données en version finale.
+> 
+> Cordialement,
+> 

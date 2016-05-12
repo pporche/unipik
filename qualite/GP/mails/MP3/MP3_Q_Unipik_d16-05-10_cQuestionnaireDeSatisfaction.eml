@@ -1,0 +1,82 @@
+Return-Path: <cmonnet@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 1C6C8238BC
+	for <scolomies@insa-rouen.fr>; Tue, 10 May 2016 22:40:49 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CgAQBDRjJXinIKMcFDGh2DcG4PhHChfY4WhkgShydMAQEBAQEBEwEBAQgWCVCEODMJSBoJAT4CIS0RGwQFiB4KLJgxh2CIAoYiik8aBIYgjAuCWQWIPo9pF4VnhFCDSY8gjnZKgmcbgU1sAYkJAQEB
+X-IPAS-Result: A0CgAQBDRjJXinIKMcFDGh2DcG4PhHChfY4WhkgShydMAQEBAQEBEwEBAQgWCVCEODMJSBoJAT4CIS0RGwQFiB4KLJgxh2CIAoYiik8aBIYgjAuCWQWIPo9pF4VnhFCDSY8gjnZKgmcbgU1sAYkJAQEB
+X-IronPort-AV: E=Sophos;i="5.24,606,1454972400"; 
+   d="scan'208,217";a="98975588"
+Received: from smtpout.insa-rouen.fr ([193.49.10.114])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 10 May 2016 22:40:50 +0200
+Received: from enquete.insa-rouen.fr (enquete.insa-rouen.fr [193.49.10.118])
+	by smtpout.insa-rouen.fr (8.13.8/8.13.8) with ESMTP id u4AKeq2b026773
+	for <sergi.colomies@insa-rouen.fr>; Tue, 10 May 2016 22:40:52 +0200
+Received: from enquete.insa-rouen.fr (localhost.localdomain [127.0.0.1])
+	by enquete.insa-rouen.fr (8.13.8/8.13.8) with ESMTP id u4AKe4ET004172
+	for <sergi.colomies@insa-rouen.fr>; Tue, 10 May 2016 22:40:04 +0200
+Received: (from apache@localhost)
+	by enquete.insa-rouen.fr (8.13.8/8.13.8/Submit) id u4AKe4e3004171;
+	Tue, 10 May 2016 22:40:04 +0200
+X-Authentication-Warning: enquete.insa-rouen.fr: apache set sender to cmonnet@insa-rouen.fr using -f
+Date: Tue, 10 May 2016 22:40:04 +0200
+To: Sergi Colomies <sergi.colomies@insa-rouen.fr>
+From: Romain HERAULT <romain.herault@insa-rouen.fr>
+Reply-to: Romain HERAULT <romain.herault@insa-rouen.fr>
+Subject: =?utf-8?B?UXVlc3Rpb25uYWlyZSBkZSBzYXRpc2ZhY3Rpb24gUElDIFIy?=
+Message-ID: <19a0da30dba02b7a7af908545e4c0b12@enquete.insa-rouen.fr>
+X-Priority: 3
+X-Mailer: PHPMailer 5.1 (phpmailer.sourceforge.net)
+X-surveyid: 53994
+X-tokenid: ufck4sgqpt82pj4
+X-Surveymailer: =?utf-8?Q?Serveur_d'enqu=C3=AAtes_de_l'INSA_de_Rouen_Emailer_(LimeSurvey.?=
+ =?utf-8?Q?sourceforge.net)?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="b1_19a0da30dba02b7a7af908545e4c0b12"
+
+
+--b1_19a0da30dba02b7a7af908545e4c0b12
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+
+Merci de répondre au questionnaire de satisfaction de la revue 2 pour le jeudi 19 mai 2016.  Il est accessible à l'adresse suivante : 
+
+https://enquete.insa-rouen.fr/index.php?lang=fr&sid=53994&token=ufck4sgqpt82pj4
+
+(ne pas tenir compte de ce message si vous n'avez pas suivi le PIC ce semestre, par exemple si vous êtes en stage à l'étranger).
+
+
+Cordialement,
+
+
+Romain HÉRAULT
+
+
+--b1_19a0da30dba02b7a7af908545e4c0b12
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<html><head><title></title></head><body>
+<p>Bonjour,
+</p>
+<p>Merci de répondre au questionnaire de satisfaction de la revue 2 pour le jeudi 19 mai 2016.  Il est accessible à l'adresse suivante : <br />
+<br />
+<a href='https://enquete.insa-rouen.fr/index.php?lang=fr&sid=53994&token=ufck4sgqpt82pj4'>https://enquete.insa-rouen.fr/index.php?lang=fr&sid=53994&token=ufck4sgqpt82pj4</a>
+</p>
+<p>(ne pas tenir compte de ce message si vous n'avez pas suivi le PIC ce semestre, par exemple si vous êtes en stage à l'étranger).
+</p>
+<p><br />
+Cordialement,
+</p>
+<p><br />
+Romain HÉRAULT
+</p>
+</body></html>
+
+
+
+--b1_19a0da30dba02b7a7af908545e4c0b12--

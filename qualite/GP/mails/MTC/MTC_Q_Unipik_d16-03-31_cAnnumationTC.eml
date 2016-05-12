@@ -1,0 +1,65 @@
+Return-Path: <dbareau@altedia.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 8BDF2238DD;
+	Thu, 31 Mar 2016 13:27:31 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0D8AABeCf1Wk14CL2hdhQQGvQ2GDQIcgWwBAQEBAQETAQEBAQcNCQkhL4REAQMSARARDAEBNwERASICJgIEHRMVCgcBBAENDRqHcAMSBKI5AYEnARxhBSgCimhnhEEBBIdFGIR6AQEBAQEFAQEBAQEBARMGfIUiiQSDACuCK5d3F49BAY08jxWCWR6BUmyHbwF9AQEB
+X-IPAS-Result: A0D8AABeCf1Wk14CL2hdhQQGvQ2GDQIcgWwBAQEBAQETAQEBAQcNCQkhL4REAQMSARARDAEBNwERASICJgIEHRMVCgcBBAENDRqHcAMSBKI5AYEnARxhBSgCimhnhEEBBIdFGIR6AQEBAQEFAQEBAQEBARMGfIUiiQSDACuCK5d3F49BAY08jxWCWR6BUmyHbwF9AQEB
+X-IronPort-AV: E=Sophos;i="5.24,422,1454972400"; 
+   d="scan'208";a="87497953"
+Received: from mail-db5eur01on0094.outbound.protection.outlook.com (HELO EUR01-DB5-obe.outbound.protection.outlook.com) ([104.47.2.94])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 31 Mar 2016 13:27:01 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=inoffice.onmicrosoft.com; s=selector1-altedia-fr;
+ h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=zEKNFW8fm4cwJ/72IUxFIbPLrhijc8v8aK94Ib6WId4=;
+ b=t/OjQdr6CO6D1+3SGo2dOp2V/YQIoGwvb/mx5+TX4ZkVxmCG2gIdNO0M88UXr1WhPF5frOqmppvQWxaNy2EWgiAYxs9mX6f9QDL2KN7kpKaa7O1o8Rh6Qorx+K9dFHVt1JMN/jVqJBH5hhDrisjpirtk49Q0FQNvd5AD4QQGlzI=
+Received: from DB4PR06MB0720.eurprd06.prod.outlook.com (10.161.14.144) by
+ DB4PR06MB0717.eurprd06.prod.outlook.com (10.161.14.141) with Microsoft SMTP
+ Server (TLS) id 15.1.447.15; Thu, 31 Mar 2016 11:26:59 +0000
+Received: from DB4PR06MB0720.eurprd06.prod.outlook.com ([10.161.14.144]) by
+ DB4PR06MB0720.eurprd06.prod.outlook.com ([10.161.14.144]) with mapi id
+ 15.01.0447.024; Thu, 31 Mar 2016 11:26:59 +0000
+From: Doriane BAREAU <dbareau@altedia.fr>
+To: Prevoteaux Simon <simon.prevoteaux@insa-rouen.fr>,
+	=?utf-8?B?T3Bow6lsaWUgR3Vlbm91eA==?= <ophelie.guenoux@insa-rouen.fr>,
+	=?utf-8?B?U2VyZ2kgQ29sb21pw6hz?= <sergi.colomies@insa-rouen.fr>,
+	"mickael.billiotte@insa-rouen.fr" <mickael.billiotte@insa-rouen.fr>
+CC: "florence.aubry@insa-rouen.fr" <florence.aubry@insa-rouen.fr>
+Subject: tutorat com 
+Thread-Topic: tutorat com 
+Thread-Index: AdGLQB0y4h5rXxiSR16wOu2VQ+ceUw==
+Date: Thu, 31 Mar 2016 11:26:59 +0000
+Message-ID: <DB4PR06MB0720980637ADC9697DF08C88D4990@DB4PR06MB0720.eurprd06.prod.outlook.com>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: insa-rouen.fr; dkim=none (message not signed)
+ header.d=none;insa-rouen.fr; dmarc=none action=none header.from=altedia.fr;
+x-originating-ip: [80.215.174.93]
+x-ms-office365-filtering-correlation-id: bcb02d58-b145-4f34-aec5-08d35957600c
+x-microsoft-exchange-diagnostics: 1;DB4PR06MB0717;5:qNgybG2bU9FAdT3t/Iwm0noG99C+mj0q01MzL4sHDYLBUhOwFab0Np/vsz0n6YnqRyplLqyDJjEjXuWhlk+WWgy03d5HKtwrpIEfw7/QaGUjud9M6kNer8rh3cl85hESPhu3dwtzcFMqTWXqJU6TnA==;24:s7zyXKBZqrkvktZMBs3XfxblFYBdomdYx0zajpaFWS5MKMKaNJZ17dp7zaD/zNK48tdv31wI123jjft0ShrHbtM3pV1MgSTJyUI1GBBXnaM=
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DB4PR06MB0717;
+x-microsoft-antispam-prvs: <DB4PR06MB0717015B8E0EEB3C80D10967D4990@DB4PR06MB0717.eurprd06.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:(601004)(2401047)(8121501046)(5005006)(10201501046)(3002001);SRVR:DB4PR06MB0717;BCL:0;PCL:0;RULEID:;SRVR:DB4PR06MB0717;
+x-forefront-prvs: 0898A6E028
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(6009001)(11100500001)(10400500002)(450100001)(122556002)(77096005)(2900100001)(74316001)(5001770100001)(87936001)(5004730100002)(33656002)(189998001)(76576001)(229853001)(66066001)(102836003)(1096002)(1220700001)(6116002)(3846002)(5003600100002)(3660700001)(4326007)(5002640100001)(2906002)(74482002)(50986999)(586003)(54356999)(81166005)(92566002)(2501003)(3280700002)(3480700003)(5008740100001)(86362001)(558084003);DIR:OUT;SFP:1102;SCL:1;SRVR:DB4PR06MB0717;H:DB4PR06MB0720.eurprd06.prod.outlook.com;FPR:;SPF:None;MLV:sfv;LANG:fr;
+spamdiagnosticoutput: 1:23
+spamdiagnosticmetadata: NSPM
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: altedia.fr
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Mar 2016 11:26:59.6280
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f30ac191-b8b4-45f2-9a9b-e5466cb90c2f
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB4PR06MB0717
+
+Qm9uam91ciwgDQpKZSBzdWlzIGNvbnRyYWludGUgZCdhbm51bGVyIGxlIHR1dG9yYXQgY29tIGRl
+IGRlbWFpbiwgamUgdm91cyBwcmllIGRlIG0nZW4gZXhjdXNlci4NCkJvbm5lIGpvdXJuw6llIMOg
+IHRvdXMsIHByb2NoYWluIHR1dG9yYXQgYXUgcmV0b3VyIGRlcyB2YWNhbmNlcyENCkNvcmRpYWxl
+bWVudA0KRG9yaWFuZQ0K

@@ -1,0 +1,64 @@
+Return-Path: <unicef76@unicef.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 5C630238E6
+	for <scolomies@insa-rouen.fr>; Mon,  4 Apr 2016 14:17:13 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0BZBgCCWgJXiiNDES5dHAGDbX0GgnOwfokwGYV0AggUgWEBAQEBAQETAQEBChYHUEESAYNuAQEBAwwXERVAAgEGAhIIAgYgAgICHRMVAg4CBBMIE4gQjgOdF5E0AQEBBwEBAQEBAQEZfIluhCABAR0WTYIdK4IrBZd4CAEXgQibeI8agneBUmyFLIE/BxcHGAF9AQEB
+X-IPAS-Result: A0BZBgCCWgJXiiNDES5dHAGDbX0GgnOwfokwGYV0AggUgWEBAQEBAQETAQEBChYHUEESAYNuAQEBAwwXERVAAgEGAhIIAgYgAgICHRMVAg4CBBMIE4gQjgOdF5E0AQEBBwEBAQEBAQEZfIluhCABAR0WTYIdK4IrBZd4CAEXgQibeI8agneBUmyFLIE/BxcHGAF9AQEB
+X-IronPort-AV: E=Sophos;i="5.24,440,1454972400"; 
+   d="scan'208";a="97335200"
+Received: from webmail.unicef.fr (HELO autodiscover.unicef.fr) ([46.17.67.35])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 04 Apr 2016 14:17:14 +0200
+Received: from UNC-SRV-EXC1.cfu.local ([10.30.42.11]) by unc-srv-exc1
+ ([10.30.42.11]) with mapi id 14.03.0181.006; Mon, 4 Apr 2016 14:16:43 +0200
+From: 76 UNICEF Seine Maritime <unicef76@unicef.fr>
+To: Colomies Sergi <sergi.colomies@insa-rouen.fr>
+Subject: RE:Unipik - Interrogations lot2
+Thread-Topic: Unipik - Interrogations lot2
+Thread-Index: AQHRjlHLMG1puBp3nEO4HBvfKewNLZ95uqbb
+Date: Mon, 4 Apr 2016 12:16:43 +0000
+Message-ID: <168ED66FB5C258489BADAE2218B264D575006921@unc-srv-exc1>
+References: <fa4-57022f80-37-71014a80@110906679>
+In-Reply-To: <fa4-57022f80-37-71014a80@110906679>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-originating-ip: [82.233.212.43]
+x-c2processedorg: 36648b07-e705-4ef6-b55d-bc0567a78858
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+
+UG91ciBsZSBtb21lbnQgVsOpcm9uaXF1ZSBCQVJCSUVSIGVzdCBlbiB2YWNhbmNlcy4gQXlhbnQg
+bW9pbnMgc3VpdmkgbGVzIGRlcm5pw6hyZXMgw6l2b2x1dGlvbnMgamUgbGEgbGFpc3NlIHZvdXMg
+csOpcG9uZHJlLiBFbGxlIHJlbnRyZSBmaW4gZGUgc2VtYWluZQ0KQm9uIGNvdXJhZ2UsIGF2ZWMg
+bWVzIGFtaXRpw6lzDQpWw6lyb25pcXVlIERBVlJFVVgNCg0KNzYgVU5JQ0VGIFNlaW5lIE1hcml0
+aW1lICAgUm91ZW4NCg0KKzMzIDIgMzUgODggOTggODgNCjI2IHJ1ZSBTYWludCBOaWNvbGFzIDc2
+MDAwIFJPVUVODQp3d3cudW5pY2VmLmZyDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fDQpEZSA6IENvbG9taWVzIFNlcmdpIFtzZXJnaS5jb2xvbWllc0BpbnNhLXJvdWVu
+LmZyXQ0KRW52b3nDqSA6IGx1bmRpIDQgYXZyaWwgMjAxNiAxMTowOQ0Kw4AgOiA3NiBVTklDRUYg
+U2VpbmUgTWFyaXRpbWUNCk9iamV0IDogVW5pcGlrIC0gSW50ZXJyb2dhdGlvbnMgbG90Mg0KDQpC
+b25qb3VyIE1hZGFtZSwNCg0KRW4gcGxlaW5lIHBoYXNlIGRlIGNvbmNlcHRpb24gZHUgZGV1eGnD
+qG1lIGxvdCwgdHJvaXMgcXVlc3Rpb25zIG5vdXMgc29udCBhcHBhcnVlcyBjb25jZXJuYW50IGxl
+IHNlcnZpY2UgcXVlIG5vdXMgdm91cyBkw6l2ZWxvcHBvbnMuIExlcyBxdWVzdGlvbnMgc29udCBs
+ZXMgc3VpdmFudGVzIDoNCg0KIC0gTidpbXBvcnRlIHF1aSBwb3VycmEtdC1pbCBzZSBjcsOpZXIg
+dW4gY29tcHRlID8gT3UgYmllbiBzZXVsIGwnYWRtaW5pc3RyYXRldXIgZ2xvYmFsIHBldXQgY3LD
+qWVyIHVuIGNvbXB0ZSBwb3VyIGxlcyBhdXRyZXMgYsOpbsOpdm9sZXMgPyBOb3VzIGF2b25zIGF1
+c3NpIHBlbnPDqSDDoCB1bmUgYXV0cmUgc29sdXRpb24gcXVpIHNlcmFpdCBxdWUgY2hhcXVlIGLD
+qW7DqXZvbGUgcHVpc3NlIHNlIGNyw6llciB1biBjb21wdGUgbWFpcyBzZXVsIGwnYWRtaW5pc3Ry
+YXRldXIgcHVpc3NlIHZhbGlkZXIgbGEgY3LDqWF0aW9uIGRlIGNlIGNvbXB0ZS4gQ2VsYSBwZXJt
+ZXR0cmFpdCBkJ8Opdml0ZXIgcXUndW4gaW5kaXZpZHUgdG90YWxlbWVudCBleHTDqXJpZXVyIMOg
+IGwnVU5JQ0VGIG5lIHNlIGNyw6nDqSB1biBjb21wdGUgZXQgYWl0IGFjY8OocyBhdSBjb250ZW51
+IGR1IHNpdGUuDQoNCiAtIFF1ZWxzIHNlcm9udCBsZXMgcGVyc29ubmVzIGNhcGFibGVzIGQnYWpv
+dXRlci9zdXBwcmltZXIvbW9kaWZpZXIgdW4gw6l0YWJsaXNzZW1lbnQgc3VyIGxlIHNpdGUgPyBT
+ZXVsIGwnYWRtaW5pc3RyYXRldXIgZ2xvYmFsID8gTGVzIHJlc3BvbnNhYmxlcyBkJ2FjdGl2aXTD
+qSA/IFRvdXQgbGUgbW9uZGUgPw0KDQogLSBFbiBwbHVzIGRlcyBtYWlscyBlbnZvecOpcyBhdXRv
+bWF0aXF1ZW1lbnQsIHkgYS10LWlsIGRlcyB1dGlsaXNhdGV1cnMgcXVpIHBvdXJyYWllbnQgZW52
+b3llciBkZXMgbWFpbHMgYXV4IMOpdGFibGlzc2VtZW50cyBkZSBsZXVyIGPDtHTDqSA/DQoNCk1l
+cmNpIGRlIHZvdHJlIGNvbGxhYm9yYXRpb24sDQoNCkJvbm5lcyB2YWNhbmNlcywgU2VyZ2kgQy4N
+Cg0KLS0NClNlcmdpIENvbG9tacOocw0Kw4l0dWRpYW50IDTDqG1lIGFubsOpZSBJTlNBIGRlIFJv
+dWVuDQpEw6lwYXJ0ZW1lbnQgQXJjaGl0ZWN0dXJlIGRlcyBTeXN0w6htZXMgZCdJbmZvcm1hdGlv
+bg0KDQpUw6lsIDogMDYgNzQgOTIgOTQgODYNCk1haWwgOiBzZXJnaS5jb2xvbWllc0BpbnNhLXJv
+dWVuLmZyDQoNCg==

@@ -1,0 +1,1087 @@
+Return-Path: <unicef76@unicef.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id C67BC238B9;
+	Tue, 19 Apr 2016 11:34:41 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0B4AQCr+hVXiiNDES5dgmuBIAgVAV8GuAaEDiKFbAIICoF6AQEBAQEBEwEBAQoWB1CEQgEBAQMFAQY5BAsOAQEGHwIBJQEBAQIZCwIVAwUHDCUCBAERAQgGiB8KvS4BAQEBAQEBAQEBAQEBAQEBAQEBAQENCIEPjhwLC02CMBiCKwEEmAUIAReBC4IGgWYBbIpLgiqKMAKHYodJgmYRCRWBNWyIFQF9AQEB
+X-IPAS-Result: A0B4AQCr+hVXiiNDES5dgmuBIAgVAV8GuAaEDiKFbAIICoF6AQEBAQEBEwEBAQoWB1CEQgEBAQMFAQY5BAsOAQEGHwIBJQEBAQIZCwIVAwUHDCUCBAERAQgGiB8KvS4BAQEBAQEBAQEBAQEBAQEBAQEBAQENCIEPjhwLC02CMBiCKwEEmAUIAReBC4IGgWYBbIpLgiqKMAKHYodJgmYRCRWBNWyIFQF9AQEB
+X-IronPort-AV: E=Sophos;i="5.24,506,1454972400"; 
+   d="pdf'?scan'208,217,147?gif'208,217,147,147";a="88254517"
+Received: from webmail.unicef.fr (HELO autodiscover.unicef.fr) ([46.17.67.35])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 19 Apr 2016 11:34:41 +0200
+Received: from UNC-SRV-EXC1.cfu.local ([10.30.42.11]) by unc-srv-exc1
+ ([10.30.42.11]) with mapi id 14.03.0181.006; Tue, 19 Apr 2016 11:34:15 +0200
+From: 76 UNICEF Seine Maritime <unicef76@unicef.fr>
+To: BOUHADICHE Ida <b_ida@hotmail.fr>, =?Windows-1252?Q?ASSOUMANI_Ha=EFmana?=
+	<ASSOUMANI.HAIMANA@outlook.com>, HOUNTONDJI Lydie
+	<lydie.hountondji@outlook.com>, MABIRE Camille <kmill7@hotmail.fr>, BRETECHE
+ Pierre Olivier <pierre.olivier.breteche@gmail.com>,
+	=?Windows-1252?Q?HUON_B=E9atrice?= <beatrice.huon@sciencespo.fr>,
+	=?Windows-1252?Q?PAGANT_Adela=EFde?= <adelaide.pagant@gmail.com>, "JOLY
+ Floriane" <mujoly@wanadoo.fr>, JUSTET Marie <Justet.mary@gmail.com>, DESHAYES
+ Julie <julie-deshayes@hotmail.fr>, SCHAMME Charlotte
+	<charlotteschamme@gmail.com>, DUPUY Eva <evadupuy4@hotmail.fr>,
+	=?Windows-1252?Q?LAMOUREUX_Ana=EFs?= <ana.lamoureux@laposte.net>, "MARTINEAU
+ Anne" <annemartineau76@gmail.com>,
+	=?Windows-1252?Q?DELOFFRE_Alexis_=28IUT_Tech_de_Co_2015-2016_1=E8re_ann?=
+ =?Windows-1252?B?6WUp?= <alex1081@hotmail.fr>,
+	=?Windows-1252?Q?DEGRAEVE_Elo=EFse_=28IUT_Tech_de_Co_2015-2016_1=E8re_ann?=
+ =?Windows-1252?B?6WUp?= <el.degraeve@gmail.com>,
+	=?Windows-1252?Q?CORBEL_Cl=E9mentine_=28IUT_Tech_de_Co_2015-2016_1=E8re_a?=
+ =?Windows-1252?Q?nn=E9e=29?= <clementine.corbel@hotmail.fr>,
+	=?Windows-1252?Q?GRIEU_Chlo=E9_=28IUT_Tech_de_Co_2015-2016_1=E8re_ann=E9e?=
+ =?Windows-1252?Q?=29?= <chloe-grieu@hotmail.fr>,
+	=?Windows-1252?Q?RIARD_Quentin_=28IUT_Tech_de_Co_2015-2016_1=E8re_ann=E9e?=
+ =?Windows-1252?Q?=29?= <quentin.riard@etu.univ-rouen.fr>, "COLOMIES Sergi
+ (INSA PIC)" <sergi.colomies@insa-rouen.fr>, ASKAR Shaza
+	<shazaaskar@live.com>,
+	=?Windows-1252?Q?RUGAMBAGE_Christelle_=28m=E9decine_2=E8me_ann=E9e=29?=
+	<christelle.rug@gmail.com>, "YACHINE Alexis (Mus & chant E.I.J. MSA)"
+	<yachine.alexis@gmail.com>, DSIEWE MAMBO Fabrice <rahimafabio@gmail.com>,
+	SAMELOR Marcelle <marcelle.samelor@gmail.com>, "ZORA Nelcis (INSA 2015 2016)"
+	<nelcis.zora@insa-rouen.fr>, "CHANCE Emma (INSA 2015 2016)"
+	<emma.chance@hotmail.fr>, DUGORD Camille <camilledugord@gmail.com>,
+	=?Windows-1252?Q?AHLERS_S=E9bastien?= <ahlersv@gmail.com>, PIQUOT Alexia
+	<alexia.piquot@gmail.com>, YENIOGLU Simge <simgeyenioglu@gmail.com>,
+	"LAVERDURE Marie (HMC L2)" <marie.laverdure@hotmail.fr>, "EL JARRARI Nisrine
+ (INSA MRIE)" <nisrine.ej@hotmail.fr>,
+	=?Windows-1252?Q?ROTH_Alice_=28M1_linguistique_sp=E9c_diff_fran=E7ais=29?=
+	<alice.roth@ymail.com>,
+	=?Windows-1252?Q?PICARD_Amaury_=28Etudiant/salari=E9_lic_eco_gest_Pasteur?=
+ =?Windows-1252?Q?_Rouen=29?= <amaury-pic@hotmail.fr>, ERDOGAN Ali
+	<ali3201@hotmail.com>,
+	=?Windows-1252?Q?LEPILLER_Camille_=281=E8re_STMG_Neufchatel=29?=
+	<camille.lepiller@gmail.com>, =?Windows-1252?Q?LOINTIER_R=E9mi_?=
+	<r.lointier@gmail.com>, =?Windows-1252?Q?HUNKELER_Chlo=E9_=28socio=29?=
+	<kleezy@hotmail.fr>,
+	=?Windows-1252?Q?GILBERT_Charlotte_=28lyc=E9e_Lillebonne=29?=
+	<charlotte.hsm@hotmail.fr>, "DELABIE Flore (IAE 2015 2016 Groupe 2)"
+	<flore.delabie@gmail.com>,
+	=?Windows-1252?Q?CHIROIS_Margaux_=28IUT_Tech_de_Co_2=E8me_ann=E9e=29?=
+	<margaux.chirois@icloud.com>, "DEGOIS Morgane (IUT Tech de Co)"
+	<morgane-degois@hotmail.fr>,
+	=?Windows-1252?Q?CHAPRON_No=E9mie_=28IUT_Tech_de_Co_2=E8me_ann=E9e=29?=
+	<noemie27chapron@orange.fr>, "BUSSEREAU Fanny (IAE 2015 2016 Groupe 2)"
+	<fanny.bussereau@hotmail.fr>,
+	=?Windows-1252?Q?DUCREUX_Emilie_=28IUT_Tech_de_Co_2=E8me_ann=E9e=29?=
+	<emi_lie-76@hotmail.fr>, "LEVEQUE Manon (IAE 2015 2016 Groupe 2)"
+	<manon.leveque11@laposte.net>,
+	=?Windows-1252?Q?OMONT_H=E9l=E8ne_=28IAE_2015_2016_Groupe_2=29?=
+	<helene.omont@gmail.com>, "OLLA Nandy (IAE 2015 2016 Groupe 3)"
+	<nandycecilia@yahoo.fr>, "AK Ilkay (IAE 2015 2016 Groupe 3)"
+	<ilkay27@hotmail.fr>,
+	=?Windows-1252?Q?POIRIER_Laurine_=28ESITPA_3=E8me_ann=E9e=29?=
+	<l.poirier@etu.esitpa.fr>, MORISSE Alexandra
+	<alexandramorisse76840@gmail.com>, NORGUET Juliette
+	<juliette.norguet@gmail.com>,
+	=?Windows-1252?Q?DUMAS_Margaux_=28lyc=E9e_St_Sa=EBns=29?=
+	<agashi@laposte.net>, BOUDRAF Kenza <kenza.boudraf04@gmail.com>,
+	=?Windows-1252?Q?PICHARD_Jade_=28HMC_2015_2016_Groupe_Jade-L=E9a=29?=
+	<jadepichard@gmail.com>,
+	=?Windows-1252?Q?DEHEDIN_L=E9a_=28HMC_2015_2016_Groupe_Jade-L=E9a=29?=
+	<dehedin.lea@gmail.com>, "FAYE Danielle (ESITPA)" <d.faye@esitpa.fr>,
+	"VIVIER Lucie (M1 anglais)" <vivierlucie@orange.fr>, "BENSSY Yasmine
+ (ESITPA)" <yasminebenssy@hotmail.com>, "TANOH Claude (IAE M2MAE)"
+	<claudetanoh77@yahoo.fr>, "KABA Zenabou (IAE 2015 2016 groupe 1)"
+	<zcommezen@live.fr>, "CHAMPEAUX Perrine (IAE 2015 2016 groupe 1)"
+	<perrine.champeaux@wanadoo.fr>, "EGLOFF Louise (IAE 2015 2016 groupe 1)"
+	<louise.egloff@gmail.com>, "TERRIER Jeanne (IAE 2015 2016 groupe 1)"
+	<terrier.jeanne@gmail.com>,
+	=?Windows-1252?Q?GOUYSSE_Chlo=E9_=28IAE_2015_2016_groupe_1=29?=
+	<chloe.gouysse@live.fr>,
+	=?Windows-1252?Q?ROSERO_Te=EFlo_=28Lyc=E9e_Flaubert_Art_=26__danse?=
+	<teilopaul@hotmail.fr>,
+	=?Windows-1252?Q?SOULIGNAC_Juliette_=28Lyc=E9e_Flaubert_Art_=26_danse=29?=
+	<soulignacjuliette@gmail.com>, "PELLERIN Charlotte (INSA 2015 2016 groupe 1)"
+	<charlotte.pellerin@insa-rouen.fr>, "TASSERIE Agathe (IUT Tech de Co)"
+	<agathe.t7@gmail.com>,
+	=?Windows-1252?Q?LORANDEL_Charley_=28ESITPA_3=E8me_ann=E9e=29?=
+	<charley.lorandel@hotmail.fr>,
+	=?Windows-1252?Q?LAIGNEL_No=E9mie_=28ESITPA_3=E8me_ann=E9e=29?=
+	<noemie.laignel@hotmail.fr>,
+	=?Windows-1252?Q?PHILIPPE_Marie_=28ESITPA_3=E8me_ann=E9e=29?=
+	<marinema.philippe@gmail.com>, "MAHE Leonore (INSA 2015 2016 groupe 1)"
+	<leonore.mahe@insa-rouen.fr>, "MAURY Maud (INSA 2015 2016 groupe 1)"
+	<maud.maury@insa-rouen.fr>,
+	=?Windows-1252?Q?SOVOESSI_Otniel_=28ESIGELEC_5=E8me_ann=E9e=29?=
+	<osovoessi@gmail.com>, "BEDU Elsa (INSA 2015 2016 groupe 2  MRIE4)"
+	<elsa.bedu@insa-rouen.fr>, "DEMERSEMAN Sarah (INSA 2015 2016 groupe 2
+  MRIE4)" <sarah.demerseman@insa-rouen.fr>, "PEYRICHOUX Nicolas (NEOMA MGE)"
+	<nicolas.peyrichoux95@gmail.com>
+Subject: TR : UNICEF/URGENCE EQUATEUR : l'agence des Nations unies lance un
+ appel de 1 million de dollars pour son intervention d'urgence
+Thread-Topic: UNICEF/URGENCE EQUATEUR : l'agence des Nations unies lance un
+ appel de 1 million de dollars pour son intervention d'urgence
+Thread-Index: AQHRmU8Z13lAeca2AkaloV2TpumA05+RCo12
+Date: Tue, 19 Apr 2016 09:34:13 +0000
+Message-ID: <168ED66FB5C258489BADAE2218B264D5750078BB@unc-srv-exc1>
+References: <cb7817d9-a2ac-45f8-b004-358bf5daa16d@UNC-SRV-EXC1.cfu.local>
+In-Reply-To: <cb7817d9-a2ac-45f8-b004-358bf5daa16d@UNC-SRV-EXC1.cfu.local>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+x-originating-ip: [82.233.212.43]
+x-c2processedorg: 36648b07-e705-4ef6-b55d-bc0567a78858
+Content-Type: multipart/mixed;
+	boundary="_007_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_"
+MIME-Version: 1.0
+
+--_007_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_
+Content-Type: multipart/related;
+	boundary="_006_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_";
+	type="multipart/alternative"
+
+--_006_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_
+Content-Type: multipart/alternative;
+	boundary="_000_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_"
+
+--_000_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+
+________________________________
+
+
+Comit=E9 de la Seine Maritime pour l'UNICEF   Rouen
+
++33 2 35 88 98 88
+26 rue Saint Nicolas 76000 ROUEN
+www.unicef.fr<http://www.unicef.fr/>
+
+<http://www.unicef.fr>
+        <http://www.unicef.fr/>
+
+[cid:signature_Unicef-France_4dcd5dd6-d123-4dcb-bbee-72ea7099a647.gif]<http=
+s://www.unicef.fr/>
+
+http://www.unicef.fr<http://www.unicef.fr/><http://www.unicef.fr>
+
+
+
+________________________________
+
+
+<http://www.unicef.fr>
+________________________________
+De : Carine SPINOSI (Unicef) [CSPINOSI@unicef.fr]
+Envoy=E9 : lundi 18 avril 2016 10:48
+=C0 : 76 UNICEF Seine Maritime
+Objet : UNICEF/URGENCE EQUATEUR : l'agence des Nations unies lance un appel=
+ de 1 million de dollars pour son intervention d'urgence
+
+
+[logo_UNICEF.png]
+
+
+
+
+
+
+
+
+
+
+L'UNICEF fournit 20 000 comprim=E9s de purification d'eau aux survivants du=
+ tremblement de terre de l'Equateur
+
+
+L'agence des Nations unies lance un appel de 1 million de dollars pour son =
+intervention d'urgence
+
+
+PARIS, le 18 avril 2016 =96 L'UNICEF a livr=E9 hier 20 000 comprim=E9s de p=
+urification d=92eau =E0 Pedernales, la r=E9gion la plus touch=E9e par le s=
+=E9isme qui a frapp=E9 l'Equateur hier soir. Une =E9quipe de l'UNICEF est s=
+ur le terrain pour =E9valuer l'impact du s=E9isme sur les enfants.
+
+A ce jour, au moins 246 personnes ont =E9t=E9 tu=E9es et plus de 2 500 pers=
+onnes ont =E9t=E9 bless=E9es. Les d=E9g=E2ts sont particuli=E8rement =E9lev=
+=E9s =E0 Pedernales, Chone, Muisne, Bah=EDa de Car=E1quez, Manta, Portoviej=
+o, Esmeraldas et Guayaquil, incitant le gouvernement =E0 d=E9clarer l'=E9ta=
+t d'urgence.
+
+L'UNICEF continuera =E0 travailler avec les partenaires humanitaires pour g=
+arantir le prolongement de =E9ducation des enfants, leur protection et leur=
+ approvisionnement en eau et d'assainissement, en acheminant notamment des =
+kits scolaires et des tentes. Les priorit=E9s pour l=92UNICEF : pr=E9venir =
+la propagation des maladies, prot=E9ger les enfants qui peuvent avoir =E9t=
+=E9 s=E9par=E9s de leurs familles, offrir aux enfants touch=E9s un soutien =
+psychosocial et leur garantir des possibilit=E9s d'apprentissage temporaire=
+s.
+
+L'UNICEF aura besoin de 1 million de dollars pour r=E9pondre aux besoins im=
+m=E9diats des enfants touch=E9s par le s=E9isme.
+
+
+
+Pour faire un don :
+
+UNICEF France 3 rue Duguay Trouin 75006 PARIS
+
+www.unicef.fr<http://anws.co/bfQcm/{244bd1c4-af9a-4f2b-9696-992f1f223269}>
+
+
+
+
+Pour de plus amples informations contactez :
+Carine SPINOSI
+T=E9l. +33 (0)1 44 39 17 49
+Suivez nos communications sur Twitter :
+@cspinosi | @UNICEF_France
+Courriel : cspinosi@unicef.fr<http://anws.co/bfQcn/{244bd1c4-af9a-4f2b-9696=
+-992f1f223269}>
+
+
+
+
+
+UNICEF France
+
+3, rue Duguay-Trouin
+
+75006 Paris
+www.unicef.fr
+
+
+
+
+
+
+[http://anws.co/bfQco/{244bd1c4-af9a-4f2b-9696-992f1f223269}]
+
+--_000_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style>=0A=
+<!--=0A=
+@font-face=0A=
+	{font-family:Wingdings}=0A=
+@font-face=0A=
+	{font-family:"Cambria Math"}=0A=
+@font-face=0A=
+	{font-family:Tahoma}=0A=
+p.MsoNormal, li.MsoNormal, div.MsoNormal=0A=
+	{margin:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	font-size:11.0pt;=0A=
+	font-family:"Arial","sans-serif"}=0A=
+h1=0A=
+	{margin:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	page-break-after:avoid;=0A=
+	font-size:12.0pt;=0A=
+	font-family:"Arial","sans-serif"}=0A=
+h2=0A=
+	{margin:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	text-align:center;=0A=
+	page-break-after:avoid;=0A=
+	font-size:14.0pt;=0A=
+	font-family:"Arial","sans-serif"}=0A=
+h3=0A=
+	{margin:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	text-align:center;=0A=
+	page-break-after:avoid;=0A=
+	font-size:14.0pt;=0A=
+	font-family:"Arial","sans-serif"}=0A=
+h4=0A=
+	{margin-top:0cm;=0A=
+	margin-right:42.45pt;=0A=
+	margin-bottom:0cm;=0A=
+	margin-left:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	text-align:center;=0A=
+	page-break-after:avoid;=0A=
+	font-size:11.0pt;=0A=
+	font-family:"Arial","sans-serif"}=0A=
+h5=0A=
+	{margin-top:0cm;=0A=
+	margin-right:0cm;=0A=
+	margin-bottom:0cm;=0A=
+	margin-left:180.0pt;=0A=
+	margin-bottom:.0001pt;=0A=
+	text-indent:36.0pt;=0A=
+	page-break-after:avoid;=0A=
+	font-size:11.0pt;=0A=
+	font-family:"Arial","sans-serif"}=0A=
+h6=0A=
+	{margin-top:10.0pt;=0A=
+	margin-right:0cm;=0A=
+	margin-bottom:0cm;=0A=
+	margin-left:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	page-break-after:avoid;=0A=
+	font-size:11.0pt;=0A=
+	font-family:"Cambria","serif";=0A=
+	color:#243F60;=0A=
+	font-weight:normal;=0A=
+	font-style:italic}=0A=
+p.MsoHeader, li.MsoHeader, div.MsoHeader=0A=
+	{margin:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	font-size:10.0pt;=0A=
+	font-family:"Arial","sans-serif"}=0A=
+p.MsoFooter, li.MsoFooter, div.MsoFooter=0A=
+	{margin:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	font-size:11.0pt;=0A=
+	font-family:"Arial","sans-serif"}=0A=
+p.MsoTitle, li.MsoTitle, div.MsoTitle=0A=
+	{margin:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	font-size:16.0pt;=0A=
+	font-family:"Arial","sans-serif";=0A=
+	font-weight:bold}=0A=
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText=0A=
+	{margin:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	text-align:center;=0A=
+	font-size:14.0pt;=0A=
+	font-family:"Arial","sans-serif";=0A=
+	font-weight:bold;=0A=
+	font-style:italic}=0A=
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent=0A=
+	{margin-top:0cm;=0A=
+	margin-right:0cm;=0A=
+	margin-bottom:0cm;=0A=
+	margin-left:18.0pt;=0A=
+	margin-bottom:.0001pt;=0A=
+	font-size:11.0pt;=0A=
+	font-family:"Arial","sans-serif";=0A=
+	font-weight:bold}=0A=
+p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle=0A=
+	{margin:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	font-size:11.0pt;=0A=
+	font-family:"Arial","sans-serif";=0A=
+	font-weight:bold}=0A=
+p.MsoBodyText2, li.MsoBodyText2, div.MsoBodyText2=0A=
+	{margin:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	text-align:justify;=0A=
+	font-size:11.0pt;=0A=
+	font-family:"Arial","sans-serif"}=0A=
+p.MsoBodyText3, li.MsoBodyText3, div.MsoBodyText3=0A=
+	{margin:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	text-align:justify;=0A=
+	font-size:11.0pt;=0A=
+	font-family:"Arial","sans-serif";=0A=
+	font-style:italic}=0A=
+a:link, span.MsoHyperlink=0A=
+	{color:blue;=0A=
+	text-decoration:underline}=0A=
+a:visited, span.MsoHyperlinkFollowed=0A=
+	{color:purple;=0A=
+	text-decoration:underline}=0A=
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate=0A=
+	{margin:0cm;=0A=
+	margin-bottom:.0001pt;=0A=
+	font-size:8.0pt;=0A=
+	font-family:"Tahoma","sans-serif"}=0A=
+span.TextedebullesCar=0A=
+	{font-family:"Tahoma","sans-serif"}=0A=
+span.Titre6Car=0A=
+	{font-family:"Cambria","serif";=0A=
+	color:#243F60;=0A=
+	font-style:italic}=0A=
+span.WW8Num2z3=0A=
+	{font-family:Symbol}=0A=
+span.PieddepageCar=0A=
+	{font-family:"Arial","sans-serif"}=0A=
+.MsoChpDefault=0A=
+	{font-size:10.0pt}=0A=
+@page WordSection1=0A=
+	{margin:14.2pt 55.3pt 34.0pt 42.55pt}=0A=
+ol=0A=
+	{margin-bottom:0cm}=0A=
+ul=0A=
+	{margin-bottom:0cm}=0A=
+-->=0A=
+</style><style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin=
+-bottom:0;}</style>
+</head>
+<body ocsi=3D"0" fpstyle=3D"1" style=3D"" lang=3D"FR" link=3D"blue" vlink=
+=3D"purple">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;"><br>
+<div style=3D"font-family: Times New Roman; color: #000000; font-size: 16px=
+">
+<div>
+<table style=3D"BORDER-COLLAPSE: collapse" class=3D"3a8ded91-40ea-4011-8a93=
+-273b83b3e250Table" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr>
+<td style=3D"HEIGHT: 56px">
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"3a8ded91-40ea-401=
+1-8a93-273b83b3e250">
+</p>
+<hr color=3D"#0099ff" size=3D"1">
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt"></p>
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt"></p>
+<p></p>
+</td>
+</tr>
+<tr style=3D"TEXT-DECORATION: ">
+<td>
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"d25f83d3-f6d0-434=
+b-863d-6b70d6fe505d">
+</p>
+<table style=3D"BORDER-BOTTOM: medium none; WIDTH: 503px; BORDER-COLLAPSE: =
+collapse; HEIGHT: 163px; BORDER-TOP: medium none" class=3D"d25f83d3-f6d0-43=
+4b-863d-6b70d6fe505dTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+>
+<tbody>
+<tr style=3D"TEXT-DECORATION: ">
+<td style=3D"WIDTH: auto">
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"d25f83d3-f6d0-434=
+b-863d-6b70d6fe505d" align=3D"left">
+<font color=3D"#0099ff" size=3D"2" face=3D"Arial">Comit=E9 de la Seine Mari=
+time pour l'UNICEF&nbsp;&nbsp;&nbsp;Rouen&nbsp;&nbsp;&nbsp;</font><br>
+<font color=3D"#808080" size=3D"1" face=3D"Arial"><strong></strong></font><=
+br>
+<strong><font color=3D"#808080" size=3D"1">&#43;33 2 35 88 98 88</font></st=
+rong><strong><br>
+<font color=3D"#808080" size=3D"1">26 rue Saint Nicolas 76000 ROUEN&nbsp;&n=
+bsp; </font></strong><strong><br>
+<font color=3D"#0099ff" size=3D"1" face=3D"Arial"><strong><a href=3D"http:/=
+/www.unicef.fr/">www.unicef.fr</a></strong></font>
+</strong></p>
+</td>
+<td class=3D"WIDTH">
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"d25f83d3-f6d0-434=
+b-863d-6b70d6fe505d" align=3D"right">
+<a href=3D"http://www.unicef.fr"></a>&nbsp;</p>
+</td>
+<td><a href=3D"http://www.unicef.fr/"></a>
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"d25f83d3-f6d0-434=
+b-863d-6b70d6fe505d" align=3D"right">
+<a title=3D"" href=3D"https://www.unicef.fr/"><img style=3D"WIDTH: 100px; H=
+EIGHT: 100px" border=3D"0" src=3D"cid:signature_Unicef-France_4dcd5dd6-d123=
+-4dcb-bbee-72ea7099a647.gif"></a></p>
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"d25f83d3-f6d0-434=
+b-863d-6b70d6fe505d" align=3D"right">
+<a href=3D"http://www.unicef.fr/">http://www.unicef.fr</a><a href=3D"http:/=
+/www.unicef.fr"></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt"></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"d25f83d3-f6d0-434=
+b-863d-6b70d6fe505d">
+</p>
+<hr color=3D"#0099ff" size=3D"1">
+<p></p>
+</td>
+</tr>
+</tbody>
+</table>
+<a href=3D"http://www.unicef.fr"></a></div>
+<hr tabindex=3D"-1">
+<div style=3D"direction: ltr;" id=3D"divRpF148013"><font face=3D"Tahoma" co=
+lor=3D"#000000" size=3D"2"><b>De :</b> Carine SPINOSI (Unicef) [CSPINOSI@un=
+icef.fr]<br>
+<b>Envoy=E9 :</b> lundi 18 avril 2016 10:48<br>
+<b>=C0 :</b> 76 UNICEF Seine Maritime<br>
+<b>Objet :</b> UNICEF/URGENCE EQUATEUR : l'agence des Nations unies lance u=
+n appel de 1 million de dollars pour son intervention d'urgence<br>
+</font><br>
+</div>
+<div></div>
+<div>
+<div class=3D"WordSection1">
+<p class=3D"MsoTitleCxSpFirst" style=3D"margin-right:6.25pt"><span style=3D=
+"position:relative; z-index:1"><span style=3D"position:absolute; left:-87px=
+; top:-1px; width:887px; height:121px"><img alt=3D"logo_UNICEF.png" src=3D"=
+cid:e78dd8c6-b89f-4f06-b331-c70801161987@augure" height=3D"121" width=3D"88=
+7"></span></span><span style=3D"">&nbsp;</span></p>
+<p class=3D"MsoTitleCxSpMiddle" style=3D"margin:0cm 6.25pt .0001pt 18.0pt">=
+&nbsp;</p>
+<p class=3D"MsoTitleCxSpMiddle" style=3D"margin:0cm 6.25pt .0001pt 18.0pt">=
+&nbsp;</p>
+<p class=3D"MsoTitleCxSpMiddle" style=3D"margin:0cm 6.25pt .0001pt 18.0pt">=
+&nbsp;</p>
+<p class=3D"MsoTitleCxSpLast" style=3D"margin:0cm 6.25pt .0001pt 18.0pt">&n=
+bsp;</p>
+<br style=3D"" clear=3D"ALL">
+<p class=3D"MsoBodyTextIndentCxSpFirst" style=3D"margin-right:6.25pt; text-=
+align:center" align=3D"center">
+<span style=3D"font-size:16.0pt">L'UNICEF fournit 20&nbsp;000&nbsp;comprim=
+=E9s de purification d'eau aux survivants du tremblement de terre de l'Equa=
+teur</span></p>
+<p class=3D"MsoBodyTextIndentCxSpLast" style=3D"margin-right:6.25pt; text-a=
+lign:center" align=3D"center">
+<span style=3D"font-size:16.0pt">&nbsp;</span></p>
+<p class=3D"MsoNormal" style=3D"text-align:center; margin:0cm 6.25pt .0001p=
+t 18.0pt" align=3D"center">
+<b style=3D""><i><span style=3D"font-size:16.0pt">L'agence des Nations unie=
+s lance un appel de 1&nbsp;million de dollars pour son intervention d'urgen=
+ce</span></i></b></p>
+<p class=3D"MsoNormalCxSpMiddle" style=3D"line-height:12.0pt; margin:0cm 6.=
+25pt .0001pt 18.0pt">
+<span style=3D"color:black; layout-grid-mode:line"><span style=3D"">&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify; margin:0cm 6.25pt .0001=
+pt 18.0pt">
+<span style=3D"">PARIS, le </span><span style=3D""><span style=3D"">18 avri=
+l 2016</span></span><span style=3D""> =96
+<b style=3D"">L'UNICEF a livr=E9 hier 20&nbsp;000&nbsp;comprim=E9s de purif=
+ication d=92eau =E0 <span class=3D"SpellE">
+Pedernales</span>, la r=E9gion la plus touch=E9e par le s=E9isme qui a frap=
+p=E9 l'Equateur hier soir. Une =E9quipe de l'UNICEF est sur le terrain pour=
+ =E9valuer l'impact du s=E9isme sur les enfants.</b></span></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify; margin:0cm 6.25pt .0001=
+pt 18.0pt">
+<span style=3D"">&nbsp;</span></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify; margin:0cm 6.25pt .0001=
+pt 18.0pt">
+<span style=3D"">A ce jour, au moins 246&nbsp;personnes ont =E9t=E9 tu=E9es=
+ et plus de 2&nbsp;500&nbsp;personnes ont =E9t=E9 bless=E9es. Les d=E9g=E2t=
+s sont particuli=E8rement =E9lev=E9s =E0
+<span class=3D"SpellE">Pedernales</span>, Chone, <span class=3D"SpellE">Mui=
+sne</span>,
+<span class=3D"SpellE">Bah=EDa</span> de <span class=3D"SpellE">Car=E1quez<=
+/span>, Manta, Portoviejo, Esmeraldas et Guayaquil, incitant le gouvernemen=
+t =E0 d=E9clarer l'=E9tat d'urgence.</span></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify; margin:0cm 6.25pt .0001=
+pt 18.0pt">
+<span style=3D"">&nbsp;</span></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify; margin:0cm 6.25pt .0001=
+pt 18.0pt">
+<span style=3D"">L'UNICEF continuera =E0 travailler avec les partenaires hu=
+manitaires pour garantir le prolongement de =E9ducation des enfants, leur p=
+rotection et leur approvisionnement en eau et d'assainissement, en achemina=
+nt notamment des kits scolaires et des
+ tentes. Les priorit=E9s pour l=92UNICEF&nbsp;: pr=E9venir la propagation d=
+es maladies, prot=E9ger les enfants qui peuvent avoir =E9t=E9 s=E9par=E9s d=
+e leurs familles, offrir aux enfants touch=E9s un soutien psychosocial et l=
+eur garantir des possibilit=E9s d'apprentissage temporaires.</span></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify; margin:0cm 6.25pt .0001=
+pt 18.0pt">
+<span style=3D"">&nbsp;</span></p>
+<p class=3D"MsoNormal" style=3D"text-align:justify; margin:0cm 6.25pt .0001=
+pt 18.0pt">
+<b style=3D""><span style=3D"">L'UNICEF aura besoin de 1 million de dollars=
+ pour r=E9pondre aux besoins imm=E9diats des enfants touch=E9s par le s=E9i=
+sme.</span></b></p>
+<p class=3D"MsoBodyTextIndentCxSpFirst" style=3D"margin-right:6.25pt; text-=
+align:justify">
+<span style=3D"font-weight:normal">&nbsp;</span></p>
+<p class=3D"MsoBodyTextIndentCxSpMiddle" style=3D"margin-right:6.25pt; text=
+-align:center" align=3D"center">
+<span style=3D"">Pour faire un don&nbsp;:</span></p>
+<p class=3D"MsoBodyTextIndentCxSpMiddle" style=3D"margin-right:6.25pt; text=
+-align:center" align=3D"center">
+<span style=3D"">UNICEF France 3 rue Duguay <span class=3D"SpellE">Trouin</=
+span> 75006 PARIS</span></p>
+<p class=3D"MsoBodyTextIndentCxSpMiddle" style=3D"margin-right:6.25pt; text=
+-align:center" align=3D"center">
+<a href=3D"http://anws.co/bfQcm/{244bd1c4-af9a-4f2b-9696-992f1f223269}" tar=
+get=3D"_blank"><span style=3D"">www.unicef.fr</span></a><span style=3D""></=
+span></p>
+<p class=3D"MsoBodyTextIndentCxSpLast" style=3D"margin-right:6.25pt; text-a=
+lign:center" align=3D"center">
+<span style=3D"">&nbsp;</span></p>
+<p class=3D"MsoNormal" style=3D"margin:0cm 18.0pt .0001pt 18.0pt"><span sty=
+le=3D"">&nbsp;</span></p>
+<table class=3D"MsoNormalTable" style=3D"width:516.8pt; margin-left:21.5pt;=
+ border-collapse:collapse" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"689">
+<tbody>
+<tr style=3D"height:53.2pt">
+<td style=3D"width:260.05pt; padding:0cm 3.5pt 0cm 3.5pt; height:53.2pt" va=
+lign=3D"top" width=3D"347">
+<p class=3D"MsoNormalCxSpMiddle" style=3D"margin-right:-15.6pt"><b style=3D=
+""><span style=3D"font-size:9.0pt">Pour de plus amples informations contact=
+ez&nbsp;<span class=3D"GramE">:</span><br>
+Carine SPINOSI<br>
+</span></b><span style=3D"font-size:9.0pt">T=E9l.&nbsp;&#43;33 (0)1 44 39 1=
+7 49<br>
+Suivez nos communications sur <span class=3D"SpellE">Twitter</span> :</span=
+></p>
+<p class=3D"MsoNormal" style=3D"margin-right:-15.5pt"><span style=3D"font-s=
+ize:9.0pt">@<span class=3D"SpellE">cspinosi</span> | @<span class=3D"SpellE=
+">UNICEF_France</span><br>
+Courriel&nbsp;: </span><a href=3D"http://anws.co/bfQcn/{244bd1c4-af9a-4f2b-=
+9696-992f1f223269}" target=3D"_blank"><span style=3D"font-size:9.0pt">cspin=
+osi@unicef.fr</span></a><span style=3D"font-size:14.0pt; color:#00ccff"></s=
+pan></p>
+</td>
+<td style=3D"width:76.35pt; padding:0cm 3.5pt 0cm 3.5pt; height:53.2pt" val=
+ign=3D"top" width=3D"102">
+<p class=3D"MsoFooter" style=3D""><span style=3D"font-size:9.0pt; color:#00=
+ccff">&nbsp;</span></p>
+</td>
+<td style=3D"width:180.4pt; padding:0cm 3.5pt 0cm 3.5pt; height:53.2pt" val=
+ign=3D"top" width=3D"241">
+<p class=3D"MsoFooter" style=3D"margin-left:53.2pt"><span style=3D"font-siz=
+e:14.0pt; color:#00b0f0">UNICEF France</span><b><span style=3D"font-size:9.=
+0pt; color:#00b0f0"></span></b></p>
+<p class=3D"MsoFooter" style=3D"margin-left:53.2pt"><span style=3D"font-siz=
+e:9.0pt; color:#00b0f0">3, rue Duguay-Trouin</span></p>
+<p class=3D"MsoFooter" style=3D"margin-left:53.2pt"><span style=3D"font-siz=
+e:9.0pt; color:#00b0f0">75006 Paris<br>
+www.unicef.fr</span><b><span style=3D"font-size:9.0pt; color:#00ccff"></spa=
+n></b></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoFooter">&nbsp;</p>
+<p class=3D"MsoBodyTextIndent" style=3D"margin-right:6.25pt; text-align:jus=
+tify"><span style=3D"font-weight:normal">&nbsp;</span></p>
+</div>
+<img src=3D"http://anws.co/bfQco/{244bd1c4-af9a-4f2b-9696-992f1f223269}" st=
+yle=3D"border:none">
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_--
+
+--_006_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_
+Content-Type: image/gif;
+	name="e78dd8c6-b89f-4f06-b331-c70801161987@augure.gif"
+Content-Description: e78dd8c6-b89f-4f06-b331-c70801161987@augure.gif
+Content-Disposition: inline;
+	filename="e78dd8c6-b89f-4f06-b331-c70801161987@augure.gif"; size=4132;
+	creation-date="Mon, 18 Apr 2016 08:48:37 GMT";
+	modification-date="Mon, 18 Apr 2016 08:48:37 GMT"
+Content-ID: <e78dd8c6-b89f-4f06-b331-c70801161987@augure>
+Content-Transfer-Encoding: base64
+
+R0lGODlhdwN5AHcAMSH+GlNvZnR3YXJlOiBNaWNyb3NvZnQgT2ZmaWNlACH5BAEAAAAALAIAAgBz
+A3UAhwAAAAAAAAAAMwAAZgAAmQAAzAAA/wAzAAAzMwAzZgAzmQAzzAAz/wBmAABmMwBmZgBmmQBm
+zABm/wCZAACZMwCZZgCZmQCZzACZ/wDMAADMMwDMZgDMmQDMzADM/wD/AAD/MwD/ZgD/mQD/zAD/
+/zMAADMAMzMAZjMAmTMAzDMA/zMzADMzMzMzZjMzmTMzzDMz/zNmADNmMzNmZjNmmTNmzDNm/zOZ
+ADOZMzOZZjOZmTOZzDOZ/zPMADPMMzPMZjPMmTPMzDPM/zP/ADP/MzP/ZjP/mTP/zDP//2YAAGYA
+M2YAZmYAmWYAzGYA/2YzAGYzM2YzZmYzmWYzzGYz/2ZmAGZmM2ZmZmZmmWZmzGZm/2aZAGaZM2aZ
+ZmaZmWaZzGaZ/2bMAGbMM2bMZmbMmWbMzGbM/2b/AGb/M2b/Zmb/mWb/zGb//5kAAJkAM5kAZpkA
+mZkAzJkA/5kzAJkzM5kzZpkzmZkzzJkz/5lmAJlmM5lmZplmmZlmzJlm/5mZAJmZM5mZZpmZmZmZ
+zJmZ/5nMAJnMM5nMZpnMmZnMzJnM/5n/AJn/M5n/Zpn/mZn/zJn//8wAAMwAM8wAZswAmcwAzMwA
+/8wzAMwzM8wzZswzmcwzzMwz/8xmAMxmM8xmZsxmmcxmzMxm/8yZAMyZM8yZZsyZmcyZzMyZ/8zM
+AMzMM8zMZszMmczMzMzM/8z/AMz/M8z/Zsz/mcz/zMz///8AAP8AM/8AZv8Amf8AzP8A//8zAP8z
+M/8zZv8zmf8zzP8z//9mAP9mM/9mZv9mmf9mzP9m//+ZAP+ZM/+ZZv+Zmf+ZzP+Z///MAP/MM//M
+Zv/Mmf/MzP/M////AP//M///Zv//mf//zP///wECAwECAwECAwECAwECAwECAwECAwECAwECAwEC
+AwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwEC
+AwECAwECAwECAwECAwECAwECAwECAwECAwECAwECAwj/ADEIHBhhoMGCBgUiTLjwYEKFDzE0JBhx
+IsSHFiVW3IiRI0OPDjuK/DgyJMmTJlNSLLkSZUuVF13GhKmR5cyXOG/qrCmTJ82MQEHm9Dk0qE2i
+O432VPpTaFKnSKMyLQp16tOjVqVW3YqV61KvTbuK/To2otmzaNOqXcu2rdu3cOPKnUu3rt27ePPq
+3cu3r9+/gAMLHky4sOHDiBMrXsy4sePHkCNLnky5suXLmDNr3sy5s+fPoEOLHk26tOnFWVODpVqW
+NdnXYWG7jk17tu2rsnHX1n1ba2vewH3nFr6beG/Vv40HRz6ceXHnx1cvl668OvTpya9HPc29u/fv
+4MOL/x9Pvrz58+jTq1/Pvr379/Djy59Pv779+/jrat9PnX/2/gD+J2BzARI44HMFInhgdAtiZ+CD
+CkLIoIQORmjhhBdWiOGGGna4XX4ghijiiCSWaOKJKKao4oostujiizDGKOOMNNZ4l38UWpcghzo2
+2GOOOGb4o5BB8likh0cOaeSOSDKpZJM+Jimlk1NGSaWNWGap5ZZcdunll2CGKeaYZJZp5plopsle
+lUBeaeWbbcJJpJtx1jmnnEviCaWdefK5551+Pikom4AW2puaiCaq6KKMNuroo5BGKumklFZqaV5m
+ZJopD3nxYIYikCgiKi2iZhomoX0a+meqrK7q6qB0qv8Kq56zBorqq7fWGpYZYCjy6Q6xsiYEGLS4
+go2xrtBi4aiKYOPss8eSSosZQuAarLU+Xqrtto4a+6wij/HQLLTPViuXp6RiQ4u0tBwbbbLruqII
+p9zWa++9J7b7LLWNDUsutPTC9SktYAjRLC2hiuorJGY4S4unihAcML4UV2wxezx46yy4jfFALqkK
+T9xWxPNiYMa0EWPz6aggi4oBuiVzmevM1+raqs3Y2lozzbTyrHPPOwfdILlm3MxUw98WzakQF3DE
+8UWhFo3BDpBw6jGoyUYsr8mgimusIkI0xIOnPsua68Vopz3jp2yby5jHDkutlrgxD1Qq2wxzKurY
+ogr/QbdAQsRrBt0inyy32ognrriISDsr8lntHo6BwuMm7atAnwrEw7QDJzsQqW6/fGzoi5du+unq
+wa0u6WYhPfHJimgMLak8+F0qutjcffnL0xqUce4tlm200D8XbzbxxwOtvPHDL5888zk//1Pj2HBq
+lBBf87BDtQaL+u+z8poRqrRaPx2q7clyekHRrmPQtPPNB4r6/PSbVnvteI2tv1tj+/34Q6p7WFoy
+5axM9e5km/ves6ZFt8EJZHe8U9jKMIA9X7ULXJKrnwY3iCa/DS6DCfkg/gDnKU8NxIDI4lxEPGjC
+1sEudypEi+20Ji0wSI6FkIDWpgZHOoWpq2GuqNbD/8wgu++BgWsGOdkJm1UytmEgh+ny1dM4SMUq
+hol6IMScxuTWOFr4LYffo11CKoeNiCRQgQI0Ixk/VjfqKVBlY8ydvAo4OQy+8Vtcs1rtqOWplbnN
+ZXArlrRcJLzoxU96h0ykIReJs0YW0pHIUyTOiPisgE1EdcB7oA719cY0CgQSnHQIGMhVRGcBK4Sl
+/JcAI+BGBSqiIQXcgcME4gozrI+TCizaF1C2w2Z9rWQF2dzLgKiIUdaSkY/UjhWXycy2YPEsgdvX
+CcOIspRBa4pkDCG5ShW72U0smgvkJi4FuLl1jTNZyToc3D5Fx83RC5eq1FvLThZGeolLadmLXDP3
+yf9PGFHScWc5YyZN9i+wJWRd4JNbNg1CromJC1qQGIjBwDdFrl2TghilHv6qJTJ1ec+ge6PlHTlm
+Q83dERsFq+MDk2XMLPbzpTDND/VYJ9EtTvOiEcGlQhdoEDKCUGNexJwOV1i5IPpugTQdyMayVjSX
+ie6O9qwdsU56QGURsVR0RFEyI4lMrkISfl0F61ehN1ZEhvVn/8TGKT8i0Fdq8lusC+bsEELG92Hv
+W4+LABnVx0llISWtR1SIRqNygY31ChuQuMDD/AZPUkptlI1FYx6vRsBjknWryYmpZjX4TLOAE45C
+xaNZ2mo3aN00qwA0Z1WlOVpOuuKoDvvfA5s1OH3/guykoJ0cbonGg4gKwXG/Xexmh0vc+KRVtrwT
+LUFZaxZORvStziptJT1LwRY2zrIvS8hEN+Y26kETnb5aHQbc9S9keVSia8StFIvWrofBMLDFja98
+zTPKcn2XuV106V03dlq/6ja2I7umpjJlQ031NWC/dVhSx4swevo1suqC2BRbidtpGbVhLcttijB7
+Wa9y2KxlleSHRezhEov1SMfFCSafttecQHQgoHyWUnnqmvSqC3zfM2hoARqSaNrwa0V7I9guudvy
+nm9yxsqUsY444rPSZL5QVltnV8hJLi7QpaSFbhkF4lrkPsTGFYZthM8St409DMyelG6RwzmvUeUO
+/8MujbKc58yZFLdWuYOF3LOe+9/oCmR2blmjeQftrq9117Sj9WXEilVGMJaXdNtd88b6xkQY+pnO
+mM70ZmZ6X9Red8G/4y90/evaQC9wbAMJmKoBiNSzIC1irqMwj3sqaTZj4ILWrCiJmhxiJ5P4xCbu
+MLCHLexig9g/aV2rKK9JV2gpeyVz1fL7yPW+nhTVXKkZbEYU67hxXeCzRAsJJFI5Ukh84aFg82UG
+ec1rTbs7UlN+yJTzG1BOshjRfa6eqzVVrRbDJYBeRho79Q3hLNKzyKIyqrEedsF3O/zhj7FzRKj3
+tDw3d89q3nK+U/qQu+qzvqImqrsO592AMkxl+v/aoytD+Lkih8+qTFy0+CBO85oXBuQDTYhAc9vF
+Be93oF1MNU7lPdS2ypbiBkmweD37Q0qC7Oezq6UB18UpWX+stko+mPiYGLxgH9vrvzZ22L9ObLKL
+3ddoR8rPjeqTNd57ujp58SdDCTiNWbYhuKSXo1FKElwq2+Izae8ODtas3pL7xt9ipXqZVqqv5W6i
+bGc32G1OeUThsm6Yg6eV41Zv5S50xz+Mo3IF2jvRb8yhp0YL0tybsnlB+F9KiyypBlf1IBLzzSGv
+vO53Xxec525evEKo7CoOMLQ4N+MHhRZLp57QVLtxbyhsfhLx7VlvcQ5ZfsPxNUOlsqXZGAwI3pr/
+vtgGd96b//ymviOpbLpjtptRY29Xl85fDz7SPVSVV2e1gtMCTnB5i30FdD/7g2qgN1SA4zLR5EUg
+F2chInllN3YQmHYOeHa9VoETaHbSE2kFlX2Jp2XPdhHR9kTQUm0wdngQVBP+MlLrpm0c4XQD51fN
+8oESYUBgNjoRYDB+tXpnNGSTZ4HUgX5AiCUDo1q+YjVsUzf3VISq5yv8ojnr5VkDoy7FMi9eBjGq
+9XTIJUJssXrjMnvikmY4SH8UtTUrM2mnF4RomIbQdD801YZt4YYyVF081BZjw0MjpBd0kzvf8niw
+Y0GHh0ZV002+JEimooaGeIgrQkSzF03jAnxi//hGtXR/Mncy6RQjFxiBPviAEtiDl7iJmpiJFNiJ
+oCgkhbUxtbVLpohktcYv+iJBm4Ms68aJPYiItIh+AVSEPUdBUaiCVmNvXFNltRiMwggimDQtkeZ+
+vDI+JMOEd3hgA3dewxiN0igfU2U54PM/+/NlV0ZGpUdIsviJohiO3xiK44iBmCiO4FiOPDJ4vqQy
+QkA1hcc91/OLLuN0b5aO+NgT07iP7iZh1WRO8uKKmrMyLDOFK+OF/JiQCokxB+dK0rJ17AKJfLaQ
+FFmR49E541R6SPeLswMyDoQl6EiO+WiOniiSJkmSo3iO6liSKGkUH5QpX/CRlPQF3eRA76gpNv9U
+OyHZkhbZk5V3MOaCbl7mk0RZlOMBRTrHRAtmlEzZlKTRW2Omja4wlDOykyo5kld5klnJk1jJklv5
+lV7pZCdDCyRIEA8lN1YZlh/ilGzZTCWEFp6ylG05l3RZl3Z5l3jJlVqplmmZkny5kn4ZmH05mIBJ
+mF3ZSHmZmIq5mIzZmI75mJCJKIa5l4JZmJZ5mJOpl5oJlpWJmZdJmcoUmaI5mqRZmqZ5mqiZmp6R
+mZzJmn/pmbAJmp+5ma8pm7FJmxWomrq5m7zZm775m8Apmq7ZmbZZnLg5nMg5m62pnLV5nMxZHcEZ
+ndI5ndRZndZ5nQ6XnLe5nNvZnNxpnN/pnN3jSZziCZ6vgp3omZ7quZ7s2Z7uKSnaaZ7kGZ706Z32
+OZ/3GZ/luZ/1KSjv+Z8AGqACOqAEWqDuoZ/9iaD5+ZwKip8O2qAQyqCzaKAUWqEWeqEYmqEamhcR
+Op4dKp8fyp8L6qESSqImSoEbmqIquqIs2qIuOp0hmqAlCqIzKqIPWqMyeqI22qAv2qM++qNAGqRC
+upAxOqI0qqM5eqRKuqM4aqRMiqRDGqVSOqVUWqVWGl9FeqNQqqVLmqRP2qVO6qViGqY7caVmeqZo
+mqZquqbw2aRc+qVwOqZvKqdZWqduaqdYERAAOw==
+
+--_006_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_
+Content-Type: image/gif;
+	name="signature_Unicef-France_4dcd5dd6-d123-4dcb-bbee-72ea7099a647.gif"
+Content-Description: signature_Unicef-France_4dcd5dd6-d123-4dcb-bbee-72ea7099a647.gif
+Content-Disposition: inline; filename=
+	"signature_Unicef-France_4dcd5dd6-d123-4dcb-bbee-72ea7099a647.gif";
+	size=3115; creation-date="Tue, 19 Apr 2016 09:34:16 GMT";
+	modification-date="Tue, 19 Apr 2016 09:34:16 GMT"
+Content-ID: <signature_Unicef-France_4dcd5dd6-d123-4dcb-bbee-72ea7099a647.gif>
+Content-Transfer-Encoding: base64
+
+R0lGODlhZABkAOYAAOH1/czv/LTn+pbe+GbO9XjU94fZ9/D6/pnf+aXi+c/w/Pn9/07H9Pb8/sPs
++2nP9u35/uT2/Zzg+S288uf3/TO+8n7W9/z+/waw7w+z8ITY95Pd+FrL9cDr+2zQ9tLx/HvV98nu
+/Kjj+h648WDM9VTJ9N71/fP7/oHX99Xy/Or4/o3b+CS58QOv75Dc+Nv0/Yra+BK08HLS9p/h+aLh
++Ri28bHm+ie68a7l+gmx8Ayy8EvG9Bu38avk+kLD88bt+7fo+jC98hW18G/R9j/C82PN9TzB8za/
+8tjz/brp+0jF9DnA81fK9F3M9VHI9HXT9iq78kXE873q+yG48QCu7////wAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/
+C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRj
+emtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRv
+YmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAg
+ICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRm
+LXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBSaWdo
+dHM9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9yaWdodHMvIiB4bWxuczp4bXBNTT0iaHR0
+cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9i
+ZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFk
+b2JlLmNvbS94YXAvMS4wLyIgeG1wUmlnaHRzOk1hcmtlZD0iRmFsc2UiIHhtcE1NOk9yaWdpbmFs
+RG9jdW1lbnRJRD0idXVpZDpGMjhBMjZGNEFEQjBFMTExODI4MURBMEU4QzhGQzNBMCIgeG1wTU06
+RG9jdW1lbnRJRD0ieG1wLmRpZDpBMEY3MDFDMjY2OEUxMUU1QkFGQ0ZGODc1MDczOTRGOCIgeG1w
+TU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBMEY3MDFDMTY2OEUxMUU1QkFGQ0ZGODc1MDczOTRGOCIg
+eG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyI+IDx4bXBNTTpE
+ZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNDNUQ0RDlGN0U2NkU1MTFCNjg1
+RDVFMkE1MUIxOUYwIiBzdFJlZjpkb2N1bWVudElEPSJ1dWlkOkYyOEEyNkY0QURCMEUxMTE4Mjgx
+REEwRThDOEZDM0EwIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRh
+PiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d
+3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWk
+o6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxr
+amloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMy
+MTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAA
+AAAsAAAAAGQAZAAAB/+AVYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmq
+q6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1YYfCDgRjhEJMAQECEAN
+qS8VFUObAEFU7QWMCiA7FkVBRDIyOxoHpx/tO5uitKtRYYOiBRokAHggg8SAHyQIoIBQQIApc+g0
+LWhBBQUiG4MaeIBgQkoVGjg4uIAR4QUKFxoGDFIAwBeAdhYNdYgyqMAKHVRyoHBQZcCBBSAGGFhR
+xQYOQRBuQOh1k0pOQhdYSDBxsgfHdlQY2DACAwaJmj2QAGnyAkKEHU//CkEIEOBCoQ8BKFRZQPdE
+FSkWZPTYNjOACkIUBhCQMcNvIQUowIngV+VEAAHtXNAlVyWEiBtJHpyQ8AQsWBtGqwBIUMVEkBAL
+LFRZgiCIBLuCErSjPGgEFQOqcRIxTQXEoAxUZApakcN0jSQhSxCPYdEB8XYfBMGwIEJHCgkUr/cY
+0KHHCxEeNCSwiyCCBCFAfKQYpJsKb0G+gVe9UUNCABtHtCOCIMgp50I7FigQAgNUxFBTFQzykIAC
+SfhARQshUICAAe14gAACU1WxmBPvAEcDcVMsQF4AD5hGwAkQIHDBEhKMAAR9uxWSX3BUCHGYICcI
+QQVAVRRYBQRAaTDI/wI8UPGODVRgwNUgFVDhgyBVXSXIEyRY8A5TRRD3QBUU4ODEdQxUsUIANCCQ
+ww842qfjbzy+QwgJVARBYHJFXfijIAVUMCaDHBQyw4X8ZElIBANwkMARKmggEHEKVAHDdWAl4QIF
+MVCgA5y55UjIjlUNSEgBVEywp0xNpJqIkB7QJesA7QTAo5YhgLDBBCBU1Q4GCMBg6wG+YUqFBy5U
+MYEFKCwR531VkIpTIaiqWiSfFl55yALGgkWUooOYoAMFGMxAgWktOKZmt1SU4EIHGiixQQXPFhID
+neD25Oq1MhlBhRGINNAOBx8WXLBe+eJXAAFEKNCkt4NwwO4QBjA7BP8L6YQq55Ic6TftqfsaKd0N
+iTSnZCIJV7HBCP4oIDFYNAxywnDGriAAChP8gMGDVeDQDhKEKNCOx1ZRGzKfFkTJmSAe5DkbFYUS
+AgQBD9iVcg8kIECFApiBRYBdJixwAHLXDQECBRvosMIMHQziDxXJDtIivh/ra62RKbQDw5JTHLvu
+zoT4S++thWjAxAcYgJCEv2ARhAEPVQRoGg8bvDBDekekwMJ8VAalUAoeCFED3UWDfDefVbTaQoIh
+MEGFDlydcAMVI4jwQQitYtA24YRAEEMRK5DAgM4tNBlDBUHsTQBYUPw4Ug4zbMBCmoQgwYJzHUxA
+upZVVLuqIAu4bhr/C0QJYoL2pgnxFJZ1DyJCCwM8gEEDEihRyAECXN9ODIehYIJuDigBDwhDiBMg
+ABwS4EcK8rIXukArAgHgnAIMQ4hcEaAACVhAIS5gAw8QgDtLa2AAoCUIGsRAaxLowAxAkoINSI44
+LADBB1xAACHQgAVAOwYNNAAEEmggBxvoABTYxQQTlGAHRMCBC0DAOWMcgAU1GMAL8FSAC9BgBxhw
+DgFGGCARhIAAGCiCLjToCAAMsQIhWAIVDCKICQaAZ8MpAA7uRQLcjEIJCDQAAwjgg7Z94Abk4IAE
+qiAAAUCgCCAoQQAGsEcCvCARF0iADN7RgQEAIQDqqgIERbABEwBA3yLlK0XUqmAAojggLjJIwAyq
+8IASRKCQDwCaChwwgFAuogNKMM0NBlAAFICgYs1phw6K8KdS4JEAH9AjAx6gggbUMU0PiEAJCukE
+QjASHCFMxAt+MIMANIACTIifBS4QAQckgIKpGGUpG7ADCvRgj0ZQwJgk4AQBeGA+3aglJf4IKg34
+IJvpHEQpq+CyEpDjBVQTRBQEcAAGyMCV1yRACCBBASjYahAbKIE1DBGi3m30oyANqUhHStKSmvSk
+KE2pSlfK0pa69KUwjalMZ0rTmtr0pjjNqU53ytOe+jSngQAAOw==
+
+--_006_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_--
+
+--_007_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_
+Content-Type: application/pdf; name="CP Urgence Equateur 180416.pdf"
+Content-Description: CP Urgence Equateur 180416.pdf
+Content-Disposition: attachment; filename="CP Urgence Equateur 180416.pdf";
+	size=14397; creation-date="Mon, 18 Apr 2016 08:48:37 GMT";
+	modification-date="Mon, 18 Apr 2016 08:48:37 GMT"
+Content-ID: <BC26F58A014CB54FAA50584F4D2841E7@unicef.fr>
+Content-Transfer-Encoding: base64
+
+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
+Cjw8L1R5cGUvUGFnZS9NZWRpYUJveCBbMCAwIDU5NSA4NDJdCi9Sb3RhdGUgMC9QYXJlbnQgMyAw
+IFIKL1Jlc291cmNlczw8L1Byb2NTZXRbL1BERiAvSW1hZ2VDIC9UZXh0XQovRm9udCAxMCAwIFIK
+Pj4KL0NvbnRlbnRzIDUgMCBSCj4+CmVuZG9iagozIDAgb2JqCjw8IC9UeXBlIC9QYWdlcyAvS2lk
+cyBbCjQgMCBSCl0gL0NvdW50IDEKPj4KZW5kb2JqCjEgMCBvYmoKPDwvVHlwZSAvQ2F0YWxvZyAv
+UGFnZXMgMyAwIFIKL01ldGFkYXRhIDE0IDAgUgo+PgplbmRvYmoKMTAgMCBvYmoKPDwvUjkKOSAw
+IFIvUjcKNyAwIFIvUjgKOCAwIFI+PgplbmRvYmoKOSAwIG9iago8PC9CYXNlRm9udC9IZWx2ZXRp
+Y2EtQm9sZE9ibGlxdWUvVHlwZS9Gb250Ci9FbmNvZGluZyAxMSAwIFIvU3VidHlwZS9UeXBlMT4+
+CmVuZG9iagoxMSAwIG9iago8PC9UeXBlL0VuY29kaW5nL0RpZmZlcmVuY2VzWwozOS9xdW90ZXNp
+bmdsZV0+PgplbmRvYmoKNyAwIG9iago8PC9CYXNlRm9udC9IZWx2ZXRpY2EvVHlwZS9Gb250Ci9F
+bmNvZGluZyAxMiAwIFIvU3VidHlwZS9UeXBlMT4+CmVuZG9iagoxMiAwIG9iago8PC9UeXBlL0Vu
+Y29kaW5nL0RpZmZlcmVuY2VzWwozOS9xdW90ZXNpbmdsZQoxNDYvcXVvdGVyaWdodAoxNTAvZW5k
+YXNoCjIyNC9hZ3JhdmUvYWFjdXRlL2FjaXJjdW1mbGV4CjIzMi9lZ3JhdmUvZWFjdXRlCjIzNy9p
+YWN1dGVdPj4KZW5kb2JqCjggMCBvYmoKPDwvQmFzZUZvbnQvSGVsdmV0aWNhLUJvbGQvVHlwZS9G
+b250Ci9FbmNvZGluZyAxMyAwIFIvU3VidHlwZS9UeXBlMT4+CmVuZG9iagoxMyAwIG9iago8PC9U
+eXBlL0VuY29kaW5nL0RpZmZlcmVuY2VzWwozOS9xdW90ZXNpbmdsZQoxNDYvcXVvdGVyaWdodAoy
+MjQvYWdyYXZlCjIzMy9lYWN1dGVdPj4KZW5kb2JqCjE0IDAgb2JqCjw8L1R5cGUvTWV0YWRhdGEK
+L1N1YnR5cGUvWE1ML0xlbmd0aCAxNTQ2Pj5zdHJlYW0KPD94cGFja2V0IGJlZ2luPSfvu78nIGlk
+PSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPD9hZG9iZS14YXAtZmlsdGVycyBlc2M9IkNS
+TEYiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLycgeDp4bXB0az0nWE1QIHRv
+b2xraXQgMi45LjEtMTMsIGZyYW1ld29yayAxLjYnPgo8cmRmOlJERiB4bWxuczpyZGY9J2h0dHA6
+Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMnIHhtbG5zOmlYPSdodHRwOi8v
+bnMuYWRvYmUuY29tL2lYLzEuMC8nPgo8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0nNTc4YzU5
+MWItMDc5ZC0xMWU2LTAwMDAtNWVjNDhhOThkZjVlJyB4bWxuczpwZGY9J2h0dHA6Ly9ucy5hZG9i
+ZS5jb20vcGRmLzEuMy8nPjxwZGY6UHJvZHVjZXI+R1BMIEdob3N0c2NyaXB0ICA5LjA8L3BkZjpQ
+cm9kdWNlcj4KPHBkZjpLZXl3b3Jkcz4oKTwvcGRmOktleXdvcmRzPgo8L3JkZjpEZXNjcmlwdGlv
+bj4KPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9JzU3OGM1OTFiLTA3OWQtMTFlNi0wMDAwLTVl
+YzQ4YTk4ZGY1ZScgeG1sbnM6eG1wPSdodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvJz48eG1w
+Ok1vZGlmeURhdGU+MjAxNi0wNC0xOFQxMDo0NDo1NyswMjowMDwveG1wOk1vZGlmeURhdGU+Cjx4
+bXA6Q3JlYXRlRGF0ZT4yMDE2LTA0LTE4VDEwOjQ0OjU3KzAyOjAwPC94bXA6Q3JlYXRlRGF0ZT4K
+PHhtcDpDcmVhdG9yVG9vbD5QREZDcmVhdG9yIFZlcnNpb24gMS4yLjA8L3htcDpDcmVhdG9yVG9v
+bD48L3JkZjpEZXNjcmlwdGlvbj4KPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9JzU3OGM1OTFi
+LTA3OWQtMTFlNi0wMDAwLTVlYzQ4YTk4ZGY1ZScgeG1sbnM6eGFwTU09J2h0dHA6Ly9ucy5hZG9i
+ZS5jb20veGFwLzEuMC9tbS8nIHhhcE1NOkRvY3VtZW50SUQ9JzU3OGM1OTFiLTA3OWQtMTFlNi0w
+MDAwLTVlYzQ4YTk4ZGY1ZScvPgo8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0nNTc4YzU5MWIt
+MDc5ZC0xMWU2LTAwMDAtNWVjNDhhOThkZjVlJyB4bWxuczpkYz0naHR0cDovL3B1cmwub3JnL2Rj
+L2VsZW1lbnRzLzEuMS8nIGRjOmZvcm1hdD0nYXBwbGljYXRpb24vcGRmJz48ZGM6dGl0bGU+PHJk
+ZjpBbHQ+PHJkZjpsaSB4bWw6bGFuZz0neC1kZWZhdWx0Jz5DUCBVcmdlbmNlIEVxdWF0ZXVyIDE4
+MDQxNjwvcmRmOmxpPjwvcmRmOkFsdD48L2RjOnRpdGxlPjxkYzpjcmVhdG9yPjxyZGY6U2VxPjxy
+ZGY6bGk+Y3NwaW5vc2k8L3JkZjpsaT48L3JkZjpTZXE+PC9kYzpjcmVhdG9yPjxkYzpkZXNjcmlw
+dGlvbj48cmRmOlNlcT48cmRmOmxpPigpPC9yZGY6bGk+PC9yZGY6U2VxPjwvZGM6ZGVzY3JpcHRp
+b24+PC9yZGY6RGVzY3JpcHRpb24+CjwvcmRmOlJERj4KPC94OnhtcG1ldGE+CiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAKPD94cGFja2V0IGVuZD0ndyc/PgplbmRzdHJlYW0KZW5kb2Jq
+CjIgMCBvYmoKPDwvUHJvZHVjZXIoR1BMIEdob3N0c2NyaXB0ICA5LjApCi9DcmVhdGlvbkRhdGUo
+RDoyMDE2MDQxODEwNDQ1NyswMicwMCcpCi9Nb2REYXRlKEQ6MjAxNjA0MTgxMDQ0NTcrMDInMDAn
+KQovVGl0bGUoXDM3NlwzNzdcMDAwQ1wwMDBQXDAwMCBcMDAwVVwwMDByXDAwMGdcMDAwZVwwMDBu
+XDAwMGNcMDAwZVwwMDAgXDAwMEVcMDAwcVwwMDB1XDAwMGFcMDAwdFwwMDBlXDAwMHVcMDAwclww
+MDAgXDAwMDFcMDAwOFwwMDAwXDAwMDRcMDAwMVwwMDA2KQovQ3JlYXRvcihcMzc2XDM3N1wwMDBQ
+XDAwMERcMDAwRlwwMDBDXDAwMHJcMDAwZVwwMDBhXDAwMHRcMDAwb1wwMDByXDAwMCBcMDAwVlww
+MDBlXDAwMHJcMDAwc1wwMDBpXDAwMG9cMDAwblwwMDAgXDAwMDFcMDAwLlwwMDAyXDAwMC5cMDAw
+MCkKL0F1dGhvcihcMzc2XDM3N1wwMDBjXDAwMHNcMDAwcFwwMDBpXDAwMG5cMDAwb1wwMDBzXDAw
+MGkpCi9LZXl3b3JkcygpCi9TdWJqZWN0KCk+PmVuZG9iagp4cmVmCjAgMTUKMDAwMDAwMDAwMCA2
+NTUzNSBmIAowMDAwMDExMTQ2IDAwMDAwIG4gCjAwMDAwMTM0NTMgMDAwMDAgbiAKMDAwMDAxMTA4
+NyAwMDAwMCBuIAowMDAwMDEwOTM3IDAwMDAwIG4gCjAwMDAwMDAwMTUgMDAwMDAgbiAKMDAwMDAx
+MDkxNiAwMDAwMCBuIAowMDAwMDExNDE1IDAwMDAwIG4gCjAwMDAwMTE2NDQgMDAwMDAgbiAKMDAw
+MDAxMTI1OSAwMDAwMCBuIAowMDAwMDExMjExIDAwMDAwIG4gCjAwMDAwMTEzNTEgMDAwMDAgbiAK
+MDAwMDAxMTQ5NSAwMDAwMCBuIAowMDAwMDExNzI5IDAwMDAwIG4gCjAwMDAwMTE4MzAgMDAwMDAg
+biAKdHJhaWxlcgo8PCAvU2l6ZSAxNSAvUm9vdCAxIDAgUiAvSW5mbyAyIDAgUgovSUQgWzxGODE0
+QjJGMjcyMkE4Q0Q4MjNDNzQyN0YxRDBFMDFEQz48RjgxNEIyRjI3MjJBOENEODIzQzc0MjdGMUQw
+RTAxREM+XQo+PgpzdGFydHhyZWYKMTM5NDMKJSVFT0YK
+
+--_007_168ED66FB5C258489BADAE2218B264D5750078BBuncsrvexc1_--

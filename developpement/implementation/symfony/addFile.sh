@@ -1,5 +1,5 @@
 #!/bin/bash
-#version 1.01, date 13/05/2016, auteur Matthieu Martins-Baltar
+#version 1.02, date 13/05/2016, auteur Matthieu Martins-Baltar
 #inspiré du script new-service.sh a l'url https://gist.github.com/naholyr/4275302
 
 echo "Assistant de création de fichier"
@@ -73,6 +73,6 @@ elif [ $extension = "yml" ]; then
     echo "#$comment" >> "$fullfile"
 fi
 
-
+./majdroits.sh
 
 

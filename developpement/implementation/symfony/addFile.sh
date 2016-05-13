@@ -56,6 +56,7 @@ comment="version 1.00, date $date, auteur $fullname"
 #formatage du commentaire différent selon l'extension
 if [ $extension = "sh" ]; then
     echo "Génération d'un fichier bash..."
+    echo "#!/bin/bash" >> "$fullfile"
     echo "#$comment" >> "$fullfile"
 elif [ $extension = "sql" ]; then
     echo "Génération d'un fichier sql..."
@@ -66,10 +67,10 @@ elif [ $extension = "twig" ]; then
 elif [ $extension = "php" ]; then
     echo "Génération d'un fichier php... (il est vivement recommandé d'utiliser un IDE à la place)"
     echo "<?php" >> "$fullfile"
-    echo "//$comment" >> $fullfile
+    echo "//$comment" >> "$fullfile"
 elif [ $extension = "yml" ]; then
     echo "Génération d'un fichier yml..."
-    echo "#$comment" >> $fullfile
+    echo "#$comment" >> "$fullfile"
 fi
 
 

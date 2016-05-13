@@ -1,5 +1,5 @@
 #!/bin/bash
-#version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar
+#version 1.01, date 13/05/2016, auteur Matthieu Martins-Baltar
 #inspiré du script new-service.sh a l'url https://gist.github.com/naholyr/4275302
 
 echo "Assistant de création de fichier"
@@ -7,16 +7,16 @@ echo "--------------------------------"
 
 #fonction pour demander une entrée utilisateur
 prompt_token() {
-      local VAL=""
-      while [ "$VAL" = "" ]; do
-        echo -n "${2:-$1} : "
-        read VAL
-        if [ "$VAL" = "" ]; then
-          echo "Please provide a value"
-        fi
-      done
-      VAL=$(printf '%q' "$VAL")
-      eval $1=$VAL
+  local VAL=""
+  while [ "$VAL" = "" ]; do
+    echo -n "${2:-$1} : "
+    read VAL
+    if [ "$VAL" = "" ]; then
+      echo "Please provide a value"
+    fi
+  done
+  VAL=$(printf '%q' "$VAL")
+  eval $1=$VAL
 }
 
 #si pas de chemin, on en demande un
@@ -26,12 +26,20 @@ else
     fullfile=$1
 fi
 
+#Découpage du chemin, en dossier, nom de fichier et extension
+filename=$(basename "${fullfile}")
+path=$(dirname "${fullfile}")
+extension="${filename##*.}"
+filename="${filename%.*}"
+
 #Si le fichier existe déjà, affichage d'une erreur
 if [ -f "$fullfile" ]; then
   echo "Erreur: le fichier '$fullfile' existe déjà"
   exit 1
 else
-  mkdir -p "$path"
+  if [ ! $path = "" ]; then
+    mkdir -p "$path"
+  fi
   touch "$fullfile"
 fi
 
@@ -39,12 +47,6 @@ fi
 if [ "$fullname" = "" ]; then
     prompt_token 'fullname'        'Votre nom complet (pensez à définir la variable $fullname pour la prochaine fois)'
 fi
-
-#Découpage du chemin, en dossier, nom de fichier et extension
-filename=$(basename "${fullfile}")
-path=$(dirname "${fullfile}")
-extension="${filename##*.}"
-filename="${filename%.*}"
 
 #génération de la date et du commentaire de traçabilité
 date=`date +%d/%m/%Y`

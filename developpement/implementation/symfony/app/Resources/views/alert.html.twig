@@ -1,3 +1,5 @@
+{# version 1.00, date 09/03/2016, auteur Matthieu Martins-Baltar #}
+
 {% block alert %}
     {% if app.session.started %}
         {% for flashMessage in app.session.flashbag.get('notice') %}

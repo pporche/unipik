@@ -59,18 +59,18 @@ comment="version $version, date $date, auteur $fullname"
 #sed <3
 #man sed, si vous avez du mal à comprendre ce qu'il se passe.
 if [ $extension = "sh" ]; then
-    echo "Génération d'un fichier bash..."
+    echo "Modification d'un fichier bash..."
     sed -i '/#!\/bin\/bash/d' "$fullfile"
     sed -i "1i#$comment" "$fullfile"
     sed -i '1i#!/bin/bash' "$fullfile"
 elif [ $extension = "sql" ]; then
-    echo "Génération d'un fichier sql..."
+    echo "Modification d'un fichier sql..."
     sed -i "1i--$comment" "$fullfile"
 elif [ $extension = "twig" ]; then
-    echo "Génération d'un fichier twig..."
+    echo "Modification d'un fichier twig..."
     sed -i "1i{# $comment #}" "$fullfile"
 elif [ $extension = "php" ]; then
-    echo "Génération d'un fichier php... (il est vivement recommandé d'utiliser un IDE à la place)"
+    echo "Modification d'un fichier php... (il est vivement recommandé d'utiliser un IDE à la place)"
     sed -i '/<?php/d' "$fullfile"
     sed -i "1i//$comment" "$fullfile"
     sed -i '1i<?php' "$fullfile"

@@ -8,73 +8,101 @@
 	\caption{Architecture \underline{M}VC}
 	\end{center}
 \end{figure}
-Modèle :  ptite def simpliste
+Modèle :   cœur de l'application
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\frametitle{\underline{M}VC : Le modèle}
-	\begin{block}{Partie wesh méga importante }
-		
-	
-		Super important, karément long deux grosses parties :
+	\begin{block}{Modélisation de la base de données}	
 		\begin{itemize}
-			\item Ke c'était long de faire le diagramme 
-			\item L'implémentation de la BD kon a eu deux choix kon voit après !!
+			\item Réalisation du diagramme de classe
+			\item Création de la Base de Données et mapping avec les entités du projet
 		\end{itemize}
 	\end{block}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 	\frametitle{\underline{M}VC : Le modèle}
-	\begin{block}{Création de la BD et communication aevc notre framework et l'orm Doctrine}
-		
-		exploration de deux choix possibles = tel solution proposée
+	
+	\begin{block}{Création de la Base de Données et utilisation de l'ORM Doctrine}
+		Deux approches possibles : 
 		\begin{itemize}
-			\item Top Down -> def on part du haut on descend = langage objet création des tables en BD
-			\item Buttom - Up -> def : inverse top down, part dans bas pour aller en haut = création table => création objet
+			\item Top Down
+				\begin{itemize}
+					\item[$\rightarrow$] approche descendante
+					\item[$\rightarrow$] système d'annotation dans les classes PHP
+					\item[$\rightarrow$] génération des tables de la Base de Données
+				\end{itemize}
+			\item Buttom Up
+				\begin{itemize}
+					\item[$\rightarrow$] approche ascendante
+					\item[$\rightarrow$] création de la Base de Données
+					\item[$\rightarrow$] génération des fichiers de mapping et classes PHP
+				\end{itemize}
 		\end{itemize}
 	\end{block} 
+
+	
 \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \speaker{\Julie}
 \begin{frame}
 	\frametitle{\underline{M}VC : Le modèle}
-	\begin{block}{Top down}
-		Pourquoi c'est kool
+	\begin{block}{Top Down}
+		Avantages :
 		\begin{itemize}
-			\item rapide ?
-			\item C'est la mode ?
+			\item Approche objet
+			\item Doctrine initialement prévu pour une approche top down
 		\end{itemize}
  
-		Pourquoi c'est pas cool
+		Inconvénients :
 		\begin{itemize}
-			\item cracra -> modeler à partir de ça
+			\item Non visibilité du cycle de vie
+			\item Création d'une table intermédiaire pour les attributs multivalués
+			\item Mauvaise gestion de l'héritage
+			\item Mauvaise gestion des attributs d'association
+			
 		\end{itemize}
 	\end{block}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 	\frametitle{\underline{M}VC : Le modèle}
 	\begin{block}{Bottom up}
-	Pourquoi c'est kool
+	Avantages :
 		\begin{itemize}
-			\item propre
-			\item a
+			\item Propreté de la Base de Données
+			\item Amélioration des performances
+			\item Vérification des contraintes dans la Base de Données
 		\end{itemize} 
-		Pourquoi pas cool
+	Inconvénients :
 		\begin{itemize}
-			\item chronophage
-			\item a
+			\item ORM non adapté
+			\item Vérification et modifications d'une partie des fichiers générés
 		\end{itemize}
 	\end{block}
   
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 	\frametitle{\underline{M}VC : Le modèle}
-	\begin{block}{Choix}
-		Blabla c'est mieux Bottum up !
-		dixit dorianne : "perdre du temps pour faire mieux" , meilleur choix, blabla maintenabilité responsive des conneries quoi
+	\begin{block}{Décision}
+		\begin{itemize}
+		\item Une bonne structure de base représente une anticipation des problèmes par la suite 
+		\item Mieux adapté pour une possible utilisation au niveau Unicef France
+		\end{itemize}
+		
+		
 	\end{block}
 \end{frame}

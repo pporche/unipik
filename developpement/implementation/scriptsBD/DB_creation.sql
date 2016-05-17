@@ -1,4 +1,5 @@
-
+-- version 1.00 date 13/05/2016 auteur(s) Michel Cressannt, Julie Pain
+ 
 -- Définition des Domaines --
 
 CREATE DOMAIN  domaine_semaine AS INT
@@ -409,16 +410,4 @@ AFTER DELETE ON benevole
 FOR EACH ROW EXECUTE PROCEDURE supprimerBenevole();
 
 -- implémenter fonction/trigger permettant de garder la relation many to many intact benovle_projet
-
-
-
-
-
-CREATE VIEW frimousse AS (
-	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, niveau_frimousse, materiaux_frimousse
-	FROM intervention
-	WHERE niveau_frimousse is not null AND materiaux_frimousse is not null
-);
---ALTER TABLE frimousse
---	add PRIMARY KEY (id);
 

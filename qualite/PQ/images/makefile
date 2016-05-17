@@ -1,3 +1,5 @@
+#version 1.00	 auteur Michel Cressant	 Date 13/04/2016
+
 FICHIERS_PDF=organigrame.pdf cycleFT.pdf ConduireLeProjet.pdf ProcessusFournisseur.pdf RealiserProduits.pdf organigrammeProcessusPic.pdf
 
 .SUFFIXES : .pdf .eps .tex .fig .dia

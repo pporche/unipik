@@ -11,7 +11,7 @@ all : imagespdf sp cleanrep cleaneps cleanpng
 
 
 imagespdf : 
-	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf mvcVue mvcControleur mvcModele twig archiTemplates mvcGeneral
+	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf mvcVue mvcControleur mvcModele twig archiTemplates topDown bottomUp mvcGeneral
 
 imagespng : 
 	$(BASHMAKEPATH)/imagesPng.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf 

@@ -25,7 +25,7 @@ archivefs:
 	make -C FS archive
 
 # Nettoyage
-clean: cleancr cleanpv
+clean: cleancr cleanpv cleanfs
 
 cleancr:
 	make -C CR clean

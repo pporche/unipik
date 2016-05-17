@@ -27,27 +27,60 @@ Modèle :   cœur de l'application
 
 \begin{frame}
 	\frametitle{\underline{M}VC : Le modèle}
+	\begin{block}{Création de la Base de Données et utilisation de l'ORM Doctrine}	
+		\begin{columns}
+			\begin{column}{0.9cm}
+			\end{column}
+			\begin{column}{6cm}
+				\begin{Large} Top Down\end{Large}
+				\begin{itemize}
+					\item approche descendante
+					\item système d'annotation dans les classes PHP
+					\item génération des tables de la Base de Données
+				\end{itemize}
+		\end{column}
+		
+		\begin{column}{4cm}
+			\begin{figure}[!h]
+				\begin{center}
+					\includegraphics[scale=0.275]{images/topDown}
+					\caption{Top down}
+				\end{center}
+			\end{figure}
+		\end{column}
 	
-	\begin{block}{Création de la Base de Données et utilisation de l'ORM Doctrine}
-		Deux approches possibles : 
-		\begin{itemize}
-			\item Top Down
-				\begin{itemize}
-					\item[$\rightarrow$] approche descendante
-					\item[$\rightarrow$] système d'annotation dans les classes PHP
-					\item[$\rightarrow$] génération des tables de la Base de Données
-				\end{itemize}
-			\item Buttom Up
-				\begin{itemize}
-					\item[$\rightarrow$] approche ascendante
-					\item[$\rightarrow$] création de la Base de Données
-					\item[$\rightarrow$] génération des fichiers de mapping et classes PHP
-				\end{itemize}
-		\end{itemize}
+	\end{columns}
 	\end{block} 
-
-	
 \end{frame}
+
+\begin{frame}
+	\frametitle{\underline{M}VC : Le modèle}
+	\begin{block}{Création de la Base de Données et utilisation de l'ORM Doctrine}	
+		\begin{columns}
+			\begin{column}{0.9cm}
+			\end{column}
+			\begin{column}{6cm}
+				\begin{Large}Bottom Up\end{Large}
+				\begin{itemize}
+					\item approche ascendante
+					\item création de la Base de Données
+					\item génération des fichiers de mapping et classes PHP
+				\end{itemize}
+			\end{column}
+			
+			\begin{column}{4cm}
+			\begin{figure}[!h]
+				\begin{center}
+					\includegraphics[scale=0.225]{images/bottomUp}
+					\caption{Bottom up}
+				\end{center}
+			\end{figure}
+		\end{column}
+	
+	\end{columns}
+	\end{block} 
+\end{frame}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,7 +130,7 @@ Modèle :   cœur de l'application
 
 \begin{frame}
 	\frametitle{\underline{M}VC : Le modèle}
-	\begin{block}{Décision}
+	\begin{block}{Décision : Bottom Up}
 		\begin{itemize}
 		\item Une bonne structure de base représente une anticipation des problèmes par la suite 
 		\item Mieux adapté pour une possible utilisation au niveau Unicef France

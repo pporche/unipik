@@ -2,6 +2,17 @@
 DROP SEQUENCE IF EXISTS admin_activite_id_seq;
 DROP SEQUENCE IF EXISTS admin_region_id_seq;
 DROP SEQUENCE IF EXISTS admin_comite_id_seq;
+-- version 1.00 date 13/05/2016 auteur(s) Michel Cressannt, Julie Pain
+
+-- suppression des triggers --
+DROP TRIGGER supprimerBenevole ON benevole;
+
+-- suppression des fonctions --
+DROP FUNCTION supprimerBenevole();
+DROP FUNCTION recupererprojets(integer);
+
+
+delete from adresse where id = 1;
 
 -- Suppression des vues --
 DROP VIEW IF EXISTS personne;

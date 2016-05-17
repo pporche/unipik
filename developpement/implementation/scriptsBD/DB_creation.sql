@@ -1,5 +1,4 @@
-
-
+-- version 1.00 date 13/05/2016 auteur(s) Michel Cressannt, Julie Pain
 -- Définition des Domaines --
 
 CREATE DOMAIN  domaine_semaine AS INT
@@ -403,6 +402,7 @@ CREATE VIEW autre_etablissement AS (
 
 
 -- Définition des Triggers --
+<<<<<<< HEAD
 CREATE VIEW frimousse AS (
 	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, niveau_frimousse, materiaux_frimousse
 	FROM intervention
@@ -410,3 +410,35 @@ CREATE VIEW frimousse AS (
 );
 --ALTER TABLE frimousse
 --	add PRIMARY KEY (id);
+=======
+
+
+CREATE OR REPLACE FUNCTION supprimerBenevole()
+RETURNS trigger AS $sup$
+DECLARE
+
+BEGIN 
+	
+	INSERT INTO benevole VALUES (
+		OLD.id,
+		'benevole@fictif.com',
+		'benevole fictif',
+		'benevole fictif',
+		null,
+		null,
+		'1',
+		'fictif',
+		OLD.activites_potentielles,
+		OLD.responsabilite_activite
+	);
+
+	
+	RETURN OLD;
+END $sup$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER  supprimerBenevole
+AFTER DELETE ON benevole
+FOR EACH ROW EXECUTE PROCEDURE supprimerBenevole();
+
+-- implémenter fonction/trigger permettant de garder la relation many to many intact benovle_projet

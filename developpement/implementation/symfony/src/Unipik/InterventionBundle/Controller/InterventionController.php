@@ -2,8 +2,11 @@
 
 namespace Unipik\InterventionBundle\Controller;
 
+use Doctrine\ORM\Repository\RepositoryFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Form\DemandeInterventionType;
 //use Unipik\ArchitectureBundle\Repository\PlaidoyerRepository;
 use Unipik\ArchitectureBundle\Entity\Plaidoyer;
@@ -16,6 +19,11 @@ use Unipik\ArchitectureBundle\Entity\Plaidoyer;
  */
 class InterventionController extends Controller {
 
+    /**
+     * @param $request Request
+     * @param $id integer Id du formaulaire de demande d'intervention.
+     * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention.
+     */
     public function demandeAction(Request $request, $id) {
 
         $form = $this->createForm(DemandeInterventionType::class);
@@ -38,6 +46,20 @@ class InterventionController extends Controller {
         ));
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * @return Response Renvoie vers la page de consultation liée à l'établissement.
+     */
+    public function getConsultationVue(){
+        return $this->render('InterventionBundle:Intervention:consultation.html.twig');
+    }
+
+    /**
+     * @param $id integer Id de l'intervention.
+     * @return Response Permet de récupérer la vue consultation pour l'héritage.
+     */
+>>>>>>> f9c825306ab26288bec12f3f110039e4a4ae892a
     public function consultationAction($id) {
         // Faire la vérication si l'intervention est un plaidoyer, frimousse ou autre
         // Et appeler la vue correspondante
@@ -56,6 +78,7 @@ class InterventionController extends Controller {
 
     }
 
+<<<<<<< HEAD
     public function listPlaidoyersAction() {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('ArchitectureBundle:Intervention');//('ArchitectureBundle:Plaidoyer');
@@ -63,6 +86,45 @@ class InterventionController extends Controller {
 
         return $this->render('InterventionBundle:Liste:listePlaidoyer.html.twig', array(
             'listPlaidoyers' => $listPlaidoyers
+=======
+    /**
+     * @param $liste array Liste des établissements.
+     * @return Response Renvoie vers la page permettant l'affichage de l'ensemble des interventions.
+     */
+    public function getListeVue($liste){
+
+        return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+            'liste' => $liste
+        ));
+    }
+
+    /**
+     * @return RepositoryFactory Renvoie le repository Intervention.
+     */
+    public function getListeRepository(){
+        $em = $this->getDoctrine()->getManager();
+        return $em->getRepository('ArchitectureBundle:Intervention');
+    }
+
+    /**
+     * @return Response Renvoie vers la page affichant les établissements en passant en paramètre la liste des interventions.
+     */
+    public function listeAction() {
+        $repository = $this->getListeRepository();
+        $listIntervention = $repository->findAll();
+
+        return $this->getListeVue($listIntervention);
+
+    }
+
+    /**
+     * @return Response Renvoie vers la page d'attribution d'intervention.
+     */
+    public function attribueesAction() {
+
+        return $this->render('InterventionBundle:Intervention/Attribuees:liste.html.twig', array(
+            'liste' => null
+>>>>>>> f9c825306ab26288bec12f3f110039e4a4ae892a
         ));
     }
 

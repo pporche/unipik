@@ -17,6 +17,13 @@ use Unipik\InterventionBundle\Form\Etablissement\InfoEtablissementType;
 use Unipik\InterventionBundle\Form\Intervention\InterventionType;
 
 class DemandeInterventionType extends AbstractType {
+
+    /**
+     * @param FormBuilderInterface $builder interface pour construire le formulaire
+     * @param array $options tableau définissant les options des champs du formulaire.
+     * Construit le formulaire de demande d'intervention
+     *
+     */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('nomEtablissement', InfoEtablissementType::class, array('fieldset' => true, 'legend' => 'Infos établissement'))
@@ -27,10 +34,18 @@ class DemandeInterventionType extends AbstractType {
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
 
     public function getBlockPrefix() {
         return 'demande_intervention';
     }
+
+    /**
+     *
+     * @return String  le nom spécifique de la classe DemandeInterventionType
+     */
 
     public function getName() {
         return $this->getBlockPrefix();

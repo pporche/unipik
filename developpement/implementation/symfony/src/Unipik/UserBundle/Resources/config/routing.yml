@@ -1,6 +1,18 @@
+<<<<<<< HEAD
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
     prefix: /register
+=======
+fos_user_registration_confirm:
+    path: /confirmer/{token}
+    defaults:
+        _controller: FOSUserBundle:Registration:confirm
+
+fos_user_registration_confirmed:
+    path: /confirme
+    defaults:
+        _controller: FOSUserBundle:Registration:confirmed
+>>>>>>> f9c825306ab26288bec12f3f110039e4a4ae892a
 
 fos_user_resetting:
     resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"

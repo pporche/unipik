@@ -1,3 +1,4 @@
+# version 1.00 date 12/05/2016 auteur(s) Mathieu Medici
 # version 1.00 date 04/05/2016 auteur(s) Pierre Porche
 
 # Importation des variables
@@ -6,12 +7,11 @@ include makevars ../../../../makevars
 
 # Compilation
 
-all : sp cleanrep cleaneps cleanpng
+all : imagespdf sp cleanrep cleaneps cleanpng
 
 
 imagespdf : 
-	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf 
-
+	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf mvcVue mvcControleur mvcModele twig archiTemplates
 
 imagespng : 
 	$(BASHMAKEPATH)/imagesPng.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf 

@@ -1,0 +1,153 @@
+Return-Path: <michel.mainguenaud@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id E995B238B9;
+	Mon,  2 May 2016 08:30:22 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0AqAwD/8iZXig8V3cNcHAGDbn0BgnqvJ4lXIoVuAoEgTAEBAQEBARMBAQEKFAlQhEIBAQEDDBdPBxAJAhIPEw4CAgINAg4eDA4GDQYCAQEXiBMKiXadHYYhigwBAQEBAQEBAwEBAQEBAQEBEAiKbYQPEQEzgmmCVgWHd5AdF4MRgWdtiQCBA06MXIYkiENKgniBV2qHUoE1AQEB
+X-IPAS-Result: A0AqAwD/8iZXig8V3cNcHAGDbn0BgnqvJ4lXIoVuAoEgTAEBAQEBARMBAQEKFAlQhEIBAQEDDBdPBxAJAhIPEw4CAgINAg4eDA4GDQYCAQEXiBMKiXadHYYhigwBAQEBAQEBAwEBAQEBAQEBEAiKbYQPEQEzgmmCVgWHd5AdF4MRgWdtiQCBA06MXIYkiENKgniBV2qHUoE1AQEB
+X-IronPort-AV: E=Sophos;i="5.24,566,1454972400"; 
+   d="sql'?scan'208";a="88869908"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 02 May 2016 08:30:22 +0200
+Received: from miniMac.local (ARouen-651-1-348-75.w92-132.abo.wanadoo.fr [92.132.5.75])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 4A2111075C;
+	Mon,  2 May 2016 08:30:22 +0200 (CEST)
+Reply-To: michel.mainguenaud@insa-rouen.fr
+Subject: =?UTF-8?Q?Re:_BD_:_gestion_des_attributs_multivalu=c3=a9s?=
+References: <7f3f-57238700-13-41999d00@148828431>
+To: Pain Julie <julie.pain@insa-rouen.fr>
+Cc: Sergi Colomies <sergi.colomies@insa-rouen.fr>
+From: MAINGUENAUD Michel <michel.mainguenaud@insa-rouen.fr>
+Organization: INSA-Rouen
+Message-ID: <5726F36C.101@insa-rouen.fr>
+Date: Mon, 2 May 2016 08:27:56 +0200
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:38.0)
+ Gecko/20100101 Thunderbird/38.6.0
+MIME-Version: 1.0
+In-Reply-To: <7f3f-57238700-13-41999d00@148828431>
+Content-Type: multipart/mixed;
+ boundary="------------080209040305040904040006"
+
+This is a multi-part message in MIME format.
+--------------080209040305040904040006
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+
+
+Le 29/04/2016 18:08, Pain Julie a écrit :
+> Bonsoir, 
+> 
+> Merci pour vos mails précédents. Nous nous sommes penchés sur la gestion des attributs multivalués et rencontrons des problèmes.
+> Nous avons suivi les grandes étapes du TP proposé en cours d'ASI 5 mais ne voyons absolument pas comment cela peut nous aider dans la gestion de nos attributs multivalués. 
+> 
+> Ci-joint le fichier de test avec quelques commentaires pour vous expliquer nos problèmes. 
+> 
+> Nous vous serions reconnaissant si vous pouviez nous débloquer de cette situation. 
+> 
+> 
+> Cordialement, 
+> 
+> Julie Pain 
+> 
+
+-- 
+Michel MAINGUENAUD
+Institut National des Sciences Appliquees de Rouen (INSA-Rouen)
+
+Dep. Architecture des Systemes d'Information / LITIS
+685 Avenue de l'Universite - BP 08
+76801 Saint-Etienne du Rouvray Cedex
++ 33 (0)2 32 95 98 51
++ 33 (0)2 32 95 97 08 (fax)
++ 33 (0)2 32 95 97 79 (secr)
+
+email : michel.mainguenaud@insa-rouen.fr
+http://pagesperso.litislab.fr/mmainguenaud/
+
+
+--------------080209040305040904040006
+Content-Type: text/plain; charset=UTF-8; x-mac-type="0"; x-mac-creator="0";
+ name="mv.sql"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="mv.sql"
+
+CgoxZXJlIHNvbHV0aW9uIDoKLS0tLS0tLS0tLS0tCgpkcm9wIHRhYmxlIGlmIGV4aXN0cyBi
+ZW5ldm9sZXMgY2FzY2FkZTsKZHJvcCB0YWJsZSBpZiBleGlzdHMgYWN0aXZpdGVzUmVmZXJl
+bmNlOwpkcm9wIGZ1bmN0aW9uIGlmIGV4aXN0cyBkb25uZUFjdGl2aXRlcyAodGV4dCk7CmRy
+b3AgZnVuY3Rpb24gaWYgZXhpc3RzIGRvbm5lQmVuZXZvbGVzICh0ZXh0KTsKCgpjcmVhdGUg
+dGFibGUgaWYgbm90IGV4aXN0cyBiZW5ldm9sZXMgKAoJcHJlbm9tICAgIHRleHQsCglub20g
+ICAgICAgdGV4dCBwcmltYXJ5IGtleQoJCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICApCjsKCmNyZWF0ZSB0YWJsZSBpZiBub3QgZXhpc3RzIGFjdGl2aXRlc1JlZmVy
+ZW5jZSAoCiAgICAgICAgYmVuZXZvbGUgICAgICAgdGV4dCByZWZlcmVuY2VzIGJlbmV2b2xl
+cywKCWFjdGl2aXRlICAgICAgIHRleHQKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICkKOwoKaW5zZXJ0IGludG8gYmVuZXZvbGVzIHZhbHVlcyAoJ21v
+aScsICdtaWNoZWwnKTsKaW5zZXJ0IGludG8gYmVuZXZvbGVzIHZhbHVlcyAoJ2VsbGUnLCAn
+bWljaGVsZScpOwppbnNlcnQgaW50byBiZW5ldm9sZXMgdmFsdWVzICgnbHVpJywgJ3NpbW9u
+Jyk7Cmluc2VydCBpbnRvIGJlbmV2b2xlcyB2YWx1ZXMgKCdhdXNzaSBlbGxlJywgJ3NpbW9u
+ZScpOwppbnNlcnQgaW50byBiZW5ldm9sZXMgdmFsdWVzICgnZW5jb3JlIGx1aScsICdnaWxi
+ZXJ0Jyk7Cmluc2VydCBpbnRvIGJlbmV2b2xlcyB2YWx1ZXMgKCdlbmNvcmUgZWxsZScsICdn
+aWxiZXJ0ZScpOwoKaW5zZXJ0IGludG8gYWN0aXZpdGVzUmVmZXJlbmNlIHZhbHVlcyAoJ21p
+Y2hlbCcsICdwbGFpZG95ZXInKTsKaW5zZXJ0IGludG8gYWN0aXZpdGVzUmVmZXJlbmNlIHZh
+bHVlcyAoJ21pY2hlbCcsICdmcmltb3Vzc2UnKTsKaW5zZXJ0IGludG8gYWN0aXZpdGVzUmVm
+ZXJlbmNlIHZhbHVlcyAoJ21pY2hlbGUnLCAncGxhaWRveWVyJyk7Cmluc2VydCBpbnRvIGFj
+dGl2aXRlc1JlZmVyZW5jZSB2YWx1ZXMgKCdtaWNoZWxlJywgJ2ZyaW1vdXNzZScpOwoKaW5z
+ZXJ0IGludG8gYWN0aXZpdGVzUmVmZXJlbmNlIHZhbHVlcyAoJ3NpbW9uJywgJ3BsYWlkb3ll
+cicpOwppbnNlcnQgaW50byBhY3Rpdml0ZXNSZWZlcmVuY2UgdmFsdWVzICgnc2ltb25lJywg
+J3BsYWlkb3llcicpOwoKaW5zZXJ0IGludG8gYWN0aXZpdGVzUmVmZXJlbmNlIHZhbHVlcyAo
+J2dpbGJlcnQnLCAnZnJpbW91c3NlJyk7Cmluc2VydCBpbnRvIGFjdGl2aXRlc1JlZmVyZW5j
+ZSB2YWx1ZXMgKCdnaWxiZXJ0ZScsICdmcmltb3Vzc2UnKTsKCi0tIFJlbGF0aW9ubmVsIGNs
+YXNzaXF1ZQoKc2VsZWN0IGIucHJlbm9tLCBiLm5vbSwgYS5hY3Rpdml0ZQpmcm9tICAgYmVu
+ZXZvbGVzIGIsIGFjdGl2aXRlc1JlZmVyZW5jZSBhCndoZXJlICBhLmJlbmV2b2xlID0gYi5u
+b20gYW5kIGIubm9tID0gJ21pY2hlbCcKOwoKCi0tIFBhciBmb25jdGlvbiBtYWlzIG5lIGNo
+YW5nZSByaWVuIHZpcyBhIHZpcyBkdSBjbGFzc2lxdWUKCmNyZWF0ZSBmdW5jdGlvbiBkb25u
+ZUFjdGl2aXRlcyAodGV4dCkgcmV0dXJucyBzZXRvZiB0ZXh0IGFzCidzZWxlY3QgYWN0aXZp
+dGUKZnJvbSBhY3Rpdml0ZXNSZWZlcmVuY2UKd2hlcmUgYmVuZXZvbGUgPSAkMScKbGFuZ3Vh
+Z2UgJ3NxbCc7CgoKY3JlYXRlIGZ1bmN0aW9uIGRvbm5lQmVuZXZvbGVzICh0ZXh0KSByZXR1
+cm5zIHNldG9mIHRleHQgYXMKJ3NlbGVjdCBiZW5ldm9sZQpmcm9tIGFjdGl2aXRlc1JlZmVy
+ZW5jZQp3aGVyZSBhY3Rpdml0ZSA9ICQxJwpsYW5ndWFnZSAnc3FsJzsKCgpzZWxlY3QgZG9u
+bmVBY3Rpdml0ZXMgKCdtaWNoZWwnKSBhcyBhY3Rpdml0ZXMKOwoKc2VsZWN0IGRvbm5lQmVu
+ZXZvbGVzICgncGxhaWRveWVyJykgYXMgYmVuZXZvbGVzCjsKCgoyZW1lIHNvbHV0aW9uIDog
+dmlhIGxlcyB0YWJsZWF1eAotLS0tLS0tLS0tLS0tLQoKZHJvcCB0YWJsZSBpZiBleGlzdHMg
+YmVuZXZvbGVzOwoKY3JlYXRlIHRhYmxlIGlmIG5vdCBleGlzdHMgYmVuZXZvbGVzICgKCW5v
+bSAgICAgICB0ZXh0IHByaW1hcnkga2V5LCAKCWFjdGl2aXRlcyB0ZXh0W10KICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApCjsKCmlu
+c2VydCBpbnRvIGJlbmV2b2xlcyB2YWx1ZXMgKCdtaWNoZWwnLCAneyJwbGFpZG95ZXIiLCAi
+ZnJpbW91c3NlIn0nKTsKaW5zZXJ0IGludG8gYmVuZXZvbGVzIHZhbHVlcyAoJ21pY2hlbGUn
+LCAneyJwbGFpZG95ZXIiLCAiZnJpbW91c3NlIn0nKTsKCmluc2VydCBpbnRvIGJlbmV2b2xl
+cyB2YWx1ZXMgKCdzaW1vbmUnLCAgJ3sicGxhaWRveWVyIn0nKTsKaW5zZXJ0IGludG8gYmVu
+ZXZvbGVzIHZhbHVlcyAoJ3NpbW9uJywgICd7InBsYWlkb3llciJ9Jyk7CgppbnNlcnQgaW50
+byBiZW5ldm9sZXMgdmFsdWVzICgnZ2lsYmVydGUnLCAneyAiZnJpbW91c3NlIn0nKTsKaW5z
+ZXJ0IGludG8gYmVuZXZvbGVzIHZhbHVlcyAoJ2dpbGJlcnQnLCAneyAiZnJpbW91c3NlIn0n
+KTsKCnNlbGVjdCAqCmZyb20gICBiZW5ldm9sZXMKd2hlcmUgJ2ZyaW1vdXNzZScgPSBBTlkg
+KGFjdGl2aXRlcykKOwoKc2VsZWN0IG5vbSwgYWN0aXZpdGVzCmZyb20gICBiZW5ldm9sZXMK
+d2hlcmUgbm9tICBsaWtlICdtaWNoZWwlJwo7CgoKCjNlbWUgc29sdXRpb24gOiB2aWEgbGVz
+IHJlbGF0aW9ucwotLS0tLS0tLS0tLS0tLS0KCmRyb3AgdGFibGUgaWYgZXhpc3RzIGFjdGl2
+aXRlczsKCmNyZWF0ZSB0YWJsZSBhY3Rpdml0ZXMgKAogICAgbnVtZXJvIGludGVnZXIsCiAg
+ICBhY3Rpdml0ZSB0ZXh0CiAgICAgICAgICAgICAgICAgICAgICAgICkKOwoKaW5zZXJ0IGlu
+dG8gYWN0aXZpdGVzIHZhbHVlcyAoMSwnUGxhaWRveWVyJyk7Cmluc2VydCBpbnRvIGFjdGl2
+aXRlcyB2YWx1ZXMgKDEsJ0ZyaW1vdXNzZScpOwppbnNlcnQgaW50byBhY3Rpdml0ZXMgdmFs
+dWVzICgyLCdQbGFpZG95ZXInKTsKaW5zZXJ0IGludG8gYWN0aXZpdGVzIHZhbHVlcyAoMywn
+RnJpbW91c3NlJyk7Cmluc2VydCBpbnRvIGFjdGl2aXRlcyB2YWx1ZXMgKDQsJ1BsYWlkb3ll
+cicpOwppbnNlcnQgaW50byBhY3Rpdml0ZXMgdmFsdWVzICg0LCdGcmltb3Vzc2UnKTsKCmRy
+b3AgdGFibGUgaWYgZXhpc3RzIGFjdGl2aXRlc0JlbmV2b2xlcyBjYXNjYWRlOwoKY3JlYXRl
+IHRhYmxlIGFjdGl2aXRlc0JlbmV2b2xlcyAoCiAgICAgICBhY3Rpdml0ZXMgdGV4dCBbXQog
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICApCjsKCgpkcm9wIHRhYmxlIGlmIGV4
+aXN0cyBiZW5ldm9sZXM7CgpjcmVhdGUgdGFibGUgYmVuZXZvbGVzICgKICAgbnVtZXJvIGlu
+dGVnZXIsCiAgIGFjdGl2aXRlcyBhY3Rpdml0ZXNCZW5ldm9sZXMKICAgKQo7CgppbnNlcnQg
+aW50byBiZW5ldm9sZXMgKG51bWVybykgdmFsdWVzICgxKTsKaW5zZXJ0IGludG8gYmVuZXZv
+bGVzIChudW1lcm8pIHZhbHVlcyAoMik7Cmluc2VydCBpbnRvIGJlbmV2b2xlcyAobnVtZXJv
+KSB2YWx1ZXMgKDMpOwppbnNlcnQgaW50byBiZW5ldm9sZXMgKG51bWVybykgdmFsdWVzICg0
+KTsKCi0tIHBhc3NhZ2UgTjFORgoKc2VsZWN0IGFycmF5X2FnZyhhY3Rpdml0ZSkKZnJvbSAg
+ICBhY3Rpdml0ZXMKZ3JvdXAgYnkgbnVtZXJvCjsKCmRyb3AgZnVuY3Rpb24gaWYgZXhpc3Rz
+IGRvbm5lQWN0aXZpdGVzIChpbnRlZ2VyKTsKCmNyZWF0ZSBmdW5jdGlvbiBkb25uZUFjdGl2
+aXRlcyAoaW50ZWdlcikKICByZXR1cm5zIGFjdGl2aXRlc0JlbmV2b2xlcyBhcwonCnNlbGVj
+dCAgIGFycmF5X2FnZyhhY3Rpdml0ZSkKZnJvbSAgICAgYWN0aXZpdGVzCndoZXJlICAgIG51
+bWVybyA9ICQxCmdyb3VwIGJ5IG51bWVybwonCmxhbmd1YWdlICdzcWwnOwoKdXBkYXRlICBi
+ZW5ldm9sZXMKICBzZXQgYWN0aXZpdGVzID0gKHNlbGVjdCAgIGRvbm5lQWN0aXZpdGVzKG51
+bWVybykKCQkgICkKOwoKCnNlbGVjdCAqCmZyb20gICBiZW5ldm9sZXMKOwoKLS0gYSBmYWly
+ZSArIHByb3ByZSBhdmVjIGZvbmN0aW9uIGQnYWNjZXMKc2VsZWN0IChhY3Rpdml0ZXMpLmFj
+dGl2aXRlcwpmcm9tIGJlbmV2b2xlcwo7Cg==
+--------------080209040305040904040006--

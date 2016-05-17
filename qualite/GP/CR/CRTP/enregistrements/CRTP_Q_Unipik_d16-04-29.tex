@@ -49,9 +49,9 @@
 				\rowcolor{Gray}
 				Rôle & Fonction & Nom & Date & Visa		 \\
 				\hline
-				Vérificateur & \RQA & \Kafui & 25/04/2016 & pgpic \\[30pt]
+				Vérificateur & \RQA & \Kafui & 10/05/2016 & pgpic \\[30pt]
 				\hline
-				Validateur & \CP & \Sergi & 26/04/2016 & pgpic \\[30pt]	
+				Validateur & \CP & \Sergi & 10/05/2016 & pgpic \\[30pt]	
 				\hline
 			\end{tabular}
 		\end{center}
@@ -68,14 +68,14 @@ Cette semaine s'est orientée principalement sur trois axes :
 
 \section{Bottom-Up}
 Nous avons conçu un modèle de base de données propre et avons rencontré quelques problèmes lors de la génération de code via l'ORM. Le premier est que ce dernier ne semble pas gérer les types. La solution est de mettre une relation en tant qu'attribut dans les tables concernées. \\
-PostgreSQL ne prend pas en compte les contraintes d'intégrité référentielles sur les INHERITS. Il y a trois solution possible :
+PostgreSQL ne prend pas en compte les contraintes d'intégrité référentielles sur les INHERITS. Il y a trois solutions possibles :
 \begin{itemize}
 \item faire des tables pour les classes abstraites au lieu de vues ;
 \item ajouter un typage sur l'association ;
 \item utiliser des triggers : au lieu de faire trois jointures, faire des jointures successives sur chaque fils.
 \end{itemize}
 
-Le dernier problème est que Symfony ne gère pas les primary keys qui ne sont pas des serials. \nomTuteurPedago{} nous explique que nos schémas exterieur et logique doivent être propres et en formes normales mais que lors du passage sur le schéma physique, il est possible de dénormaliser sans perdre la trace des problèmes introduits. Mettre un id en serial est possible sur la table utilisateur en ajoutant un UNIQUE NOT NULL sur email.
+Le dernier problème est que Symfony ne gère pas les primary keys qui ne sont pas des serials. \nomTuteurPedago{} nous explique que nos schémas exterieurs et logiques doivent être propres et en forme normale mais que lors du passage sur le schéma physique, il est possible de dénormaliser sans perdre la trace des problèmes introduits. Mettre un id en serial est possible sur la table utilisateur en ajoutant un UNIQUE NOT NULL sur email.
 
 \section{Réalisation de vues}
 Certaines vues et formulaires ont été réalisées :

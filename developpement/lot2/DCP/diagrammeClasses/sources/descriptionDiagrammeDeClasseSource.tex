@@ -82,6 +82,10 @@ Le type TypeContact est une énumération qui définit les différents contacts 
 
 Le type Activite est une énumération qui définit les différentes activités que peuvent réaliser les bénévoles. il représente également l'Activité dont un Contact travaillant dans un Etablissement peut être responsable.
 
+\subsubsection*{ResponsabiliteActivite}
+
+Le type Activite est une énumération qui définit les différentes activités dont un bénévole peut être responsable, mais également si un bénébole est un administrateur d'un comité et/ou d'une région.
+
 \subsubsection*{TypeProjet}
 
 Le type TypeProjet est une énumération qui définit les différents niveaux pour les projets.
@@ -144,29 +148,15 @@ Cette classe a plusieurs attributs :
 
 \subsubsection*{Benevole}
 
-La classe Benevole est une classe fille de la classe Personne et la classe mère des classes AdminActivite, AdminComite et AdminRegion. Cette classe décrit les bénévoles de l'UNICEF qui réaliseront des interventions mais aussi ceux qui géreront des activités (AdminActivite), des comités (AdminComite) ou des régions (AdminRegion). L'héritage est ici une spécialisation, c'est à dire qu'une personne peut être simplement bénévole sans être administrateur. \\
+La classe Benevole est une classe fille de la classe Personne. Cette classe décrit les bénévoles de l'UNICEF qui réaliseront des interventions mais aussi ceux qui géreront des activités, des comités ou des régions.\\
 Cette classe a plusieurs attributs : 
 \begin{itemize}
 \item une adresse correspondant à la rue, au numéro de rue, au code postal, à la ville, au complément si besoin et à une géolocalisation;
 \item un mot de passe;
-\item aucune, une ou plusieurs activités potentielles (action ponctuelle, plaidoyer, frimousse, projet ou autre).
+\item aucune, une ou plusieurs activités potentielles (action ponctuelle, plaidoyer, frimousse, projet ou autre);
+\item aucune, une ou plusieurs responsabilités d'activité (action ponctuelle, plaidoyer, frimousse, projet, admin region ou admin comite). 
 \end{itemize}
 
-\subsubsection*{AdminActivite}
-
-La classe AdminActivite permet de représenter un administrateur d'une ou plusieurs activités (administrateur local du cahier des charges). Cette classe est une classe fille de la classe Benevole.\\
-Cette classe a un attribut :
-\begin{itemize}
-\item une ou plusieurs responsabilités d'activité (action ponctuelle, plaidoyer, frimousse, projet ou autre). 
-\end{itemize}
-
-\subsubsection*{AdminComite}
-
-La classe AdminComite permet de représenter un administrateur de comité. Cette classe est une classe fille de la classe Benevole. 
-
-\subsubsection*{AdminRegion}
-
-La classe AdminRegion permet de représenter un administrateur de région, une région ayant en générale plusieurs comités. Cette classe est une classe fille de la classe Benevole. 
 
 \subsubsection*{Contact}
 
@@ -391,15 +381,9 @@ Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
  	\item \textbf{adresse :} variable de type \textbf{Adresse}, attribut non nul;
 	\item \textbf{mdp :} chaîne de caractère de longueur de 50 caractères au maximum, de 8 caractères au minimum, attribut non nul;  
-	\item \textbf{activitesPotentielles :} constante de type \textbf{Activite}, attribut multivalué, attribut  peut être nul.\\
+	\item \textbf{activitesPotentielles :} constante de type \textbf{Activite}, attribut multivalué, attribut  peut être nul;
+	\item \textbf{responsabilitesActivite :} constante de type \textbf{ResponsabiliteActivite}, attribut multivalué, peut être nul.\\
 \end{itemize}  
-
-\subsubsection*{AdminActivite}
-Contraintes de domaine et de nullité des attributs :
-\begin{itemize}
-\item \textbf{responsabilitesActivite :} constante de type \textbf{Activite}, attribut multivalué, peut être nul.\\
-\end{itemize}
-
  
 \subsubsection*{Contact}
 Contraintes de domaine et de nullité des attributs :
@@ -773,12 +757,9 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 \subsubsection*{Benevole}
 \begin{itemize}
 \item[] email $\rightarrow > $ activitesPotentielles 
-\end{itemize}
-
-\subsubsection*{AdminActivite}
-\begin{itemize}
 \item[]email $\rightarrow >$ activitesPotentielles 
 \end{itemize}
+
 
 \subsubsection*{Etablissement}
 \begin{itemize}

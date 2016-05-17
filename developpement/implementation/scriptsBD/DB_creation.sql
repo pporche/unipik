@@ -40,7 +40,7 @@ CREATE DOMAIN domaine_materiel_frimousse AS VARCHAR(20)
 CHECK (VALUE IN ('patron', 'bourre', 'decoration'));
 
 CREATE DOMAIN domaine_niveau_scolaire_complet AS VARCHAR(50)
-CHECK (VALUE IN ('petite section', 'petie-moyenne section', 'moyenne section', 'moyenne-grande section', 'grande section', 'petite-moyenne-grande section',
+CHECK (VALUE IN ('petite section', 'petite-moyenne section', 'moyenne section', 'moyenne-grande section', 'grande section', 'petite-moyenne-grande section',
                  'CP', 'CP-CE1', 'CE1', 'CE1-CE2', 'CE2', 'CE2-CM1', 'CM1', 'CM1-CM2', 'CM2', 
                  '6eme', '5eme', '4eme', '3eme', '2nde', '1ere', 'terminale', 
                  'L1', 'L2', 'L3', 'M1', 'M2',
@@ -379,6 +379,7 @@ create function recupererProjets(integer) returns setof integer as
 
 -- Définition des Triggers --
 
+
 CREATE OR REPLACE FUNCTION supprimerBenevole()
 RETURNS trigger AS $sup$
 DECLARE
@@ -411,4 +412,13 @@ FOR EACH ROW EXECUTE PROCEDURE supprimerBenevole();
 
 
 
+
+
+CREATE VIEW frimousse AS (
+	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, niveau_frimousse, materiaux_frimousse
+	FROM intervention
+	WHERE niveau_frimousse is not null AND materiaux_frimousse is not null
+);
+--ALTER TABLE frimousse
+--	add PRIMARY KEY (id);
 

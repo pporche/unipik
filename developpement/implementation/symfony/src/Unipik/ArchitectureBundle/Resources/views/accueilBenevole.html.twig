@@ -1,3 +1,4 @@
+{# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
 {% extends "ArchitectureBundle::layoutArchitecture.html.twig" %}
 
 {% block title %}
@@ -33,9 +34,21 @@
                     </ul>
                 </nav>
             </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a class="lienImage img-responsive" href="https://www.unicef.fr/" target="_blank">
+                        <img src="{{ asset("img/unicef-logo.gif") }}" class="center-block img-responsive img-rounded"/>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a class="lienImage img-responsive" href="https://www.facebook.com/UnicefRouen/" target="_blank">
+                        <img src="{{ asset("img/FB-FindUsonFacebook-online-512_fr_FR.png") }}" class="center-block img-responsive img-rounded"/>
+                    </a>
+                </li>
+            </ul>
         </section>
 
-        <section class="col-lg-8 col-md-8 col-sm-8">
+        <section class="col-lg-10 col-md-10 col-sm-10">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <h2>Bonjour {{ user.prenom }} !</h2>
@@ -66,21 +79,6 @@
                     </ul>
                 </div>
             </div>
-        </section>
-
-         <section class="col-lg-2 col-md-2 col-sm-2">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <a class="lienImage img-responsive" href="https://www.unicef.fr/" target="_blank">
-                        <img src="{{ asset("img/unicef-logo.gif") }}" class="center-block img-responsive img-rounded"/>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a class="lienImage img-responsive" href="https://www.facebook.com/UnicefRouen/" target="_blank">
-                        <img src="{{ asset("img/FB-FindUsonFacebook-online-512_fr_FR.png") }}" class="center-block img-responsive img-rounded"/>
-                    </a>
-                </li>
-            </ul>
         </section>
 
 {% endblock %}

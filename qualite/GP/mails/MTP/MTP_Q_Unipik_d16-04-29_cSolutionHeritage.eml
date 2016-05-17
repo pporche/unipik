@@ -1,0 +1,223 @@
+Return-Path: <michel.mainguenaud@insa-rouen.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id D87AE238B9
+	for <scolomies@insa-rouen.fr>; Fri, 29 Apr 2016 13:47:33 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DVAACMSSNXig8V3cNeHAGDbitDDwGCerh6IoVtAhyBE0wBAQEBAQETAQEBCBYJUIRCAQEBAwwXTxcJAhIwAgICHSoOBg0GAgEBF4gTCpUOnR2GIYsPAQEBBwEBAQEBEwiIFwiCToQPEQEoC4JpglYFmBMXgxGBZ22If4FRjFyOZkqCeIFXaodMgTUBAQE
+X-IPAS-Result: A0DVAACMSSNXig8V3cNeHAGDbitDDwGCerh6IoVtAhyBE0wBAQEBAQETAQEBCBYJUIRCAQEBAwwXTxcJAhIwAgICHSoOBg0GAgEBF4gTCpUOnR2GIYsPAQEBBwEBAQEBEwiIFwiCToQPEQEoC4JpglYFmBMXgxGBZ22If4FRjFyOZkqCeIFXaodMgTUBAQE
+X-IronPort-AV: E=Sophos;i="5.24,551,1454972400"; 
+   d="asc'?scan'208?sql'208";a="88761752"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 29 Apr 2016 13:47:01 +0200
+Received: from asi-101.insa-rouen.fr (asi-fwens.insa-rouen.fr [194.254.15.131])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 342E91076C
+	for <sergi.colomies@insa-rouen.fr>; Fri, 29 Apr 2016 13:47:01 +0200 (CEST)
+Reply-To: michel.mainguenaud@insa-rouen.fr
+Subject: =?UTF-8?Q?Re:_H=c3=a9ritage?=
+References: <b593f6b0-912c-c6f7-c4e0-0581c338f9a1@insa-rouen.fr>
+ <57232EF6.1090008@insa-rouen.fr>
+To: =?UTF-8?Q?Sergi_Colomi=c3=a8s?= <sergi.colomies@insa-rouen.fr>
+From: MAINGUENAUD Michel <michel.mainguenaud@insa-rouen.fr>
+Organization: Institut National des Sciences Appliquees - Rouen
+Message-ID: <f75c3db2-7701-0589-1c09-1facba486287@insa-rouen.fr>
+Date: Fri, 29 Apr 2016 13:53:11 +0200
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:45.0)
+ Gecko/20100101 Thunderbird/45.0
+MIME-Version: 1.0
+In-Reply-To: <57232EF6.1090008@insa-rouen.fr>
+Content-Type: multipart/signed; micalg=pgp-sha1;
+ protocol="application/pgp-signature";
+ boundary="2DGK3UBOLupFGEWPwujbm8Rdupmi78dkf"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--2DGK3UBOLupFGEWPwujbm8Rdupmi78dkf
+Content-Type: multipart/mixed; boundary="iDtvX4rm323BSenhuLvSb8JRf7uKJPrIJ"
+From: MAINGUENAUD Michel <michel.mainguenaud@insa-rouen.fr>
+Reply-To: michel.mainguenaud@insa-rouen.fr
+To: =?UTF-8?Q?Sergi_Colomi=c3=a8s?= <sergi.colomies@insa-rouen.fr>
+Message-ID: <f75c3db2-7701-0589-1c09-1facba486287@insa-rouen.fr>
+Subject: =?UTF-8?Q?Re:_H=c3=a9ritage?=
+References: <b593f6b0-912c-c6f7-c4e0-0581c338f9a1@insa-rouen.fr>
+ <57232EF6.1090008@insa-rouen.fr>
+In-Reply-To: <57232EF6.1090008@insa-rouen.fr>
+
+--iDtvX4rm323BSenhuLvSb8JRf7uKJPrIJ
+Content-Type: multipart/mixed;
+ boundary="------------8F7D534403289E6C25AA9D60"
+
+This is a multi-part message in MIME format.
+--------------8F7D534403289E6C25AA9D60
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+
+
+Le 29/04/16 =C3=A0 11:52, Sergi Colomi=C3=A8s a =C3=A9crit :
+> En effet, cela r=C3=A9sout le probl=C3=A8me des primary key qui n'=C3=A9=
+taient pas
+> propag=C3=A9es avec le inherits.
+>=20
+> Par contre, il reste encore le probl=C3=A8me des classes abstraites
+> Intervention et Etablissement qui doivent =C3=AAtre des vues et non des=
+
+> tables physiquement.
+> Cela pause probl=C3=A8me pour les r=C3=A9f=C3=A9rences de cl=C3=A9s =C3=
+=A9trang=C3=A8res notamment
+> dans les relations many-to-many.
+>=20
+> Par exemple:
+>=20
+> contact {
+>     idcontact primary key,
+>     ...
+> }
+>=20
+>=20
+> etablissement n'est pas cens=C3=A9 =C3=AAtre une table mais une vue...
+>=20
+> enseignement {
+>     idetablissement primary key,
+>     ...
+> }
+>=20
+> centreloisirs {
+>     idetablissement primary key,
+>     ...
+> }
+>=20
+> autreetablissement {
+>     idetablissement primary key,
+>     ...
+> }
+>=20
+>=20
+> contactetablissementliaison {
+>     idcontact REFERENCES contact,
+>     idetablissement REFERENCES ???????
+> }
+>=20
+>=20
+> Merci pour votre aide.
+>=20
+> Cordialement,
+>=20
+> Le 29/04/2016 11:04, MAINGUENAUD Michel a =C3=A9crit :
+>> Si j'ai bien compris le probl=C3=A8me
+>> voila la solution
+>>
+>> MM
+>=20
+
+--=20
+Michel MAINGUENAUD
+Institut National des Sciences Appliquees de Rouen (INSA-Rouen)
+
+Dep. Architecture des Systemes d'Information / LITIS
+685 Avenue de l'Universite BP 08
+F76801 Saint-Etienne du Rouvray - France
++ 33 (0)2 32 95 98 51
++ 33 (0)2 32 95 97 08 (fax)
++ 33 (0)2 32 95 97 79 (secr)
+
+email : michel.mainguenaud@insa-rouen.fr
+http://www.insa-rouen.fr
+http://pagesperso.litislab.fr/mmainguenaud/
+
+--------------8F7D534403289E6C25AA9D60
+Content-Type: multipart/appledouble;
+ boundary="------------adD27A23C2AFD0AB07EF0AADC0"; x-mac-type="0"; x-mac-creator="0";
+ name="mn.sql"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="mn.sql"
+
+--------------adD27A23C2AFD0AB07EF0AADC0
+Content-Type: application/applefile
+Content-Transfer-Encoding: base64
+
+BxYFAAAAAgAAAAAAAAAAAAAAAAAAAAAABQBAAAMAAABYAAAABgAAAAkAAABeAAAAIAAAAAgA
+AAB+AAAAEAAAAAQAAACOAAAAAAAAAAIAAACOAAAA/38AAG1uLnNxbAAAAAAAAAAAAAAAAAAA
+AAABKAEAl8MvBQEAAAACAAAAIA1uSyoNbksADG1Lv2tvSwAAAQAAAAUIAAAECAAAADIAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAGy9BcHBsaWNhdGlvbnMvQXF1YW1hY3MuYXBw
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAFCAAABAgAAAAyBgAAAFABAAAAHAAy
+AAB1c3JvAAAACgAA//8AAAAAXQAAAA==
+
+--------------adD27A23C2AFD0AB07EF0AADC0
+Content-Type: application/octet-stream; name="mn.sql"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="mn.sql"
+
+LS0gdGVzdCBtbgoKLyogVHJhbnNmb3JtYXRpb24gdGhlb3JpcXVlCgpjcmVhdGUgdGFibGUg
+bml2ZWF1MTEgKAogICAgICAgICAgICAgICAgICAgICAgaWRuaXYyICAgaW50ZWdlciBwcmlt
+YXJ5IGtleSwKICAgICAgICAgICAgICAgICAgICAgIGF0dG5pdjIgIGludGVnZXIsCiAgICAg
+ICAgICAgICAgICAgICAgICBhdHRuaXYxMSBpbnRlZ2VyCgkJICAgICApIAo7CgpjcmVhdGUg
+dGFibGUgbml2ZWF1MTIgKAogICAgICAgICAgICAgICAgICAgICAgaWRuaXYyICAgaW50ZWdl
+ciBwcmltYXJ5IGtleSwKICAgICAgICAgICAgICAgICAgICAgIGF0dG5pdjIgIGludGVnZXIs
+CiAgICAgICAgICAgICAgICAgICAgICBhdHRuaXYxMiBpbnRlZ2VyCgkJICAgICApIAo7Cgpj
+cmVhdGUgdmlldyBuaXZlYXUyIChpZG5pdjIsIGF0dG5pdjIpIGFzICgKICAgc2VsZWN0IGlk
+bml2MiwgYXR0bml2MgogICBmcm9tICAgbml2ZWF1MTEKICB1bmlvbiAKICAgc2VsZWN0IGlk
+bml2MiwgYXR0bml2MgogICBmcm9tICAgbml2ZWF1MTIgICAgICAgICAgICAgICAgICAgICAg
+ICkKOwoKCiovCgotLSBUcmFuc2Zvcm1hdGlvbiBlZmZlY3RpdmUKCmNyZWF0ZSB0YWJsZSBu
+aXZlYXUyIAogICAgICAgICAgICAgICAgICAgICAoCgkJICAgICAgaWRuaXYyICBpbnRlZ2Vy
+IHByaW1hcnkga2V5LAogICAgICAgICAgICAgICAgICAgICAgYXR0bml2MiBpbnRlZ2VyCgkJ
+ICAgICApCjsKCi0tIEdlc3Rpb24gZGUgbGEgaGllcmFyY2hpZQoKLS0gdmFsZXVyIG51bGxl
+IHNpIGwnaW5zdGFuY2UgbW9kZWxpc2Ugbml2ZWF1MTIKYWx0ZXIgdGFibGUgbml2ZWF1Mgog
+IGFkZCBhdHRuaXYxMSBpbnRlZ2VyCjsKCi0tIHZhbGV1ciBudWxsZSBzaSBsJ2luc3RhbmNl
+IG1vZGVsaXNlIG5pdmVhdTExCmFsdGVyIHRhYmxlIG5pdmVhdTIKICBhZGQgYXR0bml2MTIg
+aW50ZWdlcgo7CgoKCmNyZWF0ZSB0YWJsZSBhdXRyZSAoCiAgICAgICAgICAgICAgICAgICAg
+aWRhdXRyZSBpbnRlZ2VyIHByaW1hcnkga2V5CgkJICAgKQo7CgoKY3JlYXRlIHRhYmxlIGxp
+YWlzb24gKAogICAgICAgICAgICAgICAgICAgICAgaWRuaXYgICBpbnRlZ2VyIHJlZmVyZW5j
+ZXMgbml2ZWF1MihpZG5pdjIpLAogICAgICAgICAgICAgICAgICAgICAgaWRhdXRyZSBpbnRl
+Z2VyIHJlZmVyZW5jZXMgYXV0cmUKICAgICAgICAgICAgICAgICAgICAgKQo7CgpjcmVhdGUg
+dmlldyBuaXZlYXUxMSBhcyAoCiAgIHNlbGVjdCBpZG5pdjIsIGF0dG5pdjIsIGF0dG5pdjEx
+CiAgIGZyb20gICBuaXZlYXUyCiAgIHdoZXJlICBhdHRuaXYxMSBpcyBub3QgbnVsbAogICAg
+ICAgICAgICAgICAgICAgICAgICApCjsKCmNyZWF0ZSB2aWV3IG5pdmVhdTEyIGFzICgKICAg
+c2VsZWN0IGlkbml2MiwgYXR0bml2MiwgYXR0bml2MTIKICAgZnJvbSAgIG5pdmVhdTIKICAg
+d2hlcmUgIGF0dG5pdjEyIGlzIG5vdCBudWxsCiAgICAgICAgICAgICAgICAgICAgICAgICkK
+Owo=
+
+--------------adD27A23C2AFD0AB07EF0AADC0--
+
+
+--------------8F7D534403289E6C25AA9D60--
+
+--iDtvX4rm323BSenhuLvSb8JRf7uKJPrIJ--
+
+--2DGK3UBOLupFGEWPwujbm8Rdupmi78dkf
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG/MacGPG2 v2.0.19 (Darwin)
+Comment: GPGTools - http://gpgtools.org
+
+iEYEARECAAYFAlcjSygACgkQuHBJvIn+0gB+RACfSaD7HyT6JYPVmWwvgcm5777F
+slwAoKtS862kWKwrcu2sMHTw//+pv+6c
+=A1QT
+-----END PGP SIGNATURE-----
+
+--2DGK3UBOLupFGEWPwujbm8Rdupmi78dkf--

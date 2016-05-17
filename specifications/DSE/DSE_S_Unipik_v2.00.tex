@@ -1,0 +1,121 @@
+\documentclass[asi]{picInsa} 
+\DeclareGraphicsRule{*}{pdf}{*}{}
+\usepackage{pdfpages}
+
+%\input{../../ressources/AjoutezVosPackagesIci.tex}
+\usepackage{vocabulaireUnipik}
+%\usepackage{../../ressources/Unipik/vocabulaire/vocabulaireEastpic}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\newcommand{\ligneMaj}[3] {
+	\rowcolor[gray]{0.55} \textbf{\textit{#1}} & #2  &  #3\\
+	\hline
+}
+\newcommand{\ligneSup}[3] {
+	\rowcolor[gray]{0.65} |\textunderscore \textbf{\textit{#1}} & #2  &  #3\\
+	\hline
+}
+\newcommand{\ligneMed}[3] {
+	\rowcolor[gray]{0.75} \hspace{0.25cm} |\textunderscore #1  & #2 & #3 \\
+	\hline
+}
+\newcommand{\ligneSub}[3] {
+	\rowcolor[gray]{0.85}  \hspace{0.5cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\newcommand{\ligneSubSub}[3] {
+	\rowcolor[gray]{0.95}  \hspace{0.75cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\newcommand{\ligneTache}[3] {
+	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\title{\DSE{}}
+\author{\Kafui{}} %à changer
+
+
+\titreGeneral{\DSE}
+\sousTitreGeneral{\nomEquipe}
+\titreAcronyme{\DSECourt}
+\version{v2.00}
+\titreDetaille{\DSECourt\_S\_\nomEquipe\_\versionPrive}
+\referenceVersion{\DSECourt\_S\_\nomEquipe\_\versionPrive}
+\auteurs{\Matthieu{} \& \Kafui{} \& \Melissa{} \& \Sergi{} \& \Michel{} \& \Pierre{}}
+\destinataires{\nomEquipe{}}%\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
+\resume{Le présent document contient la présentation du \DSE{} \nomEquipe.}
+\motsCles{\DSECourt{}}
+\natureDerniereModification{Modification}
+\modeDiffusionControle{}
+
+\begin{document}
+
+\couverture{}
+
+ \informationsGenerales{}
+\input{sources/00_pageService.tex}
+
+\tableofcontents
+
+\setcounter{chapter}{0}
+
+
+\chapter*{Introduction}
+\label{introduction}
+\input{sources/01_introduction.tex}
+
+\chapter{Contexte}
+\label{contexte}
+\input{sources/02_contexte.tex}
+
+
+\chapter{Description générale}
+
+\section{Intégration dans le système}
+\label{inte_sys}
+\input{sources/03_integrationSysteme.tex}
+
+\section{Fonctions principales du logiciel}
+\label{fonct_princ}
+\input{sources/04_fonctionsPrincipalesDuLogiciel.tex}
+
+\section{Caractéristiques des utilisateurs}
+\label{caracteristiques_des_utilisateurs}
+\input{sources/05_caracteristiquesDesUtilisateurs.tex}
+
+\section{Contraintes générales}
+\label{contraintes_generales}
+\input{sources/06_contraintesGenerales.tex}
+
+\chapter{Besoins détaillés}
+
+\section{Spécifications fonctionnelles}
+\label{specifications_fonctionnelles}
+\input{sources/07_specificationsFonctionnelles.tex}
+
+\section{Spécifications d'interfaces}
+\label{specifications_interfaces}
+\input{sources/08_specificationsInterfaces.tex}
+
+\section{Spécifications opérationnelles}
+\label{specifications_operationnelles}
+\input{sources/09_specificationsOperationnelles.tex}
+
+\chapter{Description des fournitures}
+\label{description_des_fournitures}
+\input{sources/10_descriptionDesFournitures.tex}
+
+\begin{appendix}
+\part*{Annexes}
+\addcontentsline{toc}{part}{Annexes}
+
+\listoffigures
+\addcontentsline{toc}{chapter}{Table des figures}
+	 
+\listoftables
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+\end{appendix}
+\pageQuatriemeCouverture
+
+\end{document}

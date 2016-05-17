@@ -1,0 +1,2926 @@
+Return-Path: <unicef76@unicef.fr>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 75CC1238B9;
+	Wed,  4 May 2016 11:22:07 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0C4AAB+vilXhiNDES6EaaonklMWh2kCAgEUAQEBIAeFHlwBUYEsxQWBF41vEoMvhTGDUY8Mh2qnWg
+X-IPAS-Result: A0C4AAB+vilXhiNDES6EaaonklMWh2kCAgEUAQEBIAeFHlwBUYEsxQWBF41vEoMvhTGDUY8Mh2qnWg
+X-IronPort-AV: E=Sophos;i="5.24,576,1454972400"; 
+   d="gif'147?scan'147,208,217,147";a="98737030"
+Received: from webmail2.unicef.fr (HELO autodiscover.unicef.fr) ([46.17.67.35])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 04 May 2016 11:22:06 +0200
+Received: from UNC-SRV-EXC1.cfu.local ([10.30.42.11]) by unc-srv-exc1
+ ([10.30.42.11]) with mapi id 14.03.0181.006; Wed, 4 May 2016 11:21:53 +0200
+From: 76 UNICEF Seine Maritime <unicef76@unicef.fr>
+To: BOUHADICHE Ida <b_ida@hotmail.fr>, =?Windows-1252?Q?ASSOUMANI_Ha=EFmana?=
+	<ASSOUMANI.HAIMANA@outlook.com>, HOUNTONDJI Lydie
+	<lydie.hountondji@outlook.com>, MABIRE Camille <kmill7@hotmail.fr>,
+	"BRETECHE Pierre Olivier" <pierre.olivier.breteche@gmail.com>,
+	=?Windows-1252?Q?HUON_B=E9atrice?= <beatrice.huon@sciencespo.fr>,
+	=?Windows-1252?Q?PAGANT_Adela=EFde?= <adelaide.pagant@gmail.com>, "JOLY
+ Floriane" <mujoly@wanadoo.fr>, JUSTET Marie <Justet.mary@gmail.com>,
+	"DESHAYES Julie" <julie-deshayes@hotmail.fr>, SCHAMME Charlotte
+	<charlotteschamme@gmail.com>, DUPUY Eva <evadupuy4@hotmail.fr>,
+	=?Windows-1252?Q?LAMOUREUX_Ana=EFs?= <ana.lamoureux@laposte.net>, "MARTINEAU
+ Anne" <annemartineau76@gmail.com>,
+	=?Windows-1252?Q?DELOFFRE_Alexis_=28IUT_Tech_de_Co_2015-2016_1=E8re_ann?=
+ =?Windows-1252?B?6WUp?= <alex1081@hotmail.fr>,
+	=?Windows-1252?Q?DEGRAEVE_Elo=EFse_=28IUT_Tech_de_Co_2015-2016_1=E8re_ann?=
+ =?Windows-1252?B?6WUp?= <el.degraeve@gmail.com>,
+	=?Windows-1252?Q?CORBEL_Cl=E9mentine_=28IUT_Tech_de_Co_2015-2016_1=E8re_a?=
+ =?Windows-1252?Q?nn=E9e=29?= <clementine.corbel@hotmail.fr>,
+	=?Windows-1252?Q?GRIEU_Chlo=E9_=28IUT_Tech_de_Co_2015-2016_1=E8re_ann=E9e?=
+ =?Windows-1252?Q?=29?= <chloe-grieu@hotmail.fr>,
+	=?Windows-1252?Q?RIARD_Quentin_=28IUT_Tech_de_Co_2015-2016_1=E8re_ann=E9e?=
+ =?Windows-1252?Q?=29?= <quentin.riard@etu.univ-rouen.fr>, "COLOMIES Sergi
+ (INSA PIC)" <sergi.colomies@insa-rouen.fr>, ASKAR Shaza
+	<shazaaskar@live.com>,
+	=?Windows-1252?Q?RUGAMBAGE_Christelle_=28m=E9decine_2=E8me_ann=E9e=29?=
+	<christelle.rug@gmail.com>, "YACHINE Alexis (Mus & chant E.I.J. MSA)"
+	<yachine.alexis@gmail.com>, DSIEWE MAMBO Fabrice <rahimafabio@gmail.com>,
+	SAMELOR Marcelle <marcelle.samelor@gmail.com>, "ZORA Nelcis (INSA 2015 2016)"
+	<nelcis.zora@insa-rouen.fr>, "CHANCE Emma (INSA 2015 2016)"
+	<emma.chance@hotmail.fr>, DUGORD Camille <camilledugord@gmail.com>,
+	=?Windows-1252?Q?AHLERS_S=E9bastien?= <ahlersv@gmail.com>, PIQUOT Alexia
+	<alexia.piquot@gmail.com>, YENIOGLU Simge <simgeyenioglu@gmail.com>,
+	"LAVERDURE Marie (HMC L2)" <marie.laverdure@hotmail.fr>, "EL JARRARI Nisrine
+ (INSA MRIE)" <nisrine.ej@hotmail.fr>,
+	=?Windows-1252?Q?ROTH_Alice_=28M1_linguistique_sp=E9c_diff_fran=E7ais=29?=
+	<alice.roth@ymail.com>,
+	=?Windows-1252?Q?PICARD_Amaury_=28Etudiant/salari=E9_lic_eco_gest_Pasteur?=
+ =?Windows-1252?Q?_Rouen=29?= <amaury-pic@hotmail.fr>, ERDOGAN Ali
+	<ali3201@hotmail.com>,
+	=?Windows-1252?Q?LEPILLER_Camille_=281=E8re_STMG_Neufchatel=29?=
+	<camille.lepiller@gmail.com>, =?Windows-1252?Q?LOINTIER_R=E9mi_?=
+	<r.lointier@gmail.com>, =?Windows-1252?Q?HUNKELER_Chlo=E9_=28socio=29?=
+	<kleezy@hotmail.fr>,
+	=?Windows-1252?Q?GILBERT_Charlotte_=28lyc=E9e_Lillebonne=29?=
+	<charlotte.hsm@hotmail.fr>, "DELABIE Flore (IAE 2015 2016 Groupe 2)"
+	<flore.delabie@gmail.com>,
+	=?Windows-1252?Q?CHIROIS_Margaux_=28IUT_Tech_de_Co_2=E8me_ann=E9e=29?=
+	<margaux.chirois@icloud.com>, "DEGOIS Morgane (IUT Tech de Co)"
+	<morgane-degois@hotmail.fr>,
+	=?Windows-1252?Q?CHAPRON_No=E9mie_=28IUT_Tech_de_Co_2=E8me_ann=E9e=29?=
+	<noemie27chapron@orange.fr>, "BUSSEREAU Fanny (IAE 2015 2016 Groupe 2)"
+	<fanny.bussereau@hotmail.fr>,
+	=?Windows-1252?Q?DUCREUX_Emilie_=28IUT_Tech_de_Co_2=E8me_ann=E9e=29?=
+	<emi_lie-76@hotmail.fr>, "LEVEQUE Manon (IAE 2015 2016 Groupe 2)"
+	<manon.leveque11@laposte.net>,
+	=?Windows-1252?Q?OMONT_H=E9l=E8ne_=28IAE_2015_2016_Groupe_2=29?=
+	<helene.omont@gmail.com>, "OLLA Nandy (IAE 2015 2016 Groupe 3)"
+	<nandycecilia@yahoo.fr>, "AK Ilkay (IAE 2015 2016 Groupe 3)"
+	<ilkay27@hotmail.fr>,
+	=?Windows-1252?Q?POIRIER_Laurine_=28ESITPA_3=E8me_ann=E9e=29?=
+	<l.poirier@etu.esitpa.fr>, MORISSE Alexandra
+	<alexandramorisse76840@gmail.com>, NORGUET Juliette
+	<juliette.norguet@gmail.com>,
+	=?Windows-1252?Q?DUMAS_Margaux_=28lyc=E9e_St_Sa=EBns=29?=
+	<agashi@laposte.net>, BOUDRAF Kenza <kenza.boudraf04@gmail.com>,
+	=?Windows-1252?Q?PICHARD_Jade_=28HMC_2015_2016_Groupe_Jade-L=E9a=29?=
+	<jadepichard@gmail.com>,
+	=?Windows-1252?Q?DEHEDIN_L=E9a_=28HMC_2015_2016_Groupe_Jade-L=E9a=29?=
+	<dehedin.lea@gmail.com>, "FAYE Danielle (ESITPA)" <d.faye@esitpa.fr>,
+	"VIVIER Lucie (M1 anglais)" <vivierlucie@orange.fr>, "BENSSY Yasmine
+ (ESITPA)" <yasminebenssy@hotmail.com>, "TANOH Claude (IAE M2MAE)"
+	<claudetanoh77@yahoo.fr>, "KABA Zenabou (IAE 2015 2016 groupe 1)"
+	<zcommezen@live.fr>, "CHAMPEAUX Perrine (IAE 2015 2016 groupe 1)"
+	<perrine.champeaux@wanadoo.fr>, "EGLOFF Louise (IAE 2015 2016 groupe 1)"
+	<louise.egloff@gmail.com>, "TERRIER Jeanne (IAE 2015 2016 groupe 1)"
+	<terrier.jeanne@gmail.com>,
+	=?Windows-1252?Q?GOUYSSE_Chlo=E9_=28IAE_2015_2016_groupe_1=29?=
+	<chloe.gouysse@live.fr>,
+	=?Windows-1252?Q?ROSERO_Te=EFlo_=28Lyc=E9e_Flaubert_Art_=26__danse?=
+	<teilopaul@hotmail.fr>,
+	=?Windows-1252?Q?SOULIGNAC_Juliette_=28Lyc=E9e_Flaubert_Art_=26_danse=29?=
+	<soulignacjuliette@gmail.com>, "PELLERIN Charlotte (INSA 2015 2016 groupe 1)"
+	<charlotte.pellerin@insa-rouen.fr>, "TASSERIE Agathe (IUT Tech de Co)"
+	<agathe.t7@gmail.com>,
+	=?Windows-1252?Q?LORANDEL_Charley_=28ESITPA_3=E8me_ann=E9e=29?=
+	<charley.lorandel@hotmail.fr>,
+	=?Windows-1252?Q?LAIGNEL_No=E9mie_=28ESITPA_3=E8me_ann=E9e=29?=
+	<noemie.laignel@hotmail.fr>,
+	=?Windows-1252?Q?PHILIPPE_Marie_=28ESITPA_3=E8me_ann=E9e=29?=
+	<marinema.philippe@gmail.com>, "MAHE Leonore (INSA 2015 2016 groupe 1)"
+	<leonore.mahe@insa-rouen.fr>, "MAURY Maud (INSA 2015 2016 groupe 1)"
+	<maud.maury@insa-rouen.fr>,
+	=?Windows-1252?Q?SOVOESSI_Otniel_=28ESIGELEC_5=E8me_ann=E9e=29?=
+	<osovoessi@gmail.com>, "BEDU Elsa (INSA 2015 2016 groupe 2  MRIE4)"
+	<elsa.bedu@insa-rouen.fr>, "DEMERSEMAN Sarah (INSA 2015 2016 groupe 2
+  MRIE4)" <sarah.demerseman@insa-rouen.fr>, "PEYRICHOUX Nicolas (NEOMA MGE)"
+	<nicolas.peyrichoux95@gmail.com>
+Subject: =?Windows-1252?Q?TR_:_El=E8ves_kidnapp=E9s,_utilis=E9s_dans_des_attaques-?=
+ =?Windows-1252?Q?suicides_:_le_Nig=E9ria_sous_Boko_Haram?=
+Thread-Topic: =?Windows-1252?Q?El=E8ves_kidnapp=E9s,_utilis=E9s_dans_des_attaques-suici?=
+ =?Windows-1252?Q?des_:_le_Nig=E9ria_sous_Boko_Haram?=
+Thread-Index: AQHRpeUJ56NmMN2b/0e5zBG08VR1BZ+ogNAg
+Date: Wed, 4 May 2016 09:21:53 +0000
+Message-ID: <168ED66FB5C258489BADAE2218B264D5750124FD@unc-srv-exc1>
+References: <20160504110931.1B2E9845AA7549B8@newsletter.infos-unicef.fr>
+In-Reply-To: <20160504110931.1B2E9845AA7549B8@newsletter.infos-unicef.fr>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+x-originating-ip: [82.233.212.43]
+x-c2processedorg: 36648b07-e705-4ef6-b55d-bc0567a78858
+Content-Type: multipart/related;
+	boundary="_004_168ED66FB5C258489BADAE2218B264D5750124FDuncsrvexc1_";
+	type="multipart/alternative"
+MIME-Version: 1.0
+
+--_004_168ED66FB5C258489BADAE2218B264D5750124FDuncsrvexc1_
+Content-Type: multipart/alternative;
+	boundary="_000_168ED66FB5C258489BADAE2218B264D5750124FDuncsrvexc1_"
+
+--_000_168ED66FB5C258489BADAE2218B264D5750124FDuncsrvexc1_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Avec aussi un petit film sur le N=E9pal, on vous le recommande tres fort
+Bon we de l' Ascension pour ceux qui pourront en profiter
+V=E9ronique DAVREUX
+
+________________________________
+
+
+Comit=E9 de la Seine Maritime pour l'UNICEF   Rouen
+
++33 2 35 88 98 88
+26 rue Saint Nicolas 76000 ROUEN
+www.unicef.fr<http://www.unicef.fr/>
+
+<http://www.unicef.fr>
+        <http://www.unicef.fr/>
+
+[cid:LEGS-EDUC_signature-email_cb642751-99bc-48a8-b8c1-5a27f0edfb24.gif]<ht=
+tps://www.unicef.fr/article/unissons-nous-pour-l-education-des-enfants-dans=
+-le-monde>
+
+
+
+
+
+________________________________
+
+
+<http://www.unicef.fr>
+________________________________
+De : Unicef France [contact@newsletter.infos-unicef.fr]
+Envoy=E9 : mercredi 4 mai 2016 11:09
+=C0 : 76 UNICEF Seine Maritime
+Objet : El=E8ves kidnapp=E9s, utilis=E9s dans des attaques-suicides : le Ni=
+g=E9ria sous Boko Haram
+
+
+Autres actus : l'=E9ducation, le pouvoir du legs, in=E9galit=E9s en France.=
+.. et retour sur le N=E9pal<http://newsletter.infos-unicef.fr/c.ashx?cde=3D=
+1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D103400016=
+7180000234&t=3D1&r=3D1>
+Si cet email ne s'affiche pas correctement, vous pouvez le visualiser gr=E2=
+ce =E0 ce lien<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=
+=3D1&r=3D0&NOM=3DPlaideurs&PRENOM=3DTous&ID_CIVILITE=3D1>.
+        [Unicef] <http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMA=
+M5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234=
+&t=3D1&r=3D2>           MON ESPACE DONATEUR<http://newsletter.infos-unicef.=
+fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D43110=
+2&ue=3D1034000167180000234&t=3D1&r=3D3>
+[http://s.cdn.1000mercis.com/Unicef/tpl/2/don1.jpg]
+        JE FAIS UN DON<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjM=
+n5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D10340001671800=
+00234&t=3D1&r=3D4>
+
+
+
+
+
+        NEWSLETTER MAI 2016<http://newsletter.infos-unicef.fr/c.ashx?cde=3D=
+1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D103400016=
+7180000234&t=3D1&r=3D5>
+
+        [Titre] <http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM=
+5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&=
+t=3D1&r=3D6>
+                Voix du terrain<http://newsletter.infos-unicef.fr/c.ashx?cd=
+e=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D10340=
+00167180000234&t=3D1&r=3D7>
+
+
+                Avoir peur d=92une =E9coli=E8re de 11 ans...
+Le Nig=E9ria sous Boko Haram<http://newsletter.infos-unicef.fr/c.ashx?cde=
+=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D103400=
+0167180000234&t=3D1&r=3D8>
+                Depuis l=92enl=E8vement de 270 lyc=E9ennes =E0 Chibok, 2000=
+ autres enfants ont =E9t=E9 kidnapp=E9s, 1.3 million sont d=E9plac=E9s=85 e=
+t le monde l=92a =E0 peine remarqu=E9.
+Le point sur cette terrible crise qui prend pour cible l=92=E9ducation, et =
+les enfants.<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575=
+c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D=
+1&r=3D9>
+
+> En savoir plus<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM=
+5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&=
+t=3D1&r=3D10>
+
+
+        [http://s.cdn.1000mercis.com/Unicef/tpl/2/coeur.jpg] <http://newsle=
+tter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40u=
+nicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D11>      Faire un do=
+n<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=
+=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D12>
+
+
+
+
+        Votre legs en action<http://newsletter.infos-unicef.fr/c.ashx?cde=
+=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D103400=
+0167180000234&t=3D1&r=3D13>
+
+
+[http://e.cdn.1000mercis.com/0_Spacer/spacer.jpg]       Florence :
+"Une grande paix int=E9rieure"<http://newsletter.infos-unicef.fr/c.ashx?cde=
+=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D103400=
+0167180000234&t=3D1&r=3D14>       [http://e.cdn.1000mercis.com/0_Spacer/spa=
+cer.jpg]
+
+[Votre legs en action]<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjM=
+n5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D10340001671800=
+00234&t=3D1&r=3D15>
+        Le legs s=92est impos=E9 comme une =E9vidence pour Florence.
+Elle transmet une partie de son patrimoine aux enfants
+du monde pour les aider =E0 se r=E9aliser.<http://newsletter.infos-unicef.f=
+r/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102=
+&ue=3D1034000167180000234&t=3D1&r=3D16>
+
+
+        > Lire son t=E9moignage<http://newsletter.infos-unicef.fr/c.ashx?cd=
+e=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D10340=
+00167180000234&t=3D1&r=3D17>
+
+
+        [http://s.cdn.1000mercis.com/Unicef/tpl/2/coeur.jpg] <http://newsle=
+tter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40u=
+nicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D18>      =CAtre reco=
+ntact=E9-e<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&=
+r=3D19>
+
+
+
+[Titre]<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=
+=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=
+=3D20>
+        =C9ducation<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5a=
+MAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D10340001671800002=
+34&t=3D1&r=3D21>
+
+
+[http://e.cdn.1000mercis.com/0_Spacer/spacer.jpg]       4 000<http://newsle=
+tter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40u=
+nicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D22>
+professeurs syriens sont encourag=E9s =E0 l=92enseignement volontaire en Tu=
+rquie.<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D=
+598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D=
+23>        [http://e.cdn.1000mercis.com/0_Spacer/spacer.jpg]
+
+
+[http://e.cdn.1000mercis.com/0_Spacer/spacer.jpg]       > En savoir plus<ht=
+tp://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Du=
+nicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D24>   [ht=
+tp://e.cdn.1000mercis.com/0_Spacer/spacer.jpg]
+
+
+        [http://s.cdn.1000mercis.com/Unicef/tpl/2/coeur.jpg] <http://newsle=
+tter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40u=
+nicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D25>      Faire un do=
+n<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=
+=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D26>
+
+
+
+
+
+
+
+
+[Titre]<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=
+=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=
+=3D27>
+Je comprends<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575=
+c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D=
+1&r=3D28>
+[http://s.cdn.1000mercis.com/Unicef/tpl/2/fleche_bas.jpg]<http://newsletter=
+.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unice=
+f.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D29>
+
+        Acc=E8s =E0 l'=E9ducation
+et =E9galit=E9 des sexes<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1EN=
+jMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D103400016718=
+0000234&t=3D1&r=3D30>
+
+        Des millions d=92enfants dans le monde
+ne sont pas scolaris=E9s.
+Notre objectif : une =E9ducation pour tous !<http://newsletter.infos-unicef=
+.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D4311=
+02&ue=3D1034000167180000234&t=3D1&r=3D31>
+
+        > Lire le dossier<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1E=
+NjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D10340001671=
+80000234&t=3D1&r=3D32>
+
+
+[Titre]<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=
+=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=
+=3D33>
+J'agis !<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=
+=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=
+=3D34>
+[http://s.cdn.1000mercis.com/Unicef/tpl/2/fleche_bas.jpg]<http://newsletter=
+.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unice=
+f.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D35>
+
+        Je transmets mon patrimoine aux enfants<http://newsletter.infos-uni=
+cef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D4=
+31102&ue=3D1034000167180000234&t=3D1&r=3D36>
+
+        En l=E9guant une partie de votre patrimoine =E0 l=92UNICEF, vous of=
+frez un meilleur avenir aux enfants.<http://newsletter.infos-unicef.fr/c.as=
+hx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D=
+1034000167180000234&t=3D1&r=3D37>
+
+        > Demander la brochure<http://newsletter.infos-unicef.fr/c.ashx?cde=
+=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D103400=
+0167180000234&t=3D1&r=3D38>
+
+
+
+
+
+
+[http://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif]<http://newslet=
+ter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40un=
+icef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D39>
+
+[http://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif]    Nouveau rap=
+port<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D59=
+8&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D40=
+>    [http://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif]
+
+
+[http://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif]    In=E9galit=
+=E9s : la France 28e
+sur 35 pays riches<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aM=
+AM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D103400016718000023=
+4&t=3D1&r=3D41> [http://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif=
+]
+
+
+[http://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif]
+L'UNICEF a class=E9 les pays
+de l'UE/OCDE selon les in=E9galit=E9s
+(revenus, =E9ducation, sant=E9, satisfaction dans la vie) entre les enfants=
+,
+et les r=E9sultats sont pr=E9occupants...<http://newsletter.infos-unicef.fr=
+/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&=
+ue=3D1034000167180000234&t=3D1&r=3D42>      [http://s.cdn.1000mercis.com/1M=
+Sending/Templates/spacer.gif]
+
+[http://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif]    > D=E9couvr=
+ir les r=E9sultats<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aM=
+AM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D103400016718000023=
+4&t=3D1&r=3D43>  [http://s.cdn.1000mercis.com/1MSending/Templates/spacer.gi=
+f]
+
+
+[http://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif]    [http://s.c=
+dn.1000mercis.com/Unicef/tpl/2/coeur.jpg] <http://newsletter.infos-unicef.f=
+r/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102=
+&ue=3D1034000167180000234&t=3D1&r=3D44>      Faire un don<http://newsletter=
+.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unice=
+f.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D45>       [http://s.cdn.=
+1000mercis.com/1MSending/Templates/spacer.gif]
+
+
+[Nouveau rapport]<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMA=
+M5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234=
+&t=3D1&r=3D46>
+
+
+
+        [Text] <http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5=
+575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=
+=3D1&r=3D47>
+
+                Les enfants du N=E9pal retrouvent le sourire<http://newslet=
+ter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40un=
+icef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D48>
+
+Un an apr=E8s le s=E9isme, les enfants reconstruisent leur vie gr=E2ce =E0 =
+vous !<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D=
+598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D=
+49>
+
+
+        [http://s.cdn.1000mercis.com/Unicef/tpl/2/coeur.jpg] <http://newsle=
+tter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40u=
+nicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D50>      Faire un do=
+n<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=
+=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D51>
+
+
+
+
+
+[http://s.cdn.1000mercis.com/Unicef/tpl/2/oeil.jpg]<http://newsletter.infos=
+-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=
+=3D431102&ue=3D1034000167180000234&t=3D1&r=3D52>
+        L=92=9Cil de l=92UNICEF<http://newsletter.infos-unicef.fr/c.ashx?cd=
+e=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D10340=
+00167180000234&t=3D1&r=3D53>
+La photo du mois<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM=
+5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&=
+t=3D1&r=3D54>
+
+        Une photo nous a marqu=E9s. Nous vous l=92offrons en fond d=92=E9cr=
+an !<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D59=
+8&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D55=
+>
+
+[L=92=9Cil de l=92UNICEF]<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1E=
+NjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D10340001671=
+80000234&t=3D1&r=3D56>
+        [http://s.cdn.1000mercis.com/Unicef/tpl/2/telecharger.jpg] <http://=
+newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef=
+76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D57>        Je =
+t=E9l=E9charge<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=
+=3D1&r=3D58>
+
+
+[http://s.cdn.1000mercis.com/Unicef/tpl/2/bulle.jpg]<http://newsletter.info=
+s-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&=
+i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D59>
+        Mots de m=F4mes<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENj=
+Mn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180=
+000234&t=3D1&r=3D60>
+
+[http://s.cdn.1000mercis.com/Unicef/tpl/2/gui_haut.jpg]<http://newsletter.i=
+nfos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.=
+fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D61>
+        Le CP, c'est mieux que la maternelle, y'a 5 r=E9cr=E9s !<http://new=
+sletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%=
+40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D62>
+
+[http://s.cdn.1000mercis.com/Unicef/tpl/2/gui_droit.jpg]<http://newsletter.=
+infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef=
+.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D63>
+        Axel, 6 ans<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5a=
+MAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D10340001671800002=
+34&t=3D1&r=3D64>
+
+
+
+
+
+
+
+
+Suivez en temps r=E9el l'action de l'UNICEF : unicef.fr<http://newsletter.i=
+nfos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.=
+fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D65>
+
+[Twitter]<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=
+=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=
+=3D66>  [Facebook] <http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5a=
+MAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D10340001671800002=
+34&t=3D1&r=3D67>        [YouTube] <http://newsletter.infos-unicef.fr/c.ashx=
+?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D10=
+34000167180000234&t=3D1&r=3D68>
+
+
+
+
+
+[http://s.cdn.1000mercis.com/Unicef/tpl/2/gauche.jpg]<http://newsletter.inf=
+os-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr=
+&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D69>      [Don en confiance] =
+<http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=
+=3Dunicef76%40unicef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D70>  =
+      [http://s.cdn.1000mercis.com/Unicef/tpl/2/droit.jpg] <http://newslett=
+er.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40uni=
+cef.fr&i=3D431102&ue=3D1034000167180000234&t=3D1&r=3D71>
+
+
+
+
+Le Comit=E9 Fran=E7ais UNICEF collecte des dons pour l=92UNICEF Internation=
+al dans plus de 150 pays dont quelques-uns sont =E9voqu=E9s dans ce courrie=
+l. Gr=E2ce =E0 vos dons, nous pouvons : sauver, prot=E9ger, =E9duquer et r=
+=E9agir en urgence. Nous vous remercions de votre confiance de votre soutie=
+nt fid=E8le.
+
+Conform=E9ment =E0 la loi Informatique et Libert=E9s du 6 janvier 1978, vou=
+s disposez d=92un droit d=92acc=E8s, de rectification ou de suppression des=
+ donn=E9es personnelles vous concernant.
+
+Je g=E8re mes abonnements UNICEF.<http://newsletter.infos-unicef.fr/c.ashx?=
+cde=3D1ENjMn5aMAM5575c&m=3D598&e=3Dunicef76%40unicef.fr&i=3D431102&ue=3D103=
+4000167180000234&t=3D1&r=3D72>
+
+
+
+--_000_168ED66FB5C258489BADAE2218B264D5750124FDuncsrvexc1_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css">=0A=
+<!--=0A=
+.ReadMsgBody=0A=
+	{width:100%}=0A=
+.ExternalClass=0A=
+	{width:100%}=0A=
+.ExternalClass *=0A=
+	{line-height:110%!important}=0A=
+img=0A=
+	{display:block;=0A=
+	border:none}=0A=
+#outlook a=0A=
+	{padding:0}=0A=
+.ReadMsgBody=0A=
+	{width:100%}=0A=
+.appleBody a=0A=
+	{color:#68440a;=0A=
+	text-decoration:none}=0A=
+.appleFooter a=0A=
+	{color:#999999;=0A=
+	text-decoration:none}=0A=
+body=0A=
+	{width:100%!important;=0A=
+	min-width:100%!important}=0A=
+html=0A=
+	{width:100%}=0A=
+body=0A=
+	{height:100%!important;=0A=
+	margin:0;=0A=
+	padding:0;=0A=
+	width:100%!important}=0A=
+img=0A=
+	{display:block}=0A=
+table=0A=
+	{border-collapse:collapse!important}=0A=
+#backgroundTable=0A=
+	{margin:0;=0A=
+	padding:0;=0A=
+	width:100%!important;=0A=
+	line-height:100%!important}=0A=
+-->=0A=
+</style><style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin=
+-bottom:0;}</style>
+</head>
+<body ocsi=3D"0" fpstyle=3D"1" topmargin=3D"0" leftmargin=3D"0" alink=3D"#0=
+00002" bgcolor=3D"#e6e6e6" link=3D"#000002" marginheight=3D"0" marginwidth=
+=3D"0" vlink=3D"#000002">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Avec aussi un petit film sur le N=E9pal, on vous le recommande tres =
+fort<br>
+Bon we de l' Ascension pour ceux qui pourront en profiter<br>
+V=E9ronique DAVREUX
+<div style=3D"font-family: Times New Roman; color: #000000; font-size: 16px=
+">
+<div>
+<table style=3D"BORDER-COLLAPSE: collapse" class=3D"3a8ded91-40ea-4011-8a93=
+-273b83b3e250Table" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr>
+<td style=3D"HEIGHT: 56px">
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"3a8ded91-40ea-401=
+1-8a93-273b83b3e250">
+</p>
+<hr color=3D"#0099ff" size=3D"1">
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt"></p>
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt"></p>
+<p></p>
+</td>
+</tr>
+<tr style=3D"TEXT-DECORATION: ">
+<td>
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"d25f83d3-f6d0-434=
+b-863d-6b70d6fe505d">
+</p>
+<table style=3D"BORDER-BOTTOM: medium none; WIDTH: 503px; BORDER-COLLAPSE: =
+collapse; HEIGHT: 163px; BORDER-TOP: medium none" class=3D"d25f83d3-f6d0-43=
+4b-863d-6b70d6fe505dTable" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+>
+<tbody>
+<tr style=3D"TEXT-DECORATION: ">
+<td style=3D"WIDTH: auto">
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"d25f83d3-f6d0-434=
+b-863d-6b70d6fe505d" align=3D"left">
+<font color=3D"#0099ff" size=3D"2" face=3D"Arial">Comit=E9 de la Seine Mari=
+time pour l'UNICEF&nbsp;&nbsp;&nbsp;Rouen&nbsp;&nbsp;&nbsp;</font><br>
+<font color=3D"#808080" size=3D"1" face=3D"Arial"><strong></strong></font><=
+br>
+<strong><font color=3D"#808080" size=3D"1">&#43;33 2 35 88 98 88</font></st=
+rong><strong><br>
+<font color=3D"#808080" size=3D"1">26 rue Saint Nicolas 76000 ROUEN&nbsp;&n=
+bsp; </font></strong><strong><br>
+<font color=3D"#0099ff" size=3D"1" face=3D"Arial"><strong><a href=3D"http:/=
+/www.unicef.fr/">www.unicef.fr</a></strong></font>
+</strong></p>
+</td>
+<td class=3D"WIDTH">
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"d25f83d3-f6d0-434=
+b-863d-6b70d6fe505d" align=3D"right">
+<a href=3D"http://www.unicef.fr"></a>&nbsp;</p>
+</td>
+<td><a href=3D"http://www.unicef.fr/"></a>
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"d25f83d3-f6d0-434=
+b-863d-6b70d6fe505d" align=3D"right">
+<a title=3D"" href=3D"https://www.unicef.fr/article/unissons-nous-pour-l-ed=
+ucation-des-enfants-dans-le-monde"><img style=3D"WIDTH: 100px; HEIGHT: 100p=
+x" border=3D"0" src=3D"cid:LEGS-EDUC_signature-email_cb642751-99bc-48a8-b8c=
+1-5a27f0edfb24.gif"></a></p>
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"d25f83d3-f6d0-434=
+b-863d-6b70d6fe505d" align=3D"right">
+&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt"></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style=3D"FONT-FAMILY: Arial; FONT-SIZE: 10pt" class=3D"d25f83d3-f6d0-434=
+b-863d-6b70d6fe505d">
+</p>
+<hr color=3D"#0099ff" size=3D"1">
+<p></p>
+</td>
+</tr>
+</tbody>
+</table>
+<a href=3D"http://www.unicef.fr"></a></div>
+<hr tabindex=3D"-1">
+<div style=3D"direction: ltr;" id=3D"divRpF905926"><font face=3D"Tahoma" co=
+lor=3D"#000000" size=3D"2"><b>De :</b> Unicef France [contact@newsletter.in=
+fos-unicef.fr]<br>
+<b>Envoy=E9 :</b> mercredi 4 mai 2016 11:09<br>
+<b>=C0 :</b> 76 UNICEF Seine Maritime<br>
+<b>Objet :</b> El=E8ves kidnapp=E9s, utilis=E9s dans des attaques-suicides =
+: le Nig=E9ria sous Boko Haram<br>
+</font><br>
+</div>
+<div></div>
+<div>
+<table id=3D"pxvs" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%">
+<tbody>
+<tr>
+<td><img src=3D"http://mm.eulerian.net/dynview/unicef/pix.gif?eml-publisher=
+=3D1000mercis&amp;eml-name=3DNewsletter%5FMai%5F2016&amp;eemail=3Dunicef76%=
+40unicef.fr&amp;eparam=3DUNICEFCRM2_M_598_431102_1034000167180000234" heigh=
+t=3D"1" border=3D"0" width=3D"1">
+<img src=3D"http://newsletter.infos-unicef.fr/o.ashx?cde=3D1ENjMn5aMAM5575c=
+&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;ot=3D0" height=3D"1" width=3D=
+"1"></td>
+</tr>
+</tbody>
+</table>
+<table align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td align=3D"center" valign=3D"top">
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td class=3D"texte bgwhite" style=3D"font-family:Arial; font-size:12px; col=
+or:#939393; text-decoration:none" align=3D"center" bgcolor=3D"#e6e6e6" vali=
+gn=3D"top" width=3D"800">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D1" style=3D"font-family:Arial; font-size:12px; =
+color:#939393; text-decoration:underline" target=3D"_blank"><strong>Autres =
+actus
+ : l'=E9ducation, le pouvoir du legs, in=E9galit=E9s en France... et retour=
+ sur le N=E9pal</strong></a></td>
+</tr>
+<tr id=3D"zoneMiroir">
+<td class=3D" bgwhite" style=3D"font-family:Arial; font-size:11px; color:#9=
+39393; text-decoration:none" height=3D"40" align=3D"center" bgcolor=3D"#e6e=
+6e6" valign=3D"top">
+Si cet email ne s'affiche pas correctement, vous pouvez le visualiser <a hr=
+ef=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=
+=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400016718000=
+0234&amp;t=3D1&amp;r=3D0&amp;NOM=3DPlaideurs&amp;PRENOM=3DTous&amp;ID_CIVIL=
+ITE=3D1" id=3D"miroir" style=3D"font-family:Arial; font-size:11px; color:#9=
+39393; text-decoration:underline" target=3D"_blank">
+gr=E2ce =E0 ce lien</a>.</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td align=3D"center">
+<table bgcolor=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+>
+<tbody>
+<tr>
+<td align=3D"left">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td>
+<table class=3D"resize" align=3D"left" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"577">
+<tbody>
+<tr>
+<td class=3D"hide" width=3D"80"></td>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D2" target=3D"_blank"><img src=3D"http://s.c=
+dn.1000mercis.com/Unicef/tpl/2/logo.jpg" alt=3D"Unicef" class=3D"resizeLogo=
+" style=3D"display:block" border=3D"0" width=3D"208"></a></td>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"50"></td>
+<td style=3D"text-align:center; vertical-align:middle; font-family:arial; f=
+ont-size:16px; color:#797979" align=3D"center" bgcolor=3D"#ffffff" valign=
+=3D"middle" width=3D"239">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D3" class=3D"txtResize" style=3D"text-decoration=
+:underline; font-family:arial; font-size:16px; color:#797979" target=3D"_bl=
+ank">MON
+ ESPACE DONATEUR</a></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"left" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"223">
+<tbody>
+<tr>
+<td class=3D"resize" align=3D"center" width=3D"143">
+<table bgcolor=3D"#eb1d78" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"143">
+<tbody>
+<tr>
+<td class=3D"hide" align=3D"center" bgcolor=3D"#EC1D78"><img src=3D"http://=
+s.cdn.1000mercis.com/Unicef/tpl/2/don1.jpg" style=3D"display:block" height=
+=3D"42" border=3D"0" width=3D"143"></td>
+</tr>
+<tr>
+<td class=3D"resize" align=3D"center" width=3D"143">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td class=3D"mobile resizeCoeur" align=3D"center" bgcolor=3D"#EC1D78" width=
+=3D"0"><img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/coeur2.jpg" cla=
+ss=3D"mobile resizeCoeur" style=3D"" height=3D"0" border=3D"0" width=3D"0">=
+</td>
+<td class=3D"paddingTop10" height=3D"32" align=3D"center" bgcolor=3D"#eb1d7=
+8" valign=3D"top" width=3D"143">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D4" style=3D"text-decoration:none; color:#ffffff=
+; font-size:14px; font-family:arial" target=3D"_blank"><strong>JE FAIS UN D=
+ON</strong></a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td class=3D"hide" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td class=3D"hide" width=3D"80"></td>
+<td style=3D"color:#ffffff; font-family:arial; font-size:18px; vertical-ali=
+gn:middle" height=3D"39" align=3D"center" bgcolor=3D"#0099ff" valign=3D"mid=
+dle" width=3D"640">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D5" style=3D"text-decoration:none; color:#ffffff=
+; text-align:center; font-family:arial; font-size:18px" target=3D"_blank">N=
+EWSLETTER
+ MAI 2016</a></td>
+<td class=3D"hide" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td height=3D"30" width=3D"800">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td class=3D"hide" width=3D"80"></td>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D6" target=3D"_blank"><img src=3D"http://s.c=
+dn.1000mercis.com/Unicef/80/001962_NL-une-Nigeria-v1.jpg" alt=3D"Titre" tit=
+le=3D"Titre" class=3D"resize" style=3D"display:block" height=3D"206" border=
+=3D"0" width=3D"640"></a></td>
+<td class=3D"hide" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td class=3D"resize" align=3D"center" bgcolor=3D"#FFFFFF">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td class=3D"hide" bgcolor=3D"#FFFFFF" width=3D"225"></td>
+<td style=3D"text-align:center; font-family:arial; font-size:16px; color:#f=
+fffff; vertical-align:middle" height=3D"34" align=3D"center" bgcolor=3D"#00=
+4060" valign=3D"middle" width=3D"190">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D7" style=3D"text-align:center; font-family:aria=
+l; font-size:16px; color:#ffffff; text-decoration:none" target=3D"_blank">V=
+oix
+ du terrain</a></td>
+<td class=3D"hide" bgcolor=3D"#FFFFFF" width=3D"225"></td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"texte" height=3D"15" align=3D"center" bgcolor=3D"#ffffff" vali=
+gn=3D"middle" width=3D"620">
+</td>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"texte" style=3D"text-align:center; font-size:20px; font-family=
+:arial; color:#363636; vertical-align:middle" height=3D"67" align=3D"center=
+" bgcolor=3D"#ffffff" valign=3D"middle" width=3D"620">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D8" style=3D"text-decoration:none; color:#363636=
+; font-size:20px; font-family:arial" target=3D"_blank"><strong>Avoir peur d=
+=92une
+ =E9coli=E8re de 11 ans...<br>
+Le Nig=E9ria sous Boko Haram</strong></a></td>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"hide" style=3D"text-align:center; font-size:16px; font-family:=
+arial; color:#363636; vertical-align:top" height=3D"96" bgcolor=3D"#ffffff"=
+ valign=3D"top" width=3D"620">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D9" style=3D"text-decoration:none; color:#363636=
+; font-size:16px; font-family:arial" target=3D"_blank">Depuis l=92enl=E8vem=
+ent de
+ 270 lyc=E9ennes =E0 Chibok, 2000 autres enfants ont =E9t=E9 kidnapp=E9s, 1=
+.3 million sont d=E9plac=E9s=85 et le monde l=92a =E0 peine remarqu=E9.<br>
+Le point sur cette terrible crise qui prend pour cible l=92=E9ducation, et =
+les enfants.</a><br>
+<br>
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D10" style=3D"text-decoration:none; color:#009de=
+0; font-size:16px; font-family:arial" target=3D"_blank">&gt; En savoir plus=
+</a></td>
+<td bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"texte" height=3D"15" align=3D"center" bgcolor=3D"#ffffff" vali=
+gn=3D"middle" width=3D"620">
+</td>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td class=3D"resize" align=3D"center" bgcolor=3D"#FFFFFF">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td class=3D"resize" align=3D"center" valign=3D"top" width=3D"640">
+<table align=3D"center" bgcolor=3D"#eb1d78" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0">
+<tbody>
+<tr>
+<td align=3D"left" bgcolor=3D"#eb1d78" valign=3D"top" width=3D"30"></td>
+<td valign=3D"top" width=3D"40"><a href=3D"http://newsletter.infos-unicef.f=
+r/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&am=
+p;i=3D431102&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D11" target=3D"_=
+blank"><img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/coeur.jpg" styl=
+e=3D"display:block" height=3D"53" border=3D"0" width=3D"40"></a></td>
+<td style=3D"font-size:16px; font-family:arial; color:#ffffff; vertical-ali=
+gn:middle" height=3D"53" align=3D"left" bgcolor=3D"#eb1d78" valign=3D"middl=
+e">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D12" style=3D"text-decoration:none; color:#fffff=
+f; text-align:center; font-size:16px; font-family:arial; text-transform:upp=
+ercase" target=3D"_blank"><strong>Faire
+ un don</strong></a></td>
+<td align=3D"left" bgcolor=3D"#eb1d78" valign=3D"top" width=3D"30"></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td height=3D"30" width=3D"800">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td align=3D"center">
+<table bgcolor=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+>
+<tbody>
+<tr>
+<td class=3D"resize" align=3D"center">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td>
+<table class=3D"resize" align=3D"left" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"410">
+<tbody>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td class=3D"resize" bgcolor=3D"#FFFFFF" width=3D"310">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"34" bgcolor=3D"#ffffff" width=3D"60"></td>
+<td style=3D"text-align:center; font-family:arial; font-size:16px; color:#f=
+fffff; vertical-align:middle" align=3D"center" bgcolor=3D"#004060" valign=
+=3D"middle" width=3D"190">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D13" style=3D"text-align:center; font-family:ari=
+al; font-size:16px; color:#ffffff; text-decoration:none" target=3D"_blank">=
+Votre
+ legs en action</a></td>
+<td height=3D"34" bgcolor=3D"#ffffff" width=3D"60"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td height=3D"15" align=3D"center" bgcolor=3D"#ffffff" valign=3D"middle" wi=
+dth=3D"310"></td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td bgcolor=3D"#ffffff" width=3D"10"><img src=3D"http://e.cdn.1000mercis.co=
+m/0_Spacer/spacer.jpg" alt=3D"" title=3D"" style=3D"" border=3D"0" width=3D=
+"10"></td>
+<td style=3D"font-family:arial; font-size:20px; color:#363636; text-align:c=
+enter; vertical-align:middle" height=3D"92" bgcolor=3D"#ffffff" width=3D"29=
+0">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D14" style=3D"text-decoration:none; color:#36363=
+6; font-size:20px; font-family:arial" target=3D"_blank"><strong>Florence :<=
+br>
+&quot;Une grande paix int=E9rieure&quot;</strong></a></td>
+<td bgcolor=3D"#ffffff" width=3D"10"><img src=3D"http://e.cdn.1000mercis.co=
+m/0_Spacer/spacer.jpg" alt=3D"" title=3D"" style=3D"" border=3D"0" width=3D=
+"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D15" target=3D"_blank"><img src=3D"http://s.=
+cdn.1000mercis.com/Unicef/80/001970_NL_VDEA_Florence-Bienfaitrice.jpg" alt=
+=3D"Votre legs en action" title=3D"Votre legs en action" class=3D"resize" s=
+tyle=3D"display:block" height=3D"198" border=3D"0" width=3D"310"></a></td>
+</tr>
+<tr>
+<td class=3D"hide">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"100" bgcolor=3D"#0099ff" width=3D"10">&nbsp;</td>
+<td style=3D"text-align:center; font-size:16px; font-family:arial; color:#f=
+fffff" height=3D"100" align=3D"center" bgcolor=3D"#0099ff" valign=3D"top" w=
+idth=3D"290">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D16" style=3D"text-decoration:none; color:#fffff=
+f; font-size:16px; font-family:arial" target=3D"_blank">Le legs s=92est imp=
+os=E9
+ comme une =E9vidence pour Florence.<br>
+Elle transmet une partie de son patrimoine aux enfants<br>
+du monde pour les aider =E0 se r=E9aliser.</a></td>
+<td height=3D"100" bgcolor=3D"#0099ff" width=3D"10">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3D"hide" height=3D"15" align=3D"center" bgcolor=3D"#0099ff" valig=
+n=3D"middle" width=3D"310">
+</td>
+</tr>
+<tr>
+<td class=3D"hide">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"20" bgcolor=3D"#0099ff" width=3D"10">&nbsp;</td>
+<td style=3D"font-size:16px; font-family:arial; color:#ffffff" height=3D"20=
+" align=3D"center" bgcolor=3D"#0099ff" valign=3D"top">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D17" style=3D"text-decoration:none; color:#fffff=
+f; font-size:16px; font-family:arial" target=3D"_blank">&gt; Lire son t=E9m=
+oignage</a></td>
+<td height=3D"20" bgcolor=3D"#0099ff" width=3D"10">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3D"hide" height=3D"15" align=3D"center" bgcolor=3D"#0099ff" valig=
+n=3D"middle" width=3D"310">
+</td>
+</tr>
+<tr>
+<td bgcolor=3D"#eb1d78">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td align=3D"center" bgcolor=3D"#eb1d78" valign=3D"top">
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td align=3D"left" valign=3D"top" width=3D"10"></td>
+<td valign=3D"top" width=3D"40"><a href=3D"http://newsletter.infos-unicef.f=
+r/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&am=
+p;i=3D431102&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D18" target=3D"_=
+blank"><img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/coeur.jpg" styl=
+e=3D"display:block" height=3D"53" border=3D"0" width=3D"40"></a></td>
+<td style=3D"font-size:16px; font-family:arial; color:#ffffff; vertical-ali=
+gn:middle" height=3D"53" align=3D"left" bgcolor=3D"#eb1d78" valign=3D"middl=
+e">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D19" style=3D"text-decoration:none; color:#fffff=
+f; text-align:center; font-size:16px; font-family:arial; text-transform:upp=
+ercase" target=3D"_blank"><strong>=CAtre
+ recontact=E9-e</strong></a></td>
+<td align=3D"left" valign=3D"top" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"20"></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"left" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"390">
+<tbody>
+<tr>
+<td class=3D"padTop resize" width=3D"310">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D20" target=3D"_blank"><img src=3D"http://s.=
+cdn.1000mercis.com/Unicef/80/001974_Nl_Chiffre-Du-Mois.jpg" alt=3D"Titre" t=
+itle=3D"Titre" class=3D"resize" style=3D"display:block" height=3D"215" bord=
+er=3D"0" width=3D"310"></a></td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"34" bgcolor=3D"#ffffff" width=3D"60"></td>
+<td style=3D"text-align:center; font-family:arial; font-size:16px; color:#f=
+fffff; vertical-align:middle" align=3D"center" bgcolor=3D"#004060" valign=
+=3D"middle" width=3D"190">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D21" style=3D"text-align:center; font-family:ari=
+al; font-size:16px; color:#ffffff; text-decoration:none" target=3D"_blank">=
+=C9ducation</a></td>
+<td height=3D"34" bgcolor=3D"#ffffff" width=3D"60"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td height=3D"15" align=3D"center" bgcolor=3D"#ffffff" valign=3D"middle" wi=
+dth=3D"310"></td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"175" bgcolor=3D"#ffffff" width=3D"10"><img src=3D"http://e.cd=
+n.1000mercis.com/0_Spacer/spacer.jpg" alt=3D"" title=3D"" style=3D"" border=
+=3D"0" width=3D"10"></td>
+<td style=3D"text-align:center; color:#363636; font-size:16px; font-family:=
+arial" height=3D"175" align=3D"center" bgcolor=3D"#FFFFFF" valign=3D"middle=
+" width=3D"290">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D22" style=3D"text-decoration:none; color:#0099f=
+f; font-size:60px; font-family:arial" target=3D"_blank"><span style=3D"font=
+-size:72px">4
+ 000</span></a><br>
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D23" style=3D"text-decoration:none; color:#36363=
+6; font-size:16px; font-family:arial" target=3D"_blank">professeurs syriens
+ sont encourag=E9s =E0 l=92enseignement volontaire en Turquie.</a></td>
+<td height=3D"175" bgcolor=3D"#ffffff" width=3D"10"><img src=3D"http://e.cd=
+n.1000mercis.com/0_Spacer/spacer.jpg" alt=3D"" title=3D"" style=3D"" border=
+=3D"0" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td height=3D"15" align=3D"center" bgcolor=3D"#ffffff" valign=3D"middle" wi=
+dth=3D"310"></td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"20" bgcolor=3D"#ffffff" width=3D"10"><img src=3D"http://e.cdn=
+.1000mercis.com/0_Spacer/spacer.jpg" alt=3D"" title=3D"" style=3D"" border=
+=3D"0" width=3D"10"></td>
+<td style=3D"font-size:16px; font-family:arial; color:#009de0" height=3D"20=
+" align=3D"center" bgcolor=3D"#FFFFFF" valign=3D"top">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D24" style=3D"text-decoration:none; color:#009de=
+0; font-size:16px; font-family:arial" target=3D"_blank">&gt; En savoir plus=
+</a></td>
+<td height=3D"20" bgcolor=3D"#ffffff" width=3D"10"><img src=3D"http://e.cdn=
+.1000mercis.com/0_Spacer/spacer.jpg" alt=3D"" title=3D"" style=3D"" border=
+=3D"0" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td height=3D"15" align=3D"center" bgcolor=3D"#ffffff" valign=3D"middle" wi=
+dth=3D"310"></td>
+</tr>
+<tr>
+<td class=3D"resize" align=3D"center" bgcolor=3D"#eb1d78" valign=3D"top" wi=
+dth=3D"310">
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td align=3D"left" valign=3D"top" width=3D"10"></td>
+<td valign=3D"top" width=3D"40"><a href=3D"http://newsletter.infos-unicef.f=
+r/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&am=
+p;i=3D431102&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D25" target=3D"_=
+blank"><img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/coeur.jpg" styl=
+e=3D"display:block" height=3D"53" border=3D"0" width=3D"40"></a></td>
+<td style=3D"font-size:16px; font-family:arial; color:#ffffff; vertical-ali=
+gn:middle" height=3D"53" align=3D"left" bgcolor=3D"#eb1d78" valign=3D"middl=
+e">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D26" style=3D"text-decoration:none; color:#fffff=
+f; text-align:center; font-size:16px; font-family:arial; text-transform:upp=
+ercase" target=3D"_blank"><strong>Faire
+ un don</strong></a></td>
+<td align=3D"left" valign=3D"top" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td height=3D"30" width=3D"800">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td class=3D"hide" height=3D"30" bgcolor=3D"#0099ff" width=3D"800">&nbsp;</=
+td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td align=3D"center">
+<table bgcolor=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+>
+<tbody>
+<tr>
+<td bgcolor=3D"#0099FF" valign=3D"top">
+<table class=3D"resize" align=3D"left" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"410">
+<tbody>
+<tr>
+<td class=3D"hide" bgcolor=3D"#0099FF" width=3D"80"></td>
+<td class=3D"resize" bgcolor=3D"#E6E6E6" width=3D"310">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D27" target=3D"_blank"><img src=3D"http://s.=
+cdn.1000mercis.com/Unicef/80/001980_Nl_JeComprends_Education.jpg" alt=3D"Ti=
+tre" title=3D"Titre" class=3D"resize" style=3D"display:block" height=3D"197=
+" border=3D"0" width=3D"310"></a></td>
+</tr>
+<tr>
+<td style=3D"font-size:20px; font-family:arial; color:#ffffff; text-align:c=
+enter; vertical-align:middle; text-transform:uppercase" height=3D"50" align=
+=3D"center" bgcolor=3D"#004060" valign=3D"middle">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D28" style=3D"text-align:center; font-family:ari=
+al; font-size:20px; color:#ffffff; text-decoration:none" target=3D"_blank">=
+<strong>Je
+ comprends</strong></a></td>
+</tr>
+<tr>
+<td valign=3D"top"><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=
+=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102=
+&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D29" target=3D"_blank"><img =
+src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/fleche_bas.jpg" class=3D"re=
+size" style=3D"display:block" height=3D"31" border=3D"0" width=3D"310"></a>=
+</td>
+</tr>
+<tr>
+<td height=3D"10" align=3D"center" bgcolor=3D"#ffffff" valign=3D"middle" wi=
+dth=3D"310"></td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"73" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td style=3D"font-size:20px; font-family:arial; color:#363636; vertical-ali=
+gn:middle" height=3D"73" align=3D"center" bgcolor=3D"#FFFFFF" valign=3D"top=
+">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D30" style=3D"text-decoration:none; color:#36363=
+6; font-size:20px; font-family:arial" target=3D"_blank"><strong>Acc=E8s =E0=
+ l'=E9ducation<br>
+et =E9galit=E9 des sexes</strong></a></td>
+<td height=3D"73" bgcolor=3D"#ffffff" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3D"hide">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"90" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td style=3D"font-size:16px; font-family:arial; color:#363636; text-align:c=
+enter" height=3D"90" align=3D"center" bgcolor=3D"#FFFFFF" valign=3D"top">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D31" style=3D"text-decoration:none; color:#36363=
+6; font-size:16px; font-family:arial" target=3D"_blank">Des millions d=92en=
+fants
+ dans le monde<br>
+ne sont pas scolaris=E9s.<br>
+Notre objectif : une =E9ducation pour tous !</a></td>
+<td height=3D"90" bgcolor=3D"#ffffff" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"43" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td style=3D"font-size:16px; font-family:arial; color:#009de0" height=3D"43=
+" align=3D"center" bgcolor=3D"#FFFFFF" valign=3D"top">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D32" style=3D"text-decoration:none; color:#009de=
+0; font-size:16px; font-family:arial" target=3D"_blank">&gt; Lire le dossie=
+r</a></td>
+<td height=3D"43" bgcolor=3D"#ffffff" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td class=3D"hide" bgcolor=3D"#0099FF" width=3D"20"></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"left" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"390">
+<tbody>
+<tr>
+<td class=3D"resize padTop" bgcolor=3D"#E6E6E6" width=3D"310">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D33" target=3D"_blank"><img src=3D"http://s.=
+cdn.1000mercis.com/Unicef/80/001985_NL_Jagis.jpg" alt=3D"Titre" title=3D"Ti=
+tre" class=3D"resize" style=3D"display:block" height=3D"197" border=3D"0" w=
+idth=3D"310"></a></td>
+</tr>
+<tr>
+<td style=3D"font-size:20px; font-family:arial; color:#ffffff; text-align:c=
+enter; vertical-align:middle; text-transform:uppercase" height=3D"50" align=
+=3D"center" bgcolor=3D"#004060" valign=3D"middle">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D34" style=3D"text-align:center; font-family:ari=
+al; font-size:20px; color:#ffffff; text-decoration:none" target=3D"_blank">=
+<strong>J'agis
+ !</strong></a></td>
+</tr>
+<tr>
+<td valign=3D"top"><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=
+=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102=
+&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D35" target=3D"_blank"><img =
+src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/fleche_bas.jpg" class=3D"re=
+size" style=3D"display:block" height=3D"31" border=3D"0" width=3D"310"></a>=
+</td>
+</tr>
+<tr>
+<td height=3D"10" align=3D"center" bgcolor=3D"#ffffff" valign=3D"middle" wi=
+dth=3D"310"></td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"73" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td style=3D"font-size:20px; font-family:arial; color:#363636; vertical-ali=
+gn:middle" height=3D"73" align=3D"center" bgcolor=3D"#FFFFFF" valign=3D"mid=
+dle">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D36" style=3D"text-decoration:none; color:#36363=
+6; font-size:20px; font-family:arial" target=3D"_blank"><strong>Je transmet=
+s
+ mon patrimoine aux enfants</strong></a></td>
+<td height=3D"73" bgcolor=3D"#ffffff" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3D"hide">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"90" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td style=3D"font-size:16px; font-family:arial; color:#363636; text-align:c=
+enter" height=3D"90" align=3D"center" bgcolor=3D"#FFFFFF" valign=3D"top">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D37" style=3D"text-decoration:none; color:#36363=
+6; font-size:16px; font-family:arial" target=3D"_blank">En l=E9guant une pa=
+rtie
+ de votre patrimoine =E0 l=92UNICEF, vous offrez un meilleur avenir aux enf=
+ants.</a></td>
+<td height=3D"90" bgcolor=3D"#ffffff" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"43" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td style=3D"font-size:16px; font-family:arial; color:#009de0" height=3D"43=
+" align=3D"center" bgcolor=3D"#FFFFFF" valign=3D"top">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D38" style=3D"text-decoration:none; color:#009de=
+0; font-size:16px; font-family:arial" target=3D"_blank">&gt; Demander la br=
+ochure</a></td>
+<td height=3D"43" bgcolor=3D"#ffffff" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td class=3D"hide" bgcolor=3D"#0099FF" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td class=3D"hide" height=3D"39" bgcolor=3D"#0099ff" width=3D"800">&nbsp;</=
+td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td height=3D"30" width=3D"800">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td align=3D"center">
+<table bgcolor=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+>
+<tbody>
+<tr>
+<td class=3D"mobile" style=3D"font-size:0px" align=3D"center"><a href=3D"ht=
+tp://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=3D598&a=
+mp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167180000234&amp=
+;t=3D1&amp;r=3D39" target=3D"_blank"><img src=3D"http://s.cdn.1000mercis.co=
+m/1MSending/Templates/spacer.gif" alt=3D"" style=3D"display:block" border=
+=3D"0" width=3D"10"></a></td>
+</tr>
+<tr>
+<td class=3D"resize" align=3D"center">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td width=3D"320">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"34" bgcolor=3D"#ffffff" width=3D"65"><img src=3D"http://s.cdn=
+.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"display:b=
+lock" border=3D"0" width=3D"10"></td>
+<td style=3D"text-align:center; font-family:arial; font-size:16px; color:#f=
+fffff; vertical-align:middle" align=3D"center" bgcolor=3D"#004060" valign=
+=3D"middle" width=3D"190">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D40" style=3D"text-align:center; font-family:ari=
+al; font-size:16px; color:#ffffff; text-decoration:none" target=3D"_blank">=
+Nouveau
+ rapport</a></td>
+<td height=3D"34" bgcolor=3D"#ffffff" width=3D"65"><img src=3D"http://s.cdn=
+.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"display:b=
+lock" border=3D"0" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td height=3D"15" align=3D"center" bgcolor=3D"#ffffff" valign=3D"middle" wi=
+dth=3D"320"></td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"63" bgcolor=3D"#ffffff" width=3D"10"><img src=3D"http://s.cdn=
+.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"display:b=
+lock" border=3D"0" width=3D"10"></td>
+<td style=3D"color:#363636; font-size:20px; font-family:arial" height=3D"63=
+" align=3D"center" bgcolor=3D"#FFFFFF" valign=3D"middle">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D41" style=3D"text-decoration:none; color:#36363=
+6; font-size:20px; font-family:arial" target=3D"_blank"><strong>In=E9galit=
+=E9s :
+ la France 28e<br>
+sur 35 pays riches</strong></a></td>
+<td height=3D"63" bgcolor=3D"#ffffff" width=3D"10"><img src=3D"http://s.cdn=
+.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"display:b=
+lock" border=3D"0" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3D"hide" style=3D"font-size:0px" height=3D"10" align=3D"center" b=
+gcolor=3D"#FFFFFF" valign=3D"middle">
+</td>
+</tr>
+<tr>
+<td class=3D"hide">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"144" bgcolor=3D"#ffffff" width=3D"10"><img src=3D"http://s.cd=
+n.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"display:=
+block" border=3D"0" width=3D"10"></td>
+<td style=3D"color:#363636; font-size:16px; font-family:arial" height=3D"14=
+4" align=3D"center" bgcolor=3D"#FFFFFF" valign=3D"top">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D42" style=3D"text-decoration:none; color:#36363=
+6; font-size:16px; font-family:arial" target=3D"_blank"><br>
+L'UNICEF a class=E9 les pays<br>
+de l'UE/OCDE selon les in=E9galit=E9s<br>
+(revenus, =E9ducation, sant=E9, satisfaction dans la vie) entre les enfants=
+,<br>
+et les r=E9sultats sont pr=E9occupants...</a></td>
+<td height=3D"144" bgcolor=3D"#ffffff" width=3D"10"><img src=3D"http://s.cd=
+n.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"display:=
+block" border=3D"0" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"34" bgcolor=3D"#ffffff" width=3D"10"><img src=3D"http://s.cdn=
+.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"display:b=
+lock" border=3D"0" width=3D"10"></td>
+<td style=3D"color:#363636; font-size:16px; font-family:arial" height=3D"34=
+" align=3D"center" bgcolor=3D"#FFFFFF" valign=3D"bottom">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D43" style=3D"text-decoration:none; color:#009de=
+0; font-size:16px; font-family:arial" target=3D"_blank">&gt; D=E9couvrir le=
+s r=E9sultats</a></td>
+<td height=3D"34" bgcolor=3D"#ffffff" width=3D"10"><img src=3D"http://s.cdn=
+.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"display:b=
+lock" border=3D"0" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td height=3D"15" align=3D"center" bgcolor=3D"#ffffff" valign=3D"middle" wi=
+dth=3D"320"></td>
+</tr>
+<tr>
+<td align=3D"center" bgcolor=3D"#eb1d78" valign=3D"top" width=3D"321">
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td align=3D"left" valign=3D"top" width=3D"10"><img src=3D"http://s.cdn.100=
+0mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"display:block=
+" border=3D"0" width=3D"10"></td>
+<td valign=3D"top" width=3D"40"><a href=3D"http://newsletter.infos-unicef.f=
+r/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&am=
+p;i=3D431102&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D44" target=3D"_=
+blank"><img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/coeur.jpg" styl=
+e=3D"display:block" height=3D"53" border=3D"0" width=3D"40"></a></td>
+<td style=3D"font-size:16px; font-family:arial; color:#ffffff; vertical-ali=
+gn:middle" height=3D"53" align=3D"left" bgcolor=3D"#eb1d78" valign=3D"middl=
+e">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D45" style=3D"text-decoration:none; color:#fffff=
+f; text-align:center; font-size:16px; font-family:arial; text-transform:upp=
+ercase" target=3D"_blank"><strong>Faire
+ un don</strong></a></td>
+<td align=3D"left" valign=3D"top" width=3D"10"><img src=3D"http://s.cdn.100=
+0mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"display:block=
+" border=3D"0" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td class=3D"hide"><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=
+=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102=
+&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D46" target=3D"_blank"><img =
+src=3D"http://s.cdn.1000mercis.com/Unicef/80/001995_NL_actu_innocenti.png" =
+alt=3D"Nouveau rapport" title=3D"Nouveau rapport" class=3D"hide" style=3D"d=
+isplay:block" height=3D"368" border=3D"0" width=3D"320"></a></td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" bgcolor=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td height=3D"30" width=3D"800">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" bgcolor=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td class=3D"hide" width=3D"80"></td>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D47" target=3D"_blank"><img src=3D"http://s.=
+cdn.1000mercis.com/Unicef/80/001996_NL_En-Images_Nepal.jpg" alt=3D"Text" ti=
+tle=3D"Text" class=3D"resize" style=3D"display:block" height=3D"285" border=
+=3D"0" width=3D"640"></a></td>
+<td class=3D"hide" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" bgcolor=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"texte" height=3D"15" align=3D"center" bgcolor=3D"#ffffff" vali=
+gn=3D"middle" width=3D"620">
+</td>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"texte" style=3D"text-align:center; font-size:16px; font-family=
+:arial; color:#363636; vertical-align:middle" height=3D"70" align=3D"center=
+" bgcolor=3D"#ffffff" valign=3D"middle" width=3D"620">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D48" style=3D"text-decoration:none; color:#36363=
+6; font-size:20px; font-family:arial" target=3D"_blank"><strong>Les enfants
+ du N=E9pal retrouvent le sourire</strong></a><br>
+<br class=3D"hide">
+<a class=3D"hide" href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1E=
+NjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;=
+ue=3D1034000167180000234&amp;t=3D1&amp;r=3D49" style=3D"text-decoration:non=
+e; color:#363636; font-size:16px; font-family:arial" target=3D"_blank">Un a=
+n apr=E8s
+ le s=E9isme, les enfants reconstruisent leur vie gr=E2ce =E0 vous !</a></t=
+d>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"texte" height=3D"15" align=3D"center" bgcolor=3D"#ffffff" vali=
+gn=3D"middle" width=3D"620">
+</td>
+<td class=3D"hide" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" bgcolor=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td bgcolor=3D"#eb1d78">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td class=3D"hide" align=3D"left" bgcolor=3D"#E6E6E6" valign=3D"top" width=
+=3D"80"></td>
+<td class=3D"resize" align=3D"center" valign=3D"top" width=3D"640">
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td align=3D"left" valign=3D"top" width=3D"5"></td>
+<td valign=3D"top" width=3D"40"><a href=3D"http://newsletter.infos-unicef.f=
+r/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&am=
+p;i=3D431102&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D50" target=3D"_=
+blank"><img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/coeur.jpg" styl=
+e=3D"display:block" height=3D"53" border=3D"0" width=3D"40"></a></td>
+<td style=3D"font-size:16px; font-family:arial; color:#ffffff; vertical-ali=
+gn:middle" height=3D"53" align=3D"left" bgcolor=3D"#eb1d78" valign=3D"middl=
+e">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D51" style=3D"text-decoration:none; color:#fffff=
+f; text-align:center; font-size:16px; font-family:arial; text-transform:upp=
+ercase" target=3D"_blank"><strong>Faire
+ un don</strong></a></td>
+<td align=3D"left" valign=3D"top" width=3D"5"></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td class=3D"hide" align=3D"left" bgcolor=3D"#E6E6E6" valign=3D"top" width=
+=3D"80"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" bgcolor=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td height=3D"30" width=3D"800">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td align=3D"center">
+<table bgcolor=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+>
+<tbody>
+<tr>
+<td class=3D"resize" align=3D"center">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td>
+<table class=3D"resize" align=3D"left" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"410">
+<tbody>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td class=3D"resize" width=3D"310">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D52" target=3D"_blank"><img src=3D"http://s.=
+cdn.1000mercis.com/Unicef/tpl/2/oeil.jpg" class=3D"resize" style=3D"display=
+:block" height=3D"77" border=3D"0" width=3D"310"></a></td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"68" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td style=3D"font-family:arial; font-size:20px; color:#363636; text-align:c=
+enter; vertical-align:middle" height=3D"68" bgcolor=3D"#ffffff" width=3D"29=
+0">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D53" style=3D"text-decoration:none; color:#36363=
+6; font-size:20px; font-family:arial" target=3D"_blank"><strong>L=92=9Cil d=
+e l=92UNICEF</strong></a><br>
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D54" style=3D"text-decoration:none; color:#36363=
+6; font-size:20px; font-family:arial" target=3D"_blank">La photo du mois</a=
+></td>
+<td height=3D"68" bgcolor=3D"#ffffff" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td class=3D"hide">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"59" bgcolor=3D"#ffffff" width=3D"10"></td>
+<td style=3D"text-align:center; font-size:16px; font-family:arial; color:#3=
+63636" height=3D"59" align=3D"center" bgcolor=3D"#FFFFFF" valign=3D"top" wi=
+dth=3D"290">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D55" style=3D"text-decoration:none; color:#36363=
+6; font-size:16px; font-family:arial" target=3D"_blank">Une photo nous a ma=
+rqu=E9s.
+ Nous&nbsp;vous l=92offrons en fond d=92=E9cran !</a></td>
+<td height=3D"59" bgcolor=3D"#ffffff" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D56" target=3D"_blank"><img src=3D"http://s.=
+cdn.1000mercis.com/Unicef/80/002003_NL_Fond_Ecran.JPG" alt=3D"L=92=9Cil de =
+l=92UNICEF" title=3D"L=92=9Cil de l=92UNICEF" class=3D"resize" style=3D"dis=
+play:block" height=3D"156" border=3D"0" width=3D"310"></a></td>
+</tr>
+<tr>
+<td class=3D"resize" align=3D"center" bgcolor=3D"#0099ff" valign=3D"top" wi=
+dth=3D"310">
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td align=3D"left" valign=3D"top" width=3D"10"></td>
+<td valign=3D"top" width=3D"38"><a href=3D"http://newsletter.infos-unicef.f=
+r/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&am=
+p;i=3D431102&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D57" target=3D"_=
+blank"><img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/telecharger.jpg=
+" style=3D"display:block" height=3D"53" border=3D"0" width=3D"38"></a></td>
+<td style=3D"font-size:16px; font-family:arial; color:#ffffff; vertical-ali=
+gn:middle" height=3D"53" align=3D"left" bgcolor=3D"#0099ff" valign=3D"middl=
+e">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D58" style=3D"text-decoration:none; color:#fffff=
+f; text-align:center; font-size:16px; font-family:arial; text-transform:upp=
+ercase" target=3D"_blank"><strong>Je
+ t=E9l=E9charge</strong></a></td>
+<td align=3D"left" valign=3D"top" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"20"></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"left" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"390">
+<tbody>
+<tr>
+<td class=3D"padTop resize" bgcolor=3D"#e6e6e6" width=3D"310">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td align=3D"left" valign=3D"top"><a href=3D"http://newsletter.infos-unicef=
+.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&=
+amp;i=3D431102&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D59" target=3D=
+"_blank"><img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/bulle.jpg" cl=
+ass=3D"resize" style=3D"display:block" height=3D"77" border=3D"0" width=3D"=
+310"></a></td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"64" bgcolor=3D"#0099FF" width=3D"10"></td>
+<td style=3D"text-align:center; font-size:20px; font-family:arial; color:#F=
+FFFFF" height=3D"64" align=3D"center" bgcolor=3D"#0099FF" valign=3D"top" wi=
+dth=3D"290">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D60" style=3D"text-align:center; font-family:ari=
+al; font-size:20px; color:#ffffff; text-decoration:none" target=3D"_blank">=
+Mots
+ de m=F4mes</a></td>
+<td height=3D"64" bgcolor=3D"#0099FF" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td align=3D"left" valign=3D"top"><a href=3D"http://newsletter.infos-unicef=
+.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&=
+amp;i=3D431102&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D61" target=3D=
+"_blank"><img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/gui_haut.jpg"=
+ class=3D"resize" style=3D"display:block" height=3D"29" border=3D"0" width=
+=3D"310"></a></td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"119" bgcolor=3D"#0099FF" width=3D"10"></td>
+<td style=3D"text-align:center; font-size:20px; font-family:arial; color:#F=
+FFFFF; vertical-align:middle" height=3D"119" align=3D"center" bgcolor=3D"#0=
+099FF" valign=3D"middle" width=3D"290">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D62" style=3D"text-decoration:none; color:#fffff=
+f; font-size:20px; font-family:arial" target=3D"_blank"><em>Le CP, c'est mi=
+eux
+ que la maternelle, y'a 5 r=E9cr=E9s !</em></a></td>
+<td height=3D"119" bgcolor=3D"#0099FF" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td align=3D"left" valign=3D"top"><a href=3D"http://newsletter.infos-unicef=
+.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&=
+amp;i=3D431102&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D63" target=3D=
+"_blank"><img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/gui_droit.jpg=
+" class=3D"resize" style=3D"display:block" height=3D"68" border=3D"0" width=
+=3D"310"></a></td>
+</tr>
+<tr>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+<tbody>
+<tr>
+<td height=3D"56" bgcolor=3D"#0099FF" width=3D"10"></td>
+<td style=3D"text-align:center; font-size:16px; font-family:arial; color:#F=
+FFFFF; text-transform:uppercase" height=3D"56" align=3D"center" bgcolor=3D"=
+#0099FF" valign=3D"top" width=3D"290">
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D64" style=3D"text-decoration:none; color:#fffff=
+f; font-size:16px; font-family:arial; text-align:center; text-transform:upp=
+ercase" target=3D"_blank"><span style=3D"font-size:11px">Axel,
+ 6 ans</span></a></td>
+<td height=3D"56" bgcolor=3D"#0099FF" width=3D"10"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td height=3D"30" width=3D"800">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td align=3D"center">
+<table bgcolor=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+>
+<tbody>
+<tr>
+<td>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80">&nbsp;</td>
+<td class=3D"hide" height=3D"73" bgcolor=3D"#ffffff" width=3D"64"></td>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td class=3D"hide" height=3D"34" bgcolor=3D"#ffffff" width=3D"401">&nbsp;</=
+td>
+</tr>
+<tr>
+<td class=3D"texteC" height=3D"39" bgcolor=3D"#ffffff" valign=3D"top"><a hr=
+ef=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=
+=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400016718000=
+0234&amp;t=3D1&amp;r=3D65" style=3D"text-decoration:none" target=3D"_blank"=
+><span style=3D"font-size:16px; font-family:arial; color:#888888; text-alig=
+n:left">Suivez
+ en temps r=E9el l'action de l'UNICEF :</span> <span style=3D"font-size:20p=
+x; font-family:arial; color:#009de0">
+<u>unicef.fr</u></span></a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td class=3D"resize" align=3D"center" bgcolor=3D"#FFFFFF">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"110">
+<tbody>
+<tr>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D66" target=3D"_blank"><img src=3D"http://s.=
+cdn.1000mercis.com/Unicef/tpl/2/twitter.jpg" alt=3D"Twitter" style=3D"displ=
+ay:block" height=3D"73" border=3D"0" width=3D"37"></a></td>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D67" target=3D"_blank"><img src=3D"http://s.=
+cdn.1000mercis.com/Unicef/tpl/2/facebook.jpg" alt=3D"Facebook" style=3D"dis=
+play:block" height=3D"73" border=3D"0" width=3D"37"></a></td>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D68" target=3D"_blank"><img src=3D"http://s.=
+cdn.1000mercis.com/Unicef/tpl/2/youtube.jpg" alt=3D"YouTube" style=3D"displ=
+ay:block" height=3D"73" border=3D"0" width=3D"36"></a></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td class=3D"hide" bgcolor=3D"white" width=3D"65">&nbsp;</td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+<td>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+<tbody>
+<tr>
+<td width=3D"110">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"110">
+<tbody>
+<tr>
+<td class=3D"hide" bgcolor=3D"#FFFFFF"><a href=3D"http://newsletter.infos-u=
+nicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unice=
+f.fr&amp;i=3D431102&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D69" targ=
+et=3D"_blank"><img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/gauche.j=
+pg" style=3D"display:block" height=3D"81" border=3D"0" width=3D"160"></a></=
+td>
+<td><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM55=
+75c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D103400=
+0167180000234&amp;t=3D1&amp;r=3D70" bgcolor=3D"#FFFFFF" target=3D"_blank"><=
+img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/confiance.jpg" alt=3D"D=
+on en confiance" style=3D"display:block" height=3D"81" border=3D"0" width=
+=3D"320"></a></td>
+<td class=3D"hide"><a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=
+=3D1ENjMn5aMAM5575c&amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102=
+&amp;ue=3D1034000167180000234&amp;t=3D1&amp;r=3D71" bgcolor=3D"#FFFFFF" tar=
+get=3D"_blank"><img src=3D"http://s.cdn.1000mercis.com/Unicef/tpl/2/droit.j=
+pg" style=3D"display:block" height=3D"81" border=3D"0" width=3D"160"></a></=
+td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td class=3D"hide" bgcolor=3D"#E6E6E6" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"resize" style=3D"min-width:700px" align=3D"center" bgcolor=
+=3D"#e6e6e6" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"800"=
+>
+<tbody>
+<tr>
+<td class=3D"texte" style=3D"font-family:Arial; font-size:12px; color:#9393=
+93; text-decoration:none" align=3D"center" bgcolor=3D"#e6e6e6" valign=3D"to=
+p" width=3D"800">
+<br>
+<br>
+Le Comit=E9 Fran=E7ais UNICEF collecte des dons pour l=92UNICEF Internation=
+al dans plus de 150 pays dont&nbsp;quelques-uns sont =E9voqu=E9s dans ce co=
+urriel. Gr=E2ce =E0 vos dons, nous pouvons : sauver, prot=E9ger, =E9duquer&=
+nbsp;et r=E9agir en urgence. Nous vous remercions de votre confiance
+ de votre soutient fid=E8le.<br>
+<br>
+Conform=E9ment =E0 la loi Informatique et Libert=E9s du 6 janvier 1978, vou=
+s disposez d=92un droit d=92acc=E8s, de&nbsp;rectification ou de suppressio=
+n des donn=E9es personnelles vous concernant.</td>
+</tr>
+<tr>
+<td class=3D"texte" style=3D"font-family:Arial; font-size:12px; color:#9393=
+93; text-decoration:none" align=3D"center" bgcolor=3D"#e6e6e6" valign=3D"to=
+p" width=3D"800">
+<br>
+<a href=3D"http://newsletter.infos-unicef.fr/c.ashx?cde=3D1ENjMn5aMAM5575c&=
+amp;m=3D598&amp;e=3Dunicef76%40unicef.fr&amp;i=3D431102&amp;ue=3D1034000167=
+180000234&amp;t=3D1&amp;r=3D72" id=3D"desabo" style=3D"font-size:12px; font=
+-family:arial; color:#797979; text-align:center; text-decoration:underline"=
+ target=3D"_blank">Je
+ g=E8re mes abonnements UNICEF.</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"hide" align=3D"center" bgcolor=3D"#e6e6e6" border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" width=3D"800">
+<tbody>
+<tr>
+<td height=3D"5" align=3D"left" valign=3D"top" width=3D"80"><img src=3D"htt=
+p://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"=
+display:block" height=3D"5" border=3D"0" width=3D"80"></td>
+<td height=3D"5" align=3D"left" valign=3D"top" width=3D"80"><img src=3D"htt=
+p://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"=
+display:block" height=3D"5" border=3D"0" width=3D"80"></td>
+<td height=3D"5" align=3D"left" valign=3D"top" width=3D"80"><img src=3D"htt=
+p://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"=
+display:block" height=3D"5" border=3D"0" width=3D"80"></td>
+<td height=3D"5" align=3D"left" valign=3D"top" width=3D"80"><img src=3D"htt=
+p://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"=
+display:block" height=3D"5" border=3D"0" width=3D"80"></td>
+<td height=3D"5" align=3D"left" valign=3D"top" width=3D"80"><img src=3D"htt=
+p://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"=
+display:block" height=3D"5" border=3D"0" width=3D"80"></td>
+<td height=3D"5" align=3D"left" valign=3D"top" width=3D"80"><img src=3D"htt=
+p://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"=
+display:block" height=3D"5" border=3D"0" width=3D"80"></td>
+<td height=3D"5" align=3D"left" valign=3D"top" width=3D"80"><img src=3D"htt=
+p://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"=
+display:block" height=3D"5" border=3D"0" width=3D"80"></td>
+<td height=3D"5" align=3D"left" valign=3D"top" width=3D"80"><img src=3D"htt=
+p://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"=
+display:block" height=3D"5" border=3D"0" width=3D"80"></td>
+<td height=3D"5" align=3D"left" valign=3D"top" width=3D"80"><img src=3D"htt=
+p://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"=
+display:block" height=3D"5" border=3D"0" width=3D"80"></td>
+<td height=3D"5" align=3D"left" valign=3D"top" width=3D"80"><img src=3D"htt=
+p://s.cdn.1000mercis.com/1MSending/Templates/spacer.gif" alt=3D"" style=3D"=
+display:block" height=3D"5" border=3D"0" width=3D"80"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_168ED66FB5C258489BADAE2218B264D5750124FDuncsrvexc1_--
+
+--_004_168ED66FB5C258489BADAE2218B264D5750124FDuncsrvexc1_
+Content-Type: image/gif;
+	name="LEGS-EDUC_signature-email_cb642751-99bc-48a8-b8c1-5a27f0edfb24.gif"
+Content-Description: LEGS-EDUC_signature-email_cb642751-99bc-48a8-b8c1-5a27f0edfb24.gif
+Content-Disposition: inline; filename=
+	"LEGS-EDUC_signature-email_cb642751-99bc-48a8-b8c1-5a27f0edfb24.gif";
+	size=31301; creation-date="Wed, 04 May 2016 09:21:54 GMT";
+	modification-date="Wed, 04 May 2016 09:21:54 GMT"
+Content-ID: <LEGS-EDUC_signature-email_cb642751-99bc-48a8-b8c1-5a27f0edfb24.gif>
+Content-Transfer-Encoding: base64
+
+R0lGODlhZABkAOZ/AOP2/e35/pnf+X3W9/n5+VrL9fHx8j3B89Lx/LLn+tXy/Bm28VTJ9PX8/szv
+/GzQ9jO+8uD1/aHh+fb29g2y8JXe+J3g+brp+0PD8yW58WbO9ZHc+EzG9ITY9930/XnU9xO08KXi
++ebm5qvk+iu78kjF9PD6/svLzNjz/b3q++r4/vj9//z+/8Xt++rq6oKDhX/W9+X3/cnu/O7u72DM
+9Yra+HDR9q3l+rfo+sDr+/L7/uLi4pGSlKGio8Ps+9XW1tna2o3b+Ly9va2urs/w/Oj4/vz8/Hl6
+fLPn+rS1tXXT9v7+/mnP9YjZ9+zs7LDm+vr9/8jt+6jj+pmam9DQ0ef3/gaw7/r+/0jF8wOv73fU
+9sHBwja/8obZ+N3e3sXt/E7H9MXFxoqLjR+48en4/eT3/Ru38VHI9ODg4GNkZnJzdbGxstv0/fT7
+/tPT1KeoqcfHyI/c+G1ucOf4/ra3t9PU1O/v78zv+5eYmY6OkMLr+5Db+PPz8wCu7////////yH/
+C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRj
+emtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRv
+YmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAg
+ICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRm
+LXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0i
+aHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5h
+ZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25z
+LmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOkU5
+MEIwMTE2QzEwQUU2MTE4MkYwQjgwMkQ3ODQwQkIwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlk
+OkUwNDZDNkY3MEFDMTExRTZBNDQyRDkzNEY1N0RBQkE5IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAu
+aWlkOkUwNDZDNkY2MEFDMTExRTZBNDQyRDkzNEY1N0RBQkE5IiB4bXA6Q3JlYXRvclRvb2w9IkFk
+b2JlIFBob3Rvc2hvcCBDUzUuMSBXaW5kb3dzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmlu
+c3RhbmNlSUQ9InhtcC5paWQ6RTkwQjAxMTZDMTBBRTYxMTgyRjBCODAyRDc4NDBCQjAiIHN0UmVm
+OmRvY3VtZW50SUQ9InhtcC5kaWQ6RTkwQjAxMTZDMTBBRTYxMTgyRjBCODAyRDc4NDBCQjAiLz4g
+PC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9
+InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87N
+zMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWU
+k5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxb
+WllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMi
+ISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQFyAB/ACwAAAAAZABkAAAH/4B+
+goOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6
+u7y9vr/AsSwOpMMWAi06tWwPC33PYzYRngFMIM/PVgwosjBW2OBWG5w51+DYVhWwNOftD5o53+3g
+Qa4b8+0SmAHm+M9ZPlhVoeAPHAgTl2wUBHeAVZOF4NRVakAQ4jMEq7hYfMbBkoyNz8apqmhxjKUR
+IPvYUMUiJQVLElK+GwnSjKULKWEwUvCIhaMDIDtWqpISiaIYGjRAYjKCUQ2QAhoFRIRhI4gViBp0
+IMjzEZI+EJ4oMtGvoBmsithwKJCoxcZ6hv9YCBjzTGkkoGCl+DwUE6LYRDoGfMOhSAlEDGgHsZBA
+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
+2mn6FoEAADs=
+
+--_004_168ED66FB5C258489BADAE2218B264D5750124FDuncsrvexc1_--

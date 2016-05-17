@@ -1,6 +1,6 @@
 # version 1.00 date 15/03/2016 auteur(s) Michel Cressant
 
 # Définition du nom du document
-NOM_FICHIER=CDR_D_Unipik_l1_$(VERSIONCDRUN)
+NOM_FICHIER=CDR_D_Unipik_$(VERSIONCDRUN)
 
 LOCPATH=developpement/lot1/CDR

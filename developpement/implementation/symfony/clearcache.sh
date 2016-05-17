@@ -1,8 +1,7 @@
+#version 1.01, date 11/05/2016, auteur Matthieu Martins-Baltar
+#script pour vider le cache symphony
+
+#cette commande modifie les droits sur les fichiers, il est donc nécessaire de les rectifier ensuite
 sudo php bin/console cache:clear
-sudo chmod 755 -R ./
-sudo chown $USER -R ./
-sudo chgrp $USER -R ./
-sudo chmod 777 -R var/logs/
-sudo chmod 777 -R var/cache/
-sudo chmod 777 -R var/sessions/
-sudo chmod +x *.sh
+
+bash majdroits.sh

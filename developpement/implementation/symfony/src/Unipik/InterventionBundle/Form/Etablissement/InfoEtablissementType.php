@@ -35,6 +35,10 @@ class InfoEtablissementType extends AbstractFieldsetType {
         return 'adresse';
     }
 
+    /**
+     *
+     * @return String  le nom spécifique de la classe InfoEtablissemenType
+     */
     public function getName() {
         return $this->getBlockPrefix();
     }

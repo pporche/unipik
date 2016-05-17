@@ -1,0 +1,189 @@
+Return-Path: <president.unicef76@laposte.net>
+Delivered-To: scolomies@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 1A5BD238BC
+	for <scolomies@insa-rouen.fr>; Wed, 27 Apr 2016 11:33:51 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DbAwBohiBXkMiaFrJeJwGEYIJ7pDwDF40nhnWIFQEBAQEBARMBAQEBCQsJCSEvQRIBhAAXHQEBNgIYBh0WCwILAwIBAgFYCAEBiBABAQIWlh6cMGeEQQEEgVuFXBAXEBMThH8GkAyCHYJWmAwIAYIajyiGD4VXjzCCGAELAUIRCoFNaoM3hDkjgRsBAQE
+X-IPAS-Result: A0DbAwBohiBXkMiaFrJeJwGEYIJ7pDwDF40nhnWIFQEBAQEBARMBAQEBCQsJCSEvQRIBhAAXHQEBNgIYBh0WCwILAwIBAgFYCAEBiBABAQIWlh6cMGeEQQEEgVuFXBAXEBMThH8GkAyCHYJWmAwIAYIajyiGD4VXjzCCGAELAUIRCoFNaoM3hDkjgRsBAQE
+X-IronPort-AV: E=Sophos;i="5.24,540,1454972400"; 
+   d="scan'208,217";a="88616295"
+Received: from smtpoutz300.laposte.net (HELO smtp.laposte.net) ([178.22.154.200])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 27 Apr 2016 11:33:50 +0200
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout012 (Postfix) with ESMTP id 419AD8C76E
+	for <sergi.colomies@insa-rouen.fr>; Wed, 27 Apr 2016 11:33:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail1;
+	t=1461749630; bh=bYPf64FSo8EqP6rEgTv+Rb99+gxPTSnD/QzHvjmekbc=;
+	h=Reply-To:To:From:Subject:Date;
+	b=UgrWdD/myGsc7hUqD42jVGiZ0Fg1j78KmpGwFpyOqA307zRY23iAOy103Ag2Q3lGM
+	 tBh5Yyqnht29PTDjO71yhpHUB3CJsRs/YE0X+YIlGKCimkrg8CcsEdRhbHe2VQvmg2
+	 AcBWobG1gvoZBrzNBvEBK0oi3ITvgMwaOCmCfNDxI1DsfTxAUGl4Vt2Uq7sglJps34
+	 2+N1EreMMt+SyVe15jSlnq6oQAYloJ73SJIk2tZ647vYXQO4GPSdo4DCm78Qjl8AmM
+	 VavoUGjatkC16oFMmW6rifPrwp4DW6R9oYGGAKKxfmOQRxL3cnuhefsYJy2hJlSPSA
+	 Qmxb2vIqSiGRA==
+Received: from lpn-prd-vrin001 (lpn-prd-vrin001.prosodie [10.128.63.2])
+	by lpn-prd-vrout012 (Postfix) with ESMTP id 3DDA18C5DB
+	for <sergi.colomies@insa-rouen.fr>; Wed, 27 Apr 2016 11:33:50 +0200 (CEST)
+Received: from lpn-prd-vrin001 (localhost [127.0.0.1])
+	by lpn-prd-vrin001 (Postfix) with ESMTP id 2DBE436687A
+	for <sergi.colomies@insa-rouen.fr>; Wed, 27 Apr 2016 11:33:50 +0200 (CEST)
+Received: from [192.168.1.77] (ARouen-653-1-27-25.w90-17.abo.wanadoo.fr [90.17.182.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin001 (Postfix) with ESMTPSA id 0FA483667E5
+	for <sergi.colomies@insa-rouen.fr>; Wed, 27 Apr 2016 11:33:50 +0200 (CEST)
+Reply-To: president.unicef76@laposte.net
+To: sergi.colomies@insa-rouen.fr
+From: President <president.unicef76@laposte.net>
+Subject: =?UTF-8?Q?un_certain_nombre_de_r=c3=a9ponses_en_suspens....?=
+Organization: UNICEF
+Message-ID: <57208780.4030403@laposte.net>
+Date: Wed, 27 Apr 2016 11:33:52 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101
+ Thunderbird/38.7.2
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------040001050303050400090202"
+X-VR-SrcIP: 90.17.182.25
+X-VR-FullState: 0
+X-VR-Score: 0
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeekkedrkedugdduudcutefuodetggdotefrodftvfcurfhrohhf
+X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecunecujfgurheprhfvhffuohfk
+X-VR-Cause-3: ffgfgggtsegrtdgrrgdtfeejnecuhfhrohhmpefrrhgvshhiuggvnhhtuceophhrvghsihguvghnthdr
+X-VR-Cause-4: uhhnihgtvghfjeeisehlrghpohhsthgvrdhnvghtqeenucfkphepledtrddujedrudekvddrvdehnecu
+X-VR-Cause-5: rfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghloheplgduledvrdduieekrddurdejjegnpdhi
+X-VR-Cause-6: nhgvthepledtrddujedrudekvddrvdehpdhmrghilhhfrhhomhepphhrvghsihguvghnthdruhhnihgt
+X-VR-Cause-7: vghfjeeisehlrghpohhsthgvrdhnvghtpdhrtghpthhtohepshgvrhhgihdrtgholhhomhhivghssehi
+X-VR-Cause-8: nhhsrgdqrhhouhgvnhdrfhhr
+X-VR-AvState: No
+X-VR-State: 0
+
+This is a multi-part message in MIME format.
+--------------040001050303050400090202
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour Sergi,
+J'ai quelque peu déconnecté pendant les vacances (qui s'étalent sur 
+plusieurs semaines du fait de petits enfants originaires de plusieurs 
+zones de vacances).
+J'espère que le retard de certaines réponses n'a pas nui à l'avancement 
+de votre travail.
+Il y a peut-être des points que j'oublie, merci de me les rappeler.
+
+*  à propos des mails à envoyer, sur le fond pas de problème, sur la 
+forme et le contenu, il faut qu'on les relise. J'ai constaté un certain 
+nombre de fautes d'orth ou de tournure. Je veux bien corriger, mais il 
+me faudrait une version corrigeable ou alors je les imprime et ensuite 
+les scanne. A vous alors de corriger.
+
+* pour la question sur les différents utilisateurs (message du 04/04 
+Interrogations lot 2) il faut aller au plus simple: un administrateur 
+global + des comptes banalisés par activités et non par personne. 
+L'administrateur global pourra être 1 ou 2 personnes et pareil pour les 
+activités.
+
+* *pour la recette du lot 2* (message du 19 avril), et à propos de votre 
+§3.3
+Déroulement de la recette
+Ce paragraphe explique comment doit se dérouler la recette :
+— La recette sera effectuée au sein de l’établissement du client UNICEF ;
+— La recette sera effectuée sur une machine du client UNICEF ;
+— La recette sera effectuée sur le lot 2.
+*je ne comprends pas tout: faut-il prévoir un rendez-vous à notre local 
+pour cette recette?
+
+** enfin pour la question "campus unicef" à l'INSA, de notre côté il est 
+bien prévu qu'il y aura un bénévole chargé du suivi de l'antenne. On ne 
+sait pas encore qui, mais on trouvera. C'est une activité motivante pour 
+les bénévoles.
+
+/Interruption du fait de votre coup de fil/..... Je rajoute donc ce que 
+nous avons décidé pour la *recette du lot 2*: elle se ferait de manière 
+étalée à partir du mois de juin et jusqu'en septembre. Est-ce bien celà? 
+et je demanderai à Catherine Guest (qui sera l'administrateur global) 
+d'y participer.
+Pour la question de la géolocalisation, elle ne serait pas intégrée dans 
+ce lot, mais cela viendra par la suite? ai-je là aussi correctement compris?
+
+Si tout n'est pas encore clair, n'hésitez pas à me le dire.
+Et pas de découragement devant l'ampleur de la tâche.
+Bonjour à tout le groupe. Véronique Barbier
+-- 
+Véronique BARBIER Présidente UNICEF Seine Maritime +33 2 35 88 98 88
+
+
+
+
+
+--------------040001050303050400090202
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Bonjour Sergi,<br>
+    J'ai quelque peu déconnecté pendant les vacances (qui s'étalent sur
+    plusieurs semaines du fait de petits enfants originaires de
+    plusieurs zones de vacances).<br>
+    J'espère que le retard de certaines réponses n'a pas nui à
+    l'avancement de votre travail.<br>
+    Il y a peut-être des points que j'oublie, merci de me les rappeler.<br>
+    <br>
+    *  à propos des mails à envoyer, sur le fond pas de problème, sur la
+    forme et le contenu, il faut qu'on les relise. J'ai constaté un
+    certain nombre de fautes d'orth ou de tournure. Je veux bien
+    corriger, mais il me faudrait une version corrigeable ou alors je
+    les imprime et ensuite les scanne. A vous alors de corriger.<br>
+    <br>
+    * pour la question sur les différents utilisateurs (message du 04/04
+    Interrogations lot 2) il faut aller au plus simple: un
+    administrateur global + des comptes banalisés par activités et non
+    par personne. L'administrateur global pourra être 1 ou 2 personnes
+    et pareil pour les activités. <br>
+    <br>
+    * <b>pour la recette du lot 2</b> (message du 19 avril), et à
+    propos de votre §3.3 <br>
+    Déroulement de la recette<br>
+    Ce paragraphe explique comment doit se dérouler la recette :<br>
+    — La recette sera effectuée au sein de l’établissement du client
+    UNICEF ;<br>
+    — La recette sera effectuée sur une machine du client UNICEF ;<br>
+    — La recette sera effectuée sur le lot 2.<br>
+    <b>je ne comprends pas tout: faut-il prévoir un rendez-vous à notre
+      local pour cette recette?<br>
+      <br>
+    </b>* enfin pour la question "campus unicef" à l'INSA, de notre côté
+    il est bien prévu qu'il y aura un bénévole chargé du suivi de
+    l'antenne. On ne sait pas encore qui, mais on trouvera. C'est une
+    activité motivante pour les bénévoles.<br>
+    <br>
+    <i>Interruption du fait de votre coup de fil</i>..... Je rajoute
+    donc ce que nous avons décidé pour la <b>recette du lot 2</b>: elle
+    se ferait de manière étalée à partir du mois de juin et jusqu'en
+    septembre. Est-ce bien celà? et je demanderai à Catherine Guest (qui
+    sera l'administrateur global) d'y participer. <br>
+    Pour la question de la géolocalisation, elle ne serait pas intégrée
+    dans ce lot, mais cela viendra par la suite? ai-je là aussi
+    correctement compris?<br>
+    <br>
+    Si tout n'est pas encore clair, n'hésitez pas à me le dire.<br>
+    Et pas de découragement devant l'ampleur de la tâche.<br>
+    Bonjour à tout le groupe. Véronique Barbier<br>
+    <div class="moz-signature">-- <br>
+      Véronique BARBIER Présidente UNICEF Seine Maritime
+      +33 2 35 88 98 88<br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+  </body>
+</html>
+
+--------------040001050303050400090202--

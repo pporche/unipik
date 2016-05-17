@@ -38,6 +38,11 @@ class PersonneReferenteType extends AbstractFieldsetType {
         return 'adresse';
     }
 
+    /**
+     *
+     * @return String  le nom spécifique de la classe PersonneReferenteType
+     */
+
     public function getName() {
         return $this->getBlockPrefix();
     }

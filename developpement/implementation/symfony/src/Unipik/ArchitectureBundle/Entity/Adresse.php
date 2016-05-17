@@ -1,5 +1,5 @@
 <?php
-
+// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -8,69 +8,72 @@ use Doctrine\ORM\Mapping as ORM;
  * Adresse
  *
  * @ORM\Table(name="adresse")
- * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\AdresseRepository")
+ * @ORM\Entity
  */
-class Adresse {
-
+class Adresse
+{
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="adresse_id_seq", allocationSize=1, initialValue=1)
      */
-    private $_id;
+    private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=100)
+     * @ORM\Column(name="ville", type="string", length=100, nullable=false)
      */
-    private $_ville;
+    private $ville;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="rue", type="string", length=500)
+     * @ORM\Column(name="rue", type="string", length=500, nullable=false)
      */
-    private $_rue;
+    private $rue;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="code_postal", type="string", length=5)
+     * @ORM\Column(name="code_postal", type="string", nullable=false)
      */
-    private $_codePostal;
+    private $codePostal;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="numero_de_rue", type="string", length=10)
+     * @ORM\Column(name="numero_de_rue", type="string", length=15, nullable=false)
      */
-    private $_numeroDeRue;
+    private $numeroDeRue;
 
     /**
      * @var string
      *
      * @ORM\Column(name="complement", type="string", length=100, nullable=true)
      */
-    private $_complement;
+    private $complement;
 
     /**
      * @var string
      *
      * @ORM\Column(name="geolocalisation", type="string", length=255, nullable=true)
      */
-    private $_geolocalisation;
+    private $geolocalisation;
+
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
-    public function getId() {
-        return $this->_id;
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -80,8 +83,9 @@ class Adresse {
      *
      * @return Adresse
      */
-    public function setVille($ville) {
-        $this->_ville = $ville;
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
 
         return $this;
     }
@@ -91,8 +95,9 @@ class Adresse {
      *
      * @return string
      */
-    public function getVille() {
-        return $this->_ville;
+    public function getVille()
+    {
+        return $this->ville;
     }
 
     /**
@@ -102,8 +107,9 @@ class Adresse {
      *
      * @return Adresse
      */
-    public function setRue($rue) {
-        $this->_rue = $rue;
+    public function setRue($rue)
+    {
+        $this->rue = $rue;
 
         return $this;
     }
@@ -113,8 +119,9 @@ class Adresse {
      *
      * @return string
      */
-    public function getRue() {
-        return $this->_rue;
+    public function getRue()
+    {
+        return $this->rue;
     }
 
     /**
@@ -124,8 +131,9 @@ class Adresse {
      *
      * @return Adresse
      */
-    public function setCodePostal($codePostal) {
-        $this->_codePostal = $codePostal;
+    public function setCodePostal($codePostal)
+    {
+        $this->codePostal = $codePostal;
 
         return $this;
     }
@@ -135,8 +143,9 @@ class Adresse {
      *
      * @return string
      */
-    public function getCodePostal() {
-        return $this->_codePostal;
+    public function getCodePostal()
+    {
+        return $this->codePostal;
     }
 
     /**
@@ -146,8 +155,9 @@ class Adresse {
      *
      * @return Adresse
      */
-    public function setNumeroDeRue($numeroDeRue) {
-        $this->_numeroDeRue = $numeroDeRue;
+    public function setNumeroDeRue($numeroDeRue)
+    {
+        $this->numeroDeRue = $numeroDeRue;
 
         return $this;
     }
@@ -157,8 +167,9 @@ class Adresse {
      *
      * @return string
      */
-    public function getNumeroDeRue() {
-        return $this->_numeroDeRue;
+    public function getNumeroDeRue()
+    {
+        return $this->numeroDeRue;
     }
 
     /**
@@ -168,8 +179,9 @@ class Adresse {
      *
      * @return Adresse
      */
-    public function setComplement($complement) {
-        $this->_complement = $complement;
+    public function setComplement($complement)
+    {
+        $this->complement = $complement;
 
         return $this;
     }
@@ -179,8 +191,9 @@ class Adresse {
      *
      * @return string
      */
-    public function getComplement() {
-        return $this->_complement;
+    public function getComplement()
+    {
+        return $this->complement;
     }
 
     /**
@@ -190,8 +203,9 @@ class Adresse {
      *
      * @return Adresse
      */
-    public function setGeolocalisation($geolocalisation) {
-        $this->_geolocalisation = $geolocalisation;
+    public function setGeolocalisation($geolocalisation)
+    {
+        $this->geolocalisation = $geolocalisation;
 
         return $this;
     }
@@ -201,7 +215,8 @@ class Adresse {
      *
      * @return string
      */
-    public function getGeolocalisation() {
-        return $this->_geolocalisation;
+    public function getGeolocalisation()
+    {
+        return $this->geolocalisation;
     }
 }

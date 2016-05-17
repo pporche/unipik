@@ -1,3 +1,8 @@
 architecture_homepage:
     path:     /
     defaults: { _controller: ArchitectureBundle:Architecture:index }
+
+etablissement_list:
+    path:   /etablissement/liste
+    defaults:
+        _controller: InterventionBundle:Intervention:listEtablissement

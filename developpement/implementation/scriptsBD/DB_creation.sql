@@ -1,5 +1,4 @@
 
-
 -- Définition des Domaines --
 
 CREATE DOMAIN  domaine_semaine AS INT
@@ -17,6 +16,10 @@ CHECK (VALUE IN ('enseignant', 'animateur', 'eleve', 'etudiant', 'autre'));
 
 CREATE DOMAIN domaine_activite AS VARCHAR(30)
 CHECK (VALUE IN ('actions ponctuelles', 'plaidoyers', 'frimousses', 'projets', 'autre'));
+
+CREATE DOMAIN domaine_reponsabilite_activite AS VARCHAR(30)
+CHECK (VALUE IN ('actions ponctuelles', 'plaidoyers', 'frimousses', 'projets', 'admin_region', 'admin_comite'));
+
 
 CREATE DOMAIN domaine_type_projet AS VARCHAR(20)
 CHECK (VALUE IN ('primaire', 'college', 'lycee', 'superieur'));
@@ -79,23 +82,8 @@ CHECK (VALUE ~ '^[0-9]{10}$');
 CREATE DOMAIN domaine_tel_fixe AS VARCHAR(10)
 CHECK (VALUE ~ '^[0-9]{10}$');
 
+-- il faut rajouter un domaine sur l'UAI d'un établissement (enseignement) --
 
-
-
-CREATE DOMAIN domaine_type_activite AS VARCHAR(300)
-CHECK (VALUE ~ '^((plaidoyers)|((frimousses)|(actions-ponctuelles)|(projets)|(autres)))(,((plaidoyers)|((frimousses)|(actions-ponctuelles)|(projets)|(autres)))){0,4}$');
-
-CREATE DOMAIN domaine_type_email AS VARCHAR(200)
-CHECK (VALUE ~ '^(([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+)( , [a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+)*)?$' );
-
-CREATE DOMAIN domaine_type_materiel_frimousse AS VARCHAR(24)
-CHECK (VALUE ~ '^((patron)|((bourre)|(decoration)))(,((patron)|((bourre)|(decoration)))){0,2}$');
-
-CREATE DOMAIN domaine_type_materiel_plaidoyer AS VARCHAR(49)
-CHECK (VALUE ~ '^((videoprojecteur)|((tableau-interactif)|(enceinte)|(autre)))(,((videoprojecteur)|((tableau-interactif)|(enceinte)|(autre)))){0,3}$');
-
-CREATE DOMAIN domaine_type_semaine AS VARCHAR(100)
-CHECK (VALUE ~ '^((([1-4][0-9]?)|(5[0-3]?)|([6-9]))(\,(([1-4][0-9]?)|(5[0-3]?)|([6-9]))){0,52})$');
 
 
 -- Définition des tables correspondant à des types -- 
@@ -127,72 +115,42 @@ CREATE TABLE IF NOT EXISTS moment_hebdomadaire (
 
 -- Création des types pour les attributs multivalués -- 
 
-CREATE TYPE type_activite as (activite_potentielle domaine_activite);  						-- done
-CREATE TYPE type_email as (email  domaine_email);												-- done
-CREATE TYPE type_materiel_frimousse as (materiel_frimousse domaine_materiel_frimousse);		-- done-
-CREATE TYPE type_materiel_plaidoyer as (materiel_plaidoyer domaine_materiel_plaidoyer);		-- done
-CREATE TYPE type_semaine as (semaine domaine_semaine);										-- done
+CREATE TYPE type_activite as (activite_potentielle domaine_activite);
+CREATE TYPE type_email as (email  domaine_email);	
+CREATE TYPE type_materiel_frimousse as (materiel_frimousse domaine_materiel_frimousse);
+CREATE TYPE type_materiel_plaidoyer as (materiel_plaidoyer domaine_materiel_plaidoyer);	
+CREATE TYPE type_semaine as (semaine domaine_semaine);	
+CREATE TYPE type_responsabilite_activite as(responsabilite_activite domaine_reponsabilite_activite);
 
 -- Création des tables --
 
 CREATE TABLE IF NOT EXISTS benevole (
 	id SERIAL PRIMARY KEY,
-	email domaine_email,
+	email domaine_email NOT NULL,
 	nom VARCHAR(100) NOT NULL,
 	prenom VARCHAR(100) DEFAULT NULL, 
 	tel_fixe domaine_tel_fixe DEFAULT NULL, 
 	tel_portable domaine_tel_portable DEFAULT NULL,
-	adresse_id INT REFERENCES adresse(id) ON DELETE CASCADE, 
+	adresse_id INT NOT NULL REFERENCES adresse(id) ON DELETE CASCADE, 
 	mdp VARCHAR(50) NOT NULL,
 	activites_potentielles type_activite[] DEFAULT NULL,
-	responsabilite_activite type_activite[] DEFAULT NULL,
-	isAdminRegion BOOLEAN DEFAULT NULL,
-	isAdminComite BOOLEAN DEFAULT NULL
+	responsabilite_activite type_responsabilite_activite[] DEFAULT NULL	
 );
 
---------------------------------------------------------------
---CREATE TABLE IF NOT EXISTS admin_activite (
---	responsabilite_activite type_activite[] DEFAULT NULL
---)INHERITS(benevole);
 
---ALTER TABLE admin_activite
---	add CONSTRAINT id 	PRIMARY KEY (id);
-
---CREATE SEQUENCE admin_activite_id_seq;
-
---------------------------------------------------------------
-
---CREATE TABLE IF NOT EXISTS admin_comite (
-
---)INHERITS(benevole);
-
---ALTER TABLE admin_comite
---	add CONSTRAINT id_admin_comite
---	PRIMARY KEY (id);
-
---CREATE SEQUENCE admin_comite_id_seq;
-
---------------------------------------------------------------
-
---CREATE TABLE IF NOT EXISTS admin_region (
-
---)INHERITS(benevole);
-
---ALTER TABLE admin_region
---	add CONSTRAINT id_admin_region
---	PRIMARY KEY(id);
-
---CREATE SEQUENCE admin_region_id_seq;
 
 
 CREATE TABLE IF NOT EXISTS contact (
 	id SERIAL PRIMARY KEY,
-	email domaine_email,
+	email domaine_email NOT NULL,
 	nom VARCHAR(100) NOT NULL,
 	prenom VARCHAR(100) DEFAULT NULL, 
 	tel_fixe domaine_tel_fixe DEFAULT NULL, 
 	tel_portable domaine_tel_portable DEFAULT NULL,
-	type_contact domaine_type_contact NOT NULL
+	type_contact domaine_type_contact NOT NULL,
+	est_tuteur BOOLEAN DEFAULT NULL,
+	respo_etablissement BOOLEAN DEFAULT NULL,
+	type_activite type_activite[] DEFAULT NULL
 );
 
 
@@ -207,16 +165,17 @@ CREATE TABLE IF NOT EXISTS projet (
 
 
 
+
 CREATE TABLE IF NOT EXISTS pays (
 	id SERIAL PRIMARY KEY,
-	nom VARCHAR(100)
+	nom VARCHAR(100) NOT NULL
 );
 
 
 CREATE TABLE IF NOT EXISTS region (
 	id SERIAL PRIMARY KEY,
-	nom domaine_region_de_france, 
-	pays_id INT REFERENCES pays(id) ON DELETE CASCADE
+	nom domaine_region_de_france NOT NULL, 
+	pays_id INT NOT NULL REFERENCES pays(id) ON DELETE CASCADE
 );
 
 
@@ -225,41 +184,41 @@ CREATE TABLE IF NOT EXISTS comite (
 	region_id INT REFERENCES region(id) ON DELETE CASCADE, 
 	nom_departement domaine_departement_de_france NOT NULL
 );
-
+-- changement --
 CREATE TABLE IF NOT EXISTS comite_niveau_theme (
-	id_comite int REFERENCES comite(id) ON DELETE CASCADE,
-	id_niveau_theme INT REFERENCES niveau_theme(id) ON DELETE CASCADE,
-	PRIMARY KEY(id_comite,id_niveau_theme)
+	comite int REFERENCES comite(id) ON DELETE CASCADE,
+	niveau_theme INT REFERENCES niveau_theme(id) ON DELETE CASCADE,
+	PRIMARY KEY(comite, niveau_theme)
 );
 
 
 CREATE TABLE IF NOT EXISTS demande (
 	id SERIAL PRIMARY KEY, 
-	contact_id INT REFERENCES contact(id) ON DELETE CASCADE, 
+	contact_id INT NOT NULL REFERENCES contact(id) ON DELETE CASCADE, 
 	date DATE NOT NULL,
 	liste_semaine type_semaine[] NOT NULL
 
 );
 
 CREATE TABLE demande_moments_voulus (
-	id_demande INT REFERENCES demande(id) ON DELETE CASCADE,
-	id_moments_voulus INT REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
-	PRIMARY KEY(id_demande, id_moments_voulus)
+	demande_moments_voulus INT REFERENCES demande(id) ON DELETE CASCADE,
+	moments_voulus INT REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
+	PRIMARY KEY(demande_moments_voulus, moments_voulus)
 );
 
 
 CREATE TABLE demande_moments_a_eviter (
-	id_demande INT REFERENCES demande(id) ON DELETE CASCADE,
-	id_moments_a_eviter INT REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
-	PRIMARY KEY(id_demande, id_moments_a_eviter)
+	demande_moments_a_eviter INT REFERENCES demande(id) ON DELETE CASCADE,
+	moments_a_eviter INT REFERENCES moment_hebdomadaire(id) ON DELETE CASCADE,
+	PRIMARY KEY(demande_moments_a_eviter, moments_a_eviter)
 );
 
 
 
 CREATE TABLE IF NOT EXISTS etablissement (
 	id SERIAL PRIMARY KEY,
-	uai VARCHAR(100), 
-	adresse_id INT REFERENCES adresse(id) ON DELETE CASCADE, 
+	uai VARCHAR(100) NOT NULL, 
+	adresse_id INT NOT NULL REFERENCES adresse(id) ON DELETE CASCADE, 
 	nom VARCHAR(100) DEFAULT NULL, 
 	tel_fixe domaine_tel_fixe DEFAULT NULL,
 	emails type_email[] NOT NULL
@@ -281,11 +240,11 @@ ALTER TABLE etablissement
 
 
 CREATE TABLE IF NOT EXISTS intervention (
-	id SERIAL PRIMARY KEY, 
-	demande_id INT REFERENCES demande(id) ON DELETE CASCADE, 
-	benevole_id INT REFERENCES benevole(id) ON DELETE CASCADE, 
-	comite_id INT REFERENCES comite(id) ON DELETE CASCADE, 
-	etablissement_id INT REFERENCES etablissement(id) ON DELETE CASCADE, 
+	id SERIAL PRIMARY KEY, 														-- commentaire pour les delete cascade
+	demande_id INT NOT NULL REFERENCES demande(id),								-- si plus de demande, garder intervention pour stats -- 
+	benevole_id INT REFERENCES benevole(id), 										--stats + benevole_id peut etre null quand l'intervention n'est pas encore attribuée --
+	comite_id INT NOT NULL REFERENCES comite(id), 								-- histoire des stats --
+	etablissement_id INT NOT NULL REFERENCES etablissement(id), 				-- histoire des stats
 	date DATE DEFAULT NULL, 
 	lieu VARCHAR(40) DEFAULT NULL, 
 	nb_personne INT NOT NULL, 
@@ -296,17 +255,17 @@ CREATE TABLE IF NOT EXISTS intervention (
 
 -- Attributs de plaidoyer
 ALTER TABLE intervention 
-	add niveau_theme_id INT REFERENCES niveau_theme ON DELETE CASCADE; --  NOT NULL
+	add niveau_theme_id INT REFERENCES niveau_theme; 							-- stats --
 
 ALTER TABLE intervention
 	add materiel_dispo_plaidoyer type_materiel_plaidoyer[];
 
--- Atributs de frimousse
+-- Attributs de frimousse
 ALTER TABLE intervention
-	add niveau_frimousse domaine_niveau_scolaire_limite; --not null
+	add niveau_frimousse domaine_niveau_scolaire_limite; 
 
 ALTER TABLE intervention
-	add materiaux_frimousse type_materiel_frimousse;
+	add materiaux_frimousse type_materiel_frimousse[];
 
 -- Attributs de autreIntervention
 ALTER TABLE intervention
@@ -316,10 +275,10 @@ ALTER TABLE intervention
 
 
 
-CREATE TABLE IF NOT EXISTS vente (
+CREATE TABLE IF NOT EXISTS vente (														-- on delete cascade --
 	id SERIAL PRIMARY KEY, 
-	etablissement_id INT REFERENCES etablissement(id) ON DELETE CASCADE, 
-	intervention_id INT DEFAULT NULL REFERENCES intervention(id) ON DELETE CASCADE, 
+	etablissement_id INT REFERENCES etablissement(id), 									-- histoire de stats --
+	intervention_id INT DEFAULT NULL REFERENCES intervention(id), 						-- histoire de stats --
 	chiffre_affaire DOUBLE PRECISION NOT NULL, 
 	date DATE NOT NULL, 
 	remarques TEXT DEFAULT NULL 
@@ -330,23 +289,21 @@ CREATE TABLE IF NOT EXISTS vente (
 
 CREATE TABLE IF NOT EXISTS benevole_comite (
 	benevole_id INT REFERENCES benevole(id) ON DELETE CASCADE, 
-	projet_id INT REFERENCES projet(id) ON DELETE CASCADE, 
-	PRIMARY KEY(benevole_id, projet_id)
+	comite_id INT REFERENCES comite(id) ON DELETE CASCADE, 
+	PRIMARY KEY(benevole_id, comite_id)
 );
 
 
 CREATE TABLE IF NOT EXISTS benevole_projet (
-	benevole_id INT REFERENCES benevole(id) ON DELETE CASCADE, 
-	comite_id INT REFERENCES comite(id) ON DELETE CASCADE, 
-	PRIMARY KEY(benevole_id, comite_id)
+	benevole_id INT REFERENCES benevole(id) ON DELETE CASCADE, 								-- on veut garder pour les stats --
+	projet_id INT REFERENCES projet(id) ON DELETE CASCADE, 
+	PRIMARY KEY(benevole_id, projet_id)
 );
 
 
 CREATE TABLE IF NOT EXISTS appartient (
 	etablissement_id INT REFERENCES etablissement(id) ON DELETE CASCADE, 
 	contact_id INT REFERENCES contact(id) ON DELETE CASCADE, 
-	respo_etablissement BOOLEAN NOT NULL,
-	type_activite type_activite[],
 	PRIMARY KEY(etablissement_id, contact_id)
 ); 
 
@@ -354,7 +311,6 @@ CREATE TABLE IF NOT EXISTS appartient (
 CREATE TABLE IF NOT EXISTS participe (
 	projet_id INT REFERENCES projet(id) ON DELETE CASCADE, 
 	contact_id INT REFERENCES contact(id) ON DELETE CASCADE, 
-	est_tuteur BOOLEAN NOT NULL, 
 	PRIMARY KEY(projet_id, contact_id)
 );
 
@@ -375,7 +331,11 @@ CREATE VIEW plaidoyer AS (
 	WHERE niveau_theme_id is not null AND materiel_dispo_plaidoyer is not null
 );
 
-
+CREATE VIEW frimousse AS (
+	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, niveau_frimousse, materiaux_frimousse
+	FROM intervention
+	WHERE niveau_frimousse is not null AND materiaux_frimousse is not null
+);
 
 CREATE VIEW autre_intervention AS (
 	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, description
@@ -399,14 +359,56 @@ CREATE VIEW autre_etablissement AS (
 	WHERE type_autre_etablissement is not null
 );
 
+-- Définition d une adresse fictive pour gérer le cas des bénévoles fictifs
+delete from adresse where id = 1;
 
+insert into adresse values (
+	'1',
+	'Fictive',
+	'Fictive',
+	'00000',
+	'0',
+	null,
+	null	
+);
 
+-- Définition des fonctions --
+
+create function recupererProjets(integer) returns setof integer as 
+	'select projet_id from benevole_projet where benevole_id = $1 ;' language 'sql';
 
 -- Définition des Triggers --
-CREATE VIEW frimousse AS (
-	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, niveau_frimousse, materiaux_frimousse
-	FROM intervention
-	WHERE niveau_frimousse is not null AND materiaux_frimousse is not null
-);
---ALTER TABLE frimousse
---	add PRIMARY KEY (id);
+
+CREATE OR REPLACE FUNCTION supprimerBenevole()
+RETURNS trigger AS $sup$
+DECLARE
+
+BEGIN 
+	
+	INSERT INTO benevole VALUES (
+		OLD.id,
+		'benevole@fictif.com',
+		'benevole fictif',
+		'benevole fictif',
+		null,
+		null,
+		'1',
+		'fictif',
+		OLD.activites_potentielles,
+		OLD.responsabilite_activite
+	);
+
+	
+	RETURN OLD;
+END $sup$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER  supprimerBenevole
+AFTER DELETE ON benevole
+FOR EACH ROW EXECUTE PROCEDURE supprimerBenevole();
+
+-- implémenter fonction/trigger permettant de garder la relation many to many intact benovle_projet
+
+
+
+

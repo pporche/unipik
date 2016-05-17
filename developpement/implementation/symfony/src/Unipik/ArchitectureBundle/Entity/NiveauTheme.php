@@ -1,61 +1,77 @@
 <?php
-
+// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use Unipik\ArchitectureBundle\DBAL\Types\NiveauScolaireCompletType;
-use Unipik\ArchitectureBundle\DBAL\Types\ThemeType;
 
 /**
  * NiveauTheme
  *
  * @ORM\Table(name="niveau_theme")
- * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\NiveauThemeRepository")
+ * @ORM\Entity
  */
-class NiveauTheme {
-
+class NiveauTheme
+{
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="niveau_theme_id_seq", allocationSize=1, initialValue=1)
      */
-    private $_id;
-
-     /**
-     *
-     * @ORM\Column(name="niveau", type="NiveauScolaireCompletType", nullable=false)
-     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\NiveauScolaireCompletType")
-     */
-    private $_niveau;
+    private $id;
 
     /**
+     * @var string
      *
-     * @ORM\Column(name="theme", type="ThemeType", nullable=false)
-     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\ThemeType")
+     * @ORM\Column(name="niveau", type="string", nullable=true)
      */
-    private $_theme;
+    private $niveau;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="theme", type="string", nullable=true)
+     */
+    private $theme;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Comite", mappedBy="niveauTheme")
+     */
+    private $comite;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comite = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId() {
-        return $this->_id;
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
      * Set niveau
      *
-     * @param NiveauScolaireCompletType $niveau
+     * @param string $niveau
      *
      * @return NiveauTheme
      */
-    public function setNiveau($niveau) {
-        $this->_niveau = $niveau;
+    public function setNiveau($niveau)
+    {
+        $this->niveau = $niveau;
 
         return $this;
     }
@@ -63,21 +79,23 @@ class NiveauTheme {
     /**
      * Get niveau
      *
-     * @return NiveauScolaireCompletType
+     * @return string
      */
-    public function getNiveau() {
-        return $this->_niveau;
+    public function getNiveau()
+    {
+        return $this->niveau;
     }
 
     /**
      * Set theme
      *
-     * @param ThemeType $theme
+     * @param string $theme
      *
      * @return NiveauTheme
      */
-    public function setTheme($theme) {
-        $this->_theme = $theme;
+    public function setTheme($theme)
+    {
+        $this->theme = $theme;
 
         return $this;
     }
@@ -85,9 +103,44 @@ class NiveauTheme {
     /**
      * Get theme
      *
-     * @return ThemeType
+     * @return string
      */
-    public function getTheme() {
-        return $this->_theme;
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+
+    /**
+     * Add comite
+     *
+     * @param \Unipik\UserBundle\Entity\Comite $comite
+     *
+     * @return NiveauTheme
+     */
+    public function addComite(\Unipik\UserBundle\Entity\Comite $comite)
+    {
+        $this->comite[] = $comite;
+
+        return $this;
+    }
+
+    /**
+     * Remove comite
+     *
+     * @param \Unipik\UserBundle\Entity\Comite $comite
+     */
+    public function removeComite(\Unipik\UserBundle\Entity\Comite $comite)
+    {
+        $this->comite->removeElement($comite);
+    }
+
+    /**
+     * Get comite
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComite()
+    {
+        return $this->comite;
     }
 }

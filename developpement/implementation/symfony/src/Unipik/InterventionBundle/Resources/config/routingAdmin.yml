@@ -1,4 +1,3 @@
 intervention_admin_add:
     path:     /ajouter
     defaults: { _controller: InterventionBundle:Intervention:ajouter }
-

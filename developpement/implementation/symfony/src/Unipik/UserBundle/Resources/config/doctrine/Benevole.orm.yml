@@ -1,0 +1,118 @@
+# version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+Unipik\UserBundle\Entity\Benevole:
+    type: entity
+    table: benevole
+    indexes:
+        IDX_B4014FDB4DE7DC5C:
+            columns:
+                - adresse_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        email:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        nom:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        prenom:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        telFixe:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: tel_fixe
+        telPortable:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: tel_portable
+        mdp:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        activitesPotentielles:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: activites_potentielles
+        responsabiliteActivite:
+            type: string
+            nullable: true
+            length: 120
+            options:
+                fixed: false
+            column: responsabilite_activite
+    manyToOne:
+        adresse:
+            targetEntity: Adresse
+            cascade: {  }
+            fetch: LAZY
+            nullable: false
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                adresse_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        projet:
+            targetEntity: Projet
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: benevole
+            joinTable:
+                name: benevole_projet
+                joinColumns:
+                    -
+                        name: benevole_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: projet_id
+                        referencedColumnName: id
+            orderBy: null
+        comite:
+            targetEntity: Comite
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: benevole
+            joinTable:
+                name: benevole_comite
+                joinColumns:
+                    -
+                        name: benevole_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: comite_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

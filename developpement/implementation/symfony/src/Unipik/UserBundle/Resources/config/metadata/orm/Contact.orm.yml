@@ -1,0 +1,110 @@
+# version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+Contact:
+    type: entity
+    table: contact
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        email:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        nom:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        prenom:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        telFixe:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: tel_fixe
+        telPortable:
+            type: string
+            nullable: true
+            length: 10
+        options:
+                fixed: false
+            column: tel_portable
+        typeContact:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: type_contact
+        estTuteur:
+            type: boolean
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: est_tuteur
+        respoEtablissement:
+            type: boolean
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+            column: respo_etablissement
+        typeActivite:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: type_activite
+    manyToMany:
+        etablissement:
+            targetEntity: Etablissement
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: contact
+            joinTable:
+                name: appartient
+                joinColumns:
+                    -
+                        name: etablissement_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: contact_id
+                        referencedColumnName: id
+            orderBy: null
+        projet:
+            targetEntity: Projet
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: contact
+            joinTable:
+                name: participe
+                joinColumns:
+                    -
+                        name: projet_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: contact_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

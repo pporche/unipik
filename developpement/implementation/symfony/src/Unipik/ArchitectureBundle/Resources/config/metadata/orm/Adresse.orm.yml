@@ -1,0 +1,53 @@
+# version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+Adresse:
+    type: entity
+    table: adresse
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        ville:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        rue:
+            type: string
+            nullable: false
+            length: 500
+            options:
+                fixed: false
+        codePostal:
+            type: string
+            nullable: false
+            length: null
+            options:
+                fixed: false
+            column: code_postal
+        numeroDeRue:
+            type: string
+            nullable: false
+            length: 15
+            options:
+                fixed: false
+            column: numero_de_rue
+        complement:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        geolocalisation:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

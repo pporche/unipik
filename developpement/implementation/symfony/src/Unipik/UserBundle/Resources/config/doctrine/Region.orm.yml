@@ -1,0 +1,36 @@
+# version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+Unipik\UserBundle\Entity\Region:
+    type: entity
+    table: region
+    indexes:
+        IDX_F62F176A6E44244:
+            columns:
+                - pays_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nom:
+            type: string
+            nullable: false
+            length: 60
+            options:
+                fixed: false
+    manyToOne:
+        pays:
+            targetEntity: Pays
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pays_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

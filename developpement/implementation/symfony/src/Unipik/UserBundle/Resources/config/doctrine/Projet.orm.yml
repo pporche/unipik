@@ -1,0 +1,57 @@
+# version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+Unipik\UserBundle\Entity\Projet:
+    type: entity
+    table: projet
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        chiffreAffaire:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            column: chiffre_affaire
+        remarques:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+        type:
+            type: string
+            nullable: false
+            length: null
+            options:
+                fixed: false
+        nom:
+            type: string
+            nullable: false
+            length: 1000
+            options:
+                fixed: false
+    manyToMany:
+        benevole:
+            targetEntity: Benevole
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: projet
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        contact:
+            targetEntity: Contact
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: projet
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+
+    lifecycleCallbacks: {  }

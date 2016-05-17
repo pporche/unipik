@@ -1,0 +1,58 @@
+# version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+Vente:
+    type: entity
+    table: vente
+    indexes:
+        IDX_888A2A4C8EAE3863:
+            columns:
+                - intervention_id
+        IDX_888A2A4CFF631228:
+            columns:
+                - etablissement_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        chiffreAffaire:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            column: chiffre_affaire
+        date:
+            type: date
+            nullable: false
+        remarques:
+            type: text
+            nullable: true
+            length: null
+            options:
+                fixed: false
+    manyToOne:
+        intervention:
+            targetEntity: Intervention
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                intervention_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        etablissement:
+            targetEntity: Etablissement
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                etablissement_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

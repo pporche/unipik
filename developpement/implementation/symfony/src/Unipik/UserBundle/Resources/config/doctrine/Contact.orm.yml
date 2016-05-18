@@ -1,5 +1,5 @@
 # version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
-Unipik\UserBundle\Entity\Contact:
+Contact:
     type: entity
     table: contact
     id:
@@ -41,7 +41,7 @@ Unipik\UserBundle\Entity\Contact:
             type: string
             nullable: true
             length: 10
-            options:
+        options:
                 fixed: false
             column: tel_portable
         typeContact:
@@ -73,7 +73,6 @@ Unipik\UserBundle\Entity\Contact:
                 fixed: false
             column: type_activite
     manyToMany:
-
         etablissement:
             targetEntity: Etablissement
             cascade: {  }
@@ -91,7 +90,6 @@ Unipik\UserBundle\Entity\Contact:
                         name: contact_id
                         referencedColumnName: id
             orderBy: null
-
         projet:
             targetEntity: Projet
             cascade: {  }

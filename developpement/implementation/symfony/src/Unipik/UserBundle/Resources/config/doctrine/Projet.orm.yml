@@ -1,5 +1,5 @@
 # version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
-Unipik\UserBundle\Entity\Projet:
+Projet:
     type: entity
     table: projet
     id:

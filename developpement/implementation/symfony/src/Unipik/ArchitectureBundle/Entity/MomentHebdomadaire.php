@@ -1,61 +1,101 @@
 <?php
-
+// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
-use Unipik\ArchitectureBundle\DBAL\Types\JourType;
-use Unipik\ArchitectureBundle\DBAL\Types\MomentQuotidienType;
 
 /**
  * MomentHebdomadaire
  *
  * @ORM\Table(name="moment_hebdomadaire")
- * @ORM\Entity(repositoryClass="Unipik\ArchitectureBundle\Repository\MomentHebdomadaireRepository")
+ * @ORM\Entity
  */
-class MomentHebdomadaire {
-
+class MomentHebdomadaire
+{
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="moment_hebdomadaire_id_seq", allocationSize=1, initialValue=1)
      */
-    private $_id;
-
-     /**
-     *
-     * @ORM\Column(name="jour", type="JourType", nullable=false)
-     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\JourType")
-     */
-    private $_jour;
+    private $id;
 
     /**
+     * @var string
      *
-     * @ORM\Column(name="moment", type="MomentQuotidienType", nullable=false)
-     * @DoctrineAssert\Enum(entity="Unipik\ArchitectureBundle\DBAL\Types\MomentQuotidienType")
+     * @ORM\Column(name="jour", type="string", nullable=false)
      */
-    private $_moment;
+    private $jour;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="moment", type="string", nullable=false)
+     */
+    private $moment;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Demande", inversedBy="momentsVoulus")
+     * @ORM\JoinTable(name="demande_moments_voulus",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="demande_en_cours", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="moments_voulus", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $demandeMomentsVoulus;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Demande", inversedBy="momentsAEviter")
+     * @ORM\JoinTable(name="demande_moments_a_eviter",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="demande", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="moments_a_eviter", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $demandeMomentsAEviter;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->demandeMomentsVoulus = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->demandeMomentsAEviter = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId() {
-        return $this->_id;
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
      * Set jour
      *
-     * @param JourType $jour
+     * @param string $jour
      *
      * @return MomentHebdomadaire
      */
-    public function setJour($jour) {
-        $this->_jour = $jour;
+    public function setJour($jour)
+    {
+        $this->jour = $jour;
 
         return $this;
     }
@@ -63,21 +103,23 @@ class MomentHebdomadaire {
     /**
      * Get jour
      *
-     * @return JourType
+     * @return string
      */
-    public function getJour() {
-        return $this->_jour;
+    public function getJour()
+    {
+        return $this->jour;
     }
 
     /**
      * Set moment
      *
-     * @param MomentQuotidienType $moment
+     * @param string $moment
      *
      * @return MomentHebdomadaire
      */
-    public function setMoment($moment) {
-        $this->_moment = $moment;
+    public function setMoment($moment)
+    {
+        $this->moment = $moment;
 
         return $this;
     }
@@ -85,9 +127,78 @@ class MomentHebdomadaire {
     /**
      * Get moment
      *
-     * @return MomentQuotidienType
+     * @return string
      */
-    public function getMoment() {
-        return $this->_moment;
+    public function getMoment()
+    {
+        return $this->moment;
+    }
+
+    /**
+     * Add demandeMomentsVoulus
+     *
+     * @param \Unipik\InterventionBundle\Entity\Demande $demande
+     *
+     * @return MomentHebdomadaire
+     */
+    public function addDemandeMomentsVoulus(\Unipik\InterventionBundle\Entity\Demande $demande)
+    {
+        $this->demandeMomentsVoulus[] = $demande;
+
+        return $this;
+    }
+
+    /**
+     * Remove demandeMomentsVoulus
+     *
+     * @param \Unipik\InterventionBundle\Entity\Demande $demande
+     */
+    public function removeDemandeMomentsVoulus(\Unipik\InterventionBundle\Entity\Demande $demande)
+    {
+        $this->demandeMomentsVoulus->removeElement($demande);
+    }
+
+    /**
+     * Get demandeMomentsVoulus
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDemandeMomentsVoulus()
+    {
+        return $this->demandeMomentsVoulus;
+    }
+
+    /**
+     * Add demandeMomentsAEviter
+     *
+     * @param \Unipik\InterventionBundle\Entity\Demande $demande
+     *
+     * @return MomentHebdomadaire
+     */
+    public function addDemandeMomentsAEviter(\Unipik\InterventionBundle\Entity\Demande $demande)
+    {
+        $this->demandeMomentsAEviter[] = $demande;
+
+        return $this;
+    }
+
+    /**
+     * Remove demandeMomentsAEviter
+     *
+     * @param \Unipik\InterventionBundle\Entity\Demande $demande
+     */
+    public function removeDemandeMomentsAEviter(\Unipik\InterventionBundle\Entity\Demande $demande)
+    {
+        $this->demandeMomentsAEviter->removeElement($demande);
+    }
+
+    /**
+     * Get demandeMomentsAEviter
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDemandeMomentsAEviter()
+    {
+        return $this->demandeMomentsAEviter;
     }
 }

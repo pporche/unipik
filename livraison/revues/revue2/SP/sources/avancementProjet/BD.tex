@@ -17,7 +17,7 @@
 	\begin{block}{Modélisation de la base de données}	
 		\begin{itemize}
 			\item Réalisation du diagramme de classes
-			\item Création de la Base de Données et mapping avec les entités du projet
+			\item Création de la Base de Données et mapping avec les entités du projet grâce à notre ORM Doctrine
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -26,7 +26,7 @@
 
 \begin{frame}
 	\frametitle{\underline{M}VC : Le modèle}
-	\begin{block}{Création de la Base de Données et utilisation de l'ORM Doctrine}	
+	\begin{block}{Mapping entre les classes PHP et la Base de Données}	
 		\begin{columns}
 			\begin{column}{0.9cm}
 			\end{column}
@@ -54,7 +54,7 @@
 
 \begin{frame}
 	\frametitle{\underline{M}VC : Le modèle}
-	\begin{block}{Création de la Base de Données et utilisation de l'ORM Doctrine}	
+	\begin{block}{Mapping entre les classes PHP et la Base de Données}	
 		\begin{columns}
 			\begin{column}{0.9cm}
 			\end{column}
@@ -105,6 +105,20 @@
 	\end{block}
 \end{frame}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\frametitle{\underline{M}VC : Le modèle}
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[scale=0.225]{images/explicationProblemeBD}
+				\caption{Mauvaise gestion des attributs d'association}
+			\end{center}
+		\end{figure}
+\end{frame}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -140,12 +154,3 @@
 \end{frame}
 
 
-\begin{frame}
-	\frametitle{\underline{M}VC : Le modèle}
-		\begin{figure}[!h]
-			\begin{center}
-				\includegraphics[scale=0.225]{images/explicationProblemeBD}
-				\caption{Le Kancer}
-			\end{center}
-		\end{figure}
-\end{frame}

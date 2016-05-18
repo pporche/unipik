@@ -1,38 +1,39 @@
+
 \speaker{\Kafui}
-
 \begin{frame}
-  \frametitle{Avancement - Introduction}
-  \begin{itemize}
-	\item Première livrable délivré le ....
-	\item Rappel des technologies utilisées
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Avancement - Livraison du premier lot}
+  \frametitle{Livraison du premier lot}
   \begin{itemize}
 	\item Mise en place de l'architecture du projet
 	\item Aperçu du prochain livrable par le client
-	\item Aucune remarques du client
-	\item Mettre une image du site ou pas ??
+	\item Absence de remarque du client
+	\item Premier livrable délivré le ....
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Avancement - Rappel des technologies utilisées}
+  \frametitle{Rappel des technologies utilisées}
   \begin{itemize}
-	\item Architecture 3 tiers : Client <-> Serveur <-> Base de données
+	\item !! schéma repris de la revue 1, est-il clair ? !!
+	\item Architecture 3 tiers
 	\item Symfony3 : framework PHP 
-	\item Base de données relationnelle avec POSTgreSQL
+	\item Base de données relationnelle avec PostgreSQL
   \end{itemize}
+
+  \begin{figure}[!h]
+	\begin{center}
+	\input{sources/avancementProjet/3tiersMVC/01_3tiersSchema.tex}
+	\caption{\label{3tiers_schema} Architecture 3 tiers}
+	\end{center}
+  \end{figure}
+
 \end{frame}
 
 \begin{frame}
-  \frametitle{Avancement - Patron de conception MVC}
+  \frametitle{Patron de conception MVC}
   \begin{itemize}
-	\item Vue : Ce que l'utilisateur perçoit.
-	\item Modèle : Abstraction d'une donnée (ex : un personnage, une voiture).
-	\item Contrôleur : Coordonne l'utilisation du Modèle et la mise à jour de la Vue.
+	\item Modèle : abstraction d'une donnée (ex : un personnage, une voiture)
+	\item Vue : interface avec laquelle l'utilisateur interagit
+	\item Contrôleur : utilisation du \textbf{Modèle} et mise à jour de la \textbf{Vue}
   \end{itemize}
 
 \begin{figure}[!h]

@@ -8,13 +8,13 @@ include makevars $(UNIPIKGENPATH)/pic_unicef/makevars
 
 
 
-all : rbcp cleanrep cleaneps #imagespdf
+all : imagespdf rbcp cleanrep cleaneps
 
 imagespdf: 
 	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/debriefing_L_Unipik_d16-05-23_rCP.pdf organigrammeFonctionnel modeleSpirale schemaArchitecture
 
 rbcp : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements SPD_L_Unipik_d16-05-23_rCP #debriefing_L_Unipik_d16-05-23_rCP poster_L_Unipik_d16-05-23_rCP resumePic_L_Unipik_d16-05-23_rCP 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements SPD_L_Unipik_d16-05-23_rCP debriefing_L_Unipik_d16-05-23_rCP poster_L_Unipik_d16-05-23_rCP resumePic_L_Unipik_d16-05-23_rCP 
 
 
 # Archivage

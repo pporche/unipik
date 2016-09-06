@@ -1,0 +1,62 @@
+# version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+MomentHebdomadaire:
+    type: entity
+    table: moment_hebdomadaire
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        jour:
+            type: string
+            nullable: false
+            length: null
+            options:
+                fixed: false
+        moment:
+            type: string
+            nullable: false
+            length: null
+            options:
+                fixed: false
+    manyToMany:
+        demandeMomentsVoulus:
+            targetEntity: Demande
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: momentsVoulus
+            joinTable:
+                name: demande_moments_voulus
+                joinColumns:
+                    -
+                        name: demande_moments_voulus
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: moments_voulus
+                        referencedColumnName: id
+            orderBy: null
+        demandeMomentsAEviter:
+            targetEntity: Demande
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: momentsAEviter
+            joinTable:
+                name: demande_moments_a_eviter
+                joinColumns:
+                    -
+                        name: demande_moments_a_eviter
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: moments_a_eviter
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

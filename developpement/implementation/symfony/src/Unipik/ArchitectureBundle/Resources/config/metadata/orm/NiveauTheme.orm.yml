@@ -1,0 +1,36 @@
+# version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+NiveauTheme:
+    type: entity
+    table: niveau_theme
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        niveau:
+            type: string
+            nullable: true
+            length: null
+            options:
+                fixed: false
+        theme:
+            type: string
+            nullable: true
+            length: null
+            options:
+                fixed: false
+    manyToMany:
+        comite:
+            targetEntity: Comite
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: niveauTheme
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

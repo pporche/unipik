@@ -55,20 +55,7 @@
 \couverture{}
 
 \informationsGenerales{}
-%\input{sources/00_pageService.tex}
-\begin{pagesService}
-	\begin{historique}
-		% nouvelles versions à rajouter AU-DESSUS en recopiant les lignes suivantes et en les modifiant :
-		\unHistorique{1.00}{25/04/2016}{\Sergi{}}{Création}{Toutes}
 
-	\end{historique}
-
-%%Signataires
-        \begin{signatures}
-	   \uneSignature{Vérificateur}{}{}{}{pgpic}
-       \uneSignature{Validateur}{\CPA{}, \newline \RQ{}}{\Pierre}{}{pgpic}
-        \end{signatures}
-\end{pagesService}
 
 \tableofcontents
 
@@ -88,11 +75,11 @@ Dans un premier temps une description du PIC dans sa généralité sera effectu�
 \section{Le client}
 L'\nomClient{} Seine Maritime est un comité de l'\nomClient{},  agence de l'Organisation des Nations unies consacrée à l'amélioration et à la promotion de la condition des enfants.  L'\nomClient{} a activement participé à la rédaction, la conception et la promotion de la Convention relative aux droits de l'enfant (CIDE), adoptée lors du sommet de New York le 20 novembre 1989. L'\nomClient{} a reçu le prix Nobel de la paix le 12 janvier 1965. L'\nomClient{} s'est donné les objectifs prioritaires suivants :
 \begin{itemize}
-	\item l'éducation des filles,
-	\item la vaccination et la lutte contre le SIDA et le VIH,
-	\item la protection de l'enfance,
-	\item la santé des nouveau-nés,
-	\item l'égalité hommes-femmes\vspace{0.5cm}.
+	\item l'éducation des filles
+	\item la vaccination et la lutte contre le SIDA et le VIH
+	\item la protection de l'enfance
+	\item la santé des nouveau-nés
+	\item l'égalité hommes-femmes\vspace{0.5cm}
 \end{itemize}
 
 Pour notre projet nous travaillons avec l'\nomClient{} Seine-Maritime. Les fonctions de ce comité sont : l'organisation de plaidoyers dans les écoles sur des thèmes centraux de l'\nomClient, l'organisation d'opérations frimousses consistant à la fabrication de poupées "frimousses" par des élèves afin d'être revendues par la suite, et des actions ponctuelles telles que des ventes lors d’événements particuliers.
@@ -135,25 +122,25 @@ En collaboration avec notre client, l'\nomClient{} Seine-Maritime, nous avons di
 Dans les parties suivantes vont être décrits les lots du premier semestre tels qu'ils ont été déterminés initialement.
 
 \subsection{Lot 1}
-Le premier lotissement est décrit de la manière suivante dans le cahier des charges : <<Le lot 1 couvre l'architecture matérielle et logicielle à mettre en place pour le fonctionnement de l'application dans sa globalité>>. Pour ce livrable il est donc attendu une réflexion de l'équipe sur l'architecture du système à mettre en place, non pas au niveau des langages de développement mais au niveau structurel et physique. Cette architecture a également été mise en place sur un exemple basique que l'on a développé. Ce livrable doit être rendu à $T_{0}+5$. 
+Le premier lot est décrit de la manière suivante dans le cahier des charges : <<Le lot 1 couvre l'architecture matérielle et logicielle à mettre en place pour le fonctionnement de l'application dans sa globalité>>. Pour ce livrable il est donc attendu une réflexion de l'équipe sur l'architecture du système à mettre en place, non pas au niveau des langages de développement mais au niveau structurel et physique. Cette architecture a également été mise en place sur un exemple basique que l'on a développé. Ce livrable doit être rendu à $T_{0}+5 semaines$. 
 
 \subsection{Lot 2}
-Le deuxième lotissement va couvrir les fondamentaux et la gestion des plaidoyers. Il implémente sept fonctionnalités et doit être achevé pour la fin du premier semestre. Les fonctionnalités demandées sont les suivantes :
+Le deuxième lot va couvrir les fondamentaux et la gestion des plaidoyers. Il implémente sept fonctionnalités et doit être achevé pour la fin du premier semestre. Les fonctionnalités demandées sont les suivantes :
 \begin{itemize}
-	\item gestion des bénévoles avec la création, la suppression et la modification de ceux-ci dans la base de données.
-	\item gestion des établissements avec la création, la suppression et la modification de ceux-ci dans la base de données.
-	\item envoi de mails automatique aux établissements pour la démarche de création d'intervention.
-	\item création d'un formulaire intelligent permettant aux établissements de s'inscrire dans la liste des interventions facilement et rapidement.
-	\item affectation d'interventions aux plaideurs en fonction de leur géolocalisation et par envoi de mails automatiques.
-	\item modification des interventions par un bénévole.
-	\item envoi de mails de rappels une semaine avant la date prévue de l'intervention.
+	\item gestion des bénévoles avec la création, la suppression et la modification de ceux-ci dans la base de données
+	\item gestion des établissements avec la création, la suppression et la modification de ceux-ci dans la base de données
+	\item envoi de mails automatique aux établissements pour la démarche de création d'intervention
+	\item création d'un formulaire intelligent permettant aux établissements de s'inscrire dans la liste des interventions facilement et rapidement
+	\item affectation d'interventions aux plaideurs en fonction de leur géolocalisation et par envoi de mails automatiques
+	\item modification des interventions par un bénévole
+	\item envoi de mails de rappels une semaine avant la date prévue de l'intervention
 \end{itemize}
 
 
 
 \section{Réalisations du premier semestre}
 \subsection{Lot 1 : l'architecture}
-Le premier lotissement correspond à l'architecture logicielle et matérielle du service demandé. Nous avons décidé de réaliser une architecture trois tiers composée d'un client, un serveur et une base de données. Le client représente les ordinateurs des bénévoles qui auront accès à l'interface du service et pourront l'utiliser sans se soucier de la logique métier et de la base données. Le serveur hébergera notre service et répondra aux requêtes des clients. Enfin la base de données sera séparée du serveur d'application afin de bien délimiter les différents cadres de développement. Nous avons également décidé de mettre en place le patron de conception Modèle-Vue-Contrôleur (MVC).\vspace{0.5cm}\\
+Le premier lot correspond à l'architecture logicielle et matérielle du service demandé. Nous avons décidé de réaliser une architecture trois tiers composée d'un client, un serveur et une base de données. Le client représente les ordinateurs des bénévoles qui auront accès à l'interface du service et pourront l'utiliser sans se soucier de la logique métier et de la base données. Le serveur hébergera notre service et répondra aux requêtes des clients. Enfin la base de données sera séparée du serveur d'application afin de bien délimiter les différents cadres de développement. Nous avons également décidé de mettre en place le patron de conception Modèle-Vue-Contrôleur (MVC).\vspace{0.5cm}\\
 En ce qui concerne la base de données, le client nous a imposé de la développer en PostgreSQL. Elle doit également pouvoir utiliser des objets spatiaux via la technologie PostGIS. Nous avons aussi pris en considération la faible volumétrie de la base : au niveau de la Seine-Maritime ne sont dénombrés qu'une dizaine de plaideurs pour 1500 établissements et un taux de connexion qui ne dépassera pas les dix connexions par seconde.\vspace{0.5cm}\\
 En ce qui concerne le service web, nous avons décidé de le développer en PHP. Pour faire ce choix nous avons réalisé un état de l'art puis une comparaison des différents langages possibles. Suite à cette comparaison (figure \ref{comparaison_PHP}), il est apparu que le PHP est le langage de développement qui correspond le mieux à notre projet.
 \begin{figure}[!h]
@@ -177,14 +164,17 @@ En ce qui concerne le service web, nous avons décidé de le développer en PHP.
 Enfin afin de faire le lien entre notre base de données et notre application web, nous avons pris la décision d'utiliser le framework Symfony. En effet celui-ci possède de nombreux avantages dont celui de générer du code PHP à partir d'une base de données. Ses autres principaux avantages sont : être un logiciel open source, inclure un développement MVC avec une bonne séparation des trois couches et avoir des tests unitaires et fonctionnels intégrés.
 
 \subsection{Lot 2 : les plaidoyers}
-Le second livrable couvre toute la partie gestion des plaidoyers. Pour rappel, les plaidoyers sont des interventions menées par des bénévoles de l'\nomClient{} 76 dans des établissements scolaires sur des thèmes précis. Les grandes fonctionnalités à développer sont : la création de bénévoles dans la base de données, la création d'établissements dans la base de données, la création d'interventions dans la base de données et l'association de ces trois grandes entités pour former une intervention par un bénévole dans un établissement. Sont aussi demandées l'envoi de mails automatiques et la géolocalisation des interventions.
+Le second livrable couvre toute la partie gestion des plaidoyers. Pour rappel, les plaidoyers sont des interventions menées par des bénévoles de l'\nomClient{} 76 dans des établissements scolaires sur des thèmes précis. Les grandes fonctionnalités à développer sont : la création de bénévoles dans la base de données, la création d'établissements dans la base de données, la création d'interventions dans la base de données et l'association de ces trois grandes entités pour former une intervention par un bénévole dans un établissement. Sont aussi demandées l'envoi de mails automatiques et la géolocalisation des interventions.\vspace{0.5cm}\\
+Durant ce semestre nous avons réalisé une base de données propre afin de pouvoir développer par la suite notre service à partir de bonnes bases et sans devoir revenir sur le modèle. Nous avons également développé des vues ainsi que des contrôleurs. Il nous est possible d'envoyer des mails automatiquement et nous pouvons gérer la connexion et la déconnexion d'un utilisateur.
+Cependant, nous n'avons pas pu développer toute la logique métier dans les temps.
 
 \subsection{Éléments non traités}
-
+Ayant du retard sur le deuxième livrable, nous n'avons pas pu réaliser une partie de la logique métier concernant les plaidoyers. Nous n'avons pas non plus géré les objets spatiaux via la technologie PostGIS.
 
 
 \section{Prévisions du second semestre}
 \subsection{Lot 2 : les plaidoyers}
+Le deuxième livrable est à achever avant la fin septembre, délai que nous avons négocié avec le client. Il s'agit là de terminer la logique métier et de la tester. Il faudra être capable de gérer la gestion des établissements et des interventions.
 
 
 \subsection{Lot 3 : les frimousses}
@@ -225,10 +215,10 @@ Dans cette partie vont être décrites les différentes méthodes mises en place
 	\end{center}
 \end{figure}
 
-Initialement nous souhaitions mettre en place une méthodologie de type Agile. Cependant nous nous sommes vite rendus compte qu'une telle méthodologie n'était pas adaptée à notre projet et au respect de la Qualité décrite dans la DGQ2. Nous avons donc mis en place une méthodologie qui correspond mieux à notre projet : la méthodologie en spirale. Cette méthodologie peut être assimilée à une succession de petits cycles en V. Elle se décompose en 6 étapes différentes : spécifications du problème, analyse des solutions possibles et existantes, conception de la solution choisie, implémentation de cette solution, tests sur le code développé et pour finir validation de notre solution par le client. Cette succession d'étapes est réalisée quatre fois pour les quatre lots.
+Initialement nous souhaitions mettre en place une méthodologie de type Agile. Cependant nous nous sommes vite rendus compte qu'une telle méthodologie n'était pas adaptée à notre projet et au respect de la Qualité décrite dans la DGQ2. Nous avons donc mis en place une méthodologie qui correspond mieux à notre projet : la méthodologie en spirale. Cette méthodologie peut être assimilée à une succession de petits cycles en V. Elle se décompose en 6 étapes différentes : spécifications du problème, analyse des solutions possibles et existantes, conception de la solution choisie, implémentation de cette solution, tests sur le code développé et pour finir validation de notre solution par le client. Cette succession d'étapes est réalisée quatre fois, une fois par lot.
 
 \subsection{Front-end / Back-end}
-Au fur et à mesure que le projet a avancé, il est apparu la nécessité de diviser l'équipe de développeurs en deux. Une équipe s'occuperait du front-end, c'est-à-dire des vues et de l'interface de notre service, tandis que l'autre équipe s'occuperait du back-end, c'est-à-dire des contrôleurs et de la logique métier permettant de faire remonter les résultats vers les vues. Dans chaque équipe ont été nommé un responsable afin de structurer le travail et d'avancer de manière efficace.
+Au fur et à mesure que le projet a avancé, il est apparu la nécessité de diviser l'équipe de développeurs en deux. Une équipe s'occuperait du front-end, c'est-à-dire des vues et de l'interface de notre service, tandis que l'autre équipe s'occuperait du back-end, c'est-à-dire des contrôleurs et de la logique métier permettant de faire remonter les résultats vers les vues. Dans chaque équipe a été nommé un responsable afin de structurer le travail et d'avancer de manière efficace.
 
 
 

@@ -1,0 +1,57 @@
+# version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+Unipik\InterventionBundle\Entity\Demande:
+    type: entity
+    table: demande
+    indexes:
+        IDX_2694D7A5E7A1254A:
+            columns:
+                - contact_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        date:
+            type: date
+            nullable: false
+        listeSemaine:
+            type: string
+            nullable: false
+            length: 300
+            options:
+                fixed: false
+            column: liste_semaine
+    manyToOne:
+        contact:
+            targetEntity: Contact
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        momentsVoulus:
+            targetEntity: MomentHebdomadaire
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: demandeMomentsVoulus
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        momentsAEviter:
+            targetEntity: MomentHebdomadaire
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: demandeMomentsAEviter
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

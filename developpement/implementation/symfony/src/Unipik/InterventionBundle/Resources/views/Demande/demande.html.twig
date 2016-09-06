@@ -1,0 +1,12 @@
+{% extends "InterventionBundle::layout.html.twig" %}
+
+{% block title %}
+
+    Demander une intervention - {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+    <h2>Demande d'intervention</h2>
+    {{ form(form) }}
+{% endblock %}

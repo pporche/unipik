@@ -1,37 +1,51 @@
+
 \speaker{\Kafui}
-
 \begin{frame}
-  \frametitle{Avancement - Introduction}
-  \begin{itemize}
-	\item Première livrable délivré le ....
-	\item Rappel des technologies utilisées
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Avancement - Livraison du premier lot}
+  \frametitle{Introduction}
+  \begin{block}{Livraison du premier lot}
   \begin{itemize}
 	\item Mise en place de l'architecture du projet
 	\item Aperçu du prochain livrable par le client
-	\item Aucune remarques du client
-	\item Mettre une image du site ou pas ??
+	\item Absence de remarque du client
+	\item Premier livrable délivré le 23 Mars
   \end{itemize}
+  \end{block}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Avancement - Rappel des technologies utilisées}
+  \frametitle{Introduction}
+  \begin{block}{Rappel des technologies utilisées}
   \begin{itemize}
 	\item Architecture 3 tiers
 	\item Symfony3 : framework PHP 
-	\item Base de données relationnelle avec POSTgreSQL
+	\item Base de données relationnelle avec PostgreSQL
   \end{itemize}
+
+  \begin{figure}[!h]
+	\begin{center}
+	\includegraphics[scale=0.2]{images/3tiers}
+	\caption{Architecture 3 tiers}
+	\end{center}
+  \end{figure}
+  \end{block}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Avancement - Explication du patron de conception Modèle-Vue-Contrôleur}
+  \frametitle{Introduction}
+  \begin{block}{Patron de conception MVC}
   \begin{itemize}
-	\item Vue : Ce que l'utilisateur perçoit.
-	\item Modèle : Abstraction d'une donnée (ex : un personnage, une voiture).
-	\item Contrôleur : Coordonne l'utilisation du Modèle et la mise à jour de la Vue.
+	\item Modèle : abstraction d'une donnée (ex : une voiture)
+	\item Vue : interface avec laquelle l'utilisateur interagit
+	\item Contrôleur : utilisation du \textbf{Modèle} et mise à jour de la \textbf{Vue}
+	
   \end{itemize}
+
+\begin{figure}[!h]
+	\begin{center}
+	\includegraphics[scale=0.4]{images/mvcGeneral}
+	\caption{Architecture MVC}
+	\end{center}
+\end{figure}
+\end{block}
 \end{frame}
+

@@ -1,3 +1,4 @@
+# version 1.03 date 21/05/2016 auteur(s) Sergi Colomies
 # version 1.02 date 10/05/2016 auteur(s) Sergi Colomies
 # version 1.01 date 27/04/2016 auteur(s) Sergi Colomies
 # version 1.00 date 25/04/2016 auteur(s) Sergi Colomies
@@ -13,7 +14,7 @@ imagespdf:
 	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/debriefing_L_Unipik_d16-05-23_rCP.pdf organigrammeFonctionnel modeleSpirale schemaArchitecture
 
 rbcp : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements debriefing_L_Unipik_d16-05-23_rCP poster_L_Unipik_d16-05-23_rCP resumePic_L_Unipik_d16-05-23_rCP 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements SPD_L_Unipik_d16-05-23_rCP debriefing_L_Unipik_d16-05-23_rCP poster_L_Unipik_d16-05-23_rCP resumePic_L_Unipik_d16-05-23_rCP 
 
 
 # Archivage

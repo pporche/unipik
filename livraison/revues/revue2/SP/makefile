@@ -7,11 +7,11 @@ include makevars ../../../../makevars
 
 # Compilation
 
-all : imagespdf sp cleanrep cleaneps cleanpng
+all : imagespdf sp cleanrep cleaneps
 
 
 imagespdf : 
-	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf mvcVue mvcControleur mvcModele twig archiTemplates
+	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf mvcVue mvcControleur mvcModele twig archiTemplates topDown bottomUp mvcGeneral explicationProblemeBD 3tiers
 
 imagespng : 
 	$(BASHMAKEPATH)/imagesPng.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf 
@@ -25,10 +25,10 @@ archive:
 	$(BASHMAKEPATH)/archivage.sh ${ARCHIVEDIR}
 
 # Clean commands
-clean : cleanpdf cleanrep cleaneps cleanpng
+clean : cleanpdf cleanrep cleaneps
 
 cleanpdf :
-	$(BASHMAKEPATH)/cleanPdf.sh pdf images annexe/pdf
+	$(BASHMAKEPATH)/cleanPdf.sh pdf annexe/pdf
 
 
 # Nettoyage du répertoire
@@ -37,7 +37,4 @@ cleanrep:
 
 cleaneps :
 	$(BASHMAKEPATH)/cleanEps.sh
-
-cleanpng:
-	$(BASHMAKEPATH)/cleanPng.sh
 

@@ -1,0 +1,26 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-06T16:20:57+02:00
+
+====== LaTeX ======
+Created mardi 06 septembre 2016 by Matthieu
+Last updates:
+* mardi 06 septembre 2016 by Matthieu
+
+
+===== But : =====
+
+Installer les outils nécessaire à la compilation des documents LaTeX.
+
+===== Étapes Pas-à-pas (Linux debian-like) : =====
+
+1. Exécuter la commande suivante :
+
+''sudo apt-get install git rubber graphviz textlive-full curl dia openJDK7''
+
+2. Dans [[/etc/profile]] ajouter les lignes suivantes en adaptant le chemin vers le projet pic_unicef :
+
+'''
+export UNIPIKGENPATH="/home/user/chemin-vers-pic_unicef"
+'''
+

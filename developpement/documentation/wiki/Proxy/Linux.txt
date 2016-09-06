@@ -1,0 +1,37 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-06T11:06:37+02:00
+
+====== Linux ======
+Created mardi 06 septembre 2016 by Matthieu
+Last updates:
+* mardi 06 septembre 2016 by Matthieu
+
+===== But: =====
+
+Configurer le proxy sous linux.
+
+===== Variables Unix =====
+
+De nombreuses applications se basent sur les variables Unix pour configurer correctement le proxy.
+
+==== Étapes Pas-à-pas ====
+
+1. Dans le fichiers [[/etc/profile]] ajouter les lignes ( utiliser l'url de proxy indiqué dans [[:Proxy]] ) :
+
+'''
+export http_proxy="http://cachemad.insa-rouen.fr:3128"
+export https_proxy="http://cachemad.insa-rouen.fr:3128"
+export GIT_SSL_NO_VERIFY=1
+export NO_PROXY=localhost,127.0.0.1,insa-rouen.fr
+'''
+
+
+2. Pour appliquer les changements exécuter la commande suivante dans un terminal ou redémarrer la session:
+
+'''
+source /etc/profile
+'''
+
+
+

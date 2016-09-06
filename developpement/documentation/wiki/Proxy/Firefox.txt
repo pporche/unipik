@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-06T16:06:25+02:00
+
+====== Firefox ======
+Created mardi 06 septembre 2016 by Matthieu
+Last updates:
+* mardi 06 septembre 2016 by Matthieu
+
+===== But: =====
+
+Configuration du proxy avec l'environnement de bureau Gnome:
+
+===== Étapes Pas-à-pas: =====
+
+1. Dans préférences, avancé, network, cliquer sur settings
+2. Cocher automatic proxy (en bas) et rentrer l'url de configuration automatique ( à trouver dans [[:Proxy]] ).
+
+{{../firefox.png}}

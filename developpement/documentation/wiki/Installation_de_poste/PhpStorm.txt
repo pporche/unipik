@@ -1,0 +1,68 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-06T12:09:38+02:00
+
+====== PhpStorm ======
+Created mardi 06 septembre 2016 by Matthieu
+Last updates:
+* mardi 06 septembre 2016 by Matthieu
+
+
+===== But : =====
+
+Installer l'IDE PhpStorm et le configurer pour qu'il reconnaisse correctement le projet.
+
+
+===== Installation (Linux) =====
+
+==== Étapes Pas-à-pas : ====
+
+0. Bien configurer le proxy (voir [[Proxy]]).
+1. (Si étudiant) Se rendre à l'url https://www.jetbrains.com/student/ et cliquer sur "Apply now".
+(Sinon) Acheter une license ou utiliser la démo de 30 jour (passer directement à l'étape 5)
+3. (Si étudiant) Remplir le champs avec son email étudiant (@insa-rouen.fr par exemple)
+4. (Si étudiant) Suivre les instructions des **deux** emails de confirmation.
+5. Télécharger PHPstorm à l'url https://www.jetbrains.com/phpstorm/download/#section=linux-version
+6. Décompresser l'archive
+7. Exécuter les commandes suivantes (attention, le numéro de version en gras peut être différent) :
+
+sudo mv PhpStorm-**143.1770** /opt
+cd [[/opt/php-143.1770]]/bin
+sh phpstorm.sh
+
+8. Cocher "Accept"
+9. (si license) Cocher JetBrainsAccount et entrer les infos.
+10. Cliquer OK plusieurs fois jusqu'à ce que [[PhpStorm]] demande à s'authentifier.
+11. S'authentifier (3 fois)
+
+===== Création de projet =====
+
+==== Étapes Pas-à-pas ====
+
+1. Dans PhpStorm, choisir "File" puis "New Project from Exsting Files"
+
+{{../phpstorm-projet-from-source.png}}
+
+2. Lorsque phpStorm pose la question du serveur web, choisir la première option ("Web server is installed locally, source files are located uder its document root."), puis cliquer sur "next"
+
+{{../web-server.png}}
+
+3. Choisir la racine du projet (pic_unicef/developpement/implementation/symfony), cliquer sur le dossier puis sur "project Root"
+
+{{../project-dir.png}}
+
+4. Cliquer sur le dossier tests puis sur "Tests sources", puis sur le dossier web puis sur "Resource Root"
+
+{{~/Images/Capture du 2016-09-06 14:52:50.png}}
+
+5. Ajouter un serveur web avec l'url http://matthieu.unipik.insa-rouen.fr/unicef/ et cocher "don't check HTTP"
+6. Cliquer sur "Next"
+
+===== Editor Config =====
+1. Dans File, choisir, Settings puis plugins
+2. Cherher editor config, s'il n'apparait pas dans la liste, cliquer sur "install JetBrains plugin"
+3. Chercher EditorConfig, puis cliquer sur "Install"
+
+{{../EditorConfig.png}}
+
+4. Redémarrer PhpStorm.

@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-06T10:51:07+02:00
+
+====== Proxy ======
+Created mardi 06 septembre 2016 by Matthieu
+Last updates:
+* mardi 06 septembre 2016 by Matthieu
+
+===== Informations importantes: =====
+
+* Url de configuration automatique du proxy : http://proxypac.insa-rouen.fr/proxy-mad.pac
+* Url du proxy : http://cachemad.insa-rouen.fr:3128

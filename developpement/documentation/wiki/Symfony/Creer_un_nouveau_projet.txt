@@ -1,0 +1,34 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-06T12:49:15+02:00
+
+====== Creer un nouveau projet ======
+Created mardi 06 septembre 2016 by Matthieu
+Last updates:
+* mardi 06 septembre 2016 by Matthieu
+
+===== But: =====
+
+Initialiser un nouveau projet symfony
+
+===== Étapes Pas-à-pas : =====
+
+1. Configurer correctement le proxy
+voir [[:Proxy]]
+
+2. Installer php et curl
+voir [[:Installation de poste:Symfony]] 
+
+3. Dans un nouveau dossier de travail exécuter la commande :
+
+'''
+curl -sS https://getcomposer.org/installer | php
+'''
+
+4. Puis exécuter la commande :
+
+'''
+php composer.phar create-project symfony/framework-standard-edition nom-de-dossier
+'''
+
+5. Copier le fichier composer.phar dans le dossier de projet.

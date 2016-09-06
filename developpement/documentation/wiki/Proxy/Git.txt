@@ -1,0 +1,26 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-06T11:19:49+02:00
+
+====== Git ======
+Created mardi 06 septembre 2016 by Matthieu
+Last updates:
+* mardi 06 septembre 2016 by Matthieu
+
+===== But: =====
+
+Modifier la variable globale n'est pas suffisant pour configurer le proxy pour git, il est nécessaire de modifier la configuration de git.
+
+==== Étapes Pas-à-pas ====
+
+1. Dans un terminal taper les commandes suivantes ( utiliser l'url de proxy indiqué dans [[:Proxy]] )
+
+'''
+git config --global http.proxy http://cachemad.insa-rouen.fr:3128
+git config --global https.proxy http://cachemad.insa-rouen.fr:3128
+git config --global http.noproxy insa-rouen.fr
+git config --global https.noproxy insa-rouen.fr
+'''
+
+
+

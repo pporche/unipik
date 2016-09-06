@@ -1,0 +1,37 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-06T15:39:36+02:00
+
+====== PhpUnit ======
+Created mardi 06 septembre 2016 by Matthieu
+Last updates:
+* mardi 06 septembre 2016 by Matthieu
+
+
+===== But : =====
+
+Installer phpunit
+
+===== Étapes Pas-à-pas (Linux) : =====
+
+1. Télécharger la version 4.8 de phpunit à l'url suivante : https://phpunit.de/
+2. Exécuter les commandes suivantes (le numéro de version en **gras** peut être différent) :
+
+'''
+mv phpunit-4.8.27.phar /usr/local/bin/phpunit
+chmod +x /usr/local/bin/phpunit
+'''
+
+
+3. Vérifier que phpunit est bien installer avec la commande suivantes :
+
+'''
+phpunit --version
+'''
+
+Le résultat attendu ressemble à :
+
+'''
+PHPUnit 4.8.24 by Sebastian Bergmann and contributors.
+'''
+

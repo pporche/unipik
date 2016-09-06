@@ -1,11 +1,8 @@
 intervention_admin_add:
     path:     /intervention/ajouter
     defaults: { _controller: InterventionBundle:Intervention:ajouter }
-<<<<<<< HEAD
-=======
 
 etablissement_admin_add:
     path:     /etablissement/ajouter
     defaults: { _controller: InterventionBundle:Etablissement:ajouter }
 
->>>>>>> f9c825306ab26288bec12f3f110039e4a4ae892a

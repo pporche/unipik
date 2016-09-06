@@ -1,5 +1,5 @@
 # version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
-Benevole:
+Unipik\UserBundle\Entity\Benevole:
     type: entity
     table: benevole
     indexes:
@@ -16,7 +16,7 @@ Benevole:
             generator:
                 strategy: SEQUENCE
     fields:
-        email:
+        mail:
             type: string
             nullable: false
             length: 100
@@ -70,7 +70,7 @@ Benevole:
             column: responsabilite_activite
     manyToOne:
         adresse:
-            targetEntity: Adresse
+            targetEntity: Unipik\ArchitectureBundle\Entity\Adresse
             cascade: {  }
             fetch: LAZY
             nullable: false

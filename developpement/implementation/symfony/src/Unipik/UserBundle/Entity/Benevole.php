@@ -2,6 +2,7 @@
 // version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 namespace Unipik\UserBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="benevole", indexes={@ORM\Index(name="IDX_B4014FDB4DE7DC5C", columns={"adresse_id"})})
  * @ORM\Entity
  */
-class Benevole
+class Benevole extends BaseUser
 {
     /**
      * @var integer
@@ -20,49 +21,49 @@ class Benevole
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="benevole_id_seq", allocationSize=1, initialValue=1)
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=100, nullable=false)
+     * @ORM\Column(name="mail", type="string", length=100, nullable=false)
      */
-    private $email;
+    protected $mail;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
-    private $nom;
+    protected $nom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=100, nullable=true)
      */
-    private $prenom;
+    protected $prenom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="tel_fixe", type="string", length=10, nullable=true)
      */
-    private $telFixe;
+    protected $telFixe;
 
     /**
      * @var string
      *
      * @ORM\Column(name="tel_portable", type="string", length=10, nullable=true)
      */
-    private $telPortable;
+    protected $telPortable;
 
     /**
      * @var string
      *
      * @ORM\Column(name="mdp", type="string", length=50, nullable=false)
      */
-    private $mdp;
+    protected $mdp;
 
     /**
      * @var string
@@ -70,7 +71,7 @@ class Benevole
      * @ORM\Column(name="activites_potentielles", type="string", length=100, nullable=true)
      * @example : '{(frimousses),(plaidoyers),...}'
      */
-    private $activitesPotentielles;
+    protected $activitesPotentielles;
 
     /**
      * @var string
@@ -78,7 +79,7 @@ class Benevole
      * @ORM\Column(name="responsabilite_activite", type="string", length=120, nullable=true)
      * @example : '{(frimousses),(admin_region),...}'
      */
-    private $responsabiliteActivite;
+    protected $responsabiliteActivite;
 
 
     /**
@@ -90,7 +91,7 @@ class Benevole
      *   @ORM\Column(name="adresse_id", nullable=false)
      * })
      */
-    private $adresse;
+    protected $adresse;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -105,7 +106,7 @@ class Benevole
      *   }
      * )
      */
-    private $projet;
+    protected $projet;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -120,7 +121,7 @@ class Benevole
      *   }
      * )
      */
-    private $comite;
+    protected $comite;
 
     /**
      * Constructor
@@ -143,27 +144,27 @@ class Benevole
     }
 
     /**
-     * Set email
+     * Set mail
      *
-     * @param string $email
+     * @param string $mail
      *
      * @return Benevole
      */
-    public function setEmail($email)
+    public function setmail($mail)
     {
-        $this->email = $email;
+        $this->mail = $mail;
 
         return $this;
     }
 
     /**
-     * Get email
+     * Get mail
      *
      * @return string
      */
-    public function getEmail()
+    public function getmail()
     {
-        return $this->email;
+        return $this->mail;
     }
 
     /**

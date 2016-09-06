@@ -16,7 +16,7 @@ Benevole:
             generator:
                 strategy: SEQUENCE
     fields:
-        email:
+        mail:
             type: string
             nullable: false
             length: 100
@@ -70,7 +70,7 @@ Benevole:
             column: responsabilite_activite
     manyToOne:
         adresse:
-            targetEntity: Adresse
+            targetEntity: Unipik\ArchitectureBundle\Entity\Adresse
             cascade: {  }
             fetch: LAZY
             nullable: false

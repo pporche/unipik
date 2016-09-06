@@ -36,7 +36,7 @@ Comite:
             orphanRemoval: false
     manyToMany:
         niveauTheme:
-            targetEntity: NiveauTheme
+            targetEntity: Unipik\ArchitectureBundle\Entity\NiveauTheme
             cascade: {  }
             fetch: LAZY
             mappedBy: null

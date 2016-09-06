@@ -4,16 +4,17 @@ namespace Unipik\ArchitectureBundle\DBAL\Types;
 
 use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
 
-final class MomentQuotidienType extends AbstractEnumType {
-    const MATIN    = 'matin';
+final class MomentQuotidienType extends AbstractEnumType
+{
+    const MATIN = 'matin';
     const APRESMIDI = 'apres-midi';
-    const SOIR  = 'soir';
+    const SOIR = 'soir';
 
 
     protected static $choices = [
-     self::MATIN    => 'matin',
-     self::APRESMIDI => 'apres-midi',
-    self::SOIR  => 'soir'
+        self::MATIN => 'matin',
+        self::APRESMIDI => 'apres-midi',
+        self::SOIR => 'soir'
     ];
 }
 

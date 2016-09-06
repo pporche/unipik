@@ -127,7 +127,23 @@ CREATE TYPE type_responsabilite_activite as(responsabilite_activite domaine_repo
 
 CREATE TABLE IF NOT EXISTS benevole (
 	id SERIAL PRIMARY KEY,
-	email domaine_email NOT NULL,
+    	username character varying(255) NOT NULL,
+    	username_canonical character varying(255) NOT NULL,
+    	email character varying(255) NOT NULL,
+    	email_canonical character varying(255) NOT NULL,
+   	enabled boolean NOT NULL,
+    	salt character varying(255) NOT NULL,
+    	password character varying(255) NOT NULL,
+    	last_login timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    	locked boolean NOT NULL,
+    	expired boolean NOT NULL,
+    	expires_at timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    	confirmation_token character varying(255) DEFAULT NULL::character varying,
+    	password_requested_at timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    	roles text NOT NULL,
+    	credentials_expired boolean NOT NULL,
+    	credentials_expire_at timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+	mail domaine_email NOT NULL,
 	nom VARCHAR(100) NOT NULL,
 	prenom VARCHAR(100) DEFAULT NULL, 
 	tel_fixe domaine_tel_fixe DEFAULT NULL, 
@@ -137,7 +153,6 @@ CREATE TABLE IF NOT EXISTS benevole (
 	activites_potentielles type_activite[] DEFAULT NULL,
 	responsabilite_activite type_responsabilite_activite[] DEFAULT NULL	
 );
-
 
 
 
@@ -361,17 +376,17 @@ CREATE VIEW autre_etablissement AS (
 );
 
 -- Définition d une adresse fictive pour gérer le cas des bénévoles fictifs
-delete from adresse where id = 1;
+--delete from adresse where id = 1;
 
-insert into adresse values (
-	'1',
-	'Fictive',
-	'Fictive',
-	'00000',
-	'0',
-	null,
-	null	
-);
+--insert into adresse values (
+--	'1',
+--	'Fictive',
+--	'Fictive',
+--	'00000',
+--	'0',
+--	null,
+--	null	
+--);
 
 -- Définition des fonctions --
 
@@ -381,33 +396,33 @@ create function recupererProjets(integer) returns setof integer as
 -- Définition des Triggers --
 
 
-CREATE OR REPLACE FUNCTION supprimerBenevole()
-RETURNS trigger AS $sup$
-DECLARE
-
-BEGIN 
+--CREATE OR REPLACE FUNCTION supprimerBenevole()
+--RETURNS trigger AS $sup$
+--DECLARE
+--
+--BEGIN 
 	
-	INSERT INTO benevole VALUES (
-		OLD.id,
-		'benevole@fictif.com',
-		'benevole fictif',
-		'benevole fictif',
-		null,
-		null,
-		'1',
-		'fictif',
-		OLD.activites_potentielles,
-		OLD.responsabilite_activite
-	);
+--	INSERT INTO benevole VALUES (
+--		OLD.id,
+--		'benevole@fictif.com',
+--		'benevole fictif',
+--		'benevole fictif',
+--		null,
+--		null,
+--		'1',
+--		'fictif',
+--		OLD.activites_potentielles,
+--		OLD.responsabilite_activite
+--	);
 
 	
-	RETURN OLD;
-END $sup$ LANGUAGE 'plpgsql';
+--	RETURN OLD;
+--END $sup$ LANGUAGE 'plpgsql';
 
 
-CREATE TRIGGER  supprimerBenevole
-AFTER DELETE ON benevole
-FOR EACH ROW EXECUTE PROCEDURE supprimerBenevole();
+--CREATE TRIGGER  supprimerBenevole
+--AFTER DELETE ON benevole
+--FOR EACH ROW EXECUTE PROCEDURE supprimerBenevole();
 
 -- implémenter fonction/trigger permettant de garder la relation many to many intact benovle_projet
 

@@ -1,5 +1,5 @@
 # version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
-Comite:
+Unipik\UserBundle\Entity\Comite:
     type: entity
     table: comite
     indexes:
@@ -36,7 +36,7 @@ Comite:
             orphanRemoval: false
     manyToMany:
         niveauTheme:
-            targetEntity: NiveauTheme
+            targetEntity: Unipik\ArchitectureBundle\Entity\NiveauTheme
             cascade: {  }
             fetch: LAZY
             mappedBy: null

@@ -1,5 +1,7 @@
+# version 1.00 date 24/02/2016 auteur(s) Kafui Atanley
+
 Bonjour,
-Si vous êtes ici c'est que vous cherchez à nettoyer les fichiers excel (Swagg ! ).
+Si vous êtes ici c'est que vous cherchez à nettoyer les fichiers excel.
 
 1) Placez tout les fichier excels que vous voulez lancer dans le répertoire fichierNettoyer
 
@@ -16,7 +18,7 @@ scriptNettoyage et lancez le script correspondant au fichier à nettoyer.
 
 *Si vous voulez modifier le processus de traitement d'un fichier spécifique placez-vous dans le fichier traitement et modifier le traitement voulu. 
 
-* Si rienien ne passe faites signe à Kafui pour la modification du scripit.
+* Si rien ne passe faites signe à Kafui pour la modification du script.
 
 
 

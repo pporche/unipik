@@ -1,5 +1,6 @@
 <?php
-// Ce script appelera tout les autres pour déléguer le taff.
+// version 1.00 date 24/02/2016 auteur(s) Kafui Atanley 
+// Ce script appelera tout les autres pour déléguer le travail.
 if(file_exists('fichierNettoyer/codePostalCommunes.csv'))
 require_once('scriptNettoyage/scriptNettoyageCp.php');
 else echo "fichier de code postale non trouvé\n";

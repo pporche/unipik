@@ -46,8 +46,7 @@ class InterventionController extends Controller {
         ));
     }
 
-<<<<<<< HEAD
-=======
+
     /**
      * @return Response Renvoie vers la page de consultation liée à l'établissement.
      */
@@ -59,7 +58,6 @@ class InterventionController extends Controller {
      * @param $id integer Id de l'intervention.
      * @return Response Permet de récupérer la vue consultation pour l'héritage.
      */
->>>>>>> f9c825306ab26288bec12f3f110039e4a4ae892a
     public function consultationAction($id) {
         // Faire la vérication si l'intervention est un plaidoyer, frimousse ou autre
         // Et appeler la vue correspondante
@@ -78,15 +76,16 @@ class InterventionController extends Controller {
 
     }
 
-<<<<<<< HEAD
+
     public function listPlaidoyersAction() {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('ArchitectureBundle:Intervention');//('ArchitectureBundle:Plaidoyer');
         $listPlaidoyers = $repository->findAll();
 
         return $this->render('InterventionBundle:Liste:listePlaidoyer.html.twig', array(
-            'listPlaidoyers' => $listPlaidoyers
-=======
+            'listPlaidoyers' => $listPlaidoyers));
+    }
+
     /**
      * @param $liste array Liste des établissements.
      * @return Response Renvoie vers la page permettant l'affichage de l'ensemble des interventions.
@@ -124,7 +123,7 @@ class InterventionController extends Controller {
 
         return $this->render('InterventionBundle:Intervention/Attribuees:liste.html.twig', array(
             'liste' => null
->>>>>>> f9c825306ab26288bec12f3f110039e4a4ae892a
+
         ));
     }
 

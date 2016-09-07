@@ -74,7 +74,7 @@ Contact:
             column: type_activite
     manyToMany:
         etablissement:
-            targetEntity: Etablissement
+            targetEntity: Unipik\InterventionBundle\Entity\Etablissement
             cascade: {  }
             fetch: LAZY
             mappedBy: null

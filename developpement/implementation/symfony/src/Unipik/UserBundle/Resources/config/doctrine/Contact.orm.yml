@@ -41,7 +41,7 @@ Unipik\UserBundle\Entity\Contact:
             type: string
             nullable: true
             length: 10
-        options:
+            options:
                 fixed: false
             column: tel_portable
         typeContact:
@@ -74,7 +74,7 @@ Unipik\UserBundle\Entity\Contact:
             column: type_activite
     manyToMany:
         etablissement:
-            targetEntity: Etablissement
+            targetEntity: Unipik\InterventionBundle\Entity\Etablissement
             cascade: {  }
             fetch: LAZY
             mappedBy: null

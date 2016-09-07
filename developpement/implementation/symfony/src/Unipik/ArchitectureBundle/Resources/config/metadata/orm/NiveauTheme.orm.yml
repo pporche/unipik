@@ -26,7 +26,7 @@ NiveauTheme:
                 fixed: false
     manyToMany:
         comite:
-            targetEntity: Comite
+            targetEntity: Unipik\UserBundle\Entity\Comite
             cascade: {  }
             fetch: LAZY
             mappedBy: niveauTheme

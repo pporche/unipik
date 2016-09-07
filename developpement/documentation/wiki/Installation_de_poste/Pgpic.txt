@@ -1,0 +1,26 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-06T16:59:40+02:00
+
+====== Pgpic ======
+Created mardi 06 septembre 2016 by Matthieu
+Last updates:
+ * mardi 06 septembre 2016 by Matthieu
+
+===== But: =====
+
+Installer le script permettant de traquer les heures de travail avec Pgpic.
+
+===== Étapes Pas-à-pas: =====
+
+1. Se rendre sur http://pgpic.insa-rouen.fr
+2. Cliquer sur "Script de gestion automatique" (en haut à droite)
+3. Copier le script et le coller dans [[/home/user/scriptPic/detection.sh]] (fichier et dossier à créer, remplacer user par son nom d'utilisateur)
+4. Dans le script, modifier NOM_UTILISATEUR en son nom d'utilisateur
+5. Trouver les 2 lignes contenant "curl" à la fin du fichier et changer le numéro à la fin pur son numéro pgpic
+6. Dans un terminal exécuter la commande qui ouvrira un fichier crontab :
+
+crontab -e
+
+7. Dans le fichier ouvert, copier la ligne **avec** les *** [[/bin/]]
+

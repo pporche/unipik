@@ -1,3 +1,5 @@
+# version 1.00, date 20/02/16, auteur Michel Cressant
+
 Afin de modifier le code du projet, il est plus pratique d'utiliser un IDE. L'IDE proposé ici est Eclipse. Il a été choisi puisqu'il est à la fois gratuit et bien adapté aux projets PHP Symfony.
 Ce fichier d'installation a été réalisé pour Ubuntu, des différences peuvent apparaître sous Windows ou Mac.
 

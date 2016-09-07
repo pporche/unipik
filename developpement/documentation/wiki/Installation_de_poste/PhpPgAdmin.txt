@@ -1,0 +1,22 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-06T17:17:00+02:00
+
+====== PhpPgAdmin ======
+Created mardi 06 septembre 2016 by Matthieu
+Last updates:
+ * mardi 06 septembre 2016 by Matthieu
+
+===== But: =====
+
+Installer PhpPgAdmin
+
+===== Étapes Pas-à-pas (Linux debian-like) : =====
+
+1. Exécuter la commande :
+
+sudo apt-get install phppgadmin
+
+2. phppgadmin est disponible à l'adresse :
+
+http://prenom.unipik.insa-rouen.fr/phppgadmin/

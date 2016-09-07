@@ -1,0 +1,54 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-06T11:53:46+02:00
+
+====== Symfony ======
+Created mardi 06 septembre 2016 by Matthieu
+Last updates:
+* mardi 06 septembre 2016 by Matthieu
+
+===== But: =====
+
+Installer un environnement de développement symfony.
+
+===== Étapes Pas-à-pas (Linux debian-like): =====
+
+1. Exécuter la commande suivante dans un terminal :
+
+'''
+sudo apt-get install php5 apache2 curl
+'''
+
+2. Dans un dossier de travail (par exemple [[~/travail]] ), cloner le git du projet avec la commande suivante (remplacer user par son nom d'utilisateur) :
+
+'''
+git clone https://user@monprojet.insa-rouen.fr/git/pic_unicef
+'''
+
+3. Le projet se situe donc dans le dossier [[~/travail/pic_unicef]]
+4. Modifier le fichier /etc/apache2/sites-enabled/000-default.conf de la manière suivantes:
+
+Après </Directory>, ajouter :
+
+'''
+Alias /unicef 
+'''
+**/home/user/travail/pic_unicef/developpement/implementation/symfony/web**
+''<Directory ''**/home/user/travail/pic_unicef/developpement/implementation/symfony/web**''>''
+''       Options Indexes FollowSymLinks MultiViews''
+''       AllowOverride All''
+''       <RequireAny>''
+''           Require ip 127.0.0.1''
+''           Require host unipik.insa-rouen.fr''
+''       </RequireAny>''
+''</Directory>''
+
+Faire très attention à adapter les urls en **Gras** selon votre nom d'utilisateur et votre dossier de travail
+
+5. Redémarrer apache avec la commande :
+
+'''
+sudo /etc/init.d/apache2 restart
+'''
+
+6. Le projet devrait être accessible à l'url http://prenom.unipik.insa-rouen.fr/unicef/app_dev.php/

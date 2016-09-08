@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS adresse (
 	ville VARCHAR(100) NOT NULL, 
 	rue VARCHAR(500) NOT NULL, 
 	code_postal domaine_code_postal NOT NULL, 
-	numero_de_rue VARCHAR(15) NOT NULL, 
+	numero_de_rue VARCHAR(15) DEFAULT NULL, 
 	complement VARCHAR(100) DEFAULT NULL, 
 	geolocalisation VARCHAR(255) DEFAULT NULL
 );

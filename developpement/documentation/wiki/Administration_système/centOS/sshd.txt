@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-08T16:54:11+02:00
+
+====== sshd ======
+Created jeudi 08 septembre 2016 by Matthieu
+Last updates:
+ * jeudi 08 septembre 2016 by Matthieu
+
+===== But: =====
+
+Configuration sshd sur un serveur CentOs.
+
+===== Étapes Pas-à-pas =====
+
+1. Lire et suivre les étapes suivantes : http://www.cyberciti.biz/faq/centos-ssh/

@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-06T14:25:20+02:00
+
+====== MAJ ======
+Created mardi 06 septembre 2016 by Matthieu
+Last updates:
+* mardi 06 septembre 2016 by Matthieu
+
+===== But: =====
+
+Mettre à jour un projet symfony pour obtenir les dernières versions des dépendances.
+
+===== Étapes Pas-à-pas: =====
+
+1. Se positionner dans le dossier du projet.
+2. Exécuter les commandes suivantes :
+
+'''
+php composer.phar self-update
+php composer.phar update --no-scripts
+'''
+
+
+

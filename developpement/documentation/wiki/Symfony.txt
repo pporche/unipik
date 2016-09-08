@@ -5,6 +5,9 @@ Creation-Date: 2016-09-06T12:49:04+02:00
 ====== Symfony ======
 Created mardi 06 septembre 2016 by Matthieu
 Last updates:
-* mardi 06 septembre 2016 by Matthieu
+* mardi 08 septembre 2016 by Matthieu
 
 
+===== But: =====
+
+Contient toutes les astuces concernant le framework Symfony de manière générale (non spécifique au projet couramment développé)

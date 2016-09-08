@@ -1,0 +1,28 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-08T12:43:29+02:00
+
+====== Ajouter un administrateur à l'application ======
+Created jeudi 08 septembre 2016 by Matthieu
+Last updates:
+* mardi 08 septembre 2016 by Matthieu
+
+===== But : =====
+
+Ajouter un administrateur à l'application.
+
+===== Attention : =====
+
+Ceci n'est valable que pour ajouter un admin sur votre machine locale pour tester en phase de développement, ce guide ne doit en aucun cas être utilisé pour ajouter un administrateur sur un serveur de production.
+
+===== Étapes Pas-à-pas : =====
+
+1. S'assurer que l'on ne possède pas déjà d'administrateur et que la table adresse est vide. 
+2. Se positionner à la racine du dossier symfony dans le projet, par exemple en exécutant la commande :
+
+'''
+cd pic_unicef/developpement/implementation/symfony
+'''
+
+3. Éxecuter le script addAdmin.sh
+4. Se connecter avec l'identifiant "admin" et le mot de passe "admin"

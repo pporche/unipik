@@ -1,0 +1,28 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-08T11:34:14+02:00
+
+====== Initialisation ======
+Created jeudi 08 septembre 2016 by Matthieu
+Last updates:
+* mardi 08 septembre 2016 by Matthieu
+
+===== But: =====
+
+Initialiser une nouvelle base de donnée
+
+===== Étapes Pas-à-pas : =====
+
+1. Dans un terminal, exécuter les commandes suivantes (penser à adapter le chemin d'accès vers pic_unicef, ainsi que l'utilisateur et le mot de passe de la BD) :
+
+'''
+sudo -i -u postgres
+psql 
+(si déjà db) DROP database bdunicef;
+CREATE USER unipik WITH PASSWORD 'kaflmmppscmmbmcjpmb';
+CREATE database bdunicef;
+psql -U unipik -W -d bdunicef -h 127.0.0.1
+\i /home/.../pic_unicef/developpement/implementation/scriptsBD/DB_creation.sql
+'''
+
+

@@ -6,3 +6,7 @@ Creation-Date: 2016-09-06T10:50:03+02:00
 Created mardi 06 septembre 2016 by Matthieu
 Last updates:
 * mardi 06 septembre 2016 by Matthieu
+
+===== But: =====
+
+Installer tous les outils nécessaire au développement et configurer son poste de travail afin d'être dans les bonnes conditions pour travailler sur le projet.

@@ -5,7 +5,11 @@ Creation-Date: 2016-09-06T10:51:07+02:00
 ====== Proxy ======
 Created mardi 06 septembre 2016 by Matthieu
 Last updates:
-* mardi 06 septembre 2016 by Matthieu
+* mardi 08 septembre 2016 by Matthieu
+
+===== But: =====
+
+Contient toutes les informations et problèmes récurrents concernant les Proxies
 
 ===== Informations importantes: =====
 

@@ -1,0 +1,24 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-08T15:49:38+02:00
+
+====== yum ======
+Created jeudi 08 septembre 2016 by Matthieu
+Last updates:
+ * jeudi 08 septembre 2016 by Matthieu
+
+===== But: =====
+
+configurer le proxy avec le gestionnaire de paquet Yum (utilisé par fedora et centOS notamment)
+
+===== Référence: =====
+
+https://www.centos.org/docs/5/html/yum/sn-yum-proxy-server.html
+
+===== Étapes Pas-à-pas: =====
+
+1. Éditer le fichier [[/etc/yum.conf]] et ajouter les lignes suivantes ( utiliser l'url de proxy indiqué dans [[:Proxy]] ) :
+
+'''
+proxy=http://cachemad.insa-rouen.fr:3128
+'''

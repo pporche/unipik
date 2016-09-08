@@ -1,0 +1,21 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-07T08:25:46+02:00
+
+====== Pear ======
+Created mercredi 07 septembre 2016 by Matthieu
+Last updates:
+ * mercredi 07 septembre 2016 by Matthieu
+
+===== But: =====
+
+Configurer le proxy pour l'outil Pear.
+
+===== Étapes Pas-à-pas: =====
+
+1. Taper dans un terminal la commande suivante :
+
+'''
+pear config-set http_proxy http://cachemad.insa-rouen.fr:3128
+'''
+

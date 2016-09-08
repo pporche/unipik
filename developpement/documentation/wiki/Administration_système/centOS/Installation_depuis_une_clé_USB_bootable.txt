@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-08T16:49:55+02:00
+
+====== Installation depuis une clé USB bootable ======
+Created jeudi 08 septembre 2016 by Matthieu
+Last updates:
+ * jeudi 08 septembre 2016 by Matthieu
+
+===== But: =====
+
+Installer CentOs sur un serveur depuis une clé USB bootable.
+
+===== Étapes Pas-à-pas : =====
+
+1. Lire et suivre les étapes suivantes http://www.if-not-true-then-false.com/2014/centos-7-netinstall-guide/
+2. Lire et suivre les étapes suivantes [[:Proxy:Linux:yum]] [[:Proxy:Linux]]
+3. Installer au minimum les paquets nano et net-tools avec la commande :
+
+'''
+yum install net-tools nano
+'''
+
+4. Suivre les étapes suivantes : [[sshd]]
+

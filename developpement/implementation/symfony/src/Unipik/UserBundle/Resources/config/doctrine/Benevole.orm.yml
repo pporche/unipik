@@ -59,7 +59,7 @@ Unipik\UserBundle\Entity\Benevole:
     manyToOne:
         adresse:
             targetEntity: Unipik\ArchitectureBundle\Entity\Adresse
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             nullable: false
             mappedBy: null

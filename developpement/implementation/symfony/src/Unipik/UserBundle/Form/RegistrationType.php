@@ -12,6 +12,7 @@ use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Unipik\UserBundle\Form\Adresse\AdresseType;
 
 class RegistrationType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
@@ -29,7 +30,8 @@ class RegistrationType extends AbstractType {
             ->add('prenom')
             ->add('telFixe')
             ->add('telPortable')
-            ->add('mail')
+            ->add('email')
+            ->add('adresse', AdresseType::class)
             ->add('roles', ChoiceType::class, $optionChoiceType)
         ;
     }

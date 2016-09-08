@@ -73,11 +73,11 @@ class Benevole extends BaseUser
     /**
      * @var \Unipik\ArchitectureBundle\Entity\Adresse
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Adresse")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Adresse", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
-     *   @ORM\Column(name="adresse_id", nullable=false)
+     *   @ORM\JoinColumn(name="adresse_id", referencedColumnName="id" )
      * })
+     * @ORM\Column(name="adresse_id", nullable=false)
      */
     protected $adresse;
 
@@ -116,6 +116,7 @@ class Benevole extends BaseUser
      */
     public function __construct()
     {
+        parent::__construct();
         $this->projet = new \Doctrine\Common\Collections\ArrayCollection();
         $this->comite = new \Doctrine\Common\Collections\ArrayCollection();
     }

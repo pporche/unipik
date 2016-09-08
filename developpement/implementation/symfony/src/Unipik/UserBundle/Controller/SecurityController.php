@@ -63,9 +63,6 @@ class SecurityController extends BaseController {
             return $this->RedirectToRoute('fos_user_security_check');
         }*/
 
-
-
-
         return parent::loginAction($request);
     }
 

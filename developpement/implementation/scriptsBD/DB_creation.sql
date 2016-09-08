@@ -143,13 +143,11 @@ CREATE TABLE IF NOT EXISTS benevole (
     	roles text NOT NULL,
     	credentials_expired boolean NOT NULL,
     	credentials_expire_at timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
-	mail domaine_email NOT NULL,
 	nom VARCHAR(100) NOT NULL,
 	prenom VARCHAR(100) DEFAULT NULL, 
 	tel_fixe domaine_tel_fixe DEFAULT NULL, 
 	tel_portable domaine_tel_portable DEFAULT NULL,
 	adresse_id INT NOT NULL REFERENCES adresse(id) ON DELETE CASCADE, 
-	mdp VARCHAR(50) NOT NULL,
 	activites_potentielles type_activite[] DEFAULT NULL,
 	responsabilite_activite type_responsabilite_activite[] DEFAULT NULL	
 );

@@ -26,7 +26,7 @@ MomentHebdomadaire:
                 fixed: false
     manyToMany:
         demandeMomentsVoulus:
-            targetEntity: Demande
+            targetEntity: Unipik\InterventionBundle\Entity\Demande
             cascade: {  }
             fetch: LAZY
             mappedBy: null
@@ -43,7 +43,7 @@ MomentHebdomadaire:
                         referencedColumnName: id
             orderBy: null
         demandeMomentsAEviter:
-            targetEntity: Demande
+            targetEntity: Unipik\InterventionBundle\Entity\Demande
             cascade: {  }
             fetch: LAZY
             mappedBy: null

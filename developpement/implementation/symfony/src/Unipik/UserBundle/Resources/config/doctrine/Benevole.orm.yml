@@ -16,12 +16,6 @@ Unipik\UserBundle\Entity\Benevole:
             generator:
                 strategy: SEQUENCE
     fields:
-        mail:
-            type: string
-            nullable: false
-            length: 100
-            options:
-                fixed: false
         nom:
             type: string
             nullable: false
@@ -48,12 +42,6 @@ Unipik\UserBundle\Entity\Benevole:
             options:
                 fixed: false
             column: tel_portable
-        mdp:
-            type: string
-            nullable: false
-            length: 50
-            options:
-                fixed: false
         activitesPotentielles:
             type: string
             nullable: true

@@ -90,7 +90,7 @@ Unipik\InterventionBundle\Entity\Intervention:
                 fixed: false
     manyToOne:
         niveauTheme:
-            targetEntity: NiveauTheme
+            targetEntity: Unipik\ArchitectureBundle\Entity\NiveauTheme
             cascade: {  }
             fetch: LAZY
             mappedBy: null
@@ -110,7 +110,7 @@ Unipik\InterventionBundle\Entity\Intervention:
                     referencedColumnName: id
             orphanRemoval: false
         comite:
-            targetEntity: Comite
+            targetEntity: Unipik\UserBundle\Entity\Comite
             cascade: {  }
             fetch: LAZY
             mappedBy: null
@@ -120,7 +120,7 @@ Unipik\InterventionBundle\Entity\Intervention:
                     referencedColumnName: id
             orphanRemoval: false
         benevole:
-            targetEntity: Benevole
+            targetEntity: Unipik\UserBundle\Entity\Benevole
             cascade: {  }
             fetch: LAZY
             mappedBy: null

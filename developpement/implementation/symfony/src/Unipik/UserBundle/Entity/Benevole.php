@@ -23,12 +23,6 @@ class Benevole extends BaseUser
      */
     protected $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=100, nullable=false)
-     */
-    protected $mail;
 
     /**
      * @var string
@@ -58,12 +52,6 @@ class Benevole extends BaseUser
      */
     protected $telPortable;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mdp", type="string", length=50, nullable=false)
-     */
-    protected $mdp;
 
     /**
      * @var string
@@ -143,29 +131,6 @@ class Benevole extends BaseUser
         return $this->id;
     }
 
-    /**
-     * Set mail
-     *
-     * @param string $mail
-     *
-     * @return Benevole
-     */
-    public function setmail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string
-     */
-    public function getmail()
-    {
-        return $this->mail;
-    }
 
     /**
      * Set nom

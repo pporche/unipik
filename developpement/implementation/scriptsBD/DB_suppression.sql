@@ -1,14 +1,14 @@
 -- version 1.00 date 13/05/2016 auteur(s) Michel Cressannt, Julie Pain
 
 -- suppression des triggers --
-DROP TRIGGER supprimerBenevole ON benevole;
+-- DROP TRIGGER supprimerBenevole ON benevole;
 
 -- suppression des fonctions --
-DROP FUNCTION supprimerBenevole();
+-- DROP FUNCTION supprimerBenevole();
 DROP FUNCTION recupererprojets(integer);
 
 
-delete from adresse where id = 1;
+-- delete from adresse where id = 1;
 
 -- Suppression des vues --
 DROP VIEW IF EXISTS personne;
@@ -18,9 +18,6 @@ DROP VIEW IF EXISTS autre_intervention;
 DROP VIEW IF EXISTS enseignement;
 DROP VIEW IF EXISTS centre_loisirs;
 DROP VIEW IF EXISTS autre_etablissement;
-DROP VIEW IF EXISTS admin_activite;
-DROP VIEW IF EXISTS admin_region;
-DROP VIEW IF EXISTS admin_comite;
 
 -- Suppression des tables --
 DROP TABLE IF EXISTS participe;
@@ -43,8 +40,8 @@ DROP TABLE IF EXISTS benevole;
 
 -- Suppression des types -- 
 DROP TYPE type_semaine;
-DROP TYPE type_moment;
-DROP TYPE type_niveau_theme;
+-- DROP TYPE type_moment;
+-- DROP TYPE type_niveau_theme;
 DROP TYPE type_materiel_plaidoyer;
 DROP TYPE type_materiel_frimousse;
 DROP TYPE type_email;
@@ -67,6 +64,7 @@ DROP DOMAIN IF EXISTS domaine_type_autre_etablissement;
 DROP DOMAIN IF EXISTS domaine_type_centre;
 DROP DOMAIN IF EXISTS domaine_type_enseignement;
 DROP DOMAIN IF EXISTS domaine_type_projet;
+DROP DOMAIN IF EXISTS domaine_reponsabilite_activite;
 DROP DOMAIN IF EXISTS domaine_activite;
 DROP DOMAIN IF EXISTS domaine_type_contact;
 DROP DOMAIN IF EXISTS domaine_moment_quotidien;

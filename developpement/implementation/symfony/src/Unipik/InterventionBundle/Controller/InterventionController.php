@@ -93,7 +93,7 @@ class InterventionController extends Controller {
      */
     public function getListeRepository(){
         $em = $this->getDoctrine()->getManager();
-        return $em->getRepository('ArchitectureBundle:Intervention');
+        return $em->getRepository('InterventionBundle:Intervention');
     }
 
     /**

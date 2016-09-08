@@ -28,7 +28,7 @@ Demande:
             column: liste_semaine
     manyToOne:
         contact:
-            targetEntity: Contact
+            targetEntity: Unipik\UserBundle\Entity\Contact
             cascade: {  }
             fetch: LAZY
             mappedBy: null
@@ -39,7 +39,7 @@ Demande:
             orphanRemoval: false
     manyToMany:
         momentsVoulus:
-            targetEntity: MomentHebdomadaire
+            targetEntity: Unipik\ArchitectureBundle\Entity\MomentHebdomadaire
             cascade: {  }
             fetch: LAZY
             mappedBy: demandeMomentsVoulus
@@ -47,7 +47,7 @@ Demande:
             joinTable: null
             orderBy: null
         momentsAEviter:
-            targetEntity: MomentHebdomadaire
+            targetEntity: Unipik\ArchitectureBundle\Entity\MomentHebdomadaire
             cascade: {  }
             fetch: LAZY
             mappedBy: demandeMomentsAEviter

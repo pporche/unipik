@@ -1,5 +1,6 @@
 <?php
 // version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+// version 1.01 date 09/09/2016 auteur Julie Pain
 namespace Unipik\InterventionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -331,5 +332,38 @@ class Etablissement
     public function getContact()
     {
         return $this->contact;
+    }
+
+    /**
+     * isEnseignement
+     *
+     * @return boolean
+     */
+    public function isEnseignement()
+    {
+        $type = $this->getTypeEnseignement();
+        return isset($type);
+    }
+
+    /**
+     * isCentreLoisirs
+     *
+     * @return boolean
+     */
+    public function isCentreLoisirs()
+    {
+        $type = $this->getTypeCentre();
+        return isset($type);
+    }
+
+    /**
+     * isAutreEtablissement
+     *
+     * @return boolean
+     */
+    public function isAutreEtablissement()
+    {
+        $type = $this->getTypeAutreEtablissement();
+        return isset($type);
     }
 }

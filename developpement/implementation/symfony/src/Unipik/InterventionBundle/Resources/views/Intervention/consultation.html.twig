@@ -11,7 +11,7 @@
 
     <div class="container">
         <div class="row">
-            <section class="jumbotron col-sm-12">
+            <section class="jumbotron col-sm-11">
                 <div>
                     <div class="row">
                         <h2 class="col-lg-offset-1 col-lg-9">Intervention - <i>Frimousse/Plaidoyer/Autre
@@ -41,11 +41,11 @@
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
                                     <dt>
-                                        Moment :
+                                        <span class="glyphicon glyphicon-time"></span> Heure :
                                     </dt>
                                 </div>
                                 <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                    <i>Matin/Après-midi/Soir</i>
+                                    <i>Pas encore définie</i>
                                 </div>
 
 
@@ -98,16 +98,17 @@
                 <!-- Si { intervention.remarques!=null } -->
                 <h3>Remarques : </h3>
                 <div class="row">
-                    <div class="well col-lg-offset-1 col-sm-7">
-                        <i>Les remarques si elles existent ... </i>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
+                    <div class="scrollspy-example col-lg-offset-1 col-sm-7" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
+                        height: 200px;
+                        overflow: auto;
+                        position: relative;
+                        border:1px solid #cccccc;
+                        padding:10px;">
+                            <i>Remarques si elles existent ...</i>
                     </div>
                 </div>
+
+
                 <h3>Commité de rattachement : </h3>
                 <div class="row">
                     <ul class="list-group col-lg-offset-1 col-sm-7 ">
@@ -121,17 +122,56 @@
             <div class="col-sm-6">
                 <h3>Contact : </h3>
                 <div class="row">
-                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                        <li class="list-group-item">
-                            <i> Nom du projet 1 </i>
-                        </li>
-                        <li class="list-group-item">
-                            <i> Nom du projet 2</i>
-                        </li>
-                        <li class="list-group-item">
-                            <i> Nom du projet 3</i>
-                        </li>
-                    </ul>
+                    <div class="well col-lg-offset-1 col-sm-9">
+                        <dl class="dl-horizontal">
+                            <div class="col-sm-6 col-xs-12">
+                                <dt>
+                                    Nom :
+                                </dt>
+                            </div>
+
+                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                <i>Dupont</i>
+                            </div>
+
+                            <div class="col-sm-6 col-xs-12">
+                                <dt>
+                                    Prénom :
+                                </dt>
+                            </div>
+                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                <i>Jean</i>
+                            </div>
+                            <div class="col-sm-6 col-xs-12">
+                                <dt>
+                                    tel fixe :
+                                </dt>
+                            </div>
+                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                <i>0000000000</i>
+                            </div>
+
+
+                            <div class="col-sm-6 col-xs-12">
+                                <dt>
+                                    tesl portable :
+                                </dt>
+                            </div>
+                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                <i>0000000000</i>
+                            </div>
+
+
+                            <div class="col-sm-6 col-xs-12">
+                                <dt>
+                                    responsabilité :
+                                </dt>
+                            </div>
+                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                <i>Frimousse</i>
+                            </div>
+                        </dl>
+                    </div>
                 </div>
             </div>
 

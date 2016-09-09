@@ -3,7 +3,7 @@
 
 {% block title %}
 
-    Consulter une intervention - {{ parent() }}
+    Consulter un établissement - {{ parent() }}
 
 {% endblock %}
 
@@ -11,11 +11,11 @@
 
 <div class="container">
     <div class="row">
-        <section class="jumbotron col-sm-12">
+        <section class="jumbotron col-sm-11">
             <div>
                 <div class="row">
-                    <h2 class="col-lg-offset-1 col-lg-9">Intervention - <i>Frimousse/Plaidoyer/Autre
-                            intervention </i></h2>
+                    <h2 class="col-lg-offset-1 col-lg-9">Etablissement - <i>Enseignement/CentreLoisirs/Autre
+                            établissement</i></h2>
                 </div>
                 <hr>
                 <div class="row">
@@ -23,50 +23,53 @@
                         <dl class="dl-horizontal">
                             <div class="col-sm-6 col-xs-12">
                                 <dt>
-                                    <span class="glyphicon glyphicon-globe"></span> Localisation :
+                                    <span class="glyphicon glyphicon-user"></span> Nom :
                                 </dt>
                             </div>
 
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <a href=""> <i>Etablissement correspondant </i> </a>
+                                <i>Lycée Corneille</i>
                             </div>
 
                             <div class="col-sm-6 col-xs-12">
                                 <dt>
-                                    <span class="glyphicon glyphicon-calendar"></span> Date :
+                                    <span class="glyphicon glyphicon-earphone"></span> Téléphone :
                                 </dt>
                             </div>
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>Pas encore définie</i>
+                                <i>0000000000</i>
                             </div>
                             <div class="col-sm-6 col-xs-12">
                                 <dt>
-                                    Moment :
+                                    <span class="glyphicon glyphicon-envelope"></span>  E-mails :
                                 </dt>
                             </div>
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>Matin/Après-midi/Soir</i>
+                                <i>email1@gmail.com</i>
+                            </div>
+                            <div class="col-sm-6 col-xs-12">
+                                <dt>
+
+                                </dt>
+                            </div>
+                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                <i>email2@gmail.com</i>
                             </div>
 
 
                             <div class="col-sm-6 col-xs-12">
                                 <dt>
-                                    <span class="glyphicon glyphicon-circle-arrow-right"></span> Lieu :
+                                    <span class="glyphicon glyphicon-home"></span> Adresse :
                                 </dt>
                             </div>
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>Salle MAR1 11</i>
+                                <i> adresse <br/>
+                                    complément <br/>
+                                    code postal <br/>
+                                    ville
+                                </i>
                             </div>
 
-
-                            <div class="col-sm-6 col-xs-12">
-                                <dt>
-                                    <span class="glyphicon glyphicon-user"></span> Nb de personnes :
-                                </dt>
-                            </div>
-                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>20</i>
-                            </div>
                             {{ block('contenu') }}
                         </dl>
                     </div>
@@ -95,45 +98,141 @@
     </div>-->
     <div class="row">
         <div class="col-sm-6">
-            <!-- Si { intervention.remarques!=null } -->
-            <h3>Remarques : </h3>
+            <!-- Si { interventions demadées !=null } -->
+            <h3>Interventions demandées : </h3>
             <div class="row">
-                <div class="well col-lg-offset-1 col-sm-7">
-                    <i>Les remarques si elles existent ... </i>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
+                <div class="scrollspy-example col-lg-offset-1 col-sm-7" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
+                    height: 200px;
+                    overflow: auto;
+                    position: relative;
+                    border:1px solid #cccccc;
+                    padding:10px;">
+                    <i>Liste des interventions</i>
                 </div>
             </div>
-            <h3>Commité de rattachement : </h3>
+            <h3>Interventions réalisées : </h3>
             <div class="row">
-                <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                    <li class="list-group-item">
-                        Seine-Maritime
-                    </li>
-                </ul>
-
+                <div class="scrollspy-example col-lg-offset-1 col-sm-7" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
+                    height: 200px;
+                    overflow: auto;
+                    position: relative;
+                    border:1px solid #cccccc;
+                    padding:10px;">
+                    <i>Liste des interventions</i>
+                </div>
             </div>
         </div>
         <div class="col-sm-6">
-            <h3>Contact : </h3>
+            <h3>Contacts : </h3>
             <div class="row">
-                <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                    <li class="list-group-item">
-                        <i> Nom du projet 1 </i>
-                    </li>
-                    <li class="list-group-item">
-                        <i> Nom du projet 2</i>
-                    </li>
-                    <li class="list-group-item">
-                        <i> Nom du projet 3</i>
-                    </li>
-                </ul>
+                <div class="well col-lg-offset-1 col-sm-9">
+                    <dl class="dl-horizontal">
+                        <div class="col-sm-6 col-xs-12">
+                            <dt>
+                                Nom :
+                            </dt>
+                        </div>
+
+                        <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                            <i>Dupont</i>
+                        </div>
+
+                        <div class="col-sm-6 col-xs-12">
+                            <dt>
+                                Prénom :
+                            </dt>
+                        </div>
+                        <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                            <i>Jean</i>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <dt>
+                                Tel fixe :
+                            </dt>
+                        </div>
+                        <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                            <i>0000000000</i>
+                        </div>
+
+
+                        <div class="col-sm-6 col-xs-12">
+                            <dt>
+                                Tel portable :
+                            </dt>
+                        </div>
+                        <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                            <i>0000000000</i>
+                        </div>
+
+
+                        <div class="col-sm-6 col-xs-12">
+                            <dt>
+                                Responsabilité :
+                            </dt>
+                        </div>
+                        <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                            <i>Frimousse</i>
+                        </div>
+                    </dl>
+                </div>
+                <div class="well col-lg-offset-1 col-sm-9 col-sm-offset-0">
+                    <dl class="dl-horizontal">
+                        <div class="col-sm-6 col-xs-12">
+                            <dt>
+                                Nom :
+                            </dt>
+                        </div>
+
+                        <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                            <i>Dupont2</i>
+                        </div>
+
+                        <div class="col-sm-6 col-xs-12">
+                            <dt>
+                                Prénom :
+                            </dt>
+                        </div>
+                        <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                            <i>Jean2</i>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <dt>
+                                Tel fixe :
+                            </dt>
+                        </div>
+                        <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                            <i>0000000000</i>
+                        </div>
+
+
+                        <div class="col-sm-6 col-xs-12">
+                            <dt>
+                                Tel portable :
+                            </dt>
+                        </div>
+                        <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                            <i>0000000000</i>
+                        </div>
+
+
+                        <div class="col-sm-6 col-xs-12">
+                            <dt>
+                                Responsabilité :
+                            </dt>
+                        </div>
+                        <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                            <i>Plaidoyer</i>
+                        </div>
+                    </dl>
+                </div>
             </div>
         </div>
 
     </div>
 </div>
+
+{% endblock %}
+
+{% block contenu %}
+
+{% endblock %}

@@ -12,7 +12,7 @@ namespace Unipik\UserBundle\Form\Adresse;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class RueType extends AbstractType {
+class AdType extends AbstractType {
 
     /**
      * {@inheritdoc}
@@ -26,7 +26,7 @@ class RueType extends AbstractType {
      * {@inheritdoc}
      */
     public function getBlockPrefix() {
-        return 'rue';
+        return 'adresse';
     }
 
     public function getName() {

@@ -1,0 +1,20 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-12T08:13:38+02:00
+
+====== apt-get ======
+Created lundi 12 septembre 2016 by Matthieu
+Last updates:
+ * lundi 12 septembre 2016 by Matthieu
+
+===== But: =====
+
+Configurer le proxy pour pouvoir utiliser le gestionnaire de paquet apt-get.
+
+===== Étapes Pas-à-pas: =====
+
+1. Éditer (ou créer) le fichier [[/etc/apt/apt.conf.d/proxy]] et ajouter les lignes suivantes en utilisant l'url de configuration automatique du proxy ( à trouver dans [[:Proxy]] ).:
+
+'''
+Acquire::http::proxy "http://cachemad.insa-rouen.fr:3128";
+'''

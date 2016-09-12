@@ -8,7 +8,7 @@ user_admin_list:
 user_admin_register:
     path: /register
     defaults:
-        _controller: FOSUserBundle:Registration:register
+        _controller: UserBundle:Registration:register
 
 fos_user_registration_check_email:
     path: /verification-email

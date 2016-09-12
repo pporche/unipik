@@ -5,11 +5,13 @@
 include makevars $(UNIPIKGENPATH)/pic_unicef/makevars  $(UNIPIKGENPATH)/pic_unicef/gestionConfigurations
 
 
-all : pq cleanrep cleaneps 
+all : imagesPng pq cleanrep cleaneps 
 
-
-pq :
+pq :	imagesPng
 	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) . $(NOM_FICHIER)
+
+imagesPng : 
+	$(BASHMAKEPATH)/imagesPng.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf organigramme
 
 
 # Archivage

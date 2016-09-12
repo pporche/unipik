@@ -32,9 +32,9 @@ class Adresse
     /**
      * @var string
      *
-     * @ORM\Column(name="rue", type="string", length=500, nullable=false)
+     * @ORM\Column(name="adresse", type="string", length=500, nullable=false)
      */
-    private $rue;
+    private $adresse;
 
     /**
      * @var string
@@ -42,13 +42,6 @@ class Adresse
      * @ORM\Column(name="code_postal", type="string", nullable=false)
      */
     private $codePostal;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="numero_de_rue", type="string", length=15, nullable=false)
-     */
-    private $numeroDeRue;
 
     /**
      * @var string
@@ -101,27 +94,27 @@ class Adresse
     }
 
     /**
-     * Set rue
+     * Set adresse
      *
-     * @param string $rue
+     * @param string $adresse
      *
      * @return Adresse
      */
-    public function setRue($rue)
+    public function setAdresse($adresse)
     {
-        $this->rue = $rue;
+        $this->adresse = $adresse;
 
         return $this;
     }
 
     /**
-     * Get rue
+     * Get adresse
      *
      * @return string
      */
-    public function getRue()
+    public function getAdresse()
     {
-        return $this->rue;
+        return $this->adresse;
     }
 
     /**
@@ -148,29 +141,7 @@ class Adresse
         return $this->codePostal;
     }
 
-    /**
-     * Set numeroDeRue
-     *
-     * @param string $numeroDeRue
-     *
-     * @return Adresse
-     */
-    public function setNumeroDeRue($numeroDeRue)
-    {
-        $this->numeroDeRue = $numeroDeRue;
 
-        return $this;
-    }
-
-    /**
-     * Get numeroDeRue
-     *
-     * @return string
-     */
-    public function getNumeroDeRue()
-    {
-        return $this->numeroDeRue;
-    }
 
     /**
      * Set complement

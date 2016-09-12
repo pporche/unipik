@@ -83,6 +83,9 @@ CHECK (VALUE ~ '^[0-9]{10}$');
 CREATE DOMAIN domaine_tel_fixe AS VARCHAR(10)
 CHECK (VALUE ~ '^[0-9]{10}$');
 
+CREATE DOMAIN domaine_heure AS VARCHAR(5)
+CHECK (VALUE ~ '^[0-9]{2}:[0-9]{2}')
+
 -- il faut rajouter un domaine sur l'UAI d'un établissement (enseignement) --
 
 
@@ -263,8 +266,8 @@ CREATE TABLE IF NOT EXISTS intervention (
 	lieu VARCHAR(40) DEFAULT NULL, 
 	nb_personne INT NOT NULL, 
 	remarques TEXT DEFAULT NULL, 
-	moment domaine_moment_quotidien DEFAULT NULL, 
-	type VARCHAR(255) NOT NULL
+	heure domaine_heure DEFAULT NULL,
+	realisee BOOLEAN NOT NULL
 );
 
 -- Attributs de plaidoyer

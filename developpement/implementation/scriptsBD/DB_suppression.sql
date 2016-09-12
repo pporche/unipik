@@ -75,6 +75,7 @@ DROP DOMAIN IF EXISTS domaine_departement_de_france;
 DROP DOMAIN IF EXISTS domaine_code_postal;
 DROP DOMAIN IF EXISTS domaine_tel_portable;
 DROP DOMAIN IF EXISTS domaine_tel_fixe;
+DROP DOMAIN IF EXISTS domaine_heure;
 
 
 

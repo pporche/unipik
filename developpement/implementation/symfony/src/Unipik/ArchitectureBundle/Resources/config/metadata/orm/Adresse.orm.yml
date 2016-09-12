@@ -18,7 +18,7 @@ Adresse:
             length: 100
             options:
                 fixed: false
-        rue:
+        adresse:
             type: string
             nullable: false
             length: 500
@@ -31,13 +31,6 @@ Adresse:
             options:
                 fixed: false
             column: code_postal
-        numeroDeRue:
-            type: string
-            nullable: false
-            length: 15
-            options:
-                fixed: false
-            column: numero_de_rue
         complement:
             type: string
             nullable: true

@@ -49,16 +49,16 @@ Intervention:
             length: null
             options:
                 fixed: false
-        moment:
+        heure:
             type: string
             nullable: true
-            length: 15
+            length: 5
             options:
                 fixed: false
-        type:
-            type: string
+        realisee:
+            type: boolean
             nullable: false
-            length: 255
+            length: null
             options:
                 fixed: false
         materielDispoPlaidoyer:

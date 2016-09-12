@@ -53,16 +53,17 @@ class Intervention
     /**
      * @var string
      *
-     * @ORM\Column(name="moment", type="string", length=15, nullable=true)
+     * @ORM\Column(name="heure", type="string", length=5, nullable=true)
      */
-    private $moment;
+    private $heure;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     * @ORM\Column(name="realisee", type="boolean", nullable=false)
      */
-    private $type;
+    private $realisee;
+
 
     /**
      * @var string
@@ -252,52 +253,56 @@ class Intervention
     }
 
     /**
-     * Set moment
+     * Set heure
      *
-     * @param string $moment
+     * @param string $heure
      *
      * @return Intervention
      */
-    public function setMoment($moment)
+    public function setHeure($heure)
     {
-        $this->moment = $moment;
+        $this->heure = $heure;
 
         return $this;
     }
 
+
     /**
-     * Get moment
+     * Get heure
      *
      * @return string
      */
-    public function getMoment()
+    public function getHeure()
     {
-        return $this->moment;
+        return $this->heure;
     }
 
+
     /**
-     * Set type
+     * Set realisee
      *
-     * @param string $type
+     * @param string $realisee
      *
      * @return Intervention
      */
-    public function setType($type)
+    public function setRealisee($realisee)
     {
-        $this->type = $type;
+        $this->realisee = $realisee;
 
         return $this;
     }
 
+
     /**
-     * Get type
+     * Get realisee
      *
-     * @return string
+     * @return boolean
      */
-    public function getType()
+    public function getRealisee()
     {
-        return $this->type;
+        return $this->realisee;
     }
+
 
     /**
      * Set materielDispoPlaidoyer

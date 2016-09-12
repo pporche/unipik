@@ -84,7 +84,7 @@ CREATE DOMAIN domaine_tel_fixe AS VARCHAR(10)
 CHECK (VALUE ~ '^[0-9]{10}$');
 
 CREATE DOMAIN domaine_heure AS VARCHAR(5)
-CHECK (VALUE ~ '^[0-9]{2}:[0-9]{2}')
+CHECK (VALUE ~ '^[0-9]{2}:[0-9]{2}');
 
 -- il faut rajouter un domaine sur l'UAI d'un établissement (enseignement) --
 
@@ -95,9 +95,8 @@ CHECK (VALUE ~ '^[0-9]{2}:[0-9]{2}')
 CREATE TABLE IF NOT EXISTS adresse (
 	id SERIAL PRIMARY KEY, 
 	ville VARCHAR(100) NOT NULL, 
-	rue VARCHAR(500) NOT NULL, 
+	adresse VARCHAR(500) NOT NULL, 
 	code_postal domaine_code_postal NOT NULL, 
-	numero_de_rue VARCHAR(15) DEFAULT NULL, 
 	complement VARCHAR(100) DEFAULT NULL, 
 	geolocalisation VARCHAR(255) DEFAULT NULL
 );
@@ -343,19 +342,19 @@ CREATE VIEW personne AS (
 );
 
 CREATE VIEW plaidoyer AS (
-	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, niveau_theme_id, materiel_dispo_plaidoyer
+	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, heure, realisee, niveau_theme_id, materiel_dispo_plaidoyer
 	FROM intervention
 	WHERE niveau_theme_id is not null AND materiel_dispo_plaidoyer is not null
 );
 
 CREATE VIEW frimousse AS (
-	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, niveau_frimousse, materiaux_frimousse
+	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, heure, realisee, niveau_frimousse, materiaux_frimousse
 	FROM intervention
 	WHERE niveau_frimousse is not null AND materiaux_frimousse is not null
 );
 
 CREATE VIEW autre_intervention AS (
-	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, moment, type, description
+	SELECT id, demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, heure, realisee, description
 	FROM intervention
 	WHERE description is not null
 );

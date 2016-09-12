@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-12T08:45:57+02:00
+
+====== IDE ======
+Created lundi 12 septembre 2016 by Matthieu
+Last updates:
+ * lundi 12 septembre 2016 by Matthieu
+
+===== But: =====
+
+Installer un IDE et importer le projet.
+
+Vous pouvez choisir un ide parmi :
+
+* [[+Eclipse]]
+* [[+PhpStorm]]

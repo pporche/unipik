@@ -13,4 +13,8 @@ class UserController extends Controller {
         $lol = 'singe';
         return $this->render('UserBundle::test.html.twig', array('coucou' => $lol));
     }
+
+    public function listeAction() {
+        return $this->render('UserBundle::liste.html.twig');
+    }
 }

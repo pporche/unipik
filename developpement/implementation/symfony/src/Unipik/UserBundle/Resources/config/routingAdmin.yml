@@ -1,9 +1,7 @@
 user_admin_list:
     path: /benevoles
-
-#user_admin_register_truc:
-#    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
-#    prefix: /register
+    defaults:
+        _controller: UserBundle:User:liste
 
 user_admin_register:
     path: /register

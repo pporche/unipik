@@ -14,30 +14,54 @@ use Doctrine\ORM\EntityRepository;
 class EtablissementRepository extends EntityRepository{
 
     /**
-     * getEnseignements
+     * Get Enseignements
      *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getEnseignements(){
+        $qb = $this->createQueryBuilder('e');
 
+        $qb
+            ->where($qb->expr()->isNotNull('e.typeEnseignement'));
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     /**
-     * getCentreLoisirs
+     * Get Centre Loisirs
      *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getCentresLoisirs(){
+        $qb = $this->createQueryBuilder('e');
 
+        $qb
+            ->where($qb->expr()->isNotNull('e.typeCentre'));
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     /**
-     * getAutresEtablissements
+     * Get Autres Etablissements
      *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getAutresEtablissements(){
+        $qb = $this->createQueryBuilder('e');
 
+        $qb
+            ->where($qb->expr()->isNotNull('e.typeAutreEtablissement'));
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
 }

@@ -1,4 +1,5 @@
 -- version 1.00 date 13/05/2016 auteur(s) Michel Cressannt, Julie Pain
+-- Création des tables de la base de données
  
 -- Définition des Domaines --
 
@@ -29,7 +30,7 @@ CREATE DOMAIN domaine_type_enseignement AS VARCHAR(25)
 CHECK (VALUE IN ('maternelle', 'elementaire', 'college', 'lycee', 'superieur'));
 
 CREATE DOMAIN domaine_type_centre AS VARCHAR(25)
-CHECK (VALUE IN ('maternelle', 'elémentaire', 'adolescent', 'autre'));
+CHECK (VALUE IN ('maternelle', 'elementaire', 'adolescent', 'autre'));
 
 CREATE DOMAIN domaine_type_autre_etablissement AS VARCHAR(20)
 CHECK (VALUE IN ('mairie', 'maison de retraite', 'autre'));

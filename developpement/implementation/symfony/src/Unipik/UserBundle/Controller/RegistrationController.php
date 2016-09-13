@@ -7,6 +7,7 @@
  */
 
 namespace Unipik\UserBundle\Controller;
+
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\UserBundle\FOSUserEvents;
@@ -16,9 +17,11 @@ use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
-class RegistrationController extends  BaseController {
+class RegistrationController extends BaseController
+{
 
-    public function registerAction(Request $request) {
+    public function registerAction(Request $request)
+    {
 
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
@@ -43,9 +46,21 @@ class RegistrationController extends  BaseController {
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+            $activitiesArray = $form->get("activitesPotentielles")->getData();
+            $activitiesString = '{';
+            foreach ($activitiesArray as $value) {
+                $activitiesString = $activitiesString.$value;
+                if($value !== end($activitiesArray)) {
+                    $activitiesString = $activitiesString.',';
+                }
+            }
+            $activitiesString = $activitiesString.'}';
+
+            $user->setActivitesPotentielles($activitiesString);
+
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
-
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
@@ -56,6 +71,8 @@ class RegistrationController extends  BaseController {
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
             return $response;
+
+            //return $this->redirectToRoute('architecture_homepage');
         }
 
         return $this->render('FOSUserBundle:Registration:register.html.twig', array(

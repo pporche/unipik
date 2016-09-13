@@ -42,3 +42,8 @@ fos_user_change_password:
     defaults:
         _controller: FOSUserBundle:ChangePassword:changePassword
 
+test:
+    path: /test
+    defaults:
+        _controller: UserBundle:User:test
+

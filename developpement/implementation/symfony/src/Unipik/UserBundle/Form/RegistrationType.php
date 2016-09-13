@@ -12,6 +12,8 @@ use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Unipik\UserBundle\Form\Adresse\AdresseType;
 
 class RegistrationType extends AbstractType {
@@ -23,7 +25,23 @@ class RegistrationType extends AbstractType {
                 'Admin' => 'ROLE_ADMIN',
             ],);
 
+        $optionActivite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false,
+            'choices' => [
+                'Actions ponctuelles' => '(actions ponctuelles)',
+                'Plaidoyers' => '(plaidoyers)',
+                'Frimousses' => '(frimousses)',
+                'Projets' => '(projets)',
+                'Autre' => '(autre)',
+            ],);
 
+        $optionResponsabilite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false,
+            'choices' => [
+                'Actions ponctuelles' => '(actions ponctuelles)',
+                'Plaidoyers' => '(plaidoyers)',
+                'Frimousses' => '(frimousses)',
+                'Projets' => '(projets)',
+                'Autre' => '(autre)',
+            ],);
 
         $builder
             ->add('nom')
@@ -33,6 +51,8 @@ class RegistrationType extends AbstractType {
             ->add('email')
             ->add('adresse', AdresseType::class)
             ->add('roles', ChoiceType::class, $optionChoiceType)
+            ->add('activitesPotentielles', ChoiceType::class, $optionActivite)
+            //->add('responsabiliteActivite', ChoiceType::class, $optionResponsabilite)
         ;
     }
 

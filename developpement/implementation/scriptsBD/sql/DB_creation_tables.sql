@@ -1,4 +1,5 @@
 -- version 1.00 date 13/05/2016 auteur(s) Michel Cressannt, Julie Pain
+-- Création des tables de la base de données
  
 -- Définition des Domaines --
 

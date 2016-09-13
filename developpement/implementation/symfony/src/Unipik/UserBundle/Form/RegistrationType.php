@@ -40,7 +40,8 @@ class RegistrationType extends AbstractType {
                 'Plaidoyers' => '(plaidoyers)',
                 'Frimousses' => '(frimousses)',
                 'Projets' => '(projets)',
-                'Autre' => '(autre)',
+                'Admin Région' => '(admin_region)',
+                'Admin Comité' => '(admin_comite)',
             ],);
 
         $builder
@@ -52,7 +53,7 @@ class RegistrationType extends AbstractType {
             ->add('adresse', AdresseType::class)
             ->add('roles', ChoiceType::class, $optionChoiceType)
             ->add('activitesPotentielles', ChoiceType::class, $optionActivite)
-            //->add('responsabiliteActivite', ChoiceType::class, $optionResponsabilite)
+            ->add('responsabiliteActivite', ChoiceType::class, $optionResponsabilite)
         ;
     }
 

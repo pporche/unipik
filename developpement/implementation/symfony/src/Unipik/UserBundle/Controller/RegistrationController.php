@@ -17,11 +17,9 @@ use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
-class RegistrationController extends BaseController
-{
+class RegistrationController extends BaseController {
 
-    public function registerAction(Request $request)
-    {
+    public function registerAction(Request $request) {
 
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
@@ -47,17 +45,13 @@ class RegistrationController extends BaseController
 
         if ($form->isValid()) {
 
-            $activitiesArray = $form->get("activitesPotentielles")->getData();
-            $activitiesString = '{';
-            foreach ($activitiesArray as $value) {
-                $activitiesString = $activitiesString.$value;
-                if($value !== end($activitiesArray)) {
-                    $activitiesString = $activitiesString.',';
-                }
-            }
-            $activitiesString = $activitiesString.'}';
-
+            $activitiesArray = $form->get("activitesPotentielles")->getData(); //récup les activités choisies sur le form + format pour persist
+            $activitiesString = $this->arrayToString($activitiesArray);
             $user->setActivitesPotentielles($activitiesString);
+
+            $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
+            $responsibilitiesString = $this->arrayToString($responsibilitiesArray);
+            $user->setResponsabiliteActivite($responsibilitiesString);
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
@@ -71,13 +65,22 @@ class RegistrationController extends BaseController
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
             return $response;
-
-            //return $this->redirectToRoute('architecture_homepage');
         }
 
         return $this->render('FOSUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    public function arrayToString($array) {
+        $string = '{';
+        foreach ($array as $value) {
+            $string = $string.$value;
+            if($value !== end($array)) {
+                $string = $string.',';
+            }
+        }
+        return $string.'}';
     }
 
 }

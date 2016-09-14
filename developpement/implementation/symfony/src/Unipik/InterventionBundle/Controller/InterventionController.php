@@ -129,11 +129,4 @@ class InterventionController extends Controller {
 
     }
 
-    /**
-     * @return RepositoryFactory Renvoie le repository Intervention.
-     */
-    public function getListeRepository(){
-        $em = $this->getDoctrine()->getManager();
-        return $em->getRepository('InterventionBundle:Intervention');
-    }
 }

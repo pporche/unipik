@@ -22,7 +22,6 @@ class EtablissementController extends Controller {
      * @return Response Renvoie vers la page de consultation liée à l'établissement.
      */
     public function consultationAction($id) {
-
         return $this->render('InterventionBundle:Etablissement:consultation.html.twig');
     }
 
@@ -62,12 +61,6 @@ class EtablissementController extends Controller {
      * @return Response Renvoie vers la page affichant la liste des données des établissements.
      */
     public function listeAction() {
-        /*$em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('ArchitectureBundle:Intervention');//('ArchitectureBundle:Plaidoyer');
-        $listPlaidoyers = $repository->findAll();*/
-
-        return $this->render('InterventionBundle:Etablissement:liste.html.twig', array(
-            //'listPlaidoyers' => $listPlaidoyers
-        ));
+        return $this->render('InterventionBundle:Etablissement:liste.html.twig');
     }
 }

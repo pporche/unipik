@@ -34,3 +34,5 @@ etablissement_view:
     path:   /etablissement/{id}
     defaults:
         _controller: InterventionBundle:Etablissement:consultation
+    requirements:
+        id: \d

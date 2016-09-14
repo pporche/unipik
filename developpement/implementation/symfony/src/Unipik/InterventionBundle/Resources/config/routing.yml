@@ -1,5 +1,5 @@
 intervention_request:
-    path:     /intervention/demande/{id}
+    path:     /intervention/demande
     defaults:
         _controller: InterventionBundle:Intervention:demande
 

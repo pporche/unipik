@@ -54,22 +54,6 @@ doctrine:
         #   2. Uncomment database_path in parameters.yml.dist
         #   3. Uncomment next line:
         #     path:     "%database_path%"
-        mapping_types:
-            enum: string
-        types:
-            ActiviteType: Unipik\ArchitectureBundle\DBAL\Types\ActiviteType
-            JourType: Unipik\ArchitectureBundle\DBAL\Types\JourType
-            MaterielFrimousseType: Unipik\ArchitectureBundle\DBAL\Types\MaterielFrimousseType
-            MaterielPlaidoyerType: Unipik\ArchitectureBundle\DBAL\Types\MaterielPlaidoyerType
-            MomentQuotidienType: Unipik\ArchitectureBundle\DBAL\Types\MomentQuotidienType
-            NiveauScolaireCompletType: Unipik\ArchitectureBundle\DBAL\Types\NiveauScolaireCompletType
-            NiveauScolaireLimiteType: Unipik\ArchitectureBundle\DBAL\Types\NiveauScolaireLimiteType
-            ThemeType: Unipik\ArchitectureBundle\DBAL\Types\ThemeType
-            AutreEtablissementType:  Unipik\ArchitectureBundle\DBAL\Types\AutreEtablissementType
-            CentreType: Unipik\ArchitectureBundle\DBAL\Types\CentreType
-            ContactType: Unipik\ArchitectureBundle\DBAL\Types\ContactType
-            EnseignementType: Unipik\ArchitectureBundle\DBAL\Types\EnseignementType
-            ProjetType : Unipik\ArchitectureBundle\DBAL\Types\ProjetType
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"

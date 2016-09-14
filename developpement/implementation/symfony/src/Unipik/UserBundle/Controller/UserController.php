@@ -9,31 +9,12 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class UserController extends Controller {
 
-   public function viewProfileAction() {
-
+   public function testAction() {
+        $lol = 'singe';
+        return $this->render('UserBundle::test.html.twig', array('coucou' => $lol));
     }
 
-    public function editProfileAction() {
-
-    }
-
-    public function scheduleAction() {
-
-    }
-
-    public function takeInterventionAction() {
-
-    }
-
-    public function cancelInterventionAction() {
-
-    }
-
-    public function mapAction() {
-
-    }
-
-    public function editInterventionAction() {
-
+    public function listeAction() {
+        return $this->render('UserBundle::liste.html.twig');
     }
 }

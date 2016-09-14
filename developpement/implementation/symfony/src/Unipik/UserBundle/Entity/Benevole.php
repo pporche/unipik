@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="benevole", indexes={@ORM\Index(name="IDX_B4014FDB4DE7DC5C", columns={"adresse_id"})})
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Benevole extends BaseUser
 {
@@ -391,5 +392,12 @@ class Benevole extends BaseUser
     public function getComite()
     {
         return $this->comite;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function changeNom() {
+        $this->setNom('singe');
     }
 }

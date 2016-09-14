@@ -25,7 +25,11 @@
                                 </dt>
                             </div>
                             <div  class="col-sm-9">
-                               <a href="">{{ user.email}}</a>
+                                {% if (user.email == "" or user.email == NULL) %}
+                                    {{ "Non renseigné" }}
+                                {% else %}
+                                    <a href="mailto:{{ user.email}}">{{ user.email}}</a>
+                                {% endif %}
                             </div>
                             <div class="col-sm-3 col-xs-12">
                                 <dt >
@@ -33,7 +37,11 @@
                                 </dt>
                             </div>
                             <div  class="col-sm-9">
-                                {{ user.telFixe}}
+                                {% if (user.telFixe == "" or user.telFixe == NULL) %}
+                                    {{ "Non renseigné" }}
+                                {% else %}
+                                    {{ user.telFixe}}
+                                {% endif %}
                             </div>
                             <div class="col-sm-3 col-xs-12">
                                 <dt>
@@ -41,7 +49,11 @@
                                 </dt>
                             </div>
                             <div  class="col-sm-9">
-                                {{ user.telPortable}}
+                                {% if (user.telPortable == "" or user.telPortable == NULL) %}
+                                    {{ "Non renseigné" }}
+                                {% else %}
+                                    {{ user.telPortable}}
+                                {% endif %}
                             </div>
                             <div class="col-sm-3 col-xs-12">
                                 <dt >
@@ -49,7 +61,11 @@
                                 </dt>
                             </div>
                             <div  class="col-sm-9">
-                                BLABLA
+                                {% if (user.adresse.getAdresse() == "" or user.adresse.getAdresse() == "blabla") %}
+                                    {{ "Non renseigné" }}
+                                {% else %}
+                                    {{ user.adresse.getAdresse()}}
+                                {% endif %}
                             </div>
                         </dl>
 

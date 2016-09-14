@@ -1,8 +1,10 @@
 {# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
 
 {{ form_start(form, {'method': 'post', 'action': path('user_admin_register'), 'attr': {'class': 'user_admin_register'}}) }}
-    {{ form_widget(form) }}
+<div class="well">
+{{ form_widget(form) }}
 <div>
     <input type="submit" value="Inscrire" />
+</div>
 </div>
 {{ form_end(form) }}

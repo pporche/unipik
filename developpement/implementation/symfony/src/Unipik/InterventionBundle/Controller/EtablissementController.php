@@ -11,6 +11,9 @@ namespace Unipik\InterventionBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Unipik\InterventionBundle\Entity\Etablissement;
+use Unipik\InterventionBundle\Form\EtablissementType;
 
 class EtablissementController extends Controller {
 
@@ -23,8 +26,21 @@ class EtablissementController extends Controller {
         return $this->render('InterventionBundle:Etablissement:consultation.html.twig');
     }
 
-    public function addAction() {
+    public function addAction(Request $request) {
+        $institute = new Etablissement();
+        $form = $this->get('form.factory')->create(EtablissementType::class, $institute);
 
+        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($institute);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'GGWP');
+
+            return $this->redirectToRoute('architecture_homepage');
+        }
+
+        return $this->render('InterventionBundle:Etablissement:ajouterEtablissement.html.twig', array('form' => $form->createView()));
     }
 
     public function editAction() {

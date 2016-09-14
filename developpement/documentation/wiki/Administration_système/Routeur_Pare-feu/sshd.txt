@@ -37,6 +37,27 @@ Par
 PubkeyAuthentication no 
 '''
 
+Remplacer
+'''
+PasswordAuthentication no
+'''
+Par
+'''
+PasswordAuthentication yes
+'''
+
+Remplacer
+'''
+PermitRootLogin without-password
+'''
+Par
+'''
+#PermitRootLogin without-password
+
+'''
+
+
+
 2. Redémarrer sshd avec la commande suivante :
 
 '''
@@ -65,6 +86,25 @@ Par
 '''
 PubkeyAuthentication yes 
 '''
+
+Remplacer
+'''
+PasswordAuthentication yes
+'''
+Par
+'''
+PasswordAuthentication no
+'''
+
+Remplacer
+'''
+#PermitRootLogin without-password
+'''
+Par
+'''
+PermitRootLogin without-password
+'''
+
 
 2. Redémarrer sshd avec la commande suivante :
 

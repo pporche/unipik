@@ -72,6 +72,20 @@ class RegistrationController extends BaseController {
         ));
     }
 
+    public function checkEmailAction() {
+        $email = $this->get('session')->get('fos_user_send_confirmation_email/email');
+        $this->get('session')->remove('fos_user_send_confirmation_email/email');
+        $user = $this->get('fos_user.user_manager')->findUserByEmail($email);
+
+        if (null === $user) {
+            throw new NotFoundHttpException(sprintf('The user with email "%s" does not exist', $email));
+        }
+
+        return $this->render('UserBundle:Registration:check_email.html.twig', array(
+            'user' => $user,
+        ));
+    }
+
     public function arrayToString($array) {
         $string = '{';
         foreach ($array as $value) {

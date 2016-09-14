@@ -31,11 +31,18 @@ class EtablissementController extends Controller {
         $form = $this->get('form.factory')->create(EtablissementType::class, $institute);
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $educationTypeArray = $form->get("typeEnseignement")->getData();
+            $institute->setTypeEnseignement($educationTypeArray[0]);
+
+            $otherTypeArray = $form->get("typeAutreEtablissement")->getData();
+            $institute->setTypeAutreEtablissement($otherTypeArray[0]);
+
+            $centreTypeArray = $form->get("typeCentre")->getData();
+            $institute->setTypeCentre($centreTypeArray[0]);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($institute);
             $em->flush();
-
-            $request->getSession()->getFlashBag()->add('notice', 'GGWP');
 
             return $this->redirectToRoute('architecture_homepage');
         }

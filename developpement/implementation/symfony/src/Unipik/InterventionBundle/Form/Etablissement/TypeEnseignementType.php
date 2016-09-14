@@ -13,21 +13,20 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class TypeEnseignementType extends AbstractType
-{
+class TypeEnseignementType extends AbstractType {
 
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
-        $optionChoiceType = array( 'expanded' => true, 'multiple' => true,
+        $optionChoiceType = array( 'expanded' => true, 'multiple' => true, 'mapped' => false,
             'choices' => [
-                'Maternelle' => 'maternelle',
-                'Primaire' => 'primaire',
-                'Collège' => 'college',
-                'Lycée' => 'lycee',
-                'Supérieur' => 'superieur'
+                'Maternelle' => '(maternelle)',
+                'Elementaire' => '(elementaire)',
+                'Collège' => '(college)',
+                'Lycée' => '(lycee)',
+                'Supérieur' => '(superieur)'
             ],);
 
         $builder

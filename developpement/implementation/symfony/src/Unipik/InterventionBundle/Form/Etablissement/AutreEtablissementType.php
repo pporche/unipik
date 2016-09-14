@@ -19,11 +19,11 @@ class AutreEtablissementType extends AbstractType
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
-        $optionChoiceType = array( 'expanded' => true, 'multiple' => true,
+        $optionChoiceType = array( 'expanded' => true, 'multiple' => true, 'mapped' => false,
             'choices' => [
-                'Mairie' => 'mairie',
-                'Maison de retraite' => 'maisonret',
-                'Autre' => 'autre'
+                'Mairie' => '(mairie)',
+                'Maison de retraite' => '(maison de retraite)',
+                'Autre' => '(autre)'
             ],);
 
         $builder

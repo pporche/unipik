@@ -1,0 +1,19 @@
+{# version 1.00, date 14/05/2016, auteur Florian Leriche #}
+{% extends "InterventionBundle::layout.html.twig" %}
+
+
+{% block body %}
+    <div class='well'>
+
+        {{ form_start(form, {'method': 'post', 'action': path('etablissement_admin_add'), 'attr': {'class': 'etablissement_admin_add'}}) }}
+
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" value="Inscrire" class="btn btn-primary"/>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}
+
+

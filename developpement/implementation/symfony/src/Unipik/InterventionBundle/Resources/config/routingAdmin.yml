@@ -4,5 +4,5 @@ intervention_admin_add:
 
 etablissement_admin_add:
     path:     /etablissement/ajouter
-    defaults: { _controller: InterventionBundle:Etablissement:ajouter }
+    defaults: { _controller: InterventionBundle:Etablissement:add }
 

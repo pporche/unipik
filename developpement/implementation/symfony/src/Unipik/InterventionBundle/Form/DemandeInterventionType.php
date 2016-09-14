@@ -31,6 +31,7 @@ class DemandeInterventionType extends AbstractType {
             ->add('adresse', AdresseType::class, array('fieldset' => true, 'legend' => "Adresse de l'établissement"))
             ->add('intervention', InterventionType::class, array('fieldset' => true, 'legend' => "Intervention"))
             ->add('remarques', RemarquesType::class, array('fieldset' => true, 'legend' => 'Remarques éventuelles'))
+            ->add('Valider la demande',SubmitType::class)
         ;
     }
 

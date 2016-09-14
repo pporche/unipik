@@ -75,7 +75,7 @@ class Etablissement
     /**
      * @var \Unipik\ArchitectureBundle\Entity\Adresse
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Adresse")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Adresse", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
      * })

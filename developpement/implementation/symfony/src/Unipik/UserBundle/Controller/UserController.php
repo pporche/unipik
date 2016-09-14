@@ -16,7 +16,8 @@ class UserController extends Controller {
 
     public function listeAction() {
         $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('UserBundle:');
-        return $this->render('UserBundle::liste.html.twig');
+        $repository = $em->getRepository('UserBundle:Benevole');
+        $listBenevoles = $repository->findAll();
+        return $this->render('UserBundle::liste.html.twig', array('listBenevoles' => $listBenevoles));
     }
 }

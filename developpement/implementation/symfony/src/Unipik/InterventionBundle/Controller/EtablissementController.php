@@ -32,13 +32,13 @@ class EtablissementController extends Controller {
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $educationTypeArray = $form->get("typeEnseignement")->getData();
-            $institute->setTypeEnseignement($educationTypeArray[0]);
+            $institute->setTypeEnseignement($educationTypeArray);
 
             $otherTypeArray = $form->get("typeAutreEtablissement")->getData();
-            $institute->setTypeAutreEtablissement($otherTypeArray[0]);
+            $institute->setTypeAutreEtablissement($otherTypeArray);
 
             $centreTypeArray = $form->get("typeCentre")->getData();
-            $institute->setTypeCentre($centreTypeArray[0]);
+            $institute->setTypeCentre($centreTypeArray);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($institute);

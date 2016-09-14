@@ -1,5 +1,5 @@
-# version 1.00, date 14/09/2016, auteur Mélissa Bignoux
-# permet d'enlever les espaces dans les numéros de téléphone
+# version 1.00, date 14/09/2016, auteur Melissa Bignoux
+# permet d enlever les espaces dans les numeros de telephone
 
 import sys
 

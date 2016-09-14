@@ -1,5 +1,5 @@
-# version 1.00, date 14/09/2016, auteur Mélissa Bignoux
-# permet de vérifier que d'associer les codes postaux aux villes
+# version 1.00, date 14/09/2016, auteur Melissa Bignoux
+# permet de verifier que d associer les codes postaux aux villes
 
 import csv
 import sys

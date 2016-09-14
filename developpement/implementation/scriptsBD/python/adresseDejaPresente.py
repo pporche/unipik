@@ -1,5 +1,5 @@
-# version 1.00, date 14/09/2016, auteur Mélissa Bignoux
-# permet de vérifier qu'une adresse n'a pas déjà été ajoutée
+# version 1.00, date 14/09/2016, auteur Melissa Bignoux
+# permet de verifier qu une adresse n a pas deja ete ajoutee
 
 import mmap
 import sys

@@ -6,3 +6,15 @@
     Liste des bénévoles - {{ parent() }}
 
 {% endblock %}
+
+{% block body %}
+    <ul>
+
+        {% for benevole in listBenevoles %}
+
+            <li><a href="{{ path('fos_user_profile_show') }}">{{ benevole.username }}</a></li>
+
+        {% endfor %}
+
+    </ul>
+{% endblock %}

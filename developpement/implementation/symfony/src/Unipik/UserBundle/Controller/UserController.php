@@ -14,7 +14,10 @@ class UserController extends BaseController {
 
 
     public function listeAction() {
-        return $this->render('UserBundle::liste.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('UserBundle:Benevole');
+        $listBenevoles = $repository->findAll();
+        return $this->render('UserBundle::liste.html.twig', array('listBenevoles' => $listBenevoles));
     }
 
     public function modifyAction(Request $request) {

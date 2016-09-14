@@ -118,7 +118,6 @@ do
 
 	if [[ $idNiveauTheme != *"rows"* ]];
 	then
-		echo "$idNiveauTheme coucou" >> test.txt
 		echo "INSERT INTO comite_niveau_theme (comite, niveau_theme) VALUES ('$idComite', '$idNiveauTheme');" >> $fichierAddComiteNiveauTheme
 	else 
 		continuerBoucle="false"

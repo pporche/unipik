@@ -117,7 +117,23 @@ class InterventionController extends Controller {
         ));
     }
 
+    public function annulerAction($id) {
+
+        $em = $this-getListeRepository();
+        $intervention = $em->find($id);
+        $this->getDoctrine()->getManager()->remove($intervention);
+        return $this->render('InterventionBundle:Intervention:annulationDemande.html.twig');
+    }
+
     public function locationAction() {
 
+    }
+
+    /**
+     * @return RepositoryFactory Renvoie le repository Intervention.
+     */
+    public function getListeRepository(){
+        $em = $this->getDoctrine()->getManager();
+        return $em->getRepository('InterventionBundle:Intervention');
     }
 }

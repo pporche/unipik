@@ -86,3 +86,6 @@ fos_user:
                     from_email:
                          address:        unipik.unicef@laposte.net
                          sender_name:    unipik.unicef@laposte.net
+    profile:
+            form:
+                    type: Unipik\UserBundle\Form\ProfileFormType

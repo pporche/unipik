@@ -1,5 +1,5 @@
 # version 1.00, date 14/09/2016, auteur Mélissa Bignoux
-# permet de remplir les tables relatives à la region Seine-Maritime
+# permet de remplir les tables relatives à la region Seine-Maritime (rregion, comite, niveau_theme, comite_niveau_theme)
 
 prompt_token() {
   local VAL=""

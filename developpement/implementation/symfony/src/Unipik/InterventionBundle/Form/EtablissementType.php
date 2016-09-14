@@ -24,7 +24,7 @@ class EtablissementType extends AbstractType
             ->add('nom')
             ->add('telFixe')
             ->add('emails')
-            ->add('typEnseignement',TypeEnseignementType::class)
+            ->add('typeEnseignement',TypeEnseignementType::class)
             ->add('typeAutreEtablissement',AutreEtablissementType::class)
             ->add('adresse',AdresseType::class)
         ;

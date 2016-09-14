@@ -10,7 +10,11 @@ namespace Unipik\UserBundle\Form;
 
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -19,13 +23,13 @@ use Unipik\UserBundle\Form\Adresse\AdresseType;
 class RegistrationType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         parent::buildForm($builder, $options);
-        $optionChoiceType = array( 'expanded' => true, 'multiple' => true,
+        $optionChoiceType = array( 'expanded' => true, 'multiple' => true, 'label' => 'Rôle',
             'choices' => [
-                'User' => 'ROLE_USER',
-                'Admin' => 'ROLE_ADMIN',
-            ],);
+                'Utilisateur' => 'ROLE_USER',
+                'Administrateur' => 'ROLE_ADMIN',
+            ]);
 
-        $optionActivite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false,
+        $optionActivite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Activités potentielles',
             'choices' => [
                 'Actions ponctuelles' => '(actions ponctuelles)',
                 'Plaidoyers' => '(plaidoyers)',
@@ -34,26 +38,33 @@ class RegistrationType extends AbstractType {
                 'Autre' => '(autre)',
             ],);
 
-        $optionResponsabilite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false,
+        $optionResponsabilite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Responsable d\'activité',
             'choices' => [
                 'Actions ponctuelles' => '(actions ponctuelles)',
                 'Plaidoyers' => '(plaidoyers)',
                 'Frimousses' => '(frimousses)',
                 'Projets' => '(projets)',
-                'Admin Région' => '(admin_region)',
-                'Admin Comité' => '(admin_comite)',
+                'Administrateur Régional' => '(admin_region)',
+                'Administrateur Comité' => '(admin_comite)',
             ],);
 
         $builder
             ->add('nom')
-            ->add('prenom')
-            ->add('telFixe')
-            ->add('telPortable')
-            ->add('email')
+            ->add('prenom', TextType::class, array('label' => 'Prénom'))
+            ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe'))
+            ->add('telPortable', TextType::class, array('label' => 'Téléphone portable'))
+            ->add('email', TextType::class, array('label' => 'E-mail'))
+            ->add('username', TextType::class, array('label' => 'Nom d\'utilisateur'))
+            ->add('plainPassword', RepeatedType::class,
+                    array('type' => PasswordType::class,
+                          'first_options'  => array('label' => 'Mot de passe'),
+                          'second_options' => array('label' => 'Répéter mot de passe')
+                    )
+                 )
             ->add('adresse', AdresseType::class)
             ->add('roles', ChoiceType::class, $optionChoiceType)
-            ->add('activitesPotentielles', ChoiceType::class, $optionActivite)
             ->add('responsabiliteActivite', ChoiceType::class, $optionResponsabilite)
+            ->add('activitesPotentielles', ChoiceType::class, $optionActivite)
         ;
     }
 

@@ -22,7 +22,6 @@ psql
 CREATE USER unipik WITH PASSWORD 'kaflmmppscmmbmcjpmb';
 CREATE database bdunicef;
 psql -U unipik -W -d bdunicef -h 127.0.0.1
-\i /home/.../pic_unicef/developpement/implementation/scriptsBD/DB_creation.sql
 '''
 
 

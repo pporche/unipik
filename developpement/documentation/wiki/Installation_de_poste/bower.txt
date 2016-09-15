@@ -1,0 +1,29 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-15T10:28:36+02:00
+
+====== bower ======
+Created jeudi 15 septembre 2016 by Matthieu
+Last updates:
+ * jeudi 15 septembre 2016 by Matthieu
+
+===== But: =====
+
+Installer bower.
+
+===== Étapes Pas-à-pas (Linux debian-like): =====
+
+1. Dans un terminal entrer les commandes suivante :
+
+'''
+sudo apt-get install npm
+sudo ln -s "$(which nodejs)" /usr/bin/node
+'''
+
+2. Configurer le proxy avec le guide [[Proxy:npm et bower]]
+3. Puis entrer la commande suivante :
+
+'''
+sudo npm install -g bower
+'''
+

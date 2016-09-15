@@ -18,7 +18,7 @@ Installer un environnement de développement symfony avec Apache.
 1. Exécuter la commande suivante dans un terminal :
 
 '''
-sudo apt-get install php5 libapache2-mod-php5 php-xml apache2 curl postgresql
+sudo apt-get install php5 libapache2-mod-php5 php-xml php-curl apache2 curl postgresql
 '''
 
 2. Dans un dossier de travail (par exemple [[~/travail]] ), cloner le git du projet avec la commande suivante (remplacer user par son nom d'utilisateur) :

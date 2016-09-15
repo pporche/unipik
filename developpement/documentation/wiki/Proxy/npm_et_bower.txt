@@ -1,0 +1,23 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-15T10:00:11+02:00
+
+====== npm et bower ======
+Created jeudi 15 septembre 2016 by Matthieu
+Last updates:
+ * jeudi 15 septembre 2016 by Matthieu
+
+===== But: =====
+
+Configurer le proxy pour pouvoir utiliser npm.
+
+===== Étapes Pas-à-pas: =====
+
+1. Dans un terminal entrer la commande ( utiliser l'url de proxy indiqué dans [[:Proxy]] ) :
+
+'''
+sudo npm -g config set proxy http://cachemad.insa-rouen.fr:3128
+sudo npm -g config set https-proxy http://cachemad.insa-rouen.fr:3128
+'''
+
+

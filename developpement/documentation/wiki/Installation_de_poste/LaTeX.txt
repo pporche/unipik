@@ -5,6 +5,7 @@ Creation-Date: 2016-09-06T16:20:57+02:00
 ====== LaTeX ======
 Created mardi 06 septembre 2016 by Matthieu
 Last updates:
+* jeudi 15 septembre 2016 by Matthieu
 * mardi 06 septembre 2016 by Matthieu
 
 
@@ -24,3 +25,4 @@ Installer les outils nécessaire à la compilation des documents LaTeX.
 export UNIPIKGENPATH="/home/user/chemin-vers-pic_unicef"
 '''
 
+3. Redémarrer la session.

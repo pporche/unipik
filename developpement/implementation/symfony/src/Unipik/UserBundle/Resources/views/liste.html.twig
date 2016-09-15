@@ -8,13 +8,22 @@
 {% endblock %}
 
 {% block body %}
-    <ul>
+    <h1>Liste des Bénévoles</h1>
 
-        {% for benevole in listBenevoles %}
-
-            <li><a href="{{ path('user_admin_profil_benevole', {'username': benevole.username}) }}">{{ benevole.username }}</a></li>
-
-        {% endfor %}
-
-    </ul>
+<table class="table table-striped table-hover ">
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Responsabilité</th>
+        <th>Consulter</th>
+        <th>Supprimer</th>
+    </tr>
+    {% for benevole in listBenevoles|sort %}
+    <tr>
+        <td>{{ benevole.nom }}</td><td>{{ benevole.prenom }}</td> <td>{{ benevole.responsabiliteActivite }}</td><td><button type="button" class="btn btn-primary">Consulter le profil</button></td><td><button type="button" class="btn btn-danger">Supprimer</button></td>
+    </tr>
+    {% endfor %}
+    </thead>
+</table>
 {% endblock %}

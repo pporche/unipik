@@ -8,32 +8,27 @@
 
 namespace Unipik\UserBundle\Form\Profile;
 
-use FOS\UserBundle\Util\LegacyFormHelper;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilderInterface;
 
-class ProfileFormType extends AbstractType
-{
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $this->buildUserForm($builder, $options);
+class ProfileFormType extends BaseType {
+
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+        parent::buildForm($builder, $options);
+
+        $optionResponsabilite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Responsable d\'activité',
+            'choices' => [
+                'Actions ponctuelles' => '(actions ponctuelles)',
+                'Plaidoyers' => '(plaidoyers)',
+                'Frimousses' => '(frimousses)',
+                'Projets' => '(projets)',
+                'Administrateur Régional' => '(admin_region)',
+                'Administrateur Comité' => '(admin_comite)',
+            ],);
 
         $builder
-            ->add('confirmation', ConfirmationType::class, array('fieldset' => true, 'legend' => "Confirmer les modifications"))
-        ;
-
-    }
-
-    protected function buildUserForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('username', null, array('label' => "Nom d'utilisateur"))
-            ->add('email', EmailType::class, array('label' => 'Adresse email'))
+            ->add('activitesPotentielles', ChoiceType::class, $optionResponsabilite)
         ;
     }
 
@@ -48,5 +43,4 @@ class ProfileFormType extends AbstractType
     public function getName() {
         return $this->getBlockPrefix();
     }
-
 }

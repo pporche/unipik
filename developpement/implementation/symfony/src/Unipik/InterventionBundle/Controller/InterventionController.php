@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Form\DemandeType;
 use Unipik\UserBundle\Entity\Contact;
+use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
+
 /**
  * Created by PhpStorm.
  * User: florian

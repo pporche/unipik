@@ -34,6 +34,9 @@ fi
 if [ -f $fichierAddComiteNiveauTheme ] ; then
     rm $fichierAddComiteNiveauTheme
 fi
+psql -U $username -w  -d $dbname  -h 127.0.0.1 << EOF
+INSERT INTO pays (nom) VALUES ('FRANCE');
+EOF
 
 psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM pays WHERE nom = 'FRANCE';" > id.txt
 idAdresse=$(sed '3q;d' < id.txt)

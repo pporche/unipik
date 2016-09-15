@@ -7,22 +7,48 @@
 
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
     <script>
         $(document).ready(function() {
+            $("#recherche_avancee_date").prop('checked',true);
             $("#between_dates").hide();
-            $("#recherche_avancee_date_0").change(function() {
-                    if($(this).is(':checked')){
-                        $("#between_dates").show();
-                    }else{
-                        $("#between_dates").hide();
-                    }
-            });
 
+            hide_or_show = function() {
+                if($(this).is(':checked')){
+                    $("#between_dates").hide();
+                    $("#recherche_avancee_start").prop('required',false);
+                    $("#recherche_avancee_end").prop('required',false);
+                }else{
+                    $("#between_dates").show();
+                    $("#recherche_avancee_start").prop('required',true);
+                    $("#recherche_avancee_end").prop('required',true);
+                }
+            };
+
+            $("#recherche_avancee_date").change(hide_or_show);
+
+
+            $('#recherche_avancee_start').datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'fr'
+            });
+            $('#recherche_avancee_end').datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'fr'
+            });
         });
     </script>
 {% endblock %}
+
+
 
 {% block body %}
 
@@ -30,18 +56,19 @@
         <div class="row">
             <div class='well'>
 
-                {{ form_start(form, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list'}}) }}
-                <h4>Type d'intervention :</h4>
+                {{ form_start(form, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                <h5>Type d'intervention :</h5>
                 {{ form_widget(form.typeIntervention) }}
                 <br/>
+
+                <h5>Dates d'intervention :</h5>
                 {{ form_widget(form.date) }}
                 <br/>
-
                 <div id="between_dates">
                     Interventions entre le
-                    {{ form_widget(form.start) }}
+                    {{ form_widget(form.start, { 'attr': {'class': 'input-sm'} }) }}
                     et le
-                    {{ form_widget(form.end) }}
+                    {{ form_widget(form.end, { 'attr': {'class': 'input-sm'} }) }}
                 </div>
 
                 <br/>
@@ -56,7 +83,22 @@
     </section>
 
     <section class="col-lg-10 col-md-10 col-sm-10">
-        <h2>Liste des interventions :</h2>
+        <h2>
+            Liste des
+            {% if typeIntervention == "plaidoyer" %}
+                plaidoyers
+            {% elseif typeIntervention == "frimousse" %}
+                interventions frimousses
+            {% elseif typeIntervention == "autreInterventions" %}
+                autres interventions
+            {% else  %}
+                interventions
+            {% endif %}
+            {% if isCheck is empty %}
+                entre le {{ dateStart.format('d-m-Y') }} et le {{ dateEnd.format('d-m-Y') }}
+            {% endif %}
+            :
+        </h2>
         <table class="table table-striped table-hover ">
             <thead>
             <tr>

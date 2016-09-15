@@ -22,7 +22,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getFrimousses(\DateTime $start, \DateTime $end) {
+    public function getFrimousses($start, $end, $datesChecked) {
         $qb = $this->createQueryBuilder('i');
 
         $qb
@@ -30,7 +30,7 @@ class InterventionRepository extends EntityRepository {
             ->andWhere($qb->expr()->isNotNull('i.materiauxFrimousse'))
         ;
 
-        if(!is_null($start) AND !is_null($end)) {
+        if(!$datesChecked) {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
@@ -48,7 +48,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPlaidoyers(\DateTime $start, \DateTime $end) {
+    public function getPlaidoyers( $start, $end, $datesChecked) {
         $qb = $this->createQueryBuilder('i');
 
         $qb
@@ -56,7 +56,7 @@ class InterventionRepository extends EntityRepository {
             ->andWhere($qb->expr()->isNotNull('i.materielDispoPlaidoyer'))
         ;
 
-        if(!((new \DateTime('0001-01-01')) == $start) AND !!((new \DateTime('0001-01-01')) == $end)) {
+        if(!$datesChecked) {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
@@ -74,14 +74,14 @@ class InterventionRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAutresInterventions(\DateTime $start, \DateTime $end) {
+    public function getAutresInterventions($start,  $end , $datesChecked) {
         $qb = $this->createQueryBuilder('i');
 
         $qb
             ->where($qb->expr()->isNotNull('i.description'))
         ;
 
-        if(!is_null($start) AND !is_null($end)) {
+        if(!$datesChecked) {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
@@ -122,8 +122,8 @@ class InterventionRepository extends EntityRepository {
     /**
      * Where Interventions between dates
      *
-     * @param \Datetime $start
-     * @param \Datetime $end
+     * @param \Date $start
+     * @param \Date $end
      *
      */
     public function whereInterventionsBetweenDates(\DateTime $start, \DateTime $end, QueryBuilder $qb) {

@@ -109,11 +109,15 @@ class InterventionController extends Controller
      * @param $liste array Liste des établissements.
      * @return Response Renvoie vers la page permettant l'affichage de l'ensemble des interventions.
      */
-    public function getListeVue($liste, $form)
+    public function getListeVue($liste,  $typeI, $dateCheckedI, $startI, $endI, $form)
     {
 
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
             'liste' => $liste,
+            'typeIntervention' => $typeI,
+            'isCheck' => $dateCheckedI,
+            'dateStart' => $startI,
+            'dateEnd' => $endI,
             'form' => $form->createView()
         ));
     }
@@ -139,27 +143,28 @@ class InterventionController extends Controller
             $typeIntervention = $form->get("typeIntervention")->getData();
             $start = $form->get("start")->getData();
             $end = $form->get("end")->getData();
-            return $this->redirectToRoute('intervention_list', array('typeI' => $typeIntervention, 'startI' => $start, 'endI' => $end));
+            $dateChecked = $form->get("date")->getData();
+            $request->getSession()->set('startI',$start);
+            $request->getSession()->set('endI',$end);
+            $request->getSession()->set('dateCheckedI',$dateChecked);
+            return $this->redirectToRoute('intervention_list', array('typeI' => $typeIntervention));
         }
 
-
-        $startI = $request->attributes->get('startI');
-        $endI = $request->attributes->get('endI');
+        $startI = $request->getSession()->get('startI');
+        $endI = $request->getSession()->get('endI');
+        $dateCheckedI = $request->getSession()->get('dateCheckedI');
         switch ($typeI) {
             case "plaidoyer":
                 $repository = $this->getInterventionRepository();
-                $listIntervention = $repository->getPlaidoyers(new \DateTime('2000-01-01'), new \DateTime('0001-01-01'));
-                //               $listIntervention = $repository->getPlaidoyers(null, null);
+                $listIntervention = $repository->getPlaidoyers($startI, $endI, $dateCheckedI);
                 break;
             case "frimousse":
                 $repository = $this->getInterventionRepository();
-                $listIntervention = $repository->getFrimousses(new \DateTime('0001-01-01'), new \DateTime('0001-01-01'));
-                //               $listIntervention = $repository->getFrimousses(null, null);
+                $listIntervention = $repository->getFrimousses($startI, $endI, $dateCheckedI);
                 break;
             case "autre":
                 $repository = $this->getInterventionRepository();
-                $listIntervention = $repository->getAutresInterventions(new \DateTime('0001-01-01'), new \DateTime('0001-01-01'));
-                //               $listIntervention = $repository->getAutresEtablissements(null, null);
+                $listIntervention = $repository->getAutresInterventions($startI, $endI, $dateCheckedI);
                 break;
             default:
                 $repository = $this->getInterventionRepository();
@@ -167,7 +172,7 @@ class InterventionController extends Controller
                 break;
         }
 
-        return $this->getListeVue($listIntervention, $form);
+        return $this->getListeVue($listIntervention, $typeI, $dateCheckedI, $startI, $endI, $form);
 
     }
 

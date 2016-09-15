@@ -27,7 +27,7 @@ class PlaidoyerController extends InterventionController
      * @param $listePlaidoyers array de l'établissement souhaitant réaliser une demande.
      * @return Response Renvoie vers la page permettant l'affichage de l'ensemble des interventions de type plaidoyers.
      */
-    public function getListeVue($listePlaidoyers, $form){
+    public function getListeVue($listePlaidoyers, $date, $form){
 
         return $this->render('InterventionBundle:Intervention/Plaidoyer:liste.html.twig', array(
             'liste' => $listePlaidoyers

@@ -5,7 +5,7 @@
 
 
 echo "insertion adresses et établiemments"
-./insertionsInDBEtablissementAdresses.sh
+./insertionsInDBEtablissement.sh
 
 echo "insertions relatives à unicef 76"
 ./insertionsInDB76.sh

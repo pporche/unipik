@@ -4,9 +4,12 @@ intervention_request:
         _controller: InterventionBundle:Intervention:demande
 
 intervention_list:
-    path:   /intervention
+    path:   /intervention/{typeI}
     defaults:
         _controller: InterventionBundle:Intervention:liste
+        typeI: ""
+        startI: "coucou"
+        endI: "singe"
 
 intervention_attributed:
     path: /intervention/attribuees
@@ -15,6 +18,10 @@ intervention_attributed:
 intervention_view:
     path: /intervention/{id}
     defaults: {_controller: InterventionBundle:Intervention:consultation}
+
+intervention_cancel:
+    path: /intervention/annuler/{id}
+    defaults: {_controller: InterventionBundle:Intervention:annuler}
 
 plaidoyer_list:
     path:   /plaidoyer

@@ -35,15 +35,11 @@ fos_user_profile_show:
 fos_user_profile_edit:
     path: /profil/edit
     defaults:
-        _controller: FOSUserBundle:Profile:edit
+        _controller: UserBundle:Profile:edit
 
 fos_user_change_password:
     path: /change-password
     defaults:
         _controller: FOSUserBundle:ChangePassword:changePassword
 
-test:
-    path: /test
-    defaults:
-        _controller: UserBundle:User:test
 

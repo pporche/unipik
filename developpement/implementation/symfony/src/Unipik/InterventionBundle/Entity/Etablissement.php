@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Etablissement
  *
+ * @ORM\Entity(repositoryClass="Unipik\InterventionBundle\Entity\EtablissementRepository")
  * @ORM\Table(name="etablissement", indexes={@ORM\Index(name="IDX_20FD592C4DE7DC5C", columns={"adresse_id"})})
  * @ORM\Entity
  */

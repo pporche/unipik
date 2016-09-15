@@ -13,12 +13,12 @@ fos_user_registration_check_email:
     defaults:
         _controller: FOSUserBundle:Registration:checkEmail
 
-#user_admin_confirm:
-#    path: /confirmer/{token}
-#    defaults:
-#        _controller: FOSUserBundle:Registration:confirm
+user_admin_delete:
+    path: /benevole/delete
+    defaults:
+        _controller: UserBundle:User:delete
 
-#user_admin_confirmed:
-#    path: /confirme
-#    defaults:
-#        _controller: FOSUserBundle:Registration:confirmed
+user_admin_profil_benevole:
+    path: /benevole/profile/{username}
+    defaults:
+        _controller: UserBundle:User:show

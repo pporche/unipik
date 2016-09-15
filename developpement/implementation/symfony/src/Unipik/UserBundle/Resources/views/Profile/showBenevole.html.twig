@@ -1,0 +1,12 @@
+{# version 1.00, date 14/09/2016, auteur Florian Leriche #}
+{% extends "UserBundle::layout.html.twig" %}
+
+{% block title %}
+
+    Profil - {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+    <p>{{ benevole[0].email }}</p>
+{% endblock %}

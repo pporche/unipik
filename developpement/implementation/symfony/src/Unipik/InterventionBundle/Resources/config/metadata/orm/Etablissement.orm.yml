@@ -65,7 +65,7 @@ Etablissement:
     manyToOne:
         adresse:
             targetEntity: Unipik\ArchitectureBundle\Entity\Adresse
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: null

@@ -25,10 +25,10 @@ class AdresseType extends AbstractFieldsetType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
-            ->add('ville', VilleType::class)
             ->add('adresse', AdType::class)
-            ->add('codePostal', CodePostalType::class)
             ->add('complement', ComplementType::class, array('label' => "Complément"))
+            ->add('codePostal', CodePostalType::class)
+            ->add('ville', VilleType::class)
         ;
     }
 

@@ -393,11 +393,4 @@ class Benevole extends BaseUser
     {
         return $this->comite;
     }
-
-    /**
-     * @ORM\PrePersist()
-     */
-    public function changeNom() {
-        $this->setNom('singe');
-    }
 }

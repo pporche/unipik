@@ -1,6 +1,7 @@
 {# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
-{% extends "UserBundle::layoutSansNavbar.html.twig" %}
+{% extends "UserBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
+    <h1>Ajout d'un bénévole</h1><hr>
     {% include "UserBundle:Registration:register_content.html.twig" %}
 {% endblock fos_user_content %}

@@ -64,4 +64,48 @@ class EtablissementRepository extends EntityRepository{
             ;
     }
 
+
+    /**
+     * Get Enseignements by Type
+     *
+     * @param $string $typeEnseignement
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEnseignementsByType($typeEnseignement){
+        $query = $this->_em->createQuery('SELECT e FROM InterventionBundle:Etablissement e WHERE e.typeEnseignement = :typeE');
+        $query->setParameter('typeE',$typeEnseignement);
+
+        return $query->getResult();
+    }
+
+
+    /**
+     * Get Centres Loisirs by Type
+     *
+     * @param $string $typeCentre
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCentresLoisirsByType($typeCentre){
+        $query = $this->_em->createQuery('SELECT e FROM InterventionBundle:Etablissement e WHERE e.typeCentre = :typeC');
+        $query->setParameter('typeE',$typeCentre);
+
+        return $query->getResult();
+    }
+
+
+    /**
+     * Get Autres Etablissements by Type
+     *
+     * @param $string $typeAutreEtablissement
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAutresEtablissementsByType($typeAutreEtablissement){
+        $query = $this->_em->createQuery('SELECT e FROM InterventionBundle:Etablissement e WHERE e.typeAutreEtablissement = :typeAE');
+        $query->setParameter('typeAE',$typeAutreEtablissement);
+
+        return $query->getResult();
+    }
 }

@@ -8,7 +8,6 @@ use Unipik\UserBundle\Entity\Benevole;
 
 class UserController extends Controller {
 
-
     public function listeAction() {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('UserBundle:Benevole');

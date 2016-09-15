@@ -21,9 +21,30 @@
     </tr>
     {% for benevole in listBenevoles|sort %}
     <tr>
-        <td>{{ benevole.nom }}</td><td>{{ benevole.prenom }}</td> <td>{{ benevole.responsabiliteActivite }}</td><td><button type="button" class="btn btn-primary">Consulter le profil</button></td><td><button type="button" class="btn btn-danger">Supprimer</button></td>
+        <td>{{ benevole.nom }}</td><td>{{ benevole.prenom }}</td> <td name="resp">{{ benevole.responsabiliteActivite }}</td><td><button type="button" class="btn btn-primary">Consulter le profil</button></td><td><button type="button" class="btn btn-danger">Supprimer</button></td>
     </tr>
     {% endfor %}
     </thead>
 </table>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+    <script type="application/javascript">
+    var tdElements = document.getElementsByName("resp");
+    for(var i= 0; i<tdElements.length;i++ ){
+        listElement = document.createElement('ul');
+       console.log(tdElements[i].textContent);
+        var text = tdElements[i].textContent;
+        text = text.replace(/[{()}]/g, '');
+        text = text.split(',');
+        for(var j =0; j < text.length;j++){
+            itemElement = document.createElement('li');
+            itemElement.textContent = text[j];
+            listElement.appendChild(itemElement);
+        }
+        tdElements[i].innerHTML ='';
+        tdElements[i].appendChild(listElement);
+    }
+    </script>
 {% endblock %}

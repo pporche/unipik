@@ -8,7 +8,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Form\DemandeInterventionType;
-use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\InterventionRepository;
 use Unipik\InterventionBundle\Entity\Demande;
 use Unipik\InterventionBundle\Entity\Etablissement;

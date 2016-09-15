@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Unipik\UserBundle\Entity\Benevole;
+use FOS\UserBundle\Controller\ProfileController as BaseUserController;
 
 class UserController extends Controller {
 
@@ -24,14 +25,19 @@ class UserController extends Controller {
         return $this->render('UserBundle::liste.html.twig', array('listBenevoles' => $listBenevoles));
     }
 
-    public function deleteAction(Request $request) {
-        return $this->render('ArchitectureBundle::accueilBenevole.html.twig');
-    }
-
-    public function showAction($username) {
+    public function deleteAction($username) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('UserBundle:Benevole');
-        $benevole = $repository->findBy(array('username' => $username));
+        $benevole = $repository->findBy(array('username' => $username))[0];
+        $em->remove($benevole);
+        $em->flush();
+        return $this->redirectToRoute('user_admin_list');
+    }
+
+    public function showProfileAction($username) {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('UserBundle:Benevole');
+        $benevole = $repository->findBy(array('username' => $username))[0];
         return $this->render('UserBundle:Profile:showBenevole.html.twig', array('benevole' => $benevole));
     }
 }

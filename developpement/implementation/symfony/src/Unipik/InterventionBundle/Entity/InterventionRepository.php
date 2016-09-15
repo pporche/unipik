@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
 
-class InterventionRepository extends EntityRepository{
+class InterventionRepository extends EntityRepository {
 
     /**
      * Get Frimousses
@@ -22,7 +22,7 @@ class InterventionRepository extends EntityRepository{
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getFrimousses(\DateTime $start, \DateTime $end){
+    public function getFrimousses(\DateTime $start, \DateTime $end) {
         $qb = $this->createQueryBuilder('i');
 
         $qb
@@ -30,7 +30,7 @@ class InterventionRepository extends EntityRepository{
             ->andWhere($qb->expr()->isNotNull('i.materiauxFrimousse'))
         ;
 
-        if(!is_null($start) AND !is_null($end)){
+        if(!is_null($start) AND !is_null($end)) {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
@@ -48,7 +48,7 @@ class InterventionRepository extends EntityRepository{
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPlaidoyers(\DateTime $start, \DateTime $end){
+    public function getPlaidoyers(\DateTime $start, \DateTime $end) {
         $qb = $this->createQueryBuilder('i');
 
         $qb
@@ -56,7 +56,7 @@ class InterventionRepository extends EntityRepository{
             ->andWhere($qb->expr()->isNotNull('i.materielDispoPlaidoyer'))
         ;
 
-        if(!is_null($start) AND !is_null($end)){
+        if(!((new \DateTime('0001-01-01')) == $start) AND !!((new \DateTime('0001-01-01')) == $end)) {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
@@ -74,14 +74,14 @@ class InterventionRepository extends EntityRepository{
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAutresInterventions(\DateTime $start, \DateTime $end){
+    public function getAutresInterventions(\DateTime $start, \DateTime $end) {
         $qb = $this->createQueryBuilder('i');
 
         $qb
             ->where($qb->expr()->isNotNull('i.description'))
         ;
 
-        if(!is_null($start) AND !is_null($end)){
+        if(!is_null($start) AND !is_null($end)) {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
@@ -98,7 +98,7 @@ class InterventionRepository extends EntityRepository{
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getInterventionsBenevole(\Unipik\UserBundle\Entity\Benevole $benevole){
+    public function getInterventionsBenevole(\Unipik\UserBundle\Entity\Benevole $benevole) {
         $query = $this->_em->createQuery('SELECT i FROM InterventionBundle:Intervention i JOIN i.benevole b WHERE b.id = :id');
         $query->setParameter('id',$benevole->getId());
 
@@ -112,7 +112,7 @@ class InterventionRepository extends EntityRepository{
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getInterventionsRealiseesOuNon($realisees){
+    public function getInterventionsRealiseesOuNon($realisees) {
         $query = $this->_em->createQuery('SELECT i FROM InterventionBundle:Intervention i WHERE i.realisee = :r');
         $query->setParameter('r',$realisees);
 
@@ -126,7 +126,7 @@ class InterventionRepository extends EntityRepository{
      * @param \Datetime $end
      *
      */
-    public function whereInterventionsBetweenDates(\DateTime $start, \DateTime $end, QueryBuilder $qb){
+    public function whereInterventionsBetweenDates(\DateTime $start, \DateTime $end, QueryBuilder $qb) {
         $qb
             ->andWhere('i.date BETWEEN :start AND :end')
             ->setParameter('start',$start)

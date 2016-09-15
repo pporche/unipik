@@ -7,34 +7,51 @@
 
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $("#between_dates").hide();
+            $("#recherche_avancee_date_0").change(function() {
+                    if($(this).is(':checked')){
+                        $("#between_dates").show();
+                    }else{
+                        $("#between_dates").hide();
+                    }
+            });
+
+        });
+    </script>
+{% endblock %}
+
 {% block body %}
 
     <section class="col-lg-2 col-md-2 col-sm-2">
         <div class="row">
-            <form class="col-lg-12 col-md-12 col-sm-12 well">
-                <legende>Recherche avancée</legende>
-                <fieldset>
-                    <label for="typeI">Type d'intervention : </label>
-                    <div class="radio">
-                        <label for="plaidoyer" class="radio">
-                            <input type="radio" name="origine" value="plaidoyer" id="plaidoyer">
-                            Plaidoyers
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label for="frimousse" class="radio">
-                            <input type="radio" name="origine" value="frimousse" id="frimousse">
-                            Frimousses
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label for="Autre" class="radio">
-                            <input type="radio" name="origine" value="autre" id="autre">
-                            Autres interventions
-                        </label>
-                    </div>
-                </fieldset>
-            </form>
+            <div class='well'>
+
+                {{ form_start(form, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list'}}) }}
+                <h4>Type d'intervention :</h4>
+                {{ form_widget(form.typeIntervention) }}
+                <br/>
+                {{ form_widget(form.date) }}
+                <br/>
+
+                <div id="between_dates">
+                    Interventions entre le
+                    {{ form_widget(form.start) }}
+                    et le
+                    {{ form_widget(form.end) }}
+                </div>
+
+                <br/>
+
+                <div>
+                    <input type="submit" value="OK" class="btn btn-primary"/>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
         </div>
     </section>
 

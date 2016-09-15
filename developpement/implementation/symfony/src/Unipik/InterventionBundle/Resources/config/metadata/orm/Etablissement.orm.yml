@@ -1,6 +1,7 @@
 # version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 Etablissement:
     type: entity
+    repositoryClass: Unipik\InterventionBundle\Entity\EtablissementRepository
     table: etablissement
     indexes:
         IDX_20FD592C4DE7DC5C:

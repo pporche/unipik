@@ -4,7 +4,6 @@ namespace Unipik\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Unipik\UserBundle\Form\ProfileFormType;
 use Unipik\UserBundle\Entity\Benevole;
 
 class UserController extends Controller {

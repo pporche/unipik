@@ -1,6 +1,7 @@
 # version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 Intervention:
     type: entity
+    repositoryClass: Unipik\InterventionBundle\Entity\InterventionRepository
     table: intervention
     indexes:
         IDX_D11814ABE004B434:

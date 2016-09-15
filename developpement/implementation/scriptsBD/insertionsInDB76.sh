@@ -24,8 +24,8 @@ fi
 dbname="bdunicef"
 username="unipik"
 export PGPASSWORD="$password"
-fichierAddNiveauTheme="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_add_niveau_theme.sql"
-fichierAddComiteNiveauTheme="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_add_comite_niveau_theme.sql"
+fichierAddNiveauTheme="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_niveau_theme.sql"
+fichierAddComiteNiveauTheme="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_comite_niveau_theme.sql"
 
 if [ -f $fichierAddNiveauTheme ] ; then
     rm $fichierAddNiveauTheme
@@ -34,6 +34,9 @@ fi
 if [ -f $fichierAddComiteNiveauTheme ] ; then
     rm $fichierAddComiteNiveauTheme
 fi
+psql -U $username -w  -d $dbname  -h 127.0.0.1 << EOF
+INSERT INTO pays (nom) VALUES ('FRANCE');
+EOF
 
 psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM pays WHERE nom = 'FRANCE';" > id.txt
 idAdresse=$(sed '3q;d' < id.txt)

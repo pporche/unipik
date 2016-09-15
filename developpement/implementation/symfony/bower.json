@@ -1,0 +1,11 @@
+{
+  "name": "symfony",
+  "license": "None",
+  "private": true,
+  "ignore": [
+    "bower_components"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

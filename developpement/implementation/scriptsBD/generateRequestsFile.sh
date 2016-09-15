@@ -48,12 +48,10 @@ fi
 #insertion d'une ligne dans la bd -> le pays
 dbname="bdunicef"
 username="unipik"
-fichierAddAdresses="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_add_adresses.sql"
-fichierAddEtablissement="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_add_etablissements.sql"
+fichierAddAdresses="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_adresses.sql"
+fichierAddEtablissement="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_etablissements.sql"
 export PGPASSWORD="$password"
-psql -U $username -w  -d $dbname  -h 127.0.0.1 << EOF
-INSERT INTO pays (nom) VALUES ('FRANCE');
-EOF
+
 
 #Supprime les fichiers contenant les requêtes SQL déjà existant
 if [ -f $fichierAddAdresses ] ; then
@@ -83,11 +81,8 @@ do
 done < ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/ressourcesNettoyees/etablissement.csv
 rm ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/checkAdresses.txt
 echo "Fichier contenant les requêtes pour remplir les adresses des établissement rempli"
-echo "Insertion dans la base de données"
 
-psql -U $username -w  -d $dbname  -h 127.0.0.1 -f $fichierAddAdresses
 
-echo "Fin des insertions des adresses dans la base de données"
 echo "Remplissage du fichier contenant les requêtes pour remplir la table établissement"
 while read a b c d e f g h i 
 do
@@ -143,9 +138,7 @@ do
 
 done < ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/ressourcesNettoyees/etablissement.csv
 echo "Fichier contenant les requêtes pour remplir la table établissement rempli"
-echo "Insertion dans la base de données"
 rm idAdresse.txt
 rm logfile.log 
-psql -U $username -w -d $dbname -h 127.0.0.1 -f $fichierAddEtablissement
 
 

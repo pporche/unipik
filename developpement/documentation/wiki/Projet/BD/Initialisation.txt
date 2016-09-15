@@ -26,4 +26,5 @@ psql -U unipik -W -d bdunicef -h 127.0.0.1
 
 2. Dans le dossier scriptsBD, executer ''createdb.sh''  puis  ''addAdmin.sh''
 
-3.
+3. Dans le dossier scriptsBD, pour remplir la base de données en entier, executer generateRequestsFile.sh, puis insertAll.sh
+

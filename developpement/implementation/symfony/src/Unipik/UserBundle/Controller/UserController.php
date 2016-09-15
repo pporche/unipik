@@ -2,21 +2,13 @@
 
 namespace Unipik\UserBundle\Controller;
 
-use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Unipik\UserBundle\Form\ProfileFormType;
 use Unipik\UserBundle\Entity\Benevole;
-use FOS\UserBundle\Controller\ProfileController as BaseUserController;
 
 class UserController extends Controller {
 
-   public function testAction() {
-        $lol = 'singe';
-        return $this->render('UserBundle::test.html.twig', array('coucou' => $lol));
-    }
 
     public function listeAction() {
         $em = $this->getDoctrine()->getManager();
@@ -32,6 +24,23 @@ class UserController extends Controller {
         $em->remove($benevole);
         $em->flush();
         return $this->redirectToRoute('user_admin_list');
+    }
+
+    public function modifyAction(Request $request) {
+        /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
+        $formFactory = $this->get('fos_user.profile.form.factory');
+        /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
+        $userManager = $this->get('fos_user.user_manager');
+
+        $user = $userManager->findUserBy(array('id' => 1));
+        $form = $formFactory->createForm();
+        $form = $form->setData($user);
+
+        $form->handleRequest($request);
+
+        return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     public function showProfileAction($username) {

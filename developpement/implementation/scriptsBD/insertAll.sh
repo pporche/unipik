@@ -11,4 +11,4 @@ echo "insertions relatives à unicef 76"
 ./insertionsInDB76.sh
 
 echo "insertions données tests"
-./scriptInsertionDonneesTests.sh
+./insertionsInDBDataTests.sh

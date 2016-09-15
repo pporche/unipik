@@ -24,8 +24,8 @@ fi
 dbname="bdunicef"
 username="unipik"
 export PGPASSWORD="$password"
-fichierAddNiveauTheme="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_add_niveau_theme.sql"
-fichierAddComiteNiveauTheme="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_add_comite_niveau_theme.sql"
+fichierAddNiveauTheme="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_niveau_theme.sql"
+fichierAddComiteNiveauTheme="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_comite_niveau_theme.sql"
 
 if [ -f $fichierAddNiveauTheme ] ; then
     rm $fichierAddNiveauTheme

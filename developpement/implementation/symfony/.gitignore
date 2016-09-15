@@ -14,4 +14,7 @@
 !var/SymfonyRequirements.php
 /web/config.php
 /vendor/
-composer.lock
+!web/vendor
+/web/vendor/
+!web/vendor/.gitkeep
+

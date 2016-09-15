@@ -4,7 +4,12 @@ services:
         tags:
             - { name: kernel.event_subscriber }
         arguments: ['@session', '@translator']
+    app.form.profile:
+        class: Unipik\UserBundle\Form\ProfileFormType
+        tags:
+            - { name: form.type, alias: user_profile }
     app.form.registration:
         class: Unipik\UserBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: user_registration }
+

@@ -10,3 +10,11 @@ Last updates:
 ===== But: =====
 
 Installer tous les outils nécessaire au développement et configurer son poste de travail afin d'être dans les bonnes conditions pour travailler sur le projet.
+
+===== Par où commencer ? =====
+
+1. Pour pouvoir écrire des documents pour le projet, il est tout d'abord nécessaire de suivre les démarches décrites dans [[+LaTeX]]
+2. Si vous souhaitez travailler sur le projet ou vous former à symfony, il est nécessaire de suivre les démarches décrites dans [[+Apache, postgresql et symfony]]
+3. Pour travailler au sein du PIC, il est nécessaire de configurer pgpic, la démarche est expliqué dans [[+Pgpic]] 
+4. Pour travailler dans de bonne conditions il est très fortement recommender de configurer un [[+IDE]] au choix
+5. Pour exécuter les tests unitaires il est nécessaire d'installer +PhpUnit

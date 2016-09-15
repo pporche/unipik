@@ -19,6 +19,10 @@ intervention_view:
     path: /intervention/{id}
     defaults: {_controller: InterventionBundle:Intervention:consultation}
 
+intervention_cancel:
+    path: /intervention/annuler/{id}
+    defaults: {_controller: InterventionBundle:Intervention:annuler}
+
 plaidoyer_list:
     path:   /plaidoyer
     defaults:
@@ -37,3 +41,5 @@ etablissement_view:
     path:   /etablissement/{id}
     defaults:
         _controller: InterventionBundle:Etablissement:consultation
+    requirements:
+        id: \d

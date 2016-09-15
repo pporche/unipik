@@ -1,0 +1,20 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-14T15:46:52+02:00
+
+====== Plugin Symfony (PhpStorm) ======
+Created mercredi 14 septembre 2016
+
+===== But : =====
+
+Installer le plugin Symfony pour [[PhpStorm]] afin d'avoir l'auto-complétion des fonctions liées à Symfony et d'autres fonctionnalités très pratiques.
+
+===== Installation (Linux) =====
+
+1.Se rendre sur la page https://plugins.jetbrains.com/plugin/7219
+2.Télécharger la dernière version du plugin (tout en bas de la page)
+3.Ouvrir [[PhpStorm]]
+4.Aller dans "file->Settings->Plugins->Install plugin from disk..." puis sélectionner le plugin précédemment téléchargé.
+5.Cliquer sur installer
+6.Aller dans "file->Settings->Languages & frameworks->PHP->Symfony" puis cocher "Enable Plugin for this Project"
+7.Redémarrer PhpStorm

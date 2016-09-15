@@ -10,7 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Form\DemandeInterventionType;
 use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\InterventionRepository;
-
+use Unipik\InterventionBundle\Entity\Demande;
+use Unipik\InterventionBundle\Entity\Etablissement;
+use Unipik\InterventionBundle\Form\DemandeType;
+use Unipik\UserBundle\Entity\Contact;
+use Unipik\InterventionBundle\Form\EtablissementType;
 /**
  * Created by PhpStorm.
  * User: florian
@@ -25,23 +29,40 @@ class InterventionController extends Controller
      * @param $id integer Id du formaulaire de demande d'intervention.
      * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention.
      */
-    public function demandeAction(Request $request, $id)
-    {
 
-        $form = $this->createForm(DemandeInterventionType::class);
+    public function demandeAction(Request $request) {
+
+        $form = $this->createForm(DemandeType::class);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
 
-            $session = $request->getSession();
+        if($form->isValid()) {
+            // Extraire les données
+            $test = (object) $form->getData();
+            // Extraire le contact
+            $em = $this->getDoctrine()->getManager();
+            $contactSub = $em->getRepository('UserBundle:Contact')->findOneById(15);
+
+            return new Response(print_r( (object) $contactSub));
+            $contactSub = (object) $test->Contact;
+            $contactPers = new Contact();
+            $this->cast($contactPers,$contactSub);
+            $contactPers->setRespoEtablissement(false);
+            $contactPers->setTypeActivite('{}');
+            $em->persist($contactPers);
+            $em->flush();
+            return new Response(print_r( $contactPers->getEmail()));
+            $session =$request->getSession();
+
             $session->getFlashBag()->add('notice', array(
-                'title' => 'Félicitation',
-                'message' => 'Votre demande a bien été enregistrée.',
-                'alert' => 'success'
+                'title'=>'Félicitation',
+                'message'=>'Votre demande d/\'intervention a bien été enregistrée. Nous vous contacterons sous peu',
+                'alert'=>'success'
             ));
 
 
-            return $this->RedirectToRoute('');
+            $intervention = $form->getData();
+            return $this->RedirectToRoute('architecture_homepage');
         }
         return $this->render('InterventionBundle:Intervention:demande.html.twig', array(
             'form' => $form->createView(),
@@ -173,6 +194,36 @@ class InterventionController extends Controller
     public function locationAction()
     {
 
+    }
+
+    /**
+     * Class casting
+     *
+     * @param string|object $destination
+     * @param object $sourceObject
+     * @return object
+     */
+    function cast($destination, $sourceObject)
+    {
+        if (is_string($destination)) {
+            $destination = new $destination();
+        }
+        $sourceReflection = new \ReflectionObject($sourceObject);
+        $destinationReflection = new \ReflectionObject($destination);
+        $sourceProperties = $sourceReflection->getProperties();
+        foreach ($sourceProperties as $sourceProperty) {
+            $sourceProperty->setAccessible(true);
+            $name = $sourceProperty->getName();
+            $value = $sourceProperty->getValue($sourceObject);
+            if ($destinationReflection->hasProperty($name)) {
+                $propDest = $destinationReflection->getProperty($name);
+                $propDest->setAccessible(true);
+                $propDest->setValue($destination,$value);
+            } else {
+                $destination->$name = $value;
+            }
+        }
+        return $destination;
     }
 
 }

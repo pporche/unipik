@@ -17,7 +17,7 @@ Initialiser un nouveau projet symfony
 voir [[:Proxy]]
 
 2. Installer php et curl
-voir [[Installation de poste:Apache]] 
+voir [[Installation de poste:Apache, postgresql et symfony]] 
 
 3. Dans un nouveau dossier de travail exécuter la commande :
 

@@ -22,7 +22,6 @@ class EtablissementController extends Controller {
      * @return Response Renvoie vers la page de consultation liée à l'établissement.
      */
     public function consultationAction($id) {
-
         return $this->render('InterventionBundle:Etablissement:consultation.html.twig');
     }
 
@@ -31,11 +30,18 @@ class EtablissementController extends Controller {
         $form = $this->get('form.factory')->create(EtablissementType::class, $institute);
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $educationTypeArray = $form->get("typeEnseignement")->getData();
+            $institute->setTypeEnseignement($educationTypeArray);
+
+            $otherTypeArray = $form->get("typeAutreEtablissement")->getData();
+            $institute->setTypeAutreEtablissement($otherTypeArray);
+
+            $centreTypeArray = $form->get("typeCentre")->getData();
+            $institute->setTypeCentre($centreTypeArray);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($institute);
             $em->flush();
-
-            $request->getSession()->getFlashBag()->add('notice', 'GGWP');
 
             return $this->redirectToRoute('architecture_homepage');
         }
@@ -55,12 +61,6 @@ class EtablissementController extends Controller {
      * @return Response Renvoie vers la page affichant la liste des données des établissements.
      */
     public function listeAction() {
-        /*$em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('ArchitectureBundle:Intervention');//('ArchitectureBundle:Plaidoyer');
-        $listPlaidoyers = $repository->findAll();*/
-
-        return $this->render('InterventionBundle:Etablissement:liste.html.twig', array(
-            //'listPlaidoyers' => $listPlaidoyers
-        ));
+        return $this->render('InterventionBundle:Etablissement:liste.html.twig');
     }
 }

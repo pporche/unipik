@@ -2,9 +2,10 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2016-09-06T11:53:46+02:00
 
-====== Apache ======
+====== Apache, postgresql et symfony ======
 Created mardi 06 septembre 2016 by Matthieu
 Last updates:
+* jeudi 15 reptembre 2016 by Matthieu
 * mardi 13 septembre 2016 by François and Matthieu
 * mardi 06 septembre 2016 by Matthieu
 
@@ -17,7 +18,7 @@ Installer un environnement de développement symfony avec Apache.
 1. Exécuter la commande suivante dans un terminal :
 
 '''
-sudo apt-get install php5 libapache2-mod-php5 apache2 curl postgresql
+sudo apt-get install php5 libapache2-mod-php5 php-xml apache2 curl postgresql
 '''
 
 2. Dans un dossier de travail (par exemple [[~/travail]] ), cloner le git du projet avec la commande suivante (remplacer user par son nom d'utilisateur) :

@@ -7,6 +7,6 @@ Created mardi 06 septembre 2016 by Matthieu
 Last updates:
 * mardi 06 septembre 2016 by Matthieu
 
+===== But: =====
 
-
-
+Réunir toutes les informations importantes pour l'administration système du [[+PIC]] et du [[+Projet]]

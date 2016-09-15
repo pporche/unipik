@@ -26,3 +26,4 @@ psql -U unipik -W -d bdunicef -h 127.0.0.1
 
 2. Dans le dossier scriptsBD, executer ''createdb.sh''  puis  ''addAdmin.sh''
 
+3.

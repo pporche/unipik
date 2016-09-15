@@ -6,6 +6,7 @@ services:
         arguments: ['@session', '@translator']
     app.form.profile:
         class: Unipik\UserBundle\Form\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: user_profile }
     app.form.registration:

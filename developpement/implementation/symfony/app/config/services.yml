@@ -5,7 +5,7 @@ parameters:
 
 services:
     userbundle.profile.form.type:
-        class: Unipik\UserBundle\Form\Profile\ProfileFormType
+        class: Unipik\UserBundle\Form\ProfileFormType
         arguments: [%fos_user.model.user.class%]
         tags:
            - { name: form.type, alias: user_profile }

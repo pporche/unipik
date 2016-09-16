@@ -7,29 +7,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Unipik\InterventionBundle\Form\DemandeInterventionType;
-use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
-use Unipik\InterventionBundle\Entity\InterventionRepository;
-use Unipik\InterventionBundle\Entity\Demande;
-use Unipik\InterventionBundle\Entity\Etablissement;
 use Unipik\InterventionBundle\Form\DemandeType;
 use Unipik\UserBundle\Entity\Contact;
-use Unipik\InterventionBundle\Form\EtablissementType;
+use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
+
 /**
  * Created by PhpStorm.
  * User: florian
  * Date: 19/04/16
  * Time: 11:55
  */
-class InterventionController extends Controller
-{
+class InterventionController extends Controller {
 
     /**
      * @param $request Request
-     * @param $id integer Id du formaulaire de demande d'intervention.
      * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention.
      */
-
     public function demandeAction(Request $request) {
 
         $form = $this->createForm(DemandeType::class);
@@ -60,7 +53,6 @@ class InterventionController extends Controller
                 'alert'=>'success'
             ));
 
-
             $intervention = $form->getData();
             return $this->RedirectToRoute('architecture_homepage');
         }
@@ -69,12 +61,10 @@ class InterventionController extends Controller
         ));
     }
 
-
     /**
      * @return Response Renvoie vers la page de consultation liée à l'établissement.
      */
-    public function getConsultationVue()
-    {
+    public function getConsultationVue() {
         return $this->render('InterventionBundle:Intervention:consultation.html.twig');
     }
 
@@ -82,38 +72,25 @@ class InterventionController extends Controller
      * @param $id integer Id de l'intervention.
      * @return Response Permet de récupérer la vue consultation pour l'héritage.
      */
-    public function consultationAction($id)
-    {
+    public function consultationAction($id) {
         // Faire la vérication si l'intervention est un plaidoyer, frimousse ou autre
         // Et appeler la vue correspondante
         return $this->getConsultationVue();
     }
 
-    public function addAction()
-    {
-
-    }
-
-    public function editAction()
-    {
-
-    }
-
-    public function deleteAction()
-    {
-
-    }
-
-
     /**
      * @param $liste array Liste des établissements.
      * @return Response Renvoie vers la page permettant l'affichage de l'ensemble des interventions.
      */
-    public function getListeVue($liste, $form)
+    public function getListeVue($liste,  $typeI, $dateCheckedI, $startI, $endI, $form)
     {
 
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
             'liste' => $liste,
+            'typeIntervention' => $typeI,
+            'isCheck' => $dateCheckedI,
+            'dateStart' => $startI,
+            'dateEnd' => $endI,
             'form' => $form->createView()
         ));
     }
@@ -121,8 +98,7 @@ class InterventionController extends Controller
     /**
      * @return RepositoryFactory Renvoie le repository Intervention.
      */
-    public function getInterventionRepository()
-    {
+    public function getInterventionRepository() {
         $em = $this->getDoctrine()->getManager();
         return $em->getRepository('InterventionBundle:Intervention');
     }
@@ -130,8 +106,7 @@ class InterventionController extends Controller
     /**
      * @return Response Renvoie vers la page affichant les établissements en passant en paramètre la liste des interventions.
      */
-    public function listeAction(Request $request, $typeI)
-    {
+    public function listeAction(Request $request, $typeI) {
 
         $form = $this->get('form.factory')->create(RechercheAvanceeType::class);
 
@@ -139,27 +114,28 @@ class InterventionController extends Controller
             $typeIntervention = $form->get("typeIntervention")->getData();
             $start = $form->get("start")->getData();
             $end = $form->get("end")->getData();
-            return $this->redirectToRoute('intervention_list', array('typeI' => $typeIntervention, 'startI' => $start, 'endI' => $end));
+            $dateChecked = $form->get("date")->getData();
+            $request->getSession()->set('startI',$start);
+            $request->getSession()->set('endI',$end);
+            $request->getSession()->set('dateCheckedI',$dateChecked);
+            return $this->redirectToRoute('intervention_list', array('typeI' => $typeIntervention));
         }
 
-
-        $startI = $request->attributes->get('startI');
-        $endI = $request->attributes->get('endI');
+        $startI = $request->getSession()->get('startI');
+        $endI = $request->getSession()->get('endI');
+        $dateCheckedI = $request->getSession()->get('dateCheckedI');
         switch ($typeI) {
             case "plaidoyer":
                 $repository = $this->getInterventionRepository();
-                $listIntervention = $repository->getPlaidoyers(new \DateTime('2000-01-01'), new \DateTime('0001-01-01'));
-                //               $listIntervention = $repository->getPlaidoyers(null, null);
+                $listIntervention = $repository->getPlaidoyers($startI, $endI, $dateCheckedI);
                 break;
             case "frimousse":
                 $repository = $this->getInterventionRepository();
-                $listIntervention = $repository->getFrimousses(new \DateTime('0001-01-01'), new \DateTime('0001-01-01'));
-                //               $listIntervention = $repository->getFrimousses(null, null);
+                $listIntervention = $repository->getFrimousses($startI, $endI, $dateCheckedI);
                 break;
             case "autre":
                 $repository = $this->getInterventionRepository();
-                $listIntervention = $repository->getAutresInterventions(new \DateTime('0001-01-01'), new \DateTime('0001-01-01'));
-                //               $listIntervention = $repository->getAutresEtablissements(null, null);
+                $listIntervention = $repository->getAutresInterventions($startI, $endI, $dateCheckedI);
                 break;
             default:
                 $repository = $this->getInterventionRepository();
@@ -167,33 +143,26 @@ class InterventionController extends Controller
                 break;
         }
 
-        return $this->getListeVue($listIntervention, $form);
+        return $this->getListeVue($listIntervention, $typeI, $dateCheckedI, $startI, $endI, $form);
 
     }
 
     /**
      * @return Response Renvoie vers la page d'attribution d'intervention.
      */
-    public function attribueesAction()
-    {
+    public function attribueesAction() {
 
         return $this->render('InterventionBundle:Intervention/Attribuees:liste.html.twig', array(
             'liste' => null
         ));
     }
 
-    public function annulerAction($id)
-    {
+    public function annulerAction($id) {
 
         $em = $this - getListeRepository();
         $intervention = $em->find($id);
         $this->getDoctrine()->getManager()->remove($intervention);
         return $this->render('InterventionBundle:Intervention:annulationDemande.html.twig');
-    }
-
-    public function locationAction()
-    {
-
     }
 
     /**
@@ -203,8 +172,7 @@ class InterventionController extends Controller
      * @param object $sourceObject
      * @return object
      */
-    function cast($destination, $sourceObject)
-    {
+    function cast($destination, $sourceObject) {
         if (is_string($destination)) {
             $destination = new $destination();
         }

@@ -8,59 +8,46 @@
 
 namespace Unipik\UserBundle\Form;
 
+use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
 use FOS\UserBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
-use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
-use Unipik\UserBundle\Form\Adresse\AdresseType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilderInterface;
 
-class ProfileFormType extends AbstractType
-{
+class ProfileFormType extends BaseType  {
 
-    public function buildUserForm(FormBuilderInterface $builder, array $options)
-    {
+    public function __construct($class) {
+        parent::__construct($class);
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         parent::buildForm($builder, $options);
 
-        $optionChoiceType = array( 'expanded' => true, 'multiple' => true,
-            'choices' => [
-                'User' => 'ROLE_USER',
-                'Admin' => 'ROLE_ADMIN',
-            ],);
-
-        $optionActivite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false,
+        $optionResponsabilite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Responsable d\'activité',
             'choices' => [
                 'Actions ponctuelles' => '(actions ponctuelles)',
                 'Plaidoyers' => '(plaidoyers)',
                 'Frimousses' => '(frimousses)',
                 'Projets' => '(projets)',
-                'Autre' => '(autre)',
-            ],);
-
-        $optionResponsabilite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false,
-            'choices' => [
-                'Actions ponctuelles' => '(actions ponctuelles)',
-                'Plaidoyers' => '(plaidoyers)',
-                'Frimousses' => '(frimousses)',
-                'Projets' => '(projets)',
-                'Admin Région' => '(admin_region)',
-                'Admin Comité' => '(admin_comite)',
+                'Administrateur Régional' => '(admin_region)',
+                'Administrateur Comité' => '(admin_comite)',
             ],);
 
         $builder
+            ->add('activitesPotentielles', ChoiceType::class, $optionResponsabilite)
+        ;
+    }
+
+    protected function buildUserForm(FormBuilderInterface $builder, array $options) {
+        parent::buildUserForm($builder, $options);
+
+        $builder
+            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
+            ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('nom')
+            ->add('telfixe')
             ->add('prenom')
-            ->add('telFixe')
-            ->add('telPortable')
-            ->add('email')
-            ->add('adresse', AdresseType::class)
-            ->add('roles', ChoiceType::class, $optionChoiceType)
-            ->add('activitesPotentielles', ChoiceType::class, $optionActivite)
-            ->add('responsabiliteActivite', ChoiceType::class, $optionResponsabilite);
+        ;
     }
 
     public function getParent() {
@@ -74,5 +61,4 @@ class ProfileFormType extends AbstractType
     public function getName() {
         return $this->getBlockPrefix();
     }
-
 }

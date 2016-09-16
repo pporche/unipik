@@ -27,3 +27,4 @@ sudo ln -s "$(which nodejs)" /usr/bin/node
 sudo npm install -g bower
 '''
 
+4. À la racine du projet (s'il est déjà installé), suivre la démarche expliqué dans [[+mise_à_jour]]

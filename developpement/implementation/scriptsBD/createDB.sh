@@ -15,17 +15,34 @@ prompt_token() {
   eval $1=$VAL
 }
 
-#si pas de chemin, on en demande un
-if [ "$1" = "" ]; then
-    prompt_token 'password'        "Veuillez entrer le mot de passe de la base de données"
-else
+#si pas de mot de passe indiqué, en demander un
+if [ -n "$1" ]; then
     password=$1
+elif [ -n "${DB_PASSWORD}" ]; then
+    password=$DB_PASSWORD
+else
+    prompt_token 'password'
+fi
+
+#si pas de nom d'utilisateur psql indiqué, choisir "unipik"
+if [ -n "$2" ]; then
+    username=$2
+elif [ -n "${DB_USERNAME}" ]; then
+    username=$DB_USERNAME
+else
+    username="unipik"
+fi
+
+#si pas de DB indiqué, choisir "bdunicef"
+if [ -n "$3" ]; then
+    dbname=$3
+elif [ -n "${DB_DBNAME}" ]; then
+    dbname=$DB_DBNAME
+else
+    dbname="bdunicef"
 fi
 
 
-
-dbname="bdunicef"
-username="unipik"
 sudo -i -u postgres psql -U postgres << EOF
 CREATE DATABASE bdunicef;
 CREATE USER unipik WITH PASSWORD '$password';

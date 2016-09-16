@@ -1,3 +1,4 @@
+#!/bin/bash
 # version 1.01, date 12/09/2016, auteur Julie Pain
 # permet de créer la base de données bdunicef ainsi que l'utilisateur unipik
 

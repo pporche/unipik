@@ -47,4 +47,4 @@ sudo -i -u postgres psql -U postgres << EOF
 CREATE DATABASE bdunicef;
 CREATE USER unipik WITH PASSWORD '$password';
 EOF
-psql -U $username -W  -d $dbname  -h 127.0.0.1 -f ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_creation_tables.sql
+psql -U $username  -d $dbname  -h 127.0.0.1 -f ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_creation_tables.sql

@@ -6,3 +6,9 @@ etablissement_admin_add:
     path:     /etablissement/ajouter
     defaults: { _controller: InterventionBundle:Etablissement:add }
 
+intervention_admin_delete:
+    path:   /intervention/supprimer/{id}
+    defaults: { _controller: InterventionBundle:Intervention:supprimer }
+    requirements:
+        id: \d+
+

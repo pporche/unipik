@@ -19,6 +19,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @param \Datetime $start
      * @param \Datetime $end
+     * @param \boolean $datesChecked
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -45,6 +46,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @param \Datetime $start
      * @param \Datetime $end
+     * @param \boolean $datesChecked
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -71,6 +73,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @param \Datetime $start
      * @param \Datetime $end
+     * @param \boolean $datesChecked
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -89,6 +92,29 @@ class InterventionRepository extends EntityRepository {
             ->getQuery()
             ->getResult()
         ;
+    }
+
+
+    /**
+     * Get Toutes Interventions
+     *
+     * @param \Datetime $start
+     * @param \Datetime $end
+     * @param \boolean $datesChecked
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getToutesInterventions($start,  $end , $datesChecked) {
+        $qb = $this->createQueryBuilder('i');
+
+        if(!$datesChecked) {
+            $this->whereInterventionsBetweenDates($start,$end,$qb);
+        }
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     /**
@@ -126,7 +152,7 @@ class InterventionRepository extends EntityRepository {
      * @param \Date $end
      *
      */
-    public function whereInterventionsBetweenDates(\DateTime $start, \DateTime $end, QueryBuilder $qb) {
+    public function whereInterventionsBetweenDates($start, $end, QueryBuilder $qb) {
         $qb
             ->andWhere('i.date BETWEEN :start AND :end')
             ->setParameter('start',$start)

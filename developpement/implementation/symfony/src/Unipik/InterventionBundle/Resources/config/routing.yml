@@ -8,6 +8,8 @@ intervention_list:
     defaults:
         _controller: InterventionBundle:Intervention:liste
         typeI: ""
+    requirements:
+        typeI: "plaidoyer|frimousse|autreIntervention"
 
 intervention_attributed:
     path: /intervention/attribuees
@@ -16,24 +18,22 @@ intervention_attributed:
 intervention_view:
     path: /intervention/{id}
     defaults: {_controller: InterventionBundle:Intervention:consultation}
+    requirements:
+        id: \d+
+
 
 intervention_cancel:
     path: /intervention/annuler/{id}
     defaults: {_controller: InterventionBundle:Intervention:annuler}
 
-plaidoyer_list:
-    path:   /plaidoyer
-    defaults:
-        _controller: InterventionBundle:Plaidoyer:liste
-
-plaidoyer_view:
-    path: /plaidoyer/{id}
-    defaults: {_controller: InterventionBundle:Plaidoyer:consultation}
 
 etablissement_list:
-    path:   /etablissement
+    path:   /etablissement/{typeE}
     defaults:
         _controller: InterventionBundle:Etablissement:liste
+        typeE: ""
+    requirements:
+        typeE: "enseignement|centre|autreEtablissement"
 
 etablissement_view:
     path:   /etablissement/{id}

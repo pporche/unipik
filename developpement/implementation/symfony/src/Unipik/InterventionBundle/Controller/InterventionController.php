@@ -11,6 +11,7 @@ use Unipik\InterventionBundle\Form\DemandeType;
 use Unipik\UserBundle\Entity\Contact;
 use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 
+
 /**
  * Created by PhpStorm.
  * User: florian
@@ -139,7 +140,7 @@ class InterventionController extends Controller {
                 break;
             default:
                 $repository = $this->getInterventionRepository();
-                $listIntervention = $repository->findAll();
+                $listIntervention = $repository->getToutesInterventions($startI, $endI, $dateCheckedI);
                 break;
         }
 
@@ -157,12 +158,25 @@ class InterventionController extends Controller {
         ));
     }
 
-    public function annulerAction($id) {
+    /**
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function supprimerAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getInterventionRepository();
+        $intervention = $repository->find($id);
+        // Attention : faire le test si elle est réalisée ou non (envoie de mail à l'établissement)
+        $em->remove($intervention);
+        $em->flush();
+        return $this->redirectToRoute('intervention_list');
+    }
 
-        $em = $this - getListeRepository();
-        $intervention = $em->find($id);
-        $this->getDoctrine()->getManager()->remove($intervention);
-        return $this->render('InterventionBundle:Intervention:annulationDemande.html.twig');
+    /**
+     *
+     */
+    public function ajouterIntervention(){
+
     }
 
     /**

@@ -36,19 +36,9 @@
             $("#recherche_avancee_date").change(hide_or_show);
 
 
-//            $('#recherche_avancee_start').datepicker({
-//                format: 'dd-mm-yyyy',
-//                language: 'fr'
-//            });
-//            $('#recherche_avancee_end').datepicker({
-//                format: 'dd-mm-yyyy',
-//                language: 'fr',
-//                minDate:  $("#recherche_avancee_start").datepicker("getDate")
-//            });
-
-            $("#recherche_avancee_start").datepicker({
+            $('#recherche_avancee_start').datepicker({
                 format: 'dd-mm-yyyy',
-                language: 'fr',
+                language: 'fr'
             });
 
             $('#recherche_avancee_end').datepicker({
@@ -56,21 +46,6 @@
                 language: 'fr'
             });
 
-            var arr = selectedDate.split("/");
-            var date = new Date(arr[2]+"-"+arr[1]+"-"+arr[0]);
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
-            var minDate = new Date(y, m, d + 1);
-            $("#EndDate").datepicker('setDate', minDate);
-
-            $("#submit").click(function (){
-                var start =document.getElementById("recherche_avancee_start").value;
-                var end = document.getElementById("recherche_avancee_end").value;
-                if(start > end){
-                    alert('La date de début ne peut etre supérieure à la date de fin !')
-                }
-            })
         });
 
     </script>
@@ -138,6 +113,7 @@
                 <th>#</th>
                 <th>Lieu</th>
                 <th>Date</th>
+                <th>Type</th>
                 <th>Voir détails</th>
                 {% if is_granted('ROLE_ADMIN') %}
                     <th>Supprimer</th>
@@ -150,15 +126,16 @@
                     <td>{{ loop.index }}</td>
                     <td>{{ intervention.lieu }}</td>
                     <td>{{ intervention.date|date("d-m-Y") }}</td>
-                    <td><a href="{#{ path('architecture_intervention_view', {id: intervention.id}) }#}" class="btn btn-primary">Voir détails</a></td>
+                    <td>A faire</td>
+                    <td><a href="{{ path('intervention_view', {id: intervention.id}) }}" class="btn btn-primary">Voir détails</a></td>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <td><a href="{#{ path('architecture_intervention_delete', {id: intervention.id}) }#}" class="btn btn-danger">Supprimer</a></td>
+                        <td><a href="{{ path('intervention_admin_delete', {id: intervention.id}) }}" class="btn btn-danger">Supprimer</a></td>
                     {% endif %}
                 </tr>
             {% endfor %}
             {% if is_granted('ROLE_ADMIN') %}
                 <tr>
-                    <td colspan="5" class="text-center"><a href="{#{ path('architecture_intervention_add') }#}" class="btn btn-primary btn-danger"><i class="glyphicon glyphicon-alert"></i> Ajouter une intervention</a></td>
+                    <td colspan="5" class="text-center"><a href="{{ path('intervention_admin_add') }}" class="btn btn-primary btn-danger"><i class="glyphicon glyphicon-alert"></i> Ajouter une intervention</a></td>
                 </tr>
             {% endif %}
             </tbody>

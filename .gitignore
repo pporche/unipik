@@ -13,5 +13,5 @@
 *.dvi
 .idea
 .idea/*
-./developpement/implementation/scriptsBD/sql/DB_ajouter_etablissements.sql
-./developpement/implementation/scriptsBD/sql/DB_ajouter_adresse.sql
+developpement/implementation/scriptsBD/sql/DB_ajouter_etablissements.sql
+developpement/implementation/scriptsBD/sql/DB_ajouter_adresses.sql

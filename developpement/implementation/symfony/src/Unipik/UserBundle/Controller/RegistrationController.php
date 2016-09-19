@@ -15,6 +15,9 @@ use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 class RegistrationController extends BaseController {
@@ -78,12 +81,10 @@ class RegistrationController extends BaseController {
         $user = $this->get('fos_user.user_manager')->findUserByEmail($email);
 
         if (null === $user) {
-            throw new NotFoundHttpException(sprintf('The user with email "%s" does not exist', $email));
+            throw new NotFoundHttpException(sprintf('L\'utilisateur avec l\'adresse mail "%s" n\'existe pas !', $email));
         }
 
-        return $this->render('UserBundle:Registration:check_email.html.twig', array(
-            'user' => $user,
-        ));
+        return $this->redirectToRoute("user_admin_profil_benevole", array('username' => $user->getUsername()));
     }
 
     public function arrayToString($array) {
@@ -95,6 +96,32 @@ class RegistrationController extends BaseController {
             }
         }
         return $string.'}';
+    }
+
+    public function confirmedAction() {
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        return $this->render('UserBundle:Registration:confirmed.html.twig', array(
+            'user' => $user,
+            'targetUrl' => $this->getTargetUrlFromSession(),
+        ));
+    }
+
+    private function getTargetUrlFromSession() {
+        if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
+            $tokenStorage = $this->get('security.token_storage');
+        } else {
+            $tokenStorage = $this->get('security.context');
+        }
+
+        $key = sprintf('_security.%s.target_path', $tokenStorage->getToken()->getProviderKey());
+
+        if ($this->get('session')->has($key)) {
+            return $this->get('session')->get($key);
+        }
     }
 
 }

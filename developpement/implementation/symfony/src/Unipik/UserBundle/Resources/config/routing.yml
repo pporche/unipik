@@ -4,9 +4,9 @@ fos_user_registration_confirm:
         _controller: FOSUserBundle:Registration:confirm
 
 fos_user_registration_confirmed:
-    path: /confirme
+    path: /confirmed
     defaults:
-        _controller: FOSUserBundle:Registration:confirmed
+        _controller: UserBundle:Registration:confirmed
 
 fos_user_resetting:
     resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"

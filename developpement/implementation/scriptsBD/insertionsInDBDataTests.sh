@@ -16,3 +16,4 @@ php bin/console fos:user:change-password juliana coucou
 php bin/console fos:user:change-password matthieu coucou
 php bin/console fos:user:change-password julie coucou
 php bin/console fos:user:change-password michel coucou
+php bin/console fos:user:change-password melissa coucou

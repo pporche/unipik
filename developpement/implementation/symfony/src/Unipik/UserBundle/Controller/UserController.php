@@ -30,12 +30,18 @@ class UserController extends Controller {
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
         $userManager = $this->get('fos_user.user_manager');
 
-        $user = $userManager->findUserBy(array('id' => 1));
+        $user = $this->getUser();
+       // $user = $userManager->findUserBy(array('id' => 1));
         $form = $formFactory->createForm();
         $form = $form->setData($user);
 
         $form->handleRequest($request);
 
+        if($form->isValid()){
+            $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
+            $responsibilitiesString = $this->arrayToString($responsibilitiesArray);
+            $user->setResponsabiliteActivite($responsibilitiesString);
+        }
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
             'form' => $form->createView(),
         ));

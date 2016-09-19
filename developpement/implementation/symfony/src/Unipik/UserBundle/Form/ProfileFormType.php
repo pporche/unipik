@@ -13,6 +13,7 @@ use FOS\UserBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Unipik\UserBundle\Form\Adresse\AdresseType;
 
 class ProfileFormType extends BaseType  {
 
@@ -22,6 +23,21 @@ class ProfileFormType extends BaseType  {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         parent::buildForm($builder, $options);
+
+        $optionChoiceType = array( 'expanded' => true, 'multiple' => true, 'label' => 'Rôle',
+            'choices' => [
+                'Utilisateur' => 'ROLE_USER',
+                'Administrateur' => 'ROLE_ADMIN',
+            ]);
+
+        $optionActivite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Activités potentielles',
+            'choices' => [
+                'Actions ponctuelles' => '(actions ponctuelles)',
+                'Plaidoyers' => '(plaidoyers)',
+                'Frimousses' => '(frimousses)',
+                'Projets' => '(projets)',
+                'Autre' => '(autre)',
+            ],);
 
         $optionResponsabilite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Responsable d\'activité',
             'choices' => [
@@ -34,7 +50,10 @@ class ProfileFormType extends BaseType  {
             ],);
 
         $builder
-            ->add('activitesPotentielles', ChoiceType::class, $optionResponsabilite)
+            ->add('adresse', AdresseType::class)
+            ->add('roles', ChoiceType::class, $optionChoiceType)
+            ->add('responsabiliteActivite', ChoiceType::class, $optionResponsabilite)
+            ->add('activitesPotentielles', ChoiceType::class, $optionActivite)
         ;
     }
 

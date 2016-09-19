@@ -21,6 +21,7 @@ use FOS\UserBundle\Controller\ProfileController as BaseController;
 
 class ProfileController extends BaseController {
     public function editAction(Request $request) {
+
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -48,9 +49,17 @@ class ProfileController extends BaseController {
             /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
             $userManager = $this->get('fos_user.user_manager');
 
+
+            $activitiesArray = $form->get("activitesPotentielles")->getData();
+            $activitiesString = $this->arrayToString($activitiesArray);
+            $user->setResponsabiliteActivite($activitiesString);
+
+            $responsibilitiesArray = $form->get("responsabiliteActivite")->getData();
+            $responsibilitiesString = $this->arrayToString($responsibilitiesArray);
+            $user->setResponsabiliteActivite($responsibilitiesString);
+
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
-
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
@@ -63,8 +72,19 @@ class ProfileController extends BaseController {
             return $response;
         }
 
-        return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
+        return $this->render('UserBundle:Profile:edit.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    public function arrayToString($array) {
+        $string = '{';
+        foreach ($array as $value) {
+            $string = $string.$value;
+            if($value !== end($array)) {
+                $string = $string.',';
+            }
+        }
+        return $string.'}';
     }
 }

@@ -16,3 +16,46 @@
     {{ form_end(form) }}
 {% endblock fos_user_content %}
 
+{% block javascripts %}
+
+    {{ parent() }}
+<script type="application/javascript">
+    function preCheck(jsonFormatted){
+        jsonFormatted = jsonFormatted.replace(/["']/g, "");
+        activities = jsonFormatted.replace(/[{}]/g, '');
+        activities = activities.split(',');
+        console.log((activities));
+        for(var i = 0; i < activities.length;i++){
+            var query = "input[value='" + activities[i] + "']";
+            console.log(query);
+            var checkedElts = document.querySelectorAll(query);
+            for(var j = 0; j < checkedElts.length;j++)
+                checkedElts[j].checked = true;
+        }
+
+    }
+
+    var jsonActivities = '{{ form.vars.value.activitesPotentielles|raw }}';
+    var jsonResponsabilities = '{{ form.vars.value.responsabiliteActivite|raw }}';
+    preCheck(jsonActivities);
+    preCheck(jsonResponsabilities);
+
+    $(document).ready(function() {
+        for(i=0; i<4; i++){
+            responsabiliteChecked("#fos_user_profile_form_responsabiliteActivite_" + i, "#fos_user_profile_form_activitesPotentielles_" + i);
+        }
+    });
+
+    function responsabiliteChecked(responsabilite, activite) {
+        $(responsabilite).change(function () {
+            if ($(this).is(':checked')) {
+                $(activite).prop("checked", true);
+                $(activite).prop("disabled", true);
+            } else {
+                $(activite).prop("checked", false);
+                $(activite).prop("disabled", false);
+            }
+        });
+    }
+</script>
+{% endblock %}

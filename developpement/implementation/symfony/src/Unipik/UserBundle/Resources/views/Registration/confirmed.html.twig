@@ -1,6 +1,11 @@
 {# version 1.00, date 12/09/2016, auteur Florian Leriche #}
-{% extends "ArchitectureBundle::layoutArchitecture.html.twig" %}
+{% extends "FOSUserBundle::layout.html.twig" %}
 
-{% block body %}
-    <h1>Inscription effectuée</h1>
-{% endblock %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    {% if targetUrl %}
+        <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    {% endif %}
+{% endblock fos_user_content %}

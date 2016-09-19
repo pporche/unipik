@@ -24,10 +24,8 @@
         jsonFormatted = jsonFormatted.replace(/["']/g, "");
         activities = jsonFormatted.replace(/[{}]/g, '');
         activities = activities.split(',');
-        console.log((activities));
         for(var i = 0; i < activities.length;i++){
             var query = "input[value='" + activities[i] + "']";
-            console.log(query);
             var checkedElts = document.querySelectorAll(query);
             for(var j = 0; j < checkedElts.length;j++)
                 checkedElts[j].checked = true;
@@ -57,5 +55,12 @@
             }
         });
     }
+
+    function followRole(){
+        if(document.getElementById("fos_user_profile_form_roles_1").checked == false){
+            document.getElementById("fos_user_profile_form_roles_1").disabled =true;
+        }
+    }
+    followRole();
 </script>
 {% endblock %}

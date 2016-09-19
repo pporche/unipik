@@ -1,0 +1,27 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-15T13:10:42+02:00
+
+====== bower ======
+Created jeudi 15 septembre 2016 by Matthieu
+Last updates:
+ * jeudi 15 septembre 2016 by Matthieu
+
+===== But: =====
+
+gérer les dépendances font-end avec bower.
+
+===== Étapes Pas-à-pas: =====
+
+1. Installer bower (si ce n'est déjà fait) en suivant les instructions dans [[:Installation de poste:bower]]
+2. Se placer à la racine du projet, par exemple :
+
+'''
+cd pic_unicef/developpement/implementation/symfony
+'''
+
+3. Éxecuter la commande suivante :
+
+'''
+bower install
+'''

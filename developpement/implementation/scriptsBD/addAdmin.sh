@@ -1,3 +1,4 @@
+#!/bin/bash
 #version 1.02, date 14/09/2016, auteur Matthieu Martins-Baltar
 #ajouté un paramètre de scripts pour choisir un mode passe personnalisé (utilisé par jenkins)
 

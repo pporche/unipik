@@ -1,5 +1,29 @@
-{# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
+{# version 1.01, date 13/05/2016, auteur Matthieu Martins-Baltar
+   Modifié 15/09/2016, auteur François Decq#}
 {% extends "UserBundle::layout.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            for(i=0; i<4; i++){
+                responsabiliteChecked("#fos_user_registration_form_responsabiliteActivite_" + i, "#fos_user_registration_form_activitesPotentielles_" + i);
+            }
+        });
+
+        function responsabiliteChecked(responsabilite, activite) {
+            $(responsabilite).change(function () {
+                if ($(this).is(':checked')) {
+                    $(activite).prop("checked", true);
+                    $(activite).prop("disabled", true);
+                } else {
+                    $(activite).prop("checked", false);
+                    $(activite).prop("disabled", false);
+                }
+            });
+        }
+    </script>
+{% endblock %}
 
 {% block fos_user_content %}
     <h1>Ajout d'un bénévole</h1><hr>

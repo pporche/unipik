@@ -36,15 +36,43 @@
             $("#recherche_avancee_date").change(hide_or_show);
 
 
-            $('#recherche_avancee_start').datepicker({
+//            $('#recherche_avancee_start').datepicker({
+//                format: 'dd-mm-yyyy',
+//                language: 'fr'
+//            });
+//            $('#recherche_avancee_end').datepicker({
+//                format: 'dd-mm-yyyy',
+//                language: 'fr',
+//                minDate:  $("#recherche_avancee_start").datepicker("getDate")
+//            });
+
+            $("#recherche_avancee_start").datepicker({
                 format: 'dd-mm-yyyy',
-                language: 'fr'
+                language: 'fr',
             });
+
             $('#recherche_avancee_end').datepicker({
                 format: 'dd-mm-yyyy',
                 language: 'fr'
             });
+
+            var arr = selectedDate.split("/");
+            var date = new Date(arr[2]+"-"+arr[1]+"-"+arr[0]);
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+            var minDate = new Date(y, m, d + 1);
+            $("#EndDate").datepicker('setDate', minDate);
+
+            $("#submit").click(function (){
+                var start =document.getElementById("recherche_avancee_start").value;
+                var end = document.getElementById("recherche_avancee_end").value;
+                if(start > end){
+                    alert('La date de début ne peut etre supérieure à la date de fin !')
+                }
+            })
         });
+
     </script>
 {% endblock %}
 
@@ -74,7 +102,7 @@
                 <br/>
 
                 <div>
-                    <input type="submit" value="OK" class="btn btn-primary"/>
+                    <input id="submit" type="submit" value="OK" class="btn btn-primary"/>
                 </div>
                 {{ form_end(form) }}
 
@@ -89,13 +117,18 @@
                 plaidoyers
             {% elseif typeIntervention == "frimousse" %}
                 interventions frimousses
-            {% elseif typeIntervention == "autreInterventions" %}
+            {% elseif typeIntervention == "autreIntervention" %}
                 autres interventions
             {% else  %}
                 interventions
             {% endif %}
             {% if isCheck is empty %}
-                entre le {{ dateStart.format('d-m-Y') }} et le {{ dateEnd.format('d-m-Y') }}
+                {% if dateStart is not null %}
+                    entre le {{ dateStart.format('d-m-Y') }}
+                {% endif %}
+                {% if dateEnd is not null %}
+                    et le {{ dateEnd.format('d-m-Y') }}
+                {% endif %}
             {% endif %}
             :
         </h2>
@@ -116,7 +149,7 @@
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ intervention.lieu }}</td>
-                    <td>{{ intervention.date }}</td>
+                    <td>{{ intervention.date|date("d-m-Y") }}</td>
                     <td><a href="{#{ path('architecture_intervention_view', {id: intervention.id}) }#}" class="btn btn-primary">Voir détails</a></td>
                     {% if is_granted('ROLE_ADMIN') %}
                         <td><a href="{#{ path('architecture_intervention_delete', {id: intervention.id}) }#}" class="btn btn-danger">Supprimer</a></td>

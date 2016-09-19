@@ -2,6 +2,7 @@
 Contact:
     type: entity
     table: contact
+    repositoryClass: Unipik\UserBundle\Entity\ContactRepository
     id:
         id:
             type: integer

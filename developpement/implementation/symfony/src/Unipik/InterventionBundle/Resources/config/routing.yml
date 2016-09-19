@@ -8,8 +8,6 @@ intervention_list:
     defaults:
         _controller: InterventionBundle:Intervention:liste
         typeI: ""
-        startI: "coucou"
-        endI: "singe"
 
 intervention_attributed:
     path: /intervention/attribuees

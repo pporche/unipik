@@ -65,6 +65,7 @@ fi
 #lecture dans un fichier csv 
 IFS="," # On définit le séparateur 
 echo "Ecriture des requêtes pour remplir la table dans un fichier"
+echo "INSERT INTO adresse (ville, adresse, code_postal) VALUES ('LE HAVRE' ,'adresse', '12345');" >> $fichierAddAdresses
 while read a b c d e f g h i 
 do
 	touch $fichierAddAdresses

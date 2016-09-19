@@ -1,0 +1,67 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-19T08:22:12+02:00
+
+====== dnsmasq ======
+Created lundi 19 septembre 2016 by Matthieu
+Last updates:
+ * lundi 19 septembre 2016 by Matthieu
+
+===== But: =====
+
+Configurer dnsmasq
+
+===== Étapes Pas-à-pas: =====
+
+1. Créer un nouveau fichier [[/etc/dnsmasq.d/pic.conf]]
+2. Ajouter le contenu suivant:
+
+'''
+#interface
+interface=eth1
+
+#start, stop, mask, lease
+dhcp-range=192.168.1.2,192.168.1.249,255.255.255.0,2h
+
+#Gateway
+dhcp-option=3,192.168.1.1
+
+#Domain name
+dhcp-option=15,ns.insa-rouen.fr
+
+#IP Forward
+dhcp-option=19,1
+
+#Source routing
+dhcp-option=23,64
+
+# NTP Server
+#dhcp-option=42,ntp.insa-rouen.fr
+
+dhcp-authoritative
+
+#Nom de domain local
+local=/unipik.insa-rouen.fr/
+expand-hosts
+domain=unipik.insa-rouen.fr
+'''
+
+
+3. Ajouter une ligne par poste de travail avec le formalisme suivant:
+
+'''
+#Nom de toutes les machines du pic
+dhcp-host=5c:f9:dd:72:c8:c0,melissa
+dhcp-host=5c:f9:dd:72:c8:ea,julie
+'''
+
+
+4. Editer le fichier [[/etc/resolv.conf]] et ajouter:
+
+'''
+domain insa-rouen.fr
+search insa-rouen.fr
+nameserver 127.0.0.1
+nameserver 192.168.211.8
+'''
+

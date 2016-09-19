@@ -17,10 +17,10 @@ CHECK (VALUE IN ('enseignant', 'animateur', 'eleve', 'etudiant', 'autre'));
 
 
 CREATE DOMAIN domaine_activite AS VARCHAR(30)
-CHECK (VALUE IN ('actions ponctuelles', 'plaidoyers', 'frimousses', 'projets', 'autre'));
+CHECK (VALUE IN ('actions_ponctuelles', 'plaidoyers', 'frimousses', 'projets', 'autre'));
 
 CREATE DOMAIN domaine_reponsabilite_activite AS VARCHAR(30)
-CHECK (VALUE IN ('actions ponctuelles', 'plaidoyers', 'frimousses', 'projets', 'admin_region', 'admin_comite'));
+CHECK (VALUE IN ('actions_ponctuelles', 'plaidoyers', 'frimousses', 'projets', 'admin_region', 'admin_comite'));
 
 
 CREATE DOMAIN domaine_type_projet AS VARCHAR(20)

@@ -8,7 +8,136 @@
 {% endblock %}
 
 {% block body %}
-    <p>{{ benevole.email }}</p>
+        <div class="container">
+        <div class="row">
+            <section class="jumbotron col-sm-12">
+                <div >
+                    <div class="row">
+                        <h2 class="col-lg-offset-1 col-lg-9">{{ benevole.prenom}} {{ benevole.nom}} </h2>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <dl class="dl-horizontal">
+                            <div class="col-sm-3 col-xs-12">
+                                <dt>
+                                    <span class="glyphicon glyphicon-envelope"></span>  Email :
+                                </dt>
+                            </div>
+                            <div  class="col-sm-9">
+                                {% if (benevole.email == "" or benevole.email == NULL) %}
+                                    {{ "Non renseigné" }}
+                                {% else %}
+                                    <a href="mailto:{{ benevole.email}}">{{ benevole.email}}</a>
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                <dt >
+                                    <span class="glyphicon glyphicon-phone-alt"></span>  Téléphone fixe :
+                                </dt>
+                            </div>
+                            <div  class="col-sm-9">
+                                {% if (benevole.telFixe == "" or benevole.telFixe == NULL) %}
+                                    {{ "Non renseigné" }}
+                                {% else %}
+                                    {{ benevole.telFixe}}
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                <dt>
+                                    <span class="glyphicon glyphicon-phone"></span>  Téléphone portable : </dt>
+                                </dt>
+                            </div>
+                            <div  class="col-sm-9">
+                                {% if (benevole.telPortable == "" or benevole.telPortable == NULL) %}
+                                    {{ "Non renseigné" }}
+                                {% else %}
+                                    {{ benevole.telPortable}}
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                <dt >
+                                    <span class="glyphicon glyphicon-home"></span>  Adresse :</td>
+                                </dt>
+                            </div>
+                            <div  class="col-sm-9">
+                                {{ benevole.adresse.getAdresse()}},
+                                {{ benevole.adresse.getCodePostal()}}
+                                {{ benevole.adresse.getVille()}}
+                            </div>
+                        </dl>
+
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <a href="{{ path("fos_user_profile_edit") }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier</span> </a>
+                </div>
+
+            </section>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Commité(s) de rattachement : </h3>
+                <div class="row">
+                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                        <li class="list-group-item">
+                            Seine-Maritime
+                        </li>
+                        <li class="list-group-item">
+                            Eure
+                        </li>
+                    </ul>
+                </div>
+                <h3>Domaines d'activités : </h3>
+                <div class="row">
+                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
+
+                        <li class="list-group-item">
+                            {% if ('plaidoyer' in benevole.activitesPotentielles ) %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                <span class="glyphicon glyphicon-remove"></span>
+                            {% endif %}
+                            Plaidoyer
+                        </li>
+                        <li class="list-group-item">
+                            {% if ('frimousse' in benevole.activitesPotentielles) %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                <span class="glyphicon glyphicon-remove"></span>
+                            {% endif %}
+                             Frimousse
+                        </li>
+                        <li class="list-group-item">
+                            {% if ('actions_ponctuelles' in benevole.activitesPotentielles) %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {% else %}
+                                <span class="glyphicon glyphicon-remove"></span>
+                            {% endif %}
+                              Actions ponctuelles
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h3>Projets en cours : </h3>
+                <div class="row">
+                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                        <li class="list-group-item">
+                            <i> Nom du projet 1 </i>
+                        </li>
+                        <li class="list-group-item">
+                            <i> Nom du projet 2</i>
+                        </li>
+                        <li class="list-group-item">
+                            <i> Nom du projet 3</i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <a href="{{ path("user_admin_delete", {'username': benevole.username}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier </span> </a>
     <a href="{{ path("user_admin_delete", {'username': benevole.username}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'utilisateur {{ benevole.username }} ?')"><span class="glyphicon glyphicon-pencil"> Supprimer </span> </a>
 {% endblock %}

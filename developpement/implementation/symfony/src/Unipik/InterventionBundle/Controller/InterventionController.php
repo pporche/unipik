@@ -133,7 +133,7 @@ class InterventionController extends Controller {
                 $repository = $this->getInterventionRepository();
                 $listIntervention = $repository->getFrimousses($startI, $endI, $dateCheckedI);
                 break;
-            case "autre":
+            case "autreIntervention":
                 $repository = $this->getInterventionRepository();
                 $listIntervention = $repository->getAutresInterventions($startI, $endI, $dateCheckedI);
                 break;

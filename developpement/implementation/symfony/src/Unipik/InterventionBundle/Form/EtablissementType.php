@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Unipik\InterventionBundle\Form\Etablissement\TypeCentreType;
 use Unipik\UserBundle\Form\ContactType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Unipik\InterventionBundle\Form\Etablissement\TypeEnseignementType;
 use Unipik\UserBundle\Form\Adresse\AdresseType;
 use Unipik\InterventionBundle\Form\Etablissement\AutreEtablissementType;
@@ -20,24 +21,24 @@ class EtablissementType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
-        $educationChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false,
+        $educationChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'label' => 'Type d\'enseignement',
             'choices' => [
                 'Maternelle' => 'maternelle',
-                'Elementaire' => 'elementaire',
+                'Élémentaire' => 'elementaire',
                 'Collège' => 'college',
                 'Lycée' => 'lycee',
                 'Supérieur' => 'superieur'
             ],);
 
-        $centerChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false,
+        $centerChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'label' => 'Type de public du centre',
             'choices' => [
                 'Maternelle' => 'maternelle',
-                'Elementaire' => 'elementaire',
+                'Élémentaire' => 'elementaire',
                 'Adolescent' => 'adolescent',
                 'Autre' => 'autre',
             ],);
 
-        $otherChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false,
+        $otherChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'label' => 'Type d\'établissement',
             'choices' => [
                 'Mairie' => 'mairie',
                 'Maison de retraite' => 'maison de retraite',
@@ -45,9 +46,9 @@ class EtablissementType extends AbstractType {
             ],);
 
         $builder
-            ->add('uai')
+            ->add('uai', TextType::class, array('label' => 'UAI'))
             ->add('nom')
-            ->add('telFixe')
+            ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe'))
             ->add('emails')
             ->add('typeEnseignement',ChoiceType::class, $educationChoiceType)
             ->add('typeAutreEtablissement',ChoiceType::class, $otherChoiceType)

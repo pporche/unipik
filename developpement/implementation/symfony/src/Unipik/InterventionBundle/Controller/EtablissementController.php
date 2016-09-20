@@ -81,24 +81,42 @@ class EtablissementController extends Controller {
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $typeEtablissement = $form->get("typeEtablissement")->getData();
+            $typeEnseignement = $form->get("typeEnseignement")->getData();
+            $typeCentre = $form->get("typeCentre")->getData();
+            $typeAutreEtablissement = $form->get("typeAutreEtablissement")->getData();
+            $request->getSession()->set('typeEns',$typeEnseignement);
+            $request->getSession()->set('typeC',$typeCentre);
+            $request->getSession()->set('typeA',$typeAutreEtablissement);
             return $this->redirectToRoute('etablissement_list', array('typeE' => $typeEtablissement));
         }
-//
-//        $startI = $request->getSession()->get('startI');
-//        $endI = $request->getSession()->get('endI');
-//        $dateCheckedI = $request->getSession()->get('dateCheckedI');
+
+        $typeEns = $request->getSession()->get('typeEns');
+        $typeC = $request->getSession()->get('typeC');
+        $typeA = $request->getSession()->get('typeA');
         switch ($typeE) {
             case "enseignement":
                 $repository = $this->getEtablissementRepository();
-                $listEtablissement = $repository->getEnseignements();
+                if(empty($typeEns)){
+                    $listEtablissement = $repository->getEnseignements();
+                }else{
+                    $listEtablissement = $repository->getEnseignementsByType($typeEns);
+                }
                 break;
             case "centre":
                 $repository = $this->getEtablissementRepository();
-                $listEtablissement = $repository->getCentresLoisirs();
+                if(empty($typeC)){
+                    $listEtablissement = $repository->getCentresLoisirs();
+                }else{
+                    $listEtablissement = $repository->getCentresLoisirsByType($typeC);
+                }
                 break;
             case "autreEtablissement":
                 $repository = $this->getEtablissementRepository();
-                $listEtablissement = $repository->getAutresEtablissements();
+                if(empty($typeA)){
+                    $listEtablissement = $repository->getAutresEtablissements();
+                }else{
+                    $listEtablissement = $repository->getAutresEtablissementsByType($typeA);
+                }
                 break;
             default:
                 $repository = $this->getEtablissementRepository();

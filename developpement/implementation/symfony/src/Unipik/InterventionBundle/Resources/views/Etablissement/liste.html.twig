@@ -17,25 +17,63 @@
             $("#recherche_avancee_typeCentre").hide();
             $("#recherche_avancee_typeAutreEtablissement").hide();
 
+
+
             hide_or_show = function() {
                 if($('#recherche_avancee_typeEtablissement_0').is(':checked')) {
                     $("#recherche_avancee_typeEnseignement").hide();
+                    $("#recherche_avancee_typeEnseignement_0").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_1").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_2").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_3").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_4").attr('checked',false);
                     $("#recherche_avancee_typeCentre").hide();
+                    $("#recherche_avancee_typeCentre_0").attr('checked',false);
+                    $("#recherche_avancee_typeCentre_1").attr('checked',false);
+                    $("#recherche_avancee_typeCentre_2").attr('checked',false);
+                    $("#recherche_avancee_typeCentre_3").attr('checked',false);
                     $("#recherche_avancee_typeAutreEtablissement").hide();
+                    $("#recherche_avancee_typeAutreEtablissement_0").attr('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_1").attr('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_2").attr('checked',false);
                 }
                 if($('#recherche_avancee_typeEtablissement_1').is(':checked')) {
                     $("#recherche_avancee_typeEnseignement").show();
                     $("#recherche_avancee_typeCentre").hide();
+                    $("#recherche_avancee_typeCentre_0").attr('checked',false);
+                    $("#recherche_avancee_typeCentre_1").attr('checked',false);
+                    $("#recherche_avancee_typeCentre_2").attr('checked',false);
+                    $("#recherche_avancee_typeCentre_3").attr('checked',false);
                     $("#recherche_avancee_typeAutreEtablissement").hide();
+                    $("#recherche_avancee_typeAutreEtablissement_0").attr('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_1").attr('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_2").attr('checked',false);
                 }
                 if($('#recherche_avancee_typeEtablissement_2').is(':checked')) {
                     $("#recherche_avancee_typeEnseignement").hide();
+                    $("#recherche_avancee_typeEnseignement_0").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_1").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_2").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_3").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_4").attr('checked',false);
                     $("#recherche_avancee_typeCentre").show();
                     $("#recherche_avancee_typeAutreEtablissement").hide();
+                    $("#recherche_avancee_typeAutreEtablissement_0").attr('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_1").attr('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_2").attr('checked',false);
                 }
                 if($('#recherche_avancee_typeEtablissement_3').is(':checked')) {
                     $("#recherche_avancee_typeEnseignement").hide();
+                    $("#recherche_avancee_typeEnseignement_0").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_1").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_2").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_3").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_4").attr('checked',false);
                     $("#recherche_avancee_typeCentre").hide();
+                    $("#recherche_avancee_typeCentre_0").attr('checked',false);
+                    $("#recherche_avancee_typeCentre_1").attr('checked',false);
+                    $("#recherche_avancee_typeCentre_2").attr('checked',false);
+                    $("#recherche_avancee_typeCentre_3").attr('checked',false);
                     $("#recherche_avancee_typeAutreEtablissement").show();
                 }
             };
@@ -82,6 +120,7 @@
                 <th>#</th>
                 <th>Nom</th>
                 <th>Ville</th>
+                <th>Type</th>
                 <th>Voir détails</th>
                 {% if is_granted('ROLE_ADMIN') %}
                     <th>Supprimer</th>
@@ -89,7 +128,26 @@
             </tr>
             </thead>
             <tbody>
-
+            {% for etablissement in liste %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ etablissement.nom }}</td>
+                    <td>{{ etablissement.adresse.ville }}</td>
+                    <td>
+                    {% if etablissement.centreLoisirs %}
+                        Centre de Loisirs
+                    {% elseif etablissement.autreEtablissement %}
+                        Autre établissement
+                    {% else %}
+                        Enseignement
+                    {% endif %}
+                    </td>
+                    <td><a href="{{ path('intervention_view', {id: etablissement.id}) }}" class="btn btn-primary">Voir détails</a></td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td><a href="{{ path('intervention_admin_delete', {id: etablissement.id}) }}" class="btn btn-danger">Supprimer</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
             {% if is_granted('ROLE_ADMIN') %}
                 <tr>
                     <td colspan="5" class="text-center"><a href="{#{ path('architecture_intervention_add') }#}" class="btn btn-primary btn-danger"><i class="glyphicon glyphicon-alert"></i> Ajouter un établissement</a></td>

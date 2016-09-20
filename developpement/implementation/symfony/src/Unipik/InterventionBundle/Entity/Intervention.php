@@ -519,4 +519,37 @@ class Intervention
     {
         return $this->demande;
     }
+
+    /**
+     * isPlaidoyer
+     *
+     * @return boolean
+     */
+    public function isPlaidoyer()
+    {
+        $type = $this->getMaterielDispoPlaidoyer();
+        return isset($type);
+    }
+
+    /**
+     * isFrimousse
+     *
+     * @return boolean
+     */
+    public function isFrimousse()
+    {
+        $type = $this->getMateriauxFrimousse();
+        return isset($type);
+    }
+
+    /**
+     * isAutreIntervention
+     *
+     * @return boolean
+     */
+    public function isAutreIntervention()
+    {
+        $type = $this->getDescription();
+        return isset($type);
+    }
 }

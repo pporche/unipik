@@ -50,7 +50,7 @@
 				\rowcolor{Gray}
 				Rôle & Fonction & Nom & Date & Visa		 \\
 				\hline
-				Vérificateur & \RGC & \Melissa &  --- & --- \\[30pt]
+				Vérificateur & \RGC & \Melissa & 20/09/2016 & pgpic \\[30pt]
 				\hline
 				Validateur & \CP & \Pierre &  --- & --- \\[30pt]	
 				\hline
@@ -63,21 +63,21 @@ La semaine précédente s'est orientée autour de 8 axes :
 \begin{itemize}
 \item Script bash de création de la base de données et de son remplissage opérationnels ;
 \item Documentation du wiki mis à jour ;
-\item Backend/Frontend de création/consultation/modification/suppression de bénévole terminé ;
-\item Backend/Frontend de création/consultation/modification/suppression d'établissement terminé ;
-\item Formation de \Juliana{} et \Francois terminée ;
-\item Backend/Frontend du formulaire de demande avancé ;
+\item Backend/Frontend de création/consultation/modification/suppression de bénévole terminés ;
+\item Backend/Frontend de création/consultation/modification/suppression d'établissement terminés ;
+\item Formation de \Juliana{} et \Francois{} terminée ;
+\item Backend/Frontend du formulaire de demande avancés ;
 \item Modification des documents relatifs la qualité ;
 \item Veille des indicateurs et documents propres à la gestion de projet.
 \end{itemize} 
 
 \section{Base de données}
-\nomTuteurPedago{} nous recommade très fortement d'utiliser PostGis dès que possible. On a une incohérence de méthode : ne pas intégrer PostGis dans ce lot impliquerait de retravailler la conception de la base de données ce qui semble impensable étant donné les délais impartis. 
-On a plusieurs incohérences : 
+\nomTuteurPedago{} nous recommade très fortement d'utiliser PostGis dès que possible. Nous avons une incohérence de méthode : ne pas intégrer PostGis dans ce lot impliquerait de retravailler la conception de la base de données ce qui semble impensable étant donné les délais impartis. 
+\nomTuteurPedago{} nous fait remarquer plusieurs incohérences dans la base de données  : 
 \begin{itemize}
 \item certains domaines comportent des erreurs (exemple : département Val de Marine) ;
-\item la cohérence de domaine est à revoir ( les regex pour email, heure et code postal sont incorrectes) ;
-\item le choix de la longueur des chaines de caractères semble être aléatoire, un domaine devrait être utilisé pour le fixer (longueur courte, moyenne, longue) ;
+\item la cohérence de domaine est à revoir ( les expressions régulières pour les e-mails, les heures et les code postaux sont incorrectes) ;
+\item le choix de la longueur des chaînes de caractères semble être aléatoire, un domaine devrait être utilisé pour le fixer (longueur courte, moyenne, longue) ;
 \item les noms de certains attributs sont des noms systèmes (ex : date), ceci pourrait poser problème au niveau du mapping avec le framework.
 \end{itemize}
 
@@ -85,9 +85,9 @@ On a plusieurs incohérences :
 La date de livraison a été fixé entre le \RD{} et le \CP{}. Celle-ci aura lieu le 17 octobre. Cette date variera en fonction de la disponibilité du client.
 
 \section{Semaine suivante}
-Il est prévu de terminer le backend/frontend sur la création/consultation/modification/suppression d' intervention.
-Il est prévu de terminer le backend/frontend sur le formulaire de demande d'intervention.
-Il est également prévu d'établir des vues avec des filtres de recherche sur les bénévoles et interventions. 
+Il est prévu de terminer le Backend/Frontend sur la création/consultation/modification/suppression d' intervention.
+Il est prévu de terminer le Backend/Frontend sur le formulaire de demande d'intervention.
+Il est également prévu d'établir des vues avec des filtres de recherche sur les bénévoles et interventions. \\
 \Francois{} et \Juliana{} passeront dans l'équipe Frontend. 
 \Matthieu{} s'occupera de mettre en place les tests d'intégration et les tests unitaires. 
 \Matthieu{} s'occupera également d'établir des fichiers de configuration pour permettre un déploiement automatique de notre application sur un serveur.

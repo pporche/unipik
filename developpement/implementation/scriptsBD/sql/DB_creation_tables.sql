@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS adresse (
 	adresse VARCHAR(500) NOT NULL, 
 	code_postal domaine_code_postal NOT NULL, 
 	complement VARCHAR(100) DEFAULT NULL, 
-	geolocalisation geometry(POINT, 4326) DEFAULT NULL
+	geolocalisation VARCHAR(100) DEFAULT NULL
 );
 
 

@@ -10,7 +10,7 @@ all : crtp cleanrep cleaneps
 
 
 crtp : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements CRTP_Q_Unipik_d16-01-22 CRTP_Q_Unipik_d16-01-29 CRTP_Q_Unipik_d16-02-05 CRTP_Q_Unipik_d16-02-26 CRTP_Q_Unipik_d16-03-04 CRTP_Q_Unipik_d16-03-18 CRTP_Q_Unipik_d16-03-25 CRTP_Q_Unipik_d16-04-01 CRTP_Q_Unipik_d16-04-22 CRTP_Q_Unipik_d16-04-29 CRTP_Q_Unipik_d16-05-13 CRTP_Q_Unipik_d16-09-12
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements CRTP_Q_Unipik_d16-01-22 CRTP_Q_Unipik_d16-01-29 CRTP_Q_Unipik_d16-02-05 CRTP_Q_Unipik_d16-02-26 CRTP_Q_Unipik_d16-03-04 CRTP_Q_Unipik_d16-03-18 CRTP_Q_Unipik_d16-03-25 CRTP_Q_Unipik_d16-04-01 CRTP_Q_Unipik_d16-04-22 CRTP_Q_Unipik_d16-04-29 CRTP_Q_Unipik_d16-05-13 CRTP_Q_Unipik_d16-09-12 CRTP_Q_Unipik_d16-09-19
 
 
 # Archivage

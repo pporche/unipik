@@ -35,6 +35,8 @@ class InterventionRepository extends EntityRepository {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
+        $this->orderByDesc($qb);
+
         return $qb
             ->getQuery()
             ->getResult()
@@ -62,6 +64,8 @@ class InterventionRepository extends EntityRepository {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
+        $this->orderByDesc($qb);
+
         return $qb
             ->getQuery()
             ->getResult()
@@ -88,6 +92,8 @@ class InterventionRepository extends EntityRepository {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
+        $this->orderByDesc($qb);
+
         return $qb
             ->getQuery()
             ->getResult()
@@ -110,6 +116,8 @@ class InterventionRepository extends EntityRepository {
         if(!$datesChecked) {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
+
+        $this->orderByDesc($qb);
 
         return $qb
             ->getQuery()
@@ -156,7 +164,12 @@ class InterventionRepository extends EntityRepository {
         $qb
             ->andWhere('i.date BETWEEN :start AND :end')
             ->setParameter('start',$start)
-            ->setParameter('end',$end)
+            ->setParameter('end',$end);
+    }
+
+
+    public function orderByDesc(QueryBuilder $qb){
+        $qb
             ->orderBy('i.date','DESC');
     }
 }

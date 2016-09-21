@@ -35,17 +35,21 @@
 
             $("#recherche_avancee_date").change(hide_or_show);
 
-
             $('#recherche_avancee_start').datepicker({
                 format: 'dd-mm-yyyy',
-                language: 'fr'
+                language: 'fr',
+                autoclose: true
+            }).on('changeDate', function(selected){
+                $('#recherche_avancee_end').datepicker('setStartDate', new Date(selected.date.valueOf()));
             });
 
             $('#recherche_avancee_end').datepicker({
                 format: 'dd-mm-yyyy',
-                language: 'fr'
+                language: 'fr',
+                autoclose: true
+            }).on('changeDate', function(selected){
+                $('#recherche_avancee_start').datepicker('setEndDate', new Date(selected.date.valueOf()));
             });
-
         });
 
     </script>
@@ -126,7 +130,16 @@
                     <td>{{ loop.index }}</td>
                     <td>{{ intervention.lieu }}</td>
                     <td>{{ intervention.date|date("d-m-Y") }}</td>
-                    <td>A faire</td>
+                    <td>
+                        {% if intervention.plaidoyer %}
+                            Plaidoyer
+                        {% elseif intervention.frimousse %}
+                            Frimousse
+                        {% else %}
+                            Autre intervention
+                        {% endif %}
+
+                    </td>
                     <td><a href="{{ path('intervention_view', {id: intervention.id}) }}" class="btn btn-primary">Voir détails</a></td>
                     {% if is_granted('ROLE_ADMIN') %}
                         <td><a href="{{ path('intervention_admin_delete', {id: intervention.id}) }}" class="btn btn-danger">Supprimer</a></td>

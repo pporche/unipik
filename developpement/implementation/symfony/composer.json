@@ -22,12 +22,12 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "friendsofsymfony/user-bundle": "dev-master",
-	"fresh/doctrine-enum-bundle": "4.5.*",
+	    "fresh/doctrine-enum-bundle": "4.5.*",
         "jsor/doctrine-postgis": "^1.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0",
+        "symfony/phpunit-bridge": "^3.1",
         "squizlabs/php_codesniffer": "*",
         "phpunit/phpunit": "^4.8"
     },

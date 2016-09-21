@@ -10,8 +10,8 @@ namespace Unipik\InterventionBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Etablissement;
 use Unipik\InterventionBundle\Form\EtablissementType;
 use Unipik\InterventionBundle\Form\Etablissement\RechercheAvanceeType;
@@ -79,9 +79,9 @@ class EtablissementController extends Controller {
                 $em->remove($etablissement);
             }
             $em->flush();
-            return new Response('ok');
+            return new Response();
         }
-        return new Response('ok');
+        return new Response();
     }
 
     public function getEtablissementRepository(){

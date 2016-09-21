@@ -78,21 +78,26 @@
             <div class="col-sm-6">
                 <h3>Comité(s) de rattachement : </h3>
                 <div class="row">
-                    for()
-                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                        <li class="list-group-item">
-                            Seine-Maritime
-                            {{ benevole.comite[0].getNomDepartement() }}
-                        </li>
-                        <li class="list-group-item">
-                            Eure
-                        </li>
-                    </ul>
+                    {% if benevole.comite is not empty %}
+                        <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                            {% for comite in benevole.comite %}
+                                <li class="list-group-item">
+                                    {{ comite.getNomDepartement() }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="col-sm-7">
+                            Auncun
+                        </div>
+                    {% endif %}
                 </div>
                 <h3>Domaines d'activités : </h3>
                 <div class="row">
                     {% if (benevole.activitesPotentielles == "" or benevole.activitesPotentielles == NULL) %}
-                        Aucun
+                        <div class="col-sm-7">
+                            Auncun
+                        </div>
                     {% else %}
                         <ul class="list-group col-lg-offset-1 col-sm-7 ">
                             {% if ('plaidoyer' in benevole.activitesPotentielles ) %}
@@ -127,17 +132,19 @@
             <div class="col-sm-6">
                 <h3>Projets en cours : </h3>
                 <div class="row">
-                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                        <li class="list-group-item">
-                            <i> Nom du projet 1 </i>
-                        </li>
-                        <li class="list-group-item">
-                            <i> Nom du projet 2</i>
-                        </li>
-                        <li class="list-group-item">
-                            <i> Nom du projet 3</i>
-                        </li>
-                    </ul>
+                    {% if benevole.projet is not empty %}
+                        <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                            {% for projet in benevole.projet %}
+                                <li class="list-group-item">
+                                    {{ projet.getNom() }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="col-sm-7">
+                            Auncun
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-sm-6">

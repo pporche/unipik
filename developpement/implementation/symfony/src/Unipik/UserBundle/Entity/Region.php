@@ -32,7 +32,7 @@ class Region
     /**
      * @var \Unipik\UserBundle\Entity\Pays
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Pays")
+     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Pays", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="pays_id", referencedColumnName="id")
      * })

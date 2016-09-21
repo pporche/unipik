@@ -44,6 +44,9 @@ class EtablissementController extends Controller {
             $centreTypeArray = $form->get("typeCentre")->getData();
             $institute->setTypeCentre($centreTypeArray);
 
+            $emailsString = '{('.$form->get("emails")->getData().')}';
+            $institute->setEmails($emailsString);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($institute);
             $em->flush();
@@ -52,20 +55,6 @@ class EtablissementController extends Controller {
         }
 
         return $this->render('InterventionBundle:Etablissement:ajouterEtablissement.html.twig', array('form' => $form->createView()));
-    }
-
-    /**
-     *
-     */
-    public function editAction() {
-
-    }
-
-    /**
-     *
-     */
-    public function deleteAction() {
-
     }
 
     public function deleteEtablissementsAction(Request $request) {
@@ -148,5 +137,20 @@ class EtablissementController extends Controller {
 //            'dateEnd' => $endI,
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @param $array
+     * @return String La string formatée pour les domains en DB
+     */
+    public function arrayToString($array) {
+        $string = '{';
+        foreach ($array as $value) {
+            $string = $string.$value;
+            if($value !== end($array)) {
+                $string = $string.',';
+            }
+        }
+        return $string.'}';
     }
 }

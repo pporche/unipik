@@ -49,7 +49,7 @@ class EtablissementType extends AbstractType {
             ->add('uai', TextType::class, array('label' => 'UAI' ,'required' => false))
             ->add('nom')
             ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe'))
-            ->add('emails')
+            ->add('emails', TextType::class, array('mapped' => false))
             ->add('typeEnseignement',ChoiceType::class, $educationChoiceType)
             ->add('typeAutreEtablissement',ChoiceType::class, $otherChoiceType)
             ->add('typeCentre', ChoiceType::class, $centerChoiceType)

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\UserBundle\Entity\Benevole;
+use Unipik\InterventionBundle\Entity\InterventionRepository;
 
 class UserController extends Controller {
 
@@ -71,6 +72,8 @@ class UserController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('UserBundle:Benevole');
         $benevole = $repository->findBy(array('username' => $username))[0];
-        return $this->render('UserBundle:Profile:showBenevole.html.twig', array('benevole' => $benevole));
+        $repositoryIntervention = $em->getRepository('InterventionBundle:Intervention');
+        $listeInterventions = $repositoryIntervention->getInterventionsBenevole($benevole);
+        return $this->render('UserBundle:Profile:showBenevole.html.twig', array('benevole' => $benevole, 'listeInterventions' => $listeInterventions));
     }
 }

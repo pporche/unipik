@@ -255,6 +255,23 @@ class InterventionController extends Controller {
         return $this->redirectToRoute('intervention_list');
     }
 
+    public function supprimerInterventionsAction(Request $request) {
+        if($request->isXmlHttpRequest()) {
+            $ids = json_decode( $request->request->get('ids'));
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Intervention');
+            $interventions = $repository->findBy(array('id' => $ids));
+            foreach ($interventions as $intervention) {
+                $em->remove($intervention);
+            }
+            $em->flush();
+            var_dump($ids);
+            return new Response();
+        }
+        return new Response();
+    }
+
     /**
      *
      */

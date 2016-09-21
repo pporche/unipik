@@ -12,8 +12,13 @@ Last updates:
 Executer les tests unitaires.
 
 ===== Étapes Pas-à-pas: =====
+1. Installer xdebug avec la commande :
 
-1. Se placer à la racine du projet, par exemple:
+'''
+apt-get install php5-xdebug
+'''
+
+2. Se placer à la racine du projet, par exemple:
 
 '''
 cd pic_unicef/developpement/implementation/symfony/

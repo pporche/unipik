@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Unipik\InterventionBundle\Form\EtablissementType;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class ContactType extends AbstractType
 {
     /**
@@ -22,9 +22,15 @@ class ContactType extends AbstractType
             ->add('prenom')
             ->add('telFixe')
             ->add('telPortable')
-            ->add('typeContact')
-            ->add('respoEtablissement',CheckBoxType::class,array('label' => 'Êtes vous le chef d\'établissement ?', 'required' => 'true'))
-            ->add('typeActivite')
+            ->add('typeContact',ChoiceType::class,array(
+                'choices' => array(
+                    'Étudiant' => 'etudiant',
+                    'Animateur' => 'animateur',
+                    'Élève' => 'élève',
+                    'Autre' => 'autre'
+                )
+            ))
+            ->add('respoEtablissement',CheckBoxType::class,array('label' => 'Êtes vous le chef d\'établissement ?', 'required' => false))
         ;
     }
 

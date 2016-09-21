@@ -10,7 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Form\DemandeType;
 use Unipik\UserBundle\Entity\Contact;
 use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
-
+use Unipik\InterventionBundle\Entity\Etablissement;
+use Unipik\ArchitectureBundle\Entity\Adresse;
+use Unipik\InterventionBundle\Entity\Demande;
 
 /**
  * Created by PhpStorm.
@@ -26,26 +28,107 @@ class InterventionController extends Controller {
      */
     public function demandeAction(Request $request) {
 
-        $form = $this->createForm(DemandeType::class);
+        $demande = new Demande();
+        $form = $this->createForm(DemandeType::class,$demande);
         $form->handleRequest($request);
 
 
         if($form->isValid()) {
+            $dt =new \DateTime();
+            $demande->setDate($dt);
+            /*Sauvegarde du contact */
             // Extraire les données
-            $test = (object) $form->getData();
+            $test = (object) $form->get('Contact')->getData();
             // Extraire le contact
             $em = $this->getDoctrine()->getManager();
-            $contactSub = $em->getRepository('UserBundle:Contact')->findOneById(15);
-
-            return new Response(print_r( (object) $contactSub));
-            $contactSub = (object) $test->Contact;
             $contactPers = new Contact();
-            $this->cast($contactPers,$contactSub);
+            $this->cast($contactPers,$test);
             $contactPers->setRespoEtablissement(false);
             $contactPers->setTypeActivite('{}');
-            $em->persist($contactPers);
+            $demande->setContact($contactPers);
+            return new Response(\Doctrine\Common\Util\Debug::dump(($test)));
+            $em = $em->getRepository('UserBundle:Contact');
+            $contactBase = $em->findOneBy(
+                array(
+                    'nom' => $contactPers->getNom(),
+                    'prenom' => $contactPers->getPrenom(),
+                    'email' => $contactPers->getEmail()
+                )
+            );
+
+            if($contactBase != null){
+                $contactPers = $contactBase;
+                $this->getDoctrine()->getManager()->persist($contactPers);
+            }
+
+            $demande->setContact($contactPers);
+            /* Chopper l'établissement */
+
+
+            $fullForm = (object) $form->getData();
+
+            $institute = $form->get('Etablissement')->getData();
+
+            $educationTypeArray = $form->get("Etablissement")->get("typeEnseignement")->getData();
+            $institute->setTypeEnseignement($educationTypeArray);
+
+
+            $otherTypeArray = $form->get("Etablissement")->get("typeAutreEtablissement")->getData();
+            $institute->setTypeAutreEtablissement($otherTypeArray);
+
+            $centreTypeArray = $form->get("Etablissement")->get("typeCentre")->getData();
+            $institute->setTypeCentre($centreTypeArray);
+
+            $institute->setEmails('{}');
+
+            /* if the adress is already in the db it means the institute might be in there too */
+            $repository = $this->getDoctrine()->getRepository('ArchitectureBundle:Adresse');
+            $adresses = $repository->findBy(
+                array('ville' => $institute->getAdresse()->getVille(),
+                       'adresse' => $institute->getAdresse()->getAdresse(),
+                        'codePostal' => $institute->getAdresse()->getCodePostal()
+                )
+            );
+
+            $instituteResearched = null;
+            $repository = $this->getDoctrine()->getManager();
+            $repository = $repository->getRepository('InterventionBundle:Etablissement');
+            foreach($adresses as $adresse) {
+                $adresseTemp = new Adresse();
+                $this->cast($adresseTemp,(object) $adresse);
+                $instituteResearched[] = $repository->findOneBy(
+                    array('nom' => $institute->getNom(),
+                        'typeEnseignement' => $institute->getTypeEnseignement(),
+                        'typeAutreEtablissement' => $institute->getTypeAutreEtablissement(),
+                        'typeCentre' => $institute->getTypeCentre(),
+                        'adresse' => $adresseTemp->getId()
+                    )
+                 );
+
+
+            }
+
+            $list=[];
+            $instituteResearched = array_filter($instituteResearched);
+            if(($instituteResearched) !== null)
+                foreach($instituteResearched as $institute){
+                    $list[] = $institute;
+                }
+
+            if(sizeof($instituteResearched) == 0){
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($institute);
+            } else
+                $institute =$instituteResearched[0];
+
+            $demande->getContact()->addEtablissement($institute);
+            // Etablissement non présent est sauvegardé
+            $demande->setListeSemaine('{}');
+
+            $this->getDoctrine()->getManager()->persist($demande);
+            $em = $this->getDoctrine()->getManager();
             $em->flush();
-            return new Response(print_r( $contactPers->getEmail()));
+            return new Response(\Doctrine\Common\Util\Debug::dump(($demande)));
             $session =$request->getSession();
 
             $session->getFlashBag()->add('notice', array(

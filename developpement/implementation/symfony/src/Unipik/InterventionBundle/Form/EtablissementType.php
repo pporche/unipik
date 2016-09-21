@@ -46,7 +46,7 @@ class EtablissementType extends AbstractType {
             ],);
 
         $builder
-            ->add('uai', TextType::class, array('label' => 'UAI'))
+            ->add('uai', TextType::class, array('label' => 'UAI' ,'required' => false))
             ->add('nom')
             ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe'))
             ->add('emails')

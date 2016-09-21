@@ -21,9 +21,9 @@ class DemandeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Etablissement', EtablissementType::class)
-            ->add('Intervention',InterventionType::class,array('mapped' => false))
-            ->add('Contact',ContactType::class)
+            ->add('Etablissement', EtablissementType::class,array('mapped' => false,'label' => 'Informations de l\'établissement'))
+            ->add('Intervention',InterventionType::class,array('mapped' => false, 'label' => 'Information sur l\'intervention'))
+            ->add('Contact',ContactType::class,array('label' => 'Information sur le contact'))
             ->add('Valider la demande',SubmitType::class)
         ;
     }

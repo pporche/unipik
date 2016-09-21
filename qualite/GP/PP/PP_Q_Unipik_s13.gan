@@ -209,8 +209,8 @@
             <depend id="196" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="117" name="Scripts création BD" color="#8cb6ce" meeting="false" start="2016-09-12" duration="2" complete="100" expand="true"/>
-        <task id="118" name="Scripts modification BD" color="#8cb6ce" meeting="false" start="2016-09-12" duration="2" complete="85" expand="true"/>
-        <task id="119" name="Repository pour séléction en BD" color="#8cb6ce" meeting="false" start="2016-09-12" duration="6" complete="0" expand="true"/>
+        <task id="118" name="Scripts modification BD" color="#8cb6ce" meeting="false" start="2016-09-12" duration="2" complete="100" expand="true"/>
+        <task id="119" name="Repository pour séléction en BD" color="#8cb6ce" meeting="false" start="2016-09-12" duration="6" complete="50" expand="true"/>
         <task id="196" name="Diagramme d'URL" meeting="false" start="2016-09-12" duration="1" complete="0" expand="true">
             <depend id="121" type="2" difference="0" hardness="Strong"/>
             <depend id="123" type="2" difference="0" hardness="Strong"/>
@@ -226,14 +226,14 @@
             <depend id="122" type="2" difference="0" hardness="Strong"/>
             <depend id="125" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="121" name="Créer Bénévole FE" meeting="false" start="2016-09-14" duration="1" complete="0" expand="true"/>
-        <task id="122" name="Créer Etablissement BE" color="#8cb6ce" meeting="false" start="2016-09-14" duration="1" complete="0" expand="true">
+        <task id="121" name="Créer Bénévole FE" meeting="false" start="2016-09-14" duration="1" complete="100" expand="true"/>
+        <task id="122" name="Créer Etablissement BE" color="#8cb6ce" meeting="false" start="2016-09-14" duration="1" complete="100" expand="true">
             <depend id="123" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="123" name="Créer Etablissement FE" color="#8cb6ce" meeting="false" start="2016-09-15" duration="1" complete="0" expand="true">
+        <task id="123" name="Créer Etablissement FE" color="#8cb6ce" meeting="false" start="2016-09-15" duration="1" complete="40" expand="true">
             <depend id="124" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="124" name="Formulaire de demande BE" color="#8cb6ce" meeting="false" start="2016-09-16" duration="5" complete="50" expand="true">
+        <task id="124" name="Formulaire de demande BE" color="#8cb6ce" meeting="false" start="2016-09-16" duration="5" complete="80" expand="true">
             <depend id="181" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="181" name="Formulaire de demande FE" color="#8cb6ce" meeting="false" start="2016-09-23" duration="3" complete="0" expand="true"/>
@@ -247,7 +247,7 @@
             <depend id="128" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="128" name="Modifier Etablissement FE" meeting="false" start="2016-09-16" duration="1" complete="0" expand="true"/>
-        <task id="129" name="Supprimer Bénévole BE" color="#8cb6ce" meeting="false" start="2016-09-15" duration="1" complete="0" expand="true">
+        <task id="129" name="Supprimer Bénévole BE" color="#8cb6ce" meeting="false" start="2016-09-15" duration="1" complete="100" expand="true">
             <depend id="130" type="2" difference="0" hardness="Strong"/>
             <depend id="131" type="2" difference="0" hardness="Strong"/>
         </task>
@@ -256,7 +256,7 @@
             <depend id="132" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="132" name="Supprimer Etablissment FE" meeting="false" start="2016-09-19" duration="1" complete="0" expand="true"/>
-        <task id="116" name="Formation PHP + Symfony" color="#8cb6ce" meeting="false" start="2016-09-12" duration="6" complete="60" expand="true"/>
+        <task id="116" name="Formation PHP + Symfony" color="#8cb6ce" meeting="false" start="2016-09-12" duration="6" complete="100" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Melissa Bignoux" function="4" contacts="melissa.bignoux@insa-rouen.fr" phone="0647282552"/>

@@ -92,9 +92,9 @@
                 {{ form_start(form, {'method': 'post', 'action': path('etablissement_list'), 'attr': {'class': 'etablissement_list form-sm'}}) }}
                 <h5>Type d'établissement :</h5>
                 {{ form_widget(form.typeEtablissement) }}
-                <br/>
 
                 <div id="type">
+                    <br/>
                     {{ form_widget(form.typeEnseignement) }}
                     {{ form_widget(form.typeCentre) }}
                     {{ form_widget(form.typeAutreEtablissement) }}
@@ -102,12 +102,14 @@
 
                 <br/>
 
+                <h5>Ville :</h5>
+                {{ form_widget(form.ville) }}
+
+                <br/>
+
                 <div>
                     <input id="submit" type="submit" value="OK" class="btn btn-primary"/>
                 </div>
-
-                <br/>
-                <h5>Ville :</h5>
 
                 {{ form_end(form) }}
 

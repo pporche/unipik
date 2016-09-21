@@ -94,7 +94,6 @@
             $.post("{{ path('etablissement_admin_deletes') }}", {'ids':ids},
                     function(data, status) {
                         for(i=0;i<selected.length;i++){
-                            console.log('lala');
                             $("#"+selected[i]).closest('tr').remove();
                         }
                     });

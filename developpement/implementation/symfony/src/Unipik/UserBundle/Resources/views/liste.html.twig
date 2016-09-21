@@ -51,9 +51,7 @@
     <a style="margin-left: 80%" href="{{ path('user_admin_register') }}">
         <button type="button" class="btn btn-default">Ajouter un bénévole</button>
     </a>
-    {#<a style="margin-left: 80%" href="{{ path('user_admin_register') }}">#}
         <button type="button" class="btn btn-danger" onclick="deleteBenevoles()">Supprimer</button>
-    {#</a>#}
 {% endblock %}
 
 {% block javascripts %}
@@ -92,7 +90,6 @@
             });
 
             var usernames = JSON.stringify(selected)
-            console.log(usernames);
 
             $.post("{{ path('user_admin_deletes') }}", {'usernames':usernames},
                     function(data, status){

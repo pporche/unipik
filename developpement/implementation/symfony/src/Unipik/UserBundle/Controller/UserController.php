@@ -37,9 +37,9 @@ class UserController extends Controller {
             }
             $em->flush();
 
-            return new Response("ok");
+            return new Response();
         }
-        return new Response(print_r('lol'));
+        return new Response();
     }
 
     public function modifyAction(Request $request) {

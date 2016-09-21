@@ -1,0 +1,32 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-21T18:26:21+02:00
+
+====== Tests Unitaires ======
+Created mercredi 21 septembre 2016 by Matthieu
+Last updates:
+ * mercredi 21 septembre 2016 by Matthieu
+
+===== But: =====
+
+Executer les tests unitaires.
+
+===== Étapes Pas-à-pas: =====
+
+1. Se placer à la racine du projet, par exemple:
+
+'''
+cd pic_unicef/developpement/implementation/symfony/
+'''
+
+3. Pour exécuter un fichier de test en particulier, executer la commande suivante :
+
+'''
+vendor/bin/phpunit tests/Unipik/.../Test.php --coverage-text
+
+'''
+4. Pour exécuter tous les tests, exécuter la commande suivante :
+
+'''
+vendor/bin/phpunit --coverage-text
+'''

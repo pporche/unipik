@@ -81,6 +81,24 @@
             $("#recherche_avancee_typeEtablissement").change(hide_or_show);
         });
 
+        function deleteEtablissements() {
+            var selected = [];
+
+            $("input:checkbox[name=type]:checked").each(function(){
+                var $this = $(this);
+                selected.push($this.attr("id"));
+            });
+
+            var ids = JSON.stringify(selected);
+
+            $.post("{{ path('etablissement_admin_deletes') }}", {'ids':ids},
+                    function(data, status) {
+                        for(i=0;i<selected.length;i++){
+                            console.log('lala');
+                            $("#"+selected[i]).closest('tr').remove();
+                        }
+                    });
+        }
     </script>
 {% endblock %}
 
@@ -150,13 +168,26 @@
                     </td>
                     <td><a href="{{ path('intervention_view', {id: etablissement.id}) }}" class="btn btn-primary">Voir détails</a></td>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <td><a href="{{ path('intervention_admin_delete', {id: etablissement.id}) }}" class="btn btn-danger">Supprimer</a></td>
+                        <td>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="type" id="{{ etablissement.id }}">
+                                </label>
+                            </div>
+                        </td>
                     {% endif %}
                 </tr>
             {% endfor %}
             {% if is_granted('ROLE_ADMIN') %}
                 <tr>
-                    <td colspan="5" class="text-center"><a href="{#{ path('architecture_intervention_add') }#}" class="btn btn-primary btn-danger"><i class="glyphicon glyphicon-alert"></i> Ajouter un établissement</a></td>
+                    <td colspan="5" class="text-center">
+                        <a href="{#{ path('architecture_intervention_add') }#}" class="btn btn-primary btn-danger">
+                            <i class="glyphicon glyphicon-alert"></i> Ajouter un établissement
+                        </a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" onclick="deleteEtablissements()">Supprimer</button>
+                    </td>
                 </tr>
             {% endif %}
             </tbody>

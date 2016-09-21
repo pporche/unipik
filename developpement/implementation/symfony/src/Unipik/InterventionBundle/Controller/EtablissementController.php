@@ -68,6 +68,22 @@ class EtablissementController extends Controller {
 
     }
 
+    public function deleteEtablissementsAction(Request $request) {
+        if($request->isXmlHttpRequest()) {
+            $ids = json_decode($request->request->get('ids'));
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Etablissement');
+            $etablissements = $repository->findBy(array('id' => $ids));
+            foreach ($etablissements as $etablissement) {
+                $em->remove($etablissement);
+            }
+            $em->flush();
+            return new Response('ok');
+        }
+        return new Response('ok');
+    }
+
     public function getEtablissementRepository(){
         $em = $this->getDoctrine()->getManager();
         return $em->getRepository('InterventionBundle:Etablissement');

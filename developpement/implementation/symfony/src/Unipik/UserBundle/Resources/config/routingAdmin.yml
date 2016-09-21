@@ -18,6 +18,11 @@ user_admin_delete:
     defaults:
         _controller: UserBundle:User:delete
 
+user_admin_deletes:
+    path: /benevole/deletes
+    defaults:
+        _controller: UserBundle:User:deletes
+
 user_admin_profil_benevole:
     path: /benevole/profile/{username}
     defaults:

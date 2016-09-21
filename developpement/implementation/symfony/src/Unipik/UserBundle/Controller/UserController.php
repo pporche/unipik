@@ -4,6 +4,7 @@ namespace Unipik\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Unipik\UserBundle\Entity\Benevole;
 
 class UserController extends Controller {
@@ -23,6 +24,25 @@ class UserController extends Controller {
         $em->flush();
         return $this->redirectToRoute('user_admin_list');
     }
+
+    public function deletesAction(Request $request) {
+        if($request->isXmlHttpRequest()) {
+            $usernames = json_decode( $request->request->get('usernames'));
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('UserBundle:Benevole');
+            $benevoles = $repository->findBy(array('username' => $usernames));
+            foreach ($benevoles as $benevole) {
+                $em->remove($benevole);
+            }
+            $em->flush();
+
+            return new Response("ok");
+        }
+        return new Response(print_r('lol'));
+    }
+
+
 
     public function modifyAction(Request $request) {
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */

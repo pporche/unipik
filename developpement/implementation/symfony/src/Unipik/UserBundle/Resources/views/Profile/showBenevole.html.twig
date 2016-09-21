@@ -70,6 +70,8 @@
                 </div>
                 <div class="pull-right">
                     <a href="{{ path("fos_user_profile_edit") }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier</span> </a>
+                    <a href="{{ path("user_admin_delete", {'username': benevole.username}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'utilisateur {{ benevole.username }} ?')"><span class="glyphicon glyphicon-pencil"> Supprimer </span> </a>
+
                 </div>
 
             </section>
@@ -87,7 +89,7 @@
                             {% endfor %}
                         </ul>
                     {% else %}
-                        <div class="col-sm-7">
+                        <div class="col-lg-offset-1 col-sm-7">
                             Auncun
                         </div>
                     {% endif %}
@@ -95,7 +97,7 @@
                 <h3>Domaines d'activités : </h3>
                 <div class="row">
                     {% if (benevole.activitesPotentielles == "" or benevole.activitesPotentielles == NULL) %}
-                        <div class="col-sm-7">
+                        <div class="col-lg-offset-1 col-sm-7">
                             Auncun
                         </div>
                     {% else %}
@@ -128,9 +130,78 @@
                         </ul>
                     {% endif %}
                 </div>
+                <div class="col-sm-6">
+                    <h3>Responsabilités : </h3>
+                    {% if (benevole.responsabiliteActivite == "" or benevole.responsabiliteActivite == NULL) %}
+                        <div class="col-lg-offset-1 ">
+                            Auncune
+                        </div>
+                    {% else %}
+                        <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                            {% if ('plaidoyer' in benevole.responsabiliteActivite ) %}
+                                <li class="list-group-item">
+                                    Plaidoyer
+                                </li>
+                            {% endif %}
+                            {% if ('frimousse' in benevole.responsabiliteActivite) %}
+                                <li class="list-group-item">
+                                    Frimousse
+                                </li>
+                            {% endif %}
+                            {% if ('actions_ponctuelles' in benevole.responsabiliteActivite) %}
+                                <li class="list-group-item">
+                                    Actions ponctuelles
+                                </li>
+                            {% endif %}
+                            {% if ('projets' in benevole.responsabiliteActivite) %}
+                                <li class="list-group-item">
+                                    Projets
+                                </li>
+                            {% endif %}
+                            {% if ('projets' in benevole.responsabiliteActivite) %}
+                                <li class="list-group-item">
+                                    Autre
+                                </li>
+                            {% endif %}
+                            {% if ('admin_comite' in benevole.responsabiliteActivite) %}
+                                <li class="list-group-item">
+                                    Administrateur du comité
+                                </li>
+                            {% endif %}
+                            {% if ('admin_region' in benevole.responsabiliteActivite) %}
+                                <li class="list-group-item">
+                                    Administrateur de la région
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </div>
             </div>
             <div class="col-sm-6">
-                <h3>Projets en cours : </h3>
+                <h3>Interventions : </h3>
+                <div class="row">
+                    <div class="scrollspy-example col-lg-offset-1 col-sm-7" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
+                        height: 200px;
+                        overflow: auto;
+                        position: relative;
+                        border:1px solid #cccccc;
+                        padding:10px;">
+                        {% for intervention in listeInterventions %}
+                            <a href="{{ path('intervention_view', {'id': intervention.id}) }}" >
+                                {% if intervention.plaidoyer %}
+                                    Plaidoyer -
+                                {% elseif intervention.frimousse %}
+                                    Frimousse -
+                                {% else %}
+                                    Autre intervention -
+                                {% endif %}
+                                {{ intervention.etablissement.adresse.ville }}
+                                </br>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!--<h3>Projets en cours : </h3>
                 <div class="row">
                     {% if benevole.projet is not empty %}
                         <ul class="list-group col-lg-offset-1 col-sm-7 ">
@@ -141,60 +212,12 @@
                             {% endfor %}
                         </ul>
                     {% else %}
-                        <div class="col-sm-7">
+                        <div class="col-lg-offset-1 col-sm-7">
                             Auncun
                         </div>
                     {% endif %}
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <h3>Responsabilités : </h3>
-                {% if (benevole.responsabiliteActivite == "" or benevole.responsabiliteActivite == NULL) %}
-                    Aucune
-                {% else %}
-                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                        {% if ('plaidoyer' in benevole.responsabiliteActivite ) %}
-                            <li class="list-group-item">
-                                Plaidoyer
-                            </li>
-                        {% endif %}
-                        {% if ('frimousse' in benevole.responsabiliteActivite) %}
-                            <li class="list-group-item">
-                                Frimousse
-                            </li>
-                        {% endif %}
-                        {% if ('actions_ponctuelles' in benevole.responsabiliteActivite) %}
-                            <li class="list-group-item">
-                                Actions ponctuelles
-                            </li>
-                        {% endif %}
-                        {% if ('projets' in benevole.responsabiliteActivite) %}
-                            <li class="list-group-item">
-                                Projets
-                            </li>
-                        {% endif %}
-                        {% if ('projets' in benevole.responsabiliteActivite) %}
-                            <li class="list-group-item">
-                                Autre
-                            </li>
-                        {% endif %}
-                        {% if ('admin_comite' in benevole.responsabiliteActivite) %}
-                            <li class="list-group-item">
-                                Administrateur du comité
-                            </li>
-                        {% endif %}
-                        {% if ('admin_region' in benevole.responsabiliteActivite) %}
-                            <li class="list-group-item">
-                                Administrateur de la région
-                            </li>
-                        {% endif %}
-                    </ul>
-                {% endif %}
+                </div>-->
             </div>
         </div>
     </div>
-
-
-    <a href="{{ path("user_admin_delete", {'username': benevole.username}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier </span> </a>
-    <a href="{{ path("user_admin_delete", {'username': benevole.username}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'utilisateur {{ benevole.username }} ?')"><span class="glyphicon glyphicon-pencil"> Supprimer </span> </a>
 {% endblock %}

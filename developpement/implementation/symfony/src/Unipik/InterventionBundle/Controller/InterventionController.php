@@ -13,6 +13,7 @@ use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\Etablissement;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 use Unipik\InterventionBundle\Entity\Demande;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Created by PhpStorm.
@@ -155,6 +156,7 @@ class InterventionController extends Controller {
     /**
      * @param $id integer Id de l'intervention.
      * @return Response Permet de récupérer la vue consultation pour l'héritage.
+     * @Route("/intervention/{id}", name="intervention_view")
      */
     public function consultationAction($id) {
         // Faire la vérication si l'intervention est un plaidoyer, frimousse ou autre

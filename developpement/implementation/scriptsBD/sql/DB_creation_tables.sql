@@ -234,7 +234,7 @@ CREATE TABLE demande_moments_a_eviter (
 
 CREATE TABLE IF NOT EXISTS etablissement (
 	id SERIAL PRIMARY KEY,
-	uai VARCHAR(100) NOT NULL, 
+	uai VARCHAR(100) DEFAULT NULL, 
 	adresse_id INT NOT NULL REFERENCES adresse(id) ON DELETE CASCADE, 
 	nom VARCHAR(100) DEFAULT NULL, 
 	tel_fixe domaine_tel_fixe DEFAULT NULL,

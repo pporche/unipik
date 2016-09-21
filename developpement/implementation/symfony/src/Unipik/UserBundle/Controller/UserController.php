@@ -42,8 +42,6 @@ class UserController extends Controller {
         return new Response(print_r('lol'));
     }
 
-
-
     public function modifyAction(Request $request) {
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.profile.form.factory');

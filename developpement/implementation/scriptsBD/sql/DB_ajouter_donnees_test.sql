@@ -53,3 +53,35 @@ INSERT INTO intervention (demande_id, benevole_id, comite_id, etablissement_id, 
 INSERT INTO intervention (demande_id, benevole_id, comite_id, etablissement_id, date, lieu, nb_personne, remarques, heure, realisee, niveau_frimousse, materiaux_frimousse) VALUES ('4', '9', '1', '17', '2016-10-15', 'le lieu', '21', 'la remarque',  '14:00', false, 'CM2','{(decoration), (patron)}' );
 INSERT INTO intervention (demande_id,  comite_id, etablissement_id, date, lieu, nb_personne, remarques, heure, realisee, niveau_frimousse, materiaux_frimousse) VALUES ('4', '1', '18', '2016-11-13', 'le lieu', '21', 'la remarque',  '14:00', false , 'autre','{(decoration), (bourre)}');
 INSERT INTO intervention (demande_id,  comite_id, etablissement_id, date, lieu, nb_personne, remarques, heure, realisee, niveau_frimousse, materiaux_frimousse) VALUES ('4', '1', '19', '2016-11-16', 'le lieu', '21', 'la remarque',  '14:00', false, 'autre','{(bourre), (patron)}');
+
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('1', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('1', '2');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('2', '2');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('3', '3');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('4', '4');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('5', '5');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('6', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('6', '2');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('7', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('7', '3');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('8', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('9', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('10', '3');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('11', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('11', '4');
+
+INSERT INTO projet (chiffre_affaire, type, nom) VALUES ('456.23', 'superieur', 'projet superieur');
+INSERT INTO projet (chiffre_affaire, type, nom) VALUES ('12.56', 'lycee', 'projet lycee');
+INSERT INTO projet (chiffre_affaire, type, nom) VALUES ('0', 'college', 'projet college');
+INSERT INTO projet (chiffre_affaire, type, nom) VALUES ('0', 'primaire', 'projet pour les primaires');
+
+INSERT INTO benevole_projet (benevole_id, projet_id) VALUES ('1', '2');
+INSERT INTO benevole_projet (benevole_id, projet_id) VALUES ('2', '2');
+INSERT INTO benevole_projet (benevole_id, projet_id) VALUES ('3', '2');
+INSERT INTO benevole_projet (benevole_id, projet_id) VALUES ('4', '1');
+INSERT INTO benevole_projet (benevole_id, projet_id) VALUES ('5', '3');
+INSERT INTO benevole_projet (benevole_id, projet_id) VALUES ('6', '4');
+INSERT INTO benevole_projet (benevole_id, projet_id) VALUES ('7', '4');
+
+
+

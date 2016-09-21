@@ -1,7 +1,9 @@
+-- version 1.01 date 21/09/2016 auteur(s) Mélissa Bignoux
 -- version 1.00 date 13/05/2016 auteur(s) Michel Cressannt, Julie Pain
 -- Création des tables de la base de données
  
 -- Définition des Domaines --
+CREATE EXTENSION postgis;
 
 CREATE DOMAIN  domaine_semaine AS INT
 CHECK (VALUE <54 AND VALUE >0);

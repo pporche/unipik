@@ -19,20 +19,20 @@ function insertionBD {
 	   	then
 			if [ -z "$7" ]; #si l'établissement n'a pas de numéro de téléphone (="") on n'entre pas de num de tel dans la BD 
 			then 
-	    		echo "INSERT INTO etablissement (uai, adresse_id, emails, $1) VALUES ('$2','$3', '{($5)}', '$6');" >> $fichierAddEtablissement
+	    		echo "INSERT INTO etablissement (uai, adresse_id, emails, $1) VALUES ($2,'$3', '{($5)}', '$6');" >> $fichierAddEtablissement
 			else
 				python python/retirerEspace.py $f > logfile.log 
 				read tel < logfile.log 
-	    		echo "INSERT INTO etablissement (uai, adresse_id, tel_fixe, emails, $1) VALUES ('$2', '$3', '$tel', '{($5)}', '$6' );" >> $fichierAddEtablissement
+	    		echo "INSERT INTO etablissement (uai, adresse_id, tel_fixe, emails, $1) VALUES ($2, '$3', '$tel', '{($5)}', '$6' );" >> $fichierAddEtablissement
 			fi
 	  	else 
 	  		if [ -z "$f" ];
 	  		then 
-	  			echo "INSERT INTO etablissement (uai, adresse_id, nom, emails, $1) VALUES ('$2', '$3', '$4', '{($5)}', '$6');" >> $fichierAddEtablissement
+	  			echo "INSERT INTO etablissement (uai, adresse_id, nom, emails, $1) VALUES ($2, '$3', '$4', '{($5)}', '$6');" >> $fichierAddEtablissement
 	  		else
 	  			python python/retirerEspace.py $f > logfile.log 
 				read tel < logfile.log 
-	  			echo "INSERT INTO etablissement (uai, adresse_id, nom, tel_fixe, emails, $1) VALUES ('$2', '$3', '$4', '$tel', '{($5)}', '$6');" >> $fichierAddEtablissement
+	  			echo "INSERT INTO etablissement (uai, adresse_id, nom, tel_fixe, emails, $1) VALUES ($2, '$3', '$4', '$tel', '{($5)}', '$6');" >> $fichierAddEtablissement
 	  		fi
 		fi
 }
@@ -131,10 +131,10 @@ do
 		esac
 
     
-		insertionBD "type_enseignement" $h $idAdresse $b $g $typeEnseignement $f
+		insertionBD "type_enseignement" "'$h'" $idAdresse $b $g $typeEnseignement $f
 		;;
 		"Autre" )
-		insertionBD "type_autre_etablissement" $h $idAdresse $b $g "autre" $f
+		insertionBD "type_autre_etablissement" "NULL" $idAdresse $b $g "autre" $f
 		;;
 	esac
 

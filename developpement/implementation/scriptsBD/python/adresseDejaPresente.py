@@ -7,11 +7,16 @@ import sys
 
 adresseCherchee = sys.argv[1]
 villeCherchee = sys.argv[2]
-file = open('checkAdresses.txt', 'w+')
+adresseTrouve = "false"
+file = open('checkAdresses.txt', 'a+')
 with file as fp:
 	for line in fp:
-	    if (adresseCherchee + " " +villeCherchee) == line:
-	    	print "true"
-	file.write(adresseCherchee + " " +villeCherchee)
+	    if (adresseCherchee + " " +villeCherchee + " \n") == line:
+	    	adresseTrouve = "true"
+
+	if adresseTrouve == "false":	
+		file.write(adresseCherchee + " " +villeCherchee + " \n")
+	print adresseTrouve
+	file.close()
 	    
         

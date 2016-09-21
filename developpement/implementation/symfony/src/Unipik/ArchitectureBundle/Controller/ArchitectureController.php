@@ -32,4 +32,7 @@ class ArchitectureController extends Controller {
 
     }
 
+    public function noJSAction(){
+        return $this->render('::noJavascript.html.twig');
+    }
 }

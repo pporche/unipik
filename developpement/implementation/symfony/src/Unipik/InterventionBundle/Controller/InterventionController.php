@@ -257,7 +257,7 @@ class InterventionController extends Controller {
         return $this->redirectToRoute('intervention_list');
     }
 
-    public function supprimerInterventionsAction(Request $request) {
+    public function deleteInterventionsAction(Request $request) {
         if($request->isXmlHttpRequest()) {
             $ids = json_decode( $request->request->get('ids'));
 
@@ -268,7 +268,6 @@ class InterventionController extends Controller {
                 $em->remove($intervention);
             }
             $em->flush();
-            var_dump($ids);
             return new Response();
         }
         return new Response();

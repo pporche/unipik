@@ -13,18 +13,10 @@ Initialiser une nouvelle base de donnée
 
 ===== Étapes Pas-à-pas : =====
 
-1. Dans un terminal, exécuter les commandes suivantes (penser à adapter le chemin d'accès vers pic_unicef, ainsi que l'utilisateur et le mot de passe de la BD) :
+1. Dans un terminal, si la base de données est déjà présente  : dans le dossier scriptsBD, exécuter dropdb.sh
 
-'''
-sudo -i -u postgres
-psql 
-(si déjà db) DROP database bdunicef;
-CREATE USER unipik WITH PASSWORD 'kaflmmppscmmbmcjpmb';
-CREATE database bdunicef;
-psql -U unipik -W -d bdunicef -h 127.0.0.1
-'''
-
-2. Dans le dossier scriptsBD, executer ''createdb.sh''  puis  ''addAdmin.sh''
+2. Dans le dossier scriptsBD, executer ''createdb.sh''  puis  ''addAdmin.sh. ''
+	-> createdb.sh demande une fois le mot de passe ulitisateur et deux fois le mot de passe de la base de données
 
 3. Dans le dossier scriptsBD, pour remplir la base de données en entier, executer generateRequestsFile.sh, puis insertAll.sh
 

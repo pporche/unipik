@@ -131,7 +131,7 @@ do
 		esac
 
     
-		insertionBD "type_enseignement" "'$h'" $idAdresse $b $g $typeEnseignement $f
+		insertionBD "type_enseignement" "NULL" $idAdresse $b $g $typeEnseignement $f
 		;;
 		"Autre" )
 		insertionBD "type_autre_etablissement" "NULL" $idAdresse $b $g "autre" $f

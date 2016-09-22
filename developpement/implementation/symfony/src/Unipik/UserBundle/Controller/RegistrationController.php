@@ -25,13 +25,13 @@ class RegistrationController extends BaseController {
     public function registerAction(Request $request) {
 
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
-        $formFactory = $this->get('fos_user.registration.form.factory');
+        $formFactory = $this->get('fos_user.registration.form.factory');  // Récupération du service form factory de fos user
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
         $userManager = $this->get('fos_user.user_manager');
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
-        $dispatcher = $this->get('event_dispatcher');
+        $dispatcher = $this->get('event_dispatcher'); // Récupération du gestionnaire d'évènements
 
-        $user = $userManager->createUser();
+        $user = $userManager->createUser(); // Récupération de l'utilisateur -> bénévole
         $user->setEnabled(true);
 
         $event = new GetResponseUserEvent($user, $request);
@@ -41,11 +41,12 @@ class RegistrationController extends BaseController {
             return $event->getResponse();
         }
 
-        $form = $formFactory->createForm();
+        $form = $formFactory->createForm(); // Création du formulaire
         $form->setData($user);
 
         $form->handleRequest($request);
 
+        // Après le submit du formulaire
         if ($form->isValid()) {
 
             $activitiesArray = $form->get("activitesPotentielles")->getData(); //récup les activités choisies sur le form + format pour persist

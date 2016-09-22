@@ -1,3 +1,7 @@
 architecture_homepage:
     path:     /
     defaults: { _controller: ArchitectureBundle:Architecture:index }
+
+architecture_noJavascript:
+    path:     /erreurJS
+    defaults: { _controller: ArchitectureBundle:Architecture:noJS }

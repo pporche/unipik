@@ -5,6 +5,20 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+        var onResponsabiliteChecked = function (responsabilite, activite) {
+            if ($(responsabilite).is(':checked')) {
+                $(activite).prop("checked", true);
+                $(activite).prop("disabled", true);
+            } else {
+                $(activite).prop("checked", false);
+                $(activite).prop("disabled", false);
+            }
+        };
+
+        for(i=0; i<4; i++){
+            onResponsabiliteChecked("#fos_user_registration_form_responsabiliteActivite_" + i, "#fos_user_registration_form_activitesPotentielles_" + i);
+        }
+
         $(document).ready(function() {
             for(i=0; i<4; i++){
                 responsabiliteChecked("#fos_user_registration_form_responsabiliteActivite_" + i, "#fos_user_registration_form_activitesPotentielles_" + i);
@@ -13,13 +27,7 @@
 
         function responsabiliteChecked(responsabilite, activite) {
             $(responsabilite).change(function () {
-                if ($(this).is(':checked')) {
-                    $(activite).prop("checked", true);
-                    $(activite).prop("disabled", true);
-                } else {
-                    $(activite).prop("checked", false);
-                    $(activite).prop("disabled", false);
-                }
+                onResponsabiliteChecked($(this), activite);
             });
         }
     </script>

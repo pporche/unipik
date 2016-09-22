@@ -17,4 +17,4 @@
 !web/vendor
 /web/vendor/
 !web/vendor/.gitkeep
-
+web/coverage

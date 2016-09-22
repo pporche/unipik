@@ -12,3 +12,10 @@ intervention_admin_delete:
     requirements:
         id: \d+
 
+intervention_admin_deletes:
+    path:   /intervention/supprimer
+    defaults: { _controller: InterventionBundle:Intervention:deleteInterventions }
+
+etablissement_admin_deletes:
+    path:   /etablissement/supprimer
+    defaults: { _controller: InterventionBundle:Etablissement:deleteEtablissements }

@@ -18,34 +18,39 @@ class RegionTest extends EntityTestCase {
     public static function testCreate() {
         self::bootKernel();
 
-        $p = new Region();
-        $p
+        $r = new Region();
+        $r
             ->setNom("Aquitaine Limousin Poitou-Charentes")
             ->setPays(PaysTest::testCreate())
         ;
 
-        return $p;
+        return $r;
     }
 
     /**
      * @depends testCreate
      */
-    public function testGettersSetters(Region $p) {
-        $this->assertEquals($p->getId(), null);
-        $this->assertEquals($p->getNom(), "Aquitaine Limousin Poitou-Charentes");
+    public function testGettersSetters(Region $r) {
+        $this->assertEquals($r->getId(), null);
+        $this->assertEquals($r->getNom(), "Aquitaine Limousin Poitou-Charentes");
 
-        $p->setNom("Bretagne");
+        $r->setNom("Bretagne");
+        $p = PaysTest::testCreate();
+        $r->setPays($p);
 
-        $this->assertEquals($p->getNom(),"Bretagne");
+        $this->assertEquals($r->getNom(),"Bretagne");
+        $this->assertEquals($r->getPays(), $p);
     }
 
     public function badEntityProvider() {
-        $p1 = $this->testCreate();
-        $p2 = clone $p1;
+        $r1 = $this->testCreate();
+        $r2 = clone $r1;
+        $r3 = clone $r1;
 
         return [
-            "Region with null name" => [$p1->setNom(null)],
-            "Region with null pays" => [$p2->setPays(null)]
+            "Region with null name" => [$r1->setNom(null)],
+            //"Region with null pays" => [$r2->setPays(null)],
+            "Region with bad name" => [$r3->setNom("Region inexistante")]
         ];
     }
 }

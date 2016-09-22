@@ -69,7 +69,7 @@ abstract class EntityTestCase extends KernelTestCase {
 
     /**
      * @dataProvider badEntityProvider
-     * @expectedException \Doctrine\DBAL\Exception\ConstraintViolationException
+     * @expectedException \Doctrine\DBAL\Exception\DriverException
      */
     public function testBadEntities($e) {
         self::bootKernel();

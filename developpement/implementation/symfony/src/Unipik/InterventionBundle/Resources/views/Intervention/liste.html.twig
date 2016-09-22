@@ -52,6 +52,142 @@
             });
         });
 
+
+        function sortByLieu(){
+            if($('#sortLieu').hasClass("sort-down")){
+                $('#sortLieu').removeClass();
+                $('#sortLieu').addClass("sort sort-up");
+                $('#sortLieu').attr("src", "{{ asset('img/sort-up.png')}}");
+
+
+                $('#tableIntervention tbody tr').detach();
+
+                $html = "{% for intervention in liste | sortbyfield('lieu') %}";
+                $html += "<tr>";
+                $html += "<td>{{ loop.index }}</td>";
+                $html += "<td>{{ intervention.lieu }}</td>";
+                $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
+                $html += "<td>";
+                $html += "{% if intervention.plaidoyer %}";
+                $html += "Plaidoyer";
+                $html += "{% elseif intervention.frimousse %}";
+                $html += "Frimousse";
+                $html += "{% else %}";
+                $html += "Autre intervention";
+                $html += "{% endif %}";
+                $html += "</td>";
+                $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
+                $html += "{% if is_granted('ROLE_ADMIN') %}";
+                $html += "<td><a href=\"{{ path('intervention_admin_delete', {id: intervention.id}) }}\" class=\"btn btn-danger\">Supprimer</a></td>";
+                $html += "{% endif %}";
+                $html += "</tr>";
+                $html += "{% endfor %}";
+
+                $('#tableIntervention tbody').append($html);
+
+            }
+            else {
+                $('#sortLieu').removeClass();
+                $('#sortLieu').addClass("sort sort-down");
+                $('#sortLieu').attr("src", "{{ asset('img/sort-down.png')}}");
+
+
+                $('#tableIntervention tbody tr').detach();
+
+                $html = "{% for intervention in liste | sortbyfield('lieu') | reverse %}";
+                $html += "<tr>";
+                $html += "<td>{{ loop.index }}</td>";
+                $html += "<td>{{ intervention.lieu }}</td>";
+                $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
+                $html += "<td>";
+                $html += "{% if intervention.plaidoyer %}";
+                $html += "Plaidoyer";
+                $html += "{% elseif intervention.frimousse %}";
+                $html += "Frimousse";
+                $html += "{% else %}";
+                $html += "Autre intervention";
+                $html += "{% endif %}";
+                $html += "</td>";
+                $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
+                $html += "{% if is_granted('ROLE_ADMIN') %}";
+                $html += "<td><a href=\"{{ path('intervention_admin_delete', {id: intervention.id}) }}\" class=\"btn btn-danger\">Supprimer</a></td>";
+                $html += "{% endif %}";
+                $html += "</tr>";
+                $html += "{% endfor %}";
+
+                $('#tableIntervention tbody').append($html);
+
+            }
+        }
+
+        function sortByDate(){
+            if($('#sortDate').hasClass("sort-down")){
+                $('#sortDate').removeClass();
+                $('#sortDate').addClass("sort sort-up");
+                $('#sortDate').attr("src", "{{ asset('img/sort-up.png')}}");
+
+
+                $('#tableIntervention tbody tr').detach();
+
+                $html = "{% for intervention in liste | sortbyfield('date') %}";
+                $html += "<tr>";
+                $html += "<td>{{ loop.index }}</td>";
+                $html += "<td>{{ intervention.lieu }}</td>";
+                $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
+                $html += "<td>";
+                $html += "{% if intervention.plaidoyer %}";
+                $html += "Plaidoyer";
+                $html += "{% elseif intervention.frimousse %}";
+                $html += "Frimousse";
+                $html += "{% else %}";
+                $html += "Autre intervention";
+                $html += "{% endif %}";
+                $html += "</td>";
+                $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
+                $html += "{% if is_granted('ROLE_ADMIN') %}";
+                $html += "<td><a href=\"{{ path('intervention_admin_delete', {id: intervention.id}) }}\" class=\"btn btn-danger\">Supprimer</a></td>";
+                $html += "{% endif %}";
+                $html += "</tr>";
+                $html += "{% endfor %}";
+
+                $('#tableIntervention tbody').append($html);
+
+            }
+            else {
+                $('#sortDate').removeClass();
+                $('#sortDate').addClass("sort sort-down");
+                $('#sortDate').attr("src", "{{ asset('img/sort-down.png')}}");
+
+
+                $('#tableIntervention tbody tr').detach();
+
+                $html = "{% for intervention in liste | sortbyfield('date') | reverse %}";
+                $html += "<tr>";
+                $html += "<td>{{ loop.index }}</td>";
+                $html += "<td>{{ intervention.lieu }}</td>";
+                $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
+                $html += "<td>";
+                $html += "{% if intervention.plaidoyer %}";
+                $html += "Plaidoyer";
+                $html += "{% elseif intervention.frimousse %}";
+                $html += "Frimousse";
+                $html += "{% else %}";
+                $html += "Autre intervention";
+                $html += "{% endif %}";
+                $html += "</td>";
+                $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
+                $html += "{% if is_granted('ROLE_ADMIN') %}";
+                $html += "<td><a href=\"{{ path('intervention_admin_delete', {id: intervention.id}) }}\" class=\"btn btn-danger\">Supprimer</a></td>";
+                $html += "{% endif %}";
+                $html += "</tr>";
+                $html += "{% endfor %}";
+
+                $('#tableIntervention tbody').append($html);
+
+            }
+        }
+
+
         function deleteInterventions() {
             var selected = [];
 
@@ -69,6 +205,7 @@
                         }
                     });
         }
+
     </script>
 {% endblock %}
 
@@ -128,12 +265,12 @@
             {% endif %}
             :
         </h2>
-        <table class="table table-striped table-hover ">
+        <table class="table table-striped table-hover" id="tableIntervention">
             <thead>
             <tr>
                 <th>#</th>
-                <th>Lieu</th>
-                <th>Date</th>
+                <th>Lieu <button class="sortButtonLieu" id="sortButtonLieu" onclick="sortByLieu()"><img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu"/></button></th>
+                <th>Date <button class="sortButtonDate" id="sortButtonDate" onclick="sortByDate()"><img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate"/></button></th>
                 <th>Type</th>
                 <th>Voir détails</th>
                 {% if is_granted('ROLE_ADMIN') %}
@@ -143,6 +280,7 @@
             </thead>
             <tbody>
             {% for intervention in liste %}
+
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ intervention.lieu }}</td>

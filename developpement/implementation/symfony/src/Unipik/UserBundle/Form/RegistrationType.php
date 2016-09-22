@@ -31,7 +31,7 @@ class RegistrationType extends AbstractType {
 
         $optionActivite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Activités potentielles',
             'choices' => [
-                'Actions ponctuelles' => '(actions ponctuelles)',
+                'Actions ponctuelles' => '(actions_ponctuelles)',
                 'Plaidoyers' => '(plaidoyers)',
                 'Frimousses' => '(frimousses)',
                 'Projets' => '(projets)',
@@ -40,7 +40,7 @@ class RegistrationType extends AbstractType {
 
         $optionResponsabilite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Responsable d\'activité',
             'choices' => [
-                'Actions ponctuelles' => '(actions ponctuelles)',
+                'Actions ponctuelles' => '(actions_ponctuelles)',
                 'Plaidoyers' => '(plaidoyers)',
                 'Frimousses' => '(frimousses)',
                 'Projets' => '(projets)',

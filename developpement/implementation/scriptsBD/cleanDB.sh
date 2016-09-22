@@ -3,4 +3,4 @@
 
 dbname="bdunicef"
 username="unipik"
-psql -U $username -W  -d $dbname  -h 127.0.0.1 -f ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_nettoyer_base.sql
+psql -U $username -w -d $dbname  -h 127.0.0.1 -f ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_nettoyer_base.sql

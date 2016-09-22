@@ -1,6 +1,5 @@
-# version 1.00, date 14/09/2016, auteur Mélissa Bignoux
-# permet de remplir les tables adresses et établissement
-
+#!/bin/bash
+#version 1.00, date 22/09/2016, auteur Pierre Porche
 
 prompt_token() {
   local VAL=""
@@ -21,11 +20,15 @@ else
     password=$1
 fi
 
-echo "insertion adresses et établiemments"
-./insertionsInDBEtablissement.sh $password
+export PGPASSWORD="$password"
 
-echo "insertions relatives à unicef 76"
-./insertionsInDB76.sh $password
-
-echo "insertions données tests"
-./insertionsInDBDataTests.sh $password
+echo "D-d-d-d-drop the base!!"
+./dropDB.sh $password
+echo "Create DB"
+./createDB.sh $password
+echo "Ajout admin"
+./addAdmin.sh $password
+echo "Generate Files"
+./generateRequestsFile.sh $password
+echo "Insert All"
+./insertAll.sh $password

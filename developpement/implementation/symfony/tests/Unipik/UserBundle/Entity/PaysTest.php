@@ -8,68 +8,39 @@
 
 namespace Tests\Unipik\UserBundle\Entity;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Unipik\UserBundle\Entity\Pays;
+use Tests\Unipik\Utils\EntityTestCase;
 
-class PaysTest extends KernelTestCase {
+class PaysTest extends EntityTestCase {
 
-    public function testCreate() {
+    protected static $repository = "UserBundle:Pays";
+
+    public static function testCreate() {
         self::bootKernel();
 
-        return PaysMock::createPays();
+        $p = new Pays();
+        $p->setNom("France");
+
+        return $p;
     }
 
-    public function provider() {
-        $p = PaysMock::createPays();
+    /**
+     * @depends testCreate
+     */
+    public function testGettersSetters(Pays $p) {
+        $this->assertEquals($p->getId(), null);
+        $this->assertEquals($p->getNom(), "France");
+
+        $p->setNom("Russie");
+
+        $this->assertEquals($p->getNom(),"Russie");
+    }
+
+    public function badEntityProvider() {
+        $p = $this->testCreate();
 
         return [
-            "1 Pays" => [$p],
-            "3 Pays" => [clone $p, clone $p, clone $p]
+            "Pays with null name" => [$p->setNom(null)]
         ];
-    }
-
-
-    /**
-     * @dataProvider provider
-     */
-    public function testPersist(Pays $p) {
-        self::bootKernel();
-
-        $em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-
-        $em->persist($p);
-        $em->flush();
-    }
-
-    /**
-     * @dataProvider provider
-     * @depends testPersist
-     */
-    public function testRetrieve(Pays $p) {
-        self::bootKernel();
-
-        $em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-
-        $repository = $em->getRepository('UserBundle:Pays');
-        return $repository->findOneBy(array('id' => $p->getId()));
-    }
-
-    /**
-     * @depends testRetrieve
-     * @dataProvider provider
-     */
-    public function testRemove(Pays $p) {
-        self::bootKernel();
-
-        $em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-
-        $em->remove($p);
-        $em->flush();
     }
 }

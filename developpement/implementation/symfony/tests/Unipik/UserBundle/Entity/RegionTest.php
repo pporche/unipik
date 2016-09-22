@@ -8,68 +8,44 @@
 
 namespace Tests\Unipik\UserBundle\Entity;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Unipik\UserBundle\Entity\Region;
+use Tests\Unipik\Utils\EntityTestCase;
 
-class RegionTest extends KernelTestCase {
+class RegionTest extends EntityTestCase {
 
-    public function testCreate() {
+    protected static $repository = "UserBundle:Region";
+
+    public static function testCreate() {
         self::bootKernel();
 
-        return RegionMock::createRegion();
+        $p = new Region();
+        $p
+            ->setNom("Aquitaine Limousin Poitou-Charentes")
+            ->setPays(PaysTest::testCreate())
+        ;
+
+        return $p;
     }
 
-    public function provider() {
-        $r = RegionMock::createRegion();
+    /**
+     * @depends testCreate
+     */
+    public function testGettersSetters(Region $p) {
+        $this->assertEquals($p->getId(), null);
+        $this->assertEquals($p->getNom(), "Aquitaine Limousin Poitou-Charentes");
+
+        $p->setNom("Bretagne");
+
+        $this->assertEquals($p->getNom(),"Bretagne");
+    }
+
+    public function badEntityProvider() {
+        $p1 = $this->testCreate();
+        $p2 = clone $p1;
 
         return [
-            "1 Region" => [$r],
-            "3 Regions" => [clone $r, clone $r, clone $r]
+            "Region with null name" => [$p1->setNom(null)],
+            "Region with null pays" => [$p2->setPays(null)]
         ];
-    }
-
-
-    /**
-     * @dataProvider provider
-     */
-    public function testPersist(Region $r) {
-        self::bootKernel();
-
-        $em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-
-        $em->persist($r);
-        $em->flush();
-    }
-
-    /**
-     * @dataProvider provider
-     * @depends testPersist
-     */
-    public function testRetrieve(Region $r) {
-        self::bootKernel();
-
-        $em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-
-        $repository = $em->getRepository('UserBundle:Region');
-        return $repository->findOneBy(array('id' => $r->getId()));
-    }
-
-    /**
-     * @depends testRetrieve
-     * @dataProvider provider
-     */
-    public function testRemove(Region $r) {
-        self::bootKernel();
-
-        $em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-
-        $em->remove($r);
-        $em->flush();
     }
 }

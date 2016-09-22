@@ -13,11 +13,11 @@
         <server name="KERNEL_DIR" value="app/" />
     </php>
 
-    <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
-        </testsuite>
-    </testsuites>
+
+    <testsuite name="Project Test Suite">
+        <directory>tests</directory>
+        <exclude>tests/Unipik/ArchitectureBundle/</exclude>
+    </testsuite>
 
     <filter>
         <whitelist>

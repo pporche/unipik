@@ -26,7 +26,7 @@ Comite:
     manyToOne:
         region:
             targetEntity: Region
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: null

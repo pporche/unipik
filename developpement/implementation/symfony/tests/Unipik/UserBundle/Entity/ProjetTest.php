@@ -8,6 +8,7 @@
 
 namespace Unipik\UserBundle\Entity;
 
+use Tests\Unipik\UserBundle\Entity\Mocks\ProjetMock;
 use Unipik\UserBundle\Entity\Projet;
 use Tests\Unipik\Utils\EntityTestCase;
 
@@ -18,12 +19,7 @@ class ProjetTest extends EntityTestCase
     public static function testCreate() {
         self::bootKernel();
 
-        $p = new Projet();
-        $p
-            ->setNom("Aquitaine Limousin Poitou-Charentes")
-            ->setChiffreAffaire(500.0)
-            ->setType("college")
-        ;
+        $p = ProjetMock::create();
 
         return $p;
     }
@@ -48,7 +44,7 @@ class ProjetTest extends EntityTestCase
     }
 
     public function badEntityProvider() {
-        $p1 = $this->testCreate();
+        $p1 = ProjetMock::create();
         $p2 = clone $p1;
         $longName = str_repeat("a", 1001);
         $p3 = clone $p1;

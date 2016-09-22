@@ -9,6 +9,7 @@
 namespace Tests\Unipik\UserBundle\Entity;
 
 use Unipik\UserBundle\Entity\Pays;
+use Tests\Unipik\UserBundle\Entity\Mocks\PaysMock;
 use Tests\Unipik\Utils\EntityTestCase;
 
 class PaysTest extends EntityTestCase {
@@ -18,8 +19,7 @@ class PaysTest extends EntityTestCase {
     public static function testCreate() {
         self::bootKernel();
 
-        $p = new Pays();
-        $p->setNom("France");
+        $p = PaysMock::create();
 
         return $p;
     }
@@ -37,7 +37,7 @@ class PaysTest extends EntityTestCase {
     }
 
     public function badEntityProvider() {
-        $p1 = $this->testCreate();
+        $p1 = PaysMock::create();
         $p2 = clone $p1;
         $longName = str_repeat("a", 101);
 

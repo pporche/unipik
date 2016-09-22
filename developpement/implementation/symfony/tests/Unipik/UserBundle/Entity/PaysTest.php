@@ -37,10 +37,13 @@ class PaysTest extends EntityTestCase {
     }
 
     public function badEntityProvider() {
-        $p = $this->testCreate();
+        $p1 = $this->testCreate();
+        $p2 = clone $p1;
+        $longName = str_repeat("a", 101);
 
         return [
-            "Pays with null name" => [$p->setNom(null)]
+            "Pays with null name" => [$p1->setNom(null)],
+            "Pays with too long name" => [$p2->setNom($longName)]
         ];
     }
 }

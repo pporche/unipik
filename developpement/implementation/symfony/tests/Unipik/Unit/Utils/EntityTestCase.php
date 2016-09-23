@@ -6,7 +6,7 @@
  * Time: 09:02
  */
 
-namespace Tests\Unipik\Utils;
+namespace Tests\Unipik\Unit\Utils;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 

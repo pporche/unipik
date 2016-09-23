@@ -6,11 +6,11 @@
  * Time: 18:32
  */
 
-namespace Tests\Unipik\UserBundle\Entity;
+namespace Tests\Unipik\Unit\UserBundle\Entity;
 
-use Tests\Unipik\UserBundle\Entity\Mocks\RegionMock;
+use Tests\Unipik\Unit\UserBundle\Entity\Mocks\RegionMock;
 use Unipik\UserBundle\Entity\Region;
-use Tests\Unipik\Utils\EntityTestCase;
+use Tests\Unipik\Unit\Utils\EntityTestCase;
 
 class RegionTest extends EntityTestCase {
 

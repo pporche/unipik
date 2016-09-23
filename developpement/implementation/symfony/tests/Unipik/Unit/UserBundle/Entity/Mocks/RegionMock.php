@@ -5,9 +5,8 @@
  * Date: 21/09/16
  * Time: 08:16
  */
-namespace Tests\Unipik\UserBundle\Entity\Mocks;
+namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
-use Unipik\UserBundle\Entity\Pays;
 use Unipik\UserBundle\Entity\Region;
 
 class RegionMock {

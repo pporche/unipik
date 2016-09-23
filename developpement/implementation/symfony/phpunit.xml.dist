@@ -17,6 +17,7 @@
     <testsuite name="Project Test Suite">
         <directory>tests</directory>
         <exclude>tests/Unipik/ArchitectureBundle/</exclude>
+        <exclude>tests/Unipik/Integration/</exclude>
     </testsuite>
 
     <filter>

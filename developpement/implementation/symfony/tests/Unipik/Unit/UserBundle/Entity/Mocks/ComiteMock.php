@@ -6,7 +6,7 @@
  * Time: 17:48
  */
 
-namespace Tests\Unipik\UserBundle\Entity\Mocks;
+namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
 use Unipik\UserBundle\Entity\Comite;
 

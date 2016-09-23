@@ -6,11 +6,11 @@
  * Time: 18:32
  */
 
-namespace Tests\Unipik\UserBundle\Entity;
+namespace Tests\Unipik\Unit\UserBundle\Entity;
 
 use Unipik\UserBundle\Entity\Pays;
-use Tests\Unipik\UserBundle\Entity\Mocks\PaysMock;
-use Tests\Unipik\Utils\EntityTestCase;
+use Tests\Unipik\Unit\UserBundle\Entity\Mocks\PaysMock;
+use Tests\Unipik\Unit\Utils\EntityTestCase;
 
 class PaysTest extends EntityTestCase {
 

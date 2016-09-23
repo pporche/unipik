@@ -5,7 +5,7 @@
  * Date: 21/09/16
  * Time: 08:05
  */
-namespace Tests\Unipik\UserBundle\Entity\Mocks;
+namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
 use Unipik\UserBundle\Entity\Pays;
 

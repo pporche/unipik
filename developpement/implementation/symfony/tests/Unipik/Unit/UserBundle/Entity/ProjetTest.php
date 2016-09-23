@@ -6,11 +6,11 @@
  * Time: 15:11
  */
 
-namespace Unipik\UserBundle\Entity;
+namespace Tests\Unipik\Unit\UserBundle\Entity;
 
-use Tests\Unipik\UserBundle\Entity\Mocks\ProjetMock;
+use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ProjetMock;
 use Unipik\UserBundle\Entity\Projet;
-use Tests\Unipik\Utils\EntityTestCase;
+use Tests\Unipik\Unit\Utils\EntityTestCase;
 
 class ProjetTest extends EntityTestCase
 {

@@ -6,11 +6,11 @@
  * Time: 15:43
  */
 
-namespace Tests\Unipik\UserBundle\Entity;
+namespace Tests\Unipik\Unit\UserBundle\Entity;
 
-use Tests\Unipik\UserBundle\Entity\Mocks\ComiteMock;
+use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ComiteMock;
 use Unipik\UserBundle\Entity\Comite;
-use Tests\Unipik\Utils\EntityTestCase;
+use Tests\Unipik\Unit\Utils\EntityTestCase;
 
 class ComiteTest extends  EntityTestCase
 {

@@ -101,7 +101,7 @@ class RegistrationController extends BaseController {
     }
 
     public function setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString) {
-        $activitiesString = trim($activitiesString,'}');
+        $activitiesString = trim($activitiesString, '}');
         if ($activitiesString != '{')
             $activitiesString = $activitiesString.',';
         if(($key = array_search('(admin_region)', $responsibilitiesArray)) !== false) {
@@ -110,6 +110,8 @@ class RegistrationController extends BaseController {
         if(($key = array_search('(admin_comite)', $responsibilitiesArray)) !== false) {
             unset($responsibilitiesArray[$key]);
         }
+        if (empty($responsibilitiesArray))
+            $activitiesString = trim($activitiesString, ',');
         foreach ($responsibilitiesArray as $value) {
             $activitiesString = $activitiesString.$value;
             if($value !== end($responsibilitiesArray)) {

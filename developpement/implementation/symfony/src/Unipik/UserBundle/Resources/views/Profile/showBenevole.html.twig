@@ -10,10 +10,11 @@
 {% block body %}
         <div class="container">
         <div class="row">
-            <section class="jumbotron col-sm-12">
-                <div >
+            <section class="jumbotron col-sm-12 ">
+                <div class="infoPrincip">
                     <div class="row">
-                        <h2 class="col-lg-offset-1 col-lg-9">{{ benevole.prenom}} {{ benevole.nom}} </h2>
+                        <h2 class="col-lg-9 titre" style="margin-top: 40px;"> {{ benevole.nom | upper }} &nbsp {{ benevole.prenom | capitalize}}</h2>
+                        <img src="{{ asset('img/logo-gris.png') }}" class="logoGris">
                     </div>
                     <hr>
                     <div class="row">
@@ -68,69 +69,84 @@
 
                     </div>
                 </div>
-                <div class="pull-right">
-                    <a href="{{ path("fos_user_profile_edit") }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier</span> </a>
-                    <a href="{{ path("user_admin_delete", {'username': benevole.username}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'utilisateur {{ benevole.username }} ?')"><span class="glyphicon glyphicon-pencil"> Supprimer </span> </a>
 
-                </div>
 
             </section>
         </div>
+            <div class="row">
+                <div class="buttons">
+                    <a href="{{ path("fos_user_profile_edit") }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier</span> </a>
+                    <a href="{{ path("user_admin_delete", {'username': benevole.username}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'utilisateur {{ benevole.username }} ?')"><span class="glyphicon glyphicon-trash"> Supprimer </span> </a>
+                </div>
+                </div>
         <div class="row">
-            <div class="col-sm-6">
-                <h3>Comité(s) de rattachement : </h3>
-                <div class="row">
-                    {% if benevole.comite is not empty %}
-                        <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                            {% for comite in benevole.comite %}
-                                <li class="list-group-item">
-                                    {{ comite.getNomDepartement() }}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <div class="col-lg-offset-1 col-sm-7">
-                            Auncun
-                        </div>
-                    {% endif %}
+            <div class="col-sm-12 infoContainer">
+                <div class="col-sm-4 containerOne">
+                    <div class="circle circleOne">
+                        <img src="{{ asset('img/location.png') }}">
+                    </div>
+                    <h3>Comité(s) de rattachement : </h3>
+                    <div class="row">
+                        {% if benevole.comite is not empty %}
+                            <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                                {% for comite in benevole.comite %}
+                                    <li class="list-group-item">
+                                        {{ comite.getNomDepartement() }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <div class="col-lg-offset-1 col-sm-7">
+                                Auncun
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
-                <h3>Domaines d'activités : </h3>
-                <div class="row">
-                    {% if (benevole.activitesPotentielles == "" or benevole.activitesPotentielles == NULL) %}
-                        <div class="col-lg-offset-1 col-sm-7">
-                            Auncun
-                        </div>
-                    {% else %}
-                        <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                            {% if ('plaidoyer' in benevole.activitesPotentielles ) %}
-                                <li class="list-group-item">
-                                    Plaidoyer
-                                </li>
-                            {% endif %}
-                            {% if ('frimousse' in benevole.activitesPotentielles) %}
-                                <li class="list-group-item">
-                                    Frimousse
-                                </li>
-                            {% endif %}
-                            {% if ('actions_ponctuelles' in benevole.activitesPotentielles) %}
-                                <li class="list-group-item">
-                                    Actions ponctuelles
-                                </li>
-                            {% endif %}
-                            {% if ('projets' in benevole.activitesPotentielles) %}
-                                <li class="list-group-item">
-                                    Projets
-                                </li>
-                            {% endif %}
-                            {% if ('projets' in benevole.activitesPotentielles) %}
-                                <li class="list-group-item">
-                                    Autre
-                                </li>
-                            {% endif %}
-                        </ul>
-                    {% endif %}
+                <div class="col-sm-4 containerTwo">
+                    <div class="circle circleTwo">
+                        <img src="{{ asset('img/briefcase.png') }}">
+                    </div>
+                    <h3>Domaines d'activités : </h3>
+                    <div class="row">
+                        {% if (benevole.activitesPotentielles == "" or benevole.activitesPotentielles == NULL) %}
+                            <div class="col-lg-offset-1 col-sm-7">
+                                Auncun
+                            </div>
+                        {% else %}
+                            <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                                {% if ('plaidoyer' in benevole.activitesPotentielles ) %}
+                                    <li class="list-group-item">
+                                        Plaidoyer
+                                    </li>
+                                {% endif %}
+                                {% if ('frimousse' in benevole.activitesPotentielles) %}
+                                    <li class="list-group-item">
+                                        Frimousse
+                                    </li>
+                                {% endif %}
+                                {% if ('actions_ponctuelles' in benevole.activitesPotentielles) %}
+                                    <li class="list-group-item">
+                                        Actions ponctuelles
+                                    </li>
+                                {% endif %}
+                                {% if ('projets' in benevole.activitesPotentielles) %}
+                                    <li class="list-group-item">
+                                        Projets
+                                    </li>
+                                {% endif %}
+                                {% if ('projets' in benevole.activitesPotentielles) %}
+                                    <li class="list-group-item">
+                                        Autre
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4 containerThree">
+                    <div class="circle circleThree">
+                        <img src="{{ asset('img/help.png') }}">
+                    </div>
                     <h3>Responsabilités : </h3>
                     {% if (benevole.responsabiliteActivite == "" or benevole.responsabiliteActivite == NULL) %}
                         <div class="col-lg-offset-1 ">
@@ -177,47 +193,58 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="col-sm-6">
-                <h3>Interventions : </h3>
-                <div class="row">
-                    <div class="scrollspy-example col-lg-offset-1 col-sm-7" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
-                        height: 200px;
-                        overflow: auto;
-                        position: relative;
-                        border:1px solid #cccccc;
-                        padding:10px;">
-                        {% for intervention in listeInterventions %}
-                            <a href="{{ path('intervention_view', {'id': intervention.id}) }}" >
-                                {% if intervention.plaidoyer %}
-                                    Plaidoyer -
-                                {% elseif intervention.frimousse %}
-                                    Frimousse -
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 infoContainer">
+                <div class="col-sm-6 containerFour">
+                                <div class="circle circleFour">
+                                    <img src="{{ asset('img/speech-bubbles.png') }}">
+                                </div>
+                                <h3>Interventions : </h3>
+                                <div class="row">
+                                    <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
+                                    height: 200px;
+                                    overflow: auto;
+                                    position: relative;
+                                    border:1px solid #cccccc;
+                                    padding:10px;">
+                                        {% for intervention in listeInterventions %}
+                                            <a href="{{ path('intervention_view', {'id': intervention.id}) }}" >
+                                                {% if intervention.plaidoyer %}
+                                                    Plaidoyer -
+                                                {% elseif intervention.frimousse %}
+                                                    Frimousse -
+                                                {% else %}
+                                                    Autre intervention -
+                                                {% endif %}
+                                                {{ intervention.etablissement.adresse.ville }}
+                                                </br>
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <!--<h3>Projets en cours : </h3>
+                            <div class="row">
+                                {% if benevole.projet is not empty %}
+                                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                                        {% for projet in benevole.projet %}
+                                            <li class="list-group-item">
+                                                {{ projet.getNom() }}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
                                 {% else %}
-                                    Autre intervention -
+                                    <div class="col-lg-offset-1 col-sm-7">
+                                        Auncun
+                                    </div>
                                 {% endif %}
-                                {{ intervention.etablissement.adresse.ville }}
-                                </br>
-                            </a>
-                        {% endfor %}
-                    </div>
-                </div>
-                <!--<h3>Projets en cours : </h3>
-                <div class="row">
-                    {% if benevole.projet is not empty %}
-                        <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                            {% for projet in benevole.projet %}
-                                <li class="list-group-item">
-                                    {{ projet.getNom() }}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <div class="col-lg-offset-1 col-sm-7">
-                            Auncun
+                            </div>-->
+                            </div>
                         </div>
-                    {% endif %}
-                </div>-->
+                    </div>
+
             </div>
+
         </div>
     </div>
 {% endblock %}

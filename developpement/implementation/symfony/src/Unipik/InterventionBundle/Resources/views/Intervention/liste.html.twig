@@ -78,7 +78,13 @@
                 $html += "</td>";
                 $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
                 $html += "{% if is_granted('ROLE_ADMIN') %}";
-                $html += "<td><a href=\"{{ path('intervention_admin_delete', {id: intervention.id}) }}\" class=\"btn btn-danger\">Supprimer</a></td>";
+                $html += "<td>";
+                $html += "<div class=\"checkbox\">";
+                $html += "<label>";
+                $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ intervention.id }}\">";
+                $html += "</label>";
+                $html += "</div>";
+                $html += "</td>";
                 $html += "{% endif %}";
                 $html += "</tr>";
                 $html += "{% endfor %}";
@@ -110,7 +116,13 @@
                 $html += "</td>";
                 $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
                 $html += "{% if is_granted('ROLE_ADMIN') %}";
-                $html += "<td><a href=\"{{ path('intervention_admin_delete', {id: intervention.id}) }}\" class=\"btn btn-danger\">Supprimer</a></td>";
+                $html += "<td>";
+                $html += "<div class=\"checkbox\">";
+                $html += "<label>";
+                $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ intervention.id }}\">";
+                $html += "</label>";
+                $html += "</div>";
+                $html += "</td>";
                 $html += "{% endif %}";
                 $html += "</tr>";
                 $html += "{% endfor %}";
@@ -145,7 +157,13 @@
                 $html += "</td>";
                 $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
                 $html += "{% if is_granted('ROLE_ADMIN') %}";
-                $html += "<td><a href=\"{{ path('intervention_admin_delete', {id: intervention.id}) }}\" class=\"btn btn-danger\">Supprimer</a></td>";
+                $html += "<td>";
+                $html += "<div class=\"checkbox\">";
+                $html += "<label>";
+                $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ intervention.id }}\">";
+                $html += "</label>";
+                $html += "</div>";
+                $html += "</td>";
                 $html += "{% endif %}";
                 $html += "</tr>";
                 $html += "{% endfor %}";
@@ -177,7 +195,13 @@
                 $html += "</td>";
                 $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
                 $html += "{% if is_granted('ROLE_ADMIN') %}";
-                $html += "<td><a href=\"{{ path('intervention_admin_delete', {id: intervention.id}) }}\" class=\"btn btn-danger\">Supprimer</a></td>";
+                $html += "<td>";
+                $html += "<div class=\"checkbox\">";
+                $html += "<label>";
+                $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ intervention.id }}\">";
+                $html += "</label>";
+                $html += "</div>";
+                $html += "</td>";
                 $html += "{% endif %}";
                 $html += "</tr>";
                 $html += "{% endfor %}";
@@ -314,11 +338,13 @@
                 <tr>
                     <td colspan="5" class="text-center">
                         <a href="{{ path('intervention_admin_add') }}" class="btn btn-primary btn-danger">
-                            <i class="glyphicon glyphicon-alert"></i> Ajouter une intervention
+                            <i class="glyphicon glyphicon-alert"></i> &nbsp Ajouter une intervention
                         </a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-danger" onclick="deleteInterventions()">Supprimer</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteInterventions()">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            &nbsp Supprimer</button>
                     </td>
                 </tr>
             {% endif %}

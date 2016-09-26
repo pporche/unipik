@@ -11,6 +11,9 @@ use Unipik\InterventionBundle\Entity\InterventionRepository;
 class UserController extends Controller {
 
     public function listeAction() {
+
+
+
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('UserBundle:Benevole');
         $listBenevoles = $repository->findAll();

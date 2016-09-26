@@ -45,6 +45,6 @@ else
     dbname="bdunicef"
 fi
 
-psql -U $username -W  -d $dbname  -h 127.0.0.1 -w -f ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_admin.sql
+psql -U $username -W  -d $dbname  -h 127.0.0.1 -f ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_admin.sql
 cd ../symfony/
 php bin/console fos:user:change-password admin $password

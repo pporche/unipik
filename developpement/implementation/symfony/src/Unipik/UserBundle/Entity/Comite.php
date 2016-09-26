@@ -32,7 +32,7 @@ class Comite
     /**
      * @var \Unipik\UserBundle\Entity\Region
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Region")
+     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Region", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
      * })

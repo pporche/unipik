@@ -18,7 +18,21 @@ Executer les tests unitaires.
 apt-get install php5-xdebug
 '''
 
-2. Se placer à la racine du projet, par exemple:
+2. Éditer le fichier [[/etc/php5/apache2/conf.d/20-xdebug.ini]] et ajouter la ligne
+
+'''
+xdebug.max_nesting_level=500
+'''
+
+	(augmenter cette valeur si vous avez des problèmes du type "Maximum function nesting level of 'xxx' reached, aborting!")
+	
+5. Redémarrer Apache
+
+'''
+sudo /etc/init.d/apache2 restart
+'''
+
+4. Se placer à la racine du projet, par exemple:
 
 '''
 cd pic_unicef/developpement/implementation/symfony/

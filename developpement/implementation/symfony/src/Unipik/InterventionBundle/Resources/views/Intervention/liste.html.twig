@@ -296,7 +296,7 @@
             {% for intervention in liste %}
 
                 <tr>
-                    {% if app.request.query.get("page") * app.query.get("RowsPerPage") < loop.index < (app.query.get("page")-1) * app.query.get("RowsPerPage") + 1 %}
+                    {#{% if app.request.query.get("page") * app.query.get("RowsPerPage") < loop.index < (app.query.get("page")-1) * app.query.get("RowsPerPage") + 1 %}#}
                         <td>{{ loop.index }}</td>
                         <td>{{ intervention.lieu }}</td>
                         <td>{{ intervention.date|date("d-m-Y") }}</td>
@@ -323,7 +323,7 @@
                             </td>
                             {#<td><a href="{{ path('intervention_admin_delete', {id: intervention.id}) }}" class="btn btn-danger">Supprimer</a></td>#}
                         {% endif %}
-                    {% endif %}
+                    {#{% endif %}#}
                 </tr>
             {% endfor %}
             {% if is_granted('ROLE_ADMIN') %}

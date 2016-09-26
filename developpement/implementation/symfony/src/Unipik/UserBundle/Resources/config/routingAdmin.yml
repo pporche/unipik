@@ -16,12 +16,12 @@ fos_user_registration_check_email:
 user_admin_delete:
     path: /benevole/delete/{username}
     defaults:
-        _controller: UserBundle:User:delete
+        _controller: UserBundle:User:deleteVolunteer
 
 user_admin_deletes:
     path: /benevole/deletes
     defaults:
-        _controller: UserBundle:User:deletes
+        _controller: UserBundle:User:deleteVolunteers
 
 user_admin_profil_benevole:
     path: /benevole/profile/{username}

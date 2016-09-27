@@ -88,10 +88,43 @@ CHECK (VALUE ~ '^[0-9]{5}$');
 
 -- Définition des tables correspondant à des types -- 
 
+CREATE TABLE IF NOT EXISTS pays (
+	id SERIAL PRIMARY KEY,
+	nom VARCHAR(:longueurChaineMoyenne) NOT NULL
+);
+
+
+CREATE TABLE IF NOT EXISTS region (
+	id SERIAL PRIMARY KEY,
+	nom VARCHAR(:longueurChaineMoyenne) NOT NULL, 
+	pays_id INT NOT NULL REFERENCES pays(id) ON DELETE CASCADE
+
+);
+
+CREATE TABLE IF NOT EXISTS ville (
+	id SERIAL PRIMARY KEY, 
+	nom VARCHAR(:longueurChaineMoyenne) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS departement (
+	id SERIAL PRIMARY KEY, 
+	nom VARCHAR(:longueurChaineMoyenne) NOT NULL,
+	numero VARCHAR(:longueurChaineCourte) NOT NULL,
+	region_id INT NOT NULL REFERENCES region(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS code_postal (
+	id SERIAL PRIMARY KEY, 
+	code domaine_code_postal NOT NULL, 
+	departement_id INT NOT NULL REFERENCES departement(id) ON DELETE CASCADE
+);
+
+
 CREATE TABLE IF NOT EXISTS adresse (
 	id SERIAL PRIMARY KEY, 
 	adresse VARCHAR(:longueurChaineLongue) NOT NULL, 
 	complement VARCHAR(:longueurChaineMoyenne) DEFAULT NULL, 
+	ville_id INT NOT NULL REFERENCES ville(id) ON DELETE CASCADE,
 	geolocalisation geography(POINT,4326) DEFAULT NULL
 );
 
@@ -174,42 +207,8 @@ CREATE TABLE IF NOT EXISTS projet (
 );
 
 
-
-
-CREATE TABLE IF NOT EXISTS pays (
-	id SERIAL PRIMARY KEY,
-	nom VARCHAR(:longueurChaineMoyenne) NOT NULL
-);
-
-
-CREATE TABLE IF NOT EXISTS region (
-	id SERIAL PRIMARY KEY,
-	nom VARCHAR(:longueurChaineMoyenne) NOT NULL, 
-	pays_id INT NOT NULL REFERENCES pays(id) ON DELETE CASCADE
-
-);
-
-CREATE TABLE IF NOT EXISTS ville (
-	id SERIAL PRIMARY KEY, 
-	nom VARCHAR(:longueurChaineMoyenne) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS departement (
-	id SERIAL PRIMARY KEY, 
-	nom VARCHAR(:longueurChaineMoyenne) NOT NULL,
-	numero VARCHAR(:longueurChaineCourte) NOT NULL,
-	region_id INT NOT NULL REFERENCES region(id) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS code_postal (
-	id SERIAL PRIMARY KEY, 
-	code domaine_code_postal NOT NULL, 
-	departement_id INT NOT NULL REFERENCES departement(id) ON DELETE CASCADE
-);
-
 CREATE TABLE IF NOT EXISTS comite (
-	id SERIAL PRIMARY KEY, 
-	departement_id INT REFERENCES departement(id) ON DELETE CASCADE
+	id SERIAL PRIMARY KEY
 );
 
 -- changement --
@@ -342,11 +341,6 @@ CREATE TABLE IF NOT EXISTS participe (
 	PRIMARY KEY(projet_id, contact_id)
 );
 
-CREATE TABLE IF NOT EXISTS adresse_ville (
-	adresse_id INT REFERENCES adresse(id) ON DELETE CASCADE, 
-	ville_id INT REFERENCES ville(id) ON DELETE CASCADE, 
-	PRIMARY KEY(adresse_id, ville_id)
-);
 
 CREATE TABLE IF NOT EXISTS ville_code_postal (
 	ville_id INT REFERENCES ville(id) ON DELETE CASCADE,

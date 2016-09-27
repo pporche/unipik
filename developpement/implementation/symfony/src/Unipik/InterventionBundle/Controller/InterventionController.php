@@ -21,29 +21,30 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * Date: 19/04/16
  * Time: 11:55
  */
-class InterventionController extends Controller {
+class InterventionController extends Controller
+{
 
     /**
      * @param $request Request
      * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention.
      */
-    public function demandeAction(Request $request) {
+    public function demandeAction(Request $request)
+    {
 
         $demande = new Demande();
-        $form = $this->createForm(DemandeType::class,$demande);
+        $form = $this->createForm(DemandeType::class, $demande);
         $form->handleRequest($request);
 
-
-        if($form->isValid()) {
-            $dt =new \DateTime();
+        if ($form->isValid()) {
+            $dt = new \DateTime();
             $demande->setDate($dt);
             /*Sauvegarde du contact */
             // Extraire les données
-            $test = (object) $form->get('Contact')->getData();
+            $test = (object)$form->get('Contact')->getData();
             // Extraire le contact
             $em = $this->getDoctrine()->getManager();
             $contactPers = new Contact();
-            $this->cast($contactPers,$test);
+            $this->cast($contactPers, $test);
             $contactPers->setRespoEtablissement(false);
             $contactPers->setTypeActivite('{}');
             $demande->setContact($contactPers);
@@ -57,7 +58,7 @@ class InterventionController extends Controller {
                 )
             );
 
-            if($contactBase != null){
+            if ($contactBase != null) {
                 $contactPers = $contactBase;
                 $this->getDoctrine()->getManager()->persist($contactPers);
             }
@@ -65,14 +66,12 @@ class InterventionController extends Controller {
             $demande->setContact($contactPers);
             /* Chopper l'établissement */
 
-
-            $fullForm = (object) $form->getData();
+            $fullForm = (object)$form->getData();
 
             $institute = $form->get('Etablissement')->getData();
 
             $educationTypeArray = $form->get("Etablissement")->get("typeEnseignement")->getData();
             $institute->setTypeEnseignement($educationTypeArray);
-
 
             $otherTypeArray = $form->get("Etablissement")->get("typeAutreEtablissement")->getData();
             $institute->setTypeAutreEtablissement($otherTypeArray);
@@ -86,17 +85,17 @@ class InterventionController extends Controller {
             $repository = $this->getDoctrine()->getRepository('ArchitectureBundle:Adresse');
             $adresses = $repository->findBy(
                 array('ville' => $institute->getAdresse()->getVille(),
-                       'adresse' => $institute->getAdresse()->getAdresse(),
-                        'codePostal' => $institute->getAdresse()->getCodePostal()
+                    'adresse' => $institute->getAdresse()->getAdresse(),
+                    'codePostal' => $institute->getAdresse()->getCodePostal()
                 )
             );
 
             $instituteResearched = null;
             $repository = $this->getDoctrine()->getManager();
             $repository = $repository->getRepository('InterventionBundle:Etablissement');
-            foreach($adresses as $adresse) {
+            foreach ($adresses as $adresse) {
                 $adresseTemp = new Adresse();
-                $this->cast($adresseTemp,(object) $adresse);
+                $this->cast($adresseTemp, (object)$adresse);
                 $instituteResearched[] = $repository->findOneBy(
                     array('nom' => $institute->getNom(),
                         'typeEnseignement' => $institute->getTypeEnseignement(),
@@ -104,23 +103,21 @@ class InterventionController extends Controller {
                         'typeCentre' => $institute->getTypeCentre(),
                         'adresse' => $adresseTemp->getId()
                     )
-                 );
-
-
+                );
             }
 
-            $list=[];
+            $list = [];
             $instituteResearched = array_filter($instituteResearched);
-            if(($instituteResearched) !== null)
-                foreach($instituteResearched as $institute){
+            if (($instituteResearched) !== null)
+                foreach ($instituteResearched as $institute) {
                     $list[] = $institute;
                 }
 
-            if(sizeof($instituteResearched) == 0){
+            if (sizeof($instituteResearched) == 0) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($institute);
             } else
-                $institute =$instituteResearched[0];
+                $institute = $instituteResearched[0];
 
             $demande->getContact()->addEtablissement($institute);
             // Etablissement non présent est sauvegardé
@@ -130,12 +127,12 @@ class InterventionController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             return new Response(\Doctrine\Common\Util\Debug::dump(($demande)));
-            $session =$request->getSession();
+            $session = $request->getSession();
 
             $session->getFlashBag()->add('notice', array(
-                'title'=>'Félicitation',
-                'message'=>'Votre demande d/\'intervention a bien été enregistrée. Nous vous contacterons sous peu',
-                'alert'=>'success'
+                'title' => 'Félicitation',
+                'message' => 'Votre demande d/\'intervention a bien été enregistrée. Nous vous contacterons sous peu',
+                'alert' => 'success'
             ));
 
             $intervention = $form->getData();
@@ -149,7 +146,8 @@ class InterventionController extends Controller {
     /**
      * @return Response Renvoie vers la page de consultation liée à l'établissement.
      */
-    public function getConsultationVue() {
+    public function getConsultationVue()
+    {
         return $this->render('InterventionBundle:Intervention:consultation.html.twig');
     }
 
@@ -158,7 +156,8 @@ class InterventionController extends Controller {
      * @return Response Permet de récupérer la vue consultation pour l'héritage.
      * @Route("/intervention/{id}", name="intervention_view")
      */
-    public function consultationAction($id) {
+    public function consultationAction($id)
+    {
         // Faire la vérication si l'intervention est un plaidoyer, frimousse ou autre
         // Et appeler la vue correspondante
 
@@ -169,7 +168,7 @@ class InterventionController extends Controller {
      * @param $liste array Liste des établissements.
      * @return Response Renvoie vers la page permettant l'affichage de l'ensemble des interventions.
      */
-    public function getListeVue($liste,  $typeI, $dateCheckedI, $startI, $endI, $form)
+    public function getListeVue($liste, $typeI, $dateCheckedI, $startI, $endI, $form)
     {
 
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
@@ -185,7 +184,8 @@ class InterventionController extends Controller {
     /**
      * @return RepositoryFactory Renvoie le repository Intervention.
      */
-    public function getInterventionRepository() {
+    public function getInterventionRepository()
+    {
         $em = $this->getDoctrine()->getManager();
         return $em->getRepository('InterventionBundle:Intervention');
     }
@@ -193,51 +193,68 @@ class InterventionController extends Controller {
     /**
      * @return Response Renvoie vers la page affichant les établissements en passant en paramètre la liste des interventions.
      */
-    public function listeAction(Request $request, $typeI) {
+    public function listeAction(Request $request) {
 
-        $form = $this->get('form.factory')->create(RechercheAvanceeType::class);
+        $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET');
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+//        $form = $this->get('form.factory')->create(RechercheAvanceeType::class);
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $typeIntervention = $form->get("typeIntervention")->getData();
-            $start = $form->get("start")->getData();
-            $end = $form->get("end")->getData();
-            $dateChecked = $form->get("date")->getData();
-            $request->getSession()->set('startI',$start);
-            $request->getSession()->set('endI',$end);
-            $request->getSession()->set('dateCheckedI',$dateChecked);
-            return $this->redirectToRoute('intervention_list', array('typeI' => $typeIntervention));
-        }
+//        if ($request->isMethod('GET') && $form->handleRequest($request)->isValid()) {
+////            $typeIntervention = $form->get("typeIntervention")->getData();
+////            $dateChecked = $form->get("date")->getData();
+////            $start = $form->get("start")->getData();
+////            $end = $form->get("end")->getData();
+////            $request->getSession()->set('startI',$start);
+////            $request->getSession()->set('endI',$end);
+////            $request->getSession()->set('dateCheckedI',$dateChecked);
+//            //return $this->redirectToRoute('intervention_list');
+//        }
 
-        $startI = $request->getSession()->get('startI');
-        $endI = $request->getSession()->get('endI');
-        $dateCheckedI = $request->getSession()->get('dateCheckedI');
-        switch ($typeI) {
+        $typeIntervention = $form->get("typeIntervention")->getData();
+        $dateChecked = $form->get("date")->getData();
+        $start = $form->get("start")->getData();
+        $end = $form->get("end")->getData();
+//        $startI = $request->getSession()->get('startI');
+//        $endI = $request->getSession()->get('endI');
+//        $dateCheckedI = $request->getSession()->get('dateCheckedI');
+        switch ($typeIntervention) {
             case "plaidoyer":
                 $repository = $this->getInterventionRepository();
-                $listIntervention = $repository->getPlaidoyers($startI, $endI, $dateCheckedI);
+                $listIntervention = $repository->getPlaidoyers($start, $end, $dateChecked);
                 break;
             case "frimousse":
                 $repository = $this->getInterventionRepository();
-                $listIntervention = $repository->getFrimousses($startI, $endI, $dateCheckedI);
+                $listIntervention = $repository->getFrimousses($start, $end, $dateChecked);
                 break;
             case "autreIntervention":
                 $repository = $this->getInterventionRepository();
-                $listIntervention = $repository->getAutresInterventions($startI, $endI, $dateCheckedI);
+                $listIntervention = $repository->getAutresInterventions($start, $end, $dateChecked);
                 break;
             default:
                 $repository = $this->getInterventionRepository();
-                $listIntervention = $repository->getToutesInterventions($startI, $endI, $dateCheckedI);
+                $listIntervention = $repository->getToutesInterventions($start, $end, $dateChecked);
                 break;
         }
 
-        return $this->getListeVue($listIntervention, $typeI, $dateCheckedI, $startI, $endI, $form);
+        //return $this->getListeVue($listIntervention, $typeI, $dateCheckedI, $startI, $endI, $form);
+
+        return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+            'liste' => $listIntervention,
+            'typeIntervention' => $typeIntervention,
+            'isCheck' => $dateChecked,
+            'dateStart' => $start,
+            'dateEnd' => $end,
+            'form' => $form->createView()
+        ));
 
     }
 
     /**
      * @return Response Renvoie vers la page d'attribution d'intervention.
      */
-    public function attribueesAction() {
+    public function attribueesAction()
+    {
 
         return $this->render('InterventionBundle:Intervention/Attribuees:liste.html.twig', array(
             'liste' => null
@@ -248,7 +265,8 @@ class InterventionController extends Controller {
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function supprimerAction($id) {
+    public function supprimerAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
         $repository = $this->getInterventionRepository();
         $intervention = $repository->find($id);
@@ -258,9 +276,10 @@ class InterventionController extends Controller {
         return $this->redirectToRoute('intervention_list');
     }
 
-    public function deleteInterventionsAction(Request $request) {
-        if($request->isXmlHttpRequest()) {
-            $ids = json_decode( $request->request->get('ids'));
+    public function deleteInterventionsAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $ids = json_decode($request->request->get('ids'));
 
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('InterventionBundle:Intervention');
@@ -277,7 +296,8 @@ class InterventionController extends Controller {
     /**
      *
      */
-    public function ajouterIntervention(){
+    public function ajouterIntervention()
+    {
 
     }
 
@@ -288,7 +308,8 @@ class InterventionController extends Controller {
      * @param object $sourceObject
      * @return object
      */
-    function cast($destination, $sourceObject) {
+    function cast($destination, $sourceObject)
+    {
         if (is_string($destination)) {
             $destination = new $destination();
         }
@@ -302,7 +323,7 @@ class InterventionController extends Controller {
             if ($destinationReflection->hasProperty($name)) {
                 $propDest = $destinationReflection->getProperty($name);
                 $propDest->setAccessible(true);
-                $propDest->setValue($destination,$value);
+                $propDest->setValue($destination, $value);
             } else {
                 $destination->$name = $value;
             }

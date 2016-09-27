@@ -4,12 +4,12 @@ intervention_request:
         _controller: InterventionBundle:Intervention:demande
 
 intervention_list:
-    path:   /intervention/{typeI}
+    path:   /intervention
     defaults:
         _controller: InterventionBundle:Intervention:liste
-        typeI: ""
-    requirements:
-        typeI: "plaidoyer|frimousse|autreIntervention"
+#        typeI: ""
+#    requirements:
+#        typeI: "plaidoyer|frimousse|autreIntervention"
 
 intervention_attributed:
     path: /intervention/attribuees
@@ -21,11 +21,9 @@ intervention_view:
     requirements:
         id: \d+
 
-
 intervention_cancel:
     path: /intervention/annuler/{id}
     defaults: {_controller: InterventionBundle:Intervention:annuler}
-
 
 etablissement_list:
     path:   /etablissement/{typeE}
@@ -40,4 +38,4 @@ etablissement_view:
     defaults:
         _controller: InterventionBundle:Etablissement:consultation
     requirements:
-        id: \d
+        id: \d+

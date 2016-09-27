@@ -10,6 +10,7 @@
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\NiveauThemeMock;
 use Unipik\ArchitectureBundle\Entity\NiveauTheme;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
+use \Tests\Unipik\Unit\UserBundle\Entity\Mocks\ComiteMock;
 
 class NiveauThemeTest extends EntityTestCase {
 
@@ -34,8 +35,26 @@ class NiveauThemeTest extends EntityTestCase {
         $nt->setTheme("enfants et soldats");
         $nt->setNiveau("grande section");
 
+        $c1 = ComiteMock::create();
+        $nt->addComite($c1);
+        $c2 = ComiteMock::create();
+        $nt->addComite($c2);
+
         $this->assertEquals($nt->getTheme(),"enfants et soldats");
         $this->assertEquals($nt->getNiveau(), "grande section");
+    }
+
+    /**
+     * @dataProvider badEntityProvider
+     * @expectedException \Doctrine\DBAL\Exception\DriverException
+     */
+    public function testBadEntities($e)
+    {
+        parent::testBadEntities($e);
+
+        $this->markTestIncomplete(
+            'Entité NiveauTheme à modifier, niveau et theme ne doivent pas pouvoir être nuls'
+        );
     }
 
     public function badEntityProvider() {

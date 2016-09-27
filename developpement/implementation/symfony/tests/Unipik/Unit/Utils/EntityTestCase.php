@@ -14,7 +14,7 @@ abstract class EntityTestCase extends KernelTestCase {
 
     protected static $repository = "";
 
-    public function provider() {
+    public function validEntityProvider() {
         $e = $this->testCreate();
 
         return [
@@ -25,7 +25,7 @@ abstract class EntityTestCase extends KernelTestCase {
 
 
     /**
-     * @dataProvider provider
+     * @dataProvider validEntityProvider
      */
     public function testPersist($e) {
         self::bootKernel();
@@ -54,7 +54,7 @@ abstract class EntityTestCase extends KernelTestCase {
 
     /**
      * @depends testRetrieve
-     * @dataProvider provider
+     * @dataProvider validEntityProvider
      */
     public function testRemove($e) {
         self::bootKernel();

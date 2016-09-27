@@ -49,13 +49,14 @@ class RegistrationController extends BaseController {
         // Après le submit du formulaire
         if ($form->isValid()) {
 
-            $activitiesArray = $form->get("activitesPotentielles")->getData(); //récup les activités choisies sur le form + format pour persist
-            $activitiesString = $this->arrayToString($activitiesArray);
-            $user->setActivitesPotentielles($activitiesString);
-
             $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
             $responsibilitiesString = $this->arrayToString($responsibilitiesArray);
             $user->setResponsabiliteActivite($responsibilitiesString);
+
+            $activitiesArray = $form->get("activitesPotentielles")->getData(); //récup les activités choisies sur le form + format pour persist
+            $activitiesString = $this->arrayToString($activitiesArray);
+            $activitiesString = $this->setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString);
+            $user->setActivitesPotentielles($activitiesString);
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
@@ -97,6 +98,27 @@ class RegistrationController extends BaseController {
             }
         }
         return $string.'}';
+    }
+
+    public function setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString) {
+        $activitiesString = trim($activitiesString, '}');
+        if ($activitiesString != '{')
+            $activitiesString = $activitiesString.',';
+        if(($key = array_search('(admin_region)', $responsibilitiesArray)) !== false) {
+            unset($responsibilitiesArray[$key]);
+        }
+        if(($key = array_search('(admin_comite)', $responsibilitiesArray)) !== false) {
+            unset($responsibilitiesArray[$key]);
+        }
+        if (empty($responsibilitiesArray))
+            $activitiesString = trim($activitiesString, ',');
+        foreach ($responsibilitiesArray as $value) {
+            $activitiesString = $activitiesString.$value;
+            if($value !== end($responsibilitiesArray)) {
+                $activitiesString = $activitiesString.',';
+            }
+        }
+        return $activitiesString.'}';
     }
 
     public function confirmedAction() {

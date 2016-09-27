@@ -158,7 +158,7 @@ iframe{
     border: none;
     background-color: transparent;
     margin: auto;
-    padding-left: 15px;
+    padding-left: 11px;
 }
 
 .infoContainer {
@@ -178,6 +178,9 @@ iframe{
 @media (max-width: 768px) {
     .logoGris{
         display: none !important;
+    }
+    .jumbotron{
+        padding-left: 30px !important;
     }
 }
 

@@ -255,7 +255,7 @@
         <div class="row">
             <div class='well'>
 
-                {{ form_start(form, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
                 <h5>Type d'intervention :</h5>
                 {{ form_widget(form.typeIntervention) }}
                 <br/>

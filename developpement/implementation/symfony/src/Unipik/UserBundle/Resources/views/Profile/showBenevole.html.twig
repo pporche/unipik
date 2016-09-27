@@ -97,7 +97,7 @@
                             </ul>
                         {% else %}
                             <div class="col-lg-offset-1 col-sm-7">
-                                Auncun
+                                Aucun
                             </div>
                         {% endif %}
                     </div>
@@ -106,51 +106,11 @@
                     <div class="circle circleTwo">
                         <img src="{{ asset('img/briefcase.png') }}">
                     </div>
-                    <h3>Domaines d'activités : </h3>
-                    <div class="row">
-                        {% if (benevole.activitesPotentielles == "" or benevole.activitesPotentielles == NULL) %}
-                            <div class="col-lg-offset-1 col-sm-7">
-                                Auncun
-                            </div>
-                        {% else %}
-                            <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                                {% if ('plaidoyer' in benevole.activitesPotentielles ) %}
-                                    <li class="list-group-item">
-                                        Plaidoyer
-                                    </li>
-                                {% endif %}
-                                {% if ('frimousse' in benevole.activitesPotentielles) %}
-                                    <li class="list-group-item">
-                                        Frimousse
-                                    </li>
-                                {% endif %}
-                                {% if ('actions_ponctuelles' in benevole.activitesPotentielles) %}
-                                    <li class="list-group-item">
-                                        Actions ponctuelles
-                                    </li>
-                                {% endif %}
-                                {% if ('projets' in benevole.activitesPotentielles) %}
-                                    <li class="list-group-item">
-                                        Projets
-                                    </li>
-                                {% endif %}
-                                {% if ('projets' in benevole.activitesPotentielles) %}
-                                    <li class="list-group-item">
-                                        Autre
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="col-sm-4 containerThree">
-                    <div class="circle circleThree">
-                        <img src="{{ asset('img/help.png') }}">
-                    </div>
+
                     <h3>Responsabilités : </h3>
                     {% if (benevole.responsabiliteActivite == "" or benevole.responsabiliteActivite == NULL) %}
                         <div class="col-lg-offset-1 ">
-                            Auncune
+                            Aucune
                         </div>
                     {% else %}
                         <ul class="list-group col-lg-offset-1 col-sm-7 ">
@@ -191,6 +151,49 @@
                             {% endif %}
                         </ul>
                     {% endif %}
+
+
+                </div>
+                <div class="col-sm-4 containerThree">
+                    <div class="circle circleThree">
+                        <img src="{{ asset('img/help.png') }}">
+                    </div>
+                    <h3>Domaines d'activités : </h3>
+                    <div class="row">
+                        {% if (benevole.activitesPotentielles == "" or benevole.activitesPotentielles == NULL) %}
+                            <div class="col-lg-offset-1 col-sm-7">
+                                Aucun
+                            </div>
+                        {% else %}
+                            <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                                {% if ('plaidoyer' in benevole.activitesPotentielles ) %}
+                                    <li class="list-group-item">
+                                        Plaidoyer
+                                    </li>
+                                {% endif %}
+                                {% if ('frimousse' in benevole.activitesPotentielles) %}
+                                    <li class="list-group-item">
+                                        Frimousse
+                                    </li>
+                                {% endif %}
+                                {% if ('actions_ponctuelles' in benevole.activitesPotentielles) %}
+                                    <li class="list-group-item">
+                                        Actions ponctuelles
+                                    </li>
+                                {% endif %}
+                                {% if ('projets' in benevole.activitesPotentielles) %}
+                                    <li class="list-group-item">
+                                        Projets
+                                    </li>
+                                {% endif %}
+                                {% if ('projets' in benevole.activitesPotentielles) %}
+                                    <li class="list-group-item">
+                                        Autre
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
@@ -235,7 +238,7 @@
                                     </ul>
                                 {% else %}
                                     <div class="col-lg-offset-1 col-sm-7">
-                                        Auncun
+                                        Aucun
                                     </div>
                                 {% endif %}
                             </div>-->

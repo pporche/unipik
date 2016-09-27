@@ -165,7 +165,7 @@
                         Enseignement
                     {% endif %}
                     </td>
-                    <td><a href="{{ path('intervention_view', {id: etablissement.id}) }}" class="btn btn-primary">Voir détails</a></td>
+                    <td><a href="{{ path('etablissement_view', {id: etablissement.id}) }}" class="btn btn-primary">Voir détails</a></td>
                     {% if is_granted('ROLE_ADMIN') %}
                         <td>
                             <div class="checkbox">

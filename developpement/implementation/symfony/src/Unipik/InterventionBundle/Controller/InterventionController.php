@@ -161,6 +161,7 @@ class InterventionController extends Controller {
     public function consultationAction($id) {
         // Faire la vérication si l'intervention est un plaidoyer, frimousse ou autre
         // Et appeler la vue correspondante
+
         return $this->getConsultationVue();
     }
 

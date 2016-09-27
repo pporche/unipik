@@ -176,8 +176,8 @@ class InterventionController extends Controller {
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
 
+        $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
         $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
-        $dateChecked = $form->get("date")->getData();
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
 

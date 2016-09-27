@@ -21,15 +21,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * Date: 19/04/16
  * Time: 11:55
  */
-class InterventionController extends Controller
-{
+class InterventionController extends Controller {
 
     /**
      * @param $request Request
      * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention.
      */
-    public function demandeAction(Request $request)
-    {
+    public function demandeAction(Request $request) {
 
         $demande = new Demande();
         $form = $this->createForm(DemandeType::class, $demande);
@@ -146,8 +144,7 @@ class InterventionController extends Controller
     /**
      * @return Response Renvoie vers la page de consultation liée à l'établissement.
      */
-    public function getConsultationVue()
-    {
+    public function getConsultationVue() {
         return $this->render('InterventionBundle:Intervention:consultation.html.twig');
     }
 
@@ -156,35 +153,16 @@ class InterventionController extends Controller
      * @return Response Permet de récupérer la vue consultation pour l'héritage.
      * @Route("/intervention/{id}", name="intervention_view")
      */
-    public function consultationAction($id)
-    {
+    public function consultationAction($id) {
         // Faire la vérication si l'intervention est un plaidoyer, frimousse ou autre
         // Et appeler la vue correspondante
         return $this->getConsultationVue();
     }
 
     /**
-     * @param $liste array Liste des établissements.
-     * @return Response Renvoie vers la page permettant l'affichage de l'ensemble des interventions.
-     */
-    public function getListeVue($liste, $typeI, $dateCheckedI, $startI, $endI, $form)
-    {
-
-        return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
-            'liste' => $liste,
-            'typeIntervention' => $typeI,
-            'isCheck' => $dateCheckedI,
-            'dateStart' => $startI,
-            'dateEnd' => $endI,
-            'form' => $form->createView()
-        ));
-    }
-
-    /**
      * @return RepositoryFactory Renvoie le repository Intervention.
      */
-    public function getInterventionRepository()
-    {
+    public function getInterventionRepository() {
         $em = $this->getDoctrine()->getManager();
         return $em->getRepository('InterventionBundle:Intervention');
     }
@@ -194,49 +172,30 @@ class InterventionController extends Controller
      */
     public function listeAction(Request $request) {
 
-        $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET');
+        $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
-//        $form = $this->get('form.factory')->create(RechercheAvanceeType::class);
 
-//        if ($request->isMethod('GET') && $form->handleRequest($request)->isValid()) {
-////            $typeIntervention = $form->get("typeIntervention")->getData();
-////            $dateChecked = $form->get("date")->getData();
-////            $start = $form->get("start")->getData();
-////            $end = $form->get("end")->getData();
-////            $request->getSession()->set('startI',$start);
-////            $request->getSession()->set('endI',$end);
-////            $request->getSession()->set('dateCheckedI',$dateChecked);
-//            //return $this->redirectToRoute('intervention_list');
-//        }
-
-        $typeIntervention = $form->get("typeIntervention")->getData();
+        $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
         $dateChecked = $form->get("date")->getData();
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
-//        $startI = $request->getSession()->get('startI');
-//        $endI = $request->getSession()->get('endI');
-//        $dateCheckedI = $request->getSession()->get('dateCheckedI');
+
+        $repository = $this->getInterventionRepository();
         switch ($typeIntervention) {
             case "plaidoyer":
-                $repository = $this->getInterventionRepository();
                 $listIntervention = $repository->getPlaidoyers($start, $end, $dateChecked);
                 break;
             case "frimousse":
-                $repository = $this->getInterventionRepository();
                 $listIntervention = $repository->getFrimousses($start, $end, $dateChecked);
                 break;
             case "autreIntervention":
-                $repository = $this->getInterventionRepository();
                 $listIntervention = $repository->getAutresInterventions($start, $end, $dateChecked);
                 break;
             default:
-                $repository = $this->getInterventionRepository();
                 $listIntervention = $repository->getToutesInterventions($start, $end, $dateChecked);
                 break;
         }
-
-        //return $this->getListeVue($listIntervention, $typeI, $dateCheckedI, $startI, $endI, $form);
 
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
             'liste' => $listIntervention,
@@ -252,8 +211,7 @@ class InterventionController extends Controller
     /**
      * @return Response Renvoie vers la page d'attribution d'intervention.
      */
-    public function attribueesAction()
-    {
+    public function attribueesAction() {
 
         return $this->render('InterventionBundle:Intervention/Attribuees:liste.html.twig', array(
             'liste' => null
@@ -264,8 +222,7 @@ class InterventionController extends Controller
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function supprimerAction($id)
-    {
+    public function supprimerAction($id) {
         $em = $this->getDoctrine()->getManager();
         $repository = $this->getInterventionRepository();
         $intervention = $repository->find($id);
@@ -275,8 +232,7 @@ class InterventionController extends Controller
         return $this->redirectToRoute('intervention_list');
     }
 
-    public function deleteInterventionsAction(Request $request)
-    {
+    public function deleteInterventionsAction(Request $request) {
         if ($request->isXmlHttpRequest()) {
             $ids = json_decode($request->request->get('ids'));
 
@@ -293,22 +249,13 @@ class InterventionController extends Controller
     }
 
     /**
-     *
-     */
-    public function ajouterIntervention()
-    {
-
-    }
-
-    /**
      * Class casting
      *
      * @param string|object $destination
      * @param object $sourceObject
      * @return object
      */
-    function cast($destination, $sourceObject)
-    {
+    function cast($destination, $sourceObject) {
         if (is_string($destination)) {
             $destination = new $destination();
         }

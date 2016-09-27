@@ -358,9 +358,11 @@
                         </a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-danger" onclick="deleteInterventions()">
-                            <i class="glyphicon glyphicon-trash"></i>
-                            &nbsp Supprimer</button>
+                        {% if liste is not empty %}
+                            <button type="button" class="btn btn-danger" onclick="deleteInterventions()">
+                                <i class="glyphicon glyphicon-trash"></i>
+                                &nbsp Supprimer</button>
+                        {% endif %}
                     </td>
                 </tr>
             {% endif %}

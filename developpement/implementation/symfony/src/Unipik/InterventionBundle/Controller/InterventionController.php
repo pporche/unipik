@@ -131,8 +131,6 @@ class InterventionController extends Controller {
             /*if(!in_array((Array) $institute->getContact(),(Array) $contactPers->getEtablissement()))
                 $contactPers->addEtablissement($institute);*/
 
-            return new Response(\Doctrine\Common\Util\Debug::dump((in_array((Array) $institute->getContact(),(Array) $contactPers->getEtablissement()))));
-
             // Etablissement non présent est sauvegardé
             $demande->setListeSemaine($this->arrayToString($listWeek));
 
@@ -155,7 +153,7 @@ class InterventionController extends Controller {
             $session =$request->getSession();
             $em->flush();
 
-            return new Response(\Doctrine\Common\Util\Debug::dump(($demande->getMomentsVoulus())));
+
             $session->getFlashBag()->add('notice', array(
                 'title' => 'Félicitation',
                 'message' => 'Votre demande d/\'intervention a bien été enregistrée. Nous vous contacterons sous peu',

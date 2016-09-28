@@ -158,10 +158,18 @@ class InterventionController extends Controller
      */
     public function consultationAction($id)
     {
-        // Faire la vérication si l'intervention est un plaidoyer, frimousse ou autre
-        // Et appeler la vue correspondante
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('InterventionBundle:Intervention');
+        $intervention = $repository->find($id);
 
-        return $this->getConsultationVue();
+        if($intervention->isFrimousse()){
+            return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig',array('intervention' => $intervention));
+        } elseif ($intervention->isPlaidoyer()){
+           return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig',array('intervention' => $intervention));
+        }
+        else{
+            return $this->render('InterventionBundle:Intervention:consultation.html.twig',array('intervention' => $intervention));
+        }
     }
 
     /**

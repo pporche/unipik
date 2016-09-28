@@ -23,8 +23,10 @@ class EtablissementController extends Controller {
      * @return Response Renvoie vers la page de consultation liée à l'établissement.
      */
     public function consultationAction($id) {
-
-        return $this->render('InterventionBundle:Etablissement:consultation.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('InterventionBundle:Etablissement');
+        $etablissement = $repository->find($id);
+        return $this->render('InterventionBundle:Etablissement:consultation.html.twig',array('etablissement' => $etablissement));
     }
 
     /**

@@ -20,8 +20,6 @@ class InterventionType extends AbstractFieldsetType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
-            ->add('plageDate', PlageDateType::class, array('label' => 'Plage de dates'))
-            ->add('jour', JourInterventionType::class, array('label' => "Jour d'intervention"))
             ->add('materiel', MaterielType::class)
             ->add('eleves', ElevesType::class, array('label' => 'Élèves'))
             ->add('themes', ThemesType::class)

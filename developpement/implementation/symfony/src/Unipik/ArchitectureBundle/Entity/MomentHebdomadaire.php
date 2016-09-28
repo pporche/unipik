@@ -42,10 +42,10 @@ class MomentHebdomadaire
      * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Demande", inversedBy="momentsVoulus")
      * @ORM\JoinTable(name="demande_moments_voulus",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="demande_en_cours", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="moments_voulus", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="moments_voulus", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="demande_en_cours", referencedColumnName="id")
      *   }
      * )
      */
@@ -57,10 +57,10 @@ class MomentHebdomadaire
      * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Demande", inversedBy="momentsAEviter")
      * @ORM\JoinTable(name="demande_moments_a_eviter",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="demande", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="moments_a_eviter", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="moments_a_eviter", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="demande", referencedColumnName="id")
      *   }
      * )
      */

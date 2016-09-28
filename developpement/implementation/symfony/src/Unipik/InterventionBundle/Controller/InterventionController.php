@@ -7,14 +7,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Unipik\InterventionBundle\Entity\Intervention;
 use Unipik\InterventionBundle\Form\DemandeType;
 use Unipik\UserBundle\Entity\Contact;
 use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\Etablissement;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 use Unipik\InterventionBundle\Entity\Demande;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route; //Utilisé
+use Unipik\UserBundle\Entity\Comite;
+use Unipik\ArchitectureBundle\Entity\MomentHebdomadaire;
 /**
  * Created by PhpStorm.
  * User: florian
@@ -33,38 +35,41 @@ class InterventionController extends Controller {
         $form = $this->createForm(DemandeType::class, $demande);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $dt = new \DateTime();
+
+        if($form->isValid()) {
+            $dt =new \DateTime();
             $demande->setDate($dt);
-            /*Sauvegarde du contact */
-            // Extraire les données
-            $test = (object)$form->get('Contact')->getData();
+
+            // handle the contact
+
+            $test = (object) $form->get('Contact')->getData();
+
             // Extraire le contact
             $em = $this->getDoctrine()->getManager();
             $contactPers = new Contact();
             $this->cast($contactPers, $test);
             $contactPers->setRespoEtablissement(false);
             $contactPers->setTypeActivite('{}');
+
+
+            // handle the interventions
+            $interventionsRawList = $form->get('Intervention')->getData();
+            $interventionList = [];
+            $listWeek = [];
+
+            $startWeek = $form->get('plageDate')->get('debut')->getData()->format("W");
+            $endWeek = $form->get('plageDate')->get('fin')->getData()->format("W");
+            if($startWeek > $endWeek)
+                $endWeek = 1;
+            for($week = $startWeek; $week <= $endWeek; $week++)
+                $listWeek[] = '('.$week.')';
+
+            $this->treatmentInterventions($interventionsRawList,$interventionList);
+            $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);
-            return new Response(\Doctrine\Common\Util\Debug::dump(($test)));
-            $em = $em->getRepository('UserBundle:Contact');
-            $contactBase = $em->findOneBy(
-                array(
-                    'nom' => $contactPers->getNom(),
-                    'prenom' => $contactPers->getPrenom(),
-                    'email' => $contactPers->getEmail()
-                )
-            );
 
-            if ($contactBase != null) {
-                $contactPers = $contactBase;
-                $this->getDoctrine()->getManager()->persist($contactPers);
-            }
 
-            $demande->setContact($contactPers);
-            /* Chopper l'établissement */
-
-            $fullForm = (object)$form->getData();
+            $this->treatmentMoment($form->get('jour')->getData(),$demande);
 
             $institute = $form->get('Etablissement')->getData();
 
@@ -101,35 +106,54 @@ class InterventionController extends Controller {
                         'typeCentre' => $institute->getTypeCentre(),
                         'adresse' => $adresseTemp->getId()
                     )
-                );
+
+
+                 );
             }
 
-            $list = [];
-            $instituteResearched = array_filter($instituteResearched);
-            if (($instituteResearched) !== null)
-                foreach ($instituteResearched as $institute) {
+            $list=[];
+            if(($instituteResearched) !== null)
+            {
+                $instituteResearched = array_filter($instituteResearched);
+                foreach($instituteResearched as $institute){
                     $list[] = $institute;
                 }
-
-            if (sizeof($instituteResearched) == 0) {
+            }
+            if(sizeof($instituteResearched) == 0){
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($institute);
             } else
-                $institute = $instituteResearched[0];
+                $institute = array_pop($instituteResearched);
 
-            $demande->getContact()->addEtablissement($institute);
-            // Etablissement non présent est sauvegardé
-            $demande->setListeSemaine('{}');
+            /*if(!in_array((Array) $institute->getContact(),(Array) $contactPers->getEtablissement()))
+                $contactPers->addEtablissement($institute);*/
+
+
+            $demande->setListeSemaine($this->arrayToString($listWeek));
 
             $this->getDoctrine()->getManager()->persist($demande);
             $em = $this->getDoctrine()->getManager();
+
             $em->flush();
-            return new Response(\Doctrine\Common\Util\Debug::dump(($demande)));
-            $session = $request->getSession();
+
+            foreach($interventionList as $intervention){
+                $intervention->setEtablissement($institute);
+                $intervention->setDemande($demande);
+                $this->getDoctrine()->getManager()->persist($intervention);
+            }
+
+            $em->flush();
+
+            $this->linkAllMoments($demande->getMomentsVoulus(),$demande);
+
+            $this->linkAllBMoments($demande->getMomentsAEviter(),$demande);
+            $session =$request->getSession();
+            $em->flush();
+
 
             $session->getFlashBag()->add('notice', array(
                 'title' => 'Félicitation',
-                'message' => 'Votre demande d/\'intervention a bien été enregistrée. Nous vous contacterons sous peu',
+                'message' => 'Votre demande d\'intervention a bien été enregistrée. Nous vous contacterons sous peu',
                 'alert' => 'success'
             ));
 
@@ -254,6 +278,25 @@ class InterventionController extends Controller {
     }
 
     /**
+     *
+     */
+    public function ajouterIntervention(){
+
+    }
+
+    public function arrayToString($array) {
+        $string = '{';
+        foreach ($array as $value) {
+            $string = $string.$value;
+            if($value !== end($array)) {
+                $string = $string.',';
+            }
+        }
+        return $string.'}';
+    }
+
+    /**
+
      * Class casting
      *
      * @param string|object $destination
@@ -282,4 +325,135 @@ class InterventionController extends Controller {
         return $destination;
     }
 
+    /**
+     * @param $interventionsRawList
+     * @param $interventionList
+     * Iterates over the interventions requested to get the parameters
+     */
+    function treatmentInterventions($interventionsRawList,&$interventionList){
+
+        $comiteTest = $this->getDoctrine()->getManager()->getRepository('UserBundle:Comite')->find(1);
+        if($interventionsRawList !== null){
+            $interventionsRawList = array_filter($interventionsRawList);
+            foreach($interventionsRawList as $interventionRaw){
+                $interventionTemp = new Intervention();
+                $interventionTemp->setRealisee(false);
+                $interventionTemp->setDate(null);
+                $interventionTemp->setMateriauxFrimousse(null);
+                $interventionTemp->setMaterielDispoPlaidoyer($this->arrayToString($interventionRaw["materiel"]["materiel"]));
+                $interventionTemp->setNbPersonne($interventionRaw["eleves"]["nbEleves"]);
+
+
+                $interventionTemp->setComite($comiteTest);
+                $interventionList[] = $interventionTemp;
+            }
+        }
+
+    }
+
+
+    /**
+     * @param $contactPers
+     * Iterates over a contact to check if she/he is already in the db, take the one from the db in the last case
+     */
+    function treatmentContact(&$contactPers){
+
+        $em = $this->getDoctrine()->getManager();
+        $em = $em->getRepository('UserBundle:Contact');
+        $contactBase = $em->findOneBy(
+            array(
+                'nom' => $contactPers->getNom(),
+                'prenom' => $contactPers->getPrenom(),
+                'email' => $contactPers->getEmail()
+            )
+        );
+
+        if(!is_null($contactBase)){
+            $contactPers = $contactBase;
+        }
+        else{
+            $this->getDoctrine()->getManager()->persist($contactPers);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+    }
+
+    /**
+     * @param $moments
+     * @param Demande $demande
+     *  Iterates over the moments to fill the one from the demand
+     */
+    function treatmentMoment($moments,\Unipik\InterventionBundle\Entity\Demande &$demande){
+        $this->treatmentAvoidDay(array_keys($moments,'a-eviter'),$demande);
+        $this->treatmentAllDay(array_keys($moments,'indifferent'),$demande);
+    }
+
+    function treatmentAvoidDay(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande){
+        foreach($days as $day){
+            $moment = new MomentHebdomadaire();
+            $moment->setJour($day);
+            $moment->setMoment('matin');
+
+            $this->getDoctrine()->getManager()->persist($moment);
+            $this->getDoctrine()->getManager()->flush();
+            $demande->getMomentsAEviter()->add($moment);
+
+
+            $momentP = new MomentHebdomadaire();
+            $momentP->setJour($day);
+            $momentP->setMoment('apres-midi');
+            $this->getDoctrine()->getManager()->persist($momentP);
+            $this->getDoctrine()->getManager()->flush();
+            $demande->getMomentsAEviter()->add($momentP);
+
+
+            $momentL = new MomentHebdomadaire();
+            $momentL->setJour($day);
+            $momentL->setMoment('soir');
+            $this->getDoctrine()->getManager()->persist($momentL);
+            $this->getDoctrine()->getManager()->flush();
+            $demande->getMomentsAEviter()->add($momentL);
+        }
+    }
+
+    function treatmentAllDay(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande){
+        foreach($days as $day){
+            $moment = new MomentHebdomadaire();
+            $moment->setJour($day);
+            $moment->setMoment('matin');
+
+            $this->getDoctrine()->getManager()->persist($moment);
+            $this->getDoctrine()->getManager()->flush();
+            $demande->getMomentsVoulus()->add($moment);
+
+
+            $momentP = new MomentHebdomadaire();
+            $momentP->setJour($day);
+            $momentP->setMoment('apres-midi');
+            $this->getDoctrine()->getManager()->persist($momentP);
+            $this->getDoctrine()->getManager()->flush();
+            $demande->getMomentsVoulus()->add($momentP);
+
+
+            $momentL = new MomentHebdomadaire();
+            $momentL->setJour($day);
+            $momentL->setMoment('soir');
+            $this->getDoctrine()->getManager()->persist($momentL);
+            $this->getDoctrine()->getManager()->flush();
+            $demande->getMomentsVoulus()->add($momentL);
+        }
+    }
+
+    function linkAllMoments($moments,\Unipik\InterventionBundle\Entity\Demande &$demande ){
+
+        foreach($moments as $moment){
+            $moment->addDemandeMomentsVoulus($demande);
+        }
+    }
+
+    function linkAllBMoments($moments,\Unipik\InterventionBundle\Entity\Demande &$demande ){
+        foreach($moments as $moment){
+            $moment->addDemandeMomentsAEviter($demande);
+        }
+    }
 }

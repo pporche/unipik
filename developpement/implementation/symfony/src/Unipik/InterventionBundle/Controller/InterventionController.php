@@ -14,6 +14,7 @@ use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\Etablissement;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 use Unipik\InterventionBundle\Entity\Demande;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route; //Utilisé
 use Unipik\UserBundle\Entity\Comite;
 use Unipik\ArchitectureBundle\Entity\MomentHebdomadaire;
 /**
@@ -127,6 +128,8 @@ class InterventionController extends Controller {
             /*if(!in_array((Array) $institute->getContact(),(Array) $contactPers->getEtablissement()))
                 $contactPers->addEtablissement($institute);*/
 
+            return new Response(\Doctrine\Common\Util\Debug::dump((in_array((Array) $institute->getContact(),(Array) $contactPers->getEtablissement()))));
+
             // Etablissement non présent est sauvegardé
             $demande->setListeSemaine($this->arrayToString($listWeek));
 
@@ -149,7 +152,7 @@ class InterventionController extends Controller {
             $session =$request->getSession();
             $em->flush();
 
-
+            return new Response(\Doctrine\Common\Util\Debug::dump(($demande->getMomentsVoulus())));
             $session->getFlashBag()->add('notice', array(
                 'title' => 'Félicitation',
                 'message' => 'Votre demande d/\'intervention a bien été enregistrée. Nous vous contacterons sous peu',

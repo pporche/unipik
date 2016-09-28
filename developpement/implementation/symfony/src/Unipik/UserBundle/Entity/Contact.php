@@ -46,25 +46,25 @@ class Contact
     /**
      * @var string
      *
-     * @ORM\Column(name="tel_fixe", type="string", length=10, nullable=true)
+     * @ORM\Column(name="tel_fixe", type="string", length=30, nullable=true)
      */
     private $telFixe;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tel_portable", type="string", length=10,  nullable=true)
+     * @ORM\Column(name="tel_portable", type="string", length=30,  nullable=true)
      */
     private $telPortable;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type_contact", type="string", length=20, nullable=false)
+     * @ORM\Column(name="type_contact", type="string", length=30, nullable=false)
      */
     private $typeContact;
 
-    
+
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -114,7 +114,7 @@ class Contact
     /**
      * @var string
      *
-     * @ORM\Column(name="type_activite", type="string", length=100, nullable=true)
+     * @ORM\Column(name="type_activite", type="string", length=500, nullable=true)
      */
     private $typeActivite;
 

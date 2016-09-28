@@ -39,7 +39,7 @@ class Vente
     /**
      * @var string
      *
-     * @ORM\Column(name="remarques", type="text", nullable=true)
+     * @ORM\Column(name="remarques", type="string", length=500, nullable=true)
      */
     private $remarques;
 

@@ -1,0 +1,56 @@
+# version 1.00 date 26/09/2016 auteur(s) Julie Pain
+Departement:
+    type: entity
+    table: departement
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nom:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        numero:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+    manyToOne:
+        region:
+            targetEntity: Region
+            cascade: [ "persist" ]
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                region_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        comite:
+            targetEntity: Unipik\UserBundle\Entity\Comite
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: departement
+            joinTable:
+                name: comite_departement
+                joinColumns:
+                    -
+                        name: comite_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: departement_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

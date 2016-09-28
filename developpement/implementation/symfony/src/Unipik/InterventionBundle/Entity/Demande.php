@@ -32,7 +32,7 @@ class Demande
     /**
      * @var string
      *
-     * @ORM\Column(name="liste_semaine", type="string", length=300, nullable=false)
+     * @ORM\Column(name="liste_semaine", type="string", length=500, nullable=false)
      */
     private $listeSemaine;
 
@@ -50,14 +50,14 @@ class Demande
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\InterventionBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsVoulus")
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsVoulus")
      */
     private $momentsVoulus;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\InterventionBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsAEviter")
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsAEviter")
      */
     private $momentsAEviter;
 

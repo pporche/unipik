@@ -42,14 +42,14 @@ class Benevole extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="tel_fixe", type="string", length=10, nullable=true)
+     * @ORM\Column(name="tel_fixe", type="string", length=30, nullable=true)
      */
     protected $telFixe;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tel_portable", type="string", length=10, nullable=true)
+     * @ORM\Column(name="tel_portable", type="string", length=30, nullable=true)
      */
     protected $telPortable;
 
@@ -57,7 +57,7 @@ class Benevole extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="activites_potentielles", type="string", length=100, nullable=true)
+     * @ORM\Column(name="activites_potentielles", type="string", length=500, nullable=true)
      * @example : '{(frimousses),(plaidoyers),...}'
      */
     protected $activitesPotentielles;
@@ -65,7 +65,7 @@ class Benevole extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="responsabilite_activite", type="string", length=120, nullable=true)
+     * @ORM\Column(name="responsabilite_activite", type="string", length=500, nullable=true)
      * @example : '{(frimousses),(admin_region),...}'
      */
     protected $responsabiliteActivite;

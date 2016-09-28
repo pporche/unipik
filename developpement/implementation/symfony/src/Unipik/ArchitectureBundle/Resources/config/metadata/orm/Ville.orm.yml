@@ -1,7 +1,7 @@
-# version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
-NiveauTheme:
+# version 1.00 date 26/09/2016 auteur(s) Julie Pain
+Ville:
     type: entity
-    table: niveau_theme
+    table: ville
     id:
         id:
             type: integer
@@ -12,24 +12,18 @@ NiveauTheme:
             generator:
                 strategy: SEQUENCE
     fields:
-        niveau:
+        nom:
             type: string
-            nullable: true
-            length: 30
-            options:
-                fixed: false
-        theme:
-            type: string
-            nullable: true
+            nullable: false
             length: 100
             options:
                 fixed: false
     manyToMany:
-        comite:
-            targetEntity: Unipik\UserBundle\Entity\Comite
+        codePostal:
+            targetEntity: CodePostal
             cascade: {  }
             fetch: LAZY
-            mappedBy: niveauTheme
+            mappedBy: ville
             inversedBy: null
             joinTable: null
             orderBy: null

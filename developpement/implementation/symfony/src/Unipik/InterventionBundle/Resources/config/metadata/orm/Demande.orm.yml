@@ -22,7 +22,7 @@ Demande:
         listeSemaine:
             type: string
             nullable: false
-            length: 300
+            length: 500
             options:
                 fixed: false
             column: liste_semaine

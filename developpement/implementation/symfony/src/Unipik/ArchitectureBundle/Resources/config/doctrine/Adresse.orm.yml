@@ -24,14 +24,6 @@ Unipik\ArchitectureBundle\Entity\Adresse:
             length: 500
             options:
                 fixed: false
-        codePostal:
-            type: string
-            nullable: false
-            length: null
-            options:
-                fixed: false
-            column: code_postal
-            column: numero_de_rue
         complement:
             type: string
             nullable: true
@@ -39,9 +31,10 @@ Unipik\ArchitectureBundle\Entity\Adresse:
             options:
                 fixed: false
         geolocalisation:
-            type: string
+            type: geography
             nullable: true
-            length: 255
             options:
                 fixed: false
+                geography_type: POINT
+                srid: 4326
     lifecycleCallbacks: {  }

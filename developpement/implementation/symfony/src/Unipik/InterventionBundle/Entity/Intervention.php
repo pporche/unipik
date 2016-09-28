@@ -32,7 +32,7 @@ class Intervention
     /**
      * @var string
      *
-     * @ORM\Column(name="lieu", type="string", length=40, nullable=true)
+     * @ORM\Column(name="lieu", type="string", length=100, nullable=true)
      */
     private $lieu;
 
@@ -46,14 +46,14 @@ class Intervention
     /**
      * @var string
      *
-     * @ORM\Column(name="remarques", type="text", nullable=true)
+     * @ORM\Column(name="remarques", type="string", length=500 nullable=true)
      */
     private $remarques;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="heure", type="string", length=5, nullable=true)
+     * @ORM\Column(name="heure", type="string", length=30, nullable=true)
      */
     private $heure;
 
@@ -68,7 +68,7 @@ class Intervention
     /**
      * @var string
      *
-     * @ORM\Column(name="materiel_dispo_plaidoyer", type="string", length=80, nullable=true)
+     * @ORM\Column(name="materiel_dispo_plaidoyer", type="string", length=500, nullable=true)
      * @example : '{(enceinte},(autre)'
      */
     private $materielDispoPlaidoyer;
@@ -76,21 +76,21 @@ class Intervention
     /**
      * @var string
      *
-     * @ORM\Column(name="niveau_frimousse", type="string", length(15), nullable=true)
+     * @ORM\Column(name="niveau_frimousse", type="string", length=30, nullable=true)
      */
     private $niveauFrimousse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="materiaux_frimousse", type="string", length=60, nullable=true)
+     * @ORM\Column(name="materiaux_frimousse", type="string", length=500, nullable=true)
      */
     private $materiauxFrimousse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=250, nullable=true)
+     * @ORM\Column(name="description", type="string", length=500, nullable=true)
      */
     private $description;
 
@@ -115,9 +115,9 @@ class Intervention
     private $etablissement;
 
     /**
-     * @var \Unipik\InterventionBundle\Entity\Comite
+     * @var \Unipik\UserBundle\Entity\Comite
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Comite")
+     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Comite")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="comite_id", referencedColumnName="id")
      * })
@@ -451,11 +451,11 @@ class Intervention
     /**
      * Set comite
      *
-     * @param \Unipik\InterventionBundle\Entity\Comite $comite
+     * @param \Unipik\UserBundle\Entity\Comite $comite
      *
      * @return Intervention
      */
-    public function setComite(\Unipik\InterventionBundle\Entity\Comite $comite)
+    public function setComite(\Unipik\UserBundle\Entity\Comite $comite)
     {
         $this->comite = $comite;
 
@@ -465,7 +465,7 @@ class Intervention
     /**
      * Get comite
      *
-     * @return \Unipik\InterventionBundle\Entity\Comite
+     * @return \Unipik\UserBundle\Entity\Comite
      */
     public function getComite()
     {
@@ -499,11 +499,11 @@ class Intervention
     /**
      * Set demande
      *
-     * @param \Unipik\ArchitectureBundle\Entity\Demande $demande
+     * @param \Unipik\InterventionBundle\Entity\Demande $demande
      *
      * @return Intervention
      */
-    public function setDemande(\Unipik\ArchitectureBundle\Entity\Demande $demande)
+    public function setDemande(\Unipik\InterventionBundle\Entity\Demande $demande)
     {
         $this->demande = $demande;
 
@@ -513,7 +513,7 @@ class Intervention
     /**
      * Get demande
      *
-     * @return \Unipik\ArchitectureBundle\Entity\Demande
+     * @return \Unipik\InterventionBundle\Entity\Demande
      */
     public function getDemande()
     {

@@ -1,6 +1,6 @@
 <?php
 // version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
-namespace Unipik\UserBundle\Entity;
+namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,14 +25,14 @@ class Region
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=60, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
     private $nom;
 
     /**
-     * @var \Unipik\UserBundle\Entity\Pays
+     * @var \Unipik\ArchitectureBundle\Entity\Pays
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Pays", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Pays", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="pays_id", referencedColumnName="id")
      * })
@@ -78,11 +78,11 @@ class Region
     /**
      * Set pays
      *
-     * @param \Unipik\UserBundle\Entity\Pays $pays
+     * @param \Unipik\ArchitectureBundle\Entity\Pays $pays
      *
      * @return Region
      */
-    public function setPays(\Unipik\UserBundle\Entity\Pays $pays)
+    public function setPays(\Unipik\ArchitectureBundle\Entity\Pays $pays)
     {
         $this->pays = $pays;
 
@@ -92,7 +92,7 @@ class Region
     /**
      * Get pays
      *
-     * @return \Unipik\UserBundle\Entity\Pays
+     * @return \Unipik\ArchitectureBundle\Entity\Pays
      */
     public function getPays()
     {

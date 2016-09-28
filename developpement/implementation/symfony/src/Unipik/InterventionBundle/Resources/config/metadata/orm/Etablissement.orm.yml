@@ -32,34 +32,34 @@ Etablissement:
         telFixe:
             type: string
             nullable: true
-            length: 10
+            length: 30
             options:
                 fixed: false
             column: tel_fixe
         emails:
             type: string
             nullable: false
-            length: null
+            length: 100
             options:
                 fixed: false
         typeEnseignement:
             type: string
             nullable: true
-            length: null
+            length: 30
             options:
                 fixed: false
             column: type_enseignement
         typeCentre:
             type: string
             nullable: true
-            length: null
+            length: 30
             options:
                 fixed: false
             column: type_centre
         typeAutreEtablissement:
             type: string
             nullable: true
-            length: null
+            length: 30
             options:
                 fixed: false
             column: type_autre_etablissement

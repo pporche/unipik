@@ -19,21 +19,21 @@ Projet:
             scale: 0
             column: chiffre_affaire
         remarques:
-            type: text
+            type: string
             nullable: true
-            length: null
+            length: 500
             options:
                 fixed: false
         type:
             type: string
             nullable: false
-            length: null
+            length: 30
             options:
                 fixed: false
         nom:
             type: string
             nullable: false
-            length: 1000
+            length: 100
             options:
                 fixed: false
     manyToMany:

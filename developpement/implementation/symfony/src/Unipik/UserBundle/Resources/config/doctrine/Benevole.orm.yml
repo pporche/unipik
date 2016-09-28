@@ -31,28 +31,28 @@ Unipik\UserBundle\Entity\Benevole:
         telFixe:
             type: string
             nullable: true
-            length: 10
+            length: 30
             options:
                 fixed: false
             column: tel_fixe
         telPortable:
             type: string
             nullable: true
-            length: 10
+            length: 30
             options:
                 fixed: false
             column: tel_portable
         activitesPotentielles:
             type: string
             nullable: true
-            length: 100
+            length: 500
             options:
                 fixed: false
             column: activites_potentielles
         responsabiliteActivite:
             type: string
             nullable: true
-            length: 120
+            length: 500
             options:
                 fixed: false
             column: responsabilite_activite

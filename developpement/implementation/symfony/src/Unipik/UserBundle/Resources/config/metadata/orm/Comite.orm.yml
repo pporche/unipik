@@ -2,10 +2,6 @@
 Comite:
     type: entity
     table: comite
-    indexes:
-        IDX_DC01CA9F98260155:
-            columns:
-                - region_id
     id:
         id:
             type: integer
@@ -15,25 +11,6 @@ Comite:
             id: true
             generator:
                 strategy: SEQUENCE
-    fields:
-        nomDepartement:
-            type: string
-            nullable: false
-            length: 40
-            options:
-                fixed: false
-            column: nom_departement
-    manyToOne:
-        region:
-            targetEntity: Region
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                region_id:
-                    referencedColumnName: id
-            orphanRemoval: false
     manyToMany:
         niveauTheme:
             targetEntity: Unipik\ArchitectureBundle\Entity\NiveauTheme
@@ -54,6 +31,14 @@ Comite:
             orderBy: null
         benevole:
             targetEntity: Benevole
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: comite
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        departement:
+            targetEntity: Unipik\ArchitectureBundle\Entity\Departement
             cascade: {  }
             fetch: LAZY
             mappedBy: comite

@@ -29,9 +29,9 @@ Unipik\InterventionBundle\Entity\Vente:
             type: date
             nullable: false
         remarques:
-            type: text
+            type: string
             nullable: true
-            length: null
+            length: 500
             options:
                 fixed: false
     manyToOne:

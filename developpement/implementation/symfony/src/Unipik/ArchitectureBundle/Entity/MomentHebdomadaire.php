@@ -25,14 +25,14 @@ class MomentHebdomadaire
     /**
      * @var string
      *
-     * @ORM\Column(name="jour", type="string", nullable=false)
+     * @ORM\Column(name="jour", type="string", length=30, nullable=false)
      */
     private $jour;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="moment", type="string", nullable=false)
+     * @ORM\Column(name="moment", type="string", length=30, nullable=false)
      */
     private $moment;
 

@@ -27,3 +27,8 @@ user_admin_profil_benevole:
     path: /benevole/profile/{username}
     defaults:
         _controller: UserBundle:User:showProfile
+
+user_admin_profil_edit:
+    path: /benevole/profil/edit/{id}
+    defaults:
+            _controller: UserBundle:User:edit

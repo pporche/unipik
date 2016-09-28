@@ -181,6 +181,9 @@ class InterventionController extends Controller {
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
 
+        $page = $request->get("page", 1);
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+
         $repository = $this->getInterventionRepository();
         switch ($typeIntervention) {
             case "plaidoyer":
@@ -198,6 +201,8 @@ class InterventionController extends Controller {
         }
 
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+            'page' => $page,
+            'rowsPerPage' => $rowsPerPage,
             'liste' => $listIntervention,
             'typeIntervention' => $typeIntervention,
             'isCheck' => $dateChecked,

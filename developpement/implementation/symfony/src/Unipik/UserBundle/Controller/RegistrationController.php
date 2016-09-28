@@ -102,6 +102,13 @@ class RegistrationController extends BaseController {
         return $string.'}';
     }
 
+    /**
+     * Add values of responsibilities to the set of potential activities.
+     *
+     * @param $responsibilitiesArray
+     * @param $activitiesString
+     * @return string
+     */
     public function setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString) {
         $activitiesString = trim($activitiesString, '}');
         if ($activitiesString != '{')

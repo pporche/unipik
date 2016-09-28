@@ -3,7 +3,6 @@
 namespace Unipik\InterventionBundle\Controller;
 
 use Doctrine\ORM\Repository\RepositoryFactory;
-use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +14,7 @@ use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\Etablissement;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 use Unipik\InterventionBundle\Entity\Demande;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Unipik\UserBundle\Entity\Comite;
-use Unipik\UserBundle\Entity\Region;
-use Unipik\UserBundle\Entity\Pays;
 use Unipik\ArchitectureBundle\Entity\MomentHebdomadaire;
 /**
  * Created by PhpStorm.

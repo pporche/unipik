@@ -59,7 +59,7 @@ class InterventionController extends Controller {
 
             $startWeek = $form->get('plageDate')->get('debut')->getData()->format("W");
             $endWeek = $form->get('plageDate')->get('fin')->getData()->format("W");
-            if($startWeek > $startWeek)
+            if($startWeek > $endWeek)
                 $endWeek = 1;
             for($week = $startWeek; $week <= $endWeek; $week++)
                 $listWeek[] = '('.$week.')';

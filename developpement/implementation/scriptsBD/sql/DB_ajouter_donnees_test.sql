@@ -15,6 +15,20 @@ INSERT INTO benevole (username, username_canonical, email, email_canonical, enab
 INSERT INTO benevole (username, username_canonical, email, email_canonical, enabled, salt, password, last_login, locked, expired, expires_at, confirmation_token, password_requested_at, roles, credentials_expired, credentials_expire_at, nom, prenom, tel_fixe, tel_portable,adresse_id, activites_potentielles,responsabilite_activite) VALUES ('melissa', 'melissa', 'melissa@melissa.melissa', 'melissa@melissa.melissa', true, '3ar576dvu76soswskk8gwsks8cgkg44', '$2y$13$iUW6/KVzaux5HD0rVkpAq.MJyyKEo8XdKBdFe/DRJKobRauMal3Um', NULL, false, false, NULL, NULL, NULL, 'a:0:{}', false, NULL,'bignoux','melissa','0235490983','0647282552',900, '{(actions_ponctuelles), (projets), (frimousses)}', '{(admin_comite)}');
 
 
+-- benevole_comite 
+
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('2', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('3', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('4', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('5', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('6', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('7', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('8', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('9', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('10', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('11', '1');
+INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('12', '1');
+
 --contacts
 
 INSERT INTO contact (id, email, nom, prenom, tel_fixe, type_contact, type_activite) VALUES (1, 'contact1@contact.fr', 'nom1', 'prenom1', '0235490983', 'enseignant', '{(plaidoyers)}');
@@ -22,6 +36,13 @@ INSERT INTO contact (id, email, nom, tel_fixe, type_contact, est_tuteur) VALUES 
 INSERT INTO contact (id, email, nom, prenom, tel_portable, type_contact, respo_etablissement, type_activite) VALUES (3, 'contact3@contact.fr', 'nom3', 'prenom3', '0247282552', 'eleve', false, '{(plaidoyers), (actions_ponctuelles)}');
 INSERT INTO contact (id, email, nom, prenom, type_contact, est_tuteur) VALUES (4, 'contact4@contact.fr', 'nom4', 'prenom4', 'etudiant', true);
 INSERT INTO contact (id, email, nom, prenom, type_contact, respo_etablissement, type_activite) VALUES (5, 'contact5@contact.fr', 'nom5', 'prenom5', 'autre', true, '{(frimousses), (projets), (autre)}');
+
+-- benevole_contact 
+INSERT INTO appartient (etablissement_id, contact_id) VALUES ('1', '1');
+INSERT INTO appartient (etablissement_id, contact_id) VALUES ('2', '2');
+INSERT INTO appartient (etablissement_id, contact_id) VALUES ('3', '3');
+INSERT INTO appartient (etablissement_id, contact_id) VALUES ('4', '4');
+INSERT INTO appartient (etablissement_id, contact_id) VALUES ('5', '5');
 
 -- demandes
 

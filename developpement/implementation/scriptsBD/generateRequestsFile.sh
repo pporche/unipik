@@ -19,20 +19,20 @@ function insertionBD {
 	   	then
 			if [ -z "$7" ]; #si l'établissement n'a pas de numéro de téléphone (="") on n'entre pas de num de tel dans la BD 
 			then 
-	    		echo "INSERT INTO etablissement (uai, adresse_id, emails, $1) VALUES ($2,'$3', '{($5)}', '$6');" >> $fichierAddEtablissement
+	    		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, emails, $1) VALUES ($2,'$3', '{($5)}', '$6');" 
 			else
 				python python/retirerEspace.py $f > logfile.log 
 				read tel < logfile.log 
-	    		echo "INSERT INTO etablissement (uai, adresse_id, tel_fixe, emails, $1) VALUES ($2, '$3', '$tel', '{($5)}', '$6' );" >> $fichierAddEtablissement
+	    		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, tel_fixe, emails, $1) VALUES ($2, '$3', '$tel', '{($5)}', '$6' );" 
 			fi
 	  	else 
 	  		if [ -z "$f" ];
 	  		then 
-	  			echo "INSERT INTO etablissement (uai, adresse_id, nom, emails, $1) VALUES ($2, '$3', '$4', '{($5)}', '$6');" >> $fichierAddEtablissement
+	  			psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, nom, emails, $1) VALUES ($2, '$3', '$4', '{($5)}', '$6');" 
 	  		else
 	  			python python/retirerEspace.py $f > logfile.log 
 				read tel < logfile.log 
-	  			echo "INSERT INTO etablissement (uai, adresse_id, nom, tel_fixe, emails, $1) VALUES ($2, '$3', '$4', '$tel', '{($5)}', '$6');" >> $fichierAddEtablissement
+	  			psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, nom, tel_fixe, emails, $1) VALUES ($2, '$3', '$4', '$tel', '{($5)}', '$6');" 
 	  		fi
 		fi
 }
@@ -54,41 +54,17 @@ export PGPASSWORD="$password"
 
 
 #Supprime les fichiers contenant les requêtes SQL déjà existant
-if [ -f $fichierAddAdresses ] ; then
-    rm $fichierAddAdresses
-fi
 
-if [ -f $fichierAddEtablissement ] ; then
-    rm $fichierAddEtablissement
-fi
-
-#lecture dans un fichier csv 
-IFS="," # On définit le séparateur 
-echo "Ecriture des requêtes pour remplir la table dans un fichier"
-echo "INSERT INTO adresse (ville, adresse, code_postal) VALUES ('LE HAVRE' ,'adresse', '12345');" >> $fichierAddAdresses
-while read a b c d e f g h i 
-do
-	touch $fichierAddAdresses
-	touch ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/checkAdresses.txt
-	python python/adresseDejaPresente.py "$d" "$a" > logfile.log 
-	read adresseDejaPresente < logfile.log 
-	if [[ $adresseDejaPresente != *"true"* ]]; 
-   	then
-		python python/associerCodePostalVille.py $a > logfile.log #associerCodePostalVille.py va chercher le code postale de la ville en fonction de la ville dans un autre fichier csv, on met le résultat dans le fichier temporaire logfile.file
-		read codePostal < logfile.log #On met le résultat contenu dans le fichier temp dans une variable codePostal
-		#On écrit dans un fichier les commandes SQL à exécuter.
-	    echo "INSERT INTO adresse (ville, adresse, code_postal) VALUES ('$a' ,'$d', '$codePostal');" >> $fichierAddAdresses
-	fi
-done < ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/ressourcesNettoyees/etablissement.csv
-rm ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/checkAdresses.txt
-echo "Fichier contenant les requêtes pour remplir les adresses des établissement rempli"
 echo "remplissage des adresses dans  la DB pour pouvoir créer le fichier de requeêtes de remplissage des établissements"
 psql -U $username -w  -d $dbname  -h 127.0.0.1 -f "${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_adresses.sql"
 
 echo "Remplissage du fichier contenant les requêtes pour remplir la table établissement"
 while read a b c d e f g h i 
 do
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM adresse WHERE adresse = '$d' AND ville='$a';" > idAdresse.txt
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM ville WHERE ville='$a';" > idVille.txt
+	idVille=$(sed '3q;d' < idVille.txt)
+
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM adresse WHERE adresse = '$d' AND ville_id='$idVille';" > idAdresse.txt
 	idAdresse=$(sed '3q;d' < idAdresse.txt)
 
 	case $c in 
@@ -139,7 +115,26 @@ do
 	esac
 
 done < ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/ressourcesNettoyees/etablissement.csv
+
 echo "Fichier contenant les requêtes pour remplir la table établissement rempli"
+
+while read a b c d e f g h i 
+do
+	if [[ $a != *"UAI"* ]];
+	then
+		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT adresse_id FROM etablissement WHERE uai='$a';" > idAdresse.txt
+		idAdresse=$(sed '3q;d' < idAdresse.txt)
+
+		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "UPDATE adresse SET geolocalisation=ST_GeographyFromText('SRID=4326;POINT($d.$e $b.$c)') WHERE id=$idAdresse;" 
+	fi
+
+
+
+done < ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/ressourcesNettoyees/etablissement.csv
+
+echo "Fichier contenant les requêtes pour remplir la table établissement rempli"
+
+rm idVille.txt
 rm idAdresse.txt
 rm logfile.log 
 

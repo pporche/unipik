@@ -48,7 +48,7 @@ do
 	if [[ $a != *"EU_circo"* ]];
 	then
 		#région
-		python python/dejaPresent.py "$c" > logfile.log 
+		python python/dejaPresent.py "$c" "region"> logfile.log 
 		read regionPresente < logfile.log 
 		if [[ $regionPresente != *"true"* ]]; 
    		then
@@ -57,7 +57,7 @@ do
 		#département
 		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM region WHERE nom LIKE '$c';" > logfile.log 
 		idRegion=$(sed '3q;d' < logfile.log )
-		python python/dejaPresent.py "$f"  > logfile.log 
+		python python/dejaPresent.py "$f" "departement" > logfile.log 
 		read departementPresent < logfile.log 
 		if [[ $departementPresent != *"true"* ]]; 
    		then
@@ -66,7 +66,7 @@ do
 		#codes postaux
 		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM departement WHERE nom LIKE '$f';" > logfile.log 
 		idDepartement=$(sed '3q;d' < logfile.log )
-		python python/dejaPresent.py "$j"  > logfile.log 
+		python python/dejaPresent.py "$j" "code postal"  > logfile.log 
 		read codePresent < logfile.log
 		echo "$i" 
 		if [[ $codePresent != *"true"* ]]; 
@@ -74,7 +74,7 @@ do
    			psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO code_postal (code, departement_id) VALUES ('$j' , '$idDepartement');"
 		fi
 		#ville
-		python python/dejaPresent.py "$i"  > logfile.log 
+		python python/dejaPresent.py "$i" "ville" > logfile.log 
 		read villePresente < logfile.log 
 		echo "$i"
 		if [[ $villePresente != *"true"* ]]; 
@@ -92,17 +92,5 @@ do
 		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO ville_code_postal (ville_id, code_postal_id) VALUES ('$idVille', '$idCodePostal');"
 	fi
 done < ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/ressourcesNettoyees/eucircos_regions_departements_circonscriptions_communes_gps.csv
+rm presents.txt
 
-while read a b c d e f g h i 
-do	
-	#adresse
-	python python/adresseDejaPresente.py "$d" "$a" > logfile.log 
-	read adresseDejaPresente < logfile.log 
-	if [[ $adresseDejaPresente != *"true"* ]]; 
-   	then
-   		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM ville WHERE nom LIKE '$a';" > logfile.log 
-		idVille=$(sed '3q;d' < logfile.log )
-	    psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO adresse (adresse, ville_id) VALUES ('$d' , '$idVille');" 
-	fi
-	fi
-done < ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/ressourcesNettoyees/etablissement.csv

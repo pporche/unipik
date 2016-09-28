@@ -72,10 +72,10 @@ class Contact
      * @ORM\ManyToMany(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", inversedBy="contact")
      * @ORM\JoinTable(name="appartient",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="contact_id", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="contact_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
      *   }
      * )
      */

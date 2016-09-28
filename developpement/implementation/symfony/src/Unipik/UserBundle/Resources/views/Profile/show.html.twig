@@ -12,9 +12,10 @@
     <div class="container">
         <div class="row">
             <section class="jumbotron col-sm-12">
-                <div >
+                <div class="infoPrincip">
                     <div class="row">
-                        <h2 class="col-lg-offset-1 col-lg-9">{{ user.nom}} {{ user.prenom}}</h2>
+                        <h2 class="col-lg-9 titre" style="margin-top: 40px;">{{ user.nom | upper }} {{ user.prenom | capitalize }}</h2>
+                        <img src="{{ asset('img/logo-gris.png') }}" class="logoGris">
                     </div>
                     <hr>
                     <div class="row">
@@ -71,17 +72,24 @@
 
                     </div>
                 </div>
-                <div class="pull-right">
-                    <a href="{{ path("fos_user_profile_edit") }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier</span> </a>
-                </div>
+
 
             </section>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="buttons">
+                <a href="{{ path("user_profile_edit") }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier</span> </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 infoContainer">
+                <div class="col-sm-4 containerOne">
+                    <div class="circle circleOne">
+                        <img src="{{ asset('img/location.png') }}">
+                    </div>
                 <h3>Commité(s) de rattachement : </h3>
                 <div class="row">
-                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                    <ul class="list-group col-lg-offset-1 col-sm-11 ">
                         <li class="list-group-item">
                             Seine-Maritime
                         </li>
@@ -90,36 +98,45 @@
                         </li>
                     </ul>
                 </div>
-                <h3>Domaines d'activités : </h3>
-                <div class="row">
-                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                        <li class="list-group-item">
-                            <span class="glyphicon glyphicon-ok"></span>  Plaidoyer
-                        </li>
-                        <li class="list-group-item">
-                            <span class="glyphicon glyphicon-ok"></span>  Frimousse
-                        </li>
-                        <li class="list-group-item">
-                            <span class="glyphicon glyphicon-remove"></span>  Actions ponctuelles
-                        </li>
-                    </ul>
+                    </div>
+                <div class="col-sm-4 containerTwo">
+                    <div class="circle circleTwo">
+                        <img src="{{ asset('img/briefcase.png') }}">
+                    </div>
+                    <h3>Domaines d'activités : </h3>
+                    <div class="row">
+                        <ul class="list-group col-lg-offset-1 col-sm-11 ">
+                            <li class="list-group-item">
+                                <span class="glyphicon glyphicon-ok"></span> &nbsp Plaidoyer
+                            </li>
+                            <li class="list-group-item">
+                                <span class="glyphicon glyphicon-ok"></span>  &nbsp Frimousse
+                            </li>
+                            <li class="list-group-item">
+                                <span class="glyphicon glyphicon-remove"></span>  &nbsp Actions ponctuelles
+                            </li>
+                        </ul>
 
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-6">
-                <h3>Projets en cours : </h3>
-                <div class="row">
-                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                        <li class="list-group-item">
-                            <i> Nom du projet 1 </i>
-                        </li>
-                        <li class="list-group-item">
-                            <i> Nom du projet 2</i>
-                        </li>
-                        <li class="list-group-item">
-                            <i> Nom du projet 3</i>
-                        </li>
-                    </ul>
+                <div class="col-sm-4 containerThree">
+                    <div class="circle circleThree">
+                        <img src="{{ asset('img/help.png') }}">
+                    </div>
+                    <h3>Projets en cours : </h3>
+                    <div class="row">
+                        <ul class="list-group col-lg-offset-1 col-sm-11">
+                            <li class="list-group-item">
+                                <i> Nom du projet 1 </i>
+                            </li>
+                            <li class="list-group-item">
+                                <i> Nom du projet 2</i>
+                            </li>
+                            <li class="list-group-item">
+                                <i> Nom du projet 3</i>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

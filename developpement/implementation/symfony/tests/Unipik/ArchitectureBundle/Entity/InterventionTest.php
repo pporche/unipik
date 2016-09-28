@@ -9,11 +9,69 @@
 namespace Tests\Unipik\ArchitectureBundle\Entity;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Unipik\ArchitectureBundle\Entity\Intervention;
+use Unipik\InterventionBundle\Entity\Intervention;
 
 class InterventionTest extends KernelTestCase {
 
-    public function testIntervention() {
+
+    public function testCreateIntervention() {
+        self::bootKernel();
+
+        $intervention = new Intervention();
+
+        $intervention
+            ->setDate(new \DateTime())
+            ->setLieu("nulle part")
+            ->setNbPersonne(5)
+            ->setRemarques("remarques blablabla")
+            ->setHeure("05:00")
+            ->setRealisee(true)//->setRealisee("réalisé")
+            ->setMaterielDispoPlaidoyer("{}")
+            ->setNiveauFrimousse("CM1-CM2")
+            ->setMateriauxFrimousse("{}")
+            ->setDescription("Ma super description")
+            //->setNiveauTheme()
+            //->setEtablissement()
+            //->setComite()
+            //->setBenevole()
+            //->setDemande()
+            ;
+
+        return $intervention;
+    }
+
+    /**
+     * @depends testCreateIntervention
+     */
+    public function testPersistIntervention(Intervention $intervention) {
+        self::bootKernel();
+
+        $em = static::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+
+        $em->persist($intervention);
+        $em->flush();
+    }
+
+    /**
+     * @depends testPersistIntervention
+     */
+    public function testRetrieveIntervention() {
+        $retrievedIntervention = $interventionRepository->findOneBy(array('id' => $intervention->getId()));
+
+    }
+
+    /**
+     * @depends testPersistIntervention
+     */
+    public function testRemoveIntervention() {
+
+         $em->remove($retrievedIntervention);
+         $em->flush();
+    }
+
+    /*public function testIntervention() {
 
         self::bootKernel();
 
@@ -49,5 +107,5 @@ class InterventionTest extends KernelTestCase {
 
         $em->remove($intervention);
         $em->flush();
-    }
+    }*/
 }

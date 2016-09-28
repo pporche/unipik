@@ -1,6 +1,7 @@
 *.autosave
 *.pdf
 *~
+.~*
 *.log
 *.aux
 *.gz
@@ -15,3 +16,8 @@
 .idea/*
 developpement/implementation/scriptsBD/sql/DB_ajouter_etablissements.sql
 developpement/implementation/scriptsBD/sql/DB_ajouter_adresses.sql
+developpement/implementation/scriptsBD/sql/DB_ajouter_comite_niveau_theme.sql
+developpement/implementation/scriptsBD/sql/DB_ajouter_niveau_theme.sql
+qualite/PQ/images/organigramme.png
+
+

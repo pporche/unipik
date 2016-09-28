@@ -84,11 +84,11 @@ Contact:
                 name: appartient
                 joinColumns:
                     -
-                        name: etablissement_id
+                        name: contact_id
                         referencedColumnName: id
                 inverseJoinColumns:
                     -
-                        name: contact_id
+                        name: etablissement_id
                         referencedColumnName: id
             orderBy: null
         projet:

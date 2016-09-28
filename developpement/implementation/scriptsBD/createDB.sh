@@ -49,4 +49,4 @@ CREATE DATABASE "$dbname";
 CREATE USER "$username" WITH PASSWORD '$password';
 ALTER ROLE "$username" SUPERUSER;
 EOF
-psql -U "$username"  -d "$dbname"  -h 127.0.0.1 -f ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_creation_tables.sql
+psql -U "$username" -d "$dbname"  -h 127.0.0.1 -f ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_creation_tables.sql

@@ -7,30 +7,34 @@
     <script>
         var onResponsabiliteChecked = function (responsabilite, activite) {
             if ($(responsabilite).is(':checked')) {
-                $(activite).prop("checked", true);
                 $(activite).prop("disabled", true);
+                $(activite).prop("checked", true);
             } else {
                 $(activite).prop("checked", false);
                 $(activite).prop("disabled", false);
             }
         };
-        
+
         for(i=0; i<4; i++){
-            onResponsabiliteChecked("#fos_user_registration_form_responsabiliteActivite_" + i, "#fos_user_registration_form_activitesPotentielles_" + i);
+            var responsabilite = "#fos_user_registration_form_responsabiliteActivite_" + i;
+            var activite = "#fos_user_registration_form_activitesPotentielles_" + i;
+            if ($(responsabilite).is(':checked')) {
+                $(activite).prop("disabled", true);
+                $(activite).prop("checked", true);
+            }
         }
 
-         $(document).ready(function() {
-             for(i=0; i<4; i++){
+        $(document).ready(function() {
+            for(i=0; i<4; i++){
                 responsabiliteChecked("#fos_user_registration_form_responsabiliteActivite_" + i, "#fos_user_registration_form_activitesPotentielles_" + i);
-             }
-         });
+            }
+        });
 
-         function responsabiliteChecked(responsabilite, activite) {
-             $(responsabilite).change(function () {
+        function responsabiliteChecked(responsabilite, activite) {
+            $(responsabilite).change(function () {
                 onResponsabiliteChecked($(this), activite);
-             });
-         }
-
+            });
+        }
     </script>
 {% endblock %}
 

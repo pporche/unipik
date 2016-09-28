@@ -114,3 +114,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     color: #ffffff;
 }
 /*Fin couleurs unicef*/
+
+.sort{
+    width: 8px;
+    margin-left:6px;
+}
+.sortButtonLieu, .sortButtonDate {
+    background: transparent;
+    border: none;
+    outline: none;
+}

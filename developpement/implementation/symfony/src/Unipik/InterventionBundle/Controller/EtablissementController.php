@@ -10,8 +10,8 @@ namespace Unipik\InterventionBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Etablissement;
 use Unipik\InterventionBundle\Form\EtablissementType;
 use Unipik\InterventionBundle\Form\Etablissement\RechercheAvanceeType;
@@ -44,6 +44,9 @@ class EtablissementController extends Controller {
             $centreTypeArray = $form->get("typeCentre")->getData();
             $institute->setTypeCentre($centreTypeArray);
 
+            $emailsString = '{('.$form->get("emails")->getData().')}';
+            $institute->setEmails($emailsString);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($institute);
             $em->flush();
@@ -54,18 +57,20 @@ class EtablissementController extends Controller {
         return $this->render('InterventionBundle:Etablissement:ajouterEtablissement.html.twig', array('form' => $form->createView()));
     }
 
-    /**
-     *
-     */
-    public function editAction() {
+    public function deleteEtablissementsAction(Request $request) {
+        if($request->isXmlHttpRequest()) {
+            $ids = json_decode($request->request->get('ids'));
 
-    }
-
-    /**
-     *
-     */
-    public function deleteAction() {
-
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Etablissement');
+            $etablissements = $repository->findBy(array('id' => $ids));
+            foreach ($etablissements as $etablissement) {
+                $em->remove($etablissement);
+            }
+            $em->flush();
+            return new Response();
+        }
+        return new Response();
     }
 
     public function getEtablissementRepository(){
@@ -132,5 +137,20 @@ class EtablissementController extends Controller {
 //            'dateEnd' => $endI,
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @param $array
+     * @return String La string formatée pour les domains en DB
+     */
+    public function arrayToString($array) {
+        $string = '{';
+        foreach ($array as $value) {
+            $string = $string.$value;
+            if($value !== end($array)) {
+                $string = $string.',';
+            }
+        }
+        return $string.'}';
     }
 }

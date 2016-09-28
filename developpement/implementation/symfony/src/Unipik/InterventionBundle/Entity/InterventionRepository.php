@@ -44,7 +44,7 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
-     * Get Plaidyers
+     * Get Plaidoyers
      *
      * @param \Datetime $start
      * @param \Datetime $end

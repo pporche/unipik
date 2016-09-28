@@ -8,75 +8,111 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Liste des Bénévoles</h1>
 
-<table class="table table-striped table-hover ">
-    <thead>
-    <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Responsabilité</th>
-        <th>Activité</th>
-        <th>Consulter</th>
-        <th>Supprimer</th>
-    </tr>
-    {% for benevole in listBenevoles|sort %}
-    <tr id="checkboxes">
-        <td>{{ benevole.nom }}</td>
-        <td>{{ benevole.prenom }}</td>
-        <td id="idBenevole" hidden="hidden">{{ benevole.id }}</td>
-        <td name="resp">{{ benevole.responsabiliteActivite }}</td>
-        <td name="act">{{ benevole.activitesPotentielles }}</td>
-        <td>
-            <a href="{{ path('user_admin_profil_benevole', {'username': benevole.username}) }}">
-                <button type="button" class="btn btn-primary">Consulter le profil</button>
-            </a>
-        </td>
-        <td>
-        <td>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="type" id="{{ benevole.username }}">
-                </label>
+    <section class="col-lg-2 col-md-2 col-sm-2">
+        <div class="row">
+            <div class='well'>
+
+                {#{{ form_start(form, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}#}
+                <h5>Activité :</h5>
+                {#{{ form_widget(form.typeIntervention) }}#}
+                <br/>
+
+                <h5>Responsabilité :</h5>
+                {#{{ form_widget(form.date) }}#}
+                <br/>
+
+                <br/>
+
+                <div>
+                    <input id="submit" type="submit" value="OK" class="btn btn-primary"/>
+                </div>
+                {#{{ form_end(form) }}#}
+
             </div>
-        </td>
-            {#<a href="{{ path("user_admin_delete", {'username': benevole.username}) }}">#}
-                {#<button type="button" class="btn btn-danger" onclick="ajaxGet('{{ path("user_admin_delete", {'username': benevole.username}) }}', supprimerBenevole())">Supprimer</button>#}
-            {#</a>#}
-        </td>
-    </tr>
-    {% endfor %}
-    </thead>
-</table>
-    <a style="margin-left: 80%" href="{{ path('user_admin_register') }}">
-        <button type="button" class="btn btn-default">Ajouter un bénévole</button>
-    </a>
-        <button type="button" class="btn btn-danger" onclick="deleteBenevoles()">Supprimer</button>
+        </div>
+    </section>
+
+    <section class="col-lg-10 col-md-10 col-sm-10">
+        <h1>Liste des Bénévoles</h1>
+
+        <table class="table table-striped table-hover ">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Responsabilité</th>
+                <th>Activité</th>
+                <th>Consulter</th>
+                <th>Supprimer</th>
+            </tr>
+
+
+            </thead>
+            <tbody>
+            {% for benevole in listBenevoles|sort %}
+                <tr id="checkboxes">
+                    <td>{{ benevole.nom }}</td>
+                    <td>{{ benevole.prenom }}</td>
+                    <td id="idBenevole" hidden="hidden">{{ benevole.id }}</td>
+                    <td name="resp">{{ benevole.responsabiliteActivite }}</td>
+                    <td name="act">{{ benevole.activitesPotentielles }}</td>
+                    <td>
+                        <a href="{{ path('user_admin_profil_benevole', {'username': benevole.username}) }}">
+                            <button type="button" class="btn btn-primary">Consulter le profil</button>
+                        </a>
+                    </td>
+                    <td>
+                    <td>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="type" id="{{ benevole.username }}">
+                            </label>
+                        </div>
+                    </td>
+                    {#<a href="{{ path("user_admin_delete", {'username': benevole.username}) }}">#}
+                    {#<button type="button" class="btn btn-danger" onclick="ajaxGet('{{ path("user_admin_delete", {'username': benevole.username}) }}', supprimerBenevole())">Supprimer</button>#}
+                    {#</a>#}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <div class="col-sm-offset-9 col-lg-offset-9 col-xs-offset-0 col-sm-3 col-lg-3 col-xs-offset-12">
+        <div class="row">
+            <a href="{{ path('user_admin_register') }}">
+                <button type="button" class="btn btn-success">Ajouter un bénévole</button>
+            </a>
+            <button type="button" class="btn btn-danger" onclick="deleteBenevoles()">Supprimer</button>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block javascripts %}
-{{ parent() }}
+    {{ parent() }}
     <script type="application/javascript">
 
 
-        function formatMultiple(name){
+        function formatMultiple(name) {
             var tdElements = document.getElementsByName(name);
-            for(var i= 0; i<tdElements.length;i++ ){
+            for (var i = 0; i < tdElements.length; i++) {
                 listElement = document.createElement('ul');
                 var text = tdElements[i].textContent;
                 text = text.replace(/[{()}]/g, '');
                 text = text.split(',');
-                for(var j =0; j < text.length;j++){
-                    if(text[j].trim() != '') {
+                for (var j = 0; j < text.length; j++) {
+                    if (text[j].trim() != '') {
                         itemElement = document.createElement('li');
                         itemElement.textContent = text[j];
                         listElement.appendChild(itemElement);
                     }
                 }
-                tdElements[i].innerHTML ='';
+                tdElements[i].innerHTML = '';
                 tdElements[i].appendChild(listElement);
             }
-         }
+        }
 
         formatMultiple("act");
         formatMultiple("resp");
@@ -84,19 +120,19 @@
         function deleteBenevoles() {
             var selected = [];
 
-            $("input:checkbox:checked").each(function(){
+            $("input:checkbox:checked").each(function () {
                 var $this = $(this);
                 selected.push($this.attr("id"));
             });
 
             var usernames = JSON.stringify(selected)
 
-            $.post("{{ path('user_admin_deletes') }}", {'usernames':usernames},
-                    function(data, status){
-                        for(i=0;i<selected.length;i++){
-                            $("#"+selected[i]).closest('tr').remove();
-                        }
-                    });
+            $.post("{{ path('user_admin_deletes') }}", {'usernames': usernames},
+                function (data, status) {
+                    for (i = 0; i < selected.length; i++) {
+                        $("#" + selected[i]).closest('tr').remove();
+                    }
+                });
         }
 
     </script>

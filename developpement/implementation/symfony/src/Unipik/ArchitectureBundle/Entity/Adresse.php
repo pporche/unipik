@@ -3,6 +3,7 @@
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Adresse
@@ -24,6 +25,7 @@ class Adresse
 
     /**
      * @var \Unipik\ArchitectureBundle\Entity\Ville
+     * @Assert\NotBlank()
      *
      * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Ville", cascade={"persist"})
      * @ORM\JoinColumns({

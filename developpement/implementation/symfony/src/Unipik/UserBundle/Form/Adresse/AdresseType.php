@@ -16,6 +16,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Collection;
 
 class AdresseType extends AbstractFieldsetType {
 
@@ -27,7 +30,12 @@ class AdresseType extends AbstractFieldsetType {
         $builder
             ->add('adresse', AdType::class)
             ->add('complement', ComplementType::class, array('label' => "Complément","required" => false))
-            ->add('codePostal', CodePostalType::class)
+            ->add('codePostal', CodePostalType::class/*, array(
+                'constraints' => array(
+                    new NotBlank(),
+                    new Length(array('min' => 3)),
+                ),
+            )*/)
             ->add('ville', VilleType::class)
         ;
     }
@@ -41,6 +49,7 @@ class AdresseType extends AbstractFieldsetType {
         $resolver->setDefaults(array(
             'data_class' => 'Unipik\ArchitectureBundle\Entity\Adresse',
         ));
+
     }
 
     /**

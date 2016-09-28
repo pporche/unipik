@@ -83,12 +83,12 @@ done < ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/ressourcesNettoy
 rm ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/checkAdresses.txt
 echo "Fichier contenant les requêtes pour remplir les adresses des établissement rempli"
 echo "remplissage des adresses dans  la DB pour pouvoir créer le fichier de requeêtes de remplissage des établissements"
-psql -U $username -w  -d $dbname  -h 127.0.0.1 -f "${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_adresses.sql"
+psql -U $username -w  -d $dbname  -h 127.0.0.1 -w -f "${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_adresses.sql"
 
 echo "Remplissage du fichier contenant les requêtes pour remplir la table établissement"
 while read a b c d e f g h i 
 do
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM adresse WHERE adresse = '$d' AND ville='$a';" > idAdresse.txt
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -w -c "SELECT id FROM adresse WHERE adresse = '$d' AND ville='$a';" > idAdresse.txt
 	idAdresse=$(sed '3q;d' < idAdresse.txt)
 
 	case $c in 
@@ -131,7 +131,7 @@ do
 		esac
 
     
-		insertionBD "type_enseignement" "'$h'" $idAdresse $b $g $typeEnseignement $f
+		insertionBD "type_enseignement" "NULL" $idAdresse $b $g $typeEnseignement $f
 		;;
 		"Autre" )
 		insertionBD "type_autre_etablissement" "NULL" $idAdresse $b $g "autre" $f

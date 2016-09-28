@@ -35,11 +35,11 @@ MomentHebdomadaire:
                 name: demande_moments_voulus
                 joinColumns:
                     -
-                        name: demande_moments_voulus
+                        name: moments_voulus
                         referencedColumnName: id
                 inverseJoinColumns:
                     -
-                        name: moments_voulus
+                        name: demande_moments_voulus
                         referencedColumnName: id
             orderBy: null
         demandeMomentsAEviter:
@@ -52,11 +52,11 @@ MomentHebdomadaire:
                 name: demande_moments_a_eviter
                 joinColumns:
                     -
-                        name: demande_moments_a_eviter
+                        name: moments_a_eviter
                         referencedColumnName: id
                 inverseJoinColumns:
                     -
-                        name: moments_a_eviter
+                        name: demande_moments_a_eviter
                         referencedColumnName: id
             orderBy: null
     lifecycleCallbacks: {  }

@@ -9,9 +9,16 @@
 #version 1.01, date 11/05/2016, auteur Matthieu Martins-Baltar
 #script pour ajouter un administrateur dans la base de donnée
 
-#si pas de mot de passe indiqué pour le nouvel admin, choisir "admin"
-if [ -n "$1" ]; then
+#si pas de mdp indiqué, demander
+if [ "$1" = "" ]; then
+    prompt_token 'password'        "Veuillez entrer le mot de passe de la base de données"
+else
     password=$1
+fi
+
+#si pas de mot de passe indiqué pour le nouvel admin, choisir "admin"
+if [ -n "$2" ]; then
+    password=$2
 elif [ -n "${SYMFONY_ADMIN_PASSWORD}" ]; then
     password=$SYMFONY_ADMIN_PASSWORD
 else
@@ -21,8 +28,8 @@ else
 fi
 
 #si pas de nom d'utilisateur psql indiqué, choisir "unipik"
-if [ -n "$2" ]; then
-    username=$2
+if [ -n "$3" ]; then
+    username=$3
 elif [ -n "${DB_USERNAME}" ]; then
     username=$DB_USERNAME
 else
@@ -30,8 +37,8 @@ else
 fi
 
 #si pas de DB indiqué, choisir "bdunicef"
-if [ -n "$3" ]; then
-    dbname=$3
+if [ -n "$4" ]; then
+    dbname=$4
 elif [ -n "${DB_DBNAME}" ]; then
     dbname=$DB_DBNAME
 else

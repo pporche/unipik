@@ -1,0 +1,58 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-09-21T18:26:21+02:00
+
+====== Tests Unitaires ======
+Created mercredi 21 septembre 2016 by Matthieu
+Last updates:
+ * mercredi 21 septembre 2016 by Matthieu
+
+===== But: =====
+
+Executer les tests unitaires.
+
+===== Étapes Pas-à-pas: =====
+1. Installer xdebug avec la commande :
+
+'''
+apt-get install php5-xdebug
+'''
+
+2. Éditer le fichier [[/etc/php5/apache2/conf.d/20-xdebug.ini]] et ajouter la ligne
+
+'''
+xdebug.max_nesting_level=500
+'''
+
+	(augmenter cette valeur si vous avez des problèmes du type "Maximum function nesting level of 'xxx' reached, aborting!")
+	
+5. Redémarrer Apache
+
+'''
+sudo /etc/init.d/apache2 restart
+'''
+
+4. Se placer à la racine du projet, par exemple:
+
+'''
+cd pic_unicef/developpement/implementation/symfony/
+'''
+
+3. Pour exécuter un fichier de test en particulier, executer la commande suivante :
+
+'''
+vendor/bin/phpunit tests/Unipik/.../Test.php
+
+'''
+4. Pour exécuter tous les tests, exécuter la commande suivante :
+
+'''
+vendor/bin/phpunit 
+'''
+
+5. Un fichier html pour observer la couverture des test est généré dans web/coverage, accessible à l'url:
+
+'''
+http://prenom.unipik.insa-rouen.fr/unicef/coverage/index.html
+'''
+

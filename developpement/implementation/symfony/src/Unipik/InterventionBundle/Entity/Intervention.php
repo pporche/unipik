@@ -281,7 +281,7 @@ class Intervention
     /**
      * Set realisee
      *
-     * @param string $realisee
+     * @param boolean $realisee
      *
      * @return Intervention
      */

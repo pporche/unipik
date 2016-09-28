@@ -3,6 +3,7 @@
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Adresse
@@ -24,6 +25,7 @@ class Adresse
 
     /**
      * @var string
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="ville", type="string", length=100, nullable=false)
      */
@@ -38,6 +40,7 @@ class Adresse
 
     /**
      * @var string
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="code_postal", type="string", nullable=false)
      */

@@ -4,6 +4,7 @@ namespace Unipik\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -99,16 +100,26 @@ class UserController extends Controller {
         return $this->render('UserBundle:Profile:showBenevole.html.twig', array('benevole' => $benevole, 'listeInterventions' => $listeInterventions));
     }
 
-    public function editAction($id) {
+    public function editAction(Request $request, $id) {
         $benevole = $this->getDoctrine()
             ->getManager()
             ->getRepository('UserBundle:Benevole')
             ->find($id);
 
-        $formBuilder = $this->get('form.factory')->createBuilder(RegistrationType::class, $benevole)->remove('plainPassword');
-//            ->add('nom', TextType::class);
+        $form = $this->get('form.factory')
+            ->createBuilder(RegistrationType::class, $benevole)
+            ->remove('plainPassword')
+            ->add('Valider', SubmitType::class)
+            ->getForm();
 
-        $form = $formBuilder->getForm();
+        if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($benevole);
+            $em->flush();
+
+            return $this->redirectToRoute('user_admin_profil_benevole', array('username' => $benevole->getUsername()));
+        }
 
         return $this->render('UserBundle:Profile:editBenevole.html.twig', array('form' => $form->createView()));
     }

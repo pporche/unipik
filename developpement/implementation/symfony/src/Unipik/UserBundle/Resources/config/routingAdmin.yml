@@ -3,7 +3,7 @@ user_admin_list:
     defaults:
         _controller: UserBundle:User:liste
 
-user_admin_register:
+fos_user_admin_register:
     path: /register
     defaults:
         _controller: UserBundle:Registration:register
@@ -31,4 +31,4 @@ user_admin_profil_benevole:
 user_admin_profil_edit:
     path: /benevole/profil/edit/{id}
     defaults:
-            _controller: UserBundle:User:edit
+          _controller: UserBundle:User:edit

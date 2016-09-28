@@ -1,0 +1,109 @@
+% version 1.00	Auteur Kafui Atanley date 26/09/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\usepackage{hyperref}
+\DeclareUnicodeCharacter{00A0}{ }
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Pédagogique}}					%titre
+\begin{document}
+
+26/09/2016			 				%Date 
+\hfill   
+\hfill 	 13:33 - 14:30				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{3cm} | p{3cm} | p{3cm} | p{3.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 26/09/2016 & \Kafui & Création & Toutes \\
+				\hline			
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{4cm} | p{3cm} | p{3cm} | p{2.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RGC & \Melissa & --- & --- \\[30pt]
+				\hline
+				Validateur & \CP & \Pierre &  --- & --- \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+\section{Résumé de la semaine passée}
+La semaine précédente s'est orientée autour de 7 axes :  
+\begin{itemize}
+\item Backend : il ne reste plus qu'à implémenter la modification d'établissement/intervention .
+\item Frontend : Le design des listes de consultation de bénévole/intervention a été travaillé .
+\item Frontend : Le design des profils de bénévole/intervention a été travaillé .
+\item PostGIS est maintenant en place dans la base de données .
+\item Le \PGC{} et le \PQ{} ont été envoyés à \nomTuteurQualite{} pour approbation.
+\item Les modifications de la base de données en vue d'obtenir une meilleure cohérence sont toujours en cours.
+\item Les tests unitaires, d'intégration sont en cours de développement.
+\end{itemize} 
+
+\section{Frontend}
+le \CP{} s'est occupé d'établir une communication avec le client qui n'a toujours pas répondu pour le moment. \nomTuteurPedago{} nous recommande d'établir le contact dès que possible. Nous n'avons actuellement aucun retour du client. Ceci serait indispensable pour obtenir une validation opérationnelle. Plus nous déportons cette validation opérationnelle, plus nous aurons potentiellement besoin d'éffectuer des retour en arrière. Il serait également bon d'avoir un lien constant du côté de notre client afin de s'assurer que le "Look and Feel" soit en constante synchronisation avec ce que le client attend. \nomTuteurPedago{} nous met en garde sur le fait que la partie Frontend est, par expérience, celle qui est le plus sujette à révision.
+
+\section{Mise en place du serveur}
+le \CP{} a établi un premier contact avec Maxime Houx de l'entreprise SIQUAL afin d'anticiper la futur gestion et maintenance du serveur. \nomTuteurPedago{} nous recommande de contacter l'association Quantic Telecom.
+
+\section{Tests}
+\nomTuteurPedago{} nous conseille de ne pas négliger la phase de test. Il nous est conseillé de tester notre application dans le cas multi-utilisateur car c'est le point sensible de notre application.
+
+
+%--- fin de réunion ---%
+\newpage
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

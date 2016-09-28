@@ -115,9 +115,9 @@ class Intervention
     private $etablissement;
 
     /**
-     * @var \Unipik\InterventionBundle\Entity\Comite
+     * @var \Unipik\UserBundle\Entity\Comite
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Comite")
+     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Comite")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="comite_id", referencedColumnName="id")
      * })
@@ -281,7 +281,7 @@ class Intervention
     /**
      * Set realisee
      *
-     * @param string $realisee
+     * @param boolean $realisee
      *
      * @return Intervention
      */
@@ -451,11 +451,11 @@ class Intervention
     /**
      * Set comite
      *
-     * @param \Unipik\InterventionBundle\Entity\Comite $comite
+     * @param \Unipik\UserBundle\Entity\Comite $comite
      *
      * @return Intervention
      */
-    public function setComite(\Unipik\InterventionBundle\Entity\Comite $comite)
+    public function setComite(\Unipik\UserBundle\Entity\Comite $comite)
     {
         $this->comite = $comite;
 
@@ -465,7 +465,7 @@ class Intervention
     /**
      * Get comite
      *
-     * @return \Unipik\InterventionBundle\Entity\Comite
+     * @return \Unipik\UserBundle\Entity\Comite
      */
     public function getComite()
     {
@@ -499,11 +499,11 @@ class Intervention
     /**
      * Set demande
      *
-     * @param \Unipik\ArchitectureBundle\Entity\Demande $demande
+     * @param \Unipik\InterventionBundle\Entity\Demande $demande
      *
      * @return Intervention
      */
-    public function setDemande(\Unipik\ArchitectureBundle\Entity\Demande $demande)
+    public function setDemande(\Unipik\InterventionBundle\Entity\Demande $demande)
     {
         $this->demande = $demande;
 
@@ -513,7 +513,7 @@ class Intervention
     /**
      * Get demande
      *
-     * @return \Unipik\ArchitectureBundle\Entity\Demande
+     * @return \Unipik\InterventionBundle\Entity\Demande
      */
     public function getDemande()
     {

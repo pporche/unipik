@@ -28,11 +28,11 @@ class JourInterventionType extends AbstractType {
         ],);
 
         $builder
-            ->add('Lundi', ChoiceType::class, $optionChoiceType)
-            ->add('Mardi', ChoiceType::class, $optionChoiceType)
-            ->add('Mercredi', ChoiceType::class, $optionChoiceType)
-            ->add('Jeudi', ChoiceType::class, $optionChoiceType)
-            ->add('Vendredi', ChoiceType::class, $optionChoiceType)
+            ->add('lundi', ChoiceType::class, $optionChoiceType)
+            ->add('mardi', ChoiceType::class, $optionChoiceType)
+            ->add('mercredi', ChoiceType::class, $optionChoiceType)
+            ->add('jeudi', ChoiceType::class, $optionChoiceType)
+            ->add('vendredi', ChoiceType::class, $optionChoiceType)
         ;
     }
 

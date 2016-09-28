@@ -23,7 +23,7 @@ class MomentType extends AbstractType
         $optionChoiceType = array( 'expanded' => true, 'multiple' => true,
             'choices' => [
                 'Matin' => 'matin',
-                'Après-Midi' => 'aprem',
+                'Après-Midi' => 'apres-midi',
                 'Soir' => 'soir'
             ],);
 

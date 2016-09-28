@@ -21,9 +21,10 @@ class MaterielType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options){
         $optionChoiceType = array( 'expanded' => true, 'multiple' => true,
             'choices' => [
-            'Vidéo projecteur' => 'videopro',
-            'Enceinte(s)' => 'enceintes',
-            'TBI' => 'tbi'
+            'Vidéo projecteur' => '(videoprojecteur)',
+            'Enceinte(s)' => '(enceinte)',
+            'Tableau d\'intéractif' => '(tableau interactif)',
+            'Autres' => '(autre)'
         ],);
 
         $builder

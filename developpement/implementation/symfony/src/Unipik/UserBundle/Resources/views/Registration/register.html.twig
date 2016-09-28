@@ -16,7 +16,12 @@
         };
 
         for(i=0; i<4; i++){
-            onResponsabiliteChecked("#fos_user_registration_form_responsabiliteActivite_" + i, "#fos_user_registration_form_activitesPotentielles_" + i);
+            var responsabilite = "#fos_user_registration_form_responsabiliteActivite_" + i;
+            var activite = "#fos_user_registration_form_activitesPotentielles_" + i;
+            if ($(responsabilite).is(':checked')) {
+                $(activite).prop("disabled", true);
+                $(activite).prop("checked", true);
+            }
         }
 
         $(document).ready(function() {

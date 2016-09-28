@@ -17,27 +17,27 @@ fos_user_security_check:
     defaults:
         _controller: FOSUserBundle:Security:check
 
-fos_user_security_logout:
+user_security_logout:
     path: /logout
     defaults:
         _controller: FOSUserBundle:Security:logout
 
-fos_user_security_login:
+user_security_login:
     path: /login
     defaults:
         _controller: UserBundle:Security:loginPage
 
-fos_user_profile_show:
+user_profile_show:
     path: /profil
     defaults:
         _controller: FOSUserBundle:Profile:show
 
-fos_user_profile_edit:
+user_profile_edit:
     path: /profil/edit
     defaults:
         _controller: UserBundle:Profile:edit
 
-fos_user_change_password:
+user_change_password:
     path: /change-password
     defaults:
         _controller: FOSUserBundle:ChangePassword:changePassword

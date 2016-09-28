@@ -14,43 +14,68 @@ use Unipik\ArchitectureBundle\Entity\Adresse;
 use Tests\Unipik\Unit\Utils\FormTestCase;
 use Unipik\UserBundle\Form\Adresse\AdresseType;
 
-class CodePostaleTypeTest extends FormTestCase {
+class AdresseTypeTest extends FormTestCase {
 
     protected static $testedType = AdresseType::class;
-    protected static $testEntity = null; //AdresseMock::create();
 
-    protected static function getTestEntity ($data) {
-        //return Adresse::fromArray($data);
-        return AdresseMock::create();
-    }
+
+
 
     public function validDataProvider()
     {
+        $a1 = AdresseMock::create();
+        $a2 = clone $a1;
+        $a2->setAdresse("58 rue bidule");
+
         return [
-            [
+            "Ville et codePostal seulement" => [
                 "Ville" => [
                     'ville' => "Rouen",
                     'codePostal' => "7600"
-                ]
-            ]
-        ];
+                ],
+                $a1
+            ],
 
-            /*array(
-            array(
-                'data' => array(
-                    'test' => 'test',
-                    'test2' => 'test2',
-                ),
-            ),
-            array(
-                'data' => array(),
-            ),
-            array(
-                'data' => array(
-                    'test' => null,
-                    'test2' => null,
-                ),
-            ),
-        );*/
+            "Adresse ville et code postal" => [
+                "Ville" => [
+                    'adresse' => "58 rue bidule",
+                    'ville' => "Rouen",
+                    'codePostal' => "7600"
+                ],
+                $a2
+            ],
+        ];
     }
+
+    public function badDataProvider()
+    {
+        $a1 = AdresseMock::create();
+        $a2 = clone $a1;
+        $a3 = clone $a1;
+
+        return [
+            "Ville est null" => [
+                "Ville" => [
+                    'adresse' => [null, null, 14, "fred"],
+                    'ville' => null,
+                    'codePostal' => "7600"
+                ]
+            ],
+
+            "code postal est null" => [
+                "Ville" => [
+                    'ville' => "Rouen"
+                ]
+            ],
+
+            "champs inexistant" => [
+                "Ville" => [
+                    'ville' => "Rouen",
+                    'codePostal' => "7600",
+                    'machin' => "truc"
+                ]
+            ],
+        ];
+    }
+
 }

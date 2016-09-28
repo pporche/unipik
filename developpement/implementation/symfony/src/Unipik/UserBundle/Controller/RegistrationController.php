@@ -37,6 +37,8 @@ class RegistrationController extends BaseController {
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
 
+        $this->get('session')->getFlashBag()->clear();
+
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }

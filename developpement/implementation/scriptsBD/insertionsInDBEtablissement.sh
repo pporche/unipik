@@ -111,9 +111,6 @@ do
 	esac
 done < ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/ressourcesNettoyees/etablissement.csv
 
-echo "Fichier contenant les requêtes pour remplir la table établissement rempli"
-
-
 IFS=","
 while read a b c d e
 do
@@ -127,8 +124,8 @@ do
 done < ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/ressourcesNettoyees/geolocalisation.csv
 
 
-rm idVille.txt
-rm idAdresse.txt
-rm logfile.log 
+rm  "${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/idVille.txt"
+rm  "${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/idAdresse.txt"
+rm  "${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/logfile.log"
 
 

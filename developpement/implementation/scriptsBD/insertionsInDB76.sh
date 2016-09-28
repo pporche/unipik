@@ -114,4 +114,4 @@ do
 	fi
 done
 
-rm id.txt
+rm "${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/id.txt"

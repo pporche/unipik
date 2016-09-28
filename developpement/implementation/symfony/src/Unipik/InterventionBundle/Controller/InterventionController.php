@@ -128,9 +128,7 @@ class InterventionController extends Controller {
             /*if(!in_array((Array) $institute->getContact(),(Array) $contactPers->getEtablissement()))
                 $contactPers->addEtablissement($institute);*/
 
-            return new Response(\Doctrine\Common\Util\Debug::dump((in_array((Array) $institute->getContact(),(Array) $contactPers->getEtablissement()))));
 
-            // Etablissement non présent est sauvegardé
             $demande->setListeSemaine($this->arrayToString($listWeek));
 
             $this->getDoctrine()->getManager()->persist($demande);
@@ -152,10 +150,10 @@ class InterventionController extends Controller {
             $session =$request->getSession();
             $em->flush();
 
-            return new Response(\Doctrine\Common\Util\Debug::dump(($demande->getMomentsVoulus())));
+
             $session->getFlashBag()->add('notice', array(
                 'title' => 'Félicitation',
-                'message' => 'Votre demande d/\'intervention a bien été enregistrée. Nous vous contacterons sous peu',
+                'message' => 'Votre demande d\'intervention a bien été enregistrée. Nous vous contacterons sous peu',
                 'alert' => 'success'
             ));
 
@@ -322,6 +320,11 @@ class InterventionController extends Controller {
         return $destination;
     }
 
+    /**
+     * @param $interventionsRawList
+     * @param $interventionList
+     * Iterates over the interventions requested to get the parameters
+     */
     function treatmentInterventions($interventionsRawList,&$interventionList){
 
         $comiteTest = $this->getDoctrine()->getManager()->getRepository('UserBundle:Comite')->find(1);
@@ -344,7 +347,10 @@ class InterventionController extends Controller {
     }
 
 
-
+    /**
+     * @param $contactPers
+     * Iterates over a contact to check if she/he is already in the db, take the one from the db in the last case
+     */
     function treatmentContact(&$contactPers){
 
         $em = $this->getDoctrine()->getManager();
@@ -367,7 +373,11 @@ class InterventionController extends Controller {
 
     }
 
-
+    /**
+     * @param $moments
+     * @param Demande $demande
+     *  Iterates over the moments to fill the one from the demand
+     */
     function treatmentMoment($moments,\Unipik\InterventionBundle\Entity\Demande &$demande){
         $this->treatmentAvoidDay(array_keys($moments,'a-eviter'),$demande);
         $this->treatmentAllDay(array_keys($moments,'indifferent'),$demande);

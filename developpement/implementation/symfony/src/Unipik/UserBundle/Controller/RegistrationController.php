@@ -50,13 +50,14 @@ class RegistrationController extends BaseController {
 
         // Après le submit du formulaire
         if ($form->isValid()) {
+            $toolBoxDatabase = $this->get('architecture.toolboxdatabase');
 
             $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
-            $responsibilitiesString = $this->arrayToString($responsibilitiesArray);
+            $responsibilitiesString = $toolBoxDatabase->arrayToString($responsibilitiesArray);
             $user->setResponsabiliteActivite($responsibilitiesString);
 
             $activitiesArray = $form->get("activitesPotentielles")->getData(); //récup les activités choisies sur le form + format pour persist
-            $activitiesString = $this->arrayToString($activitiesArray);
+            $activitiesString = $toolBoxDatabase->arrayToString($activitiesArray);
             $activitiesString = $this->setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString);
             $user->setActivitesPotentielles($activitiesString);
 

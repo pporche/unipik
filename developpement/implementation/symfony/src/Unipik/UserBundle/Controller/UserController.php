@@ -28,7 +28,7 @@ class UserController extends Controller {
     public function deleteVolunteerAction($username) {
         $em = $this->getDoctrine()->getManager();
         $repositoryVolunteer = $em->getRepository('UserBundle:Benevole');
-        $volunteer = $repositoryVolunteer->findBy(array('username' => $username))[0];
+        $volunteer = $repositoryVolunteer->findOneBy(array('username' => $username));
 
         $this->deleteVolunteers($volunteer);
 
@@ -100,11 +100,11 @@ class UserController extends Controller {
         return $this->render('UserBundle:Profile:showBenevole.html.twig', array('benevole' => $benevole, 'listeInterventions' => $listeInterventions));
     }
 
-    public function editAction(Request $request, $id) {
+    public function editAction(Request $request, $username) {
         $benevole = $this->getDoctrine()
             ->getManager()
             ->getRepository('UserBundle:Benevole')
-            ->find($id);
+            ->findOneBy(array('username' => $username));
 
         $form = $this->get('form.factory')
             ->createBuilder(RegistrationType::class, $benevole)

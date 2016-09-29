@@ -22,18 +22,11 @@ security:
             logout:       true
             anonymous:    true
 
-        demande:
-            pattern: ^/intervention/demande
-                #csrf_token_generator: security.csrf.token_manager
-                # if you are using Symfony < 2.8, use the following config instead:
-                # csrf_provider: form.csrf_provider
-
-            anonymous:    true
-
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/intervention/demande, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/intervention($|/), role: IS_AUTHENTICATED_FULLY }
         - { path: ^/etablissement($|/), role: IS_AUTHENTICATED_FULLY }

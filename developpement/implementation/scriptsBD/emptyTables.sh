@@ -1,3 +1,8 @@
+#!/bin/bash
+# version 1.00, date 28/09/2016, auteur Mélissa Bignoux
+# permet de vider toutes les tables sauf pays, region, departement, ville
+
+
 prompt_token() {
   local VAL=""
   while [ "$VAL" = "" ]; do

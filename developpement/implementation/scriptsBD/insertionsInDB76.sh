@@ -1,6 +1,5 @@
 # version 1.00, date 14/09/2016, auteur Mélissa Bignoux
 # permet de remplir les tables relatives à la region Seine-Maritime (rregion, comite, niveau_theme, comite_niveau_theme)
-
 prompt_token() {
   local VAL=""
   while [ "$VAL" = "" ]; do
@@ -24,8 +23,7 @@ fi
 dbname="bdunicef"
 username="unipik"
 export PGPASSWORD="$password"
-fichierAddNiveauTheme="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_niveau_theme.sql"
-fichierAddComiteNiveauTheme="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_comite_niveau_theme.sql"
+
 
 
 psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM departement WHERE nom = 'SEINE-MARITIME';" > id.txt
@@ -36,6 +34,7 @@ idEure=$(sed '3q;d' < id.txt)
 
 
 psql -U $username -w  -d $dbname  -h 127.0.0.1 << EOF
+ALTER SEQUENCE comite_id_seq RESTART WITH 1;
 INSERT INTO comite (id) VALUES ('1');
 INSERT INTO comite (id) VALUES ('2');
 EOF
@@ -45,7 +44,7 @@ INSERT INTO comite_departement (comite_id, departement_id) VALUES ('1', '$idSein
 INSERT INTO comite_departement (comite_id, departement_id) VALUES ('2', '$idEure');
 EOF
 
-touch $fichierAddNiveauTheme
+psql -U $username -w -d $dbname  -h 127.0.0.1 -c "ALTER SEQUENCE niveau_theme_id_seq RESTART WITH 1;"
 
 list1=( "petite section" "petite-moyenne section" "moyenne section" "moyenne-grande section" "grande section" "petite-moyenne-grande section" "CP" "CP-CE1" "CE1" "CE1-CE2" "CE2" "CE2-CM1" "CM1" "CM1-CM2" "CM2" "6eme" "5eme" "4eme" "3eme" "2nde" "1ere" "terminale" "L1" "L2" "L3" "M1" "M2" "autre")   
 for element in "${list1[@]}"    
@@ -78,11 +77,6 @@ do
 	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'role de l Unicef');" 
 	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'millenaire pour le developpement');" 
 done
-
-psql -U $username -w  -d $dbname  -h 127.0.0.1 -f $fichierAddNiveauTheme
-
-
-touch $fichierAddComiteNiveauTheme
 
 
 

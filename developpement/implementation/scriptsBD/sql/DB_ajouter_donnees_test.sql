@@ -16,7 +16,6 @@ INSERT INTO benevole (username, username_canonical, email, email_canonical, enab
 
 
 -- benevole_comite 
-
 INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('2', '1');
 INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('3', '1');
 INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('4', '1');
@@ -30,7 +29,7 @@ INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('11', '1');
 INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('12', '1');
 
 --contacts
-
+ALTER SEQUENCE contact_id_seq RESTART WITH 1;
 INSERT INTO contact (id, email, nom, prenom, tel_fixe, type_contact, type_activite) VALUES (1, 'contact1@contact.fr', 'nom1', 'prenom1', '0235490983', 'enseignant', '{(plaidoyers)}');
 INSERT INTO contact (id, email, nom, tel_fixe, type_contact, est_tuteur) VALUES (2, 'contact2@contact.fr', 'nom2', '0235490983', 'animateur', false);
 INSERT INTO contact (id, email, nom, prenom, tel_portable, type_contact, respo_etablissement, type_activite) VALUES (3, 'contact3@contact.fr', 'nom3', 'prenom3', '0247282552', 'eleve', false, '{(plaidoyers), (actions_ponctuelles)}');
@@ -45,7 +44,7 @@ INSERT INTO appartient (etablissement_id, contact_id) VALUES ('4', '4');
 INSERT INTO appartient (etablissement_id, contact_id) VALUES ('5', '5');
 
 -- demandes
-
+ALTER SEQUENCE demande_id_seq RESTART WITH 1;
 INSERT INTO demande (contact_id, date_demande, liste_semaine) VALUES ('1', '2016-12-05', '{(40), (42)}');
 INSERT INTO demande (contact_id, date_demande, liste_semaine) VALUES ('2', '2016-11-05', '{(3), (7), (42), (51)}');
 INSERT INTO demande (contact_id, date_demande, liste_semaine) VALUES ('3', '2016-10-05', '{(1), (12)}');
@@ -53,7 +52,7 @@ INSERT INTO demande (contact_id, date_demande, liste_semaine) VALUES ('4', '2016
 INSERT INTO demande (contact_id, date_demande, liste_semaine) VALUES ('5', '2016-12-15', '{(34), (37)}');
 
 -- interventions
-
+ALTER SEQUENCE intervention_id_seq RESTART WITH 1;
 INSERT INTO intervention (demande_id, benevole_id, comite_id, etablissement_id, date_intervention,  nb_personne, remarques, heure, realisee, description) VALUES ('1', '5', '1', '1', '2016-01-02', '21', 'la remarque',  '14:00', true, 'description d''une action autre');
 INSERT INTO intervention (demande_id, benevole_id, comite_id, etablissement_id, date_intervention, nb_personne, remarques, heure, realisee, description) VALUES ('1', '5', '1', '2', '2016-01-20', '30', 'la remarque',  '14:00', false, 'description d''une action autre');
 INSERT INTO intervention (demande_id, benevole_id, comite_id, etablissement_id, date_intervention, lieu, nb_personne, remarques, realisee, description) VALUES ('1', '2', '1', '3', '2016-02-03', 'le lieu', '21', 'la remarque', true , 'description d''une action autre');

@@ -1,5 +1,5 @@
 # version 1.00, date 14/09/2016, auteur Mélissa Bignoux
-# permet de remplir les tables adresses et établissement
+# permet de creer l'admin et remplir les tables adresses, etablissement, les donnees relatives à l'unicef 76 et les donnees de test apres avoir fait ./insertionInDBDonneesFrance
 
 
 echo "insertion adresses"

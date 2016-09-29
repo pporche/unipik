@@ -125,6 +125,7 @@ CREATE TABLE IF NOT EXISTS adresse (
 	adresse VARCHAR(:longueurChaineLongue) NOT NULL, 
 	complement VARCHAR(:longueurChaineMoyenne) DEFAULT NULL, 
 	ville_id INT NOT NULL REFERENCES ville(id) ON DELETE CASCADE,
+	code_postal_id INT NOT NULL REFERENCES code_postal(id) ON DELETE CASCADE,
 	geolocalisation geography(POINT,4326) DEFAULT NULL
 );
 

@@ -20,6 +20,10 @@ use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use FOS\UserBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+/**
+ * Class ConfirmationType
+ * @package Unipik\UserBundle\Form\Profile
+ */
 class ConfirmationType extends AbstractFieldsetType {
 
     /**

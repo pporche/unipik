@@ -12,16 +12,17 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-
-class RechercheAvanceeType extends AbstractType
-{
+/**
+ * Class RechercheAvanceeType
+ * @package Unipik\UserBundle\Form
+ */
+class RechercheAvanceeType extends AbstractType {
 
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $activitesChoiceType = array('expanded' => true, 'multiple' => true, 'mapped' => false, 'required' => false,
             'choices' => [

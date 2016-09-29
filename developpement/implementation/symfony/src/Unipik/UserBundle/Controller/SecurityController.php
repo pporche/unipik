@@ -17,16 +17,35 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Unipik\UserBundle\Form\LoginType;
 use Unipik\UserBundle\Form\RegistrationType;
 
+/**
+ * Login/out actions
+ *
+ * Class SecurityController
+ * @package Unipik\UserBundle\Controller
+ */
 class SecurityController extends BaseController {
 
+    /**
+     * Render the login page
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function loginPageAction() {
         return $this->render('UserBundle:Security:loginPage.html.twig');
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function loginAction(Request $request) {
         return parent::loginAction($request);
     }
 
+    /**
+     * @param array $data
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     protected function renderLogin(array $data) {
         $form = $this->createForm(LoginType::class, null,  array("action" => $this->generateUrl("fos_user_security_check")))
             ->createView();
@@ -35,9 +54,5 @@ class SecurityController extends BaseController {
             'form' => $form,
             'error' => $data['error']
         ));
-    }
-
-    public function logoutAction() {
-        return parent::logoutAction();
     }
 }

@@ -38,17 +38,7 @@ class DemandeInterventionType extends AbstractType {
     /**
      * {@inheritdoc}
      */
-
     public function getBlockPrefix() {
         return 'demande_intervention';
-    }
-
-    /**
-     *
-     * @return String  le nom spécifique de la classe DemandeInterventionType
-     */
-
-    public function getName() {
-        return $this->getBlockPrefix();
     }
 }

@@ -42,8 +42,4 @@ class JourInterventionType extends AbstractType {
     public function getBlockPrefix() {
         return 'jour_intervention';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

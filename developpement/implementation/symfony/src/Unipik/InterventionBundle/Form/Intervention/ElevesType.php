@@ -49,8 +49,4 @@ class ElevesType extends AbstractType {
     public function getBlockPrefix() {
         return 'eleves';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

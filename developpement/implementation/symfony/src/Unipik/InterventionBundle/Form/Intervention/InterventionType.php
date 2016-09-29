@@ -32,8 +32,4 @@ class InterventionType extends AbstractFieldsetType {
     public function getBlockPrefix() {
         return 'intervention';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

@@ -31,8 +31,4 @@ class PlageDateType extends AbstractType {
     public function getBlockPrefix() {
         return 'plage_date';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

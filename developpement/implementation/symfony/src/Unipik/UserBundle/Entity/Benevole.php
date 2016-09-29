@@ -218,27 +218,6 @@ class Benevole extends BaseUser
     }
 
     /**
-     * Set mdp
-     *
-     * @param string $mdp
-     *
-     * @return Benevole
-     */
-    public function setMdp($mdp) {
-        $this->mdp = $mdp;
-        return $this;
-    }
-
-    /**
-     * Get mdp
-     *
-     * @return string
-     */
-    public function getMdp() {
-        return $this->mdp;
-    }
-
-    /**
      * Set activitesPotentielles
      *
      * @param string $activitesPotentielles

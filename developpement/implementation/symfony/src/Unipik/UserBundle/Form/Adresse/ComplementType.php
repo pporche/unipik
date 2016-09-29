@@ -11,6 +11,10 @@ namespace Unipik\UserBundle\Form\Adresse;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+/**
+ * Class ComplementType
+ * @package Unipik\UserBundle\Form\Adresse
+ */
 class ComplementType extends AbstractType {
 
     /**

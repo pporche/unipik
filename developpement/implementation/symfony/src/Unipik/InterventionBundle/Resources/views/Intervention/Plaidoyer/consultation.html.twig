@@ -4,32 +4,28 @@
 
 
 {%  block contenu %}
-    <div class="col-sm-4 col-xs-12">
-        <dt>
-            <span class="glyphicon glyphicon-eye-open"></span> Public :
-        </dt>
-    </div>
-    <div class="col-sm-6 col-xs-offset-1 col-xs-11">
-        <i>{{ dump(intervention.demande) }}</i>
-    </div>
+
     <div class="col-sm-4 col-xs-12">
         <dt>
             <span class="glyphicon glyphicon-picture"></span> Thème :
         </dt>
     </div>
     <div class="col-sm-6 col-xs-offset-1 col-xs-11">
-        <i>{{ intervention.niveauTheme.theme | capitalize }}</i>
+        <i>{{ intervention.niveauTheme.theme | capitalize}}
     </div>
     <div class="col-sm-4 col-xs-12">
         <dt>
-            <span class="glyphicon glyphicon-picture"></span> Matériel dispo. :
+            <span class="glyphicon glyphicon-picture"></span> Matériel disp:
         </dt>
     </div>
 
     <div class="col-sm-6 col-xs-offset-1 col-xs-11">
-            {% if intervention.materielDispoPlaidoyer is not empty %}
+            {% set materiels = intervention.materielDispoPlaidoyer | replace({'\\\")\",(': '),('}) | replace({'\"(\\\"': ''}) | split('),(')   %}
+            {% if materiels is not empty %}
                 <ul class="list-group col-sm-7 ">
-                    {{ intervention.materielDispoPlaidoyer | capitalize }}
+                    {% for materiel in materiels %}
+                        {{ materiel | trim ('{(') | trim (')}') | capitalize }}
+                    {% endfor %}
                 </ul>
             {% else %}
                 <div class="col-sm-7">

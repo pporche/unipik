@@ -48,9 +48,8 @@ class InterventionController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $contactPers = new Contact();
             $this->cast($contactPers, $test);
-            $contactPers->setRespoEtablissement(false);
+            $contactPers->setRespoEtablissement($test->isRespoEtablissement());
             $contactPers->setTypeActivite('{}');
-
 
             // handle the interventions
             $interventionsRawList = $form->get('Intervention')->getData();
@@ -128,8 +127,8 @@ class InterventionController extends Controller {
             /*if(!in_array((Array) $institute->getContact(),(Array) $contactPers->getEtablissement()))
                 $contactPers->addEtablissement($institute);*/
 
-
-            $demande->setListeSemaine($this->arrayToString($listWeek));
+            $toolBoxDatabase = $this->get('architecture.toolboxdatabase');
+            $demande->setListeSemaine($toolBoxDatabase->arrayToString($listWeek));
 
             $this->getDoctrine()->getManager()->persist($demande);
             $em = $this->getDoctrine()->getManager();
@@ -177,19 +176,17 @@ class InterventionController extends Controller {
      * @return Response Permet de récupérer la vue consultation pour l'héritage.
      * @Route("/intervention/{id}", name="intervention_view")
      */
-
-    public function consultationAction($id)
-    {
+    public function consultationAction($id) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('InterventionBundle:Intervention');
         $intervention = $repository->find($id);
 
-        if($intervention->isFrimousse()){
+        if($intervention->isFrimousse()) {
             return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig',array('intervention' => $intervention));
-        } elseif ($intervention->isPlaidoyer()){
+        } elseif ($intervention->isPlaidoyer()) {
            return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig',array('intervention' => $intervention));
         }
-        else{
+        else {
             return $this->render('InterventionBundle:Intervention:consultation.html.twig',array('intervention' => $intervention));
         }}
 
@@ -251,7 +248,6 @@ class InterventionController extends Controller {
      * @return Response Renvoie vers la page d'attribution d'intervention.
      */
     public function attribueesAction() {
-
         return $this->render('InterventionBundle:Intervention/Attribuees:liste.html.twig', array(
             'liste' => null
         ));
@@ -278,9 +274,11 @@ class InterventionController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('InterventionBundle:Intervention');
             $interventions = $repository->findBy(array('id' => $ids));
+
             foreach ($interventions as $intervention) {
                 $em->remove($intervention);
             }
+
             $em->flush();
             return new Response();
         }
@@ -288,25 +286,6 @@ class InterventionController extends Controller {
     }
 
     /**
-     *
-     */
-    public function ajouterIntervention(){
-
-    }
-
-    public function arrayToString($array) {
-        $string = '{';
-        foreach ($array as $value) {
-            $string = $string.$value;
-            if($value !== end($array)) {
-                $string = $string.',';
-            }
-        }
-        return $string.'}';
-    }
-
-    /**
-
      * Class casting
      *
      * @param string|object $destination
@@ -317,9 +296,11 @@ class InterventionController extends Controller {
         if (is_string($destination)) {
             $destination = new $destination();
         }
+
         $sourceReflection = new \ReflectionObject($sourceObject);
         $destinationReflection = new \ReflectionObject($destination);
         $sourceProperties = $sourceReflection->getProperties();
+
         foreach ($sourceProperties as $sourceProperty) {
             $sourceProperty->setAccessible(true);
             $name = $sourceProperty->getName();
@@ -340,36 +321,34 @@ class InterventionController extends Controller {
      * @param $interventionList
      * Iterates over the interventions requested to get the parameters
      */
-    function treatmentInterventions($interventionsRawList,&$interventionList){
-
+    function treatmentInterventions($interventionsRawList, &$interventionList) {
+        $toolBoxDatabase = $this->get('architecture.toolboxdatabase');
         $comiteTest = $this->getDoctrine()->getManager()->getRepository('UserBundle:Comite')->find(1);
-        if($interventionsRawList !== null){
+
+        if($interventionsRawList !== null) {
             $interventionsRawList = array_filter($interventionsRawList);
-            foreach($interventionsRawList as $interventionRaw){
+
+            foreach($interventionsRawList as $interventionRaw) {
                 $interventionTemp = new Intervention();
                 $interventionTemp->setRealisee(false);
                 $interventionTemp->setDate(null);
                 $interventionTemp->setMateriauxFrimousse(null);
-                $interventionTemp->setMaterielDispoPlaidoyer($this->arrayToString($interventionRaw["materiel"]["materiel"]));
+                $interventionTemp->setMaterielDispoPlaidoyer($toolBoxDatabase->arrayToString($interventionRaw["materiel"]["materiel"]));
                 $interventionTemp->setNbPersonne($interventionRaw["eleves"]["nbEleves"]);
-
-
                 $interventionTemp->setComite($comiteTest);
                 $interventionList[] = $interventionTemp;
             }
         }
-
     }
-
 
     /**
      * @param $contactPers
      * Iterates over a contact to check if she/he is already in the db, take the one from the db in the last case
      */
-    function treatmentContact(&$contactPers){
-
+    function treatmentContact(&$contactPers) {
         $em = $this->getDoctrine()->getManager();
         $em = $em->getRepository('UserBundle:Contact');
+
         $contactBase = $em->findOneBy(
             array(
                 'nom' => $contactPers->getNom(),
@@ -378,14 +357,12 @@ class InterventionController extends Controller {
             )
         );
 
-        if(!is_null($contactBase)){
+        if(!is_null($contactBase)) {
             $contactPers = $contactBase;
-        }
-        else{
+        } else {
             $this->getDoctrine()->getManager()->persist($contactPers);
             $this->getDoctrine()->getManager()->flush();
         }
-
     }
 
     /**
@@ -393,13 +370,13 @@ class InterventionController extends Controller {
      * @param Demande $demande
      *  Iterates over the moments to fill the one from the demand
      */
-    function treatmentMoment($moments,\Unipik\InterventionBundle\Entity\Demande &$demande){
+    function treatmentMoment($moments,\Unipik\InterventionBundle\Entity\Demande &$demande) {
         $this->treatmentAvoidDay(array_keys($moments,'a-eviter'),$demande);
         $this->treatmentAllDay(array_keys($moments,'indifferent'),$demande);
     }
 
-    function treatmentAvoidDay(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande){
-        foreach($days as $day){
+    function treatmentAvoidDay(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande) {
+        foreach($days as $day) {
             $moment = new MomentHebdomadaire();
             $moment->setJour($day);
             $moment->setMoment('matin');
@@ -408,14 +385,12 @@ class InterventionController extends Controller {
             $this->getDoctrine()->getManager()->flush();
             $demande->getMomentsAEviter()->add($moment);
 
-
             $momentP = new MomentHebdomadaire();
             $momentP->setJour($day);
             $momentP->setMoment('apres-midi');
             $this->getDoctrine()->getManager()->persist($momentP);
             $this->getDoctrine()->getManager()->flush();
             $demande->getMomentsAEviter()->add($momentP);
-
 
             $momentL = new MomentHebdomadaire();
             $momentL->setJour($day);
@@ -426,8 +401,8 @@ class InterventionController extends Controller {
         }
     }
 
-    function treatmentAllDay(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande){
-        foreach($days as $day){
+    function treatmentAllDay(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande) {
+        foreach($days as $day) {
             $moment = new MomentHebdomadaire();
             $moment->setJour($day);
             $moment->setMoment('matin');
@@ -436,14 +411,12 @@ class InterventionController extends Controller {
             $this->getDoctrine()->getManager()->flush();
             $demande->getMomentsVoulus()->add($moment);
 
-
             $momentP = new MomentHebdomadaire();
             $momentP->setJour($day);
             $momentP->setMoment('apres-midi');
             $this->getDoctrine()->getManager()->persist($momentP);
             $this->getDoctrine()->getManager()->flush();
             $demande->getMomentsVoulus()->add($momentP);
-
 
             $momentL = new MomentHebdomadaire();
             $momentL->setJour($day);
@@ -454,15 +427,14 @@ class InterventionController extends Controller {
         }
     }
 
-    function linkAllMoments($moments,\Unipik\InterventionBundle\Entity\Demande &$demande ){
-
-        foreach($moments as $moment){
+    function linkAllMoments($moments,\Unipik\InterventionBundle\Entity\Demande &$demande ) {
+        foreach($moments as $moment) {
             $moment->addDemandeMomentsVoulus($demande);
         }
     }
 
-    function linkAllBMoments($moments,\Unipik\InterventionBundle\Entity\Demande &$demande ){
-        foreach($moments as $moment){
+    function linkAllBMoments($moments,\Unipik\InterventionBundle\Entity\Demande &$demande ) {
+        foreach($moments as $moment) {
             $moment->addDemandeMomentsAEviter($demande);
         }
     }

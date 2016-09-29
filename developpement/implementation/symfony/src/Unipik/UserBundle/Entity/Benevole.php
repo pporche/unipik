@@ -116,8 +116,7 @@ class Benevole extends BaseUser
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->projet = new \Doctrine\Common\Collections\ArrayCollection();
         $this->comite = new \Doctrine\Common\Collections\ArrayCollection();
@@ -129,8 +128,7 @@ class Benevole extends BaseUser
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -142,10 +140,8 @@ class Benevole extends BaseUser
      *
      * @return Benevole
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -154,8 +150,7 @@ class Benevole extends BaseUser
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -166,10 +161,8 @@ class Benevole extends BaseUser
      *
      * @return Benevole
      */
-    public function setPrenom($prenom)
-    {
+    public function setPrenom($prenom) {
         $this->prenom = $prenom;
-
         return $this;
     }
 
@@ -178,8 +171,7 @@ class Benevole extends BaseUser
      *
      * @return string
      */
-    public function getPrenom()
-    {
+    public function getPrenom() {
         return $this->prenom;
     }
 
@@ -190,10 +182,8 @@ class Benevole extends BaseUser
      *
      * @return Benevole
      */
-    public function setTelFixe($telFixe)
-    {
+    public function setTelFixe($telFixe) {
         $this->telFixe = $telFixe;
-
         return $this;
     }
 
@@ -202,8 +192,7 @@ class Benevole extends BaseUser
      *
      * @return string
      */
-    public function getTelFixe()
-    {
+    public function getTelFixe() {
         return $this->telFixe;
     }
 
@@ -214,10 +203,8 @@ class Benevole extends BaseUser
      *
      * @return Benevole
      */
-    public function setTelPortable($telPortable)
-    {
+    public function setTelPortable($telPortable) {
         $this->telPortable = $telPortable;
-
         return $this;
     }
 
@@ -226,33 +213,8 @@ class Benevole extends BaseUser
      *
      * @return string
      */
-    public function getTelPortable()
-    {
+    public function getTelPortable() {
         return $this->telPortable;
-    }
-
-    /**
-     * Set mdp
-     *
-     * @param string $mdp
-     *
-     * @return Benevole
-     */
-    public function setMdp($mdp)
-    {
-        $this->mdp = $mdp;
-
-        return $this;
-    }
-
-    /**
-     * Get mdp
-     *
-     * @return string
-     */
-    public function getMdp()
-    {
-        return $this->mdp;
     }
 
     /**
@@ -262,10 +224,8 @@ class Benevole extends BaseUser
      *
      * @return Benevole
      */
-    public function setActivitesPotentielles($activitesPotentielles)
-    {
+    public function setActivitesPotentielles($activitesPotentielles) {
         $this->activitesPotentielles = $activitesPotentielles;
-
         return $this;
     }
 
@@ -274,8 +234,7 @@ class Benevole extends BaseUser
      *
      * @return string
      */
-    public function getActivitesPotentielles()
-    {
+    public function getActivitesPotentielles() {
         return $this->activitesPotentielles;
     }
 
@@ -286,10 +245,8 @@ class Benevole extends BaseUser
      *
      * @return Benevole
      */
-    public function setResponsabiliteActivite($responsabiliteActivite)
-    {
+    public function setResponsabiliteActivite($responsabiliteActivite) {
         $this->responsabiliteActivite = $responsabiliteActivite;
-
         return $this;
     }
 
@@ -298,8 +255,7 @@ class Benevole extends BaseUser
      *
      * @return string
      */
-    public function getResponsabiliteActivite()
-    {
+    public function getResponsabiliteActivite() {
         return $this->responsabiliteActivite;
     }
 
@@ -310,10 +266,8 @@ class Benevole extends BaseUser
      *
      * @return Benevole
      */
-    public function setAdresse(\Unipik\ArchitectureBundle\Entity\Adresse $adresse = null)
-    {
+    public function setAdresse(\Unipik\ArchitectureBundle\Entity\Adresse $adresse = null) {
         $this->adresse = $adresse;
-
         return $this;
     }
 
@@ -322,8 +276,7 @@ class Benevole extends BaseUser
      *
      * @return \Unipik\ArchitectureBundle\Entity\Adresse
      */
-    public function getAdresse()
-    {
+    public function getAdresse() {
         return $this->adresse;
     }
 
@@ -334,10 +287,8 @@ class Benevole extends BaseUser
      *
      * @return Benevole
      */
-    public function addProjet(\Unipik\UserBundle\Entity\Projet $projet)
-    {
+    public function addProjet(\Unipik\UserBundle\Entity\Projet $projet) {
         $this->projet[] = $projet;
-
         return $this;
     }
 
@@ -346,8 +297,7 @@ class Benevole extends BaseUser
      *
      * @param \Unipik\UserBundle\Entity\Projet $projet
      */
-    public function removeProjet(\Unipik\UserBundle\Entity\Projet $projet)
-    {
+    public function removeProjet(\Unipik\UserBundle\Entity\Projet $projet) {
         $this->projet->removeElement($projet);
     }
 
@@ -356,8 +306,7 @@ class Benevole extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getProjet()
-    {
+    public function getProjet() {
         return $this->projet;
     }
 
@@ -368,10 +317,8 @@ class Benevole extends BaseUser
      *
      * @return Benevole
      */
-    public function addComite(\Unipik\UserBundle\Entity\Comite $comite)
-    {
+    public function addComite(\Unipik\UserBundle\Entity\Comite $comite) {
         $this->comite[] = $comite;
-
         return $this;
     }
 
@@ -380,8 +327,7 @@ class Benevole extends BaseUser
      *
      * @param \Unipik\UserBundle\Entity\Comite $comite
      */
-    public function removeComite(\Unipik\UserBundle\Entity\Comite $comite)
-    {
+    public function removeComite(\Unipik\UserBundle\Entity\Comite $comite) {
         $this->comite->removeElement($comite);
     }
 
@@ -390,8 +336,7 @@ class Benevole extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getComite()
-    {
+    public function getComite() {
         return $this->comite;
     }
 }

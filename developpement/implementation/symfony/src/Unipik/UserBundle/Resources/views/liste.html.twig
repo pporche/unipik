@@ -52,11 +52,65 @@
             <tbody>
             {% for benevole in listBenevoles|sort %}
                 <tr id="checkboxes">
-                    <td>{{ benevole.nom }}</td>
-                    <td>{{ benevole.prenom }}</td>
+                    <td>{{ benevole.nom | capitalize }}</td>
+                    <td>{{ benevole.prenom | capitalize }}</td>
                     <td id="idBenevole" hidden="hidden">{{ benevole.id }}</td>
-                    <td name="resp">{{ benevole.responsabiliteActivite }}</td>
-                    <td name="act">{{ benevole.activitesPotentielles }}</td>
+                    <td name="resp">
+                        {% if (benevole.responsabiliteActivite == "" or benevole.responsabiliteActivite == NULL) %}
+                            <div class="col-lg-offset-1 ">
+
+                            </div>
+                        {% else %}
+                            <div class="col-lg-offset-1 col-sm-7 ">
+                                {% if ('plaidoyer' in benevole.responsabiliteActivite ) %}
+                                        Plaidoyer
+                                {% endif %}
+                                {% if ('frimousse' in benevole.responsabiliteActivite) %}
+                                        Frimousse
+                                {% endif %}
+                                {% if ('actions_ponctuelles' in benevole.responsabiliteActivite) %}
+                                        Actions ponctuelles
+                                {% endif %}
+                                {% if ('projets' in benevole.responsabiliteActivite) %}
+                                        Projets
+                                {% endif %}
+                                {% if ('projets' in benevole.responsabiliteActivite) %}
+                                        Autre
+                                {% endif %}
+                                {% if ('admin_comite' in benevole.responsabiliteActivite) %}
+                                        Administrateur du comité
+                                {% endif %}
+                                {% if ('admin_region' in benevole.responsabiliteActivite) %}
+                                        Administrateur de la région
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </td>
+                    <td name="act">
+                        {% if (benevole.activitesPotentielles == "" or benevole.activitesPotentielles == NULL) %}
+                            <div class="col-lg-offset-1 col-sm-7">
+
+                            </div>
+                        {% else %}
+                            <div class="col-lg-offset-1 col-sm-7 ">
+                                {% if ('plaidoyer' in benevole.activitesPotentielles ) %}
+                                       Plaidoyer,
+                                {% endif %}
+                                {% if ('frimousse' in benevole.activitesPotentielles) %}
+                                        Frimousse,
+                                {% endif %}
+                                {% if ('actions_ponctuelles' in benevole.activitesPotentielles) %}
+                                        Actions ponctuelles,
+                                {% endif %}
+                                {% if ('projets' in benevole.activitesPotentielles) %}
+                                        Projets,
+                                {% endif %}
+                                {% if ('projets' in benevole.activitesPotentielles) %}
+                                        Autre,
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </td>
                     <td>
                         <a href="{{ path('user_admin_profil_benevole', {'username': benevole.username}) }}">
                             <button type="button" class="btn btn-primary">Consulter le profil</button>

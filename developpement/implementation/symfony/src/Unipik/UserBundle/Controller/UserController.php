@@ -12,8 +12,17 @@ use Unipik\UserBundle\Entity\Benevole;
 use Unipik\InterventionBundle\Entity\Intervention;
 use Unipik\UserBundle\Form\RegistrationType;
 
+/**
+ * Manage volunteer actions
+ *
+ * Class UserController
+ * @package Unipik\UserBundle\Controller
+ */
 class UserController extends Controller {
 
+    /**
+     * @return Response
+     */
     public function listeAction() {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('UserBundle:Benevole');
@@ -22,19 +31,27 @@ class UserController extends Controller {
     }
 
     /**
-     * @param $username array Nom d'utilisateur du bénévole à supprimer
+     * Delete a volunteer from the database
+     *
+     * @param $username
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteVolunteerAction($username) {
         $em = $this->getDoctrine()->getManager();
         $repositoryVolunteer = $em->getRepository('UserBundle:Benevole');
-        $volunteer = $repositoryVolunteer->findBy(array('username' => $username))[0];
+        $volunteer = $repositoryVolunteer->findOneBy(array('username' => $username));
 
         $this->deleteVolunteers($volunteer);
 
         return $this->redirectToRoute('user_admin_list');
     }
 
+    /**
+     * Delete many volunteers from the database
+     *
+     * @param Request $request
+     * @return Response
+     */
     public function deleteVolunteersAction(Request $request) {
         if($request->isXmlHttpRequest()) {
             $usernames = json_decode( $request->request->get('usernames'));
@@ -50,7 +67,10 @@ class UserController extends Controller {
         return new Response();
     }
 
-    public function deleteVolunteers($volunteer) {
+    /**
+     * @param $volunteer
+     */
+    private function deleteVolunteers($volunteer) {
         $em = $this->getDoctrine()->getManager();
         $repositoryVolunteer = $em->getRepository('UserBundle:Benevole');
         $repositoryIntervention = $em->getRepository('InterventionBundle:Intervention');
@@ -68,6 +88,10 @@ class UserController extends Controller {
         $em->flush();
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function modifyAction(Request $request) {
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.profile.form.factory');
@@ -91,20 +115,33 @@ class UserController extends Controller {
         ));
     }
 
+    /**
+     * Render a volunteer's profile page
+     *
+     * @param $username
+     * @return Response
+     */
     public function showProfileAction($username) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('UserBundle:Benevole');
-        $benevole = $repository->findBy(array('username' => $username))[0];
+        $benevole = $repository->findOneBy(array('username' => $username));
         $repositoryIntervention = $em->getRepository('InterventionBundle:Intervention');
         $listeInterventions = $repositoryIntervention->getInterventionsBenevole($benevole);
         return $this->render('UserBundle:Profile:showBenevole.html.twig', array('benevole' => $benevole, 'listeInterventions' => $listeInterventions));
     }
 
-    public function editAction(Request $request, $id) {
+    /**
+     * Edit a volunteer's profile
+     *
+     * @param Request $request
+     * @param $username
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function editAction(Request $request, $username) {
         $benevole = $this->getDoctrine()
             ->getManager()
             ->getRepository('UserBundle:Benevole')
-            ->find($id);
+            ->findOneBy(array('username' => $username));
 
         $form = $this->get('form.factory')
             ->createBuilder(RegistrationType::class, $benevole)

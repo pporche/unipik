@@ -15,12 +15,24 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Unipik\UserBundle\Form\Adresse\AdresseType;
 
-class ProfileFormType extends BaseType  {
+/**
+ * Class ProfileFormType
+ * @package Unipik\UserBundle\Form
+ */
+class ProfileFormType extends BaseType {
 
+    /**
+     * ProfileFormType constructor.
+     * @param string $class
+     */
     public function __construct($class) {
         parent::__construct($class);
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         parent::buildForm($builder, $options);
 
@@ -57,6 +69,10 @@ class ProfileFormType extends BaseType  {
         ;
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     protected function buildUserForm(FormBuilderInterface $builder, array $options) {
         parent::buildUserForm($builder, $options);
 
@@ -69,10 +85,16 @@ class ProfileFormType extends BaseType  {
         ;
     }
 
+    /**
+     * @return string
+     */
     public function getParent() {
         return 'FOS\UserBundle\Form\Type\ProfileFormType';
     }
 
+    /**
+     * @return string
+     */
     public function getBlockPrefix() {
         return 'user_profile';
     }

@@ -7,9 +7,6 @@ intervention_list:
     path:   /intervention
     defaults:
         _controller: InterventionBundle:Intervention:liste
-#        typeI: ""
-#    requirements:
-#        typeI: "plaidoyer|frimousse|autreIntervention"
 
 intervention_attributed:
     path: /intervention/attribuees

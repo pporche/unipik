@@ -85,7 +85,6 @@
                 index++;
             }
 
-
             // La fonction qui ajoute un lien de suppression d'une catégorie
             function addDeleteLink($prototype) {
                 // Création du lien
@@ -101,5 +100,48 @@
             }
 
         });
+    </script>
+
+    <script type="application/javascript">
+        document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change',function(e){
+            console.log(e.target.value);
+            switch (e.target.value){
+                case 'ens' : keepInstitute();
+                    break;
+                case 'centre' : keepCenter();
+                    break;
+                case 'autre' : keepOther();
+                    break;
+            }
+        });
+
+        function keepInstitute(){
+            $(".form-group:eq(6)").fadeIn("slow").removeAttr("disabled");
+            $(".form-group:eq(7)").fadeOut("fast").prop("disabled",true);
+            $(".form-group:eq(8)").fadeOut("fast").prop("disabled",true);
+        }
+
+        function keepCenter(){
+            $(".form-group:eq(8)").fadeIn("slow").removeAttr("disabled");
+            $(".form-group:eq(6)").fadeOut("fast").prop("disabled",true);
+            $(".form-group:eq(7)").fadeOut("fast").prop("disabled",true);
+
+        }
+
+        function keepOther(){
+            $(".form-group:eq(7)").fadeIn("slow").removeAttr("disabled");
+            $(".form-group:eq(6)").fadeOut("fast").prop("disabled",true);
+            $(".form-group:eq(8)").fadeOut("fast").prop("disabled",true);
+        }
+
+        switch($("#demande_Etablissement_TypeGeneral").val()){
+            case 'ens' : keepInstitute();
+                break;
+            case 'centre' : keepCenter();
+                break;
+            case 'autre' : keepOther();
+                break;
+        }
+
     </script>
 {% endblock %}

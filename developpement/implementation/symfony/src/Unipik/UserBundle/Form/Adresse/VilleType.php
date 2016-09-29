@@ -11,13 +11,16 @@ namespace Unipik\UserBundle\Form\Adresse;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+/**
+ * Class VilleType
+ * @package Unipik\UserBundle\Form\Adresse
+ */
 class VilleType extends AbstractType {
 
     /**
      * {@inheritdoc}
      */
-    public function getParent()
-    {
+    public function getParent() {
         return TextType::class;
     }
 

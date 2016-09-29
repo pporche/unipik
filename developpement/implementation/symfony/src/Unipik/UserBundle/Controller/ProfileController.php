@@ -19,7 +19,20 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use FOS\UserBundle\Controller\ProfileController as BaseController;
 
+/**
+ * Manage the user profile
+ *
+ * Class ProfileController
+ * @package Unipik\UserBundle\Controller
+ */
 class ProfileController extends BaseController {
+
+    /**
+     * Edit the current user profile
+     *
+     * @param Request $request
+     * @return null|RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function editAction(Request $request) {
 
         $user = $this->getUser();
@@ -49,14 +62,14 @@ class ProfileController extends BaseController {
         if ($form->isValid()) {
             /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
             $userManager = $this->get('fos_user.user_manager');
-
+            $toolBoxDatabase = $this->get('architecture.toolboxdatabase');
 
             $activitiesArray = $form->get("activitesPotentielles")->getData();
-            $activitiesString = $this->arrayToString($activitiesArray);
+            $activitiesString = $toolBoxDatabase->arrayToString($activitiesArray);
             $user->setResponsabiliteActivite($activitiesString);
 
             $responsibilitiesArray = $form->get("responsabiliteActivite")->getData();
-            $responsibilitiesString = $this->arrayToString($responsibilitiesArray);
+            $responsibilitiesString = $toolBoxDatabase->arrayToString($responsibilitiesArray);
             $user->setResponsabiliteActivite($responsibilitiesString);
 
             $event = new FormEvent($form, $request);
@@ -76,16 +89,5 @@ class ProfileController extends BaseController {
         return $this->render('UserBundle:Profile:edit.html.twig', array(
             'form' => $form->createView()
         ));
-    }
-
-    public function arrayToString($array) {
-        $string = '{';
-        foreach ($array as $value) {
-            $string = $string.$value;
-            if($value !== end($array)) {
-                $string = $string.',';
-            }
-        }
-        return $string.'}';
     }
 }

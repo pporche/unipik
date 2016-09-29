@@ -30,13 +30,4 @@ class RemarquesType extends AbstractFieldsetType {
     public function getBlockPrefix() {
         return 'remarques';
     }
-
-    /**
-     *
-     * @return String  le nom spécifique de la classe RemarquesType
-     */
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

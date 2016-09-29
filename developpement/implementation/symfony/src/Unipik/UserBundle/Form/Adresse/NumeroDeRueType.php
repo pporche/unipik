@@ -28,8 +28,4 @@ class NumeroDeRueType extends AbstractType {
     public function getBlockPrefix() {
         return 'numeroDeRue';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

@@ -28,8 +28,4 @@ class AdType extends AbstractType {
     public function getBlockPrefix() {
         return 'adresse';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

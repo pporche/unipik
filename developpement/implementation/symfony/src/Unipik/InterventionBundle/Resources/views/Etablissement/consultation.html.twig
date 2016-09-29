@@ -15,7 +15,15 @@
             <div class="infoPrincip">
                 <div class="row">
                     <h2 class="col-lg-9 titre">Etablissement</h2><br><br>
-                    <h4 class="col-lg-9">Enseignement/CentreLoisirs/Autre établissement</h4>
+                    <h4 class="col-lg-9">
+                        {% if etablissement.typeEnseignement %}
+                            Enseignement
+                        {% elseif etablissement.typeCentre %}
+                            CentreLoisirs
+                        {% else %}
+                            Autre établissement
+                    {% endif %}
+                    </h4>
                     <img src="{{ asset('img/logo-gris.png') }}" class="logoGris">
                 </div>
                 <hr>
@@ -29,7 +37,12 @@
                             </div>
 
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>Lycée Corneille</i>
+                                <i>{% if etablissement.nom is not empty %}
+                                    {{ etablissement.nom }}
+                                    {% else %}
+                                    -
+                                    {% endif %}
+                                </i>
                             </div>
 
                             <div class="col-sm-4 col-xs-12">
@@ -38,7 +51,11 @@
                                 </dt>
                             </div>
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>0000000000</i>
+                                <i>{% if etablissement.telFixe is not empty %}
+                                        {{ etablissement.telFixe }}
+                                    {% else %}
+                                        -
+                                    {% endif %}</i>
                             </div>
                             <div class="col-sm-4 col-xs-12">
                                 <dt>
@@ -46,15 +63,11 @@
                                 </dt>
                             </div>
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>email1@gmail.com</i>
-                            </div>
-                            <div class="col-sm-4 col-xs-12">
-                                <dt>
-
-                                </dt>
-                            </div>
-                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>email2@gmail.com</i>
+                                {% if etablissement.emails is not empty %}
+                                        <i>{{ etablissement.emails }}</i>
+                                {% else %}
+                                    -
+                                {% endif %}
                             </div>
 
 
@@ -64,10 +77,11 @@
                                 </dt>
                             </div>
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i> adresse <br/>
-                                    complément <br/>
-                                    code postal <br/>
-                                    ville
+                                <i> {{ etablissement.adresse.adresse }} <br/>
+                                    {{ etablissement.adresse.ville }} <br/>
+                                    {{ etablissement.adresse.codePostal }}  <br/>
+                                    {{ etablissement.adresse.complement }}
+
                                 </i>
                             </div>
 
@@ -140,106 +154,89 @@
                 </div>
                 <h3>Contacts</h3>
                 <div class="row">
-                    <div class="well col-lg-offset-1 col-sm-12 col-xs-12">
-                        <dl class="dl-horizontal">
-                            <div class="col-sm-6 col-xs-12">
-                                <dt>
-                                    Nom :
-                                </dt>
-                            </div>
+                            {% if etablissement.contact is not empty%}
+                                {% for contact in etablissement.contact %}
+                                    <div class="well col-lg-offset-1 col-sm-12 col-xs-12">
+                                        <dl class="dl-horizontal">
+                                            <div class="col-sm-6 col-xs-12">
+                                                <dt>
+                                                    Nom:
+                                                </dt>
+                                            </div>
 
-                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>Dupont</i>
-                            </div>
+                                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                                <i>{% if contact.nom is not empty %}
+                                                    {{ contact.nom |capitalize }}
+                                                    {% else %}
+                                                    -
+                                                    {% endif %}
+                                                </i>
+                                            </div>
 
-                            <div class="col-sm-6 col-xs-12">
-                                <dt>
-                                    Prénom :
-                                </dt>
-                            </div>
-                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>Jean</i>
-                            </div>
-                            <div class="col-sm-6 col-xs-12">
-                                <dt>
-                                    Tel fixe :
-                                </dt>
-                            </div>
-                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>0000000000</i>
-                            </div>
-
-
-                            <div class="col-sm-6 col-xs-12">
-                                <dt>
-                                    Tel portable :
-                                </dt>
-                            </div>
-                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>0000000000</i>
-                            </div>
-
-
-                            <div class="col-sm-6 col-xs-12">
-                                <dt>
-                                    Responsabilité :
-                                </dt>
-                            </div>
-                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>Frimousse</i>
-                            </div>
-                        </dl>
-                    </div>
-                    <div class="well col-lg-offset-1 col-sm-12 col-sm-offset-0">
-                        <dl class="dl-horizontal">
-                            <div class="col-sm-6 col-xs-12">
-                                <dt>
-                                    Nom :
-                                </dt>
-                            </div>
-
-                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>Dupont2</i>
-                            </div>
-
-                            <div class="col-sm-6 col-xs-12">
-                                <dt>
-                                    Prénom :
-                                </dt>
-                            </div>
-                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>Jean2</i>
-                            </div>
-                            <div class="col-sm-6 col-xs-12">
-                                <dt>
-                                    Tel fixe :
-                                </dt>
-                            </div>
-                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>0000000000</i>
-                            </div>
+                                            <div class="col-sm-6 col-xs-12">
+                                                <dt>
+                                                    Prénom :
+                                                </dt>
+                                            </div>
+                                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                                <i>
+                                                    <i>{% if contact.prenom is not empty %}
+                                                            {{ contact.prenom |capitalize }}
+                                                        {% else %}
+                                                            -
+                                                        {% endif %}
+                                                    </i>
+                                                </i>
+                                            </div>
+                                            <div class="col-sm-6 col-xs-12">
+                                                <dt>
+                                                    Tel fixe :
+                                                </dt>
+                                            </div>
+                                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                                <i>{% if contact.telFixe is not empty %}
+                                                        {{ contact.telFixe }}
+                                                    {% else %}
+                                                        -
+                                                    {% endif %}</i>
+                                            </div>
 
 
-                            <div class="col-sm-6 col-xs-12">
-                                <dt>
-                                    Tel portable :
-                                </dt>
-                            </div>
-                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>0000000000</i>
-                            </div>
+                                            <div class="col-sm-6 col-xs-12">
+                                                <dt>
+                                                    Tel portable :
+                                                </dt>
+                                            </div>
+                                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                                <i>{% if contact.telPortable is not empty %}
+                                                        {{ contact.telPortable }}
+                                                    {% else %}
+                                                        -
+                                                    {% endif %}</i>
+                                            </div>
 
 
-                            <div class="col-sm-6 col-xs-12">
-                                <dt>
-                                    Responsabilité :
-                                </dt>
-                            </div>
-                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>Plaidoyer</i>
-                            </div>
-                        </dl>
-                    </div>
+                                            <div class="col-sm-6 col-xs-12">
+                                                <dt>
+                                                    Responsabilité :
+                                                </dt>
+                                            </div>
+                                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                                {% if contact.responsabiliteActivite is not empty %}
+                                                    {% for responsabilite in contact.responsabiliteActivite %}
+                                                        <i>{{ responsabilite }}</i>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    -
+                                                {% endif %}
+                                            </div>
+                                        </dl>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                &nbsp &nbsp &nbsp <i>Aucun contact.</i>
+                            {% endif %}
+
                 </div>
             </div>
 

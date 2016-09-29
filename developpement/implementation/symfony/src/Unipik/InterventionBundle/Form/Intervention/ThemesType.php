@@ -40,8 +40,4 @@ class ThemesType extends AbstractType {
     public function getBlockPrefix() {
         return 'themes';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

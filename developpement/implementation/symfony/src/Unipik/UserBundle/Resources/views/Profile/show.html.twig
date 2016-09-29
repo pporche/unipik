@@ -78,7 +78,7 @@
         </div>
         <div class="row">
             <div class="buttons">
-                <a href="{{ path("user_profile_edit") }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier</span> </a>
+                <a href="{{ path("fos_user_profile_edit") }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier</span> </a>
             </div>
         </div>
         <div class="row">
@@ -89,14 +89,19 @@
                     </div>
                 <h3>Commité(s) de rattachement : </h3>
                 <div class="row">
-                    <ul class="list-group col-lg-offset-1 col-sm-11 ">
-                        <li class="list-group-item">
-                            Seine-Maritime
-                        </li>
-                        <li class="list-group-item">
-                            Eure
-                        </li>
-                    </ul>
+                    {% if user.comite is not empty %}
+                        <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                            {% for comite in user.comite %}
+                                <li class="list-group-item">
+                                    {{ comite.getNomDepartement() }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="col-lg-offset-1 col-sm-7">
+                            Aucun
+                        </div>
+                    {% endif %}
                 </div>
                     </div>
                 <div class="col-sm-4 containerTwo">
@@ -105,18 +110,39 @@
                     </div>
                     <h3>Domaines d'activités : </h3>
                     <div class="row">
-                        <ul class="list-group col-lg-offset-1 col-sm-11 ">
-                            <li class="list-group-item">
-                                <span class="glyphicon glyphicon-ok"></span> &nbsp Plaidoyer
-                            </li>
-                            <li class="list-group-item">
-                                <span class="glyphicon glyphicon-ok"></span>  &nbsp Frimousse
-                            </li>
-                            <li class="list-group-item">
-                                <span class="glyphicon glyphicon-remove"></span>  &nbsp Actions ponctuelles
-                            </li>
-                        </ul>
-
+                        {% if (user.activitesPotentielles == "" or user.activitesPotentielles == NULL) %}
+                            <div class="col-lg-offset-1 col-sm-7">
+                                Aucun
+                            </div>
+                        {% else %}
+                            <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                                {% if ('plaidoyer' in user.activitesPotentielles ) %}
+                                    <li class="list-group-item">
+                                        Plaidoyer
+                                    </li>
+                                {% endif %}
+                                {% if ('frimousse' in user.activitesPotentielles) %}
+                                    <li class="list-group-item">
+                                        Frimousse
+                                    </li>
+                                {% endif %}
+                                {% if ('actions_ponctuelles' in user.activitesPotentielles) %}
+                                    <li class="list-group-item">
+                                        Actions ponctuelles
+                                    </li>
+                                {% endif %}
+                                {% if ('projets' in user.activitesPotentielles) %}
+                                    <li class="list-group-item">
+                                        Projets
+                                    </li>
+                                {% endif %}
+                                {% if ('projets' in user.activitesPotentielles) %}
+                                    <li class="list-group-item">
+                                        Autre
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-sm-4 containerThree">
@@ -125,17 +151,21 @@
                     </div>
                     <h3>Projets en cours : </h3>
                     <div class="row">
-                        <ul class="list-group col-lg-offset-1 col-sm-11">
-                            <li class="list-group-item">
-                                <i> Nom du projet 1 </i>
-                            </li>
-                            <li class="list-group-item">
-                                <i> Nom du projet 2</i>
-                            </li>
-                            <li class="list-group-item">
-                                <i> Nom du projet 3</i>
-                            </li>
+                        {% if user.projet is not empty %}
+                        <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                            {% for projet in user.projet %}
+                                <li class="list-group-item">
+                                    {{ projet.nom }}
+                                </li>
+                            {% endfor %}
                         </ul>
+                        {% else %}
+                            <div class="col-lg-offset-1 col-sm-7">
+                                Aucun
+                            </div>
+                        {% endif %}
+
+
                     </div>
                 </div>
             </div>

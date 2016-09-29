@@ -23,7 +23,10 @@ class EtablissementController extends Controller {
      * @return Response Renvoie vers la page de consultation liée à l'établissement.
      */
     public function consultationAction($id) {
-        return $this->render('InterventionBundle:Etablissement:consultation.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('InterventionBundle:Etablissement');
+        $etablissement = $repository->find($id);
+        return $this->render('InterventionBundle:Etablissement:consultation.html.twig',array('etablissement' => $etablissement));
     }
 
     /**
@@ -137,20 +140,5 @@ class EtablissementController extends Controller {
 //            'dateEnd' => $endI,
             'form' => $form->createView()
         ));
-    }
-
-    /**
-     * @param $array
-     * @return String La string formatée pour les domains en DB
-     */
-    public function arrayToString($array) {
-        $string = '{';
-        foreach ($array as $value) {
-            $string = $string.$value;
-            if($value !== end($array)) {
-                $string = $string.',';
-            }
-        }
-        return $string.'}';
     }
 }

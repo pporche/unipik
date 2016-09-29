@@ -46,8 +46,4 @@ class LoginType extends AbstractType {
     public function getBlockPrefix() {
         return '';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

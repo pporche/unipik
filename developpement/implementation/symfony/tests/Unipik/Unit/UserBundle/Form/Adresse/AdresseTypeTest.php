@@ -8,18 +8,13 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Form\Adresse;
 
-
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\AdresseMock;
-use Unipik\ArchitectureBundle\Entity\Adresse;
 use Tests\Unipik\Unit\Utils\FormTestCase;
 use Unipik\UserBundle\Form\Adresse\AdresseType;
 
 class AdresseTypeTest extends FormTestCase {
 
     protected static $testedType = AdresseType::class;
-
-
-
 
     public function validDataProvider()
     {
@@ -49,10 +44,6 @@ class AdresseTypeTest extends FormTestCase {
 
     public function badDataProvider()
     {
-        $a1 = AdresseMock::create();
-        $a2 = clone $a1;
-        $a3 = clone $a1;
-
         return [
             "Ville est null" => [
                 "Ville" => [

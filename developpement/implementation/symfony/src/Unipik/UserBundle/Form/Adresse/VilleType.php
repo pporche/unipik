@@ -27,8 +27,4 @@ class VilleType extends AbstractType {
     public function getBlockPrefix() {
         return 'ville';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

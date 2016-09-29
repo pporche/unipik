@@ -27,8 +27,4 @@ class ComplementType extends AbstractType {
     public function getBlockPrefix() {
         return 'complement';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

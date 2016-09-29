@@ -76,8 +76,4 @@ class ProfileFormType extends BaseType  {
     public function getBlockPrefix() {
         return 'user_profile';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

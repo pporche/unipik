@@ -38,8 +38,4 @@ class MaterielType extends AbstractType {
     public function getBlockPrefix() {
         return 'materiel';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

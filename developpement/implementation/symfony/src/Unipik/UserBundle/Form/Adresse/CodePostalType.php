@@ -27,8 +27,4 @@ class CodePostalType extends AbstractType {
     public function getBlockPrefix() {
         return 'codePostal';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

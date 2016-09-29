@@ -68,8 +68,4 @@ class AdresseType extends AbstractFieldsetType {
     public function getBlockPrefix() {
         return 'adresse';
     }
-
-    public function getName() {
-        return $this->getBlockPrefix();
-    }
 }

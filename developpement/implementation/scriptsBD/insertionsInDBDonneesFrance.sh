@@ -1,5 +1,5 @@
-# version 1.00, date 14/09/2016, auteur Mélissa Bignoux
-# permet de remplir les tables adresses et établissement
+# version 1.00, date 26/09/2016, auteur Mélissa Bignoux
+# permet de remplir les tables pays, région, département, ville, code_postal
 
 prompt_token() {
   local VAL=""

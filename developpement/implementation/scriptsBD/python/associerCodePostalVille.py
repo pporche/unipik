@@ -12,7 +12,7 @@ def main():
      reader = csv.reader(f, delimiter=',') # good point by @paco
      for row in reader:
           if ((row[3] == ville) or (row[4] == ville)):
-              print row[2]
+            print(row[2])
           
 
 

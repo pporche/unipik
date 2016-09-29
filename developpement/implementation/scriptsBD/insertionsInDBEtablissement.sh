@@ -1,5 +1,9 @@
+# version 1.01, date 29/09/2016, auteur Mélissa Bignoux
+# remplit l'attribut géolocalisation des adresses
+
+
 # version 1.00, date 14/09/2016, auteur Mélissa Bignoux
-# permet de remplir les tables adresses et établissement
+# permet de remplir la table établissement
 
 prompt_token() {
   local VAL=""
@@ -52,7 +56,7 @@ fichierAddAdresses="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scr
 fichierAddEtablissement="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_etablissements.sql"
 export PGPASSWORD="$password"
 
-
+psql -U $username -w -d $dbname  -h 127.0.0.1 -c "ALTER SEQUENCE etablissement_id_seq RESTART WITH 1;"
 
 IFS=","
 while read a b c d e f g h i 

@@ -28,4 +28,5 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/intervention($|/), role: IS_AUTHENTICATED_FULLY }
+	- { path: ^/intervention/demande, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/etablissement($|/), role: IS_AUTHENTICATED_FULLY }

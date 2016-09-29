@@ -20,9 +20,20 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-
+/**
+ * Manage the registration actions
+ *
+ * Class RegistrationController
+ * @package Unipik\UserBundle\Controller
+ */
 class RegistrationController extends BaseController {
 
+    /**
+     * Action for registration
+     *
+     * @param Request $request
+     * @return null|RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function registerAction(Request $request) {
 
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
@@ -81,6 +92,11 @@ class RegistrationController extends BaseController {
         ));
     }
 
+    /**
+     * Check email
+     *
+     * @return RedirectResponse
+     */
     public function checkEmailAction() {
         $email = $this->get('session')->get('fos_user_send_confirmation_email/email');
         $this->get('session')->remove('fos_user_send_confirmation_email/email');
@@ -91,17 +107,6 @@ class RegistrationController extends BaseController {
         }
 
         return $this->redirectToRoute("user_admin_profil_benevole", array('username' => $user->getUsername()));
-    }
-
-    public function arrayToString($array) {
-        $string = '{';
-        foreach ($array as $value) {
-            $string = $string.$value;
-            if($value !== end($array)) {
-                $string = $string.',';
-            }
-        }
-        return $string.'}';
     }
 
     /**
@@ -132,10 +137,15 @@ class RegistrationController extends BaseController {
         return $activitiesString.'}';
     }
 
+    /**
+     * Confirmation after registration
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function confirmedAction() {
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
-            throw new AccessDeniedException('This user does not have access to this section.');
+            throw new AccessDeniedException('L\'utilisateur n\'a pas accès à cette section.');
         }
 
         return $this->render('UserBundle:Registration:confirmed.html.twig', array(
@@ -144,6 +154,11 @@ class RegistrationController extends BaseController {
         ));
     }
 
+    /**
+     * Get the original requested url before registration.
+     *
+     * @return mixed
+     */
     private function getTargetUrlFromSession() {
         if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
             $tokenStorage = $this->get('security.token_storage');

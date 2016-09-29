@@ -18,8 +18,19 @@ use Unipik\ArchitectureBundle\Entity\CodePostal;
 use Unipik\ArchitectureBundle\Entity\Ville;
 use Unipik\ArchitectureBundle\Form\DemandeInterventionType;
 
+/**
+ * Manage the architecture actions
+ *
+ * Class ArchitectureController
+ * @package Unipik\ArchitectureBundle\Controller
+ */
 class ArchitectureController extends Controller {
 
+    /**
+     * Render the home page
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction() {
         $user = $this->getUser();
 
@@ -30,10 +41,9 @@ class ArchitectureController extends Controller {
         return $this->render('ArchitectureBundle::accueilBenevole.html.twig', array('user' => $user));
     }
 
-    public function mailAction() {
-
-    }
-
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function noJSAction(){
         return $this->render('::noJavascript.html.twig');
     }

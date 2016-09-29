@@ -8,11 +8,20 @@ namespace Unipik\ArchitectureBundle\Tools;
  * Date: 29/09/16
  * Time: 09:52
  */
+
+/**
+ * Tools for the database
+ *
+ * Class ToolBoxDatabase
+ * @package Unipik\ArchitectureBundle\Tools
+ */
 class ToolBoxDatabase {
 
     /**
+     * Convert an array into a string formated for the database's domain
+     *
      * @param $array
-     * @return String La string formatée pour les domains en DB
+     * @return String
      */
     public function arrayToString($array) {
         $string = '{';

@@ -13,6 +13,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * Class NumeroDeRueType
+ * @package Unipik\UserBundle\Form\Adresse
+ */
 class NumeroDeRueType extends AbstractType {
 
     /**

@@ -21,7 +21,16 @@ use Symfony\Component\Form\FormEvents;
 use Unipik\UserBundle\Form\Adresse\AdresseType;
 use Unipik\UserBundle\Form\Adresse\VilleType;
 
+/**
+ * Class RegistrationType
+ * @package Unipik\UserBundle\Form
+ */
 class RegistrationType extends AbstractType {
+
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         parent::buildForm($builder, $options);
         $optionChoiceType = array( 'expanded' => true, 'multiple' => true, 'label' => 'Rôle',
@@ -69,10 +78,16 @@ class RegistrationType extends AbstractType {
         ;
     }
 
+    /**
+     * @return string
+     */
     public function getParent() {
         return 'FOS\UserBundle\Form\Type\RegistrationFormType';
     }
 
+    /**
+     * @return string
+     */
     public function getBlockPrefix() {
         return 'user_registration';
     }

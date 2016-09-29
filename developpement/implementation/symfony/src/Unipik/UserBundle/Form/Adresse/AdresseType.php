@@ -20,6 +20,10 @@ use Symfony\Component\Validator\Constraints\Collection;
 use Unipik\UserBundle\Form\DataTransformer\Adresse\CodePostalAutoCompleteTransformer;
 use Unipik\UserBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
 
+/**
+ * Class AdresseType
+ * @package Unipik\UserBundle\Form\Adresse
+ */
 class AdresseType extends AbstractFieldsetType {
     private $entityManager;
 
@@ -36,7 +40,7 @@ class AdresseType extends AbstractFieldsetType {
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options){
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('adresse', AdType::class)
             ->add('complement', ComplementType::class, array('label' => "Complément","required" => false))
@@ -51,7 +55,7 @@ class AdresseType extends AbstractFieldsetType {
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver){
+    public function configureOptions(OptionsResolver $resolver) {
         parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(

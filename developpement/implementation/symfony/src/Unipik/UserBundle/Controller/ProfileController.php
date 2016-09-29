@@ -19,7 +19,20 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use FOS\UserBundle\Controller\ProfileController as BaseController;
 
+/**
+ * Manage the user profile
+ *
+ * Class ProfileController
+ * @package Unipik\UserBundle\Controller
+ */
 class ProfileController extends BaseController {
+
+    /**
+     * Edit the current user profile
+     *
+     * @param Request $request
+     * @return null|RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function editAction(Request $request) {
 
         $user = $this->getUser();

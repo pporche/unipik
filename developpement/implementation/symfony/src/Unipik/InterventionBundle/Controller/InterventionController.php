@@ -48,9 +48,8 @@ class InterventionController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $contactPers = new Contact();
             $this->cast($contactPers, $test);
-            $contactPers->setRespoEtablissement(false);
+            $contactPers->setRespoEtablissement($test->isRespoEtablissement());
             $contactPers->setTypeActivite('{}');
-
 
             // handle the interventions
             $interventionsRawList = $form->get('Intervention')->getData();
@@ -213,7 +212,6 @@ class InterventionController extends Controller {
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
 
-        $page = $request->get("page", 1);
         $rowsPerPage = $request->get("rowsPerPage", 10);
 
         $repository = $this->getInterventionRepository();
@@ -233,7 +231,6 @@ class InterventionController extends Controller {
         }
 
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
-            'page' => $page,
             'rowsPerPage' => $rowsPerPage,
             'liste' => $listIntervention,
             'typeIntervention' => $typeIntervention,

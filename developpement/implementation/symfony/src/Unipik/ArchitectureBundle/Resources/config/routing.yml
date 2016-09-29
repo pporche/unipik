@@ -5,3 +5,23 @@ architecture_homepage:
 architecture_noJavascript:
     path:     /erreurJS
     defaults: { _controller: ArchitectureBundle:Architecture:noJS }
+
+architecture_ville_autocomplete:
+    path: /ville/autocomplete
+    defaults:
+        _controller: ArchitectureBundle:Architecture:autocompleteVille
+
+architecture_code_autocomplete:
+    path: /codePostal/autocomplete
+    defaults:
+        _controller: ArchitectureBundle:Architecture:autocompleteCode
+
+architecture_code_postal:
+    path: /codepostal
+    defaults:
+        _controller: ArchitectureBundle:Architecture:codePostal
+
+architecture_ville:
+    path: /ville
+    defaults:
+        _controller: ArchitectureBundle:Architecture:ville

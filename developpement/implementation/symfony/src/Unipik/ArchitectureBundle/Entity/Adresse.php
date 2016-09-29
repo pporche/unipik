@@ -27,12 +27,23 @@ class Adresse
      * @var \Unipik\ArchitectureBundle\Entity\Ville
      * @Assert\NotBlank()
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Ville", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Ville")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ville_id", referencedColumnName="id" )
      * })
      */
     private $ville;
+
+    /**
+     * @var \Unipik\ArchitectureBundle\Entity\CodePostal
+     * @Assert\NotBlank()
+     *
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\CodePostal")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="code_postal_id", referencedColumnName="id" )
+     * })
+     */
+    private $codePostal;
 
     /**
      * @var string
@@ -90,6 +101,30 @@ class Adresse
     public function getVille()
     {
         return $this->ville;
+    }
+
+    /**
+     * Set code postal
+     *
+     * @param \Unipik\ArchitectureBundle\Entity\CodePostal $codePostal
+     *
+     * @return CodePostal
+     */
+    public function setCodePostal(\Unipik\ArchitectureBundle\Entity\CodePostal $codePostal)
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    /**
+     * Get code Postal
+     *
+     * @return \Unipik\ArchitectureBundle\Entity\CodePostal
+     */
+    public function getCodePostal()
+    {
+        return $this->codePostal;
     }
 
 

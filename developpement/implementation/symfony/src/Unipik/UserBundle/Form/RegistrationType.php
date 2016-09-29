@@ -19,6 +19,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Unipik\UserBundle\Form\Adresse\AdresseType;
+use Unipik\UserBundle\Form\Adresse\VilleType;
 
 class RegistrationType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {

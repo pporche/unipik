@@ -42,4 +42,14 @@ Unipik\ArchitectureBundle\Entity\Adresse:
                 ville_id:
                     referencedColumnName: id
             orphanRemoval: false
+        codePostal:
+            targetEntity: CodePostal
+            cascade: { }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                code_postal_id:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }

@@ -8,11 +8,6 @@ fos_user_admin_register:
     defaults:
         _controller: UserBundle:Registration:register
 
-user_admin_register_city_autocomplete:
-    path: /ville/autocomplete
-    defaults:
-        _controller: UserBundle:Registration:autocomplete
-
 fos_user_registration_check_email:
     path: /verification-email
     defaults:

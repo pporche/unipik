@@ -114,7 +114,7 @@ class Ville
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getcodePostal()
+    public function getCodePostal()
     {
         return $this->codePostal;
     }

@@ -194,7 +194,7 @@
                                                 </dt>
                                             </div>
                                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                                <i>{% if contact.te is not empty %}
+                                                <i>{% if contact.telFixe is not empty %}
                                                         {{ contact.telFixe }}
                                                     {% else %}
                                                         -
@@ -208,7 +208,11 @@
                                                 </dt>
                                             </div>
                                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                                <i>0000000000</i>
+                                                <i>{% if contact.telPortable is not empty %}
+                                                        {{ contact.telPortable }}
+                                                    {% else %}
+                                                        -
+                                                    {% endif %}</i>
                                             </div>
 
 
@@ -218,7 +222,13 @@
                                                 </dt>
                                             </div>
                                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                                <i>Frimousse</i>
+                                                {% if contact.responsabiliteActivite is not empty %}
+                                                    {% for responsabilite in contact.responsabiliteActivite %}
+                                                        <i>{{ responsabilite }}</i>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    -
+                                                {% endif %}
                                             </div>
                                         </dl>
                                     </div>

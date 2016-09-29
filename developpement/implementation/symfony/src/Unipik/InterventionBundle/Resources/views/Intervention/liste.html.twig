@@ -79,7 +79,6 @@
             });
         });
 
-
         function sortByLieu(){
             if($('#sortLieu').hasClass("sort-down")){
                 $('#sortLieu').removeClass();
@@ -93,7 +92,7 @@
                 $html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
-                $html += "<td>{{ intervention.lieu }}</td>";
+                $html += "<td>{{ intervention.lieu | capitalize}}</td>";
                 $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
                 $html += "<td>";
                 $html += "{% if intervention.plaidoyer %}";
@@ -133,7 +132,7 @@
                 $html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
-                $html += "<td>{{ intervention.lieu }}</td>";
+                $html += "<td>{{ intervention.lieu | capitalize }}</td>";
                 $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
                 $html += "<td>";
                 $html += "{% if intervention.plaidoyer %}";
@@ -176,7 +175,7 @@
                 $html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
-                $html += "<td>{{ intervention.lieu }}</td>";
+                $html += "<td>{{ intervention.lieu | capitalize }}</td>";
                 $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
                 $html += "<td>";
                 $html += "{% if intervention.plaidoyer %}";
@@ -216,7 +215,7 @@
                 $html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
-                $html += "<td>{{ intervention.lieu }}</td>";
+                $html += "<td>{{ intervention.lieu | capitalize }}</td>";
                 $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
                 $html += "<td>";
                 $html += "{% if intervention.plaidoyer %}";
@@ -342,7 +341,7 @@
                 {% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}
                 <tr>
                     <td>{{ loop.index }}</td>
-                    <td>{{ intervention.lieu }}</td>
+                    <td>{{ intervention.lieu | capitalize }}</td>
                     <td>{{ intervention.date|date("d-m-Y") }}</td>
                     <td>
                         {% if intervention.plaidoyer %}
@@ -370,24 +369,23 @@
                 </tr>
                 {% endif %}
             {% endfor %}
-            {% if is_granted('ROLE_ADMIN') %}
-                <tr>
-                    <td colspan="5" class="text-center">
-                        <a href="{{ path('intervention_admin_add') }}" class="btn btn-primary btn-danger">
-                            <i class="glyphicon glyphicon-alert"></i> &nbsp Ajouter une intervention
-                        </a>
-                    </td>
-                    <td>
-                        {% if liste is not empty %}
-                            <button type="button" class="btn btn-danger" onclick="deleteInterventions()">
-                                <i class="glyphicon glyphicon-trash"></i>
-                                &nbsp Supprimer</button>
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endif %}
+
             </tbody>
         </table>
+
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="buttons">
+                <a href="{{ path('intervention_admin_add') }}" class="btn btn-primary btn-danger">
+                    <i class="glyphicon glyphicon-alert"></i> &nbsp Ajouter une intervention
+                </a>
+                {% if liste is not empty %}
+                    <button type="button" class="btn btn-danger" onclick="deleteInterventions()">
+                        <i class="glyphicon glyphicon-trash"></i>
+                        &nbsp Supprimer</button>
+                {% endif %}
+            </div>
+        {% endif %}
     </section>
 
 

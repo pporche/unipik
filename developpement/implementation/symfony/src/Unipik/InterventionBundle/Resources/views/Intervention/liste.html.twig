@@ -18,32 +18,89 @@
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
     <script src="{{ asset("vendor/twbs-pagination/jquery.twbsPagination.js") }}"></script>
     <script>
+        $.fn.pageMe = function(opts){
+            var $this = this,
+                    defaults = {
+                        perPage: 7,
+                        showPrevNext: false,
+                        hidePageNumbers: false
+                    },
+                    settings = $.extend(defaults, opts);
+            var listElement = $this;
+            var perPage = settings.perPage;
+            var children = listElement.children();
+            var pager = $('.pager');
+            if (typeof settings.childSelector!="undefined")
+                children = listElement.find(settings.childSelector);
+            if (typeof settings.pagerSelector!="undefined")
+                pager = $(settings.pagerSelector);
+            var numItems = children.size();
+            var numPages = Math.ceil(numItems/perPage);
+            pager.data("curr",0);
+            if (settings.showPrevNext)
+                $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+            var curr = 0;
+            while(numPages > curr && (settings.hidePageNumbers==false)){
+                $('<li><a href="#" class="page_link">'+(curr+1)+'</a></li>').appendTo(pager);
+                curr++;
+            }
+            if (settings.showPrevNext)
+                $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+            pager.find('.page_link:first').addClass('active');
+            pager.find('.prev_link').hide();
+            if (numPages<=1)
+                pager.find('.next_link').hide();
+            pager.children().eq(1).addClass("active");
+            children.hide();
+            children.slice(0, perPage).show();
+            
+            pager.find('li .page_link').click(function(){
+                var clickedPage = $(this).html().valueOf()-1;
+                goTo(clickedPage,perPage);
+                return false;
+            });
+
+            pager.find('li .prev_link').click(function(){
+                previous();
+                return false;
+            });
+
+            pager.find('li .next_link').click(function(){
+                next();
+                return false;
+            });
+
+            function previous(){
+                var goToPage = parseInt(pager.data("curr")) - 1;
+                goTo(goToPage);
+            }
+
+            function next(){
+                goToPage = parseInt(pager.data("curr")) + 1;
+                goTo(goToPage);
+            }
+
+            function goTo(page){
+                var startAt = page * perPage,
+                        endOn = startAt + perPage;
+                children.css('display','none').slice(startAt, endOn).show();
+                if (page>=1)
+                    pager.find('.prev_link').show();
+                else
+                    pager.find('.prev_link').hide();
+                if (page<(numPages-1))
+                    pager.find('.next_link').show();
+                else
+                    pager.find('.next_link').hide();
+                pager.data("curr",page);
+                pager.children().removeClass("active");
+                pager.children().eq(page+1).addClass("active");
+            }
+        };
+
         $(document).ready(function() {
 
-            var numberOfRows = {{ liste|length }};
-            var rowsPerPage = {{ rowsPerPage }};
-            var page = {{ page }};
-            var numberOfPages = Math.ceil(numberOfRows/rowsPerPage);
-            if (window.location.href.indexOf("?")!==-1){
-                if (window.location.href.indexOf("rowsPerPage=")===-1){
-                    query = window.location.href.substr(window.location.href.indexOf("?"))+ '&';
-                }
-                else {
-                    if (window.location.href.indexOf("recherche_avancee")!==-1 && window.location.href.indexOf("&page=")!==-1) {
-                        query = window.location.href.substring(window.location.href.indexOf("?"), window.location.href.indexOf("&page=")) + '&';
-                    }
-                    else{
-                        query = '?';
-                    }
-                }
-            } else {
-                 query = '?';
-            }
-            $('#listeIntervention').twbsPagination({
-                totalPages: numberOfPages,
-                hrefVariable: page,
-                href: 'intervention' + query + 'page=' + page + '&rowsPerPage=' + rowsPerPage
-            });
+            $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:4});
 
             $("#recherche_avancee_date").prop('checked',true);
             $("#between_dates").hide();
@@ -90,7 +147,7 @@
                 $('#tableIntervention tbody tr').detach();
 
                 $html = "{% for intervention in liste | sortbyfield('lieu') %}";
-                $html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";
+                {#$html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";#}
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
                 $html += "<td>{{ intervention.lieu }}</td>";
@@ -115,7 +172,7 @@
                 $html += "</td>";
                 $html += "{% endif %}";
                 $html += "</tr>";
-                $html += "{% endif %}";
+                {#$html += "{% endif %}";#}
                 $html += "{% endfor %}";
 
                 $('#tableIntervention tbody').append($html);
@@ -130,7 +187,7 @@
                 $('#tableIntervention tbody tr').detach();
 
                 $html = "{% for intervention in liste | sortbyfield('lieu') | reverse %}";
-                $html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";
+                {#$html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";#}
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
                 $html += "<td>{{ intervention.lieu }}</td>";
@@ -155,7 +212,7 @@
                 $html += "</td>";
                 $html += "{% endif %}";
                 $html += "</tr>";
-                $html += "{% endif %}";
+                {#$html += "{% endif %}";#}
                 $html += "{% endfor %}";
 
                 $('#tableIntervention tbody').append($html);
@@ -173,7 +230,7 @@
                 $('#tableIntervention tbody tr').detach();
 
                 $html = "{% for intervention in liste | sortbyfield('date') %}";
-                $html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";
+                {#$html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";#}
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
                 $html += "<td>{{ intervention.lieu }}</td>";
@@ -198,7 +255,7 @@
                 $html += "</td>";
                 $html += "{% endif %}";
                 $html += "</tr>";
-                $html += "{% endif %}";
+                {#$html += "{% endif %}";#}
                 $html += "{% endfor %}";
 
                 $('#tableIntervention tbody').append($html);
@@ -213,7 +270,7 @@
                 $('#tableIntervention tbody tr').detach();
 
                 $html = "{% for intervention in liste | sortbyfield('date') | reverse %}";
-                $html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";
+                {#$html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";#}
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
                 $html += "<td>{{ intervention.lieu }}</td>";
@@ -238,7 +295,7 @@
                 $html += "</td>";
                 $html += "{% endif %}";
                 $html += "</tr>";
-                $html += "{% endif %}";
+                {#$html += "{% endif %}";#}
                 $html += "{% endfor %}";
 
                 $('#tableIntervention tbody').append($html);
@@ -302,6 +359,7 @@
         </div>
     </section>
 
+
     <section id="listeIntervention" class="col-lg-10 col-md-10 col-sm-10">
         <h2>
             Liste des
@@ -324,70 +382,77 @@
             {% endif %}
             :
         </h2>
-        <table class="table table-striped table-hover" id="tableIntervention">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Lieu <button class="sortButtonLieu" id="sortButtonLieu" onclick="sortByLieu()"><img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu"/></button></th>
-                <th>Date <button class="sortButtonDate" id="sortButtonDate" onclick="sortByDate()"><img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate"/></button></th>
-                <th>Type</th>
-                <th>Voir détails</th>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <th>Supprimer</th>
-                {% endif %}
-            </tr>
-            </thead>
-            <tbody>
-            {% for intervention in liste %}
-                {% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}
-                <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ intervention.lieu }}</td>
-                    <td>{{ intervention.date|date("d-m-Y") }}</td>
-                    <td>
-                        {% if intervention.plaidoyer %}
-                            Plaidoyer
-                        {% elseif intervention.frimousse %}
-                            Frimousse
-                        {% else %}
-                            Autre intervention
-                        {% endif %}
 
-                    </td>
-                    <td>
-                        <a href="{{ path('intervention_view', {id: intervention.id}) }}" class="btn btn-primary">Voir détails</a>
-                    </td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <td>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="type" id="{{ intervention.id }}">
-                                </label>
-                            </div>
-                        </td>
-                        {#<td><a href="{{ path('intervention_admin_delete', {id: intervention.id}) }}" class="btn btn-danger">Supprimer</a></td>#}
-                    {% endif %}
-                </tr>
-                {% endif %}
-            {% endfor %}
-            {% if is_granted('ROLE_ADMIN') %}
-                <tr>
-                    <td colspan="5" class="text-center">
-                        <a href="{{ path('intervention_admin_add') }}" class="btn btn-primary btn-danger">
-                            <i class="glyphicon glyphicon-alert"></i> &nbsp Ajouter une intervention
-                        </a>
-                    </td>
-                    <td>
-                        {% if liste is not empty %}
-                            <button type="button" class="btn btn-danger" onclick="deleteInterventions()">
-                                <i class="glyphicon glyphicon-trash"></i>
-                                &nbsp Supprimer</button>
+        <div class="table table-striped table-hover container" id="tableIntervention">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="tableIntervention">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Lieu <button class="sortButtonLieu" id="sortButtonLieu" onclick="sortByLieu()"><img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu"/></button></th>
+                            <th>Date <button class="sortButtonDate" id="sortButtonDate" onclick="sortByDate()"><img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate"/></button></th>
+                            <th>Type</th>
+                            <th>Voir détails</th>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <th>Supprimer</th>
+                            {% endif %}
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        {% for intervention in liste %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ intervention.lieu }}</td>
+                                <td>{{ intervention.date|date("d-m-Y") }}</td>
+                                <td>
+                                    {% if intervention.plaidoyer %}
+                                        Plaidoyer
+                                    {% elseif intervention.frimousse %}
+                                        Frimousse
+                                    {% else %}
+                                        Autre intervention
+                                    {% endif %}
+
+                                </td>
+                                <td>
+                                    <a href="{{ path('intervention_view', {id: intervention.id}) }}" class="btn btn-primary">Voir détails</a>
+                                </td>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <td>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="type" id="{{ intervention.id }}">
+                                            </label>
+                                        </div>
+                                    </td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <a href="{{ path('intervention_admin_add') }}" class="btn btn-primary btn-danger">
+                                        <i class="glyphicon glyphicon-alert"></i> &nbsp Ajouter une intervention
+                                    </a>
+                                </td>
+                                <td>
+                                    {% if liste is not empty %}
+                                        <button type="button" class="btn btn-danger" onclick="deleteInterventions()">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                            &nbsp Supprimer</button>
+                                    {% endif %}
+                                </td>
+                            </tr>
                         {% endif %}
-                    </td>
-                </tr>
-            {% endif %}
-            </tbody>
-        </table>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12 text-center">
+                    <ul class="pagination pagination-lg pager" id="myPager"></ul>
+                </div>
+            </div>
+        </div>
     </section>
 
 

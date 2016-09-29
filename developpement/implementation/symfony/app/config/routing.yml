@@ -27,3 +27,4 @@ admin_intervention:
 admin_user:
     resource: "@UserBundle/Resources/config/routingAdmin.yml"
     prefix:   /admin/
+

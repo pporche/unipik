@@ -9,6 +9,7 @@
 namespace Unipik\UserBundle\Controller;
 
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
@@ -147,6 +148,29 @@ class RegistrationController extends BaseController {
         if ($this->get('session')->has($key)) {
             return $this->get('session')->get($key);
         }
+    }
+
+    public function autocompleteAction(Request $request) {
+
+        $names = array();
+        $term = trim(strip_tags($request->get('term')));
+
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('ArchitectureBundle:Ville')->createQueryBuilder('v')
+            ->where('v.nom LIKE :name')
+            ->setParameter('name', $term.'%')
+            ->orderBy('v.nom','ASC')
+            ->getQuery()
+            ->getResult();
+
+        foreach ($entities as $entity) {
+            $names[] = $entity->getNom();
+        }
+
+        $response = new JsonResponse();
+        $response->setData($names);
+
+        return $response;
     }
 
 }

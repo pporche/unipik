@@ -8,19 +8,27 @@
 
 namespace Unipik\UserBundle\Form\Adresse;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\F;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Collection;
+use Unipik\UserBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
 
 class AdresseType extends AbstractFieldsetType {
+    private $entityManager;
+
+    /**
+     * AdresseType constructor.
+     * @param ObjectManager $entityManager
+     */
+    public function __construct(ObjectManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
 
     /**
      * @param FormBuilderInterface $builder
@@ -30,14 +38,16 @@ class AdresseType extends AbstractFieldsetType {
         $builder
             ->add('adresse', AdType::class)
             ->add('complement', ComplementType::class, array('label' => "Complément","required" => false))
-            ->add('codePostal', CodePostalType::class/*, array(
-                'constraints' => array(
-                    new NotBlank(),
-                    new Length(array('min' => 3)),
-                ),
-            )*/)
+//            ->add('codePostal', CodePostalType::class/*, array(
+//                'constraints' => array(
+//                    new NotBlank(),
+//                    new Length(array('min' => 3)),
+//                ),
+//            )*/)
             ->add('ville', VilleType::class)
         ;
+
+        $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
     }
 
     /**

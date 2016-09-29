@@ -20,7 +20,7 @@ class AppKernel extends Kernel
             new Unipik\MailBundle\MailBundle(),
             new Unipik\ArchitectureBundle\ArchitectureBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-    	    new Fresh\DoctrineEnumBundle\FreshDoctrineEnumBundle(),
+    	    new Fresh\DoctrineEnumBundle\FreshDoctrineEnumBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

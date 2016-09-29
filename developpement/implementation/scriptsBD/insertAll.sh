@@ -2,30 +2,17 @@
 # permet de remplir les tables adresses et établissement
 
 
-prompt_token() {
-  local VAL=""
-  while [ "$VAL" = "" ]; do
-    echo -n "${2:-$1} : "
-    read -s VAL
-    if [ "$VAL" = "" ]; then
-      echo "Please provide a value"
-    fi
-  done
-  VAL=$(printf '%q' "$VAL")
-  eval $1=$VAL
-}
-#si pas de mdp indiqué, demander
-if [ "$1" = "" ]; then
-    prompt_token 'password'        "Veuillez entrer le mot de passe de la base de données"
-else
-    password=$1
-fi
+echo "insertion adresses"
+./insertionsInDBAdresse.sh
 
-echo "insertion adresses et établiemments"
-./insertionsInDBEtablissement.sh $password
+echo "insertion admin"
+./addAdmin.sh
+
+echo "insertion établissements et modification des adresses (ajout de la géolocalisation)"
+./insertionsInDBEtablissement.sh
 
 echo "insertions relatives à unicef 76"
-./insertionsInDB76.sh $password
+./insertionsInDB76.sh 
 
 echo "insertions données tests"
-./insertionsInDBDataTests.sh $password
+./insertionsInDBDataTests.sh 

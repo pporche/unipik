@@ -27,33 +27,22 @@ export PGPASSWORD="$password"
 fichierAddNiveauTheme="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_niveau_theme.sql"
 fichierAddComiteNiveauTheme="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_comite_niveau_theme.sql"
 
-if [ -f $fichierAddNiveauTheme ] ; then
-    rm $fichierAddNiveauTheme
-fi
 
-if [ -f $fichierAddComiteNiveauTheme ] ; then
-    rm $fichierAddComiteNiveauTheme
-fi
+psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM departement WHERE nom = 'SEINE-MARITIME';" > id.txt
+idSeineMaritime=$(sed '3q;d' < id.txt)
+psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM departement WHERE nom = 'EURE';" > id.txt
+idEure=$(sed '3q;d' < id.txt)
+
+
+
 psql -U $username -w  -d $dbname  -h 127.0.0.1 << EOF
-INSERT INTO pays (nom) VALUES ('FRANCE');
+INSERT INTO comite (id) VALUES ('1');
+INSERT INTO comite (id) VALUES ('2');
 EOF
 
-psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM pays WHERE nom = 'FRANCE';" > id.txt
-idAdresse=$(sed '3q;d' < id.txt)
-
 psql -U $username -w  -d $dbname  -h 127.0.0.1 << EOF
-INSERT INTO region (nom, pays_id) VALUES ('Normandie', '$idAdresse');
-EOF
-
-psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM region WHERE nom = 'Normandie';" > id.txt
-idRegion=$(sed '3q;d' < id.txt)
-
-psql -U $username -w  -d $dbname  -h 127.0.0.1 << EOF
-INSERT INTO comite (region_id, nom_departement) VALUES ('$idRegion', 'Seine-Maritime');
-INSERT INTO comite (region_id, nom_departement) VALUES ('$idRegion', 'Eure');
-INSERT INTO comite (region_id, nom_departement) VALUES ('$idRegion', 'Calvados');
-INSERT INTO comite (region_id, nom_departement) VALUES ('$idRegion', 'Manche');
-INSERT INTO comite (region_id, nom_departement) VALUES ('$idRegion', 'Orne');
+INSERT INTO comite_departement (comite_id, departement_id) VALUES ('1', '$idSeineMaritime');
+INSERT INTO comite_departement (comite_id, departement_id) VALUES ('2', '$idEure');
 EOF
 
 touch $fichierAddNiveauTheme
@@ -61,39 +50,37 @@ touch $fichierAddNiveauTheme
 list1=( "petite section" "petite-moyenne section" "moyenne section" "moyenne-grande section" "grande section" "petite-moyenne-grande section" "CP" "CP-CE1" "CE1" "CE1-CE2" "CE2" "CE2-CM1" "CM1" "CM1-CM2" "CM2" "6eme" "5eme" "4eme" "3eme" "2nde" "1ere" "terminale" "L1" "L2" "L3" "M1" "M2" "autre")   
 for element in "${list1[@]}"    
 do   
-    echo "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'convention internationale des droits de l enfant');" >> $fichierAddNiveauTheme 
-	echo "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'education');" >> $fichierAddNiveauTheme
-	echo "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'sante et alimentation');" >> $fichierAddNiveauTheme
-	echo "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'eau');" >> $fichierAddNiveauTheme
-	echo "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'harcelement');" >> $fichierAddNiveauTheme
+    psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'convention internationale des droits de l enfant');"  
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'education');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'sante et alimentation');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'eau');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'harcelement');" 
 done
 
 list2=( "CP" "CP-CE1" "CE1" "CE1-CE2" "CE2" "CE2-CM1" "CM1" "CM1-CM2" "CM2" "6eme" "5eme" "4eme" "3eme" "2nde" "1ere" "terminale" "L1" "L2" "L3" "M1" "M2" "autre")   
 for element in "${list2[@]}"    
 do   
-	echo "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'sante en generale');" >> $fichierAddNiveauTheme
-	echo "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'travail des enfants');" >> $fichierAddNiveauTheme
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'sante en generale');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'travail des enfants');" 
 done
 
 list3=( "6eme" "5eme" "4eme" "3eme" "2nde" "1ere" "terminale" "L1" "L2" "L3" "M1" "M2" "autre")   
 for element in "${list3[@]}"    
 do   
-	echo "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'urgences mondiales');" >> $fichierAddNiveauTheme
-	echo "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'enfants et soldats');" >> $fichierAddNiveauTheme
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'urgences mondiales');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'enfants et soldats');" 
 done
 
 list4=( "2nde" "1ere" "terminale" "L1" "L2" "L3" "M1" "M2" "autre")   
 for element in "${list4[@]}"    
 do   
-	echo "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'VIH et sida');" >> $fichierAddNiveauTheme
-	echo "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'role de l Unicef');" >> $fichierAddNiveauTheme
-	echo "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'millenaire pour le developpement');" >> $fichierAddNiveauTheme
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'VIH et sida');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'role de l Unicef');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'millenaire pour le developpement');" 
 done
 
 psql -U $username -w  -d $dbname  -h 127.0.0.1 -f $fichierAddNiveauTheme
 
-psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM comite WHERE nom_departement = 'Seine-Maritime';" > id.txt
-idComite=$(sed '3q;d' < id.txt)
 
 touch $fichierAddComiteNiveauTheme
 
@@ -121,13 +108,10 @@ do
 
 	if [[ $idNiveauTheme != *"rows"* ]];
 	then
-		echo "INSERT INTO comite_niveau_theme (comite, niveau_theme) VALUES ('$idComite', '$idNiveauTheme');" >> $fichierAddComiteNiveauTheme
+		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO comite_niveau_theme (comite, niveau_theme) VALUES ('1', '$idNiveauTheme');"
 	else 
 		continuerBoucle="false"
 	fi
 done
 
-
-psql -U $username -w  -d $dbname  -h 127.0.0.1 -f $fichierAddComiteNiveauTheme
-
-rm id.txt
+rm "${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/id.txt"

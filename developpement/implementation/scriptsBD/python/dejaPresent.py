@@ -5,12 +5,13 @@ import mmap
 import sys
 
 motCherche = sys.argv[1]
+typeMot = sys.argv[2]
 file = open('presents.txt', "a+")
 with file as f:
     data = f.read()
-    if ("mot : " + motCherche + " \n")in data:
+    if (typeMot + " : " + motCherche + " \n")in data:
         print("true")
     else: 
     	print("false")
-    	f.write("mot : " + motCherche + " \n")
+    	f.write(typeMot + " : " + motCherche + " \n")
     f.close()

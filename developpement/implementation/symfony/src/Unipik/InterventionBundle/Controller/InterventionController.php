@@ -3,7 +3,6 @@
 namespace Unipik\InterventionBundle\Controller;
 
 use Doctrine\ORM\Repository\RepositoryFactory;
-use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +14,8 @@ use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\Etablissement;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 use Unipik\InterventionBundle\Entity\Demande;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route; //Utilisé
 use Unipik\UserBundle\Entity\Comite;
-use Unipik\UserBundle\Entity\Region;
-use Unipik\UserBundle\Entity\Pays;
 use Unipik\ArchitectureBundle\Entity\MomentHebdomadaire;
 /**
  * Created by PhpStorm.
@@ -62,7 +59,7 @@ class InterventionController extends Controller {
 
             $startWeek = $form->get('plageDate')->get('debut')->getData()->format("W");
             $endWeek = $form->get('plageDate')->get('fin')->getData()->format("W");
-            if($startWeek > $startWeek)
+            if($startWeek > $endWeek)
                 $endWeek = 1;
             for($week = $startWeek; $week <= $endWeek; $week++)
                 $listWeek[] = '('.$week.')';
@@ -131,7 +128,7 @@ class InterventionController extends Controller {
             /*if(!in_array((Array) $institute->getContact(),(Array) $contactPers->getEtablissement()))
                 $contactPers->addEtablissement($institute);*/
 
-            // Etablissement non présent est sauvegardé
+
             $demande->setListeSemaine($this->arrayToString($listWeek));
 
             $this->getDoctrine()->getManager()->persist($demande);
@@ -156,7 +153,7 @@ class InterventionController extends Controller {
 
             $session->getFlashBag()->add('notice', array(
                 'title' => 'Félicitation',
-                'message' => 'Votre demande d/\'intervention a bien été enregistrée. Nous vous contacterons sous peu',
+                'message' => 'Votre demande d\'intervention a bien été enregistrée. Nous vous contacterons sous peu',
                 'alert' => 'success'
             ));
 
@@ -218,6 +215,9 @@ class InterventionController extends Controller {
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
 
+        $page = $request->get("page", 1);
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+
         $repository = $this->getInterventionRepository();
         switch ($typeIntervention) {
             case "plaidoyer":
@@ -235,6 +235,8 @@ class InterventionController extends Controller {
         }
 
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+            'page' => $page,
+            'rowsPerPage' => $rowsPerPage,
             'liste' => $listIntervention,
             'typeIntervention' => $typeIntervention,
             'isCheck' => $dateChecked,
@@ -333,6 +335,11 @@ class InterventionController extends Controller {
         return $destination;
     }
 
+    /**
+     * @param $interventionsRawList
+     * @param $interventionList
+     * Iterates over the interventions requested to get the parameters
+     */
     function treatmentInterventions($interventionsRawList,&$interventionList){
 
         $comiteTest = $this->getDoctrine()->getManager()->getRepository('UserBundle:Comite')->find(1);
@@ -355,7 +362,10 @@ class InterventionController extends Controller {
     }
 
 
-
+    /**
+     * @param $contactPers
+     * Iterates over a contact to check if she/he is already in the db, take the one from the db in the last case
+     */
     function treatmentContact(&$contactPers){
 
         $em = $this->getDoctrine()->getManager();
@@ -378,7 +388,11 @@ class InterventionController extends Controller {
 
     }
 
-
+    /**
+     * @param $moments
+     * @param Demande $demande
+     *  Iterates over the moments to fill the one from the demand
+     */
     function treatmentMoment($moments,\Unipik\InterventionBundle\Entity\Demande &$demande){
         $this->treatmentAvoidDay(array_keys($moments,'a-eviter'),$demande);
         $this->treatmentAllDay(array_keys($moments,'indifferent'),$demande);

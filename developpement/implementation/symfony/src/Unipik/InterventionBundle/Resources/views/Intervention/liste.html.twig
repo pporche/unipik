@@ -16,21 +16,34 @@
     {{ parent() }}
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
-    <script src="{{ asset("vendor/twbs-pagination/jquery.twbsPagination.min.js") }}"></script>
+    <script src="{{ asset("vendor/twbs-pagination/jquery.twbsPagination.js") }}"></script>
     <script>
         $(document).ready(function() {
 
             var numberOfRows = {{ liste|length }};
-            if (numberOfRows > 10) {
-                var pageNumber = 0;
-                var rowsPerPage = 10;
-                var numberOfPages = Math.ceil(numberOfRows/rowsPerPage);
-                $('#listeIntervention').twbsPagination({
-                    totalPages: numberOfPages,
-                    href: '?page=' + pageNumber + '&rowsPerPage=' + rowsPerPage,
-                    hrefVariable: pageNumber
-                });
+            var rowsPerPage = {{ rowsPerPage }};
+            var page = {{ page }};
+            var numberOfPages = Math.ceil(numberOfRows/rowsPerPage);
+            if (window.location.href.indexOf("?")!==-1){
+                if (window.location.href.indexOf("rowsPerPage=")===-1){
+                    query = window.location.href.substr(window.location.href.indexOf("?"))+ '&';
+                }
+                else {
+                    if (window.location.href.indexOf("recherche_avancee")!==-1 && window.location.href.indexOf("&page=")!==-1) {
+                        query = window.location.href.substring(window.location.href.indexOf("?"), window.location.href.indexOf("&page=")) + '&';
+                    }
+                    else{
+                        query = '?';
+                    }
+                }
+            } else {
+                 query = '?';
             }
+            $('#listeIntervention').twbsPagination({
+                totalPages: numberOfPages,
+                hrefVariable: page,
+                href: 'intervention' + query + 'page=' + page + '&rowsPerPage=' + rowsPerPage
+            });
 
             $("#recherche_avancee_date").prop('checked',true);
             $("#between_dates").hide();
@@ -77,6 +90,7 @@
                 $('#tableIntervention tbody tr').detach();
 
                 $html = "{% for intervention in liste | sortbyfield('lieu') %}";
+                $html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
                 $html += "<td>{{ intervention.lieu }}</td>";
@@ -101,6 +115,7 @@
                 $html += "</td>";
                 $html += "{% endif %}";
                 $html += "</tr>";
+                $html += "{% endif %}";
                 $html += "{% endfor %}";
 
                 $('#tableIntervention tbody').append($html);
@@ -115,6 +130,7 @@
                 $('#tableIntervention tbody tr').detach();
 
                 $html = "{% for intervention in liste | sortbyfield('lieu') | reverse %}";
+                $html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
                 $html += "<td>{{ intervention.lieu }}</td>";
@@ -139,6 +155,7 @@
                 $html += "</td>";
                 $html += "{% endif %}";
                 $html += "</tr>";
+                $html += "{% endif %}";
                 $html += "{% endfor %}";
 
                 $('#tableIntervention tbody').append($html);
@@ -156,6 +173,7 @@
                 $('#tableIntervention tbody tr').detach();
 
                 $html = "{% for intervention in liste | sortbyfield('date') %}";
+                $html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
                 $html += "<td>{{ intervention.lieu }}</td>";
@@ -180,6 +198,7 @@
                 $html += "</td>";
                 $html += "{% endif %}";
                 $html += "</tr>";
+                $html += "{% endif %}";
                 $html += "{% endfor %}";
 
                 $('#tableIntervention tbody').append($html);
@@ -194,6 +213,7 @@
                 $('#tableIntervention tbody tr').detach();
 
                 $html = "{% for intervention in liste | sortbyfield('date') | reverse %}";
+                $html += "{% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}";
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
                 $html += "<td>{{ intervention.lieu }}</td>";
@@ -218,6 +238,7 @@
                 $html += "</td>";
                 $html += "{% endif %}";
                 $html += "</tr>";
+                $html += "{% endif %}";
                 $html += "{% endfor %}";
 
                 $('#tableIntervention tbody').append($html);
@@ -318,37 +339,36 @@
             </thead>
             <tbody>
             {% for intervention in liste %}
-
+                {% if loop.index > (page-1)*rowsPerPage and loop.index <= page*rowsPerPage %}
                 <tr>
-                    {#{% if app.request.query.get("page") * app.query.get("RowsPerPage") < loop.index < (app.query.get("page")-1) * app.query.get("RowsPerPage") + 1 %}#}
-                        <td>{{ loop.index }}</td>
-                        <td>{{ intervention.lieu }}</td>
-                        <td>{{ intervention.date|date("d-m-Y") }}</td>
-                        <td>
-                            {% if intervention.plaidoyer %}
-                                Plaidoyer
-                            {% elseif intervention.frimousse %}
-                                Frimousse
-                            {% else %}
-                                Autre intervention
-                            {% endif %}
-
-                        </td>
-                        <td>
-                            <a href="{{ path('intervention_view', {id: intervention.id}) }}" class="btn btn-primary">Voir détails</a>
-                        </td>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <td>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="type" id="{{ intervention.id }}">
-                                    </label>
-                                </div>
-                            </td>
-                            {#<td><a href="{{ path('intervention_admin_delete', {id: intervention.id}) }}" class="btn btn-danger">Supprimer</a></td>#}
+                    <td>{{ loop.index }}</td>
+                    <td>{{ intervention.lieu }}</td>
+                    <td>{{ intervention.date|date("d-m-Y") }}</td>
+                    <td>
+                        {% if intervention.plaidoyer %}
+                            Plaidoyer
+                        {% elseif intervention.frimousse %}
+                            Frimousse
+                        {% else %}
+                            Autre intervention
                         {% endif %}
-                    {#{% endif %}#}
+
+                    </td>
+                    <td>
+                        <a href="{{ path('intervention_view', {id: intervention.id}) }}" class="btn btn-primary">Voir détails</a>
+                    </td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="type" id="{{ intervention.id }}">
+                                </label>
+                            </div>
+                        </td>
+                        {#<td><a href="{{ path('intervention_admin_delete', {id: intervention.id}) }}" class="btn btn-danger">Supprimer</a></td>#}
+                    {% endif %}
                 </tr>
+                {% endif %}
             {% endfor %}
             {% if is_granted('ROLE_ADMIN') %}
                 <tr>

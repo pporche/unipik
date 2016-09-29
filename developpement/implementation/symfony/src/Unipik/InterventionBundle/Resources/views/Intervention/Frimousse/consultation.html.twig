@@ -4,24 +4,26 @@
 
 
 {%  block contenu %}
-    <div class="col-sm-6 col-xs-12">
-        <dt>
-            <span class="glyphicon glyphicon-eye-open"></span> Public :
-        </dt>
-    </div>
-    <div class="col-sm-6 col-xs-offset-1 col-xs-11">
-        <i>??</i>
-    </div>
-    <div class="col-sm-6 col-xs-12">
+
+    <div class="col-sm-4 col-xs-12">
         <dt>
             <span class="glyphicon glyphicon-picture"></span> Matériel dispo. :
         </dt>
     </div>
     <div class="col-sm-6 col-xs-offset-1 col-xs-11">
         <ul class="list-unstyled">
-            <li> <span class="glyphicon glyphicon-ok"></span> <i>??</i></li>
-            <li> <span class="glyphicon glyphicon-remove"></span> <i>??</i></li>
-            <li> <span class="glyphicon glyphicon-remove"></span> <i>??</i></li>
+            {% set materiels = intervention.materiauxFrimousse | split('),(')  %}
+            {% if materiels is not empty %}
+                <ul class="list-group col-sm-7 ">
+                    {% for materiel in materiels %}
+                        {{ materiel | trim ('{(') | trim (')}') | capitalize }} <br>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="col-sm-7">
+                    Aucun
+                </div>
+            {% endif %}
         </ul>
 
     </div>

@@ -25,7 +25,7 @@ Vente:
             precision: 10
             scale: 0
             column: chiffre_affaire
-        date:
+        dateVente:
             type: date
             nullable: false
         remarques:

@@ -29,7 +29,7 @@ Intervention:
             generator:
                 strategy: SEQUENCE
     fields:
-        date:
+        dateIntervention:
             type: date
             nullable: true
         lieu:

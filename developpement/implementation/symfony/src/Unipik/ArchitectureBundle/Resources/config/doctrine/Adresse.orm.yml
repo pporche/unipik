@@ -12,12 +12,6 @@ Unipik\ArchitectureBundle\Entity\Adresse:
             generator:
                 strategy: SEQUENCE
     fields:
-        ville:
-            type: string
-            nullable: false
-            length: 100
-            options:
-                fixed: false
         adresse:
             type: string
             nullable: false
@@ -37,4 +31,15 @@ Unipik\ArchitectureBundle\Entity\Adresse:
                 fixed: false
                 geography_type: POINT
                 srid: 4326
+    manyToOne:
+        ville:
+            targetEntity: Ville
+            cascade: { }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ville_id:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }

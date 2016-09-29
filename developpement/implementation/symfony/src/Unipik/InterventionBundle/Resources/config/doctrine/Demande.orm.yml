@@ -16,7 +16,7 @@ Unipik\InterventionBundle\Entity\Demande:
             generator:
                 strategy: SEQUENCE
     fields:
-        date:
+        dateDemande:
             type: date
             nullable: false
         listeSemaine:

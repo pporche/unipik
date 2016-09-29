@@ -31,7 +31,6 @@ class Adresse
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ville_id", referencedColumnName="id" )
      * })
-     * @ORM\Column(name="ville_id", nullable=false)
      */
     private $ville;
 

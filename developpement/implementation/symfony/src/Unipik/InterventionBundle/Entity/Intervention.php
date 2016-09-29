@@ -25,9 +25,9 @@ class Intervention
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(name="date_intervention", type="date", nullable=true)
      */
-    private $date;
+    private $dateIntervention;
 
     /**
      * @var string
@@ -157,27 +157,27 @@ class Intervention
     }
 
     /**
-     * Set date
+     * Set date d intervention
      *
      * @param \DateTime $date
      *
      * @return Intervention
      */
-    public function setDate($date)
+    public function setDateIntervention($date)
     {
-        $this->date = $date;
+        $this->dateIntervention = $date;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get date d intervention
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateIntervention()
     {
-        return $this->date;
+        return $this->dateIntervention;
     }
 
     /**

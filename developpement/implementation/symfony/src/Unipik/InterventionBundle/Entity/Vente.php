@@ -32,9 +32,9 @@ class Vente
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=false)
+     * @ORM\Column(name="date_vente", type="date", nullable=false)
      */
-    private $date;
+    private $dateVente;
 
     /**
      * @var string
@@ -100,27 +100,27 @@ class Vente
     }
 
     /**
-     * Set date
+     * Set date de vente
      *
      * @param \DateTime $date
      *
      * @return Vente
      */
-    public function setDate($date)
+    public function setDateVente($date)
     {
-        $this->date = $date;
+        $this->dateVente = $date;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get date de vente
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateVente()
     {
-        return $this->date;
+        return $this->dateVente;
     }
 
     /**

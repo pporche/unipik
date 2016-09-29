@@ -116,22 +116,22 @@
         });
 
         function keepInstitute(){
-            $(".form-group:eq(6)").fadeIn("slow").removeAttr("disabled");
-            $(".form-group:eq(7)").fadeOut("fast").prop("disabled",true);
-            $(".form-group:eq(8)").fadeOut("fast").prop("disabled",true);
+            $(".form-group:eq(6)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(8)").fadeOut("slow").prop("disabled",true);
         }
 
         function keepCenter(){
-            $(".form-group:eq(8)").fadeIn("slow").removeAttr("disabled");
-            $(".form-group:eq(6)").fadeOut("fast").prop("disabled",true);
-            $(".form-group:eq(7)").fadeOut("fast").prop("disabled",true);
+            $(".form-group:eq(8)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
 
         }
 
         function keepOther(){
-            $(".form-group:eq(7)").fadeIn("slow").removeAttr("disabled");
-            $(".form-group:eq(6)").fadeOut("fast").prop("disabled",true);
-            $(".form-group:eq(8)").fadeOut("fast").prop("disabled",true);
+            $(".form-group:eq(7)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(8)").fadeOut("slow").prop("disabled",true);
         }
 
         switch($("#demande_Etablissement_TypeGeneral").val()){
@@ -141,6 +141,91 @@
                 break;
             case 'autre' : keepOther();
                 break;
+        }
+
+        document.addEventListener('submit',verifyAll);
+
+        function verifyAll(e){
+            verifyNumber(e);
+            verifyCP(e);
+            verifyMail(e);
+            if($('#demande_Etablissement_uai').val().trim())
+                verifyUAI(e);
+
+        }
+
+        function verifyNumber(e){
+            var re = /(0)[1-9][0-9]{8}/;
+            if(!(re.test($('#demande_Contact_telFixe').value) && re.test($('#demande_Contact_telPortable').value))){
+                e.preventDefault();
+                e.stopPropagation();
+                alert("Numéro de téléphone au mauvais format");
+                $('#demande_Contact_telFixe').css('border-color', 'red');
+                $('#demande_Contact_telPortable').css('border-color', 'red');
+            }else{
+                $('#demande_Contact_telFixe').removeAttr('border-color');
+                $('#demande_Contact_telPortable').removeAttr('border-color');
+            }
+        }
+
+        function verifyCP(e){
+
+            if(!(/[0-9]{5}/.test($('#demande_Etablissement_adresse_codePostal').val()))){
+                e.preventDefault();
+                e.stopPropagation();
+                $('#demande_Etablissement_adresse_codePostal').css('border-color', 'red');
+                alert("Code Postal au mauvais format");
+            }else
+                $('#demande_Etablissement_adresse_codePostal').removeAttr('border-color');
+
+        }
+
+        function verifyMail(e){
+            var re = /\S+@\S+\.\S+/;
+            if(!(re.test($('#demande_Etablissement_emails').val()) && re.test($('#demande_Contact_email').val()))){
+                $('#demande_Etablissement_emails').css('border-color', 'red');
+                $('#demande_Contact_email').css('border-color', 'red');
+                alert("E-mail au mauvais format");
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            else {
+                $('#demande_Etablissement_emails').removeAttr('border-color');
+                $('#demande_Contact_email').removeAttr('border-color');
+            }
+
+        }
+
+        function verifyUAI(e){
+            if(!verifyCodeUai($('#demande_Etablissement_uai').val())){
+                e.stopPropagation();
+                e.preventDefault();
+                $('#demande_Etablissement_uai').css('border-color', 'red');
+                alert("UAI au mauvais format, veuillez ne pas en indiquer si ce champs pose problème");
+            }else{
+                $('#demande_Etablissement_uai').removeAttr('border-color');
+            }
+        }
+
+        function verifyCodeUai(codeUai){
+            // alphabet pris en compte (23 lettres, sans I, O et Q)
+             var alphabet = 'a b c d e f g h i j k l m n o p q r s t u v w x y z'.split(' ');
+
+            // On supprime les espaces et on met tout en minuscules
+            var codeUaiPropre = codeUai.trim().toLowerCase();
+
+            // On récupère les chiffres et les lettres dans des variables séparées
+            var codeUaiPropreChiffres = codeUaiPropre.substring(0,7);
+            var codeUaiPropreLettre = codeUaiPropre.substring(7);
+
+            // Le rang de la lettre correspond au reste de la division par 23
+            var rangCalcule = codeUaiPropreChiffres % 23 ;
+
+            // On récupère la lettre calculée dans l'alphabet
+            var lettreCalculee = alphabet[rangCalcule] ;
+            console.log(alphabet[rangCalcule]);
+            // On compare la lettre du code UAI à la lettre calculée et on retourne TRUE ou FALSE
+            return codeUaiPropreLettre == lettreCalculee;
         }
 
     </script>

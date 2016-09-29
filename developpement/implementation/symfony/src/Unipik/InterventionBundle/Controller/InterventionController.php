@@ -180,7 +180,7 @@ class InterventionController extends Controller {
      * @return Response Permet de récupérer la vue consultation pour l'héritage.
      * @Route("/intervention/{id}", name="intervention_view")
      */
-<<<<<<< HEAD
+
     public function consultationAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -194,14 +194,7 @@ class InterventionController extends Controller {
         }
         else{
             return $this->render('InterventionBundle:Intervention:consultation.html.twig',array('intervention' => $intervention));
-        }
-=======
-    public function consultationAction($id) {
-        // Faire la vérication si l'intervention est un plaidoyer, frimousse ou autre
-        // Et appeler la vue correspondante
-        return $this->getConsultationVue();
->>>>>>> 5dcfe04814b52967ea0dc95f00781495d07022f3
-    }
+        }}
 
     /**
      * @return RepositoryFactory Renvoie le repository Intervention.

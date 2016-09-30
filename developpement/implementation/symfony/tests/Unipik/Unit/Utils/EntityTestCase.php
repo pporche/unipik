@@ -80,4 +80,18 @@ abstract class EntityTestCase extends KernelTestCase {
         $em->persist($e);
         $em->flush();
     }
+
+    /**
+     * @dataProvider badSetterProvider
+     * @expectedException \Doctrine\ORM\ORMInvalidArgumentException
+     */
+    public function testBadSetters($e) {
+        self::bootKernel();
+
+        $em = static::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+        $em->persist($e);
+        $em->flush();
+    }
 }

@@ -44,8 +44,17 @@ class RegionTest extends EntityTestCase {
 
         return [
             "Region with null name" => [$r[0]->setNom(null)],
-            //"Region with null pays" => [$r[1]->setPays(null)],
             "Region with bad name" => [$r[2]->setNom("Region inexistante")]
+        ];
+    }
+
+    public function badSetterProvider()
+    {
+        $r = RegionMock::create();
+
+
+        return [
+            "Region with null pays" => [$r[1]->setPays(null)],
         ];
     }
 }

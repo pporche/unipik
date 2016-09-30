@@ -125,9 +125,18 @@ class ContactTest extends  EntityTestCase
             "Contact with too long prenom" => [$c[3]->setPrenom($longName)],
             "Contact with badly formatted Tel fixe" => [$c[4]->setTelFixe("02.32.01.02.03")],
             "Contact with badly formatted Tel portable" => [$c[5]->setTelPortable("06.32.01.02.03")],
-            //"Contact with wrong type est tuteur" => [$c[6]->setEstTuteur("Vrai")],
-            //"Contact with est tuteur but without any projet" => [$c[6]->setEstTuteur(true)],
-            //"Contact with wrong type activite" => [$c[8]->setTypeActivite("active inexistante")]
+        ];
+    }
+
+    public function badSetterProvider()
+    {
+        $c = ContactMock::createMultiple(3);
+
+
+        return [
+            "Contact with wrong type estTuteur" => [$c[0]->setEstTuteur("Vrai")],
+            "Contact with est tuteur but without any Projet" => [$c[1]->setEstTuteur(true)],
+            "Contact with wrong typeActivite" => [$c[2]->setTypeActivite("active inexistante")],
         ];
     }
 }

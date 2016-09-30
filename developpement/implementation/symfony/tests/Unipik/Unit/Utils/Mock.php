@@ -11,10 +11,11 @@ namespace Tests\Unipik\Unit\Utils;
 
 abstract class Mock
 {
-    public static function create(){
-        return null;
-    }
 
+    /**
+     * @param $nb
+     * @return object[]
+     */
     public static function createMultiple($nb){
         $res = array();
 

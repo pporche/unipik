@@ -8,6 +8,7 @@
 
 namespace Tests\Unipik\Unit\Utils;
 
+use Prophecy\Exception\Exception;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 abstract class EntityTestCase extends KernelTestCase {
@@ -69,29 +70,22 @@ abstract class EntityTestCase extends KernelTestCase {
 
     /**
      * @dataProvider badEntityProvider
-     * @expectedException \Doctrine\DBAL\Exception\DriverException
      */
     public function testBadEntities($e) {
         self::bootKernel();
 
-        $em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-        $em->persist($e);
-        $em->flush();
-    }
+        try{
+            $em = static::$kernel->getContainer()
+                ->get('doctrine')
+                ->getManager();
+            $em->persist($e);
+            $em->flush();
+        } catch (\Doctrine\DBAL\Exception\DriverException $e){
 
-    /**
-     * @dataProvider badSetterProvider
-     * @expectedException \Doctrine\ORM\ORMInvalidArgumentException
-     */
-    public function testBadSetters($e) {
-        self::bootKernel();
+        } catch (\Doctrine\ORM\ORMInvalidArgumentException $e){
 
-        $em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-        $em->persist($e);
-        $em->flush();
+        } catch (Exception $e) {
+            $this->hasFailed();
+        }
     }
 }

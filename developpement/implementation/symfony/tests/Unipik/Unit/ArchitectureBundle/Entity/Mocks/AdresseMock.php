@@ -13,6 +13,9 @@ use Unipik\ArchitectureBundle\Entity\Adresse;
 
 class AdresseMock extends Mock {
 
+    /**
+     * @return Adresse
+     */
     public static function create() {
         $r = new Adresse();
 
@@ -22,5 +25,13 @@ class AdresseMock extends Mock {
         ;
 
         return $r;
+    }
+
+    /**
+     * @param $nb
+     * @return Adresse[]
+     */
+    public static function createMultiple($nb){
+        return parent::createMultiple($nb);
     }
 }

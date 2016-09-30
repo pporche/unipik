@@ -12,6 +12,9 @@ use Unipik\UserBundle\Entity\Pays;
 
 class PaysMock extends Mock {
 
+    /**
+     * @return Pays
+     */
     public static function create() {
         $p = new Pays();
 
@@ -20,5 +23,13 @@ class PaysMock extends Mock {
         ;
 
         return $p;
+    }
+
+    /**
+     * @param $nb
+     * @return Pays[]
+     */
+    public static function createMultiple($nb){
+        return parent::createMultiple($nb);
     }
 }

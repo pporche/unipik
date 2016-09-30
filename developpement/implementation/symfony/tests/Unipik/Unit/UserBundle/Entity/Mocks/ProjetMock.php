@@ -13,6 +13,9 @@ use Unipik\UserBundle\Entity\Projet;
 
 class ProjetMock extends Mock {
 
+    /**
+     * @return Projet
+     */
     public static function create() {
         $p = new Projet();
 
@@ -23,6 +26,14 @@ class ProjetMock extends Mock {
         ;
 
         return $p;
+    }
+
+    /**
+     * @param $nb
+     * @return Projet[]
+     */
+    public static function createMultiple($nb){
+        return parent::createMultiple($nb);
     }
 }
 

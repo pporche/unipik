@@ -13,6 +13,9 @@ use Unipik\UserBundle\Entity\Comite;
 
 class ComiteMock extends Mock {
 
+    /**
+     * @return Comite
+     */
     public static function create() {
         $c = new Comite();
 
@@ -23,5 +26,13 @@ class ComiteMock extends Mock {
         ;
 
         return $c;
+    }
+
+    /**
+     * @param $nb
+     * @return Comite[]
+     */
+    public static function createMultiple($nb){
+        return parent::createMultiple($nb);
     }
 }

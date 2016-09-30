@@ -12,6 +12,9 @@ use Unipik\UserBundle\Entity\Region;
 
 class RegionMock extends Mock {
 
+    /**
+     * @return Region
+     */
     public static function create() {
         $r = new Region();
         $p = PaysMock::create();
@@ -22,5 +25,13 @@ class RegionMock extends Mock {
         ;
 
         return $r;
+    }
+
+    /**
+     * @param $nb
+     * @return Region[]
+     */
+    public static function createMultiple($nb){
+        return parent::createMultiple($nb);
     }
 }

@@ -13,6 +13,9 @@ use Unipik\ArchitectureBundle\Entity\NiveauTheme;
 
 class NiveauThemeMock extends Mock {
 
+    /**
+     * @return NiveauTheme
+     */
     public static function create() {
         $r = new NiveauTheme();
 
@@ -22,5 +25,13 @@ class NiveauThemeMock extends Mock {
         ;
 
         return $r;
+    }
+
+    /**
+     * @param $nb
+     * @return NiveauTheme[]
+     */
+    public static function createMultiple($nb){
+        return parent::createMultiple($nb);
     }
 }

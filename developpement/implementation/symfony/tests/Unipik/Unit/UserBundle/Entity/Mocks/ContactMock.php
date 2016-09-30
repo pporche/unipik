@@ -13,6 +13,9 @@ use Unipik\UserBundle\Entity\Contact;
 
 class ContactMock extends Mock {
 
+    /**
+     * @return Contact
+     */
     public static function create() {
         $c = new Contact();
 
@@ -24,5 +27,13 @@ class ContactMock extends Mock {
         ;
 
         return $c;
+    }
+
+    /**
+     * @param $nb
+     * @return Contact[]
+     */
+    public static function createMultiple($nb){
+        return parent::createMultiple($nb);
     }
 }

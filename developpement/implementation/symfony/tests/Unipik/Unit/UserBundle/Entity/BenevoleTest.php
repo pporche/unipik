@@ -8,6 +8,7 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Entity;
 
+use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\AdresseMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\BenevoleMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ComiteMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ProjetMock;
@@ -43,11 +44,15 @@ class BenevoleTest extends  EntityTestCase
             ->setTelPortable("0601020304")
         ;
 
+        $ad = AdresseMock::create();
+        $b->setAdresse($ad);
+
         $this->assertEquals($b->getNom(),"Dupont");
         $this->assertEquals($b->getEmail(), "dupont@super-univ.fr");
         $this->assertEquals($b->getPrenom(), "Alfred");
         $this->assertEquals($b->getTelFixe(), "0232010203");
         $this->assertEquals($b->getTelPortable(), "0601020304");
+        $this->assertEquals($b->getAdresse(), $ad);
 
         $p = ProjetMock::create();
         $b->addProjet($p);
@@ -60,6 +65,11 @@ class BenevoleTest extends  EntityTestCase
         $this->assertEquals($b->getComite()[0], $c);
         $b->removeComite($c);
         $this->assertEquals($b->getComite()[0], null);
+
+        $b->addActivitesPotentielles("plaidoyers");
+        $this->assertEquals("plaidoyers", $b->getActivitesPotentielles()[0]);
+        $b->removeActivitesPotentielles("plaidoyers");
+        $this->assertTrue(is_null($b->getActivitesPotentielles()[0]));
     }
 
     public function badEntityProvider()

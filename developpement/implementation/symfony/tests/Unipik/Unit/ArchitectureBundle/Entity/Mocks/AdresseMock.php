@@ -21,7 +21,8 @@ class AdresseMock extends Mock {
 
         $r
             ->setville("Rouen")
-            ->setCodePostal("7600")
+            ->setCodePostal("76000")
+            ->setAdresse("22 rue du gros")
         ;
 
         return $r;

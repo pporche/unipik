@@ -19,25 +19,15 @@ class AdresseTypeTest extends FormTestCase {
     public function validDataProvider()
     {
         $a1 = AdresseMock::create();
-        $a2 = clone $a1;
-        $a2->setAdresse("58 rue bidule");
 
         return [
-            "Ville et codePostal seulement" => [
-                "Ville" => [
-                    'ville' => "Rouen",
-                    'codePostal' => "7600"
-                ],
-                $a1
-            ],
-
             "Adresse ville et code postal" => [
                 "Ville" => [
-                    'adresse' => "58 rue bidule",
+                    'adresse' => "22 rue du gros",
                     'ville' => "Rouen",
-                    'codePostal' => "7600"
+                    'codePostal' => "76000"
                 ],
-                $a2
+                $a1
             ],
         ];
     }
@@ -49,7 +39,7 @@ class AdresseTypeTest extends FormTestCase {
                 "Ville" => [
                     'adresse' => [null, null, 14, "fred"],
                     'ville' => null,
-                    'codePostal' => "7600"
+                    'codePostal' => "76000"
                 ]
             ],
 
@@ -62,8 +52,15 @@ class AdresseTypeTest extends FormTestCase {
             "champs inexistant" => [
                 "Ville" => [
                     'ville' => "Rouen",
-                    'codePostal' => "7600",
+                    'codePostal' => "76000",
                     'machin' => "truc"
+                ]
+            ],
+
+            "Adresse est null" => [
+                "Ville" => [
+                    'ville' => "Rouen",
+                    'codePostal' => "76000"
                 ]
             ],
         ];

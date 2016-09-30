@@ -18,8 +18,6 @@ class ContactMock extends Mock {
      */
     public static function create() {
         $c = new Contact();
-
-        $c = new Contact();
         $c
             ->setEmail("contact@bigcorp.eu")
             ->setNom("Dupond")

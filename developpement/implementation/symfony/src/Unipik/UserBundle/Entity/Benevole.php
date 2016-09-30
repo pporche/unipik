@@ -242,10 +242,10 @@ class Benevole extends BaseUser
      * @return Benevole
      */
     public function addActivitesPotentielles($activitesPotentielles) {
-        $array = ArrayConverter::pgArrayToPhpArray($this->activitesPotentielles);
-        $array[] = $activitesPotentielles;
-        array_unique($array);
-        $this->activitesPotentielles = ArrayConverter::phpArrayToPgArray($array);
+        $this->activitesPotentielles = ArrayConverter::addIntoPgArray(
+            $this->activitesPotentielles,
+            $activitesPotentielles
+        );
 
         return $this;
     }
@@ -256,10 +256,10 @@ class Benevole extends BaseUser
      * @param string $activitesPotentielles
      */
     public function removeActivitesPotentielles($activitesPotentielles) {
-        $array = ArrayConverter::pgArrayToPhpArray($this->activitesPotentielles);
-        $id = array_search($activitesPotentielles, $array);
-        unset($array[$id]);
-        $this->activitesPotentielles = ArrayConverter::phpArrayToPgArray($array);
+        $this->activitesPotentielles = ArrayConverter::removeFromPgArray(
+            $this->activitesPotentielles,
+            $activitesPotentielles
+        );
     }
 
     /**

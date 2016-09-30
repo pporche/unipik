@@ -87,13 +87,40 @@ class ArrayConverter {
         return $return;
     }
 
-    static function addIntoPgArray() {
 
-
+    /**
+     * Ajoute un élément dans un array Postgresql
+     *
+     * L'array est passé en valeur, le nouveau tableau
+     * est passé en sortie.
+     *
+     * @param String $pgArray
+     * @param $element
+     *
+     * @return String
+     */
+    static function addIntoPgArray($pgArray, $element) {
+        $array = ArrayConverter::pgArrayToPhpArray($pgArray);
+        $array[] = $element;
+        array_unique($array);
+        return ArrayConverter::phpArrayToPgArray($array);
     }
 
-    static function removeFromPgArray() {
-
-
+    /**
+     * Retire un élément d'un array Postgresql
+     *
+     * L'array est passé en valeur, le nouveau tableau
+     * est passé en sortie.
+     *
+     * @param String $pgArray
+     * @param $element
+     *
+     * @return String
+     */
+    static function removeFromPgArray($pgArray, $element) {
+        $array = ArrayConverter::pgArrayToPhpArray($pgArray);
+        $id = array_search($element, $array);
+        unset($array[$id]);
+        return ArrayConverter::phpArrayToPgArray($array);
     }
 }

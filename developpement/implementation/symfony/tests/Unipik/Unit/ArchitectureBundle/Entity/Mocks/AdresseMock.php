@@ -8,9 +8,10 @@
 
 namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
+use Tests\Unipik\Unit\Utils\Mock;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 
-class AdresseMock {
+class AdresseMock extends Mock {
 
     public static function create() {
         $r = new Adresse();

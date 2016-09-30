@@ -8,9 +8,10 @@
 
 namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
+use Tests\Unipik\Unit\Utils\Mock;
 use Unipik\ArchitectureBundle\Entity\NiveauTheme;
 
-class NiveauThemeMock {
+class NiveauThemeMock extends Mock {
 
     public static function create() {
         $r = new NiveauTheme();

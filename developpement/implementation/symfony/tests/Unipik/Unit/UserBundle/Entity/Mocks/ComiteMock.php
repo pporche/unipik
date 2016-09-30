@@ -8,9 +8,10 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
+use Tests\Unipik\Unit\Utils\Mock;
 use Unipik\UserBundle\Entity\Comite;
 
-class ComiteMock {
+class ComiteMock extends Mock {
 
     public static function create() {
         $c = new Comite();

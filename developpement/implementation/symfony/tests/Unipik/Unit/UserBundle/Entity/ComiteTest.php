@@ -37,7 +37,7 @@ class ComiteTest extends  EntityTestCase
 
     public function badEntityProvider()
     {
-        $c1 = $this->testCreate();
+        $c1 = ComiteMock::create();
 
         return [
             "comite with bad departement name" => [$c1->setNomDepartement("departement inexistant")]

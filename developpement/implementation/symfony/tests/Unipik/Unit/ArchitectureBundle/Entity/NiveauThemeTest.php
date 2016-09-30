@@ -58,16 +58,13 @@ class NiveauThemeTest extends EntityTestCase {
     }
 
     public function badEntityProvider() {
-        $nt1 = NiveauThemeMock::create();
-        $nt2 = clone $nt1;
-        $nt3 = clone $nt1;
-        $nt4 = clone $nt3;
+        $nt = NiveauThemeMock::createMultiple(4);
 
         return [
-            "NiveauTheme with null niveau" => [$nt1->setNiveau(null)],
-            "NiveauTheme with bad niveau" => [$nt2->setNiveau("Niveau inexistante")],
-            "NiveauTheme with null theme" => [$nt3->setNiveau(null)],
-            "NiveauTheme with bad theme" => [$nt4->setTheme("Theme inexistant")],
+            "NiveauTheme with null niveau" => [$nt[0]->setNiveau(null)],
+            "NiveauTheme with bad niveau" => [$nt[1]->setNiveau("Niveau inexistante")],
+            "NiveauTheme with null theme" => [$nt[2]->setNiveau(null)],
+            "NiveauTheme with bad theme" => [$nt[3]->setTheme("Theme inexistant")],
         ];
     }
 }

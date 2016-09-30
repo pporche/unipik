@@ -8,9 +8,10 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
+use Tests\Unipik\Unit\Utils\Mock;
 use Unipik\UserBundle\Entity\Projet;
 
-class ProjetMock {
+class ProjetMock extends Mock {
 
     public static function create() {
         $p = new Projet();

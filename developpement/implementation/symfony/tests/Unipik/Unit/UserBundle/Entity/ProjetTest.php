@@ -44,15 +44,13 @@ class ProjetTest extends EntityTestCase
     }
 
     public function badEntityProvider() {
-        $p1 = ProjetMock::create();
-        $p2 = clone $p1;
+        $p1 = ProjetMock::createMultiple(3);
         $longName = str_repeat("a", 1001);
-        $p3 = clone $p1;
 
         return [
-            "Projet with null name" => [$p1->setNom(null)],
-            "Projet with long name" => [$p2->setNom($longName)],
-            "Projet with wrong type chiffre_affaire" => [$p3->setChiffreAffaire("chaine de caractère")],
+            "Projet with null name" => [$p[0]->setNom(null)],
+            "Projet with long name" => [$p[1]->setNom($longName)],
+            "Projet with wrong type chiffre_affaire" => [$p[2]->setChiffreAffaire("chaine de caractère")],
         ];
     }
 

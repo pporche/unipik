@@ -40,14 +40,12 @@ class RegionTest extends EntityTestCase {
     }
 
     public function badEntityProvider() {
-        $r1 = RegionMock::create();
-        $r2 = clone $r1;
-        $r3 = clone $r1;
+        $r = RegionMock::create();
 
         return [
-            "Region with null name" => [$r1->setNom(null)],
-            //"Region with null pays" => [$r2->setPays(null)],
-            "Region with bad name" => [$r3->setNom("Region inexistante")]
+            "Region with null name" => [$r[0]->setNom(null)],
+            //"Region with null pays" => [$r[1]->setPays(null)],
+            "Region with bad name" => [$r[2]->setNom("Region inexistante")]
         ];
     }
 }

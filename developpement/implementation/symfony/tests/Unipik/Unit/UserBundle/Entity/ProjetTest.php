@@ -44,7 +44,7 @@ class ProjetTest extends EntityTestCase
     }
 
     public function badEntityProvider() {
-        $p1 = ProjetMock::createMultiple(3);
+        $p = ProjetMock::createMultiple(3);
         $longName = str_repeat("a", 1001);
 
         return [

@@ -40,7 +40,7 @@ class RegionTest extends EntityTestCase {
     }
 
     public function badEntityProvider() {
-        $r = RegionMock::create();
+        $r = RegionMock::createMultiple(3);
 
         return [
             "Region with null name" => [$r[0]->setNom(null)],

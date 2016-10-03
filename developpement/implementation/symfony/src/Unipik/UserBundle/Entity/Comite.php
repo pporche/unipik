@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Comite
  *
- * @ORM\Table(name="comite", indexes={@ORM\Index(name="IDX_DC01CA9F98260155", columns={"region_id"})})
+ * @ORM\Table(name="comite")
  * @ORM\Entity
  */
 class Comite
@@ -22,22 +22,6 @@ class Comite
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom_departement", type="string", length=40, nullable=false)
-     */
-    private $nomDepartement;
-
-    /**
-     * @var \Unipik\UserBundle\Entity\Region
-     *
-     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Region", cascade={"persist"})
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
-     * })
-     */
-    private $region;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -62,12 +46,21 @@ class Comite
     private $benevole;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Departement", mappedBy="comite")
+     */
+    private $departement;
+
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->niveauTheme = new \Doctrine\Common\Collections\ArrayCollection();
         $this->benevole = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->departement = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -81,53 +74,6 @@ class Comite
         return $this->id;
     }
 
-    /**
-     * Set nomDepartement
-     *
-     * @param string $nomDepartement
-     *
-     * @return Comite
-     */
-    public function setNomDepartement($nomDepartement)
-    {
-        $this->nomDepartement = $nomDepartement;
-
-        return $this;
-    }
-
-    /**
-     * Get nomDepartement
-     *
-     * @return string
-     */
-    public function getNomDepartement()
-    {
-        return $this->nomDepartement;
-    }
-
-    /**
-     * Set region
-     *
-     * @param \Unipik\UserBundle\Entity\Region $region
-     *
-     * @return Comite
-     */
-    public function setRegion(\Unipik\UserBundle\Entity\Region $region = null)
-    {
-        $this->region = $region;
-
-        return $this;
-    }
-
-    /**
-     * Get region
-     *
-     * @return \Unipik\UserBundle\Entity\Region
-     */
-    public function getRegion()
-    {
-        return $this->region;
-    }
 
     /**
      * Add niveauTheme
@@ -195,5 +141,40 @@ class Comite
     public function getBenevole()
     {
         return $this->benevole;
+    }
+
+
+    /**
+     * Add departement
+     *
+     * @param \Unipik\ArchitectureBundle\Entity\Departement $departement
+     *
+     * @return Comite
+     */
+    public function addDepartement(\Unipik\ArchitectureBundle\Entity\Departement $departement)
+    {
+        $this->departement[] = $departement;
+
+        return $this;
+    }
+
+    /**
+     * Remove departement
+     *
+     * @param \Unipik\ArchitectureBundle\Entity\Departement $departement
+     */
+    public function removeDepartement(\Unipik\ArchitectureBundle\Entity\Departement $departement)
+    {
+        $this->departement->removeElement($departement);
+    }
+
+    /**
+     * Get departement
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDepartement()
+    {
+        return $this->departement;
     }
 }

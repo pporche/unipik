@@ -25,14 +25,14 @@ class Demande
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=false)
+     * @ORM\Column(name="date_demande", type="date", nullable=false)
      */
-    private $date;
+    private $dateDemande;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="liste_semaine", type="string", length=300, nullable=false)
+     * @ORM\Column(name="liste_semaine", type="string", length=500, nullable=false)
      */
     private $listeSemaine;
 
@@ -50,14 +50,14 @@ class Demande
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\InterventionBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsVoulus")
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsVoulus")
      */
     private $momentsVoulus;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\InterventionBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsAEviter")
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsAEviter")
      */
     private $momentsAEviter;
 
@@ -82,27 +82,27 @@ class Demande
     }
 
     /**
-     * Set date
+     * Set date de demande
      *
      * @param \DateTime $date
      *
      * @return Demande
      */
-    public function setDate($date)
+    public function setDateDemande($date)
     {
-        $this->date = $date;
+        $this->dateDemande = $date;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get date de demande
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateDemande()
     {
-        return $this->date;
+        return $this->dateDemande;
     }
 
     /**

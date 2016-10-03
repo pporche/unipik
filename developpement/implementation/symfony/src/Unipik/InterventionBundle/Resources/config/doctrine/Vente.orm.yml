@@ -25,13 +25,13 @@ Unipik\InterventionBundle\Entity\Vente:
             precision: 10
             scale: 0
             column: chiffre_affaire
-        date:
+        dateVente:
             type: date
             nullable: false
         remarques:
-            type: text
+            type: string
             nullable: true
-            length: null
+            length: 500
             options:
                 fixed: false
     manyToOne:

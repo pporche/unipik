@@ -16,7 +16,7 @@ with file as fp:
 
 	if adresseTrouve == "false":	
 		file.write(adresseCherchee + " " +villeCherchee + " \n")
-	print adresseTrouve
+	print(adresseTrouve)
 	file.close()
 	    
         

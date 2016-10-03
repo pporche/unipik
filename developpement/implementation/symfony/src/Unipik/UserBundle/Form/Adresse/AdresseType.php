@@ -8,23 +8,33 @@
 
 namespace Unipik\UserBundle\Form\Adresse;
 
+
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\F;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Collection;
+use Unipik\UserBundle\Form\DataTransformer\Adresse\CodePostalAutoCompleteTransformer;
+use Unipik\UserBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
 
 /**
  * Class AdresseType
  * @package Unipik\UserBundle\Form\Adresse
  */
 class AdresseType extends AbstractFieldsetType {
+    private $entityManager;
+
+    /**
+     * VilleType constructor.
+     * @param ObjectManager $entityManager
+     */
+    public function __construct(ObjectManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
 
     /**
      * @param FormBuilderInterface $builder
@@ -34,14 +44,12 @@ class AdresseType extends AbstractFieldsetType {
         $builder
             ->add('adresse', AdType::class)
             ->add('complement', ComplementType::class, array('label' => "Complément","required" => false))
-            ->add('codePostal', CodePostalType::class/*, array(
-                'constraints' => array(
-                    new NotBlank(),
-                    new Length(array('min' => 3)),
-                ),
-            )*/)
             ->add('ville', VilleType::class)
+            ->add('codePostal', CodePostalType::class)
         ;
+
+        $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
+        $builder->get("codePostal")->addModelTransformer(new CodePostalAutocompleteTransformer($this->entityManager));
     }
 
     /**

@@ -25,14 +25,14 @@ class Intervention
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(name="date_intervention", type="date", nullable=true)
      */
-    private $date;
+    private $dateIntervention;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lieu", type="string", length=40, nullable=true)
+     * @ORM\Column(name="lieu", type="string", length=100, nullable=true)
      */
     private $lieu;
 
@@ -46,14 +46,14 @@ class Intervention
     /**
      * @var string
      *
-     * @ORM\Column(name="remarques", type="text", nullable=true)
+     * @ORM\Column(name="remarques", type="string", length=500 nullable=true)
      */
     private $remarques;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="heure", type="string", length=5, nullable=true)
+     * @ORM\Column(name="heure", type="string", length=30, nullable=true)
      */
     private $heure;
 
@@ -68,7 +68,7 @@ class Intervention
     /**
      * @var string
      *
-     * @ORM\Column(name="materiel_dispo_plaidoyer", type="string", length=80, nullable=true)
+     * @ORM\Column(name="materiel_dispo_plaidoyer", type="string", length=500, nullable=true)
      * @example : '{(enceinte},(autre)'
      */
     private $materielDispoPlaidoyer;
@@ -76,21 +76,21 @@ class Intervention
     /**
      * @var string
      *
-     * @ORM\Column(name="niveau_frimousse", type="string", length(15), nullable=true)
+     * @ORM\Column(name="niveau_frimousse", type="string", length=30, nullable=true)
      */
     private $niveauFrimousse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="materiaux_frimousse", type="string", length=60, nullable=true)
+     * @ORM\Column(name="materiaux_frimousse", type="string", length=500, nullable=true)
      */
     private $materiauxFrimousse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=250, nullable=true)
+     * @ORM\Column(name="description", type="string", length=500, nullable=true)
      */
     private $description;
 
@@ -157,27 +157,27 @@ class Intervention
     }
 
     /**
-     * Set date
+     * Set date d intervention
      *
      * @param \DateTime $date
      *
      * @return Intervention
      */
-    public function setDate($date)
+    public function setDateIntervention($date)
     {
-        $this->date = $date;
+        $this->dateIntervention = $date;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get date d intervention
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateIntervention()
     {
-        return $this->date;
+        return $this->dateIntervention;
     }
 
     /**

@@ -24,13 +24,6 @@ Adresse:
             length: 500
             options:
                 fixed: false
-        codePostal:
-            type: string
-            nullable: false
-            length: null
-            options:
-                fixed: false
-            column: code_postal
         complement:
             type: string
             nullable: true
@@ -38,9 +31,31 @@ Adresse:
             options:
                 fixed: false
         geolocalisation:
-            type: string
+            type: geography
             nullable: true
-            length: 255
             options:
                 fixed: false
+                geography_type: POINT
+                srid: 4326
+    manyToOne:
+        ville:
+            targetEntity: Ville
+            cascade: { }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ville_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        codePostal:
+            targetEntity: CodePostal
+            cascade: { }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                code_postal_id:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }

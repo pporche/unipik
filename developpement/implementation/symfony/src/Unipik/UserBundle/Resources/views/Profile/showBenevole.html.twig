@@ -65,8 +65,8 @@
                             </div>
                             <div  class="col-sm-9">
                                 {{ benevole.adresse.getAdresse()}},
-                                {{ benevole.adresse.getCodePostal()}}
-                                {{ benevole.adresse.getVille()}}
+                                {{ benevole.adresse.codePostal.code}}
+                                {{ benevole.adresse.ville.nom}}
                             </div>
                         </dl>
 
@@ -94,7 +94,9 @@
                             <ul class="list-group col-lg-offset-1 col-sm-7 ">
                                 {% for comite in benevole.comite %}
                                     <li class="list-group-item">
-                                        {{ comite.getNomDepartement() }}
+                                            {% for dep in comite.departement %}
+                                                <li> {{ dep.nom }} </li>
+                                            {% endfor %}
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -223,7 +225,7 @@
                                                 {% else %}
                                                     Autre intervention -
                                                 {% endif %}
-                                                {{ intervention.etablissement.adresse.ville }}
+                                                {{ intervention.etablissement.adresse.ville.nom }}
                                                 </br>
                                             </a>
                                         {% endfor %}

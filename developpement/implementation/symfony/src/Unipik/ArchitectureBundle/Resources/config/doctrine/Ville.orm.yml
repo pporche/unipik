@@ -1,7 +1,7 @@
-# version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
-Unipik\UserBundle\Entity\Pays:
+# version 1.00 date 26/09/2016 auteur(s) Julie Pain
+Unipik\ArchitectureBundle\Entity\Ville:
     type: entity
-    table: pays
+    table: ville
     id:
         id:
             type: integer
@@ -18,4 +18,13 @@ Unipik\UserBundle\Entity\Pays:
             length: 100
             options:
                 fixed: false
+    manyToMany:
+        codePostal:
+            targetEntity: CodePostal
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: ville
+            inversedBy: null
+            joinTable: null
+            orderBy: null
     lifecycleCallbacks: {  }

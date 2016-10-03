@@ -24,28 +24,34 @@ class Adresse
     private $id;
 
     /**
-     * @var string
+     * @var \Unipik\ArchitectureBundle\Entity\Ville
      * @Assert\NotBlank()
      *
-     * @ORM\Column(name="ville", type="string", length=100, nullable=false)
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Ville")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ville_id", referencedColumnName="id" )
+     * })
      */
     private $ville;
 
     /**
-     * @var string
+     * @var \Unipik\ArchitectureBundle\Entity\CodePostal
      * @Assert\NotBlank()
+     *
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\CodePostal")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="code_postal_id", referencedColumnName="id" )
+     * })
+     */
+    private $codePostal;
+
+    /**
+     * @var string
      *
      * @ORM\Column(name="adresse", type="string", length=500, nullable=false)
      */
     private $adresse;
 
-    /**
-     * @var string
-     * @Assert\NotBlank()
-     *
-     * @ORM\Column(name="code_postal", type="string", nullable=false)
-     */
-    private $codePostal;
 
     /**
      * @var string
@@ -57,7 +63,7 @@ class Adresse
     /**
      * @var string
      *
-     * @ORM\Column(name="geolocalisation", type="string", length=255, nullable=true)
+     * @ORM\Column(name="geolocalisation", type="geography", options={"geography_type"="POINT", "srid"=4326}, nullable=true)
      */
     private $geolocalisation;
 
@@ -76,11 +82,11 @@ class Adresse
     /**
      * Set ville
      *
-     * @param string $ville
+     * @param \Unipik\ArchitectureBundle\Entity\Ville $ville
      *
-     * @return Adresse
+     * @return Ville
      */
-    public function setVille($ville)
+    public function setVille(\Unipik\ArchitectureBundle\Entity\Ville $ville)
     {
         $this->ville = $ville;
 
@@ -90,12 +96,37 @@ class Adresse
     /**
      * Get ville
      *
-     * @return string
+     * @return \Unipik\ArchitectureBundle\Entity\Ville
      */
     public function getVille()
     {
         return $this->ville;
     }
+
+    /**
+     * Set code postal
+     *
+     * @param \Unipik\ArchitectureBundle\Entity\CodePostal $codePostal
+     *
+     * @return CodePostal
+     */
+    public function setCodePostal(\Unipik\ArchitectureBundle\Entity\CodePostal $codePostal)
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    /**
+     * Get code Postal
+     *
+     * @return \Unipik\ArchitectureBundle\Entity\CodePostal
+     */
+    public function getCodePostal()
+    {
+        return $this->codePostal;
+    }
+
 
     /**
      * Set adresse
@@ -120,31 +151,6 @@ class Adresse
     {
         return $this->adresse;
     }
-
-    /**
-     * Set codePostal
-     *
-     * @param string $codePostal
-     *
-     * @return Adresse
-     */
-    public function setCodePostal($codePostal)
-    {
-        $this->codePostal = $codePostal;
-
-        return $this;
-    }
-
-    /**
-     * Get codePostal
-     *
-     * @return string
-     */
-    public function getCodePostal()
-    {
-        return $this->codePostal;
-    }
-
 
 
     /**

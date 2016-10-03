@@ -16,13 +16,13 @@ Unipik\InterventionBundle\Entity\Demande:
             generator:
                 strategy: SEQUENCE
     fields:
-        date:
+        dateDemande:
             type: date
             nullable: false
         listeSemaine:
             type: string
             nullable: false
-            length: 300
+            length: 500
             options:
                 fixed: false
             column: liste_semaine

@@ -25,14 +25,14 @@ class NiveauTheme
     /**
      * @var string
      *
-     * @ORM\Column(name="niveau", type="string", nullable=true)
+     * @ORM\Column(name="niveau", type="string", length=30, nullable=true)
      */
     private $niveau;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="theme", type="string", nullable=true)
+     * @ORM\Column(name="theme", type="string", length=100, nullable=true)
      */
     private $theme;
 

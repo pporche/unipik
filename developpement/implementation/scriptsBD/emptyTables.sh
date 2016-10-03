@@ -1,3 +1,8 @@
+#!/bin/bash
+# version 1.00, date 28/09/2016, auteur Mélissa Bignoux
+# permet de vider toutes les tables sauf pays, region, departement, ville
+
+
 prompt_token() {
   local VAL=""
   while [ "$VAL" = "" ]; do
@@ -18,10 +23,11 @@ else
     password=$1
 fi
 
-
-#insertion d'une ligne dans la bd -> le pays
 dbname="bdunicef"
 username="unipik"
+fichier="${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_vider_tables_sauf_donnees_france.sql"
 export PGPASSWORD="$password"
 
-psql -U $username -w -d $dbname -h 127.0.0.1 -f "${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_etablissements.sql"
+
+psql -U $username -w  -d $dbname  -h 127.0.0.1 -f $fichier
+

@@ -32,21 +32,21 @@ class Projet
     /**
      * @var string
      *
-     * @ORM\Column(name="remarques", type="text", nullable=true)
+     * @ORM\Column(name="remarques", type="string",length=500, nullable=true)
      */
     private $remarques;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", nullable=false)
+     * @ORM\Column(name="type", type="string", length=30, nullable=false)
      */
     private $type;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=1000, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
     private $nom;
 

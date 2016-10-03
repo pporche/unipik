@@ -5,6 +5,7 @@ Creation-Date: 2016-09-06T11:53:46+02:00
 ====== Apache, postgresql et symfony ======
 Created mardi 06 septembre 2016 by Matthieu
 Last updates:
+* mardi 27 reptembre 2016 by Mélissa
 * jeudi 15 reptembre 2016 by Matthieu
 * mardi 13 septembre 2016 by François and Matthieu
 * mardi 06 septembre 2016 by Matthieu
@@ -15,10 +16,10 @@ Installer un environnement de développement symfony avec Apache.
 
 ===== Étapes Pas-à-pas (Linux debian-like): =====
 
-1. Exécuter la commande suivante dans un terminal :
+1. Exécuter la commande suivante dans un terminal en choisissant les dernières versions de postgresql et postgis :
 
 '''
-sudo apt-get install php5 libapache2-mod-php5 php-xml php-curl apache2 curl postgresql
+sudo apt-get install php5 libapache2-mod-php5 php-xml php-curl apache2 curl postgresql-9.3-postgis-2.1 
 '''
 
 2. Dans un dossier de travail (par exemple [[~/travail]] ), cloner le git du projet avec la commande suivante (remplacer user par son nom d'utilisateur) :

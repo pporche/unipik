@@ -52,10 +52,11 @@
                                     </dt>
                                 </div>
                                 <div class="col-sm-6 col-xs-offset-1 col-xs-11">
-                                    <i>{% if intervention.date is empty %}
+                                    <i>{% if intervention.dateIntervention is empty %}
                                             --:--
                                         {% else %}
-                                            {{ intervention.date|date('d-m-Y') }}
+                                            {{ intervention.dateIntervention|date('d-m-Y') }}
+                                            {{ intervention.dateIntervention|date('d-m-Y') }}
                                         {% endif %}
                                     </i>
                                 </div>
@@ -152,7 +153,9 @@
                     <h3>Commité de rattachement : </h3>
                     <div class="row">
                         <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                            &nbsp &nbsp &nbsp {{ intervention.comite.nomDepartement }}
+                            &nbsp &nbsp &nbsp {% for dep in intervention.comite.departement %}
+                            {{ dep.nom }}
+                            {% endfor %}
                         </ul>
 
                     </div>

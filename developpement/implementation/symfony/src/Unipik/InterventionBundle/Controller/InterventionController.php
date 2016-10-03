@@ -217,22 +217,12 @@ class InterventionController extends Controller {
         $end = $form->get("end")->getData();
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "dateIntervention");
+        $desc = $request->get("desc", true);
 
         $repository = $this->getInterventionRepository();
-        switch ($typeIntervention) {
-            case "plaidoyer":
-                $listIntervention = $repository->getPlaidoyers($start, $end, $dateChecked);
-                break;
-            case "frimousse":
-                $listIntervention = $repository->getFrimousses($start, $end, $dateChecked);
-                break;
-            case "autreIntervention":
-                $listIntervention = $repository->getAutresInterventions($start, $end, $dateChecked);
-                break;
-            default:
-                $listIntervention = $repository->getToutesInterventions($start, $end, $dateChecked);
-                break;
-        }
+
+        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc);
 
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
             'rowsPerPage' => $rowsPerPage,

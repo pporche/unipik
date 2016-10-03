@@ -8,10 +8,14 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
+use Tests\Unipik\Unit\Utils\Mock;
 use Unipik\UserBundle\Entity\Projet;
 
-class ProjetMock {
+class ProjetMock extends Mock {
 
+    /**
+     * @return Projet
+     */
     public static function create() {
         $p = new Projet();
 
@@ -22,6 +26,14 @@ class ProjetMock {
         ;
 
         return $p;
+    }
+
+    /**
+     * @param $nb
+     * @return Projet[]
+     */
+    public static function createMultiple($nb){
+        return parent::createMultiple($nb);
     }
 }
 

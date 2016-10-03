@@ -18,3 +18,4 @@
 /web/vendor/
 !web/vendor/.gitkeep
 web/coverage
+web/bundles

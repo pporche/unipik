@@ -2,34 +2,34 @@
 /**
  * Created by PhpStorm.
  * User: mmartinsbaltar
- * Date: 21/09/16
- * Time: 08:16
+ * Date: 29/09/16
+ * Time: 08:25
  */
+
 namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
 use Tests\Unipik\Unit\Utils\Mock;
-use Unipik\UserBundle\Entity\Region;
+use Unipik\UserBundle\Entity\Contact;
 
-class RegionMock extends Mock {
+class ContactMock extends Mock {
 
     /**
-     * @return Region
+     * @return Contact
      */
     public static function create() {
-        $r = new Region();
-        $p = PaysMock::create();
-
-        $r
-            ->setNom("Aquitaine Limousin Poitou-Charentes")
-            ->setPays($p)
+        $c = new Contact();
+        $c
+            ->setEmail("contact@bigcorp.eu")
+            ->setNom("Dupond")
+            ->setTypeContact("enseignant")
         ;
 
-        return $r;
+        return $c;
     }
 
     /**
      * @param $nb
-     * @return Region[]
+     * @return Contact[]
      */
     public static function createMultiple($nb){
         return parent::createMultiple($nb);

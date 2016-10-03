@@ -93,20 +93,29 @@
                             </div>
                         {% else %}
                             <div class="col-lg-offset-1 col-sm-7 ">
-                                {% if ('plaidoyer' in benevole.activitesPotentielles ) %}
-                                       Plaidoyer,
+                                {#{% for act in  benevole.activitesPotentielles%}#}
+                                    {#{{ act }}#}
+                                {#{% endfor %}#}
+                                {% if ('(plaidoyers)' in benevole.activitesPotentielles) %}
+                                    Plaidoyer,
                                 {% endif %}
-                                {% if ('frimousse' in benevole.activitesPotentielles) %}
-                                        Frimousse,
+                                {% if ('(frimousses)' in benevole.activitesPotentielles) %}
+                                    Frimousse,
                                 {% endif %}
-                                {% if ('actions_ponctuelles' in benevole.activitesPotentielles) %}
-                                        Actions ponctuelles,
+                                {% if ('(actions_ponctuelles)' in benevole.activitesPotentielles) %}
+                                    Actions ponctuelles,
                                 {% endif %}
-                                {% if ('projets' in benevole.activitesPotentielles) %}
-                                        Projets,
+                                {% if ('(projets)' in benevole.activitesPotentielles) %}
+                                    Projets,
                                 {% endif %}
-                                {% if ('projets' in benevole.activitesPotentielles) %}
-                                        Autre,
+                                {% if ('(projets)' in benevole.activitesPotentielles) %}
+                                    Autre,
+                                {% endif %}
+                                {% if ('(admin_comite)' in benevole.activitesPotentielles) %}
+                                    Administrateur du comité,
+                                {% endif %}
+                                {% if ('(admin_region)' in benevole.activitesPotentielles) %}
+                                    Administrateur de la région,
                                 {% endif %}
                             </div>
                         {% endif %}
@@ -168,8 +177,8 @@
             }
         }
 
-        formatMultiple("act");
-        formatMultiple("resp");
+//        formatMultiple("act");
+//        formatMultiple("resp");
 
         function deleteBenevoles() {
             var selected = [];

@@ -8,10 +8,14 @@
 
 namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
+use Tests\Unipik\Unit\Utils\Mock;
 use Unipik\ArchitectureBundle\Entity\NiveauTheme;
 
-class NiveauThemeMock {
+class NiveauThemeMock extends Mock {
 
+    /**
+     * @return NiveauTheme
+     */
     public static function create() {
         $r = new NiveauTheme();
 
@@ -21,5 +25,13 @@ class NiveauThemeMock {
         ;
 
         return $r;
+    }
+
+    /**
+     * @param $nb
+     * @return NiveauTheme[]
+     */
+    public static function createMultiple($nb){
+        return parent::createMultiple($nb);
     }
 }

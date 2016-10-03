@@ -84,7 +84,7 @@ class Contact
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Projet", inversedBy="contact")
+     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Projet", inversedBy="contact", cascade={"persist"})
      * @ORM\JoinTable(name="participe",
      *   joinColumns={
      *     @ORM\JoinColumn(name="projet_id", referencedColumnName="id")

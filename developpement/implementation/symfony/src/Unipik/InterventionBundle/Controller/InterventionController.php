@@ -17,6 +17,7 @@ use Unipik\InterventionBundle\Entity\Demande;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route; //Utilisé
 use Unipik\UserBundle\Entity\Comite;
 use Unipik\ArchitectureBundle\Entity\MomentHebdomadaire;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 /**
  * Created by PhpStorm.
  * User: florian
@@ -127,8 +128,7 @@ class InterventionController extends Controller {
             /*if(!in_array((Array) $institute->getContact(),(Array) $contactPers->getEtablissement()))
                 $contactPers->addEtablissement($institute);*/
 
-            $toolBoxDatabase = $this->get('architecture.toolboxdatabase');
-            $demande->setListeSemaine($toolBoxDatabase->arrayToString($listWeek));
+            $demande->setListeSemaine(ArrayConverter::phpArrayToPgArray($listWeek));
 
             $this->getDoctrine()->getManager()->persist($demande);
             $em = $this->getDoctrine()->getManager();
@@ -320,7 +320,6 @@ class InterventionController extends Controller {
      * Iterates over the interventions requested to get the parameters
      */
     function treatmentInterventions($interventionsRawList, &$interventionList) {
-        $toolBoxDatabase = $this->get('architecture.toolboxdatabase');
         $comiteTest = $this->getDoctrine()->getManager()->getRepository('UserBundle:Comite')->find(1);
 
         if($interventionsRawList !== null) {
@@ -331,7 +330,7 @@ class InterventionController extends Controller {
                 $interventionTemp->setRealisee(false);
                 $interventionTemp->setDate(null);
                 $interventionTemp->setMateriauxFrimousse(null);
-                $interventionTemp->setMaterielDispoPlaidoyer($toolBoxDatabase->arrayToString($interventionRaw["materiel"]["materiel"]));
+                $interventionTemp->setMaterielDispoPlaidoyer(ArrayConverter::phpArrayToPgArray($interventionRaw["materiel"]["materiel"]));
                 $interventionTemp->setNbPersonne($interventionRaw["eleves"]["nbEleves"]);
                 $interventionTemp->setComite($comiteTest);
                 $interventionList[] = $interventionTemp;

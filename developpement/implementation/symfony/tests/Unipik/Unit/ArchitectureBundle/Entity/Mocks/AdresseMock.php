@@ -8,18 +8,31 @@
 
 namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
+use Tests\Unipik\Unit\Utils\Mock;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 
-class AdresseMock {
+class AdresseMock extends Mock {
 
+    /**
+     * @return Adresse
+     */
     public static function create() {
         $r = new Adresse();
 
         $r
             ->setville("Rouen")
-            ->setCodePostal("7600")
+            ->setCodePostal("76000")
+            ->setAdresse("22 rue du gros")
         ;
 
         return $r;
+    }
+
+    /**
+     * @param $nb
+     * @return Adresse[]
+     */
+    public static function createMultiple($nb){
+        return parent::createMultiple($nb);
     }
 }

@@ -106,41 +106,40 @@
         document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change',function(e){
             console.log(e.target.value);
             switch (e.target.value){
-                case 'ens' : keepInstitute();
+                case 'ens' :
+                    keepInstitute();
+                    $('.form-group:eq(8)').fadeIn("fast");
                     break;
-                case 'centre' : keepCenter();
+                case 'centre' :
+                    keepCenter();
+                    $('.form-group:eq(8)').fadeOut("fast");
+                    $('#demande_Etablissement_uai').val('');
                     break;
-                case 'autre' : keepOther();
+                case 'autre' :
+                    keepOther();
+                    $('.form-group:eq(8)').fadeOut("fast");
+                    $('#demande_Etablissement_uai').val('');
                     break;
             }
         });
 
         function keepInstitute(){
-            $(".form-group:eq(6)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(5)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
             $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(8)").fadeOut("slow").prop("disabled",true);
         }
 
         function keepCenter(){
-            $(".form-group:eq(8)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(7)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
             $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
 
         }
 
         function keepOther(){
-            $(".form-group:eq(7)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(8)").fadeOut("slow").prop("disabled",true);
-        }
-
-        switch($("#demande_Etablissement_TypeGeneral").val()){
-            case 'ens' : keepInstitute();
-                break;
-            case 'centre' : keepCenter();
-                break;
-            case 'autre' : keepOther();
-                break;
+            $(".form-group:eq(6)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
         }
 
         document.addEventListener('submit',verifyAll);
@@ -149,6 +148,7 @@
             verifyNumber(e);
             verifyCP(e);
             verifyMail(e);
+            showUAI();
             if($('#demande_Etablissement_uai').val().trim())
                 verifyUAI(e);
 
@@ -181,7 +181,7 @@
         }
 
         function verifyMail(e){
-            var re = /\S+@\S+\.\S+/;
+            var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
             if(!(re.test($('#demande_Etablissement_emails').val()) && re.test($('#demande_Contact_email').val()))){
                 $('#demande_Etablissement_emails').css('border-color', 'red');
                 $('#demande_Contact_email').css('border-color', 'red');
@@ -196,7 +196,13 @@
 
         }
 
+        function showUAI(){
+            console.log(('#demande_Etablissement_uai').val());
+        }
+
+
         function verifyUAI(e){
+            console.log(verifyCodeUai($('#demande_Etablissement_uai').val()));
             if(!verifyCodeUai($('#demande_Etablissement_uai').val())){
                 e.stopPropagation();
                 e.preventDefault();
@@ -209,7 +215,7 @@
 
         function verifyCodeUai(codeUai){
             // alphabet pris en compte (23 lettres, sans I, O et Q)
-             var alphabet = 'a b c d e f g h i j k l m n o p q r s t u v w x y z'.split(' ');
+             var alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
             // On supprime les espaces et on met tout en minuscules
             var codeUaiPropre = codeUai.trim().toLowerCase();
@@ -224,8 +230,25 @@
             // On récupère la lettre calculée dans l'alphabet
             var lettreCalculee = alphabet[rangCalcule] ;
             console.log(alphabet[rangCalcule]);
+            console.log(lettreCalculee);
+            console.log(alphabet[rangCalcule] == lettreCalculee);
+
             // On compare la lettre du code UAI à la lettre calculée et on retourne TRUE ou FALSE
             return codeUaiPropreLettre == lettreCalculee;
+        }
+
+        //initialisation
+        $('.form-group:eq(8)').fadeOut("fast");
+        switch($("#demande_Etablissement_TypeGeneral").val()){
+            case 'ens' :
+                keepInstitute();
+                break;
+            case 'centre' :
+                keepCenter();
+                break;
+            case 'autre' :
+                keepOther();
+                break;
         }
 
     </script>

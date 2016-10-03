@@ -53,7 +53,7 @@
             pager.children().eq(1).addClass("active");
             children.hide();
             children.slice(0, perPage).show();
-            
+
             pager.find('li .page_link').click(function(){
                 var clickedPage = $(this).html().valueOf()-1;
                 goTo(clickedPage,perPage);

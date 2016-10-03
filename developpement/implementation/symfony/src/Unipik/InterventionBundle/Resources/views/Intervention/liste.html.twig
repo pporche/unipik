@@ -70,10 +70,10 @@
             }
             else{
                 if($isReverse){
-                    {% set listeS = liste|sortbyfield('date')|reverse %}
+                    {% set listeS = liste|sortbyfield('dateIntervention')|reverse %}
                     console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
                 }else{
-                    {% set listeS = liste|sortbyfield('date') %}
+                    {% set listeS = liste|sortbyfield('dateIntervention') %}
                     console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
                 }
             }
@@ -82,7 +82,7 @@
             $html += "<tr>";
             $html += "<td>{{ loop.index }}</td>";
             $html += "<td>{{ interventionS.lieu | capitalize}}</td>";
-            $html += "<td>{{ interventionS.date|date('d-m-Y') }}</td>";
+            $html += "<td>{{ interventionS.dateIntervention|date('d-m-Y') }}</td>";
             $html += "<td>";
             $html += "{% if interventionS.plaidoyer %}";
             $html += "Plaidoyer";
@@ -268,7 +268,7 @@
                             <tr>
                                 <td>{{ loop.index }}</td>
                                 <td>{{ intervention.lieu | capitalize}}</td>
-                                <td>{{ intervention.date|date("d-m-Y") }}</td>
+                                <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
                                 <td>
                                     {% if intervention.plaidoyer %}
                                         Plaidoyer

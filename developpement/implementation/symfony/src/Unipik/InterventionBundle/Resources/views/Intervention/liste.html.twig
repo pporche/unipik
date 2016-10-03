@@ -149,33 +149,19 @@
             }
             else{
                 if($isReverse){
-<<<<<<< HEAD
                     {% set listeS = liste|sortbyfield('date')|reverse %}
                     console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
                 }else{
                     {% set listeS = liste|sortbyfield('date') %}
                     console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
-=======
-                    $html = "{% set liste = liste | sortbyfield('dateIntervention') |reverse %}";
-                    console.log("date reverse");
-                }else{
-                    $html = "{% set liste = liste | sortbyfield('dateIntervention') %}";
-                    console.log("date");
->>>>>>> 80de2185cd41088f0cdeba5b524dbb81ac3cf020
                 }
             }
             $html = "{%  for interventionS in listeS %}";
             console.log("{{ interventionS.id }}");
             $html += "<tr>";
             $html += "<td>{{ loop.index }}</td>";
-<<<<<<< HEAD
             $html += "<td>{{ interventionS.lieu | capitalize}}</td>";
             $html += "<td>{{ interventionS.date|date('d-m-Y') }}</td>";
-=======
-            $html += "<td>{{ intervention.lieu | capitalize}}</td>";
-            $html += "<td>{{ intervention.dateIntervention|date('d-m-Y') }}</td>";
-            $html += "<td>{{ intervention.dateIntervention|date('d-m-Y') }}</td>";
->>>>>>> 80de2185cd41088f0cdeba5b524dbb81ac3cf020
             $html += "<td>";
             $html += "{% if interventionS.plaidoyer %}";
             $html += "Plaidoyer";
@@ -360,13 +346,8 @@
                         {% for intervention in liste %}
                             <tr>
                                 <td>{{ loop.index }}</td>
-<<<<<<< HEAD
                                 <td>{{ intervention.lieu | capitalize}}</td>
                                 <td>{{ intervention.date|date("d-m-Y") }}</td>
-=======
-                                <td>{{ intervention.lieu }}</td>
-                                <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
->>>>>>> 80de2185cd41088f0cdeba5b524dbb81ac3cf020
                                 <td>
                                     {% if intervention.plaidoyer %}
                                         Plaidoyer

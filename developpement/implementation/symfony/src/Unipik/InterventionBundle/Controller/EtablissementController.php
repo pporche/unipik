@@ -91,22 +91,23 @@ class EtablissementController extends Controller {
         $repository = $this->getEtablissementRepository();
 
         $typeEtablissement = $form->get("typeEtablissement")->getData();
+        $ville = $form->get("ville")->getData();
 
         switch ($typeEtablissement) {
             case "enseignement":
                 $typeEnseignement = $form->get("typeEnseignement")->getData();
-                $listEtablissement = empty($typeEnseignement) ? $repository->getEnseignements() : $repository->getEnseignementsByType($typeEnseignement);
+                $listEtablissement = empty($typeEnseignement) ? $repository->getEnseignements() : $repository->getEnseignementsByType($typeEnseignement,$ville);
                 break;
             case "centre":
                 $typeCentre = $form->get("typeCentre")->getData();
-                $listEtablissement = empty($typeCentre) ? $repository->getCentresLoisirs() : $repository->getCentresLoisirsByType($typeCentre);
+                $listEtablissement = empty($typeCentre) ? $repository->getCentresLoisirs() : $repository->getCentresLoisirsByType($typeCentre, $ville);
                 break;
             case "autreEtablissement":
                 $typeAutreEtablissement = $form->get("typeAutreEtablissement")->getData();
-                $listEtablissement = empty($typeAutreEtablissement) ? $repository->getAutresEtablissements() : $repository->getAutresEtablissementsByType($typeAutreEtablissement);
+                $listEtablissement = empty($typeAutreEtablissement) ? $repository->getAutresEtablissements() : $repository->getAutresEtablissementsByType($typeAutreEtablissement, $ville);
                 break;
             default:
-                $listEtablissement = $repository->findAll();
+                $listEtablissement = $repository->getTousEtablissements($ville);
                 break;
         }
 

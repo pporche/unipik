@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 /**
  * Manage the registration actions
@@ -61,14 +62,12 @@ class RegistrationController extends BaseController {
 
         // Après le submit du formulaire
         if ($form->isValid()) {
-            $toolBoxDatabase = $this->get('architecture.toolboxdatabase');
-
             $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
-            $responsibilitiesString = $toolBoxDatabase->arrayToString($responsibilitiesArray);
+            $responsibilitiesString = ArrayConverter::phpArrayToPgArray($responsibilitiesArray);
             $user->setResponsabiliteActivite($responsibilitiesString);
 
             $activitiesArray = $form->get("activitesPotentielles")->getData(); //récup les activités choisies sur le form + format pour persist
-            $activitiesString = $toolBoxDatabase->arrayToString($activitiesArray);
+            $activitiesString = ArrayConverter::phpArrayToPgArray($activitiesArray);
             $activitiesString = $this->setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString);
             $user->setActivitesPotentielles($activitiesString);
 

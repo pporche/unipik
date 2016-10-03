@@ -19,7 +19,7 @@ Region:
         nom:
             type: string
             nullable: false
-            length: 60
+            length: 100
             options:
                 fixed: false
     manyToOne:

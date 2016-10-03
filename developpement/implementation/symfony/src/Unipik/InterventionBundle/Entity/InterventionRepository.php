@@ -162,7 +162,7 @@ class InterventionRepository extends EntityRepository {
      */
     public function whereInterventionsBetweenDates($start, $end, QueryBuilder $qb) {
         $qb
-            ->andWhere('i.date BETWEEN :start AND :end')
+            ->andWhere('i.dateIntervention BETWEEN :start AND :end')
             ->setParameter('start',$start)
             ->setParameter('end',$end);
     }
@@ -170,6 +170,6 @@ class InterventionRepository extends EntityRepository {
 
     public function orderByDesc(QueryBuilder $qb){
         $qb
-            ->orderBy('i.date','DESC');
+            ->orderBy('i.dateIntervention','DESC');
     }
 }

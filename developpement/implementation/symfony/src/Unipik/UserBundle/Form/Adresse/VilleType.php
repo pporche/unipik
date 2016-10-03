@@ -10,6 +10,7 @@ namespace Unipik\UserBundle\Form\Adresse;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Class VilleType
@@ -24,10 +25,12 @@ class VilleType extends AbstractType {
         return TextType::class;
     }
 
+
     /**
      * {@inheritdoc}
      */
     public function getBlockPrefix() {
         return 'ville';
     }
+
 }

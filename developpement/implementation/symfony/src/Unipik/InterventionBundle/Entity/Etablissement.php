@@ -41,35 +41,35 @@ class Etablissement
     /**
      * @var string
      *
-     * @ORM\Column(name="tel_fixe", type="string", length=10, nullable=true)
+     * @ORM\Column(name="tel_fixe", type="string", length=30, nullable=true)
      */
     private $telFixe;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="emails", type="string", length=10, nullable=false)
+     * @ORM\Column(name="emails", type="string", length=100, nullable=false)
      */
     private $emails;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type_enseignement", type="string", nullable=true)
+     * @ORM\Column(name="type_enseignement", type="string", length=30, nullable=true)
      */
     private $typeEnseignement;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type_centre", type="string", nullable=true)
+     * @ORM\Column(name="type_centre", type="string", length=30, nullable=true)
      */
     private $typeCentre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="type_autre_etablissement", type="string", nullable=true)
+     * @ORM\Column(name="type_autre_etablissement", type="string", length=30, nullable=true)
      */
     private $typeAutreEtablissement;
 

@@ -15,13 +15,13 @@ Unipik\ArchitectureBundle\Entity\MomentHebdomadaire:
         jour:
             type: string
             nullable: false
-            length: null
+            length: 30
             options:
                 fixed: false
         moment:
             type: string
             nullable: false
-            length: null
+            length: 30
             options:
                 fixed: false
     manyToMany:

@@ -1,6 +1,180 @@
 {# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
 {% extends "UserBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #fos_user_profile_form_adresse_ville {
+            text-transform: uppercase;
+        }
+
+        .twitter-typeahead .tt-query,
+        .twitter-typeahead .tt-hint {
+            margin-bottom: 0;
+        }
+
+        .tt-hint {
+            display: none;
+            width: 100%;
+            height: 43px;
+            padding: 10px 18px;
+            font-size: 14px;
+            line-height: 1.428571429;
+            color: #999;
+            vertical-align: middle;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        }
+
+        .tt-menu {
+            min-width: 160px;
+            margin-top: 2px;
+            padding: 5px 0;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            background-clip: padding-box;
+            max-height: 150px;
+            overflow-y: auto;
+
+        }
+
+        .tt-suggestion {
+            display: block;
+            padding: 3px 20px;
+        }
+
+        .tt-suggestion.tt-is-under-cursor {
+            color: #fff;
+            background-color: #428bca;
+        }
+
+        .tt-suggestion.tt-is-under-cursor a {
+            color: #fff;
+        }
+
+        .tt-suggestion p {
+            margin: 0;
+        }
+
+
+    </style>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('vendor/typeahead.js/dist/typeahead.jquery.js') }}"></script>
+    <script src="{{ asset('vendor/typeahead.js/dist/bloodhound.js') }}"></script>
+    <script type="application/javascript">
+        function preCheck(jsonFormatted) {
+            jsonFormatted = jsonFormatted.replace(/["']/g, "");
+            activities = jsonFormatted.replace(/[{}]/g, '');
+            activities = activities.split(',');
+            for (var i = 0; i < activities.length; i++) {
+                var query = "input[value='" + activities[i] + "']";
+                var checkedElts = document.querySelectorAll(query);
+                for (var j = 0; j < checkedElts.length; j++)
+                    checkedElts[j].checked = true;
+            }
+
+        }
+
+        var jsonActivities = '{{ form.vars.value.activitesPotentielles|raw }}';
+        var jsonResponsabilities = '{{ form.vars.value.responsabiliteActivite|raw }}';
+        preCheck(jsonActivities);
+        preCheck(jsonResponsabilities);
+
+        $(document).ready(function () {
+            for (i = 0; i < 4; i++) {
+                responsabiliteChecked("#fos_user_profile_form_responsabiliteActivite_" + i, "#fos_user_profile_form_activitesPotentielles_" + i);
+            }
+        });
+
+        function responsabiliteChecked(responsabilite, activite) {
+            $(responsabilite).change(function () {
+                if ($(this).is(':checked')) {
+                    $(activite).prop("checked", true);
+                    $(activite).prop("disabled", true);
+                } else {
+                    $(activite).prop("checked", false);
+                    $(activite).prop("disabled", false);
+                }
+            });
+        }
+
+        function followRole() {
+            if (document.getElementById("fos_user_profile_form_roles_1").checked == false) {
+                document.getElementById("fos_user_profile_form_roles_1").disabled = true;
+            }
+        }
+        followRole();
+
+
+
+        var villes = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+            remote: {
+                url: '{{ path("architecture_ville_autocomplete") }}?term=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+
+        $('#fos_user_profile_form_adresse_ville').typeahead(null, {
+            name: 'villes',
+            source: villes,
+            limit: 50
+        });
+
+        var codesPostaux = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+            remote: {
+                url: '{{ path("architecture_code_autocomplete") }}?term=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+
+        $('#fos_user_profile_form_adresse_codePostal').typeahead(null, {
+            name: 'codesPostaux',
+            source: codesPostaux,
+            limit: 5
+        });
+
+
+        $('#fos_user_profile_form_adresse_ville').change(function () {
+            var ville = $(fos_user_profile_form_adresse_ville).val().toUpperCase();
+            console.log(ville);
+            $('#fos_user_profile_form_adresse_codePostal').val("");
+            $.post("{{ path('architecture_code_postal') }}", {'ville': ville},
+                function (data, status) {
+                    $('#fos_user_profile_form_adresse_codePostal').val(data.codePostal);
+                });
+        });
+
+        $('#fos_user_profile_form_adresse_codePostal').change(function () {
+            var codePostal = $(user_registration_adresse_codePostal).val();
+            console.log(codePostal);
+            $('#fos_user_profile_form_adresse_ville').val("");
+            $.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},
+                function (data, status) {
+                    $('#fos_user_profile_form_adresse_ville').val(data.ville);
+                });
+        });
+    </script>
+{% endblock %}
+
 {% block title %}
 
     Éditer le profil - {{ parent() }}
@@ -16,51 +190,3 @@
     {{ form_end(form) }}
 {% endblock fos_user_content %}
 
-{% block javascripts %}
-
-    {{ parent() }}
-<script type="application/javascript">
-    function preCheck(jsonFormatted){
-        jsonFormatted = jsonFormatted.replace(/["']/g, "");
-        activities = jsonFormatted.replace(/[{}]/g, '');
-        activities = activities.split(',');
-        for(var i = 0; i < activities.length;i++){
-            var query = "input[value='" + activities[i] + "']";
-            var checkedElts = document.querySelectorAll(query);
-            for(var j = 0; j < checkedElts.length;j++)
-                checkedElts[j].checked = true;
-        }
-
-    }
-
-    var jsonActivities = '{{ form.vars.value.activitesPotentielles|raw }}';
-    var jsonResponsabilities = '{{ form.vars.value.responsabiliteActivite|raw }}';
-    preCheck(jsonActivities);
-    preCheck(jsonResponsabilities);
-
-    $(document).ready(function() {
-        for(i=0; i<4; i++){
-            responsabiliteChecked("#fos_user_profile_form_responsabiliteActivite_" + i, "#fos_user_profile_form_activitesPotentielles_" + i);
-        }
-    });
-
-    function responsabiliteChecked(responsabilite, activite) {
-        $(responsabilite).change(function () {
-            if ($(this).is(':checked')) {
-                $(activite).prop("checked", true);
-                $(activite).prop("disabled", true);
-            } else {
-                $(activite).prop("checked", false);
-                $(activite).prop("disabled", false);
-            }
-        });
-    }
-
-    function followRole(){
-        if(document.getElementById("fos_user_profile_form_roles_1").checked == false){
-            document.getElementById("fos_user_profile_form_roles_1").disabled =true;
-        }
-    }
-    followRole();
-</script>
-{% endblock %}

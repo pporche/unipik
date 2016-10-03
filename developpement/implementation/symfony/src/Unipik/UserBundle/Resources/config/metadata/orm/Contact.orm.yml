@@ -34,21 +34,21 @@ Contact:
         telFixe:
             type: string
             nullable: true
-            length: 10
+            length: 30
             options:
                 fixed: false
             column: tel_fixe
         telPortable:
             type: string
             nullable: true
-            length: 10
+            length: 30
         options:
                 fixed: false
             column: tel_portable
         typeContact:
             type: string
             nullable: false
-            length: 20
+            length: 30
             options:
                 fixed: false
             column: type_contact
@@ -69,7 +69,7 @@ Contact:
         typeActivite:
             type: string
             nullable: true
-            length: 100
+            length: 500
             options:
                 fixed: false
             column: type_activite

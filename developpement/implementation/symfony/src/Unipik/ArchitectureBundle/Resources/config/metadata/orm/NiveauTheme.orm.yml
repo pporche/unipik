@@ -15,13 +15,13 @@ NiveauTheme:
         niveau:
             type: string
             nullable: true
-            length: null
+            length: 30
             options:
                 fixed: false
         theme:
             type: string
             nullable: true
-            length: null
+            length: 100
             options:
                 fixed: false
     manyToMany:

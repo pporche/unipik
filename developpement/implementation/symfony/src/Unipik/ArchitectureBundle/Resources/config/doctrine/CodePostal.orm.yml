@@ -1,0 +1,50 @@
+# version 1.00 date 26/09/2016 auteur(s) Julie Pain
+Unipik\ArchitectureBundle\Entity\CodePostal:
+    type: entity
+    table: code_postal
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+    manyToOne:
+        departement:
+            targetEntity: Departement
+            cascade: [ "persist" ]
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                departement_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        ville:
+            targetEntity: Ville
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: codePostal
+            joinTable:
+                name: ville_code_postal
+                joinColumns:
+                    -
+                        name: code_postal_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: ville_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

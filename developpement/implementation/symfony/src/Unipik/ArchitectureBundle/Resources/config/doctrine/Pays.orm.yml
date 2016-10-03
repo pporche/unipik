@@ -1,0 +1,21 @@
+# version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+Unipik\ArchitectureBundle\Entity\Pays:
+    type: entity
+    table: pays
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nom:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

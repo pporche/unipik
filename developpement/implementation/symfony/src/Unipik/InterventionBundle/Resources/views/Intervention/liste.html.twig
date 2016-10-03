@@ -149,10 +149,10 @@
             }
             else{
                 if($isReverse){
-                    $html = "{% set liste = liste | sortbyfield('date') |reverse %}";
+                    $html = "{% set liste = liste | sortbyfield('dateIntervention') |reverse %}";
                     console.log("date reverse");
                 }else{
-                    $html = "{% set liste = liste | sortbyfield('date') %}";
+                    $html = "{% set liste = liste | sortbyfield('dateIntervention') %}";
                     console.log("date");
                 }
             }
@@ -160,7 +160,8 @@
             $html += "<tr>";
             $html += "<td>{{ loop.index }}</td>";
             $html += "<td>{{ intervention.lieu | capitalize}}</td>";
-            $html += "<td>{{ intervention.date|date('d-m-Y') }}</td>";
+            $html += "<td>{{ intervention.dateIntervention|date('d-m-Y') }}</td>";
+            $html += "<td>{{ intervention.dateIntervention|date('d-m-Y') }}</td>";
             $html += "<td>";
             $html += "{% if intervention.plaidoyer %}";
             $html += "Plaidoyer";
@@ -207,6 +208,7 @@
 
                 $('#tableIntervention #myTable tr').detach();
 
+
                 $('#tableIntervention #myTable').append(genererHTML("lieu", true));
                 $('#myPager li').detach();
                 $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
@@ -222,6 +224,7 @@
 
 
                 $('#tableIntervention #myTable tr').detach();
+
 
                 $('#tableIntervention #myTable').append(genererHTML("date", false));
                 $('#myPager li').detach();
@@ -343,7 +346,7 @@
                             <tr>
                                 <td>{{ loop.index }}</td>
                                 <td>{{ intervention.lieu }}</td>
-                                <td>{{ intervention.date|date("d-m-Y") }}</td>
+                                <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
                                 <td>
                                     {% if intervention.plaidoyer %}
                                         Plaidoyer

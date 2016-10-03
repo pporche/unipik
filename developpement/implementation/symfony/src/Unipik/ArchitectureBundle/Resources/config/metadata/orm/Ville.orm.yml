@@ -1,0 +1,30 @@
+# version 1.00 date 26/09/2016 auteur(s) Julie Pain
+Ville:
+    type: entity
+    table: ville
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nom:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+    manyToMany:
+        codePostal:
+            targetEntity: CodePostal
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: ville
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

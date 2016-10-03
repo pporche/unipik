@@ -29,13 +29,13 @@ Unipik\InterventionBundle\Entity\Intervention:
             generator:
                 strategy: SEQUENCE
     fields:
-        date:
+        dateIntervention:
             type: date
             nullable: true
         lieu:
             type: string
             nullable: true
-            length: 40
+            length: 100
             options:
                 fixed: false
         nbPersonne:
@@ -45,15 +45,15 @@ Unipik\InterventionBundle\Entity\Intervention:
                 unsigned: false
             column: nb_personne
         remarques:
-            type: text
+            type: string
             nullable: true
-            length: null
+            length: 500
             options:
                 fixed: false
         heure:
             type: string
             nullable: true
-            length: 5
+            length: 30
             options:
                 fixed: false
         realisee:
@@ -65,28 +65,28 @@ Unipik\InterventionBundle\Entity\Intervention:
         materielDispoPlaidoyer:
             type: string
             nullable: true
-            length: 80
+            length: 500
             options:
                 fixed: false
             column: materiel_dispo_plaidoyer
         niveauFrimousse:
             type: string
             nullable: true
-            length: 15
+            length: 30
             options:
                 fixed: false
             column: niveau_frimousse
         materiauxFrimousse:
             type: string
             nullable: true
-            length: 60
+            length: 500
             options:
                 fixed: false
             column: materiaux_frimousse
         description:
             type: string
             nullable: true
-            length: 250
+            length: 500
             options:
                 fixed: false
     manyToOne:

@@ -5,6 +5,7 @@ Creation-Date: 2016-09-08T11:34:14+02:00
 ====== Initialisation ======
 Created jeudi 08 septembre 2016 by Matthieu
 Last updates:
+* jeudi 29 septembre 2016 by Mélissa
 * mardi 08 septembre 2016 by Matthieu
 
 ===== But: =====
@@ -13,10 +14,16 @@ Initialiser une nouvelle base de donnée
 
 ===== Étapes Pas-à-pas : =====
 
-1. Dans un terminal, si la base de données est déjà présente  : dans le dossier scriptsBD, exécuter dropdb.sh
+1. Dans un terminal, exécuter les commandes suivantes (penser à adapter le chemin d'accès vers pic_unicef, ainsi que l'utilisateur et le mot de passe de la BD) dans le dossier developpement/implementation/scriptsBD  :
+'''
+(si déja db) ./dropDB.sh
+./createDB.sh
+./insertionsInDBDonneesFrance.sh
+./insertAll.sh
+'''
 
-2. Dans le dossier scriptsBD, executer ''createdb.sh''  puis  ''addAdmin.sh. ''
-	-> createdb.sh demande une fois le mot de passe ulitisateur et deux fois le mot de passe de la base de données
-
-3. Dans le dossier scriptsBD, pour remplir la base de données en entier, executer generateRequestsFile.sh, puis insertAll.sh
+Si vous voulez supprimer les données de votre page (sauf pays, région, département, codes postaux et ville) lancer  dans le dossier developpement/implementation/scriptsBD la commande  : 
+	[[./emptyTables.sh]]
+Si vous souhaitez réinsérez les adresses,  les établissements, les informations du comité et les données de test ancer  dans le dossier developpement/implementation/scriptsBD la commande  : 
+	./insertAll.sh
 

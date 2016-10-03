@@ -181,7 +181,7 @@
         }
 
         function verifyMail(e){
-            var re = /\S+@\S+\.\S+/;
+            var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
             if(!(re.test($('#demande_Etablissement_emails').val()) && re.test($('#demande_Contact_email').val()))){
                 $('#demande_Etablissement_emails').css('border-color', 'red');
                 $('#demande_Contact_email').css('border-color', 'red');

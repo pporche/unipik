@@ -40,7 +40,7 @@ class ComiteTest extends  EntityTestCase
         $c1 = ComiteMock::create();
 
         return [
-            "comite with bad departement name" => [$c1->setNomDepartement("departement inexistant")]
+            "comite with null depertement" => [$c1->addDepartement(null)]
         ];
     }
 }

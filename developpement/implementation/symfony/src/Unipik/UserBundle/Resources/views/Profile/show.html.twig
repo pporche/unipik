@@ -15,7 +15,7 @@
                 <div class="infoPrincip">
                     <div class="row">
                         <h2 class="col-lg-9 titre" style="margin-top: 40px;">{{ user.nom | upper }} {{ user.prenom | capitalize }}</h2>
-                        <img src="{{ asset('img/logo-gris.png') }}" class="logoGris">
+                        <img src="{{ asset('img/logo-gris.png') }}" class="logoGris" alt="Logo gris">
                     </div>
                     <hr>
                     <div class="row">
@@ -57,9 +57,12 @@
                                 {% endif %}
                             </div>
                             <div class="col-sm-3 col-xs-12">
-                                <dt >
-                                    <span class="glyphicon glyphicon-home"></span>  Adresse :</td>
-                                </dt>
+                                <dl>
+                                    <dt >
+                                        <span class="glyphicon glyphicon-home"></span>  Adresse :</td>
+                                    </dt>
+                                </dl>
+
                             </div>
                             <div  class="col-sm-9">
                                 {% if (user.adresse.getAdresse() == "" or user.adresse.getAdresse() == "blabla") %}

@@ -140,42 +140,43 @@
 
             if($field == "lieu"){
                 if($isReverse){
-                    $html = "{% set liste = liste | sortbyfield('lieu') |reverse %}";
-                    console.log("lieu reverse");
+                    {% set listeS = liste|sortbyfield('lieu')|reverse %}
+                    console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
                 }else{
-                    $html = "{% set liste = liste | sortbyfield('lieu') %}";
-                    console.log("lieu");
+                    {% set listeS = liste|sortbyfield('lieu') %}
+                    console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
                 }
             }
             else{
                 if($isReverse){
-                    $html = "{% set liste = liste | sortbyfield('date') |reverse %}";
-                    console.log("date reverse");
+                    {% set listeS = liste|sortbyfield('date')|reverse %}
+                    console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
                 }else{
-                    $html = "{% set liste = liste | sortbyfield('date') %}";
-                    console.log("date");
+                    {% set listeS = liste|sortbyfield('date') %}
+                    console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
                 }
             }
-            $html += "{%  for intervention in liste %}";
+            $html = "{%  for interventionS in listeS %}";
+            console.log("{{ interventionS.id }}");
             $html += "<tr>";
             $html += "<td>{{ loop.index }}</td>";
-            $html += "<td>{{ intervention.lieu | capitalize}}</td>";
-            $html += "<td>{{ intervention.date|date('d-m-Y') }}</td>";
+            $html += "<td>{{ interventionS.lieu | capitalize}}</td>";
+            $html += "<td>{{ interventionS.date|date('d-m-Y') }}</td>";
             $html += "<td>";
-            $html += "{% if intervention.plaidoyer %}";
+            $html += "{% if interventionS.plaidoyer %}";
             $html += "Plaidoyer";
-            $html += "{% elseif intervention.frimousse %}";
+            $html += "{% elseif interventionS.frimousse %}";
             $html += "Frimousse";
             $html += "{% else %}";
             $html += "Autre intervention";
             $html += "{% endif %}";
             $html += "</td>";
-            $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
+            $html += "<td><a href=\"{{ path('intervention_view', {id: interventionS.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
             $html += "{% if is_granted('ROLE_ADMIN') %}";
             $html += "<td>";
             $html += "<div class=\"checkbox\">";
             $html += "<label>";
-            $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ intervention.id }}\">";
+            $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ interventionS.id }}\">";
             $html += "</label>";
             $html += "</div>";
             $html += "</td>";
@@ -194,8 +195,9 @@
 
                 $('#tableIntervention #myTable tr').detach();
 
-                $('#tableIntervention #myTable').append(genererHTML("lieu", false));
                 $('#myPager li').detach();
+
+                $('#tableIntervention #myTable').append(genererHTML("lieu", false));
                 $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
 
             }
@@ -206,9 +208,9 @@
 
 
                 $('#tableIntervention #myTable tr').detach();
+                $('#myPager li').detach();
 
                 $('#tableIntervention #myTable').append(genererHTML("lieu", true));
-                $('#myPager li').detach();
                 $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
 
             }
@@ -222,9 +224,9 @@
 
 
                 $('#tableIntervention #myTable tr').detach();
+                $('#myPager li').detach();
 
                 $('#tableIntervention #myTable').append(genererHTML("date", false));
-                $('#myPager li').detach();
                 $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
 
             }
@@ -235,9 +237,9 @@
 
 
                 $('#tableIntervention #myTable tr').detach();
+                $('#myPager li').detach();
 
                 $('#tableIntervention #myTable').append(genererHTML("date", true));
-                $('#myPager li').detach();
                 $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
 
             }
@@ -342,7 +344,7 @@
                         {% for intervention in liste %}
                             <tr>
                                 <td>{{ loop.index }}</td>
-                                <td>{{ intervention.lieu }}</td>
+                                <td>{{ intervention.lieu | capitalize}}</td>
                                 <td>{{ intervention.date|date("d-m-Y") }}</td>
                                 <td>
                                     {% if intervention.plaidoyer %}

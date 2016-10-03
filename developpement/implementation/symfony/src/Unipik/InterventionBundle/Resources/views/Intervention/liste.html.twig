@@ -136,43 +136,67 @@
             });
         });
 
+        function genererHTML($field, $isReverse){
+
+            if($field == "lieu"){
+                if($isReverse){
+                    $html = "{% set liste = liste | sortbyfield('lieu') |reverse %}";
+                    console.log("lieu reverse");
+                }else{
+                    $html = "{% set liste = liste | sortbyfield('lieu') %}";
+                    console.log("lieu");
+                }
+            }
+            else{
+                if($isReverse){
+                    $html = "{% set liste = liste | sortbyfield('date') |reverse %}";
+                    console.log("date reverse");
+                }else{
+                    $html = "{% set liste = liste | sortbyfield('date') %}";
+                    console.log("date");
+                }
+            }
+            $html += "{%  for intervention in liste %}";
+            $html += "<tr>";
+            $html += "<td>{{ loop.index }}</td>";
+            $html += "<td>{{ intervention.lieu | capitalize}}</td>";
+            $html += "<td>{{ intervention.date|date('d-m-Y') }}</td>";
+            $html += "<td>";
+            $html += "{% if intervention.plaidoyer %}";
+            $html += "Plaidoyer";
+            $html += "{% elseif intervention.frimousse %}";
+            $html += "Frimousse";
+            $html += "{% else %}";
+            $html += "Autre intervention";
+            $html += "{% endif %}";
+            $html += "</td>";
+            $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
+            $html += "{% if is_granted('ROLE_ADMIN') %}";
+            $html += "<td>";
+            $html += "<div class=\"checkbox\">";
+            $html += "<label>";
+            $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ intervention.id }}\">";
+            $html += "</label>";
+            $html += "</div>";
+            $html += "</td>";
+            $html += "{% endif %}";
+            $html += "</tr>";
+            $html += "{% endfor %}";
+
+            return $html;
+        }
+
         function sortByLieu(){
             if($('#sortLieu').hasClass("sort-down")){
                 $('#sortLieu').removeClass();
                 $('#sortLieu').addClass("sort sort-up");
                 $('#sortLieu').attr("src", "{{ asset('img/sort-up.png')}}");
 
-
                 $('#tableIntervention #myTable tr').detach();
 
-                $html = "{% for intervention in liste | sortbyfield('lieu') %}";
-                $html += "<tr>";
-                $html += "<td>{{ loop.index }}</td>";
-                $html += "<td>{{ intervention.lieu | capitalize}}</td>";
-                $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
-                $html += "<td>";
-                $html += "{% if intervention.plaidoyer %}";
-                $html += "Plaidoyer";
-                $html += "{% elseif intervention.frimousse %}";
-                $html += "Frimousse";
-                $html += "{% else %}";
-                $html += "Autre intervention";
-                $html += "{% endif %}";
-                $html += "</td>";
-                $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
-                $html += "{% if is_granted('ROLE_ADMIN') %}";
-                $html += "<td>";
-                $html += "<div class=\"checkbox\">";
-                $html += "<label>";
-                $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ intervention.id }}\">";
-                $html += "</label>";
-                $html += "</div>";
-                $html += "</td>";
-                $html += "{% endif %}";
-                $html += "</tr>";
-                $html += "{% endfor %}";
-
-                $('#tableIntervention #myTable').append($html);
+                $('#tableIntervention #myTable').append(genererHTML("lieu", false));
+                $('#myPager li').detach();
+                $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
 
             }
             else {
@@ -183,34 +207,9 @@
 
                 $('#tableIntervention #myTable tr').detach();
 
-                $html = "{% for intervention in liste | sortbyfield('lieu') | reverse %}";
-                $html += "<tr>";
-                $html += "<td>{{ loop.index }}</td>";
-                $html += "<td>{{ intervention.lieu | capitalize }}</td>";
-                $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
-                $html += "<td>";
-                $html += "{% if intervention.plaidoyer %}";
-                $html += "Plaidoyer";
-                $html += "{% elseif intervention.frimousse %}";
-                $html += "Frimousse";
-                $html += "{% else %}";
-                $html += "Autre intervention";
-                $html += "{% endif %}";
-                $html += "</td>";
-                $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
-                $html += "{% if is_granted('ROLE_ADMIN') %}";
-                $html += "<td>";
-                $html += "<div class=\"checkbox\">";
-                $html += "<label>";
-                $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ intervention.id }}\">";
-                $html += "</label>";
-                $html += "</div>";
-                $html += "</td>";
-                $html += "{% endif %}";
-                $html += "</tr>";
-                $html += "{% endfor %}";
-
-                $('#tableIntervention #myTable').append($html);
+                $('#tableIntervention #myTable').append(genererHTML("lieu", true));
+                $('#myPager li').detach();
+                $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
 
             }
         }
@@ -224,34 +223,9 @@
 
                 $('#tableIntervention #myTable tr').detach();
 
-                $html = "{% for intervention in liste | sortbyfield('date') %}";
-                $html += "<tr>";
-                $html += "<td>{{ loop.index }}</td>";
-                $html += "<td>{{ intervention.lieu | capitalize }}</td>";
-                $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
-                $html += "<td>";
-                $html += "{% if intervention.plaidoyer %}";
-                $html += "Plaidoyer";
-                $html += "{% elseif intervention.frimousse %}";
-                $html += "Frimousse";
-                $html += "{% else %}";
-                $html += "Autre intervention";
-                $html += "{% endif %}";
-                $html += "</td>";
-                $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
-                $html += "{% if is_granted('ROLE_ADMIN') %}";
-                $html += "<td>";
-                $html += "<div class=\"checkbox\">";
-                $html += "<label>";
-                $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ intervention.id }}\">";
-                $html += "</label>";
-                $html += "</div>";
-                $html += "</td>";
-                $html += "{% endif %}";
-                $html += "</tr>";
-                $html += "{% endfor %}";
-
-                $('#tableIntervention #myTable').append($html);
+                $('#tableIntervention #myTable').append(genererHTML("date", false));
+                $('#myPager li').detach();
+                $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
 
             }
             else {
@@ -262,35 +236,9 @@
 
                 $('#tableIntervention #myTable tr').detach();
 
-                $html = "{% for intervention in liste | sortbyfield('date') | reverse %}";
-                $html += "<tr>";
-                $html += "<td>{{ loop.index }}</td>";
-                $html += "<td>{{ intervention.lieu | capitalize }}</td>";
-                $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
-                $html += "<td>";
-                $html += "{% if intervention.plaidoyer %}";
-                $html += "Plaidoyer";
-                $html += "{% elseif intervention.frimousse %}";
-                $html += "Frimousse";
-                $html += "{% else %}";
-                $html += "Autre intervention";
-                $html += "{% endif %}";
-                $html += "</td>";
-                $html += "<td><a href=\"{{ path('intervention_view', {id: intervention.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
-                $html += "{% if is_granted('ROLE_ADMIN') %}";
-                $html += "<td>";
-                $html += "<div class=\"checkbox\">";
-                $html += "<label>";
-                $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ intervention.id }}\">";
-                $html += "</label>";
-                $html += "</div>";
-                $html += "</td>";
-                $html += "{% endif %}";
-                $html += "</tr>";
-                $html += "{% endfor %}";
-
-
-                $('#tableIntervention #myTable').append($html);
+                $('#tableIntervention #myTable').append(genererHTML("date", true));
+                $('#myPager li').detach();
+                $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
 
             }
         }

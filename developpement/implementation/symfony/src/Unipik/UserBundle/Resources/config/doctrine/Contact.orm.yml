@@ -92,7 +92,7 @@ Unipik\UserBundle\Entity\Contact:
             orderBy: null
         projet:
             targetEntity: Projet
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: contact

@@ -2,8 +2,11 @@
 // version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 namespace Unipik\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 /**
  * Benevole
@@ -223,6 +226,8 @@ class Benevole extends BaseUser
      * @param string $activitesPotentielles
      *
      * @return Benevole
+     *
+     * @deprecated Use addActivitesPetentielles instead
      */
     public function setActivitesPotentielles($activitesPotentielles) {
         $this->activitesPotentielles = $activitesPotentielles;
@@ -230,12 +235,41 @@ class Benevole extends BaseUser
     }
 
     /**
+     * Add activitesPotentielles
+     *
+     * @param string|array $activitesPotentielles
+     *
+     * @return Benevole
+     */
+    public function addActivitesPotentielles($activitesPotentielles) {
+        $this->activitesPotentielles = ArrayConverter::addIntoPgArray(
+            $this->activitesPotentielles,
+            $activitesPotentielles
+        );
+
+        return $this;
+    }
+
+    /**
+     * Remove activitesPotentielles
+     *
+     * @param string $activitesPotentielles
+     */
+    public function removeActivitesPotentielles($activitesPotentielles) {
+        $this->activitesPotentielles = ArrayConverter::removeFromPgArray(
+            $this->activitesPotentielles,
+            $activitesPotentielles
+        );
+    }
+
+    /**
      * Get activitesPotentielles
      *
-     * @return string
+     * @return Collection
      */
     public function getActivitesPotentielles() {
-        return $this->activitesPotentielles;
+        $array = ArrayConverter::pgArrayToPhpArray($this->activitesPotentielles);
+        return new ArrayCollection($array);
     }
 
     /**

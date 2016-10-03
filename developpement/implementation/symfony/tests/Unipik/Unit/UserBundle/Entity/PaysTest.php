@@ -37,13 +37,12 @@ class PaysTest extends EntityTestCase {
     }
 
     public function badEntityProvider() {
-        $p1 = PaysMock::create();
-        $p2 = clone $p1;
+        $p = PaysMock::createMultiple(2);
         $longName = str_repeat("a", 101);
 
         return [
-            "Pays with null name" => [$p1->setNom(null)],
-            "Pays with too long name" => [$p2->setNom($longName)]
+            "Pays with null name" => [$p[0]->setNom(null)],
+            "Pays with too long name" => [$p[1]->setNom($longName)]
         ];
     }
 }

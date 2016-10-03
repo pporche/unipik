@@ -7,10 +7,14 @@
  */
 namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
+use Tests\Unipik\Unit\Utils\Mock;
 use Unipik\UserBundle\Entity\Pays;
 
-class PaysMock {
+class PaysMock extends Mock {
 
+    /**
+     * @return Pays
+     */
     public static function create() {
         $p = new Pays();
 
@@ -19,5 +23,13 @@ class PaysMock {
         ;
 
         return $p;
+    }
+
+    /**
+     * @param $nb
+     * @return Pays[]
+     */
+    public static function createMultiple($nb){
+        return parent::createMultiple($nb);
     }
 }

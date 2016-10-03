@@ -8,10 +8,14 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
+use Tests\Unipik\Unit\Utils\Mock;
 use Unipik\UserBundle\Entity\Comite;
 
-class ComiteMock {
+class ComiteMock extends Mock {
 
+    /**
+     * @return Comite
+     */
     public static function create() {
         $c = new Comite();
 
@@ -22,5 +26,13 @@ class ComiteMock {
         ;
 
         return $c;
+    }
+
+    /**
+     * @param $nb
+     * @return Comite[]
+     */
+    public static function createMultiple($nb){
+        return parent::createMultiple($nb);
     }
 }

@@ -33,6 +33,7 @@ class Adresse
 
     /**
      * @var string
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="adresse", type="string", length=500, nullable=false)
      */

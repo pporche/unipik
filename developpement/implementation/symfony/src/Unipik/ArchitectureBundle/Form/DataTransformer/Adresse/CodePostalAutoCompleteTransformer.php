@@ -6,7 +6,7 @@
  * Time: 11:08
  */
 
-namespace Unipik\UserBundle\Form\DataTransformer\Adresse;
+namespace Unipik\ArchitectureBundle\Form\DataTransformer\Adresse;
 
 
 use Doctrine\Common\Persistence\ObjectManager;
@@ -15,7 +15,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Class CodePostalAutoCompleteTransformer
- * @package Unipik\UserBundle\Form\DataTransformer\Adresse
+ * @package Unipik\ArchitectureBundle\Form\DataTransformer\Adresse
  */
 class CodePostalAutoCompleteTransformer implements DataTransformerInterface
 {

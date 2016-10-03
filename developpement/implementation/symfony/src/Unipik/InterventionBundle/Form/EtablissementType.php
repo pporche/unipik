@@ -10,7 +10,7 @@ use Unipik\InterventionBundle\Form\Etablissement\TypeCentreType;
 use Unipik\UserBundle\Form\ContactType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Unipik\InterventionBundle\Form\Etablissement\TypeEnseignementType;
-use Unipik\UserBundle\Form\Adresse\AdresseType;
+use Unipik\ArchitectureBundle\Form\Adresse\AdresseType;
 use Unipik\InterventionBundle\Form\Etablissement\AutreEtablissementType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 

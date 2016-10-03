@@ -3,25 +3,26 @@
  * Created by PhpStorm.
  * User: mmartinsbaltar
  * Date: 27/04/16
- * Time: 10:34
+ * Time: 10:31
  */
 
-namespace Unipik\UserBundle\Form\Adresse;
+
+namespace Unipik\ArchitectureBundle\Form\Adresse;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Class ComplementType
- * @package Unipik\UserBundle\Form\Adresse
+ * Class NumeroDeRueType
+ * @package Unipik\ArchitectureBundle\Form\Adresse
  */
-class ComplementType extends AbstractType {
+class NumeroDeRueType extends AbstractType {
 
     /**
      * {@inheritdoc}
      */
-    public function getParent()
-    {
+    public function getParent() {
         return TextType::class;
     }
 
@@ -29,6 +30,6 @@ class ComplementType extends AbstractType {
      * {@inheritdoc}
      */
     public function getBlockPrefix() {
-        return 'complement';
+        return 'numeroDeRue';
     }
 }

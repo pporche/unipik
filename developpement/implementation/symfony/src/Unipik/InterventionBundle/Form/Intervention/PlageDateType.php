@@ -20,7 +20,11 @@ class PlageDateType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
-            ->add('debut', DateType::class)
+            ->add('debut', DateType::class,array(
+                'widget' => 'single_text',
+                // this is actually the default format for single_text
+                'format' => 'yyyy-MM-dd',
+            ))
             ->add('fin', DateType::class)
         ;
     }

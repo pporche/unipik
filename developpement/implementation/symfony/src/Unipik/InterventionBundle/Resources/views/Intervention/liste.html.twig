@@ -53,7 +53,7 @@
             pager.children().eq(1).addClass("active");
             children.hide();
             children.slice(0, perPage).show();
-            
+
             pager.find('li .page_link').click(function(){
                 var clickedPage = $(this).html().valueOf()-1;
                 goTo(clickedPage,perPage);
@@ -149,7 +149,7 @@
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
                 $html += "<td>{{ intervention.lieu | capitalize}}</td>";
-                $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
+                $html += "<td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>";
                 $html += "<td>";
                 $html += "{% if intervention.plaidoyer %}";
                 $html += "Plaidoyer";
@@ -187,7 +187,7 @@
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
                 $html += "<td>{{ intervention.lieu | capitalize }}</td>";
-                $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
+                $html += "<td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>";
                 $html += "<td>";
                 $html += "{% if intervention.plaidoyer %}";
                 $html += "Plaidoyer";
@@ -224,11 +224,11 @@
 
                 $('#tableIntervention #myTable tr').detach();
 
-                $html = "{% for intervention in liste | sortbyfield('date') %}";
+                $html = "{% for intervention in liste | sortbyfield('dateIntervention') %}";
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
                 $html += "<td>{{ intervention.lieu | capitalize }}</td>";
-                $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
+                $html += "<td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>";
                 $html += "<td>";
                 $html += "{% if intervention.plaidoyer %}";
                 $html += "Plaidoyer";
@@ -262,11 +262,11 @@
 
                 $('#tableIntervention #myTable tr').detach();
 
-                $html = "{% for intervention in liste | sortbyfield('date') | reverse %}";
+                $html = "{% for intervention in liste | sortbyfield('dateIntervention') | reverse %}";
                 $html += "<tr>";
                 $html += "<td>{{ loop.index }}</td>";
                 $html += "<td>{{ intervention.lieu | capitalize }}</td>";
-                $html += "<td>{{ intervention.date|date("d-m-Y") }}</td>";
+                $html += "<td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>";
                 $html += "<td>";
                 $html += "{% if intervention.plaidoyer %}";
                 $html += "Plaidoyer";
@@ -395,7 +395,7 @@
                             <tr>
                                 <td>{{ loop.index }}</td>
                                 <td>{{ intervention.lieu }}</td>
-                                <td>{{ intervention.date|date("d-m-Y") }}</td>
+                                <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
                                 <td>
                                     {% if intervention.plaidoyer %}
                                         Plaidoyer

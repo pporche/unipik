@@ -62,11 +62,9 @@
                                 </dt>
                             </div>
                             <div  class="col-sm-9">
-                                {% if (user.adresse.getAdresse() == "" or user.adresse.getAdresse() == "blabla") %}
-                                    {{ "Non renseigné" }}
-                                {% else %}
-                                    {{ user.adresse.getAdresse()}}
-                                {% endif %}
+                                {{ user.adresse.getAdresse()}},
+                                {{ user.adresse.codePostal.code}}
+                                {{ user.adresse.ville.nom}}
                             </div>
                         </dl>
 
@@ -96,7 +94,9 @@
                         <ul class="list-group col-lg-offset-1 col-sm-7 ">
                             {% for comite in user.comite %}
                                 <li class="list-group-item">
-                                    {{ comite.getNomDepartement() }}
+                                    {% for dep in comite.departement %}
+                                    <li> {{ dep.nom }} </li>
+                                    {% endfor %}
                                 </li>
                             {% endfor %}
                         </ul>

@@ -55,7 +55,7 @@ class Etablissement
     /**
      * @var string
      *
-     * @ORM\Column(name="type_enseignement", type="string", lentgh=30, nullable=true)
+     * @ORM\Column(name="type_enseignement", type="string", length=30, nullable=true)
      */
     private $typeEnseignement;
 

@@ -1,3 +1,0 @@
-services:
-  architecture.toolboxdatabase:
-          class: Unipik\ArchitectureBundle\Tools\ToolBoxDatabase

@@ -268,7 +268,10 @@ class Benevole extends BaseUser
      * @return Collection
      */
     public function getActivitesPotentielles() {
-        $array = ArrayConverter::pgArrayToPhpArray($this->activitesPotentielles);
+        $array = array();
+        if ($this->activitesPotentielles != null) {
+            $array = ArrayConverter::pgArrayToPhpArray($this->activitesPotentielles);
+        }
         return new ArrayCollection($array);
     }
 

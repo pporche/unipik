@@ -16,6 +16,7 @@ use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 use FOS\UserBundle\Controller\ProfileController as BaseController;
 
@@ -62,14 +63,13 @@ class ProfileController extends BaseController {
         if ($form->isValid()) {
             /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
             $userManager = $this->get('fos_user.user_manager');
-            $toolBoxDatabase = $this->get('architecture.toolboxdatabase');
 
             $activitiesArray = $form->get("activitesPotentielles")->getData();
-            $activitiesString = $toolBoxDatabase->arrayToString($activitiesArray);
+            $activitiesString = ArrayConverter::phpArrayToPgArray($activitiesArray);
             $user->setResponsabiliteActivite($activitiesString);
 
             $responsibilitiesArray = $form->get("responsabiliteActivite")->getData();
-            $responsibilitiesString = $toolBoxDatabase->arrayToString($responsibilitiesArray);
+            $responsibilitiesString = ArrayConverter::phpArrayToPgArray($responsibilitiesArray);
             $user->setResponsabiliteActivite($responsibilitiesString);
 
             $event = new FormEvent($form, $request);

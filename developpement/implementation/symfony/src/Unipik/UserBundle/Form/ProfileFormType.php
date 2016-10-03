@@ -13,7 +13,7 @@ use FOS\UserBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Unipik\UserBundle\Form\Adresse\AdresseType;
+use Unipik\ArchitectureBundle\Form\Adresse\AdresseType;
 
 /**
  * Class ProfileFormType

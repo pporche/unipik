@@ -16,24 +16,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 class RechercheAvanceeType  extends AbstractType
 {
 
-//    public function createArrayOfTown(){
-//        $lines = file(__DIR__ ."/../../../../../../ressourcesNettoyees/communesFrance.txt",FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-//        $result = [];
-//        foreach($lines as $l){
-//            $result[$l] = $l;
-//        }
-//        var_dump($result);
-//        return $result;
-//    }
 
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-
-//        $villes = $this->createArrayOfTown();
-
         $optionChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
             'choices' => [
                 'Tous' => '',

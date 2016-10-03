@@ -3,24 +3,25 @@
  * Created by PhpStorm.
  * User: mmartinsbaltar
  * Date: 27/04/16
- * Time: 09:09
+ * Time: 10:34
  */
 
-namespace Unipik\UserBundle\Form\Adresse;
+namespace Unipik\ArchitectureBundle\Form\Adresse;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
- * Class CodePostalType
- * @package Unipik\UserBundle\Form\Adresse
+ * Class ComplementType
+ * @package Unipik\ArchitectureBundle\Form\Adresse
  */
-class CodePostalType extends AbstractType {
+class ComplementType extends AbstractType {
 
     /**
      * {@inheritdoc}
      */
-    public function getParent() {
+    public function getParent()
+    {
         return TextType::class;
     }
 
@@ -28,6 +29,6 @@ class CodePostalType extends AbstractType {
      * {@inheritdoc}
      */
     public function getBlockPrefix() {
-        return 'codePostal';
+        return 'complement';
     }
 }

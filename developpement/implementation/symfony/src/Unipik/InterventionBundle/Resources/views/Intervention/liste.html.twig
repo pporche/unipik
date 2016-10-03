@@ -71,43 +71,40 @@
             }
             else{
                 if($isReverse){
-                    {% set listeS = liste|sortbyfield('date')|reverse %}
+                    {% set listeS = liste|sortbyfield('dateIntervention')|reverse %}
                     console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
                 }else{
-                    {% set listeS = liste|sortbyfield('date') %}
+                    {% set listeS = liste|sortbyfield('dateIntervention') %}
                     console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
                 }
             }
-            if(true){
-                $html = "{%  for interventionS in listeS %}";
-                console.log("{{ interventionS.id }}");
-                $html += "<tr>";
-                $html += "<td>{{ loop.index }}</td>";
-                $html += "<td>{{ interventionS.lieu | capitalize}}</td>";
-                $html += "<td>{{ interventionS.date|date('d-m-Y') }}</td>";
-                $html += "<td>";
-                $html += "{% if interventionS.plaidoyer %}";
-                $html += "Plaidoyer";
-                $html += "{% elseif interventionS.frimousse %}";
-                $html += "Frimousse";
-                $html += "{% else %}";
-                $html += "Autre intervention";
-                $html += "{% endif %}";
-                $html += "</td>";
-                $html += "<td><a href=\"{{ path('intervention_view', {id: interventionS.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
-                $html += "{% if is_granted('ROLE_ADMIN') %}";
-                $html += "<td>";
-                $html += "<div class=\"checkbox\">";
-                $html += "<label>";
-                $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ interventionS.id }}\">";
-                $html += "</label>";
-                $html += "</div>";
-                $html += "</td>";
-                $html += "{% endif %}";
-                $html += "</tr>";
-                $html += "{% endfor %}";
-            }
-
+            $html = "{%  for interventionS in listeS %}";
+            console.log("{{ interventionS.id }}");
+            $html += "<tr>";
+            $html += "<td>{{ loop.index }}</td>";
+            $html += "<td>{{ interventionS.lieu | capitalize}}</td>";
+            $html += "<td>{{ interventionS.dateIntervention|date('d-m-Y') }}</td>";
+            $html += "<td>";
+            $html += "{% if interventionS.plaidoyer %}";
+            $html += "Plaidoyer";
+            $html += "{% elseif interventionS.frimousse %}";
+            $html += "Frimousse";
+            $html += "{% else %}";
+            $html += "Autre intervention";
+            $html += "{% endif %}";
+            $html += "</td>";
+            $html += "<td><a href=\"{{ path('intervention_view', {id: interventionS.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
+            $html += "{% if is_granted('ROLE_ADMIN') %}";
+            $html += "<td>";
+            $html += "<div class=\"checkbox\">";
+            $html += "<label>";
+            $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ interventionS.id }}\">";
+            $html += "</label>";
+            $html += "</div>";
+            $html += "</td>";
+            $html += "{% endif %}";
+            $html += "</tr>";
+            $html += "{% endfor %}";
 
             return $html;
         }
@@ -272,7 +269,7 @@
                             <tr>
                                 <td>{{ loop.index }}</td>
                                 <td>{{ intervention.lieu | capitalize}}</td>
-                                <td>{{ intervention.date|date("d-m-Y") }}</td>
+                                <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
                                 <td>
                                     {% if intervention.plaidoyer %}
                                         Plaidoyer

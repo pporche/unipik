@@ -11,7 +11,7 @@ namespace Unipik\InterventionBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Unipik\UserBundle\Form\Adresse\AdresseType;
+use Unipik\ArchitectureBundle\Form\Adresse\AdresseType;
 use Unipik\InterventionBundle\Form\Etablissement\PersonneReferenteType;
 use Unipik\InterventionBundle\Form\Etablissement\InfoEtablissementType;
 use Unipik\InterventionBundle\Form\Intervention\InterventionType;

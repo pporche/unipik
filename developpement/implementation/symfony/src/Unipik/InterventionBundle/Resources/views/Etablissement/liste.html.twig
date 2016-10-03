@@ -13,54 +13,78 @@
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
     <script>
         $(document).ready(function() {
-            $("#recherche_avancee_typeEnseignement").hide();
-            $("#recherche_avancee_typeCentre").hide();
-            $("#recherche_avancee_typeAutreEtablissement").hide();
-
-
+            if($('#recherche_avancee_typeEtablissement_0').is(':checked')) {
+                $("#recherche_avancee_typeEnseignement").hide();
+                $("#recherche_avancee_typeCentre").hide();
+                $("#recherche_avancee_typeAutreEtablissement").hide();
+            }
+            if($('#recherche_avancee_typeEtablissement_1').is(':checked')) {
+                $("#recherche_avancee_typeEnseignement").show();
+                $("#recherche_avancee_typeCentre").hide();
+                $("#recherche_avancee_typeAutreEtablissement").hide();
+            }
+            if($('#recherche_avancee_typeEtablissement_2').is(':checked')) {
+                $("#recherche_avancee_typeEnseignement").hide();
+                $("#recherche_avancee_typeCentre").show();
+                $("#recherche_avancee_typeAutreEtablissement").hide();
+            }
+            if($('#recherche_avancee_typeEtablissement_3').is(':checked')) {
+                $("#recherche_avancee_typeEnseignement").hide();
+                $("#recherche_avancee_typeCentre").hide();
+                $("#recherche_avancee_typeAutreEtablissement").show();
+            }
 
             hide_or_show = function() {
                 if($('#recherche_avancee_typeEtablissement_0').is(':checked')) {
                     $("#recherche_avancee_typeEnseignement").hide();
-                    $("#recherche_avancee_typeEnseignement_0").attr('checked',false);
-                    $("#recherche_avancee_typeEnseignement_1").attr('checked',false);
-                    $("#recherche_avancee_typeEnseignement_2").attr('checked',false);
-                    $("#recherche_avancee_typeEnseignement_3").attr('checked',false);
-                    $("#recherche_avancee_typeEnseignement_4").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_0").prop('checked',false);
+                    $("#recherche_avancee_typeEnseignement_1").prop('checked',false);
+                    $("#recherche_avancee_typeEnseignement_2").prop('checked',false);
+                    $("#recherche_avancee_typeEnseignement_3").prop('checked',false);
+                    $("#recherche_avancee_typeEnseignement_4").prop('checked',false);
                     $("#recherche_avancee_typeCentre").hide();
-                    $("#recherche_avancee_typeCentre_0").attr('checked',false);
-                    $("#recherche_avancee_typeCentre_1").attr('checked',false);
-                    $("#recherche_avancee_typeCentre_2").attr('checked',false);
-                    $("#recherche_avancee_typeCentre_3").attr('checked',false);
+                    $("#recherche_avancee_typeCentre_0").prop('checked',false);
+                    $("#recherche_avancee_typeCentre_1").prop('checked',false);
+                    $("#recherche_avancee_typeCentre_2").prop('checked',false);
+                    $("#recherche_avancee_typeCentre_3").prop('checked',false);
                     $("#recherche_avancee_typeAutreEtablissement").hide();
-                    $("#recherche_avancee_typeAutreEtablissement_0").attr('checked',false);
-                    $("#recherche_avancee_typeAutreEtablissement_1").attr('checked',false);
-                    $("#recherche_avancee_typeAutreEtablissement_2").attr('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_0").prop('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_1").prop('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_2").prop('checked',false);
                 }
                 if($('#recherche_avancee_typeEtablissement_1').is(':checked')) {
                     $("#recherche_avancee_typeEnseignement").show();
+                    $("#recherche_avancee_typeEnseignement_0").prop('checked',true);
+                    $("#recherche_avancee_typeEnseignement_1").prop('checked',true);
+                    $("#recherche_avancee_typeEnseignement_2").prop('checked',true);
+                    $("#recherche_avancee_typeEnseignement_3").prop('checked',true);
+                    $("#recherche_avancee_typeEnseignement_4").prop('checked',true);
                     $("#recherche_avancee_typeCentre").hide();
-                    $("#recherche_avancee_typeCentre_0").attr('checked',false);
-                    $("#recherche_avancee_typeCentre_1").attr('checked',false);
-                    $("#recherche_avancee_typeCentre_2").attr('checked',false);
-                    $("#recherche_avancee_typeCentre_3").attr('checked',false);
+                    $("#recherche_avancee_typeCentre_0").prop('checked',false);
+                    $("#recherche_avancee_typeCentre_1").prop('checked',false);
+                    $("#recherche_avancee_typeCentre_2").prop('checked',false);
+                    $("#recherche_avancee_typeCentre_3").prop('checked',false);
                     $("#recherche_avancee_typeAutreEtablissement").hide();
-                    $("#recherche_avancee_typeAutreEtablissement_0").attr('checked',false);
-                    $("#recherche_avancee_typeAutreEtablissement_1").attr('checked',false);
-                    $("#recherche_avancee_typeAutreEtablissement_2").attr('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_0").prop('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_1").prop('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_2").prop('checked',false);
                 }
                 if($('#recherche_avancee_typeEtablissement_2').is(':checked')) {
                     $("#recherche_avancee_typeEnseignement").hide();
-                    $("#recherche_avancee_typeEnseignement_0").attr('checked',false);
-                    $("#recherche_avancee_typeEnseignement_1").attr('checked',false);
-                    $("#recherche_avancee_typeEnseignement_2").attr('checked',false);
-                    $("#recherche_avancee_typeEnseignement_3").attr('checked',false);
-                    $("#recherche_avancee_typeEnseignement_4").attr('checked',false);
+                    $("#recherche_avancee_typeEnseignement_0").prop('checked',false);
+                    $("#recherche_avancee_typeEnseignement_1").prop('checked',false);
+                    $("#recherche_avancee_typeEnseignement_2").prop('checked',false);
+                    $("#recherche_avancee_typeEnseignement_3").prop('checked',false);
+                    $("#recherche_avancee_typeEnseignement_4").prop('checked',false);
                     $("#recherche_avancee_typeCentre").show();
+                    $("#recherche_avancee_typeCentre_0").prop('checked',true);
+                    $("#recherche_avancee_typeCentre_1").prop('checked',true);
+                    $("#recherche_avancee_typeCentre_2").prop('checked',true);
+                    $("#recherche_avancee_typeCentre_3").prop('checked',true);
                     $("#recherche_avancee_typeAutreEtablissement").hide();
-                    $("#recherche_avancee_typeAutreEtablissement_0").attr('checked',false);
-                    $("#recherche_avancee_typeAutreEtablissement_1").attr('checked',false);
-                    $("#recherche_avancee_typeAutreEtablissement_2").attr('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_0").prop('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_1").prop('checked',false);
+                    $("#recherche_avancee_typeAutreEtablissement_2").prop('checked',false);
                 }
                 if($('#recherche_avancee_typeEtablissement_3').is(':checked')) {
                     $("#recherche_avancee_typeEnseignement").hide();
@@ -75,6 +99,9 @@
                     $("#recherche_avancee_typeCentre_2").attr('checked',false);
                     $("#recherche_avancee_typeCentre_3").attr('checked',false);
                     $("#recherche_avancee_typeAutreEtablissement").show();
+                    $("#recherche_avancee_typeAutreEtablissement_0").attr('checked',true);
+                    $("#recherche_avancee_typeAutreEtablissement_1").attr('checked',true);
+                    $("#recherche_avancee_typeAutreEtablissement_2").attr('checked',true);
                 }
             };
 
@@ -106,7 +133,7 @@
         <div class="row">
             <div class='well'>
 
-                {{ form_start(form, {'method': 'post', 'action': path('etablissement_list'), 'attr': {'class': 'etablissement_list form-sm'}}) }}
+                {{ form_start(form, {'method': 'get', 'action': path('etablissement_list'), 'attr': {'class': 'etablissement_list form-sm'}}) }}
                 <h5>Type d'établissement :</h5>
                 {{ form_widget(form.typeEtablissement) }}
 

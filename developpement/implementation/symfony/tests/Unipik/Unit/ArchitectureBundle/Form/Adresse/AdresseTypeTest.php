@@ -6,11 +6,11 @@
  * Time: 16:43
  */
 
-namespace Tests\Unipik\Unit\UserBundle\Form\Adresse;
+namespace Tests\Unipik\Unit\ArchitectureBundle\Form\Adresse;
 
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\AdresseMock;
 use Tests\Unipik\Unit\Utils\FormTestCase;
-use Unipik\UserBundle\Form\Adresse\AdresseType;
+use Unipik\ArchitectureBundle\Form\Adresse\AdresseType;
 
 class AdresseTypeTest extends FormTestCase {
 

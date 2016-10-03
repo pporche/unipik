@@ -37,6 +37,12 @@ iframe{
     display: block;
     text-align: center;
     margin-bottom: 30px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.buttons .btn{
+
+    font-size: 18px !important;
 }
 
 .container{

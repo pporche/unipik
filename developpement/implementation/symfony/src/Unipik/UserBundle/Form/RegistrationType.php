@@ -18,8 +18,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Unipik\UserBundle\Form\Adresse\AdresseType;
-use Unipik\UserBundle\Form\Adresse\VilleType;
+use Unipik\ArchitectureBundle\Form\Adresse\AdresseType;
+use Unipik\ArchitectureBundle\Form\Adresse\VilleType;
 
 /**
  * Class RegistrationType

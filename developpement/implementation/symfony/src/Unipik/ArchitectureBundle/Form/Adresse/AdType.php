@@ -1,22 +1,22 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: matthieu
- * Date: 26/04/16
- * Time: 08:12
+ * User: mmartinsbaltar
+ * Date: 27/04/16
+ * Time: 09:07
  */
 
-namespace Unipik\UserBundle\Form\Adresse;
+namespace Unipik\ArchitectureBundle\Form\Adresse;
+
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Class VilleType
+ * Class AdType
  * @package Unipik\UserBundle\Form\Adresse
  */
-class VilleType extends AbstractType {
+class AdType extends AbstractType {
 
     /**
      * {@inheritdoc}
@@ -25,12 +25,10 @@ class VilleType extends AbstractType {
         return TextType::class;
     }
 
-
     /**
      * {@inheritdoc}
      */
     public function getBlockPrefix() {
-        return 'ville';
+        return 'adresse';
     }
-
 }

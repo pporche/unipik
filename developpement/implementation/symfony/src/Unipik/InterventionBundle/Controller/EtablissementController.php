@@ -84,60 +84,34 @@ class EtablissementController extends Controller {
     /**
      * @return Response Renvoie vers la page affichant la liste des données des établissements.
      */
-    public function listeAction(Request $request, $typeE) {
-        $form = $this->get('form.factory')->create(RechercheAvanceeType::class);
+    public function listeAction(Request $request) {
+        $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+        $repository = $this->getEtablissementRepository();
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $typeEtablissement = $form->get("typeEtablissement")->getData();
-            $typeEnseignement = $form->get("typeEnseignement")->getData();
-            $typeCentre = $form->get("typeCentre")->getData();
-            $typeAutreEtablissement = $form->get("typeAutreEtablissement")->getData();
-            $request->getSession()->set('typeEns',$typeEnseignement);
-            $request->getSession()->set('typeC',$typeCentre);
-            $request->getSession()->set('typeA',$typeAutreEtablissement);
-            return $this->redirectToRoute('etablissement_list', array('typeE' => $typeEtablissement));
-        }
+        $typeEtablissement = $form->get("typeEtablissement")->getData();
 
-        $typeEns = $request->getSession()->get('typeEns');
-        $typeC = $request->getSession()->get('typeC');
-        $typeA = $request->getSession()->get('typeA');
-        switch ($typeE) {
+        switch ($typeEtablissement) {
             case "enseignement":
-                $repository = $this->getEtablissementRepository();
-                if(empty($typeEns)){
-                    $listEtablissement = $repository->getEnseignements();
-                }else{
-                    $listEtablissement = $repository->getEnseignementsByType($typeEns);
-                }
+                $typeEnseignement = $form->get("typeEnseignement")->getData();
+                $listEtablissement = empty($typeEnseignement) ? $repository->getEnseignements() : $repository->getEnseignementsByType($typeEnseignement);
                 break;
             case "centre":
-                $repository = $this->getEtablissementRepository();
-                if(empty($typeC)){
-                    $listEtablissement = $repository->getCentresLoisirs();
-                }else{
-                    $listEtablissement = $repository->getCentresLoisirsByType($typeC);
-                }
+                $typeCentre = $form->get("typeCentre")->getData();
+                $listEtablissement = empty($typeCentre) ? $repository->getCentresLoisirs() : $repository->getCentresLoisirsByType($typeCentre);
                 break;
             case "autreEtablissement":
-                $repository = $this->getEtablissementRepository();
-                if(empty($typeA)){
-                    $listEtablissement = $repository->getAutresEtablissements();
-                }else{
-                    $listEtablissement = $repository->getAutresEtablissementsByType($typeA);
-                }
+                $typeAutreEtablissement = $form->get("typeAutreEtablissement")->getData();
+                $listEtablissement = empty($typeAutreEtablissement) ? $repository->getAutresEtablissements() : $repository->getAutresEtablissementsByType($typeAutreEtablissement);
                 break;
             default:
-                $repository = $this->getEtablissementRepository();
                 $listEtablissement = $repository->findAll();
                 break;
         }
 
         return $this->render('InterventionBundle:Etablissement:liste.html.twig', array(
             'liste' => $listEtablissement,
-//            'typeIntervention' => $typeI,
-//            'isCheck' => $dateCheckedI,
-//            'dateStart' => $startI,
-//            'dateEnd' => $endI,
             'form' => $form->createView()
         ));
     }

@@ -50,7 +50,7 @@ class CodePostalAutoCompleteTransformer implements DataTransformerInterface
     public function reverseTransform($codePostalNumero)
     {
         if (!$codePostalNumero) {
-            return;
+            return '';
         }
 
         $codePostal = $this->entityManager

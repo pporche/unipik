@@ -24,7 +24,7 @@
                             Autre établissement
                     {% endif %}
                     </h4>
-                    <img src="{{ asset('img/logo-gris.png') }}" class="logoGris">
+                    <img src="{{ asset('img/logo-gris.png') }}" class="logoGris" alt="logo Unicef">
                 </div>
                 <hr>
                 <div class="row">
@@ -37,12 +37,12 @@
                             </div>
 
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>{% if etablissement.nom is not empty %}
+                                <em>{% if etablissement.nom is not empty %}
                                     {{ etablissement.nom }}
                                     {% else %}
                                     -
                                     {% endif %}
-                                </i>
+                                </em>
                             </div>
 
                             <div class="col-sm-4 col-xs-12">
@@ -51,11 +51,11 @@
                                 </dt>
                             </div>
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i>{% if etablissement.telFixe is not empty %}
+                                <em>{% if etablissement.telFixe is not empty %}
                                         {{ etablissement.telFixe }}
                                     {% else %}
                                         -
-                                    {% endif %}</i>
+                                    {% endif %}</em>
                             </div>
                             <div class="col-sm-4 col-xs-12">
                                 <dt>
@@ -67,7 +67,7 @@
                                 {% if emails is not empty %}
                                     <ul class="list-group col-sm-12 ">
                                         {% for email in emails %}
-                                            <i>{{ email | trim ('{(') | trim (')}') | capitalize }}</i>
+                                            <em>{{ email | trim ('{(') | trim (')}') | capitalize }}</em>
                                         {% endfor %}
                                     </ul>
                                 {% else %}
@@ -84,12 +84,12 @@
                                 </dt>
                             </div>
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <i> {{ etablissement.adresse.adresse }} <br/>
+                                <em> {{ etablissement.adresse.adresse }} <br/>
                                     {{ etablissement.adresse.ville.nom }} <br/>
                                     {#{{ etablissement.adresse.codePostal }}  <br/>#}
                                     {{ etablissement.adresse.complement }}
 
-                                </i>
+                                </em>
                             </div>
 
                             {{ block('contenu') }}
@@ -115,16 +115,11 @@
             </div>
         </section>
     </div>
-    <!--<div class="row">
-        <div class="col-sm-12 text-left-sm">
-            <small></small>
-        </div>
-    </div>-->
     <div class="row">
         <div class="col-sm-12 infoContainer">
             <div class="col-sm-4 containerOne">
                 <div class="circle circleOne">
-                    <img src="{{ asset('img/bell.png') }}">
+                    <img src="{{ asset('img/bell.png') }}" alt="bell" >
                 </div>
                 <!-- Si { interventions demadées !=null } -->
                 <h3>Interventions demandées</h3>
@@ -135,13 +130,13 @@
                         position: relative;
                         border:1px solid #cccccc;
                         padding:10px;">
-                        <i>Liste des interventions</i>
+                        <em>Liste des interventions</em>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4 containerTwo">
                 <div class="circle circleTwo">
-                    <img src="{{ asset('img/speech-bubbles.png') }}">
+                    <img src="{{ asset('img/speech-bubbles.png') }}" alt="speech bubble">
                 </div>
                 <h3>Interventions réalisées</h3>
                 <div class="row">
@@ -157,7 +152,7 @@
             </div>
             <div class="col-sm-4 containerThree">
                 <div class="circle circleThree">
-                    <img src="{{ asset('img/telephone.png') }}">
+                    <img src="{{ asset('img/telephone.png') }}" alt="phone" >
                 </div>
                 <h3>Contacts</h3>
                 <div class="row">
@@ -172,12 +167,12 @@
                                             </div>
 
                                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                                <i>{% if contact.nom is not empty %}
+                                                <em>{% if contact.nom is not empty %}
                                                     {{ contact.nom |capitalize }}
                                                     {% else %}
                                                     -
                                                     {% endif %}
-                                                </i>
+                                                </em>
                                             </div>
 
                                             <div class="col-sm-6 col-xs-12">
@@ -186,14 +181,14 @@
                                                 </dt>
                                             </div>
                                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                                <i>
-                                                    <i>{% if contact.prenom is not empty %}
+                                                <em>
+                                                    <em>{% if contact.prenom is not empty %}
                                                             {{ contact.prenom |capitalize }}
                                                         {% else %}
                                                             -
                                                         {% endif %}
-                                                    </i>
-                                                </i>
+                                                    </em>
+                                                </em>
                                             </div>
                                             <div class="col-sm-6 col-xs-12">
                                                 <dt>
@@ -201,11 +196,11 @@
                                                 </dt>
                                             </div>
                                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                                <i>{% if contact.telFixe is not empty %}
+                                                <em>{% if contact.telFixe is not empty %}
                                                         {{ contact.telFixe }}
                                                     {% else %}
                                                         -
-                                                    {% endif %}</i>
+                                                    {% endif %}</em>
                                             </div>
 
 
@@ -215,18 +210,18 @@
                                                 </dt>
                                             </div>
                                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                                <i>{% if contact.telPortable is not empty %}
+                                                <em>{% if contact.telPortable is not empty %}
                                                         {{ contact.telPortable }}
                                                     {% else %}
                                                         -
-                                                    {% endif %}</i>
+                                                    {% endif %}</em>
                                             </div>
 
                                         </dl>
                                     </div>
                                 {% endfor %}
                             {% else %}
-                                &nbsp &nbsp &nbsp <i>Aucun contact.</i>
+                                &nbsp &nbsp &nbsp <em>Aucun contact.</em>
                             {% endif %}
 
                 </div>

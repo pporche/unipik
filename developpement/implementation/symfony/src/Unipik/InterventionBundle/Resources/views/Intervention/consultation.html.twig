@@ -81,7 +81,11 @@
                                     </dt>
                                 </div>
                                 <div class="col-sm-6 col-xs-offset-1 col-xs-11">
-                                    <i>{{ intervention.lieu | capitalize}}</i>
+                                    <i>{% if intervention.lieu is empty %}
+                                            -
+                                        {% else %}
+                                            {{ intervention.lieu | capitalize }}
+                                        {% endif %}</i>
                                 </div>
 
 
@@ -91,7 +95,11 @@
                                     </dt>
                                 </div>
                                 <div class="col-sm-6 col-xs-offset-1 col-xs-11">
-                                    <i>{{ intervention.nbPersonne }}</i>
+                                    <i>{% if intervention.nbPersonne is empty %}
+                                            -
+                                        {% else %}
+                                            {{ intervention.nbPersonne }}
+                                        {% endif %}</i>
                                 </div>
                                 {{ block('contenu') }}
                             </dl>

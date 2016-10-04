@@ -10,6 +10,7 @@ namespace Unipik\InterventionBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Etablissement;
@@ -140,5 +141,29 @@ class EtablissementController extends Controller {
 //            'dateEnd' => $endI,
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function editAction(Request $request, $id) {
+        $institute = $this->getEtablissementRepository()
+            ->findOneBy(array('id' => $id));
+
+        $form = $this->get('form.factory')
+            ->createBuilder(EtablissementType::class, $institute)
+            ->add('Valider', SubmitType::class)
+            ->getForm();
+
+        if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($institute);
+            $em->flush();
+
+            return $this->redirectToRoute('etablissement_view', array('id' => $id));
+        }
+
+        return $this->render('InterventionBundle:Etablissement:editEtablissement.html.twig', array('form' => $form->createView()));
     }
 }

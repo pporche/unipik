@@ -2,32 +2,32 @@
 /**
  * Created by PhpStorm.
  * User: mmartinsbaltar
- * Date: 21/09/16
- * Time: 08:05
+ * Date: 03/10/16
+ * Time: 16:22
  */
-namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
+
+namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
 use Tests\Unipik\Unit\Utils\Mock;
-use Unipik\ArchitectureBundle\Entity\Pays;
+use Unipik\ArchitectureBundle\Entity\Ville;
 
-class PaysMock extends Mock {
+class VilleMock extends Mock {
 
     /**
-     * @return Pays
+     * @return Ville
      */
     public static function create() {
-        $p = new Pays();
+        $v = new Ville();
 
-        $p
-            ->setNom("France")
+        $v->setNom("Rouen")
         ;
 
-        return $p;
+        return $v;
     }
 
     /**
      * @param $nb
-     * @return Pays[]
+     * @return Ville[]
      */
     public static function createMultiple($nb){
         return parent::createMultiple($nb);

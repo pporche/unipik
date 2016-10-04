@@ -9,6 +9,7 @@
 namespace Unipik\InterventionBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 
 class EtablissementRepository extends EntityRepository {
@@ -72,12 +73,20 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEnseignementsByType($typeEnseignement) {
+    public function getEnseignementsByType($typeEnseignement, $ville) {
         $results = array();
         foreach ($typeEnseignement as $te) {
-            $query = $this->_em->createQuery('SELECT e FROM InterventionBundle:Etablissement e WHERE e.typeEnseignement = :typeE');
-            $query->setParameter('typeE',$te);
-            $results = array_merge($results,$query->getResult());
+            $qb = $this->createQueryBuilder('e');
+            $qb
+                ->where('e.typeEnseignement = :typeE');
+
+            if($ville){
+                $this->whereVilleIs($qb,$ville);
+            }
+
+            $qb ->setParameter('typeE',$te);
+
+            $results = array_merge($results,$qb->getQuery()->getResult());
         }
         return $results;
     }
@@ -90,12 +99,20 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCentresLoisirsByType($typeCentre) {
+    public function getCentresLoisirsByType($typeCentre, $ville) {
         $results = array();
         foreach ($typeCentre as $tc) {
-            $query = $this->_em->createQuery('SELECT e FROM InterventionBundle:Etablissement e WHERE e.typeCentre = :typeC');
-            $query->setParameter('typeC',$tc);
-            $results = array_merge($results,$query->getResult());
+            $qb = $this->createQueryBuilder('e');
+            $qb
+                ->where('e.typeCentre = :typeC');
+
+            if($ville){
+                $this->whereVilleIs($qb,$ville);
+            }
+
+            $qb ->setParameter('typeE',$tc);
+
+            $results = array_merge($results,$qb->getQuery()->getResult());
         }
         return $results;
     }
@@ -108,13 +125,48 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAutresEtablissementsByType($typeAutreEtablissement) {
+    public function getAutresEtablissementsByType($typeAutreEtablissement, $ville) {
         $results = array();
         foreach ($typeAutreEtablissement as $tae) {
-            $query = $this->_em->createQuery('SELECT e FROM InterventionBundle:Etablissement e WHERE e.typeAutreEtablissement = :typeAE');
-            $query->setParameter('typeAE',$tae);
-            $results = array_merge($results,$query->getResult());
+            $qb = $this->createQueryBuilder('e');
+            $qb
+                ->where('e.typeAutreEtablissement = :typeAE');
+
+            if($ville){
+                $this->whereVilleIs($qb,$ville);
+            }
+
+            $qb ->setParameter('typeE',$tae);
+
+            $results = array_merge($results,$qb->getQuery()->getResult());
         }
         return $results;
+    }
+
+    public function getTousEtablissements($ville) {
+        $qb = $this->createQueryBuilder('e');
+
+        if($ville){
+            $this->whereVilleIs($qb,$ville);
+        }
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * Where ville is
+     *
+     * @param QueryBuilder $qb
+     * @param $ville
+     */
+    public function whereVilleIs(QueryBuilder $qb, $ville) {
+        $qb
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
+            ->andWhere('e.adresse = a')
+            ->andWhere('a.ville = :ville')
+            ->setParameter('ville',$ville);
     }
 }

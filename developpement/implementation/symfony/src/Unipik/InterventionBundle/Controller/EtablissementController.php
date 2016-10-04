@@ -10,6 +10,7 @@ namespace Unipik\InterventionBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Etablissement;
@@ -91,22 +92,23 @@ class EtablissementController extends Controller {
         $repository = $this->getEtablissementRepository();
 
         $typeEtablissement = $form->get("typeEtablissement")->getData();
+        $ville = $form->get("ville")->getData();
 
         switch ($typeEtablissement) {
             case "enseignement":
                 $typeEnseignement = $form->get("typeEnseignement")->getData();
-                $listEtablissement = empty($typeEnseignement) ? $repository->getEnseignements() : $repository->getEnseignementsByType($typeEnseignement);
+                $listEtablissement = empty($typeEnseignement) ? $repository->getEnseignements() : $repository->getEnseignementsByType($typeEnseignement,$ville);
                 break;
             case "centre":
                 $typeCentre = $form->get("typeCentre")->getData();
-                $listEtablissement = empty($typeCentre) ? $repository->getCentresLoisirs() : $repository->getCentresLoisirsByType($typeCentre);
+                $listEtablissement = empty($typeCentre) ? $repository->getCentresLoisirs() : $repository->getCentresLoisirsByType($typeCentre, $ville);
                 break;
             case "autreEtablissement":
                 $typeAutreEtablissement = $form->get("typeAutreEtablissement")->getData();
-                $listEtablissement = empty($typeAutreEtablissement) ? $repository->getAutresEtablissements() : $repository->getAutresEtablissementsByType($typeAutreEtablissement);
+                $listEtablissement = empty($typeAutreEtablissement) ? $repository->getAutresEtablissements() : $repository->getAutresEtablissementsByType($typeAutreEtablissement, $ville);
                 break;
             default:
-                $listEtablissement = $repository->findAll();
+                $listEtablissement = $repository->getTousEtablissements($ville);
                 break;
         }
 
@@ -114,5 +116,29 @@ class EtablissementController extends Controller {
             'liste' => $listEtablissement,
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function editAction(Request $request, $id) {
+        $institute = $this->getEtablissementRepository()
+            ->findOneBy(array('id' => $id));
+
+        $form = $this->get('form.factory')
+            ->createBuilder(EtablissementType::class, $institute)
+            ->add('Valider', SubmitType::class)
+            ->getForm();
+
+        if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($institute);
+            $em->flush();
+
+            return $this->redirectToRoute('etablissement_view', array('id' => $id));
+        }
+
+        return $this->render('InterventionBundle:Etablissement:editEtablissement.html.twig', array('form' => $form->createView()));
     }
 }

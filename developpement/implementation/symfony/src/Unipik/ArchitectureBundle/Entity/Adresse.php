@@ -84,7 +84,7 @@ class Adresse
      *
      * @param \Unipik\ArchitectureBundle\Entity\Ville $ville
      *
-     * @return Ville
+     * @return Adresse
      */
     public function setVille(\Unipik\ArchitectureBundle\Entity\Ville $ville)
     {
@@ -108,7 +108,7 @@ class Adresse
      *
      * @param \Unipik\ArchitectureBundle\Entity\CodePostal $codePostal
      *
-     * @return CodePostal
+     * @return Adresse
      */
     public function setCodePostal(\Unipik\ArchitectureBundle\Entity\CodePostal $codePostal)
     {

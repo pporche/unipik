@@ -59,10 +59,13 @@ class InterventionController extends Controller {
 
             $startWeek = $form->get('plageDate')->get('debut')->getData()->format("W");
             $endWeek = $form->get('plageDate')->get('fin')->getData()->format("W");
-            if($startWeek > $endWeek)
+            if($startWeek > $endWeek) {
                 $endWeek = 1;
-            for($week = $startWeek; $week <= $endWeek; $week++)
+            }
+
+            for($week = $startWeek; $week <= $endWeek; $week++) {
                 $listWeek[] = '('.$week.')';
+            }
 
             $this->treatmentInterventions($interventionsRawList,$interventionList);
             $this->treatmentContact($contactPers);
@@ -71,15 +74,17 @@ class InterventionController extends Controller {
 
             $this->treatmentMoment($form->get('jour')->getData(),$demande);
 
-            $institute = $form->get('Etablissement')->getData();
+            $etablissement = $form->get('Etablissement');
 
-            $educationTypeArray = $form->get("Etablissement")->get("typeEnseignement")->getData();
+            $institute = $etablissement->getData();
+
+            $educationTypeArray = $etablissement->get("typeEnseignement")->getData();
             $institute->setTypeEnseignement($educationTypeArray);
 
-            $otherTypeArray = $form->get("Etablissement")->get("typeAutreEtablissement")->getData();
+            $otherTypeArray = $etablissement->get("typeAutreEtablissement")->getData();
             $institute->setTypeAutreEtablissement($otherTypeArray);
 
-            $centreTypeArray = $form->get("Etablissement")->get("typeCentre")->getData();
+            $centreTypeArray = $etablissement->get("typeCentre")->getData();
             $institute->setTypeCentre($centreTypeArray);
 
             $institute->setEmails('{}');
@@ -122,11 +127,9 @@ class InterventionController extends Controller {
             if(sizeof($instituteResearched) == 0){
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($institute);
-            } else
+            } else {
                 $institute = array_pop($instituteResearched);
-
-            /*if(!in_array((Array) $institute->getContact(),(Array) $contactPers->getEtablissement()))
-                $contactPers->addEtablissement($institute);*/
+            }
 
             $demande->setListeSemaine(ArrayConverter::phpArrayToPgArray($listWeek));
 
@@ -188,7 +191,8 @@ class InterventionController extends Controller {
         }
         else {
             return $this->render('InterventionBundle:Intervention:consultation.html.twig',array('intervention' => $intervention));
-        }}
+        }
+    }
 
     /**
      * @return RepositoryFactory Renvoie le repository Intervention.
@@ -213,24 +217,16 @@ class InterventionController extends Controller {
         $end = $form->get("end")->getData();
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "dateIntervention");
+        $desc = $request->get("desc", true);
 
         $repository = $this->getInterventionRepository();
-        switch ($typeIntervention) {
-            case "plaidoyer":
-                $listIntervention = $repository->getPlaidoyers($start, $end, $dateChecked);
-                break;
-            case "frimousse":
-                $listIntervention = $repository->getFrimousses($start, $end, $dateChecked);
-                break;
-            case "autreIntervention":
-                $listIntervention = $repository->getAutresInterventions($start, $end, $dateChecked);
-                break;
-            default:
-                $listIntervention = $repository->getToutesInterventions($start, $end, $dateChecked);
-                break;
-        }
+
+        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc);
 
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+            'field' => $field,
+            'desc' => $desc,
             'rowsPerPage' => $rowsPerPage,
             'liste' => $listIntervention,
             'typeIntervention' => $typeIntervention,

@@ -182,6 +182,22 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
+     * Get Interventions réalisées ou non réalisées d'un bénévole
+     *
+     * @param boolean $realisees
+     *@param \Unipik\UserBundle\Entity\Benevole $benevole
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInterventionsRealiseesOuNonBenevole($benevole, $realisees) {
+        $query = $this->_em->createQuery('SELECT i FROM InterventionBundle:Intervention i JOIN i.benevole b WHERE i.realisee = :r AND b.id = :id');
+        $query->setParameter('r',$realisees);
+        $query->setParameter('id',$benevole->getId());
+
+        return $query->getResult();
+    }
+
+    /**
      * Where Interventions between dates
      *
      * @param \Date $start

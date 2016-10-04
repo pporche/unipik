@@ -17,15 +17,18 @@ class AdresseMock extends Mock {
      * @return Adresse
      */
     public static function create() {
-        $r = new Adresse();
+        $a = new Adresse();
 
-        $r
-            ->setville("Rouen")
-            ->setCodePostal("76000")
+        $v = VilleMock::create();
+        $cp = CodePostalMock::create();
+
+        $a
+            ->setVille($v)
+            ->setCodePostal($cp)
             ->setAdresse("22 rue du gros")
         ;
 
-        return $r;
+        return $a;
     }
 
     /**

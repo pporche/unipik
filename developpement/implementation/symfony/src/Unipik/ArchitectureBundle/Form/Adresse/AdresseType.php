@@ -6,7 +6,7 @@
  * Time: 08:31
  */
 
-namespace Unipik\UserBundle\Form\Adresse;
+namespace Unipik\ArchitectureBundle\Form\Adresse;
 
 
 use Doctrine\Common\Persistence\ObjectManager;
@@ -17,12 +17,12 @@ use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Collection;
-use Unipik\UserBundle\Form\DataTransformer\Adresse\CodePostalAutoCompleteTransformer;
-use Unipik\UserBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
+use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\CodePostalAutoCompleteTransformer;
+use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
 
 /**
  * Class AdresseType
- * @package Unipik\UserBundle\Form\Adresse
+ * @package Unipik\ArchitectureBundle\Form\Adresse
  */
 class AdresseType extends AbstractFieldsetType {
     private $entityManager;

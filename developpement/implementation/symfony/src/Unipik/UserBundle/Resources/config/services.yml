@@ -13,10 +13,6 @@ services:
         class: Unipik\UserBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: user_registration }
-    app.form.adresse.adresse:
-        class: Unipik\UserBundle\Form\Adresse\AdresseType
-        arguments: ["@doctrine.orm.entity_manager"]
-        tags:
-            - { name: form.type }
+
 
 

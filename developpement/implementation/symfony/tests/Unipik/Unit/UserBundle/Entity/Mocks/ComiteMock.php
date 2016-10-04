@@ -19,12 +19,6 @@ class ComiteMock extends Mock {
     public static function create() {
         $c = new Comite();
 
-        $c = new Comite();
-        $c
-            ->setRegion(null)
-            ->setNomDepartement("Saone-et-Loire")
-        ;
-
         return $c;
     }
 

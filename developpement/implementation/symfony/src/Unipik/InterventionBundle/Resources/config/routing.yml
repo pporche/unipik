@@ -23,12 +23,9 @@ intervention_cancel:
     defaults: {_controller: InterventionBundle:Intervention:annuler}
 
 etablissement_list:
-    path:   /etablissement/{typeE}
+    path:   /etablissement
     defaults:
         _controller: InterventionBundle:Etablissement:liste
-        typeE: ""
-    requirements:
-        typeE: "enseignement|centre|autreEtablissement"
 
 etablissement_view:
     path:   /etablissement/{id}

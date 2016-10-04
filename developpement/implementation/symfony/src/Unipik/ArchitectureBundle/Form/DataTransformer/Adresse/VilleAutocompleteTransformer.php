@@ -7,7 +7,7 @@
  * Time: 14:59
  */
 
-namespace Unipik\UserBundle\Form\DataTransformer\Adresse;
+namespace Unipik\ArchitectureBundle\Form\DataTransformer\Adresse;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Unipik\ArchitectureBundle\Entity\Ville;
@@ -16,7 +16,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Class VilleAutocompleteTransformer
- * @package Unipik\UserBundle\Form\DataTransformer\Adresse
+ * @package Unipik\ArchitectureBundle\Form\DataTransformer\Adresse
  */
 class VilleAutocompleteTransformer implements DataTransformerInterface
 {
@@ -51,7 +51,7 @@ class VilleAutocompleteTransformer implements DataTransformerInterface
     public function reverseTransform($villeNom)
     {
         if (!$villeNom) {
-            return;
+            return '';
         }
 
         $ville = $this->entityManager

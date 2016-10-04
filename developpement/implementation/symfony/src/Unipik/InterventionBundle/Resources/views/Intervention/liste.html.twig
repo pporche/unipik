@@ -19,6 +19,88 @@
     <script src="{{ asset("vendor/twbs-pagination/jquery.twbsPagination.js") }}"></script>
     <script>
 
+        $.fn.pageMe = function (opts) {
+            var $this = this,
+                    defaults = {
+                        perPage: 7,
+                        showPrevNext: false,
+                        hidePageNumbers: false
+                    },
+                    settings = $.extend(defaults, opts);
+            var listElement = $this;
+            var perPage = settings.perPage;
+            var children = listElement.children();
+            var pager = $('.pager');
+            if (typeof settings.childSelector != "undefined")
+                children = listElement.find(settings.childSelector);
+            if (typeof settings.pagerSelector != "undefined")
+                pager = $(settings.pagerSelector);
+            var numItems = children.size();
+            var numPages = Math.ceil(numItems / perPage);
+            pager.data("curr", 0);
+            if (settings.showPrevNext)
+                $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+            var curr = 0;
+            while (numPages > curr && (settings.hidePageNumbers == false)) {
+                $('<li><a href="#" class="page_link">' + (curr + 1) + '</a></li>').appendTo(pager);
+                curr++;
+            }
+            if (settings.showPrevNext)
+                $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+            pager.find('.page_link:first').addClass('active');
+            pager.find('.prev_link').hide();
+            if (numPages <= 1)
+                pager.find('.next_link').hide();
+            pager.children().eq(1).addClass("active");
+            children.hide();
+            children.slice(0, perPage).show();
+
+            pager.find('li .page_link').click(function () {
+                var clickedPage = $(this).html().valueOf() - 1;
+                goTo(clickedPage, perPage);
+                return false;
+            });
+
+            pager.find('li .prev_link').click(function () {
+                previous();
+                return false;
+            });
+
+            pager.find('li .next_link').click(function () {
+                next();
+                return false;
+            });
+
+            function previous() {
+                var goToPage = parseInt(pager.data("curr")) - 1;
+                goTo(goToPage);
+            }
+
+            function next() {
+                goToPage = parseInt(pager.data("curr")) + 1;
+                goTo(goToPage);
+            }
+
+            function goTo(page) {
+                var startAt = page * perPage,
+                        endOn = startAt + perPage;
+                children.css('display', 'none').slice(startAt, endOn).show();
+                if (page >= 1)
+                    pager.find('.prev_link').show();
+                else
+                    pager.find('.prev_link').hide();
+                if (page < (numPages - 1))
+                    pager.find('.next_link').show();
+                else
+                    pager.find('.next_link').hide();
+                pager.data("curr", page);
+                pager.children().removeClass("active");
+                pager.children().eq(page + 1).addClass("active");
+            }
+        };
+
+
+
         $(document).ready(function() {
 
             $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
@@ -55,70 +137,22 @@
             }).on('changeDate', function(selected){
                 $('#recherche_avancee_start').datepicker('setEndDate', new Date(selected.date.valueOf()));
             });
+
+
         });
 
-        function genererHTML($field, $isReverse){
-
-            if($field == "lieu"){
-                if($isReverse){
-                    {% set listeS = liste|sortbyfield('lieu')|reverse %}
-                    console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
-                }else{
-                    {% set listeS = liste|sortbyfield('lieu') %}
-                    console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
-                }
-            }
-            else{
-                if($isReverse){
-                    {% set listeS = liste|sortbyfield('dateIntervention')|reverse %}
-                    console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
-                }else{
-                    {% set listeS = liste|sortbyfield('dateIntervention') %}
-                    console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
-                }
-            }
-            $html = "{%  for interventionS in listeS %}";
-            console.log("{{ interventionS.id }}");
-            $html += "<tr>";
-            $html += "<td>{{ loop.index }}</td>";
-            $html += "<td>{{ interventionS.lieu | capitalize}}</td>";
-            $html += "<td>{{ interventionS.dateIntervention|date('d-m-Y') }}</td>";
-            $html += "<td>";
-            $html += "{% if interventionS.plaidoyer %}";
-            $html += "Plaidoyer";
-            $html += "{% elseif interventionS.frimousse %}";
-            $html += "Frimousse";
-            $html += "{% else %}";
-            $html += "Autre intervention";
-            $html += "{% endif %}";
-            $html += "</td>";
-            $html += "<td><a href=\"{{ path('intervention_view', {id: interventionS.id}) }}\" class=\"btn btn-primary\">Voir détails</a></td>";
-            $html += "{% if is_granted('ROLE_ADMIN') %}";
-            $html += "<td>";
-            $html += "<div class=\"checkbox\">";
-            $html += "<label>";
-            $html += "<input type=\"checkbox\" name=\"type\" id=\"{{ interventionS.id }}\">";
-            $html += "</label>";
-            $html += "</div>";
-            $html += "</td>";
-            $html += "{% endif %}";
-            $html += "</tr>";
-            $html += "{% endfor %}";
-
-            return $html;
-        }
-
         function sortByLieu(){
+            {#{% if app.request.query.get('recherche_avancee') is null %}
+            {% set pathReq = [] %}
+            {% else %}
+            {% set pathReq = app.request.query.get('recherche_avancee') %}
+            {% endif %}#}
             if($('#sortLieu').hasClass("sort-down")){
                 $('#sortLieu').removeClass();
                 $('#sortLieu').addClass("sort sort-up");
                 $('#sortLieu').attr("src", "{{ asset('img/sort-up.png')}}");
 
-                $('#tableIntervention #myTable tr').detach();
-
-                $('#myPager li').detach();
-
-                $('#tableIntervention #myTable').append(genererHTML("lieu", false));
+                {#{{ render(controller('InterventionBundle:Intervention:liste', pathReq | merge ({"desc":true, "field":"lieu"}))) }}#}
                 $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
 
             }
@@ -128,28 +162,26 @@
                 $('#sortLieu').attr("src", "{{ asset('img/sort-down.png')}}");
 
 
-                $('#tableIntervention #myTable tr').detach();
-                $('#myPager li').detach();
-
-
-                $('#tableIntervention #myTable').append(genererHTML("lieu", true));
+                {#{{ render(controller('InterventionBundle:Intervention:liste', pathReq | merge ({"desc":false, "field":"lieu"}))) }}#}
                 $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
 
             }
         }
 
+
         function sortByDate(){
+            {#{% if app.request.query.get('recherche_avancee') is null %}
+            {% set pathReq = [] %}
+            {% else %}
+            {% set pathReq = app.request.query.get('recherche_avancee') %}
+            {% endif %}#}
             if($('#sortDate').hasClass("sort-down")){
                 $('#sortDate').removeClass();
                 $('#sortDate').addClass("sort sort-up");
                 $('#sortDate').attr("src", "{{ asset('img/sort-up.png')}}");
 
 
-                $('#tableIntervention #myTable tr').detach();
-                $('#myPager li').detach();
-
-
-                $('#tableIntervention #myTable').append(genererHTML("date", false));
+                {#{{ render(controller('InterventionBundle:Intervention:liste', pathReq | merge ({"desc":true, "field":"dateIntervention"}))) }}#}
                 $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
 
             }
@@ -158,15 +190,12 @@
                 $('#sortDate').addClass("sort sort-down");
                 $('#sortDate').attr("src", "{{ asset('img/sort-down.png')}}");
 
-
-                $('#tableIntervention #myTable tr').detach();
-                $('#myPager li').detach();
-
-                $('#tableIntervention #myTable').append(genererHTML("date", true));
+                {#{{ render(controller('InterventionBundle:Intervention:liste', pathReq | merge ({"desc":false, "field":"dateIntervention"}))) }}#}
                 $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
 
             }
         }
+
 
         function deleteInterventions() {
             var selected = [];

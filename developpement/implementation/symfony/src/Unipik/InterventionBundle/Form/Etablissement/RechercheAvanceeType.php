@@ -8,32 +8,33 @@
 
 namespace Unipik\InterventionBundle\Form\Etablissement;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
 
 
 class RechercheAvanceeType  extends AbstractType
 {
+    private $entityManager;
 
-//    public function createArrayOfTown(){
-//        $lines = file(__DIR__ ."/../../../../../../ressourcesNettoyees/communesFrance.txt",FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-//        $result = [];
-//        foreach($lines as $l){
-//            $result[$l] = $l;
-//        }
-//        var_dump($result);
-//        return $result;
-//    }
+    /**
+     * VilleType constructor.
+     * @param ObjectManager $entityManager
+     */
+    public function __construct(ObjectManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
 
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-
-//        $villes = $this->createArrayOfTown();
-
         $optionChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
             'choices' => [
                 'Tous' => '',
@@ -67,20 +68,17 @@ class RechercheAvanceeType  extends AbstractType
             ],);
 
 
-        $optionVille = array( 'expanded' => false, 'multiple' => false, 'mapped' => false, 'required' => false,
-            'choices' =>[
-                'Mairie' => 'mairie',
-                'Maison de retraite' => 'maisonRetraite',
-                'Autre' => 'autre'
-            ]);
+
 
         $builder
             ->add('typeEtablissement',ChoiceType::class, $optionChoiceType)
             ->add('typeEnseignement', ChoiceType::class, $optionEnseignementType)
             ->add('typeCentre', ChoiceType::class, $optionCentreType)
             ->add('typeAutreEtablissement', ChoiceType::class, $optionAutreEtablissementType)
-            ->add('ville', ChoiceType::class, $optionVille)
+            ->add('ville', TextType::class, array('required' => false))
         ;
+
+        $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
     }
 
 }

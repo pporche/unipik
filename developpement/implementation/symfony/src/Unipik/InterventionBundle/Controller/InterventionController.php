@@ -39,7 +39,7 @@ class InterventionController extends Controller {
 
         if($form->isValid()) {
             $dt =new \DateTime();
-            $demande->setDate($dt);
+            $demande->setDateDemande($dt);
 
             // handle the contact
 

@@ -11,6 +11,7 @@ namespace Unipik\InterventionBundle\Form\Intervention;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
+use Unipik\InterventionBundle\Form\Intervention\MaterielFrimousseType;
 
 class InterventionType extends AbstractFieldsetType {
 
@@ -21,6 +22,7 @@ class InterventionType extends AbstractFieldsetType {
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
             ->add('materiel', MaterielType::class)
+            -> add('materielFrimousse',MaterielFrimousseType::class)
             ->add('eleves', ElevesType::class, array('label' => 'Élèves'))
             ->add('themes', ThemesType::class)
         ;

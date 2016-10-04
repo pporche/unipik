@@ -78,8 +78,16 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Lieu <button class="sortButtonLieu" id="sortButtonLieu" onclick="sortByLieu()"><img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu"/></button></th>
-                                <th>Date <button class="sortButtonDate" id="sortButtonDate" onclick="sortByDate()"><img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate"/></button></th>
+                                <th>Lieu 
+                                	<button class="sortButtonLieu" id="sortButtonLieu" onclick="sortByLieu()">
+                                		<img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu"  alt="sort Down"/>
+                                	</button>
+                                </th>
+                                <th>Date 
+                                	<button class="sortButtonDate" id="sortButtonDate" onclick="sortByDate()">
+                                		<img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate" alt="sort Down"/>
+                                	</button>
+                                </th>
                                 <th>Type</th>
                                 <th>Voir détails</th>
                                 {% if is_granted('ROLE_ADMIN') %}
@@ -137,8 +145,16 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Lieu <button class="sortButtonLieu" id="sortButtonLieu" onclick="sortByLieu()"><img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu"/></button></th>
-                            <th>Date <button class="sortButtonDate" id="sortButtonDate" onclick="sortByDate()"><img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate"/></button></th>
+                            <th>Lieu 
+                            	<button class="sortButtonLieu" id="sortButtonLieu" onclick="sortByLieu()">
+                            		<img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu" alt="sort Down"/>
+                            	</button>
+                            </th>
+                            <th>Date 
+                            	<button class="sortButtonDate" id="sortButtonDate" onclick="sortByDate()">
+                            		<img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate" alt="sort Down"/>
+                            	</button>
+                            </th>
                             <th>Type</th>
                             <th>Voir détails</th>
                             {% if is_granted('ROLE_ADMIN') %}

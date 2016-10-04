@@ -39,7 +39,7 @@ class InterventionController extends Controller {
 
         if($form->isValid()) {
             $dt =new \DateTime();
-            $demande->setDate($dt);
+            $demande->setDateDemande($dt);
 
             // handle the contact
 
@@ -225,6 +225,8 @@ class InterventionController extends Controller {
         $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc);
 
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+            'field' => $field,
+            'desc' => $desc,
             'rowsPerPage' => $rowsPerPage,
             'liste' => $listIntervention,
             'typeIntervention' => $typeIntervention,

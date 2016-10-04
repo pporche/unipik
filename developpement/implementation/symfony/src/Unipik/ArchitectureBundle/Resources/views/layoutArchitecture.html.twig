@@ -3,7 +3,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {#<script>
+    <script>
         $.fn.pageMe = function (opts) {
             var $this = this,
                     defaults = {
@@ -83,7 +83,7 @@
                 pager.children().eq(page + 1).addClass("active");
             }
         };
-    </script>#}
+    </script>
 
 {% endblock %}
 

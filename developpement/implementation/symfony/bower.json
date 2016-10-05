@@ -9,6 +9,7 @@
     "bootstrap": "^3.3.7",
     "bootstrap-datepicker": "^1.6.4",
     "typeahead.js": "^0.11.1",
-    "bootswatch-dist": "3.3.6-cosmo"
+    "bootswatch-dist": "3.3.6-cosmo",
+    "fullcalendar": "^3.0.1"
   }
 }

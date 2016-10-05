@@ -141,7 +141,7 @@ class InterventionController extends Controller {
             foreach($interventionList as $intervention){
                 $intervention->setEtablissement($institute);
                 $intervention->setDemande($demande);
-                
+
                 $this->getDoctrine()->getManager()->persist($intervention);
             }
 

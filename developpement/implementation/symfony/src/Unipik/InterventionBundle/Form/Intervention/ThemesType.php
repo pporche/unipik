@@ -22,11 +22,18 @@ class ThemesType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options){
         $optionChoiceType = array( 'expanded' => true, 'multiple' => true, 'label' => 'Choix des thèmes',
             'choices' => [
-                "Convention internationale des Droits de l'Enfant" => 'droitsEnfant',
-                "L'édution" => 'educiton',
-                "La santé alimentaire" => 'santeAlimentaire',
-                "L'eau" => 'eau',
-                "L'harcélement" => 'harcelement'
+                "Convention internationale des Droits de l'Enfant" => '(convention internationale des droits de l enfant)',
+                "L'éducation" => '(education)',
+                "La santé (en général)" => '(sante en generale)',
+                "La santé - Alimentation" => '(sante et alimentation)',
+                "VIH et sida" => '(VIH et sida)',
+                "L'eau" => '(eau)',
+                "Les urgences mondiales" => '(urgences mondiales)',
+                "Le travail des enfants" => '(travail des enfants)',
+                "Les enfants soldats" => '(enfants et soldats)',
+                "Le harcèlement" => '(harcelement)',
+                "Le rôle de l Unicef" => '(role de l Unicef)',
+                "Le milléniare pour le développement" => '(millenaire pour le developpement)'
             ],);
 
         $builder

@@ -17,6 +17,7 @@
     {{ parent() }}
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
+
     <script type="application/javascript">
         console.log('début du javascript de l\'ambiance');
         var addInterElt = document.createElement('a');
@@ -26,6 +27,35 @@
         buttonAddElement.textContent = 'Ajouter une Intervention';
         addInterElt.appendChild(buttonAddElement);
         document.getElementById('demande_Intervention').appendChild(addInterElt);
+
+        function displayTypeInervention(e){
+            var parentNode = e.target.parentNode.parentNode.parentNode;
+            console.log("Le noeud parent est : ");
+            console.log(parentNode);
+            var matClasElt = parentNode.getElementsByTagName('div')[2];
+            console.log("Le materiel classique relève de ");
+            console.log(matClasElt);
+            var matFriElt = parentNode.getElementsByTagName('div')[3];
+            console.log("Le materiel pour Frimousse relève de ");
+            console.log(matFriElt);
+            switch(e.target.value){
+                case 'frim' :
+                    $(matClasElt).fadeOut('slow');
+                  // $(parentNode.getElementsByTagName('label')[1]).fadeIn('fast');
+                    $(matFriElt).fadeIn('medium');
+                    break;
+                case 'pld' :
+                    $(matFriElt).fadeOut('slow');
+                    $(matClasElt).fadeIn('medium');
+                    //$(parentNode.getElementsByTagName('label')[1]).fadeOut('fast');
+                    break;
+            }
+            e.stopImmediatePropagation();
+        }
+
+
+
+
         $(document).ready(function() {
 
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
@@ -79,11 +109,11 @@
 
                 // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
                 addDeleteLink($prototype);
-
                 // On ajoute le prototype modifié à la fin de la balise <div>
                 $container.append($prototype);
-
                 $("#add_intervention").appendTo($container).css('margin-left', '80%');
+
+                $($prototype).children().find("select").on("change",displayTypeInervention);
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;
             }
@@ -252,7 +282,6 @@
         }
 
         function constructHeader(item){
-            console.log(item);
             var theadElt = document.createElement('thead');
             var newLineElt = document.createElement('tr');
             var columnHeadElt = document.createElement('th');
@@ -277,7 +306,7 @@
 
         constructHeader(document.getElementsByClassName('form-group form-group')[16].getElementsByClassName('form-group')[0].getElementsByTagName('label'));
 
-        //$(tblElt).detach().appendTo($(document.getElementsByClassName('form-group form-group')[16]));
+
         $('#demande_jour').replaceWith($(tblElt));
 
         //document.getElementsByClassName('form-group form-group')[16]

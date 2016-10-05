@@ -87,6 +87,7 @@ class InterventionController extends Controller {
 
             // handle the interventions
             $interventionsRawList = $form->get('Intervention')->getData();
+
             $interventionList = [];
             $listWeek = [];
 
@@ -362,11 +363,21 @@ class InterventionController extends Controller {
             foreach($interventionsRawList as $interventionRaw) {
                 $interventionTemp = new Intervention();
                 $interventionTemp->setRealisee(false);
-                $interventionTemp->setDate(null);
+                $interventionTemp->setDateIntervention(null);
                 $interventionTemp->setMateriauxFrimousse(null);
-                $interventionTemp->setMaterielDispoPlaidoyer(ArrayConverter::phpArrayToPgArray($interventionRaw["materiel"]["materiel"]));
-                $interventionTemp->setNbPersonne($interventionRaw["eleves"]["nbEleves"]);
+                $interventionTemp->setNbPersonne($interventionRaw["participants"]["nbEleves"]);
                 $interventionTemp->setComite($comiteTest);
+                if(isset($interventionRaw["materiel"])){
+                    $interventionTemp->setMaterielDispoPlaidoyer(ArrayConverter::phpArrayToPgArray($interventionRaw["materiel"]["materiel"]));
+                }
+                else if(isset($interventionRaw['materielFrimousse'])){
+                    $interventionTemp->setMateriauxFrimousse(ArrayConverter::phpArrayToPgArray($interventionRaw['materielFrimousse']['materiel']));
+                }
+                return new Response(print_r((isset($interventionRaw['materielFrimousses']))));
+
+
+
+
                 $interventionList[] = $interventionTemp;
             }
         }

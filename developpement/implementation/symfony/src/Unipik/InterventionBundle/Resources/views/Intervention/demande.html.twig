@@ -28,7 +28,7 @@
         addInterElt.appendChild(buttonAddElement);
         document.getElementById('demande_Intervention').appendChild(addInterElt);
 
-        function displayTypeInervention(e){
+        function displayTypeIntervention(e){
             var parNode = e.target;
             parNode = parNode.parentNode;
             parNode = parNode.parentNode;
@@ -63,18 +63,32 @@
         }
 
 
-        function treatmentSelect(selectElts){
+        function treatmentSelect(template){
             var choiceEtabElt = document.getElementsByTagName('select')[0];
-            console.log(choiceEtabElt.value);
+            //console.log('template:'+ template.html());
+            var type;
             switch(choiceEtabElt.value){
                 case 'ens' :
+                    type = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked').value;
+                    switch (type){
+                        case 'elementaire':
 
+                            console.log($(template).find('select').find('options'));
+
+                            for(i=0; i<$(template).find('select')[1].length; i++){
+                                if(i<7 || i>15){
+                                    $(template).find('select').find('options').prop('disabled', true);
+                                }
+                            }
+                            console.log($(template).find('select')[1][1]);
+                            break;
+                    }
                     break;
                 case 'centre' :
-
+                    type = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked').value;
                     break;
                 case 'autre' :
-
+                    type = document.querySelector('input[name="demande[Etablissement][typeAutreEtablissement]"]:checked').value;
                     break;
             }
         }
@@ -134,8 +148,8 @@
 
                 $container.append($prototype);
                 $("#add_intervention").appendTo($container).css('margin-left', '80%');
-                treatmentSelect($(template).find('select').html());
-                $($prototype).children().find("select").on("change",displayTypeInervention);
+                treatmentSelect($(template));
+                $($prototype).children().find("select").on("change",displayTypeIntervention);
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;
             }
@@ -199,7 +213,7 @@
         function verifyAll(e){
            // verifyNumber(e);
             verifyCP(e);
-            verifyMail(e);
+           // verifyMail(e);
             showUAI();
             if($('#demande_Etablissement_uai').val().trim())
                 verifyUAI(e);

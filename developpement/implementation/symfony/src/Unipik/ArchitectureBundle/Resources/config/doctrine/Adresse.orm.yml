@@ -34,7 +34,7 @@ Unipik\ArchitectureBundle\Entity\Adresse:
     manyToOne:
         ville:
             targetEntity: Ville
-            cascade: { }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: null
@@ -44,7 +44,7 @@ Unipik\ArchitectureBundle\Entity\Adresse:
             orphanRemoval: false
         codePostal:
             targetEntity: CodePostal
-            cascade: { }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: null

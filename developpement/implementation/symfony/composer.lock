@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "11ce314b240f6e4651be1135535b4811",
-    "content-hash": "c48e52ee98c05f657cb32c883a84b0b0",
+    "hash": "b9dcc2ebba2cc6fd542d74801725eb70",
+    "content-hash": "c6c68d5bb1af29d178f9edb3b4382f7b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1158,6 +1158,49 @@
                 "psr-3"
             ],
             "time": "2016-07-29 03:23:52"
+        },
+        {
+            "name": "opsway/doctrine-dbal-postgresql",
+            "version": "v0.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opsway/doctrine-dbal-postgresql.git",
+                "reference": "218ab18f86984b032690593779d7b7fd9f4ef118"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opsway/doctrine-dbal-postgresql/zipball/218ab18f86984b032690593779d7b7fd9f4ef118",
+                "reference": "218ab18f86984b032690593779d7b7fd9f4ef118",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "~2.4",
+                "doctrine/orm": "~2.4",
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Opsway\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandr Vronskiy",
+                    "email": "alvro@opsway.com"
+                }
+            ],
+            "description": "Extensions for support Postgres in Doctrine DBAL & DQL",
+            "time": "2015-10-07 21:40:07"
         },
         {
             "name": "paragonie/random_compat",

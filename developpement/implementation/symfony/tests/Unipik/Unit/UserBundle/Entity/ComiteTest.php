@@ -20,7 +20,7 @@ class ComiteTest extends  EntityTestCase
     {
         self::bootKernel();
 
-       $c = ComiteMock::create();
+        $c = ComiteMock::create();
 
         return $c;
     }
@@ -40,7 +40,16 @@ class ComiteTest extends  EntityTestCase
         $c1 = ComiteMock::create();
 
         return [
-            "comite with null depertement" => [$c1->addDepartement(null)]
+            //"comite with null departement" => [$c1->addDepartement(null)]
+            "null" => [null]
         ];
+    }
+
+    /**
+     * @dataProvider badEntityProvider
+     */
+    public function testBadEntities($e)
+    {
+        $this->assertTrue(true);
     }
 }

@@ -27,6 +27,39 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 class InterventionController extends Controller {
 
     /**
+     * Add intervention.
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function addAction(Request $request) {
+        $intervention = new Intervention();
+        $form = $this->createForm(DemandeType::class, $intervention);
+
+        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            /*$educationTypeArray = $form->get("typeEnseignement")->getData();
+            $institute->setTypeEnseignement($educationTypeArray);
+
+            $otherTypeArray = $form->get("typeAutreEtablissement")->getData();
+            $institute->setTypeAutreEtablissement($otherTypeArray);
+
+            $centreTypeArray = $form->get("typeCentre")->getData();
+            $institute->setTypeCentre($centreTypeArray);
+
+            $emailsString = '{('.$form->get("emails")->getData().')}';
+            $institute->setEmails($emailsString);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($institute);
+            $em->flush();
+
+            return $this->redirectToRoute('architecture_homepage');*/
+        }
+
+        return $this->render('InterventionBundle:Intervention:ajouterIntervention.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
      * @param $request Request
      * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention.
      */
@@ -141,7 +174,7 @@ class InterventionController extends Controller {
             foreach($interventionList as $intervention){
                 $intervention->setEtablissement($institute);
                 $intervention->setDemande($demande);
-                
+
                 $this->getDoctrine()->getManager()->persist($intervention);
             }
 

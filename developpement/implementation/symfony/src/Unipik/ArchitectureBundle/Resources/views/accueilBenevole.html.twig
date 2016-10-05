@@ -10,9 +10,15 @@
         $(document).ready(function() {
             var listeInterventionsNonRealisees = {{ interventionsNonRealisees|json_encode|raw }}
             var listeInterventionsRealisees = {{ interventionsRealisees|json_encode|raw }}
+            /*var tableau = new Array()
+            jQuery.each(listeInterventionsNonRealisees, function(i, val)){
+                tableau.push({ title  : val[2],
+                    start  : '2016-10-01'})
+            }*/
 
             $('#calendar').fullCalendar({
-                locale:"fr"
+                locale:"fr",
+               // events: tableau
             })
 
 
@@ -78,12 +84,12 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Lieu 
+                                <th>Lieu
                                 	<button class="sortButtonLieu" id="sortButtonLieu" onclick="sortByLieu()">
                                 		<img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu"  alt="sort Down"/>
                                 	</button>
                                 </th>
-                                <th>Date 
+                                <th>Date
                                 	<button class="sortButtonDate" id="sortButtonDate" onclick="sortByDate()">
                                 		<img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate" alt="sort Down"/>
                                 	</button>
@@ -145,12 +151,12 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Lieu 
+                            <th>Lieu
                             	<button class="sortButtonLieu" id="sortButtonLieu" onclick="sortByLieu()">
                             		<img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu" alt="sort Down"/>
                             	</button>
                             </th>
-                            <th>Date 
+                            <th>Date
                             	<button class="sortButtonDate" id="sortButtonDate" onclick="sortByDate()">
                             		<img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate" alt="sort Down"/>
                             	</button>

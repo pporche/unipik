@@ -4,6 +4,8 @@ namespace Unipik\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Contact
  *
@@ -24,6 +26,8 @@ class Contact
 
     /**
      * @var string
+     *
+     * @Assert\Email()
      *
      * @ORM\Column(name="email", type="string", length=100, nullable=false)
      */

@@ -3,13 +3,12 @@
 namespace Unipik\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Unipik\UserBundle\Entity\Benevole;
+use Unipik\UserBundle\Entity\BenevoleRepository;
 use Unipik\InterventionBundle\Entity\Intervention;
+use Unipik\UserBundle\Form\RechercheAvanceeType;
 use Unipik\UserBundle\Form\RegistrationType;
 
 /**
@@ -25,20 +24,21 @@ class UserController extends Controller {
      * @return Response
      */
     public function listeAction(Request $request) {
+
+
+        $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+
+        $activites = $form->get("activites")->getData();
+        $responsabilites = $form->get("responsabilitesActivites")->getData();
+        $ville = $form->get("ville")->getData();
+
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('UserBundle:Benevole');
+        $listBenevoles = $repository->getBenevoles($ville,$activites,$responsabilites);
+        return $this->render('UserBundle::liste.html.twig', array('listBenevoles' => $listBenevoles, 'form' => $form->createView()));
 
-        $rowsPerPage = $request->get("rowsPerPage", 10);
-        $field = $request->get("field", "nom");
-        $desc = $request->get("desc", false);
-
-        $listBenevoles = $repository->findAll();
-        return $this->render('UserBundle::liste.html.twig', array(
-            'field' => $field,
-            'desc' => $desc,
-            'rowsPerPage' => $rowsPerPage,
-            'listBenevoles' => $listBenevoles
-        ));
     }
 
     /**

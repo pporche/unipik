@@ -143,7 +143,7 @@ class EtablissementRepository extends EntityRepository {
                 $this->whereVilleIs($qb,$ville);
             }
 
-            $qb ->setParameter('typeE',$tc);
+            $qb ->setParameter('typeC',$tc);
 
             $results = array_merge($results,$qb->getQuery()->getResult());
         }
@@ -169,14 +169,17 @@ class EtablissementRepository extends EntityRepository {
                 $this->whereVilleIs($qb,$ville);
             }
 
-            $qb ->setParameter('typeE',$tae);
+            $qb ->setParameter('typeAE',$tae);
 
             $results = array_merge($results,$qb->getQuery()->getResult());
         }
         return $results;
     }
 
-    /** Get Tous Etablissements
+
+    /**
+     * get tous etablissements
+     *
      * @param $ville
      * @return array
      */

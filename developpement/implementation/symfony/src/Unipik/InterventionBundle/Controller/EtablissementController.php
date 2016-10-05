@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Etablissement;
 use Unipik\InterventionBundle\Form\EtablissementType;
 use Unipik\InterventionBundle\Form\Etablissement\RechercheAvanceeType;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 class EtablissementController extends Controller {
 
@@ -48,8 +49,12 @@ class EtablissementController extends Controller {
             $centreTypeArray = $form->get("typeCentre")->getData();
             $institute->setTypeCentre($centreTypeArray);
 
-            $emailsString = '{('.$form->get("emails")->getData().')}';
-            $institute->setEmails($emailsString);
+            $emails = $form->get("emails")->getData();
+            var_dump($emails);
+            //$emailsString = '{('.$form->get("emails")->getData()[0].')}';
+            foreach ($emails as $email) {
+                $institute->addEmail($email);
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($institute);
@@ -89,31 +94,24 @@ class EtablissementController extends Controller {
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
-        $repository = $this->getEtablissementRepository();
 
         $typeEtablissement = $form->get("typeEtablissement")->getData();
         $ville = $form->get("ville")->getData();
 
-        switch ($typeEtablissement) {
-            case "enseignement":
-                $typeEnseignement = $form->get("typeEnseignement")->getData();
-                $listEtablissement = empty($typeEnseignement) ? $repository->getEnseignements() : $repository->getEnseignementsByType($typeEnseignement,$ville);
-                break;
-            case "centre":
-                $typeCentre = $form->get("typeCentre")->getData();
-                $listEtablissement = empty($typeCentre) ? $repository->getCentresLoisirs() : $repository->getCentresLoisirsByType($typeCentre, $ville);
-                break;
-            case "autreEtablissement":
-                $typeAutreEtablissement = $form->get("typeAutreEtablissement")->getData();
-                $listEtablissement = empty($typeAutreEtablissement) ? $repository->getAutresEtablissements() : $repository->getAutresEtablissementsByType($typeAutreEtablissement, $ville);
-                break;
-            default:
-                $listEtablissement = $repository->getTousEtablissements($ville);
-                break;
-        }
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "nom");
+        $desc = $request->get("desc", false);
+
+        $repository = $this->getEtablissementRepository();
+
+        $listEtablissement = $repository->getType($typeEtablissement, $ville, $field, $desc);
 
         return $this->render('InterventionBundle:Etablissement:liste.html.twig', array(
+            'field' => $field,
+            'desc' => $desc,
+            'rowsPerPage' => $rowsPerPage,
             'liste' => $listEtablissement,
+            'typeEtablissement' => $typeEtablissement,
             'form' => $form->createView()
         ));
     }

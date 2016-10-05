@@ -4,6 +4,7 @@ namespace Unipik\InterventionBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Unipik\InterventionBundle\Form\Etablissement\TypeCentreType;
@@ -60,7 +61,11 @@ class EtablissementType extends AbstractType {
 
             ->add('nom')
             ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe'))
-            ->add('emails', TextType::class, array('mapped' => false))
+            ->add('emails', CollectionType::class, array('mapped' => false,
+                'entry_type'   => TextType::class,
+                'allow_add'    => true,
+                'allow_delete' => true
+            ))
             ->add('TypeGeneral',ChoiceType::class, $generalType)
             ->add('typeEnseignement',ChoiceType::class, $educationChoiceType)
             ->add('typeAutreEtablissement',ChoiceType::class, $otherChoiceType)
@@ -69,7 +74,6 @@ class EtablissementType extends AbstractType {
             ->add('adresse',AdresseType::class)
         ;
     }
-
     /**
      * @param OptionsResolver $resolver
      */

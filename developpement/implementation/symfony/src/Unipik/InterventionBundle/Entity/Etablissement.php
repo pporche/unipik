@@ -4,6 +4,8 @@
 namespace Unipik\InterventionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
+use Unipik\InterventionBundle\Form\EtablissementType;
 
 /**
  * Etablissement
@@ -187,6 +189,8 @@ class Etablissement
      * @param string $emails
      *
      * @return Etablissement
+     *
+     * @deprecated
      */
     public function setEmails($emails)
     {
@@ -203,6 +207,25 @@ class Etablissement
     public function getEmails()
     {
         return $this->emails;
+    }
+
+    /**
+     * Add emails
+     *
+     * @param string|array $activitesPotentielles
+     *
+     * @return Etablissement
+     */
+    public function addEmail($email) {
+
+        var_dump($this->emails);
+
+        $this->emails = ArrayConverter::addIntoPgArray(
+            $this->emails,
+            $email
+        );
+
+        return $this;
     }
 
     /**

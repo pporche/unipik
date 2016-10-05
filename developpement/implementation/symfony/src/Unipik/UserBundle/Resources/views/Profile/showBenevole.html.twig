@@ -139,11 +139,6 @@
                                     Projets
                                 </li>
                             {% endif %}
-                            {% if ('projets' in benevole.responsabiliteActivite) %}
-                                <li class="list-group-item">
-                                    Autre
-                                </li>
-                            {% endif %}
                             {% if ('admin_comite' in benevole.responsabiliteActivite) %}
                                 <li class="list-group-item">
                                     Administrateur du comité
@@ -171,12 +166,12 @@
                             </div>
                         {% else %}
                             <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                                {% if ('plaidoyer' in benevole.activitesPotentielles ) %}
+                                {% if ('plaidoyers' in benevole.activitesPotentielles ) %}
                                     <li class="list-group-item">
                                         Plaidoyer
                                     </li>
                                 {% endif %}
-                                {% if ('frimousse' in benevole.activitesPotentielles) %}
+                                {% if ('frimousses' in benevole.activitesPotentielles) %}
                                     <li class="list-group-item">
                                         Frimousse
                                     </li>
@@ -191,7 +186,7 @@
                                         Projets
                                     </li>
                                 {% endif %}
-                                {% if ('projets' in benevole.activitesPotentielles) %}
+                                {% if ('autre' in benevole.activitesPotentielles) %}
                                     <li class="list-group-item">
                                         Autre
                                     </li>

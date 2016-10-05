@@ -282,6 +282,8 @@ class Benevole extends BaseUser
      * @param string $responsabiliteActivite
      *
      * @return Benevole
+     *
+     * @deprecated
      */
     public function setResponsabiliteActivite($responsabiliteActivite) {
         $this->responsabiliteActivite = $responsabiliteActivite;
@@ -295,6 +297,22 @@ class Benevole extends BaseUser
      */
     public function getResponsabiliteActivite() {
         return $this->responsabiliteActivite;
+    }
+
+    /**
+     * Add responsabiliteActivite
+     *
+     * @param string|array $responsabilite
+     *
+     * @return Benevole
+     */
+    public function addResponsabiliteActivite($responsabilite) {
+        $this->responsabiliteActivite = ArrayConverter::addIntoPgArray(
+            $this->responsabiliteActivite,
+            $responsabilite
+        );
+
+        return $this;
     }
 
     /**

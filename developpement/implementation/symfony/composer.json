@@ -25,7 +25,8 @@
 	    "fresh/doctrine-enum-bundle": "4.5.*",
         "jsor/doctrine-postgis": "^1.1",
         "snilius/twig-sort-by-field": "^0.1.5",
-        "symfony/validator": "^3.1"
+        "symfony/validator": "^3.1",
+        "opsway/doctrine-dbal-postgresql": "~0.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

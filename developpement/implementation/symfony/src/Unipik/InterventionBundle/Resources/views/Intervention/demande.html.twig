@@ -29,32 +29,47 @@
         document.getElementById('demande_Intervention').appendChild(addInterElt);
 
         function displayTypeInervention(e){
-            var parentNode = e.target.parentNode.parentNode.parentNode;
+            var parNode = e.target;
             console.log("Le noeud parent est : ");
-            console.log(parentNode);
-            var matClasElt = parentNode.getElementsByTagName('div')[2];
-            console.log("Le materiel classique relève de ");
-            console.log(matClasElt);
-            var matFriElt = parentNode.getElementsByTagName('div')[3];
-            console.log("Le materiel pour Frimousse relève de ");
-            console.log(matFriElt);
+            parNode = parNode.parentNode;
+            parNode = parNode.parentNode;
+            parNode = parNode.parentNode;
+            console.log(parNode);
+            var matClasElt = parNode.getElementsByTagName('div')[2];
+            var matFriElt = parNode.getElementsByTagName('div')[3];
             switch(e.target.value){
                 case 'frim' :
                     $(matClasElt).fadeOut('slow');
-                  // $(parentNode.getElementsByTagName('label')[1]).fadeIn('fast');
                     $(matFriElt).fadeIn('medium');
                     break;
                 case 'pld' :
+                    console.log('ici se trouve mon problème : ');
+                    console.log(matClasElt);
+                    console.log('ici se trouve mon problème : ');
+                    console.log(matFriElt);
                     $(matFriElt).fadeOut('slow');
                     $(matClasElt).fadeIn('medium');
-                    //$(parentNode.getElementsByTagName('label')[1]).fadeOut('fast');
                     break;
             }
             e.stopImmediatePropagation();
         }
 
 
+        function treatmentSelect(selectElts){
+            var choiceEtabElt = document.getElementsByTagName('select')[0];
+            console.log(choiceEtabElt.value);
+            switch(choiceEtabElt.value){
+                case 'ens' :
 
+                    break;
+                case 'centre' :
+
+                    break;
+                case 'autre' :
+
+                    break;
+            }
+        }
 
         $(document).ready(function() {
 
@@ -107,24 +122,24 @@
                 // On crée un objet jquery qui contient ce template
                 var $prototype = $(template);
 
-                // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
                 addDeleteLink($prototype);
-                // On ajoute le prototype modifié à la fin de la balise <div>
+
+
                 $container.append($prototype);
                 $("#add_intervention").appendTo($container).css('margin-left', '80%');
-
+                treatmentSelect($(template).find('select').html());
                 $($prototype).children().find("select").on("change",displayTypeInervention);
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;
             }
 
-            // La fonction qui ajoute un lien de suppression d'une catégorie
+            // La fonction qui ajoute un lien de suppression
             function addDeleteLink($prototype) {
                 // Création du lien
                 var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
                 // Ajout du lien
                 $prototype.append($deleteLink);
-                // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
+                // Ajout du listener sur le clic du lien pour effectivement
                 $deleteLink.click(function(e) {
                     $prototype.remove();
                     e.preventDefault(); // évite qu'un # apparaisse dans l'URL
@@ -368,4 +383,5 @@
         $('.date-pick').datepicker();
 
     </script>
+
 {% endblock %}

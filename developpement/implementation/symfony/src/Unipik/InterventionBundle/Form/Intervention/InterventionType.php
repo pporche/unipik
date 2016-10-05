@@ -27,7 +27,8 @@ class InterventionType extends AbstractFieldsetType {
             'label' => 'Type d\'Intervention',
             'choices' => [
                 'Plaidoyer' => 'pld',
-                'Frimousse' => 'frim'
+                'Frimousse' => 'frim',
+                'Autre' => 'aut'
             ],);
 
         $builder

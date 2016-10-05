@@ -321,9 +321,47 @@ class InterventionController extends Controller {
         return new Response();
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function attributionAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $user = $this->getUser();
+            $id = $request->request->get('id');
 
-    public function attributionInterventionAction(Request $request) {
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Intervention');
+            $intervention = $repository->find($id);
 
+            $intervention->setBenevole($user);
+
+            $em->persist($intervention);
+            $em->flush();
+            return new Response();
+        }
+        return new Response();
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function desattributionAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $id = $request->request->get('id');
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Intervention');
+            $intervention = $repository->find($id);
+
+            $intervention->setBenevole(null);
+
+            $em->persist($intervention);
+            $em->flush();
+            return new Response();
+        }
+        return new Response();
     }
 
     /**

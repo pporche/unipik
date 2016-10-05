@@ -19,8 +19,12 @@ intervention_view:
         id: \d+
 
 intervention_self_attribute:
-    path: /intervention/s_attribuer
+    path: /intervention/attribution
     defaults: {_controller: InterventionBundle:Intervention:attribution}
+
+intervention_self_desattribute:
+    path: /intervention/desattribution
+    defaults: {_controller: InterventionBundle:Intervention:desattribution}
 
 intervention_cancel:
     path: /intervention/annuler/{id}

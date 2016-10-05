@@ -1,6 +1,84 @@
 {# version 1.00, date 03/10/2016, auteur Florian Leriche #}
 {% extends "InterventionBundle::layout.html.twig" %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+            var $container = $('div#etablissement_emails');
+
+            // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+            var index = $container.find(':input').length;
+
+            // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+            $('#add_email').click(function(e) {
+                addEmail($container);
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+
+            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+            if (index == 0) {
+                var emails = JSON.parse('{{ emails|raw }}');
+                var i = 0;
+                emails.forEach(function () {
+                    addEmail($container);
+                    $("input[id=etablissement_emails_"+i+"]").val(emails[i]);
+                    i++;
+                })
+
+
+            } else {
+                // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
+                $container.children('div').each(function() {
+                    addDeleteLink($(this));
+                });
+            }
+
+            // La fonction qui ajoute un formulaire CategoryType
+            function addEmail($container) {
+                // Dans le contenu de l'attribut « data-prototype », on remplace :
+                // - le texte "__name__label__" qu'il contient par le label du champ
+                // - le texte "__name__" qu'il contient par le numéro du champ
+                var template = $container.attr('data-prototype')
+                                .replace(/__name__label__/g, 'Email n°' + (index+1))
+                                .replace(/__name__/g,        index)
+                        ;
+
+                // On crée un objet jquery qui contient ce template
+                var $prototype = $(template);
+
+                // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+                addDeleteLink($prototype);
+
+                // On ajoute le prototype modifié à la fin de la balise <div>
+                $container.append($prototype);
+
+                // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+                index++;
+            }
+
+            // La fonction qui ajoute un lien de suppression d'une catégorie
+            function addDeleteLink($prototype) {
+                // Création du lien
+                var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+
+                // Ajout du lien
+                $prototype.append($deleteLink);
+
+                // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
+                $deleteLink.click(function(e) {
+                    $prototype.remove();
+
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                });
+            }
+        });
+    </script>
+{% endblock %}
+
 {% block title %}
 
     Profil - {{ parent() }}
@@ -9,6 +87,19 @@
 
 {% block body %}
 
-    {{ form(form) }}
+    <div class='well'>
+
+        {{ form_start(form, {'method': 'post', 'action': path('etablissement_admin_edit', {'id': etablissement.id}), 'attr': {'class': 'etablissement_admin_edit'}}) }}
+        <div class="well">
+            {{ form_row(form.emails) }}
+            <a href="#" id="add_email" class="btn btn-default">Ajouter un email</a>
+        </div>
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" value="Modifier" class="btn btn-primary"/>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
 
 {% endblock %}

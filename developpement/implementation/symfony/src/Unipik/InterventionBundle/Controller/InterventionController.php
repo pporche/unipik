@@ -218,14 +218,15 @@ class InterventionController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('InterventionBundle:Intervention');
         $intervention = $repository->find($id);
+        $user = $this->getUser();
 
         if($intervention->isFrimousse()) {
-            return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig',array('intervention' => $intervention));
+            return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig',array('intervention' => $intervention, 'user' => $user));
         } elseif ($intervention->isPlaidoyer()) {
-           return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig',array('intervention' => $intervention));
+           return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig',array('intervention' => $intervention, 'user' => $user));
         }
         else {
-            return $this->render('InterventionBundle:Intervention:consultation.html.twig',array('intervention' => $intervention));
+            return $this->render('InterventionBundle:Intervention:consultation.html.twig',array('intervention' => $intervention, 'user' => $user));
         }
     }
 
@@ -241,6 +242,7 @@ class InterventionController extends Controller {
      * @return Response Renvoie vers la page affichant les établissements en passant en paramètre la liste des interventions.
      */
     public function listeAction(Request $request) {
+        $user = $this->getUser();
 
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
@@ -268,6 +270,7 @@ class InterventionController extends Controller {
             'isCheck' => $dateChecked,
             'dateStart' => $start,
             'dateEnd' => $end,
+            'user' => $user,
             'form' => $form->createView()
         ));
 

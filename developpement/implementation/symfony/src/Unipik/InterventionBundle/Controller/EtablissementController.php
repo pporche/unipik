@@ -50,8 +50,6 @@ class EtablissementController extends Controller {
             $institute->setTypeCentre($centreTypeArray);
 
             $emails = $form->get("emails")->getData();
-            var_dump($emails);
-            //$emailsString = '{('.$form->get("emails")->getData()[0].')}';
             foreach ($emails as $email) {
                 $institute->addEmail($email);
             }
@@ -64,6 +62,15 @@ class EtablissementController extends Controller {
         }
 
         return $this->render('InterventionBundle:Etablissement:ajouterEtablissement.html.twig', array('form' => $form->createView()));
+    }
+
+    public function deleteEtablissementAction($id) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $institute = $this->getEtablissementRepository()->findOneBy(array('id' => $id));
+        $em->remove($institute);
+        $em->flush();
+
+        return $this->redirectToRoute('etablissement_list');
     }
 
     public function deleteEtablissementsAction(Request $request) {
@@ -128,15 +135,29 @@ class EtablissementController extends Controller {
             ->add('Valider', SubmitType::class)
             ->getForm();
 
+        $emails = $institute->getEmails();
+
         if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
 
             $em = $this->getDoctrine()->getManager();
+            $institute->removeAllEmails();
+
+            $emails = $form->get("emails")->getData();
+            foreach ($emails as $email) {
+                $institute->addEmail($email);
+            }
+
             $em->persist($institute);
             $em->flush();
 
             return $this->redirectToRoute('etablissement_view', array('id' => $id));
         }
 
-        return $this->render('InterventionBundle:Etablissement:editEtablissement.html.twig', array('form' => $form->createView()));
+        $emails = ArrayConverter::pgArrayToPhpArray($institute->getEmails());
+        $emails = json_encode($emails);
+        return $this->render('InterventionBundle:Etablissement:editEtablissement.html.twig', array('form' => $form->createView(),
+                                                                                                   'etablissement' => $institute,
+                                                                                                   'emails' => $emails,
+        ));
     }
 }

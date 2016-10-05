@@ -89,7 +89,6 @@ class EtablissementController extends Controller {
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
-        $repository = $this->getEtablissementRepository();
 
         $typeEtablissement = $form->get("typeEtablissement")->getData();
         $ville = $form->get("ville")->getData();

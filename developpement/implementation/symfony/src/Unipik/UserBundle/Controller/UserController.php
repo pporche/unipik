@@ -21,13 +21,24 @@ use Unipik\UserBundle\Form\RegistrationType;
 class UserController extends Controller {
 
     /**
+     * @param Request $request
      * @return Response
      */
-    public function listeAction() {
+    public function listeAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('UserBundle:Benevole');
+
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "nom");
+        $desc = $request->get("desc", false);
+
         $listBenevoles = $repository->findAll();
-        return $this->render('UserBundle::liste.html.twig', array('listBenevoles' => $listBenevoles));
+        return $this->render('UserBundle::liste.html.twig', array(
+            'field' => $field,
+            'desc' => $desc,
+            'rowsPerPage' => $rowsPerPage,
+            'listBenevoles' => $listBenevoles
+        ));
     }
 
     /**

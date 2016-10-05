@@ -30,25 +30,33 @@
 
         function displayTypeInervention(e){
             var parNode = e.target;
-            console.log("Le noeud parent est : ");
             parNode = parNode.parentNode;
             parNode = parNode.parentNode;
             parNode = parNode.parentNode;
-            console.log(parNode);
-            var matClasElt = parNode.getElementsByTagName('div')[2];
-            var matFriElt = parNode.getElementsByTagName('div')[3];
+            var matClasElt = parNode.getElementsByClassName('form-group')[2];
+            var matFriElt = parNode.getElementsByClassName('form-group')[3];
+            var themElt = parNode.getElementsByClassName('form-group')[7];
+            var lblMatElt = parNode.getElementsByTagName('label')[1];
+
             switch(e.target.value){
                 case 'frim' :
                     $(matClasElt).fadeOut('slow');
                     $(matFriElt).fadeIn('medium');
+                    $(themElt).fadeIn('fast');
+                    $(lblMatElt).fadeOut('fast');
                     break;
                 case 'pld' :
-                    console.log('ici se trouve mon problème : ');
-                    console.log(matClasElt);
-                    console.log('ici se trouve mon problème : ');
-                    console.log(matFriElt);
+                    $(lblMatElt).fadeIn('fast');
                     $(matFriElt).fadeOut('slow');
                     $(matClasElt).fadeIn('medium');
+                    $(themElt).fadeIn('fast');
+                    break;
+
+                case 'aut' :
+                    $(lblMatElt).fadeOut('fast');
+                    $(matClasElt).fadeOut('fast');
+                    $(matFriElt).fadeOut('fast');
+                    $(themElt).fadeIn('fast');
                     break;
             }
             e.stopImmediatePropagation();
@@ -123,7 +131,6 @@
                 var $prototype = $(template);
 
                 addDeleteLink($prototype);
-
 
                 $container.append($prototype);
                 $("#add_intervention").appendTo($container).css('margin-left', '80%');

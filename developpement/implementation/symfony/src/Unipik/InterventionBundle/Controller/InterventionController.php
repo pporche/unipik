@@ -171,6 +171,7 @@ class InterventionController extends Controller {
 
             $em->flush();
 
+
             foreach($interventionList as $intervention){
                 $intervention->setEtablissement($institute);
                 $intervention->setDemande($demande);

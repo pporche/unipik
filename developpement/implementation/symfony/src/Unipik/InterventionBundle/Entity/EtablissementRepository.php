@@ -143,6 +143,12 @@ class EtablissementRepository extends EntityRepository {
         return $results;
     }
 
+    /**
+     * get tous etablissements
+     *
+     * @param $ville
+     * @return array
+     */
     public function getTousEtablissements($ville) {
         $qb = $this->createQueryBuilder('e');
 

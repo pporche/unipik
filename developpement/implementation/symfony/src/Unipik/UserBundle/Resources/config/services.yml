@@ -13,6 +13,11 @@ services:
         class: Unipik\UserBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: user_registration }
+    app.form.benevole.recherche:
+        class: Unipik\UserBundle\Form\RechercheAvanceeType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
 
 
 

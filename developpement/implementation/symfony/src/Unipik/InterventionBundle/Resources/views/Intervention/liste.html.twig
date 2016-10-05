@@ -61,8 +61,7 @@
 
             if($field == "lieu"){
                 if($isReverse){
-
-                    var listeS = {{ liste|sortbyfield('lieu')|reverse|json_encode }}
+                    {% set listeS = liste|sortbyfield('lieu')|reverse %}
                     console.log("{%  for intervention in listeS %} {{ intervention.id }} {% endfor %}");
                 }else{
                     {% set listeS = liste|sortbyfield('lieu') %}

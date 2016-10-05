@@ -37,7 +37,7 @@ class ElevesType extends AbstractType {
             ],);
 
         $builder
-            ->add('nbEleves', IntegerType::class, array('label' => "Nombre d'élèves"))
+            ->add('nbEleves', IntegerType::class, array('label' => "Nombre"))
         ;
     }
 

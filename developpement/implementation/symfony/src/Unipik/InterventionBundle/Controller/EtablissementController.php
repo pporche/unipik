@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Etablissement;
 use Unipik\InterventionBundle\Form\EtablissementType;
 use Unipik\InterventionBundle\Form\Etablissement\RechercheAvanceeType;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 class EtablissementController extends Controller {
 
@@ -48,8 +49,12 @@ class EtablissementController extends Controller {
             $centreTypeArray = $form->get("typeCentre")->getData();
             $institute->setTypeCentre($centreTypeArray);
 
-            $emailsString = '{('.$form->get("emails")->getData().')}';
-            $institute->setEmails($emailsString);
+            $emails = $form->get("emails")->getData();
+            var_dump($emails);
+            //$emailsString = '{('.$form->get("emails")->getData()[0].')}';
+            foreach ($emails as $email) {
+                $institute->addEmail($email);
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($institute);

@@ -116,6 +116,13 @@
         </section>
     </div>
     <div class="row">
+        <div class="buttons">
+            <a href="{{ path("etablissement_admin_edit", {'id': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier</span> </a>
+            <a href="{{ path("etablissement_admin_delete", {'id': etablissement.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'établissment {{ etablissement.nom }} ?')"><span class="glyphicon glyphicon-trash"> Supprimer </span> </a>
+        </div>
+    </div>
+    <div class="row">
+    <div class="row">
         <div class="col-sm-12 infoContainer">
             <div class="col-sm-4 containerOne">
                 <div class="circle circleOne">

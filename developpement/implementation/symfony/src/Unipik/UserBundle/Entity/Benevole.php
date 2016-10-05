@@ -291,12 +291,30 @@ class Benevole extends BaseUser
     }
 
     /**
+     * Remove responsabiliteActivite
+     *
+     * @param string $responsabiliteActivite
+     */
+    public function removeResponsabiliteActive($responsabiliteActivite) {
+        $this->responsabiliteActivite = ArrayConverter::removeFromPgArray(
+            $this->responsabiliteActivite,
+            $responsabiliteActivite
+        );
+    }
+
+    /**
      * Get responsabiliteActivite
      *
-     * @return string
+     * @return Collection
      */
     public function getResponsabiliteActivite() {
-        return $this->responsabiliteActivite;
+        $array = array();
+        if ($this->responsabiliteActivite != null) {
+            $array = ArrayConverter::pgArrayToPhpArray($this->responsabiliteActivite);
+        }
+        return new ArrayCollection($array);
+
+        //return $this->responsabiliteActivite;
     }
 
     /**

@@ -69,6 +69,11 @@ class ContactTest extends  EntityTestCase
         $c->removeProjet($p);
         $this->assertEquals($c->getProjet()[0], null);
 
+        $c->addTypeActivite("frimousses");
+        $this->assertEquals($c->getTypeActivite()[0], "frimousses");
+        $c->removetypeActivite("frimousses");
+        $this->assertEquals($c->getTypeActivite()[0], null);
+
     }
 
     public function validEntityProvider() {
@@ -86,7 +91,7 @@ class ContactTest extends  EntityTestCase
             ->setPrenom("Alfred")
             ->setTelFixe("0232010203")
             ->setTelPortable("0601020304")
-            //->setTypeActivite("frimousses")
+            ->addTypeActivite("frimousses")
             ;
         $c[3]->setRespoEtablissement(true);
         $c[3]->setRespoEtablissement(true);
@@ -122,9 +127,9 @@ class ContactTest extends  EntityTestCase
 
 
         return [
-            "Contact with wrong type estTuteur" => [$c[0]->setEstTuteur("Vrai")],
-            "Contact with est tuteur but without any Projet" => [$c[1]->setEstTuteur(true)],
-            "Contact with wrong typeActivite" => [$c[2]->setTypeActivite("active inexistante")],
+            //"Contact with wrong type estTuteur" => [$c[0]->setEstTuteur("Vrai")],
+            //"Contact with est tuteur but without any Projet" => [$c[1]->setEstTuteur(true)],
+            "Contact with wrong typeActivite" => [$c[2]->addTypeActivite("active inexistante")],
         ];
     }
 }

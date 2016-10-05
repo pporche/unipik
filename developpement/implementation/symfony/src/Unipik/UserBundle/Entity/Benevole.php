@@ -273,7 +273,6 @@ class Benevole extends BaseUser
             $array = ArrayConverter::pgArrayToPhpArray($this->activitesPotentielles);
         }
         return new ArrayCollection($array);
-//        return $this->activitesPotentielles;
     }
 
     /**
@@ -313,8 +312,6 @@ class Benevole extends BaseUser
             $array = ArrayConverter::pgArrayToPhpArray($this->responsabiliteActivite);
         }
         return new ArrayCollection($array);
-
-        //return $this->responsabiliteActivite;
     }
 
     /**

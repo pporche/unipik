@@ -17,11 +17,36 @@ use OpsWay\Doctrine\ORM\Query\AST\Functions\Contains;
 class BenevoleRepository extends EntityRepository
 {
     /**
-     * @param $ville
-     * @param $act
-     * @param $resp
-     * @return array
+     * @param $field
+     * @param $desc
+     * @return mixed
      */
+    public function getType($field, $desc){
+        $qb = $this->findAll();
+        if($field=="nom"){
+            if($desc){
+                $qb = $this->findBy(
+                    array('numberrange' => $field),
+                    array('numberrange' => 'desc')
+                );
+            }else{
+                $qb = $this->findBy(
+                    array('numberrange' => $field),
+                    array('numberrange' => 'asc')
+                );
+            }
+        }
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+         * @param $ville
+         * @return array
+         */
     public function getBenevoles($ville){
         $qb = $this->createQueryBuilder('b');
 
@@ -136,6 +161,7 @@ class BenevoleRepository extends EntityRepository
 //        }
 //        return $results;
 //    }
+
 
 
 }

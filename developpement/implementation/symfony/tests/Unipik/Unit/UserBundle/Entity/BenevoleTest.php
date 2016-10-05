@@ -70,6 +70,11 @@ class BenevoleTest extends  EntityTestCase
         $this->assertEquals("plaidoyers", $b->getActivitesPotentielles()[0]);
         $b->removeActivitesPotentielles("plaidoyers");
         $this->assertEquals(null, $b->getActivitesPotentielles()[0]);
+
+        $b->addResponsabiliteActivite("plaidoyers");
+        $this->assertEquals("plaidoyers", $b->getResponsabiliteActivite()[0]);
+        $b->removeResponsabiliteActive("plaidoyers");
+        $this->assertEquals(null, $b->getResponsabiliteActivite()[0]);
     }
 
     public function badEntityProvider()

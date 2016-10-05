@@ -27,7 +27,7 @@ class Adresse
      * @var \Unipik\ArchitectureBundle\Entity\Ville
      * @Assert\NotBlank()
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Ville")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Ville", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ville_id", referencedColumnName="id" )
      * })
@@ -38,7 +38,7 @@ class Adresse
      * @var \Unipik\ArchitectureBundle\Entity\CodePostal
      * @Assert\NotBlank()
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\CodePostal")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\CodePostal", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="code_postal_id", referencedColumnName="id" )
      * })

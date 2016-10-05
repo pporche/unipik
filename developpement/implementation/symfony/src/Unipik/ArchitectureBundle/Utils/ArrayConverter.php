@@ -104,7 +104,10 @@ class ArrayConverter {
      * @return String
      */
     static function addIntoPgArray($pgArray, $element) {
-        $array = ArrayConverter::pgArrayToPhpArray($pgArray);
+        $array = array();
+        if (!is_null($pgArray)) {
+            $array = ArrayConverter::pgArrayToPhpArray($pgArray);
+        }
         $array[] = $element;
         array_unique($array);
         return ArrayConverter::phpArrayToPgArray($array);

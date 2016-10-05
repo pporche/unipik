@@ -9,7 +9,7 @@ Last updates:
 
 ===== But: =====
 
-gérer les dépendances font-end avec bower.
+gérer les dépendances front-end avec bower.
 
 ===== Étapes Pas-à-pas: =====
 

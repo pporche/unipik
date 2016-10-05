@@ -552,4 +552,5 @@ class Intervention
         $type = $this->getDescription();
         return isset($type);
     }
+
 }

@@ -139,7 +139,7 @@ class NiveauTheme
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getComite()
+    public function getComites()
     {
         return $this->comite;
     }

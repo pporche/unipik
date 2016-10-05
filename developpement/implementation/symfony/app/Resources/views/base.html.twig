@@ -19,8 +19,7 @@
 
         {% block stylesheets %}
 
-            <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />-->
-            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+            <link rel="stylesheet" href="{{ asset('vendor/bootswatch-dist/css/bootstrap.min.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/stylePersonalized.css') }}" />
         {% endblock %}
@@ -55,8 +54,8 @@
 
 
     {% block javascripts %}
-        <script src="{{ asset('js/jquery.js') }}"></script>
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendor/bootswatch-dist/js/bootstrap.min.js') }}"></script>
     {% endblock %}
     </body>
 </html>

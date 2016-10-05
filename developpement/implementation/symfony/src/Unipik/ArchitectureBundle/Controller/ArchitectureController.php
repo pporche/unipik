@@ -38,7 +38,11 @@ class ArchitectureController extends Controller {
             return $this->render('ArchitectureBundle::accueilAnonyme.html.twig');
         }
 
-        return $this->render('ArchitectureBundle::accueilBenevole.html.twig', array('user' => $user));
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('InterventionBundle:Intervention');
+        $interventionsNonRealiseesBenevole = $repository->getInterventionsRealiseesOuNonBenevole($user, false);
+        $interventionsRealiseesBenevole = $repository->getInterventionsRealiseesOuNonBenevole($user, true);
+        return $this->render('ArchitectureBundle::accueilBenevole.html.twig', array('user' => $user, 'interventionsNonRealisees' => $interventionsNonRealiseesBenevole, 'interventionsRealisees' => $interventionsRealiseesBenevole));
     }
 
     /**

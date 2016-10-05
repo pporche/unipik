@@ -107,7 +107,6 @@
 
     <script type="application/javascript">
         document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change',function(e){
-            console.log(e.target.value);
             switch (e.target.value){
                 case 'ens' :
                     keepInstitute();
@@ -145,10 +144,8 @@
             $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
         }
 
-        document.addEventListener('submit',verifyAll);
-
         function verifyAll(e){
-            verifyNumber(e);
+           // verifyNumber(e);
             verifyCP(e);
             verifyMail(e);
             showUAI();
@@ -199,11 +196,6 @@
 
         }
 
-        function showUAI(){
-            console.log(('#demande_Etablissement_uai').val());
-        }
-
-
         function verifyUAI(e){
             console.log(verifyCodeUai($('#demande_Etablissement_uai').val()));
             if(!verifyCodeUai($('#demande_Etablissement_uai').val())){
@@ -240,10 +232,55 @@
             return codeUaiPropreLettre == lettreCalculee;
         }
 
+        document.addEventListener('submit',verifyAll);
 
 
 
+        function construction(item) {
+            var newLineElt = document.createElement('tr');
+            var columnHeadElt = document.createElement('td');
+            $(item.getElementsByTagName('label')[0]).detach().appendTo($(columnHeadElt));
+            $(columnHeadElt).detach().appendTo($(newLineElt));
+                while(item.getElementsByTagName('input').length > 0){
+                    var columnElt = document.createElement('td');
+                    var inputElt = item.getElementsByTagName('input')[0];
+                    $(inputElt).detach().appendTo($(columnElt));
+                    $(columnElt).detach().appendTo($(newLineElt));
+                }
 
+            $(newLineElt).detach().appendTo($(tblElt));
+        }
+
+        function constructHeader(item){
+            console.log(item);
+            var theadElt = document.createElement('thead');
+            var newLineElt = document.createElement('tr');
+            var columnHeadElt = document.createElement('th');
+            columnHeadElt.textContent = '#';
+            $(columnHeadElt).detach().appendTo($(newLineElt));
+            while(item.length > 0){
+                var columnElt = document.createElement('th');
+                var inputElt = item[0];
+                $(inputElt).detach().appendTo($(columnElt));
+                $(columnElt).detach().appendTo($(newLineElt));
+            }
+            $(newLineElt).detach().appendTo($(theadElt));
+            $(theadElt).detach().appendTo($(tblElt));
+        }
+
+        var tblElt = document.createElement('table');
+        $(tblElt).addClass('table table-bordered table-striped');
+
+        for(var i =0; i < document.getElementsByClassName('form-group form-group')[16].getElementsByClassName('form-group').length; i++){
+            construction(document.getElementsByClassName('form-group form-group')[16].getElementsByClassName('form-group')[i]);
+        }
+
+        constructHeader(document.getElementsByClassName('form-group form-group')[16].getElementsByClassName('form-group')[0].getElementsByTagName('label'));
+
+        //$(tblElt).detach().appendTo($(document.getElementsByClassName('form-group form-group')[16]));
+        $('#demande_jour').replaceWith($(tblElt));
+
+        //document.getElementsByClassName('form-group form-group')[16]
         //initialisation
         $('.form-group:eq(8)').fadeOut("fast");
         switch($("#demande_Etablissement_TypeGeneral").val()){
@@ -257,7 +294,9 @@
                 keepOther();
                 break;
         }
+
         $('#demande_plageDate_debut').addClass('week-picker');
+        $('#demande_plageDate_fin').addClass('week-picker');
         $(function() {
             var startDate;
             var endDate;

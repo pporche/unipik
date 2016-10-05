@@ -33,7 +33,7 @@ class ArrayConverter {
             } else {
                 $t = str_replace('"', '\\"', $t); // escape double quote
                 if (! is_numeric($t)) { // quote only non-numeric values
-                    $t = '"' . $t . '"';
+                    $t = '(' . $t . ')';
                 }
                 $result[] = $t;
             }
@@ -77,6 +77,9 @@ class ArrayConverter {
             } else if (!$string && ($ch == '"' || $ch == "'")) {
                 $string = TRUE;
                 $quote = $ch;
+            } else if (!$string && ($ch = '(')){
+                $string = TRUE;
+                $quote = ')';
             } else if ($string && $ch == $quote && $s[$i - 1] == "\\") {
                 $v = substr($v, 0, -1) . $ch;
             } else if ($string && $ch == $quote && $s[$i - 1] != "\\") {

@@ -33,8 +33,17 @@ class RechercheAvanceeType extends AbstractType
                 'Autres interventions' => 'autreIntervention'
             ],);
 
+        $statutChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
+            'choices' => [
+                'Toutes' => '',
+                'Attribuées' => 'attribuees',
+                'Non attribuées' => 'nonAttribuees',
+                'réalisées' => 'realisees',
+            ],);
+
         $builder
-            ->add('typeIntervention',ChoiceType::class, $optionChoiceType)
+            ->add('typeIntervention', ChoiceType::class, $optionChoiceType)
+            ->add('statutIntervention', ChoiceType::class, $statutChoiceType)
             ->add('date', CheckboxType::class, array(
                 'label'    => 'Toutes',
                 'required' => false,

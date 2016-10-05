@@ -251,6 +251,7 @@ class InterventionController extends Controller {
 
         $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
         $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
+        $statutIntervention =$form->get("statutIntervention")->getData(); //Récupération du statut de l'intervention
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
 
@@ -260,7 +261,7 @@ class InterventionController extends Controller {
 
         $repository = $this->getInterventionRepository();
 
-        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc);
+        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention);
 
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
             'field' => $field,
@@ -272,7 +273,8 @@ class InterventionController extends Controller {
             'dateStart' => $start,
             'dateEnd' => $end,
             'user' => $user,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'onlyMyIntervention' => false,
         ));
 
     }
@@ -280,9 +282,39 @@ class InterventionController extends Controller {
     /**
      * @return Response Renvoie vers la page d'attribution d'intervention.
      */
-    public function attribueesAction() {
-        return $this->render('InterventionBundle:Intervention/Attribuees:liste.html.twig', array(
-            'liste' => null
+    public function attribueesAction(Request $request) {
+        $user = $this->getUser();
+
+        $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+
+        $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
+        $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
+        $statutIntervention =$form->get("statutIntervention")->getData(); //Récupération du statut de l'intervention
+        $start = $form->get("start")->getData();
+        $end = $form->get("end")->getData();
+
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "dateIntervention");
+        $desc = $request->get("desc", true);
+
+        $repository = $this->getInterventionRepository();
+
+        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, $user);
+
+        return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+            'field' => $field,
+            'desc' => $desc,
+            'rowsPerPage' => $rowsPerPage,
+            'liste' => $listIntervention,
+            'typeIntervention' => $typeIntervention,
+            'isCheck' => $dateChecked,
+            'dateStart' => $start,
+            'dateEnd' => $end,
+            'user' => $user,
+            'form' => $form->createView(),
+            'onlyMyIntervention' => true,
         ));
     }
 

@@ -23,9 +23,11 @@ class InterventionRepository extends EntityRepository {
      * @param $typeIntervention
      * @param $field
      * @param $desc
+     * @param $statut
+     * @param $user
      * @return array
      */
-    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc){
+    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user = null){
         switch ($typeIntervention) {
             case "plaidoyer":
                 $qb = $this->getPlaidoyers($start, $end, $dateChecked);
@@ -39,6 +41,25 @@ class InterventionRepository extends EntityRepository {
             default:
                 $qb = $this->getToutesInterventions($start, $end, $dateChecked);
                 break;
+        }
+
+        switch ($statut) {
+            case "attribuees":
+                $this->getInterventionsAttribuees($qb);
+                break;
+            case "nonAttribuees":
+                $this->getInterventionsNonAttribuees($qb);
+                break;
+            case "realisees":
+                $this->getInterventionsRealisees($qb);
+                break;
+            default:
+                break;
+        }
+
+        if ($user) {
+            $qb->andWhere('i.benevole = :user')
+                ->setParameter('user', $user);
         }
 
         if($field=="lieu"){
@@ -221,5 +242,31 @@ class InterventionRepository extends EntityRepository {
             ->andWhere('i.dateIntervention BETWEEN :start AND :end')
             ->setParameter('start',$start)
             ->setParameter('end',$end);
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     */
+    public function getInterventionsAttribuees(QueryBuilder $qb){
+        $qb
+            ->andWhere($qb->expr()->isNotNull('i.benevole'))
+            ->andWhere($qb->expr()->eq('i.realisee', $qb->expr()->literal(false)));
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     */
+    public function getInterventionsNonAttribuees(QueryBuilder $qb){
+        $qb
+            ->andWhere($qb->expr()->isNull('i.benevole'));
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     */
+    public function getInterventionsRealisees(QueryBuilder $qb){
+        $qb
+            ->andWhere($qb->expr()->isNotNull('i.benevole'))
+            ->andWhere($qb->expr()->eq('i.realisee', $qb->expr()->literal(true)));
     }
 }

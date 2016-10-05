@@ -84,7 +84,8 @@
                 });
         }
 
-
+//        $('#recherche_avancee_statutIntervention_2').hide();
+//        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
     </script>
 {% endblock %}
 
@@ -92,9 +93,16 @@
     <section class="col-lg-2 col-md-2 col-sm-2">
         <div class="row">
             <div class='well'>
-                {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                {% if onlyMyIntervention %}
+                    {{ form_start(form, {'method': 'get', 'action': path('intervention_attributed'), 'attr': {'class': 'intervention_attributed form-sm'}}) }}
+                {% else %}
+                    {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                {% endif %}
                 <h5>Type d'intervention :</h5>
                 {{ form_widget(form.typeIntervention) }}
+                <br/>
+                <h5>Statut de l'intervention :</h5>
+                {{ form_widget(form.statutIntervention) }}
                 <br/>
                 <h5>Dates d'intervention :</h5>
                 {{ form_widget(form.date) }}

@@ -116,6 +116,13 @@
         </section>
     </div>
     <div class="row">
+        <div class="buttons">
+            <a href="{{ path("etablissement_admin_edit", {'id': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier</span> </a>
+            <a href="{{ path("etablissement_admin_delete", {'id': etablissement.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'établissment {{ etablissement.nom }} ?')"><span class="glyphicon glyphicon-trash"> Supprimer </span> </a>
+        </div>
+    </div>
+    <div class="row">
+    <div class="row">
         <div class="col-sm-12 infoContainer">
             <div class="col-sm-4 containerOne">
                 <div class="circle circleOne">
@@ -156,8 +163,8 @@
                 </div>
                 <h3>Contacts</h3>
                 <div class="row">
-                            {% if etablissement.contact is not empty%}
-                                {% for contact in etablissement.contact %}
+                            {% if etablissement.contacts is not empty%}
+                                {% for contact in etablissement.contacts %}
                                     <div class="well col-lg-offset-1 col-sm-12 col-xs-12">
                                         <dl class="dl-horizontal">
                                             <div class="col-sm-6 col-xs-12">

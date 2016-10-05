@@ -22,8 +22,8 @@ class JourInterventionType extends AbstractType {
 
         $optionChoiceType = array( 'expanded' => true, 'multiple' => false, 'choices' => [
             'Matin' => 'matin',
-            'Après Midi' => 'apres-midi',
-            'indifférent' => 'indifferent',
+            'Après-Midi' => 'apres-midi',
+            'Indifférent' => 'indifferent',
             'Jour à éviter' => 'a-eviter',
         ],);
 

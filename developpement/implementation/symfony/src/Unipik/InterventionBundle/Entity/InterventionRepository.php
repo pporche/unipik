@@ -23,9 +23,11 @@ class InterventionRepository extends EntityRepository {
      * @param $typeIntervention
      * @param $field
      * @param $desc
-     * @return mixed
+     * @param $statut
+     * @param $user
+     * @return array
      */
-    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc){
+    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user = null){
         switch ($typeIntervention) {
             case "plaidoyer":
                 $qb = $this->getPlaidoyers($start, $end, $dateChecked);
@@ -39,6 +41,25 @@ class InterventionRepository extends EntityRepository {
             default:
                 $qb = $this->getToutesInterventions($start, $end, $dateChecked);
                 break;
+        }
+
+        switch ($statut) {
+            case "attribuees":
+                $this->getInterventionsAttribuees($qb);
+                break;
+            case "nonAttribuees":
+                $this->getInterventionsNonAttribuees($qb);
+                break;
+            case "realisees":
+                $this->getInterventionsRealisees($qb);
+                break;
+            default:
+                break;
+        }
+
+        if ($user) {
+            $qb->andWhere('i.benevole = :user')
+                ->setParameter('user', $user);
         }
 
         if($field=="lieu"){
@@ -65,11 +86,11 @@ class InterventionRepository extends EntityRepository {
     /**
      * Get Frimousses
      *
-     * @param \Datetime $start
-     * @param \Datetime $end
-     * @param \boolean $datesChecked
+     * @param $start
+     * @param $end
+     * @param $datesChecked
+     * @return QueryBuilder
      *
-     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFrimousses($start, $end, $datesChecked) {
         $qb = $this->createQueryBuilder('i');
@@ -89,11 +110,10 @@ class InterventionRepository extends EntityRepository {
     /**
      * Get Plaidoyers
      *
-     * @param \Datetime $start
-     * @param \Datetime $end
-     * @param \boolean $datesChecked
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param $start
+     * @param $end
+     * @param $datesChecked
+     * @return QueryBuilder
      */
     public function getPlaidoyers( $start, $end, $datesChecked) {
         $qb = $this->createQueryBuilder('i');
@@ -112,12 +132,10 @@ class InterventionRepository extends EntityRepository {
 
     /**
      * Get Autres Interventions
-     *
-     * @param \Datetime $start
-     * @param \Datetime $end
-     * @param \boolean $datesChecked
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param $start
+     * @param $end
+     * @param $datesChecked
+     * @return QueryBuilder
      */
     public function getAutresInterventions($start,  $end , $datesChecked) {
         $qb = $this->createQueryBuilder('i');
@@ -135,13 +153,11 @@ class InterventionRepository extends EntityRepository {
 
 
     /**
-     * Get Toutes Interventions
-     *
-     * @param \Datetime $start
-     * @param \Datetime $end
-     * @param \boolean $datesChecked
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     *  Get Toutes Interventions
+     * @param $start
+     * @param $end
+     * @param $datesChecked
+     * @return QueryBuilder
      */
     public function getToutesInterventions($start,  $end , $datesChecked) {
         $qb = $this->createQueryBuilder('i');
@@ -190,10 +206,27 @@ class InterventionRepository extends EntityRepository {
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getInterventionsRealiseesOuNonBenevole($benevole, $realisees) {
-        $query = $this->_em->createQuery('SELECT i FROM InterventionBundle:Intervention i JOIN i.benevole b WHERE i.realisee = :r AND b.id = :id');
+        $query = $this->_em->createQuery('SELECT i FROM InterventionBundle:Intervention i  JOIN i.benevole b  WHERE i.realisee = :r AND b.id = :id ORDER BY i.dateIntervention ASC');
         $query->setParameter('r',$realisees);
         $query->setParameter('id',$benevole->getId());
 
+        return $query->getResult();
+    }
+
+    /**
+     * Get Interventions réalisées ou non réalisées d'un bénévole
+     *
+     * @param boolean $realisees
+     * @param \Unipik\UserBundle\Entity\Benevole $benevole
+     * @param int $maxResults
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNInterventionsRealiseesOuNonBenevole($benevole, $realisees, $maxResults) {
+        $query = $this->_em->createQuery('SELECT i FROM InterventionBundle:Intervention i JOIN i.benevole b WHERE i.realisee = :r AND b.id = :id ORDER BY i.dateIntervention ASC');
+        $query->setParameter('r',$realisees);
+        $query->setParameter('id',$benevole->getId());
+        $query->setMaxResults($maxResults);
         return $query->getResult();
     }
 
@@ -209,5 +242,31 @@ class InterventionRepository extends EntityRepository {
             ->andWhere('i.dateIntervention BETWEEN :start AND :end')
             ->setParameter('start',$start)
             ->setParameter('end',$end);
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     */
+    public function getInterventionsAttribuees(QueryBuilder $qb){
+        $qb
+            ->andWhere($qb->expr()->isNotNull('i.benevole'))
+            ->andWhere($qb->expr()->eq('i.realisee', $qb->expr()->literal(false)));
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     */
+    public function getInterventionsNonAttribuees(QueryBuilder $qb){
+        $qb
+            ->andWhere($qb->expr()->isNull('i.benevole'));
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     */
+    public function getInterventionsRealisees(QueryBuilder $qb){
+        $qb
+            ->andWhere($qb->expr()->isNotNull('i.benevole'))
+            ->andWhere($qb->expr()->eq('i.realisee', $qb->expr()->literal(true)));
     }
 }

@@ -28,7 +28,7 @@ class AdresseType extends AbstractFieldsetType {
     private $entityManager;
 
     /**
-     * VilleType constructor.
+     * AdresseType constructor.
      * @param ObjectManager $entityManager
      */
     public function __construct(ObjectManager $entityManager)

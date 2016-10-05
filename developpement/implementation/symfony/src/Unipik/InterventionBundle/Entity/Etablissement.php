@@ -3,7 +3,11 @@
 // version 1.01 date 09/09/2016 auteur Julie Pain
 namespace Unipik\InterventionBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
+use Unipik\InterventionBundle\Form\EtablissementType;
 
 /**
  * Etablissement
@@ -86,7 +90,7 @@ class Etablissement
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Contact", mappedBy="etablissement")
+     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Contact", mappedBy="etablissement", cascade={"persist"})
      */
     private $contact;
 
@@ -187,6 +191,8 @@ class Etablissement
      * @param string $emails
      *
      * @return Etablissement
+     *
+     * @deprecated
      */
     public function setEmails($emails)
     {
@@ -196,13 +202,54 @@ class Etablissement
     }
 
     /**
-     * Get emails
+     * Add email
      *
-     * @return string
+     * @param string|array $email
+     *
+     * @return Etablissement
      */
-    public function getEmails()
-    {
-        return $this->emails;
+    public function addEmail($email) {
+        $this->emails = ArrayConverter::addIntoPgArray(
+            $this->emails,
+            $email
+        );
+
+        return $this;
+    }
+
+    /**
+     * Remove email
+     *
+     * @param string $email
+     */
+    public function removeEmail($email) {
+        $this->emails = ArrayConverter::removeFromPgArray(
+            $this->emails,
+            $email
+        );
+    }
+
+    /**
+     * Get email
+     *
+     * @return Collection
+     */
+    public function getEmails() {
+        $array = array();
+        if ($this->emails != null) {
+            $array = ArrayConverter::pgArrayToPhpArray($this->emails);
+        }
+        return new ArrayCollection($array);
+    }
+
+    /**
+     * Supprime tous les emails
+     *
+     * @return Etablissement
+     */
+    public function removeAllEmails() {
+        $this->emails = "{}";
+        return $this;
     }
 
     /**
@@ -330,7 +377,7 @@ class Etablissement
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getContact()
+    public function getContacts()
     {
         return $this->contact;
     }

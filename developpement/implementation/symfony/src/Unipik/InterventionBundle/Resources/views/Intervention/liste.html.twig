@@ -1,10 +1,9 @@
 {# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
+
 {% extends "InterventionBundle::layout.html.twig" %}
 
 {% block title %}
-
     {{ parent() }}
-
 {% endblock %}
 
 {% block stylesheets %}
@@ -17,78 +16,94 @@
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
     <script>
-        $(document).ready(function() {
-
-            $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
-
-            $("#recherche_avancee_date").prop('checked',true);
+        $(document).ready(function () {
+            $('#myTable').pageMe({
+                pagerSelector: '#myPager',
+                showPrevNext: true,
+                hidePageNumbers: false,
+                perPage:{{ rowsPerPage }} });
+            $("#recherche_avancee_date").prop('checked', true);
             $("#between_dates").hide();
-
-            hide_or_show = function() {
-                if($(this).is(':checked')){
+            hide_or_show = function () {
+                if ($(this).is(':checked')) {
                     $("#between_dates").hide();
-                    $("#recherche_avancee_start").prop('required',false);
-                    $("#recherche_avancee_end").prop('required',false);
-                }else{
+                    $("#recherche_avancee_start").prop('required', false);
+                    $("#recherche_avancee_end").prop('required', false);
+                } else {
                     $("#between_dates").show();
-                    $("#recherche_avancee_start").prop('required',true);
-                    $("#recherche_avancee_end").prop('required',true);
+                    $("#recherche_avancee_start").prop('required', true);
+                    $("#recherche_avancee_end").prop('required', true);
                 }
             };
-
             $("#recherche_avancee_date").change(hide_or_show);
-
             $('#recherche_avancee_start').datepicker({
                 format: 'dd-mm-yyyy',
                 language: 'fr',
                 autoclose: true
-            }).on('changeDate', function(selected){
+            }).on('changeDate', function (selected) {
                 $('#recherche_avancee_end').datepicker('setStartDate', new Date(selected.date.valueOf()));
             });
-
             $('#recherche_avancee_end').datepicker({
                 format: 'dd-mm-yyyy',
                 language: 'fr',
                 autoclose: true
-            }).on('changeDate', function(selected){
+            }).on('changeDate', function (selected) {
                 $('#recherche_avancee_start').datepicker('setEndDate', new Date(selected.date.valueOf()));
             });
         });
-
         function deleteInterventions() {
             var selected = [];
-
-            $("input:checkbox[name=type]:checked").each(function(){
+            $("input:checkbox[name=type]:checked").each(function () {
                 var $this = $(this);
                 selected.push($this.attr("id"));
             });
-
             var ids = JSON.stringify(selected);
-
-            $.post("{{ path('intervention_admin_deletes') }}", {'ids':ids},
-                    function(data, status){
-                        for(i=0;i<selected.length;i++){
-                            $("#"+selected[i]).closest('tr').remove();
-                        }
-                    });
+            $.post("{{ path('intervention_admin_deletes') }}", {'ids': ids},
+                function (data, status) {
+                    for (i = 0; i < selected.length; i++) {
+                        $("#" + selected[i]).closest('tr').remove();
+                    }
+                });
         }
 
+        function desattributeIntervention(event, id) {
+            $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
+            function (data, status) {
+                $(event).attr('class', 'btn btn-primary');
+                $(event).text('S\'attribuer l\'intervention');
+                $(event).attr("onclick", "attributeIntervention(this, "+id+")");
+            });
+        }
+
+        function attributeIntervention(event, id) {
+            $.post("{{ path('intervention_self_attribute') }}", {'id': id},
+                function (data, status) {
+                    $(event).attr('class', 'btn btn-danger');
+                    $(event).text('Se désattribuer l\'intervention');
+                    $(event).attr("onclick", "desattributeIntervention(this, "+id+")");
+                });
+        }
+
+//        $('#recherche_avancee_statutIntervention_2').hide();
+//        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
     </script>
 {% endblock %}
 
-
-
 {% block body %}
-
     <section class="col-lg-2 col-md-2 col-sm-2">
         <div class="row">
             <div class='well'>
-
-                {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                {% if onlyMyIntervention %}
+                    {{ form_start(form, {'method': 'get', 'action': path('intervention_attributed'), 'attr': {'class': 'intervention_attributed form-sm'}}) }}
+                {% else %}
+                    {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                {% endif %}
                 <h5>Type d'intervention :</h5>
                 {{ form_widget(form.typeIntervention) }}
                 <br/>
-
+                <h5>Statut de l'intervention :</h5>
+                {{ form_widget(form.statutIntervention) }}
+                <br/>
                 <h5>Dates d'intervention :</h5>
                 {{ form_widget(form.date) }}
                 <br/>
@@ -98,19 +113,14 @@
                     et le
                     {{ form_widget(form.end, { 'attr': {'class': 'input-sm'} }) }}
                 </div>
-
                 <br/>
-
                 <div>
                     <input id="submit" type="submit" value="OK" class="btn btn-primary"/>
                 </div>
                 {{ form_end(form) }}
-
             </div>
         </div>
     </section>
-
-
     <section id="listeIntervention" class="col-lg-10 col-md-10 col-sm-10">
         <h2>
             Liste des
@@ -120,7 +130,7 @@
                 interventions frimousses
             {% elseif typeIntervention == "autreIntervention" %}
                 autres interventions
-            {% else  %}
+            {% else %}
                 interventions
             {% endif %}
             {% if isCheck is empty %}
@@ -133,7 +143,6 @@
             {% endif %}
             :
         </h2>
-
         <div class="container">
             <div class="row">
                 <div class="table-responsive">
@@ -146,60 +155,75 @@
                                 {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
                             {% endif %}
                             {% if app.request.query.get('rowsPerPage') is not null %}
-                                {% set pathReq = pathReq | merge({"rowsPerPage":app.request.query.get('rowsPerPage')})%}
+                                {% set pathReq = pathReq | merge({"rowsPerPage":app.request.query.get('rowsPerPage')}) %}
                             {% endif %}
                             {% if field == "dateIntervention" %}
-                                {%  if desc %}
-                                    <th>Lieu 
-                                    	<a class="sortButtonLieu" id="sortButtonLieu" href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
-                                    		<img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu" alt="sort Down"/>
-                                    	</a>
+                                {% if desc %}
+                                    <th>Lieu
+                                        <a class="sortButtonLieu" id="sortButtonLieu"
+                                           href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                 id="sortLieu" alt="sort Down"/>
+                                        </a>
                                     </th>
-                                    <th>Date 
-                                    	<a class="sortButtonDate" id="sortButtonDate" href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
-                                    		<img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate" alt="sort Down"/>
-                                    	</a>
+                                    <th>Date
+                                        <a class="sortButtonDate" id="sortButtonDate"
+                                           href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
+                                                 id="sortDate" alt="sort Down"/>
+                                        </a>
                                     </th>
                                 {% else %}
-                                    <th>Lieu 
-                                    	<a class="sortButtonLieu" id="sortButtonLieu" href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
-                                    		<img src="{{ asset('img/sort-down.png') }}" class="sort sort-up" id="sortLieu" alt="sort Down"/>
-                                    	</a>
+                                    <th>Lieu
+                                        <a class="sortButtonLieu" id="sortButtonLieu"
+                                           href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-up"
+                                                 id="sortLieu" alt="sort Down"/>
+                                        </a>
                                     </th>
-                                    <th>Date 
-                                    	<a class="sortButtonDate" id="sortButtonDate" href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
-                                    		<img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up" id="sortDate" alt="sort Up"/>
-                                    	</a>
+                                    <th>Date
+                                        <a class="sortButtonDate" id="sortButtonDate"
+                                           href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
+                                            <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
+                                                 id="sortDate" alt="sort Up"/>
+                                        </a>
                                     </th>
                                 {% endif %}
                             {% else %}
-                                {%  if desc %}
-                                    <th>Lieu 
-	                                    <a class="sortButtonLieu" id="sortButtonLieu" href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
-	                                    	<img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu" alt="sort Down"/>
-	                                    </a>
+                                {% if desc %}
+                                    <th>Lieu
+                                        <a class="sortButtonLieu" id="sortButtonLieu"
+                                           href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                 id="sortLieu" alt="sort Down"/>
+                                        </a>
                                     </th>
-                                    <th>Date 
-	                                    <a class="sortButtonDate" id="sortButtonDate" href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
-	                                    	<img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate" alt="sort Down"/>
-	                                    </a>
+                                    <th>Date
+                                        <a class="sortButtonDate" id="sortButtonDate"
+                                           href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
+                                                 id="sortDate" alt="sort Down"/>
+                                        </a>
                                     </th>
                                 {% else %}
-                                    <th>Lieu 
-	                                    <a class="sortButtonLieu" id="sortButtonLieu" href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
-	                                    	<img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortLieu" alt="sort Up"/>
-	                                    </a>
+                                    <th>Lieu
+                                        <a class="sortButtonLieu" id="sortButtonLieu"
+                                           href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                            <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortLieu"
+                                                 alt="sort Up"/>
+                                        </a>
                                     </th>
-                                    <th>Date 
-	                                    <a class="sortButtonDate" id="sortButtonDate" href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
-	                                    	<img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up" id="sortDate" alt="sort Up"/>
-	                                    </a>
+                                    <th>Date
+                                        <a class="sortButtonDate" id="sortButtonDate"
+                                           href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
+                                                 id="sortDate" alt="sort Up"/>
+                                        </a>
                                     </th>
                                 {% endif %}
                             {% endif %}
-
-
                             <th>Type</th>
+                            <th>Statut</th>
                             <th>Voir détails</th>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <th>Supprimer</th>
@@ -210,7 +234,7 @@
                         {% for intervention in liste %}
                             <tr>
                                 <td>{{ loop.index }}</td>
-                                <td>{{ intervention.lieu | capitalize}}</td>
+                                <td>{{ intervention.lieu | capitalize }}</td>
                                 <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
                                 <td>
                                     {% if intervention.plaidoyer %}
@@ -220,10 +244,29 @@
                                     {% else %}
                                         Autre intervention
                                     {% endif %}
+                                </td>
+                                <td>
+
+                                        {% if intervention.realisee %}
+                                            Réalisée
+                                        {% elseif intervention.benevole %}
+                                            {% if user==intervention.benevole %}
+                                                <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeIntervention(this, {{ intervention.id }})">
+                                                    Se désattribuer l'intervention
+                                                </button>
+                                            {% else %}
+                                                Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
+                                            {% endif %}
+                                        {% else %}
+                                            <button name="attribution" type="button" class="btn btn-primary" onclick="attributeIntervention(this, {{ intervention.id }})">
+                                                S'attribuer l'intervention
+                                            </button>
+                                        {% endif %}
 
                                 </td>
                                 <td>
-                                    <a href="{{ path('intervention_view', {id: intervention.id}) }}" class="btn btn-primary">Voir détails</a>
+                                    <a href="{{ path('intervention_view', {id: intervention.id}) }}"
+                                       class="btn btn-primary">Voir détails</a>
                                 </td>
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <td>
@@ -246,7 +289,8 @@
                             {% if liste is not empty %}
                                 <button type="button" class="btn btn-danger" onclick="deleteInterventions()">
                                     <em class="glyphicon glyphicon-trash"></em>
-                                    &nbsp Supprimer</button>
+                                    &nbsp Supprimer
+                                </button>
                             {% endif %}
                         </div>
                     {% endif %}
@@ -257,7 +301,7 @@
                         {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
                     {% endif %}
                     {% if app.request.query.get('desc') is not null %}
-                        {% set pathReq = pathReq | merge({"desc":app.request.query.get('desc')}) | merge({"field":app.request.query.get('field')})%}
+                        {% set pathReq = pathReq | merge({"desc":app.request.query.get('desc')}) | merge({"field":app.request.query.get('field')}) %}
                     {% endif %}
                     <ul>Par page :
                         <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,

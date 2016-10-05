@@ -92,7 +92,7 @@ class Departement
      *
      * @param string $nom
      *
-     * @return Region
+     * @return Departement
      */
     public function setNom($nom)
     {

@@ -30,14 +30,14 @@ class ElevesType extends AbstractType {
         $optionNiveauScolaire = array( 'expanded' => true, 'multiple' => false, 'label' => "Niveau scolaire",
             'choices' => [
                 'Maternel' => 'maternelle',
-                'Elementaire' => 'elementaire',
+                'Elémentaire' => 'elementaire',
                 'Collège' => 'college',
                 'Lycée' => 'lycee',
                 'Supérieur' => 'superieur'
             ],);
 
         $builder
-            ->add('nbEleves', IntegerType::class, array('label' => "Nombre d'élèves"))
+            ->add('nbEleves', IntegerType::class, array('label' => 'Nombre'))
         ;
     }
 

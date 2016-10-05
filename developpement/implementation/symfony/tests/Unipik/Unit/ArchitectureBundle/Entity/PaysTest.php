@@ -8,13 +8,13 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Entity;
 
-use Unipik\UserBundle\Entity\Pays;
-use Tests\Unipik\Unit\UserBundle\Entity\Mocks\PaysMock;
+use Unipik\ArchitectureBundle\Entity\Pays;
+use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\PaysMock;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
 
 class PaysTest extends EntityTestCase {
 
-    protected static $repository = "UserBundle:Pays";
+    protected static $repository = "ArchitectureBundle:Pays";
 
     public static function testCreate() {
         self::bootKernel();

@@ -2,7 +2,12 @@
 // version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 namespace Unipik\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 /**
  * Contact
@@ -24,6 +29,8 @@ class Contact
 
     /**
      * @var string
+     *
+     * @Assert\Email()
      *
      * @ORM\Column(name="email", type="string", length=100, nullable=false)
      */
@@ -356,25 +363,31 @@ class Contact
     /**
      * Get estTuteur
      *
+     * @todo: déplacer estTuteur dans la colonne participe
+     *
      * @return boolean
      */
-    public function isEstTuteur()
-    {
-        return $this->estTuteur;
-    }
+//    public function isEstTuteur()
+//    {
+//        return $this->estTuteur;
+//    }
 
 
     /**
      * Set estTuteur
      *
+     * @todo: déplacer estTuteur dans la colonne participe
+     *
      * @param boolean $estTuteur
      *
      * @return Contact
      */
-    public function setEstTuteur($estTuteur)
-    {
-        $this->estTuteur = $estTuteur;
-    }
+//    public function setEstTuteur($estTuteur)
+//    {
+//        $this->estTuteur = $estTuteur;
+//
+//        return $this;
+//    }
 
 
     /**
@@ -397,21 +410,14 @@ class Contact
     public function setRespoEtablissement($respoEtablissement)
     {
         $this->respoEtablissement = $respoEtablissement;
-    }
 
-
-    /**
-     * Get typeActivite
-     *
-     * @return string
-     */
-    public function getTypeActivite()
-    {
-        return $this->typeActivite;
+        return $this;
     }
 
     /**
      * Set typeActivite
+     *
+     * @deprecated
      *
      * @param string $typeActivite
      *
@@ -420,5 +426,48 @@ class Contact
     public function setTypeActivite($typeActivite)
     {
         $this->typeActivite = $typeActivite;
+
+        return $this;
+    }
+
+    /**
+     * Add typeActivite
+     *
+     * @param string|array $responsabilite
+     *
+     * @return Contact
+     */
+    public function addTypeActivite($responsabilite) {
+        $this->typeActivite = ArrayConverter::addIntoPgArray(
+            $this->typeActivite,
+            $responsabilite
+        );
+
+        return $this;
+    }
+
+    /**
+     * Remove typeActivite
+     *
+     * @param string $typeActivite
+     */
+    public function removetypeActivite($typeActivite) {
+        $this->typeActivite = ArrayConverter::removeFromPgArray(
+            $this->typeActivite,
+            $typeActivite
+        );
+    }
+
+    /**
+     * Get typeActivite
+     *
+     * @return Collection
+     */
+    public function getTypeActivite() {
+        $array = array();
+        if ($this->typeActivite != null) {
+            $array = ArrayConverter::pgArrayToPhpArray($this->typeActivite);
+        }
+        return new ArrayCollection($array);
     }
 }

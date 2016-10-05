@@ -1,14 +1,14 @@
-{# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
+{# version 1.00, date 04/10/2016, auteur François Decq #}
 {% extends "InterventionBundle::layout.html.twig" %}
 
 {% block title %}
 
-    Demander une intervention - {{ parent() }}
+    Ajouter une intervention - {{ parent() }}
 
 {% endblock %}
 
 {% block body %}
-    <h2>Demande d'intervention</h2>
+    <h2>Ajout d'une intervention</h2>
     {{ form(form) }}
 {% endblock %}
 
@@ -17,7 +17,6 @@
     {{ parent() }}
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
-
     <script type="application/javascript">
         console.log('début du javascript de l\'ambiance');
         var addInterElt = document.createElement('a');
@@ -27,72 +26,6 @@
         buttonAddElement.textContent = 'Ajouter une Intervention';
         addInterElt.appendChild(buttonAddElement);
         document.getElementById('demande_Intervention').appendChild(addInterElt);
-
-        function displayTypeIntervention(e){
-            var parNode = e.target;
-            parNode = parNode.parentNode;
-            parNode = parNode.parentNode;
-            parNode = parNode.parentNode;
-            var matClasElt = parNode.getElementsByClassName('form-group')[2];
-            var matFriElt = parNode.getElementsByClassName('form-group')[3];
-            var themElt = parNode.getElementsByClassName('form-group')[7];
-            var lblMatElt = parNode.getElementsByTagName('label')[1];
-
-            switch(e.target.value){
-                case 'frim' :
-                    $(matClasElt).fadeOut('slow');
-                    $(matFriElt).fadeIn('medium');
-                    $(themElt).fadeIn('fast');
-                    $(lblMatElt).fadeOut('fast');
-                    break;
-                case 'pld' :
-                    $(lblMatElt).fadeIn('fast');
-                    $(matFriElt).fadeOut('slow');
-                    $(matClasElt).fadeIn('medium');
-                    $(themElt).fadeIn('fast');
-                    break;
-
-                case 'aut' :
-                    $(lblMatElt).fadeOut('fast');
-                    $(matClasElt).fadeOut('fast');
-                    $(matFriElt).fadeOut('fast');
-                    $(themElt).fadeIn('fast');
-                    break;
-            }
-            e.stopImmediatePropagation();
-        }
-
-
-        function treatmentSelect(template){
-            var choiceEtabElt = document.getElementsByTagName('select')[0];
-            //console.log('template:'+ template.html());
-            var type;
-            switch(choiceEtabElt.value){
-                case 'ens' :
-                    type = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked').value;
-                    switch (type){
-                        case 'elementaire':
-
-                            console.log($(template).find('select').find('options'));
-
-                            for(i=0; i<$(template).find('select')[1].length; i++){
-                                if(i<7 || i>15){
-                                    $(template).find('select').find('options').prop('disabled', true);
-                                }
-                            }
-                            console.log($(template).find('select')[1][1]);
-                            break;
-                    }
-                    break;
-                case 'centre' :
-                    type = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked').value;
-                    break;
-                case 'autre' :
-                    type = document.querySelector('input[name="demande[Etablissement][typeAutreEtablissement]"]:checked').value;
-                    break;
-            }
-        }
-
         $(document).ready(function() {
 
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
@@ -136,31 +69,32 @@
                 // - le texte "__name__" qu'il contient par le numéro du champ
 
                 var template = $container.attr('data-prototype')
-                    .replace(/__name__label__/g, 'Intervention n°' + (index+1))
-                    .replace(/__name__/g,        index)
-                    ;
+                                .replace(/__name__label__/g, 'Intervention n°' + (index+1))
+                                .replace(/__name__/g,        index)
+                        ;
 
 
                 // On crée un objet jquery qui contient ce template
                 var $prototype = $(template);
 
+                // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
                 addDeleteLink($prototype);
 
+                // On ajoute le prototype modifié à la fin de la balise <div>
                 $container.append($prototype);
+
                 $("#add_intervention").appendTo($container).css('margin-left', '80%');
-                treatmentSelect($(template));
-                $($prototype).children().find("select").on("change",displayTypeIntervention);
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;
             }
 
-            // La fonction qui ajoute un lien de suppression
+            // La fonction qui ajoute un lien de suppression d'une catégorie
             function addDeleteLink($prototype) {
                 // Création du lien
                 var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
                 // Ajout du lien
                 $prototype.append($deleteLink);
-                // Ajout du listener sur le clic du lien pour effectivement
+                // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
                 $deleteLink.click(function(e) {
                     $prototype.remove();
                     e.preventDefault(); // évite qu'un # apparaisse dans l'URL
@@ -211,9 +145,9 @@
         }
 
         function verifyAll(e){
-           // verifyNumber(e);
+            // verifyNumber(e);
             verifyCP(e);
-           // verifyMail(e);
+            verifyMail(e);
             showUAI();
             if($('#demande_Etablissement_uai').val().trim())
                 verifyUAI(e);
@@ -276,7 +210,7 @@
 
         function verifyCodeUai(codeUai){
             // alphabet pris en compte (23 lettres, sans I, O et Q)
-             var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+            var alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
             // On supprime les espaces et on met tout en minuscules
             var codeUaiPropre = codeUai.trim().toLowerCase();
@@ -307,17 +241,18 @@
             var columnHeadElt = document.createElement('td');
             $(item.getElementsByTagName('label')[0]).detach().appendTo($(columnHeadElt));
             $(columnHeadElt).detach().appendTo($(newLineElt));
-                while(item.getElementsByTagName('input').length > 0){
-                    var columnElt = document.createElement('td');
-                    var inputElt = item.getElementsByTagName('input')[0];
-                    $(inputElt).detach().appendTo($(columnElt));
-                    $(columnElt).detach().appendTo($(newLineElt));
-                }
+            while(item.getElementsByTagName('input').length > 0){
+                var columnElt = document.createElement('td');
+                var inputElt = item.getElementsByTagName('input')[0];
+                $(inputElt).detach().appendTo($(columnElt));
+                $(columnElt).detach().appendTo($(newLineElt));
+            }
 
             $(newLineElt).detach().appendTo($(tblElt));
         }
 
         function constructHeader(item){
+            console.log(item);
             var theadElt = document.createElement('thead');
             var newLineElt = document.createElement('tr');
             var columnHeadElt = document.createElement('th');
@@ -342,7 +277,7 @@
 
         constructHeader(document.getElementsByClassName('form-group form-group')[16].getElementsByClassName('form-group')[0].getElementsByTagName('label'));
 
-
+        //$(tblElt).detach().appendTo($(document.getElementsByClassName('form-group form-group')[16]));
         $('#demande_jour').replaceWith($(tblElt));
 
         //document.getElementsByClassName('form-group form-group')[16]
@@ -404,5 +339,4 @@
         $('.date-pick').datepicker();
 
     </script>
-
 {% endblock %}

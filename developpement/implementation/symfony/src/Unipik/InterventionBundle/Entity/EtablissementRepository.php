@@ -15,9 +15,49 @@ use Doctrine\ORM\QueryBuilder;
 class EtablissementRepository extends EntityRepository {
 
     /**
+     * Generic function for DB queries.
+     *
+     * @param $typeEtablissement
+     * @param $ville
+     * @param $field
+     * @param $desc
+     * @return array
+     */
+    public function getType($typeEtablissement, $ville, $field, $desc){
+        switch ($typeEtablissement) {
+            case "enseignement":
+                $qb = $this->getEnseignements();
+                break;
+            case "centre":
+                $qb = $this->getCentresLoisirs();
+                break;
+            case "autreEtablissement":
+                $qb = $this->getAutresEtablissements();
+                break;
+            default:
+                $qb = $this->getTousEtablissements($ville);
+                break;
+        }
+
+        if($field=="nom"){
+            if($desc){
+                $qb->orderBy('e.nom','DESC');
+            }else{
+                $qb->orderBy('e.nom','ASC');
+            }
+        }
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
      * Get Enseignements
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return QueryBuilder
+     *
      */
     public function getEnseignements() {
         $qb = $this->createQueryBuilder('e');
@@ -25,16 +65,14 @@ class EtablissementRepository extends EntityRepository {
         $qb
             ->where($qb->expr()->isNotNull('e.typeEnseignement'));
 
-        return $qb
-            ->getQuery()
-            ->getResult()
-        ;
+        return $qb;
     }
 
     /**
-     * Get Centre Loisirs
+     *  Get Centre Loisirs
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return QueryBuilder
+     *
      */
     public function getCentresLoisirs() {
         $qb = $this->createQueryBuilder('e');
@@ -42,16 +80,14 @@ class EtablissementRepository extends EntityRepository {
         $qb
             ->where($qb->expr()->isNotNull('e.typeCentre'));
 
-        return $qb
-            ->getQuery()
-            ->getResult()
-            ;
+        return $qb;
     }
 
     /**
      * Get Autres Etablissements
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return QueryBuilder
+     *
      */
     public function getAutresEtablissements() {
         $qb = $this->createQueryBuilder('e');
@@ -59,10 +95,7 @@ class EtablissementRepository extends EntityRepository {
         $qb
             ->where($qb->expr()->isNotNull('e.typeAutreEtablissement'));
 
-        return $qb
-            ->getQuery()
-            ->getResult()
-            ;
+        return $qb;
     }
 
 
@@ -143,6 +176,10 @@ class EtablissementRepository extends EntityRepository {
         return $results;
     }
 
+    /** Get Tous Etablissements
+     * @param $ville
+     * @return array
+     */
     public function getTousEtablissements($ville) {
         $qb = $this->createQueryBuilder('e');
 
@@ -150,10 +187,7 @@ class EtablissementRepository extends EntityRepository {
             $this->whereVilleIs($qb,$ville);
         }
 
-        return $qb
-            ->getQuery()
-            ->getResult()
-            ;
+        return $qb;
     }
 
     /**

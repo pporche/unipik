@@ -94,26 +94,20 @@ class EtablissementController extends Controller {
         $typeEtablissement = $form->get("typeEtablissement")->getData();
         $ville = $form->get("ville")->getData();
 
-        switch ($typeEtablissement) {
-            case "enseignement":
-                $typeEnseignement = $form->get("typeEnseignement")->getData();
-                $listEtablissement = empty($typeEnseignement) ? $repository->getEnseignements() : $repository->getEnseignementsByType($typeEnseignement,$ville);
-                break;
-            case "centre":
-                $typeCentre = $form->get("typeCentre")->getData();
-                $listEtablissement = empty($typeCentre) ? $repository->getCentresLoisirs() : $repository->getCentresLoisirsByType($typeCentre, $ville);
-                break;
-            case "autreEtablissement":
-                $typeAutreEtablissement = $form->get("typeAutreEtablissement")->getData();
-                $listEtablissement = empty($typeAutreEtablissement) ? $repository->getAutresEtablissements() : $repository->getAutresEtablissementsByType($typeAutreEtablissement, $ville);
-                break;
-            default:
-                $listEtablissement = $repository->getTousEtablissements($ville);
-                break;
-        }
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "nom");
+        $desc = $request->get("desc", false);
+
+        $repository = $this->getEtablissementRepository();
+
+        $listEtablissement = $repository->getType($typeEtablissement, $ville, $field, $desc);
 
         return $this->render('InterventionBundle:Etablissement:liste.html.twig', array(
+            'field' => $field,
+            'desc' => $desc,
+            'rowsPerPage' => $rowsPerPage,
             'liste' => $listEtablissement,
+            'typeEtablissement' => $typeEtablissement,
             'form' => $form->createView()
         ));
     }

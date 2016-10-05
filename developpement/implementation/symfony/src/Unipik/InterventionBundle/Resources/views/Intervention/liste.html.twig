@@ -103,7 +103,7 @@
 
         $(document).ready(function() {
 
-            $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
+            $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage }} });
 
             $("#recherche_avancee_date").prop('checked',true);
             $("#between_dates").hide();
@@ -143,51 +143,6 @@
 
         });
 
-        function sortByLieu(){
-
-            if($('#sortLieu').hasClass("sort-down")){
-                $('#sortLieu').removeClass();
-                $('#sortLieu').addClass("sort sort-up");
-                $('#sortLieu').attr("src", "{{ asset('img/sort-up.png')}}");
-
-                $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
-
-            }
-            else {
-                $('#sortLieu').removeClass();
-                $('#sortLieu').addClass("sort sort-down");
-                $('#sortLieu').attr("src", "{{ asset('img/sort-down.png')}}");
-
-
-                 $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
-
-            }
-        }
-
-
-        function sortByDate(){
-
-            if($('#sortDate').hasClass("sort-down")){
-                $('#sortDate').removeClass();
-                $('#sortDate').addClass("sort sort-up");
-                $('#sortDate').attr("src", "{{ asset('img/sort-up.png')}}");
-
-
-
-                $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
-
-            }
-            else {
-                $('#sortDate').removeClass();
-                $('#sortDate').addClass("sort sort-down");
-                $('#sortDate').attr("src", "{{ asset('img/sort-down.png')}}");
-
-                $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
-
-            }
-        }
-
-
         function deleteInterventions() {
             var selected = [];
 
@@ -213,7 +168,7 @@
 
 {% block body %}
 
-    <section class="col-lg-2 col-md-2 col-sm-2">
+    <section class="col-lg-2 col-md-2 col-sm-2" >
         <div class="row">
             <div class='well'>
 
@@ -270,7 +225,7 @@
         <div class="container">
             <div class="row">
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover" id="tableIntervention">
+                    <table class="table table-striped table-hover" id="tableEtablissements">
                         <thead>
                         <tr>
                             <th>#</th>

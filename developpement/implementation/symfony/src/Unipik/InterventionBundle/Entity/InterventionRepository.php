@@ -23,7 +23,7 @@ class InterventionRepository extends EntityRepository {
      * @param $typeIntervention
      * @param $field
      * @param $desc
-     * @return mixed
+     * @return array
      */
     public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc){
         switch ($typeIntervention) {
@@ -65,11 +65,11 @@ class InterventionRepository extends EntityRepository {
     /**
      * Get Frimousses
      *
-     * @param \Datetime $start
-     * @param \Datetime $end
-     * @param \boolean $datesChecked
+     * @param $start
+     * @param $end
+     * @param $datesChecked
+     * @return QueryBuilder
      *
-     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFrimousses($start, $end, $datesChecked) {
         $qb = $this->createQueryBuilder('i');
@@ -89,11 +89,10 @@ class InterventionRepository extends EntityRepository {
     /**
      * Get Plaidoyers
      *
-     * @param \Datetime $start
-     * @param \Datetime $end
-     * @param \boolean $datesChecked
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param $start
+     * @param $end
+     * @param $datesChecked
+     * @return QueryBuilder
      */
     public function getPlaidoyers( $start, $end, $datesChecked) {
         $qb = $this->createQueryBuilder('i');
@@ -112,12 +111,10 @@ class InterventionRepository extends EntityRepository {
 
     /**
      * Get Autres Interventions
-     *
-     * @param \Datetime $start
-     * @param \Datetime $end
-     * @param \boolean $datesChecked
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param $start
+     * @param $end
+     * @param $datesChecked
+     * @return QueryBuilder
      */
     public function getAutresInterventions($start,  $end , $datesChecked) {
         $qb = $this->createQueryBuilder('i');
@@ -135,13 +132,11 @@ class InterventionRepository extends EntityRepository {
 
 
     /**
-     * Get Toutes Interventions
-     *
-     * @param \Datetime $start
-     * @param \Datetime $end
-     * @param \boolean $datesChecked
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     *  Get Toutes Interventions
+     * @param $start
+     * @param $end
+     * @param $datesChecked
+     * @return QueryBuilder
      */
     public function getToutesInterventions($start,  $end , $datesChecked) {
         $qb = $this->createQueryBuilder('i');

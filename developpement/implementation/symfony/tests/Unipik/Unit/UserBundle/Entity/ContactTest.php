@@ -42,7 +42,6 @@ class ContactTest extends  EntityTestCase
             ->setPrenom("Alfred")
             ->setTelFixe("0232010203")
             ->setTelPortable("0601020304")
-            ->setTypeActivite("frimousses")
         ;
 
         $this->assertEquals($c->getNom(),"Dupont");
@@ -51,12 +50,11 @@ class ContactTest extends  EntityTestCase
         $this->assertEquals($c->getPrenom(), "Alfred");
         $this->assertEquals($c->getTelFixe(), "0232010203");
         $this->assertEquals($c->getTelPortable(), "0601020304");
-        $this->assertEquals($c->getTypeActivite(), "frimousses");
 
-        $c->setEstTuteur(true);
-        $this->assertEquals($c->isEstTuteur(), true);
-        $c->setEstTuteur(false);
-        $this->assertEquals($c->isEstTuteur(), false);
+//        $c->setEstTuteur(true);
+//        $this->assertEquals($c->isEstTuteur(), true);
+//        $c->setEstTuteur(false);
+//        $this->assertEquals($c->isEstTuteur(), false);
 
         $c->setRespoEtablissement(true);
         $this->assertEquals($c->isRespoEtablissement(), true);

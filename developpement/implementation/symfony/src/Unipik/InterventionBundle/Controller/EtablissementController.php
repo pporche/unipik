@@ -10,11 +10,13 @@ namespace Unipik\InterventionBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Etablissement;
 use Unipik\InterventionBundle\Form\EtablissementType;
 use Unipik\InterventionBundle\Form\Etablissement\RechercheAvanceeType;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 class EtablissementController extends Controller {
 
@@ -47,8 +49,12 @@ class EtablissementController extends Controller {
             $centreTypeArray = $form->get("typeCentre")->getData();
             $institute->setTypeCentre($centreTypeArray);
 
-            $emailsString = '{('.$form->get("emails")->getData().')}';
-            $institute->setEmails($emailsString);
+            $emails = $form->get("emails")->getData();
+            var_dump($emails);
+            //$emailsString = '{('.$form->get("emails")->getData()[0].')}';
+            foreach ($emails as $email) {
+                $institute->addEmail($email);
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($institute);
@@ -115,5 +121,29 @@ class EtablissementController extends Controller {
             'liste' => $listEtablissement,
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function editAction(Request $request, $id) {
+        $institute = $this->getEtablissementRepository()
+            ->findOneBy(array('id' => $id));
+
+        $form = $this->get('form.factory')
+            ->createBuilder(EtablissementType::class, $institute)
+            ->add('Valider', SubmitType::class)
+            ->getForm();
+
+        if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($institute);
+            $em->flush();
+
+            return $this->redirectToRoute('etablissement_view', array('id' => $id));
+        }
+
+        return $this->render('InterventionBundle:Etablissement:editEtablissement.html.twig', array('form' => $form->createView()));
     }
 }

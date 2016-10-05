@@ -8,7 +8,7 @@
 namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
 use Tests\Unipik\Unit\Utils\Mock;
-use Unipik\UserBundle\Entity\Region;
+use Unipik\ArchitectureBundle\Entity\Region;
 
 class RegionMock extends Mock {
 

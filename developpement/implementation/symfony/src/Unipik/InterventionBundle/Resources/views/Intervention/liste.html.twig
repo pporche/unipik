@@ -16,9 +16,7 @@
     {{ parent() }}
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
-    <script src="{{ asset("vendor/twbs-pagination/jquery.twbsPagination.js") }}"></script>
     <script>
-
         $(document).ready(function() {
 
             $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage}} });
@@ -56,6 +54,7 @@
                 $('#recherche_avancee_start').datepicker('setEndDate', new Date(selected.date.valueOf()));
             });
         });
+
 
         function genererHTML($field, $isReverse){
 
@@ -254,8 +253,64 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Lieu <button class="sortButtonLieu" id="sortButtonLieu" onclick="sortByLieu()"><img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu"/></button></th>
-                            <th>Date <button class="sortButtonDate" id="sortButtonDate" onclick="sortByDate()"><img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate"/></button></th>
+                            {% set pathReq = [] %}
+                            {% if app.request.query.get('recherche_avancee') is not null %}
+                                {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
+                            {% endif %}
+                            {% if app.request.query.get('rowsPerPage') is not null %}
+                                {% set pathReq = pathReq | merge({"rowsPerPage":app.request.query.get('rowsPerPage')})%}
+                            {% endif %}
+                            {% if field == "dateIntervention" %}
+                                {%  if desc %}
+                                    <th>Lieu
+                                    	<a class="sortButtonLieu" id="sortButtonLieu" href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                    		<img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu" alt="sort Down"/>
+                                    	</a>
+                                    </th>
+                                    <th>Date
+                                    	<a class="sortButtonDate" id="sortButtonDate" href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
+                                    		<img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate" alt="sort Down"/>
+                                    	</a>
+                                    </th>
+                                {% else %}
+                                    <th>Lieu
+                                    	<a class="sortButtonLieu" id="sortButtonLieu" href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                    		<img src="{{ asset('img/sort-down.png') }}" class="sort sort-up" id="sortLieu" alt="sort Down"/>
+                                    	</a>
+                                    </th>
+                                    <th>Date
+                                    	<a class="sortButtonDate" id="sortButtonDate" href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
+                                    		<img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up" id="sortDate" alt="sort Up"/>
+                                    	</a>
+                                    </th>
+                                {% endif %}
+                            {% else %}
+                                {%  if desc %}
+                                    <th>Lieu
+	                                    <a class="sortButtonLieu" id="sortButtonLieu" href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+	                                    	<img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortLieu" alt="sort Down"/>
+	                                    </a>
+                                    </th>
+                                    <th>Date
+	                                    <a class="sortButtonDate" id="sortButtonDate" href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
+	                                    	<img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down" id="sortDate" alt="sort Down"/>
+	                                    </a>
+                                    </th>
+                                {% else %}
+                                    <th>Lieu
+	                                    <a class="sortButtonLieu" id="sortButtonLieu" href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+	                                    	<img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortLieu" alt="sort Up"/>
+	                                    </a>
+                                    </th>
+                                    <th>Date
+	                                    <a class="sortButtonDate" id="sortButtonDate" href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
+	                                    	<img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up" id="sortDate" alt="sort Up"/>
+	                                    </a>
+                                    </th>
+                                {% endif %}
+                            {% endif %}
+
+
                             <th>Type</th>
                             <th>Voir détails</th>
                             {% if is_granted('ROLE_ADMIN') %}
@@ -298,18 +353,31 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <div class="buttons">
                             <a href="{{ path('intervention_admin_add') }}" class="btn btn-primary btn-danger">
-                                <i class="glyphicon glyphicon-alert"></i> &nbsp Ajouter une intervention
+                                <em class="glyphicon glyphicon-alert"></em> &nbsp Ajouter une intervention
                             </a>
                             {% if liste is not empty %}
                                 <button type="button" class="btn btn-danger" onclick="deleteInterventions()">
-                                    <i class="glyphicon glyphicon-trash"></i>
+                                    <em class="glyphicon glyphicon-trash"></em>
                                     &nbsp Supprimer</button>
                             {% endif %}
                         </div>
                     {% endif %}
                 </div>
                 <div class="col-md-12 text-center">
-                    <ul>Par page : <a href="?rowsPerPage=5">5</a>, <a href="?rowsPerPage=10">10</a>, <a href="?rowsPerPage=20">20</a>, <a href="?rowsPerPage=50">50</a>, <a href="?rowsPerPage=100">100</a></ul>
+                    {% set pathReq = [] %}
+                    {% if app.request.query.get('recherche_avancee') is not null %}
+                        {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
+                    {% endif %}
+                    {% if app.request.query.get('desc') is not null %}
+                        {% set pathReq = pathReq | merge({"desc":app.request.query.get('desc')}) | merge({"field":app.request.query.get('field')})%}
+                    {% endif %}
+                    <ul>Par page :
+                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
+                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
+                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
+                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
+                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
+                    </ul>
                     <ul class="pagination pagination-lg pager" id="myPager"></ul>
                 </div>
             </div>

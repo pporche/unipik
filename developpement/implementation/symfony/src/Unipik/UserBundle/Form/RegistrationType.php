@@ -41,21 +41,21 @@ class RegistrationType extends AbstractType {
 
         $optionActivite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Activités potentielles',
             'choices' => [
-                'Actions ponctuelles' => '(actions_ponctuelles)',
-                'Plaidoyers' => '(plaidoyers)',
-                'Frimousses' => '(frimousses)',
-                'Projets' => '(projets)',
-                'Autre' => '(autre)',
+                'Actions ponctuelles' => 'actions_ponctuelles',
+                'Plaidoyers' => 'plaidoyers',
+                'Frimousses' => 'frimousses',
+                'Projets' => 'projets',
+                'Autre' => 'autre',
             ],);
 
         $optionResponsabilite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Responsable d\'activité',
             'choices' => [
-                'Actions ponctuelles' => '(actions_ponctuelles)',
-                'Plaidoyers' => '(plaidoyers)',
-                'Frimousses' => '(frimousses)',
-                'Projets' => '(projets)',
-                'Administrateur Régional' => '(admin_region)',
-                'Administrateur Comité' => '(admin_comite)',
+                'Actions ponctuelles' => 'actions_ponctuelles',
+                'Plaidoyers' => 'plaidoyers',
+                'Frimousses' => 'frimousses',
+                'Projets' => 'projets',
+                'Administrateur Régional' => 'admin_region',
+                'Administrateur Comité' => 'admin_comite',
             ],);
 
         $builder

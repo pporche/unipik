@@ -1,6 +1,6 @@
 intervention_admin_add:
     path:     /intervention/ajouter
-    defaults: { _controller: InterventionBundle:Intervention:ajouter }
+    defaults: { _controller: InterventionBundle:Intervention:add }
 
 etablissement_admin_add:
     path:     /etablissement/ajouter
@@ -19,3 +19,7 @@ intervention_admin_deletes:
 etablissement_admin_deletes:
     path:   /etablissement/supprimer
     defaults: { _controller: InterventionBundle:Etablissement:deleteEtablissements }
+
+etablissement_admin_edit:
+    path:   /etablissement/edit/{id}
+    defaults: { _controller: InterventionBundle:Etablissement:edit }

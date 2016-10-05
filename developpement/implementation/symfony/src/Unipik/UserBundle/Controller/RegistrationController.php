@@ -64,13 +64,22 @@ class RegistrationController extends BaseController {
         // Après le submit du formulaire
         if ($form->isValid()) {
             $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
-            $responsibilitiesString = ArrayConverter::phpArrayToPgArray($responsibilitiesArray);
-            $user->setResponsabiliteActivite($responsibilitiesString);
+            foreach ($responsibilitiesArray as $responsabilite) {
+                $user->addResponsabiliteActivite($responsabilite);
+                if($responsabilite != 'admin_region' && $responsabilite != 'admin_comite') {
+                    $user->addActivitesPotentielles($responsabilite);
+                }
+            }
+//            $responsibilitiesString = ArrayConverter::phpArrayToPgArray($responsibilitiesArray);
+//            $user->setResponsabiliteActivite($responsibilitiesString);
 
             $activitiesArray = $form->get("activitesPotentielles")->getData(); //récup les activités choisies sur le form + format pour persist
-            $activitiesString = ArrayConverter::phpArrayToPgArray($activitiesArray);
-            $activitiesString = $this->setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString);
-            $user->setActivitesPotentielles($activitiesString);
+//            foreach ($activitiesArray as $activite) {
+//                $user->addActivitesPotentielles($activite);
+//            }
+//            $activitiesString = ArrayConverter::phpArrayToPgArray($activitiesArray);
+//            //$activitiesString = $this->setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString);
+//            $user->setActivitesPotentielles($activitiesString);
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);

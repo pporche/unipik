@@ -23,9 +23,13 @@ class PlageDateType extends AbstractType {
             ->add('debut', DateType::class,array(
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
-                'format' => 'yyyy-MM-dd',
+                'format' => 'dd/MM/yyyy',
             ))
-            ->add('fin', DateType::class)
+            ->add('fin', DateType::class,array(
+                'widget' => 'single_text',
+                // this is actually the default format for single_text
+                'format' => 'dd/MM/yyyy',
+            ))
         ;
     }
 

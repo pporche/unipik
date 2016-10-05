@@ -15,6 +15,54 @@ use Doctrine\ORM\QueryBuilder;
 class InterventionRepository extends EntityRepository {
 
     /**
+     * Generic function for DB queries.
+     *
+     * @param $start
+     * @param $end
+     * @param $dateChecked
+     * @param $typeIntervention
+     * @param $field
+     * @param $desc
+     * @return mixed
+     */
+    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc){
+        switch ($typeIntervention) {
+            case "plaidoyer":
+                $qb = $this->getPlaidoyers($start, $end, $dateChecked);
+                break;
+            case "frimousse":
+                $qb = $this->getFrimousses($start, $end, $dateChecked);
+                break;
+            case "autreIntervention":
+                $qb = $this->getAutresInterventions($start, $end, $dateChecked);
+                break;
+            default:
+                $qb = $this->getToutesInterventions($start, $end, $dateChecked);
+                break;
+        }
+
+        if($field=="lieu"){
+            if($desc){
+                $qb->orderBy('i.lieu','DESC');
+            }else{
+                $qb->orderBy('i.lieu','ASC');
+            }
+
+        }else{
+            if($desc){
+                $qb->orderBy('i.dateIntervention','DESC');
+            }else{
+                $qb->orderBy('i.dateIntervention','ASC');
+            }
+        }
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
      * Get Frimousses
      *
      * @param \Datetime $start
@@ -35,12 +83,7 @@ class InterventionRepository extends EntityRepository {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
-        $this->orderByDesc($qb);
-
-        return $qb
-            ->getQuery()
-            ->getResult()
-        ;
+        return $qb;
     }
 
     /**
@@ -64,12 +107,7 @@ class InterventionRepository extends EntityRepository {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
-        $this->orderByDesc($qb);
-
-        return $qb
-            ->getQuery()
-            ->getResult()
-        ;
+        return $qb;
     }
 
     /**
@@ -92,12 +130,7 @@ class InterventionRepository extends EntityRepository {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
-        $this->orderByDesc($qb);
-
-        return $qb
-            ->getQuery()
-            ->getResult()
-        ;
+        return $qb;
     }
 
 
@@ -117,12 +150,7 @@ class InterventionRepository extends EntityRepository {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
-        $this->orderByDesc($qb);
-
-        return $qb
-            ->getQuery()
-            ->getResult()
-            ;
+        return $qb;
     }
 
     /**
@@ -154,6 +182,22 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
+     * Get Interventions réalisées ou non réalisées d'un bénévole
+     *
+     * @param boolean $realisees
+     *@param \Unipik\UserBundle\Entity\Benevole $benevole
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInterventionsRealiseesOuNonBenevole($benevole, $realisees) {
+        $query = $this->_em->createQuery('SELECT i FROM InterventionBundle:Intervention i JOIN i.benevole b WHERE i.realisee = :r AND b.id = :id');
+        $query->setParameter('r',$realisees);
+        $query->setParameter('id',$benevole->getId());
+
+        return $query->getResult();
+    }
+
+    /**
      * Where Interventions between dates
      *
      * @param \Date $start
@@ -165,11 +209,5 @@ class InterventionRepository extends EntityRepository {
             ->andWhere('i.dateIntervention BETWEEN :start AND :end')
             ->setParameter('start',$start)
             ->setParameter('end',$end);
-    }
-
-
-    public function orderByDesc(QueryBuilder $qb){
-        $qb
-            ->orderBy('i.dateIntervention','DESC');
     }
 }

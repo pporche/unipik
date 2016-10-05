@@ -1,14 +1,14 @@
-{# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
+{# version 1.00, date 04/10/2016, auteur François Decq #}
 {% extends "InterventionBundle::layout.html.twig" %}
 
 {% block title %}
 
-    Demander une intervention - {{ parent() }}
+    Ajouter une intervention - {{ parent() }}
 
 {% endblock %}
 
 {% block body %}
-    <h2>Demande d'intervention</h2>
+    <h2>Ajout d'une intervention</h2>
     {{ form(form) }}
 {% endblock %}
 
@@ -69,9 +69,9 @@
                 // - le texte "__name__" qu'il contient par le numéro du champ
 
                 var template = $container.attr('data-prototype')
-                    .replace(/__name__label__/g, 'Intervention n°' + (index+1))
-                    .replace(/__name__/g,        index)
-                    ;
+                                .replace(/__name__label__/g, 'Intervention n°' + (index+1))
+                                .replace(/__name__/g,        index)
+                        ;
 
 
                 // On crée un objet jquery qui contient ce template
@@ -145,7 +145,7 @@
         }
 
         function verifyAll(e){
-           // verifyNumber(e);
+            // verifyNumber(e);
             verifyCP(e);
             verifyMail(e);
             showUAI();
@@ -210,7 +210,7 @@
 
         function verifyCodeUai(codeUai){
             // alphabet pris en compte (23 lettres, sans I, O et Q)
-             var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+            var alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
             // On supprime les espaces et on met tout en minuscules
             var codeUaiPropre = codeUai.trim().toLowerCase();
@@ -241,12 +241,12 @@
             var columnHeadElt = document.createElement('td');
             $(item.getElementsByTagName('label')[0]).detach().appendTo($(columnHeadElt));
             $(columnHeadElt).detach().appendTo($(newLineElt));
-                while(item.getElementsByTagName('input').length > 0){
-                    var columnElt = document.createElement('td');
-                    var inputElt = item.getElementsByTagName('input')[0];
-                    $(inputElt).detach().appendTo($(columnElt));
-                    $(columnElt).detach().appendTo($(newLineElt));
-                }
+            while(item.getElementsByTagName('input').length > 0){
+                var columnElt = document.createElement('td');
+                var inputElt = item.getElementsByTagName('input')[0];
+                $(inputElt).detach().appendTo($(columnElt));
+                $(columnElt).detach().appendTo($(newLineElt));
+            }
 
             $(newLineElt).detach().appendTo($(tblElt));
         }

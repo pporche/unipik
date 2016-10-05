@@ -37,8 +37,6 @@ class ElevesType extends AbstractType {
             ],);
 
         $builder
-            ->add('typeEtablissement', ChoiceType::class, $optionTypeEtablissement)
-            ->add('niveauScolaire', ChoiceType::class, $optionNiveauScolaire)
             ->add('nbEleves', IntegerType::class, array('label' => "Nombre d'élèves"))
         ;
     }

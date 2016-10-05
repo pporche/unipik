@@ -8,6 +8,8 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Entity;
 
+use Tests\Unipik\Unit\UserBundle\Entity\Mocks\BenevoleMock;
+use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ContactMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ProjetMock;
 use Unipik\UserBundle\Entity\Projet;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
@@ -41,6 +43,19 @@ class ProjetTest extends EntityTestCase
         $this->assertEquals($p->getRemarques(), "Très long texte.");
         $this->assertEquals($p->getType(), "superieur");
 
+        $b = BenevoleMock::create();
+
+        $p->addBenevole($b);
+        $this->assertEquals($b, $p->getBenevole()[0]);
+        $p->removeBenevole($b);
+        $this->assertEquals(null, $p->getBenevole()[0]);
+
+        $c = ContactMock::create();
+
+        $p->addContact($c);
+        $this->assertEquals($c, $p->getContact()[0]);
+        $p->removeContact($c);
+        $this->assertEquals(null, $p->getContact()[0]);
     }
 
     public function badEntityProvider() {

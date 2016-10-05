@@ -71,18 +71,6 @@ class ContactTest extends  EntityTestCase
 
     }
 
-    /**
-     * @dataProvider validEntityProvider
-     */
-    public function testPersist($e)
-    {
-        parent::testBadEntities($e);
-
-        $this->markTestIncomplete(
-            'Problèmes avec la relation contact<->projet'
-        );
-    }
-
     public function validEntityProvider() {
         $c = ContactMock::createMultiple(4);
         $p = ProjetMock::create();
@@ -98,7 +86,7 @@ class ContactTest extends  EntityTestCase
             ->setPrenom("Alfred")
             ->setTelFixe("0232010203")
             ->setTelPortable("0601020304")
-            ->setTypeActivite("frimousses")
+            //->setTypeActivite("frimousses")
             ;
         $c[3]->setRespoEtablissement(true);
         $c[3]->setRespoEtablissement(true);
@@ -106,9 +94,9 @@ class ContactTest extends  EntityTestCase
         return [
             "1 Contact" => [$c[0]],
             "3 Contacts" => [clone $c[0], clone $c[0], clone $c[0]],
-            /*"1 contact with 1 projet" => [$p, $c[1]],
+            "1 contact with 1 projet" => [$p, $c[1]],
             "1 contact with 3 projets" => [$p2, $p3, $c[2]],
-            "1 Contact with all optional values" => [$c[3]]*/
+            "1 Contact with all optional values" => [$c[3]]
         ];
     }
 

@@ -42,4 +42,9 @@ fos_user_change_password:
     defaults:
         _controller: FOSUserBundle:ChangePassword:changePassword
 
+fos_user_planning_show:
+    path: /planning
+    defaults:
+        _controller: UserBundle:User:showPlanning
+
 

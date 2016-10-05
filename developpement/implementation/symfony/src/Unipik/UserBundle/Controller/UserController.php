@@ -171,4 +171,24 @@ class UserController extends Controller {
 
         return $this->render('UserBundle:Profile:editBenevole.html.twig', array('form' => $form->createView()));
     }
+
+    /**
+     * Render a volunteer's planning page
+     *
+     * @param Request $request
+     * @param $username
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
+     */
+    public function showPlanningAction(Request $request) {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('InterventionBundle:Intervention');
+        $interventionsNonRealiseesBenevole = $repository->getInterventionsRealiseesOuNonBenevole($user, false);
+        $interventionsRealiseesBenevole = $repository->getInterventionsRealiseesOuNonBenevole($user, true);
+        return $this->render('UserBundle::myPlanning.html.twig', array('user' => $user, 'interventionsNonRealisees' => $interventionsNonRealiseesBenevole, 'interventionsRealisees' => $interventionsRealiseesBenevole));
+
+    }
+
+
 }

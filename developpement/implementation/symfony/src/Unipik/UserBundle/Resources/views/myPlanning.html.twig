@@ -1,0 +1,78 @@
+{# version 1.00, date 05/10/2016, auteur Mélissa Bignoux #}
+{% extends "ArchitectureBundle::layoutArchitecture.html.twig" %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('vendor/moment/moment.js') }}" xmlns:white-space="http://www.w3.org/1999/xhtml"></script>
+    <script src="{{ asset('vendor/fullcalendar/dist/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('vendor/fullcalendar/dist/locale/fr.js') }}"></script>
+    <style>
+        .fc-month-view span.fc-title{
+            white-space: normal;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var interventions = [];
+            var typeIntervention ;
+
+            {% for intervention in interventionsNonRealisees %}
+                {% if intervention.dateIntervention is not null  %}
+                    {% if intervention.plaidoyer %}
+                        typeIntervention = "Plaidoyer";
+                    {% elseif intervention.frimousse %}
+                        typeIntervention = "Frimousse";
+                    {% else %}
+                        typeIntervention = "Autre intervention";
+                    {% endif %}
+                    interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                        start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                        url: '{{ path('intervention_view', {id: intervention.id}) }}' });
+                {% endif %}
+            {% endfor %}
+            {% for intervention in interventionsRealisees %}
+                {% if intervention.dateIntervention is not null  %}
+                    {% if intervention.plaidoyer %}
+                        typeIntervention = "Plaidoyer";
+                    {% elseif intervention.frimousse %}
+                        typeIntervention = "Frimousse";
+                    {% else %}
+                        typeIntervention = "Autre intervention";
+                    {% endif %}
+                        interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                            start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                            url: '{{ path('intervention_view', {id: intervention.id}) }}' },);
+                {% endif %}
+            {% endfor %}
+
+            $('#calendar').fullCalendar({
+                locale:"fr",
+                events: interventions,
+            })
+        });
+
+    </script>
+{% endblock %}
+
+{% block title %}
+
+    Mon planning - {{ parent() }}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel='stylesheet' href="{{ asset('vendor/fullcalendar/dist/fullcalendar.css') }}"
+
+    />
+{% endblock %}
+{% block body %}
+    <h2> Votre planning  </h2>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div  id="calendar">
+            </div>
+        </div>
+    </div>
+{% endblock %}

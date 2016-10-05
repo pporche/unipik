@@ -12,9 +12,6 @@
         }
 
         #lien{float: right; }
-
-
-
     </style>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -22,29 +19,32 @@
             var typeIntervention ;
 
             {% for intervention in interventionsNonRealisees %}
-                {% if intervention.plaidoyer %}
-                    typeIntervention = "Plaidoyer";
-                {% elseif intervention.frimousse %}
-                    typeIntervention = "Frimousse";
-                {% else %}
-                    typeIntervention = "Autre intervention";
+                {% if intervention.dateIntervention is not null  %}
+                    {% if intervention.plaidoyer %}
+                        typeIntervention = "Plaidoyer";
+                    {% elseif intervention.frimousse %}
+                        typeIntervention = "Frimousse";
+                    {% else %}
+                        typeIntervention = "Autre intervention";
+                    {% endif %}
+                   interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                                        start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                        url: '{{ path('intervention_view', {id: intervention.id}) }}' });
                 {% endif %}
-               interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
-                                    start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                                    url: '{{ path('intervention_view', {id: intervention.id}) }}' });
-
             {% endfor %}
             {% for intervention in interventionsRealisees %}
-                {% if intervention.plaidoyer %}
-                typeIntervention = "Plaidoyer";
-                {% elseif intervention.frimousse %}
-                typeIntervention = "Frimousse";
-                {% else %}
-                typeIntervention = "Autre intervention";
+                {% if intervention.dateIntervention is not null  %}
+                    {% if intervention.plaidoyer %}
+                        typeIntervention = "Plaidoyer";
+                    {% elseif intervention.frimousse %}
+                        typeIntervention = "Frimousse";
+                    {% else %}
+                        typeIntervention = "Autre intervention";
+                    {% endif %}
                 {% endif %}
-            interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                url: '{{ path('intervention_view', {id: intervention.id}) }}' });
+                interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
+                    start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                    url: '{{ path('intervention_view', {id: intervention.id}) }}' });
 
             {% endfor %}
 
@@ -87,7 +87,7 @@
                         <li><a href="{{  path('fos_user_profile_edit') }}">Modifier mon profil</a></li>
                         <li><a href="{{  path('etablissement_list') }}">Liste des établissements</a></li>
                         <li><a href="{{  path('intervention_attributed') }}">Mes interventions</a></li>
-                        <li><a href="">Mon planning</a></li>
+                        <li><a href="{{  path('fos_user_planning_show') }}">Mon planning</a></li>
                     </ul>
                 </nav>
             </div>

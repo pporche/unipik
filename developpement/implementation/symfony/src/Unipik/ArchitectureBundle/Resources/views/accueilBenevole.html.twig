@@ -3,22 +3,50 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="{{ asset('vendor/moment/moment.js') }}"></script>
+    <script src="{{ asset('vendor/moment/moment.js') }}" xmlns:white-space="http://www.w3.org/1999/xhtml"></script>
     <script src="{{ asset('vendor/fullcalendar/dist/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('vendor/fullcalendar/dist/locale/fr.js') }}"></script>
-    <script>
+    <style> .fc-month-view span.fc-title{
+            white-space: normal;
+        }
+    </style>
+    <script type="text/javascript">
         $(document).ready(function() {
-            var listeInterventionsNonRealisees = {{ interventionsNonRealisees|json_encode|raw }}
-            var listeInterventionsRealisees = {{ interventionsRealisees|json_encode|raw }}
-            /*var tableau = new Array()
-            jQuery.each(listeInterventionsNonRealisees, function(i, val)){
-                tableau.push({ title  : val[2],
-                    start  : '2016-10-01'})
-            }*/
+            var interventions = [];
+            var typeIntervention ;
+
+            {% for intervention in interventionsNonRealisees %}
+            typeIntervention="";
+                {% if intervention.plaidoyer %}
+                    typeIntervention = "Plaidoyer";
+                {% elseif intervention.frimousse %}
+                    typeIntervention = "Frimousse";
+                {% else %}
+                    typeIntervention = "Autre intervention";
+                {% endif %}
+               interventions.push({ title  : '{{ intervention.etablissement.adresse.ville.nom }} - ' + typeIntervention ,
+                                    start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                    url: '{{ path('intervention_view', {id: intervention.id}) }}' });
+
+            {% endfor %}
+            {% for intervention in interventionsRealisees %}
+                {% if intervention.plaidoyer %}
+                typeIntervention = "Plaidoyer";
+                {% elseif intervention.frimousse %}
+                typeIntervention = "Frimousse";
+                {% else %}
+                typeIntervention = "Autre intervention";
+                {% endif %}
+            interventions.push({ title  : '{{ intervention.etablissement.adresse.ville.nom }} - ' + typeIntervention,
+                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                url: '{{ path('intervention_view', {id: intervention.id}) }}' });
+
+            {% endfor %}
 
             $('#calendar').fullCalendar({
                 locale:"fr",
-               // events: tableau
+                events: interventions,
+
             })
 
 
@@ -36,7 +64,9 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel='stylesheet' href="{{ asset('vendor/fullcalendar/dist/fullcalendar.css') }}" />
+    <link rel='stylesheet' href="{{ asset('vendor/fullcalendar/dist/fullcalendar.css') }}"
+
+    />
 {% endblock %}
 
 
@@ -220,9 +250,6 @@
                     </div>
                 </div>
             </section>
-
-
-
         </section>
 
 {% endblock %}

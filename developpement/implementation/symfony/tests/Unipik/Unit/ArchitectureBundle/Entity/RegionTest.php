@@ -8,13 +8,13 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Entity;
 
-use Tests\Unipik\Unit\UserBundle\Entity\Mocks\RegionMock;
-use Unipik\UserBundle\Entity\Region;
+use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\RegionMock;
+use Unipik\ArchitectureBundle\Entity\Region;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
 
 class RegionTest extends EntityTestCase {
 
-    protected static $repository = "UserBundle:Region";
+    protected static $repository = "ArchitectureBundle:Region";
 
     public static function testCreate() {
         self::bootKernel();
@@ -29,7 +29,7 @@ class RegionTest extends EntityTestCase {
      */
     public function testGettersSetters(Region $r) {
         $this->assertEquals($r->getId(), null);
-        $this->assertEquals($r->getNom(), "Aquitaine Limousin Poitou-Charentes");
+        $this->assertEquals($r->getNom(), "Normandie");
 
         $r->setNom("Bretagne");
         $p = PaysTest::testCreate();

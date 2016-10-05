@@ -50,8 +50,6 @@ class EtablissementController extends Controller {
             $institute->setTypeCentre($centreTypeArray);
 
             $emails = $form->get("emails")->getData();
-            var_dump($emails);
-            //$emailsString = '{('.$form->get("emails")->getData()[0].')}';
             foreach ($emails as $email) {
                 $institute->addEmail($email);
             }
@@ -64,6 +62,15 @@ class EtablissementController extends Controller {
         }
 
         return $this->render('InterventionBundle:Etablissement:ajouterEtablissement.html.twig', array('form' => $form->createView()));
+    }
+
+    public function deleteEtablissementAction($id) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $institute = $this->getEtablissementRepository()->findOneBy(array('id' => $id));
+        $em->remove($institute);
+        $em->flush();
+
+        return $this->redirectToRoute('etablissement_list');
     }
 
     public function deleteEtablissementsAction(Request $request) {
@@ -94,31 +101,24 @@ class EtablissementController extends Controller {
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
-        $repository = $this->getEtablissementRepository();
 
         $typeEtablissement = $form->get("typeEtablissement")->getData();
         $ville = $form->get("ville")->getData();
 
-        switch ($typeEtablissement) {
-            case "enseignement":
-                $typeEnseignement = $form->get("typeEnseignement")->getData();
-                $listEtablissement = empty($typeEnseignement) ? $repository->getEnseignements() : $repository->getEnseignementsByType($typeEnseignement,$ville);
-                break;
-            case "centre":
-                $typeCentre = $form->get("typeCentre")->getData();
-                $listEtablissement = empty($typeCentre) ? $repository->getCentresLoisirs() : $repository->getCentresLoisirsByType($typeCentre, $ville);
-                break;
-            case "autreEtablissement":
-                $typeAutreEtablissement = $form->get("typeAutreEtablissement")->getData();
-                $listEtablissement = empty($typeAutreEtablissement) ? $repository->getAutresEtablissements() : $repository->getAutresEtablissementsByType($typeAutreEtablissement, $ville);
-                break;
-            default:
-                $listEtablissement = $repository->getTousEtablissements($ville);
-                break;
-        }
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "nom");
+        $desc = $request->get("desc", false);
+
+        $repository = $this->getEtablissementRepository();
+
+        $listEtablissement = $repository->getType($typeEtablissement, $ville, $field, $desc);
 
         return $this->render('InterventionBundle:Etablissement:liste.html.twig', array(
+            'field' => $field,
+            'desc' => $desc,
+            'rowsPerPage' => $rowsPerPage,
             'liste' => $listEtablissement,
+            'typeEtablissement' => $typeEtablissement,
             'form' => $form->createView()
         ));
     }
@@ -135,15 +135,29 @@ class EtablissementController extends Controller {
             ->add('Valider', SubmitType::class)
             ->getForm();
 
+        $emails = $institute->getEmails();
+
         if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
 
             $em = $this->getDoctrine()->getManager();
+            $institute->removeAllEmails();
+
+            $emails = $form->get("emails")->getData();
+            foreach ($emails as $email) {
+                $institute->addEmail($email);
+            }
+
             $em->persist($institute);
             $em->flush();
 
             return $this->redirectToRoute('etablissement_view', array('id' => $id));
         }
 
-        return $this->render('InterventionBundle:Etablissement:editEtablissement.html.twig', array('form' => $form->createView()));
+        $emails = ArrayConverter::pgArrayToPhpArray($institute->getEmails());
+        $emails = json_encode($emails);
+        return $this->render('InterventionBundle:Etablissement:editEtablissement.html.twig', array('form' => $form->createView(),
+                                                                                                   'etablissement' => $institute,
+                                                                                                   'emails' => $emails,
+        ));
     }
 }

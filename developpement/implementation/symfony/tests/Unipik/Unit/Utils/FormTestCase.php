@@ -42,14 +42,13 @@ abstract class FormTestCase extends TypeTestCase {
      */
     public function testSubmitValidData($data, $entity)
     {
-
         $form = $this->factory->create(static::$testedType);
 
         // submit the data to the form directly
         $form->submit($data);
 
         $this->assertTrue($form->isSynchronized());
-        $this->assertEquals($entity, $form->getData());
+        $this->assertEquals($form->getData(), $entity);
         $this->assertTrue($form->isValid());
 
         $view = $form->createView();

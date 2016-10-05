@@ -217,14 +217,20 @@ class Etablissement
      * @return Etablissement
      */
     public function addEmail($email) {
-
-        var_dump($this->emails);
-
         $this->emails = ArrayConverter::addIntoPgArray(
             $this->emails,
             $email
         );
+        return $this;
+    }
 
+    /**
+     * Supprime tous les emails
+     *
+     * @return Etablissement
+     */
+    public function removeAllEmails() {
+        $this->emails = "";
         return $this;
     }
 

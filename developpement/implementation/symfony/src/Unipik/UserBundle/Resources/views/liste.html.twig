@@ -221,7 +221,20 @@
         <table class="table table-striped table-hover ">
             <thead>
             <tr>
-                <th>Nom</th>
+                <th>#</th>
+
+                {% set pathReq = [] %}
+                {% if app.request.query.get('rowsPerPage') is not null %}
+                    {% set pathReq = pathReq | merge({"rowsPerPage":app.request.query.get('rowsPerPage')})%}
+                {% endif %}
+                {% if field == "nom" %}
+                    {%  if desc %}
+                        <th>Nom <a class="sortButtonNom" id="sortButtonNom" href="{{ path('user_admin_list', pathReq | merge({"desc":false, "field":"nom"}) ) }}"><img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortNom"/></a></th>
+                    {% else %}
+                        <th>Nom <a class="sortButtonNom" id="sortButtonNom" href="{{ path('user_admin_list', pathReq | merge({"desc":true, "field":"nom"}) ) }}"><img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortNom"/></a></th>
+                    {% endif %}
+                {% endif %}
+
                 <th>Prénom</th>
                 <th>Responsabilité</th>
                 <th>Activité</th>
@@ -234,6 +247,7 @@
             <tbody>
             {% for benevole in listBenevoles|sort %}
                 <tr id="checkboxes">
+                    <td>{{ loop.index }}</td>
                     <td>{{ benevole.nom | capitalize }}</td>
                     <td>{{ benevole.prenom | capitalize }}</td>
                     <td id="idBenevole" hidden="hidden">{{ benevole.id }}</td>
@@ -244,26 +258,34 @@
                             </div>
                         {% else %}
                             <div class="col-lg-offset-1 col-sm-7 ">
+<<<<<<< HEAD
+                                {% if ('plaidoyer' in benevole.responsabiliteActivite ) %}
+                                        Plaidoyer <br>
+                                {% endif %}
+                                {% if ('frimousse' in benevole.responsabiliteActivite) %}
+                                        Frimousse <br>
+=======
                                 {% if ('plaidoyers' in benevole.responsabiliteActivite ) %}
                                         Plaidoyer,
                                 {% endif %}
                                 {% if ('frimousses' in benevole.responsabiliteActivite) %}
                                         Frimousse,
+>>>>>>> 00810bfc2bacf5d073084b7f8b2e8fa4542b5d81
                                 {% endif %}
                                 {% if ('actions_ponctuelles' in benevole.responsabiliteActivite) %}
-                                        Actions ponctuelles,
+                                        Actions ponctuelles <br>
                                 {% endif %}
                                 {% if ('projets' in benevole.responsabiliteActivite) %}
-                                        Projets,
+                                        Projets <br>
                                 {% endif %}
                                 {% if ('autre' in benevole.responsabiliteActivite) %}
                                         Autre,
                                 {% endif %}
                                 {% if ('admin_comite' in benevole.responsabiliteActivite) %}
-                                        Administrateur du comité,
+                                        Administrateur du comité <br>
                                 {% endif %}
                                 {% if ('admin_region' in benevole.responsabiliteActivite) %}
-                                        Administrateur de la région,
+                                        Administrateur de la région <br>
                                 {% endif %}
                             </div>
                         {% endif %}
@@ -279,23 +301,30 @@
                                     {#{{ act }}#}
                                 {#{% endfor %}#}
                                 {% if ('(plaidoyers)' in benevole.activitesPotentielles) %}
-                                    Plaidoyer,
+                                    Plaidoyer <br>
                                 {% endif %}
                                 {% if ('(frimousses)' in benevole.activitesPotentielles) %}
-                                    Frimousse,
+                                    Frimousse <br>
                                 {% endif %}
                                 {% if ('(actions_ponctuelles)' in benevole.activitesPotentielles) %}
-                                    Actions ponctuelles,
+                                    Actions ponctuelles <br>
                                 {% endif %}
                                 {% if ('(projets)' in benevole.activitesPotentielles) %}
-                                    Projets,
+                                    Projets <br>
                                 {% endif %}
+<<<<<<< HEAD
+                                {% if ('(projets)' in benevole.activitesPotentielles) %}
+                                    Autre <br>
+                                {% endif %}
+=======
+>>>>>>> 00810bfc2bacf5d073084b7f8b2e8fa4542b5d81
                                 {% if ('(admin_comite)' in benevole.activitesPotentielles) %}
-                                    Administrateur du comité,
+                                    Administrateur du comité <br>
                                 {% endif %}
                                 {% if ('(admin_region)' in benevole.activitesPotentielles) %}
-                                    Administrateur de la région,
+                                    Administrateur de la région <br>
                                 {% endif %}
+
                             </div>
                         {% endif %}
                     </td>
@@ -328,6 +357,21 @@
             </a>
             <button type="button" class="btn btn-danger" onclick="deleteBenevoles()">Supprimer</button>
         </div>
+    </div>
+
+    <div class="col-md-12 text-center">
+        {% set pathReq = [] %}
+        {% if app.request.query.get('desc') is not null %}
+            {% set pathReq = pathReq | merge({"desc":app.request.query.get('desc')}) | merge({"field":app.request.query.get('field')})%}
+        {% endif %}
+        <ul>Par page :
+            <a href="{{ path('user_admin_list', pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
+            <a href="{{ path('user_admin_list', pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
+            <a href="{{ path('user_admin_list', pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
+            <a href="{{ path('user_admin_list', pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
+            <a href="{{ path('user_admin_list', pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
+        </ul>
+        <ul class="pagination pagination-lg pager" id="myPager"></ul>
     </div>
 
 {% endblock %}

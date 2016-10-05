@@ -20,9 +20,12 @@ use Unipik\UserBundle\Form\RegistrationType;
 class UserController extends Controller {
 
     /**
+     * @param Request $request
      * @return Response
      */
     public function listeAction(Request $request) {
+
+
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
@@ -35,6 +38,7 @@ class UserController extends Controller {
         $repository = $em->getRepository('UserBundle:Benevole');
         $listBenevoles = $repository->getBenevoles($ville,$activites,$responsabilites);
         return $this->render('UserBundle::liste.html.twig', array('listBenevoles' => $listBenevoles, 'form' => $form->createView()));
+
     }
 
     /**

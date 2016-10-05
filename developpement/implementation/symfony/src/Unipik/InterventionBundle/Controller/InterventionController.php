@@ -298,6 +298,10 @@ class InterventionController extends Controller {
         return $this->redirectToRoute('intervention_list');
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function deleteInterventionsAction(Request $request) {
         if ($request->isXmlHttpRequest()) {
             $ids = json_decode($request->request->get('ids'));
@@ -314,6 +318,11 @@ class InterventionController extends Controller {
             return new Response();
         }
         return new Response();
+    }
+
+
+    public function attributionInterventionAction(Request $request) {
+
     }
 
     /**

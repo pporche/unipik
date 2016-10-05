@@ -18,6 +18,10 @@ intervention_view:
     requirements:
         id: \d+
 
+intervention_self_attribute:
+    path: /intervention/s_attribuer
+    defaults: {_controller: InterventionBundle:Intervention:attribution}
+
 intervention_cancel:
     path: /intervention/annuler/{id}
     defaults: {_controller: InterventionBundle:Intervention:annuler}

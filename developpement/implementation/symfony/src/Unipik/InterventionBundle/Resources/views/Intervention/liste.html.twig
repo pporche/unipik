@@ -65,6 +65,15 @@
                     }
                 });
         }
+
+        function attributeInterventions(id) {
+            $.post("{{ path('intervention_admin_deletes') }}", {'id': id},
+                function (data, status) {
+                    for (i = 0; i < selected.length; i++) {
+                        $("#" + selected[i]).closest('tr').remove();
+                    }
+                });
+        }
     </script>
 {% endblock %}
 
@@ -228,8 +237,9 @@
                                                 Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
                                             {% endif %}
                                         {% else %}
-                                            <a href="{{ path('intervention_view', {id: intervention.id}) }}"
-                                               class="btn btn-primary">S'attribuer l'intervention</a>
+                                            <button type="button" class="btn btn-primary" onclick="attributeIntervention({{ intervention.id }})">
+                                                S'attribuer l'intervention
+                                            </button>
                                         {% endif %}
 
                                 </td>

@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Unipik\ArchitectureBundle\Entity\CodePostal;
 use Unipik\ArchitectureBundle\Entity\Ville;
 use Unipik\ArchitectureBundle\Form\DemandeInterventionType;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 /**
  * Manage the architecture actions

@@ -160,6 +160,7 @@
             {% endif %}
         {% endif %}
     </ul>
+    {% include "ArchitectureBundle::boutonDeConnexion.html.twig" %}
     <ul class="nav navbar-nav navbar-right">
         {% if is_granted('ROLE_ADMIN') %}
             <li class="dropdown">
@@ -167,6 +168,5 @@
                    aria-expanded="false"><em class="glyphicon glyphicon-alert"></em> Espace Admin</a>
             </li>
         {% endif %}
-        {% include "ArchitectureBundle::boutonDeConnexion.html.twig" %}
     </ul>
 {% endblock %}

@@ -8,6 +8,7 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Entity;
 
+use Tests\Unipik\Unit\InterventionBundle\Entity\Mocks\EtablissementMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ContactMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ProjetMock;
 use Unipik\UserBundle\Entity\Contact;
@@ -42,7 +43,6 @@ class ContactTest extends  EntityTestCase
             ->setPrenom("Alfred")
             ->setTelFixe("0232010203")
             ->setTelPortable("0601020304")
-            ->setTypeActivite("frimousses")
         ;
 
         $this->assertEquals($c->getNom(),"Dupont");
@@ -51,12 +51,11 @@ class ContactTest extends  EntityTestCase
         $this->assertEquals($c->getPrenom(), "Alfred");
         $this->assertEquals($c->getTelFixe(), "0232010203");
         $this->assertEquals($c->getTelPortable(), "0601020304");
-        $this->assertEquals($c->getTypeActivite(), "frimousses");
 
-        $c->setEstTuteur(true);
-        $this->assertEquals($c->isEstTuteur(), true);
-        $c->setEstTuteur(false);
-        $this->assertEquals($c->isEstTuteur(), false);
+//        $c->setEstTuteur(true);
+//        $this->assertEquals($c->isEstTuteur(), true);
+//        $c->setEstTuteur(false);
+//        $this->assertEquals($c->isEstTuteur(), false);
 
         $c->setRespoEtablissement(true);
         $this->assertEquals($c->isRespoEtablissement(), true);
@@ -69,6 +68,16 @@ class ContactTest extends  EntityTestCase
         $c->removeProjet($p);
         $this->assertEquals($c->getProjet()[0], null);
 
+        $c->addTypeActivite("frimousses");
+        $this->assertEquals($c->getTypeActivite()[0], "frimousses");
+        $c->removetypeActivite("frimousses");
+        $this->assertEquals($c->getTypeActivite()[0], null);
+
+        $e = EtablissementMock::create();
+        $c->addEtablissement($e);
+        $this->assertEquals($c->getEtablissement()[0], $e);
+        $c->removeEtablissement($e);
+        $this->assertEquals($c->getEtablissement()[0], null);
     }
 
     public function validEntityProvider() {
@@ -86,7 +95,7 @@ class ContactTest extends  EntityTestCase
             ->setPrenom("Alfred")
             ->setTelFixe("0232010203")
             ->setTelPortable("0601020304")
-            //->setTypeActivite("frimousses")
+            ->addTypeActivite("frimousses")
             ;
         $c[3]->setRespoEtablissement(true);
         $c[3]->setRespoEtablissement(true);
@@ -122,9 +131,9 @@ class ContactTest extends  EntityTestCase
 
 
         return [
-            "Contact with wrong type estTuteur" => [$c[0]->setEstTuteur("Vrai")],
-            "Contact with est tuteur but without any Projet" => [$c[1]->setEstTuteur(true)],
-            "Contact with wrong typeActivite" => [$c[2]->setTypeActivite("active inexistante")],
+            //"Contact with wrong type estTuteur" => [$c[0]->setEstTuteur("Vrai")],
+            //"Contact with est tuteur but without any Projet" => [$c[1]->setEstTuteur(true)],
+            "Contact with wrong typeActivite" => [$c[2]->addTypeActivite("active inexistante")],
         ];
     }
 }

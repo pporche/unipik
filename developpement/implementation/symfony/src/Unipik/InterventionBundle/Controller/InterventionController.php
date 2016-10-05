@@ -300,6 +300,10 @@ class InterventionController extends Controller {
         return $this->redirectToRoute('intervention_list');
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function deleteInterventionsAction(Request $request) {
         if ($request->isXmlHttpRequest()) {
             $ids = json_decode($request->request->get('ids'));
@@ -312,6 +316,49 @@ class InterventionController extends Controller {
                 $em->remove($intervention);
             }
 
+            $em->flush();
+            return new Response();
+        }
+        return new Response();
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function attributionAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $user = $this->getUser();
+            $id = $request->request->get('id');
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Intervention');
+            $intervention = $repository->find($id);
+
+            $intervention->setBenevole($user);
+
+            $em->persist($intervention);
+            $em->flush();
+            return new Response();
+        }
+        return new Response();
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function desattributionAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $id = $request->request->get('id');
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Intervention');
+            $intervention = $repository->find($id);
+
+            $intervention->setBenevole(null);
+
+            $em->persist($intervention);
             $em->flush();
             return new Response();
         }

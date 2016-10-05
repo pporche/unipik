@@ -65,6 +65,26 @@
                     }
                 });
         }
+
+        function desattributeIntervention(event, id) {
+            $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
+            function (data, status) {
+                $(event).attr('class', 'btn btn-primary');
+                $(event).text('S\'attribuer l\'intervention');
+                $(event).attr("onclick", "attributeIntervention(this, "+id+")");
+            });
+        }
+
+        function attributeIntervention(event, id) {
+            $.post("{{ path('intervention_self_attribute') }}", {'id': id},
+                function (data, status) {
+                    $(event).attr('class', 'btn btn-danger');
+                    $(event).text('Se désattribuer l\'intervention');
+                    $(event).attr("onclick", "desattributeIntervention(this, "+id+")");
+                });
+        }
+
+
     </script>
 {% endblock %}
 
@@ -223,13 +243,16 @@
                                             Réalisée
                                         {% elseif intervention.benevole %}
                                             {% if user==intervention.benevole %}
-                                                <p class="text-primary">Attribuée à vous</p>
+                                                <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeIntervention(this, {{ intervention.id }})">
+                                                    Se désattribuer l'intervention
+                                                </button>
                                             {% else %}
                                                 Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
                                             {% endif %}
                                         {% else %}
-                                            <a href="{{ path('intervention_view', {id: intervention.id}) }}"
-                                               class="btn btn-primary">S'attribuer l'intervention</a>
+                                            <button name="attribution" type="button" class="btn btn-primary" onclick="attributeIntervention(this, {{ intervention.id }})">
+                                                S'attribuer l'intervention
+                                            </button>
                                         {% endif %}
 
                                 </td>

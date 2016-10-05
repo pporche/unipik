@@ -139,7 +139,7 @@
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="{{ path('intervention_list') }}">Liste</a></li>
                     <li><a href="{{ path('intervention_attributed') }}">Mes interventions</a></li>
-                    <li><a href="#" class="btn disabled">Mon planning</a></li>
+                    <li><a href="{{ path('fos_user_planning_show') }}">Mon planning</a></li>
                     {% if is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('intervention_admin_add') }}" class="bg-danger"><em
                                         class="glyphicon glyphicon-alert"></em> Ajouter</a></li>

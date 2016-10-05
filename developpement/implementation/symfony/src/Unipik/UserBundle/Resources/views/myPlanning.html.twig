@@ -28,7 +28,7 @@
                     interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
                         start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
                         url: '{{ path('intervention_view', {id: intervention.id}) }}' });
-                {% endif %}
+            {% endif %}
             {% endfor %}
             {% for intervention in interventionsRealisees %}
                 {% if intervention.dateIntervention is not null  %}
@@ -41,14 +41,17 @@
                     {% endif %}
                         interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
                             start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                            url: '{{ path('intervention_view', {id: intervention.id}) }}' },);
+                            url: '{{ path('intervention_view', {id: intervention.id}) }}' });
                 {% endif %}
             {% endfor %}
 
             $('#calendar').fullCalendar({
                 locale:"fr",
-                events: interventions,
+                events: interventions
+
             })
+
+
         });
 
     </script>

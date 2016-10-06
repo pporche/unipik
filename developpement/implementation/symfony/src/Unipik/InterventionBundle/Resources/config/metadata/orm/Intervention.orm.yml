@@ -92,7 +92,7 @@ Intervention:
     manyToOne:
         niveauTheme:
             targetEntity: Unipik\ArchitectureBundle\Entity\NiveauTheme
-            cascade: {  }
+            cascade: ["persist"]
             fetch: LAZY
             mappedBy: null
             inversedBy: null
@@ -102,7 +102,7 @@ Intervention:
             orphanRemoval: false
         etablissement:
             targetEntity: Etablissement
-            cascade: {  }
+            cascade: ["persist"]
             fetch: LAZY
             mappedBy: null
             inversedBy: null
@@ -112,7 +112,7 @@ Intervention:
             orphanRemoval: false
         comite:
             targetEntity: Unipik\UserBundle\Entity\Comite
-            cascade: {  }
+            cascade: ["persist"]
             fetch: LAZY
             mappedBy: null
             inversedBy: null
@@ -122,7 +122,7 @@ Intervention:
             orphanRemoval: false
         benevole:
             targetEntity: Unipik\UserBundle\Entity\Benevole
-            cascade: {  }
+            cascade: ["persist"]
             fetch: LAZY
             mappedBy: null
             inversedBy: null
@@ -132,7 +132,7 @@ Intervention:
             orphanRemoval: false
         demande:
             targetEntity: Demande
-            cascade: {  }
+            cascade: ["persist"]
             fetch: LAZY
             mappedBy: null
             inversedBy: null

@@ -83,16 +83,16 @@ class ArrayConverterTest extends KernelTest  {
                 "elm3",
                 "{(elm1),(elm2),(elm3)}",
             ),
-            /*"tableau de deux tableaux de deux éléments" => array(
-                "{{(e1),(e2)},{(e3),(e4)}}",
-                "{(e5),(e6)}",
-                "{{(e1),(e2)},{(e3),(e4)},{(e5),(e6)}}"
-            )*/
+//            "tableau de deux tableaux de deux éléments" => array(
+//                "{{(e1),(e2)},{(e3),(e4)}}",
+//                "{(e5),(e6)}",
+//                "{{(e1),(e2)},{(e3),(e4)},{(e5),(e6)}}"
+//            ),
             "tableau avec des nombres" => array(
                 "{}",
                 "42",
                 "{(42)}",
-            )
+            ),
         );
     }
 

@@ -97,7 +97,7 @@ class Intervention
     /**
      * @var \Unipik\ArchitectureBundle\Entity\NiveauTheme
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\NiveauTheme")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\NiveauTheme", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="niveau_theme_id", referencedColumnName="id")
      * })
@@ -107,7 +107,7 @@ class Intervention
     /**
      * @var \Unipik\InterventionBundle\Entity\Etablissement
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Etablissement")
+     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
      * })
@@ -117,7 +117,7 @@ class Intervention
     /**
      * @var \Unipik\UserBundle\Entity\Comite
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Comite")
+     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Comite", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="comite_id", referencedColumnName="id")
      * })
@@ -127,7 +127,7 @@ class Intervention
     /**
      * @var \Unipik\UserBundle\Entity\Benevole
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Benevole")
+     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Benevole", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="benevole_id", referencedColumnName="id")
      * })
@@ -137,7 +137,7 @@ class Intervention
     /**
      * @var \Unipik\InterventionBundle\Entity\Demande
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Demande")
+     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Demande", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="demande_id", referencedColumnName="id")
      * })

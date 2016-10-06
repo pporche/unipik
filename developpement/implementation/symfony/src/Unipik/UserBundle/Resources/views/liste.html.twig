@@ -245,7 +245,7 @@
 
             </thead>
             <tbody>
-            {% for benevole in listBenevoles|sort %}
+            {% for benevole in listBenevoles %}
                 <tr id="checkboxes">
                     <td>{{ loop.index }}</td>
                     <td>{{ benevole.nom | capitalize }}</td>

@@ -4,6 +4,7 @@ namespace Unipik\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\UserBundle\Entity\BenevoleRepository;
@@ -170,5 +171,28 @@ class UserController extends Controller {
         }
 
         return $this->render('UserBundle:Profile:editBenevole.html.twig', array('form' => $form->createView()));
+    }
+
+    public function autocompleteAction(Request $request){
+        $names = array();
+        $term = trim(strip_tags($request->get('term')));
+        $term=strtoupper($term);
+
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('UserBundle:Benevole')->createQueryBuilder('b')
+            ->where('b.nom LIKE :name')
+            ->setParameter('name', '%'.$term.'%')
+            ->orderBy('b.nom','ASC')
+            ->getQuery()
+            ->getResult();
+
+        foreach ($entities as $entity) {
+            $names[] = $entity->getNom();
+        }
+
+        $response = new JsonResponse();
+        $response->setData($names);
+
+        return $response;
     }
 }

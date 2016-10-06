@@ -32,3 +32,8 @@ user_admin_profil_edit:
     path: /benevole/profil/edit/{username}
     defaults:
           _controller: UserBundle:User:edit
+
+user_admin_benevole_autocomplete:
+    path: /benevole/autocomplete
+    defaults:
+        _controller: UserBundle:User:autocomplete

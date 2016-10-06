@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Intervention;
 use Unipik\InterventionBundle\Form\DemandeType;
+use Unipik\InterventionBundle\Form\Intervention\AttributionType;
 use Unipik\UserBundle\Entity\Contact;
 use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\Etablissement;
@@ -261,6 +262,15 @@ class InterventionController extends Controller {
 
         $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc);
 
+//        Création du formulaire pour la popup
+        $fB = $this->get('form.factory')->createBuilder(AttributionType::class);
+        $f = $fB->getForm();
+        $f->handleRequest($request);
+
+        if($request->isMethod('POST')){
+
+        }
+
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
             'field' => $field,
             'desc' => $desc,
@@ -271,7 +281,8 @@ class InterventionController extends Controller {
             'dateStart' => $start,
             'dateEnd' => $end,
             'user' => $user,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'formAttr' => $f->createView()
         ));
 
     }

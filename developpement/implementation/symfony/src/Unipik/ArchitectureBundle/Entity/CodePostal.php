@@ -131,7 +131,7 @@ class CodePostal
      *
      * @param \Unipik\ArchitectureBundle\Entity\Ville $ville
      *
-     * @return Ville
+     * @return CodePostal
      */
     public function addVille(\Unipik\ArchitectureBundle\Entity\Ville $ville)
     {

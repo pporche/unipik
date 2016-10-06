@@ -1,0 +1,23 @@
+{# version 1.00, date 06/10/2016, auteur Florian Leriche #}
+{% extends "InterventionBundle::layout.html.twig" %}
+
+{% block title %}
+
+    Profil - {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+
+    <div class='well'>
+
+        {{ form_start(form, {'method': 'post', 'action': path('intervention_admin_edit', {'id': intervention.id}), 'attr': {'class': 'intervention_admin_edit'}}) }}
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" value="Modifier" class="btn btn-primary"/>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

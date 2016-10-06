@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Intervention;
 use Unipik\InterventionBundle\Form\DemandeType;
+use Unipik\InterventionBundle\Form\Intervention\InterventionType;
 use Unipik\UserBundle\Entity\Contact;
 use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\Etablissement;
@@ -57,6 +58,28 @@ class InterventionController extends Controller {
         }
 
         return $this->render('InterventionBundle:Intervention:ajouterIntervention.html.twig', array('form' => $form->createView()));
+    }
+
+    public function editAction(Request $request, $id) {
+        $repository = $this->getInterventionRepository();
+
+        $intervention = $repository->findOneBy(array('id' => $id));
+        $form = $this->get('form.factory')
+            ->createBuilder(InterventionType::class)
+            ->getForm();
+
+        if($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($intervention);
+            $em->flush();
+
+            return $this->redirectToRoute('intervention_view', array('id' => $id));
+        }
+
+        return $this->render('InterventionBundle:Intervention:editIntervention.html.twig', array('form' => $form->createView(),
+                                                                                                 'intervention' => $intervention,
+        ));
     }
 
     /**

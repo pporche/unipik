@@ -21,7 +21,7 @@ Unipik\ArchitectureBundle\Entity\Ville:
     manyToMany:
         codePostal:
             targetEntity: CodePostal
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: ville
             inversedBy: null

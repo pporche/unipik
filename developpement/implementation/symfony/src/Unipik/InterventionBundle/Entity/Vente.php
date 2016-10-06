@@ -46,7 +46,7 @@ class Vente
     /**
      * @var \Unipik\InterventionBundle\Entity\Intervention
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Intervention")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Intervention", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="intervention_id", referencedColumnName="id")
      * })
@@ -56,7 +56,7 @@ class Vente
     /**
      * @var \Unipik\InterventionBundle\Entity\Etablissement
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Etablissement")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Etablissement", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
      * })

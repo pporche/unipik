@@ -14,7 +14,7 @@ Comite:
     manyToMany:
         niveauTheme:
             targetEntity: Unipik\ArchitectureBundle\Entity\NiveauTheme
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: comite
@@ -31,7 +31,7 @@ Comite:
             orderBy: null
         benevole:
             targetEntity: Benevole
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: comite
             inversedBy: null
@@ -39,7 +39,7 @@ Comite:
             orderBy: null
         departement:
             targetEntity: Unipik\ArchitectureBundle\Entity\Departement
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: comite
             inversedBy: null

@@ -55,7 +55,7 @@ class Departement
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Comite", inversedBy="departement")
+     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Comite", inversedBy="departement", cascade={"persist"})
      * @ORM\JoinTable(name="comite_departement",
      *   joinColumns={
      *     @ORM\JoinColumn(name="departement_id", referencedColumnName="id")

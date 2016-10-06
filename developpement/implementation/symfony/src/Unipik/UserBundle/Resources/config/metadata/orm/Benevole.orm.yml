@@ -72,7 +72,7 @@ Benevole:
     manyToMany:
         projet:
             targetEntity: Projet
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: benevole
@@ -89,7 +89,7 @@ Benevole:
             orderBy: null
         comite:
             targetEntity: Comite
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: benevole

@@ -184,8 +184,8 @@ class UserController extends Controller {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('InterventionBundle:Intervention');
-        $interventionsNonRealiseesBenevole = $repository->getInterventionsRealiseesOuNonBenevole($user, false);
-        $interventionsRealiseesBenevole = $repository->getInterventionsRealiseesOuNonBenevole($user, true);
+        $interventionsNonRealiseesBenevole = $repository->getInterventionsRealiseesOuNon(false);
+        $interventionsRealiseesBenevole = $repository->getInterventionsRealiseesOuNon(true);
         return $this->render('UserBundle::myPlanning.html.twig', array('user' => $user, 'interventionsNonRealisees' => $interventionsNonRealiseesBenevole, 'interventionsRealisees' => $interventionsRealiseesBenevole));
 
     }

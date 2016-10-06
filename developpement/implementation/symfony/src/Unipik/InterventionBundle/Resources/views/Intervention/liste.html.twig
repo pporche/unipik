@@ -412,12 +412,13 @@
                     {{ form_start(formAttr, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
                     <h5>Bénévole : {{  form_widget(formAttr.benevole) }}</h5>
 
-                    {{ form_end(formAttr) }}
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Attribuer</button>
                 </div>
+                {{ form_end(formAttr) }}
             </div>
         </div>
     </div>

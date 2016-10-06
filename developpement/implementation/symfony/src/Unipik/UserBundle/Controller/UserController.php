@@ -232,5 +232,5 @@ class UserController extends Controller {
         return $this->render('UserBundle::myPlanning.html.twig', array('user' => $user, 'interventionsNonRealisees' => $interventionsNonRealiseesBenevole, 'interventionsRealisees' => $interventionsRealiseesBenevole));
 
     }
-    
+
 }

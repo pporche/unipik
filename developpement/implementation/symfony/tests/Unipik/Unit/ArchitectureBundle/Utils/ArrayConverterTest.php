@@ -31,6 +31,10 @@ class ArrayConverterTest extends KernelTest  {
             "tableau de deux tableaux de deux éléments" => array(
                 "{{(e1),(e2)},{(e3),(e4)}}",
                 array(array("e1", "e2"), array("e3", "e4"))
+            ),
+            "tableau des nombres" => array(
+                "{(42)}",
+                array(42)
             )
         );
     }
@@ -84,6 +88,11 @@ class ArrayConverterTest extends KernelTest  {
                 "{(e5),(e6)}",
                 "{{(e1),(e2)},{(e3),(e4)},{(e5),(e6)}}"
             )*/
+            "tableau avec des nombres" => array(
+                "{}",
+                "42",
+                "{(42)}",
+            )
         );
     }
 

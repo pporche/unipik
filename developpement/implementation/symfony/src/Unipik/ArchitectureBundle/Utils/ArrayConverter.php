@@ -32,9 +32,7 @@ class ArrayConverter {
                 $result[] = static::phpArrayToPgArray($t);
             } else {
                 $t = str_replace('"', '\\"', $t); // escape double quote
-                if (! is_numeric($t)) { // quote only non-numeric values
-                    $t = '(' . $t . ')';
-                }
+                $t = '(' . $t . ')';
                 $result[] = $t;
             }
         }

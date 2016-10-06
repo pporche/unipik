@@ -20,6 +20,14 @@ use Unipik\UserBundle\Form\RegistrationType;
 class UserController extends Controller {
 
     /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository|BenevoleRepository
+     */
+    public function getBenevoleRepository(){
+        $em = $this->getDoctrine()->getManager();
+        return $em->getRepository('UserBundle:Benevole');
+    }
+
+    /**
      * @param Request $request
      * @return Response
      */
@@ -34,11 +42,20 @@ class UserController extends Controller {
         $responsabilites = $form->get("responsabilitesActivites")->getData();
         $ville = $form->get("ville")->getData();
 
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('UserBundle:Benevole');
-        $listBenevoles = $repository->getBenevoles($ville,$activites,$responsabilites);
-        return $this->render('UserBundle::liste.html.twig', array('listBenevoles' => $listBenevoles, 'form' => $form->createView()));
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "nom");
+        $desc = $request->get("desc", false);
 
+        $repository = $this->getBenevoleRepository();
+
+        $listBenevoles = $repository->getType($field, $desc);
+
+        return $this->render('UserBundle::liste.html.twig', array(
+            'field' => $field,
+            'desc' => $desc,
+            'rowsPerPage' => $rowsPerPage,
+            'listBenevoles' => $listBenevoles,
+            'form' => $form->createView()));
     }
 
     /**

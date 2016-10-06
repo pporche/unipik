@@ -73,14 +73,15 @@
                     switch (type){
                         case 'elementaire':
 
-                            console.log($(template).find('select').find('options'));
+                            console.log($(template).find('select:eq(1)'));
+                            console.log($(template).find('select:eq(1)').find('option:eq(5)'));
 
                             for(i=0; i<$(template).find('select')[1].length; i++){
                                 if(i<7 || i>15){
-                                    $(template).find('select').find('options').prop('disabled', true);
+                                    $(template).find('select:eq(1)').find('option:eq(i)').disabled = true;
                                 }
+                                console.log('option ' + i + ': ' + $(template).find('select:eq(1)').find('option:eq(i)'));
                             }
-                            console.log($(template).find('select')[1][1]);
                             break;
                     }
                     break;

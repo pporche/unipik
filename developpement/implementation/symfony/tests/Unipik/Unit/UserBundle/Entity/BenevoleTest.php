@@ -37,15 +37,16 @@ class BenevoleTest extends  EntityTestCase
         $this->assertEquals($b->getNom(), "Dupond");
         $this->assertEquals($b->getEmail(), "truc@machin.com");
 
-        $b->setNom("Dupont")
+        $ad = AdresseMock::create();
+
+        $b
+            ->setAdresse($ad)
+            ->setNom("Dupont")
             ->setEmail("dupont@super-univ.fr")
             ->setPrenom("Alfred")
             ->setTelFixe("0232010203")
             ->setTelPortable("0601020304")
         ;
-
-        $ad = AdresseMock::create();
-        $b->setAdresse($ad);
 
         $this->assertEquals($b->getNom(),"Dupont");
         $this->assertEquals($b->getEmail(), "dupont@super-univ.fr");
@@ -77,6 +78,27 @@ class BenevoleTest extends  EntityTestCase
         $this->assertEquals(null, $b->getResponsabiliteActivite()[0]);
     }
 
+    public function validEntityProvider() {
+        $b = BenevoleMock::createMultiple(2);
+
+        $ad = AdresseMock::create();
+
+        $b[1]
+            ->setAdresse($ad)
+            ->setNom("Dupont")
+            ->setEmail("dupont@super-univ.fr")
+            ->setPrenom("Alfred")
+            ->setTelFixe("0232010203")
+            ->setTelPortable("0601020304")
+        ;
+
+        return [
+            "1 Benevole" => [$b[0]],
+            "3 Benevoles" => [clone $b[0], clone $b[0], clone $b[0]],
+            "1 Benevole with all optional values" => [$b[1]]
+        ];
+    }
+
     public function badEntityProvider()
     {
         $b = BenevoleMock::createMultiple(9);
@@ -96,7 +118,7 @@ class BenevoleTest extends  EntityTestCase
     {
         $b = BenevoleMock::createMultiple(3);
 
-
+        //TODO: regler le problème avec estTuteur...
         return [
             "Benevole with wrong type estTuteur" => [$b[0]->setEstTuteur("Vrai")],
             "Benevole with est tuteur but without any Projet" => [$b[1]->setEstTuteur(true)],

@@ -90,9 +90,6 @@
                 children.css('display', 'none').slice(startAt, endOn).show();
                 if (page >= 1){
                     pager.find('.prev_link').show();
-                    console.log(pager.find('.prev_link'));
-                    console.log(pager.find('.page_link'));
-                    $('.page_link')[page-1].hide();
                 }
                 else
                     pager.find('.prev_link').hide();

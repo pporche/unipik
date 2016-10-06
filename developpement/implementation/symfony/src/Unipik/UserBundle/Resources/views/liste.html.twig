@@ -180,7 +180,13 @@
 //
 //        $("#recherche_avancee_activitesToutes").change(hide_or_show);
 //        $("#recherche_avancee_respoActivitesToutes").change(hide_or_show);
-
+        $(document).ready(function() {
+            $('#myTable').pageMe({
+                pagerSelector: '#myPager',
+                showPrevNext: true,
+                hidePageNumbers: false,
+                perPage:{{ rowsPerPage }} });
+        });
     </script>
 {% endblock %}
 
@@ -247,14 +253,14 @@
                         <th>Nom
                             <a class="sortButtonNom" id="sortButtonNom"
                                href="{{ path('user_admin_list', pathReq | merge({"desc":true, "field":"nom"}) ) }}">
-                                <img src="{{ asset('img/sort-down.png') }}" class="sort sort-up"
+                                <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up"
                                      id="sortNom" alt="sort Down"/>
                             </a>
                         </th>
                         <th>Prénom
                             <a class="sortButtonPrenom" id="sortButtonPrenom"
                                href="{{ path('user_admin_list', pathReq | merge({"desc":true, "field":"prenom"}) ) }}">
-                                <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
+                                <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
                                      id="sortPrenom" alt="sort Up"/>
                             </a>
                         </th>
@@ -279,14 +285,14 @@
                         <th>Nom
                             <a class="sortButtonBom" id="sortButtonNom"
                                href="{{ path('user_admin_list', pathReq | merge({"desc":true, "field":"nom"}) ) }}">
-                                <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortNom"
+                                <img src="{{ asset('img/sort-down.png') }}" class="sort sort-up" id="sortNom"
                                      alt="sort Up"/>
                             </a>
                         </th>
                         <th>Prénom
                             <a class="sortButtonPrenom" id="sortButtonPrenom"
                                href="{{ path('user_admin_list', pathReq | merge({"desc":true, "field":"prenom"}) ) }}">
-                                <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
+                                <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
                                      id="sortPrenom" alt="sort Up"/>
                             </a>
                         </th>
@@ -301,7 +307,7 @@
 
 
             </thead>
-            <tbody>
+            <tbody id="myTable">
             {% for benevole in listBenevoles %}
                 <tr id="checkboxes">
                     <td>{{ loop.index }}</td>

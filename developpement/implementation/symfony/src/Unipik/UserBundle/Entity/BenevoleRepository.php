@@ -42,8 +42,6 @@ class BenevoleRepository extends EntityRepository
             }
         }
 
-        $this->debug_to_console($qb->getQuery()->getResult());
-
         return $qb
             ->getQuery()
             ->getResult()

@@ -22,30 +22,38 @@
                 children = listElement.find(settings.childSelector);
             }
             if (typeof settings.pagerSelector != "undefined") {
-                console.log(settings.pagerSelector);
                 pager = $(settings.pagerSelector);
             }
-            console.log(this);
+
             var numItems = children.size();
             var numPages = Math.ceil(numItems / perPage);
 
             pager.data("curr", 0);
+
             if (settings.showPrevNext)
                 $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+            //if (settings.showPrevNext)
+            //    $('<li><a href="#" class="prev_link">Première</a></li>').appendTo(pager);
+
             var curr = 0;
-            while (numPages > curr && (settings.hidePageNumbers == false) /*&& curr < 10*/) {
+
+            while (numPages > curr && (settings.hidePageNumbers == false)) {
                 $('<li><a href="#" class="page_link">' + (curr + 1) + '</a></li>').appendTo(pager);
                 curr++;
-                if (curr == 10){
-                    //$('<li><a href="#" class="page_link">' + '...' + '</a></li>').appendTo(pager);
-                }
             }
+
             if (settings.showPrevNext)
                 $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+            //if (settings.showPrevNext)
+             //   $('<li><a href="#" class="next_link">Dernière</a></li>').appendTo(pager);
+
             pager.find('.page_link:first').addClass('active');
             pager.find('.prev_link').hide();
+
+
             if (numPages <= 1)
                 pager.find('.next_link').hide();
+
             pager.children().eq(1).addClass("active");
             children.hide();
             children.slice(0, perPage).show();
@@ -80,8 +88,9 @@
                 var startAt = page * perPage,
                         endOn = startAt + perPage;
                 children.css('display', 'none').slice(startAt, endOn).show();
-                if (page >= 1)
+                if (page >= 1){
                     pager.find('.prev_link').show();
+                }
                 else
                     pager.find('.prev_link').hide();
                 if (page < (numPages - 1))
@@ -139,7 +148,7 @@
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="{{ path('intervention_list') }}">Liste</a></li>
                     <li><a href="{{ path('intervention_attributed') }}">Mes interventions</a></li>
-                    <li><a href="#" class="btn disabled">Mon planning</a></li>
+                    <li><a href="{{ path('fos_user_planning_show') }}">Mon planning</a></li>
                     {% if is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('intervention_admin_add') }}" class="bg-danger"><em
                                         class="glyphicon glyphicon-alert"></em> Ajouter</a></li>
@@ -160,6 +169,7 @@
             {% endif %}
         {% endif %}
     </ul>
+    {% include "ArchitectureBundle::boutonDeConnexion.html.twig" %}
     <ul class="nav navbar-nav navbar-right">
         {% if is_granted('ROLE_ADMIN') %}
             <li class="dropdown">
@@ -167,6 +177,5 @@
                    aria-expanded="false"><em class="glyphicon glyphicon-alert"></em> Espace Admin</a>
             </li>
         {% endif %}
-        {% include "ArchitectureBundle::boutonDeConnexion.html.twig" %}
     </ul>
 {% endblock %}

@@ -89,6 +89,9 @@ class EtablissementController extends Controller {
         return new Response();
     }
 
+    /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository|\Unipik\InterventionBundle\Entity\EtablissementRepository
+     */
     public function getEtablissementRepository(){
         $em = $this->getDoctrine()->getManager();
         return $em->getRepository('InterventionBundle:Etablissement');

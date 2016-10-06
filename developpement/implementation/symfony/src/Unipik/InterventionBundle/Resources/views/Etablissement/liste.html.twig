@@ -79,9 +79,7 @@
     <script>
 
         $(document).ready(function() {
-            console.log("hhhh");
             $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage }} });
-            console.log("apres");
 
             if($('#recherche_avancee_typeEtablissement_0').is(':checked')) {
                 $("#recherche_avancee_typeEnseignement").hide();
@@ -322,7 +320,6 @@
                         </div>
                     {% endif %}
                 </div>
-                {{ dump(rowsPerPage) }}
                 <div class="col-md-12 text-center">
                     {% set pathReq = [] %}
                     {% if app.request.query.get('recherche_avancee') is not null %}

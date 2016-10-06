@@ -49,7 +49,7 @@ class MomentHebdomadaire
      *   }
      * )
      */
-    private $demandeMomentsVoulus;
+    protected $demandeMomentsVoulus;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -64,7 +64,7 @@ class MomentHebdomadaire
      *   }
      * )
      */
-    private $demandeMomentsAEviter;
+    protected $demandeMomentsAEviter;
 
     /**
      * Constructor
@@ -134,71 +134,71 @@ class MomentHebdomadaire
         return $this->moment;
     }
 
-    /**
-     * Add demandeMomentsVoulus
-     *
-     * @param \Unipik\InterventionBundle\Entity\Demande $demande
-     *
-     * @return MomentHebdomadaire
-     */
-    public function addDemandeMomentsVoulus(\Unipik\InterventionBundle\Entity\Demande $demande)
-    {
-        $this->demandeMomentsVoulus[] = $demande;
-
-        return $this;
-    }
-
-    /**
-     * Remove demandeMomentsVoulus
-     *
-     * @param \Unipik\InterventionBundle\Entity\Demande $demande
-     */
-    public function removeDemandeMomentsVoulus(\Unipik\InterventionBundle\Entity\Demande $demande)
-    {
-        $this->demandeMomentsVoulus->removeElement($demande);
-    }
-
-    /**
-     * Get demandeMomentsVoulus
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDemandeMomentsVoulus()
-    {
-        return $this->demandeMomentsVoulus;
-    }
-
-    /**
-     * Add demandeMomentsAEviter
-     *
-     * @param \Unipik\InterventionBundle\Entity\Demande $demande
-     *
-     * @return MomentHebdomadaire
-     */
-    public function addDemandeMomentsAEviter(\Unipik\InterventionBundle\Entity\Demande $demande)
-    {
-        $this->demandeMomentsAEviter[] = $demande;
-
-        return $this;
-    }
-
-    /**
-     * Remove demandeMomentsAEviter
-     *
-     * @param \Unipik\InterventionBundle\Entity\Demande $demande
-     */
-    public function removeDemandeMomentsAEviter(\Unipik\InterventionBundle\Entity\Demande $demande)
-    {
-        $this->demandeMomentsAEviter->removeElement($demande);
-    }
-
-    /**
-     * Get demandeMomentsAEviter
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDemandeMomentsAEviter()
-    {
-        return $this->demandeMomentsAEviter;
-    }
+//    /**
+//     * Add demandeMomentsVoulus
+//     *
+//     * @param \Unipik\InterventionBundle\Entity\Demande $demande
+//     *
+//     * @return MomentHebdomadaire
+//     */
+//    public function addDemandeMomentsVoulus(\Unipik\InterventionBundle\Entity\Demande $demande)
+//    {
+//        $this->demandeMomentsVoulus[] = $demande;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Remove demandeMomentsVoulus
+//     *
+//     * @param \Unipik\InterventionBundle\Entity\Demande $demande
+//     */
+//    public function removeDemandeMomentsVoulus(\Unipik\InterventionBundle\Entity\Demande $demande)
+//    {
+//        $this->demandeMomentsVoulus->removeElement($demande);
+//    }
+//
+//    /**
+//     * Get demandeMomentsVoulus
+//     *
+//     * @return \Doctrine\Common\Collections\Collection
+//     */
+//    public function getDemandeMomentsVoulus()
+//    {
+//        return $this->demandeMomentsVoulus;
+//    }
+//
+//    /**
+//     * Add demandeMomentsAEviter
+//     *
+//     * @param \Unipik\InterventionBundle\Entity\Demande $demande
+//     *
+//     * @return MomentHebdomadaire
+//     */
+//    public function addDemandeMomentsAEviter(\Unipik\InterventionBundle\Entity\Demande $demande)
+//    {
+//        $this->demandeMomentsAEviter[] = $demande;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Remove demandeMomentsAEviter
+//     *
+//     * @param \Unipik\InterventionBundle\Entity\Demande $demande
+//     */
+//    public function removeDemandeMomentsAEviter(\Unipik\InterventionBundle\Entity\Demande $demande)
+//    {
+//        $this->demandeMomentsAEviter->removeElement($demande);
+//    }
+//
+//    /**
+//     * Get demandeMomentsAEviter
+//     *
+//     * @return \Doctrine\Common\Collections\Collection
+//     */
+//    public function getDemandeMomentsAEviter()
+//    {
+//        return $this->demandeMomentsAEviter;
+//    }
 }

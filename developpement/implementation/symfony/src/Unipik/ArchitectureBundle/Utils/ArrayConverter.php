@@ -32,9 +32,7 @@ class ArrayConverter {
                 $result[] = static::phpArrayToPgArray($t);
             } else {
                 $t = str_replace('"', '\\"', $t); // escape double quote
-                if (! is_numeric($t)) { // quote only non-numeric values
-                    $t = '(' . $t . ')';
-                }
+                $t = '(' . $t . ')';
                 $result[] = $t;
             }
         }
@@ -104,7 +102,10 @@ class ArrayConverter {
      * @return String
      */
     static function addIntoPgArray($pgArray, $element) {
-        $array = ArrayConverter::pgArrayToPhpArray($pgArray);
+        $array = array();
+        if (!is_null($pgArray)) {
+            $array = ArrayConverter::pgArrayToPhpArray($pgArray);
+        }
         $array[] = $element;
         array_unique($array);
         return ArrayConverter::phpArrayToPgArray($array);

@@ -21,6 +21,14 @@ use Unipik\UserBundle\Form\RegistrationType;
 class UserController extends Controller {
 
     /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository|BenevoleRepository
+     */
+    public function getBenevoleRepository(){
+        $em = $this->getDoctrine()->getManager();
+        return $em->getRepository('UserBundle:Benevole');
+    }
+
+    /**
      * @param Request $request
      * @return Response
      */
@@ -35,11 +43,21 @@ class UserController extends Controller {
         $responsabilites = $form->get("responsabilitesActivites")->getData();
         $ville = $form->get("ville")->getData();
 
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('UserBundle:Benevole');
-        $listBenevoles = $repository->getBenevoles($ville,$activites,$responsabilites);
-        return $this->render('UserBundle::liste.html.twig', array('listBenevoles' => $listBenevoles, 'form' => $form->createView()));
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "nom");
+        $desc = $request->get("desc", false);
 
+        $repository = $this->getBenevoleRepository();
+
+        $listBenevoles = $repository->getType($field, $desc);
+
+
+        return $this->render('UserBundle::liste.html.twig', array(
+            'field' => $field,
+            'desc' => $desc,
+            'rowsPerPage' => $rowsPerPage,
+            'listBenevoles' => $listBenevoles,
+            'form' => $form->createView()));
     }
 
     /**
@@ -173,6 +191,7 @@ class UserController extends Controller {
         return $this->render('UserBundle:Profile:editBenevole.html.twig', array('form' => $form->createView()));
     }
 
+
     public function autocompleteAction(Request $request){
         $names = array();
         $term = trim(strip_tags($request->get('term')));
@@ -195,4 +214,23 @@ class UserController extends Controller {
 
         return $response;
     }
+
+    /**
+     * Render a volunteer's planning page
+     *
+     * @param Request $request
+     * @param $username
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
+     */
+    public function showPlanningAction(Request $request) {
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('InterventionBundle:Intervention');
+        $interventionsNonRealiseesBenevole = $repository->getInterventionsRealiseesOuNonBenevole($user, false);
+        $interventionsRealiseesBenevole = $repository->getInterventionsRealiseesOuNonBenevole($user, true);
+        return $this->render('UserBundle::myPlanning.html.twig', array('user' => $user, 'interventionsNonRealisees' => $interventionsNonRealiseesBenevole, 'interventionsRealisees' => $interventionsRealiseesBenevole));
+
+    }
+    
 }

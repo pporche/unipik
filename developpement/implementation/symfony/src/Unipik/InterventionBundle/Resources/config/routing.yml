@@ -41,3 +41,7 @@ etablissement_view:
         _controller: InterventionBundle:Etablissement:consultation
     requirements:
         id: \d+
+
+interventions_benevole:
+    path: /intervention/toast
+    defaults: {_controller: InterventionBundle:Intervention:toast}

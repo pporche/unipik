@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Intervention;
 use Unipik\InterventionBundle\Form\DemandeType;
 use Unipik\InterventionBundle\Form\Intervention\AttributionType;
+use Unipik\InterventionBundle\Form\Intervention\InterventionType;
 use Unipik\UserBundle\Entity\Contact;
 use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\Etablissement;
@@ -60,6 +61,28 @@ class InterventionController extends Controller {
         return $this->render('InterventionBundle:Intervention:ajouterIntervention.html.twig', array('form' => $form->createView()));
     }
 
+    public function editAction(Request $request, $id) {
+        $repository = $this->getInterventionRepository();
+
+        $intervention = $repository->findOneBy(array('id' => $id));
+        $form = $this->get('form.factory')
+            ->createBuilder(InterventionType::class)
+            ->getForm();
+
+        if($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($intervention);
+            $em->flush();
+
+            return $this->redirectToRoute('intervention_view', array('id' => $id));
+        }
+
+        return $this->render('InterventionBundle:Intervention:editIntervention.html.twig', array('form' => $form->createView(),
+                                                                                                 'intervention' => $intervention,
+        ));
+    }
+
     /**
      * @param $request Request
      * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention.
@@ -88,6 +111,7 @@ class InterventionController extends Controller {
 
             // handle the interventions
             $interventionsRawList = $form->get('Intervention')->getData();
+
             $interventionList = [];
             $listWeek = [];
 
@@ -251,6 +275,7 @@ class InterventionController extends Controller {
 
         $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
         $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
+        $statutIntervention =$form->get("statutIntervention")->getData(); //Récupération du statut de l'intervention
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
 
@@ -260,7 +285,7 @@ class InterventionController extends Controller {
 
         $repository = $this->getInterventionRepository();
 
-        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc);
+        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention);
 
 //        Création du formulaire pour la popup
         $fB = $this->get('form.factory')->createBuilder(AttributionType::class);
@@ -282,7 +307,8 @@ class InterventionController extends Controller {
             'dateEnd' => $end,
             'user' => $user,
             'form' => $form->createView(),
-            'formAttr' => $f->createView()
+            'formAttr' => $f->createView(),
+            'onlyMyIntervention' => false,
         ));
 
     }
@@ -290,9 +316,39 @@ class InterventionController extends Controller {
     /**
      * @return Response Renvoie vers la page d'attribution d'intervention.
      */
-    public function attribueesAction() {
-        return $this->render('InterventionBundle:Intervention/Attribuees:liste.html.twig', array(
-            'liste' => null
+    public function attribueesAction(Request $request) {
+        $user = $this->getUser();
+
+        $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+
+        $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
+        $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
+        $statutIntervention =$form->get("statutIntervention")->getData(); //Récupération du statut de l'intervention
+        $start = $form->get("start")->getData();
+        $end = $form->get("end")->getData();
+
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "dateIntervention");
+        $desc = $request->get("desc", true);
+
+        $repository = $this->getInterventionRepository();
+
+        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, $user);
+
+        return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+            'field' => $field,
+            'desc' => $desc,
+            'rowsPerPage' => $rowsPerPage,
+            'liste' => $listIntervention,
+            'typeIntervention' => $typeIntervention,
+            'isCheck' => $dateChecked,
+            'dateStart' => $start,
+            'dateEnd' => $end,
+            'user' => $user,
+            'form' => $form->createView(),
+            'onlyMyIntervention' => true,
         ));
     }
 
@@ -420,11 +476,21 @@ class InterventionController extends Controller {
             foreach($interventionsRawList as $interventionRaw) {
                 $interventionTemp = new Intervention();
                 $interventionTemp->setRealisee(false);
-                $interventionTemp->setDate(null);
+                $interventionTemp->setDateIntervention(null);
                 $interventionTemp->setMateriauxFrimousse(null);
-                $interventionTemp->setMaterielDispoPlaidoyer(ArrayConverter::phpArrayToPgArray($interventionRaw["materiel"]["materiel"]));
-                $interventionTemp->setNbPersonne($interventionRaw["eleves"]["nbEleves"]);
+                $interventionTemp->setNbPersonne($interventionRaw["participants"]["nbEleves"]);
                 $interventionTemp->setComite($comiteTest);
+                if(isset($interventionRaw["materiel"])){
+                    $interventionTemp->setMaterielDispoPlaidoyer(ArrayConverter::phpArrayToPgArray($interventionRaw["materiel"]["materiel"]));
+                }
+                else if(isset($interventionRaw['materielFrimousse'])){
+                    $interventionTemp->setMateriauxFrimousse(ArrayConverter::phpArrayToPgArray($interventionRaw['materielFrimousse']['materiel']));
+                }
+                return new Response(print_r((isset($interventionRaw['materielFrimousses']))));
+
+
+
+
                 $interventionList[] = $interventionTemp;
             }
         }

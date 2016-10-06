@@ -8,6 +8,7 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Entity;
 
+use Tests\Unipik\Unit\InterventionBundle\Entity\Mocks\EtablissementMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ContactMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ProjetMock;
 use Unipik\UserBundle\Entity\Contact;
@@ -72,6 +73,11 @@ class ContactTest extends  EntityTestCase
         $c->removetypeActivite("frimousses");
         $this->assertEquals($c->getTypeActivite()[0], null);
 
+        $e = EtablissementMock::create();
+        $c->addEtablissement($e);
+        $this->assertEquals($c->getEtablissement()[0], $e);
+        $c->removeEtablissement($e);
+        $this->assertEquals($c->getEtablissement()[0], null);
     }
 
     public function validEntityProvider() {

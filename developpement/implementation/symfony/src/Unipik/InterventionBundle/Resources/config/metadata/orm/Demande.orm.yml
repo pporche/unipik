@@ -29,7 +29,7 @@ Demande:
     manyToOne:
         contact:
             targetEntity: Unipik\UserBundle\Entity\Contact
-            cascade: {  }
+            cascade: ["perist"]
             fetch: LAZY
             mappedBy: null
             inversedBy: null

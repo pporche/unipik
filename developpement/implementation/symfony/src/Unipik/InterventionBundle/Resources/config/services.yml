@@ -4,10 +4,15 @@ services:
         tags:
             - { name: twig.extension }
     app.form.intervention.recherche:
-            class: Unipik\InterventionBundle\Form\Etablissement\RechercheAvanceeType
-            arguments: ["@doctrine.orm.entity_manager"]
-            tags:
-                - { name: form.type }
+        class: Unipik\InterventionBundle\Form\Etablissement\RechercheAvanceeType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
+    app.form.intervention.attribution:
+        class: Unipik\InterventionBundle\Form\Intervention\AttributionType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
 #    intervention.example:
 #        class: Unipik\InterventionBundle\Example
 #        arguments: ["@service_id", "plain_value", %parameter%]

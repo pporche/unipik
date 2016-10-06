@@ -34,6 +34,13 @@ class BenevoleRepository extends EntityRepository
                 $qb = $qb->orderBy('b.nom','ASC');
             }
         }
+        else{
+            if($desc){
+                $qb = $qb->orderBy('b.prenom','DESC');
+            }else{
+                $qb = $qb->orderBy('b.prenom','ASC');
+            }
+        }
 
         $this->debug_to_console($qb->getQuery()->getResult());
 

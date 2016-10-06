@@ -40,7 +40,7 @@ Demande:
     manyToMany:
         momentsVoulus:
             targetEntity: Unipik\ArchitectureBundle\Entity\MomentHebdomadaire
-            cascade: {  }
+            cascade: ["persist"]
             fetch: LAZY
             mappedBy: demandeMomentsVoulus
             inversedBy: null
@@ -48,7 +48,7 @@ Demande:
             orderBy: null
         momentsAEviter:
             targetEntity: Unipik\ArchitectureBundle\Entity\MomentHebdomadaire
-            cascade: {  }
+            cascade: ["persist"]
             fetch: LAZY
             mappedBy: demandeMomentsAEviter
             inversedBy: null

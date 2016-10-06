@@ -2,7 +2,10 @@
 // version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 namespace Unipik\InterventionBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 /**
  * Intervention
@@ -294,11 +297,11 @@ class Intervention
 
 
     /**
-     * Get realisee
+     * isRealisee
      *
      * @return boolean
      */
-    public function getRealisee()
+    public function isRealisee()
     {
         return $this->realisee;
     }
@@ -306,6 +309,8 @@ class Intervention
 
     /**
      * Set materielDispoPlaidoyer
+     *
+     * @deprecated
      *
      * @param string $materielDispoPlaidoyer
      *
@@ -319,13 +324,44 @@ class Intervention
     }
 
     /**
+     * Add materielDispoPlaidoyer
+     *
+     * @param string|array $materielDispoPlaidoyer
+     *
+     * @return Intervention
+     */
+    public function addMaterielDispoPlaidoyer($materielDispoPlaidoyer) {
+        $this->materielDispoPlaidoyer = ArrayConverter::addIntoPgArray(
+            $this->materielDispoPlaidoyer,
+            $materielDispoPlaidoyer
+        );
+
+        return $this;
+    }
+
+    /**
+     * Remove materielDispoPlaidoyer
+     *
+     * @param string $materielDispoPlaidoyer
+     */
+    public function removeMaterielDispoPlaidoyer($materielDispoPlaidoyer) {
+        $this->materielDispoPlaidoyer = ArrayConverter::removeFromPgArray(
+            $this->materielDispoPlaidoyer,
+            $materielDispoPlaidoyer
+        );
+    }
+
+    /**
      * Get materielDispoPlaidoyer
      *
-     * @return string
+     * @return Collection
      */
-    public function getMaterielDispoPlaidoyer()
-    {
-        return $this->materielDispoPlaidoyer;
+    public function getMaterielDispoPlaidoyer() {
+        $array = array();
+        if ($this->materielDispoPlaidoyer != null) {
+            $array = ArrayConverter::pgArrayToPhpArray($this->materielDispoPlaidoyer);
+        }
+        return new ArrayCollection($array);
     }
 
     /**
@@ -355,6 +391,8 @@ class Intervention
     /**
      * Set materiauxFrimousse
      *
+     * @deprecated
+     *
      * @param string $materiauxFrimousse
      *
      * @return Intervention
@@ -367,13 +405,44 @@ class Intervention
     }
 
     /**
+     * Add materiauxFrimousse
+     *
+     * @param string|array $materiauxFrimousse
+     *
+     * @return Intervention
+     */
+    public function addMateriauxFrimousse($materiauxFrimousse) {
+        $this->materiauxFrimousse = ArrayConverter::addIntoPgArray(
+            $this->materiauxFrimousse,
+            $materiauxFrimousse
+        );
+
+        return $this;
+    }
+
+    /**
+     * Remove materiauxFrimousse
+     *
+     * @param string $materiauxFrimousse
+     */
+    public function removeMateriauxFrimousse($materiauxFrimousse) {
+        $this->materiauxFrimousse = ArrayConverter::removeFromPgArray(
+            $this->materiauxFrimousse,
+            $materiauxFrimousse
+        );
+    }
+
+    /**
      * Get materiauxFrimousse
      *
-     * @return string
+     * @return Collection
      */
-    public function getMateriauxFrimousse()
-    {
-        return $this->materiauxFrimousse;
+    public function getMateriauxFrimousse() {
+        $array = array();
+        if ($this->materiauxFrimousse != null) {
+            $array = ArrayConverter::pgArrayToPhpArray($this->materiauxFrimousse);
+        }
+        return new ArrayCollection($array);
     }
 
     /**
@@ -538,7 +607,7 @@ class Intervention
      */
     public function isFrimousse()
     {
-        $type = $this->getMateriauxFrimousse();
+        $type = $this->getMateriauxFrimousse(); //TODO
         return isset($type);
     }
 

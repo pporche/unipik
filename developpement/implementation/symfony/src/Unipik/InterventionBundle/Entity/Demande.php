@@ -53,14 +53,14 @@ class Demande
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsVoulus")
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsVoulus", cascade={"persist"})
      */
     private $momentsVoulus;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsAEviter")
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsAEviter", cascade={"persist"})
      */
     private $momentsAEviter;
 
@@ -169,26 +169,12 @@ class Demande
      *
      * @return Collection
      */
-    public function getSemaine() {
+    public function getSemaines() {
         $array = array();
         if ($this->listeSemaine != null) {
             $array = ArrayConverter::pgArrayToPhpArray($this->listeSemaine);
         }
         return new ArrayCollection($array);
-    }
-
-    /**
-     * Set responsabiliteActivite
-     *
-     * @param string $responsabiliteActivite
-     *
-     * @return Demande
-     *
-     * @deprecated
-     */
-    public function setResponsabiliteActivite($responsabiliteActivite) {
-        $this->responsabiliteActivite = $responsabiliteActivite;
-        return $this;
     }
 
     /**

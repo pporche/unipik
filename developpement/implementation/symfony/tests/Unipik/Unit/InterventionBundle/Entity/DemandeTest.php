@@ -10,6 +10,7 @@
 namespace Tests\Unipik\Unit\InterventionBundle\Entity;
 
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\AdresseMock;
+use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\MomentHebdomadaireMock;
 use Tests\Unipik\Unit\InterventionBundle\Entity\Mocks\DemandeMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ContactMock;
 use Unipik\InterventionBundle\Entity\Demande;
@@ -34,60 +35,46 @@ class DemandeTest extends  EntityTestCase
     public function testGettersSetters(Demande $d)
     {
         $this->assertEquals(null, $d->getId());
+        $this->assertEquals("42", $d->getSemaines()[0]);
+        $this->assertEquals(new \DateTime('2000-01-01'), $d->getDateDemande());
 
-//        $d->setNom("College trucmuche")
-//            ->setTelFixe("0232010203")
-//            ->setUai("uai") //Aucune vérification sur l'UAI: normal
-//            ->setTypeEnseignement("lycee")
-//            ->setTypeCentre("adolescent")
-//            ->setTypeAutreDemande("autre")
-//        ;
-//
-//        $ad = AdresseMock::create();
-//        $d->setAdresse($ad);
-//
-//        $this->assertEquals("College trucmuche",    $d->getNom());
-//        $this->assertEquals("0232010203",           $d->getTelFixe());
-//        $this->assertEquals("uai",                  $d->getUai());
-//        $this->assertEquals("lycee",                $d->getTypeEnseignement());
-//        $this->assertEquals("adolescent",           $d->getTypeCentre());
-//        $this->assertEquals("autre",                $d->getTypeAutreDemande());
-//        $this->assertEquals($ad,                    $d->getAdresse());
-//        $this->assertEquals(true,                   $d->isEnseignement());
-//        $this->assertEquals(true,                   $d->isCentreLoisirs());
-//        $this->assertEquals(true,                   $d->isAutreDemande());
-//
-//        $d->addEmail("dupont@topmail.com");
-//        $this->assertEquals("dupont@topmail.com", $d->getEmails()[1]);
-//        $d->removeEmail("dupont@topmail.com");
-//        $this->assertEquals(null, $d->getEmails()[1]);
-//        $d->addEmail("dupont@topmail.com");
-//        $d->addEmail("test@test.test");
-//        $d->addEmail("truc@truc.truc");
-//        $d->removeAllEmails();
-//        $this->assertEquals(null, $d->getEmails()[0]);
-//        $this->assertEquals(null, $d->getEmails()[1]);
-//        $this->assertEquals(null, $d->getEmails()[2]);
-//        $this->assertEquals(null, $d->getEmails()[3]);
-//
-//        $c = ContactMock::create();
-//        $d->addContact($c);
-//        $this->assertEquals($c, $d->getContacts()[0]);
-//        $d->removeContact($c);
-//        $this->assertEquals(null, $d->getContacts()[0]);
+        $c = ContactMock::create();
+
+        $d
+            ->setContact($c)
+            ->setDateDemande(new \DateTime('2010-10-10'))
+        ;
+
+        $this->assertEquals($c, $d->getContact());
+        $this->assertEquals(new \DateTime('2010-10-10'), $d->getDateDemande());
+
+        $d->addSemaine(45);
+        $this->assertEquals(45, $d->getSemaines()[1]);
+        $d->removeSemaine(45);
+        $this->assertEquals(null, $d->getSemaines()[1]);
+
+        $mh = MomentHebdomadaireMock::create();
+
+        $d->addMomentsVoulus($mh);
+        $this->assertEquals($mh, $d->getMomentsVoulus()[0]);
+        $d->removeMomentsVoulus($mh);
+        $this->assertEquals(null, $d->getMomentsVoulus()[0]);
+
+        $d->addMomentsAEviter($mh);
+        $this->assertEquals($mh, $d->getMomentsAEviter()[0]);
+        $d->removeMomentsAEviter($mh);
+        $this->assertEquals(null, $d->getMomentsAEviter()[0]);
     }
 
     public function validEntityProvider() {
         $d = DemandeMock::createMultiple(2);
-        $c = ContactMock::create();
+        $mh = MomentHebdomadaireMock::createMultiple(2);
 
-//        $d[1]->setNom("Dupont")
-//            ->addEmail("dupont@super-univ.fr")
-//            ->setTypeEnseignement("lycee")
-//            ->setTelFixe("0232010203")
-//            ->setUai("uai")
-//            ->addContact($c)
-//        ;
+        $d[1]
+            ->addSemaine(47)
+            ->addMomentsVoulus($mh[0])
+            ->addMomentsAEviter($mh[1])
+        ;
 
         return [
             "1 Demande" => [$d[0]],

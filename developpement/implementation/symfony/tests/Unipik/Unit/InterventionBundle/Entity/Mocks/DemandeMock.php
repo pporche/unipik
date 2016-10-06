@@ -24,7 +24,7 @@ class DemandeMock extends Mock {
         $d = new Demande();
         $d
             ->setContact($c)
-            ->setDateDemande(new \DateTime())
+            ->setDateDemande(new \DateTime('2000-01-01'))
             ->addSemaine("42")
         ;
 

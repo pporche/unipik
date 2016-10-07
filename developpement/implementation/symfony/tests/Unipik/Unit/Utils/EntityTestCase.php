@@ -73,10 +73,11 @@ abstract class EntityTestCase extends KernelTestCase {
      */
     public function testBadEntities($e) {
         self::bootKernel();
+        static::$em->beginTransaction();
 
         try{
             static::$em->persist($e);
-            //static::$em->flush();
+            static::$em->flush();
         } catch (\Doctrine\DBAL\Exception\DriverException $e){
 
         } catch (\Doctrine\ORM\ORMInvalidArgumentException $e){
@@ -84,5 +85,7 @@ abstract class EntityTestCase extends KernelTestCase {
         } catch (Exception $e) {
             $this->hasFailed();
         }
+
+        static::$em->rollBack();
     }
 }

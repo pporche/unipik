@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b9dcc2ebba2cc6fd542d74801725eb70",
-    "content-hash": "c6c68d5bb1af29d178f9edb3b4382f7b",
+    "hash": "d2986a2dda03d4fc3bb74bc5638a7f37",
+    "content-hash": "dc505b9750bc5061ce53c883859804e7",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -776,85 +776,17 @@
             "time": "2016-09-10 18:51:13"
         },
         {
-            "name": "fresh/doctrine-enum-bundle",
-            "version": "v4.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fre5h/DoctrineEnumBundle.git",
-                "reference": "9e2ff97b5c999739dee4fddc41e33c0aa70af204"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fre5h/DoctrineEnumBundle/zipball/9e2ff97b5c999739dee4fddc41e33c0aa70af204",
-                "reference": "9e2ff97b5c999739dee4fddc41e33c0aa70af204",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/orm": "~2.2",
-                "php": ">=5.4.0",
-                "symfony/symfony": "~2.6|~3.0"
-            },
-            "require-dev": {
-                "escapestudios/symfony2-coding-standard": "~2.9",
-                "phpunit/phpunit": "~4.8",
-                "squizlabs/php_codesniffer": "~2.5"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Fresh\\DoctrineEnumBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Artem Genvald",
-                    "email": "genvaldartem@gmail.com",
-                    "role": "Creator"
-                },
-                {
-                    "name": "Community",
-                    "homepage": "https://github.com/fre5h/DoctrineEnumBundle/graphs/contributors",
-                    "role": "Developers"
-                }
-            ],
-            "description": "Provides support of ENUM type for Doctrine2 in Symfony applications.",
-            "homepage": "https://github.com/fre5h/DoctrineEnumBundle",
-            "keywords": [
-                "bundle",
-                "dbal",
-                "doctrine",
-                "entity",
-                "enum",
-                "mssql",
-                "mysql",
-                "postgresql",
-                "sqlite",
-                "symfony",
-                "type"
-            ],
-            "time": "2016-03-10 08:06:51"
-        },
-        {
             "name": "friendsofsymfony/user-bundle",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "47e4de9d8b6fed521729fb38107d9413863fe4ce"
+                "reference": "962a7f3603cce63dae2a84839f030ddb748d890b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/47e4de9d8b6fed521729fb38107d9413863fe4ce",
-                "reference": "47e4de9d8b6fed521729fb38107d9413863fe4ce",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/962a7f3603cce63dae2a84839f030ddb748d890b",
+                "reference": "962a7f3603cce63dae2a84839f030ddb748d890b",
                 "shasum": ""
             },
             "require": {
@@ -916,7 +848,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2016-10-03 14:55:29"
+            "time": "2016-10-07 07:55:07"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2154,16 +2086,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.26.0",
+            "version": "v1.26.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "81c2b5fd36581370c7731387f05dcdb577050513"
+                "reference": "a09d8ee17ac1cfea29ed60c83960ad685c6a898d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/81c2b5fd36581370c7731387f05dcdb577050513",
-                "reference": "81c2b5fd36581370c7731387f05dcdb577050513",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a09d8ee17ac1cfea29ed60c83960ad685c6a898d",
+                "reference": "a09d8ee17ac1cfea29ed60c83960ad685c6a898d",
                 "shasum": ""
             },
             "require": {
@@ -2211,7 +2143,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-10-02 16:19:13"
+            "time": "2016-10-05 18:57:41"
         }
     ],
     "packages-dev": [

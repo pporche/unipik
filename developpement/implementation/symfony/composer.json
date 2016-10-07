@@ -22,7 +22,6 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "friendsofsymfony/user-bundle": "dev-master",
-	    "fresh/doctrine-enum-bundle": "4.5.*",
         "jsor/doctrine-postgis": "^1.1",
         "snilius/twig-sort-by-field": "^0.1.5",
         "symfony/validator": "^3.1",

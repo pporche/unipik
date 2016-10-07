@@ -26,7 +26,7 @@ class Comite
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\NiveauTheme", inversedBy="comite")
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\NiveauTheme", inversedBy="comite", cascade={"persist"})
      * @ORM\JoinTable(name="comite_niveau_theme",
      *   joinColumns={
      *     @ORM\JoinColumn(name="comite", referencedColumnName="id")
@@ -41,14 +41,14 @@ class Comite
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Benevole", mappedBy="comite")
+     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Benevole", mappedBy="comite", cascade={"persist"})
      */
     private $benevole;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Departement", mappedBy="comite")
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Departement", mappedBy="comite", cascade={"persist"})
      */
     private $departement;
 

@@ -89,7 +89,7 @@ class Benevole extends BaseUser
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Projet", inversedBy="benevole")
+     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Projet", inversedBy="benevole", cascade={"persist"})
      * @ORM\JoinTable(name="benevole_projet",
      *   joinColumns={
      *     @ORM\JoinColumn(name="benevole_id", referencedColumnName="id")
@@ -104,7 +104,7 @@ class Benevole extends BaseUser
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Comite", inversedBy="benevole")
+     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Comite", inversedBy="benevole", cascade={"persist"})
      * @ORM\JoinTable(name="benevole_comite",
      *   joinColumns={
      *     @ORM\JoinColumn(name="benevole_id", referencedColumnName="id")

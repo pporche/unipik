@@ -64,13 +64,18 @@ class ProfileController extends BaseController {
             /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
             $userManager = $this->get('fos_user.user_manager');
 
-            $activitiesArray = $form->get("activitesPotentielles")->getData();
-            $activitiesString = ArrayConverter::phpArrayToPgArray($activitiesArray);
-            $user->setResponsabiliteActivite($activitiesString);
+            $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
+            foreach ($responsibilitiesArray as $responsabilite) {
+                $user->addResponsabiliteActivite($responsabilite);
+                if($responsabilite != 'admin_region' && $responsabilite != 'admin_comite') {
+                    $user->addActivitesPotentielles($responsabilite);
+                }
+            }
 
-            $responsibilitiesArray = $form->get("responsabiliteActivite")->getData();
-            $responsibilitiesString = ArrayConverter::phpArrayToPgArray($responsibilitiesArray);
-            $user->setResponsabiliteActivite($responsibilitiesString);
+            $activitesPotentiellesArray = $form->get("activitesPotentielles")->getData();
+            foreach ($activitesPotentiellesArray as $activite) {
+                $user->addActivitesPotentielles($activite);
+            }
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);

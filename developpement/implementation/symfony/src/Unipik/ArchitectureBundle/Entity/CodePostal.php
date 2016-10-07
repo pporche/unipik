@@ -48,7 +48,7 @@ class CodePostal
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\ArchitecturebundleBundle\Entity\Ville", inversedBy="codePostal")
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitecturebundleBundle\Entity\Ville", inversedBy="codePostal", cascade={"persist"})
      * @ORM\JoinTable(name="ville_code_postal",
      *   joinColumns={
      *     @ORM\JoinColumn(name="code_postal_id", referencedColumnName="id")
@@ -131,7 +131,7 @@ class CodePostal
      *
      * @param \Unipik\ArchitectureBundle\Entity\Ville $ville
      *
-     * @return Ville
+     * @return CodePostal
      */
     public function addVille(\Unipik\ArchitectureBundle\Entity\Ville $ville)
     {

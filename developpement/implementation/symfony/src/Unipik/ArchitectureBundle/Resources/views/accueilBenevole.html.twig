@@ -27,38 +27,54 @@
                     {% else %}
                         typeIntervention = "Autre intervention";
                     {% endif %}
-                   interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
-                                        start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                                        url: '{{ path('intervention_view', {id: intervention.id}) }}' });
-                {% endif %}
-            {% endfor %}
-            {% for intervention in interventionsRealisees %}
-                {% if intervention.dateIntervention is not null  %}
-                    {% if intervention.plaidoyer %}
-                        typeIntervention = "Plaidoyer";
-                    {% elseif intervention.frimousse %}
-                        typeIntervention = "Frimousse";
-                    {% else %}
-                        typeIntervention = "Autre intervention";
+                    {% if intervention.benevole is not null %}
+                        {% if user.id == intervention.benevole.id %}
+                            interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                url: '{{ path('intervention_view', {id: intervention.id}) }}' });
+                        {% else %}
+                            interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                url: '{{ path('intervention_view', {id: intervention.id}) }}',
+                                color  : 'grey' });
+                        {% endif %}
                     {% endif %}
                 {% endif %}
-                interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                    start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                    url: '{{ path('intervention_view', {id: intervention.id}) }}' });
-
+                {% endfor %}
+                {% for intervention in interventionsRealisees %}
+                    {% if intervention.dateIntervention is not null  %}
+                        {% if intervention.plaidoyer %}
+                            typeIntervention = "Plaidoyer";
+                        {% elseif intervention.frimousse %}
+                            typeIntervention = "Frimousse";
+                        {% else %}
+                            typeIntervention = "Autre intervention";
+                        {% endif %}
+                        {% if intervention.benevole is not null %}
+                            {% if user.id == intervention.benevole.id %}
+                                interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                                    start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                    url: '{{ path('intervention_view', {id: intervention.id}) }}',
+                                    color  : '#82C46C' });
+                            {% else %}
+                                interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                                    start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                    url: '{{ path('intervention_view', {id: intervention.id}) }}',
+                                    color  : 'grey' });
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
             {% endfor %}
 
             $('#calendar').fullCalendar({
                 locale:"fr",
-                events: interventions,
-
+                events: interventions
             })
 
 
         });
 
     </script>
-
 {% endblock %}
 
 {% block title %}
@@ -114,7 +130,8 @@
 
             <section class="col-lg-10 col-md-10 col-sm-10">
                     <h2>  Liste des prochaines interventions </h2>
-                    {% if interventionsNonRealisees is not empty %}
+
+                    {% if interventionsNonRealiseesBenevole is not empty %}
                         <div class="table_outer">
                             <table class="table table-striped table-hover ">
                                 <thead>
@@ -133,7 +150,7 @@
                                 </tr>
                                 </thead>
                                 <tbody id="myTable">
-                                {% for intervention in interventionsNonRealisees|slice(0, 2) %}
+                                {% for intervention in interventionsNonRealiseesBenevole %}
                                     <tr>
                                         <td>{{ loop.index }}</td>
                                         <td>{{ intervention.lieu | capitalize}}</td>
@@ -176,10 +193,9 @@
                         </div>
                     {% endif %}
             </section>
-
             <section class="col-lg-10 col-md-10 col-sm-10">
                 <h2>  Liste des interventions réalisées  </h2>
-                {% if interventionsRealisees is not empty %}
+                {% if interventionsRealiseesBenevole is not empty %}
                     <table class="table table-striped table-hover ">
                         <thead>
                         <tr>
@@ -198,7 +214,7 @@
                         </tr>
                         </thead>
                         <tbody id="myTable">
-                        {% for intervention in interventionsRealisees|slice(0, 2) %}
+                        {% for intervention in interventionsRealiseesBenevole %}
                             <tr>
                                 <td>{{ loop.index }}</td>
                                 <td>{{ intervention.lieu | capitalize}}</td>

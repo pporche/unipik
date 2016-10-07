@@ -39,7 +39,7 @@ class NiveauTheme
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Comite", mappedBy="niveauTheme")
+     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Comite", mappedBy="niveauTheme", cascade={"persist"})
      */
     private $comite;
 

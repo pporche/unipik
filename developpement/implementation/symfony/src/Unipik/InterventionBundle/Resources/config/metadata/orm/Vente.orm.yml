@@ -37,7 +37,7 @@ Vente:
     manyToOne:
         intervention:
             targetEntity: Intervention
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: null
@@ -47,7 +47,7 @@ Vente:
             orphanRemoval: false
         etablissement:
             targetEntity: Etablissement
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: null

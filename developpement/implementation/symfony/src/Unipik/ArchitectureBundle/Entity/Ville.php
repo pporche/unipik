@@ -39,7 +39,7 @@ class Ville
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\CodePostal", mappedBy="ville")
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\CodePostal", mappedBy="ville", cascade={"persist"})
      */
     private $codePostal;
 

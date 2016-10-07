@@ -44,9 +44,9 @@ class Vente
     private $remarques;
 
     /**
-     * @var \Unipik\ArchitectureBundle\Entity\Intervention
+     * @var \Unipik\InterventionBundle\Entity\Intervention
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Intervention")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Intervention", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="intervention_id", referencedColumnName="id")
      * })
@@ -54,9 +54,9 @@ class Vente
     private $intervention;
 
     /**
-     * @var \Unipik\ArchitectureBundle\Entity\Etablissement
+     * @var \Unipik\InterventionBundle\Entity\Etablissement
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Etablissement")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Etablissement", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
      * })
@@ -150,11 +150,11 @@ class Vente
     /**
      * Set intervention
      *
-     * @param \Unipik\ArchitectureBundle\Entity\Intervention $intervention
+     * @param \Unipik\InterventionBundle\Entity\Intervention $intervention
      *
      * @return Vente
      */
-    public function setIntervention(\Unipik\ArchitectureBundle\Entity\Intervention $intervention = null)
+    public function setIntervention(Intervention $intervention = null)
     {
         $this->intervention = $intervention;
 
@@ -164,7 +164,7 @@ class Vente
     /**
      * Get intervention
      *
-     * @return \Unipik\ArchitectureBundle\Entity\Intervention
+     * @return \Unipik\InterventionBundle\Entity\Intervention
      */
     public function getIntervention()
     {
@@ -174,11 +174,11 @@ class Vente
     /**
      * Set etablissement
      *
-     * @param \Unipik\ArchitectureBundle\Entity\Etablissement $etablissement
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement
      *
      * @return Vente
      */
-    public function setEtablissement(\Unipik\ArchitectureBundle\Entity\Etablissement $etablissement)
+    public function setEtablissement(Etablissement $etablissement)
     {
         $this->etablissement = $etablissement;
 
@@ -188,7 +188,7 @@ class Vente
     /**
      * Get etablissement
      *
-     * @return \Unipik\ArchitectureBundle\Entity\Etablissement
+     * @return \Unipik\InterventionBundle\Entity\Etablissement
      */
     public function getEtablissement()
     {

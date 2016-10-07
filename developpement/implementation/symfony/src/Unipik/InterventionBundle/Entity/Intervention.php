@@ -2,7 +2,10 @@
 // version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 namespace Unipik\InterventionBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 /**
  * Intervention
@@ -20,49 +23,49 @@ class Intervention
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="intervention_id_seq", allocationSize=1, initialValue=1)
      */
-    private $id;
+    public $id;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_intervention", type="date", nullable=true)
      */
-    private $dateIntervention;
+    public $dateIntervention;
 
     /**
      * @var string
      *
      * @ORM\Column(name="lieu", type="string", length=100, nullable=true)
      */
-    private $lieu;
+    public $lieu;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="nb_personne", type="integer", nullable=false)
      */
-    private $nbPersonne;
+    public $nbPersonne;
 
     /**
      * @var string
      *
      * @ORM\Column(name="remarques", type="string", length=500 nullable=true)
      */
-    private $remarques;
+    public $remarques;
 
     /**
      * @var string
      *
      * @ORM\Column(name="heure", type="string", length=30, nullable=true)
      */
-    private $heure;
+    public $heure;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="realisee", type="boolean", nullable=false)
      */
-    private $realisee;
+    public $realisee;
 
 
     /**
@@ -71,78 +74,78 @@ class Intervention
      * @ORM\Column(name="materiel_dispo_plaidoyer", type="string", length=500, nullable=true)
      * @example : '{(enceinte},(autre)'
      */
-    private $materielDispoPlaidoyer;
+    public $materielDispoPlaidoyer;
 
     /**
      * @var string
      *
      * @ORM\Column(name="niveau_frimousse", type="string", length=30, nullable=true)
      */
-    private $niveauFrimousse;
+    public $niveauFrimousse;
 
     /**
      * @var string
      *
      * @ORM\Column(name="materiaux_frimousse", type="string", length=500, nullable=true)
      */
-    private $materiauxFrimousse;
+    public $materiauxFrimousse;
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=500, nullable=true)
      */
-    private $description;
+    public $description;
 
     /**
      * @var \Unipik\ArchitectureBundle\Entity\NiveauTheme
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\NiveauTheme")
+     * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\NiveauTheme", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="niveau_theme_id", referencedColumnName="id")
      * })
      */
-    private $niveauTheme;
+    public $niveauTheme;
 
     /**
      * @var \Unipik\InterventionBundle\Entity\Etablissement
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Etablissement")
+     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
      * })
      */
-    private $etablissement;
+    public $etablissement;
 
     /**
      * @var \Unipik\UserBundle\Entity\Comite
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Comite")
+     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Comite", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="comite_id", referencedColumnName="id")
      * })
      */
-    private $comite;
+    public $comite;
 
     /**
      * @var \Unipik\UserBundle\Entity\Benevole
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Benevole")
+     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Benevole", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="benevole_id", referencedColumnName="id")
      * })
      */
-    private $benevole;
+    public $benevole;
 
     /**
      * @var \Unipik\InterventionBundle\Entity\Demande
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Demande")
+     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Demande", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="demande_id", referencedColumnName="id")
      * })
      */
-    private $demande;
+    public $demande;
 
 
 
@@ -294,11 +297,11 @@ class Intervention
 
 
     /**
-     * Get realisee
+     * isRealisee
      *
      * @return boolean
      */
-    public function getRealisee()
+    public function isRealisee()
     {
         return $this->realisee;
     }
@@ -306,6 +309,8 @@ class Intervention
 
     /**
      * Set materielDispoPlaidoyer
+     *
+     * @deprecated
      *
      * @param string $materielDispoPlaidoyer
      *
@@ -319,13 +324,44 @@ class Intervention
     }
 
     /**
+     * Add materielDispoPlaidoyer
+     *
+     * @param string|array $materielDispoPlaidoyer
+     *
+     * @return Intervention
+     */
+    public function addMaterielDispoPlaidoyer($materielDispoPlaidoyer) {
+        $this->materielDispoPlaidoyer = ArrayConverter::addIntoPgArray(
+            $this->materielDispoPlaidoyer,
+            $materielDispoPlaidoyer
+        );
+
+        return $this;
+    }
+
+    /**
+     * Remove materielDispoPlaidoyer
+     *
+     * @param string $materielDispoPlaidoyer
+     */
+    public function removeMaterielDispoPlaidoyer($materielDispoPlaidoyer) {
+        $this->materielDispoPlaidoyer = ArrayConverter::removeFromPgArray(
+            $this->materielDispoPlaidoyer,
+            $materielDispoPlaidoyer
+        );
+    }
+
+    /**
      * Get materielDispoPlaidoyer
      *
-     * @return string
+     * @return Collection
      */
-    public function getMaterielDispoPlaidoyer()
-    {
-        return $this->materielDispoPlaidoyer;
+    public function getMaterielDispoPlaidoyer() {
+        $array = array();
+        if ($this->materielDispoPlaidoyer != null) {
+            $array = ArrayConverter::pgArrayToPhpArray($this->materielDispoPlaidoyer);
+        }
+        return new ArrayCollection($array);
     }
 
     /**
@@ -355,6 +391,8 @@ class Intervention
     /**
      * Set materiauxFrimousse
      *
+     * @deprecated
+     *
      * @param string $materiauxFrimousse
      *
      * @return Intervention
@@ -367,13 +405,44 @@ class Intervention
     }
 
     /**
+     * Add materiauxFrimousse
+     *
+     * @param string|array $materiauxFrimousse
+     *
+     * @return Intervention
+     */
+    public function addMateriauxFrimousse($materiauxFrimousse) {
+        $this->materiauxFrimousse = ArrayConverter::addIntoPgArray(
+            $this->materiauxFrimousse,
+            $materiauxFrimousse
+        );
+
+        return $this;
+    }
+
+    /**
+     * Remove materiauxFrimousse
+     *
+     * @param string $materiauxFrimousse
+     */
+    public function removeMateriauxFrimousse($materiauxFrimousse) {
+        $this->materiauxFrimousse = ArrayConverter::removeFromPgArray(
+            $this->materiauxFrimousse,
+            $materiauxFrimousse
+        );
+    }
+
+    /**
      * Get materiauxFrimousse
      *
-     * @return string
+     * @return Collection
      */
-    public function getMateriauxFrimousse()
-    {
-        return $this->materiauxFrimousse;
+    public function getMateriauxFrimousse() {
+        $array = array();
+        if ($this->materiauxFrimousse != null) {
+            $array = ArrayConverter::pgArrayToPhpArray($this->materiauxFrimousse);
+        }
+        return new ArrayCollection($array);
     }
 
     /**
@@ -538,7 +607,7 @@ class Intervention
      */
     public function isFrimousse()
     {
-        $type = $this->getMateriauxFrimousse();
+        $type = $this->getMateriauxFrimousse(); //TODO
         return isset($type);
     }
 

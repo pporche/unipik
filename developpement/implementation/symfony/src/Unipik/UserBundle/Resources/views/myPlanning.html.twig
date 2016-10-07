@@ -25,10 +25,19 @@
                     {% else %}
                         typeIntervention = "Autre intervention";
                     {% endif %}
-                    interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
-                        start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                        url: '{{ path('intervention_view', {id: intervention.id}) }}' });
-            {% endif %}
+                    {% if intervention.benevole is not null %}
+                        {% if user.id == intervention.benevole.id %}
+                            interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                url: '{{ path('intervention_view', {id: intervention.id}) }}' });
+                        {% else %}
+                            interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                url: '{{ path('intervention_view', {id: intervention.id}) }}',
+                                color  : 'grey' });
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
             {% endfor %}
             {% for intervention in interventionsRealisees %}
                 {% if intervention.dateIntervention is not null  %}
@@ -39,16 +48,25 @@
                     {% else %}
                         typeIntervention = "Autre intervention";
                     {% endif %}
-                        interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
-                            start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                            url: '{{ path('intervention_view', {id: intervention.id}) }}' });
+                    {% if intervention.benevole is not null %}
+                        {% if user.id == intervention.benevole.id %}
+                            interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                url: '{{ path('intervention_view', {id: intervention.id}) }}',
+                                color  : '#82C46C' });
+                        {% else %}
+                            interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                url: '{{ path('intervention_view', {id: intervention.id}) }}',
+                                color  : 'grey' });
+                        {% endif %}
+                    {% endif %}
                 {% endif %}
             {% endfor %}
 
             $('#calendar').fullCalendar({
                 locale:"fr",
                 events: interventions
-
             })
 
 

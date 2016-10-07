@@ -70,16 +70,11 @@ class RegistrationController extends BaseController {
                     $user->addActivitesPotentielles($responsabilite);
                 }
             }
-//            $responsibilitiesString = ArrayConverter::phpArrayToPgArray($responsibilitiesArray);
-//            $user->setResponsabiliteActivite($responsibilitiesString);
 
-            $activitiesArray = $form->get("activitesPotentielles")->getData(); //récup les activités choisies sur le form + format pour persist
-//            foreach ($activitiesArray as $activite) {
-//                $user->addActivitesPotentielles($activite);
-//            }
-//            $activitiesString = ArrayConverter::phpArrayToPgArray($activitiesArray);
-//            //$activitiesString = $this->setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString);
-//            $user->setActivitesPotentielles($activitiesString);
+            $activitesPotentiellesArray = $form->get("activitesPotentielles")->getData();
+            foreach ($activitesPotentiellesArray as $activite) {
+                $user->addActivitesPotentielles($activite);
+            }
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);

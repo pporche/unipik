@@ -53,14 +53,14 @@ class Projet
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Benevole", mappedBy="projet")
+     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Benevole", mappedBy="projet", cascade={"persist"})
      */
     private $benevole;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Contact", mappedBy="projet")
+     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Contact", mappedBy="projet", cascade={"persist"})
      */
     private $contact;
 

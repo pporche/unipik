@@ -31,10 +31,8 @@ class ArrayConverter {
             if (is_array($t)) {
                 $result[] = static::phpArrayToPgArray($t);
             } else {
-                $t = str_replace('"', '\\"', $t); // escape double quote
-                if (! is_numeric($t)) { // quote only non-numeric values
-                    $t = '(' . $t . ')';
-                }
+                //$t = str_replace('"', '\\"', $t); // escape double quote
+                $t = '(' . $t . ')';
                 $result[] = $t;
             }
         }

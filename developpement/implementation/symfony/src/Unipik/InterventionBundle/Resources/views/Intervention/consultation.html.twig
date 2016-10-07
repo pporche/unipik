@@ -7,6 +7,30 @@
 
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function desattributeIntervention(event, id) {
+            $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
+                function (data, status) {
+                    $(event).attr('class', 'btn btn-primary');
+                    $(event).text('S\'attribuer l\'intervention');
+                    $(event).attr("onclick", "attributeIntervention(this, "+id+")");
+                });
+        }
+
+        function attributeIntervention(event, id) {
+            $.post("{{ path('intervention_self_attribute') }}", {'id': id},
+                function (data, status) {
+                    $(event).attr('class', 'btn btn-danger');
+                    $(event).text('Se désattribuer l\'intervention');
+                    $(event).attr("onclick", "desattributeIntervention(this, "+id+")");
+                });
+        }
+    </script>
+
+{% endblock %}
+
 {% block body %}
 
     <div class="container">
@@ -14,23 +38,24 @@
             <section class="jumbotron col-sm-12 infoPrincip">
                 <div>
                     <div class="row">
-                        <h2 class="col-lg-9 titre">
+                        <h2 class="col-lg-7 titre">
                             Intervention
-                            <span class="label label-primary">
-                                {% if intervention.realisee %}
-                                    Réalisée
-                                {%elseif intervention.benevole %}
-                                    Attribuée à
-                                    {% if user==intervention.benevole  %}
-                                         vous
-                                    {% else %}
-                                        {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
-                                    {% endif %}
-                                {% else %}
-                                    Non attribuée
-                                {% endif %}
-                            </span>
-                        </h2><br><br>
+                        </h2>
+                        {% if intervention.realisee %}
+                            <p class="text-success"> Réalisée <span class="glyphicon glyphicon-ok"></span></p>
+                        {% elseif intervention.benevole %}
+                            {% if user==intervention.benevole %}
+                                <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeIntervention(this, {{ intervention.id }})">
+                                    Se désattribuer l'intervention
+                                </button>
+                            {% else %}
+                                Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
+                            {% endif %}
+                        {% else %}
+                            <button name="attribution" type="button" class="btn btn-primary" onclick="attributeIntervention(this, {{ intervention.id }})">
+                                S'attribuer l'intervention
+                            </button>
+                        {% endif %}
                         <h4 class="col-lg-9" >
                             {% if intervention.plaidoyer %}
                                 Plaidoyer
@@ -139,7 +164,16 @@
                 </div>
             </section>
         </div>
-
+        <div class="row">
+            <div class="buttons">
+                <a href="{{ path("intervention_admin_edit", {'id': intervention.id}) }}" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-pencil"> Modifier</span>
+                </a>
+                <a href="{{ path("intervention_admin_delete", {'id': intervention.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'intervention {{ intervention.id }} ?')">
+                    <span class="glyphicon glyphicon-trash"> Supprimer </span>
+                </a>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12 infoContainer">
                 <div class="col-sm-3 containerOne">

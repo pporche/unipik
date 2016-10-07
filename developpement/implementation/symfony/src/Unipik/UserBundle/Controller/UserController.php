@@ -4,6 +4,7 @@ namespace Unipik\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\UserBundle\Entity\BenevoleRepository;
@@ -20,6 +21,14 @@ use Unipik\UserBundle\Form\RegistrationType;
 class UserController extends Controller {
 
     /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository|BenevoleRepository
+     */
+    public function getBenevoleRepository(){
+        $em = $this->getDoctrine()->getManager();
+        return $em->getRepository('UserBundle:Benevole');
+    }
+
+    /**
      * @param Request $request
      * @return Response
      */
@@ -34,11 +43,21 @@ class UserController extends Controller {
         $responsabilites = $form->get("responsabilitesActivites")->getData();
         $ville = $form->get("ville")->getData();
 
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('UserBundle:Benevole');
-        $listBenevoles = $repository->getBenevoles($ville,$activites,$responsabilites);
-        return $this->render('UserBundle::liste.html.twig', array('listBenevoles' => $listBenevoles, 'form' => $form->createView()));
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "nom");
+        $desc = $request->get("desc", false);
 
+        $repository = $this->getBenevoleRepository();
+
+        $listBenevoles = $repository->getType($field, $desc);
+
+
+        return $this->render('UserBundle::liste.html.twig', array(
+            'field' => $field,
+            'desc' => $desc,
+            'rowsPerPage' => $rowsPerPage,
+            'listBenevoles' => $listBenevoles,
+            'form' => $form->createView()));
     }
 
     /**
@@ -172,6 +191,30 @@ class UserController extends Controller {
         return $this->render('UserBundle:Profile:editBenevole.html.twig', array('form' => $form->createView()));
     }
 
+
+    public function autocompleteAction(Request $request){
+        $names = array();
+        $term = trim(strip_tags($request->get('term')));
+        $term=strtoupper($term);
+
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('UserBundle:Benevole')->createQueryBuilder('b')
+            ->where('b.nom LIKE :name')
+            ->setParameter('name', '%'.$term.'%')
+            ->orderBy('b.nom','ASC')
+            ->getQuery()
+            ->getResult();
+
+        foreach ($entities as $entity) {
+            $names[] = $entity->getNom();
+        }
+
+        $response = new JsonResponse();
+        $response->setData($names);
+
+        return $response;
+    }
+
     /**
      * Render a volunteer's planning page
      *
@@ -184,11 +227,10 @@ class UserController extends Controller {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('InterventionBundle:Intervention');
-        $interventionsNonRealiseesBenevole = $repository->getInterventionsRealiseesOuNonBenevole($user, false);
-        $interventionsRealiseesBenevole = $repository->getInterventionsRealiseesOuNonBenevole($user, true);
+        $interventionsNonRealiseesBenevole = $repository->getInterventionsRealiseesOuNon(false);
+        $interventionsRealiseesBenevole = $repository->getInterventionsRealiseesOuNon(true);
         return $this->render('UserBundle::myPlanning.html.twig', array('user' => $user, 'interventionsNonRealisees' => $interventionsNonRealiseesBenevole, 'interventionsRealisees' => $interventionsRealiseesBenevole));
 
     }
-
 
 }

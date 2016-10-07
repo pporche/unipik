@@ -32,7 +32,7 @@ CodePostal:
     manyToMany:
         ville:
             targetEntity: Ville
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: codePostal

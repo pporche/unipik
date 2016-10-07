@@ -18,9 +18,10 @@ Installer phpunit
 2. Exécuter les commandes suivantes (le numéro de version en **gras** peut être différent) :
 
 '''
-mv phpunit-4.8.27.phar /usr/local/bin/phpunit
-chmod +x /usr/local/bin/phpunit
+mv phpunit-
 '''
+**4.8.27**''.phar /usr/local/bin/phpunit''
+''chmod +x /usr/local/bin/phpunit''
 
 
 3. Vérifier que phpunit est bien installer avec la commande suivantes :

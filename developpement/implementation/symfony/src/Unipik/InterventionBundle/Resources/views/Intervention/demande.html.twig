@@ -14,7 +14,6 @@
 
 {%block javascripts %}
     {{ parent() }}
-    {{ parent() }}
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
 
@@ -62,8 +61,7 @@
             e.stopImmediatePropagation();
         }
 
-
-        function treatmentSelect(template){
+        function treatmentSelect(){
             var choiceEtabElt = document.getElementsByTagName('select')[0];
             //console.log('template:'+ template.html());
             var type;
@@ -72,16 +70,25 @@
                     type = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked').value;
                     switch (type){
                         case 'elementaire':
+//
+//                            var taille = $(template).find('select')[1].length;
+//                            for(i=0; i<taille; i++){
+//                                console.log('taille: ' + taille);
+//                                if(i<7 || i>15){
+//                                    $(template).find('select:eq(1)').find('option:eq(' + i + ')')[0].remove();
+//                                }
+//                                console.log($(template).find('select:eq(1)').find('option:eq(' + i + ')'));
+//
+                            var div = $('#demande_Intervention_1_niveauClasse');
+                            console.log(div.find('option'));
 
-                            console.log($(template).find('select:eq(1)'));
-                            console.log($(template).find('select:eq(1)').find('option:eq(5)'));
-
-                            for(i=0; i<$(template).find('select')[1].length; i++){
-                                if(i<7 || i>15){
-                                    $(template).find('select:eq(1)').find('option:eq(i)').disabled = true;
+                            div.find('option').each(function (key, value) {
+                                if(key < 7 || key > 15) {
+                                    value.remove();
                                 }
-                                console.log('option ' + i + ': ' + $(template).find('select:eq(1)').find('option:eq(i)'));
-                            }
+                            });
+                            console.log(div.find('option'));
+
                             break;
                     }
                     break;
@@ -149,7 +156,7 @@
 
                 $container.append($prototype);
                 $("#add_intervention").appendTo($container).css('margin-left', '80%');
-                treatmentSelect($(template));
+                treatmentSelect();
                 $($prototype).children().find("select").on("change",displayTypeIntervention);
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;

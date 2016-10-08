@@ -28,7 +28,8 @@
         document.getElementById('demande_Intervention').appendChild(addInterElt);
 
         function displayTypeIntervention(e){
-            var parNode = e.target;
+			var parNode = '';
+            parNode = e.target;
             parNode = parNode.parentNode;
             parNode = parNode.parentNode;
             parNode = parNode.parentNode;
@@ -60,37 +61,65 @@
             }
             e.stopImmediatePropagation();
         }
+	
+	function treatmentInstitute(template,grade){
+		var taille = $(template).find('select')[1].length;
+		switch(grade){
+			case 'maternelle' :
+			for(i=0; i<taille; i++){
+			if(i>=7){
+				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+				}
+			}			
+			break;
+			case 'elementaire' :
+			for(i=0; i<taille; i++){
+			if(i<7 || i>15){
+				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+				}
+			}
+			break;
+			case 'college' :
+			for(i=0; i<taille; i++){
+			if(i<=15 || i>19){
+				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+				}
+			}
+			break;
+			case 'lycee' :
+			for(i=0; i<taille; i++){
+			if(i<=19 || i>22){
+				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+				}
+			}
+			break;
+			case 'superieur' :
+			for(i=0; i<taille; i++){
+			if(i<=22){
+				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+				}
+			}
+			break;
+			default:
+			break;
+		}
+	}
 
-        function treatmentSelect(){
+	function treatmentCenter(template){
+	
+	}
+
+	function treatmentOthers(template){
+
+	}
+
+        function treatmentSelect(template){
             var choiceEtabElt = document.getElementsByTagName('select')[0];
-            //console.log('template:'+ template.html());
             var type;
             switch(choiceEtabElt.value){
                 case 'ens' :
                     type = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked').value;
-                    switch (type){
-                        case 'elementaire':
-//
-//                            var taille = $(template).find('select')[1].length;
-//                            for(i=0; i<taille; i++){
-//                                console.log('taille: ' + taille);
-//                                if(i<7 || i>15){
-//                                    $(template).find('select:eq(1)').find('option:eq(' + i + ')')[0].remove();
-//                                }
-//                                console.log($(template).find('select:eq(1)').find('option:eq(' + i + ')'));
-//
-                            var div = $('#demande_Intervention_1_niveauClasse');
-                            console.log(div.find('option'));
-
-                            div.find('option').each(function (key, value) {
-                                if(key < 7 || key > 15) {
-                                    value.remove();
-                                }
-                            });
-                            console.log(div.find('option'));
-
-                            break;
-                    }
+		    		treatmentInstitute(template,type);
                     break;
                 case 'centre' :
                     type = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked').value;
@@ -99,7 +128,9 @@
                     type = document.querySelector('input[name="demande[Etablissement][typeAutreEtablissement]"]:checked').value;
                     break;
             }
-        }
+		}
+
+
 
         $(document).ready(function() {
 
@@ -156,7 +187,7 @@
 
                 $container.append($prototype);
                 $("#add_intervention").appendTo($container).css('margin-left', '80%');
-                treatmentSelect();
+                treatmentSelect($($prototype).get(0));
                 $($prototype).children().find("select").on("change",displayTypeIntervention);
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;

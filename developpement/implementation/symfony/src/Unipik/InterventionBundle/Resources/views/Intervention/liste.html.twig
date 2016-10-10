@@ -165,12 +165,29 @@
         function attributeInterventionAdmin(event, username, id) {
             $.post("{{ path('intervention_attribute') }}", {'username': username, 'id': id},
                     function (data, status) {
-                        console.log('ça marche !');
-//                        $(event).attr('class', 'btn btn-danger');
-//                        $(event).text('Se désattribuer l\'intervention');
-//                        $(event).attr("onclick", "desattributeIntervention(this, " + id + ")");
+                        var selector = "button[name=attribuer"+id+"]";
+                        $(selector).attr('class', 'btn btn-danger');
+                        $(selector).text('Retirer '+data.prenom+' '+data.nom+ ' de l\'intervention');
+                        $(selector).attr("onclick", "desattributeInterventionAdmin(this, " + id + ")");
+                        $(selector).removeAttr("data-target");
+                        $(selector).removeAttr("data-toggle");
                     });
         }
+
+        function desattributeInterventionAdmin(event, id) {
+            $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
+                    function (data, status) {
+                        $(event).attr('class', 'btn btn-primary');
+                        $(event).text('Attribuer l\'intervention à');
+                        $(event).attr("onclick", "sendIdToModal("+id+")");
+                        $(event).attr("data-target", "#myModal");
+                        $(event).attr("data-toggle", "modal");
+                    });
+        }
+
+        $('#attribuerModal').click(function() {
+            $('#myModal').modal('hide');
+        });
 
 //        $('#recherche_avancee_statutIntervention_2').hide();
 //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
@@ -343,11 +360,17 @@
                                                     Se désattribuer l'intervention
                                                 </button>
                                             {% else %}
-                                                Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
+                                                {% if is_granted('ROLE_ADMIN') %}
+                                                    <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeInterventionAdmin(this, {{ intervention.id }})">
+                                                        Retirer {{ intervention.benevole.prenom }} {{ intervention.benevole.nom  }} de l'intervention
+                                                    </button>
+                                                {% else %}
+                                                    Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
+                                                {% endif %}
                                             {% endif %}
                                         {% else %}
                                             {% if is_granted('ROLE_ADMIN') %}
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="sendIdToModal({{ intervention.id }})">
+                                                <button name="attribuer{{ intervention.id }}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="sendIdToModal({{ intervention.id }})">
                                                     Attribuer l'intervention à
                                                 </button>
                                             {% else %}
@@ -423,12 +446,10 @@
                 <div class="modal-body">
                     {{ form_start(formAttr, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
                     <h5>Bénévole : {{  form_widget(formAttr.benevole) }}</h5>
-
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="attributeInterventionAdmin(this, $('#attribution_benevole').val(), $('#attribution_idIntervention').val())">Attribuer</button>
+                    <button id="attribuerModal" type="button" class="btn btn-primary" onclick="attributeInterventionAdmin(this, $('#attribution_benevole').val(), $('#attribution_idIntervention').val())">Attribuer</button>
                 </div>
                 {{ form_end(formAttr) }}
             </div>

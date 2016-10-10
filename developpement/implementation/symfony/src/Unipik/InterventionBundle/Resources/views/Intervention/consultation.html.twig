@@ -45,6 +45,7 @@
                     $(event).attr('class', 'btn btn-danger');
                     $(event).text('Se désattribuer l\'intervention');
                     $(event).attr("onclick", "desattributeIntervention(this, "+id+")");
+                    $("#attribueA").text("Attribuée à {{ user.prenom }} {{ user.nom }}");
                 });
         }
 

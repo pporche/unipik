@@ -9,6 +9,11 @@
     <style>
         .fc-month-view span.fc-title{
             white-space: normal;
+
+        #carre {
+            width: 10%;
+            padding-bottom: 30%; /* = width for a square aspect ratio */
+        }
         }
     </style>
     <script type="text/javascript">
@@ -88,12 +93,29 @@
     />
 {% endblock %}
 {% block body %}
-    <h2> Votre planning  </h2>
+   <h2 style="text-align:center"> Votre planning  </h2>
 
     <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="col-xs-9 col-md-2"> <div class="panel panel-default">
+                <div class="panel-body">
+                    <div>
+                        <h4 style="text-align:center"> Légendes </h4>
+                        <button type="button" class="btn btn-default btn-xs"></button>
+                         Interventions d'autres bénévoles
+                        </br>
+                        <button type="button" class="btn btn-success btn-xs"></button> Mes interventions réalisées
+                        </br>
+                        <button type="button" class="btn btn-primary btn-xs"></button> Mes interventions à réaliser
+                        </br>
+                    </div>
+                </div>
+            </div></div>
+        <div class="col-xs-3 col-md-10">
             <div  id="calendar">
             </div>
         </div>
     </div>
+
+
+
 {% endblock %}

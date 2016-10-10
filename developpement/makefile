@@ -2,13 +2,16 @@
 # version 1.00 date 24/02/2016 auteur(s) Pierre Porche, Michel Cressant
 
 # Compilation
-all: Lot1 Lot2
+all: Lot1 Lot2 doc
 
 Lot1:
 	make -C lot1
 
 Lot2:
 	make -C lot2
+
+doc:
+	make -C documentation
 
 
 
@@ -23,10 +26,13 @@ archivelot2:
 
 
 # Nettoyage
-clean: cleanlot1 cleanlot2
+clean: cleanlot1 cleanlot2 cleandoc
 
 cleanlot1:
 	make -C lot1 clean
 
 cleanlot2:
 	make -C lot2 clean 
+
+cleandoc:
+	make -C documentation clean 

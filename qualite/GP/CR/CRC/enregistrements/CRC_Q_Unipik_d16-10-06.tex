@@ -1,0 +1,109 @@
+% version 1.00	Julie Pain
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion avec le client}}					%titre
+\begin{document}
+
+06/10/2016			 				%Date 
+\hfill   
+\hfill 	 15:00 - 16:30 				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 10/10/2016 & \Julie & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RGC & Mélissa Bignoux & 10/10/2016 & email \\[30pt]
+				\hline
+				Validateur & \CP & \Pierre & 10/10/2016 & email \\[30pt]	
+				\hline
+				Approbateur & Client & \nomClient &  &  \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Présentation des nouveaux membres de l'équipe}
+Les nouveaux membres de l'équipe ce semestre sont \Francois{} qui revient de Nouvelle-Zélande et \Juliana{} qui est originaire d'Argentine.
+
+\section{Rappel du sujet de la réunion}
+\Pierre{} rappelle au client que cette réunion n'est pas une livraison et qu'elle a simplement pour but de permettre au client de faire des remarques concernant le contenu du site ainsi que la manière de naviguer sur celui-ci.
+
+\section{Présentation du look \& feel}
+\Julie{} présente le site en se connectant en tant que simple bénévole. Elle montre tout d'abord la page d'accueil, explique les informations que contient cette page ainsi que toutes les posibilités pour se diriger vers les autres pages. Elle montre ensuite le profil du bénévole, puis la liste des établissements, la possibilité de faire des tris et la page d'un établissement. Ensuite, \Julie{} montre la liste des interventions, les tris qu'on peut y faire, la consultation d'une intervention ainsi que l'affectation d'un bénévole à une intervention. Elle s'est ensuite déconnectée et connectée en tant qu'administrateur afin de montrer au client ce que l'administrateur peut faire de plus et les différences avec un simple utilisateur. 
+
+\section{Avis client}
+Le client a fait remonter son avis au cours de la réunion concernant les informations manquantes sur le site et utiles pour \nomClient: 
+\begin{itemize}
+\item Sur l'agenda d'un bénévole, lorsqu'une intervention est affichée, le nom de l'école doit également être présent;
+\item Lorsqu'on affiche la liste des interventions, le nom de l'établissement, la classe visée par l'intervention, ainsi que le thème choisi pour cette intervention doivent être affichés;
+\item Lorsqu'on affiche la liste des interventions, un filtre doit pouvoir être effectué sur le niveau scolaire (la classe), ainsi que sur le thème;
+\item Lorsqu'on affiche la liste des interventions, il doit être possible d'imprimer la liste complète;
+\item Lorsqu'on consulte une intervention, un lien doit être présent pour pouvoir visualiser la demande associée à cette intervention. 
+\end{itemize}
+
+
+
+%--- fin de réunion ---%
+\newpage
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

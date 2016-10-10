@@ -107,7 +107,7 @@ class InterventionController extends Controller {
             $contactPers = new Contact();
             $this->cast($contactPers, $test);
             $contactPers->setRespoEtablissement($test->isRespoEtablissement());
-            $contactPers->setTypeActivite('{}');
+            $contactPers->addTypeActivite('{}');
 
             // handle the interventions
             $interventionsRawList = $form->get('Intervention')->getData();
@@ -189,7 +189,8 @@ class InterventionController extends Controller {
                 $institute = array_pop($instituteResearched);
             }
 
-            $demande->setListeSemaine(ArrayConverter::phpArrayToPgArray($listWeek));
+            foreach($listWeek as $week)
+                $demande->addSemaine($week);
 
             $this->getDoctrine()->getManager()->persist($demande);
             $em = $this->getDoctrine()->getManager();
@@ -477,19 +478,14 @@ class InterventionController extends Controller {
                 $interventionTemp = new Intervention();
                 $interventionTemp->setRealisee(false);
                 $interventionTemp->setDateIntervention(null);
-                $interventionTemp->setMateriauxFrimousse(null);
                 $interventionTemp->setNbPersonne($interventionRaw["participants"]["nbEleves"]);
                 $interventionTemp->setComite($comiteTest);
                 if(isset($interventionRaw["materiel"])){
-                    $interventionTemp->setMaterielDispoPlaidoyer(ArrayConverter::phpArrayToPgArray($interventionRaw["materiel"]["materiel"]));
+                    $interventionTemp->addMaterielDispoPlaidoyer($interventionRaw["materiel"]["materiel"]);
                 }
                 else if(isset($interventionRaw['materielFrimousse'])){
-                    $interventionTemp->setMateriauxFrimousse(ArrayConverter::phpArrayToPgArray($interventionRaw['materielFrimousse']['materiel']));
+                    $interventionTemp->addMateriauxFrimousse($interventionRaw['materielFrimousse']['materiel']);
                 }
-                return new Response(print_r((isset($interventionRaw['materielFrimousses']))));
-
-
-
 
                 $interventionList[] = $interventionTemp;
             }
@@ -528,6 +524,32 @@ class InterventionController extends Controller {
     function treatmentMoment($moments,\Unipik\InterventionBundle\Entity\Demande &$demande) {
         $this->treatmentAvoidDay(array_keys($moments,'a-eviter'),$demande);
         $this->treatmentAllDay(array_keys($moments,'indifferent'),$demande);
+        $this->treatmentMorning(array_keys($moments,'matin'),$demande);
+        $this->treatmentAftNoon(array_keys($moments,'apres-midi'),$demande);
+    }
+
+    function treatmentMorning(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande){
+        foreach($days as $day) {
+            $moment = new MomentHebdomadaire();
+            $moment->setJour($day);
+            $moment->setMoment('matin');
+
+            $this->getDoctrine()->getManager()->persist($moment);
+            $this->getDoctrine()->getManager()->flush();
+            $demande->getMomentsVoulus()->add($moment);
+        }
+    }
+
+    function treatmentAftNoon(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande){
+        foreach($days as $day) {
+            $moment = new MomentHebdomadaire();
+            $moment->setJour($day);
+            $moment->setMoment('apres-midi');
+
+            $this->getDoctrine()->getManager()->persist($moment);
+            $this->getDoctrine()->getManager()->flush();
+            $demande->getMomentsVoulus()->add($moment);
+        }
     }
 
     function treatmentAvoidDay(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande) {
@@ -584,13 +606,13 @@ class InterventionController extends Controller {
 
     function linkAllMoments($moments,\Unipik\InterventionBundle\Entity\Demande &$demande ) {
         foreach($moments as $moment) {
-            $moment->addDemandeMomentsVoulus($demande);
+            $demande->addMomentsVoulus($moment);
         }
     }
 
     function linkAllBMoments($moments,\Unipik\InterventionBundle\Entity\Demande &$demande ) {
         foreach($moments as $moment) {
-            $moment->addDemandeMomentsAEviter($demande);
+            $demande->addMomentsAEviter($moment);
         }
     }
 }

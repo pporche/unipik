@@ -181,6 +181,11 @@ iframe{
     border-radius: 10px !important;
 }
 
+.active{
+    color: #00326c;
+    font-weight: 600;
+}
+
 @media (max-width: 768px) {
     .logoGris{
         display: none !important;

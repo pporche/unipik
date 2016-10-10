@@ -31,9 +31,9 @@
             pager.data("curr", 0);
 
             if (settings.showPrevNext)
+                $('<li><a href="#" class="premiere_link">Première</a></li>').appendTo(pager);
+            if (settings.showPrevNext)
                 $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
-            //if (settings.showPrevNext)
-            //    $('<li><a href="#" class="prev_link">Première</a></li>').appendTo(pager);
 
             var curr = 0;
 
@@ -44,19 +44,25 @@
 
             if (settings.showPrevNext)
                 $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
-            //if (settings.showPrevNext)
-             //   $('<li><a href="#" class="next_link">Dernière</a></li>').appendTo(pager);
+            if (settings.showPrevNext)
+                $('<li><a href="#" class="derniere_link">Dernière</a></li>').appendTo(pager);
 
-            pager.find('.page_link:first').addClass('active');
+            goTo(1);
             pager.find('.prev_link').hide();
+            pager.find('.premiere_link').hide();
 
 
-            if (numPages <= 1)
+            if (numPages <= 1) {
                 pager.find('.next_link').hide();
+            }
 
-            pager.children().eq(1).addClass("active");
+            if(numPages<=5){
+                pager.find('.derniere_link').hide();
+            }
+
             children.hide();
             children.slice(0, perPage).show();
+
 
             pager.find('li .page_link').click(function () {
                 var clickedPage = $(this).html().valueOf() - 1;
@@ -66,6 +72,16 @@
 
             pager.find('li .prev_link').click(function () {
                 previous();
+                return false;
+            });
+
+            pager.find('li .premiere_link').click(function () {
+                goTo(0);
+                return false;
+            });
+
+            pager.find('li .derniere_link').click(function () {
+                goTo(numPages-1);
                 return false;
             });
 
@@ -84,22 +100,90 @@
                 goTo(goToPage);
             }
 
+            function hideTout(){
+                var pagesLinks = document.getElementsByClassName("page_link");
+                for(i=0; i<numPages; i++){
+                    pagesLinks[i].style.display="none";
+                }
+            }
+
             function goTo(page) {
+
+                var pageTest = page+1;
+                console.log(pageTest);
+
+                var pagesLinks = document.getElementsByClassName("page_link");
+
                 var startAt = page * perPage,
                         endOn = startAt + perPage;
+
+                //Tiene al menos 2 elementos antes de él
+                if(pageTest-2>0){
+                    //Tiene al menos 2 elementos delante de él
+                    if(pageTest+2<=(numPages)){
+                        hideTout();
+                        (pagesLinks[(pageTest-3)]).style.display="inline";
+                        (pagesLinks[(pageTest-2)]).style.display="inline";
+                        (pagesLinks[(pageTest)-1]).style.display="inline";
+                        (pagesLinks[(pageTest)]).style.display="inline";
+                        (pagesLinks[(pageTest+1)]).style.display="inline";
+                    }
+                    //Es el ultimo o anteultimo elemento (No tiene 2 elementos delante de él)
+                    else{
+                        //Es el ultimo
+                        if(pageTest==numPages){
+                                var i = pageTest-4;
+                                if(i<=0){
+                                    i=1;
+                                }
+                                hideTout();
+                                while(i<=pageTest){
+                                    (pagesLinks[i-1]).style.display="inline";
+                                    i++;
+                                }
+                        }
+                        //es el anteultimo
+                        else{
+                            var i = pageTest-3;
+                            if(i<=0){
+                                i=1;
+                            }
+                            hideTout();
+                            while(i<=pageTest){
+                                pagesLinks[i-1].style.display="inline";
+                                i++;
+                            }
+                        }
+                    }
+                }
+                //Es el primer o segundo elemento
+                else{
+                    var i = 1;
+                    hideTout();
+                    while(i<=numPages && i<=5){
+                        pagesLinks[i-1].style.display="inline";
+                        i++;
+                    }
+                }
+
                 children.css('display', 'none').slice(startAt, endOn).show();
                 if (page >= 1){
+                    pager.find('.premiere_link').show();
                     pager.find('.prev_link').show();
                 }
-                else
+                else {
                     pager.find('.prev_link').hide();
-                if (page < (numPages - 1))
+                    pager.find('.premiere_link').hide();
+                }
+                if (page < (numPages - 1)){
                     pager.find('.next_link').show();
-                else
+                    pager.find('.derniere_link').show();
+                }
+                else{
                     pager.find('.next_link').hide();
+                    pager.find('.derniere_link').hide();
+                }
                 pager.data("curr", page);
-                pager.children().removeClass("active");
-                pager.children().eq(page + 1).addClass("active");
             }
         };
     </script>

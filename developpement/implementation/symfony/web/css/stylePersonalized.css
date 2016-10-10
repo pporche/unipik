@@ -86,7 +86,6 @@
     right: 50px;
     width: 150px;
     display: block;
-    margin-bottom: 20px;
 }
 
 .container{
@@ -170,6 +169,11 @@ iframe{
 .titre{
     font-family: Georgia, "Times New Roman", Times, serif;
     margin-bottom: 0px;
+}
+
+.text-success{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 18px !important;
 }
 
 section{

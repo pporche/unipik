@@ -99,8 +99,18 @@
                         <h2 class="col-lg-7 titre">
                             Intervention
                         </h2>
+
+                        <h4 class="col-lg-9" >
+                            {% if intervention.plaidoyer %}
+                                Plaidoyer
+                            {% elseif intervention.frimousse %}
+                                Frimousse
+                            {% else %}
+                                Autre intervention
+                            {% endif %}
+                        </h4>
                         {% if intervention.realisee %}
-                            <p class="text-success"> Réalisée <span class="glyphicon glyphicon-ok"></span></p>
+                            <p class="text-success">&nbsp &nbspRéalisée <span class="glyphicon glyphicon-ok"></span></p>
                         {% elseif intervention.benevole %}
                             {% if user==intervention.benevole %}
                                 <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeIntervention(this, {{ intervention.id }})">
@@ -125,18 +135,9 @@
                                 </button>
                             {% endif %}
                         {% endif %}
-                        <h4 class="col-lg-9" >
-                            {% if intervention.plaidoyer %}
-                                Plaidoyer
-                            {% elseif intervention.frimousse %}
-                                Frimousse
-                            {% else %}
-                                Autre intervention
-                            {% endif %}
-                        </h4>
                         <img src="{{ asset('img/logo-gris.png') }}" class="logoGris" alt="logo gris">
                     </div>
-                    <hr>
+                    <hr style="margin-top: 50px;">
                     <div class="row">
                         <div class="col-sm-6">
                             <dl class="dl-horizontal">

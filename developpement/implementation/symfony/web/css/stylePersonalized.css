@@ -1,3 +1,5 @@
+@import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+
 .jumbotron {
     border-radius: 20px !important;
     position: relative;
@@ -9,6 +11,68 @@
 .jumbotron h4{
     font-family: Georgia, "Times New Roman", Times, serif;
     margin-top: 0px;
+}
+
+.subtitle{
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+.subtitle:after{
+    content: ' ';
+    width: 90%;
+    height: 1px;
+    background-color: #dbdbdb;
+    display: block;
+    margin-top: 15px;
+}
+
+.bonjour{
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: 500;
+    margin-top: 0px;
+}
+
+.accueilSq{
+    background-color: #EEEEEE;
+    margin-left: 20px;
+    min-height: 330px;
+    padding: 10px 10px 20px 35px;
+}
+
+.droit{
+    border-radius: 0px 20px 20px 0px;
+    position: relative;
+    overflow: hidden;
+}
+
+.gauche{
+    border-radius: 20px 0px 0px 20px;
+    overflow: hidden;
+}
+
+.logoDroit{
+    width: 430px;
+    opacity: 0.5;
+    position: absolute;
+    bottom: -200px;
+    left: -230px;
+}
+
+.logoGauche{
+    width: 430px;
+    opacity: 0.5;
+    position: absolute;
+    bottom: -200px;
+    right: -230px;
+}
+
+.accueilSq li{
+    list-style-type: none;
+}
+
+.accueilSq ul{
+
+    padding-left: 0px;
 }
 
 .jumbotron h2{
@@ -26,15 +90,59 @@
 }
 
 .container{
-    margin-left: 30px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
 }
 
 hr{
     margin-top: 35px;
+    margin-bottom: 35px;
 }
 
 iframe{
     margin-top: 20px !important;
+}
+
+.panel{
+    border: none;
+    text-align: left;
+}
+
+
+.alert h4{
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 25px;
+}
+
+.panel-body{
+    background-color: #EEEEEE;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-top: 30px;
+}
+
+.legende1{
+    display: inline-block;
+    background-color: #2b2b2b;
+    width: 15px;
+    height: 10px;
+    margin-right: 8px;
+}
+
+.legende2 {
+    display: inline-block;
+    background-color: #2c8011;
+    width: 15px;
+    height: 10px;
+    margin-right: 8px;
+}
+
+.legende3{
+    display: inline-block;
+    background-color: #2780e3;
+    width: 15px;
+    height: 10px;
+    margin-right: 8px;
 }
 
 .buttons{
@@ -210,6 +318,23 @@ dt{
 
 .list-group-item{
     border: none !important;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+    background-color: #09f;
+    font-weight: 600;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.nav > li > a:hover, .nav > li > a:focus{
+    background-color: #09f;
+    color: #fff;
+    font-weight: 500;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 @media (max-width: 768px) {

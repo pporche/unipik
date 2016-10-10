@@ -41,9 +41,11 @@ class ArchitectureController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('InterventionBundle:Intervention');
-        $interventionsNonRealiseesBenevole = $repository->getInterventionsRealiseesOuNonBenevole($user, false);
-        $interventionsRealiseesBenevole = $repository->getInterventionsRealiseesOuNonBenevole($user, true);
-        return $this->render('ArchitectureBundle::accueilBenevole.html.twig', array('user' => $user, 'interventionsNonRealisees' => $interventionsNonRealiseesBenevole, 'interventionsRealisees' => $interventionsRealiseesBenevole));
+        $interventionsNonRealiseesBenevole = $repository->getNInterventionsRealiseesOuNonBenevole($user, false, 3);
+        $interventionsRealiseesBenevole = $repository->getNInterventionsRealiseesOuNonBenevole($user, true, 3);
+        $interventionsNonRealisees = $repository->getInterventionsRealiseesOuNon(false);
+        $interventionsRealisees = $repository->getInterventionsRealiseesOuNon(true);
+        return $this->render('ArchitectureBundle::accueilBenevole.html.twig', array('user' => $user, 'interventionsNonRealiseesBenevole' => $interventionsNonRealiseesBenevole, 'interventionsRealiseesBenevole' => $interventionsRealiseesBenevole, 'interventionsNonRealisees' => $interventionsNonRealisees, 'interventionsRealisees' => $interventionsRealisees));
     }
 
     /**

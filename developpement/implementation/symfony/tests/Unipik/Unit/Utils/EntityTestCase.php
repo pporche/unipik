@@ -15,6 +15,24 @@ abstract class EntityTestCase extends KernelTestCase {
 
     protected static $repository = "";
 
+    protected static $em;
+
+    public function setUp()
+    {
+        parent::setUp();
+        self::bootKernel();
+
+        static::$em = static::$kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+    }
+
+    protected function tearDown()
+    {
+        parent::tearDown();
+        //static::$em->rollBack();
+    }
+
     public function validEntityProvider() {
         $e = $this->testCreate();
 
@@ -28,44 +46,26 @@ abstract class EntityTestCase extends KernelTestCase {
     /**
      * @dataProvider validEntityProvider
      */
-    public function testPersist($e) {
+    public function testPersist($e)
+    {
+        // Begin transaction
         self::bootKernel();
+        static::$em->beginTransaction();
 
-        $em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
+        // test Persist
+        static::$em->persist($e);
+        static::$em->flush();
 
-        $em->persist($e);
-        $em->flush();
-    }
+        // test retrieve
+        $repository = static::$em->getRepository(static::$repository);
+        $entities = $repository->find($e->getId());
 
-    /**
-     * @depends testPersist
-     */
-    public function testRetrieve() {
-        self::bootKernel();
+        // test remove
+        static::$em->remove($entities);
+        static::$em->flush();
 
-        $em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-
-        $repository = $em->getRepository(static::$repository);
-        return $repository->findAll();
-    }
-
-    /**
-     * @depends testRetrieve
-     * @dataProvider validEntityProvider
-     */
-    public function testRemove($e) {
-        self::bootKernel();
-
-        $em = static::$kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-
-        $em->remove($e);
-        $em->flush();
+        // rollBack
+        static::$em->rollBack();
     }
 
     /**
@@ -73,13 +73,11 @@ abstract class EntityTestCase extends KernelTestCase {
      */
     public function testBadEntities($e) {
         self::bootKernel();
+        static::$em->beginTransaction();
 
         try{
-            $em = static::$kernel->getContainer()
-                ->get('doctrine')
-                ->getManager();
-            $em->persist($e);
-            $em->flush();
+            static::$em->persist($e);
+            static::$em->flush();
         } catch (\Doctrine\DBAL\Exception\DriverException $e){
 
         } catch (\Doctrine\ORM\ORMInvalidArgumentException $e){
@@ -87,5 +85,7 @@ abstract class EntityTestCase extends KernelTestCase {
         } catch (Exception $e) {
             $this->hasFailed();
         }
+
+        static::$em->rollBack();
     }
 }

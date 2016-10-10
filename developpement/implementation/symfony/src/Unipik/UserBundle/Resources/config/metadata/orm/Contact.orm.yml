@@ -76,7 +76,7 @@ Contact:
     manyToMany:
         etablissement:
             targetEntity: Unipik\InterventionBundle\Entity\Etablissement
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: contact

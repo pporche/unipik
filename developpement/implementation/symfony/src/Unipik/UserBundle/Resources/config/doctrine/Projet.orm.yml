@@ -39,7 +39,7 @@ Unipik\UserBundle\Entity\Projet:
     manyToMany:
         benevole:
             targetEntity: Benevole
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: projet
             inversedBy: null
@@ -47,7 +47,7 @@ Unipik\UserBundle\Entity\Projet:
             orderBy: null
         contact:
             targetEntity: Contact
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: projet
             inversedBy: null

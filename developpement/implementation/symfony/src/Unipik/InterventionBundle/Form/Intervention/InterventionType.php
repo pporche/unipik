@@ -31,8 +31,8 @@ class InterventionType extends AbstractFieldsetType {
                 'Autre' => 'aut'
             ],);
 
-        $choiceClasse = array('required' => false, 'mapped' => false, 'label' => 'Année scolaire',
-            'choices' => [
+        $choiceClasse = array('required' => false, 'mapped' => false, 'label' => 'Année scolaire', 'attr' => ['class' => 'form-annee-scolaire'],
+        'choices' => [
                 'Petite Section' => 'petite section',
                 'Petite/Moyenne Section' => 'petite-moyenne section',
                 'Moyenne Section' => 'moyenne section',

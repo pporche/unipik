@@ -8,6 +8,7 @@
 
 namespace Unipik\InterventionBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
@@ -210,7 +211,7 @@ class InterventionRepository extends EntityRepository {
         $query->setParameter('r',$realisees);
         $query->setParameter('id',$benevole->getId());
 
-        return $query->getResult();
+        return new ArrayCollection($query->getResult());
     }
 
     /**
@@ -227,14 +228,14 @@ class InterventionRepository extends EntityRepository {
         $query->setParameter('r',$realisees);
         $query->setParameter('id',$benevole->getId());
         $query->setMaxResults($maxResults);
-        return $query->getResult();
+        return new ArrayCollection($query->getResult());
     }
 
     /**
      * Where Interventions between dates
      *
-     * @param \Date $start
-     * @param \Date $end
+     * @param \DateTime $start
+     * @param \DateTime $end
      *
      */
     public function whereInterventionsBetweenDates($start, $end, QueryBuilder $qb) {

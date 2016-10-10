@@ -6,6 +6,7 @@ Creation-Date: 2016-09-06T15:39:36+02:00
 Created mardi 06 septembre 2016 by Matthieu
 Last updates:
 * mardi 06 septembre 2016 by Matthieu
+* vendredi 07 octobre 2016 by Matthieu
 
 
 ===== But : =====
@@ -18,9 +19,10 @@ Installer phpunit
 2. Exécuter les commandes suivantes (le numéro de version en **gras** peut être différent) :
 
 '''
-mv phpunit-4.8.27.phar /usr/local/bin/phpunit
-chmod +x /usr/local/bin/phpunit
+mv phpunit-
 '''
+**4.8.27**''.phar /usr/local/bin/phpunit''
+''chmod +x /usr/local/bin/phpunit''
 
 
 3. Vérifier que phpunit est bien installer avec la commande suivantes :

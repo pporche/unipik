@@ -38,7 +38,7 @@ Departement:
     manyToMany:
         comite:
             targetEntity: Unipik\UserBundle\Entity\Comite
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: departement

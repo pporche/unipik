@@ -76,7 +76,7 @@ class Contact
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", inversedBy="contact")
+     * @ORM\ManyToMany(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", inversedBy="contact", cascade={"persist"})
      * @ORM\JoinTable(name="appartient",
      *   joinColumns={
      *     @ORM\JoinColumn(name="contact_id", referencedColumnName="id")

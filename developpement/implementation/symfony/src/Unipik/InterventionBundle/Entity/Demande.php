@@ -2,7 +2,10 @@
 // version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 namespace Unipik\InterventionBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 /**
  * Demande
@@ -39,7 +42,7 @@ class Demande
     /**
      * @var \Unipik\UserBundle\Entity\Contact
      *
-     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Contact")
+     * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Contact", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="contact_id", referencedColumnName="id")
      * })
@@ -50,14 +53,14 @@ class Demande
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsVoulus")
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsVoulus", cascade={"persist"})
      */
     private $momentsVoulus;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsAEviter")
+     * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsAEviter", cascade={"persist"})
      */
     private $momentsAEviter;
 
@@ -108,6 +111,8 @@ class Demande
     /**
      * Set listeSemaine
      *
+     * @deprecated
+     *
      * @param string $listeSemaine
      *
      * @return Demande
@@ -122,11 +127,54 @@ class Demande
     /**
      * Get listeSemaine
      *
+     * @deprecated
+     *
      * @return string
      */
     public function getListeSemaine()
     {
         return $this->listeSemaine;
+    }
+
+    /**
+     * Add semaine
+     *
+     * @param string|array $semaine
+     *
+     * @return Demande
+     */
+    public function addSemaine($semaine) {
+        $this->listeSemaine = ArrayConverter::addIntoPgArray(
+            $this->listeSemaine,
+            $semaine
+        );
+
+        return $this;
+    }
+
+    /**
+     * Remove semaine
+     *
+     * @param string $semaine
+     */
+    public function removeSemaine($semaine) {
+        $this->listeSemaine = ArrayConverter::removeFromPgArray(
+            $this->listeSemaine,
+            $semaine
+        );
+    }
+
+    /**
+     * Get semaine
+     *
+     * @return Collection
+     */
+    public function getSemaines() {
+        $array = array();
+        if ($this->listeSemaine != null) {
+            $array = ArrayConverter::pgArrayToPhpArray($this->listeSemaine);
+        }
+        return new ArrayCollection($array);
     }
 
     /**

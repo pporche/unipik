@@ -311,15 +311,16 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <div class="buttons">
-                            <a href="{#{ path('architecture_intervention_add') }#}" class="btn btn-primary btn-danger">
-                                    <i class="glyphicon glyphicon-alert"></i> Ajouter un établissement
-                            </a>
-                            <button type="button" class="btn btn-danger" onclick="deleteEtablissements()">Supprimer</button>
-                        </div>
-                    {% endif %}
+
                 </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                <div class="buttons">
+                    <a href="{#{ path('architecture_intervention_add') }#}" class="btn btn-primary btn-danger">
+                        <i class="glyphicon glyphicon-alert"></i> Ajouter un établissement
+                    </a>
+                    <button type="button" class="btn btn-danger" onclick="deleteEtablissements()">Supprimer</button>
+                </div>
+                {% endif %}
                 <div class="col-md-12 text-center">
                     {% set pathReq = [] %}
                     {% if app.request.query.get('recherche_avancee') is not null %}

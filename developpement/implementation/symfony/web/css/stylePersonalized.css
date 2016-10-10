@@ -25,6 +25,10 @@
     margin-bottom: 20px;
 }
 
+.container{
+    margin-left: 30px !important;
+}
+
 hr{
     margin-top: 35px;
 }
@@ -45,14 +49,27 @@ iframe{
     font-size: 18px !important;
 }
 
+.btn{
+    margin-top: 15px;
+}
+
 .container{
     margin: auto;
     padding: 10px;
+    width: 100% !important;
 }
 
 .titre{
     font-family: Georgia, "Times New Roman", Times, serif;
     margin-bottom: 0px;
+}
+
+section{
+    margin-top: 30px !important;
+}
+
+.fc{
+    margin-top: 40px !important;
 }
 
 .containerOne{
@@ -126,6 +143,7 @@ iframe{
     margin-top: 40px;
     padding-left: 20px;
     border: 2px solid #ffffff;
+    text-align: left !important;
 }
 
 .containerFour{
@@ -148,6 +166,11 @@ iframe{
 .infoPrincip a{
     color: #2b2b2b;
     font-weight: 600;
+}
+
+dt{
+    text-align: left !important;
+    float: left;
 }
 
 .containerTwo li, .containerOne li, .containerThree li{
@@ -181,9 +204,12 @@ iframe{
     border-radius: 10px !important;
 }
 
-.active{
-    color: #00326c;
-    font-weight: 600;
+.logoAccueil{
+    max-width: 140px !important;
+}
+
+.list-group-item{
+    border: none !important;
 }
 
 @media (max-width: 768px) {
@@ -192,6 +218,9 @@ iframe{
     }
     .jumbotron{
         padding-left: 30px !important;
+    }
+    .derniere_link, .premiere_link, .page_link, .prev_link, .next_link{
+        font-size: 14px !important;
     }
 }
 
@@ -209,6 +238,12 @@ iframe{
     }
     .container{
         margin:auto;
+    }
+}
+
+@media (max-width: 1445px){
+    .container{
+        margin-left: 5px !important;
     }
 }
 

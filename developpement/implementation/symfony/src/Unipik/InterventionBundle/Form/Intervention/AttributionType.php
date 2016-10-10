@@ -34,7 +34,7 @@ class AttributionType extends AbstractFieldsetType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('idIntervention', TextType::class)
+            ->add('idIntervention', HiddenType::class)
             ->add('benevole', TextType::class)
         ;
 

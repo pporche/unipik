@@ -1,0 +1,11 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-10-07T16:25:18+02:00
+
+====== Convention de codage ======
+Created vendredi 07 octobre 2016 by Matthieu
+Last updates:
+ * vendredi 07 octobre 2016 by Matthieu
+
+===== But: =====
+Définir des conventions de codage et donner les moyens de les respecter, de détecter les non-conformiter et les corriger.

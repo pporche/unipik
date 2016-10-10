@@ -1,0 +1,32 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-10-07T16:26:23+02:00
+
+====== CodeSniffer ======
+Created vendredi 07 octobre 2016 by None
+Last updates:
+ * vendredi 07 octobre 2016 by None
+
+===== But: =====
+
+Détecter et corriger les problème de convention de codage.
+
+===== Étapes Pas-à-pas: =====
+
+1. Pour configurer PHP CodeSniffer avec les convention officielles de Symfony exécutez la commande:
+
+'''
+vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard
+'''
+
+2. Pour lancer la détection de non-conformité exécuter la commande:
+
+'''
+vendor/bin/phpcs src/
+'''
+
+3. Pour tenter de corriger automatiquement les non-conformités, exécuter la commande:
+
+'''
+vendor/bin/phpcbf src/
+'''

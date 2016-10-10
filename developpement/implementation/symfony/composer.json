@@ -12,7 +12,7 @@
     },
     "require": {
         "php": ">=5.5.9",
-        "symfony/symfony": "3.0.*",
+        "symfony/symfony": "^3.1",
         "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
@@ -22,7 +22,6 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "friendsofsymfony/user-bundle": "dev-master",
-	    "fresh/doctrine-enum-bundle": "4.5.*",
         "jsor/doctrine-postgis": "^1.1",
         "snilius/twig-sort-by-field": "^0.1.5",
         "symfony/validator": "^3.1",
@@ -32,7 +31,8 @@
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.1",
         "squizlabs/php_codesniffer": "*",
-        "phpunit/phpunit": "^4.8"
+        "phpunit/phpunit": "^4.8",
+        "escapestudios/symfony2-coding-standard": "~2.0"
     },
     "scripts": {
         "post-install-cmd": [

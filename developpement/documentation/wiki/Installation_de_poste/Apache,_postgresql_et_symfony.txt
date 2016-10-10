@@ -60,10 +60,15 @@ Alias /unicef
 
 Faire très attention à adapter les urls en **Gras** selon votre nom d'utilisateur et votre dossier de travail
 
-5. Redémarrer apache avec la commande :
+5. Se placer dans le dossier **/home/user/travail/pic_unicef/developpement/implementation/symfony **et effectuer la commande
+php composer.phar update 
+
+6. Redémarrer apache avec la commande :
 
 '''
 sudo /etc/init.d/apache2 restart
 '''
 
-6. Le projet devrait être accessible à l'url http://prenom.unipik.insa-rouen.fr/unicef/app_dev.php/
+7.Le projet devrait être accessible à l'url http://prenom.unipik.insa-rouen.fr/unicef/app_dev.php/
+
+Technique pour déploiement sur un VPS : - Penser à augmenter la taille du swap si jamais le compor.phar update ne passe pas.

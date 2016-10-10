@@ -61,8 +61,8 @@
             }
             e.stopImmediatePropagation();
         }
-	
-	function treatmentInstitute(template,grade){
+
+	    function treatmentInstitute(template,grade){
 		var taille = $(template).find('select')[1].length;
 		switch(grade){
 			case 'maternelle' :
@@ -70,7 +70,7 @@
 			if(i>=7){
 				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
 				}
-			}			
+			}
 			break;
 			case 'elementaire' :
 			for(i=0; i<taille; i++){
@@ -105,7 +105,7 @@
 		}
 	}
 
-	function treatmentCenter(template, grade){
+	    function treatmentCenter(template, grade){
         var taille = $(template).find('select')[1].length;
         switch(grade){
             case 'maternelle' :
@@ -134,7 +134,7 @@
         }
 	}
 
-	function treatmentOthers(template, grade){
+	    function treatmentOthers(template, grade){
         var taille = $(template).find('select')[1].length;
         switch(grade){
             case 'maison de retraite' :
@@ -168,7 +168,80 @@
             }
 		}
 
+        function showSomeTheme(type,themesElt){
+            switch(type){
+                case 'maternelle' :
+                    $(themesElt).find('option').each(function(index) {
+                            if(index > 4){
+                                $(this).fadeOut();
+                            }else{
+                                $(this).fadeIn();
+                            }
+                        });
+                    break;
+                case 'elementaire' :
+                    $(themesElt).find('option').each(function(index) {
+                        if(index > 6){
+                            $(this).fadeOut();
+                        }else{
+                            $(this).fadeIn();
+                        }
+                    });
+                    break;
+                case 'college' :
+                case 'adolescent' :
+                    $(themesElt).find('option').each(function(index) {
+                        if(index > 8){
+                            $(this).fadeOut();
+                        }else{
+                            $(this).fadeIn();
+                        }
+                    });
+                    break;
+                case 'lycee' :
+                case 'Supérieur' :
+                default :
+                    showAllTheme(themesElt);
+                    break;
 
+            }
+        }
+
+        function showAllTheme(themesElt){
+            $(themesElt).find('option').each(function() {
+                    $(this).fadeIn();
+            });
+        }
+
+        function displayThemeIntervention(){
+            var themesElts = document.getElementsByClassName('form-theme-pld');
+            if(themesElts.length == 0){
+                return ;
+            }
+            var choiceEtabElt = document.getElementsByTagName('select')[0];
+            var type;
+            switch(choiceEtabElt.value){
+                case 'ens' :
+                    type = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked').value;
+                    for(i = 0; i < themesElts.length; i++ ){
+                    showSomeTheme(type,themesElts[i]);
+                    }
+                    break;
+                case 'centre' :
+                    type = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked').value;
+                    for(i = 0; i < themesElts.length; i++ ){
+                        showSomeTheme(type,themesElts[i]);
+                    }
+                    break;
+                case 'autre' :
+                    type = document.querySelector('input[name="demande[Etablissement][typeAutreEtablissement]"]:checked').value;
+                    for(i = 0; i < themesElts.length; i++ ){
+                        showAllTheme(themesElts[i]);
+                    }
+                    break;
+            }
+
+        }
 
         $(document).ready(function() {
 
@@ -185,37 +258,18 @@
                 return false;
             });
 
-
-            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-
             if (index == 0) {
-
                 addIntervention($container);
-
             } else {
-
-                // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
-
                 $container.children('div').each(function() {
-
                     addDeleteLink($(this));
-
                 });
-
             }
 
-
-            // La fonction qui ajoute un formulaire CategoryType
-
             function addIntervention($container) {
-                // Dans le contenu de l'attribut « data-prototype », on remplace :
-                // - le texte "__name__label__" qu'il contient par le label du champ
-                // - le texte "__name__" qu'il contient par le numéro du champ
-
                 var template = $container.attr('data-prototype')
                     .replace(/__name__label__/g, 'Intervention n°' + (index+1))
-                    .replace(/__name__/g,        index)
-                    ;
+                    .replace(/__name__/g,        index);
 
 
                 // On crée un objet jquery qui contient ce template
@@ -226,12 +280,13 @@
                 $container.append($prototype);
                 $("#add_intervention").appendTo($container).css('margin-left', '80%');
                 treatmentSelect($($prototype).get(0));
+                displayThemeIntervention();
                 $($prototype).children().find("select").on("change",displayTypeIntervention);
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;
             }
 
-            // La fonction qui ajoute un lien de suppression
+
             function addDeleteLink($prototype) {
                 // Création du lien
                 var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
@@ -246,6 +301,8 @@
             }
 
         });
+
+        document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change',displayThemeIntervention);
     </script>
 
     <script type="application/javascript">

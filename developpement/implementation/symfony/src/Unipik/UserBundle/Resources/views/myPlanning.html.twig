@@ -30,13 +30,49 @@
                     {% else %}
                         typeIntervention = "Autre intervention";
                     {% endif %}
+                    {% if intervention.etablissement.nom != null  %}
+                        typeEtablissement = "{{ intervention.etablissement.nom }}"
+                    {% elseif  intervention.etablissement.nom == null %}
+                        {% if intervention.etablissement.typeEnseignement is not empty %}
+                            {% if intervention.etablissement.typeEnseignement == "maternelle" %}
+                                typeEtablissement = "Ecole maternelle";
+                            {% elseif intervention.etablissement.typeEnseignement == "elementaire" %}
+                                typeEtablissement = "Ecole élémentaire";
+                            {% elseif intervention.etablissement.typeEnseignement == "college" %}
+                                typeEtablissement = "Collège";
+                            {% elseif intervention.etablissement.typeEnseignement == "lycee" %}
+                                typeEtablissement = "Lycée";
+                            {% elseif intervention.etablissement.typeEnseignement == "superieur" %}
+                                typeEtablissement = "Supérieur";
+                            {% endif %}
+                        {% elseif intervention.etablissement.typeCentre is not empty %}
+                            {% if intervention.etablissement.typeCentre == "maternelle" %}
+                                typeEtablissement = "Centre de loisirs maternelle";
+                            {% elseif intervention.etablissement.typeCentre == "elementaire" %}
+                                typeEtablissement = "Centre de loisirs élémentaire";
+                            {% elseif intervention.etablissement.typeCentre == "adolescent" %}
+                                typeEtablissement = "Centre de loisirs adolescent";
+                            {% elseif intervention.etablissement.typeCentre == "autre" %}
+                                typeEtablissement = "Centre de loisirs autre";
+                            {% endif %}
+                        {% elseif intervention.etablissement.typeAutreEtablissement is not empty %}
+                            {% if intervention.etablissement.typeAutreEtablissement == "mairie" %}
+                            typeEtablissement = "mairie";
+                            {% elseif intervention.etablissement.typeAutreEtablissement == "maison de retraite" %}
+                                typeEtablissement = "maison de retraite";
+                            {% elseif intervention.etablissement.typeAutreEtablissement == "autre" %}
+                                typeEtablissement = "maison de retraite";
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+
                     {% if intervention.benevole is not null %}
                         {% if user.id == intervention.benevole.id %}
-                            interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                            interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
                                 start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
                                 url: '{{ path('intervention_view', {id: intervention.id}) }}' });
                         {% else %}
-                            interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                            interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
                                 start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
                                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
                                 color  : 'grey' });
@@ -53,14 +89,49 @@
                     {% else %}
                         typeIntervention = "Autre intervention";
                     {% endif %}
+                    {% if intervention.etablissement.nom != null  %}
+                            typeEtablissement = "{{ intervention.etablissement.nom }}"
+                    {% elseif  intervention.etablissement.nom == null %}
+                        {% if intervention.etablissement.typeEnseignement is not empty %}
+                            {% if intervention.etablissement.typeEnseignement == "maternelle" %}
+                                typeEtablissement = "Ecole maternelle";
+                            {% elseif intervention.etablissement.typeEnseignement == "elementaire" %}
+                                typeEtablissement = "Ecole élémentaire";
+                            {% elseif intervention.etablissement.typeEnseignement == "college" %}
+                                typeEtablissement = "Collège";
+                            {% elseif intervention.etablissement.typeEnseignement == "lycee" %}
+                                typeEtablissement = "Lycée";
+                            {% elseif intervention.etablissement.typeEnseignement == "superieur" %}
+                                typeEtablissement = "Supérieur";
+                            {% endif %}
+                        {% elseif intervention.etablissement.typeCentre is not empty %}
+                            {% if intervention.etablissement.typeCentre == "maternelle" %}
+                                typeEtablissement = "Centre de loisirs maternelle";
+                            {% elseif intervention.etablissement.typeCentre == "elementaire" %}
+                                typeEtablissement = "Centre de loisirs élémentaire";
+                            {% elseif intervention.etablissement.typeCentre == "adolescent" %}
+                                typeEtablissement = "Centre de loisirs adolescent";
+                            {% elseif intervention.etablissement.typeCentre == "autre" %}
+                                typeEtablissement = "Centre de loisirs autre";
+                            {% endif %}
+                        {% elseif intervention.etablissement.typeAutreEtablissement is not empty %}
+                            {% if intervention.etablissement.typeAutreEtablissement == "mairie" %}
+                            typeEtablissement = "mairie";
+                            {% elseif intervention.etablissement.typeAutreEtablissement == "maison de retraite" %}
+                            typeEtablissement = "maison de retraite";
+                            {% elseif intervention.etablissement.typeAutreEtablissement == "autre" %}
+                            typeEtablissement = "maison de retraite";
+                            {% endif %}
+                         {% endif %}
+                    {% endif %}
                     {% if intervention.benevole is not null %}
                         {% if user.id == intervention.benevole.id %}
-                            interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                            interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
                                 start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
                                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
                                 color  : '#82C46C' });
                         {% else %}
-                            interventions.push({ title  : typeIntervention + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                            interventions.push({ title  : typeIntervention +  ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
                                 start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
                                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
                                 color  : 'grey' });

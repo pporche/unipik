@@ -108,7 +108,6 @@ class InterventionController extends Controller {
             $contactPers = new Contact();
             $this->cast($contactPers, $test);
             $contactPers->setRespoEtablissement($test->isRespoEtablissement());
-            $contactPers->addTypeActivite('{}');
 
             // handle the interventions
             $interventionsRawList = $form->get('Intervention')->getData();

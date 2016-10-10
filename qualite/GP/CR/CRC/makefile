@@ -10,7 +10,7 @@ all : crtq cleanrep cleaneps
 
 
 crtq :
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements CRC_Q_Unipik_d16-01-26 CRC_Q_Unipik_d16-02-03
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements CRC_Q_Unipik_d16-01-26 CRC_Q_Unipik_d16-02-03 CRC_Q_Unipik_d16-10-06
 
 
 # Archivage

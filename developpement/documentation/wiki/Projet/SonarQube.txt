@@ -1,0 +1,55 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2016-10-10T08:41:22+02:00
+
+====== SonarQube ======
+Created lundi 10 octobre 2016
+
+===== But: =====
+
+Installer et lancer [[SonarQube]]
+
+===== Installer SonarQube: =====
+
+Pour rapidement installer SonarQube.
+
+==== Étapes Pas-à-pas: ====
+
+1. Télécharger la dernière version de [[SonarQube]] (http://www.sonarqube.org/downloads/)
+
+2. Extraire l'archive dans un dossier (ex : sonarqube-6.0)
+3. Modifier votre PATH pour y rajouter "sonarqube-6.0/bin" avec la commande suivante :
+
+'''
+PATH=$PATH:sonarqube-6.0/bin
+
+'''
+4. Ajouter dans le dossier à tester (si il n'existe pas déjà) un fichier sonar-project.properties contenant :
+
+'''
+# must be unique in a given SonarQube instance
+sonar.projectKey=test:unicef
+# this is the name and version displayed in the SonarQube UI. Was mandatory prior to SonarQube 6.1.
+sonar.projectName=Unicef
+sonar.projectVersion=1.0
+ 
+# Path is relative to the sonar-project.properties file. Replace "\" by "/" on Windows.
+# Since SonarQube 4.2, this property is optional if sonar.modules is set. 
+# If not set, SonarQube starts looking for source code from the directory containing 
+# the sonar-project.properties file.
+sonar.sources=.
+ 
+# Encoding of the source code. Default is default system encoding
+#sonar.sourceEncoding=UTF-8
+
+'''
+5. Pour lancer SonarQube, exécuter la commande suivante dans le dossier d'installation :
+
+'' ./sonar.sh start''
+
+
+6. Pour exécuter SonarQube, exécuter la commande suivante dans le dossier à tester :
+
+'''
+ sonar-scanner
+'''

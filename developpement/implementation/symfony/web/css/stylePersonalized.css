@@ -29,7 +29,7 @@
 .bonjour{
     font-family: 'Ubuntu Condensed', sans-serif;
     font-weight: 500;
-    margin-top: 0px;
+    margin-top: 25px;
 }
 
 .accueilSq{
@@ -49,6 +49,7 @@
     border-radius: 20px 0px 0px 20px;
     overflow: hidden;
 }
+
 
 .logoDroit{
     width: 430px;
@@ -91,6 +92,7 @@
 .container{
     padding-left: 30px !important;
     padding-right: 30px !important;
+    margin-top: 20px !important;
 }
 
 hr{
@@ -100,6 +102,10 @@ hr{
 
 iframe{
     margin-top: 20px !important;
+}
+
+.navbar-nav{
+    float: none;
 }
 
 .panel{

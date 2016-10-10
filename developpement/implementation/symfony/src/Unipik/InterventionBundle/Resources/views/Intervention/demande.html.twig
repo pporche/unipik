@@ -29,16 +29,27 @@
 
         function displayTypeIntervention(e){
 			var parNode = '';
-            parNode = e.target;
-            parNode = parNode.parentNode;
-            parNode = parNode.parentNode;
-            parNode = parNode.parentNode;
+            var valueToChk = '';
+            if(e.hasOwnProperty('originalEvent')){
+                parNode = e.target;
+                parNode = parNode.parentNode;
+                parNode = parNode.parentNode;
+                parNode = parNode.parentNode;
+                valueToChk = e.target.value;
+            }else{
+                parNode = e;
+                valueToChk = parNode.value;
+                parNode = parNode.parentNode;
+                parNode = parNode.parentNode;
+                parNode = parNode.parentNode;
+            }
+
             var matClasElt = parNode.getElementsByClassName('form-group')[2];
             var matFriElt = parNode.getElementsByClassName('form-group')[3];
             var themElt = parNode.getElementsByClassName('form-group')[7];
             var lblMatElt = parNode.getElementsByTagName('label')[1];
 
-            switch(e.target.value){
+            switch(valueToChk){
                 case 'frim' :
                     $(matClasElt).fadeOut('slow');
                     $(matFriElt).fadeIn('medium');
@@ -59,7 +70,10 @@
                     $(themElt).fadeIn('fast');
                     break;
             }
-            e.stopImmediatePropagation();
+
+            if(e.hasOwnProperty('originalEvent')) {
+                e.stopImmediatePropagation();
+            }
         }
 
 	    function treatmentInstitute(template,grade){
@@ -281,6 +295,7 @@
                 $("#add_intervention").appendTo($container).css('margin-left', '80%');
                 treatmentSelect($($prototype).get(0));
                 displayThemeIntervention();
+                displayTypeIntervention($($prototype).children().find("select").get(0));
                 $($prototype).children().find("select").on("change",displayTypeIntervention);
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;

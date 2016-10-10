@@ -5,6 +5,7 @@ namespace Unipik\InterventionBundle\Controller;
 use Doctrine\ORM\Repository\RepositoryFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Intervention;
@@ -246,13 +247,15 @@ class InterventionController extends Controller {
         $intervention = $repository->find($id);
         $user = $this->getUser();
 
+        $formAttr = $this->get('form.factory')->createBuilder(AttributionType::class)->getForm()->createView();
+
         if($intervention->isFrimousse()) {
-            return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig',array('intervention' => $intervention, 'user' => $user));
+            return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig',array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
         } elseif ($intervention->isPlaidoyer()) {
-           return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig',array('intervention' => $intervention, 'user' => $user));
+           return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig',array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
         }
         else {
-            return $this->render('InterventionBundle:Intervention:consultation.html.twig',array('intervention' => $intervention, 'user' => $user));
+            return $this->render('InterventionBundle:Intervention:consultation.html.twig',array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
         }
     }
 
@@ -292,10 +295,6 @@ class InterventionController extends Controller {
         $fB = $this->get('form.factory')->createBuilder(AttributionType::class);
         $f = $fB->getForm();
         $f->handleRequest($request);
-
-        if($request->isMethod('POST')){
-
-        }
 
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
             'field' => $field,
@@ -338,6 +337,11 @@ class InterventionController extends Controller {
 
         $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, $user);
 
+        //        Création du formulaire pour la popup
+        $fB = $this->get('form.factory')->createBuilder(AttributionType::class);
+        $f = $fB->getForm();
+        $f->handleRequest($request);
+
         return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
             'field' => $field,
             'desc' => $desc,
@@ -349,6 +353,7 @@ class InterventionController extends Controller {
             'dateEnd' => $end,
             'user' => $user,
             'form' => $form->createView(),
+            'formAttr' => $f->createView(),
             'onlyMyIntervention' => true,
         ));
     }
@@ -393,20 +398,25 @@ class InterventionController extends Controller {
      * @param Request $request
      * @return Response
      */
-    public function attributionAction(Request $request) {
+    public function attributionABenevoleAction(Request $request) {
         if ($request->isXmlHttpRequest()) {
-            $user = $this->getUser();
+            $username = $request->request->get('username');
             $id = $request->request->get('id');
 
             $em = $this->getDoctrine()->getManager();
-            $repository = $em->getRepository('InterventionBundle:Intervention');
-            $intervention = $repository->find($id);
+            $repositoryVolunteer = $em->getRepository('UserBundle:Benevole');
+            $volunteer = $repositoryVolunteer->findOneBy(array('username' => $username));
+            $repositoryIntervention = $em->getRepository('InterventionBundle:Intervention');
+            $intervention = $repositoryIntervention->find($id);
 
-            $intervention->setBenevole($user);
+            $intervention->setBenevole($volunteer);
 
             $em->persist($intervention);
             $em->flush();
-            return new Response();
+
+            $infos = array('nom' => $volunteer->getNom(), 'prenom' => $volunteer->getPrenom());
+
+            return new JsonResponse($infos);
         }
         return new Response();
     }
@@ -424,6 +434,24 @@ class InterventionController extends Controller {
             $intervention = $repository->find($id);
 
             $intervention->setBenevole(null);
+
+            $em->persist($intervention);
+            $em->flush();
+            return new Response();
+        }
+        return new Response();
+    }
+
+    public function attributionAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $user = $this->getUser();
+            $id = $request->request->get('id');
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Intervention');
+            $intervention = $repository->find($id);
+
+            $intervention->setBenevole($user);
 
             $em->persist($intervention);
             $em->flush();

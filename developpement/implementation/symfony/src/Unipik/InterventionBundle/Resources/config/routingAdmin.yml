@@ -35,3 +35,11 @@ etablissement_admin_deletes:
 etablissement_admin_edit:
     path:   /etablissement/edit/{id}
     defaults: { _controller: InterventionBundle:Etablissement:edit }
+
+intervention_attribute:
+    path: /intervention/attributionA
+    defaults: {_controller: InterventionBundle:Intervention:attributionABenevole}
+
+intervention_desattribute:
+    path: /intervention/desattributionA
+    defaults: {_controller: InterventionBundle:Intervention:desattributionA}

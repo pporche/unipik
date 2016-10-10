@@ -15,16 +15,36 @@ Pour rapidement installer SonarQube.
 
 ==== Étapes Pas-à-pas: ====
 
-1. Télécharger la dernière version de [[SonarQube]] (http://www.sonarqube.org/downloads/)
+1. Télécharger la dernière version (6.0) de [[SonarQube]] (http://www.sonarqube.org/downloads/)
 
-2. Extraire l'archive dans un dossier (ex : sonarqube-6.0)
-3. Modifier votre PATH pour y rajouter "sonarqube-6.0/bin" avec la commande suivante :
-
-'''
-PATH=$PATH:sonarqube-6.0/bin
+2. Extraire l'archive dans un dossier (ex : [[/opt/sonarqube)]]
+3. Créer un fichiers [[/etc/profile.d/sonarqube.sh]] avec le contenu:
 
 '''
-4. Ajouter dans le dossier à tester (si il n'existe pas déjà) un fichier sonar-project.properties contenant :
+PATH="$PATH:/opt/sonarqube/bin/linux-x86-64"
+
+'''
+4. Exécuter la commande:
+
+'''
+source /etc/profile.d/sonarqube.sh
+'''
+
+5. Si plusieurs version de java sont installés, il faut indiquer à sonarqube d'utiliser la verstion 8, pour cela éditer le fichier [[/opt/sonarqube/conf/]] de la manière suivante:
+
+Trouver
+
+'''
+wrapper.java.command=java
+'''
+
+Remplacer par
+
+'''
+wrapper.java.command=/usr/lib/jvm/java-8-openjdk-amd64/bin/java
+'''
+
+6. Ajouter dans le dossier à tester (si il n'existe pas déjà) un fichier sonar-project.properties contenant :
 
 '''
 # must be unique in a given SonarQube instance
@@ -45,7 +65,7 @@ sonar.sources=.
 '''
 5. Pour lancer SonarQube, exécuter la commande suivante dans le dossier d'installation :
 
-'' ./sonar.sh start''
+'' sonar.sh start''
 
 
 6. Pour exécuter SonarQube, exécuter la commande suivante dans le dossier à tester :

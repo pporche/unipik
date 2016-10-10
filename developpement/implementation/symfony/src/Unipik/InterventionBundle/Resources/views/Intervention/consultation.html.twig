@@ -9,14 +9,34 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
+    <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script>
+
+        {% if intervention.benevole %}
+            $("#attribueA").text("Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}");
+        {% endif %}
+
         function desattributeIntervention(event, id) {
             $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
                 function (data, status) {
                     $(event).attr('class', 'btn btn-primary');
                     $(event).text('S\'attribuer l\'intervention');
                     $(event).attr("onclick", "attributeIntervention(this, "+id+")");
+                    $("#attribueA").text("");
                 });
+        }
+
+        function desattributeInterventionAdmin(event, id) {
+            $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
+                    function (data, status) {
+                        $(event).attr('class', 'btn btn-primary');
+                        $(event).text('Attribuer l\'intervention a');
+                        $(event).attr("onclick", "sendIdToModal("+id+")");
+                        $(event).attr("data-target", "#myModal");
+                        $(event).attr("data-toggle", "modal");
+                        $("#attribueA").text("");
+                    });
         }
 
         function attributeIntervention(event, id) {
@@ -25,8 +45,46 @@
                     $(event).attr('class', 'btn btn-danger');
                     $(event).text('Se désattribuer l\'intervention');
                     $(event).attr("onclick", "desattributeIntervention(this, "+id+")");
+                    $("#attribueA").text("Attribuée à {{ user.prenom }} {{ user.nom }}");
                 });
         }
+
+        function attributeInterventionAdmin(event, username, id) {
+            $.post("{{ path('intervention_attribute') }}", {'username': username, 'id': id},
+                    function (data, status) {
+                        console.log('ça marche !');
+                        $("button[data-target='#myModal']").attr('class', 'btn btn-danger');
+                        $("button[data-target='#myModal']").text('Désattribuer l\'intervention');
+                        $("button[data-target='#myModal']").attr("onclick", "desattributeInterventionAdmin(this, " + id + ")");
+                        $("button[data-target='#myModal']").removeAttr("data-target");
+                        $("button[data-target='#myModal']").removeAttr("data-toggle");
+                        $("#attribueA").text("Attribuée à "+data.prenom+" "+data.nom);
+                    });
+        }
+
+        function sendIdToModal(id) {
+            $("#attribution_idIntervention").attr("value", id);
+        }
+
+        var benevoles = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+            remote: {
+                url: '{{ path("user_admin_benevole_autocomplete") }}?term=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+
+        $('#attribution_benevole').typeahead(null, {
+            name: 'benevoles',
+            source: benevoles,
+            limit: 50
+        });
+
+        $('#attribuerModal').click(function() {
+            $('#myModal').modal('hide');
+        });
     </script>
 
 {% endblock %}
@@ -41,7 +99,32 @@
                         <h2 class="col-lg-7 titre">
                             Intervention
                         </h2>
-
+                        {% if intervention.realisee %}
+                            <p class="text-success"> Réalisée <span class="glyphicon glyphicon-ok"></span></p>
+                        {% elseif intervention.benevole %}
+                            {% if user==intervention.benevole %}
+                                <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeIntervention(this, {{ intervention.id }})">
+                                    Se désattribuer l'intervention
+                                </button>
+                            {% else %}
+                                {#<p id="attribueA">Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}</p>#}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeInterventionAdmin(this, {{ intervention.id }})">
+                                        Désattribuer l'intervention
+                                    </button>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <button id="btnAttribuerAdmin" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="sendIdToModal({{ intervention.id }})">
+                                    Attribuer l'intervention à
+                                </button>
+                            {% else %}
+                                <button name="attribution" type="button" class="btn btn-primary" onclick="attributeIntervention(this, {{ intervention.id }})">
+                                    S'attribuer l'intervention
+                                </button>
+                            {% endif %}
+                        {% endif %}
                         <h4 class="col-lg-9" >
                             {% if intervention.plaidoyer %}
                                 Plaidoyer
@@ -51,21 +134,6 @@
                                 Autre intervention
                             {% endif %}
                         </h4>
-                        {% if intervention.realisee %}
-                            <p class="text-success" style="font-size: 16px; font-weight: 600; margin-left: 15px;"> Réalisée <span class="glyphicon glyphicon-ok"></span></p>
-                        {% elseif intervention.benevole %}
-                        {% if user==intervention.benevole %}
-                            <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeIntervention(this, {{ intervention.id }})">
-                                Se désattribuer l'intervention
-                            </button>
-                        {% else %}
-                        <p class="text-success" style="font-size: 16px; font-weight: 600; margin-left: 15px;">Attribuée à {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}</p>
-                        {% endif %}
-                        {% else %}
-                        <button name="attribution" type="button" class="btn btn-primary" onclick="attributeIntervention(this, {{ intervention.id }})">
-                            S'attribuer l'intervention
-                        </button>
-                        {% endif %}
                         <img src="{{ asset('img/logo-gris.png') }}" class="logoGris" alt="logo gris">
                     </div>
                     <hr>
@@ -276,6 +344,29 @@
                             </dl>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Attribuer l'intervention à</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(formAttr, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                        <h5>Bénévole : {{  form_widget(formAttr.benevole) }}</h5>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="attribuerModal" type="button" class="btn btn-primary" onclick="attributeInterventionAdmin(this, $('#attribution_benevole').val(), $('#attribution_idIntervention').val())">Attribuer</button>
+                    </div>
+                    {{ form_end(formAttr) }}
                 </div>
             </div>
         </div>

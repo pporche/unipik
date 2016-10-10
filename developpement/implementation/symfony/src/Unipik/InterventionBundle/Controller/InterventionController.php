@@ -122,7 +122,7 @@ class InterventionController extends Controller {
             }
 
             for($week = $startWeek; $week <= $endWeek; $week++) {
-                $listWeek[] = '('.$week.')';
+                $listWeek[] = $week;
             }
 
             $this->treatmentInterventions($interventionsRawList,$interventionList);

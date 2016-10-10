@@ -20,20 +20,20 @@ class ThemesType extends AbstractType {
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
-        $optionChoiceType = array( 'label' => false,
+        $optionChoiceType = array( 'label' => false, 'attr' => ['class' => 'form-theme-pld'],
             'choices' => [
-                "Convention internationale des Droits de l'Enfant" => '(convention internationale des droits de l enfant)',
-                "L'éducation" => '(education)',
-                "La santé (en général)" => '(sante en generale)',
-                "La santé - Alimentation" => '(sante et alimentation)',
-                "VIH et sida" => '(VIH et sida)',
-                "L'eau" => '(eau)',
-                "Les urgences mondiales" => '(urgences mondiales)',
-                "Le travail des enfants" => '(travail des enfants)',
-                "Les enfants soldats" => '(enfants et soldats)',
-                "Le harcèlement" => '(harcelement)',
-                "Le rôle de l Unicef" => '(role de l Unicef)',
-                "Le milléniare pour le développement" => '(millenaire pour le developpement)'
+                "Le milléniare pour le développement" => 'millenaire pour le developpement',
+                "Le rôle de l Unicef" => 'role de l Unicef',
+                "Convention internationale des Droits de l'Enfant" => 'convention internationale des droits de l enfant',
+                "L'éducation" => 'education',
+                "La santé (en général)" => 'sante en generale',
+                "La santé - Alimentation" => 'sante et alimentation',
+                "L'eau" => 'eau',
+                "Les urgences mondiales" => 'urgences mondiales',
+                "Le harcèlement" => 'harcelement',
+                "Le travail des enfants" => 'travail des enfants',
+                "Les enfants soldats" => 'enfants et soldats',
+                "VIH et sida" => 'VIH et sida'
             ],);
 
         $builder

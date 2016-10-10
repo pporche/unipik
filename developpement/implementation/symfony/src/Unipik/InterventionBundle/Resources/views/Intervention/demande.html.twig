@@ -74,28 +74,28 @@
 			break;
 			case 'elementaire' :
 			for(i=0; i<taille; i++){
-			if(i<7 || i>15){
+			if(i!=0 && (i<7 || i>15)){
 				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
 				}
 			}
 			break;
 			case 'college' :
 			for(i=0; i<taille; i++){
-			if(i<=15 || i>19){
+			if(i!=0 && (i<=15 || i>19)){
 				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
 				}
 			}
 			break;
 			case 'lycee' :
 			for(i=0; i<taille; i++){
-			if(i<=19 || i>22){
+			if(i!=0 && (i<=19 || i>22)){
 				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
 				}
 			}
 			break;
 			case 'superieur' :
 			for(i=0; i<taille; i++){
-			if(i<=22){
+			if(i!=0 && i<=22){
 				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
 				}
 			}
@@ -105,12 +105,48 @@
 		}
 	}
 
-	function treatmentCenter(template){
-	
+	function treatmentCenter(template, grade){
+        var taille = $(template).find('select')[1].length;
+        switch(grade){
+            case 'maternelle' :
+                for(i=0; i<taille; i++){
+                    if(i>=7){
+                        $($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+                    }
+                }
+                break;
+            case 'elementaire' :
+                for(i=0; i<taille; i++){
+                    if(i!=0 && (i<7 || i>15)){
+                        $($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+                    }
+                }
+                break;
+            case 'adolescent' :
+                for(i=0; i<taille; i++){
+                    if(i!=0 && (i<=15 || i>22)){
+                        $($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+                    }
+                }
+                break;
+            default:
+                break;
+        }
 	}
 
-	function treatmentOthers(template){
-
+	function treatmentOthers(template, grade){
+        var taille = $(template).find('select')[1].length;
+        switch(grade){
+            case 'maison de retraite' :
+                for(i=0; i<taille; i++){
+                    if(i!=taille-1){
+                        $($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+                    }
+                }
+                break;
+            default:
+                break;
+        }
 	}
 
         function treatmentSelect(template){
@@ -123,9 +159,11 @@
                     break;
                 case 'centre' :
                     type = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked').value;
+                    treatmentCenter(template,type);
                     break;
                 case 'autre' :
                     type = document.querySelector('input[name="demande[Etablissement][typeAutreEtablissement]"]:checked').value;
+                    treatmentOthers(template,type);
                     break;
             }
 		}

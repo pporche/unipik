@@ -22,6 +22,7 @@ use Unipik\UserBundle\Entity\Comite;
 use Unipik\ArchitectureBundle\Entity\MomentHebdomadaire;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Util\Debug;
 /**
  * Created by PhpStorm.
  * User: florian
@@ -127,6 +128,7 @@ class InterventionController extends Controller {
             }
 
             $this->treatmentInterventions($interventionsRawList,$interventionList);
+            return \Doctrine\Common\Util\Debug::dump($interventionsRawList);
             $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);
 

@@ -21,6 +21,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route; //Utilisé
 use Unipik\UserBundle\Entity\Comite;
 use Unipik\ArchitectureBundle\Entity\MomentHebdomadaire;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Created by PhpStorm.
  * User: florian
@@ -108,8 +109,7 @@ class InterventionController extends Controller {
             $contactPers = new Contact();
             $this->cast($contactPers, $test);
             $contactPers->setRespoEtablissement($test->isRespoEtablissement());
-            $contactPers->addTypeActivite('{}');
-
+            $contactPers->setTypeContact($test->getTypeContact());
             // handle the interventions
             $interventionsRawList = $form->get('Intervention')->getData();
 
@@ -148,6 +148,8 @@ class InterventionController extends Controller {
 
             $institute->setEmails('{}');
 
+            $emails = $etablissement->get("emails")->getData();
+
             /* if the adress is already in the db it means the institute might be in there too */
             $repository = $this->getDoctrine()->getRepository('ArchitectureBundle:Adresse');
             $adresses = $repository->findBy(
@@ -156,6 +158,7 @@ class InterventionController extends Controller {
                     'codePostal' => $institute->getAdresse()->getCodePostal()
                 )
             );
+
 
             $instituteResearched = null;
             $repository = $this->getDoctrine()->getManager();
@@ -170,9 +173,7 @@ class InterventionController extends Controller {
                         'typeCentre' => $institute->getTypeCentre(),
                         'adresse' => $adresseTemp->getId()
                     )
-
-
-                 );
+                );
             }
 
             $list=[];
@@ -189,6 +190,12 @@ class InterventionController extends Controller {
             } else {
                 $institute = array_pop($instituteResearched);
             }
+
+            if(sizeof($emails) != 0)
+                foreach ($emails as $email) {
+                    if(!$institute->getEmails()->contains($email))
+                        $institute->addEmail($email);
+                }
 
             foreach($listWeek as $week)
                 $demande->addSemaine($week);
@@ -498,7 +505,7 @@ class InterventionController extends Controller {
      */
     function treatmentInterventions($interventionsRawList, &$interventionList) {
         $comiteTest = $this->getDoctrine()->getManager()->getRepository('UserBundle:Comite')->find(1);
-
+        $lvlThemeRepository = $this->getDoctrine()->getManager()->getRepository('ArchitectureBundle:NiveauTheme');
         if($interventionsRawList !== null) {
             $interventionsRawList = array_filter($interventionsRawList);
 
@@ -514,7 +521,14 @@ class InterventionController extends Controller {
                 else if(isset($interventionRaw['materielFrimousse'])){
                     $interventionTemp->addMateriauxFrimousse($interventionRaw['materielFrimousse']['materiel']);
                 }
-
+                if(isset($interventionRaw["niveauClasse"]) && isset($interventionRaw["themes"])){
+                    $lvlTheme = $lvlThemeRepository->findOneBy(
+                        array('niveau' => $interventionRaw["niveauClasse"],
+                            'theme' => $interventionRaw["themes"]
+                        )
+                    );
+                    $interventionTemp->setNiveauTheme($lvlTheme);
+                }
                 $interventionList[] = $interventionTemp;
             }
         }

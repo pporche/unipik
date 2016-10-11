@@ -93,14 +93,14 @@
 
     <div class="container">
         <div class="row">
-            <section class="jumbotron col-sm-12 infoPrincip">
-                <div>
+            <section class="jumbotron col-sm-12 col-sm-12 col-lg-9 col-lg-offset-1">
+                <div class=" infoPrincip">
                     <div class="row">
-                        <h2 class="col-lg-7 titre">
+                        <h2 class="col-lg-12 titre">
                             Intervention
                         </h2>
 
-                        <h4 class="col-lg-9" >
+                        <h4 class="col-lg-12" >
                             {% if intervention.plaidoyer %}
                                 Plaidoyer
                             {% elseif intervention.frimousse %}
@@ -110,7 +110,7 @@
                             {% endif %}
                         </h4>
                         {% if intervention.realisee %}
-                            <p class="text-success">&nbsp &nbspRéalisée <span class="glyphicon glyphicon-ok"></span></p>
+                            <p class="text-success">&nbsp &nbsp Réalisée <span class="glyphicon glyphicon-ok"></span></p>
                         {% elseif intervention.benevole %}
                             {% if user==intervention.benevole %}
                                 <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeIntervention(this, {{ intervention.id }})">
@@ -141,7 +141,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <dl class="dl-horizontal">
-                                <div class="col-sm-5 col-xs-12  col-md-3">
+                                <div class="col-sm-5 col-xs-12  col-md-4">
                                     <dt>
                                         <span class="glyphicon glyphicon-globe"></span> &nbsp Localisation:
                                     </dt>
@@ -159,7 +159,7 @@
                                             {% endif %} </em> </a>
                                 </div>
                                 <br>
-                                <div class="col-sm-5 col-xs-12  col-md-3">
+                                <div class="col-sm-5 col-xs-12  col-md-4">
                                     <dt>
                                         <span class="glyphicon glyphicon-calendar"></span> &nbsp Date:
                                     </dt>
@@ -172,7 +172,7 @@
                                         {% endif %}
                                     </em>
                                 </div>
-                                <div class="col-sm-5 col-xs-12  col-md-3">
+                                <div class="col-sm-5 col-xs-12  col-md-4">
                                     <dt>
                                         <span class="glyphicon glyphicon-time"></span> &nbsp Heure:
                                     </dt>
@@ -187,7 +187,7 @@
                                 </div>
 
 
-                                <div class="col-sm-5 col-xs-12  col-md-3">
+                                <div class="col-sm-5 col-xs-12  col-md-4">
                                     <dt>
                                         <span class="glyphicon glyphicon-circle-arrow-right"></span> &nbsp Lieu:
                                     </dt>
@@ -201,7 +201,7 @@
                                 </div>
 
 
-                                <div class="col-sm-5 col-xs-12  col-md-3">
+                                <div class="col-sm-5 col-xs-12  col-md-4">
                                     <dt>
                                         <span class="glyphicon glyphicon-user"></span> &nbsp N de personnes:
                                     </dt>
@@ -224,7 +224,8 @@
                                         style="
                                         border: 1px solid black;
                                         height: 350px ;
-                                        padding: 0px;
+                                        padding: 0px!important;
+
                                         "></iframe>
                             </div>
                         </div>
@@ -236,16 +237,21 @@
         </div>
         <div class="row">
             <div class="buttons">
-                <a href="{{ path("intervention_admin_edit", {'id': intervention.id}) }}" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-pencil"> Modifier</span>
+
+                {% if (is_granted('ROLE_ADMIN') or (intervention.benevole==user)) %}
+                <a href="{{ path("intervention_edit", {'id': intervention.id}) }}" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-pencil" ></span>&nbsp Modifier
                 </a>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path("intervention_admin_delete", {'id': intervention.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'intervention {{ intervention.id }} ?')">
-                    <span class="glyphicon glyphicon-trash"> Supprimer </span>
+                    <span class="glyphicon glyphicon-trash"> </span>&nbsp Supprimer
                 </a>
+                {% endif %}
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 infoContainer">
+            <div class="col-sm-12 col-sm-12 col-lg-9 col-lg-offset-1 infoContainer">
                 <div class="col-sm-3 containerOne">
                     <div class="circle circleOne">
                         <img src="{{ asset('img/bell.png') }}" alt="bell">

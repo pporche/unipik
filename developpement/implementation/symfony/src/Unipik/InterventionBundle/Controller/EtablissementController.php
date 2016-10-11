@@ -9,6 +9,7 @@
 namespace Unipik\InterventionBundle\Controller;
 
 
+use Doctrine\Common\Collections\Collection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -138,8 +139,6 @@ class EtablissementController extends Controller {
             ->add('Valider', SubmitType::class)
             ->getForm();
 
-        $emails = $institute->getEmails();
-
         if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
 
             $em = $this->getDoctrine()->getManager();
@@ -156,11 +155,10 @@ class EtablissementController extends Controller {
             return $this->redirectToRoute('etablissement_view', array('id' => $id));
         }
 
-        $emails = ArrayConverter::pgArrayToPhpArray($institute->getEmails());
-        $emails = json_encode($emails);
+        $emails = json_encode($institute->getEmails()->toArray());
         return $this->render('InterventionBundle:Etablissement:editEtablissement.html.twig', array('form' => $form->createView(),
-                                                                                                   'etablissement' => $institute,
-                                                                                                   'emails' => $emails,
+                                                                                   'etablissement' => $institute,
+                                                                                   'emails' => $emails,
         ));
     }
 }

@@ -78,7 +78,7 @@
                 return false;
             });
 
-            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un.
             if (index == 0) {
                 var emails = JSON.parse('{{ emails|raw }}');
                 var i = 0;
@@ -96,7 +96,7 @@
                 });
             }
 
-            // La fonction qui ajoute un formulaire CategoryType
+            // La fonction qui ajoute un formulaire
             function addEmail($container) {
                 // Dans le contenu de l'attribut « data-prototype », on remplace :
                 // - le texte "__name__label__" qu'il contient par le label du champ
@@ -109,7 +109,6 @@
                 // On crée un objet jquery qui contient ce template
                 var $prototype = $(template);
 
-                // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
                 addDeleteLink($prototype);
 
                 // On ajoute le prototype modifié à la fin de la balise <div>
@@ -119,7 +118,7 @@
                 index++;
             }
 
-            // La fonction qui ajoute un lien de suppression d'une catégorie
+            // La fonction qui ajoute un lien de suppression
             function addDeleteLink($prototype) {
                 // Création du lien
                 var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
@@ -127,7 +126,7 @@
                 // Ajout du lien
                 $prototype.append($deleteLink);
 
-                // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
+                // Ajout du listener sur le clic du lien pour effectivement supprimer
                 $deleteLink.click(function(e) {
                     $prototype.remove();
 
@@ -146,7 +145,6 @@
 {% endblock %}
 
 {% block body %}
-
     <div class='well'>
 
         {{ form_start(form, {'method': 'post', 'action': path('etablissement_admin_edit', {'id': etablissement.id}), 'attr': {'class': 'etablissement_admin_edit'}}) }}

@@ -11,7 +11,7 @@
 
     <div class="container">
         <div class="row">
-            <section class="jumbotron col-sm-12">
+            <section class="jumbotron col-sm-12 col-lg-9 col-lg-offset-1">
                 <div class="infoPrincip">
                     <div class="row">
                         <h2 class="col-lg-9 titre" style="margin-top: 40px;">{{ user.nom | upper }} {{ user.prenom | capitalize }}</h2>
@@ -20,43 +20,43 @@
                     <hr>
                     <div class="row">
                         <dl class="dl-horizontal">
-                            <div class="col-sm-3 col-xs-12">
+                            <div class="col-sm-4 col-xs-12 col-md-3">
                                 <dt>
                                     <span class="glyphicon glyphicon-envelope"></span>  Email :
                                 </dt>
                             </div>
-                            <div  class="col-sm-9">
+                            <div  class="col-sm-8  col-md-9">
                                 {% if (user.email == "" or user.email == NULL) %}
                                     {{ "Non renseigné" }}
                                 {% else %}
                                     <a href="mailto:{{ user.email}}">{{ user.email}}</a>
                                 {% endif %}
                             </div>
-                            <div class="col-sm-3 col-xs-12">
+                            <div class="col-sm-4 col-xs-12 col-md-3">
                                 <dt >
                                     <span class="glyphicon glyphicon-phone-alt"></span>  Téléphone fixe :
                                 </dt>
                             </div>
-                            <div  class="col-sm-9">
+                            <div  class="col-sm-8  col-md-9">
                                 {% if (user.telFixe == "" or user.telFixe == NULL) %}
                                     {{ "Non renseigné" }}
                                 {% else %}
                                     {{ user.telFixe}}
                                 {% endif %}
                             </div>
-                            <div class="col-sm-3 col-xs-12">
+                            <div class="col-sm-4 col-xs-12 col-md-3">
                                 <dt>
                                     <span class="glyphicon glyphicon-phone"></span>  Téléphone portable : </dt>
                                 </dt>
                             </div>
-                            <div  class="col-sm-9">
+                            <div  class="col-sm-8  col-md-9">
                                 {% if (user.telPortable == "" or user.telPortable == NULL) %}
                                     {{ "Non renseigné" }}
                                 {% else %}
                                     {{ user.telPortable}}
                                 {% endif %}
                             </div>
-                            <div class="col-sm-3 col-xs-12">
+                            <div class="col-sm-4 col-xs-12 col-md-3">
                                 <dl>
                                     <dt >
                                         <span class="glyphicon glyphicon-home"></span>  Adresse :</td>
@@ -64,7 +64,7 @@
                                 </dl>
 
                             </div>
-                            <div  class="col-sm-9">
+                            <div  class="col-sm-8  col-md-9">
                                 {{ user.adresse.getAdresse()}},
                                 {{ user.adresse.codePostal.code}}
                                 {{ user.adresse.ville.nom}}
@@ -81,12 +81,12 @@
                 <div class="col-sm-offset-3 col-sm-3 buttons">
                     <a href="{{ path("fos_user_profile_edit") }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>&nbsp&nbsp Modifier </a>
                 </div>
-                <div class="col-sm-2 col-sm-offset-1 buttons">
+                <div class="col-sm-2 col-xs-offset-0 buttons">
                     <a href="{{ path("fos_user_change_password") }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> &nbsp&nbsp Changer mot de passe </a>
                 </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 infoContainer">
+            <div class="col-sm-12 col-sm-12 col-lg-9 col-lg-offset-1 infoContainer">
                 <div class="col-sm-4 containerOne">
                     <div class="circle circleOne">
                         <img src="{{ asset('img/location.png') }}">

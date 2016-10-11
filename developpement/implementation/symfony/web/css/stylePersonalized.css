@@ -1,5 +1,6 @@
 @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
 
+
 .jumbotron {
     border-radius: 20px !important;
     position: relative;
@@ -14,6 +15,10 @@
 }
 
 .subtitle{
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+.infoContainer h3{
     font-family: 'Ubuntu Condensed', sans-serif;
 }
 
@@ -171,12 +176,13 @@ iframe{
 }
 
 .buttons .btn{
-
+    font-family: 'Ubuntu Condensed', sans-serif !important;
     font-size: 18px !important;
 }
 
 .btn{
     margin-top: 15px;
+    font-family: 'Ubuntu Condensed', sans-serif !important;
 }
 
 .container{
@@ -333,6 +339,7 @@ dt{
 
 .btn-primary, .btn-danger, .btn-success{
     border-radius: 10px !important;
+    font-family: 'Ubuntu Condensed', sans-serif !important;
 }
 
 .logoAccueil{

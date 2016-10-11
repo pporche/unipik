@@ -26,7 +26,7 @@ class ContactType extends AbstractType {
             ->add('prenom')
             ->add('telFixe')
             ->add('telPortable')
-           /* ->add('typeContact',ChoiceType::class,array(
+            ->add('typeContact',ChoiceType::class,array(
                 'choices' => array(
                     'Étudiant' => 'etudiant',
                     'Animateur' => 'animateur',
@@ -34,7 +34,7 @@ class ContactType extends AbstractType {
                     'Autre' => 'autre'
                 )
             ))
-            ->add('respoEtablissement',CheckBoxType::class,array('label' => 'Êtes vous le chef d\'établissement ?', 'required' => false)) */
+            ->add('respoEtablissement',CheckBoxType::class,array('label' => 'Êtes vous le chef d\'établissement ?', 'required' => false))
         ;
     }
 

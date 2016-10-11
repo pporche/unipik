@@ -9,7 +9,7 @@
 }
 
 .jumbotron h4{
-    font-family: Georgia, "Times New Roman", Times, serif;
+    font-family: 'Ubuntu Condensed', sans-serif;
     margin-top: 0px;
 }
 
@@ -167,7 +167,7 @@ iframe{
     display: block;
     text-align: center;
     margin-bottom: 30px;
-    font-family: Georgia, "Times New Roman", Times, serif;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 .buttons .btn{
@@ -186,12 +186,12 @@ iframe{
 }
 
 .titre{
-    font-family: Georgia, "Times New Roman", Times, serif;
+    font-family: 'Ubuntu Condensed', sans-serif;
     margin-bottom: 0px;
 }
 
 .text-success{
-    font-family: Georgia, "Times New Roman", Times, serif;
+    font-family: 'Ubuntu Condensed', sans-serif;
     font-size: 18px !important;
 }
 

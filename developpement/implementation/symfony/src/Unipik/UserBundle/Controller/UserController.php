@@ -198,7 +198,7 @@ class UserController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('UserBundle:Benevole')->createQueryBuilder('b')
-            ->where('b.username LIKE :username')
+            ->where('LOWER(b.username) LIKE LOWER(:username)')
             ->setParameter('username', '%'.$term.'%')
             ->orderBy('b.username','ASC')
             ->getQuery()

@@ -18,6 +18,12 @@ intervention_view:
     requirements:
         id: \d+
 
+intervention_edit:
+    path: /intervention/edit/{id}
+    defaults: {_controller: InterventionBundle:Intervention:edit}
+    requirements:
+        id: \d+
+
 intervention_self_attribute:
     path: /intervention/attribution
     defaults: {_controller: InterventionBundle:Intervention:attribution}

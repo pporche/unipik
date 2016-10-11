@@ -28,6 +28,7 @@ class ContactType extends AbstractType {
             ->add('telPortable')
             ->add('typeContact',ChoiceType::class,array(
                 'choices' => array(
+                    'Enseignant' => 'enseignant',
                     'Étudiant' => 'etudiant',
                     'Animateur' => 'animateur',
                     'Élève' => 'élève',

@@ -3,8 +3,68 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript">
+
+    <script type="application/javascript">
+        document.getElementById('etablissement_TypeGeneral').addEventListener('change',function(e){
+            switch (e.target.value){
+                case 'ens' :
+                    keepInstitute();
+                    $('.form-group:eq(7)').fadeIn("fast");
+                    break;
+                case 'centre' :
+                    keepCenter();
+                    $('.form-group:eq(7)').fadeOut("fast");
+                    $('#etablissement_uai').val('');
+                    break;
+                case 'autre' :
+                    keepOther();
+                    $('.form-group:eq(7)').fadeOut("fast");
+                    $('#etablissement_uai').val('');
+                    break;
+            }
+        });
+
+        switch ($("#etablissement_TypeGeneral").val()){
+            case 'ens' :
+                keepInstitute();
+                $('.form-group:eq(7)').fadeIn("fast");
+                break;
+            case 'centre' :
+                keepCenter();
+                $('.form-group:eq(7)').fadeOut("fast");
+                $('#etablissement_uai').val('');
+                break;
+            case 'autre' :
+                keepOther();
+                $('.form-group:eq(7)').fadeOut("fast");
+                $('#etablissement_uai').val('');
+                break;
+        }
+
+        function keepInstitute(){
+            $(".form-group:eq(4)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
+        }
+
+        function keepCenter(){
+            $(".form-group:eq(6)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(4)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
+
+        }
+
+        function keepOther(){
+            $(".form-group:eq(5)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(4)").fadeOut("slow").prop("disabled",true);
+        }
+
+        document.getElementById("etablissement_Valider").className = "btn btn-primary";
+
         $(document).ready(function() {
+
+
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
             var $container = $('div#etablissement_emails');
 
@@ -95,9 +155,6 @@
             <a href="#" id="add_email" class="btn btn-default">Ajouter un email</a>
         </div>
         {{ form_widget(form) }}
-        <div>
-            <input type="submit" value="Modifier" class="btn btn-primary"/>
-        </div>
         {{ form_end(form) }}
 
     </div>

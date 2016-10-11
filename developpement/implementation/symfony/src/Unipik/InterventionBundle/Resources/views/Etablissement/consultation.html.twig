@@ -63,11 +63,12 @@
                                 </dt>
                             </div>
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                {% set emails = etablissement.emails | split('),(') %}
-                                {% if emails is not empty %}
+
+
+                                {% if etablissement.emails is not empty %}
                                     <ul class="list-group col-sm-12 ">
-                                        {% for email in emails %}
-                                            <em>{{ email | trim ('{(') | trim (')}') | capitalize }}</em>
+                                        {% for email in etablissement.emails %}
+                                            <em>{{ email }}</em>
                                         {% endfor %}
                                     </ul>
                                 {% else %}
@@ -84,10 +85,8 @@
                                 </dt>
                             </div>
                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
-                                <em> {{ etablissement.adresse.adresse }} <br/>
-                                    {{ etablissement.adresse.ville.nom }} <br/>
-                                    {#{{ etablissement.adresse.codePostal }}  <br/>#}
-                                    {{ etablissement.adresse.complement }}
+                                <em> {{ etablissement.adresse.adresse }} {{ etablissement.adresse.complement }}, {{ etablissement.adresse.codePostal.code }} {{ etablissement.adresse.ville.nom }} <br/>
+
 
                                 </em>
                             </div>
@@ -115,12 +114,14 @@
             </div>
         </section>
     </div>
+    {% if is_granted('ROLE_ADMIN') %}
     <div class="row">
         <div class="buttons">
             <a href="{{ path("etablissement_admin_edit", {'id': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier</span> </a>
             <a href="{{ path("etablissement_admin_delete", {'id': etablissement.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'établissment {{ etablissement.nom }} ?')"><span class="glyphicon glyphicon-trash"> Supprimer </span> </a>
         </div>
     </div>
+    {% endif %}
     <div class="row">
     <div class="row">
         <div class="col-sm-12 infoContainer">

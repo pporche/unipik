@@ -1,3 +1,5 @@
+@import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+
 .jumbotron {
     border-radius: 20px !important;
     position: relative;
@@ -7,8 +9,80 @@
 }
 
 .jumbotron h4{
-    font-family: Georgia, "Times New Roman", Times, serif;
+    font-family: 'Ubuntu Condensed', sans-serif;
     margin-top: 0px;
+}
+
+.subtitle{
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+.subtitle:after{
+    content: ' ';
+    width: 90%;
+    height: 1px;
+    background-color: #dbdbdb;
+    display: block;
+    margin-top: 15px;
+}
+
+.bonjour{
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-weight: 500;
+    margin-top: 25px;
+}
+
+.accueilSq{
+    background-color: #EEEEEE;
+    margin-left: 20px;
+    min-height: 330px;
+    padding: 10px 30px 20px 35px;
+}
+
+.droit{
+    border-radius: 0px 20px 20px 0px;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    flex: 1;
+}
+
+.gauche{
+    border-radius: 20px 0px 0px 20px;
+    overflow: hidden;
+    z-index: 0;
+    flex: 1;
+}
+
+.table_outer{
+    z-index: 1;
+}
+
+.logoDroit{
+    width: 430px;
+    opacity: 0.5;
+    position: absolute;
+    bottom: -200px;
+    left: -230px;
+    z-index: -1;
+}
+
+.logoGauche{
+    width: 430px;
+    opacity: 0.5;
+    position: absolute;
+    bottom: -200px;
+    right: -230px;
+    z-index: -1;
+}
+
+.accueilSq li{
+    list-style-type: none;
+}
+
+.accueilSq ul{
+
+    padding-left: 0px;
 }
 
 .jumbotron h2{
@@ -22,22 +96,78 @@
     right: 50px;
     width: 150px;
     display: block;
-    margin-bottom: 20px;
+}
+
+.container{
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    margin-top: 20px !important;
 }
 
 hr{
     margin-top: 35px;
+    margin-bottom: 35px;
 }
 
 iframe{
     margin-top: 20px !important;
 }
 
+.navbar-nav{
+    float: none;
+}
+
+.table_outer{
+    z-index:30 !important;
+}
+
+.panel{
+    border: none;
+    text-align: left;
+}
+
+
+.alert h4{
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 25px;
+}
+
+.panel-body{
+    background-color: #EEEEEE;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-top: 30px;
+}
+
+.legende1{
+    display: inline-block;
+    background-color: #2b2b2b;
+    width: 15px;
+    height: 10px;
+    margin-right: 8px;
+}
+
+.legende2 {
+    display: inline-block;
+    background-color: #2c8011;
+    width: 15px;
+    height: 10px;
+    margin-right: 8px;
+}
+
+.legende3{
+    display: inline-block;
+    background-color: #2780e3;
+    width: 15px;
+    height: 10px;
+    margin-right: 8px;
+}
+
 .buttons{
     display: block;
     text-align: center;
     margin-bottom: 30px;
-    font-family: Georgia, "Times New Roman", Times, serif;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 .buttons .btn{
@@ -45,14 +175,32 @@ iframe{
     font-size: 18px !important;
 }
 
+.btn{
+    margin-top: 15px;
+}
+
 .container{
     margin: auto;
     padding: 10px;
+    width: 100% !important;
 }
 
 .titre{
-    font-family: Georgia, "Times New Roman", Times, serif;
+    font-family: 'Ubuntu Condensed', sans-serif;
     margin-bottom: 0px;
+}
+
+.text-success{
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 18px !important;
+}
+
+section{
+    margin-top: 30px !important;
+}
+
+.fc{
+    margin-top: 40px !important;
 }
 
 .containerOne{
@@ -126,6 +274,7 @@ iframe{
     margin-top: 40px;
     padding-left: 20px;
     border: 2px solid #ffffff;
+    text-align: left !important;
 }
 
 .containerFour{
@@ -148,6 +297,11 @@ iframe{
 .infoPrincip a{
     color: #2b2b2b;
     font-weight: 600;
+}
+
+dt{
+    text-align: left !important;
+    float: left;
 }
 
 .containerTwo li, .containerOne li, .containerThree li{
@@ -181,9 +335,29 @@ iframe{
     border-radius: 10px !important;
 }
 
-.active{
-    color: #00326c;
+.logoAccueil{
+    max-width: 140px !important;
+}
+
+.list-group-item{
+    border: none !important;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+    background-color: #09f;
     font-weight: 600;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.nav > li > a:hover, .nav > li > a:focus{
+    background-color: #09f;
+    color: #fff;
+    font-weight: 500;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 @media (max-width: 768px) {
@@ -192,6 +366,9 @@ iframe{
     }
     .jumbotron{
         padding-left: 30px !important;
+    }
+    .derniere_link, .premiere_link, .page_link, .prev_link, .next_link{
+        font-size: 14px !important;
     }
 }
 
@@ -209,6 +386,18 @@ iframe{
     }
     .container{
         margin:auto;
+    }
+}
+
+@media (max-width: 1445px){
+    .container{
+        margin-left: 5px !important;
+    }
+}
+
+@media(max-width: 1200px){
+    .droit, .gauche{
+        width: 100%;
     }
 }
 

@@ -236,9 +236,12 @@
         </div>
         <div class="row">
             <div class="buttons">
+
+                {% if (is_granted('ROLE_ADMIN') or (intervention.benevole==user)) %}
                 <a href="{{ path("intervention_edit", {'id': intervention.id}) }}" class="btn btn-primary">
                     <span class="glyphicon glyphicon-pencil"> Modifier</span>
                 </a>
+                {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path("intervention_admin_delete", {'id': intervention.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'intervention {{ intervention.id }} ?')">
                     <span class="glyphicon glyphicon-trash"> Supprimer </span>

@@ -18,8 +18,14 @@ class ContactTypeTest extends FormTestCase {
 
     public function validDataProvider()
     {
-        $c = ContactMock::create();
-        $c->setTypeContact(null);
+        $c = ContactMock::createMultiple(4);
+
+        $c[0]->setTypeContact(null);
+
+        $c[1]->setTypeContact(null)
+            ->setPrenom("Jean-Pierre")
+            ->setTelFixe("0235123456")
+            ->setTelPortable("0612345678");
 
         return [
             "Contact minimum" => [
@@ -28,8 +34,37 @@ class ContactTypeTest extends FormTestCase {
                     'nom' => "Dupond",
                     //'typeContact' => 'enseignant'
                 ],
-                $c
+                $c[0]
             ],
+            "Contact complet" => [
+                "Ville" => [
+                    'email' => "contact@bigcorp.eu",
+                    'nom' => "Dupond",
+                    //'typeContact' => 'enseignant',
+                    'prenom' => 'Jean-Pierre',
+                    'telFixe' => '0235123456',
+                    'telPortable' => '0612345678'
+                ],
+                $c[1]
+            ],
+            /*"Contact avec type respo true" => [
+                "Ville" => [
+                    'email' => "contact@bigcorp.eu",
+                    'nom' => "Dupond",
+                    'typeContact' => 'enseignant',
+                    'respoEtablissement' => true
+                ],
+                $c[2]
+            ],
+            "Contact avec type respo false" => [
+                "Ville" => [
+                    'email' => "contact@bigcorp.eu",
+                    'nom' => "Dupond",
+                    'typeContact' => 'enseignant',
+                    'respoEtablissement' => false
+                ],
+                $c[3]
+            ]*/
         ];
     }
 
@@ -40,6 +75,27 @@ class ContactTypeTest extends FormTestCase {
                 "Ville" => [
                     'email' => "contact...bigcorp.eu",
                     'nom' => "Dupond",
+                ]
+            ],
+            "Contact with bad phone number" => [
+                "Ville" => [
+                    'email' => "contact@bigcorp.eu",
+                    'nom' => "Dupond",
+                    'telFixe' => "0612459893535152401"
+                ]
+            ],
+            "Contact with bad cell phone number" => [
+                "Ville" => [
+                    'email' => "contact@bigcorp.eu",
+                    'nom' => "Dupond",
+                    'telPortable' => "0251"
+                ]
+            ],
+            "Contact without 0 at the beginning of cell phone number" => [
+                "Ville" => [
+                    'email' => "contact@bigcorp.eu",
+                    'nom' => "Dupond",
+                    'telPortable' => "2511121212"
                 ]
             ],
         ];

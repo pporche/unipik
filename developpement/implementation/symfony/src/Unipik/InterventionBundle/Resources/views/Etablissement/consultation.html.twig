@@ -11,7 +11,7 @@
 
 <div class="container">
     <div class="row">
-        <section class="jumbotron col-sm-12">
+        <section class="jumbotron col-sm-12 col-lg-9 col-lg-offset-1">
             <div class="infoPrincip">
                 <div class="row">
                     <h2 class="col-lg-9 titre">Etablissement</h2><br><br>
@@ -102,7 +102,7 @@
                                     style="
                                         border: 1px solid black;
                                         height: 350px ;
-                                        padding: 0px;
+                                        padding: 0px !important;
                                         "></iframe>
                         </div>
                     </div>
@@ -117,14 +117,14 @@
     {% if is_granted('ROLE_ADMIN') %}
     <div class="row">
         <div class="buttons">
-            <a href="{{ path("etablissement_admin_edit", {'id': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> Modifier</span> </a>
-            <a href="{{ path("etablissement_admin_delete", {'id': etablissement.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'établissment {{ etablissement.nom }} ?')"><span class="glyphicon glyphicon-trash"> Supprimer </span> </a>
+            <a href="{{ path("etablissement_admin_edit", {'id': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> </span>&nbsp Modifier</a>
+            <a href="{{ path("etablissement_admin_delete", {'id': etablissement.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'établissment {{ etablissement.nom }} ?')"><span class="glyphicon glyphicon-trash">  </span>&nbsp Supprimer </a>
         </div>
     </div>
     {% endif %}
     <div class="row">
     <div class="row">
-        <div class="col-sm-12 infoContainer">
+        <div class="col-sm-12 col-sm-12 col-lg-9 col-lg-offset-1 infoContainer">
             <div class="col-sm-4 containerOne">
                 <div class="circle circleOne">
                     <img src="{{ asset('img/bell.png') }}" alt="bell" >

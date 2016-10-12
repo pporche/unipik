@@ -17,6 +17,7 @@
             $("#attribueA").text("Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}");
         {% endif %}
 
+
         function desattributeIntervention(event, id) {
             $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
                 function (data, status) {
@@ -85,6 +86,8 @@
         $('#attribuerModal').click(function() {
             $('#myModal').modal('hide');
         });
+
+
     </script>
 
 {% endblock %}

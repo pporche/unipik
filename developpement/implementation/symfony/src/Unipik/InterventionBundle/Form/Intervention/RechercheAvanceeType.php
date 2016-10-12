@@ -38,7 +38,7 @@ class RechercheAvanceeType extends AbstractType
                 'Toutes' => '',
                 'Attribuées' => 'attribuees',
                 'Non attribuées' => 'nonAttribuees',
-                'réalisées' => 'realisees',
+                'Réalisées' => 'realisees',
             ],);
 
         $niveauFrimousse = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'required' => false,

@@ -65,6 +65,9 @@
                             </div>
                             <div  class="col-sm-8">
                                 {{ benevole.adresse.getAdresse()}},
+                                {% if benevole.adresse.complement is not empty %}
+                                    {{ benevole.adresse.complement}},
+                                {% endif %}
                                 {{ benevole.adresse.codePostal.code}}
                                 {{ benevole.adresse.ville.nom}}
                             </div>
@@ -76,11 +79,12 @@
 
             </section>
         </div>
-            <div class="row">
-                <div class="buttons">
-                    <a href="{{ path("user_admin_profil_edit", {'username': benevole.username}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> &nbsp Modifier </a>
-                </div>
-                </div>
+        <div class="row">
+            <div class="buttons">
+                <a href="{{ path("user_admin_profil_edit", {'username': benevole.username}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> &nbsp Modifier </a>
+                <a href="{{ path("user_admin_delete", {'username': benevole.username}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez-vous vraiment supprimer le profil de {{ benevole.prenom }} {{ benevole.nom }}?')" ><span class="glyphicon glyphicon-trash"></span> &nbsp Supprimer </a>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12 col-sm-12 col-lg-9 col-lg-offset-1 infoContainer">
                 <div class="col-sm-4 containerOne">
@@ -89,21 +93,22 @@
                     </div>
                     <h3>Comité(s) de rattachement : </h3>
                     <div class="row">
-                        {% if benevole.comite is not empty %}
+                        {#{% if benevole.comite is not empty %}#}
                             <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                                {% for comite in benevole.comite %}
+                                {#{% for comite in benevole.comite %}#}
                                     <li class="list-group-item">
-                                            {% for dep in comite.departement %}
-                                                <li> {{ dep.nom }} </li>
-                                            {% endfor %}
+                                        {#{% for dep in c.departement %}#}
+                                        {#<li> {{ dep.nom }} </li>#}
+                                        {#{% endfor %}#}
+                                        Seine-Maritime
                                     </li>
-                                {% endfor %}
+                                {#{% endfor %}#}
                             </ul>
-                        {% else %}
-                            <div class="col-lg-offset-1 col-sm-7">
-                                Aucun
-                            </div>
-                        {% endif %}
+                        {#{% else %}#}
+                            {#<div class="col-lg-offset-1 col-sm-7">#}
+                                {#Aucun#}
+                            {#</div>#}
+                        {#{% endif %}#}
                     </div>
                 </div>
                 <div class="col-sm-4 containerTwo">
@@ -112,11 +117,7 @@
                     </div>
 
                     <h3>Responsabilités : </h3>
-                    {% if (benevole.responsabiliteActivite == "" or benevole.responsabiliteActivite == NULL) %}
-                        <div class="col-lg-offset-1 ">
-                            Aucune
-                        </div>
-                    {% else %}
+                    {% if (benevole.responsabiliteActivite is not empty) %}
                         <ul class="list-group col-lg-offset-1 col-sm-7 ">
                             {% if ('plaidoyers' in benevole.responsabiliteActivite ) %}
                                 <li class="list-group-item">
@@ -149,6 +150,11 @@
                                 </li>
                             {% endif %}
                         </ul>
+                    {% else %}
+                        <div class="col-lg-offset-1 ">
+                            Aucune
+                        </div>
+
                     {% endif %}
 
 
@@ -159,11 +165,7 @@
                     </div>
                     <h3>Domaines d'activités : </h3>
                     <div class="row">
-                        {% if (benevole.activitesPotentielles == "" or benevole.activitesPotentielles == NULL) %}
-                            <div class="col-lg-offset-1 col-sm-7">
-                                Aucun
-                            </div>
-                        {% else %}
+                        {% if (benevole.activitesPotentielles is not empty) %}
                             <ul class="list-group col-lg-offset-1 col-sm-7 ">
                                 {% if ('plaidoyers' in benevole.activitesPotentielles ) %}
                                     <li class="list-group-item">
@@ -191,6 +193,10 @@
                                     </li>
                                 {% endif %}
                             </ul>
+                        {% else %}
+                            <div class="col-lg-offset-1 col-sm-7">
+                                Aucun
+                            </div>
                         {% endif %}
                     </div>
                 </div>
@@ -204,43 +210,54 @@
                                 </div>
                                 <h3>Interventions : </h3>
                                 <div class="row">
+                                    {% if listeInterventions is not empty %}
                                     <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
                                     height: 200px;
                                     overflow: auto;
                                     position: relative;
                                     border:1px solid #cccccc;
                                     padding:10px;">
-                                        {% for intervention in listeInterventions %}
-                                            <a href="{{ path('intervention_view', {'id': intervention.id}) }}" >
-                                                {% if intervention.plaidoyer %}
-                                                    Plaidoyer -
-                                                {% elseif intervention.frimousse %}
-                                                    Frimousse -
-                                                {% else %}
-                                                    Autre intervention -
-                                                {% endif %}
-                                                {{ intervention.etablissement.adresse.ville.nom }}
+                                            {% for intervention in listeInterventions %}
+                                                <a href="{{ path('intervention_view', {'id': intervention.id}) }}" >
+                                                    {% if intervention.plaidoyer %}
+                                                        Plaidoyer -
+                                                    {% elseif intervention.frimousse %}
+                                                        Frimousse -
+                                                    {% else %}
+                                                        Autre intervention -
+                                                    {% endif %}
+                                                    {{ intervention.etablissement.adresse.ville.nom }}
+                                                    </br>
+                                                </a>
+                                            {% endfor %}
+                                    </div>
+                                    {% else %}
+                                        <div class="col-lg-offset-1 col-sm-7">
+                                            Aucune
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <h3>Projets en cours : </h3>
+                            <div class="row">
+                                {% if benevole.projet is not empty %}
+                                <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
+                                    height: 200px;
+                                    overflow: auto;
+                                    position: relative;
+                                    border:1px solid #cccccc;
+                                    padding:10px;">
+                                        {% for projet in benevole.projet %}
+                                            <a href="" >
+                                                {{ projet.getNom() }}
                                                 </br>
                                             </a>
                                         {% endfor %}
-                                    </div>
-                                </div>
-                                <!--<h3>Projets en cours : </h3>
-                            <div class="row">
-                                {% if benevole.projet is not empty %}
-                                    <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                                        {% for projet in benevole.projet %}
-                                            <li class="list-group-item">
-                                                {{ projet.getNom() }}
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
                                 {% else %}
                                     <div class="col-lg-offset-1 col-sm-7">
                                         Aucun
                                     </div>
                                 {% endif %}
-                            </div>-->
+                            </div>
                             </div>
                         </div>
                     </div>

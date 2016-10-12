@@ -64,6 +64,7 @@ class ProfileController extends BaseController {
             /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
             $userManager = $this->get('fos_user.user_manager');
 
+            $user->removeAllResponsabilitesActivites();
             $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
             foreach ($responsibilitiesArray as $responsabilite) {
                 $user->addResponsabiliteActivite($responsabilite);
@@ -91,8 +92,31 @@ class ProfileController extends BaseController {
             return $response;
         }
 
+        $activities = json_encode($user->getActivitesPotentielles()->toArray());
+        $responsabilities = json_encode($user->getResponsabiliteActivite()->toArray());
+
         return $this->render('UserBundle:Profile:edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'activitesPotentielles' => $activities,
+            'responsabiliteActivite' => $responsabilities,
+        ));
+    }
+
+    /**
+     * Show the user
+     */
+    public function showAction() {
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+        $em = $this->getDoctrine()->getManager();
+        $repositoryIntervention = $em->getRepository('InterventionBundle:Intervention');
+        $listeInterventions = $repositoryIntervention->getInterventionsBenevole($user);
+
+        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'user' => $user,
+            'listeInterventions' => $listeInterventions
         ));
     }
 }

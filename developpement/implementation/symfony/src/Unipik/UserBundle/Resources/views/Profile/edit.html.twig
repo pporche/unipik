@@ -75,23 +75,22 @@
     <script src="{{ asset('vendor/typeahead.js/dist/typeahead.jquery.js') }}"></script>
     <script src="{{ asset('vendor/typeahead.js/dist/bloodhound.js') }}"></script>
     <script type="application/javascript">
-        function preCheck(jsonFormatted) {
-            jsonFormatted = jsonFormatted.replace(/["']/g, "");
-            activities = jsonFormatted.replace(/[{}]/g, '');
-            activities = activities.split(',');
-            for (var i = 0; i < activities.length; i++) {
-                var query = "input[value='" + activities[i] + "']";
+        function preCheck(actsOrResp, resp) {
+            for (var i = 0; i < actsOrResp.length; i++) {
+                var query = "input[value='" + actsOrResp[i] + "']";
                 var checkedElts = document.querySelectorAll(query);
-                for (var j = 0; j < checkedElts.length; j++)
-                    checkedElts[j].checked = true;
+                checkedElts[1].checked = true;
+                if(resp){
+                    checkedElts[0].checked = true;
+                    checkedElts[1].disabled = true;
+                }
             }
-
         }
 
-        var jsonActivities = '{{ form.vars.value.activitesPotentielles|raw }}';
-        var jsonResponsabilities = '{{ form.vars.value.responsabiliteActivite|raw }}';
-        preCheck(jsonActivities);
-        preCheck(jsonResponsabilities);
+        var jsonResponsabilities = {{ responsabiliteActivite|raw }};
+        var jsonActivities = {{ activitesPotentielles|raw }};
+        preCheck(jsonActivities, false);
+        preCheck(jsonResponsabilities, true);
 
         $(document).ready(function () {
             for (i = 0; i < 4; i++) {

@@ -23,33 +23,25 @@ class EtablissementRepository extends EntityRepository {
      * @param $desc
      * @return array
      */
-    public function getType($typeEtablissement, $ville, $field, $desc){
+    public function getType($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre,  $ville, $field, $desc){
         switch ($typeEtablissement) {
             case "enseignement":
-                $qb = $this->getEnseignements();
+                $results = $this->getEnseignementsByType($typeEnseignement, $ville, $field, $desc);
                 break;
             case "centre":
-                $qb = $this->getCentresLoisirs();
+                $results = $this->getCentresLoisirsByType($typeCentre, $ville, $field, $desc);
                 break;
             case "autreEtablissement":
-                $qb = $this->getAutresEtablissements();
+                $results = $this->getAutresEtablissementsByType($typeAutre, $ville, $field, $desc);
                 break;
             default:
-                $qb = $this->getTousEtablissements($ville);
+                $results = $this->getTousEtablissements($ville, $field, $desc);
                 break;
         }
 
-        if($field=="nom"){
-            if($desc){
-                $qb->orderBy('e.nom','DESC');
-            }else{
-                $qb->orderBy('e.nom','ASC');
-            }
-        }
 
-        return $qb
-            ->getQuery()
-            ->getResult()
+
+        return $results
             ;
     }
 
@@ -106,7 +98,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEnseignementsByType($typeEnseignement, $ville) {
+    public function getEnseignementsByType($typeEnseignement, $ville, $field, $desc) {
         $results = array();
         foreach ($typeEnseignement as $te) {
             $qb = $this->createQueryBuilder('e');
@@ -117,10 +109,32 @@ class EtablissementRepository extends EntityRepository {
                 $this->whereVilleIs($qb,$ville);
             }
 
+            if($field=="nom"){
+                if($desc){
+                    $qb->orderBy('e.nom','DESC');
+                }else{
+                    $qb->orderBy('e.nom','ASC');
+                }
+            }
+
             $qb ->setParameter('typeE',$te);
 
             $results = array_merge($results,$qb->getQuery()->getResult());
         }
+//        $qb = $this->createQueryBuilder('e');
+//
+//        for($i = 0; $i < (count($typeEnseignement)-1); $i+=1){
+//            $qb
+//                ->andWhere('e.typeEnseignement = :typeE');
+//
+//            if($ville){
+//                $this->whereVilleIs($qb,$ville);
+//            }
+//
+//            $qb ->setParameter('typeE',$typeEnseignement[$i]);
+//        }
+
+
         return $results;
     }
 
@@ -132,7 +146,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCentresLoisirsByType($typeCentre, $ville) {
+    public function getCentresLoisirsByType($typeCentre, $ville, $field, $desc) {
         $results = array();
         foreach ($typeCentre as $tc) {
             $qb = $this->createQueryBuilder('e');
@@ -143,10 +157,33 @@ class EtablissementRepository extends EntityRepository {
                 $this->whereVilleIs($qb,$ville);
             }
 
+            if($field=="nom"){
+                if($desc){
+                    $qb->orderBy('e.nom','DESC');
+                }else{
+                    $qb->orderBy('e.nom','ASC');
+                }
+            }
+
             $qb ->setParameter('typeC',$tc);
 
             $results = array_merge($results,$qb->getQuery()->getResult());
         }
+
+//        $qb = $this->createQueryBuilder('e');
+//
+//        for($i = 0; $i < (count($typeCentre)-1); $i+=1){
+//            $qb
+//                ->andWhere('e.typeCentre = :typeC');
+//
+//            if($ville){
+//                $this->whereVilleIs($qb,$ville);
+//            }
+//
+//            $qb ->setParameter('typeC',$typeCentre[$i]);
+//        }
+
+
         return $results;
     }
 
@@ -158,7 +195,20 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAutresEtablissementsByType($typeAutreEtablissement, $ville) {
+    public function getAutresEtablissementsByType($typeAutreEtablissement, $ville, $field, $desc) {
+//        $qb = $this->createQueryBuilder('e');
+//
+//        for($i = 0; $i < (count($typeAutreEtablissement)-1); $i+=1){
+//            $qb
+//                ->andWhere('e.typeAutreEtablissement = :typeAE');
+//
+//            if($ville){
+//                $this->whereVilleIs($qb,$ville);
+//            }
+//
+//            $qb ->setParameter('typeAE',$typeAutreEtablissement[$i]);
+//        }
+////
         $results = array();
         foreach ($typeAutreEtablissement as $tae) {
             $qb = $this->createQueryBuilder('e');
@@ -167,6 +217,14 @@ class EtablissementRepository extends EntityRepository {
 
             if($ville){
                 $this->whereVilleIs($qb,$ville);
+            }
+
+            if($field=="nom"){
+                if($desc){
+                    $qb->orderBy('e.nom','DESC');
+                }else{
+                    $qb->orderBy('e.nom','ASC');
+                }
             }
 
             $qb ->setParameter('typeAE',$tae);
@@ -183,14 +241,22 @@ class EtablissementRepository extends EntityRepository {
      * @param $ville
      * @return array
      */
-    public function getTousEtablissements($ville) {
+    public function getTousEtablissements($ville, $field, $desc) {
         $qb = $this->createQueryBuilder('e');
 
         if($ville){
             $this->whereVilleIs($qb,$ville);
         }
 
-        return $qb;
+        if($field=="nom"){
+            if($desc){
+                $qb->orderBy('e.nom','DESC');
+            }else{
+                $qb->orderBy('e.nom','ASC');
+            }
+        }
+
+        return $qb->getQuery()->getResult();
     }
 
     /**

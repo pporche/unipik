@@ -108,6 +108,9 @@ class EtablissementController extends Controller {
 
         $typeEtablissement = $form->get("typeEtablissement")->getData();
         $ville = $form->get("ville")->getData();
+        $typeEnseignement = $form->get("typeEnseignement")->getData();
+        $typeCentre = $form->get("typeCentre")->getData();
+        $typeAutre = $form->get("typeAutreEtablissement")->getData();
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
         $field = $request->get("field", "nom");
@@ -115,7 +118,7 @@ class EtablissementController extends Controller {
 
         $repository = $this->getEtablissementRepository();
 
-        $listEtablissement = $repository->getType($typeEtablissement, $ville, $field, $desc);
+        $listEtablissement = $repository->getType($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre, $ville, $field, $desc);
 
         return $this->render('InterventionBundle:Etablissement:liste.html.twig', array(
             'field' => $field,

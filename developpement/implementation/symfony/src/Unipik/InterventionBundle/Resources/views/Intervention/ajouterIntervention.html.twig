@@ -339,4 +339,54 @@
         $('.date-pick').datepicker();
 
     </script>
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+        h1{
+            font-family: 'Ubuntu Condensed', sans-serif;
+            margin-top: 40px;
+        }
+
+        div{
+            box-shadow: none !important;
+        }
+
+        input[type="text"], select{
+            width: 350px !important;
+        }
+        input:focus, select:focus{
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: #CCCCCC !important;
+        }
+
+        .btn-default{
+            border-radius: 10px !important;
+            background-color: #3fb618 !important;
+            border-color: #3fb618 !important;
+        }
+
+        hr{
+            margin-top: 0px;
+        }
+
+
+        .btn-primary{
+            margin-left: 30%;
+        }
+
+        form{
+            padding-left: 25vw;
+        }
+
+        @media(max-width: 1060px){
+            form{
+                padding-left: 0vw;
+            }
+        }
+        @media(max-width: 1260px && min-width: 1060px){
+            form{
+                padding-left: 15vw;
+            }
+        }
+    </style>
 {% endblock %}

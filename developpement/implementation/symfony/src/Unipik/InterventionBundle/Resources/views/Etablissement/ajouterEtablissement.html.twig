@@ -58,6 +58,55 @@
             margin: 0;
         }
 
+        @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+        h1{
+            font-family: 'Ubuntu Condensed', sans-serif;
+            margin-top: 40px;
+        }
+
+        div{
+            box-shadow: none !important;
+        }
+
+        input[type="text"], select{
+            width: 350px !important;
+        }
+        input:focus, select:focus{
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: #CCCCCC !important;
+        }
+
+        .btn-default{
+            border-radius: 10px !important;
+            background-color: #3fb618 !important;
+            border-color: #3fb618 !important;
+        }
+
+        hr{
+            margin-top: 0px;
+        }
+
+
+        .btn-primary{
+            margin-left: 30%;
+        }
+
+        form{
+            padding-left: 25vw;
+        }
+
+        @media(max-width: 1060px){
+            form{
+                padding-left: 0vw;
+            }
+        }
+        @media(max-width: 1260px && min-width: 1060px){
+            form{
+                padding-left: 15vw;
+            }
+        }
+
 
 
     </style>
@@ -226,6 +275,7 @@
 
 
 {% block body %}
+
     <h1>Ajout d'un établissement</h1>
     <hr>
     <div class='well'>
@@ -233,7 +283,7 @@
         {{ form_start(form, {'method': 'post', 'action': path('etablissement_admin_add'), 'attr': {'class': 'etablissement_admin_add'}}) }}
         <div class="well">
             {{ form_row(form.emails) }}
-            <a href="#" id="add_email" class="btn btn-default">Ajouter un email</a>
+            <a href="#" id="add_email" class="btn btn-default" >Ajouter</a>
         </div>
         {{ form_widget(form) }}
         <div>

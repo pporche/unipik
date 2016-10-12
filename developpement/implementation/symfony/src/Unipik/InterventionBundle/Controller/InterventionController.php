@@ -531,6 +531,7 @@ class InterventionController extends Controller {
                     );
                     $interventionTemp->setNiveauTheme($lvlTheme);
                 }
+
                 $interventionList[] = $interventionTemp;
             }
         }

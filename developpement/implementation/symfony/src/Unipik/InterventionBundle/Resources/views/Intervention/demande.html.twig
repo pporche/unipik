@@ -137,6 +137,18 @@
                 });
         });
 
+
+
+
+        console.log('début du javascript de l\'ambiance');
+        var addInterElt = document.createElement('a');
+        addInterElt.id = 'add_intervention';
+        buttonAddElement = document.createElement('button');
+        buttonAddElement.className = 'btn btn-info';
+        buttonAddElement.textContent = 'Ajouter une Intervention';
+        addInterElt.appendChild(buttonAddElement);
+        document.getElementById('demande_Intervention').appendChild(addInterElt);
+
         function displayTypeIntervention(e){
 			var parNode = '';
             var valueToChk = '';
@@ -157,13 +169,14 @@
             var matClasElt = parNode.getElementsByClassName('form-group')[2];
             var matFriElt = parNode.getElementsByClassName('form-group')[3];
             var themElt = parNode.getElementsByClassName('form-group')[7];
+            themElt = $(themElt).find('div.form-group').get(1);
             var lblMatElt = parNode.getElementsByTagName('label')[1];
-
+            console.log(themElt);
             switch(valueToChk){
                 case 'frim' :
                     $(matClasElt).fadeOut('slow');
                     $(matFriElt).fadeIn('medium');
-                    $(themElt).fadeIn('fast');
+                    $(themElt).fadeOut('fast');
                     $(lblMatElt).fadeOut('fast');
                     break;
                 case 'pld' :
@@ -369,14 +382,6 @@
 
         $(document).ready(function() {
 
-            console.log('début du javascript de l\'ambiance');
-            var addInterElt = document.createElement('a');
-            addInterElt.id = 'add_intervention';
-            buttonAddElement = document.createElement('button');
-            buttonAddElement.className = 'btn btn-info';
-            buttonAddElement.textContent = 'Ajouter une Intervention';
-            addInterElt.appendChild(buttonAddElement);
-            document.getElementById('demande_Intervention').appendChild(addInterElt);
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
             var $container = $('div#demande_Intervention');
 

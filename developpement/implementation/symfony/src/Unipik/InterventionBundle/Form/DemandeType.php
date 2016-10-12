@@ -25,7 +25,7 @@ class DemandeType extends AbstractType
         $builder
             ->add('Etablissement', EtablissementType::class,array('mapped' => false,'label' => 'Informations de l\'établissement'))
             ->add('plageDate', PlageDateType::class, array('label' => 'Plage de dates', 'mapped' => false))
-            ->add('jour', JourInterventionType::class, array('label' => "Jour d'intervention", 'mapped' => false))
+            ->add('jour', JourInterventionType::class, array('label' => "Jour de l'intervention", 'mapped' => false))
             ->add('Intervention',CollectionType::class,array('entry_type' =>InterventionType::class,
                 'allow_add' => true,
                 'allow_delete' => true,

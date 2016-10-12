@@ -39,24 +39,85 @@
 //    {
 //        // mock any dependencies
 //        $this->entityManager = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->getMock();
+////
+////        $repoMock= $this->getMock('Doctrine\ORM\EntityRepository', array(), array(), '', false);
+////
+////        $this->entityManager
+////            ->expects($this->atLeastOnce())
+////            ->method('getRepository')
+////            ->withAnyParameters()
+////            ->will($this->returnValue($repoMock));
+////
+////        $repoMock
+////            ->expects($this->atLeastOnce())
+////            ->method('findOneBy')
+////            ->withAnyParameters()
+////            ->will($this->returnValue(AdresseMock::create()));
+//
+////        static::$kernel = static::createKernel();
+////        static::$kernel->boot();
+////        $this->entityManager = static::$kernel->getContainer()
+////            ->get('doctrine')
+////            ->getManager();
 //
 //        parent::setUp();
 //    }
 //
+//    /**
+//     * @dataProvider validDataProvider
+//     */
+//    public function testTransform($value, $transformed)
+//    {
+//        $this->assertEquals($transformed, $this->transformer->transform($value));
+//    }
+//
+//    /**
+//     * @dataProvider validDataProvider
+//     */
+//    public function testReverseTransform($value, $transformed)
+//    {
+//        $this->assertEquals($transformed, $this->transformer->reverseTransform($transformed));
+//    }
+//
 //    public function validDataProvider()
 //    {
+//
+////        $this->entityManager = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->getMock();
+////
+////        $repoMock= $this->getMock('Doctrine\ORM\EntityRepository', array(), array(), '', false);
+////
+////        $this->entityManager
+////            ->expects($this->atLeastOnce())
+////            ->method('getRepository')
+////            ->withAnyParameters()
+////            ->will($this->returnValue($repoMock));
+////
+////        $repoMock
+////            ->expects($this->atLeastOnce())
+////            ->method('findOneBy')
+////            ->withAnyParameters()
+////            ->will($this->returnValue(AdresseMock::create()));
+//
+//
+//
 //        $a1 = AdresseMock::create();
 //
 //        return [
+////        $formData = [
 //            "Adresse ville et code postal" => [
 //                "Ville" => [
 //                    'adresse' => "22 rue du gros",
-//                    //'ville' => "Rouen",
-//                    //'codePostal' => "76000"
+//                    'ville' => "Rouen",
+//                    'codePostal' => "76000"
 //                ],
 //                $a1
 //            ],
 //        ];
+//
+////        $type = new AdresseType($this->entityManager);
+////        $form = $this->factory->create($type);
+////
+////        $form->submit($formData);
 //    }
 //
 //    public function badDataProvider()

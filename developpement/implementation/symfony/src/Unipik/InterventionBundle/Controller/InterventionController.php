@@ -22,6 +22,7 @@ use Unipik\UserBundle\Entity\Comite;
 use Unipik\ArchitectureBundle\Entity\MomentHebdomadaire;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Util\Debug;
 /**
  * Created by PhpStorm.
  * User: florian
@@ -127,6 +128,8 @@ class InterventionController extends Controller {
             }
 
             $this->treatmentInterventions($interventionsRawList,$interventionList);
+
+
             $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);
 
@@ -146,7 +149,7 @@ class InterventionController extends Controller {
             $centreTypeArray = $etablissement->get("typeCentre")->getData();
             $institute->setTypeCentre($centreTypeArray);
 
-            $institute->setEmails('{}');
+            $institute->removeAllEmails;
 
             $emails = $etablissement->get("emails")->getData();
 
@@ -515,20 +518,21 @@ class InterventionController extends Controller {
                 $interventionTemp->setDateIntervention(null);
                 $interventionTemp->setNbPersonne($interventionRaw["participants"]["nbEleves"]);
                 $interventionTemp->setComite($comiteTest);
-                if(isset($interventionRaw["materiel"])){
+                if(isset($interventionRaw["materiel"]) && !empty($interventionRaw["materiel"]["materiel"])){
                     $interventionTemp->addMaterielDispoPlaidoyer($interventionRaw["materiel"]["materiel"]);
                 }
-                else if(isset($interventionRaw['materielFrimousse'])){
+                else if(isset($interventionRaw['materielFrimousse']) && !empty($interventionRaw['materielFrimousse']['materiel'])){
                     $interventionTemp->addMateriauxFrimousse($interventionRaw['materielFrimousse']['materiel']);
                 }
-                if(isset($interventionRaw["niveauClasse"]) && isset($interventionRaw["themes"])){
+                if(isset($interventionRaw["niveauTheme"])){
                     $lvlTheme = $lvlThemeRepository->findOneBy(
-                        array('niveau' => $interventionRaw["niveauClasse"],
-                            'theme' => $interventionRaw["themes"]
+                        array('niveau' => $interventionRaw["niveauTheme"]->getNiveau(),
+                            'theme' => $interventionRaw["niveauTheme"]->getTheme()
                         )
                     );
                     $interventionTemp->setNiveauTheme($lvlTheme);
                 }
+
                 $interventionList[] = $interventionTemp;
             }
         }

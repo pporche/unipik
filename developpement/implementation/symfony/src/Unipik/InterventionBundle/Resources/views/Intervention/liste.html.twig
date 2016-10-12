@@ -74,7 +74,7 @@
     <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',
                 showPrevNext: true,
@@ -182,6 +182,7 @@
                         $(event).attr("onclick", "sendIdToModal("+id+")");
                         $(event).attr("data-target", "#myModal");
                         $(event).attr("data-toggle", "modal");
+                        $(event).attr("name", "attribuer"+id);
                     });
         }
 

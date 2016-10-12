@@ -261,6 +261,23 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
+     * Get Interventions réalisées ou non réalisées qu'un établissement a demandé
+     *
+     * @param boolean $realisees
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInterventionsRealiseesOuNonEtablissement($etablissement, $realisees) {
+        $query = $this->_em->createQuery('SELECT i FROM InterventionBundle:Intervention i  JOIN i.etablissement e  WHERE i.realisee = :r AND e.id = :id ORDER BY i.dateIntervention ASC');
+        $query->setParameter('r',$realisees);
+        $query->setParameter('id',$etablissement->getId());
+
+        return new ArrayCollection($query->getResult());
+    }
+
+
+    /**
      * Where Interventions between dates
      *
      * @param \DateTime $start

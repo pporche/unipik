@@ -132,14 +132,33 @@
                 <!-- Si { interventions demadées !=null } -->
                 <h3>Interventions demandées</h3>
                 <div class="row">
-                    <div class="scrollspy-example col-lg-offset-1 col-sm-7" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
-                        height: 200px;
-                        overflow: auto;
-                        position: relative;
-                        border:1px solid #cccccc;
-                        padding:10px;">
-                        <em>Liste des interventions</em>
-                    </div>
+                    {% if listeInterventionsDemandeesNonRealisees is not empty  %}
+                        <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
+                                    height: 200px;
+                                    overflow: auto;
+                                    position: relative;
+                                    border:1px solid #cccccc;
+                                    padding:10px;
+                                 ">
+                            {% for intervention in listeInterventionsDemandeesNonRealisees %}
+                                <a href="{{ path('intervention_view', {'id': intervention.id})  }}" style="color:white">
+                                    {% if intervention.plaidoyer %}
+                                        Plaidoyer -
+                                    {% elseif intervention.frimousse %}
+                                        Frimousse -
+                                    {% else %}
+                                        Autre intervention -
+                                    {% endif %}
+                                    {{ intervention.etablissement.adresse.ville.nom }}
+                                    </br>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="col-lg-offset-1 col-sm-7">
+                            Aucune
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-sm-4 containerTwo">
@@ -148,14 +167,31 @@
                 </div>
                 <h3>Interventions réalisées</h3>
                 <div class="row">
-                    <div class="scrollspy-example col-lg-offset-1 col-sm-7" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
-                        height: 200px;
-                        overflow: auto;
-                        position: relative;
-                        border:1px solid #cccccc;
-                        padding:10px;">
-                        <em>Liste des interventions</em>
-                    </div>
+                    {% if listeInterventionsRealisees is not empty  %}
+                        <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
+                                    height: 200px;
+                                    overflow: auto;
+                                    position: relative;
+                                    border:1px solid #cccccc;
+                                    padding:10px;">                            {% for intervention in listeInterventionsRealisees %}
+                                <a href="{{ path('intervention_view', {'id': intervention.id}) }}"  style="color:white">
+                                    {% if intervention.plaidoyer %}
+                                        Plaidoyer -
+                                    {% elseif intervention.frimousse %}
+                                        Frimousse -
+                                    {% else %}
+                                        Autre intervention -
+                                    {% endif %}
+                                    {{ intervention.etablissement.adresse.ville.nom }}
+                                    </br>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="col-lg-offset-1 col-sm-7">
+                            Aucune
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-sm-4 containerThree">

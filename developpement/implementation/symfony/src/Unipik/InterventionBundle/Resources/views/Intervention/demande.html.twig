@@ -12,33 +12,154 @@
     {{ form(form) }}
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #demande_Etablissement_adresse_ville {
+            text-transform: uppercase;
+        }
+        .twitter-typeahead .tt-query,
+        .twitter-typeahead .tt-hint {
+            margin-bottom: 0;
+        }
+        .tt-hint {
+            display: none;
+            width: 100%;
+            height: 43px;
+            padding: 10px 18px;
+            font-size: 14px;
+            line-height: 1.428571429;
+            color: #999;
+            vertical-align: middle;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        }
+        .tt-menu {
+            min-width: 160px;
+            margin-top: 2px;
+            padding: 5px 0;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            background-clip: padding-box;
+            max-height: 150px;
+            overflow-y: auto;
+
+        }
+        .tt-suggestion {
+            display: block;
+            padding: 3px 20px;
+        }
+        .tt-suggestion.tt-is-under-cursor {
+            color: #fff;
+            background-color: #428bca;
+        }
+        .tt-suggestion.tt-is-under-cursor a {
+            color: #fff;
+        }
+        .tt-suggestion p {
+            margin: 0;
+        }
+
+
+
+    </style>
+
+{% endblock %}
+
 {%block javascripts %}
     {{ parent() }}
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
+    <script src="{{ asset('vendor/typeahead.js/dist/typeahead.jquery.js') }}"></script>
+    <script src="{{ asset('vendor/typeahead.js/dist/bloodhound.js') }}"></script>
 
     <script type="application/javascript">
-        console.log('début du javascript de l\'ambiance');
-        var addInterElt = document.createElement('a');
-        addInterElt.id = 'add_intervention';
-        buttonAddElement = document.createElement('button');
-        buttonAddElement.className = 'btn btn-info';
-        buttonAddElement.textContent = 'Ajouter une Intervention';
-        addInterElt.appendChild(buttonAddElement);
-        document.getElementById('demande_Intervention').appendChild(addInterElt);
+
+        var villes = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+            remote: {
+                url: '{{ path("architecture_ville_autocomplete") }}?term=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+
+        $('#demande_Etablissement_adresse_ville').typeahead(null, {
+            name: 'villes',
+            source: villes,
+            limit: 50
+        });
+
+        var codesPostaux = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+            remote: {
+                url: '{{ path("architecture_code_autocomplete") }}?term=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+
+        $('#demande_Etablissement_adresse_codePostal').typeahead(null, {
+            name: 'codesPostaux',
+            source: codesPostaux,
+            limit: 5
+        });
+
+
+        $('#demande_Etablissement_adresse_ville').change(function () {
+            var ville = $(demande_Etablissement_adresse_ville).val().toUpperCase();
+            console.log(ville);
+            $('#demande_Etablissement_adresse_codePostal').val("");
+            $.post("{{ path('architecture_code_postal') }}", {'ville': ville},
+                function (data, status) {
+                    $('#demande_Etablissement_adresse_codePostal').val(data.codePostal);
+                });
+        });
+
+        $('#demande_Etablissement_adresse_codePostal').change(function () {
+            var codePostal = $(demande_Etablissement_adresse_codePostal).val();
+            console.log(codePostal);
+            $('#demande_Etablissement_adresse_ville').val("");
+            $.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},
+                function (data, status) {
+                    $('#demande_Etablissement_adresse_ville').val(data.ville);
+                });
+        });
 
         function displayTypeIntervention(e){
 			var parNode = '';
-            parNode = e.target;
-            parNode = parNode.parentNode;
-            parNode = parNode.parentNode;
-            parNode = parNode.parentNode;
+            var valueToChk = '';
+            if(e.hasOwnProperty('originalEvent')){
+                parNode = e.target;
+                parNode = parNode.parentNode;
+                parNode = parNode.parentNode;
+                parNode = parNode.parentNode;
+                valueToChk = e.target.value;
+            }else{
+                parNode = e;
+                valueToChk = parNode.value;
+                parNode = parNode.parentNode;
+                parNode = parNode.parentNode;
+                parNode = parNode.parentNode;
+            }
+
             var matClasElt = parNode.getElementsByClassName('form-group')[2];
             var matFriElt = parNode.getElementsByClassName('form-group')[3];
             var themElt = parNode.getElementsByClassName('form-group')[7];
             var lblMatElt = parNode.getElementsByTagName('label')[1];
 
-            switch(e.target.value){
+            switch(valueToChk){
                 case 'frim' :
                     $(matClasElt).fadeOut('slow');
                     $(matFriElt).fadeIn('medium');
@@ -59,10 +180,13 @@
                     $(themElt).fadeIn('fast');
                     break;
             }
-            e.stopImmediatePropagation();
+
+            if(e.hasOwnProperty('originalEvent')) {
+                e.stopImmediatePropagation();
+            }
         }
-	
-	function treatmentInstitute(template,grade){
+
+	    function treatmentInstitute(template,grade){
 		var taille = $(template).find('select')[1].length;
 		switch(grade){
 			case 'maternelle' :
@@ -70,7 +194,7 @@
 			if(i>=7){
 				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
 				}
-			}			
+			}
 			break;
 			case 'elementaire' :
 			for(i=0; i<taille; i++){
@@ -105,7 +229,7 @@
 		}
 	}
 
-	function treatmentCenter(template, grade){
+	    function treatmentCenter(template, grade){
         var taille = $(template).find('select')[1].length;
         switch(grade){
             case 'maternelle' :
@@ -134,7 +258,7 @@
         }
 	}
 
-	function treatmentOthers(template, grade){
+	    function treatmentOthers(template, grade){
         var taille = $(template).find('select')[1].length;
         switch(grade){
             case 'maison de retraite' :
@@ -168,10 +292,91 @@
             }
 		}
 
+        function showSomeTheme(type,themesElt){
+            switch(type){
+                case 'maternelle' :
+                    $(themesElt).find('option').each(function(index) {
+                            if(index > 4){
+                                $(this).fadeOut();
+                            }else{
+                                $(this).fadeIn();
+                            }
+                        });
+                    break;
+                case 'elementaire' :
+                    $(themesElt).find('option').each(function(index) {
+                        if(index > 6){
+                            $(this).fadeOut();
+                        }else{
+                            $(this).fadeIn();
+                        }
+                    });
+                    break;
+                case 'college' :
+                case 'adolescent' :
+                    $(themesElt).find('option').each(function(index) {
+                        if(index > 8){
+                            $(this).fadeOut();
+                        }else{
+                            $(this).fadeIn();
+                        }
+                    });
+                    break;
+                case 'lycee' :
+                case 'Supérieur' :
+                default :
+                    showAllTheme(themesElt);
+                    break;
 
+            }
+        }
+
+        function showAllTheme(themesElt){
+            $(themesElt).find('option').each(function() {
+                    $(this).fadeIn();
+            });
+        }
+
+        function displayThemeIntervention(){
+            var themesElts = document.getElementsByClassName('form-theme-pld');
+            if(themesElts.length == 0){
+                return ;
+            }
+            var choiceEtabElt = document.getElementsByTagName('select')[0];
+            var type;
+            switch(choiceEtabElt.value){
+                case 'ens' :
+                    type = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked').value;
+                    for(i = 0; i < themesElts.length; i++ ){
+                    showSomeTheme(type,themesElts[i]);
+                    }
+                    break;
+                case 'centre' :
+                    type = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked').value;
+                    for(i = 0; i < themesElts.length; i++ ){
+                        showSomeTheme(type,themesElts[i]);
+                    }
+                    break;
+                case 'autre' :
+                    type = document.querySelector('input[name="demande[Etablissement][typeAutreEtablissement]"]:checked').value;
+                    for(i = 0; i < themesElts.length; i++ ){
+                        showAllTheme(themesElts[i]);
+                    }
+                    break;
+            }
+
+        }
 
         $(document).ready(function() {
 
+            console.log('début du javascript de l\'ambiance');
+            var addInterElt = document.createElement('a');
+            addInterElt.id = 'add_intervention';
+            buttonAddElement = document.createElement('button');
+            buttonAddElement.className = 'btn btn-info';
+            buttonAddElement.textContent = 'Ajouter une Intervention';
+            addInterElt.appendChild(buttonAddElement);
+            document.getElementById('demande_Intervention').appendChild(addInterElt);
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
             var $container = $('div#demande_Intervention');
 
@@ -185,37 +390,18 @@
                 return false;
             });
 
-
-            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-
             if (index == 0) {
-
                 addIntervention($container);
-
             } else {
-
-                // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
-
                 $container.children('div').each(function() {
-
                     addDeleteLink($(this));
-
                 });
-
             }
 
-
-            // La fonction qui ajoute un formulaire CategoryType
-
             function addIntervention($container) {
-                // Dans le contenu de l'attribut « data-prototype », on remplace :
-                // - le texte "__name__label__" qu'il contient par le label du champ
-                // - le texte "__name__" qu'il contient par le numéro du champ
-
                 var template = $container.attr('data-prototype')
                     .replace(/__name__label__/g, 'Intervention n°' + (index+1))
-                    .replace(/__name__/g,        index)
-                    ;
+                    .replace(/__name__/g,        index);
 
 
                 // On crée un objet jquery qui contient ce template
@@ -226,12 +412,14 @@
                 $container.append($prototype);
                 $("#add_intervention").appendTo($container).css('margin-left', '80%');
                 treatmentSelect($($prototype).get(0));
+                displayThemeIntervention();
+                displayTypeIntervention($($prototype).children().find("select").get(0));
                 $($prototype).children().find("select").on("change",displayTypeIntervention);
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;
             }
 
-            // La fonction qui ajoute un lien de suppression
+
             function addDeleteLink($prototype) {
                 // Création du lien
                 var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
@@ -246,6 +434,8 @@
             }
 
         });
+
+        document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change',displayThemeIntervention);
     </script>
 
     <script type="application/javascript">
@@ -479,6 +669,85 @@
         });
 
         $('.date-pick').datepicker();
+
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            var addInterElt = document.createElement('a');
+            addInterElt.id = 'add_email';
+            buttonAddElement = document.createElement('button');
+            buttonAddElement.className = 'btn btn-info';
+            buttonAddElement.textContent = 'Ajouter un Email';
+            addInterElt.appendChild(buttonAddElement);
+            document.getElementById('demande_Etablissement_emails').appendChild(addInterElt);
+
+            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+            var $container = $('#demande_Etablissement_emails');
+
+            // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+            var index = $container.find(':input').length;
+
+            // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+            $('#add_email').click(function(e) {
+                addEmail($container);
+
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+
+            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+            if (index == 0) {
+                addEmail($container);
+            } else {
+                // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
+                $container.children('div').each(function() {
+                    addDeleteLink($(this));
+                });
+            }
+
+            // La fonction qui ajoute un formulaire CategoryType
+            function addEmail($container) {
+                // Dans le contenu de l'attribut « data-prototype », on remplace :
+                // - le texte "__name__label__" qu'il contient par le label du champ
+                // - le texte "__name__" qu'il contient par le numéro du champ
+                var template = $container.attr('data-prototype')
+                    .replace(/__name__label__/g, 'Email : ')
+                    .replace(/__name__/g,        index)
+                    ;
+
+                // On crée un objet jquery qui contient ce template
+                var $prototype = $(template);
+
+                // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+                addDeleteLink($prototype);
+
+                // On ajoute le prototype modifié à la fin de la balise <div>
+                $container.append($prototype);
+                $("#add_email").appendTo($container).css('margin-left', '80%');
+                // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+                index++;
+            }
+
+            // La fonction qui ajoute un lien de suppression d'une catégorie
+            function addDeleteLink($prototype) {
+                // Création du lien
+                var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+
+                // Ajout du lien
+                $prototype.append($deleteLink);
+
+                // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
+                $deleteLink.click(function(e) {
+                    $prototype.remove();
+
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                });
+            }
+        });
 
     </script>
 

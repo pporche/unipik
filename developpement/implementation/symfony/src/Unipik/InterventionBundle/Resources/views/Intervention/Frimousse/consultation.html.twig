@@ -5,14 +5,14 @@
 
 {%  block contenu %}
 
-    <div class="col-sm-4 col-xs-12">
+    <div class="col-sm-5 col-xs-12 col-md-4">
         <dl>
             <dt>
                 <span class="glyphicon glyphicon-picture"></span> Matériel dispo. :
             </dt>
         </dl>
     </div>
-    <div class="col-sm-6 col-xs-offset-1 col-xs-11">
+    <div class="col-sm-5 col-xs-offset-1 col-xs-11">
         <ul class="list-unstyled">
             {% set materiels = intervention.materiauxFrimousse | split('),(')  %}
             {% if materiels is not empty %}

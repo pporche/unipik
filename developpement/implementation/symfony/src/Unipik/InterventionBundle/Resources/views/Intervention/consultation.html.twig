@@ -9,14 +9,34 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
+    <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script>
+
+        {% if intervention.benevole %}
+            $("#attribueA").text("Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}");
+        {% endif %}
+
         function desattributeIntervention(event, id) {
             $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
                 function (data, status) {
                     $(event).attr('class', 'btn btn-primary');
                     $(event).text('S\'attribuer l\'intervention');
                     $(event).attr("onclick", "attributeIntervention(this, "+id+")");
+                    $("#attribueA").text("");
                 });
+        }
+
+        function desattributeInterventionAdmin(event, id) {
+            $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
+                    function (data, status) {
+                        $(event).attr('class', 'btn btn-primary');
+                        $(event).text('Attribuer l\'intervention a');
+                        $(event).attr("onclick", "sendIdToModal("+id+")");
+                        $(event).attr("data-target", "#myModal");
+                        $(event).attr("data-toggle", "modal");
+                        $("#attribueA").text("");
+                    });
         }
 
         function attributeIntervention(event, id) {
@@ -25,8 +45,46 @@
                     $(event).attr('class', 'btn btn-danger');
                     $(event).text('Se désattribuer l\'intervention');
                     $(event).attr("onclick", "desattributeIntervention(this, "+id+")");
+                    $("#attribueA").text("Attribuée à {{ user.prenom }} {{ user.nom }}");
                 });
         }
+
+        function attributeInterventionAdmin(event, username, id) {
+            $.post("{{ path('intervention_attribute') }}", {'username': username, 'id': id},
+                    function (data, status) {
+                        console.log('ça marche !');
+                        $("button[data-target='#myModal']").attr('class', 'btn btn-danger');
+                        $("button[data-target='#myModal']").text('Désattribuer l\'intervention');
+                        $("button[data-target='#myModal']").attr("onclick", "desattributeInterventionAdmin(this, " + id + ")");
+                        $("button[data-target='#myModal']").removeAttr("data-target");
+                        $("button[data-target='#myModal']").removeAttr("data-toggle");
+                        $("#attribueA").text("Attribuée à "+data.prenom+" "+data.nom);
+                    });
+        }
+
+        function sendIdToModal(id) {
+            $("#attribution_idIntervention").attr("value", id);
+        }
+
+        var benevoles = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+            remote: {
+                url: '{{ path("user_admin_benevole_autocomplete") }}?term=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+
+        $('#attribution_benevole').typeahead(null, {
+            name: 'benevoles',
+            source: benevoles,
+            limit: 50
+        });
+
+        $('#attribuerModal').click(function() {
+            $('#myModal').modal('hide');
+        });
     </script>
 
 {% endblock %}
@@ -35,28 +93,14 @@
 
     <div class="container">
         <div class="row">
-            <section class="jumbotron col-sm-12 infoPrincip">
-                <div>
+            <section class="jumbotron col-sm-12 col-sm-12 col-lg-9 col-lg-offset-1">
+                <div class=" infoPrincip">
                     <div class="row">
-                        <h2 class="col-lg-7 titre">
+                        <h2 class="col-lg-12 titre">
                             Intervention
                         </h2>
-                        {% if intervention.realisee %}
-                            <p class="text-success"> Réalisée <span class="glyphicon glyphicon-ok"></span></p>
-                        {% elseif intervention.benevole %}
-                            {% if user==intervention.benevole %}
-                                <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeIntervention(this, {{ intervention.id }})">
-                                    Se désattribuer l'intervention
-                                </button>
-                            {% else %}
-                                Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
-                            {% endif %}
-                        {% else %}
-                            <button name="attribution" type="button" class="btn btn-primary" onclick="attributeIntervention(this, {{ intervention.id }})">
-                                S'attribuer l'intervention
-                            </button>
-                        {% endif %}
-                        <h4 class="col-lg-9" >
+
+                        <h4 class="col-lg-12" >
                             {% if intervention.plaidoyer %}
                                 Plaidoyer
                             {% elseif intervention.frimousse %}
@@ -65,19 +109,45 @@
                                 Autre intervention
                             {% endif %}
                         </h4>
+                        {% if intervention.realisee %}
+                            <p class="text-success">&nbsp &nbsp Réalisée <span class="glyphicon glyphicon-ok"></span></p>
+                        {% elseif intervention.benevole %}
+                            {% if user==intervention.benevole %}
+                                <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeIntervention(this, {{ intervention.id }})">
+                                    Se désattribuer l'intervention
+                                </button>
+                            {% else %}
+                                {#<p id="attribueA">Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}</p>#}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeInterventionAdmin(this, {{ intervention.id }})">
+                                        Désattribuer l'intervention
+                                    </button>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <button id="btnAttribuerAdmin" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="sendIdToModal({{ intervention.id }})">
+                                    Attribuer l'intervention à
+                                </button>
+                            {% else %}
+                                <button name="attribution" type="button" class="btn btn-primary" onclick="attributeIntervention(this, {{ intervention.id }})">
+                                    S'attribuer l'intervention
+                                </button>
+                            {% endif %}
+                        {% endif %}
                         <img src="{{ asset('img/logo-gris.png') }}" class="logoGris" alt="logo gris">
                     </div>
-                    <hr>
+                    <hr style="margin-top: 50px;">
                     <div class="row">
                         <div class="col-sm-6">
                             <dl class="dl-horizontal">
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-5 col-xs-12  col-md-4">
                                     <dt>
                                         <span class="glyphicon glyphicon-globe"></span> &nbsp Localisation:
                                     </dt>
                                 </div>
 
-                                <div class="col-sm-6 col-xs-offset-1 col-xs-11">
+                                <div class="col-sm-5 col-xs-offset-1 col-xs-11 col-md-7">
                                     <a href="">
                                         <em>
                                             {# Lien vers l'établissement#}
@@ -89,12 +159,12 @@
                                             {% endif %} </em> </a>
                                 </div>
                                 <br>
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-5 col-xs-12  col-md-4">
                                     <dt>
                                         <span class="glyphicon glyphicon-calendar"></span> &nbsp Date:
                                     </dt>
                                 </div>
-                                <div class="col-sm-6 col-xs-offset-1 col-xs-11">
+                                <div class="col-sm-5 col-xs-offset-1 col-xs-11 col-md-7">
                                     <em>{% if intervention.dateIntervention is empty %}
                                             --:--
                                         {% else %}
@@ -102,12 +172,12 @@
                                         {% endif %}
                                     </em>
                                 </div>
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-5 col-xs-12  col-md-4">
                                     <dt>
                                         <span class="glyphicon glyphicon-time"></span> &nbsp Heure:
                                     </dt>
                                 </div>
-                                <div class="col-sm-6 col-xs-offset-1 col-xs-11">
+                                <div class="col-sm-5 col-xs-offset-1 col-xs-11 col-md-7">
                                     <em>{% if intervention.heure is empty %}
                                         --:--
                                         {% else %}
@@ -117,12 +187,12 @@
                                 </div>
 
 
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-5 col-xs-12  col-md-4">
                                     <dt>
                                         <span class="glyphicon glyphicon-circle-arrow-right"></span> &nbsp Lieu:
                                     </dt>
                                 </div>
-                                <div class="col-sm-6 col-xs-offset-1 col-xs-11">
+                                <div class="col-sm-5 col-xs-offset-1 col-xs-11 col-md-7">
                                     <em>{% if intervention.lieu is empty %}
                                             -
                                         {% else %}
@@ -131,12 +201,12 @@
                                 </div>
 
 
-                                <div class="col-sm-4 col-xs-12">
+                                <div class="col-sm-5 col-xs-12  col-md-4">
                                     <dt>
                                         <span class="glyphicon glyphicon-user"></span> &nbsp N de personnes:
                                     </dt>
                                 </div>
-                                <div class="col-sm-6 col-xs-offset-1 col-xs-11">
+                                <div class="col-sm-5 col-xs-offset-1 col-xs-11 col-md-7">
                                     <em>{% if intervention.nbPersonne is empty %}
                                             -
                                         {% else %}
@@ -154,7 +224,8 @@
                                         style="
                                         border: 1px solid black;
                                         height: 350px ;
-                                        padding: 0px;
+                                        padding: 0px!important;
+
                                         "></iframe>
                             </div>
                         </div>
@@ -166,16 +237,21 @@
         </div>
         <div class="row">
             <div class="buttons">
-                <a href="{{ path("intervention_admin_edit", {'id': intervention.id}) }}" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-pencil"> Modifier</span>
+
+                {% if (is_granted('ROLE_ADMIN') or (intervention.benevole==user)) %}
+                <a href="{{ path("intervention_edit", {'id': intervention.id}) }}" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-pencil" ></span>&nbsp Modifier
                 </a>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path("intervention_admin_delete", {'id': intervention.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'intervention {{ intervention.id }} ?')">
-                    <span class="glyphicon glyphicon-trash"> Supprimer </span>
+                    <span class="glyphicon glyphicon-trash"> </span>&nbsp Supprimer
                 </a>
+                {% endif %}
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 infoContainer">
+            <div class="col-sm-12 col-sm-12 col-lg-9 col-lg-offset-1 infoContainer">
                 <div class="col-sm-3 containerOne">
                     <div class="circle circleOne">
                         <img src="{{ asset('img/bell.png') }}" alt="bell">
@@ -216,12 +292,12 @@
                         <div class="well col-lg-offset-1 col-sm-12">
                             <dl class="dl-horizontal">
                                 {% if (intervention.demande.contact is not empty) %}
-                                    <div class="col-sm-6 col-xs-12">
+                                    <div class="col-sm-4 col-xs-12">
                                         <dt>
                                             Nom :
                                         </dt>
                                     </div>
-                                    <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                    <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-2">
                                         <em>{% if intervention.demande.contact.nom %}
                                                 {{ intervention.demande.contact.nom | capitalize }}
                                             {% else %}
@@ -229,24 +305,24 @@
                                             {% endif %}</em>
                                     </div>
 
-                                    <div class="col-sm-6 col-xs-12">
+                                    <div class="col-sm-4 col-xs-12">
                                         <dt>
                                             Prénom :
                                         </dt>
                                     </div>
-                                    <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                    <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-2">
                                         <em>{% if intervention.demande.contact.prenom %}
                                                 {{ intervention.demande.contact.prenom | capitalize }}
                                             {% else %}
                                                 -
                                             {% endif %}</em>
                                     </div>
-                                    <div class="col-sm-6 col-xs-12">
+                                    <div class="col-sm-4 col-xs-12">
                                         <dt>
                                             Tel fixe :
                                         </dt>
                                     </div>
-                                    <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                    <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-2">
                                         <em>{% if intervention.demande.contact.telFixe %}
                                                 {{ intervention.demande.contact.telFixe }}
                                                 {% else %}
@@ -256,12 +332,12 @@
                                     </div>
 
 
-                                    <div class="col-sm-6 col-xs-12">
+                                    <div class="col-sm-4 col-xs-12">
                                         <dt>
                                             Tel portable :
                                         </dt>
                                     </div>
-                                    <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                    <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-2">
                                         <em>{% if intervention.demande.contact.telPortable %}
                                                 {{ intervention.demande.contact.telPortable }}
                                             {% else %}
@@ -275,6 +351,29 @@
                             </dl>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Attribuer l'intervention à</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(formAttr, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                        <h5>Bénévole : {{  form_widget(formAttr.benevole) }}</h5>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="attribuerModal" type="button" class="btn btn-primary" onclick="attributeInterventionAdmin(this, $('#attribution_benevole').val(), $('#attribution_idIntervention').val())">Attribuer</button>
+                    </div>
+                    {{ form_end(formAttr) }}
                 </div>
             </div>
         </div>

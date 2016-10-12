@@ -30,7 +30,8 @@ class Contact
     /**
      * @var string
      *
-     * @Assert\Email()
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/")
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="email", type="string", length=100, nullable=false)
      */
@@ -38,6 +39,8 @@ class Contact
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
@@ -53,12 +56,16 @@ class Contact
     /**
      * @var string
      *
+     * @Assert\Regex(pattern="/^0[0-9]{9}$/")
+     *
      * @ORM\Column(name="tel_fixe", type="string", length=30, nullable=true)
      */
     private $telFixe;
 
     /**
      * @var string
+     *
+     * @Assert\Regex(pattern="/^0[0-9]{9}$/")
      *
      * @ORM\Column(name="tel_portable", type="string", length=30,  nullable=true)
      */
@@ -67,8 +74,10 @@ class Contact
     /**
      * @var string
      *
+     *
      * @ORM\Column(name="type_contact", type="string", length=30, nullable=false)
      */
+    //@Assert\NotBlank()
     private $typeContact;
 
 

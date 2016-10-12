@@ -20,9 +20,9 @@ class MaterielFrimousseType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options){
         $optionChoiceType = array( 'expanded' => true, 'multiple' => true, 'label' => false,
             'choices' => [
-                'Patron' => '(patron)',
-                'Bourre' => '(bourre)',
-                'Décoration' => '(decoration)',
+                'Patron' => 'patron',
+                'Bourre' => 'bourre',
+                'Décoration' => 'decoration',
             ],);
 
         $builder

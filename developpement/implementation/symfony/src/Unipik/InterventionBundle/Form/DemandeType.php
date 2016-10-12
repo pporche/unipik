@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Unipik\UserBundle\Form\ContactType;
 use Unipik\InterventionBundle\Form\EtablissementType;
-use Unipik\InterventionBundle\Form\Intervention\InterventionType;
+use Unipik\InterventionBundle\Form\Intervention\InterventionTemplateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Unipik\InterventionBundle\Form\Intervention\PlageDateType;
 use Unipik\InterventionBundle\Form\Intervention\JourInterventionType;
@@ -26,7 +26,7 @@ class DemandeType extends AbstractType
             ->add('Etablissement', EtablissementType::class,array('mapped' => false,'label' => 'Informations de l\'établissement'))
             ->add('plageDate', PlageDateType::class, array('label' => 'Plage de dates', 'mapped' => false))
             ->add('jour', JourInterventionType::class, array('label' => "Jour de l'intervention", 'mapped' => false))
-            ->add('Intervention',CollectionType::class,array('entry_type' =>InterventionType::class,
+            ->add('Intervention',CollectionType::class,array('entry_type' =>InterventionTemplateType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'mapped' => false

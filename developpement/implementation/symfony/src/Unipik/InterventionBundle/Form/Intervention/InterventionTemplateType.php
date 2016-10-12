@@ -15,7 +15,7 @@ use Unipik\InterventionBundle\Form\Intervention\MaterielFrimousseType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Unipik\ArchitectureBundle\Form\NiveauThemeType;
 
-class InterventionType extends AbstractFieldsetType {
+class InterventionTemplateType extends AbstractFieldsetType {
 
 
     /**

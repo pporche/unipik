@@ -77,7 +77,8 @@
     <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script>
-
+        $('input:checkbox').removeAttr('checked');
+        
         $(document).ready(function() {
             $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage }} });
 
@@ -219,6 +220,60 @@
 {% endblock %}
 
 {% block body %}
+
+    <style>
+
+        @media only screen and (max-width: 846px) {
+
+            /* Force table to not be like tables anymore */
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr { border: 1px solid #ccc; }
+
+            td {
+                /* Behave  like a "row" */
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50% !important;
+                white-space: normal;
+                text-align:left;
+            }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align:left;
+                font-weight: bold;
+            }
+
+            /*
+            Label the data
+            */
+            td:before { content: attr(data-title); }
+        }
+    </style>
+
     <section class="col-lg-2 col-md-2 col-sm-2">
         <div class="row">
             <div class='well'>
@@ -289,10 +344,10 @@
                         <tbody id="myTable">
                             {% for etablissement in liste %}
                                 <tr>
-                                    <td>{{ loop.index }}</td>
-                                    <td>{{ etablissement.nom }}</td>
-                                    <td>{{ etablissement.adresse.ville.nom }}</td>
-                                    <td>
+                                    <td data-title="#">{{ loop.index }}</td>
+                                    <td data-title="Nom">{{ etablissement.nom }}</td>
+                                    <td data-title="Adresse">{{ etablissement.adresse.ville.nom }}</td>
+                                    <td data-title="Type">
                                     {% if etablissement.centreLoisirs %}
                                         Centre de Loisirs
                                     {% elseif etablissement.autreEtablissement %}
@@ -301,9 +356,9 @@
                                         Enseignement
                                     {% endif %}
                                     </td>
-                                    <td><a href="{{ path('etablissement_view', {id: etablissement.id}) }}" class="btn btn-primary">Voir détails</a></td>
+                                    <td data-title="Consulter"><a href="{{ path('etablissement_view', {id: etablissement.id}) }}" class="btn btn-primary">Voir détails</a></td>
                                     {% if is_granted('ROLE_ADMIN') %}
-                                        <td>
+                                        <td data-title="Supprimer">
                                             <div class="checkbox">
                                                 <label>
                                                     <input type="checkbox" name="type" id="{{ etablissement.id }}">

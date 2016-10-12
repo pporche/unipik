@@ -63,11 +63,29 @@ class InterventionRepository extends EntityRepository {
                 ->setParameter('user', $user);
         }
 
+
+
+
+
         if($field=="lieu"){
             if($desc){
-                $qb->orderBy('i.lieu','DESC');
+                $qb
+                    ->from('Unipik\InterventionBundle\Entity\Etablissement','e')
+                    ->andWhere('i.etablissement = e')
+                    ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
+                    ->andWhere('e.adresse = a')
+                    ->from('\Unipik\ArchitectureBundle\Entity\Ville','v')
+                    ->andWhere('a.ville = v')
+                    ->orderBy('v.nom','DESC');
             }else{
-                $qb->orderBy('i.lieu','ASC');
+                $qb
+                    ->from('Unipik\InterventionBundle\Entity\Etablissement','e')
+                    ->andWhere('i.etablissement = e')
+                    ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
+                    ->andWhere('e.adresse = a')
+                    ->from('\Unipik\ArchitectureBundle\Entity\Ville','v')
+                    ->andWhere('a.ville = v')
+                    ->orderBy('v.nom','ASC');
             }
 
         }else{

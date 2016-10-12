@@ -95,4 +95,22 @@ class ProfileController extends BaseController {
             'form' => $form->createView()
         ));
     }
+
+    /**
+     * Show the user
+     */
+    public function showAction() {
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+        $em = $this->getDoctrine()->getManager();
+        $repositoryIntervention = $em->getRepository('InterventionBundle:Intervention');
+        $listeInterventions = $repositoryIntervention->getInterventionsBenevole($user);
+
+        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'user' => $user,
+            'listeInterventions' => $listeInterventions
+        ));
+    }
 }

@@ -8,6 +8,7 @@
 
 namespace Unipik\InterventionBundle\Form\Intervention;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,10 +16,22 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Unipik\ArchitectureBundle\Form\Adresse\VilleType;
+use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
 
 
 class RechercheAvanceeType extends AbstractType
 {
+    private $entityManager;
+
+    /**
+     * VilleType constructor.
+     * @param ObjectManager $entityManager
+     */
+    public function __construct(ObjectManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -138,6 +151,8 @@ class RechercheAvanceeType extends AbstractType
             ))
             ->add('ville',VilleType::class, array('required' => false) )
         ;
+
+        $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
     }
 
 }

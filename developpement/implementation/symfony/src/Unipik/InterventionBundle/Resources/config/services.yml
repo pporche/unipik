@@ -3,11 +3,16 @@ services:
         class: Snilius\Twig\SortByFieldExtension
         tags:
             - { name: twig.extension }
-    app.form.intervention.recherche:
+    app.form.intervention.etablissement.recherche:
         class: Unipik\InterventionBundle\Form\Etablissement\RechercheAvanceeType
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: form.type }
+    app.form.intervention.intervention.recherche:
+            class: Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType
+            arguments: ["@doctrine.orm.entity_manager"]
+            tags:
+                - { name: form.type }
     app.form.intervention.attribution:
         class: Unipik\InterventionBundle\Form\Intervention\AttributionType
         arguments: ["@doctrine.orm.entity_manager"]

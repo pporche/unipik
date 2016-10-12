@@ -198,6 +198,59 @@
 
 {% block body %}
 
+    <style>
+
+        @media only screen and (max-width: 875px) {
+
+            /* Force table to not be like tables anymore */
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr { border: 1px solid #ccc; }
+
+            td {
+                /* Behave  like a "row" */
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50% !important;
+                white-space: normal;
+                text-align:left;
+            }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align:left;
+                font-weight: bold;
+            }
+
+            /*
+            Label the data
+            */
+            td:before { content: attr(data-title); }
+        }
+    </style>
+
     <section class="col-lg-2 col-md-2 col-sm-2">
         <div class="row">
             <div class='well'>
@@ -316,17 +369,16 @@
             <tbody id="myTable">
             {% for benevole in listBenevoles %}
                 <tr id="checkboxes">
-                    <td>{{ loop.index }}</td>
-                    <td>{{ benevole.nom | capitalize }}</td>
-                    <td>{{ benevole.prenom | capitalize }}</td>
-                    <td id="idBenevole" hidden="hidden">{{ benevole.id }}</td>
-                    <td name="resp">
-                        {% if (benevole.responsabiliteActivite == "" or benevole.responsabiliteActivite == NULL) %}
-                            <div class="col-lg-offset-1 ">
+                    <td data-title="#">{{ loop.index }}</td>
+                    <td data-title="Nom">{{ benevole.nom | capitalize }}</td>
+                    <td data-title="Prénom">{{ benevole.prenom | capitalize }}</td>
+                    <td id="idBenevole" hidden="hidden" data-title="#"  data-title="id">{{ benevole.id }}</td>
+                    <td name="resp"  data-title="Responsabilité">
+                        {% if (benevole.responsabiliteActivite == "" or benevole.responsabiliteActivite == NULL or benevole.responsabiliteActivite is empty) %}
+                             -
 
-                            </div>
                         {% else %}
-                            <div class="col-lg-offset-1 col-sm-7 ">
+
                                 {% if ('plaidoyers' in benevole.responsabiliteActivite ) %}
                                         Plaidoyer <br>
                                 {% endif %}
@@ -348,51 +400,47 @@
                                 {% if ('admin_region' in benevole.responsabiliteActivite) %}
                                         Administrateur de la région <br>
                                 {% endif %}
-                            </div>
+
                         {% endif %}
                     </td>
-                    <td name="act">
-                        {% if (benevole.activitesPotentielles == "" or benevole.activitesPotentielles == NULL) %}
-                            <div class="col-lg-offset-1 col-sm-7">
-
-                            </div>
+                    <td name="act" data-title="Activité">
+                        {% if (benevole.activitesPotentielles == "" or benevole.activitesPotentielles == NULL or benevole.activitesPotentielles is empty) %}
+                            -
                         {% else %}
-                            <div class="col-lg-offset-1 col-sm-7 ">
-                                {#{% for act in  benevole.activitesPotentielles%}#}
-                                    {#{{ act }}#}
-                                {#{% endfor %}#}
-                                {% if ('(plaidoyers)' in benevole.activitesPotentielles) %}
-                                    Plaidoyer <br>
-                                {% endif %}
-                                {% if ('(frimousses)' in benevole.activitesPotentielles) %}
-                                    Frimousse <br>
-                                {% endif %}
-                                {% if ('(actions_ponctuelles)' in benevole.activitesPotentielles) %}
-                                    Actions ponctuelles <br>
-                                {% endif %}
-                                {% if ('(projets)' in benevole.activitesPotentielles) %}
-                                    Projets <br>
-                                {% endif %}
-                                {% if ('(projets)' in benevole.activitesPotentielles) %}
-                                    Autre <br>
-                                {% endif %}
-                                {% if ('(admin_comite)' in benevole.activitesPotentielles) %}
-                                    Administrateur du comité <br>
-                                {% endif %}
-                                {% if ('(admin_region)' in benevole.activitesPotentielles) %}
-                                    Administrateur de la région <br>
-                                {% endif %}
+                                {% for activite in benevole.activitesPotentielles %}
+                                    {% if ('plaidoyers' == activite) %}
+                                        Plaidoyer <br>
+                                    {% endif %}
+                                    {% if ('frimousses' == activite) %}
+                                        Frimousse <br>
+                                    {% endif %}
+                                    {% if ('actions_ponctuelles' == activite) %}
+                                        Actions ponctuelles <br>
+                                    {% endif %}
+                                    {% if ('projets' == activite) %}
+                                        Projets <br>
+                                    {% endif %}
+                                    {% if ('projets' == activite) %}
+                                        Autre <br>
+                                    {% endif %}
+                                    {% if ('admin_comite' == activite) %}
+                                        Administrateur du comité <br>
+                                    {% endif %}
+                                    {% if ('admin_region' == activite) %}
+                                        Administrateur de la région <br>
+                                    {% endif %}
+                                {% endfor %}
 
-                            </div>
+
+
                         {% endif %}
                     </td>
-                    <td>
+                    <td data-title="Consulter">
                         <a href="{{ path('user_admin_profil_benevole', {'username': benevole.username}) }}">
                             <button type="button" class="btn btn-primary">Consulter le profil</button>
                         </a>
                     </td>
-                    <td>
-                    <td>
+                    <td data-title="Supprimer">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="type" id="{{ benevole.username }}">

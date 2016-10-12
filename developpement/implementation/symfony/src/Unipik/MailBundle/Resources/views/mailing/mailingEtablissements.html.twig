@@ -1,0 +1,20 @@
+{% extends "ArchitectureBundle::layoutArchitecture.html.twig" %}
+
+{% block title %}
+    Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Mailing<h1>
+    <hr>
+    <div class='well'>
+
+        {{ form_start(form, {'method': 'post', 'action': path('etablissements_mailing'), 'attr': {'class': 'etablissements_mailing'}}) }}
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" value="Envoyer" class="btn btn-primary"/>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}

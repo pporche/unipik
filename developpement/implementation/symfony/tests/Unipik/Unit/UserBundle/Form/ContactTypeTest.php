@@ -6,7 +6,7 @@
  * Time: 11:03
  */
 
-namespace Tests\Unipik\Unit\UserBundle\Form\Adresse;
+namespace Tests\Unipik\Unit\UserBundle\Form;
 
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ContactMock;
 use Tests\Unipik\Unit\Utils\FormTestCase;

@@ -968,6 +968,58 @@ linkcolor=black]{hyperref}
   \ifthenelse{\boolean{modeCompacte}}{}{\cleardoublepage}
 }
 
+\newcommand{\couvertureCDR}{
+  \thispagestyle{pageCouverture}
+  \begin{picture}(0,0)
+  \put(-100,-760){\includegraphics[width=216mm]{images/couverture.pdf}}
+  \put(280,-137){\includegraphics[width=105mm]{images/logoUnipik.png}}
+  
+  \put(305,-540){\includegraphics[width=50mm]{images/logoUnicef.png}}  
+  \put(315,-666){\includegraphics[width=40mm]{images/logoAsiNew.jpeg}}
+  \put(-45,-260){\begin{minipage}[t]{150mm}\begin{flushleft}
+      \textcolor{white}{
+        \fontsize{50pt}{60pt}\selectfont \textbf{\titreGeneralPrive} \\
+        \vspace*{20pt}
+        \fontsize{35pt}{40pt}\selectfont \textbf{\sousTitreGeneralPrive{}  \versionPrive{}}\\
+        \vspace*{20pt}}
+        \end{flushleft}\end{minipage}}
+
+  \put(60,-510){\begin{minipage}[t]{150mm}\textcolor{INSA_MARINE}{\begin{flushleft}
+        \fontsize{57pt}{60pt}\selectfont \textbf{\titreAcronymePrive}\\
+        \vspace*{17pt}
+        \fontsize{20pt}{40pt}\selectfont \textbf{\textsc{\titreDetaillePrive}}
+        \end{flushleft}}\end{minipage}}
+
+    %\put(-65,-600){
+    %	\begin{minipage}{6.3cm} 
+    %	\color{grisInsa}
+    %	\Large \raggedleft \titreAcronymePrive
+    %	\end{minipage}
+    %}
+            
+         
+    \put(300,-750){
+    	\begin{minipage}{5cm}\textcolor{INSA_MARINE}{
+    	\ifthenelse{\boolean{modeVersion}}{
+    	\raggedleft \fontsize{18pt}{18pt} version \versionPrive }{}
+    	\ifthenelse{\boolean{modeDate}}{
+    	\raggedleft \fontsize{18pt}{18pt} \datePrive }{}
+    	}
+    	 \vspace{3cm}
+  \begin{tabular}[h]{p{0.1\linewidth}>{\centering}p{0.6\linewidth}p{0.3\linewidth}}
+    & \hfill Provisoire
+    &$\square$\\
+    & \hfill Définitive
+    &$\square$\\
+  \end{tabular}
+    	\end{minipage}
+    }
+  \end{picture}
+  \newpage
+  % Si on fait une version "compacte" on enleve le cleardoublepage ici
+  \ifthenelse{\boolean{modeCompacte}}{}{\cleardoublepage}
+}
+
 
 \newcommand{\informationsGenerales}[0]{
   \noindent

@@ -2,12 +2,20 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% block subject %}
 {% autoescape false %}
-{{ user.username}} Coucou {{ confirmationUrl }}
+Votre compte Unicef : validation de votre compte
 {% endautoescape %}
 {% endblock %}
 {% block body_text %}
 {% autoescape false %}
-{{ user.username }} Lol {{ confirmationUrl }}
+Bonjour {{ user.username }},
+
+Validez dès maintenant la création de votre compte Unicef afin d'accéder à l'outils de gestions de vos interventions
+en cliquant su rle lien ci-dessous.
+{{ confirmationUrl }}
+
+A bientôt,
+
+L'équipe Unicef.
 {% endautoescape %}
 {% endblock %}
 {% block body_html %}{% endblock %}

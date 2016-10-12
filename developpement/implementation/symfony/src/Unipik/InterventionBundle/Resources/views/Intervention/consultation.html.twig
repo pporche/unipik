@@ -93,7 +93,12 @@
 {% endblock %}
 
 {% block body %}
-
+    <div class="btn-group">
+        <form action="{{ path( 'etablissement_list') }}">
+            <input type="submit" class="btn btn-primary" value="Retour à la liste d'interventions">
+        </form>
+        {#<button type="button" class="btn btn-primary" onclick="window.location.href={{ path( 'etablissement_list') }}" >Retour à la liste d'interventions</button>#}
+    </div>
     <div class="container">
         <div class="row">
             <section class="jumbotron col-sm-12 col-sm-12 col-lg-9 col-lg-offset-1">
@@ -113,14 +118,18 @@
                             {% endif %}
                         </h4>
                         {% if intervention.realisee %}
-                            <p class="text-success">&nbsp &nbsp Réalisée <span class="glyphicon glyphicon-ok"></span></p>
+                            {%  if intervention.benevole.username==user %}
+                                <p class="text-success">&nbsp &nbsp Réalisée  par moi <span class="glyphicon glyphicon-ok"></span></p>
+                            {% else %}
+                                <p class="text-success">&nbsp &nbsp Réalisée  par {{ intervention.benevole.prenom }} <span class="glyphicon glyphicon-ok"></span></p>
+                            {% endif %}
                         {% elseif intervention.benevole %}
                             {% if user==intervention.benevole %}
                                 <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeIntervention(this, {{ intervention.id }})">
                                     Se désattribuer l'intervention
                                 </button>
                             {% else %}
-                                {#<p id="attribueA">Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}</p>#}
+                                <h4 class="col-lg-12" id="attribueA">Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}</h4>
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeInterventionAdmin(this, {{ intervention.id }})">
                                         Désattribuer l'intervention
@@ -137,7 +146,14 @@
                                     S'attribuer l'intervention
                                 </button>
                             {% endif %}
+
+                            {% if intervention.realisee %}
+                                {% if intervention.benevole %}
+                                    <h4> Réalisé par { intervention.benevole.nom } </h4>
+                                {% endif %}
+                            {% endif %}
                         {% endif %}
+
                         <img src="{{ asset('img/logo-gris.png') }}" class="logoGris" alt="logo gris">
                     </div>
                     <hr style="margin-top: 50px;">
@@ -151,14 +167,14 @@
                                 </div>
 
                                 <div class="col-sm-5 col-xs-offset-1 col-xs-11 col-md-7">
-                                    <a href="">
+                                    <a href="{{ path ('etablissement_view', {'id': intervention.etablissement.id}) }}">
                                         <em>
-                                            {# Lien vers l'établissement#}
+                                             Lien vers l'établissement
 
                                             {% if intervention.etablissement.nom == "" or intervention.etablissement.nom == NULL %}
-                                                -
+                                                {{ intervention.etablissement.adresse.ville.nom}}
                                             {% else %}
-                                                {{ intervention.etablissement.nom }}
+                                                {{ intervention.etablissement.nom}} à {{ intervention.etablissement.adresse.ville.nom}}
                                             {% endif %} </em> </a>
                                 </div>
                                 <br>
@@ -203,7 +219,6 @@
                                         {% endif %}</em>
                                 </div>
 
-
                                 <div class="col-sm-5 col-xs-12  col-md-4">
                                     <dt>
                                         <span class="glyphicon glyphicon-user"></span> &nbsp N de personnes:
@@ -216,6 +231,7 @@
                                             {{ intervention.nbPersonne }}
                                         {% endif %}</em>
                                 </div>
+
                                 {{ block('contenu') }}
                             </dl>
                         </div>
@@ -282,6 +298,7 @@
                             &nbsp &nbsp &nbsp {% for dep in intervention.comite.departement %}
                             {{ dep.nom }}
                             {% endfor %}
+                            Seine-Martime
                         </ul>
 
                     </div>

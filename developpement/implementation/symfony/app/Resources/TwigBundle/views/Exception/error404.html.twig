@@ -1,0 +1,11 @@
+{# app/Resources/views/Exception/error404.html.twig #}
+{% extends 'ArchitectureBundle::layoutArchitecture.html.twig' %}
+
+{% block body %}
+    <h1>Page inexistante</h1>
+    <h3>
+        La page que vous cherchez n'existe pas. Veuillez vérifier qu'il n'y a pas d'erreur dans l'URL ou <a href="{{ path('architecture_homepage') }}">retourner à l'acceuil</a>.
+    </h3>
+
+
+{% endblock %}

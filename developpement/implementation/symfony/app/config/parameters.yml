@@ -6,9 +6,9 @@ parameters:
     database_user: unipik
     database_password: kaflmmppscmmbmcjpmb
     mailer_transport: smtp
-    mailer_host: smtp.laposte.net
-    mailer_user: unipik.unicef@laposte.net
-    mailer_password: qualitayRapay76
+    mailer_host: smtp.gmail.com
+    mailer_user: unipik.dev@gmail.com
+    mailer_password: taistoijulie
     mailer_port: 587
     mailer_encryption: tls
     mailer_auth_mode: login

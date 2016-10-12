@@ -18,8 +18,8 @@ class MailController extends Controller {
     public function sendFormAction($name) {
         $message = \Swift_Message::newInstance()
             ->setSubject('Hello Email')
-            ->setFrom('unipik.unicef@laposte.net')
-            ->setTo('onch@yopmail.com')
+            ->setFrom('unipik.dev@gmail.com')
+            ->setTo('onch1@yopmail.com')
             ->setBody(
                 $this->renderView(
                     'MailBundle::emailToast.txt.twig',
@@ -29,7 +29,7 @@ class MailController extends Controller {
             )
         ;
 
-        $this->get('second_mailer')->send($message);
+        $this->get('mailer')->send($message);
 
         return $this->redirectToRoute('architecture_homepage');
     }
@@ -44,21 +44,30 @@ class MailController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('InterventionBundle:Etablissement');
 
+            $type = $form->get("type")->getData();
 
-            $etablissements = $repository->getEnseignementsByType('');
+//            $etablissements = $repository->getEnseignementsByType(array($type));
 
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Hello Email')
-                ->setFrom('unipik.unicef@laposte.net')
-                ->setTo('onch@yopmail.com')
-                ->setBody(
-                    $this->renderView(
-                        'MailBundle::emailToast.txt.twig',
-                        array('name' => $name)
-                    ),
-                    'text/html'
-                )
-            ;
+            $emails = array("dev1@yopmail.com", "dev2@yopmail.com");
+
+            $i = 0;
+            foreach ($emails as $email) {
+                $i++;
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Intervention de l\'unicef')
+                    ->setFrom('unipik.dev@gmail.com')
+                    ->setTo($email)
+                    ->setBody(
+                        $this->renderView(
+                            'MailBundle::emailToast.html.twig',
+                            array('id' => $i)
+                        ),
+                        'text/html'
+                    )
+                ;
+
+                $this->get('mailer')->send($message);
+            }
 
             return $this->redirectToRoute('architecture_homepage');
         }

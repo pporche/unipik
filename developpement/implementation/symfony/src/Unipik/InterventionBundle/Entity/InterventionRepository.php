@@ -28,7 +28,7 @@ class InterventionRepository extends EntityRepository {
      * @param $user
      * @return array
      */
-    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user = null, $niveauPlaidoyer, $niveauFrimousse, $theme, $ville ){
+    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null ){
 
         $qb = $this->createQueryBuilder('i');
 

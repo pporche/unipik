@@ -64,13 +64,24 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    encryption: "%mailer_encryption%"
-    port: "%mailer_port%"
-    spool:     { type: memory }
+    default_mailer: dev_mailer
+    mailers:
+        dev_mailer:
+            transport: "%mailer_transport%"
+            host:      "%mailer_host%"
+            username:  "%mailer_user%"
+            password:  "%mailer_password%"
+            encryption: "%mailer_encryption%"
+            port: "%mailer_port%"
+            spool:     { type: memory }
+        second_mailer:
+            transport: "%second_mailer_transport%"
+            host:      "%second_mailer_host%"
+            username:  "%second_mailer_user%"
+            password:  "%second_mailer_password%"
+            encryption: "%second_mailer_encryption%"
+            port: "%second_mailer_port%"
+            spool:     { type: memory }
 
 fos_user:
     db_driver:     orm

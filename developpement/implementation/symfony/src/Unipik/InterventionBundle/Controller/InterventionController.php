@@ -38,8 +38,11 @@ class InterventionController extends Controller {
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function addAction(Request $request) {
-        $intervention = new Intervention();
-        $form = $this->createForm(DemandeType::class, $intervention);
+        $repo = $this->getInterventionRepository();
+        $intervention = $repo->findOneBy(array('id' => 15));
+//        $intervention = new Intervention();
+
+        $form = $this->createForm(InterventionType::class, $intervention);
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             /*$educationTypeArray = $form->get("typeEnseignement")->getData();

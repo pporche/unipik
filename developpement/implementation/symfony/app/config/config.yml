@@ -97,8 +97,8 @@ fos_user:
                     enabled: true
                     template:   MailBundle::email.txt.twig
                     from_email:
-                         address:        unipik.unicef@laposte.net
-                         sender_name:    unipik.unicef@laposte.net
+                         address:        unipik.dev@gmail.com
+                         sender_name:    unipik.dev@gmail.com
     profile:
             form:
                     type: Unipik\UserBundle\Form\ProfileFormType

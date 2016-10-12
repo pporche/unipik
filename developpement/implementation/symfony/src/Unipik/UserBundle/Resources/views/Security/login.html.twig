@@ -40,16 +40,17 @@
                 border-top: #ffffff;
                 border-right: #ffffff;
                 border-left: #ffffff;
-                border-bottom: 2.5px solid #00A5E3;
+                border-bottom: 2.5px solid #333333;
                 margin-top: 10px;
                 box-shadow: none !important;
             }
-            input:focus, button:focus, .form-control:focus{
+            input:focus, .form-control:focus{
                 outline: none !important;
                 box-shadow: none;
-                border-bottom: 2.5px solid #333333;
-                transition: border-bottom 0.5s linear 0s;
+                border-bottom: 3px solid #1a6ecc;
+                transition: border-bottom 0.5s ease 0s;
             }
+
             h2{
                 font-family: 'Ubuntu Condensed', sans-serif;
                 text-align: center;
@@ -57,9 +58,12 @@
                 margin-top: 70px;
                 margin-bottom: 50px;
             }
-            button{
+
+            form button{
                 border-radius: 10px !important;
                 margin-left: -70px !important;
+                background-color: #1a6ecc !important;
+                border:none !important;
             }
 
             input[type="checkbox"]{

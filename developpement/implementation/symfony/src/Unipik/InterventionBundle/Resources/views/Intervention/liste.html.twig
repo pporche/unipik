@@ -577,9 +577,6 @@
                 </div>
                 {% if is_granted('ROLE_ADMIN') %}
                     <div class="buttons">
-                        <a href="{{ path('intervention_admin_add') }}" class="btn btn-primary btn-danger">
-                            <em class="glyphicon glyphicon-alert"></em> &nbsp Ajouter une intervention
-                        </a>
                         {% if liste is not empty %}
                             <button type="button" class="btn btn-danger" onclick="deleteInterventions()">
                                 <em class="glyphicon glyphicon-trash"></em>

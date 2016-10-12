@@ -15,6 +15,7 @@
         .twitter-typeahead .tt-hint {
             margin-bottom: 0;
         }
+
         .tt-hint {
             display: none;
             width: 100%;
@@ -32,6 +33,7 @@
             -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
             transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
         }
+
         .tt-menu {
             min-width: 160px;
             margin-top: 2px;
@@ -47,21 +49,24 @@
             overflow-y: auto;
 
         }
+
         .tt-suggestion {
             display: block;
             padding: 3px 20px;
         }
+
         .tt-suggestion.tt-is-under-cursor {
             color: #fff;
             background-color: #428bca;
         }
+
         .tt-suggestion.tt-is-under-cursor a {
             color: #fff;
         }
+
         .tt-suggestion p {
             margin: 0;
         }
-
 
 
     </style>
@@ -74,7 +79,7 @@
     <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',
                 showPrevNext: true,
@@ -126,20 +131,20 @@
 
         function desattributeIntervention(event, id) {
             $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
-            function (data, status) {
-                $(event).attr('class', 'btn btn-primary');
-                $(event).text('S\'attribuer l\'intervention');
-                $(event).attr("onclick", "attributeIntervention(this, "+id+")");
-            });
+                function (data, status) {
+                    $(event).attr('class', 'btn btn-primary');
+                    $(event).text('S\'attribuer l\'intervention');
+                    $(event).attr("onclick", "attributeIntervention(this, " + id + ")");
+                });
         }
 
         function attributeIntervention(event, id) {
             $.post("{{ path('intervention_self_attribute') }}", {'id': id},
-                    function (data, status) {
-                        $(event).attr('class', 'btn btn-danger');
-                        $(event).text('Se désattribuer l\'intervention');
-                        $(event).attr("onclick", "desattributeIntervention(this, " + id + ")");
-                    });
+                function (data, status) {
+                    $(event).attr('class', 'btn btn-danger');
+                    $(event).text('Se désattribuer l\'intervention');
+                    $(event).attr("onclick", "desattributeIntervention(this, " + id + ")");
+                });
         }
 
         var benevoles = new Bloodhound({
@@ -164,34 +169,34 @@
 
         function attributeInterventionAdmin(event, username, id) {
             $.post("{{ path('intervention_attribute') }}", {'username': username, 'id': id},
-                    function (data, status) {
-                        var selector = "button[name=attribuer"+id+"]";
-                        $(selector).attr('class', 'btn btn-danger');
-                        $(selector).text('Retirer '+data.prenom+' '+data.nom+ ' de l\'intervention');
-                        $(selector).attr("onclick", "desattributeInterventionAdmin(this, " + id + ")");
-                        $(selector).removeAttr("data-target");
-                        $(selector).removeAttr("data-toggle");
-                    });
+                function (data, status) {
+                    var selector = "button[name=attribuer" + id + "]";
+                    $(selector).attr('class', 'btn btn-danger');
+                    $(selector).text('Retirer ' + data.prenom + ' ' + data.nom + ' de l\'intervention');
+                    $(selector).attr("onclick", "desattributeInterventionAdmin(this, " + id + ")");
+                    $(selector).removeAttr("data-target");
+                    $(selector).removeAttr("data-toggle");
+                });
         }
 
         function desattributeInterventionAdmin(event, id) {
             $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
-                    function (data, status) {
-                        $(event).attr('class', 'btn btn-primary');
-                        $(event).text('Attribuer l\'intervention à');
-                        $(event).attr("onclick", "sendIdToModal("+id+")");
-                        $(event).attr("data-target", "#myModal");
-                        $(event).attr("data-toggle", "modal");
-                        $(event).attr("name", "attribuer"+id);
-                    });
+                function (data, status) {
+                    $(event).attr('class', 'btn btn-primary');
+                    $(event).text('Attribuer l\'intervention à');
+                    $(event).attr("onclick", "sendIdToModal(" + id + ")");
+                    $(event).attr("data-target", "#myModal");
+                    $(event).attr("data-toggle", "modal");
+                    $(event).attr("name", "attribuer" + id);
+                });
         }
 
-        $('#attribuerModal').click(function() {
+        $('#attribuerModal').click(function () {
             $('#myModal').modal('hide');
         });
 
-//        $('#recherche_avancee_statutIntervention_2').hide();
-//        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
+        //        $('#recherche_avancee_statutIntervention_2').hide();
+        //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
     </script>
 {% endblock %}
 
@@ -329,6 +334,9 @@
                                 {% endif %}
                             {% endif %}
                             <th>Type</th>
+                            <th>Etablissement</th>
+                            <th>Classe</th>
+                            <th>Thème</th>
                             <th>Statut</th>
                             <th>Voir détails</th>
                             {% if is_granted('ROLE_ADMIN') %}
@@ -340,7 +348,7 @@
                         {% for intervention in liste %}
                             <tr>
                                 <td>{{ loop.index }}</td>
-                                <td>{{ intervention.lieu | capitalize }}</td>
+                                <td>{{ intervention.etablissement.adresse.ville.nom  }}</td>
                                 <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
                                 <td>
                                     {% if intervention.plaidoyer %}
@@ -352,34 +360,70 @@
                                     {% endif %}
                                 </td>
                                 <td>
+                                    <a href="{{ path('etablissement_view', {'id':intervention.etablissement.id})  }}">
+                                        {% if intervention.etablissement.nom  %}
+                                        {{ intervention.etablissement.nom }} -
+                                        {% endif %}
+                                        {{ intervention.etablissement.typeEnseignement  }} {{ intervention.etablissement.typeCentre  }} {{ intervention.etablissement.typeAutreEtablissement }}
+                                    </a>
 
-                                        {% if intervention.realisee %}
-                                            <p class="text-success"> Réalisée <span class="glyphicon glyphicon-ok"></span></p>
-                                        {% elseif intervention.benevole %}
-                                            {% if user==intervention.benevole %}
-                                                <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeIntervention(this, {{ intervention.id }})">
-                                                    Se désattribuer l'intervention
-                                                </button>
-                                            {% else %}
-                                                {% if is_granted('ROLE_ADMIN') %}
-                                                    <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeInterventionAdmin(this, {{ intervention.id }})">
-                                                        Retirer {{ intervention.benevole.prenom }} {{ intervention.benevole.nom  }} de l'intervention
-                                                    </button>
-                                                {% else %}
-                                                    Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
-                                                {% endif %}
-                                            {% endif %}
+                                </td>
+                                <td>
+                                    {% if intervention.plaidoyer %}
+                                        {{ intervention.niveauTheme.niveau }}
+                                    {% elseif intervention.frimousse %}
+                                        {{ intervention.niveauFrimousse }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+
+                                </td>
+                                <td>
+                                    {% if intervention.plaidoyer %}
+                                        {{ intervention.niveauTheme.theme }}
+                                    {% elseif intervention.frimousse %}
+                                        -
+                                    {% else %}
+                                        -
+                                    {% endif %}
+
+                                </td>
+                                <td>
+
+                                    {% if intervention.realisee %}
+                                        <p class="text-success"> Réalisée <span class="glyphicon glyphicon-ok"></span>
+                                        </p>
+                                    {% elseif intervention.benevole %}
+                                        {% if user==intervention.benevole %}
+                                            <button name="desattribution" type="button" class="btn btn-danger"
+                                                    onclick="desattributeIntervention(this, {{ intervention.id }})">
+                                                Se désattribuer l'intervention
+                                            </button>
                                         {% else %}
                                             {% if is_granted('ROLE_ADMIN') %}
-                                                <button name="attribuer{{ intervention.id }}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="sendIdToModal({{ intervention.id }})">
-                                                    Attribuer l'intervention à
+                                                <button name="desattribution" type="button" class="btn btn-danger"
+                                                        onclick="desattributeInterventionAdmin(this, {{ intervention.id }})">
+                                                    Retirer {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
+                                                    de l'intervention
                                                 </button>
                                             {% else %}
-                                                <button name="attribution" type="button" class="btn btn-primary" onclick="attributeIntervention(this, {{ intervention.id }})">
-                                                    S'attribuer l'intervention
-                                                </button>
+                                                Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
                                             {% endif %}
                                         {% endif %}
+                                    {% else %}
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <button name="attribuer{{ intervention.id }}" type="button"
+                                                    class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+                                                    onclick="sendIdToModal({{ intervention.id }})">
+                                                Attribuer l'intervention à
+                                            </button>
+                                        {% else %}
+                                            <button name="attribution" type="button" class="btn btn-primary"
+                                                    onclick="attributeIntervention(this, {{ intervention.id }})">
+                                                S'attribuer l'intervention
+                                            </button>
+                                        {% endif %}
+                                    {% endif %}
 
                                 </td>
                                 <td>
@@ -446,11 +490,14 @@
                 </div>
                 <div class="modal-body">
                     {{ form_start(formAttr, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
-                    <h5>Bénévole : {{  form_widget(formAttr.benevole) }}</h5>
+                    <h5>Bénévole : {{ form_widget(formAttr.benevole) }}</h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="attribuerModal" type="button" class="btn btn-primary" onclick="attributeInterventionAdmin(this, $('#attribution_benevole').val(), $('#attribution_idIntervention').val())">Attribuer</button>
+                    <button id="attribuerModal" type="button" class="btn btn-primary"
+                            onclick="attributeInterventionAdmin(this, $('#attribution_benevole').val(), $('#attribution_idIntervention').val())">
+                        Attribuer
+                    </button>
                 </div>
                 {{ form_end(formAttr) }}
             </div>

@@ -30,7 +30,7 @@ class EtablissementType extends AbstractType {
                 'Collège' => 'college',
                 'Lycée' => 'lycee',
                 'Supérieur' => 'superieur'
-            ],);
+            ]);
 
         $centerChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false, 'placeholder' => false,
             'label' => 'Type de public du centre',

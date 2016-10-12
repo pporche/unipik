@@ -464,6 +464,32 @@
             }
         });
 
+        var typeInstitute = {{ typEnseignement | raw}};
+        if(typeInstitute.hasOwnProperty('autre')){
+            console.log(typeInstitute);
+            $('#demande_Etablissement_TypeGeneral').val('autre');
+            level = typeInstitute['autre'];
+            $("input[name='demande[Etablissement][typeAutreEtablissement]']").find("[value="+ level+"]").prop("checked", true);
+            keepOther();
+            $('.form-group:eq(8)').fadeOut("fast");
+            $('#demande_Etablissement_uai').val('');
+        }else if( typeInstitute.hasOwnProperty('centre')){
+            $('#demande_Etablissement_TypeGeneral').val('centre');
+            level = typeInstitute['centre'];
+            $("input[name='demande[Etablissement][typeCentre]']").find("[value="+ level+"]").prop("checked", true);
+            keepCenter();
+            $('.form-group:eq(8)').fadeOut("fast");
+            $('#demande_Etablissement_uai').val('');
+        }else if( typeInstitute.hasOwnProperty('ens')){
+            console.log(typeInstitute['ens']);
+            $('#demande_Etablissement_TypeGeneral').val('ens');
+            level = typeInstitute['ens'];
+
+            $("input[name='demande[Etablissement][typeEnseignement]'][value='"+ level+"']").prop("checked", true);
+            keepInstitute();
+            $('.form-group:eq(8)').fadeIn("fast");
+        }
+
         function keepInstitute(){
             $(".form-group:eq(5)").fadeIn("medium").removeAttr("disabled");
             $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
@@ -486,7 +512,7 @@
         function verifyAll(e){
             verifyNumber(e);
             verifyCP(e);
-            //verifyMail(e);
+            verifyMail(e);
             showUAI();
             if($('#demande_Etablissement_uai').val().trim())
                 verifyUAI(e);

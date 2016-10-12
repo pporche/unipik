@@ -93,9 +93,16 @@ class InterventionController extends Controller {
     public function demandeAction(Request $request) {
 
         $demande = new Demande();
-        $form = $this->createForm(DemandeType::class, $demande);
-        $form->handleRequest($request);
 
+        $form = $this->createForm(DemandeType::class, $demande);
+
+        $repository = $this->getDoctrine()->getManager();
+        $repository = $repository->getRepository('InterventionBundle:Etablissement');
+
+        $instituteTest = $repository->find(1450);
+        $form->get('Etablissement')->setData($instituteTest);
+
+        $form->handleRequest($request);
 
         if($form->isValid()) {
             $dt =new \DateTime();
@@ -234,8 +241,27 @@ class InterventionController extends Controller {
             $intervention = $form->getData();
             return $this->RedirectToRoute('architecture_homepage');
         }
+
+        $typeEtablissementEncoded = [];
+        if($instituteTest->getTypeEnseignement()){
+            $typeEtablissementEncoded = array(
+                'ens' => $instituteTest->getTypeEnseignement()
+            );
+        }
+        else if($instituteTest->getTypeCentre()){
+            $typeEtablissementEncoded = array(
+                'centre' => $instituteTest->getTypeCentre()
+            );
+        }else{
+            $typeEtablissementEncoded = array(
+                'autre' => $instituteTest->getTypeAutreEtablissement()
+            );
+        }
+
+
         return $this->render('InterventionBundle:Intervention:demande.html.twig', array(
             'form' => $form->createView(),
+            'typEnseignement' => json_encode($typeEtablissementEncoded)
         ));
     }
 

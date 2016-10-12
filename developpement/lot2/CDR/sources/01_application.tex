@@ -10,7 +10,7 @@
 				Lorsque l'utilisateur est connecté en tant qu'administrateur, il a la possibilité d'ajouter un bénévole. \\
 				Nous allons voir le liste des bénévoles : elle est vide. \\
 				Nous ajoutons quatre bénévoles. \\
-				Reconsultons la liste : les quatres bénévoles sont présents. \\
+				Reconsultons la liste : les quatre bénévoles sont présents. \\
 				
 				$\square$ Oui \hfill \hfill $\square$ Non \\\hline Remarques : \\ ~\\
 			 \\\hline
@@ -64,7 +64,7 @@
 		\begin{center}
     	 		\begin{tabular}[h]{|p{0.95\textwidth}|}
 			\hline
-				Nous nous connectons en tant qu'administrateur var seul un administrateur peut supprimé un bénévole. \\
+				Nous nous connectons en tant qu'administrateur car seul un administrateur peut supprimer un bénévole. \\
 				Nous supprimons le bénévole. \\
 				Sur la liste des bénévoles, le bénévole en question n'apparaît plus. \\
 				
@@ -78,7 +78,7 @@
 		\begin{center}
     	 		\begin{tabular}[h]{|p{0.95\textwidth}|}
 			\hline
-				Si le bénévole qui vient d'être supprimé éssaie de se reconnecter, la connexion échoue et un message "Erreur! Identifiants invalides" apparaît. \\
+				Si le bénévole qui vient d'être supprimé essaie de se reconnecter, la connexion échoue et un message "Erreur! Identifiants invalides" apparaît. \\
 				
 				$\square$ Oui  \hfill \hfill $\square$ Non \\\hline Remarques : \\ ~\\
 			 \\\hline
@@ -107,14 +107,14 @@
     	 		\begin{tabular}[h]{|p{0.95\textwidth}|}
 			\hline
 				Nous modifions les informations de l'établissement qui vient d'être ajouté.\\
-				Lorsqu'on consulte l'établissement, les modifications apportées ont bien été enregistrées. \\			
+				Lorsque l'on consulte l'établissement, les modifications apportées ont bien été enregistrées. \\			
 				
 				$\square$ Oui  \hfill \hfill $\square$ Non \\\hline Remarques : \\ ~\\
 			 \\\hline
      		\end{tabular}
   		\end{center}	
   		
-  	\subsection*{Critère 2.3 : Supression d'un établissement}
+  	\subsection*{Critère 2.3 : Suppression d'un établissement}
   		\begin{center}
     	 		\begin{tabular}[h]{|p{0.95\textwidth}|}
 			\hline
@@ -128,7 +128,18 @@
   		
   		
 \section{Fonctionnalité F3}
-
+\subsection*{Critère 3.1 : Mailing }
+  		\begin{center}
+    	 		\begin{tabular}[h]{|p{0.95\textwidth}|}
+			\hline
+				La page de mailing permet de sélectionner certains établissements en fonction de leur niveau scolaire puis de leur envoyer un mail contenant un lien qui redirige vers le formulaire de demande. \\
+				Nous envoyons un mail de test à deux adresses email que nous relevons et nous suivons le lien vers le formulaire. \\
+				Lorsque nous cliquons sur le lien, nous arrivons bien au formulaire de demande pré-rempli.
+				
+				$\square$ Oui  \hfill \hfill $\square$ Non \\\hline Remarques : \\ ~\\
+			 \\\hline
+     		\end{tabular}
+  		\end{center}	
 
 \section{Fonctionnalité F4}
 	\subsection*{Critère 4.1 : Formulaire de demande }
@@ -155,20 +166,8 @@
      		\end{tabular}
   		\end{center}	
   		
-  	\subsection*{Critère 4.3 : Ajout d'une intervention manuellement}
-  		\begin{center}
-    	 		\begin{tabular}[h]{|p{0.95\textwidth}|}
-			\hline
-				Seul l'administrateur a la possibilité d'ajouter une intervention, il faut donc être connecté en tant qu'administrateur. \\
-				Nous ajoutons une intervention. \\
-				Sur la liste des interventions, celle-ci est présente. \\
-				
-				$\square$ Oui  \hfill \hfill $\square$ Non \\\hline Remarques : \\ ~\\
-			 \\\hline
-     		\end{tabular}
-  		\end{center}	
   		
-  	\subsection*{Critère 4.4 : Suppression d'une intervention}
+  	\subsection*{Critère 4.3 : Suppression d'une intervention}
   		\begin{center}
     	 		\begin{tabular}[h]{|p{0.95\textwidth}|}
 			\hline
@@ -189,8 +188,8 @@
 				Il est possible de trier selon les filtres suivants: 
 				\begin{itemize}
 				\item le type d'intervention : plaidoyers, frimousses, autres;
-				\item le statut de l'intervention : attribuée, non attribuée, réalisées;
-				\item la niveau par l'intervention : maternelle, primaire, collège, lycée, autre;
+				\item le statut de l'intervention : attribuées, non attribuées, réalisées;
+				\item le niveau scolaire de l'intervention : maternelle, primaire, collège, lycée, autre;
 				\item le thème de l'intervention;
 				\item le lieu de l'intervention; 
 				\end{itemize}
@@ -231,7 +230,7 @@
   		\begin{center}
     	 		\begin{tabular}[h]{|p{0.95\textwidth}|}
 			\hline
-				Lorsque nous consultons la boîte mail de l'établissement, celui-ci a bien reçu un mail de confirmation de prise en harge de l'intervention par le bénévole concerné.\\
+				Lorsque nous consultons la boîte mail de l'établissement, celui-ci a bien reçu un mail de confirmation de prise en charge de l'intervention par le bénévole concerné.\\
 				
 				$\square$ Oui  \hfill \hfill $\square$ Non \\\hline Remarques : \\ ~\\
 			 \\\hline

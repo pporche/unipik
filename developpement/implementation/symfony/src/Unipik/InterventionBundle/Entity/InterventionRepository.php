@@ -28,19 +28,46 @@ class InterventionRepository extends EntityRepository {
      * @param $user
      * @return array
      */
-    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user = null){
+    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null ){
+
+        $qb = $this->createQueryBuilder('i');
+
         switch ($typeIntervention) {
             case "plaidoyer":
-                $qb = $this->getPlaidoyers($start, $end, $dateChecked);
+                $this->getPlaidoyers($qb, $start, $end, $dateChecked);
+                $qb
+                    ->from('\Unipik\ArchitectureBundle\Entity\NiveauTheme','nt')
+                    ->andWhere('i.niveauTheme = nt');
+                if($niveauPlaidoyer){
+                    $req = "nt.niveau = '".$niveauPlaidoyer[0]."'";
+                    for($i=1;$i<count($niveauPlaidoyer);$i++) {
+                        $req = $req." OR nt.niveau = '".$niveauPlaidoyer[$i]."'";
+                    }
+                    $qb->andWhere($req);
+                }
+                if($theme){
+                    $req = "nt.theme = '".$theme[0]."'";
+                    for($i=1;$i<count($theme);$i++) {
+                        $req = $req." OR nt.theme = '".$theme[$i]."'";
+                    }
+                    $qb->andWhere($req);
+                }
                 break;
             case "frimousse":
-                $qb = $this->getFrimousses($start, $end, $dateChecked);
+                $this->getFrimousses($qb, $start, $end, $dateChecked);
+                if($niveauFrimousse){
+                    $req = "i.niveauFrimousse = '".$niveauFrimousse[0]."'";
+                    for($i=1;$i<count($niveauFrimousse);$i++) {
+                        $req = $req." OR i.niveauFrimousse = '".$niveauFrimousse[$i]."'";
+                    }
+                    $qb->andWhere($req);
+                }
                 break;
             case "autreIntervention":
-                $qb = $this->getAutresInterventions($start, $end, $dateChecked);
+                $this->getAutresInterventions($qb, $start, $end, $dateChecked);
                 break;
             default:
-                $qb = $this->getToutesInterventions($start, $end, $dateChecked);
+                $this->getToutesInterventions($qb, $start, $end, $dateChecked);
                 break;
         }
 
@@ -62,9 +89,6 @@ class InterventionRepository extends EntityRepository {
             $qb->andWhere('i.benevole = :user')
                 ->setParameter('user', $user);
         }
-
-
-
 
 
         if($field=="lieu"){
@@ -96,6 +120,10 @@ class InterventionRepository extends EntityRepository {
             }
         }
 
+        if($ville){
+            $this->whereVilleIs($qb,$ville);
+        }
+
         return $qb
             ->getQuery()
             ->getResult()
@@ -111,8 +139,7 @@ class InterventionRepository extends EntityRepository {
      * @return QueryBuilder
      *
      */
-    public function getFrimousses($start, $end, $datesChecked) {
-        $qb = $this->createQueryBuilder('i');
+    public function getFrimousses(QueryBuilder $qb, $start, $end, $datesChecked) {
 
         $qb
             ->where($qb->expr()->isNotNull('i.niveauFrimousse'))
@@ -122,8 +149,6 @@ class InterventionRepository extends EntityRepository {
         if(!$datesChecked) {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
-
-        return $qb;
     }
 
     /**
@@ -134,8 +159,7 @@ class InterventionRepository extends EntityRepository {
      * @param $datesChecked
      * @return QueryBuilder
      */
-    public function getPlaidoyers( $start, $end, $datesChecked) {
-        $qb = $this->createQueryBuilder('i');
+    public function getPlaidoyers(QueryBuilder $qb, $start, $end, $datesChecked) {
 
         $qb
             ->where($qb->expr()->isNotNull('i.niveauTheme'))
@@ -145,8 +169,6 @@ class InterventionRepository extends EntityRepository {
         if(!$datesChecked) {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
-
-        return $qb;
     }
 
     /**
@@ -156,8 +178,7 @@ class InterventionRepository extends EntityRepository {
      * @param $datesChecked
      * @return QueryBuilder
      */
-    public function getAutresInterventions($start,  $end , $datesChecked) {
-        $qb = $this->createQueryBuilder('i');
+    public function getAutresInterventions(QueryBuilder $qb,$start,  $end , $datesChecked) {
 
         $qb
             ->where($qb->expr()->isNotNull('i.description'))
@@ -166,8 +187,6 @@ class InterventionRepository extends EntityRepository {
         if(!$datesChecked) {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
-
-        return $qb;
     }
 
 
@@ -178,14 +197,12 @@ class InterventionRepository extends EntityRepository {
      * @param $datesChecked
      * @return QueryBuilder
      */
-    public function getToutesInterventions($start,  $end , $datesChecked) {
-        $qb = $this->createQueryBuilder('i');
+    public function getToutesInterventions(QueryBuilder $qb, $start,  $end , $datesChecked) {
 
         if(!$datesChecked) {
             $this->whereInterventionsBetweenDates($start,$end,$qb);
         }
 
-        return $qb;
     }
 
     /**
@@ -250,6 +267,23 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
+     * Get Interventions réalisées ou non réalisées qu'un établissement a demandé
+     *
+     * @param boolean $realisees
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInterventionsRealiseesOuNonEtablissement($etablissement, $realisees) {
+        $query = $this->_em->createQuery('SELECT i FROM InterventionBundle:Intervention i  JOIN i.etablissement e  WHERE i.realisee = :r AND e.id = :id ORDER BY i.dateIntervention ASC');
+        $query->setParameter('r',$realisees);
+        $query->setParameter('id',$etablissement->getId());
+
+        return new ArrayCollection($query->getResult());
+    }
+
+
+    /**
      * Where Interventions between dates
      *
      * @param \DateTime $start
@@ -287,5 +321,22 @@ class InterventionRepository extends EntityRepository {
         $qb
             ->andWhere($qb->expr()->isNotNull('i.benevole'))
             ->andWhere($qb->expr()->eq('i.realisee', $qb->expr()->literal(true)));
+    }
+
+
+    /**
+     * Where ville is
+     *
+     * @param QueryBuilder $qb
+     * @param $ville
+     */
+    public function whereVilleIs(QueryBuilder $qb, $ville) {
+        $qb
+            ->from('Unipik\InterventionBundle\Entity\Etablissement','e')
+            ->andWhere('i.etablissement = e')
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
+            ->andWhere('e.adresse = a')
+            ->andWhere('a.ville = :ville')
+            ->setParameter('ville',$ville);
     }
 }

@@ -8,10 +8,71 @@
 {% endblock %}
 
 {% block body %}
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+        h1{
+            font-family: 'Ubuntu Condensed', sans-serif;
+            margin-top: 40px;
+        }
 
+        div{
+            box-shadow: none !important;
+        }
+
+        input[type="text"], input[type="number"], select{
+            width: 350px !important;
+        }
+        input:focus, select:focus{
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: #CCCCCC !important;
+        }
+
+        .btn-default{
+            border-radius: 10px !important;
+            background-color: #3fb618 !important;
+            border-color: #3fb618 !important;
+        }
+
+        hr{
+            margin-top: 0px;
+        }
+
+
+        .btn-primary{
+            margin-left: 30%;
+        }
+
+        form{
+            padding-left: 25vw;
+        }
+
+        @media(max-width: 1060px){
+            form{
+                padding-left: 0vw;
+            }
+        }
+        @media(max-width: 1260px && min-width: 1060px){
+            form{
+                padding-left: 15vw;
+            }
+        }
+    </style>
+
+    <h1>Modification d'une intervention</h1>
+    <hr>
     <div class='well'>
 
         {{ form_start(form, {'method': 'post', 'action': path('intervention_edit', {'id': intervention.id}), 'attr': {'class': 'intervention_edit'}}) }}
+        {% if intervention.plaidoyer %}
+            {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
+        {% elseif intervention.frimousse %}
+            {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
+        {% else %}
+            {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
+            {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
+            {{ form_widget(form.niveauTheme, {'attr': {'style': 'display: none'}}) }}
+        {% endif %}
         {{ form_widget(form) }}
         <div>
             <input type="submit" value="Modifier" class="btn btn-primary"/>

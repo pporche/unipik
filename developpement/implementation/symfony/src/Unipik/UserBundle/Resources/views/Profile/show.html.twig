@@ -211,7 +211,7 @@
                     <div class="row">
                         {% if listeInterventions is not empty %}
                             <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
-                                    height: 200px;
+                                    height: auto;
                                     overflow: auto;
                                     position: relative;
                                     border:1px solid #cccccc;
@@ -239,23 +239,24 @@
                     <h3>Projets en cours : </h3>
                     <div class="row">
                         {% if user.projet is not empty %}
-                        <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
+                            <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
                                     height: 200px;
                                     overflow: auto;
                                     position: relative;
                                     border:1px solid #cccccc;
                                     padding:10px;">
-                            {% for projet in user.projet %}
-                                <a href="" >
-                                    {{ projet.getNom() }}
-                                    </br>
-                                </a>
-                            {% endfor %}
-                            {% else %}
+                                {% for projet in user.projet %}
+                                    <a href="" >
+                                        {{ projet.getNom() }}
+                                        </br>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% else %}
                                 <div class="col-lg-offset-1 col-sm-7">
                                     Aucun
                                 </div>
-                            {% endif %}
+                        {% endif %}
                         </div>
                     </div>
                 </div>

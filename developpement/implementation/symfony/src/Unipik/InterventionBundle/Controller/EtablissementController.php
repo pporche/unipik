@@ -27,9 +27,12 @@ class EtablissementController extends Controller {
      */
     public function consultationAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('InterventionBundle:Etablissement');
-        $etablissement = $repository->find($id);
-        return $this->render('InterventionBundle:Etablissement:consultation.html.twig',array('etablissement' => $etablissement));
+        $repositoryEtablissement = $em->getRepository('InterventionBundle:Etablissement');
+        $etablissement = $repositoryEtablissement->find($id);
+        $repositoryIntervention =  $em->getRepository('InterventionBundle:Intervention');
+        $interventionsRealisees = $repositoryIntervention->getInterventionsRealiseesOuNonEtablissement($etablissement, true);
+        $interventionsDemandeesNonRealisees = $repositoryIntervention->getInterventionsRealiseesOuNonEtablissement($etablissement, false);
+        return $this->render('InterventionBundle:Etablissement:consultation.html.twig',array('etablissement' => $etablissement, 'listeInterventionsRealisees'=> $interventionsRealisees, 'listeInterventionsDemandeesNonRealisees'=> $interventionsDemandeesNonRealisees));
     }
 
     /**

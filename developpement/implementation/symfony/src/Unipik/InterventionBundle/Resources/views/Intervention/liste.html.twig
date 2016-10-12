@@ -9,7 +9,12 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
+    <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
+    <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <style>
+        #recherche_avancee_ville {
+            text-transform: uppercase;
+        }
 
         .twitter-typeahead .tt-query,
         .twitter-typeahead .tt-hint {
@@ -115,7 +120,38 @@
             }).on('changeDate', function (selected) {
                 $('#recherche_avancee_start').datepicker('setEndDate', new Date(selected.date.valueOf()));
             });
+
+
+
+            hide_or_show_intervention = function () {
+                if ($("#recherche_avancee_typeIntervention_0").is(':checked')) {
+                    $("#niveau").hide();
+                    $("#theme").hide();
+                }
+                if ($("#recherche_avancee_typeIntervention_1").is(':checked')) {
+                    $("#recherche_avancee_niveauFrimousse").hide();
+                    $("#recherche_avancee_niveauPlaidoyer").show();
+                    $("#theme").show();
+                    $("#niveau").show();
+                }
+                if ($("#recherche_avancee_typeIntervention_2").is(':checked')) {
+                    $("#recherche_avancee_niveauFrimousse").show();
+                    $("#recherche_avancee_niveauPlaidoyer").hide();
+                    $("#theme").hide();
+                    $("#niveau").show();
+                }
+                if ($("#recherche_avancee_typeIntervention_3").is(':checked')) {
+                    $("#theme").hide();
+                    $("#niveau").hide();
+                }
+            };
+
+            hide_or_show_intervention();
+
+            $("#recherche_avancee_typeIntervention").change(hide_or_show_intervention);
         });
+
+
         function deleteInterventions() {
             var conf = confirm('Souhaitez vous vraiment supprimer ces interventions ?');
 
@@ -169,6 +205,22 @@
             limit: 50
         });
 
+        var villes = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+            remote: {
+                url: '{{ path("architecture_ville_autocomplete") }}?term=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+
+        $('#recherche_avancee_ville').typeahead(null, {
+            name: 'villes',
+            source: villes,
+            limit: 50
+        });
+
         function sendIdToModal(id) {
             $("#attribution_idIntervention").attr("value", id);
         }
@@ -216,15 +268,27 @@
             {% else %}
                 {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
             {% endif %}
-            <h5>Type d'intervention :</h5>
-            {{ form_widget(form.typeIntervention) }}
-            <br/>
             <h5>Statut de l'intervention :</h5>
             {{ form_widget(form.statutIntervention) }}
             <br/>
+            <h5>Type d'intervention :</h5>
+            {{ form_widget(form.typeIntervention) }}
+            <br/>
+
+            <div id="niveau">
+                <h5> Niveau scolaire</h5>
+                {{ form_widget(form.niveauFrimousse, { 'attr': {'class': 'input-sm'} }) }}
+                {{ form_widget(form.niveauPlaidoyer, { 'attr': {'class': 'input-sm'} }) }}
+            </div>
+
+            <div id="theme">
+                <h5> Thème </h5>
+                {{ form_widget(form.theme, { 'attr': {'class': 'input-sm'} }) }}
+            </div>
+
+            <br/>
             <h5>Dates d'intervention :</h5>
             {{ form_widget(form.date) }}
-            <br/>
             <div id="between_dates">
                 Interventions entre le
                 {{ form_widget(form.start, { 'attr': {'class': 'input-sm'} }) }}
@@ -232,6 +296,8 @@
                 {{ form_widget(form.end, { 'attr': {'class': 'input-sm'} }) }}
             </div>
             <br/>
+            <h5> Ville </h5>
+            {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
             <div>
                 <input id="submit" type="submit" value="OK" class="btn btn-primary"/>
             </div>

@@ -289,9 +289,14 @@ class InterventionController extends Controller {
 
         $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
         $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
-        $statutIntervention =$form->get("statutIntervention")->getData(); //Récupération du statut de l'intervention
+        $statutIntervention = $form->get("statutIntervention")->getData(); //Récupération du statut de l'intervention
+        $niveauFrimousse = $form->get("niveauFrimousse")->getData();
+        $niveauPlaidoyer = $form->get("niveauPlaidoyer")->getData();
+        $ville = $form->get("ville")->getData();
+        $theme = $form->get("theme")->getData();
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
+
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
         $field = $request->get("field", "dateIntervention");
@@ -299,7 +304,7 @@ class InterventionController extends Controller {
 
         $repository = $this->getInterventionRepository();
 
-        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention);
+        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, null, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville);
 
 //        Création du formulaire pour la popup
         $fB = $this->get('form.factory')->createBuilder(AttributionType::class);

@@ -12,6 +12,7 @@ use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
 use FOS\UserBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Unipik\ArchitectureBundle\Form\Adresse\AdresseType;
 
@@ -80,8 +81,9 @@ class ProfileFormType extends BaseType {
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('nom')
-            ->add('telfixe')
-            ->add('prenom')
+            ->add('prenom', TextType::class, array('label' => 'Prénom'))
+            ->add('telfixe', TextType::class, array('label' => 'Téléphone fixe'))
+            ->add('telportable', TextType::class, array('label' => 'Téléphone portable'))
         ;
     }
 

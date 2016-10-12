@@ -331,6 +331,17 @@ class Benevole extends BaseUser
     }
 
     /**
+     * Remove all responsabilities and all activities.
+     *
+     * @return $this
+     */
+    public function removeAllResponsabilitesActivites(){
+        $this->responsabiliteActivite = "{}";
+        $this->activitesPotentielles = "{}";
+        return $this;
+    }
+
+    /**
      * Set adresse
      *
      * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse

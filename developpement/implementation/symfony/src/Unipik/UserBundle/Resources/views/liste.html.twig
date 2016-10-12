@@ -75,6 +75,8 @@
     <script src="{{ asset('vendor/typeahead.js/dist/typeahead.jquery.js') }}"></script>
     <script src="{{ asset('vendor/typeahead.js/dist/bloodhound.js') }}"></script>
     <script type="application/javascript">
+        $('input:checkbox').removeAttr('checked');
+
         function formatMultiple(name) {
             var tdElements = document.getElementsByName(name);
             for (var i = 0; i < tdElements.length; i++) {
@@ -98,21 +100,25 @@
         //        formatMultiple("resp");
 
         function deleteBenevoles() {
-            var selected = [];
+            var conf = confirm('Souhaitez vous vraiment supprimer ces bénévoles ?');
 
-            $("input:checkbox:checked").each(function () {
-                var $this = $(this);
-                selected.push($this.attr("id"));
-            });
+            if(conf) {
+                var selected = [];
 
-            var usernames = JSON.stringify(selected)
-
-            $.post("{{ path('user_admin_deletes') }}", {'usernames': usernames},
-                function (data, status) {
-                    for (i = 0; i < selected.length; i++) {
-                        $("#" + selected[i]).closest('tr').remove();
-                    }
+                $("input:checkbox:checked").each(function () {
+                    var $this = $(this);
+                    selected.push($this.attr("id"));
                 });
+
+                var usernames = JSON.stringify(selected)
+
+                $.post("{{ path('user_admin_deletes') }}", {'usernames': usernames},
+                        function (data, status) {
+                            for (i = 0; i < selected.length; i++) {
+                                $("#" + selected[i]).closest('tr').remove();
+                            }
+                        });
+            }
         }
 
         var villes = new Bloodhound({
@@ -321,10 +327,10 @@
                             </div>
                         {% else %}
                             <div class="col-lg-offset-1 col-sm-7 ">
-                                {% if ('plaidoyer' in benevole.responsabiliteActivite ) %}
+                                {% if ('plaidoyers' in benevole.responsabiliteActivite ) %}
                                         Plaidoyer <br>
                                 {% endif %}
-                                {% if ('frimousse' in benevole.responsabiliteActivite) %}
+                                {% if ('frimousses' in benevole.responsabiliteActivite) %}
                                         Frimousse <br>
                                 {% endif %}
                                 {% if ('actions_ponctuelles' in benevole.responsabiliteActivite) %}
@@ -401,16 +407,15 @@
             </tbody>
         </table>
     </section>
-
-    <div class="col-sm-offset-9 col-lg-offset-9 col-xs-offset-0 col-sm-3 col-lg-3 col-xs-offset-12">
-        <div class="row">
-            <a href="{{ path('fos_user_admin_register') }}">
-                <button type="button" class="btn btn-success">Ajouter un bénévole</button>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="buttons">
+            <a href="{{ path('fos_user_admin_register') }}  " class="btn btn-primary btn-danger">
+                <i class="glyphicon glyphicon-alert"></i> Ajouter un bénévole
             </a>
             <button type="button" class="btn btn-danger" onclick="deleteBenevoles()">Supprimer</button>
         </div>
-    </div>
-
+    {% endif %}
+    
     <div class="col-md-12 text-center">
         {% set pathReq = [] %}
         {% if app.request.query.get('desc') is not null %}

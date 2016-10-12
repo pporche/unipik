@@ -38,7 +38,7 @@ class EtablissementController extends Controller {
      */
     public function addAction(Request $request) {
         $institute = new Etablissement();
-        $form = $this->get('form.factory')->create(EtablissementType::class, $institute);
+        $form = $this->get('form.factory')->create(EtablissementType::class, $institute)->remove('etablissement_typeEnseignement_placeholder');
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $educationTypeArray = $form->get("typeEnseignement")->getData();
@@ -59,7 +59,7 @@ class EtablissementController extends Controller {
             $em->persist($institute);
             $em->flush();
 
-            return $this->redirectToRoute('architecture_homepage');
+            return $this->redirectToRoute('etablissement_view', array('id' => $institute->getId()));
         }
 
         return $this->render('InterventionBundle:Etablissement:ajouterEtablissement.html.twig', array('form' => $form->createView()));
@@ -108,6 +108,9 @@ class EtablissementController extends Controller {
 
         $typeEtablissement = $form->get("typeEtablissement")->getData();
         $ville = $form->get("ville")->getData();
+        $typeEnseignement = $form->get("typeEnseignement")->getData();
+        $typeCentre = $form->get("typeCentre")->getData();
+        $typeAutre = $form->get("typeAutreEtablissement")->getData();
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
         $field = $request->get("field", "nom");
@@ -115,7 +118,7 @@ class EtablissementController extends Controller {
 
         $repository = $this->getEtablissementRepository();
 
-        $listEtablissement = $repository->getType($typeEtablissement, $ville, $field, $desc);
+        $listEtablissement = $repository->getType($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre, $ville, $field, $desc);
 
         return $this->render('InterventionBundle:Etablissement:liste.html.twig', array(
             'field' => $field,

@@ -244,7 +244,7 @@
                 </a>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path("intervention_admin_delete", {'id': intervention.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'intervention {{ intervention.id }} ?')">
+                <a href="{{ path("intervention_admin_delete", {'id': intervention.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer cette intervention ?')">
                     <span class="glyphicon glyphicon-trash"> </span>&nbsp Supprimer
                 </a>
                 {% endif %}

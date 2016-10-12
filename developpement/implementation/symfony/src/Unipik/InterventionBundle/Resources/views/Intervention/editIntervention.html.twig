@@ -9,9 +9,19 @@
 
 {% block body %}
 
+    <h1>Modification d'une intervention</h1>
     <div class='well'>
 
         {{ form_start(form, {'method': 'post', 'action': path('intervention_edit', {'id': intervention.id}), 'attr': {'class': 'intervention_edit'}}) }}
+        {{ form_widget(form.TypeGeneral, {'attr': {'style': 'display: none'}}) }}
+        {% if intervention.plaidoyer %}
+            {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
+        {% elseif intervention.frimousse %}
+            {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
+        {% else %}
+            {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
+            {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
+        {% endif %}
         {{ form_widget(form) }}
         <div>
             <input type="submit" value="Modifier" class="btn btn-primary"/>

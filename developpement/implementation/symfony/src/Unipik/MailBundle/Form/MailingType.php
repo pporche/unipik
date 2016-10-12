@@ -6,31 +6,23 @@
  * Time: 15:14
  */
 
-namespace Unipik\InterventionBundle\Form\Intervention;
+namespace Unipik\MailBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 
-class ElevesType extends AbstractType {
+class MailingType extends AbstractType {
 
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
-        $optionTypeEtablissement = array( 'expanded' => true, 'multiple' => false, 'label' => "Type d'établissement",
+        $type = array( 'expanded' => true, 'multiple' => false, 'label' => "Type d'établissement",
             'choices' => [
-                'Scolaire' => 'scolaire',
-                'Centre de loisirs' => 'centreLoisir'
-            ],);
-
-
-        $optionNiveauScolaire = array( 'expanded' => true, 'multiple' => false, 'label' => "Niveau scolaire",
-            'choices' => [
-                'Maternel' => 'maternelle',
+                'Maternelle' => 'maternelle',
                 'Elémentaire' => 'elementaire',
                 'Collège' => 'college',
                 'Lycée' => 'lycee',
@@ -38,7 +30,7 @@ class ElevesType extends AbstractType {
             ],);
 
         $builder
-            ->add('nbEleves', IntegerType::class, array('label' => 'Nombre'))
+            ->add('type', ChoiceType::class, $type)
         ;
     }
 
@@ -46,6 +38,6 @@ class ElevesType extends AbstractType {
      * {@inheritdoc}
      */
     public function getBlockPrefix() {
-        return 'eleves';
+        return 'mailing';
     }
 }

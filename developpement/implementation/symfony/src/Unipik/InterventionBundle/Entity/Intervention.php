@@ -597,7 +597,7 @@ class Intervention
     public function isPlaidoyer()
     {
         $type = $this->getMaterielDispoPlaidoyer();
-        return isset($type);
+        return !($type->isEmpty());
     }
 
     /**
@@ -607,8 +607,8 @@ class Intervention
      */
     public function isFrimousse()
     {
-        $type = $this->getMateriauxFrimousse(); //TODO
-        return isset($type);
+        $type = $this->getMateriauxFrimousse();
+        return !($type->isEmpty());
     }
 
     /**
@@ -619,7 +619,7 @@ class Intervention
     public function isAutreIntervention()
     {
         $type = $this->getDescription();
-        return isset($type);
+        return !($type->isEmpty());
     }
 
 }

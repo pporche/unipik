@@ -8,6 +8,7 @@
 
 namespace Unipik\InterventionBundle\Form\Intervention;
 
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
@@ -15,7 +16,7 @@ use Unipik\InterventionBundle\Form\Intervention\MaterielFrimousseType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Unipik\ArchitectureBundle\Form\NiveauThemeType;
 
-class InterventionType extends AbstractFieldsetType {
+class InterventionTemplateType extends AbstractFieldsetType {
 
 
     /**
@@ -34,10 +35,10 @@ class InterventionType extends AbstractFieldsetType {
 
         $builder
             ->add('TypeGeneral',ChoiceType::class, $generalType)
-//            ->add('materiel', MaterielType::class, array('label' => 'Matériel'))
-//            ->add('materielFrimousse',MaterielFrimousseType::class, array('label' => 'Matériel frimousse'))
-//            ->add('participants', ElevesType::class, array('label' => 'Participants'))
-//            ->add('niveauTheme', NiveauThemeType::class)
+            ->add('materielDispoPlaidoyer', MaterielType::class, array('label' => 'Matériel'))
+            ->add('materiauxFrimousse',MaterielFrimousseType::class, array('label' => 'Matériel frimousse'))
+            ->add('nbPersonne', IntegerType::class, array('label' => 'Participants'))
+            ->add('niveauTheme', NiveauThemeType::class)
         ;
     }
 

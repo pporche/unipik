@@ -98,7 +98,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEnseignementsByType($typeEnseignement, $ville, $field, $desc) {
+    public function getEnseignementsByType($typeEnseignement, $ville = null, $field = null, $desc = null) {
         $results = array();
         foreach ($typeEnseignement as $te) {
             $qb = $this->createQueryBuilder('e');
@@ -121,20 +121,7 @@ class EtablissementRepository extends EntityRepository {
 
             $results = array_merge($results,$qb->getQuery()->getResult());
         }
-//        $qb = $this->createQueryBuilder('e');
-//
-//        for($i = 0; $i < (count($typeEnseignement)-1); $i+=1){
-//            $qb
-//                ->andWhere('e.typeEnseignement = :typeE');
-//
-//            if($ville){
-//                $this->whereVilleIs($qb,$ville);
-//            }
-//
-//            $qb ->setParameter('typeE',$typeEnseignement[$i]);
-//        }
-
-
+        
         return $results;
     }
 
@@ -146,7 +133,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCentresLoisirsByType($typeCentre, $ville, $field, $desc) {
+    public function getCentresLoisirsByType($typeCentre, $ville = null, $field = null , $desc = null) {
         $results = array();
         foreach ($typeCentre as $tc) {
             $qb = $this->createQueryBuilder('e');
@@ -170,20 +157,6 @@ class EtablissementRepository extends EntityRepository {
             $results = array_merge($results,$qb->getQuery()->getResult());
         }
 
-//        $qb = $this->createQueryBuilder('e');
-//
-//        for($i = 0; $i < (count($typeCentre)-1); $i+=1){
-//            $qb
-//                ->andWhere('e.typeCentre = :typeC');
-//
-//            if($ville){
-//                $this->whereVilleIs($qb,$ville);
-//            }
-//
-//            $qb ->setParameter('typeC',$typeCentre[$i]);
-//        }
-
-
         return $results;
     }
 
@@ -195,20 +168,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAutresEtablissementsByType($typeAutreEtablissement, $ville, $field, $desc) {
-//        $qb = $this->createQueryBuilder('e');
-//
-//        for($i = 0; $i < (count($typeAutreEtablissement)-1); $i+=1){
-//            $qb
-//                ->andWhere('e.typeAutreEtablissement = :typeAE');
-//
-//            if($ville){
-//                $this->whereVilleIs($qb,$ville);
-//            }
-//
-//            $qb ->setParameter('typeAE',$typeAutreEtablissement[$i]);
-//        }
-////
+    public function getAutresEtablissementsByType($typeAutreEtablissement, $ville = null, $field = null , $desc = null ) {
         $results = array();
         foreach ($typeAutreEtablissement as $tae) {
             $qb = $this->createQueryBuilder('e');

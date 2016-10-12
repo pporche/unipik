@@ -369,16 +369,16 @@
                         <td>
                             <a href="{{ path('etablissement_view', {'id':intervention.etablissement.id}) }}">
                                 {% if intervention.etablissement.nom %}
-                                    {{ intervention.etablissement.nom }} -
+                                    {{ intervention.etablissement.nom | capitalize }} -
                                 {% endif %}
-                                {{ intervention.etablissement.typeEnseignement }} {{ intervention.etablissement.typeCentre }} {{ intervention.etablissement.typeAutreEtablissement }}
+                                {{ intervention.etablissement.typeEnseignement | capitalize }} {{ intervention.etablissement.typeCentre | capitalize }} {{ intervention.etablissement.typeAutreEtablissement | capitalize }}
                             </a>
                         </td>
                         <td>
                             {% if intervention.plaidoyer %}
-                                {{ intervention.niveauTheme.niveau }}
+                                {{ intervention.niveauTheme.niveau | capitalize }}
                             {% elseif intervention.frimousse %}
-                                {{ intervention.niveauFrimousse }}
+                                {{ intervention.niveauFrimousse | capitalize }}
                             {% else %}
                                 -
                             {% endif %}
@@ -386,7 +386,7 @@
                         </td>
                         <td>
                             {% if intervention.plaidoyer %}
-                                {{ intervention.niveauTheme.theme }}
+                                {{ intervention.niveauTheme.theme | capitalize }}
                             {% elseif intervention.frimousse %}
                                 -
                             {% else %}
@@ -401,10 +401,7 @@
                             </p>
                             {% elseif intervention.benevole %}
                                 {% if user==intervention.benevole %}
-                                    <button name="desattribution" type="button" class="btn btn-danger"
-                                            onclick="desattributeIntervention(this, {{ intervention.id }})">
-                                        Se désattribuer l'intervention
-                                    </button>
+                                    
                                     {% if intervention.realisee %}
                                         <p class="text-success"> Réalisée <span class="glyphicon glyphicon-ok"></span></p>
                                     {% elseif intervention.benevole %}
@@ -428,11 +425,11 @@
                                         {% if is_granted('ROLE_ADMIN') %}
                                             <button name="desattribution" type="button" class="btn btn-danger"
                                                     onclick="desattributeInterventionAdmin(this, {{ intervention.id }})">
-                                                Retirer {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
+                                                Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
                                                 de l'intervention
                                             </button>
                                         {% else %}
-                                            Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
+                                            Attribuée à {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
                                         {% endif %}
                                     {% endif %}
                                 {% else %}

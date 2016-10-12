@@ -208,6 +208,61 @@
 {% endblock %}
 
 {% block body %}
+
+    <style>
+
+        @media only screen and (max-width: 900px) {
+
+            /* Force table to not be like tables anymore */
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr { border: 1px solid #ccc; }
+
+            td {
+                /* Behave  like a "row" */
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50% !important;
+                white-space: normal;
+                text-align:left;
+            }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align:left;
+                font-weight: bold;
+            }
+
+            /*
+            Label the data
+            */
+            td:before { content: attr(data-title); }
+        }
+    </style>
+
+
 <section class="col-lg-2 col-md-2 col-sm-2">
     <div class="row">
         <div class='well'>
@@ -354,10 +409,10 @@
                     <tbody id="myTable">
                     {% for intervention in liste %}
                     <tr>
-                        <td>{{ loop.index }}</td>
-                        <td>{{ intervention.etablissement.adresse.ville.nom }}</td>
-                        <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
-                        <td>
+                        <td data-title="#">{{ loop.index }}</td>
+                        <td data-title="Lieu">{{ intervention.etablissement.adresse.ville.nom }}</td>
+                        <td data-title="Date">{{ intervention.dateIntervention|date("d-m-Y") }}</td>
+                        <td data-title="Type">
                             {% if intervention.plaidoyer %}
                                 Plaidoyer
                             {% elseif intervention.frimousse %}
@@ -366,7 +421,7 @@
                                 Autre intervention
                             {% endif %}
                         </td>
-                        <td>
+                        <td  data-title="Etablissement">
                             <a href="{{ path('etablissement_view', {'id':intervention.etablissement.id}) }}">
                                 {% if intervention.etablissement.nom %}
                                     {{ intervention.etablissement.nom | capitalize }} -
@@ -374,7 +429,7 @@
                                 {{ intervention.etablissement.typeEnseignement | capitalize }} {{ intervention.etablissement.typeCentre | capitalize }} {{ intervention.etablissement.typeAutreEtablissement | capitalize }}
                             </a>
                         </td>
-                        <td>
+                        <td data-title="Classe">
                             {% if intervention.plaidoyer %}
                                 {{ intervention.niveauTheme.niveau | capitalize }}
                             {% elseif intervention.frimousse %}
@@ -384,7 +439,7 @@
                             {% endif %}
 
                         </td>
-                        <td>
+                        <td data-title="Thème">
                             {% if intervention.plaidoyer %}
                                 {{ intervention.niveauTheme.theme | capitalize }}
                             {% elseif intervention.frimousse %}
@@ -394,28 +449,28 @@
                             {% endif %}
 
                         </td>
-                        <td>
+                        <td data-title="Statut">
 
                             {% if intervention.realisee %}
                             <p class="text-success"> Réalisée <span class="glyphicon glyphicon-ok"></span>
                             </p>
                             {% elseif intervention.benevole %}
                                 {% if user==intervention.benevole %}
-                                    
+
                                     {% if intervention.realisee %}
                                         <p class="text-success"> Réalisée <span class="glyphicon glyphicon-ok"></span></p>
                                     {% elseif intervention.benevole %}
                                         {% if user==intervention.benevole %}
                                             <button name="desattribution" type="button" class="btn btn-danger"
                                                     onclick="desattributeIntervention(this, {{ intervention.id }})">
-                                                Se désattribuer l'intervention
+                                                Se la désattribuer
                                             </button>
                                         {% else %}
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <button name="desattribution" type="button" class="btn btn-danger"
                                                         onclick="desattributeInterventionAdmin(this, {{ intervention.id }})">
                                                     Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
-                                                    de l'intervention
+
                                                 </button>
                                             {% else %}
                                                 Attribuée à {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
@@ -426,7 +481,7 @@
                                             <button name="desattribution" type="button" class="btn btn-danger"
                                                     onclick="desattributeInterventionAdmin(this, {{ intervention.id }})">
                                                 Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
-                                                de l'intervention
+
                                             </button>
                                         {% else %}
                                             Attribuée à {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
@@ -437,23 +492,23 @@
                                         <button name="attribuer{{ intervention.id }}" type="button"
                                                 class="btn btn-primary" data-toggle="modal" data-target="#myModal"
                                                 onclick="sendIdToModal({{ intervention.id }})">
-                                            Attribuer l'intervention à
+                                            Attribuer  à
                                         </button>
                                     {% else %}
                                         <button name="attribution" type="button" class="btn btn-primary"
                                                 onclick="attributeIntervention(this, {{ intervention.id }})">
-                                            S'attribuer l'intervention
+                                            Se l'attribuer
                                         </button>
                                     {% endif %}
                                 {% endif %}
                             {% endif %}
                         </td>
-                        <td>
+                        <td data-title="Voir Détails">
                             <a href="{{ path('intervention_view', {id: intervention.id}) }}"
                                class="btn btn-primary">Voir détails</a>
                         </td>
                         {% if is_granted('ROLE_ADMIN') %}
-                            <td>
+                            <td data-title="Suprimer">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="type" id="{{ intervention.id }}">

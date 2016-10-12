@@ -7,33 +7,117 @@
 
 {#{%  endblock %}#}
 
-{#
-<form action="{{ path("fos_user_security_check") }}" method="post">
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-
-    <label for="username">{{ 'security.login.username'|trans }}</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-
-    <label for="password">{{ 'security.login.password'|trans }}</label>
-    <input type="password" id="password" name="_password" required="required" />
-
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-</form>
-#}
 
 {% extends "UserBundle::formTheme.html.twig" %}
 
+
 {% block body %}
+        <style>
+            @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+
+            body{
+                text-align: center;
+            }
+
+            div.container > div.container{
+                border: 2px solid #333333;
+                position: relative;
+                margin-top: 20vh !important;
+                border-radius: 20px;
+            }
+            .container{
+                max-width: 550px;
+                margin-left: auto !important;
+            }
+
+            div + .row{
+                margin-left: 0px !important;
+            }
+
+            input[type="password"], input[type="text"]{
+                max-width: 300px !important;
+                margin-left: 45px;
+                border-top: #ffffff;
+                border-right: #ffffff;
+                border-left: #ffffff;
+                border-bottom: 2.5px solid #333333;
+                margin-top: 10px;
+                box-shadow: none !important;
+            }
+            input:focus, .form-control:focus{
+                outline: none !important;
+                box-shadow: none;
+                border-bottom: 3px solid #1a6ecc;
+                transition: border-bottom 0.5s ease 0s;
+            }
+
+            h2{
+                font-family: 'Ubuntu Condensed', sans-serif;
+                text-align: center;
+                font-size: 45px !important;
+                margin-top: 70px;
+                margin-bottom: 50px;
+            }
+
+            form button{
+                border-radius: 10px !important;
+                margin-left: -70px !important;
+                background-color: #1a6ecc !important;
+                border:none !important;
+            }
+
+            input[type="checkbox"]{
+                margin-left: -30px !important;
+            }
+
+            .checkbox label{
+                font-family: 'Ubuntu Condensed', sans-serif;
+                font-size: 16px;
+                padding-left: 0px;
+            }
+            .control-label{
+                width: 250px !important;
+                font-family: 'Ubuntu Condensed', sans-serif;
+                font-size: 18px;
+                text-align: left !important;
+            }
+
+            div > img{
+                border: #00A5E3;
+            }
+
+            .logologin{
+                width: 180px;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                /* bring your own prefixes */
+                transform: translate(-50%, -270%);
+            }
+
+            .col-sm-10{
+                position: static !important;
+            }
+
+            @media(max-width: 470px){
+                input[type="password"], input[type="text"]{
+                    margin-left:0px;
+                }
+            }
+        </style>
+
     {% if error %}
         <div class="alert alert-dimissible alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <h4>Erreur !</h4>
-        <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
-    </div>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4>Erreur !</h4>
+            <p>{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+        </div>
     {% endif %}
+    <img src="{{ asset('img/unicef.jpeg') }}" alt="logo" class="logologin">
 
-{{ form(form) }}
+
+        {{ form(form) }}
+
+
+
 {% endblock %}

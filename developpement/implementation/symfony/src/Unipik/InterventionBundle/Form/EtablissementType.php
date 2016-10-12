@@ -22,7 +22,7 @@ class EtablissementType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
-        $educationChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
+        $educationChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false, 'placeholder' => false,
             'label' => 'Type d\'enseignement',
             'choices' => [
                 'Maternelle' => 'maternelle',
@@ -32,7 +32,7 @@ class EtablissementType extends AbstractType {
                 'Supérieur' => 'superieur'
             ],);
 
-        $centerChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
+        $centerChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false, 'placeholder' => false,
             'label' => 'Type de public du centre',
             'choices' => [
                 'Maternelle' => 'maternelle',
@@ -41,7 +41,7 @@ class EtablissementType extends AbstractType {
                 'Autre' => 'autre',
             ],);
 
-        $otherChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
+        $otherChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false, 'placeholder' => false,
             'label' => 'Type d\'établissement',
             'choices' => [
                 'Mairie' => 'mairie',

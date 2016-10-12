@@ -140,7 +140,7 @@
                 return false;
             });
 
-            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un.
             if (index == 0) {
                 addEmail($container);
             } else {
@@ -156,7 +156,7 @@
                 // - le texte "__name__label__" qu'il contient par le label du champ
                 // - le texte "__name__" qu'il contient par le numéro du champ
                 var template = $container.attr('data-prototype')
-                                .replace(/__name__label__/g, 'Email n°' + (index+1))
+                                .replace(/__name__label__/g, 'Email')
                                 .replace(/__name__/g,        index)
                         ;
 
@@ -184,12 +184,43 @@
                 // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
                 $deleteLink.click(function(e) {
                     $prototype.remove();
-
                     e.preventDefault(); // évite qu'un # apparaisse dans l'URL
                     return false;
                 });
             }
         });
+
+        document.getElementById('etablissement_TypeGeneral').addEventListener('change',function(e){
+            switch (e.target.value){
+                case 'ens' :
+                    keepInstitute();
+                    break;
+                case 'centre' :
+                    keepCenter();
+                    break;
+                case 'autre' :
+                    keepOther();
+                    break;
+            }
+        });
+
+        function keepInstitute(){
+            $(".form-group:eq(5)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
+        }
+
+        function keepCenter(){
+            $(".form-group:eq(7)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
+        }
+
+        function keepOther(){
+            $(".form-group:eq(6)").fadeIn("medium").removeAttr("disabled");
+            $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
+        }
     </script>
 {% endblock %}
 

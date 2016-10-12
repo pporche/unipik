@@ -110,18 +110,22 @@
             });
         });
         function deleteInterventions() {
-            var selected = [];
-            $("input:checkbox[name=type]:checked").each(function () {
-                var $this = $(this);
-                selected.push($this.attr("id"));
-            });
-            var ids = JSON.stringify(selected);
-            $.post("{{ path('intervention_admin_deletes') }}", {'ids': ids},
-                function (data, status) {
-                    for (i = 0; i < selected.length; i++) {
-                        $("#" + selected[i]).closest('tr').remove();
-                    }
+            var conf = confirm('Souhaitez vous vraiment supprimer ces interventions ?');
+
+            if(conf) {
+                var selected = [];
+                $("input:checkbox[name=type]:checked").each(function () {
+                    var $this = $(this);
+                    selected.push($this.attr("id"));
                 });
+                var ids = JSON.stringify(selected);
+                $.post("{{ path('intervention_admin_deletes') }}", {'ids': ids},
+                        function (data, status) {
+                            for (i = 0; i < selected.length; i++) {
+                                $("#" + selected[i]).closest('tr').remove();
+                            }
+                        });
+            }
         }
 
         function desattributeIntervention(event, id) {
@@ -190,7 +194,7 @@
             $('#myModal').modal('hide');
         });
 
-//        $('#recherche_avancee_statutIntervention_2').hide();
+        //        $('#recherche_avancee_statutIntervention_2').hide();
 //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
     </script>
 {% endblock %}
@@ -363,10 +367,10 @@
                                             {% else %}
                                                 {% if is_granted('ROLE_ADMIN') %}
                                                     <button name="desattribution" type="button" class="btn btn-danger" onclick="desattributeInterventionAdmin(this, {{ intervention.id }})">
-                                                        Retirer {{ intervention.benevole.prenom }} {{ intervention.benevole.nom  }} de l'intervention
+                                                        Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }} de l'intervention
                                                     </button>
                                                 {% else %}
-                                                    Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}
+                                                    Attribuée à {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
                                                 {% endif %}
                                             {% endif %}
                                         {% else %}

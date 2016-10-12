@@ -98,21 +98,25 @@
         //        formatMultiple("resp");
 
         function deleteBenevoles() {
-            var selected = [];
+            var conf = confirm('Souhaitez vous vraiment supprimer ces bénévoles ?');
 
-            $("input:checkbox:checked").each(function () {
-                var $this = $(this);
-                selected.push($this.attr("id"));
-            });
+            if(conf) {
+                var selected = [];
 
-            var usernames = JSON.stringify(selected)
-
-            $.post("{{ path('user_admin_deletes') }}", {'usernames': usernames},
-                function (data, status) {
-                    for (i = 0; i < selected.length; i++) {
-                        $("#" + selected[i]).closest('tr').remove();
-                    }
+                $("input:checkbox:checked").each(function () {
+                    var $this = $(this);
+                    selected.push($this.attr("id"));
                 });
+
+                var usernames = JSON.stringify(selected)
+
+                $.post("{{ path('user_admin_deletes') }}", {'usernames': usernames},
+                        function (data, status) {
+                            for (i = 0; i < selected.length; i++) {
+                                $("#" + selected[i]).closest('tr').remove();
+                            }
+                        });
+            }
         }
 
         var villes = new Bloodhound({

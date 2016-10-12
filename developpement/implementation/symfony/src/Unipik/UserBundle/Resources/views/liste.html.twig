@@ -75,6 +75,8 @@
     <script src="{{ asset('vendor/typeahead.js/dist/typeahead.jquery.js') }}"></script>
     <script src="{{ asset('vendor/typeahead.js/dist/bloodhound.js') }}"></script>
     <script type="application/javascript">
+        $('input:checkbox').removeAttr('checked');
+
         function formatMultiple(name) {
             var tdElements = document.getElementsByName(name);
             for (var i = 0; i < tdElements.length; i++) {

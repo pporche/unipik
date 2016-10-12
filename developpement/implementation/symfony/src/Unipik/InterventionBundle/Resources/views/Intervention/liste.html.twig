@@ -74,6 +74,8 @@
     <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script>
+        $('input:checkbox').removeAttr('checked');
+
         $(document).ready(function() {
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',

@@ -64,7 +64,6 @@
     <div class='well'>
 
         {{ form_start(form, {'method': 'post', 'action': path('intervention_edit', {'id': intervention.id}), 'attr': {'class': 'intervention_edit'}}) }}
-        {{ form_widget(form.TypeGeneral, {'attr': {'style': 'display: none'}}) }}
         {% if intervention.plaidoyer %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
         {% elseif intervention.frimousse %}

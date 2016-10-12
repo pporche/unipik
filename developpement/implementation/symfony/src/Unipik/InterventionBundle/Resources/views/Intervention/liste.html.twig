@@ -9,8 +9,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
-    <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
-    <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
+    <link rel="stylesheet" href="{{ asset("vendor/chosen/chosen.css") }}"/>
     <style>
         #recherche_avancee_ville {
             text-transform: uppercase;
@@ -75,6 +74,62 @@
 
 
     </style>
+    <style>
+
+        @media only screen and (max-width: 900px) {
+
+            /* Force table to not be like tables anymore */
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                border: 1px solid #ccc;
+            }
+
+            td {
+                /* Behave  like a "row" */
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50% !important;
+                white-space: normal;
+                text-align: left;
+            }
+
+            td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            /*
+            Label the data
+            */
+            td:before {
+                content: attr(data-title);
+            }
+        }
+    </style>
 {% endblock %}
 
 {% block javascripts %}
@@ -83,10 +138,12 @@
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
+    <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
     <script>
         $('input:checkbox').removeAttr('checked');
 
         $(document).ready(function () {
+
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',
                 showPrevNext: true,
@@ -128,14 +185,14 @@
                     $("#theme").hide();
                 }
                 if ($("#recherche_avancee_typeIntervention_1").is(':checked')) {
-                    $("#recherche_avancee_niveauFrimousse").hide();
-                    $("#recherche_avancee_niveauPlaidoyer").show();
+                    $("#recherche_avancee_niveauFrimousse_chosen").hide();
+                    $("#recherche_avancee_niveauPlaidoyer_chosen").show();
                     $("#theme").show();
                     $("#niveau").show();
                 }
                 if ($("#recherche_avancee_typeIntervention_2").is(':checked')) {
-                    $("#recherche_avancee_niveauFrimousse").show();
-                    $("#recherche_avancee_niveauPlaidoyer").hide();
+                    $("#recherche_avancee_niveauFrimousse_chosen").show();
+                    $("#recherche_avancee_niveauPlaidoyer_chosen").hide();
                     $("#theme").hide();
                     $("#niveau").show();
                 }
@@ -145,9 +202,13 @@
                 }
             };
 
+            $(".chosen-select").chosen({width: "95%"});
+
             hide_or_show_intervention();
 
             $("#recherche_avancee_typeIntervention").change(hide_or_show_intervention);
+
+
         });
 
 
@@ -252,6 +313,8 @@
             $('#myModal').modal('hide');
         });
 
+
+
         //        $('#recherche_avancee_statutIntervention_2').hide();
         //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
         //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
@@ -259,63 +322,6 @@
 {% endblock %}
 
 {% block body %}
-
-    <style>
-
-        @media only screen and (max-width: 900px) {
-
-            /* Force table to not be like tables anymore */
-            table,
-            thead,
-            tbody,
-            th,
-            td,
-            tr {
-                display: block;
-            }
-
-            /* Hide table headers (but not display: none;, for accessibility) */
-            thead tr {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-
-            tr {
-                border: 1px solid #ccc;
-            }
-
-            td {
-                /* Behave  like a "row" */
-                border: none;
-                border-bottom: 1px solid #eee;
-                position: relative;
-                padding-left: 50% !important;
-                white-space: normal;
-                text-align: left;
-            }
-
-            td:before {
-                /* Now like a table header */
-                position: absolute;
-                /* Top/left values mimic padding */
-                top: 6px;
-                left: 6px;
-                width: 45%;
-                padding-right: 10px;
-                white-space: nowrap;
-                text-align: left;
-                font-weight: bold;
-            }
-
-            /*
-            Label the data
-            */
-            td:before {
-                content: attr(data-title);
-            }
-        }
-    </style>
 
 
     <section class="col-lg-2 col-md-2 col-sm-2">
@@ -335,13 +341,13 @@
 
                 <div id="niveau">
                     <h5> Niveau scolaire</h5>
-                    {{ form_widget(form.niveauFrimousse, { 'attr': {'class': 'input-sm'} }) }}
-                    {{ form_widget(form.niveauPlaidoyer, { 'attr': {'class': 'input-sm'} }) }}
+                    {{ form_widget(form.niveauFrimousse, { 'attr': {'class': 'input-sm chosen-select'} }) }}
+                    {{ form_widget(form.niveauPlaidoyer, { 'attr': {'class': 'input-sm chosen-select'} }) }}
                 </div>
 
                 <div id="theme">
                     <h5> Thème </h5>
-                    {{ form_widget(form.theme, { 'attr': {'class': 'input-sm'} }) }}
+                    {{ form_widget(form.theme, { 'attr': {'class': 'input-sm chosen-select'} }) }}
                 </div>
 
                 <br/>

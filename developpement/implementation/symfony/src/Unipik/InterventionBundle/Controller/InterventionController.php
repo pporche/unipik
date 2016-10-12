@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Intervention;
 use Unipik\InterventionBundle\Form\DemandeType;
 use Unipik\InterventionBundle\Form\Intervention\AttributionType;
-use Unipik\InterventionBundle\Form\Intervention\InterventionTemplateType;
+use Unipik\InterventionBundle\Form\Intervention\InterventionType;
 use Unipik\UserBundle\Entity\Contact;
 use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\Etablissement;
@@ -72,7 +72,7 @@ class InterventionController extends Controller {
 
         $intervention = $repository->find(array('id' => $id));
 
-        $form = $this->createForm(InterventionTemplateType::class, $intervention);
+        $form = $this->createForm(InterventionType::class, $intervention);
 
 
         if($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {

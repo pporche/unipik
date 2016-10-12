@@ -56,9 +56,11 @@ class InterventionRepository extends EntityRepository {
             case "frimousse":
                 $this->getFrimousses($qb, $start, $end, $dateChecked);
                 if($niveauFrimousse){
-                    foreach($niveauFrimousse as $nivF) {
-                        $this->whereNiveauxFrimousse($qb, $nivF);
+                    $req = "i.niveauFrimousse = '".$niveauFrimousse[0]."'";
+                    for($i=1;$i<count($niveauFrimousse);$i++) {
+                        $req = $req." OR i.niveauFrimousse = '".$niveauFrimousse[$i]."'";
                     }
+                    $qb->andWhere($req);
                 }
                 break;
             case "autreIntervention":
@@ -116,6 +118,10 @@ class InterventionRepository extends EntityRepository {
             }else{
                 $qb->orderBy('i.dateIntervention','ASC');
             }
+        }
+
+        if($ville){
+            $this->whereVilleIs($qb,$ville);
         }
 
         return $qb
@@ -318,17 +324,19 @@ class InterventionRepository extends EntityRepository {
     }
 
 
-    public function whereNiveauxPlaidoyer(QueryBuilder $qb, $n){
+    /**
+     * Where ville is
+     *
+     * @param QueryBuilder $qb
+     * @param $ville
+     */
+    public function whereVilleIs(QueryBuilder $qb, $ville) {
         $qb
-            ->andWhere('i.niveauTheme = nt')
-            ->andWhere('nt.niveau = :ni')
-            ->setParameter('ni',$n);
-    }
-
-
-    public function whereNiveauxFrimousse(QueryBuilder $qb, $n){
-        $qb
-            ->andWhere('i.niveauFrimousse = :ni')
-            ->setParameter('ni',$n);
+            ->from('Unipik\InterventionBundle\Entity\Etablissement','e')
+            ->andWhere('i.etablissement = e')
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
+            ->andWhere('e.adresse = a')
+            ->andWhere('a.ville = :ville')
+            ->setParameter('ville',$ville);
     }
 }

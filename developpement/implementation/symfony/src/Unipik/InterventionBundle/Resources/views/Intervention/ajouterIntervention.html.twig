@@ -1,78 +1,164 @@
-{# version 1.00, date 04/10/2016, auteur François Decq #}
+{# version 1.00, date 14/05/2016, auteur Florian Leriche #}
 {% extends "InterventionBundle::layout.html.twig" %}
 
-{% block title %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #etablissement_adresse_ville {
+            text-transform: uppercase;
+        }
+        .twitter-typeahead .tt-query,
+        .twitter-typeahead .tt-hint {
+            margin-bottom: 0;
+        }
+        .tt-hint {
+            display: none;
+            width: 100%;
+            height: 43px;
+            padding: 10px 18px;
+            font-size: 14px;
+            line-height: 1.428571429;
+            color: #999;
+            vertical-align: middle;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        }
+        .tt-menu {
+            min-width: 160px;
+            margin-top: 2px;
+            padding: 5px 0;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            background-clip: padding-box;
+            max-height: 150px;
+            overflow-y: auto;
 
-    Ajouter une intervention - {{ parent() }}
+        }
+        .tt-suggestion {
+            display: block;
+            padding: 3px 20px;
+        }
+        .tt-suggestion.tt-is-under-cursor {
+            color: #fff;
+            background-color: #428bca;
+        }
+        .tt-suggestion.tt-is-under-cursor a {
+            color: #fff;
+        }
+        .tt-suggestion p {
+            margin: 0;
+        }
+
+
+
+    </style>
 
 {% endblock %}
 
-{% block body %}
-    <h2>Ajout d'une intervention</h2>
-    {{ form(form) }}
-{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('vendor/typeahead.js/dist/typeahead.jquery.js') }}"></script>
+    <script src="{{ asset('vendor/typeahead.js/dist/bloodhound.js') }}"></script>
+    <script>
+        var villes = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+            remote: {
+                url: '{{ path("architecture_ville_autocomplete") }}?term=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
 
-{%block javascripts %}
-    {{ parent() }}
-    {{ parent() }}
-    <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
-    <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
-    <script type="application/javascript">
-        console.log('début du javascript de l\'ambiance');
-        var addInterElt = document.createElement('a');
-        addInterElt.id = 'add_intervention';
-        buttonAddElement = document.createElement('button');
-        buttonAddElement.className = 'btn btn-info';
-        buttonAddElement.textContent = 'Ajouter une Intervention';
-        addInterElt.appendChild(buttonAddElement);
-        document.getElementById('demande_Intervention').appendChild(addInterElt);
+        $('#etablissement_adresse_ville').typeahead(null, {
+            name: 'villes',
+            source: villes,
+            limit: 50
+        });
+
+        var codesPostaux = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+            remote: {
+                url: '{{ path("architecture_code_autocomplete") }}?term=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+
+        $('#etablissement_adresse_codePostal').typeahead(null, {
+            name: 'codesPostaux',
+            source: codesPostaux,
+            limit: 5
+        });
+
+
+        $('#etablissement_adresse_ville').change(function () {
+            var ville = $(etablissement_adresse_ville).val().toUpperCase();
+            console.log(ville);
+            $('#etablissement_adresse_codePostal').val("");
+            $.post("{{ path('architecture_code_postal') }}", {'ville': ville},
+                    function (data, status) {
+                        $('#etablissement_adresse_codePostal').val(data.codePostal);
+                    });
+        });
+
+        $('#etablissement_adresse_codePostal').change(function () {
+            var codePostal = $(etablissement_adresse_codePostal).val();
+            console.log(codePostal);
+            $('#etablissement_adresse_ville').val("");
+            $.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},
+                    function (data, status) {
+                        $('#etablissement_adresse_ville').val(data.ville);
+                    });
+        });
+
+    </script>
+
+    <script type="text/javascript">
         $(document).ready(function() {
-
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-            var $container = $('div#demande_Intervention');
+            var $container = $('div#etablissement_emails');
 
             // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
             var index = $container.find(':input').length;
 
             // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-            $('#add_intervention').click(function(e) {
-                addIntervention($container);
+            $('#add_email').click(function(e) {
+                addEmail($container);
+
                 e.preventDefault(); // évite qu'un # apparaisse dans l'URL
                 return false;
             });
 
-
-            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-
+            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un.
             if (index == 0) {
-
-                addIntervention($container);
-
+                addEmail($container);
             } else {
-
                 // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
-
                 $container.children('div').each(function() {
-
                     addDeleteLink($(this));
-
                 });
-
             }
 
-
             // La fonction qui ajoute un formulaire CategoryType
-
-            function addIntervention($container) {
+            function addEmail($container) {
                 // Dans le contenu de l'attribut « data-prototype », on remplace :
                 // - le texte "__name__label__" qu'il contient par le label du champ
                 // - le texte "__name__" qu'il contient par le numéro du champ
-
                 var template = $container.attr('data-prototype')
-                                .replace(/__name__label__/g, 'Intervention n°' + (index+1))
+                                .replace(/__name__label__/g, 'Email')
                                 .replace(/__name__/g,        index)
                         ;
-
 
                 // On crée un objet jquery qui contient ce template
                 var $prototype = $(template);
@@ -83,7 +169,6 @@
                 // On ajoute le prototype modifié à la fin de la balise <div>
                 $container.append($prototype);
 
-                $("#add_intervention").appendTo($container).css('margin-left', '80%');
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;
             }
@@ -92,8 +177,10 @@
             function addDeleteLink($prototype) {
                 // Création du lien
                 var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+
                 // Ajout du lien
                 $prototype.append($deleteLink);
+
                 // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
                 $deleteLink.click(function(e) {
                     $prototype.remove();
@@ -101,26 +188,18 @@
                     return false;
                 });
             }
-
         });
-    </script>
 
-    <script type="application/javascript">
-        document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change',function(e){
+        document.getElementById('etablissement_TypeGeneral').addEventListener('change',function(e){
             switch (e.target.value){
                 case 'ens' :
                     keepInstitute();
-                    $('.form-group:eq(8)').fadeIn("fast");
                     break;
                 case 'centre' :
                     keepCenter();
-                    $('.form-group:eq(8)').fadeOut("fast");
-                    $('#demande_Etablissement_uai').val('');
                     break;
                 case 'autre' :
                     keepOther();
-                    $('.form-group:eq(8)').fadeOut("fast");
-                    $('#demande_Etablissement_uai').val('');
                     break;
             }
         });
@@ -135,209 +214,13 @@
             $(".form-group:eq(7)").fadeIn("medium").removeAttr("disabled");
             $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
             $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
-
         }
 
         function keepOther(){
             $(".form-group:eq(6)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
             $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
         }
-
-        function verifyAll(e){
-            // verifyNumber(e);
-            verifyCP(e);
-            verifyMail(e);
-            showUAI();
-            if($('#demande_Etablissement_uai').val().trim())
-                verifyUAI(e);
-
-        }
-
-        function verifyNumber(e){
-            var re = /(0)[1-9][0-9]{8}/;
-            if(!(re.test($('#demande_Contact_telFixe').value) && re.test($('#demande_Contact_telPortable').value))){
-                e.preventDefault();
-                e.stopPropagation();
-                alert("Numéro de téléphone au mauvais format");
-                $('#demande_Contact_telFixe').css('border-color', 'red');
-                $('#demande_Contact_telPortable').css('border-color', 'red');
-            }else{
-                $('#demande_Contact_telFixe').removeAttr('border-color');
-                $('#demande_Contact_telPortable').removeAttr('border-color');
-            }
-        }
-
-        function verifyCP(e){
-
-            if(!(/[0-9]{5}/.test($('#demande_Etablissement_adresse_codePostal').val()))){
-                e.preventDefault();
-                e.stopPropagation();
-                $('#demande_Etablissement_adresse_codePostal').css('border-color', 'red');
-                alert("Code Postal au mauvais format");
-            }else
-                $('#demande_Etablissement_adresse_codePostal').removeAttr('border-color');
-
-        }
-
-        function verifyMail(e){
-            var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-            if(!(re.test($('#demande_Etablissement_emails').val()) && re.test($('#demande_Contact_email').val()))){
-                $('#demande_Etablissement_emails').css('border-color', 'red');
-                $('#demande_Contact_email').css('border-color', 'red');
-                alert("E-mail au mauvais format");
-                e.preventDefault();
-                e.stopPropagation();
-            }
-            else {
-                $('#demande_Etablissement_emails').removeAttr('border-color');
-                $('#demande_Contact_email').removeAttr('border-color');
-            }
-
-        }
-
-        function verifyUAI(e){
-            console.log(verifyCodeUai($('#demande_Etablissement_uai').val()));
-            if(!verifyCodeUai($('#demande_Etablissement_uai').val())){
-                e.stopPropagation();
-                e.preventDefault();
-                $('#demande_Etablissement_uai').css('border-color', 'red');
-                alert("UAI au mauvais format, veuillez ne pas en indiquer si ce champs pose problème");
-            }else{
-                $('#demande_Etablissement_uai').removeAttr('border-color');
-            }
-        }
-
-        function verifyCodeUai(codeUai){
-            // alphabet pris en compte (23 lettres, sans I, O et Q)
-            var alphabet = 'abcdefghijklmnopqrstuvwxyz';
-
-            // On supprime les espaces et on met tout en minuscules
-            var codeUaiPropre = codeUai.trim().toLowerCase();
-
-            // On récupère les chiffres et les lettres dans des variables séparées
-            var codeUaiPropreChiffres = codeUaiPropre.substring(0,7);
-            var codeUaiPropreLettre = codeUaiPropre.substring(7);
-
-            // Le rang de la lettre correspond au reste de la division par 23
-            var rangCalcule = codeUaiPropreChiffres % 23 ;
-
-            // On récupère la lettre calculée dans l'alphabet
-            var lettreCalculee = alphabet[rangCalcule] ;
-            console.log(alphabet[rangCalcule]);
-            console.log(lettreCalculee);
-            console.log(alphabet[rangCalcule] == lettreCalculee);
-
-            // On compare la lettre du code UAI à la lettre calculée et on retourne TRUE ou FALSE
-            return codeUaiPropreLettre == lettreCalculee;
-        }
-
-        document.addEventListener('submit',verifyAll);
-
-
-
-        function construction(item) {
-            var newLineElt = document.createElement('tr');
-            var columnHeadElt = document.createElement('td');
-            $(item.getElementsByTagName('label')[0]).detach().appendTo($(columnHeadElt));
-            $(columnHeadElt).detach().appendTo($(newLineElt));
-            while(item.getElementsByTagName('input').length > 0){
-                var columnElt = document.createElement('td');
-                var inputElt = item.getElementsByTagName('input')[0];
-                $(inputElt).detach().appendTo($(columnElt));
-                $(columnElt).detach().appendTo($(newLineElt));
-            }
-
-            $(newLineElt).detach().appendTo($(tblElt));
-        }
-
-        function constructHeader(item){
-            console.log(item);
-            var theadElt = document.createElement('thead');
-            var newLineElt = document.createElement('tr');
-            var columnHeadElt = document.createElement('th');
-            columnHeadElt.textContent = '#';
-            $(columnHeadElt).detach().appendTo($(newLineElt));
-            while(item.length > 0){
-                var columnElt = document.createElement('th');
-                var inputElt = item[0];
-                $(inputElt).detach().appendTo($(columnElt));
-                $(columnElt).detach().appendTo($(newLineElt));
-            }
-            $(newLineElt).detach().appendTo($(theadElt));
-            $(theadElt).detach().appendTo($(tblElt));
-        }
-
-        var tblElt = document.createElement('table');
-        $(tblElt).addClass('table table-bordered table-striped');
-
-        for(var i =0; i < document.getElementsByClassName('form-group form-group')[16].getElementsByClassName('form-group').length; i++){
-            construction(document.getElementsByClassName('form-group form-group')[16].getElementsByClassName('form-group')[i]);
-        }
-
-        constructHeader(document.getElementsByClassName('form-group form-group')[16].getElementsByClassName('form-group')[0].getElementsByTagName('label'));
-
-        //$(tblElt).detach().appendTo($(document.getElementsByClassName('form-group form-group')[16]));
-        $('#demande_jour').replaceWith($(tblElt));
-
-        //document.getElementsByClassName('form-group form-group')[16]
-        //initialisation
-        $('.form-group:eq(8)').fadeOut("fast");
-        switch($("#demande_Etablissement_TypeGeneral").val()){
-            case 'ens' :
-                keepInstitute();
-                break;
-            case 'centre' :
-                keepCenter();
-                break;
-            case 'autre' :
-                keepOther();
-                break;
-        }
-
-        $('#demande_plageDate_debut').addClass('week-picker');
-        $('#demande_plageDate_fin').addClass('week-picker');
-        $(function() {
-            var startDate;
-            var endDate;
-
-            var selectCurrentWeek = function() {
-                window.setTimeout(function () {
-                    $('.week-picker').find('.ui-datepicker-current-day a').addClass('ui-state-active')
-                }, 1);
-            }
-
-            $('.week-picker').datepicker( {
-                showOtherMonths: true,
-                selectOtherMonths: true,
-                language :'fr',
-                onSelect: function(dateText, inst) {
-                    var date = $(this).datepicker('getDate');
-                    startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
-                    endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6);
-                    var dateFormat = inst.settings.dateFormat || $.datepicker._defaults.dateFormat;
-                    $('#startDate').text($.datepicker.formatDate( dateFormat, startDate, inst.settings ));
-                    $('#endDate').text($.datepicker.formatDate( dateFormat, endDate, inst.settings ));
-
-                    selectCurrentWeek();
-                },
-                beforeShowDay: function(date) {
-                    var cssClass = '';
-                    if(date >= startDate && date <= endDate)
-                        cssClass = 'ui-datepicker-current-day';
-                    return [true, cssClass];
-                },
-                onChangeMonthYear: function(year, month, inst) {
-                    selectCurrentWeek();
-                }
-            });
-
-            $('.week-picker .ui-datepicker-calendar tr').on('mousemove', function() { $(this).find('td a').addClass('ui-state-hover'); });
-            $('.week-picker .ui-datepicker-calendar tr').on('mouseleave', function() { $(this).find('td a').removeClass('ui-state-hover'); });
-        });
-
-        $('.date-pick').datepicker();
-
     </script>
     <style>
         @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
@@ -390,3 +273,21 @@
         }
     </style>
 {% endblock %}
+
+
+
+{% block body %}
+    <h1>Ajout d'une intervention</h1>
+    <hr>
+    <div class='well'>
+
+        {{ form_start(form, {'method': 'post', 'action': path('etablissement_admin_add'), 'attr': {'class': 'etablissement_admin_add'}}) }}
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" value="Inscrire" class="btn btn-primary"/>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}
+

@@ -38,8 +38,11 @@ class InterventionController extends Controller {
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function addAction(Request $request) {
-        $intervention = new Intervention();
-        $form = $this->createForm(DemandeType::class, $intervention);
+        $repo = $this->getInterventionRepository();
+        $intervention = $repo->findOneBy(array('id' => 15));
+//        $intervention = new Intervention();
+
+        $form = $this->createForm(InterventionType::class, $intervention);
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             /*$educationTypeArray = $form->get("typeEnseignement")->getData();
@@ -67,10 +70,10 @@ class InterventionController extends Controller {
     public function editAction(Request $request, $id) {
         $repository = $this->getInterventionRepository();
 
-        $intervention = $repository->findOneBy(array('id' => $id));
-        $form = $this->get('form.factory')
-            ->createBuilder(InterventionTemplateType::class)
-            ->getForm();
+        $intervention = $repository->find(array('id' => $id));
+
+        $form = $this->createForm(InterventionTemplateType::class, $intervention);
+
 
         if($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
@@ -289,9 +292,14 @@ class InterventionController extends Controller {
 
         $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
         $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
-        $statutIntervention =$form->get("statutIntervention")->getData(); //Récupération du statut de l'intervention
+        $statutIntervention = $form->get("statutIntervention")->getData(); //Récupération du statut de l'intervention
+        $niveauFrimousse = $form->get("niveauFrimousse")->getData();
+        $niveauPlaidoyer = $form->get("niveauPlaidoyer")->getData();
+        $ville = $form->get("ville")->getData();
+        $theme = $form->get("theme")->getData();
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
+
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
         $field = $request->get("field", "dateIntervention");
@@ -299,7 +307,7 @@ class InterventionController extends Controller {
 
         $repository = $this->getInterventionRepository();
 
-        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention);
+        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, null, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville);
 
 //        Création du formulaire pour la popup
         $fB = $this->get('form.factory')->createBuilder(AttributionType::class);
@@ -345,7 +353,7 @@ class InterventionController extends Controller {
 
         $repository = $this->getInterventionRepository();
 
-        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, $user);
+        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, $user, null, null, null, null);
 
         //        Création du formulaire pour la popup
         $fB = $this->get('form.factory')->createBuilder(AttributionType::class);

@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Unipik\ArchitectureBundle\Form\Adresse\VilleType;
 
 
 class RechercheAvanceeType extends AbstractType
@@ -41,7 +41,7 @@ class RechercheAvanceeType extends AbstractType
                 'Réalisées' => 'realisees',
             ],);
 
-        $niveauFrimousse = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'required' => false,
+        $niveauFrimousse = array( 'expanded' => false, 'multiple' => true, 'mapped' => false, 'required' => false,
             'choices' => [
                 'CP' => 'CP',
                 'CP/CE1' => 'CP-CE1',
@@ -54,7 +54,7 @@ class RechercheAvanceeType extends AbstractType
                 'CM2' => 'CM2'
             ],);
 
-        $niveauPlaidoyer = array('expanded' => true, 'multiple' => true, 'mapped' => false, 'required' => false,
+        $niveauPlaidoyer = array('expanded' => false, 'multiple' => true, 'mapped' => false, 'required' => false,
             'choices' => [
                 'Petite Section' => 'petite section',
                 'Petite/Moyenne Section' => 'petite-moyenne section',
@@ -88,9 +88,28 @@ class RechercheAvanceeType extends AbstractType
             ]
         );
 
+        $theme = array('expanded' => false, 'multiple' => true, 'mapped' => false, 'required' => false,
+            'choices' =>[
+                //  "Le millénaire pour le développement" => 'millenaire pour le developpement', // ajout ajout plus tard
+                //   "Le rôle de l Unicef" => 'role de l Unicef', // ajout plus tard
+                "Convention internationale des Droits de l'Enfant" => 'convention internationale des droits de l enfant',
+                "L'éducation" => 'education',
+                "La santé - Alimentation" => 'sante et alimentation',
+                "L'eau" => 'eau',
+                "Le harcèlement" => 'harcelement',
+                "La santé (en général)" => 'sante en generale',
+                "Le travail des enfants" => 'travail des enfants',
+                "Les enfants soldats" => 'enfants et soldats',
+                "Les urgences mondiales" => 'urgences mondiales',
+                "VIH et sida" => 'VIH et sida',
+            ],);
+
         $builder
             ->add('typeIntervention', ChoiceType::class, $optionChoiceType)
             ->add('statutIntervention', ChoiceType::class, $statutChoiceType)
+            ->add('niveauFrimousse', ChoiceType::class, $niveauFrimousse)
+            ->add('niveauPlaidoyer', ChoiceType::class, $niveauPlaidoyer)
+            ->add('theme', ChoiceType::class, $theme)
             ->add('date', CheckboxType::class, array(
                 'label'    => 'Toutes',
                 'required' => false,
@@ -117,6 +136,7 @@ class RechercheAvanceeType extends AbstractType
                 'format' => 'dd-MM-yyyy',
                 'required' => false
             ))
+            ->add('ville',VilleType::class, array('required' => false) )
         ;
     }
 

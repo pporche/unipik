@@ -12,5 +12,12 @@ parameters:
     mailer_port: 587
     mailer_encryption: tls
     mailer_auth_mode: login
+    second_mailer_host: smtp.sfr.fr
+    second_mailer_user: florian.leriche@neuf.fr
+    second_mailer_password: biscotte
+    second_mailer_port: 587
+    second_mailer_encryption: tls
+    second_mailer_auth_mode: login
+    second_mailer_transport: smtp
     locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt

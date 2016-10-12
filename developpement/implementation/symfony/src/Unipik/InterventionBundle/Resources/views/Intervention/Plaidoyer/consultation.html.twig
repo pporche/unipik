@@ -5,16 +5,19 @@
 
 {%  block contenu %}
 
-    <div class="col-sm-4 col-xs-12">
-        <dl>
+    {% if intervention.niveauTheme %}
+        <div class="col-sm-5 col-xs-12  col-md-4">
+	  <dl>
             <dt>
-                <span class="glyphicon glyphicon-picture"></span> Thème :
+                <span class="glyphicon glyphicon-grain"></span> &nbsp Thème:
             </dt>
-        </dl>
-    </div>
-    <div class="col-sm-6 col-xs-offset-1 col-xs-11">
-        <em>{{ intervention.niveauTheme.theme | capitalize}}</em>
-    </div>
+	  </dl>
+        </div>
+        <div class="col-sm-5 col-xs-offset-1 col-xs-11 col-md-7">
+            <em> {{ intervention.niveauTheme.theme | capitalize }} </em>
+        </div>
+    {% endif %}
+
     <div class="col-sm-4 col-xs-12">
         <dl>
             <dt>

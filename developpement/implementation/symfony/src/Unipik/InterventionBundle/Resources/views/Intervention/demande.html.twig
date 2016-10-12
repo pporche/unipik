@@ -484,9 +484,9 @@
         }
 
         function verifyAll(e){
-           // verifyNumber(e);
+            verifyNumber(e);
             verifyCP(e);
-           // verifyMail(e);
+            //verifyMail(e);
             showUAI();
             if($('#demande_Etablissement_uai').val().trim())
                 verifyUAI(e);
@@ -495,15 +495,18 @@
 
         function verifyNumber(e){
             var re = /(0)[1-9][0-9]{8}/;
-            if(!(re.test($('#demande_Contact_telFixe').value) && re.test($('#demande_Contact_telPortable').value))){
+            if(!(re.test($('#demande_Contact_telFixe').val()) && re.test($('#demande_Contact_telPortable').val()) && re.test($('#demande_Etablissement_telFixe').val()))){
                 e.preventDefault();
                 e.stopPropagation();
                 alert("Numéro de téléphone au mauvais format");
                 $('#demande_Contact_telFixe').css('border-color', 'red');
                 $('#demande_Contact_telPortable').css('border-color', 'red');
+                $('#demande_Etablissement_telFixe').css('border-color', 'red');
+
             }else{
                 $('#demande_Contact_telFixe').removeAttr('border-color');
                 $('#demande_Contact_telPortable').removeAttr('border-color');
+                $('#demande_Etablissement_telFixe').removeAttr('border-color');
             }
         }
 

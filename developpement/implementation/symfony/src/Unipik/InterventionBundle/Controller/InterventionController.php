@@ -111,6 +111,7 @@ class InterventionController extends Controller {
             $this->cast($contactPers, $test);
             $contactPers->setRespoEtablissement($test->isRespoEtablissement());
             $contactPers->setTypeContact($test->getTypeContact());
+
             // handle the interventions
             $interventionsRawList = $form->get('Intervention')->getData();
 
@@ -128,7 +129,6 @@ class InterventionController extends Controller {
             }
 
             $this->treatmentInterventions($interventionsRawList,$interventionList);
-            return \Doctrine\Common\Util\Debug::dump(($interventionsRawList[1]['niveauTheme']->getNiveau()));
 
             $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);

@@ -77,7 +77,8 @@
     <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script>
-
+        $('input:checkbox').removeAttr('checked');
+        
         $(document).ready(function() {
             $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage }} });
 
@@ -177,21 +178,25 @@
         });
 
         function deleteEtablissements() {
-            var selected = [];
+            var conf = confirm('Souhaitez vous vraiment supprimer ?');
 
-            $("input:checkbox[name=type]:checked").each(function(){
-                var $this = $(this);
-                selected.push($this.attr("id"));
-            });
+            if(conf) {
+                var selected = [];
 
-            var ids = JSON.stringify(selected);
+                $("input:checkbox[name=type]:checked").each(function(){
+                    var $this = $(this);
+                    selected.push($this.attr("id"));
+                });
 
-            $.post("{{ path('etablissement_admin_deletes') }}", {'ids':ids},
-                    function(data, status) {
-                        for(i=0;i<selected.length;i++){
-                            $("#"+selected[i]).closest('tr').remove();
-                        }
-                    });
+                var ids = JSON.stringify(selected);
+
+                $.post("{{ path('etablissement_admin_deletes') }}", {'ids':ids},
+                        function(data, status) {
+                            for(i=0;i<selected.length;i++){
+                                $("#"+selected[i]).closest('tr').remove();
+                            }
+                        });
+            }
         }
 
 
@@ -315,7 +320,7 @@
                 </div>
                 {% if is_granted('ROLE_ADMIN') %}
                 <div class="buttons">
-                    <a href="{#{ path('architecture_intervention_add') }#}" class="btn btn-primary btn-danger">
+                    <a href="{{ path('etablissement_admin_add') }}" class="btn btn-primary btn-danger">
                         <i class="glyphicon glyphicon-alert"></i> Ajouter un établissement
                     </a>
                     <button type="button" class="btn btn-danger" onclick="deleteEtablissements()">Supprimer</button>

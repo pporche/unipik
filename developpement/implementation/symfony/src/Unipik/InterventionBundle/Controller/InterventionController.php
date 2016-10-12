@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Intervention;
 use Unipik\InterventionBundle\Form\DemandeType;
 use Unipik\InterventionBundle\Form\Intervention\AttributionType;
-use Unipik\InterventionBundle\Form\Intervention\InterventionType;
+use Unipik\InterventionBundle\Form\Intervention\InterventionTemplateType;
 use Unipik\UserBundle\Entity\Contact;
 use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\Etablissement;
@@ -69,7 +69,7 @@ class InterventionController extends Controller {
 
         $intervention = $repository->findOneBy(array('id' => $id));
         $form = $this->get('form.factory')
-            ->createBuilder(InterventionType::class)
+            ->createBuilder(InterventionTemplateType::class)
             ->getForm();
 
         if($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
@@ -128,7 +128,7 @@ class InterventionController extends Controller {
             }
 
             $this->treatmentInterventions($interventionsRawList,$interventionList);
-
+            return \Doctrine\Common\Util\Debug::dump(($interventionsRawList[1]['niveauTheme']->getNiveau()));
 
             $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);
@@ -149,7 +149,7 @@ class InterventionController extends Controller {
             $centreTypeArray = $etablissement->get("typeCentre")->getData();
             $institute->setTypeCentre($centreTypeArray);
 
-            $institute->removeAllEmails;
+            $institute->removeAllEmails();
 
             $emails = $etablissement->get("emails")->getData();
 

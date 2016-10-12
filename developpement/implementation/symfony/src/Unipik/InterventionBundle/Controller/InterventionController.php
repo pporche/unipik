@@ -67,10 +67,10 @@ class InterventionController extends Controller {
     public function editAction(Request $request, $id) {
         $repository = $this->getInterventionRepository();
 
-        $intervention = $repository->findOneBy(array('id' => $id));
-        $form = $this->get('form.factory')
-            ->createBuilder(InterventionTemplateType::class)
-            ->getForm();
+        $intervention = $repository->find(array('id' => $id));
+
+        $form = $this->createForm(InterventionTemplateType::class, $intervention);
+
 
         if($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();

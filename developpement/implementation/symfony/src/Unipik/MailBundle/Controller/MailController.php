@@ -22,7 +22,7 @@ class MailController extends Controller {
             ->setTo('onch1@yopmail.com')
             ->setBody(
                 $this->renderView(
-                    'MailBundle::emailToast.txt.twig',
+                    'MailBundle::emailMaternelle.html.twig',
                     array('name' => $name)
                 ),
                 'text/html'
@@ -59,7 +59,7 @@ class MailController extends Controller {
                     ->setTo($email)
                     ->setBody(
                         $this->renderView(
-                            'MailBundle::emailToast.html.twig',
+                            'MailBundle::emailMaternelle.html.twig',
                             array('id' => $i)
                         ),
                         'text/html'

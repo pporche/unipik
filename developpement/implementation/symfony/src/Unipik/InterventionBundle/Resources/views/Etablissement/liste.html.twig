@@ -316,8 +316,6 @@
                     <table class="table table-striped table-hover" id="tableEtablissements">
                         <thead>
                             <tr>
-                                <th>#</th>
-
                                 {% set pathReq = [] %}
                                 {% if app.request.query.get('recherche_avancee') is not null %}
                                     {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
@@ -344,7 +342,6 @@
                         <tbody id="myTable">
                             {% for etablissement in liste %}
                                 <tr>
-                                    <td data-title="#">{{ loop.index }}</td>
                                     <td data-title="Nom">{{ etablissement.nom }}</td>
                                     <td data-title="Adresse">{{ etablissement.adresse.ville.nom }}</td>
                                     <td data-title="Type">

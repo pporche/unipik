@@ -56,7 +56,6 @@ class InterventionTest extends  EntityTestCase
             ->setNbPersonne(15)
             ->setRealisee(true)
             ->setDateIntervention(new \DateTime('2010-10-10'))
-            ->setDescription("Long texte de description")
             ->setHeure("18:00")
             ->setLieu("nulle part")
             ->setRemarques("remarque très intéressante")
@@ -72,26 +71,37 @@ class InterventionTest extends  EntityTestCase
         $this->assertEquals(15,                             $i->getNbPersonne());
         $this->assertEquals(true,                           $i->isRealisee());
         $this->assertEquals(new \DateTime('2010-10-10'),    $i->getDateIntervention());
-        $this->assertEquals("Long texte de description",    $i->getDescription());
         $this->assertEquals("18:00",                        $i->getHeure());
         $this->assertEquals("nulle part",                   $i->getLieu());
         $this->assertEquals("remarque très intéressante",   $i->getRemarques());
         $this->assertEquals("CE2-CM1",                      $i->getNiveauFrimousse());
 
+        $this->assertEquals(false,                          $i->isPlaidoyer());
         $i->addMaterielDispoPlaidoyer("videoprojecteur");
         $this->assertEquals("videoprojecteur", $i->getMaterielDispoPlaidoyer()[0]);
+        $this->assertEquals(true,                           $i->isPlaidoyer());
         $i->removeMaterielDispoPlaidoyer("videoprojecteur");
         $this->assertEquals(null, $i->getMaterielDispoPlaidoyer()[0]);
+        $this->assertEquals(false,                          $i->isPlaidoyer());
 
+
+        $this->assertEquals(false,                          $i->isFrimousse());
         $i->addMateriauxFrimousse("patron");
         $this->assertEquals("patron", $i->getMateriauxFrimousse()[0]);
+        $this->assertEquals(true,                           $i->isFrimousse());
         $i->removeMateriauxFrimousse("patron");
         $this->assertEquals(null, $i->getMateriauxFrimousse()[0]);
+        $this->assertEquals(false,                          $i->isFrimousse());
 
 
-        $this->assertEquals(true,                           $i->isPlaidoyer());
-        $this->assertEquals(true,                           $i->isFrimousse());
+        $this->assertEquals(false,                           $i->isAutreIntervention());
+        $i->setDescription("Long texte de description");
+        $this->assertEquals("Long texte de description",    $i->getDescription());
         $this->assertEquals(true,                           $i->isAutreIntervention());
+        $i->setDescription("");
+        $this->assertEquals("",    $i->getDescription());
+        $this->assertEquals(false,                           $i->isAutreIntervention());
+
     }
 
     public function validEntityProvider() {

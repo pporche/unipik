@@ -619,7 +619,7 @@ class Intervention
     public function isAutreIntervention()
     {
         $type = $this->getDescription();
-        return !($type->isEmpty());
+        return !($type == "");
     }
 
 }

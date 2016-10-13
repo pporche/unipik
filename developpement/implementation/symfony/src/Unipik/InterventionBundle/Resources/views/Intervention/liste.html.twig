@@ -3,7 +3,9 @@
 {% extends "InterventionBundle::layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }}
+
+    Liste des interventions - {{ parent() }}
+
 {% endblock %}
 
 {% block stylesheets %}
@@ -261,7 +263,11 @@
                     $(event).attr('class', 'btn btn-danger');
                     $(event).text('Se désattribuer l\'intervention');
                     $(event).attr("onclick", "desattributeIntervention(this, " + id + ")");
-                });
+                })
+                    .fail(function() {
+                        alert( "Cette intervention a déjà été attribuée à un bénévole !" );
+                        window.location.replace('{{ path("intervention_list") }}');
+                    });
         }
 
         var benevoles = new Bloodhound({
@@ -415,7 +421,6 @@
                     <table class="table table-striped table-hover" id="tableIntervention">
                         <thead>
                         <tr>
-                            <th>#</th>
                             {% set pathReq = [] %}
                             {% if app.request.query.get('recherche_avancee') is not null %}
                                 {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
@@ -505,7 +510,6 @@
                             {% else %}
                             <tr>
                             {% endif %}
-                                <td data-title="#">{{ loop.index }}</td>
                                 <td data-title="Lieu">{{ intervention.etablissement.adresse.ville.nom }}</td>
                                 <td data-title="Date">{{ intervention.dateIntervention|date("d-m-Y") }}</td>
                                 <td data-title="Type">

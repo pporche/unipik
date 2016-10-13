@@ -4,6 +4,7 @@ namespace Unipik\InterventionBundle\Controller;
 
 use Doctrine\ORM\Repository\RepositoryFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -244,7 +245,7 @@ class InterventionController extends Controller {
 
             $session->getFlashBag()->add('notice', array(
                 'title' => 'Félicitation',
-                'message' => 'Votre demande d\'intervention a bien été enregistrée. Nous vous contacterons sous peu',
+                'message' => 'Votre demande d\'intervention a bien été enregistrée. Nous vous contacterons sous peu.',
                 'alert' => 'success'
             ));
 
@@ -521,6 +522,10 @@ class InterventionController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('InterventionBundle:Intervention');
             $intervention = $repository->find($id);
+
+            if($intervention->getBenevole() != null) {
+                throw new Exception("Exception");
+            }
 
             $intervention->setBenevole($user);
 

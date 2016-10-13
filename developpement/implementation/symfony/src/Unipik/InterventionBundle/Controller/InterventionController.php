@@ -106,11 +106,11 @@ class InterventionController extends Controller {
 
         $form = $this->createForm(DemandeType::class, $demande);
 
-        $repository = $this->getDoctrine()->getManager();
-        $repository = $repository->getRepository('InterventionBundle:Etablissement');
-
-        $instituteTest = $repository->find(1450);
-        $form->get('Etablissement')->setData($instituteTest);
+//        $repository = $this->getDoctrine()->getManager();
+//        $repository = $repository->getRepository('InterventionBundle:Etablissement');
+//
+//        $instituteTest = $repository->find(690);
+//        $form->get('Etablissement')->setData($instituteTest);
 
         $form->handleRequest($request);
 
@@ -252,26 +252,26 @@ class InterventionController extends Controller {
             return $this->RedirectToRoute('architecture_homepage');
         }
 
-        $typeEtablissementEncoded = [];
-        if($instituteTest->getTypeEnseignement()){
-            $typeEtablissementEncoded = array(
-                'ens' => $instituteTest->getTypeEnseignement()
-            );
-        }
-        else if($instituteTest->getTypeCentre()){
-            $typeEtablissementEncoded = array(
-                'centre' => $instituteTest->getTypeCentre()
-            );
-        }else{
-            $typeEtablissementEncoded = array(
-                'autre' => $instituteTest->getTypeAutreEtablissement()
-            );
-        }
+//        $typeEtablissementEncoded = [];
+//        if($instituteTest->getTypeEnseignement()){
+//            $typeEtablissementEncoded = array(
+//                'ens' => $instituteTest->getTypeEnseignement()
+//            );
+//        }
+//        else if($instituteTest->getTypeCentre()){
+//            $typeEtablissementEncoded = array(
+//                'centre' => $instituteTest->getTypeCentre()
+//            );
+//        }else{
+//            $typeEtablissementEncoded = array(
+//                'autre' => $instituteTest->getTypeAutreEtablissement()
+//            );
+//        }
 
 
         return $this->render('InterventionBundle:Intervention:demande.html.twig', array(
             'form' => $form->createView(),
-            'typEnseignement' => json_encode($typeEtablissementEncoded)
+            //'typEnseignement' => json_encode($typeEtablissementEncoded)
         ));
     }
 

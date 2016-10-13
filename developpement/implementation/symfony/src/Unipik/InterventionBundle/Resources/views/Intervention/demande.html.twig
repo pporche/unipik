@@ -464,7 +464,7 @@
             }
         });
 
-        var typeInstitute = {{ typEnseignement | raw}};
+        var typeInstitute = '' {#{{ typEnseignement | raw}} #};
         if(typeInstitute.hasOwnProperty('autre')){
             console.log(typeInstitute);
             $('#demande_Etablissement_TypeGeneral').val('autre');

@@ -16,6 +16,7 @@ class MaterielFrimousseType extends AbstractType{
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
+     * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $optionChoiceType = array( 'expanded' => true, 'multiple' => true, 'label' => false,
@@ -32,6 +33,7 @@ class MaterielFrimousseType extends AbstractType{
 
     /**
      * {@inheritdoc}
+     * renvoie materielFrimousse
      */
     public function getBlockPrefix() {
         return 'materielFrimousse';

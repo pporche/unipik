@@ -67,6 +67,12 @@ class InterventionController extends Controller {
         return $this->render('InterventionBundle:Intervention:ajouterIntervention.html.twig', array('form' => $form->createView()));
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * edit intervention
+     */
     public function editAction(Request $request, $id) {
         $repository = $this->getInterventionRepository();
 
@@ -92,6 +98,7 @@ class InterventionController extends Controller {
     /**
      * @param $request Request
      * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention.
+     * demande d'intervention
      */
     public function demandeAction(Request $request) {
 
@@ -270,6 +277,7 @@ class InterventionController extends Controller {
 
     /**
      * @return Response Renvoie vers la page de consultation liée à l'établissement.
+     * get consultation
      */
     public function getConsultationVue() {
         return $this->render('InterventionBundle:Intervention:consultation.html.twig');
@@ -279,6 +287,7 @@ class InterventionController extends Controller {
      * @param $id integer Id de l'intervention.
      * @return Response Permet de récupérer la vue consultation pour l'héritage.
      * @Route("/intervention/{id}", name="intervention_view")
+     * consulter une action
      */
     public function consultationAction($id) {
         $em = $this->getDoctrine()->getManager();
@@ -299,7 +308,8 @@ class InterventionController extends Controller {
     }
 
     /**
-     * @return RepositoryFactory Renvoie le repository Intervention.
+     * @return RepositoryFactory
+     * Renvoie le repository Intervention.
      */
     public function getInterventionRepository() {
         $em = $this->getDoctrine()->getManager();
@@ -307,7 +317,9 @@ class InterventionController extends Controller {
     }
 
     /**
-     * @return Response Renvoie vers la page affichant les établissements en passant en paramètre la liste des interventions.
+     * @param une requête $request
+     * @return Response
+     * Renvoie vers la page affichant les établissements en passant en paramètre la liste des interventions.
      */
     public function listeAction(Request $request) {
         $user = $this->getUser();
@@ -358,7 +370,9 @@ class InterventionController extends Controller {
     }
 
     /**
-     * @return Response Renvoie vers la page d'attribution d'intervention.
+     * @param une requête $request
+     * @return Response
+     * Renvoie vers la page d'attribution d'intervention.
      */
     public function attribueesAction(Request $request) {
         $user = $this->getUser();
@@ -403,8 +417,9 @@ class InterventionController extends Controller {
     }
 
     /**
-     * @param $id
+     * @param id $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * supprimer intervention
      */
     public function supprimerAction($id) {
         $em = $this->getDoctrine()->getManager();
@@ -419,6 +434,7 @@ class InterventionController extends Controller {
     /**
      * @param Request $request
      * @return Response
+     * supprimer intervention
      */
     public function deleteInterventionsAction(Request $request) {
         if ($request->isXmlHttpRequest()) {
@@ -441,6 +457,7 @@ class InterventionController extends Controller {
     /**
      * @param Request $request
      * @return Response
+     * Attribuer une intervention a un benevole
      */
     public function attributionABenevoleAction(Request $request) {
         if ($request->isXmlHttpRequest()) {
@@ -468,6 +485,7 @@ class InterventionController extends Controller {
     /**
      * @param Request $request
      * @return Response
+     * désattribuer l'intervention a un bénévole
      */
     public function desattributionAction(Request $request) {
         if ($request->isXmlHttpRequest()) {
@@ -486,6 +504,11 @@ class InterventionController extends Controller {
         return new Response();
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     * attribuer a un bénévole
+     */
     public function attributionAction(Request $request) {
         if ($request->isXmlHttpRequest()) {
             $user = $this->getUser();
@@ -608,6 +631,11 @@ class InterventionController extends Controller {
         $this->treatmentAftNoon(array_keys($moments,'apres-midi'),$demande);
     }
 
+    /**
+     * @param array $days
+     * @param Demande $demande
+     * traite les matins
+     */
     function treatmentMorning(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande){
         foreach($days as $day) {
             $moment = new MomentHebdomadaire();
@@ -620,6 +648,11 @@ class InterventionController extends Controller {
         }
     }
 
+    /**
+     * @param array $days
+     * @param Demande $demande
+     * traite les apres midi
+     */
     function treatmentAftNoon(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande){
         foreach($days as $day) {
             $moment = new MomentHebdomadaire();
@@ -632,6 +665,11 @@ class InterventionController extends Controller {
         }
     }
 
+    /**
+     * @param array $days
+     * @param Demande $demande
+     * liste les jours a eviter
+     */
     function treatmentAvoidDay(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande) {
         foreach($days as $day) {
             $moment = new MomentHebdomadaire();
@@ -658,6 +696,11 @@ class InterventionController extends Controller {
         }
     }
 
+    /**
+     * @param array $days
+     * @param Demande $demande
+     * liste les jours complets
+     */
     function treatmentAllDay(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande) {
         foreach($days as $day) {
             $moment = new MomentHebdomadaire();
@@ -684,13 +727,23 @@ class InterventionController extends Controller {
         }
     }
 
-    function linkAllMoments($moments,\Unipik\InterventionBundle\Entity\Demande &$demande ) {
+    /**
+     * @param $moments
+     * @param Demande $demande
+     * liste les moments voulus
+     */
+    function linkAllMoments($moments, \Unipik\InterventionBundle\Entity\Demande &$demande ) {
         foreach($moments as $moment) {
             $demande->addMomentsVoulus($moment);
         }
     }
 
-    function linkAllBMoments($moments,\Unipik\InterventionBundle\Entity\Demande &$demande ) {
+    /**
+     * @param $moments
+     * @param Demande $demande
+     * liste les moments a éviter
+     */
+    function linkAllBMoments($moments, \Unipik\InterventionBundle\Entity\Demande &$demande ) {
         foreach($moments as $moment) {
             $demande->addMomentsAEviter($moment);
         }

@@ -17,6 +17,7 @@ class RemarquesType extends AbstractFieldsetType {
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
+     * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
@@ -26,6 +27,7 @@ class RemarquesType extends AbstractFieldsetType {
 
     /**
      * {@inheritdoc}
+     * renvoie remarques
      */
     public function getBlockPrefix() {
         return 'remarques';

@@ -23,7 +23,8 @@ class EtablissementController extends Controller {
 
     /**
      * @param $id integer Id de l'établissement souhaitant réaliser une demande.
-     * @return Response Renvoie vers la page de consultation liée à l'établissement.
+     * @return Response
+     * Renvoie vers la page de consultation liée à l'établissement.
      */
     public function consultationAction($id) {
         $em = $this->getDoctrine()->getManager();
@@ -38,6 +39,7 @@ class EtablissementController extends Controller {
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * ajoute un etablissement
      */
     public function addAction(Request $request) {
         $institute = new Etablissement();
@@ -68,6 +70,11 @@ class EtablissementController extends Controller {
         return $this->render('InterventionBundle:Etablissement:ajouterEtablissement.html.twig', array('form' => $form->createView()));
     }
 
+    /**
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * supprime un etablissement
+     */
     public function deleteEtablissementAction($id) {
         $em = $this->getDoctrine()->getEntityManager();
         $institute = $this->getEtablissementRepository()->findOneBy(array('id' => $id));
@@ -77,6 +84,11 @@ class EtablissementController extends Controller {
         return $this->redirectToRoute('etablissement_list');
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     * supprime des etablissements
+     */
     public function deleteEtablissementsAction(Request $request) {
         if($request->isXmlHttpRequest()) {
             $ids = json_decode($request->request->get('ids'));
@@ -95,6 +107,7 @@ class EtablissementController extends Controller {
 
     /**
      * @return \Doctrine\Common\Persistence\ObjectRepository|\Unipik\InterventionBundle\Entity\EtablissementRepository
+     * renvoie les etablissements
      */
     public function getEtablissementRepository(){
         $em = $this->getDoctrine()->getManager();
@@ -102,7 +115,8 @@ class EtablissementController extends Controller {
     }
 
     /**
-     * @return Response Renvoie vers la page affichant la liste des données des établissements.
+     * @return Response
+     * Renvoie vers la page affichant la liste des données des établissements.
      */
     public function listeAction(Request $request) {
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
@@ -135,6 +149,7 @@ class EtablissementController extends Controller {
 
     /**
      * @return mixed
+     * modification d'un etablissement
      */
     public function editAction(Request $request, $id) {
         $institute = $this->getEtablissementRepository()

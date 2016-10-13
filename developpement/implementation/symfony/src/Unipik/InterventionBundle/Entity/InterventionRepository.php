@@ -237,7 +237,7 @@ class InterventionRepository extends EntityRepository {
      * Get Interventions réalisées ou non réalisées d'un bénévole
      *
      * @param boolean $realisees
-     *@param \Unipik\UserBundle\Entity\Benevole $benevole
+     * @param \Unipik\UserBundle\Entity\Benevole $benevole
      *
      * @return \Doctrine\Common\Collections\Collection
      */

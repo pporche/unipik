@@ -245,7 +245,7 @@ class InterventionController extends Controller {
 
             $session->getFlashBag()->add('notice', array(
                 'title' => 'Félicitation',
-                'message' => 'Votre demande d\'intervention a bien été enregistrée. Nous vous contacterons sous peu',
+                'message' => 'Votre demande d\'intervention a bien été enregistrée. Nous vous contacterons sous peu.',
                 'alert' => 'success'
             ));
 

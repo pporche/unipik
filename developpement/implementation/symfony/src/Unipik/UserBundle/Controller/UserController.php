@@ -21,6 +21,8 @@ use Unipik\UserBundle\Form\RegistrationType;
 class UserController extends Controller {
 
     /**
+     * Create the Benevole Repository
+     *
      * @return \Doctrine\Common\Persistence\ObjectRepository|BenevoleRepository
      */
     public function getBenevoleRepository(){
@@ -29,6 +31,8 @@ class UserController extends Controller {
     }
 
     /**
+     * Render list of volunteers
+     *
      * @param Request $request
      * @return Response
      */
@@ -98,6 +102,8 @@ class UserController extends Controller {
     }
 
     /**
+     * Delete a volunteer from the database
+     *
      * @param $volunteer
      */
     private function deleteVolunteers($volunteer) {
@@ -119,6 +125,8 @@ class UserController extends Controller {
     }
 
     /**
+     * Modify volunteer from the database
+     *
      * @param Request $request
      * @return Response
      */
@@ -191,7 +199,12 @@ class UserController extends Controller {
         return $this->render('UserBundle:Profile:editBenevole.html.twig', array('form' => $form->createView()));
     }
 
-
+    /**
+     * Autocomplete user inputs
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function autocompleteAction(Request $request){
         $username = array();
         $term = trim(strip_tags($request->get('term')));

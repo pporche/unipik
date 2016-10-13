@@ -104,6 +104,7 @@ class ProfileController extends BaseController {
 
     /**
      * Show the user
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction() {
         $user = $this->getUser();

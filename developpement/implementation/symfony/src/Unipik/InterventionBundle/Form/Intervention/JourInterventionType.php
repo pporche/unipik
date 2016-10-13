@@ -17,6 +17,7 @@ class JourInterventionType extends AbstractType {
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
+     * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
 
@@ -38,6 +39,7 @@ class JourInterventionType extends AbstractType {
 
     /**
      * {@inheritdoc}
+     * renvoie jour_intervention
      */
     public function getBlockPrefix() {
         return 'jour_intervention';

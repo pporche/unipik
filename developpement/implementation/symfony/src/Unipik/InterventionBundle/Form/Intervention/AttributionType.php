@@ -31,6 +31,7 @@ class AttributionType extends AbstractFieldsetType {
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
+     * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
@@ -43,6 +44,7 @@ class AttributionType extends AbstractFieldsetType {
 
     /**
      * {@inheritdoc}
+     * renvoie attribution
      */
     public function getBlockPrefix() {
         return 'attribution';

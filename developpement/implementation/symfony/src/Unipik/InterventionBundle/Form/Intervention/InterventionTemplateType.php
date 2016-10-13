@@ -22,6 +22,7 @@ class InterventionTemplateType extends AbstractFieldsetType {
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
+     * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
 
@@ -44,6 +45,7 @@ class InterventionTemplateType extends AbstractFieldsetType {
 
     /**
      * {@inheritdoc}
+     * renvoie intervention
      */
     public function getBlockPrefix() {
         return 'intervention';

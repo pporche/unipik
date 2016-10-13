@@ -28,6 +28,8 @@ use Unipik\ArchitectureBundle\Form\Adresse\VilleType;
 class RegistrationType extends AbstractType {
 
     /**
+     * Build a form
+     *
      * @param FormBuilderInterface $builder
      * @param array $options
      */

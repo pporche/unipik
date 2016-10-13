@@ -15,6 +15,12 @@ use Unipik\MailBundle\Service\SecondMail;
  */
 class MailController extends Controller {
 
+    /**
+     * Render the mailing view
+     *
+     * @param $name
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function sendFormAction($name) {
         $message = \Swift_Message::newInstance()
             ->setSubject('Hello Email')
@@ -34,6 +40,12 @@ class MailController extends Controller {
         return $this->redirectToRoute('architecture_homepage');
     }
 
+    /**
+     * Render the view to send the email
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function mailingEtablissementAction(Request $request) {
         $form = $this->get('form.factory')
             ->createBuilder(MailingType::class)

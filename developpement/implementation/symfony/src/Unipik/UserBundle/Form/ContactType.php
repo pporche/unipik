@@ -31,7 +31,7 @@ class ContactType extends AbstractType {
                     'Enseignant' => 'enseignant',
                     'Étudiant' => 'etudiant',
                     'Animateur' => 'animateur',
-                    'Élève' => 'élève',
+                    'Élève' => 'eleve',
                     'Autre' => 'autre'
                 )
             ))

@@ -19,6 +19,7 @@ class ElevesType extends AbstractType {
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
+     * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $optionTypeEtablissement = array( 'expanded' => true, 'multiple' => false, 'label' => "Type d'établissement",
@@ -44,6 +45,7 @@ class ElevesType extends AbstractType {
 
     /**
      * {@inheritdoc}
+     * renvoie eleves
      */
     public function getBlockPrefix() {
         return 'eleves';

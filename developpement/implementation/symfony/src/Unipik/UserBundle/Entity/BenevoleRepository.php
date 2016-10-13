@@ -13,7 +13,10 @@ use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\QueryBuilder;
 use OpsWay\Doctrine\ORM\Query\AST\Functions\Contains;
 
-
+/**
+ * Class BenevoleRepository
+ * @package Unipik\UserBundle\Entity
+ */
 class BenevoleRepository extends EntityRepository
 {
     /**
@@ -24,8 +27,12 @@ class BenevoleRepository extends EntityRepository
      * @return array
      */
 
-    public function getType($field, $desc){
+    public function getType($field, $desc, $ville){
         $qb = $this->createQueryBuilder('b');
+
+        if($ville){
+            $this->whereVilleIs($qb,$ville);
+        }
 
         if($field=="nom"){
             if($desc){

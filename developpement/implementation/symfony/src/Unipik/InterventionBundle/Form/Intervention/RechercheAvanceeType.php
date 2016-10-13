@@ -55,6 +55,13 @@ class RechercheAvanceeType extends AbstractType
                 'Réalisées' => 'realisees',
             ],);
 
+        $statutMesInterventionsChoiceType = array('expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
+            'choices' => [
+                'Toutes' => '',
+                'En cours' => 'attribuees',
+                'Réalisées' => 'realisees',
+        ],);
+
         $niveauFrimousse = array( 'expanded' => false, 'multiple' => true, 'mapped' => false, 'required' => false,
             'choices' => [
                 'CP' => 'CP',
@@ -121,6 +128,7 @@ class RechercheAvanceeType extends AbstractType
         $builder
             ->add('typeIntervention', ChoiceType::class, $optionChoiceType)
             ->add('statutIntervention', ChoiceType::class, $statutChoiceType)
+            ->add('statutMesInterventions', ChoiceType::Class, $statutMesInterventionsChoiceType)
             ->add('niveauFrimousse', ChoiceType::class, $niveauFrimousse)
             ->add('niveauPlaidoyer', ChoiceType::class, $niveauPlaidoyer)
             ->add('theme', ChoiceType::class, $theme)

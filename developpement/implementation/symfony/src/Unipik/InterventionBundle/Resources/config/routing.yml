@@ -9,9 +9,9 @@ intervention_list:
     defaults:
         _controller: InterventionBundle:Intervention:liste
 
-intervention_attributed:
-    path: /intervention/attribuees
-    defaults: {_controller: InterventionBundle:Intervention:attribuees}
+intervention_self:
+    path: /intervention/maliste
+    defaults: {_controller: InterventionBundle:Intervention:maListe}
 
 intervention_view:
     path: /intervention/{id}

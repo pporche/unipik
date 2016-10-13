@@ -4,7 +4,12 @@ namespace Tests\Unipik\ArchitectureBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class interventionTest
+ * @package Tests\Unipik\ArchitectureBundle\Controller
+ */
 class interventionTest extends WebTestCase {
+
 
     public function testLinkFromIndex() {
         $client = static::createClient();

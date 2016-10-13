@@ -35,6 +35,7 @@ class SecurityController extends BaseController {
     }
 
     /**
+     * Render the login page
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -43,6 +44,7 @@ class SecurityController extends BaseController {
     }
 
     /**
+     * Render the login page
      * @param array $data
      * @return \Symfony\Component\HttpFoundation\Response
      */

@@ -13,7 +13,10 @@ use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\QueryBuilder;
 use OpsWay\Doctrine\ORM\Query\AST\Functions\Contains;
 
-
+/**
+ * Class BenevoleRepository
+ * @package Unipik\UserBundle\Entity
+ */
 class BenevoleRepository extends EntityRepository
 {
     /**

@@ -13,6 +13,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
 
+/**
+ * Class MailingType
+ * @package Unipik\MailBundle\Form
+ */
 class MailingType extends AbstractType {
 
     /**

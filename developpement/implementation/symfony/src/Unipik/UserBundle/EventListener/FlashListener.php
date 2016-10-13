@@ -14,6 +14,10 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class FlashListener
+ * @package Unipik\UserBundle\EventListener
+ */
 class FlashListener implements EventSubscriberInterface
 {
     private static $successMessages = array(
@@ -31,12 +35,22 @@ class FlashListener implements EventSubscriberInterface
     private $session;
     private $translator;
 
+    /**
+     * FlashListener constructor.
+     * @param Session $session
+     * @param TranslatorInterface $translator
+     */
     public function __construct(Session $session, TranslatorInterface $translator)
     {
         $this->session = $session;
         $this->translator = $translator;
     }
 
+    /**
+     * Get subscribed events
+     *
+     * @return array
+     */
     public static function getSubscribedEvents()
     {
         return array(
@@ -52,6 +66,12 @@ class FlashListener implements EventSubscriberInterface
         );
     }
 
+    /**
+     * Add a success Flash
+     *
+     * @param Event $event
+     * @param null $eventName
+     */
     public function addSuccessFlash(Event $event, $eventName = null)
     {
         // BC for SF < 2.4
@@ -72,6 +92,13 @@ class FlashListener implements EventSubscriberInterface
 
     }
 
+    /**
+     * Translate
+     *
+     * @param $message
+     * @param array $params
+     * @return string
+     */
     private function trans($message, array $params = array())
     {
         return $this->translator->trans($message, $params, 'FOSUserBundle');

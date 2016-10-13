@@ -25,6 +25,8 @@ class BenevoleTransformer  implements DataTransformerInterface
     }
 
     /**
+     * Return the string represetnation of a volunteer, his/her name
+     *
      * @param mixed $benevole
      * @return string
      */
@@ -38,6 +40,8 @@ class BenevoleTransformer  implements DataTransformerInterface
     }
 
     /**
+     * Return the volunteer that has the name $benevoleNom
+     *
      * @param mixed $benevoleNom
      * @return Benevole|void
      */

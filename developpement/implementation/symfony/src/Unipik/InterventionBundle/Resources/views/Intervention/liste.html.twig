@@ -403,7 +403,6 @@
                     <table class="table table-striped table-hover" id="tableIntervention">
                         <thead>
                         <tr>
-                            <th>#</th>
                             {% set pathReq = [] %}
                             {% if app.request.query.get('recherche_avancee') is not null %}
                                 {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
@@ -490,7 +489,6 @@
                         <tbody id="myTable">
                         {% for intervention in liste %}
                             <tr>
-                                <td data-title="#">{{ loop.index }}</td>
                                 <td data-title="Lieu">{{ intervention.etablissement.adresse.ville.nom }}</td>
                                 <td data-title="Date">{{ intervention.dateIntervention|date("d-m-Y") }}</td>
                                 <td data-title="Type">

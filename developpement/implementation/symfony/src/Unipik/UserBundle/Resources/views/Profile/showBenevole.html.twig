@@ -225,14 +225,17 @@
                                     padding:10px;">
                                 {% for intervention in listeInterventions %}
                                     <a href="{{ path('intervention_view', {'id': intervention.id}) }}">
-                                        {% if intervention.plaidoyer %}
-                                            Plaidoyer -
-                                        {% elseif intervention.frimousse %}
-                                            Frimousse -
-                                        {% else %}
-                                            Autre intervention -
+                                        {% if intervention.dateIntervention %}
+                                            {{ intervention.dateIntervention|date('Y-m-d') }} -
                                         {% endif %}
                                         {{ intervention.etablissement.adresse.ville.nom }}
+                                        {% if intervention.plaidoyer %}
+                                            - Plaidoyer
+                                        {% elseif intervention.frimousse %}
+                                            - Frimousse
+                                        {% else %}
+                                            - Autre intervention
+                                        {% endif %}
                                         </br>
                                     </a>
                                 {% endfor %}

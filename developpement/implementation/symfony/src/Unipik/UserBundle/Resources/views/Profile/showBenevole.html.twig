@@ -8,68 +8,70 @@
 {% endblock %}
 
 {% block body %}
-        <div class="container">
+    <div class="container">
         <div class="row">
             <section class="jumbotron col-sm-12 col-lg-9 col-lg-offset-1">
                 <div class="infoPrincip">
                     <div class="row">
-                        <h2 class="col-lg-9 titre" style="margin-top: 40px;"> {{ benevole.nom | upper }} &nbsp {{ benevole.prenom | capitalize}}</h2>
-                        <img src="{{ asset('img/logo-gris.png') }}" class="logoGris" alt ="Logo gris">
+                        <h2 class="col-lg-9 titre" style="margin-top: 40px;"> {{ benevole.nom | upper }}
+                            &nbsp {{ benevole.prenom | capitalize }}</h2>
+                        <img src="{{ asset('img/logo-gris.png') }}" class="logoGris" alt="Logo gris">
                     </div>
                     <hr>
                     <div class="row">
                         <dl class="dl-horizontal">
                             <div class="col-sm-4 col-xs-12">
                                 <dt>
-                                    <span class="glyphicon glyphicon-envelope"></span>  Email :
+                                    <span class="glyphicon glyphicon-envelope"></span> Email :
                                 </dt>
                             </div>
-                            <div  class="col-sm-8">
+                            <div class="col-sm-8">
                                 {% if (benevole.email == "" or benevole.email == NULL) %}
                                     {{ "Non renseigné" }}
                                 {% else %}
-                                    <a href="mailto:{{ benevole.email}}">{{ benevole.email}}</a>
-                                {% endif %}
-                            </div>
-                            <div class="col-sm-4 col-xs-12">
-                                <dt >
-                                    <span class="glyphicon glyphicon-phone-alt"></span>  Téléphone fixe :
-                                </dt>
-                            </div>
-                            <div  class="col-sm-8">
-                                {% if (benevole.telFixe == "" or benevole.telFixe == NULL) %}
-                                    {{ "Non renseigné" }}
-                                {% else %}
-                                    {{ benevole.telFixe}}
+                                    <a href="mailto:{{ benevole.email }}">{{ benevole.email }}</a>
                                 {% endif %}
                             </div>
                             <div class="col-sm-4 col-xs-12">
                                 <dt>
-                                    <span class="glyphicon glyphicon-phone"></span>  Téléphone portable : </dt>
+                                    <span class="glyphicon glyphicon-phone-alt"></span> Téléphone fixe :
                                 </dt>
                             </div>
-                            <div  class="col-sm-8">
+                            <div class="col-sm-8">
+                                {% if (benevole.telFixe == "" or benevole.telFixe == NULL) %}
+                                    {{ "Non renseigné" }}
+                                {% else %}
+                                    {{ benevole.telFixe }}
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-4 col-xs-12">
+                                <dt>
+                                    <span class="glyphicon glyphicon-phone"></span> Téléphone portable :
+                                </dt>
+                                </dt>
+                            </div>
+                            <div class="col-sm-8">
                                 {% if (benevole.telPortable == "" or benevole.telPortable == NULL) %}
                                     {{ "Non renseigné" }}
                                 {% else %}
-                                    {{ benevole.telPortable}}
+                                    {{ benevole.telPortable }}
                                 {% endif %}
                             </div>
                             <div class="col-sm-4 col-xs-12">
                                 <dl>
-                                    <dt >
-                                        <span class="glyphicon glyphicon-home"></span>  Adresse :</td>
+                                    <dt>
+                                        <span class="glyphicon glyphicon-home"></span> Adresse :</td>
                                     </dt>
                                 </dl>
 
                             </div>
-                            <div  class="col-sm-8">
-                                {{ benevole.adresse.getAdresse()}},
+                            <div class="col-sm-8">
+                                {{ benevole.adresse.getAdresse() }},
                                 {% if benevole.adresse.complement is not empty %}
-                                    {{ benevole.adresse.complement}},
+                                    {{ benevole.adresse.complement }},
                                 {% endif %}
-                                {{ benevole.adresse.codePostal.code}}
-                                {{ benevole.adresse.ville.nom}}
+                                {{ benevole.adresse.codePostal.code }}
+                                {{ benevole.adresse.ville.nom }}
                             </div>
                         </dl>
 
@@ -81,8 +83,11 @@
         </div>
         <div class="row">
             <div class="buttons">
-                <a href="{{ path("user_admin_profil_edit", {'username': benevole.username}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> &nbsp Modifier </a>
-                <a href="{{ path("user_admin_delete", {'username': benevole.username}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez-vous vraiment supprimer le profil de {{ benevole.prenom }} {{ benevole.nom }}?')" ><span class="glyphicon glyphicon-trash"></span> &nbsp Supprimer </a>
+                <a href="{{ path("user_admin_profil_edit", {'username': benevole.username}) }}" class="btn btn-primary"><span
+                            class="glyphicon glyphicon-pencil"></span> &nbsp Modifier </a>
+                <a href="{{ path("user_admin_delete", {'username': benevole.username}) }}" class="btn btn-danger"
+                   onclick="return confirm('Souhaitez-vous vraiment supprimer le profil de {{ benevole.prenom }} {{ benevole.nom }}?')"><span
+                            class="glyphicon glyphicon-trash"></span> &nbsp Supprimer </a>
             </div>
         </div>
         <div class="row">
@@ -94,20 +99,20 @@
                     <h3>Comité(s) de rattachement : </h3>
                     <div class="row">
                         {#{% if benevole.comite is not empty %}#}
-                            <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                                {#{% for comite in benevole.comite %}#}
-                                    <li class="list-group-item">
-                                        {#{% for dep in c.departement %}#}
-                                        {#<li> {{ dep.nom }} </li>#}
-                                        {#{% endfor %}#}
-                                        Seine-Maritime
-                                    </li>
+                        <ul class="list-group col-lg-offset-1 col-sm-7 ">
+                            {#{% for comite in benevole.comite %}#}
+                            <li class="list-group-item">
+                                {#{% for dep in c.departement %}#}
+                                {#<li> {{ dep.nom }} </li>#}
                                 {#{% endfor %}#}
-                            </ul>
+                                Seine-Maritime
+                            </li>
+                            {#{% endfor %}#}
+                        </ul>
                         {#{% else %}#}
-                            {#<div class="col-lg-offset-1 col-sm-7">#}
-                                {#Aucun#}
-                            {#</div>#}
+                        {#<div class="col-lg-offset-1 col-sm-7">#}
+                        {#Aucun#}
+                        {#</div>#}
                         {#{% endif %}#}
                     </div>
                 </div>
@@ -205,65 +210,67 @@
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3 infoContainer">
                 <div class="col-sm-6 containerFour">
-                                <div class="circle circleFour">
-                                    <img src="{{ asset('img/speech-bubbles.png') }}">
-                                </div>
-                                <h3>Interventions : </h3>
-                                <div class="row">
-                                    {% if listeInterventions is not empty %}
-                                    <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
+                    <div class="circle circleFour">
+                        <img src="{{ asset('img/speech-bubbles.png') }}">
+                    </div>
+                    <h3>Interventions : </h3>
+                    <div class="row">
+                        {% if listeInterventions is not empty %}
+                            <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0"
+                                 data-target="#navbar-example" data-spy="scroll" style="
                                     height: 200px;
                                     overflow: auto;
                                     position: relative;
                                     border:1px solid #cccccc;
                                     padding:10px;">
-                                            {% for intervention in listeInterventions %}
-                                                <a href="{{ path('intervention_view', {'id': intervention.id}) }}" >
-                                                    {% if intervention.plaidoyer %}
-                                                        Plaidoyer -
-                                                    {% elseif intervention.frimousse %}
-                                                        Frimousse -
-                                                    {% else %}
-                                                        Autre intervention -
-                                                    {% endif %}
-                                                    {{ intervention.etablissement.adresse.ville.nom }}
-                                                    </br>
-                                                </a>
-                                            {% endfor %}
-                                    </div>
-                                    {% else %}
-                                        <div class="col-lg-offset-1 col-sm-7">
-                                            Aucune
-                                        </div>
-                                    {% endif %}
-                                </div>
-                                <h3>Projets en cours : </h3>
-                            <div class="row">
-                                {% if benevole.projet is not empty %}
-                                <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
+                                {% for intervention in listeInterventions %}
+                                    <a href="{{ path('intervention_view', {'id': intervention.id}) }}">
+                                        {% if intervention.plaidoyer %}
+                                            Plaidoyer -
+                                        {% elseif intervention.frimousse %}
+                                            Frimousse -
+                                        {% else %}
+                                            Autre intervention -
+                                        {% endif %}
+                                        {{ intervention.etablissement.adresse.ville.nom }}
+                                        </br>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="col-lg-offset-1 col-sm-7">
+                                Aucune
+                            </div>
+                        {% endif %}
+                    </div>
+                    <h3>Projets en cours : </h3>
+                    <div class="row">
+                        {% if benevole.projet is not empty %}
+                        <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0"
+                             data-target="#navbar-example" data-spy="scroll" style="
                                     height: 200px;
                                     overflow: auto;
                                     position: relative;
                                     border:1px solid #cccccc;
                                     padding:10px;">
-                                        {% for projet in benevole.projet %}
-                                            <a href="" >
-                                                {{ projet.getNom() }}
-                                                </br>
-                                            </a>
-                                        {% endfor %}
-                                {% else %}
-                                    <div class="col-lg-offset-1 col-sm-7">
-                                        Aucun
-                                    </div>
-                                {% endif %}
-                            </div>
-                            </div>
+                            {% for projet in benevole.projet %}
+                                <a href="">
+                                    {{ projet.getNom() }}
+                                    </br>
+                                </a>
+                            {% endfor %}
+                            {% else %}
+                                <div class="col-lg-offset-1 col-sm-7">
+                                    Aucun
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
-
+                </div>
             </div>
 
         </div>
+
+    </div>
     </div>
 {% endblock %}

@@ -1,5 +1,12 @@
 {# version 1.00, date 05/10/2016, auteur Mélissa Bignoux #}
 {% extends "ArchitectureBundle::layoutArchitecture.html.twig" %}
+
+{% block title %}
+
+    Mon planning - {{ parent() }}
+
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
 

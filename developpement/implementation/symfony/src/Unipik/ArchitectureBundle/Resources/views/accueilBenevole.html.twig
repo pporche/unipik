@@ -1,5 +1,12 @@
 {# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
 {% extends "ArchitectureBundle::layoutArchitecture.html.twig" %}
+
+{% block title %}
+
+    Accueil - {{ parent() }}
+
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
 

@@ -24,6 +24,7 @@ class ProfileFormType extends BaseType {
 
     /**
      * ProfileFormType constructor.
+     *
      * @param string $class
      */
     public function __construct($class) {
@@ -31,6 +32,8 @@ class ProfileFormType extends BaseType {
     }
 
     /**
+     * Build a form
+     *
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -71,6 +74,8 @@ class ProfileFormType extends BaseType {
     }
 
     /**
+     * Build the form for user creation
+     *
      * @param FormBuilderInterface $builder
      * @param array $options
      */

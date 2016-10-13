@@ -33,6 +33,7 @@ class RechercheAvanceeType extends AbstractType
     }
 
     /**
+     * form builder
      * @param FormBuilderInterface $builder
      * @param array $options
      */

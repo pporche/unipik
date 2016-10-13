@@ -18,6 +18,7 @@ class ThemesType extends AbstractType {
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
+     * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $optionChoiceType = array( 'label' => false, 'attr' => ['class' => 'form-theme-pld'],
@@ -42,6 +43,7 @@ class ThemesType extends AbstractType {
     }
 
     /**
+     * renvoie themes
      * {@inheritdoc}
      */
     public function getBlockPrefix() {

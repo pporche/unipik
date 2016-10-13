@@ -25,6 +25,7 @@ class RechercheAvanceeType extends AbstractType {
 
     /**
      * VilleType constructor.
+     *
      * @param ObjectManager $entityManager
      */
     public function __construct(ObjectManager $entityManager)
@@ -33,6 +34,8 @@ class RechercheAvanceeType extends AbstractType {
     }
 
     /**
+     * Build a form
+     *
      * @param FormBuilderInterface $builder
      * @param array $options
      */

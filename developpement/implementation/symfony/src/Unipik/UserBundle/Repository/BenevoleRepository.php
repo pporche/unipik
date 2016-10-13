@@ -4,6 +4,9 @@ use Doctrine\ORM\EntityRepository;
 class BenevoleRepository extends EntityRepository {
 
     /**
+     * Generic class to get the list of volunteers ordered
+     * by field in descendant or ascendant mode
+     *
      * @param $field
      * @param $desc
      * @return mixed

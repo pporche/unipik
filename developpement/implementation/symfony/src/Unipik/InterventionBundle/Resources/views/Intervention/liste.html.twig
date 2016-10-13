@@ -246,7 +246,11 @@
                     $(event).attr('class', 'btn btn-danger');
                     $(event).text('Se désattribuer l\'intervention');
                     $(event).attr("onclick", "desattributeIntervention(this, " + id + ")");
-                });
+                })
+                    .fail(function() {
+                        alert( "Cette intervention a déjà été attribuée à un bénévole !" );
+                        window.location.replace('{{ path("intervention_list") }}');
+                    });
         }
 
         var benevoles = new Bloodhound({

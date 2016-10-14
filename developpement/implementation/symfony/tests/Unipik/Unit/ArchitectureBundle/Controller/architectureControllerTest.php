@@ -20,61 +20,45 @@ use Tests\Unipik\Unit\Utils\ContainerMock;
 
 class architectureControllerTest extends ControllerTestCase {
 
-//    public function testIndexActionAnonyme()
-//    {
-//        $controller = new ArchitectureController();
-//        $container = $this->getMock("Symfony\\Component\\DependencyInjection\\ContainerInterface");
-//
-//        $ctr = 0;
-//        $ctr = $this->expectGetUser($container, $ctr);
-//        $ctr = $this->expectRender($container, $ctr, 'ArchitectureBundle::accueilAnonyme.html.twig');
-//
-//
-//        $controller->setContainer($container);
-//        $controller->indexAction();
-//    }
+    public function testIndexActionAnonyme()
+    {
+        $controller = new ArchitectureController();
+        $containerMock = new ContainerMock();
 
+        $containerMock->expectGetUser();
+        $containerMock->expectRender('ArchitectureBundle::accueilAnonyme.html.twig');
 
-//    private function mockInterventionRepository() {
-//        $repository = $this->mockRepository(array('getNInterventionsRealiseesOuNonBenevole'));
-//
-//        return $repository;
-//    }
-
+        $controller->setContainer($containerMock->getContainer());
+        $controller->indexAction();
+    }
 
     public function testIndexActionConnecte()
     {
         $controller = new ArchitectureController();
-        //$container = $this->getMock("Symfony\\Component\\DependencyInjection\\ContainerInterface");
         $containerMock = new ContainerMock();
 
         $user = new \FOS\UserBundle\Tests\TestUser();
-            //new \FOS\UserBundle\Model\User();
-
-
-        //$ctr = 0;
-        //$ctr = $this->expectGetUser($container, $ctr, $user);
         $containerMock->expectGetUser($user);
 
-
         $repositoryMock = new InterventionRepositoryMock();
-        $repository = $repositoryMock->getRepository();
         $repositories = array(
-            "InterventionBundle:Intervention" => $repository
+            "InterventionBundle:Intervention" => $repositoryMock->getRepository()
         );
 
-
         $repositoryMock->expectQuery('getNInterventionsRealiseesOuNonBenevole', 'expected result');
         $repositoryMock->expectQuery('getNInterventionsRealiseesOuNonBenevole', 'expected result');
         $repositoryMock->expectQuery('getInterventionsRealiseesOuNon', 'expected result');
         $repositoryMock->expectQuery('getInterventionsRealiseesOuNon', 'expected result');
 
-        //$ctr = $this->expectGetManager($container, $repositories, $ctr);
-        //$ctr = $this->expectRender($container, $ctr, 'ArchitectureBundle::accueilBenevole.html.twig', array('user' => $user));
         $containerMock->expectGetManager($repositories);
-        $containerMock->expectRender('ArchitectureBundle::accueilBenevole.html.twig', array('user' => $user));
+        $containerMock->expectRender('ArchitectureBundle::accueilBenevole.html.twig', array(
+            'user' => $user,
+            'interventionsNonRealiseesBenevole' => 'expected result',
+            'interventionsRealiseesBenevole' => 'expected result',
+            'interventionsNonRealisees' => 'expected result',
+            'interventionsRealisees' => 'expected result'
+        ));
 
-        //$controller->setContainer($container);
         $controller->setContainer($containerMock->getContainer());
         $controller->indexAction();
     }

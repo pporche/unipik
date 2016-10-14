@@ -79,8 +79,7 @@ class InterventionController extends Controller {
 
         $intervention = $repository->find(array('id' => $id));
 
-        $form = $this->createForm(InterventionType::class, $intervention);
-
+        $form = $this->createForm(InterventionType::class);
 
         if($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
@@ -91,8 +90,19 @@ class InterventionController extends Controller {
             return $this->redirectToRoute('intervention_view', array('id' => $id));
         }
 
+        if($intervention->isFrimousse()) {
+            $materiaux = $intervention->getMateriauxFrimousse();
+        } elseif ($intervention->isPlaidoyer()) {
+            $materiaux = $intervention->getMaterielDispoPlaidoyer();
+        } else {
+            $materiaux = array("kaki");
+        }
+
+        $materiaux = json_encode($materiaux->toArray());
+
         return $this->render('InterventionBundle:Intervention:editIntervention.html.twig', array('form' => $form->createView(),
-                                                                                                 'intervention' => $intervention,
+                                                                                 'intervention' => $intervention,
+                                                                                 'materiaux' => $materiaux,
         ));
     }
 
@@ -582,7 +592,7 @@ class InterventionController extends Controller {
                 $interventionTemp = new Intervention();
                 $interventionTemp->setRealisee(false);
                 $interventionTemp->setDateIntervention(null);
-                $interventionTemp->setNbPersonne($interventionRaw["participants"]["nbEleves"]);
+                $interventionTemp->setNbPersonne($interventionRaw["nbPersonne"]);
                 $interventionTemp->setComite($comiteTest);
                 if(isset($interventionRaw["materiel"]) && !empty($interventionRaw["materiel"]["materiel"])){
                     $interventionTemp->addMaterielDispoPlaidoyer($interventionRaw["materiel"]["materiel"]);

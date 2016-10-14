@@ -512,7 +512,6 @@
         function verifyAll(e){
             verifyNumber(e);
             verifyCP(e);
-            verifyMail(e);
             showUAI();
             if($('#demande_Etablissement_uai').val().trim())
                 verifyUAI(e);
@@ -545,22 +544,6 @@
                 alert("Code Postal au mauvais format");
             }else
                 $('#demande_Etablissement_adresse_codePostal').removeAttr('border-color');
-
-        }
-
-        function verifyMail(e){
-            var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-            if(!(re.test($('#demande_Etablissement_emails').val()) && re.test($('#demande_Contact_email').val()))){
-                $('#demande_Etablissement_emails').css('border-color', 'red');
-                $('#demande_Contact_email').css('border-color', 'red');
-                alert("E-mail au mauvais format");
-                e.preventDefault();
-                e.stopPropagation();
-            }
-            else {
-                $('#demande_Etablissement_emails').removeAttr('border-color');
-                $('#demande_Contact_email').removeAttr('border-color');
-            }
 
         }
 

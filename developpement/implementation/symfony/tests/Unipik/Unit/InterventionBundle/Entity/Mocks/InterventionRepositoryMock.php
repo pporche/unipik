@@ -17,10 +17,12 @@ class InterventionRepositoryMock extends RepositoryMock
     function __construct()
     {
         parent::__construct();
-        $this->mockRepository(array(
+        $this->mockRepository(
+            array(
             'getNInterventionsRealiseesOuNonBenevole',
             'getInterventionsRealiseesOuNon',
-        ));
+            )
+        );
     }
 
 }

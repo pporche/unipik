@@ -11,18 +11,19 @@ namespace Tests\Unipik\Unit\InterventionBundle\Entity\Mocks;
 use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\InterventionBundle\Entity\Vente;
 
-class VenteMock extends EntityMock {
+class VenteMock extends EntityMock
+{
 
     /**
      * @return Vente
      */
-    public static function create() {
+    public static function create() 
+    {
         $v = new Vente();
 
         $v
             ->setDateVente(new \DateTime('2000-01-01'))
-            ->setChiffreAffaire(4.22)
-        ;
+            ->setChiffreAffaire(4.22);
 
         return $v;
     }
@@ -31,7 +32,8 @@ class VenteMock extends EntityMock {
      * @param $nb
      * @return Vente[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

@@ -59,8 +59,7 @@ class InterventionTest extends  EntityTestCase
             ->setHeure("18:00")
             ->setLieu("nulle part")
             ->setRemarques("remarque très intéressante")
-            ->setNiveauFrimousse("CE2-CM1")
-        ;
+            ->setNiveauFrimousse("CE2-CM1");
 
 
         $this->assertEquals($d,                             $i->getDemande());
@@ -104,7 +103,8 @@ class InterventionTest extends  EntityTestCase
 
     }
 
-    public function validEntityProvider() {
+    public function validEntityProvider() 
+    {
         $i = InterventionMock::createMultiple(3);
         $c = ContactMock::create();
 
@@ -125,8 +125,7 @@ class InterventionTest extends  EntityTestCase
             ->setDateIntervention(new \DateTime('2010-10-10'))
             ->setHeure("18:00")
             ->setLieu("nulle part")
-            ->setRemarques("remarque très intéressante")
-        ;
+            ->setRemarques("remarque très intéressante");
 
         $frimousse = clone $i[2];
         $plaidoyer = clone $i[2];
@@ -138,12 +137,10 @@ class InterventionTest extends  EntityTestCase
         ;
 
         $plaidoyer
-            ->addMaterielDispoPlaidoyer("videoprojecteur")
-        ;
+            ->addMaterielDispoPlaidoyer("videoprojecteur");
 
         $autre
-            ->setDescription("Long texte de description")
-        ;
+            ->setDescription("Long texte de description");
 
         return [
             "1 Intervention"                        => [$i[0]],

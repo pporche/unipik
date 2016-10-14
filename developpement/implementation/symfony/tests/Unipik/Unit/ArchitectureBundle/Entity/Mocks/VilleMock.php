@@ -11,16 +11,17 @@ namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\ArchitectureBundle\Entity\Ville;
 
-class VilleMock extends EntityMock {
+class VilleMock extends EntityMock
+{
 
     /**
      * @return Ville
      */
-    public static function create() {
+    public static function create() 
+    {
         $v = new Ville();
 
-        $v->setNom("Rouen")
-        ;
+        $v->setNom("Rouen");
 
         return $v;
     }
@@ -29,7 +30,8 @@ class VilleMock extends EntityMock {
      * @param $nb
      * @return Ville[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

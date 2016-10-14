@@ -45,10 +45,9 @@ class BenevoleTest extends  EntityTestCase
             ->setEmail("dupont@super-univ.fr")
             ->setPrenom("Alfred")
             ->setTelFixe("0232010203")
-            ->setTelPortable("0601020304")
-        ;
+            ->setTelPortable("0601020304");
 
-        $this->assertEquals($b->getNom(),"Dupont");
+        $this->assertEquals($b->getNom(), "Dupont");
         $this->assertEquals($b->getEmail(), "dupont@super-univ.fr");
         $this->assertEquals($b->getPrenom(), "Alfred");
         $this->assertEquals($b->getTelFixe(), "0232010203");
@@ -78,7 +77,8 @@ class BenevoleTest extends  EntityTestCase
         $this->assertEquals(null, $b->getResponsabiliteActivite()[0]);
     }
 
-    public function validEntityProvider() {
+    public function validEntityProvider() 
+    {
         $b = BenevoleMock::createMultiple(2);
 
         $ad = AdresseMock::create();
@@ -89,8 +89,7 @@ class BenevoleTest extends  EntityTestCase
             ->setEmail("dupont@super-univ.fr")
             ->setPrenom("Alfred")
             ->setTelFixe("0232010203")
-            ->setTelPortable("0601020304")
-        ;
+            ->setTelPortable("0601020304");
 
         return [
             "1 Benevole" => [$b[0]],

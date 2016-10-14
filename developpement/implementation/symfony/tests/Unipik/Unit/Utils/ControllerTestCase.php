@@ -11,7 +11,8 @@ namespace Tests\Unipik\Unit\Utils;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ControllerTestCase extends WebTestCase {
+class ControllerTestCase extends WebTestCase
+{
 
 
 

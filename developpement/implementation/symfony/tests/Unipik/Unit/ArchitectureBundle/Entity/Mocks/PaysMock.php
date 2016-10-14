@@ -11,17 +11,18 @@ namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\ArchitectureBundle\Entity\Pays;
 
-class PaysMock extends EntityMock {
+class PaysMock extends EntityMock
+{
 
     /**
      * @return Pays
      */
-    public static function create() {
+    public static function create() 
+    {
         $p = new Pays();
 
         $p
-            ->setNom("France")
-        ;
+            ->setNom("France");
 
         return $p;
     }
@@ -30,7 +31,8 @@ class PaysMock extends EntityMock {
      * @param $nb
      * @return Pays[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

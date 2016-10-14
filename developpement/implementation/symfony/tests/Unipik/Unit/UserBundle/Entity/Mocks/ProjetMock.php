@@ -11,19 +11,20 @@ namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\UserBundle\Entity\Projet;
 
-class ProjetMock extends EntityMock {
+class ProjetMock extends EntityMock
+{
 
     /**
      * @return Projet
      */
-    public static function create() {
+    public static function create() 
+    {
         $p = new Projet();
 
         $p
             ->setNom("Aquitaine Limousin Poitou-Charentes")
             ->setChiffreAffaire(500.0)
-            ->setType("college")
-        ;
+            ->setType("college");
 
         return $p;
     }
@@ -32,7 +33,8 @@ class ProjetMock extends EntityMock {
      * @param $nb
      * @return Projet[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

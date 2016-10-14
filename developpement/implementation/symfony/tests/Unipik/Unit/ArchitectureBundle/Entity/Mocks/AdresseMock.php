@@ -11,12 +11,14 @@ namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 
-class AdresseMock extends EntityMock {
+class AdresseMock extends EntityMock
+{
 
     /**
      * @return Adresse
      */
-    public static function create() {
+    public static function create() 
+    {
         $a = new Adresse();
 
         $v = VilleMock::create();
@@ -25,8 +27,7 @@ class AdresseMock extends EntityMock {
         $a
             ->setVille($v)
             ->setCodePostal($cp)
-            ->setAdresse("22 rue du gros")
-        ;
+            ->setAdresse("22 rue du gros");
 
         return $a;
     }
@@ -35,7 +36,8 @@ class AdresseMock extends EntityMock {
      * @param $nb
      * @return Adresse[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

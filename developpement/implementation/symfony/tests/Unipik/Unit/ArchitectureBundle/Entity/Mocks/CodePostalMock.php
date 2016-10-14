@@ -12,19 +12,20 @@ use Proxies\__CG__\Unipik\ArchitectureBundle\Entity\Departement;
 use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\ArchitectureBundle\Entity\CodePostal;
 
-class CodePostalMock extends EntityMock {
+class CodePostalMock extends EntityMock
+{
 
     /**
      * @return CodePostal
      */
-    public static function create() {
+    public static function create() 
+    {
         $cp = new CodePostal();
         $d = DepartementMock::create();
 
         $cp
             ->setCode("76000")
-            ->setDepartement($d)
-        ;
+            ->setDepartement($d);
 
         return $cp;
     }
@@ -33,7 +34,8 @@ class CodePostalMock extends EntityMock {
      * @param $nb
      * @return CodePostal[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

@@ -48,8 +48,7 @@ class VenteTest extends  EntityTestCase
             ->setDateVente(new \DateTime('2010-10-10'))
             ->setRemarques("Remarque très intéressante")
             ->setIntervention($i)
-            ->setEtablissement($e)
-        ;
+            ->setEtablissement($e);
 
 
         $this->assertEquals(4.04, $v->getChiffreAffaire());
@@ -60,7 +59,8 @@ class VenteTest extends  EntityTestCase
 
     }
 
-    public function validEntityProvider() {
+    public function validEntityProvider() 
+    {
         $v = VenteMock::createMultiple(2);
 
         $i = InterventionMock::create();
@@ -71,8 +71,7 @@ class VenteTest extends  EntityTestCase
             ->setDateVente(new \DateTime('2010-10-10'))
             ->setRemarques("Remarque très intéressante")
             ->setIntervention($i)
-            ->setEtablissement($e)
-        ;
+            ->setEtablissement($e);
 
         return [
             "1 Vente" => [$v[0]],
@@ -92,7 +91,8 @@ class VenteTest extends  EntityTestCase
     /**
      * @dataProvider badEntityProvider
      */
-    public function testBadEntities($e) {
+    public function testBadEntities($e) 
+    {
         $this->assertTrue(true);
     }
 }

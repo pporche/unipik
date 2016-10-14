@@ -16,7 +16,8 @@ abstract class EntityMock
      * @param $nb
      * @return object[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         $res = array();
 
         for ($i = 0; $i < $nb; $i++) {

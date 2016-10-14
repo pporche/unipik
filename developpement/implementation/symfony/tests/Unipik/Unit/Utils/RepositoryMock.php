@@ -56,7 +56,8 @@ class RepositoryMock extends \PHPUnit_Framework_TestCase
         return $this;
     }
 
-    public function expectQuery($query, $result) {
+    public function expectQuery($query, $result) 
+    {
         $this->repository
             ->expects($this->at($this->ctr++))
             ->method($query)

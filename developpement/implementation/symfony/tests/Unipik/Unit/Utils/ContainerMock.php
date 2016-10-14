@@ -39,7 +39,6 @@ class ContainerMock extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $user
-     *
      */
     public function expectGetUser($user = null)
     {
@@ -117,28 +116,25 @@ class ContainerMock extends \PHPUnit_Framework_TestCase
 
     }
 
-    public function expectRender($view, $parameters = array()){
+    public function expectRender($view, $parameters = array())
+    {
         $twig = $this->getMock('Symfony\Component\Templating\EngineInterface');
 
         $this->container->expects($this->at($this->ctr++))
             ->method('has')
             ->with($this->equalTo('templating'))
-            ->will($this->returnValue(false))
-        ;
+            ->will($this->returnValue(false));
         $this->container->expects($this->at($this->ctr++))
             ->method('has')
             ->with($this->equalTo('twig'))
-            ->will($this->returnValue(true))
-        ;
+            ->will($this->returnValue(true));
         $this->container->expects($this->at($this->ctr++))
             ->method('get')
             ->with($this->equalTo('twig'))
-            ->will($this->returnValue($twig))
-        ;
+            ->will($this->returnValue($twig));
         $twig->expects($this->at(0))
             ->method('render')
-            ->with($this->equalTo($view), $this->equalTo($parameters))
-        ;
+            ->with($this->equalTo($view), $this->equalTo($parameters));
 
     }
 }

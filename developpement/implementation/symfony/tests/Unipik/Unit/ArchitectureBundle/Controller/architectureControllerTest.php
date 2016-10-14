@@ -14,7 +14,8 @@ use Unipik\ArchitectureBundle\Controller\ArchitectureController;
 use Tests\Unipik\Unit\Utils\ControllerTestCase;
 use Tests\Unipik\Unit\Utils\ContainerMock;
 
-class architectureControllerTest extends ControllerTestCase {
+class architectureControllerTest extends ControllerTestCase
+{
 
     public function testIndexActionAnonyme()
     {
@@ -47,13 +48,15 @@ class architectureControllerTest extends ControllerTestCase {
         $repositoryMock->expectQuery('getInterventionsRealiseesOuNon', 'result interventionsRealisees');
 
         $containerMock->expectGetManager($repositories);
-        $containerMock->expectRender('ArchitectureBundle::accueilBenevole.html.twig', array(
+        $containerMock->expectRender(
+            'ArchitectureBundle::accueilBenevole.html.twig', array(
             'user' => $user,
             'interventionsNonRealiseesBenevole' => 'result interventionsNonRealiseesBenevole',
             'interventionsRealiseesBenevole' => 'result interventionsRealiseesBenevole',
             'interventionsNonRealisees' => 'result interventionsNonRealisees',
             'interventionsRealisees' => 'result interventionsRealisees'
-        ));
+            )
+        );
 
         $controller->setContainer($containerMock->getContainer());
         $controller->indexAction();

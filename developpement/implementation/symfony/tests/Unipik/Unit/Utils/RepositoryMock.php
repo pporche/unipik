@@ -9,35 +9,60 @@
 namespace Tests\Unipik\Unit\Utils;
 
 
-class RepositoryMock
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+class RepositoryMock extends \PHPUnit_Framework_TestCase
 {
-    protected function mockRepository($methods) {
+    /**
+     * @var int
+     */
+    private $ctr;
+
+    /**
+     * @var EntityRepository|\PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $repository;
+
+    protected $mockObjectGenerator;
+
+
+    function __construct()
+    {
+        parent::__construct();
+        $this->ctr = 0;
+    }
+
+    function getRepository()
+    {
+        return $this->repository;
+    }
+
+
+    protected function mockRepository($methods)
+    {
 
         /**
          * Infering that the the Subject Under Test is dealing with a single
          * repository.
          *
-         * @var \Doctrine\ORM\EntityRepository
+         * @var EntityRepository
          */
-        $repository = $this
+        $this->repository = $this
             ->getMockBuilder('Doctrine\ORM\EntityRepository')
             ->disableOriginalConstructor()
             ->setMethods($methods)
             ->getMock();
 
-        return $repository;
-
+        return $this;
     }
 
-    protected function expectQuery($repository, $query, $expectedResult, $ctr) {
-
-
-        $repository
-            ->expects($this->at($ctr))
+    public function expectQuery($query, $expectedResult) {
+        $this->repository
+            ->expects($this->at($this->ctr++))
             ->method($query)
             ->will($this->returnValue($expectedResult));
 
-
-        return $ctr;
+        return $this;
     }
 }

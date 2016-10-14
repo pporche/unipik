@@ -10,7 +10,6 @@ namespace Tests\Unipik\Unit\Utils;
 
 
 use Doctrine\ORM\EntityRepository;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class RepositoryMock extends \PHPUnit_Framework_TestCase
 {
@@ -57,11 +56,11 @@ class RepositoryMock extends \PHPUnit_Framework_TestCase
         return $this;
     }
 
-    public function expectQuery($query, $expectedResult) {
+    public function expectQuery($query, $result) {
         $this->repository
             ->expects($this->at($this->ctr++))
             ->method($query)
-            ->will($this->returnValue($expectedResult));
+            ->will($this->returnValue($result));
 
         return $this;
     }

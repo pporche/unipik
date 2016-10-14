@@ -9,10 +9,6 @@
 namespace Test\Unipik\Unit\ArchitectureBundle\Controller;
 
 
-use Symfony\Bridge\Twig\Form\TwigRenderer;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Tests\Unipik\Unit\InterventionBundle\Entity\Mocks\InterventionRepositoryMock;
 use Unipik\ArchitectureBundle\Controller\ArchitectureController;
 use Tests\Unipik\Unit\Utils\ControllerTestCase;
@@ -45,18 +41,18 @@ class architectureControllerTest extends ControllerTestCase {
             "InterventionBundle:Intervention" => $repositoryMock->getRepository()
         );
 
-        $repositoryMock->expectQuery('getNInterventionsRealiseesOuNonBenevole', 'expected result');
-        $repositoryMock->expectQuery('getNInterventionsRealiseesOuNonBenevole', 'expected result');
-        $repositoryMock->expectQuery('getInterventionsRealiseesOuNon', 'expected result');
-        $repositoryMock->expectQuery('getInterventionsRealiseesOuNon', 'expected result');
+        $repositoryMock->expectQuery('getNInterventionsRealiseesOuNonBenevole', 'result interventionsNonRealiseesBenevole');
+        $repositoryMock->expectQuery('getNInterventionsRealiseesOuNonBenevole', 'result interventionsRealiseesBenevole');
+        $repositoryMock->expectQuery('getInterventionsRealiseesOuNon', 'result interventionsNonRealisees');
+        $repositoryMock->expectQuery('getInterventionsRealiseesOuNon', 'result interventionsRealisees');
 
         $containerMock->expectGetManager($repositories);
         $containerMock->expectRender('ArchitectureBundle::accueilBenevole.html.twig', array(
             'user' => $user,
-            'interventionsNonRealiseesBenevole' => 'expected result',
-            'interventionsRealiseesBenevole' => 'expected result',
-            'interventionsNonRealisees' => 'expected result',
-            'interventionsRealisees' => 'expected result'
+            'interventionsNonRealiseesBenevole' => 'result interventionsNonRealiseesBenevole',
+            'interventionsRealiseesBenevole' => 'result interventionsRealiseesBenevole',
+            'interventionsNonRealisees' => 'result interventionsNonRealisees',
+            'interventionsRealisees' => 'result interventionsRealisees'
         ));
 
         $controller->setContainer($containerMock->getContainer());

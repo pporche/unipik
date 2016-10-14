@@ -8,10 +8,10 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\UserBundle\Entity\Contact;
 
-class ContactMock extends Mock {
+class ContactMock extends EntityMock {
 
     /**
      * @return Contact

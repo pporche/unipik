@@ -9,10 +9,10 @@
 namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
 use Proxies\__CG__\Unipik\ArchitectureBundle\Entity\Departement;
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\ArchitectureBundle\Entity\CodePostal;
 
-class CodePostalMock extends Mock {
+class CodePostalMock extends EntityMock {
 
     /**
      * @return CodePostal

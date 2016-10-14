@@ -9,7 +9,7 @@
 namespace Tests\Unipik\Unit\Utils;
 
 
-abstract class Mock
+abstract class EntityMock
 {
 
     /**

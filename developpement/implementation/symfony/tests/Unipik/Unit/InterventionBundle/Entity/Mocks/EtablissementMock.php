@@ -9,10 +9,10 @@
 namespace Tests\Unipik\Unit\InterventionBundle\Entity\Mocks;
 
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\AdresseMock;
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\InterventionBundle\Entity\Etablissement;
 
-class EtablissementMock extends Mock {
+class EtablissementMock extends EntityMock {
 
     /**
      * @return Etablissement

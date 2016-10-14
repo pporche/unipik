@@ -8,10 +8,10 @@
 
 namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\ArchitectureBundle\Entity\NiveauTheme;
 
-class NiveauThemeMock extends Mock {
+class NiveauThemeMock extends EntityMock {
 
     /**
      * @return NiveauTheme

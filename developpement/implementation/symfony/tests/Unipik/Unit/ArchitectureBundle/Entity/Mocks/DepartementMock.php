@@ -7,10 +7,10 @@
  */
 namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\ArchitectureBundle\Entity\Departement;
 
-class DepartementMock extends Mock {
+class DepartementMock extends EntityMock {
 
     /**
      * @return Departement

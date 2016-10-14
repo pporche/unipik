@@ -8,10 +8,10 @@
 
 namespace Tests\Unipik\Unit\InterventionBundle\Entity\Mocks;
 
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\InterventionBundle\Entity\Vente;
 
-class VenteMock extends Mock {
+class VenteMock extends EntityMock {
 
     /**
      * @return Vente

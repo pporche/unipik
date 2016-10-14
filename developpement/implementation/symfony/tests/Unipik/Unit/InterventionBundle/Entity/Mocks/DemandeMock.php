@@ -9,10 +9,10 @@
 namespace Tests\Unipik\Unit\InterventionBundle\Entity\Mocks;
 
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ContactMock;
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\InterventionBundle\Entity\Demande;
 
-class DemandeMock extends Mock {
+class DemandeMock extends EntityMock {
 
     /**
      * @return Demande

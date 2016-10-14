@@ -8,10 +8,10 @@
 
 namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\ArchitectureBundle\Entity\Ville;
 
-class VilleMock extends Mock {
+class VilleMock extends EntityMock {
 
     /**
      * @return Ville

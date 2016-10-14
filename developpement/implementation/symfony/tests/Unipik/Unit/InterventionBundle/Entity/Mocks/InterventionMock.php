@@ -10,10 +10,10 @@ namespace Tests\Unipik\Unit\InterventionBundle\Entity\Mocks;
 
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\AdresseMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ComiteMock;
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\InterventionBundle\Entity\Intervention;
 
-class InterventionMock extends Mock {
+class InterventionMock extends EntityMock {
 
     /**
      * @return Intervention

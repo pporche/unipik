@@ -58,4 +58,28 @@ class architectureControllerTest extends ControllerTestCase {
         $controller->setContainer($containerMock->getContainer());
         $controller->indexAction();
     }
+
+    public function testNoJSAction()
+    {
+        $controller = new ArchitectureController();
+        $containerMock = new ContainerMock();
+
+        $containerMock->expectRender('::noJavascript.html.twig');
+
+        $controller->setContainer($containerMock->getContainer());
+        $controller->noJSAction();
+    }
+
+    public function testAutocompleteVilleAction()
+    {
+        $controller = new ArchitectureController();
+        $containerMock = new ContainerMock();
+
+        $containerMock->expectRender('::noJavascript.html.twig');
+
+        $controller->setContainer($containerMock->getContainer());
+        $controller->noJSAction();
+    }
+
+
 }

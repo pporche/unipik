@@ -25,6 +25,40 @@ class InterventionType extends AbstractFieldsetType {
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
+        $choiceClasse = array('required' => false, 'label' => 'Année scolaire', 'attr' => ['class' => 'form-annee-scolaire'],
+            'choices' => [
+                'Petite Section' => 'petite section',
+                'Petite/Moyenne Section' => 'petite-moyenne section',
+                'Moyenne Section' => 'moyenne section',
+                'Moyenne/Grande Section' => 'moyenne-grande section',
+                'Grande Section' => 'grande section',
+                'Petite/Moyenne/Grande Section' => 'petite-moyenne-grande section',
+                'CP' => 'CP',
+                'CP/CE1' => 'CP-CE1',
+                'CE1' => 'CE1',
+                'CE1/CE2' => 'CE1-CE2',
+                'CE2' => 'CE2',
+                'CE2/CM1' => 'CE2-CM1',
+                'CM1' => 'CM1',
+                'CM1/CM2' => 'CM1-CM2',
+                'CM2' => 'CM2',
+                '6ème' => '6eme',
+                '5ème' => '5eme',
+                '4ème' => '4eme',
+                '3ème' => '3eme',
+                '2nde' => '2nde',
+                '1ère' => '1ere',
+                'Terminale' => 'terminale',
+                'L1' => 'L1',
+                'L2' => 'L2',
+                'L3' => 'L3',
+                'M1' => 'M1',
+                'M2' => 'M2',
+                'Autre' => 'autre'
+
+            ]
+        );
+
         $builder
             ->add('dateIntervention', DateType::class, array(
                 'widget' => 'single_text',
@@ -42,6 +76,7 @@ class InterventionType extends AbstractFieldsetType {
             ->add('materiauxFrimousse',MaterielFrimousseType::class, array('label' => 'Matériel frimousse'))
             ->add('nbPersonne', IntegerType::class, array('label' => 'Participants'))
             ->add('niveauTheme', NiveauThemeType::class)
+            ->add('niveau', ChoiceType::class, $choiceClasse)
         ;
     }
 

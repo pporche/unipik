@@ -84,6 +84,26 @@ class InterventionController extends Controller {
         if($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
 
+            $intervention->setDateIntervention($form->get('dateIntervention')->getData());
+            $intervention->setLieu($form->get('lieu')->getData());
+            $intervention->setNbPersonne($form->get('nbPersonne')->getData());
+
+            if($intervention->isFrimousse()) {
+                $intervention->removeAllMateriauxFrimousse();
+                $materiauxData = $form->get('materiauxFrimousse')->getData();
+                foreach ($materiauxData as $mat) {
+                    $intervention->addMateriauxFrimousse($mat);
+                }
+            } elseif ($intervention->isPlaidoyer()) {
+                $intervention->removeAllMaterielDispoPlaidoyer();
+                $materiauxData = $form->get('materielDispoPlaidoyer')->getData();
+                foreach ($materiauxData as $mat) {
+                    $intervention->addMaterielDispoPlaidoyer($mat);
+                }
+            } else {
+                $materiauxData = array("kaki");
+            }
+
             $em->persist($intervention);
             $em->flush();
 
@@ -91,14 +111,14 @@ class InterventionController extends Controller {
         }
 
         if($intervention->isFrimousse()) {
-            $materiaux = $intervention->getMateriauxFrimousse();
+            $materiaux = $intervention->getMateriauxFrimousse()->toArray();
         } elseif ($intervention->isPlaidoyer()) {
-            $materiaux = $intervention->getMaterielDispoPlaidoyer();
+            $materiaux = $intervention->getMaterielDispoPlaidoyer()->toArray();
         } else {
             $materiaux = array("kaki");
         }
 
-        $materiaux = json_encode($materiaux->toArray());
+        $materiaux = json_encode($materiaux);
 
         return $this->render('InterventionBundle:Intervention:editIntervention.html.twig', array('form' => $form->createView(),
                                                                                  'intervention' => $intervention,

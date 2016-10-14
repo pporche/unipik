@@ -12,14 +12,14 @@
     <script>
         {% if intervention.plaidoyer %}
             {% autoescape false %}
-            var materiaux = {{ materiaux }};
-            for (var i = 0; i < materiaux.length; i++) {
-                materiaux[i] = materiaux[i].replace('("', '');
-                materiaux[i] = materiaux[i].replace('")', '');
+            var materiauxPlaidoyer = {{ materiaux }};
+            for (var i = 0; i < materiauxPlaidoyer.length; i++) {
+                materiauxPlaidoyer[i] = materiauxPlaidoyer[i].replace('("', '');
+                materiauxPlaidoyer[i] = materiauxPlaidoyer[i].replace('")', '');
              }
             {% endautoescape %}
 
-        materiaux.forEach(function(entry) {
+        materiauxPlaidoyer.forEach(function(entry) {
             switch(entry) {
                 case "videoprojecteur":
                     $("#intervention_materielDispoPlaidoyer_materiel_0").prop("checked", true);
@@ -37,7 +37,28 @@
         });
 
         {% elseif intervention.frimousse %}
-        console.log("frimousse");
+            {% autoescape false %}
+            var materiauxFrimousse = {{ materiaux|raw }};
+        console.log(materiauxFrimousse);
+            for (var j = 0; j < materiauxFrimousse.length; j++) {
+                materiauxFrimousse[j] = materiauxFrimousse[j].replace('("', '');
+                materiauxFrimousse[j] = materiauxFrimousse[j].replace('")', '');
+            }
+            {% endautoescape %}
+
+        materiauxFrimousse.forEach(function(entry) {
+                switch(entry) {
+                    case "patron":
+                        $("#intervention_materiauxFrimousse_materiel_0").prop("checked", true);
+                        break;
+                    case "bourre":
+                        $("#intervention_materiauxFrimousse_materiel_1").prop("checked", true);
+                        break;
+                    case "decoration":
+                        $("#intervention_materiauxFrimousse_materiel_2").prop("checked", true);
+                        break;
+                }
+            });
         {% else %}
         console.log("autre");
         {% endif %}

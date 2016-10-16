@@ -137,10 +137,6 @@
                 });
         });
 
-
-
-
-        console.log('début du javascript de l\'ambiance');
         var addInterElt = document.createElement('a');
         addInterElt.id = 'add_intervention';
         buttonAddElement = document.createElement('button');
@@ -446,39 +442,41 @@
 
     <script type="application/javascript">
         document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change',function(e){
+			var uaiElt = $(document.getElementById('demande_Etablissement_uai').parentNode.parentNode).get(0);
             switch (e.target.value){
                 case 'ens' :
                     keepInstitute();
-                    $('.form-group:eq(8)').fadeIn("fast");
+                    $(uaiElt).fadeIn("fast");
                     break;
                 case 'centre' :
                     keepCenter();
-                    $('.form-group:eq(8)').fadeOut("fast");
+                    $(uaiElt).fadeOut("fast");
                     $('#demande_Etablissement_uai').val('');
                     break;
                 case 'autre' :
                     keepOther();
-                    $('.form-group:eq(8)').fadeOut("fast");
+                    $(uaiElt).fadeOut("fast");
                     $('#demande_Etablissement_uai').val('');
                     break;
             }
         });
 
         var typeInstitute = '' {#{{ typEnseignement | raw}} #};
+		var uaiElt = $(document.getElementById('demande_Etablissement_uai').parentNode.parentNode).get(0);
         if(typeInstitute.hasOwnProperty('autre')){
             console.log(typeInstitute);
             $('#demande_Etablissement_TypeGeneral').val('autre');
             level = typeInstitute['autre'];
             $("input[name='demande[Etablissement][typeAutreEtablissement]']").find("[value="+ level+"]").prop("checked", true);
             keepOther();
-            $('.form-group:eq(8)').fadeOut("fast");
+            $(uaiElt).fadeOut("fast");
             $('#demande_Etablissement_uai').val('');
         }else if( typeInstitute.hasOwnProperty('centre')){
             $('#demande_Etablissement_TypeGeneral').val('centre');
             level = typeInstitute['centre'];
             $("input[name='demande[Etablissement][typeCentre]']").find("[value="+ level+"]").prop("checked", true);
             keepCenter();
-            $('.form-group:eq(8)').fadeOut("fast");
+            $(uaiElt).fadeOut("fast");
             $('#demande_Etablissement_uai').val('');
         }else if( typeInstitute.hasOwnProperty('ens')){
             console.log(typeInstitute['ens']);
@@ -487,26 +485,35 @@
 
             $("input[name='demande[Etablissement][typeEnseignement]'][value='"+ level+"']").prop("checked", true);
             keepInstitute();
-            $('.form-group:eq(8)').fadeIn("fast");
+            $(uaiElt).fadeIn("fast");
         }
 
         function keepInstitute(){
-            $(".form-group:eq(5)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
+			var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
+			var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
+			var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
+            $(instituteElt).fadeIn("medium").removeAttr("disabled").find("input").prop("required",true);
+            $(centerElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
+            $(othersElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
         }
 
         function keepCenter(){
-            $(".form-group:eq(7)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
+			var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
+			var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
+			var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
+            $(centerElt).fadeIn("medium").removeAttr("disabled").find("input").prop("required",true);
+            $(instituteElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
+            $(othersElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
 
         }
 
         function keepOther(){
-            $(".form-group:eq(6)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
+			var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
+			var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
+			var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
+            $(othersElt).fadeIn("medium").removeAttr("disabled").find("input").prop("required",true);
+            $(centerElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
+            $(instituteElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
         }
 
         function verifyAll(e){

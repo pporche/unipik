@@ -22,6 +22,22 @@
     font-family: 'Ubuntu Condensed', sans-serif;
 }
 
+.dangerTable{
+    background-color: #ff003933 !important;
+}
+
+.dangerTable:hover{
+    background-color: #ff00394d !important;
+}
+
+.warningTable{
+    background-color: #ffd90533 !important;
+}
+
+.warningTable:hover{
+    background-color: #ffd90566 !important;
+}
+
 .subtitle:after{
     content: ' ';
     width: 90%;

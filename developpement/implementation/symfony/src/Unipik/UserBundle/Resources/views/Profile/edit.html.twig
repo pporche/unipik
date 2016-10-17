@@ -65,56 +65,47 @@
             margin: 0;
         }
 
-        @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
-        h1{
-            font-family: 'Ubuntu Condensed', sans-serif;
-            margin-top: 40px;
+
+        .container {
+            margin-top: 50px !important;
         }
 
-        div{
-            box-shadow: none !important;
+        #fos_user_profile_form{
+            width: 500px !important;
+            margin-left: calc(50vw - 250px) !important;
         }
 
-        input[type="text"], select{
-            width: 350px !important;
+        .col-sm-2{
+            width: 30%;
         }
-        input:focus, select:focus{
-            outline: none !important;
-            box-shadow: none !important;
-            border-color: #CCCCCC !important;
+        .col-sm-10{
+            width: 70%;
         }
 
-        .btn-default{
-            border-radius: 10px !important;
-            background-color: #3fb618 !important;
-            border-color: #3fb618 !important;
+        .btn{
+            border-radius: 10px;
+            background-color: #3fb618;
+            border-color: #3fb618;
+            margin-left: calc(50vw - 100px) !important;
         }
 
-        hr{
-            margin-top: 0px;
-        }
+        @media (max-width: 415px){
+            #fos_user_profile_form {
+                width: 120% !important;
+                margin-left: 0px !important;
+            }
+            .col-sm-10{
+                width: 100% !important;
+            }
 
+            .container{
+                padding-left: 0px !important;
+            }
 
-        .btn-primary{
-            margin-left: 30%;
-        }
-
-        form{
-            padding-left: 25vw;
-        }
-
-        @media(max-width: 1060px){
-            form{
-                padding-left: 0vw;
+            input[type="text"]{
+                width: 80% !important;
             }
         }
-        @media(max-width: 1260px && min-width: 1060px){
-            form{
-                padding-left: 15vw;
-            }
-        }
-
-
     </style>
 
 {% endblock %}
@@ -231,7 +222,7 @@
 
 {% block fos_user_content %}
     {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-    {{ form_widget(form, { 'attr': {'style': 'display: inline-block; width: 50%'} }) }}
+    {{ form_widget(form, { 'attr': {'style': 'display: inline-block; width: 40%'} }) }}
     <div>
         <input type="submit" class="btn btn-default" value="Valider"/>
     </div>

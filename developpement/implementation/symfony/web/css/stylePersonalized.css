@@ -1,6 +1,18 @@
 @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
 
 
+tbody {
+    display:block;
+    height: 750px;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+
+
 .jumbotron {
     border-radius: 20px !important;
     position: relative;

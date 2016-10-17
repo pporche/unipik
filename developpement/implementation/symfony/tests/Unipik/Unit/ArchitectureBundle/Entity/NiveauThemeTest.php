@@ -13,11 +13,13 @@ use Unipik\ArchitectureBundle\Entity\NiveauTheme;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
 use \Tests\Unipik\Unit\UserBundle\Entity\Mocks\ComiteMock;
 
-class NiveauThemeTest extends EntityTestCase {
+class NiveauThemeTest extends EntityTestCase
+{
 
     protected static $repository = "ArchitectureBundle:NiveauTheme";
 
-    public static function testCreate() {
+    public static function testCreate() 
+    {
         self::bootKernel();
 
         $nt = NiveauThemeMock::create();
@@ -28,7 +30,8 @@ class NiveauThemeTest extends EntityTestCase {
     /**
      * @depends testCreate
      */
-    public function testGettersSetters(NiveauTheme $nt) {
+    public function testGettersSetters(NiveauTheme $nt) 
+    {
         $this->assertEquals($nt->getId(), null);
         $this->assertEquals($nt->getTheme(), "convention internationale des droits de l enfant");
         $this->assertEquals($nt->getNiveau(), "CM1-CM2");
@@ -36,7 +39,7 @@ class NiveauThemeTest extends EntityTestCase {
         $nt->setTheme("enfants et soldats");
         $nt->setNiveau("grande section");
 
-        $this->assertEquals($nt->getTheme(),"enfants et soldats");
+        $this->assertEquals($nt->getTheme(), "enfants et soldats");
         $this->assertEquals($nt->getNiveau(), "grande section");
 
         $c = ComiteMock::create();
@@ -61,7 +64,8 @@ class NiveauThemeTest extends EntityTestCase {
         );
     }
 
-    public function badEntityProvider() {
+    public function badEntityProvider() 
+    {
         $nt = NiveauThemeMock::createMultiple(5);
 
         return [

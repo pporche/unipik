@@ -7,15 +7,17 @@
  */
 namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\ArchitectureBundle\Entity\Departement;
 
-class DepartementMock extends Mock {
+class DepartementMock extends EntityMock
+{
 
     /**
      * @return Departement
      */
-    public static function create() {
+    public static function create() 
+    {
         $d = new Departement();
 
         $r = RegionMock::create();
@@ -23,8 +25,7 @@ class DepartementMock extends Mock {
         $d
             ->setNom("Eure")
             ->setNumero("27")
-            ->setRegion($r)
-        ;
+            ->setRegion($r);
 
         return $d;
     }
@@ -33,7 +34,8 @@ class DepartementMock extends Mock {
      * @param $nb
      * @return Departement[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

@@ -5,7 +5,8 @@ Creation-Date: 2016-10-07T16:26:23+02:00
 ====== CodeSniffer ======
 Created vendredi 07 octobre 2016 by Matthieu
 Last updates:
- * vendredi 07 octobre 2016 by Matthieu
+* vendredi 07 octobre 2016 by Matthieu
+* vendred 14 octobre 2016 by Matthieu
 
 ===== But: =====
 
@@ -16,7 +17,7 @@ Détecter et corriger les problème de convention de codage.
 1. Pour configurer PHP CodeSniffer avec les convention officielles de Symfony exécutez la commande:
 
 '''
-vendor/bin/phpcs --config-set installed_paths vendor/escapestudios/symfony2-coding-standard
+vendor/bin/phpcs --config-set installed_paths $(pwd)/vendor/escapestudios/symfony2-coding-standard
 '''
 
 2. Pour lancer la détection de non-conformité exécuter la commande:

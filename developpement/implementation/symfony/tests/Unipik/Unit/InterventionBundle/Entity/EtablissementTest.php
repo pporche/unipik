@@ -40,8 +40,7 @@ class EtablissementTest extends  EntityTestCase
             ->setUai("uai") //Aucune vérification sur l'UAI: normal
             ->setTypeEnseignement("lycee")
             ->setTypeCentre("adolescent")
-            ->setTypeAutreEtablissement("autre")
-        ;
+            ->setTypeAutreEtablissement("autre");
 
         $ad = AdresseMock::create();
         $e->setAdresse($ad);
@@ -77,7 +76,8 @@ class EtablissementTest extends  EntityTestCase
         $this->assertEquals(null, $e->getContacts()[0]);
     }
 
-    public function validEntityProvider() {
+    public function validEntityProvider() 
+    {
         $e = EtablissementMock::createMultiple(2);
         $c = ContactMock::create();
 
@@ -86,8 +86,7 @@ class EtablissementTest extends  EntityTestCase
             ->setTypeEnseignement("lycee")
             ->setTelFixe("0232010203")
             ->setUai("uai")
-            ->addContact($c)
-        ;
+            ->addContact($c);
 
         return [
             "1 Etablissement" => [$e[0]],

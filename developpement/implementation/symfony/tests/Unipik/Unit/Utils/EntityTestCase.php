@@ -11,7 +11,8 @@ namespace Tests\Unipik\Unit\Utils;
 use Prophecy\Exception\Exception;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-abstract class EntityTestCase extends KernelTestCase {
+abstract class EntityTestCase extends KernelTestCase
+{
 
     protected static $repository = "";
 
@@ -33,7 +34,8 @@ abstract class EntityTestCase extends KernelTestCase {
         //static::$em->rollBack();
     }
 
-    public function validEntityProvider() {
+    public function validEntityProvider() 
+    {
         $e = $this->testCreate();
 
         return [
@@ -71,7 +73,8 @@ abstract class EntityTestCase extends KernelTestCase {
     /**
      * @dataProvider badEntityProvider
      */
-    public function testBadEntities($e) {
+    public function testBadEntities($e) 
+    {
         self::bootKernel();
         static::$em->beginTransaction();
 

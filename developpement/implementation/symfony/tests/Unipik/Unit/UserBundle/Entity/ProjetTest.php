@@ -18,7 +18,8 @@ class ProjetTest extends EntityTestCase
 {
     protected static $repository = "UserBundle:Projet";
 
-    public static function testCreate() {
+    public static function testCreate() 
+    {
         self::bootKernel();
 
         $p = ProjetMock::create();
@@ -29,7 +30,8 @@ class ProjetTest extends EntityTestCase
     /**
      * @depends testCreate
      */
-    public function testGettersSetters(Projet $p) {
+    public function testGettersSetters(Projet $p) 
+    {
         $this->assertEquals($p->getId(), null);
         $this->assertEquals($p->getNom(), "Aquitaine Limousin Poitou-Charentes");
 
@@ -38,7 +40,7 @@ class ProjetTest extends EntityTestCase
         $p->setRemarques("Très long texte.");
         $p->setType("superieur");
 
-        $this->assertEquals($p->getNom(),"Bretagne");
+        $this->assertEquals($p->getNom(), "Bretagne");
         $this->assertEquals($p->getChiffreAffaire(), 102.5);
         $this->assertEquals($p->getRemarques(), "Très long texte.");
         $this->assertEquals($p->getType(), "superieur");
@@ -58,7 +60,8 @@ class ProjetTest extends EntityTestCase
         $this->assertEquals(null, $p->getContact()[0]);
     }
 
-    public function badEntityProvider() {
+    public function badEntityProvider() 
+    {
         $p = ProjetMock::createMultiple(3);
         $longName = str_repeat("a", 1001);
 

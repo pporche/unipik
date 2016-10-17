@@ -9,15 +9,17 @@
 namespace Tests\Unipik\Unit\InterventionBundle\Entity\Mocks;
 
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ContactMock;
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\InterventionBundle\Entity\Demande;
 
-class DemandeMock extends Mock {
+class DemandeMock extends EntityMock
+{
 
     /**
      * @return Demande
      */
-    public static function create() {
+    public static function create() 
+    {
         $c = ContactMock::create();
 
 
@@ -25,8 +27,7 @@ class DemandeMock extends Mock {
         $d
             ->setContact($c)
             ->setDateDemande(new \DateTime('2000-01-01'))
-            ->addSemaine("42")
-        ;
+            ->addSemaine("42");
 
         return $d;
     }
@@ -35,7 +36,8 @@ class DemandeMock extends Mock {
      * @param $nb
      * @return Demande[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

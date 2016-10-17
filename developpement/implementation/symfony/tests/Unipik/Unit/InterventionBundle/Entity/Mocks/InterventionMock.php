@@ -10,15 +10,17 @@ namespace Tests\Unipik\Unit\InterventionBundle\Entity\Mocks;
 
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\AdresseMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ComiteMock;
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\InterventionBundle\Entity\Intervention;
 
-class InterventionMock extends Mock {
+class InterventionMock extends EntityMock
+{
 
     /**
      * @return Intervention
      */
-    public static function create() {
+    public static function create() 
+    {
         $d = DemandeMock::create();
         $c = ComiteMock::create();
         $e = EtablissementMock::create();
@@ -29,8 +31,7 @@ class InterventionMock extends Mock {
             ->setComite($c)
             ->setEtablissement($e)
             ->setNbPersonne(7)
-            ->setRealisee(false)
-        ;
+            ->setRealisee(false);
 
         return $i;
     }
@@ -39,7 +40,8 @@ class InterventionMock extends Mock {
      * @param $nb
      * @return Intervention[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

@@ -311,7 +311,7 @@
                 function (data, status) {
                     var selector = "button[name=attribuer" + id + "]";
                     $(selector).attr('class', 'btn btn-danger');
-                    $(selector).text('Retirer ' + data.prenom + ' ' + data.nom + ' de l\'intervention');
+                    $(selector).text('Retirer ' + data.prenom + ' ' + data.nom );
                     $(selector).attr("onclick", "desattributeInterventionAdmin(this, " + id + ")");
                     $(selector).removeAttr("data-target");
                     $(selector).removeAttr("data-toggle");

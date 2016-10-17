@@ -354,6 +354,7 @@
                             </tr>
                         </thead>
                         <tbody id="myTable">
+                        {% if liste is not empty %}
                             {% for etablissement in liste %}
                                 <tr>
                                     <td data-title="Nom">{{ etablissement.nom }}</td>
@@ -379,6 +380,9 @@
                                     {% endif %}
                                 </tr>
                             {% endfor %}
+                        {% else %}
+                            <tr></tr>
+                        {% endif %}
                         </tbody>
                     </table>
 

@@ -67,7 +67,6 @@ class ProfileFormType extends BaseType {
 
         $builder
             ->add('adresse', AdresseType::class)
-            ->add('roles', ChoiceType::class, $optionChoiceType)
             ->add('responsabiliteActivite', ChoiceType::class, $optionResponsabilite)
             ->add('activitesPotentielles', ChoiceType::class, $optionActivite)
         ;

@@ -566,6 +566,23 @@ class InterventionController extends Controller {
         return new Response();
     }
 
+    public function realisationAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $id = $request->request->get('id');
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Intervention');
+            $intervention = $repository->find($id);
+
+            $intervention->setRealisee(true);
+
+            $em->persist($intervention);
+            $em->flush();
+            return new Response();
+        }
+        return new Response();
+    }
+
     /**
      * Class casting
      *

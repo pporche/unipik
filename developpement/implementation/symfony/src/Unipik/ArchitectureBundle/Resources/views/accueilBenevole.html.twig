@@ -9,138 +9,153 @@
     <script src="{{ asset('vendor/fullcalendar/dist/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('vendor/fullcalendar/dist/locale/fr.js') }}"></script>
     <style>
-        .fc-month-view span.fc-title{
+        .fc-month-view span.fc-title {
             white-space: normal;
 
         }
 
-        #lien{float: right; }
+        #lien {
+            float: right;
+        }
     </style>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
+            {% for intervention in interventionsNonRealiseesBenevole %}
+            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
+                $("#myModal").modal("show");
+            {% endif %}
+            {%  endfor %}
             var interventions = [];
-            var typeIntervention ;
+            var typeIntervention;
 
             {% for intervention in interventionsNonRealisees %}
-                {% if intervention.dateIntervention is not null  %}
-                    {% if intervention.plaidoyer %}
-                        typeIntervention = "Plaidoyer";
-                    {% elseif intervention.frimousse %}
-                        typeIntervention = "Frimousse";
-                    {% else %}
-                        typeIntervention = "Autre intervention";
-                    {% endif %}
-                    {% if intervention.etablissement.nom != null  %}
-                        typeEtablissement = "{{ intervention.etablissement.nom }}"
-                    {% elseif  intervention.etablissement.nom == null %}
-                        {% if intervention.etablissement.typeEnseignement is not empty %}
-                            {% if intervention.etablissement.typeEnseignement == "maternelle" %}
-                                typeEtablissement = "Ecole maternelle";
-                            {% elseif intervention.etablissement.typeEnseignement == "elementaire" %}
-                                typeEtablissement = "Ecole élémentaire";
-                            {% elseif intervention.etablissement.typeEnseignement == "college" %}
-                                typeEtablissement = "Collège";
-                            {% elseif intervention.etablissement.typeEnseignement == "lycee" %}
-                                typeEtablissement = "Lycée";
-                            {% elseif intervention.etablissement.typeEnseignement == "superieur" %}
-                                typeEtablissement = "Supérieur";
-                            {% endif %}
-                        {% elseif intervention.etablissement.typeCentre is not empty %}
-                            {% if intervention.etablissement.typeCentre == "maternelle" %}
-                                typeEtablissement = "Centre de loisirs maternelle";
-                            {% elseif intervention.etablissement.typeCentre == "elementaire" %}
-                                typeEtablissement = "Centre de loisirs élémentaire";
-                            {% elseif intervention.etablissement.typeCentre == "adolescent" %}
-                                typeEtablissement = "Centre de loisirs adolescent";
-                            {% elseif intervention.etablissement.typeCentre == "autre" %}
-                                typeEtablissement = "Centre de loisirs autre";
-                            {% endif %}
-                        {% elseif intervention.etablissement.typeAutreEtablissement is not empty %}
-                            {% if intervention.etablissement.typeAutreEtablissement == "mairie" %}
-                            typeEtablissement = "mairie";
-                            {% elseif intervention.etablissement.typeAutreEtablissement == "maison de retraite" %}
-                            typeEtablissement = "maison de retraite";
-                            {% elseif intervention.etablissement.typeAutreEtablissement == "autre" %}
-                            typeEtablissement = "maison de retraite";
-                            {% endif %}
-                        {% endif %}
-                    {% endif %}
-                    {% if intervention.benevole is not null %}
-                        {% if user.id == intervention.benevole.id %}
-                            interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
-                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                                url: '{{ path('intervention_view', {id: intervention.id}) }}' });
-                        {% else %}
-                            interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
-                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                                url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                                color  : 'grey' });
-                        {% endif %}
-                    {% endif %}
-                {% endif %}
-                {% endfor %}
-                {% for intervention in interventionsRealisees %}
-                    {% if intervention.dateIntervention is not null  %}
-                        {% if intervention.plaidoyer %}
-                            typeIntervention = "Plaidoyer";
-                        {% elseif intervention.frimousse %}
-                            typeIntervention = "Frimousse";
-                        {% else %}
-                            typeIntervention = "Autre intervention";
-                        {% endif %}
-                        {% if intervention.etablissement.nom != null  %}
-                            typeEtablissement = "{{ intervention.etablissement.nom }}"
-                        {% elseif  intervention.etablissement.nom == null %}
-                            {% if intervention.etablissement.typeEnseignement is not empty %}
-                                {% if intervention.etablissement.typeEnseignement == "maternelle" %}
-                                    typeEtablissement = "Ecole maternelle";
-                                {% elseif intervention.etablissement.typeEnseignement == "elementaire" %}
-                                    typeEtablissement = "Ecole élémentaire";
-                                {% elseif intervention.etablissement.typeEnseignement == "college" %}
-                                    typeEtablissement = "Collège";
-                                {% elseif intervention.etablissement.typeEnseignement == "lycee" %}
-                                    typeEtablissement = "Lycée";
-                                {% elseif intervention.etablissement.typeEnseignement == "superieur" %}
-                                    typeEtablissement = "Supérieur";
-                                {% endif %}
-                            {% elseif intervention.etablissement.typeCentre is not empty %}
-                                {% if intervention.etablissement.typeCentre == "maternelle" %}
-                                    typeEtablissement = "Centre de loisirs maternelle";
-                                {% elseif intervention.etablissement.typeCentre == "elementaire" %}
-                                    typeEtablissement = "Centre de loisirs élémentaire";
-                                {% elseif intervention.etablissement.typeCentre == "adolescent" %}
-                                    typeEtablissement = "Centre de loisirs adolescent";
-                                {% elseif intervention.etablissement.typeCentre == "autre" %}
-                                    typeEtablissement = "Centre de loisirs autre";
-                                {% endif %}
-                            {% elseif intervention.etablissement.typeAutreEtablissement is not empty %}
-                                {% if intervention.etablissement.typeAutreEtablissement == "mairie" %}
-                                    typeEtablissement = "mairie";
-                                {% elseif intervention.etablissement.typeAutreEtablissement == "maison de retraite" %}
-                                    typeEtablissement = "maison de retraite";
-                                {% elseif intervention.etablissement.typeAutreEtablissement == "autre" %}
-                                    typeEtablissement = "maison de retraite";
-                                {% endif %}
-                            {% endif %}
-                        {% endif %}
-                        {% if intervention.benevole is not null %}
-                            {% if user.id == intervention.benevole.id %}
-                                interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
-                                    start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                                    url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                                    color  : '#82C46C' });
-                            {% else %}
-                                interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
-                                    start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                                    url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                                    color  : 'grey' });
-                            {% endif %}
-                        {% endif %}
-                    {% endif %}
+            {% if intervention.dateIntervention is not null %}
+            {% if intervention.plaidoyer %}
+            typeIntervention = "Plaidoyer";
+            {% elseif intervention.frimousse %}
+            typeIntervention = "Frimousse";
+            {% else %}
+            typeIntervention = "Autre intervention";
+            {% endif %}
+            {% if intervention.etablissement.nom != null %}
+            typeEtablissement = "{{ intervention.etablissement.nom }}"
+            {% elseif  intervention.etablissement.nom == null %}
+            {% if intervention.etablissement.typeEnseignement is not empty %}
+            {% if intervention.etablissement.typeEnseignement == "maternelle" %}
+            typeEtablissement = "Ecole maternelle";
+            {% elseif intervention.etablissement.typeEnseignement == "elementaire" %}
+            typeEtablissement = "Ecole élémentaire";
+            {% elseif intervention.etablissement.typeEnseignement == "college" %}
+            typeEtablissement = "Collège";
+            {% elseif intervention.etablissement.typeEnseignement == "lycee" %}
+            typeEtablissement = "Lycée";
+            {% elseif intervention.etablissement.typeEnseignement == "superieur" %}
+            typeEtablissement = "Supérieur";
+            {% endif %}
+            {% elseif intervention.etablissement.typeCentre is not empty %}
+            {% if intervention.etablissement.typeCentre == "maternelle" %}
+            typeEtablissement = "Centre de loisirs maternelle";
+            {% elseif intervention.etablissement.typeCentre == "elementaire" %}
+            typeEtablissement = "Centre de loisirs élémentaire";
+            {% elseif intervention.etablissement.typeCentre == "adolescent" %}
+            typeEtablissement = "Centre de loisirs adolescent";
+            {% elseif intervention.etablissement.typeCentre == "autre" %}
+            typeEtablissement = "Centre de loisirs autre";
+            {% endif %}
+            {% elseif intervention.etablissement.typeAutreEtablissement is not empty %}
+            {% if intervention.etablissement.typeAutreEtablissement == "mairie" %}
+            typeEtablissement = "mairie";
+            {% elseif intervention.etablissement.typeAutreEtablissement == "maison de retraite" %}
+            typeEtablissement = "maison de retraite";
+            {% elseif intervention.etablissement.typeAutreEtablissement == "autre" %}
+            typeEtablissement = "maison de retraite";
+            {% endif %}
+            {% endif %}
+            {% endif %}
+            {% if intervention.benevole is not null %}
+            {% if user.id == intervention.benevole.id %}
+            interventions.push({
+                title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
+                start: '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                url: '{{ path('intervention_view', {id: intervention.id}) }}'
+            });
+            {% else %}
+            interventions.push({
+                title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
+                start: '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                url: '{{ path('intervention_view', {id: intervention.id}) }}',
+                color: 'grey'
+            });
+            {% endif %}
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% for intervention in interventionsRealisees %}
+            {% if intervention.dateIntervention is not null %}
+            {% if intervention.plaidoyer %}
+            typeIntervention = "Plaidoyer";
+            {% elseif intervention.frimousse %}
+            typeIntervention = "Frimousse";
+            {% else %}
+            typeIntervention = "Autre intervention";
+            {% endif %}
+            {% if intervention.etablissement.nom != null %}
+            typeEtablissement = "{{ intervention.etablissement.nom }}"
+            {% elseif  intervention.etablissement.nom == null %}
+            {% if intervention.etablissement.typeEnseignement is not empty %}
+            {% if intervention.etablissement.typeEnseignement == "maternelle" %}
+            typeEtablissement = "Ecole maternelle";
+            {% elseif intervention.etablissement.typeEnseignement == "elementaire" %}
+            typeEtablissement = "Ecole élémentaire";
+            {% elseif intervention.etablissement.typeEnseignement == "college" %}
+            typeEtablissement = "Collège";
+            {% elseif intervention.etablissement.typeEnseignement == "lycee" %}
+            typeEtablissement = "Lycée";
+            {% elseif intervention.etablissement.typeEnseignement == "superieur" %}
+            typeEtablissement = "Supérieur";
+            {% endif %}
+            {% elseif intervention.etablissement.typeCentre is not empty %}
+            {% if intervention.etablissement.typeCentre == "maternelle" %}
+            typeEtablissement = "Centre de loisirs maternelle";
+            {% elseif intervention.etablissement.typeCentre == "elementaire" %}
+            typeEtablissement = "Centre de loisirs élémentaire";
+            {% elseif intervention.etablissement.typeCentre == "adolescent" %}
+            typeEtablissement = "Centre de loisirs adolescent";
+            {% elseif intervention.etablissement.typeCentre == "autre" %}
+            typeEtablissement = "Centre de loisirs autre";
+            {% endif %}
+            {% elseif intervention.etablissement.typeAutreEtablissement is not empty %}
+            {% if intervention.etablissement.typeAutreEtablissement == "mairie" %}
+            typeEtablissement = "mairie";
+            {% elseif intervention.etablissement.typeAutreEtablissement == "maison de retraite" %}
+            typeEtablissement = "maison de retraite";
+            {% elseif intervention.etablissement.typeAutreEtablissement == "autre" %}
+            typeEtablissement = "maison de retraite";
+            {% endif %}
+            {% endif %}
+            {% endif %}
+            {% if intervention.benevole is not null %}
+            {% if user.id == intervention.benevole.id %}
+            interventions.push({
+                title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
+                start: '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                url: '{{ path('intervention_view', {id: intervention.id}) }}',
+                color: '#82C46C'
+            });
+            {% else %}
+            interventions.push({
+                title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
+                start: '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                url: '{{ path('intervention_view', {id: intervention.id}) }}',
+                color: 'grey'
+            });
+            {% endif %}
+            {% endif %}
+            {% endif %}
             {% endfor %}
 
             $('#calendar').fullCalendar({
-                locale:"fr",
+                locale: "fr",
                 events: interventions
             })
 
@@ -167,190 +182,250 @@
 
 {% block body %}
 
-        <div class="row">
+<div class="row">
 
-            <section class="col-lg-2 col-md-3 col-sm-3">
-                <div class="row">
-                    <nav class="col-sm-12">
-                        <hr style="height: 2px; color: #8699a4">
-                        <ul class="nav nav-pills nav-stacked">
-                            <li class="active"><a href="#">Accueil</a></li>
-                            <li><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
-                            <li><a href="{{  path('fos_user_profile_edit') }}">Modifier mon profil</a></li>
-                            <li><a href="{{  path('fos_user_change_password') }}">Modifier mon mot de passe</a></li>
-                            <li><a href="{{  path('etablissement_list') }}">Liste des établissements</a></li>
-                            <li><a href="{{  path('intervention_self') }}">Mes interventions</a></li>
-                            <li><a href="{{  path('fos_user_planning_show') }}">Mon planning</a></li>
-                        </ul>
-                    </nav>
-                </div>
+    <section class="col-lg-2 col-md-3 col-sm-3">
+        <div class="row">
+            <nav class="col-sm-12">
                 <hr style="height: 2px; color: #8699a4">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a class="lienImage img-responsive logoAccueil" href="https://www.unicef.fr/" target="_blank">
-                            <img src="{{ asset("img/unicef-logo.gif") }}" class="center-block img-responsive img-rounded" alt="logo UNICEF"/>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a class="lienImage img-responsive logoAccueil" href="https://www.facebook.com/UnicefRouen/" target="_blank">
-                            <img src="{{ asset("img/FB-FindUsonFacebook-online-512_fr_FR.png") }}" class="center-block img-responsive img-rounded" alt="Facebook"/>
-                        </a>
-                    </li>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#">Accueil</a></li>
+                    <li><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
+                    <li><a href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a></li>
+                    <li><a href="{{ path('fos_user_change_password') }}">Modifier mon mot de passe</a></li>
+                    <li><a href="{{ path('etablissement_list') }}">Liste des établissements</a></li>
+                    <li><a href="{{ path('intervention_self') }}">Mes interventions</a></li>
+                    <li><a href="{{ path('fos_user_planning_show') }}">Mon planning</a></li>
                 </ul>
-            </section>
+            </nav>
+        </div>
+        <hr style="height: 2px; color: #8699a4">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a class="lienImage img-responsive logoAccueil" href="https://www.unicef.fr/" target="_blank">
+                    <img src="{{ asset("img/unicef-logo.gif") }}" class="center-block img-responsive img-rounded"
+                         alt="logo UNICEF"/>
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a class="lienImage img-responsive logoAccueil" href="https://www.facebook.com/UnicefRouen/"
+                   target="_blank">
+                    <img src="{{ asset("img/FB-FindUsonFacebook-online-512_fr_FR.png") }}"
+                         class="center-block img-responsive img-rounded" alt="Facebook"/>
+                </a>
+            </li>
+        </ul>
+    </section>
 
 
-            <section class="col-lg-9 col-md-8 col-sm-9">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <h2 class="bonjour">&nbsp &nbsp Bonjour, &nbsp <strong style="color: #2780e3; font-size: 40px;"> {{ user.prenom | capitalize }} </strong>!</h2>
-                </div>
+    <section class="col-lg-9 col-md-8 col-sm-9">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h2 class="bonjour">&nbsp &nbsp Bonjour, &nbsp <strong
+                        style="color: #2780e3; font-size: 40px;"> {{ user.prenom | capitalize }} </strong>!</h2>
             </div>
+        </div>
 
-                <section class="col-lg-10 col-md-10 col-sm-11 col-xs-11 accueilSq gauche">
-                    <img src="{{ asset('img/logo-gris.png') }}" alt="logo" class="logoGauche">
-                        <h2 class="subtitle">Prochaines interventions </h2>
-                        {% if interventionsNonRealiseesBenevole is not empty %}
-                            <div class="table_outer">
-                                <table class="table table-striped table-hover ">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Lieu
-                                        </th>
-                                        <th>Date
+        <section class="col-lg-10 col-md-10 col-sm-11 col-xs-11 accueilSq gauche">
+            <img src="{{ asset('img/logo-gris.png') }}" alt="logo" class="logoGauche">
+            <h2 class="subtitle">Prochaines interventions </h2>
+            {% if interventionsNonRealiseesBenevole is not empty %}
+                <div class="table_outer">
+                    <table class="table table-striped table-hover ">
+                        <thead>
+                        <tr>
+                            <th>Lieu
+                            </th>
+                            <th>Date
 
-                                        </th>
-                                        <th>Type</th>
-                                        <th>Voir détails</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="myTable">
-                                    {% for intervention in interventionsNonRealiseesBenevole %}
-                                        {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
-                                            <tr class="danger">
-                                        {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee)%}
-                                            <tr class="warning" >
-                                        {% else %}
-                                            <tr>
-                                        {% endif %}
-                                            <td>{{ loop.index }}</td>
-                                            <td>{{ intervention.lieu | capitalize}}</td>
-                                            <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
-                                            <td>
-                                                {% if intervention.plaidoyer %}
-                                                    Plaidoyer
-                                                {% elseif intervention.frimousse %}
-                                                    Frimousse
-                                                {% else %}
-                                                    Autre intervention
-                                                {% endif %}
-                                            </td>
-                                            <td>
-                                                <a href="{{ path('intervention_view', {id: intervention.id}) }}" class="btn btn-primary">Voir détails</a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                                <a href="{{ path('intervention_self',{"recherche_avancee[statutMesInterventions]":"attribuees"})}}" id="lien"> >> Voir plus</a>
-                            </div>
-
-                        {% else %}
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <ul>
-                                        <li>Aucune intervention en cours</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        {% endif %}
-                </section>
-
-                <section class="col-lg-10 col-md-10 col-sm-11 col-xs-11 accueilSq droit">
-                    <img src="{{ asset('img/logo-gris.png') }}" alt="logo" class="logoDroit">
-                    <h2 class="subtitle">Interventions réalisées  </h2>
-                    {% if interventionsRealiseesBenevole is not empty %}
-                        <div class="table_outer">
-                            <table class="table table-striped table-hover ">
-                                <thead>
+                            </th>
+                            <th>Type</th>
+                            <th>Voir détails</th>
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        {% for intervention in interventionsNonRealiseesBenevole %}
+                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
+                                <tr class="danger">
+                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) %}
+                                <tr class="warning" >
+                            {% else %}
                                 <tr>
-                                    <th>#</th>
-                                    <th>Lieu
+                            {% endif %}
+                            <td>{{ intervention.etablissement.adresse.ville.nom }}</td>
+                            <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
+                            <td>
+                                {% if intervention.plaidoyer %}
+                                    Plaidoyer
+                                {% elseif intervention.frimousse %}
+                                    Frimousse
+                                {% else %}
+                                    Autre intervention
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ path('intervention_view', {id: intervention.id}) }}"
+                                   class="btn btn-primary">Voir détails</a>
+                            </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="{{ path('intervention_self',{"recherche_avancee[statutMesInterventions]":"attribuees"}) }}"
+                       id="lien"> >> Voir plus</a>
+                </div>
 
-                                    </th>
-                                    <th>Date
-
-                                    </th>
-                                    <th>Type</th>
-                                    <th>Voir détails</th>
-                                </tr>
-                                </thead>
-                                <tbody id="myTable">
-                                {% for intervention in interventionsRealiseesBenevole %}
-                                    {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
-                                        <tr class="danger">
-                                    {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee)%}
-                                        <tr class="warning" >
-                                    {% else %}
-                                        <tr>
-                                    {% endif %}
-                                        <td>{{ loop.index }}</td>
-                                        <td>{{ intervention.lieu | capitalize}}</td>
-                                        <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
-                                        <td>
-                                            {% if intervention.plaidoyer %}
-                                                Plaidoyer
-                                            {% elseif intervention.frimousse %}
-                                                Frimousse
-                                            {% else %}
-                                                Autre intervention
-                                            {% endif %}
-
-                                        </td>
-                                        <td>
-                                            <a href="{{ path('intervention_view', {id: intervention.id}) }}" class="btn btn-primary">Voir détails</a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                            <a href="{{ path('intervention_self',{"recherche_avancee[statutMesInterventions]":"realisees"}) }}" id="lien"> >> Voir plus </a>
-                        </div>
-                    {% else %}
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <ul>
-                                    <li>Aucune intervention réalisée</li>
-                                </ul>
-                            </div>
-                        </div>
-                    {% endif %}
-                </section>
-            </section>
-        </div>
-
-        <div class="row">
-            <section class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-11 col-xs-12" >
-                <h2 class="subtitle" style="margin-left: 15px">  Calendrier  </h2>
-                <div  id="calendar" class="calendar" style="padding-left: 2%;"></div>
-            </section>
-        </div>
-
-        <div class="row">
-            <section class="col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-8  col-md-offset-3 col-xs-10 col-xs-offset-1 ">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h4 class="bonjour" style="text-align:center"> <strong>Légendes</strong> </h4>
-                        <span class="legende1"></span>Interventions d'autres bénévoles
-                        </br>
-                        <span class="legende2"></span> Mes interventions réalisées
-                        </br>
-                        <span class="legende3"></span> Mes interventions à réaliser
-                        </br>
+            {% else %}
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <ul>
+                            <li>Aucune intervention en cours</li>
+                        </ul>
                     </div>
                 </div>
-            </section>
-        </div>
+            {% endif %}
+        </section>
 
-{% endblock %}
+        <section class="col-lg-10 col-md-10 col-sm-11 col-xs-11 accueilSq droit">
+            <img src="{{ asset('img/logo-gris.png') }}" alt="logo" class="logoDroit">
+            <h2 class="subtitle">Interventions réalisées </h2>
+            {% if interventionsRealiseesBenevole is not empty %}
+                <div class="table_outer">
+                    <table class="table table-striped table-hover ">
+                        <thead>
+                        <tr>
+                            <th>Lieu
+
+                            </th>
+                            <th>Date
+
+                            </th>
+                            <th>Type</th>
+                            <th>Voir détails</th>
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        {% for intervention in interventionsRealiseesBenevole %}
+                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
+                                <tr class="danger">
+                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) %}
+                                <tr class="warning" >
+                            {% else %}
+                                <tr>
+                            {% endif %}
+                            <td>{{ intervention.etablissement.adresse.ville.nom }}</td>
+                            <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
+                            <td>
+                                {% if intervention.plaidoyer %}
+                                    Plaidoyer
+                                {% elseif intervention.frimousse %}
+                                    Frimousse
+                                {% else %}
+                                    Autre intervention
+                                {% endif %}
+
+                            </td>
+                            <td>
+                                <a href="{{ path('intervention_view', {id: intervention.id}) }}"
+                                   class="btn btn-primary">Voir détails</a>
+                            </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="{{ path('intervention_self',{"recherche_avancee[statutMesInterventions]":"realisees"}) }}"
+                       id="lien"> >> Voir plus </a>
+                </div>
+            {% else %}
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <ul>
+                            <li>Aucune intervention réalisée</li>
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+        </section>
+    </section>
+</div>
+
+<div class="row">
+    <section class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-11 col-xs-12">
+        <h2 class="subtitle" style="margin-left: 15px"> Calendrier </h2>
+        <div id="calendar" class="calendar" style="padding-left: 2%;"></div>
+    </section>
+</div>
+
+<div class="row">
+    <section
+        class="col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-8  col-md-offset-3 col-xs-10 col-xs-offset-1 ">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4 class="bonjour" style="text-align:center"><strong>Légendes</strong></h4>
+                <span class="legende1"></span>Interventions d'autres bénévoles
+                </br>
+                <span class="legende2"></span> Mes interventions réalisées
+                </br>
+                <span class="legende3"></span> Mes interventions à réaliser
+                </br>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Attribuer l'intervention à</h4>
+            </div>
+            <div class="modal-body">
+                <p> La date de ces interventions est passée, avez-vous réalisé ces interventions ? </p>
+                <div class="table_outer">
+                    <table class="table table-striped table-hover ">
+                        <thead>
+                        <tr>
+                            <th>Lieu</th>
+                            <th>Date</th>
+                            <th>Type</th>
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        {% for intervention in interventionsNonRealiseesBenevole %}
+                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
+                                <tr>
+                                    <td>{{ intervention.etablissement.adresse.ville.nom }}</td>
+                                    <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
+                                    <td>
+                                        {% if intervention.plaidoyer %}
+                                            Plaidoyer
+                                        {% elseif intervention.frimousse %}
+                                            Frimousse
+                                        {% else %}
+                                            Autre intervention
+                                        {% endif %}
+
+                                    </td>
+                                </tr>
+                            {%  endif  %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="attribuerModal" type="button" class="btn btn-primary"
+                            onclick="attributeInterventionAdmin(this, $('#attribution_benevole').val(), $('#attribution_idIntervention').val())">
+                        Attribuer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% endblock %}

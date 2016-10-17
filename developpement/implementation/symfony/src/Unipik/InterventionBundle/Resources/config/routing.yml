@@ -33,6 +33,10 @@ intervention_self_desattribute:
     path: /intervention/desattribution
     defaults: {_controller: InterventionBundle:Intervention:desattribution}
 
+intervention_done:
+    path: /intervention/realisation
+    defaults: {_controller: InterventionBundle:Intervention:realisation}
+
 intervention_cancel:
     path: /intervention/annuler/{id}
     defaults: {_controller: InterventionBundle:Intervention:annuler}

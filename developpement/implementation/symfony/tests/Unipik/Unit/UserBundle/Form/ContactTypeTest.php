@@ -12,7 +12,8 @@ use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ContactMock;
 use Tests\Unipik\Unit\Utils\FormTestCase;
 use Unipik\UserBundle\Form\ContactType;
 
-class ContactTypeTest extends FormTestCase {
+class ContactTypeTest extends FormTestCase
+{
 
     protected static $testedType = ContactType::class;
 

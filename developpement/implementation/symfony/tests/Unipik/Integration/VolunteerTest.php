@@ -4,9 +4,11 @@ namespace Tests\Unipik\ArchitectureBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class volunteerTest extends WebTestCase {
+class volunteerTest extends WebTestCase
+{
 
-    public function testLinkFromIndex() {
+    public function testLinkFromIndex() 
+    {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/accueil');
@@ -22,7 +24,8 @@ class volunteerTest extends WebTestCase {
 
     }
 
-    public function testLinkFromNavbar() {
+    public function testLinkFromNavbar() 
+    {
         $client = static::createClient();
 
 
@@ -48,7 +51,8 @@ class volunteerTest extends WebTestCase {
 
     }
 
-    public function testLinkFromVolunteerIndex() {
+    public function testLinkFromVolunteerIndex() 
+    {
         $client = static::createClient();
 
 
@@ -63,7 +67,8 @@ class volunteerTest extends WebTestCase {
 
     }
 
-    public function testForm() {
+    public function testForm() 
+    {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/benevole/ajouter');
@@ -96,7 +101,8 @@ class volunteerTest extends WebTestCase {
 
     }
 
-    public function testListe() {
+    public function testListe() 
+    {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/benevole/accueil');
@@ -123,7 +129,8 @@ class volunteerTest extends WebTestCase {
 
     }
 
-    public function testAddViewDelete() {
+    public function testAddViewDelete() 
+    {
         $client = static::createClient();
 
 

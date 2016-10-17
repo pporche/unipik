@@ -14,11 +14,13 @@ use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ComiteMock;
 use Unipik\ArchitectureBundle\Entity\Departement;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
 
-class DepartementTest extends EntityTestCase {
+class DepartementTest extends EntityTestCase
+{
 
     protected static $repository = "ArchitectureBundle:Departement";
 
-    public static function testCreate() {
+    public static function testCreate() 
+    {
         self::bootKernel();
 
         $d = DepartementMock::create();
@@ -29,7 +31,8 @@ class DepartementTest extends EntityTestCase {
     /**
      * @depends testCreate
      */
-    public function testGettersSetters(Departement $d) {
+    public function testGettersSetters(Departement $d) 
+    {
         $this->assertEquals(null, $d->getId());
         $this->assertEquals("Eure", $d->getNom());
         $this->assertEquals("27", $d->getNumero());
@@ -39,8 +42,7 @@ class DepartementTest extends EntityTestCase {
         $d
             ->setNom("Seine-Maritime")
             ->setNumero("76")
-            ->setRegion($r)
-        ;
+            ->setRegion($r);
 
         $this->assertEquals("Seine-Maritime", $d->getNom());
         $this->assertEquals("76", $d->getNumero());
@@ -53,7 +55,8 @@ class DepartementTest extends EntityTestCase {
         $this->assertEquals(null, $d->getComite()[0]);
     }
 
-    public function badEntityProvider() {
+    public function badEntityProvider() 
+    {
         $d = DepartementMock::createMultiple(2);
 
         return [

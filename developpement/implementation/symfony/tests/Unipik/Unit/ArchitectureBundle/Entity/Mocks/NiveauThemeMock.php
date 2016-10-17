@@ -8,21 +8,22 @@
 
 namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\ArchitectureBundle\Entity\NiveauTheme;
 
-class NiveauThemeMock extends Mock {
+class NiveauThemeMock extends EntityMock
+{
 
     /**
      * @return NiveauTheme
      */
-    public static function create() {
+    public static function create() 
+    {
         $r = new NiveauTheme();
 
         $r
             ->setNiveau("CM1-CM2")
-            ->setTheme("convention internationale des droits de l enfant")
-        ;
+            ->setTheme("convention internationale des droits de l enfant");
 
         return $r;
     }
@@ -31,7 +32,8 @@ class NiveauThemeMock extends Mock {
      * @param $nb
      * @return NiveauTheme[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

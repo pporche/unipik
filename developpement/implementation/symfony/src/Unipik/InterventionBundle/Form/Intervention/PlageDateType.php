@@ -17,6 +17,7 @@ class PlageDateType extends AbstractType {
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
+     * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
@@ -36,6 +37,7 @@ class PlageDateType extends AbstractType {
 
     /**
      * {@inheritdoc}
+     * renvoie plage_date
      */
     public function getBlockPrefix() {
         return 'plage_date';

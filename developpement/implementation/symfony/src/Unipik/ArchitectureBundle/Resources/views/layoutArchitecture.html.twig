@@ -33,7 +33,7 @@
             if (settings.showPrevNext)
                 $('<li><a href="#" class="premiere_link">Première</a></li>').appendTo(pager);
             if (settings.showPrevNext)
-                $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+                $('<li><a href="#" class="prev_link"><</a></li>').appendTo(pager);
 
             var curr = 0;
 
@@ -43,7 +43,7 @@
             }
 
             if (settings.showPrevNext)
-                $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+                $('<li><a href="#" class="next_link">></a></li>').appendTo(pager);
             if (settings.showPrevNext)
                 $('<li><a href="#" class="derniere_link">Dernière</a></li>').appendTo(pager);
 
@@ -236,7 +236,7 @@
                             class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="{{ path('intervention_list') }}">Liste</a></li>
-                    <li><a href="{{ path('intervention_attributed') }}">Mes interventions</a></li>
+                    <li><a href="{{ path('intervention_self') }}">Mes interventions</a></li>
                     <li><a href="{{ path('fos_user_planning_show') }}">Mon planning</a></li>
                 </ul>
             </li>

@@ -1,5 +1,7 @@
 {# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
 {% extends "ArchitectureBundle::layoutArchitecture.html.twig" %}
+
+
 {% block javascripts %}
     {{ parent() }}
 
@@ -175,8 +177,9 @@
                             <li class="active"><a href="#">Accueil</a></li>
                             <li><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
                             <li><a href="{{  path('fos_user_profile_edit') }}">Modifier mon profil</a></li>
+                            <li><a href="{{  path('fos_user_change_password') }}">Modifier mon mot de passe</a></li>
                             <li><a href="{{  path('etablissement_list') }}">Liste des établissements</a></li>
-                            <li><a href="{{  path('intervention_attributed') }}">Mes interventions</a></li>
+                            <li><a href="{{  path('intervention_self') }}">Mes interventions</a></li>
                             <li><a href="{{  path('fos_user_planning_show') }}">Mon planning</a></li>
                         </ul>
                     </nav>
@@ -224,7 +227,13 @@
                                     </thead>
                                     <tbody id="myTable">
                                     {% for intervention in interventionsNonRealiseesBenevole %}
-                                        <tr>
+                                        {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
+                                            <tr class="danger">
+                                        {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee)%}
+                                            <tr class="warning" >
+                                        {% else %}
+                                            <tr>
+                                        {% endif %}
                                             <td>{{ loop.index }}</td>
                                             <td>{{ intervention.lieu | capitalize}}</td>
                                             <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
@@ -244,7 +253,7 @@
                                     {% endfor %}
                                     </tbody>
                                 </table>
-                                <a href="{{ path('intervention_attributed')}}" id="lien"> >> Voir plus</a>
+                                <a href="{{ path('intervention_self',{"recherche_avancee[statutMesInterventions]":"attribuees"})}}" id="lien"> >> Voir plus</a>
                             </div>
 
                         {% else %}
@@ -279,7 +288,13 @@
                                 </thead>
                                 <tbody id="myTable">
                                 {% for intervention in interventionsRealiseesBenevole %}
-                                    <tr>
+                                    {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
+                                        <tr class="danger">
+                                    {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee)%}
+                                        <tr class="warning" >
+                                    {% else %}
+                                        <tr>
+                                    {% endif %}
                                         <td>{{ loop.index }}</td>
                                         <td>{{ intervention.lieu | capitalize}}</td>
                                         <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
@@ -300,7 +315,7 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
-                            <a href="{{ path('intervention_attributed') }}" id="lien"> >> Voir plus </a>
+                            <a href="{{ path('intervention_self',{"recherche_avancee[statutMesInterventions]":"realisees"}) }}" id="lien"> >> Voir plus </a>
                         </div>
                     {% else %}
                         <div class="row">

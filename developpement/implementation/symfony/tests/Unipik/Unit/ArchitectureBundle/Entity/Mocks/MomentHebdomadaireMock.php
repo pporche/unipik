@@ -8,21 +8,22 @@
 
 namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\ArchitectureBundle\Entity\MomentHebdomadaire;
 
-class MomentHebdomadaireMock extends Mock {
+class MomentHebdomadaireMock extends EntityMock
+{
 
     /**
      * @return MomentHebdomadaire
      */
-    public static function create() {
+    public static function create() 
+    {
         $mh = new MomentHebdomadaire();
 
         $mh
             ->setJour("mardi")
-            ->setMoment("soir")
-        ;
+            ->setMoment("soir");
 
         return $mh;
     }
@@ -31,7 +32,8 @@ class MomentHebdomadaireMock extends Mock {
      * @param $nb
      * @return MomentHebdomadaire[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

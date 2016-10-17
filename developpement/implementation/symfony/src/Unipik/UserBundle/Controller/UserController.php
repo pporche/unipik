@@ -53,7 +53,7 @@ class UserController extends Controller {
 
         $repository = $this->getBenevoleRepository();
 
-        $listBenevoles = $repository->getType($field, $desc);
+        $listBenevoles = $repository->getType($field, $desc, $ville);
 
 
         return $this->render('UserBundle::liste.html.twig', array(

@@ -1,5 +1,6 @@
- #!/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*- 
+# version 1.00, date 29/09/2016, auteur Melissa Bignoux
 
 import csv
 import sys

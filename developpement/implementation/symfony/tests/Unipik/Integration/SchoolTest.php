@@ -11,9 +11,11 @@ namespace Tests\Unipik\ArchitectureBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class SchoolTest extends WebTestCase {
+class SchoolTest extends WebTestCase
+{
 
-    public function testLinkFromIndex() {
+    public function testLinkFromIndex() 
+    {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/accueil');
@@ -29,7 +31,8 @@ class SchoolTest extends WebTestCase {
 
     }
 
-    public function testLinkFromNavbar() {
+    public function testLinkFromNavbar() 
+    {
         $client = static::createClient();
 
 
@@ -55,7 +58,8 @@ class SchoolTest extends WebTestCase {
 
     }
 
-    public function testLinkFromSchoolIndex() {
+    public function testLinkFromSchoolIndex() 
+    {
         $client = static::createClient();
 
 
@@ -70,7 +74,8 @@ class SchoolTest extends WebTestCase {
 
     }
 
-    public function testForm() {
+    public function testForm() 
+    {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/etablissement/ajouter');
@@ -96,7 +101,8 @@ class SchoolTest extends WebTestCase {
         );
     }
 
-    public function testListe() {
+    public function testListe() 
+    {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/etablissement/accueil');
@@ -123,7 +129,8 @@ class SchoolTest extends WebTestCase {
 
     }
 
-    public function testAddViewDelete() {
+    public function testAddViewDelete() 
+    {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/etablissement/ajouter');

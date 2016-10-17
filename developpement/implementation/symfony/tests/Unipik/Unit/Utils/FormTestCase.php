@@ -16,7 +16,8 @@ use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Validator\ConstraintViolationList;
 
-abstract class FormTestCase extends TypeTestCase {
+abstract class FormTestCase extends TypeTestCase
+{
 
     protected static $testedType = \Symfony\Component\Form\AbstractType::class;
     protected static $testEntity = null;

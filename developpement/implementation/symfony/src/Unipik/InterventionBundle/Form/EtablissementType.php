@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: kyle
+ * Date: 13/09/16
+ * Time: 10:46
+ */
 
 namespace Unipik\InterventionBundle\Form;
 
@@ -19,6 +25,7 @@ class EtablissementType extends AbstractType {
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
+     * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
@@ -76,6 +83,7 @@ class EtablissementType extends AbstractType {
     }
     /**
      * @param OptionsResolver $resolver
+     * configure les options
      */
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(

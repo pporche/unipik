@@ -17,6 +17,7 @@ class MaterielType extends AbstractType {
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
+     * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $optionChoiceType = array( 'expanded' => true, 'multiple' => true, 'label' => false,
@@ -34,6 +35,7 @@ class MaterielType extends AbstractType {
 
     /**
      * {@inheritdoc}
+     * renvoie materiel
      */
     public function getBlockPrefix() {
         return 'materiel';

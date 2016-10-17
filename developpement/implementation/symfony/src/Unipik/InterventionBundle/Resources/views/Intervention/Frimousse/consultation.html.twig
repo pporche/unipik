@@ -8,20 +8,20 @@
 {% endblock %}
 
 {%  block contenu %}
-
-    <div class="col-sm-5 col-xs-12 col-md-4">
+    {% if intervention.niveauFrimousse %}
         <div class="col-sm-5 col-xs-12  col-md-4">
-            <dt>
-                <span class="glyphicon glyphicon-grain"></span> &nbsp Classe concernée:
-            </dt>
+            <dl>
+                <dt>
+                    <span class="glyphicon glyphicon-book"></span> &nbsp Classe concernée:
+                </dt>
+            </dl>
         </div>
         <div class="col-sm-5 col-xs-offset-1 col-xs-11 col-md-7">
-            <em>{% if intervention.niveauFrimousse is empty %}
-                    -
-                {% else %}
-                    {{ intervention.niveauFrimousse }}
-                {% endif %}</em>
+            <em> {{ intervention.niveauFrimousse | capitalize }} </em>
         </div>
+    {% endif %}
+
+    <div class="col-sm-5 col-xs-12 col-md-4">
         <dl>
             <dt>
                 <span class="glyphicon glyphicon-picture"></span> Matériel dispo. :

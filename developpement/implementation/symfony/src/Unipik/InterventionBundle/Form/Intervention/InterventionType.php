@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
 use Unipik\ArchitectureBundle\Form\NiveauThemeType;
@@ -77,6 +78,11 @@ class InterventionType extends AbstractFieldsetType {
             ->add('nbPersonne', IntegerType::class, array('label' => 'Participants'))
             ->add('niveauTheme', NiveauThemeType::class)
             ->add('niveau', ChoiceType::class, $choiceClasse)
+            ->add('heure', TimeType::class, array(
+                'placeholder' => array(
+                    'hour' => 'Hour', 'minute' => 'Minute',
+                )
+            ))
         ;
     }
 

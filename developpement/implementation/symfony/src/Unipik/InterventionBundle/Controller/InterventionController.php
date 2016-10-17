@@ -13,6 +13,7 @@ use Unipik\InterventionBundle\Entity\Intervention;
 use Unipik\InterventionBundle\Form\DemandeType;
 use Unipik\InterventionBundle\Form\Intervention\AttributionType;
 use Unipik\InterventionBundle\Form\Intervention\InterventionType;
+use Unipik\InterventionBundle\InterventionBundle;
 use Unipik\UserBundle\Entity\Contact;
 use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\Etablissement;
@@ -91,17 +92,30 @@ class InterventionController extends Controller {
             if($intervention->isFrimousse()) {
                 $intervention->removeAllMateriauxFrimousse();
                 $materiauxData = $form->get('materiauxFrimousse')->getData();
-                foreach ($materiauxData as $mat) {
+                foreach (reset($materiauxData) as $mat) {
                     $intervention->addMateriauxFrimousse($mat);
                 }
+                $niveauFrimousse = $form->get('niveau')->getData();
+                $intervention->setNiveauFrimousse($niveauFrimousse);
+
+                $heure = $form->get('heure')->getData();
+                $intervention->setHeure($heure);
             } elseif ($intervention->isPlaidoyer()) {
                 $intervention->removeAllMaterielDispoPlaidoyer();
                 $materiauxData = $form->get('materielDispoPlaidoyer')->getData();
-                foreach ($materiauxData as $mat) {
+                foreach (reset($materiauxData) as $mat) {
                     $intervention->addMaterielDispoPlaidoyer($mat);
                 }
+
+                $repositoryTheme = $em->getRepository("ArchitectureBundle:NiveauTheme");
+                $themeArray = $form->get('niveauTheme')->get('theme')->getData();
+                $theme = reset($themeArray);
+                $niveauTheme = $repositoryTheme->findOneBy(array("theme" => $theme,
+                    "niveau" => $form->get('niveauTheme')->get('niveau')->getData()
+                ));
+                $intervention->setNiveauTheme($niveauTheme);
             } else {
-                $materiauxData = array("kaki");
+                $materiauxData = array();
             }
 
             $em->persist($intervention);
@@ -577,6 +591,23 @@ class InterventionController extends Controller {
             $intervention->setRealisee(true);
 
             $em->persist($intervention);
+            $em->flush();
+            return new Response();
+        }
+        return new Response();
+    }
+
+    public function realisationInterventionsAction(Request $request) {
+        if($request->isXmlHttpRequest()) {
+            $interventions = json_decode( $request->request->get('interventions'));
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Intervention');
+            $int = $repository->findBy(array('id' => $interventions));
+            foreach ($int as $i) {
+                $i->setRealisee(true);
+                $em->persist($i);
+            }
             $em->flush();
             return new Response();
         }

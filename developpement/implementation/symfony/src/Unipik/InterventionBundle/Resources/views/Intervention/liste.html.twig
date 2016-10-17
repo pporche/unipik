@@ -75,8 +75,8 @@
         }
 
 
-    </style>
-    <style>
+    {#</style>#}
+    {#<style>#}
 
         @media only screen and (max-width: 1090px) {
 
@@ -168,9 +168,9 @@
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
     <script>
-        $('input:checkbox').removeAttr('checked');
-
         $(document).ready(function () {
+
+            $('input:checkbox').removeAttr('checked');
 
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',

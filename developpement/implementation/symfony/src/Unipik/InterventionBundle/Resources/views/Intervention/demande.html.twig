@@ -573,25 +573,23 @@
         });
 
         var typeInstitute = {{ typEnseignement | raw}} ;
-        console.log(typeInstitute);
 		var uaiElt = $(document.getElementById('demande_Etablissement_uai').parentNode.parentNode).get(0);
         if(typeInstitute.hasOwnProperty('autre')){
             console.log(typeInstitute);
             $('#demande_Etablissement_TypeGeneral').val('autre');
             level = typeInstitute['autre'];
-            $("input[name='demande[Etablissement][typeAutreEtablissement]']").find("[value="+ level+"]").prop("checked", true);
+            $("input[name='demande[Etablissement][typeAutreEtablissement]'][value='"+ level+"']").prop("checked", true);
             keepOther();
             $(uaiElt).fadeOut("fast");
             $('#demande_Etablissement_uai').val('');
         }else if( typeInstitute.hasOwnProperty('centre')){
             $('#demande_Etablissement_TypeGeneral').val('centre');
             level = typeInstitute['centre'];
-            $("input[name='demande[Etablissement][typeCentre]']").find("[value="+ level+"]").prop("checked", true);
+            $("input[name='demande[Etablissement][typeCentre]'][value='"+ level+"']").prop("checked", true);
             keepCenter();
             $(uaiElt).fadeOut("fast");
             $('#demande_Etablissement_uai').val('');
         }else if( typeInstitute.hasOwnProperty('ens')){
-            console.log(typeInstitute['ens']);
             $('#demande_Etablissement_TypeGeneral').val('ens');
             level = typeInstitute['ens'];
 

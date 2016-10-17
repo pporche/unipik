@@ -11,6 +11,17 @@
 
     {% if intervention.niveauTheme %}
         <div class="col-sm-5 col-xs-12  col-md-4">
+            <dl>
+                <dt>
+                    <span class="glyphicon glyphicon-book"></span> &nbsp Classe concernée:
+                </dt>
+            </dl>
+        </div>
+        <div class="col-sm-5 col-xs-offset-1 col-xs-11 col-md-7">
+            <em> {{ intervention.niveauTheme.niveau | capitalize }} </em>
+        </div>
+
+        <div class="col-sm-5 col-xs-12  col-md-4">
 	  <dl>
             <dt>
                 <span class="glyphicon glyphicon-grain"></span> &nbsp Thème:

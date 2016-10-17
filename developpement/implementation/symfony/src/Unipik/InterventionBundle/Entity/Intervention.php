@@ -419,10 +419,10 @@ class Intervention
      *
      * @return Intervention
      */
-    public function addMateriauxFrimousse($materiauxFrimousse) {
+    public function addMateriauxFrimousse($materiau) {
         $this->materiauxFrimousse = ArrayConverter::addIntoPgArray(
             $this->materiauxFrimousse,
-            $materiauxFrimousse
+            $materiau
         );
 
         return $this;

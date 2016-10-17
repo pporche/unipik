@@ -78,7 +78,7 @@
     </style>
     <style>
 
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 1090px) {
 
             /* Force table to not be like tables anymore */
             table,
@@ -131,6 +131,14 @@
                 content: attr(data-title);
             }
         }
+        .container{
+            padding-right: 15px !important;
+            padding-left: 20px !important;
+        }
+        tbody{
+            font-size: 14px !important;
+        }
+
     </style>
 {% endblock %}
 
@@ -344,7 +352,7 @@
 {% block body %}
 
 
-    <section class="col-lg-2 col-md-2 col-sm-2">
+    <section class="col-lg-1 col-md-2 col-sm-2">
         <div class="row">
             <div class='well'>
                 {% if onlyMyIntervention %}
@@ -393,7 +401,7 @@
             </div>
         </div>
     </section>
-    <section id="listeIntervention" class="col-lg-10 col-md-10 col-sm-10">
+    <section id="listeIntervention" class="col-lg-11 col-md-10 col-sm-10">
         <h2>
             Liste des
             {% if typeIntervention == "plaidoyer" %}
@@ -564,8 +572,8 @@
                                         {% else %}
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <button name="desattribution" type="button" class="btn btn-danger"
-                                                        onclick="desattributeInterventionAdmin(this, {{ intervention.id }})">
-                                                    Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
+                                                        onclick="desattributeInterventionAdmin(this, {{ intervention.id }})" style="padding-right: 4px;padding-left: 4px; font-size: 14px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; ">
+                                                    Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}.
 
                                                 </button>
                                             {% else %}

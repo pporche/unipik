@@ -100,17 +100,17 @@ class InterventionController extends Controller {
      * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention.
      * demande d'intervention
      */
-    public function demandeAction(Request $request) {
+    public function demandeAction(Request $request, $id) {
 
         $demande = new Demande();
 
         $form = $this->createForm(DemandeType::class, $demande);
 
-//        $repository = $this->getDoctrine()->getManager();
-//        $repository = $repository->getRepository('InterventionBundle:Etablissement');
-//
-//        $instituteTest = $repository->find(690);
-//        $form->get('Etablissement')->setData($instituteTest);
+        $repository = $this->getDoctrine()->getManager();
+        $repository = $repository->getRepository('InterventionBundle:Etablissement');
+
+       $instituteTest = $repository->find($id);
+        $form->get('Etablissement')->setData($instituteTest);
 
         $form->handleRequest($request);
 

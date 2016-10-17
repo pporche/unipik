@@ -365,6 +365,14 @@ class Intervention
     }
 
     /**
+     * @return $this
+     */
+    public function removeAllMaterielDispoPlaidoyer() {
+        $this->materielDispoPlaidoyer = "";
+        return $this;
+    }
+
+    /**
      * Set niveauFrimousse
      *
      * @param string $niveauFrimousse
@@ -443,6 +451,14 @@ class Intervention
             $array = ArrayConverter::pgArrayToPhpArray($this->materiauxFrimousse);
         }
         return new ArrayCollection($array);
+    }
+
+    /**
+     * @return $this
+     */
+    public function removeAllMateriauxFrimousse() {
+        $this->materiauxFrimousse = "";
+        return $this;
     }
 
     /**
@@ -619,7 +635,7 @@ class Intervention
     public function isAutreIntervention()
     {
         $type = $this->getDescription();
-        return !($type->isEmpty());
+        return !($type == "");
     }
 
 }

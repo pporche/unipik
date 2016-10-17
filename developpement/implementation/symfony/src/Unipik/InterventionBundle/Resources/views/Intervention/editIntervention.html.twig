@@ -3,60 +3,101 @@
 
 {% block title %}
 
-    Profil - {{ parent() }}
+    Modifier une intervention - {{ parent() }}
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        {% if intervention.plaidoyer %}
+            {% autoescape false %}
+            var materiauxPlaidoyer = {{ materiaux }};
+            for (var i = 0; i < materiauxPlaidoyer.length; i++) {
+                materiauxPlaidoyer[i] = materiauxPlaidoyer[i].replace('("', '');
+                materiauxPlaidoyer[i] = materiauxPlaidoyer[i].replace('")', '');
+             }
+            {% endautoescape %}
+
+        materiauxPlaidoyer.forEach(function(entry) {
+            switch(entry) {
+                case "videoprojecteur":
+                    $("#intervention_materielDispoPlaidoyer_materiel_0").prop("checked", true);
+                    break;
+                case "enceinte":
+                    $("#intervention_materielDispoPlaidoyer_materiel_1").prop("checked", true);
+                    break;
+                case "tableau interactif":
+                    $("#intervention_materielDispoPlaidoyer_materiel_2").prop("checked", true);
+                    break;
+                case "autre":
+                    $("#intervention_materielDispoPlaidoyer_materiel_3").prop("checked", true);
+                    break;
+            }
+        });
+
+        {% elseif intervention.frimousse %}
+            {% autoescape false %}
+            var materiauxFrimousse = {{ materiaux|raw }};
+        console.log(materiauxFrimousse);
+            for (var j = 0; j < materiauxFrimousse.length; j++) {
+                materiauxFrimousse[j] = materiauxFrimousse[j].replace('("', '');
+                materiauxFrimousse[j] = materiauxFrimousse[j].replace('")', '');
+            }
+            {% endautoescape %}
+
+        materiauxFrimousse.forEach(function(entry) {
+                switch(entry) {
+                    case "patron":
+                        $("#intervention_materiauxFrimousse_materiel_0").prop("checked", true);
+                        break;
+                    case "bourre":
+                        $("#intervention_materiauxFrimousse_materiel_1").prop("checked", true);
+                        break;
+                    case "decoration":
+                        $("#intervention_materiauxFrimousse_materiel_2").prop("checked", true);
+                        break;
+                }
+            });
+        {% else %}
+        console.log("autre");
+        {% endif %}
+    </script>
 {% endblock %}
 
 {% block body %}
     <style>
         @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
-        h1{
+
+        h1 {
             font-family: 'Ubuntu Condensed', sans-serif;
             margin-top: 40px;
         }
 
-        div{
+        div {
             box-shadow: none !important;
         }
 
-        input[type="text"], input[type="number"], select{
-            width: 350px !important;
-        }
-        input:focus, select:focus{
-            outline: none !important;
-            box-shadow: none !important;
-            border-color: #CCCCCC !important;
-        }
-
-        .btn-default{
+        .btn-default {
             border-radius: 10px !important;
             background-color: #3fb618 !important;
             border-color: #3fb618 !important;
         }
 
-        hr{
-            margin-top: 0px;
+        .container{
+            max-width: 600px !important;
         }
 
-
-        .btn-primary{
-            margin-left: 30%;
+        .col-sm-2{
+            width: 200px;
+        }
+        label{
+            text-align: left !important;
+        }
+        select{
+            width: 400px !important;
         }
 
-        form{
-            padding-left: 25vw;
-        }
-
-        @media(max-width: 1060px){
-            form{
-                padding-left: 0vw;
-            }
-        }
-        @media(max-width: 1260px && min-width: 1060px){
-            form{
-                padding-left: 15vw;
-            }
-        }
     </style>
 
     <h1>Modification d'une intervention</h1>
@@ -64,6 +105,12 @@
     <div class='well'>
 
         {{ form_start(form, {'method': 'post', 'action': path('intervention_edit', {'id': intervention.id}), 'attr': {'class': 'intervention_edit'}}) }}
+        {{ form_label(form.dateIntervention, 'Date d\'intervention') }}
+        {{ form_widget(form.dateIntervention, {'value' : intervention.dateIntervention|date('d-m-Y') }) }}
+        {{ form_label(form.lieu, 'Lieu') }}
+        {{ form_widget(form.lieu, {'value' : intervention.lieu}) }}
+        {{ form_label(form.nbPersonne, 'Participants') }}
+        {{ form_widget(form.nbPersonne, {'value' : intervention.nbPersonne}) }}
         {% if intervention.plaidoyer %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
         {% elseif intervention.frimousse %}

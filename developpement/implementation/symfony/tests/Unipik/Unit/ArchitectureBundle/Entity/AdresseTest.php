@@ -16,11 +16,13 @@ use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ComiteMock;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
 
-class AdresseTest extends EntityTestCase {
+class AdresseTest extends EntityTestCase
+{
 
     protected static $repository = "ArchitectureBundle:Adresse";
 
-    public static function testCreate() {
+    public static function testCreate() 
+    {
         self::bootKernel();
 
         $a = AdresseMock::create();
@@ -31,7 +33,8 @@ class AdresseTest extends EntityTestCase {
     /**
      * @depends testCreate
      */
-    public function testGettersSetters(Adresse $a) {
+    public function testGettersSetters(Adresse $a) 
+    {
         $this->assertEquals(null, $a->getId());
         $this->assertEquals("22 rue du gros", $a->getAdresse());
 
@@ -42,8 +45,7 @@ class AdresseTest extends EntityTestCase {
             ->setVille($v)
             ->setCodePostal($cp)
             ->setComplement("4ème étage, appartement 34B")
-            ->setGeolocalisation("truc")
-        ;
+            ->setGeolocalisation("truc");
 
 
         $this->assertEquals($v, $a->getVille());
@@ -52,7 +54,8 @@ class AdresseTest extends EntityTestCase {
         $this->assertEquals("truc", $a->getGeolocalisation());
     }
 
-    public function badEntityProvider() {
+    public function badEntityProvider() 
+    {
         $a = AdresseMock::createMultiple(2);
         $longName = str_repeat("a", 501);
 

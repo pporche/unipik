@@ -42,20 +42,19 @@ class ContactTest extends  EntityTestCase
             ->setTypeContact("etudiant")
             ->setPrenom("Alfred")
             ->setTelFixe("0232010203")
-            ->setTelPortable("0601020304")
-        ;
+            ->setTelPortable("0601020304");
 
-        $this->assertEquals($c->getNom(),"Dupont");
+        $this->assertEquals($c->getNom(), "Dupont");
         $this->assertEquals($c->getEmail(), "dupont@super-univ.fr");
         $this->assertEquals($c->getTypeContact(), "etudiant");
         $this->assertEquals($c->getPrenom(), "Alfred");
         $this->assertEquals($c->getTelFixe(), "0232010203");
         $this->assertEquals($c->getTelPortable(), "0601020304");
 
-//        $c->setEstTuteur(true);
-//        $this->assertEquals($c->isEstTuteur(), true);
-//        $c->setEstTuteur(false);
-//        $this->assertEquals($c->isEstTuteur(), false);
+        //        $c->setEstTuteur(true);
+        //        $this->assertEquals($c->isEstTuteur(), true);
+        //        $c->setEstTuteur(false);
+        //        $this->assertEquals($c->isEstTuteur(), false);
 
         $c->setRespoEtablissement(true);
         $this->assertEquals($c->isRespoEtablissement(), true);
@@ -80,7 +79,8 @@ class ContactTest extends  EntityTestCase
         $this->assertEquals($c->getEtablissement()[0], null);
     }
 
-    public function validEntityProvider() {
+    public function validEntityProvider() 
+    {
         $c = ContactMock::createMultiple(4);
         $p = ProjetMock::create();
         $c[1]->addProjet($p);
@@ -95,8 +95,7 @@ class ContactTest extends  EntityTestCase
             ->setPrenom("Alfred")
             ->setTelFixe("0232010203")
             ->setTelPortable("0601020304")
-            ->addTypeActivite("frimousses")
-            ;
+            ->addTypeActivite("frimousses");
         $c[3]->setRespoEtablissement(true);
         $c[3]->setRespoEtablissement(true);
 

@@ -42,8 +42,7 @@ class DemandeTest extends  EntityTestCase
 
         $d
             ->setContact($c)
-            ->setDateDemande(new \DateTime('2010-10-10'))
-        ;
+            ->setDateDemande(new \DateTime('2010-10-10'));
 
         $this->assertEquals($c, $d->getContact());
         $this->assertEquals(new \DateTime('2010-10-10'), $d->getDateDemande());
@@ -66,15 +65,15 @@ class DemandeTest extends  EntityTestCase
         $this->assertEquals(null, $d->getMomentsAEviter()[0]);
     }
 
-    public function validEntityProvider() {
+    public function validEntityProvider() 
+    {
         $d = DemandeMock::createMultiple(2);
         $mh = MomentHebdomadaireMock::createMultiple(2);
 
         $d[1]
             ->addSemaine(47)
             ->addMomentsVoulus($mh[0])
-            ->addMomentsAEviter($mh[1])
-        ;
+            ->addMomentsAEviter($mh[1]);
 
         return [
             "1 Demande" => [$d[0]],
@@ -94,7 +93,8 @@ class DemandeTest extends  EntityTestCase
     /**
      * @dataProvider badEntityProvider
      */
-    public function testBadEntities($e) {
+    public function testBadEntities($e) 
+    {
         $this->assertTrue(true);
     }
 }

@@ -12,11 +12,13 @@ use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\RegionMock;
 use Unipik\ArchitectureBundle\Entity\Region;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
 
-class RegionTest extends EntityTestCase {
+class RegionTest extends EntityTestCase
+{
 
     protected static $repository = "ArchitectureBundle:Region";
 
-    public static function testCreate() {
+    public static function testCreate() 
+    {
         self::bootKernel();
 
         $r = RegionMock::create();
@@ -27,7 +29,8 @@ class RegionTest extends EntityTestCase {
     /**
      * @depends testCreate
      */
-    public function testGettersSetters(Region $r) {
+    public function testGettersSetters(Region $r) 
+    {
         $this->assertEquals($r->getId(), null);
         $this->assertEquals($r->getNom(), "Normandie");
 
@@ -35,11 +38,12 @@ class RegionTest extends EntityTestCase {
         $p = PaysTest::testCreate();
         $r->setPays($p);
 
-        $this->assertEquals($r->getNom(),"Bretagne");
+        $this->assertEquals($r->getNom(), "Bretagne");
         $this->assertEquals($r->getPays(), $p);
     }
 
-    public function badEntityProvider() {
+    public function badEntityProvider() 
+    {
         $r = RegionMock::createMultiple(3);
 
         return [

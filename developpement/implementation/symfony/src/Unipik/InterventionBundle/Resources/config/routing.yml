@@ -11,9 +11,9 @@ intervention_list:
     defaults:
         _controller: InterventionBundle:Intervention:liste
 
-intervention_attributed:
-    path: /intervention/attribuees
-    defaults: {_controller: InterventionBundle:Intervention:attribuees}
+intervention_self:
+    path: /intervention/maliste
+    defaults: {_controller: InterventionBundle:Intervention:maListe}
 
 intervention_view:
     path: /intervention/{id}
@@ -34,6 +34,10 @@ intervention_self_attribute:
 intervention_self_desattribute:
     path: /intervention/desattribution
     defaults: {_controller: InterventionBundle:Intervention:desattribution}
+
+intervention_done:
+    path: /intervention/realisation
+    defaults: {_controller: InterventionBundle:Intervention:realisation}
 
 intervention_cancel:
     path: /intervention/annuler/{id}

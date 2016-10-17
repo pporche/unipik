@@ -6,12 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * Class interventionTest
+ *
  * @package Tests\Unipik\ArchitectureBundle\Controller
  */
-class interventionTest extends WebTestCase {
+class interventionTest extends WebTestCase
+{
 
 
-    public function testLinkFromIndex() {
+    public function testLinkFromIndex() 
+    {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/accueil');
@@ -27,7 +30,8 @@ class interventionTest extends WebTestCase {
 
     }
 
-    public function testLinkFromNavbar() {
+    public function testLinkFromNavbar() 
+    {
         $client = static::createClient();
 
 
@@ -53,7 +57,8 @@ class interventionTest extends WebTestCase {
 
     }
 
-    public function testLinkFromInterventionIndex() {
+    public function testLinkFromInterventionIndex() 
+    {
         $client = static::createClient();
 
 
@@ -68,7 +73,8 @@ class interventionTest extends WebTestCase {
 
     }
 
-    public function testForm() {
+    public function testForm() 
+    {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/intervention/ajouter');
@@ -101,7 +107,8 @@ class interventionTest extends WebTestCase {
 
     }
 
-    public function testListe() {
+    public function testListe() 
+    {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/unicef/intervention/accueil');
@@ -128,7 +135,8 @@ class interventionTest extends WebTestCase {
 
     }
 
-    public function testAddViewDelete() {
+    public function testAddViewDelete() 
+    {
         $client = static::createClient();
 
 

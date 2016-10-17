@@ -13,11 +13,13 @@ use Unipik\ArchitectureBundle\Entity\Ville;
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\VilleMock;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
 
-class VilleTest extends EntityTestCase {
+class VilleTest extends EntityTestCase
+{
 
     protected static $repository = "ArchitectureBundle:Ville";
 
-    public static function testCreate() {
+    public static function testCreate() 
+    {
         self::bootKernel();
 
         $v = VilleMock::create();
@@ -28,13 +30,14 @@ class VilleTest extends EntityTestCase {
     /**
      * @depends testCreate
      */
-    public function testGettersSetters(Ville $v) {
+    public function testGettersSetters(Ville $v) 
+    {
         $this->assertEquals($v->getId(), null);
         $this->assertEquals($v->getNom(), "Rouen");
 
         $v->setNom("Paris");
 
-        $this->assertEquals($v->getNom(),"Paris");
+        $this->assertEquals($v->getNom(), "Paris");
 
         $c = CodePostalMock::create();
         $v->addCodePostal($c);
@@ -43,7 +46,8 @@ class VilleTest extends EntityTestCase {
         $this->assertEquals(null, $v->getCodePostal()[0]);
     }
 
-    public function badEntityProvider() {
+    public function badEntityProvider() 
+    {
         $v = VilleMock::createMultiple(2);
         $longName = str_repeat("a", 101);
 

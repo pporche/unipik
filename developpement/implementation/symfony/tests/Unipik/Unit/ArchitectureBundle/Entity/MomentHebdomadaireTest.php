@@ -12,11 +12,13 @@ use Unipik\ArchitectureBundle\Entity\MomentHebdomadaire;
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\MomentHebdomadaireMock;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
 
-class MomentHebdomadaireTest extends EntityTestCase {
+class MomentHebdomadaireTest extends EntityTestCase
+{
 
     protected static $repository = "ArchitectureBundle:MomentHebdomadaire";
 
-    public static function testCreate() {
+    public static function testCreate() 
+    {
         self::bootKernel();
 
         $mh = MomentHebdomadaireMock::create();
@@ -27,27 +29,27 @@ class MomentHebdomadaireTest extends EntityTestCase {
     /**
      * @depends testCreate
      */
-    public function testGettersSetters(MomentHebdomadaire $mh) {
+    public function testGettersSetters(MomentHebdomadaire $mh) 
+    {
         $this->assertEquals($mh->getId(), null);
         $this->assertEquals("mardi", $mh->getJour());
         $this->assertEquals("soir", $mh->getMoment());
 
         $mh
             ->setJour("lundi")
-            ->setMoment("matin")
-        ;
+            ->setMoment("matin");
 
         $this->assertEquals("lundi", $mh->getJour());
         $this->assertEquals("matin", $mh->getMoment());
     }
 
-    public function validEntityProvider() {
+    public function validEntityProvider() 
+    {
         $mh = MomentHebdomadaireMock::createMultiple(2);
 
         $mh[1]
             ->setJour("lundi")
-            ->setMoment("matin")
-        ;
+            ->setMoment("matin");
 
         return [
             "1 MomentHebdomadaire" => [$mh[0]],
@@ -56,7 +58,8 @@ class MomentHebdomadaireTest extends EntityTestCase {
         ];
     }
 
-    public function badEntityProvider() {
+    public function badEntityProvider() 
+    {
         $mh = MomentHebdomadaireMock::createMultiple(2);
 
         return [

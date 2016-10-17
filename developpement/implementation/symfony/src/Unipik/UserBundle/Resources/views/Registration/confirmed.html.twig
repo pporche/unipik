@@ -1,6 +1,12 @@
 {# version 1.00, date 12/09/2016, auteur Florian Leriche #}
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+{% block title %}
+
+    Inscription confirmée - {{ parent() }}
+
+{% endblock %}
+
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}

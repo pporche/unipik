@@ -9,7 +9,9 @@
 
 {% block body %}
     <h2>Demande d'intervention</h2>
+    <hr>
     {{ form(form) }}
+    {{ form_end(form) }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -69,7 +71,77 @@
             margin: 0;
         }
 
+        @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+        h2{
+            font-family: 'Ubuntu Condensed', sans-serif;
+            margin-top: 40px;
+        }
 
+        div{
+            box-shadow: none !important;
+        }
+
+        .container{
+            padding-left: 10px !important;
+        }
+
+        .col-sm-10{
+            padding-left: 100px;
+        }
+
+        input[type="text"],input[type="number"], select{
+            width: 350px !important;
+            margin-left: 10px !important;
+        }
+        input:focus, select:focus{
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: #CCCCCC !important;
+        }
+
+        .form-group > table{
+            padding-left: 0vw;
+        }
+
+        .btn-info {
+            border-radius: 10px !important;
+        }
+
+        .btn-default{
+            border-radius: 10px !important;
+            background-color: #3fb618 !important;
+            border-color: #3fb618 !important;
+        }
+
+        hr{
+            margin-top: 0px;
+        }
+
+
+        .btn-primary{
+            margin-left: 30%;
+        }
+
+        table, .table, .table-bordered{
+            max-width: 550px !important;
+        }
+
+        form{
+            padding-left: 25vw;
+        }
+
+        .form-horizontal .form-group{
+            margin-left: -130px !important;
+        }
+
+        @media(max-width: 1160px){
+            form{
+                padding-left: 0vw;
+            }
+            .form-horizontal .form-group{
+                margin-left: -30px !important;
+            }
+        }
 
     </style>
 
@@ -137,10 +209,6 @@
                 });
         });
 
-
-
-
-        console.log('début du javascript de l\'ambiance');
         var addInterElt = document.createElement('a');
         addInterElt.id = 'add_intervention';
         buttonAddElement = document.createElement('button');
@@ -152,6 +220,7 @@
         function displayTypeIntervention(e){
 			var parNode = '';
             var valueToChk = '';
+			console.log(e);
             if(e.hasOwnProperty('originalEvent')){
                 parNode = e.target;
                 parNode = parNode.parentNode;
@@ -168,29 +237,27 @@
 
             var matClasElt = parNode.getElementsByClassName('form-group')[2];
             var matFriElt = parNode.getElementsByClassName('form-group')[3];
-            var themElt = parNode.getElementsByClassName('form-group')[7];
-            themElt = $(themElt).find('div.form-group').get(1);
+            var themElt = parNode.getElementsByClassName('form-theme-pld')[0].parentNode.parentNode.parentNode.parentNode.parentNode;
             var lblMatElt = parNode.getElementsByTagName('label')[1];
-            console.log(themElt);
             switch(valueToChk){
                 case 'frim' :
                     $(matClasElt).fadeOut('slow');
                     $(matFriElt).fadeIn('medium');
-                    $(themElt).fadeOut('fast');
+                    $(themElt).fadeOut('fast').find('select').prop('disabled',true).prop('required',false);
                     $(lblMatElt).fadeOut('fast');
                     break;
                 case 'pld' :
                     $(lblMatElt).fadeIn('fast');
                     $(matFriElt).fadeOut('slow');
                     $(matClasElt).fadeIn('medium');
-                    $(themElt).fadeIn('fast');
+                    $(themElt).fadeIn('fast').find('select').prop('disabled',false).prop('required',true);
                     break;
 
                 case 'aut' :
                     $(lblMatElt).fadeOut('fast');
                     $(matClasElt).fadeOut('fast');
                     $(matFriElt).fadeOut('fast');
-                    $(themElt).fadeIn('fast');
+                    $(themElt).fadeIn('fast').find('select').prop('disabled',false).prop('required',false);
                     break;
             }
 
@@ -200,113 +267,142 @@
         }
 
 	    function treatmentInstitute(template,grade){
-		var taille = $(template).find('select')[1].length;
+		var taille = $(template).find('option').length;
 		switch(grade){
 			case 'maternelle' :
 			for(i=0; i<taille; i++){
-			if(i>=7){
-				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+			if(i>=7){		
+				$(template).find('option:eq(' + i + ')').fadeOut().prop('disabled',true);
+				}else{
+				$(template).find('option:eq(' + i + ')').fadeIn().prop('disabled',false);
 				}
 			}
 			break;
 			case 'elementaire' :
 			for(i=0; i<taille; i++){
 			if(i!=0 && (i<7 || i>15)){
-				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+				$(template).find('option:eq(' + i + ')').fadeOut().prop('disabled',true);
+				}else{
+				$(template).find('option:eq(' + i + ')').fadeIn().prop('disabled',false);
 				}
 			}
 			break;
 			case 'college' :
 			for(i=0; i<taille; i++){
 			if(i!=0 && (i<=15 || i>19)){
-				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+				$(template).find('option:eq(' + i + ')').fadeOut().prop('disabled',true);
+				}else{
+				$(template).find('option:eq(' + i + ')').fadeIn().prop('disabled',false);
 				}
 			}
 			break;
 			case 'lycee' :
 			for(i=0; i<taille; i++){
 			if(i!=0 && (i<=19 || i>22)){
-				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+				$(template).find('option:eq(' + i + ')').fadeOut().prop('disabled',true);
+				}else{
+				$(template).find('option:eq(' + i + ')').fadeIn().prop('disabled',false);
 				}
 			}
 			break;
 			case 'superieur' :
 			for(i=0; i<taille; i++){
 			if(i!=0 && i<=22){
-				$($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
+				$($(template).find('option:eq(' + i + ')').get()[0]).fadeOut().prop('disabled',true);
+				}else{
+				$(template).find('option:eq(' + i + ')').fadeIn().prop('disabled',false);
 				}
 			}
 			break;
 			default:
+			for(i=0; i<taille; i++){
+				$(template).find('option:eq(' + i + ')').fadeIn().prop('disabled',false);
+			}
 			break;
 		}
 	}
 
 	    function treatmentCenter(template, grade){
-        var taille = $(template).find('select')[1].length;
+        var taille = $(template).find('option').length;
         switch(grade){
             case 'maternelle' :
                 for(i=0; i<taille; i++){
                     if(i>=7){
-                        $($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
-                    }
+                        $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled',true);
+                    }else{
+				$(template).find('option:eq(' + i + ')').fadeIn().prop('disabled',false);
+				}
                 }
                 break;
             case 'elementaire' :
                 for(i=0; i<taille; i++){
                     if(i!=0 && (i<7 || i>15)){
-                        $($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
-                    }
+                        $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled',true);
+                    }else{
+				$(template).find('option:eq(' + i + ')').fadeIn().prop('disabled',false);
+				}
                 }
                 break;
             case 'adolescent' :
                 for(i=0; i<taille; i++){
                     if(i!=0 && (i<=15 || i>22)){
-                        $($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
-                    }
+                        $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled',true);
+                    }else{
+				$(template).find('option:eq(' + i + ')').fadeIn().prop('disabled',false);
+				}
                 }
                 break;
             default:
+				for(i=0; i<taille; i++){
+					$(template).find('option:eq(' + i + ')').fadeIn().prop('disabled',false);
+				}
                 break;
         }
 	}
 
 	    function treatmentOthers(template, grade){
-        var taille = $(template).find('select')[1].length;
-        switch(grade){
-            case 'maison de retraite' :
-                for(i=0; i<taille; i++){
-                    if(i!=taille-1){
-                        $($(template).find('select:eq(1)').find('option:eq(' + i + ')').get()[0]).fadeOut().attr('disabled','true');
-                    }
-                }
-                break;
-            default:
-                break;
-        }
+        var taille = $(template).find('option').length;
+        for(i=0; i<taille; i++){
+			$(template).find('option:eq(' + i + ')').fadeIn().prop('disabled',false);
+		}
 	}
 
-        function treatmentSelect(template){
+        function treatmentSelect(){
             var choiceEtabElt = document.getElementsByTagName('select')[0];
             var type;
             switch(choiceEtabElt.value){
                 case 'ens' :
-                    type = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked').value;
-		    		treatmentInstitute(template,type);
+					var inputElt = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked');
+					if(inputElt != null){
+		                type = inputElt.value;
+						$('.form-annee-scolaire').each(function(){
+						treatmentInstitute($(this).get(0),type);
+						});
+					}
                     break;
                 case 'centre' :
-                    type = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked').value;
-                    treatmentCenter(template,type);
+					var inputElt = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked');	
+					if(inputElt != null){				
+		                type = inputElt.value;
+		                $('.form-annee-scolaire').each(function(){
+						treatmentCenter($(this).get(0),type);
+						});
+					}
                     break;
                 case 'autre' :
-                    type = document.querySelector('input[name="demande[Etablissement][typeAutreEtablissement]"]:checked').value;
-                    treatmentOthers(template,type);
+					var inputElt = document.querySelector('input[name="demande[Etablissement][typeAutreEtablissement]"]:checked');
+					if(inputElt != null){	
+		                type = inputElt.value;
+		                $('.form-annee-scolaire').each(function(){
+						treatmentOthers($(this).get(0),type);
+						});
+					}
                     break;
             }
 		}
 
         function showSomeTheme(type,themesElt){
-            console.log($(themesElt).find('option').get());
+            //console.log($(themesElt).find('option').get());
             switch(type){
                 case 'maternelle' :
                     $(themesElt).find('option').each(function(index) {
@@ -360,19 +456,25 @@
             var type;
             switch(choiceEtabElt.value){
                 case 'ens' :
-                    type = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked').value;
-                    for(i = 0; i < themesElts.length; i++ ){
-                    showSomeTheme(type,themesElts[i]);
-                    }
+					var inputElt = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked');
+					if(inputElt != null){
+		                type = inputElt.value;
+		                for(i = 0; i < themesElts.length; i++ ){
+		                showSomeTheme(type,themesElts[i]);
+		                }
+					}
                     break;
                 case 'centre' :
-                    type = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked').value;
-                    for(i = 0; i < themesElts.length; i++ ){
-                        showSomeTheme(type,themesElts[i]);
-                    }
+					var inputElt = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked');
+					if(inputElt != null){
+		                type = inputElt.value;
+		                for(i = 0; i < themesElts.length; i++ ){
+		                    showSomeTheme(type,themesElts[i]);
+		                }
+					}
                     break;
                 case 'autre' :
-                    type = document.querySelector('input[name="demande[Etablissement][typeAutreEtablissement]"]:checked').value;
+				default :
                     for(i = 0; i < themesElts.length; i++ ){
                         showAllTheme(themesElts[i]);
                     }
@@ -417,7 +519,7 @@
 
                 $container.append($prototype);
                 $("#add_intervention").appendTo($container).css('margin-left', '80%');
-                treatmentSelect($($prototype).get(0));
+                treatmentSelect();
                 displayThemeIntervention();
                 displayTypeIntervention($($prototype).children().find("select").get(0));
                 $($prototype).children().find("select").on("change",displayTypeIntervention);
@@ -440,45 +542,52 @@
             }
 
         });
-
+			var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
+			var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
+			var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
+            $(instituteElt).find("input").on("click",displayThemeIntervention).on("click",treatmentSelect);
+            $(centerElt).find("input").on("click",displayThemeIntervention).on("click",treatmentSelect);
+            $(othersElt).find("input").on("click",displayThemeIntervention).on("click",treatmentSelect);
         document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change',displayThemeIntervention);
     </script>
 
     <script type="application/javascript">
         document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change',function(e){
+			var uaiElt = $(document.getElementById('demande_Etablissement_uai').parentNode.parentNode).get(0);
             switch (e.target.value){
                 case 'ens' :
                     keepInstitute();
-                    $('.form-group:eq(8)').fadeIn("fast");
+                    $(uaiElt).fadeIn("fast");
                     break;
                 case 'centre' :
                     keepCenter();
-                    $('.form-group:eq(8)').fadeOut("fast");
+                    $(uaiElt).fadeOut("fast");
                     $('#demande_Etablissement_uai').val('');
                     break;
                 case 'autre' :
                     keepOther();
-                    $('.form-group:eq(8)').fadeOut("fast");
+                    $(uaiElt).fadeOut("fast");
                     $('#demande_Etablissement_uai').val('');
                     break;
             }
         });
 
         var typeInstitute = '' {#{{ typEnseignement | raw}} #};
+		var uaiElt = $(document.getElementById('demande_Etablissement_uai').parentNode.parentNode).get(0);
         if(typeInstitute.hasOwnProperty('autre')){
             console.log(typeInstitute);
             $('#demande_Etablissement_TypeGeneral').val('autre');
             level = typeInstitute['autre'];
             $("input[name='demande[Etablissement][typeAutreEtablissement]']").find("[value="+ level+"]").prop("checked", true);
             keepOther();
-            $('.form-group:eq(8)').fadeOut("fast");
+            $(uaiElt).fadeOut("fast");
             $('#demande_Etablissement_uai').val('');
         }else if( typeInstitute.hasOwnProperty('centre')){
             $('#demande_Etablissement_TypeGeneral').val('centre');
             level = typeInstitute['centre'];
             $("input[name='demande[Etablissement][typeCentre]']").find("[value="+ level+"]").prop("checked", true);
             keepCenter();
-            $('.form-group:eq(8)').fadeOut("fast");
+            $(uaiElt).fadeOut("fast");
             $('#demande_Etablissement_uai').val('');
         }else if( typeInstitute.hasOwnProperty('ens')){
             console.log(typeInstitute['ens']);
@@ -487,33 +596,40 @@
 
             $("input[name='demande[Etablissement][typeEnseignement]'][value='"+ level+"']").prop("checked", true);
             keepInstitute();
-            $('.form-group:eq(8)').fadeIn("fast");
+            $(uaiElt).fadeIn("fast");
         }
 
         function keepInstitute(){
-            $(".form-group:eq(5)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
+			var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
+			var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
+			var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
+            $(instituteElt).fadeIn("medium").removeAttr("disabled").find("input").prop("required",true);
+            $(centerElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
+            $(othersElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
         }
 
         function keepCenter(){
-            $(".form-group:eq(7)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
+			var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
+			var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
+			var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
+            $(centerElt).fadeIn("medium").removeAttr("disabled").find("input").prop("required",true);
+            $(instituteElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
+            $(othersElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
 
         }
 
         function keepOther(){
-            $(".form-group:eq(6)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
+			var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
+			var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
+			var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
+            $(othersElt).fadeIn("medium").removeAttr("disabled").find("input").prop("required",true);
+            $(centerElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
+            $(instituteElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
         }
 
         function verifyAll(e){
             verifyNumber(e);
             verifyCP(e);
-            verifyMail(e);
-            showUAI();
             if($('#demande_Etablissement_uai').val().trim())
                 verifyUAI(e);
 
@@ -545,22 +661,6 @@
                 alert("Code Postal au mauvais format");
             }else
                 $('#demande_Etablissement_adresse_codePostal').removeAttr('border-color');
-
-        }
-
-        function verifyMail(e){
-            var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-            if(!(re.test($('#demande_Etablissement_emails').val()) && re.test($('#demande_Contact_email').val()))){
-                $('#demande_Etablissement_emails').css('border-color', 'red');
-                $('#demande_Contact_email').css('border-color', 'red');
-                alert("E-mail au mauvais format");
-                e.preventDefault();
-                e.stopPropagation();
-            }
-            else {
-                $('#demande_Etablissement_emails').removeAttr('border-color');
-                $('#demande_Contact_email').removeAttr('border-color');
-            }
 
         }
 

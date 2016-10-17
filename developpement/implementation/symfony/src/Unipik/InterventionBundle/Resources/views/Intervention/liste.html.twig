@@ -3,7 +3,9 @@
 {% extends "InterventionBundle::layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }}
+
+    Liste des interventions - {{ parent() }}
+
 {% endblock %}
 
 {% block stylesheets %}
@@ -149,8 +151,10 @@
                 showPrevNext: true,
                 hidePageNumbers: false,
                 perPage:{{ rowsPerPage }} });
+
             $("#recherche_avancee_date").prop('checked', true);
             $("#between_dates").hide();
+
             hide_or_show = function () {
                 if ($(this).is(':checked')) {
                     $("#between_dates").hide();
@@ -162,7 +166,9 @@
                     $("#recherche_avancee_end").prop('required', true);
                 }
             };
+
             $("#recherche_avancee_date").change(hide_or_show);
+
             $('#recherche_avancee_start').datepicker({
                 format: 'dd-mm-yyyy',
                 language: 'fr',
@@ -203,6 +209,17 @@
             };
 
             $(".chosen-select").chosen({width: "95%"});
+
+
+            {% if onlyMyIntervention==1 %}
+            $("#recherche_avancee_statutIntervention").hide();
+            $("#recherche_avancee_statutMesInterventions").show();
+            {% else %}
+            $("#recherche_avancee_statutIntervention").show();
+            $("#recherche_avancee_statutMesInterventions").hide();
+            {% endif %}
+
+
 
             hide_or_show_intervention();
 
@@ -246,7 +263,11 @@
                     $(event).attr('class', 'btn btn-danger');
                     $(event).text('Se désattribuer l\'intervention');
                     $(event).attr("onclick", "desattributeIntervention(this, " + id + ")");
-                });
+                })
+                    .fail(function() {
+                        alert( "Cette intervention a déjà été attribuée à un bénévole !" );
+                        window.location.replace('{{ path("intervention_list") }}');
+                    });
         }
 
         var benevoles = new Bloodhound({
@@ -290,7 +311,7 @@
                 function (data, status) {
                     var selector = "button[name=attribuer" + id + "]";
                     $(selector).attr('class', 'btn btn-danger');
-                    $(selector).text('Retirer ' + data.prenom + ' ' + data.nom + ' de l\'intervention');
+                    $(selector).text('Retirer ' + data.prenom + ' ' + data.nom );
                     $(selector).attr("onclick", "desattributeInterventionAdmin(this, " + id + ")");
                     $(selector).removeAttr("data-target");
                     $(selector).removeAttr("data-toggle");
@@ -314,7 +335,6 @@
         });
 
 
-
         //        $('#recherche_avancee_statutIntervention_2').hide();
         //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
         //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
@@ -328,12 +348,16 @@
         <div class="row">
             <div class='well'>
                 {% if onlyMyIntervention %}
-                    {{ form_start(form, {'method': 'get', 'action': path('intervention_attributed'), 'attr': {'class': 'intervention_attributed form-sm'}}) }}
+                    {{ form_start(form, {'method': 'get', 'action': path('intervention_self'), 'attr': {'class': 'intervention_self form-sm'}}) }}
                 {% else %}
                     {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+
                 {% endif %}
+
                 <h5>Statut de l'intervention :</h5>
                 {{ form_widget(form.statutIntervention) }}
+                {{ form_widget(form.statutMesInterventions) }}
+
                 <br/>
                 <h5>Type d'intervention :</h5>
                 {{ form_widget(form.typeIntervention) }}
@@ -397,7 +421,6 @@
                     <table class="table table-striped table-hover" id="tableIntervention">
                         <thead>
                         <tr>
-                            <th>#</th>
                             {% set pathReq = [] %}
                             {% if app.request.query.get('recherche_avancee') is not null %}
                                 {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
@@ -476,15 +499,17 @@
                             <th>Thème</th>
                             <th>Statut</th>
                             <th>Voir détails</th>
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <th>Supprimer</th>
-                            {% endif %}
                         </tr>
                         </thead>
                         <tbody id="myTable">
                         {% for intervention in liste %}
+                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
+                            <tr class="danger">
+                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee)%}
+                            <tr class="warning" >
+                            {% else %}
                             <tr>
-                                <td data-title="#">{{ loop.index }}</td>
+                            {% endif %}
                                 <td data-title="Lieu">{{ intervention.etablissement.adresse.ville.nom }}</td>
                                 <td data-title="Date">{{ intervention.dateIntervention|date("d-m-Y") }}</td>
                                 <td data-title="Type">
@@ -566,31 +591,12 @@
                                     <a href="{{ path('intervention_view', {id: intervention.id}) }}"
                                        class="btn btn-primary">Voir détails</a>
                                 </td>
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <td data-title="Supprimer">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="type" id="{{ intervention.id }}">
-                                            </label>
-                                        </div>
-                                    </td>
-                                {% endif %}
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
 
                 </div>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <div class="buttons">
-                        {% if liste is not empty %}
-                            <button type="button" class="btn btn-danger" onclick="deleteInterventions()">
-                                <em class="glyphicon glyphicon-trash"></em>
-                                &nbsp Supprimer
-                            </button>
-                        {% endif %}
-                    </div>
-                {% endif %}
                 <div class="col-md-12 text-center">
                     {% set pathReq = [] %}
                     {% if app.request.query.get('recherche_avancee') is not null %}

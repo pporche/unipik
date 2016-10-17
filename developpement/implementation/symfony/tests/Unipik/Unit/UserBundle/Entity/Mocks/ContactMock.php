@@ -8,21 +8,22 @@
 
 namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\UserBundle\Entity\Contact;
 
-class ContactMock extends Mock {
+class ContactMock extends EntityMock
+{
 
     /**
      * @return Contact
      */
-    public static function create() {
+    public static function create() 
+    {
         $c = new Contact();
         $c
             ->setEmail("contact@bigcorp.eu")
             ->setNom("Dupond")
-            ->setTypeContact("enseignant")
-        ;
+            ->setTypeContact("enseignant");
 
         return $c;
     }
@@ -31,7 +32,8 @@ class ContactMock extends Mock {
      * @param $nb
      * @return Contact[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

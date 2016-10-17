@@ -4,6 +4,7 @@ namespace Unipik\InterventionBundle\Controller;
 
 use Doctrine\ORM\Repository\RepositoryFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -78,11 +79,30 @@ class InterventionController extends Controller {
 
         $intervention = $repository->find(array('id' => $id));
 
-        $form = $this->createForm(InterventionType::class, $intervention);
-
+        $form = $this->createForm(InterventionType::class);
 
         if($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
+
+            $intervention->setDateIntervention($form->get('dateIntervention')->getData());
+            $intervention->setLieu($form->get('lieu')->getData());
+            $intervention->setNbPersonne($form->get('nbPersonne')->getData());
+
+            if($intervention->isFrimousse()) {
+                $intervention->removeAllMateriauxFrimousse();
+                $materiauxData = $form->get('materiauxFrimousse')->getData();
+                foreach ($materiauxData as $mat) {
+                    $intervention->addMateriauxFrimousse($mat);
+                }
+            } elseif ($intervention->isPlaidoyer()) {
+                $intervention->removeAllMaterielDispoPlaidoyer();
+                $materiauxData = $form->get('materielDispoPlaidoyer')->getData();
+                foreach ($materiauxData as $mat) {
+                    $intervention->addMaterielDispoPlaidoyer($mat);
+                }
+            } else {
+                $materiauxData = array("kaki");
+            }
 
             $em->persist($intervention);
             $em->flush();
@@ -90,8 +110,19 @@ class InterventionController extends Controller {
             return $this->redirectToRoute('intervention_view', array('id' => $id));
         }
 
+        if($intervention->isFrimousse()) {
+            $materiaux = $intervention->getMateriauxFrimousse()->toArray();
+        } elseif ($intervention->isPlaidoyer()) {
+            $materiaux = $intervention->getMaterielDispoPlaidoyer()->toArray();
+        } else {
+            $materiaux = array("kaki");
+        }
+
+        $materiaux = json_encode($materiaux);
+
         return $this->render('InterventionBundle:Intervention:editIntervention.html.twig', array('form' => $form->createView(),
-                                                                                                 'intervention' => $intervention,
+                                                                                 'intervention' => $intervention,
+                                                                                 'materiaux' => $materiaux,
         ));
     }
 
@@ -244,7 +275,7 @@ class InterventionController extends Controller {
 
             $session->getFlashBag()->add('notice', array(
                 'title' => 'Félicitation',
-                'message' => 'Votre demande d\'intervention a bien été enregistrée. Nous vous contacterons sous peu',
+                'message' => 'Votre demande d\'intervention a bien été enregistrée. Nous vous contacterons sous peu.',
                 'alert' => 'success'
             ));
 
@@ -341,7 +372,7 @@ class InterventionController extends Controller {
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
         $field = $request->get("field", "dateIntervention");
-        $desc = $request->get("desc", true);
+        $desc = $request->get("desc", false);
 
         $repository = $this->getInterventionRepository();
 
@@ -374,7 +405,7 @@ class InterventionController extends Controller {
      * @return Response
      * Renvoie vers la page d'attribution d'intervention.
      */
-    public function attribueesAction(Request $request) {
+    public function maListeAction(Request $request) {
         $user = $this->getUser();
 
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
@@ -383,17 +414,21 @@ class InterventionController extends Controller {
 
         $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
         $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
-        $statutIntervention =$form->get("statutIntervention")->getData(); //Récupération du statut de l'intervention
+        $statutIntervention =$form->get("statutMesInterventions")->getData(); //Récupération du statut de l'intervention
+        $niveauFrimousse = $form->get("niveauFrimousse")->getData();
+        $niveauPlaidoyer = $form->get("niveauPlaidoyer")->getData();
+        $ville = $form->get("ville")->getData();
+        $theme = $form->get("theme")->getData();
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
         $field = $request->get("field", "dateIntervention");
-        $desc = $request->get("desc", true);
+        $desc = $request->get("desc", false);
 
         $repository = $this->getInterventionRepository();
 
-        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, $user, null, null, null, null);
+        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, $user, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville);
 
         //        Création du formulaire pour la popup
         $fB = $this->get('form.factory')->createBuilder(AttributionType::class);
@@ -518,7 +553,28 @@ class InterventionController extends Controller {
             $repository = $em->getRepository('InterventionBundle:Intervention');
             $intervention = $repository->find($id);
 
+            if($intervention->getBenevole() != null) {
+                throw new Exception("Exception");
+            }
+
             $intervention->setBenevole($user);
+
+            $em->persist($intervention);
+            $em->flush();
+            return new Response();
+        }
+        return new Response();
+    }
+
+    public function realisationAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $id = $request->request->get('id');
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Intervention');
+            $intervention = $repository->find($id);
+
+            $intervention->setRealisee(true);
 
             $em->persist($intervention);
             $em->flush();
@@ -573,7 +629,7 @@ class InterventionController extends Controller {
                 $interventionTemp = new Intervention();
                 $interventionTemp->setRealisee(false);
                 $interventionTemp->setDateIntervention(null);
-                $interventionTemp->setNbPersonne($interventionRaw["participants"]["nbEleves"]);
+                $interventionTemp->setNbPersonne($interventionRaw["nbPersonne"]);
                 $interventionTemp->setComite($comiteTest);
                 if(isset($interventionRaw["materiel"]) && !empty($interventionRaw["materiel"]["materiel"])){
                     $interventionTemp->addMaterielDispoPlaidoyer($interventionRaw["materiel"]["materiel"]);

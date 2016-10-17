@@ -8,23 +8,24 @@
 
 namespace Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks;
 
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\ArchitectureBundle\Entity\Region;
 
-class RegionMock extends Mock {
+class RegionMock extends EntityMock
+{
 
     /**
      * @return Region
      */
-    public static function create() {
+    public static function create() 
+    {
         $r = new Region();
 
         $p = PaysMock::create();
 
         $r
             ->setNom("Normandie")
-            ->setPays($p)
-        ;
+            ->setPays($p);
 
         return $r;
     }
@@ -33,7 +34,8 @@ class RegionMock extends Mock {
      * @param $nb
      * @return Region[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

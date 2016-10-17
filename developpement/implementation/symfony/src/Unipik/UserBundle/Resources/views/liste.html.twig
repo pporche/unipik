@@ -286,8 +286,6 @@
         <table class="table table-striped table-hover ">
             <thead>
             <tr>
-                <th>#</th>
-
                 {% set pathReq = [] %}
                 {% if app.request.query.get('rowsPerPage') is not null %}
                     {% set pathReq = pathReq | merge({"rowsPerPage":app.request.query.get('rowsPerPage')})%}
@@ -369,7 +367,6 @@
             <tbody id="myTable">
             {% for benevole in listBenevoles %}
                 <tr id="checkboxes">
-                    <td data-title="#">{{ loop.index }}</td>
                     <td data-title="Nom">{{ benevole.nom | capitalize }}</td>
                     <td data-title="Prénom">{{ benevole.prenom | capitalize }}</td>
                     <td id="idBenevole" hidden="hidden" data-title="#"  data-title="id">{{ benevole.id }}</td>

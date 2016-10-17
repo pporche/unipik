@@ -10,15 +10,17 @@
 namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\AdresseMock;
-use Tests\Unipik\Unit\Utils\Mock;
+use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\UserBundle\Entity\Benevole;
 
-class BenevoleMock extends Mock {
+class BenevoleMock extends EntityMock
+{
 
     /**
      * @return Benevole
      */
-    public static function create() {
+    public static function create() 
+    {
         $ad = AdresseMock::create();
 
         $b = new Benevole();
@@ -30,8 +32,7 @@ class BenevoleMock extends Mock {
             ->setUsernameCanonical("usernamecanonical")
             ->setEmail("truc@machin.com")
             ->setEmailCanonical("canonical@machin.com")
-            ->setPassword("p@ssw0rd")
-        ;
+            ->setPassword("p@ssw0rd");
 
         return $b;
     }
@@ -40,7 +41,8 @@ class BenevoleMock extends Mock {
      * @param $nb
      * @return Benevole[]
      */
-    public static function createMultiple($nb){
+    public static function createMultiple($nb)
+    {
         return parent::createMultiple($nb);
     }
 }

@@ -1,6 +1,12 @@
 {# version 1.00, date 14/05/2016, auteur Florian Leriche #}
 {% extends "InterventionBundle::layout.html.twig" %}
 
+{% block title %}
+
+    Ajouter un établissement - {{ parent() }}
+
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <style>
@@ -64,12 +70,27 @@
             margin-top: 40px;
         }
 
+        .form-group:first-child{
+            font-family: 'Ubuntu Condensed', sans-serif;
+            font-size: 22px;
+        }
+        #etablissement_emails label{
+            font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
+            font-size: 15px !important;
+        }
+
+        #etablissement label{
+            font-size: 15px !important;
+            font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
+        }
+
         div{
             box-shadow: none !important;
         }
 
         input[type="text"], select{
             width: 350px !important;
+            margin-left: 10px !important;
         }
         input:focus, select:focus{
             outline: none !important;

@@ -97,9 +97,6 @@ class InterventionController extends Controller {
                 }
                 $niveauFrimousse = $form->get('niveau')->getData();
                 $intervention->setNiveauFrimousse($niveauFrimousse);
-
-                $heure = $form->get('heure')->getData();
-                $intervention->setHeure($heure);
             } elseif ($intervention->isPlaidoyer()) {
                 $intervention->removeAllMaterielDispoPlaidoyer();
                 $materiauxData = $form->get('materielDispoPlaidoyer')->getData();
@@ -117,6 +114,11 @@ class InterventionController extends Controller {
             } else {
                 $materiauxData = array();
             }
+
+            $heure = $form->get('heure')->get('hour')->getData();
+            $minute = $form->get('heure')->get('minute')->getData();
+            $heure .= ":".$minute;
+            $intervention->setHeure($heure);
 
             $em->persist($intervention);
             $em->flush();

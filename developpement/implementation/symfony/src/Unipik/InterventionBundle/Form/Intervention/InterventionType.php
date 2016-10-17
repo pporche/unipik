@@ -80,7 +80,7 @@ class InterventionType extends AbstractFieldsetType {
             ->add('niveau', ChoiceType::class, $choiceClasse)
             ->add('heure', TimeType::class, array(
                 'placeholder' => array(
-                    'hour' => 'Hour', 'minute' => 'Minute',
+                    'hour' => '00', 'minute' => '00',
                 )
             ))
         ;

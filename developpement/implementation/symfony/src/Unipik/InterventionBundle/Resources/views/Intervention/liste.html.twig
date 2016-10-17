@@ -260,7 +260,7 @@
             $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
                 function (data, status) {
                     $(event).attr('class', 'btn btn-primary');
-                    $(event).text('S\'attribuer l\'intervention');
+                    $(event).text('Se la désattribuer');
                     $(event).attr("onclick", "attributeIntervention(this, " + id + ")");
                 });
         }
@@ -269,7 +269,7 @@
             $.post("{{ path('intervention_self_attribute') }}", {'id': id},
                 function (data, status) {
                     $(event).attr('class', 'btn btn-danger');
-                    $(event).text('Se désattribuer l\'intervention');
+                    $(event).text('Se la désattribuer');
                     $(event).attr("onclick", "desattributeIntervention(this, " + id + ")");
                 })
                     .fail(function() {
@@ -511,15 +511,19 @@
                         </thead>
                         <tbody id="myTable">
                         {% for intervention in liste %}
-                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
+                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention %}
                             <tr class="dangerTable">
-                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee)%}
+                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) and intervention.dateIntervention %}
                             <tr class="warningTable" >
                             {% else %}
                             <tr>
                             {% endif %}
                                 <td data-title="Lieu">{{ intervention.etablissement.adresse.ville.nom }}</td>
-                                <td data-title="Date">{{ intervention.dateIntervention|date("d-m-Y") }}</td>
+                                <td data-title="Date">
+                                    {% if intervention.dateIntervention %}
+                                        {{ intervention.dateIntervention|date("d-m-Y") }}
+                                    {% else %} -
+                                    {% endif %} </td>
                                 <td data-title="Type">
                                     {% if intervention.plaidoyer %}
                                         Plaidoyer

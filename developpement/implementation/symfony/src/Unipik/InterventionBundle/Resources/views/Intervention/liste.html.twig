@@ -74,10 +74,6 @@
             margin: 0;
         }
 
-
-    {#</style>#}
-    {#<style>#}
-
         @media only screen and (max-width: 1090px) {
 
             .btn-danger{
@@ -531,6 +527,7 @@
                         </tr>
                         </thead>
                         <tbody id="myTable">
+                        {% if liste is not empty %}
                         {% for intervention in liste %}
                             {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention %}
                             <tr class="dangerTable">
@@ -635,6 +632,9 @@
                             {% endif %}
                             </tr>
                         {% endfor %}
+                        {% else %}
+                            <tr></tr>
+                        {% endif %}
                         </tbody>
                     </table>
 

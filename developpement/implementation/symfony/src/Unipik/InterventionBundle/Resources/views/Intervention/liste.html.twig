@@ -278,7 +278,7 @@
             $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
                 function (data, status) {
                     $(event).attr('class', 'btn btn-primary');
-                    $(event).text('Se la désattribuer');
+                    $(event).text('Se l\'attribuer');
                     $(event).attr("onclick", "attributeIntervention(this, " + id + ")");
                 });
         }

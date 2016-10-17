@@ -160,15 +160,6 @@
             });
         }
 
-        function followRole() {
-            if (document.getElementById("fos_user_profile_form_roles_1").checked == false) {
-                document.getElementById("fos_user_profile_form_roles_1").disabled = true;
-            }
-        }
-        followRole();
-
-
-
         var villes = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,

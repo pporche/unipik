@@ -9,7 +9,9 @@
 
 {% block body %}
     <h2>Demande d'intervention</h2>
+    <hr>
     {{ form(form) }}
+    {{ form_end(form) }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -69,7 +71,72 @@
             margin: 0;
         }
 
+        @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+        h2{
+            font-family: 'Ubuntu Condensed', sans-serif;
+            margin-top: 40px;
+        }
 
+        div{
+            box-shadow: none !important;
+        }
+
+        .col-sm-10{
+            padding-left: 100px;
+        }
+
+        input[type="text"],input[type="number"], select{
+            width: 350px !important;
+        }
+        input:focus, select:focus{
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: #CCCCCC !important;
+        }
+
+        .form-group > table{
+            padding-left: 0vw;
+        }
+
+        .btn-info {
+            border-radius: 10px !important;
+        }
+
+        .btn-default{
+            border-radius: 10px !important;
+            background-color: #3fb618 !important;
+            border-color: #3fb618 !important;
+        }
+
+        hr{
+            margin-top: 0px;
+        }
+
+
+        .btn-primary{
+            margin-left: 30%;
+        }
+
+        table, .table, .table-bordered{
+            max-width: 550px !important;
+        }
+
+        form{
+            padding-left: 25vw;
+        }
+
+        .form-horizontal .form-group{
+            margin-left: -130px !important;
+        }
+
+        @media(max-width: 1160px){
+            form{
+                padding-left: 0vw;
+            }
+            .form-horizontal .form-group{
+                margin-left: -30px !important;
+            }
+        }
 
     </style>
 

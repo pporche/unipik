@@ -271,7 +271,7 @@
 		switch(grade){
 			case 'maternelle' :
 			for(i=0; i<taille; i++){
-			if(i>=7){		
+			if(i>=7){
 				$(template).find('option:eq(' + i + ')').fadeOut().prop('disabled',true);
 				}else{
 				$(template).find('option:eq(' + i + ')').fadeIn().prop('disabled',false);
@@ -381,8 +381,8 @@
 					}
                     break;
                 case 'centre' :
-					var inputElt = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked');	
-					if(inputElt != null){				
+					var inputElt = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked');
+					if(inputElt != null){
 		                type = inputElt.value;
 		                $('.form-annee-scolaire').each(function(){
 						treatmentCenter($(this).get(0),type);
@@ -391,7 +391,7 @@
                     break;
                 case 'autre' :
 					var inputElt = document.querySelector('input[name="demande[Etablissement][typeAutreEtablissement]"]:checked');
-					if(inputElt != null){	
+					if(inputElt != null){
 		                type = inputElt.value;
 		                $('.form-annee-scolaire').each(function(){
 						treatmentOthers($(this).get(0),type);
@@ -572,7 +572,8 @@
             }
         });
 
-        var typeInstitute = '' {#{{ typEnseignement | raw}} #};
+        var typeInstitute = {{ typEnseignement | raw}} ;
+        console.log(typeInstitute);
 		var uaiElt = $(document.getElementById('demande_Etablissement_uai').parentNode.parentNode).get(0);
         if(typeInstitute.hasOwnProperty('autre')){
             console.log(typeInstitute);

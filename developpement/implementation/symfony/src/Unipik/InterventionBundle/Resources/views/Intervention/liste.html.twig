@@ -504,9 +504,9 @@
                         <tbody id="myTable">
                         {% for intervention in liste %}
                             {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
-                            <tr class="danger">
+                            <tr class="dangerTable">
                             {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee)%}
-                            <tr class="warning" >
+                            <tr class="warningTable" >
                             {% else %}
                             <tr>
                             {% endif %}

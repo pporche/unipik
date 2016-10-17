@@ -268,9 +268,9 @@
                             <tbody id="myTable">
                             {% for intervention in interventionsNonRealiseesBenevole %}
                                 {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
-                                    <tr class="danger">
+                                    <tr class="dangerTable">
                                 {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) %}
-                                    <tr class="warning" >
+                                    <tr class="warningTable" >
                                 {% else %}
                                     <tr>
                                 {% endif %}
@@ -452,7 +452,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <button id="realiserModal" type="button" class="btn btn-primary"
                                 onclick="okRealiserIntervention()">
                             OK

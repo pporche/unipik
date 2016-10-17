@@ -47,7 +47,7 @@
             if (settings.showPrevNext)
                 $('<li><a href="#" class="derniere_link">Dernière</a></li>').appendTo(pager);
 
-            goTo(1);
+            goTo(0);
             pager.find('.prev_link').hide();
             pager.find('.premiere_link').hide();
 
@@ -112,7 +112,16 @@
                 var pageTest = page+1;
                 console.log(pageTest);
 
+
                 var pagesLinks = document.getElementsByClassName("page_link");
+
+                for(i=0; i<numPages; i++){
+                     pagesLinks[i].style.color="#1967be";
+                     pagesLinks[i].style.backgroundColor="white";
+                }
+
+                (pagesLinks[page]).style.color="white";
+                (pagesLinks[page]).style.backgroundColor="#1967be";
 
                 var startAt = page * perPage,
                         endOn = startAt + perPage;

@@ -572,7 +572,7 @@
                                         {% else %}
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <button name="desattribution" type="button" class="btn btn-danger"
-                                                        onclick="desattributeInterventionAdmin(this, {{ intervention.id }})" style="padding-right: 4px;padding-left: 4px; font-size: 14px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; ">
+                                                        onclick="desattributeInterventionAdmin(this, {{ intervention.id }})" style="padding-right: 4px;padding-left: 4px; font-size: 14px; width: 100%; overflow: hidden; text-overflow: ellipsis; ">
                                                     Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}.
 
                                                 </button>

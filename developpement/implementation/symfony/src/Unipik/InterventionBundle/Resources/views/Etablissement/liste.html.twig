@@ -356,7 +356,7 @@
                                     <td data-title="Consulter"><a href="{{ path('etablissement_view', {id: etablissement.id}) }}" class="btn btn-primary">Voir détails</a></td>
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <td data-title="Supprimer">
-                                            <div class="checkbox">
+                                            <div class="checkbox" style="text-align: center;">
                                                 <label>
                                                     <input type="checkbox" name="type" id="{{ etablissement.id }}">
                                                 </label>

@@ -39,6 +39,10 @@ intervention_done:
     path: /intervention/realisation
     defaults: {_controller: InterventionBundle:Intervention:realisation}
 
+intervention_multiple_done:
+    path: /intervention/multiple/realisation
+    defaults: {_controller: InterventionBundle:Intervention:realisationInterventions}
+
 intervention_cancel:
     path: /intervention/annuler/{id}
     defaults: {_controller: InterventionBundle:Intervention:annuler}

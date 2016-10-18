@@ -117,8 +117,10 @@
                     for (i = 0; i < taille; i++) {
                         if (i >= 7) {
                             $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                            console.log(">7");
                         } else {
                             $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                            console.log("<7");
                         }
                     }
                     break;
@@ -167,16 +169,20 @@
         }
 
         $(document).ready(function () {
+            var etablissement;
+            var typeEtablissement;
             {% if intervention.etablissement.enseignement %}
             etablissement = 'ens';
-            typeEtablissement = {{ intervention.etablissement.typeEnseignement }};
+            typeEtablissement = '{{ intervention.etablissement.typeEnseignement }}';
+            console.log("onch");
             {% elseif intervention.etablissement.centreLoisirs %}
             etablissement = 'centre';
-            typeEtablissement = {{ intervention.etablissement.typeCentre }};
+            typeEtablissement = '{{ intervention.etablissement.typeCentre }}';
             {% else %}
             etablissement = 'autre';
-            typeEtablissement = {{ intervention.etablissement.typeAutreEtablissement }};
+            typeEtablissement = '{{ intervention.etablissement.typeAutreEtablissement }}';
             {% endif %}
+            console.log(typeEtablissement);
             switch (etablissement) {
                 case 'ens' :
                     $('.form-annee-scolaire').each(function () {
@@ -265,12 +271,14 @@
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveau, {'attr': {'style': 'display: none'}}) }}
             {{ form_label(form.niveauTheme.niveau, "Année scolaire") }}
-            {{ form_widget(form.niveauTheme.niveau) }}
+            {{ form_widget(form.niveauTheme.niveau, {'value' : intervention.niveauTheme.niveau })  }}
             {{ form_label(form.niveauTheme.theme, "Choix des thèmes") }}
-            {{ form_widget(form.niveauTheme.theme) }}
+            {{ form_widget(form.niveauTheme.theme.themes, {'value' : intervention.niveauTheme.theme })  }}
         {% elseif intervention.frimousse %}
             {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveauTheme, {'attr': {'style': 'display: none'}}) }}
+            {{ form_label(form.niveau, "Année scolaire") }}
+            {{ form_widget(form.niveau, {'value' : intervention.niveauFrimousse })  }}
         {% else %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}

@@ -705,11 +705,15 @@ class InterventionController extends Controller {
                 $interventionTemp->setDateIntervention(null);
                 $interventionTemp->setNbPersonne($interventionRaw["nbPersonne"]);
                 $interventionTemp->setComite($comiteTest);
-                if(isset($interventionRaw["materiel"]) && !empty($interventionRaw["materiel"]["materiel"])){
-                    $interventionTemp->addMaterielDispoPlaidoyer($interventionRaw["materiel"]["materiel"]);
+                if(isset($interventionRaw["materielDispoPlaidoyer"]) && !empty($interventionRaw["materielDispoPlaidoyer"])){
+                    foreach ($interventionRaw["materielDispoPlaidoyer"]["materiel"] as $materiel){
+                        $interventionTemp->addMaterielDispoPlaidoyer($materiel);
+                    }
                 }
-                else if(isset($interventionRaw['materielFrimousse']) && !empty($interventionRaw['materielFrimousse']['materiel'])){
-                    $interventionTemp->addMateriauxFrimousse($interventionRaw['materielFrimousse']['materiel']);
+                else if(isset($interventionRaw['materiauxFrimousse']) && !empty($interventionRaw['materiauxFrimousse'])){
+                    foreach ($interventionRaw['materiauxFrimousse']["materiel"] as $materiel){
+                        $interventionTemp->addMateriauxFrimousse($materiel);
+                    }
                 }
                 if(isset($interventionRaw["niveauTheme"])){
                     $lvlTheme = $lvlThemeRepository->findOneBy(

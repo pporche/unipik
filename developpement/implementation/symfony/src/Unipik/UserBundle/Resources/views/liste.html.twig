@@ -386,6 +386,7 @@
 
             </thead>
             <tbody id="myTable">
+            {% if listBenevoles is not empty %}
             {% for benevole in listBenevoles %}
                 <tr id="checkboxes">
                     <td data-title="Nom">{{ benevole.nom | capitalize }}</td>
@@ -470,6 +471,9 @@
                     {#</a>#}
                 </tr>
             {% endfor %}
+            {% else %}
+                <tr></tr>
+            {% endif %}
             </tbody>
         </table>
     </section>

@@ -60,8 +60,18 @@ class EtablissementController extends Controller {
                 $institute->addEmail($email);
             }
 
+            $institute->setNom(strtoupper($institute->getNom()));
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($institute);
+            $em->flush();
+
+            $repositoryAdresse = $em->getRepository("ArchitectureBundle:Adresse");
+            $adresse = $repositoryAdresse->findOneBy(array('id' => $institute->getAdresse()));
+            $adresse->setAdresse(strtoupper($adresse->getAdresse()));
+            $adresse->setComplement(strtoupper($adresse->getComplement()));
+
+            $em->persist($adresse);
             $em->flush();
 
             return $this->redirectToRoute('etablissement_view', array('id' => $institute->getId()));

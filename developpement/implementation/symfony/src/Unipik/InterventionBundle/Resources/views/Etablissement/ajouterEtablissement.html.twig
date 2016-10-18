@@ -10,7 +10,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
-        #etablissement_adresse_ville {
+        #etablissement_adresse_ville, #etablissement_nom, #etablissement_adresse_adresse, #etablissement_adresse_complement {
             text-transform: uppercase;
         }
         .twitter-typeahead .tt-query,
@@ -283,16 +283,34 @@
             }
         });
 
+        switch ($("#etablissement_TypeGeneral").val()){
+            case 'ens' :
+                $(".form-group:eq(4)").fadeIn("fast").removeAttr("disabled");
+                $(".form-group:eq(6)").fadeOut("fast").prop("disabled",true);
+                $(".form-group:eq(5)").fadeOut("fast").prop("disabled",true);
+                break;
+            case 'centre' :
+                $(".form-group:eq(6)").fadeIn("fast").removeAttr("disabled");
+                $(".form-group:eq(4)").fadeOut("fast").prop("disabled",true);
+                $(".form-group:eq(5)").fadeOut("fast").prop("disabled",true);
+                break;
+            case 'autre' :
+                $(".form-group:eq(5)").fadeIn("medium").removeAttr("disabled");
+                $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
+                $(".form-group:eq(4)").fadeOut("slow").prop("disabled",true);
+                break;
+        }
+
         function keepInstitute(){
-            $(".form-group:eq(5)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(5)").fadeIn("fast").removeAttr("disabled");
+            $(".form-group:eq(6)").fadeOut("fast").prop("disabled",true);
+            $(".form-group:eq(7)").fadeOut("fast").prop("disabled",true);
         }
 
         function keepCenter(){
-            $(".form-group:eq(7)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(7)").fadeIn("fast").removeAttr("disabled");
+            $(".form-group:eq(5)").fadeOut("fast").prop("disabled",true);
+            $(".form-group:eq(6)").fadeOut("fast").prop("disabled",true);
         }
 
         function keepOther(){

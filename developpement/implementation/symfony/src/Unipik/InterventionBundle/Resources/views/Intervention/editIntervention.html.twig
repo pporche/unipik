@@ -11,16 +11,16 @@
     {{ parent() }}
     <script>
         {% if intervention.plaidoyer %}
-            {% autoescape false %}
-            var materiauxPlaidoyer = {{ materiaux }};
-            for (var i = 0; i < materiauxPlaidoyer.length; i++) {
-                materiauxPlaidoyer[i] = materiauxPlaidoyer[i].replace('("', '');
-                materiauxPlaidoyer[i] = materiauxPlaidoyer[i].replace('")', '');
-             }
-            {% endautoescape %}
+        {% autoescape false %}
+        var materiauxPlaidoyer = {{ materiaux }};
+        for (var i = 0; i < materiauxPlaidoyer.length; i++) {
+            materiauxPlaidoyer[i] = materiauxPlaidoyer[i].replace('("', '');
+            materiauxPlaidoyer[i] = materiauxPlaidoyer[i].replace('")', '');
+        }
+        {% endautoescape %}
 
-        materiauxPlaidoyer.forEach(function(entry) {
-            switch(entry) {
+        materiauxPlaidoyer.forEach(function (entry) {
+            switch (entry) {
                 case "videoprojecteur":
                     $("#intervention_materielDispoPlaidoyer_materiel_0").prop("checked", true);
                     break;
@@ -37,31 +37,165 @@
         });
 
         {% elseif intervention.frimousse %}
-            {% autoescape false %}
-            var materiauxFrimousse = {{ materiaux|raw }};
+        {% autoescape false %}
+        var materiauxFrimousse = {{ materiaux|raw }};
         console.log(materiauxFrimousse);
-            for (var j = 0; j < materiauxFrimousse.length; j++) {
-                materiauxFrimousse[j] = materiauxFrimousse[j].replace('("', '');
-                materiauxFrimousse[j] = materiauxFrimousse[j].replace('")', '');
-            }
-            {% endautoescape %}
+        for (var j = 0; j < materiauxFrimousse.length; j++) {
+            materiauxFrimousse[j] = materiauxFrimousse[j].replace('("', '');
+            materiauxFrimousse[j] = materiauxFrimousse[j].replace('")', '');
+        }
+        {% endautoescape %}
 
-        materiauxFrimousse.forEach(function(entry) {
-                switch(entry) {
-                    case "patron":
-                        $("#intervention_materiauxFrimousse_materiel_0").prop("checked", true);
-                        break;
-                    case "bourre":
-                        $("#intervention_materiauxFrimousse_materiel_1").prop("checked", true);
-                        break;
-                    case "decoration":
-                        $("#intervention_materiauxFrimousse_materiel_2").prop("checked", true);
-                        break;
-                }
-            });
+        materiauxFrimousse.forEach(function (entry) {
+            switch (entry) {
+                case "patron":
+                    $("#intervention_materiauxFrimousse_materiel_0").prop("checked", true);
+                    break;
+                case "bourre":
+                    $("#intervention_materiauxFrimousse_materiel_1").prop("checked", true);
+                    break;
+                case "decoration":
+                    $("#intervention_materiauxFrimousse_materiel_2").prop("checked", true);
+                    break;
+            }
+        });
         {% else %}
         console.log("autre");
         {% endif %}
+
+
+        function treatmentCenter(template, grade) {
+            var taille = $(template).find('option').length;
+            switch (grade) {
+                case 'maternelle' :
+                    for (i = 0; i < taille; i++) {
+                        if (i >= 7) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                case 'elementaire' :
+                    for (i = 0; i < taille; i++) {
+                        if (i != 0 && (i < 7 || i > 15)) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                case 'adolescent' :
+                    for (i = 0; i < taille; i++) {
+                        if (i != 0 && (i <= 15 || i > 22)) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                default:
+                    for (i = 0; i < taille; i++) {
+                        $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                    }
+                    break;
+            }
+        }
+
+        function treatmentOthers(template, grade) {
+            var taille = $(template).find('option').length;
+            for (i = 0; i < taille; i++) {
+                $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+            }
+        }
+
+
+        function treatmentInstitute(template, grade) {
+            var taille = $(template).find('option').length;
+            switch (grade) {
+                case 'maternelle' :
+                    for (i = 0; i < taille; i++) {
+                        if (i >= 7) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                case 'elementaire' :
+                    for (i = 0; i < taille; i++) {
+                        if (i != 0 && (i < 7 || i > 15)) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                case 'college' :
+                    for (i = 0; i < taille; i++) {
+                        if (i != 0 && (i <= 15 || i > 19)) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                case 'lycee' :
+                    for (i = 0; i < taille; i++) {
+                        if (i != 0 && (i <= 19 || i > 22)) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                case 'superieur' :
+                    for (i = 0; i < taille; i++) {
+                        if (i != 0 && i <= 22) {
+                            $($(template).find('option:eq(' + i + ')').get()[0]).fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                default:
+                    for (i = 0; i < taille; i++) {
+                        $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                    }
+                    break;
+            }
+        }
+
+        $(document).ready(function () {
+            {% if intervention.etablissement.enseignement %}
+            etablissement = 'ens';
+            typeEtablissement = {{ intervention.etablissement.typeEnseignement }};
+            {% elseif intervention.etablissement.centreLoisirs %}
+            etablissement = 'centre';
+            typeEtablissement = {{ intervention.etablissement.typeCentre }};
+            {% else %}
+            etablissement = 'autre';
+            typeEtablissement = {{ intervention.etablissement.typeAutreEtablissement }};
+            {% endif %}
+            switch (etablissement) {
+                case 'ens' :
+                    $('.form-annee-scolaire').each(function () {
+                        treatmentInstitute($(this).get(0), typeEtablissement);
+                    });
+                    break;
+                case 'centre' :
+                    $('.form-annee-scolaire').each(function () {
+                        treatmentCenter($(this).get(0), typeEtablissement);
+                    });
+                    break;
+                case 'autre' :
+                    $('.form-annee-scolaire').each(function () {
+                        treatmentOthers($(this).get(0), typeEtablissement);
+                    });
+                    break;
+            }
+        });
+
     </script>
 {% endblock %}
 
@@ -84,20 +218,23 @@
             border-color: #3fb618 !important;
         }
 
-        .container{
+        .container {
             max-width: 600px !important;
         }
 
-        .col-sm-2{
+        .col-sm-2 {
             width: 200px;
         }
-        label{
+
+        label {
             text-align: left !important;
         }
-        select{
+
+        select {
             max-width: 400px !important;
         }
-        .container{
+
+        .container {
             margin: auto !important;
             margin-top: 30px !important;
         }
@@ -117,12 +254,19 @@
         {{ form_widget(form.nbPersonne, {'value' : intervention.nbPersonne}) }}
         {% if intervention.plaidoyer %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
+            {{ form_widget(form.niveau, {'attr': {'style': 'display: none'}}) }}
+            {{ form_label(form.niveauTheme.niveau, "Année scolaire") }}
+            {{ form_widget(form.niveauTheme.niveau) }}
+            {{ form_label(form.niveauTheme.theme, "Choix des thèmes") }}
+            {{ form_widget(form.niveauTheme.theme) }}
         {% elseif intervention.frimousse %}
             {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
+            {{ form_widget(form.niveauTheme, {'attr': {'style': 'display: none'}}) }}
         {% else %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveauTheme, {'attr': {'style': 'display: none'}}) }}
+            {{ form_widget(form.niveau, {'attr': {'style': 'display: none'}}) }}
         {% endif %}
         {{ form_widget(form) }}
         <div>

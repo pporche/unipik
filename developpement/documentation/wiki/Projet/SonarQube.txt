@@ -62,13 +62,21 @@ sonar.sources=.
 # Encoding of the source code. Default is default system encoding
 #sonar.sourceEncoding=UTF-8
 
+
+
 '''
-5. Pour lancer SonarQube, exécuter la commande suivante dans le dossier d'installation :
+7. Ajouter dans le dossier d'installation le dossier sonar-scanner puis ajouter tous les plugins nécessaires dans le dossier extension/plugins  :
+
+- javascript plugin
+- php-plugin
+- web-plugin
+
+8. Pour lancer SonarQube, exécuter la commande suivante dans le dossier d'installation :
 
 '' sonar.sh start''
 
 
-6. Pour exécuter SonarQube, exécuter la commande suivante dans le dossier à tester :
+9. Pour exécuter SonarQube, exécuter la commande suivante dans le dossier à tester :
 
 '''
  sonar-scanner

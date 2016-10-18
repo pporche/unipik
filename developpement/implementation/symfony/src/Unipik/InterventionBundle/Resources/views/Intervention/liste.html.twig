@@ -74,11 +74,11 @@
             margin: 0;
         }
 
+        @media only screen and (max-width: 1090px) {
 
-    </style>
-    <style>
-
-        @media only screen and (max-width: 900px) {
+            .btn-danger{
+                max-width: 200px !important;
+            }
 
             /* Force table to not be like tables anymore */
             table,
@@ -131,6 +131,28 @@
                 content: attr(data-title);
             }
         }
+        .container{
+            padding-right: 15px !important;
+            padding-left: 20px !important;
+        }
+        tbody{
+            font-size: 15px !important;
+        }
+
+
+        tbody {
+            display:block;
+            height: 750px;
+            overflow:auto;
+        }
+        thead, tbody tr {
+            display:table;
+            width:100%;
+            table-layout:fixed;
+        }
+
+
+
     </style>
 {% endblock %}
 
@@ -142,9 +164,9 @@
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
     <script>
-        $('input:checkbox').removeAttr('checked');
-
         $(document).ready(function () {
+
+            $('input:checkbox').removeAttr('checked');
 
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',
@@ -252,7 +274,7 @@
             $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
                 function (data, status) {
                     $(event).attr('class', 'btn btn-primary');
-                    $(event).text('S\'attribuer l\'intervention');
+                    $(event).text('Se l\'attribuer');
                     $(event).attr("onclick", "attributeIntervention(this, " + id + ")");
                 });
         }
@@ -261,7 +283,7 @@
             $.post("{{ path('intervention_self_attribute') }}", {'id': id},
                 function (data, status) {
                     $(event).attr('class', 'btn btn-danger');
-                    $(event).text('Se désattribuer l\'intervention');
+                    $(event).text('Se la désattribuer');
                     $(event).attr("onclick", "desattributeIntervention(this, " + id + ")");
                 })
                     .fail(function() {
@@ -499,19 +521,27 @@
                             <th>Thème</th>
                             <th>Statut</th>
                             <th>Voir détails</th>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <th>Supprimer</th>
+                            {% endif %}
                         </tr>
                         </thead>
                         <tbody id="myTable">
+                        {% if liste is not empty %}
                         {% for intervention in liste %}
-                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
+                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention %}
                             <tr class="dangerTable">
-                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee)%}
+                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) and intervention.dateIntervention %}
                             <tr class="warningTable" >
                             {% else %}
                             <tr>
                             {% endif %}
                                 <td data-title="Lieu">{{ intervention.etablissement.adresse.ville.nom }}</td>
-                                <td data-title="Date">{{ intervention.dateIntervention|date("d-m-Y") }}</td>
+                                <td data-title="Date">
+                                    {% if intervention.dateIntervention %}
+                                        {{ intervention.dateIntervention|date("d-m-Y") }}
+                                    {% else %} -
+                                    {% endif %} </td>
                                 <td data-title="Type">
                                     {% if intervention.plaidoyer %}
                                         Plaidoyer
@@ -564,8 +594,8 @@
                                         {% else %}
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <button name="desattribution" type="button" class="btn btn-danger"
-                                                        onclick="desattributeInterventionAdmin(this, {{ intervention.id }})">
-                                                    Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
+                                                        onclick="desattributeInterventionAdmin(this, {{ intervention.id }})" style="padding-right: 4px;padding-left: 4px; font-size: 14px; width: 100%; overflow: hidden; text-overflow: ellipsis; ">
+                                                    Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}.
 
                                                 </button>
                                             {% else %}
@@ -591,12 +621,25 @@
                                     <a href="{{ path('intervention_view', {id: intervention.id}) }}"
                                        class="btn btn-primary">Voir détails</a>
                                 </td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <td data-title="Supprimer">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="type" id="{{ intervention.id }}">
+                                        </label>
+                                    </div>
+                                </td>
+                            {% endif %}
                             </tr>
                         {% endfor %}
+                        {% else %}
+                            <tr></tr>
+                        {% endif %}
                         </tbody>
                     </table>
 
                 </div>
+                <button type="button" class="btn btn-danger" onclick="deleteInterventions()">Supprimer</button>
                 <div class="col-md-12 text-center">
                     {% set pathReq = [] %}
                     {% if app.request.query.get('recherche_avancee') is not null %}

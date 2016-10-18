@@ -200,7 +200,21 @@
 
     <style>
 
-        @media only screen and (max-width: 875px) {
+
+        tbody {
+            display:block;
+            height: 750px;
+            overflow:auto;
+        }
+        thead, tbody tr {
+            display:table;
+            width:100%;
+            table-layout:fixed;
+        }
+
+
+
+        @media only screen and (max-width: 980px) {
 
             /* Force table to not be like tables anymore */
             table,
@@ -365,6 +379,7 @@
 
             </thead>
             <tbody id="myTable">
+            {% if listBenevoles is not empty %}
             {% for benevole in listBenevoles %}
                 <tr id="checkboxes">
                     <td data-title="Nom">{{ benevole.nom | capitalize }}</td>
@@ -438,7 +453,7 @@
                         </a>
                     </td>
                     <td data-title="Supprimer">
-                        <div class="checkbox">
+                        <div class="checkbox" style="text-align: center;">
                             <label>
                                 <input type="checkbox" name="type" id="{{ benevole.username }}">
                             </label>
@@ -449,6 +464,9 @@
                     {#</a>#}
                 </tr>
             {% endfor %}
+            {% else %}
+                <tr></tr>
+            {% endif %}
             </tbody>
         </table>
     </section>

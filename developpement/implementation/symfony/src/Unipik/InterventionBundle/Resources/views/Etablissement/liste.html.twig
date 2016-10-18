@@ -67,6 +67,20 @@
         }
 
 
+        tbody {
+            display:block;
+            height: 750px;
+            overflow:auto;
+        }
+        thead, tbody tr {
+            display:table;
+            width:100%;
+            table-layout:fixed;
+        }
+
+
+
+
 
     </style>
 
@@ -340,6 +354,7 @@
                             </tr>
                         </thead>
                         <tbody id="myTable">
+                        {% if liste is not empty %}
                             {% for etablissement in liste %}
                                 <tr>
                                     <td data-title="Nom">{{ etablissement.nom }}</td>
@@ -356,7 +371,7 @@
                                     <td data-title="Consulter"><a href="{{ path('etablissement_view', {id: etablissement.id}) }}" class="btn btn-primary">Voir détails</a></td>
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <td data-title="Supprimer">
-                                            <div class="checkbox">
+                                            <div class="checkbox" style="text-align: center;">
                                                 <label>
                                                     <input type="checkbox" name="type" id="{{ etablissement.id }}">
                                                 </label>
@@ -365,6 +380,9 @@
                                     {% endif %}
                                 </tr>
                             {% endfor %}
+                        {% else %}
+                            <tr></tr>
+                        {% endif %}
                         </tbody>
                     </table>
 

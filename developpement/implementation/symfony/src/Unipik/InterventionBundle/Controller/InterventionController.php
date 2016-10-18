@@ -313,26 +313,26 @@ class InterventionController extends Controller {
             return $this->RedirectToRoute('architecture_homepage');
         }
 
-//        $typeEtablissementEncoded = [];
-//        if($instituteTest->getTypeEnseignement()){
-//            $typeEtablissementEncoded = array(
-//                'ens' => $instituteTest->getTypeEnseignement()
-//            );
-//        }
-//        else if($instituteTest->getTypeCentre()){
-//            $typeEtablissementEncoded = array(
-//                'centre' => $instituteTest->getTypeCentre()
-//            );
-//        }else{
-//            $typeEtablissementEncoded = array(
-//                'autre' => $instituteTest->getTypeAutreEtablissement()
-//            );
-//        }
+        $typeEtablissementEncoded = [];
+        if($instituteTest->getTypeEnseignement()){
+            $typeEtablissementEncoded = array(
+                'ens' => $instituteTest->getTypeEnseignement()
+            );
+        }
+        else if($instituteTest->getTypeCentre()){
+            $typeEtablissementEncoded = array(
+                'centre' => $instituteTest->getTypeCentre()
+            );
+        }else{
+            $typeEtablissementEncoded = array(
+                'autre' => $instituteTest->getTypeAutreEtablissement()
+            );
+        }
 
 
         return $this->render('InterventionBundle:Intervention:demande.html.twig', array(
             'form' => $form->createView(),
-            //'typEnseignement' => json_encode($typeEtablissementEncoded)
+            'typEnseignement' => json_encode($typeEtablissementEncoded)
         ));
     }
 

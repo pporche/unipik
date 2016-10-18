@@ -199,11 +199,18 @@
 {% block body %}
 
     <style>
+        .col-sm-10{
+            padding-left: 0px !important;
+            text-align: left;
+        }
 
+        hr{
+            margin-top: 10px !important;
+        }
 
         tbody {
             display:block;
-            height: 750px;
+            max-height: 750px;
             overflow:auto;
         }
         thead, tbody tr {
@@ -379,6 +386,7 @@
 
             </thead>
             <tbody id="myTable">
+            {% if listBenevoles is not empty %}
             {% for benevole in listBenevoles %}
                 <tr id="checkboxes">
                     <td data-title="Nom">{{ benevole.nom | capitalize }}</td>
@@ -463,6 +471,9 @@
                     {#</a>#}
                 </tr>
             {% endfor %}
+            {% else %}
+                <tr></tr>
+            {% endif %}
             </tbody>
         </table>
     </section>

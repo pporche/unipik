@@ -74,10 +74,6 @@
             margin: 0;
         }
 
-
-    </style>
-    <style>
-
         @media only screen and (max-width: 1090px) {
 
             .btn-danger{
@@ -146,7 +142,7 @@
 
         tbody {
             display:block;
-            height: 750px;
+            max-height: 750px;
             overflow:auto;
         }
         thead, tbody tr {
@@ -168,9 +164,9 @@
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
     <script>
-        $('input:checkbox').removeAttr('checked');
-
         $(document).ready(function () {
+
+            $('input:checkbox').removeAttr('checked');
 
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',
@@ -531,6 +527,7 @@
                         </tr>
                         </thead>
                         <tbody id="myTable">
+                        {% if liste is not empty %}
                         {% for intervention in liste %}
                             {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention %}
                             <tr class="dangerTable">
@@ -635,6 +632,9 @@
                             {% endif %}
                             </tr>
                         {% endfor %}
+                        {% else %}
+                            <tr></tr>
+                        {% endif %}
                         </tbody>
                     </table>
 

@@ -9,16 +9,17 @@
             switch (e.target.value){
                 case 'ens' :
                     keepInstitute();
-                    $('.form-group:eq(7)').fadeIn("fast");
+                    $('#etablissement_uai').show();
+                    $('label[for="' + $('#etablissement_uai') + '"]')
                     break;
                 case 'centre' :
                     keepCenter();
-                    $('.form-group:eq(7)').fadeOut("fast");
+                    $('#etablissement_uai').hide();
                     $('#etablissement_uai').val('');
                     break;
                 case 'autre' :
                     keepOther();
-                    $('.form-group:eq(7)').fadeOut("fast");
+                    $('#etablissement_uai').hide();
                     $('#etablissement_uai').val('');
                     break;
             }
@@ -27,44 +28,42 @@
         switch ($("#etablissement_TypeGeneral").val()){
             case 'ens' :
                 keepInstitute();
-                $('.form-group:eq(7)').fadeIn("fast");
+                $('#etablissement_uai').show();
                 break;
             case 'centre' :
                 keepCenter();
-                $('.form-group:eq(7)').fadeOut("fast");
+                $('#etablissement_uai').hide();
                 $('#etablissement_uai').val('');
                 break;
             case 'autre' :
                 keepOther();
-                $('.form-group:eq(7)').fadeOut("fast");
+                $('#etablissement_uai').hide();
                 $('#etablissement_uai').val('');
                 break;
         }
 
         function keepInstitute(){
-            $(".form-group:eq(4)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
+            $("#etablissement_typeEnseignement").show().removeAttr("disabled");
+            $("#etablissement_typeAutreEtablissement").hide().prop("disabled",true);
+            $("#etablissement_typeCentre").hide().prop("disabled",true);
         }
 
         function keepCenter(){
-            $(".form-group:eq(6)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(4)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
+            $("#etablissement_typeCentre").show().removeAttr("disabled");
+            $("#etablissement_typeAutreEtablissement").hide().prop("disabled",true);
+            $("#etablissement_typeEnseignement").hide().prop("disabled",true);
 
         }
 
         function keepOther(){
-            $(".form-group:eq(5)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(4)").fadeOut("slow").prop("disabled",true);
+            $("#etablissement_typeAutreEtablissement").show().removeAttr("disabled");
+            $("#etablissement_typeEnseignement").hide().prop("disabled",true);
+            $("#etablissement_typeCentre").hide().prop("disabled",true);
         }
 
         document.getElementById("etablissement_Valider").className = "btn btn-primary";
 
         $(document).ready(function() {
-
-
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
             var $container = $('div#etablissement_emails');
 
@@ -87,8 +86,6 @@
                     $("input[id=etablissement_emails_"+i+"]").val(emails[i]);
                     i++;
                 })
-
-
             } else {
                 // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
                 $container.children('div').each(function() {

@@ -129,10 +129,15 @@
             for (var i = 0; i < actsOrResp.length; i++) {
                 var query = "input[value='" + actsOrResp[i] + "']";
                 var checkedElts = document.querySelectorAll(query);
-                checkedElts[1].checked = true;
-                if(resp){
+                if (actsOrResp[i] == 'admin_region' || actsOrResp[i] == 'admin_comite') {
                     checkedElts[0].checked = true;
-                    checkedElts[1].disabled = true;
+                }
+                else{
+                    checkedElts[1].checked = true;
+                    if(resp){
+                        checkedElts[0].checked = true;
+                        checkedElts[1].disabled = true;
+                    }
                 }
             }
         }
@@ -142,21 +147,34 @@
         preCheck(jsonActivities, false);
         preCheck(jsonResponsabilities, true);
 
-        $(document).ready(function () {
-            for (i = 0; i < 4; i++) {
+        var onResponsabiliteChecked = function (responsabilite, activite) {
+            if ($(responsabilite).is(':checked')) {
+                $(activite).prop("disabled", true);
+                $(activite).prop("checked", true);
+            } else {
+                $(activite).prop("checked", false);
+                $(activite).prop("disabled", false);
+            }
+        };
+
+        for(i=0; i<4; i++){
+            var responsabilite = "#fos_user_profile_form_responsabiliteActivite_" + i;
+            var activite = "#fos_user_profile_form_activitesPotentielles_" + i;
+            if ($(responsabilite).is(':checked')) {
+                $(activite).prop("disabled", true);
+                $(activite).prop("checked", true);
+            }
+        }
+
+        $(document).ready(function() {
+            for(i=0; i<4; i++){
                 responsabiliteChecked("#fos_user_profile_form_responsabiliteActivite_" + i, "#fos_user_profile_form_activitesPotentielles_" + i);
             }
         });
 
         function responsabiliteChecked(responsabilite, activite) {
             $(responsabilite).change(function () {
-                if ($(this).is(':checked')) {
-                    $(activite).prop("checked", true);
-                    $(activite).prop("disabled", true);
-                } else {
-                    $(activite).prop("checked", false);
-                    $(activite).prop("disabled", false);
-                }
+                onResponsabiliteChecked($(this), activite);
             });
         }
 

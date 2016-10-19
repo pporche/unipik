@@ -189,6 +189,20 @@ class UserController extends Controller {
 
         if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
 
+            $benevole->removeAllResponsabilitesActivites();
+            $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
+            foreach ($responsibilitiesArray as $responsabilite) {
+                $benevole->addResponsabiliteActivite($responsabilite);
+                if($responsabilite != 'admin_region' && $responsabilite != 'admin_comite') {
+                    $benevole->addActivitesPotentielles($responsabilite);
+                }
+            }
+
+            $activitesPotentiellesArray = $form->get("activitesPotentielles")->getData();
+            foreach ($activitesPotentiellesArray as $activite) {
+                $benevole->addActivitesPotentielles($activite);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($benevole);
             $em->flush();
@@ -196,7 +210,15 @@ class UserController extends Controller {
             return $this->redirectToRoute('user_admin_profil_benevole', array('username' => $benevole->getUsername()));
         }
 
-        return $this->render('UserBundle:Profile:editBenevole.html.twig', array('form' => $form->createView()));
+        $activities = json_encode($benevole->getActivitesPotentielles()->toArray());
+        $responsabilities = json_encode($benevole->getResponsabiliteActivite()->toArray());
+
+        return $this->render('UserBundle:Profile:editBenevole.html.twig', array(
+            'form' => $form->createView(),
+            'username' => $username,
+            'activitesPotentielles' => $activities,
+            'responsabiliteActivite' => $responsabilities
+        ));
     }
 
     /**

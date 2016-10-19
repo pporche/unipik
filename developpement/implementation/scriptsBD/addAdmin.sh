@@ -9,6 +9,19 @@
 #version 1.01, date 11/05/2016, auteur Matthieu Martins-Baltar
 #script pour ajouter un administrateur dans la base de donnée
 
+prompt_token() {
+  local VAL=""
+  while [ "$VAL" = "" ]; do
+    echo -n "${2:-$1} : "
+    read -s VAL
+    if [ "$VAL" = "" ]; then
+      echo "Please provide a value"
+    fi
+  done
+  VAL=$(printf '%q' "$VAL")
+  eval $1=$VAL
+}
+
 #si pas de mdp indiqué, demander
 if [ "$1" = "" ]; then
     prompt_token 'password'        "Veuillez entrer le mot de passe de la base de données"

@@ -30,11 +30,11 @@ INSERT INTO benevole_comite (benevole_id, comite_id) VALUES ('12', '1');
 
 --contacts
 ALTER SEQUENCE contact_id_seq RESTART WITH 1;
-INSERT INTO contact (id, email, nom, prenom, tel_fixe, type_contact, type_activite) VALUES (1, 'contact1@contact.fr', 'nom1', 'prenom1', '0235490983', 'enseignant', '{(plaidoyers)}');
-INSERT INTO contact (id, email, nom, tel_fixe, type_contact, est_tuteur) VALUES (2, 'contact2@contact.fr', 'nom2', '0235490983', 'animateur', false);
-INSERT INTO contact (id, email, nom, prenom, tel_portable, type_contact, respo_etablissement, type_activite) VALUES (3, 'contact3@contact.fr', 'nom3', 'prenom3', '0247282552', 'eleve', false, '{(plaidoyers), (actions_ponctuelles)}');
-INSERT INTO contact (id, email, nom, prenom, type_contact, est_tuteur) VALUES (4, 'contact4@contact.fr', 'nom4', 'prenom4', 'etudiant', true);
-INSERT INTO contact (id, email, nom, prenom, type_contact, respo_etablissement, type_activite) VALUES (5, 'contact5@contact.fr', 'nom5', 'prenom5', 'autre', true, '{(frimousses), (projets), (autre)}');
+INSERT INTO contact (email, nom, prenom, tel_fixe, type_contact, type_activite) VALUES ('contact1@contact.fr', 'nom1', 'prenom1', '0235490983', 'enseignant', '{(plaidoyers)}');
+INSERT INTO contact (email, nom, tel_fixe, type_contact, est_tuteur) VALUES ('contact2@contact.fr', 'nom2', '0235490983', 'animateur', false);
+INSERT INTO contact (email, nom, prenom, tel_portable, type_contact, respo_etablissement, type_activite) VALUES ('contact3@contact.fr', 'nom3', 'prenom3', '0247282552', 'eleve', false, '{(plaidoyers), (actions_ponctuelles)}');
+INSERT INTO contact (email, nom, prenom, type_contact, est_tuteur) VALUES ('contact4@contact.fr', 'nom4', 'prenom4', 'etudiant', true);
+INSERT INTO contact (email, nom, prenom, type_contact, respo_etablissement, type_activite) VALUES ('contact5@contact.fr', 'nom5', 'prenom5', 'autre', true, '{(frimousses), (projets), (autre)}');
 
 -- benevole_contact 
 INSERT INTO appartient (etablissement_id, contact_id) VALUES ('1', '1');

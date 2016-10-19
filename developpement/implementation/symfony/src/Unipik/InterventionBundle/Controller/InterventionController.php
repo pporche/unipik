@@ -34,42 +34,6 @@ use Doctrine\Common\Util\Debug;
 class InterventionController extends Controller {
 
     /**
-     * Add intervention.
-     *
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     */
-    public function addAction(Request $request) {
-        $repo = $this->getInterventionRepository();
-        $intervention = $repo->findOneBy(array('id' => 15));
-//        $intervention = new Intervention();
-
-        $form = $this->createForm(InterventionType::class, $intervention);
-
-        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            /*$educationTypeArray = $form->get("typeEnseignement")->getData();
-            $institute->setTypeEnseignement($educationTypeArray);
-
-            $otherTypeArray = $form->get("typeAutreEtablissement")->getData();
-            $institute->setTypeAutreEtablissement($otherTypeArray);
-
-            $centreTypeArray = $form->get("typeCentre")->getData();
-            $institute->setTypeCentre($centreTypeArray);
-
-            $emailsString = '{('.$form->get("emails")->getData().')}';
-            $institute->setEmails($emailsString);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($institute);
-            $em->flush();
-
-            return $this->redirectToRoute('architecture_homepage');*/
-        }
-
-        return $this->render('InterventionBundle:Intervention:ajouterIntervention.html.twig', array('form' => $form->createView()));
-    }
-
-    /**
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -156,7 +120,7 @@ class InterventionController extends Controller {
         $repository = $this->getDoctrine()->getManager();
         $repository = $repository->getRepository('InterventionBundle:Etablissement');
 
-       $instituteTest = $repository->find($id);
+        $instituteTest = $repository->find($id);
         $form->get('Etablissement')->setData($instituteTest);
 
         $form->handleRequest($request);
@@ -170,7 +134,6 @@ class InterventionController extends Controller {
             $test = (object) $form->get('Contact')->getData();
 
             // Extraire le contact
-            $em = $this->getDoctrine()->getManager();
             $contactPers = new Contact();
             $this->cast($contactPers, $test);
             $contactPers->setRespoEtablissement($test->isRespoEtablissement());
@@ -196,7 +159,6 @@ class InterventionController extends Controller {
 
             $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);
-
 
             $this->treatmentMoment($form->get('jour')->getData(),$demande);
 
@@ -225,7 +187,6 @@ class InterventionController extends Controller {
                     'codePostal' => $institute->getAdresse()->getCodePostal()
                 )
             );
-
 
             $instituteResearched = null;
             $repository = $this->getDoctrine()->getManager();
@@ -258,14 +219,17 @@ class InterventionController extends Controller {
                 $institute = array_pop($instituteResearched);
             }
 
-            if(sizeof($emails) != 0)
+            if(sizeof($emails) != 0) {
                 foreach ($emails as $email) {
-                    if(!$institute->getEmails()->contains($email))
+                    if (!$institute->getEmails()->contains($email)) {
                         $institute->addEmail($email);
+                    }
                 }
+            }
 
-            foreach($listWeek as $week)
+            foreach($listWeek as $week) {
                 $demande->addSemaine($week);
+            }
 
             $this->getDoctrine()->getManager()->persist($demande);
             $em = $this->getDoctrine()->getManager();
@@ -295,25 +259,16 @@ class InterventionController extends Controller {
                 'alert' => 'success'
             ));
 
-            $intervention = $form->getData();
-
             $message = \Swift_Message::newInstance()
                 ->setSubject('Intervention de l\'unicef')
                 ->setFrom('unipik.dev@gmail.com')
                 ->setTo('dev1@yopmail.com')
-                ->setBody(
-                    $this->renderView(
-                        'MailBundle::emailConfirmationPriseEnCompte.html.twig'
-                    ),
-                    'text/html'
-                )
-            ;
+                ->setBody($this->renderView('MailBundle::emailConfirmationPriseEnCompte.html.twig'), 'text/html');
             $this->get('mailer')->send($message);
 
             return $this->RedirectToRoute('architecture_homepage');
         }
 
-        $typeEtablissementEncoded = [];
         if($instituteTest->getTypeEnseignement()){
             $typeEtablissementEncoded = array(
                 'ens' => $instituteTest->getTypeEnseignement()
@@ -328,7 +283,6 @@ class InterventionController extends Controller {
                 'autre' => $instituteTest->getTypeAutreEtablissement()
             );
         }
-
 
         return $this->render('InterventionBundle:Intervention:demande.html.twig', array(
             'form' => $form->createView(),

@@ -161,10 +161,7 @@
                             <p class="text-success" id="realiseeMoi"></p>
                             <p class="text-success" id="realisee"></p>
                             {% if user==intervention.benevole %}
-                                <button name="desattribution" type="button" class="btn btn-danger"
-                                        onclick="desattributeIntervention(this, {{ intervention.id }})">
-                                    Se désattribuer l'intervention
-                                </button>
+                                <em>&nbsp &nbsp  <strong>Attribuée à vous</strong></em>
                             {% else %}
                                 <h4 class="col-lg-12" id="attribueA">Attribuée
                                     à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}</h4>

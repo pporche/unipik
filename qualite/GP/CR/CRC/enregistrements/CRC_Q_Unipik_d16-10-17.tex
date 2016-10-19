@@ -1,0 +1,109 @@
+% version 1.00	Kafui Atanley	17/10/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion avec le client}}					%titre
+\begin{document}
+
+17/10/2016			 				%Date 
+\hfill   
+\hfill 	 14:00 - 15:19 				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 10/10/2016 & \Kafui & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RGC & \Melissa & 18/10/2016 & email \\[30pt]
+				\hline
+				Validateur & \CP & \Pierre & -- & -- \\[30pt]	
+				\hline
+				Approbateur & Client & \nomClient & -- & -- \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Rappel du sujet de la réunion}
+\Pierre{} rappelle que cette réunion constitue en premier lieu une séance de recette provisoire.
+
+\section{Remarques clientes}
+Au cours du déroulement du \CDR, plusieurs remarques sont apparues  : 
+\begin{itemize}
+	\item Lors de l'inscription d'un bénévole il faudrait que les champs contenant le numéro de portable ou le numéro de fixe soient obligatoires mais pas nécessairement les deux;
+	\item Il faudrait détailler ce que veut dire l'UAI (Unité Administrative Immatriculée) à côté du champs;
+	\item Le mot \og plaidoyer \fg{} n'est plus utilisé au sein de l'UNICEF, il a été remplacé par \og action éducative \fg{} et  les plaideurs  sont maintenant appelés des chargés d'application ;
+	\item Le droit de désattribution d'une intervention n'est valable que pour l'administrateur;
+	\item Dans les formulaires de demandes et les pages de consultation et de modification d'intervention, le label concernant le nombre de personnes assistant à l'intervention doit s'appeler \og nombre de participants \fg{}  et non plus \og  nombre de personnes  \fg;
+	\item Il serait bon de pouvoir accéder à un planning détaillé pour chaque jour en cliquant sur le jour voulu sur le planning disponible sur la page d'accueil.
+\end{itemize}
+
+\section{Hébergement}
+Nous sommes actuellement en contact avec deux entreprises locales que sont Siqual et Quantic Telecom. Nous allons relancé ces entreprises dans la semaine. L'application sera déployée sur un serveur de l'INSA en attendant. Elle sera disponible dès que possible.
+
+\section{Envoi d'Email}
+Nous avons fait part au client de problème de SMTP compte-tenu de l'envoi massif d'emails. L'UNICEF en possède un, le client va nous re-contacter sous peu pour nous mettre en relation avec
+la cellule informatique du siège ou nous donner les identifiants nécessaires.
+
+%--- fin de réunion ---%
+\newpage
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

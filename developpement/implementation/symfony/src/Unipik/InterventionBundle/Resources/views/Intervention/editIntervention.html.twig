@@ -39,7 +39,7 @@
         {% elseif intervention.frimousse %}
         {% autoescape false %}
         var materiauxFrimousse = {{ materiaux|raw }};
-        console.log(materiauxFrimousse);
+
         for (var j = 0; j < materiauxFrimousse.length; j++) {
             materiauxFrimousse[j] = materiauxFrimousse[j].replace('("', '');
             materiauxFrimousse[j] = materiauxFrimousse[j].replace('")', '');

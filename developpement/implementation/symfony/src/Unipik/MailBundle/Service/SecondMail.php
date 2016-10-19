@@ -16,12 +16,6 @@ class SecondMail {
     }
 
     public function send($message) {
-//        $message = \Swift_Message::newInstance()
-//            ->setSubject('Hello Email')
-//            ->setFrom('florian.leriche@neuf.fr')
-//            ->setTo('onch@yopmail.com')
-//            ->setBody('AAAAAAA')
-//        ;
         $this->mailer->send($message);
     }
 }

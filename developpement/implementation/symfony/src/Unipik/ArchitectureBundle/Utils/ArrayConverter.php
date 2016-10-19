@@ -51,7 +51,9 @@ class ArrayConverter {
      */
     public static function pgArrayToPhpArray($s, $start = 0, &$end = NULL)
     {
-        if (empty($s) || $s[0] != '{') return NULL;
+        if (empty($s) || $s[0] != '{') {
+            return NULL;
+        }
         $return = array();
         $string = false;
         $quote = '';

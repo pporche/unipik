@@ -42,15 +42,4 @@ class DemandeType extends AbstractType
             ->add('Valider_la_demande',SubmitType::class)
         ;
     }
-
-    /**
-     * @param OptionsResolver $resolver
-     * configure les options
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-      /*$resolver->setDefaults(array(
-            'data_class' => 'Unipik\InterventionBundle\Entity\Demande'
-        )); */
-    }
 }

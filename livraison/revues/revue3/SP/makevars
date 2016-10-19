@@ -1,0 +1,10 @@
+# version 1.00 date 26/02/2016 auteur(s) Matthieu Martins-Baltar
+
+# Définition du nom du document
+NOM_FICHIER=SP_L_Unipik_n3
+
+LOCPATH=livraison/revues/revue3/SP/
+IMGDIR=images
+
+THEMEPATH="$(GENPATH)/ressources/unipik/presentation"
+

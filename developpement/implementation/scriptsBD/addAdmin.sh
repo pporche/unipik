@@ -58,6 +58,8 @@ else
     dbname="bdunicef"
 fi
 
+export PGPASSWORD="$password"
+
 psql -U $username -w -d $dbname  -h 127.0.0.1 -f ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_admin.sql
 cd ../symfony/
 php bin/console fos:user:change-password admin $passwordAdmin

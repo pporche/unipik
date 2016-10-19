@@ -10,7 +10,7 @@
 {% block body %}
     <h2>Demande d'intervention</h2>
     <hr>
-    {{ form_start(form, {'method': 'get', 'action': path('intervention_request', {id: id, etablissement: etablissement}), 'attr': {'class': 'intervention_request form-sm'}}) }}
+    {{ form_start(form, {'method': 'post', 'action': path('intervention_request', {id: id, etablissement: etablissement}), 'attr': {'class': 'intervention_request form-sm'}}) }}
 
 
     <h3> Etablissement</h3>

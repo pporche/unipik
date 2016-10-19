@@ -38,7 +38,7 @@ class InterventionTemplateType extends AbstractFieldsetType {
             ->add('TypeGeneral',ChoiceType::class, $generalType)
             ->add('materielDispoPlaidoyer', MaterielType::class, array('label' => 'Matériel'))
             ->add('materiauxFrimousse',MaterielFrimousseType::class, array('label' => 'Matériel frimousse'))
-            ->add('nbPersonne', IntegerType::class, array('label' => 'Participants'))
+            ->add('nbPersonne', IntegerType::class, array('label' => 'Nb de participants'))
             ->add('niveauTheme', NiveauThemeType::class)
         ;
     }

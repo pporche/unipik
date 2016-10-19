@@ -39,7 +39,7 @@
         {% elseif intervention.frimousse %}
         {% autoescape false %}
         var materiauxFrimousse = {{ materiaux|raw }};
-        console.log(materiauxFrimousse);
+
         for (var j = 0; j < materiauxFrimousse.length; j++) {
             materiauxFrimousse[j] = materiauxFrimousse[j].replace('("', '');
             materiauxFrimousse[j] = materiauxFrimousse[j].replace('")', '');
@@ -265,7 +265,7 @@
         {{ form_widget(form.dateIntervention, {'value' : intervention.dateIntervention|date('d-m-Y') }) }}
         {{ form_label(form.lieu, 'Lieu') }}
         {{ form_widget(form.lieu, {'value' : intervention.lieu}) }}
-        {{ form_label(form.nbPersonne, 'Participants') }}
+        {{ form_label(form.nbPersonne, 'Nb de participants') }}
         {{ form_widget(form.nbPersonne, {'value' : intervention.nbPersonne}) }}
         {% if intervention.plaidoyer %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}

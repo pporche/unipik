@@ -332,7 +332,9 @@ class InterventionController extends Controller {
 
         return $this->render('InterventionBundle:Intervention:demande.html.twig', array(
             'form' => $form->createView(),
-            'typEnseignement' => json_encode($typeEtablissementEncoded)
+            'typEnseignement' => json_encode($typeEtablissementEncoded),
+            'id' => $id,
+            'etablissement' => $instituteTest
         ));
     }
 

@@ -68,7 +68,7 @@ class EtablissementType extends AbstractType {
 
             ->add('nom')
             ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe'))
-            ->add('emails', CollectionType::class, array('mapped' => false,
+            ->add('emails', CollectionType::class, array('label'=> false,'mapped' => false,
                 'entry_type'   => TextType::class,
                 'allow_add'    => true,
                 'allow_delete' => true

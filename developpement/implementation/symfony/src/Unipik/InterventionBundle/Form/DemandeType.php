@@ -38,8 +38,8 @@ class DemandeType extends AbstractType
                 'allow_delete' => true,
                 'mapped' => false
                 ))
-            ->add('Contact',ContactType::class,array('label' => 'Information sur le contact'))
-            ->add('Valider la demande',SubmitType::class)
+            ->add('Contact',ContactType::class,array('label' => false))
+            ->add('Valider_la_demande',SubmitType::class)
         ;
     }
 

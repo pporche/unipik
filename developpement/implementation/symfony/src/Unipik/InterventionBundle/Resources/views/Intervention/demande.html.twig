@@ -10,13 +10,124 @@
 {% block body %}
     <h2>Demande d'intervention</h2>
     <hr>
-    {{ form(form) }}
+    {{ form_start(form, {'method': 'get', 'action': path('intervention_request', {id: id, etablissement: etablissement}), 'attr': {'class': 'intervention_request form-sm'}}) }}
+
+
+    <h3> Etablissement</h3>
+
+    <h5> Nom :</h5>
+    {{ form_widget(form.Etablissement.nom) }}
+
+    <h5> Tel Fixe :</h5>
+    {{ form_widget(form.Etablissement.telFixe) }}
+
+    <div class="emailDiv">
+        <h5> Emails :</h5>
+        {{ form_widget(form.Etablissement.emails) }}
+    </div>
+
+    <h5> Type d'etablissement :</h5>
+    {{ form_widget(form.Etablissement.TypeGeneral) }}
+
+    {% if etablissement.enseignement %}
+        <h5> Type d'enseignement :</h5>
+        {{ form_widget(form.Etablissement.typeEnseignement) }}
+    {% endif %}
+
+    {% if etablissement.centreLoisirs %}
+        <h5> Type Centre de Loisir :</h5>
+        {{ form_widget(form.Etablissement.typeCentre) }}
+    {% endif %}
+
+    {% if etablissement.autreEtablissement %}
+        <h5> Type Autre Etablissement :</h5>
+        {{ form_widget(form.Etablissement.typeAutreEtablissement) }}
+    {% endif %}
+
+    <h5> UAI :</h5>
+    {{ form_widget(form.Etablissement.uai) }}
+
+    <h5> Adresse :</h5>
+    {{ form_widget(form.Etablissement.adresse.adresse) }}
+
+    <h5> Complément :</h5>
+    {{ form_widget(form.Etablissement.adresse.complement) }}
+
+    <h5> Ville :</h5>
+    {{ form_widget(form.Etablissement.adresse.ville) }}
+
+    <h5> Code Postal :</h5>
+    {{  form_widget(form.Etablissement.adresse.codePostal) }}
+
+    <h3> Plage de dates</h3>
+
+    <h5> Début :</h5>
+    {{ form_widget(form.plageDate.debut) }}
+
+    <h5> Fin :</h5>
+    {{  form_widget(form.plageDate.fin) }}
+
+        <div class="jours">
+            <h3> Jour de l'intervention</h3>
+            {{  form_widget(form.jour) }}
+        </div>
+
+    <h3> Intervention</h3>
+    {{  form_widget(form.Intervention) }}
+
+    <h3> Contact</h3>
+    <h5> Email :</h5>
+    {{  form_widget(form.Contact.email) }}
+
+    <h5> Nom :</h5>
+    {{  form_widget(form.Contact.nom) }}
+
+    <h5> Prénom :</h5>
+    {{  form_widget(form.Contact.prenom) }}
+
+
+    <h5> Tel Fixe :</h5>
+    {{  form_widget(form.Contact.telFixe) }}
+
+    <h5> Tel Portable :</h5>
+    {{  form_widget(form.Contact.telPortable) }}
+
+    <h5> Type Contact :</h5>
+    {{  form_widget(form.Contact.typeContact) }}
+
+    <h5> </h5>
+
+    {{  form_widget(form.Contact.respoEtablissement) }}
+
+    <h5> </h5>
+
+    {{  form_widget(form.Valider_la_demande) }}
+
     {{ form_end(form) }}
 {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
     <style>
+        h3{
+            margin-left: -50px !important;
+        }
+        .emailDiv .col-sm-2{
+            width: 0px !important;
+        }
+
+        .emailDiv .col-sm-10{
+            padding-left: 15px !important;
+        }
+
+        .form-group a{
+            border-radius: 100px !important;
+            line-height : 1em !important;
+            outline: hidden !important;
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
         #demande_Etablissement_adresse_ville {
             text-transform: uppercase;
         }
@@ -72,7 +183,7 @@
         }
 
         @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
-        h2{
+        h2, h3{
             font-family: 'Ubuntu Condensed', sans-serif;
             margin-top: 40px;
         }
@@ -86,7 +197,15 @@
         }
 
         .col-sm-10{
-            padding-left: 100px;
+            padding-left: 45px !important;
+        }
+
+        .col-sm-10 .col-sm-10{
+            padding-left: 0px !important;
+        }
+
+        .form-annee-scolaire{
+            margin-left: 48px !important;
         }
 
         input[type="text"],input[type="number"], select{
@@ -99,9 +218,6 @@
             border-color: #CCCCCC !important;
         }
 
-        .form-group > table{
-            padding-left: 0vw;
-        }
 
         .btn-info {
             border-radius: 10px !important;
@@ -114,9 +230,17 @@
         }
 
         hr{
-            margin-top: 0px;
+            margin-top: 25px !important;
         }
 
+        legend{
+            margin-top: 20px;
+        }
+
+        h5{
+            font-weight: 600;
+            margin-top: 25px;
+        }
 
         .btn-primary{
             margin-left: 30%;
@@ -127,21 +251,19 @@
         }
 
         form{
-            padding-left: 25vw;
+            max-width: 450px;
+            margin:auto;
+        }
+        @media(max-width: 767px){
+            h3{
+                margin-left: 10px !important;
+            }
+            .form-annee-scolaire{
+                margin-left: 0px !important;
+            }
+
         }
 
-        .form-horizontal .form-group{
-            margin-left: -130px !important;
-        }
-
-        @media(max-width: 1160px){
-            form{
-                padding-left: 0vw;
-            }
-            .form-horizontal .form-group{
-                margin-left: -30px !important;
-            }
-        }
 
     </style>
 
@@ -485,6 +607,8 @@
 
         $(document).ready(function() {
 
+            $("label:contains(\"Informations de l'établissement\")").hide();
+
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
             var $container = $('div#demande_Intervention');
 
@@ -507,9 +631,7 @@
             }
 
             function addIntervention($container) {
-                var template = $container.attr('data-prototype')
-                    .replace(/__name__label__/g, 'Intervention n°' + (index+1))
-                    .replace(/__name__/g,        index);
+                var template = $container.attr('data-prototype');
 
 
                 // On crée un objet jquery qui contient ce template
@@ -518,7 +640,7 @@
                 addDeleteLink($prototype);
 
                 $container.append($prototype);
-                $("#add_intervention").appendTo($container).css('margin-left', '80%');
+                $("#add_intervention").appendTo($container);
                 treatmentSelect();
                 displayThemeIntervention();
                 displayTypeIntervention($($prototype).children().find("select").get(0));
@@ -739,11 +861,11 @@
         var tblElt = document.createElement('table');
         $(tblElt).addClass('table table-bordered table-striped');
 
-        for(var i =0; i < document.getElementsByClassName('form-group form-group')[16].getElementsByClassName('form-group').length; i++){
-            construction(document.getElementsByClassName('form-group form-group')[16].getElementsByClassName('form-group')[i]);
+        for(var i =0; i < document.getElementsByClassName('jours')[0].getElementsByClassName('form-group').length; i++){
+            construction(document.getElementsByClassName('jours')[0].getElementsByClassName('form-group')[i]);
         }
 
-        constructHeader(document.getElementsByClassName('form-group form-group')[16].getElementsByClassName('form-group')[0].getElementsByTagName('label'));
+        constructHeader(document.getElementsByClassName('jours')[0].getElementsByClassName('form-group')[0].getElementsByTagName('label'));
 
 
         $('#demande_jour').replaceWith($(tblElt));
@@ -815,7 +937,7 @@
             var addInterElt = document.createElement('a');
             addInterElt.id = 'add_email';
             buttonAddElement = document.createElement('button');
-            buttonAddElement.className = 'btn btn-info';
+            buttonAddElement.className = 'btn btn-success';
             buttonAddElement.textContent = 'Ajouter un Email';
             addInterElt.appendChild(buttonAddElement);
             document.getElementById('demande_Etablissement_emails').appendChild(addInterElt);
@@ -849,10 +971,7 @@
                 // Dans le contenu de l'attribut « data-prototype », on remplace :
                 // - le texte "__name__label__" qu'il contient par le label du champ
                 // - le texte "__name__" qu'il contient par le numéro du champ
-                var template = $container.attr('data-prototype')
-                    .replace(/__name__label__/g, 'Email : ')
-                    .replace(/__name__/g,        index)
-                    ;
+                var template = $container.attr('data-prototype');
 
                 // On crée un objet jquery qui contient ce template
                 var $prototype = $(template);
@@ -862,7 +981,7 @@
 
                 // On ajoute le prototype modifié à la fin de la balise <div>
                 $container.append($prototype);
-                $("#add_email").appendTo($container).css('margin-left', '80%');
+                $("#add_email").appendTo($container);
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;
             }
@@ -870,7 +989,7 @@
             // La fonction qui ajoute un lien de suppression d'une catégorie
             function addDeleteLink($prototype) {
                 // Création du lien
-                var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+                var $deleteLink = $('<a href="#" class="btn btn-danger" style="display: inline; font-weight: 600; font-size: 25px; padding: 5px; height: 30px">×</a>');
 
                 // Ajout du lien
                 $prototype.append($deleteLink);
@@ -888,3 +1007,5 @@
     </script>
 
 {% endblock %}
+
+

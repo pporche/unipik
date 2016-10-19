@@ -31,11 +31,11 @@ fi
 
 #si pas de mot de passe indiqué pour le nouvel admin, choisir "admin"
 if [ -n "$2" ]; then
-    password=$2
+    passwordAdmin=$2
 elif [ -n "${SYMFONY_ADMIN_PASSWORD}" ]; then
-    password=$SYMFONY_ADMIN_PASSWORD
+    passwordAdmin=$SYMFONY_ADMIN_PASSWORD
 else
-    password="admin"
+    passwordAdmin="admin"
     echo "Attention, utilisation du mot de passe par défaut!! (admin)"
     echo "pour choisir un mot de passe différent, indiquez le comme ceci: $0 password"
 fi
@@ -58,6 +58,6 @@ else
     dbname="bdunicef"
 fi
 
-psql -U $username -W  -d $dbname  -h 127.0.0.1 -f ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_admin.sql
+psql -U $username -w -d $dbname  -h 127.0.0.1 -f ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/scriptsBD/sql/DB_ajouter_admin.sql
 cd ../symfony/
-php bin/console fos:user:change-password admin $password
+php bin/console fos:user:change-password admin $passwordAdmin

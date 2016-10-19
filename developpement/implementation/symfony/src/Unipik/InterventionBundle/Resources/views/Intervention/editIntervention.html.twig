@@ -265,7 +265,7 @@
         {{ form_widget(form.dateIntervention, {'value' : intervention.dateIntervention|date('d-m-Y') }) }}
         {{ form_label(form.lieu, 'Lieu') }}
         {{ form_widget(form.lieu, {'value' : intervention.lieu}) }}
-        {{ form_label(form.nbPersonne, 'Participants') }}
+        {{ form_label(form.nbPersonne, 'Nb de participants') }}
         {{ form_widget(form.nbPersonne, {'value' : intervention.nbPersonne}) }}
         {% if intervention.plaidoyer %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}

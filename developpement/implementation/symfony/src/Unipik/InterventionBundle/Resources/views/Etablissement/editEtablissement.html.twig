@@ -137,10 +137,7 @@
                 // Dans le contenu de l'attribut « data-prototype », on remplace :
                 // - le texte "__name__label__" qu'il contient par le label du champ
                 // - le texte "__name__" qu'il contient par le numéro du champ
-                var template = $container.attr('data-prototype')
-                                .replace(/__name__label__/g, '' )
-                                .replace(/__name__/g,        index)
-                        ;
+                var template = $container.attr('data-prototype');
 
                 // On crée un objet jquery qui contient ce template
                 var $prototype = $(template);
@@ -274,6 +271,7 @@
         h5{
             font-weight: 600;
         }
+
     </style>
     <h1>Modifier établissement</h1>
     <hr>
@@ -286,7 +284,7 @@
     <div class="emailDiv">
         <h5> Email :</h5>
         {{ form_widget(form.emails) }}
-        <a href="#" id="add_email" class="btn btn-default" >Ajouter</a>
+        <a href="#" id="add_email" class="btn btn-success" >Ajouter</a>
     </div>
 
     <h5> Téléphone fixe* :</h5>

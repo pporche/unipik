@@ -14,10 +14,10 @@
 
     <h3> Etablissement</h3>
 
-    <h5> Nom :</h5>
+    <h5> Nom* :</h5>
     {{ form_widget(form.Etablissement.nom) }}
 
-    <h5> Tel Fixe :</h5>
+    <h5> Tel Fixe* :</h5>
     {{ form_widget(form.Etablissement.telFixe) }}
 
     <div class="emailDiv">
@@ -46,28 +46,28 @@
     <h5> UAI :</h5>
     {{ form_widget(form.Etablissement.uai) }}
 
-    <h5> Adresse :</h5>
+    <h5> Adresse* :</h5>
     {{ form_widget(form.Etablissement.adresse.adresse) }}
 
-    <h5> Complément :</h5>
+    <h5> Complément* :</h5>
     {{ form_widget(form.Etablissement.adresse.complement) }}
 
-    <h5> Ville :</h5>
+    <h5> Ville* :</h5>
     {{ form_widget(form.Etablissement.adresse.ville) }}
 
-    <h5> Code Postal :</h5>
+    <h5> Code Postal* :</h5>
     {{  form_widget(form.Etablissement.adresse.codePostal) }}
 
     <h3> Plage de dates</h3>
 
-    <h5> Début :</h5>
+    <h5> Début* :</h5>
     {{ form_widget(form.plageDate.debut) }}
 
-    <h5> Fin :</h5>
+    <h5> Fin* :</h5>
     {{  form_widget(form.plageDate.fin) }}
 
         <div class="jours">
-            <h3> Jour de l'intervention</h3>
+            <h3> Jour de l'intervention *</h3>
             {{  form_widget(form.jour) }}
         </div>
 
@@ -75,23 +75,23 @@
     {{  form_widget(form.Intervention) }}
 
     <h3> Contact</h3>
-    <h5> Email :</h5>
+    <h5> Email* :</h5>
     {{  form_widget(form.Contact.email) }}
 
-    <h5> Nom :</h5>
+    <h5> Nom* :</h5>
     {{  form_widget(form.Contact.nom) }}
 
-    <h5> Prénom :</h5>
+    <h5> Prénom* :</h5>
     {{  form_widget(form.Contact.prenom) }}
 
 
-    <h5> Tel Fixe :</h5>
+    <h5> Tel Fixe* :</h5>
     {{  form_widget(form.Contact.telFixe) }}
 
-    <h5> Tel Portable :</h5>
+    <h5> Tel Portable* :</h5>
     {{  form_widget(form.Contact.telPortable) }}
 
-    <h5> Type Contact :</h5>
+    <h5> Type Contact* :</h5>
     {{  form_widget(form.Contact.typeContact) }}
 
     <h5> </h5>
@@ -223,8 +223,8 @@
 
         .btn-default{
             border-radius: 10px !important;
-            background-color: #3fb618 !important;
-            border-color: #3fb618 !important;
+            background-color: #1a6ecc !important;
+            border-color: #1a6ecc !important;
         }
 
         hr{
@@ -259,6 +259,15 @@
             .form-annee-scolaire{
                 margin-left: 0px !important;
             }
+        }
+        #demande_Intervention___name___niveauTheme{
+            margin-left: -100px !important;
+        }
+        #demande_Intervention___name___niveauTheme .col-sm-10{
+            margin-left: -6px !important;
+        }
+        #demande_Intervention___name___niveauTheme_niveau{
+            margin-left: 53px !important;
         }
     </style>
 
@@ -328,7 +337,7 @@
         var addInterElt = document.createElement('a');
         addInterElt.id = 'add_intervention';
         buttonAddElement = document.createElement('button');
-        buttonAddElement.className = 'btn btn-info';
+        buttonAddElement.className = 'btn btn-success';
         buttonAddElement.textContent = 'Ajouter une Intervention';
         addInterElt.appendChild(buttonAddElement);
         document.getElementById('demande_Intervention').appendChild(addInterElt);

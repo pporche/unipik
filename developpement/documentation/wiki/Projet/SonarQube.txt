@@ -44,7 +44,20 @@ Remplacer par
 wrapper.java.command=/usr/lib/jvm/java-8-openjdk-amd64/bin/java
 '''
 
-6. Ajouter dans le dossier à tester (si il n'existe pas déjà) un fichier sonar-project.properties contenant :
+6. Modifier 
+le fichier [[/opt/sonarqube/conf/sonar.properties]] de la manière suivante:
+
+Décommenter les deux dernieres lignes du bloc "User credentials" :
+'''
+nomDeLaBD.jdbc.username=nomDutilisateur
+nomDeLaBD.jdbc.password=motDePasse
+'''
+
+
+Décommenter la derniere ligne du bloc "PostgreSQL" :
+''nomDeLaBD.jdbc.url=jdbc:postgresql://localhost/sonar''
+
+7. Ajouter dans le dossier à tester (si il n'existe pas déjà) un fichier sonar-project.properties contenant :
 
 '''
 # must be unique in a given SonarQube instance
@@ -65,18 +78,18 @@ sonar.sources=.
 
 
 '''
-7. Ajouter dans le dossier d'installation le dossier sonar-scanner puis ajouter tous les plugins nécessaires dans le dossier extension/plugins  :
+8. Ajouter dans le dossier d'installation le dossier sonar-scanner puis ajouter tous les plugins nécessaires dans le dossier extension/plugins  :
 
 - javascript plugin
 - php-plugin
 - web-plugin
 
-8. Pour lancer SonarQube, exécuter la commande suivante dans le dossier d'installation :
+9. Pour lancer SonarQube, exécuter la commande suivante dans le dossier d'installation :
 
 '' sonar.sh start''
 
 
-9. Pour exécuter SonarQube, exécuter la commande suivante dans le dossier à tester :
+10. Pour exécuter SonarQube, exécuter la commande suivante dans le dossier à tester :
 
 '''
  sonar-scanner

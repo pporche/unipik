@@ -23,19 +23,19 @@
 }
 
 .dangerTable{
-    background-color: #ffe6c2 !important;
-}
-
-.dangerTable:hover{
-    background-color: #fbdeb4 !important;
-}
-
-.warningTable{
     background-color: #ffccd7 !important;
 }
 
-.warningTable:hover{
+.dangerTable:hover{
     background-color: #fcc0cd !important;
+}
+
+.warningTable{
+    background-color: #ffe6c2 !important;
+}
+
+.warningTable:hover{
+    background-color: #fbdeb4 !important;
 }
 
 .subtitle:after{

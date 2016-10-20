@@ -77,7 +77,7 @@ class EtablissementType extends AbstractType {
             ->add('typeEnseignement',ChoiceType::class, $educationChoiceType)
             ->add('typeAutreEtablissement',ChoiceType::class, $otherChoiceType)
             ->add('typeCentre', ChoiceType::class, $centerChoiceType)
-            ->add('uai', TextType::class, array('label' => 'UAI' ,'required' => false))
+            ->add('uai', TextType::class, array('label' => 'Unité Administrative Immatriculée' ,'required' => false))
             ->add('adresse',AdresseType::class)
         ;
     }

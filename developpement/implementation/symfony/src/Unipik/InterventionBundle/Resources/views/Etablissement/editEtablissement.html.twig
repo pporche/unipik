@@ -71,6 +71,54 @@
         $(document).ready(function() {
 
 
+            if({{ etablissement.typeEnseignement | length }} > 0){
+
+                $("#etablissement_TypeGeneral").val("Enseignement");
+
+                var typeEnseignement = "{{ etablissement.typeEnseignement }}";
+
+                if(typeEnseignement == "college"){
+                    $('#etablissement_typeEnseignement_2').prop("checked", true);
+                }else if(typeEnseignement == "maternelle"){
+                    $('#etablissement_typeEnseignement_0').prop("checked", true);
+                } else if(typeEnseignement == "elementaire"){
+                    $('#etablissement_typeEnseignement_1').prop("checked", true);
+                } else if(typeEnseignement == "lycee"){
+                    $('#etablissement_typeEnseignement_3').prop("checked", true);
+                }else {
+                    $('#etablissement_typeEnseignement_4').prop("checked", true);
+                }
+            } else if ({{ etablissement.typeCentre | length }} > 0){
+                $("#etablissement_TypeGeneral").val("Centre de loisirs");
+
+                var typeCentre = "{{ etablissement.typeCentre }}";
+
+                if(typeCentre == "maternelle"){
+                    $('#etablissement_typeCentre_0').prop("checked", true);
+                }else if(typeCentre == "elementaire"){
+                    $('#etablissement_typeCentre_1').prop("checked", true);
+                } else if(typeCentre == "adolescent"){
+                    $('#etablissement_typeCentre_2').prop("checked", true);
+                } else{
+                    $('#etablissement_typeCentre_3').prop("checked", true);
+                }
+
+            }else{
+                $("#etablissement_TypeGeneral").val("Autre");
+
+                var typeAutre = "{{ etablissement.typeAutreEtablissement }}";
+
+                if(typeAutre == "mairie"){
+                    $('#etablissement_typeAutre_0').prop("checked", true);
+                }else if(typeAutre == "maison de retraite"){
+                    $('#etablissement_typeAutre_1').prop("checked", true);
+                } else{
+                    $('#etablissement_typeAutre_2').prop("checked", true);
+                }
+            }
+
+
+
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
             var $container = $('div#etablissement_emails');
 

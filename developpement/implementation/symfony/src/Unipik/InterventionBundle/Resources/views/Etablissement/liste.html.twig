@@ -339,9 +339,9 @@
                                 {% endif %}
                                 {% if field == "nom" %}
                                     {%  if desc %}
-                                        <th>Nom <a class="sortButtonNom" id="sortButtonNom" href="{{ path('etablissement_list', pathReq | merge({"desc":false, "field":"nom"}) ) }}"><img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortNom"/></a></th>
+                                        <th>Nom <a class="sortButtonNom" id="sortButtonNom" href="{{ path('etablissement_list', pathReq | merge({"desc":false, "field":"nom"}) ) }}"><img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortNom" alt="sortDown"/></a></th>
                                         {% else %}
-                                        <th>Nom <a class="sortButtonNom" id="sortButtonNom" href="{{ path('etablissement_list', pathReq | merge({"desc":true, "field":"nom"}) ) }}"><img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortNom"/></a></th>
+                                        <th>Nom <a class="sortButtonNom" id="sortButtonNom" href="{{ path('etablissement_list', pathReq | merge({"desc":true, "field":"nom"}) ) }}"><img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortNom" alt="sortUp"/></a></th>
                                         {% endif %}
                                 {% endif %}
 
@@ -390,7 +390,7 @@
                 {% if is_granted('ROLE_ADMIN') %}
                 <div class="buttons">
                     <a href="{{ path('etablissement_admin_add') }}" class="btn btn-primary btn-success">
-                        <i class="glyphicon glyphicon-alert"></i> Ajouter un établissement
+                        <em class="glyphicon glyphicon-alert"></em> Ajouter un établissement
                     </a>
                     <button type="button" class="btn btn-danger" onclick="deleteEtablissements()">Supprimer</button>
                 </div>

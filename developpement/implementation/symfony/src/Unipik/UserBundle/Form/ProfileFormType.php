@@ -40,12 +40,6 @@ class ProfileFormType extends BaseType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         parent::buildForm($builder, $options);
 
-        $optionChoiceType = array( 'expanded' => true, 'multiple' => true, 'label' => 'Rôle',
-            'choices' => [
-                'Utilisateur' => 'ROLE_USER',
-                'Administrateur' => 'ROLE_ADMIN',
-            ]);
-
         $optionActivite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Activités potentielles',
             'choices' => [
                 'Actions ponctuelles' => 'actions_ponctuelles',

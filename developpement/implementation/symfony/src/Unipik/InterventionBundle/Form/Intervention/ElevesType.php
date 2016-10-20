@@ -18,26 +18,9 @@ class ElevesType extends AbstractType {
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
      * form builder
      */
-    public function buildForm(FormBuilderInterface $builder, array $options){
-        $optionTypeEtablissement = array( 'expanded' => true, 'multiple' => false, 'label' => "Type d'établissement",
-            'choices' => [
-                'Scolaire' => 'scolaire',
-                'Centre de loisirs' => 'centreLoisir'
-            ],);
-
-
-        $optionNiveauScolaire = array( 'expanded' => true, 'multiple' => false, 'label' => "Niveau scolaire",
-            'choices' => [
-                'Maternel' => 'maternelle',
-                'Elémentaire' => 'elementaire',
-                'Collège' => 'college',
-                'Lycée' => 'lycee',
-                'Supérieur' => 'superieur'
-            ],);
-
+    public function buildForm(FormBuilderInterface $builder){
         $builder
             ->add('nbEleves', IntegerType::class, array('label' => 'Nombre'))
         ;

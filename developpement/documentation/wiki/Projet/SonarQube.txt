@@ -84,6 +84,10 @@ sonar.sources=.
 - php-plugin
 - web-plugin
 
+8. Ajouter "SonarQube Scanner"  :
+http://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
+
+
 9. Pour lancer SonarQube, exécuter la commande suivante dans le dossier d'installation :
 
 '' sonar.sh start''

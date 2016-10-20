@@ -180,7 +180,6 @@
             $.post("{{ path('intervention_multiple_done') }}", {'interventions': interventions},
                 function (data, status) {
                     location.reload(true);
-                    $('#myModal').modal('hide');
                 });
         }
 

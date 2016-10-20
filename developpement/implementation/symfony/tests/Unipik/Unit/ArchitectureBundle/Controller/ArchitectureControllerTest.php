@@ -4,6 +4,14 @@
  * User: mmartinsbaltar
  * Date: 03/10/16
  * Time: 08:43
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  Test\Unipik\Unit\ArchitectureBundle\Controller
+ * @author   Matthieu Martins-Baltar <matthieu.martinsbaltar@insa-rouen.fr>
+ * @license  None None
+ * @link     None
  */
 
 namespace Test\Unipik\Unit\ArchitectureBundle\Controller;
@@ -14,9 +22,23 @@ use Unipik\ArchitectureBundle\Controller\ArchitectureController;
 use Tests\Unipik\Unit\Utils\ControllerTestCase;
 use Tests\Unipik\Unit\Utils\ContainerMock;
 
-class architectureControllerTest extends ControllerTestCase
+/**
+ * Class ArchitectureControllerTest
+ *
+ * @category None
+ * @package  Test\Unipik\Unit\ArchitectureBundle\Controller
+ * @author   Matthieu Martins-Baltar <matthieu.martinsbaltar@insa-rouen.fr>
+ * @license  None None
+ * @link     None
+ */
+class ArchitectureControllerTest extends ControllerTestCase
 {
 
+    /**
+     * Test the indexAction method when logged out
+     *
+     * @return null
+     */
     public function testIndexActionAnonyme()
     {
         $controller = new ArchitectureController();
@@ -29,6 +51,11 @@ class architectureControllerTest extends ControllerTestCase
         $controller->indexAction();
     }
 
+    /**
+     * Test the indexAction method when logged in
+     *
+     * @return null
+     */
     public function testIndexActionConnecte()
     {
         $controller = new ArchitectureController();
@@ -39,22 +66,29 @@ class architectureControllerTest extends ControllerTestCase
 
         $repositoryMock = new InterventionRepositoryMock();
         $repositories = array(
-            "InterventionBundle:Intervention" => $repositoryMock->getRepository()
+            "InterventionBundle:Intervention" => $repositoryMock->getRepository(),
         );
 
-        $repositoryMock->expectQuery('getNInterventionsRealiseesOuNonBenevole', 'result interventionsNonRealiseesBenevole');
-        $repositoryMock->expectQuery('getNInterventionsRealiseesOuNonBenevole', 'result interventionsRealiseesBenevole');
-        $repositoryMock->expectQuery('getInterventionsRealiseesOuNon', 'result interventionsNonRealisees');
-        $repositoryMock->expectQuery('getInterventionsRealiseesOuNon', 'result interventionsRealisees');
+        $repositoryMock->expectQuery(
+            'getNInterventionsRealiseesOuNonBenevole',
+            'result1'
+        );
+        $repositoryMock->expectQuery(
+            'getNInterventionsRealiseesOuNonBenevole',
+            'result2'
+        );
+        $repositoryMock->expectQuery('getInterventionsRealiseesOuNon', 'result3');
+        $repositoryMock->expectQuery('getInterventionsRealiseesOuNon', 'result4');
 
         $containerMock->expectGetManager($repositories);
         $containerMock->expectRender(
-            'ArchitectureBundle::accueilBenevole.html.twig', array(
-            'user' => $user,
-            'interventionsNonRealiseesBenevole' => 'result interventionsNonRealiseesBenevole',
-            'interventionsRealiseesBenevole' => 'result interventionsRealiseesBenevole',
-            'interventionsNonRealisees' => 'result interventionsNonRealisees',
-            'interventionsRealisees' => 'result interventionsRealisees'
+            'ArchitectureBundle::accueilBenevole.html.twig',
+            array(
+                'user' => $user,
+                'interventionsNonRealiseesBenevole' => 'result1',
+                'interventionsRealiseesBenevole'    => 'result2',
+                'interventionsNonRealisees'         => 'result3',
+                'interventionsRealisees'            => 'result4',
             )
         );
 
@@ -62,6 +96,11 @@ class architectureControllerTest extends ControllerTestCase
         $controller->indexAction();
     }
 
+    /**
+     * Test the noJSAction method
+     *
+     * @return null
+     */
     public function testNoJSAction()
     {
         $controller = new ArchitectureController();
@@ -73,6 +112,11 @@ class architectureControllerTest extends ControllerTestCase
         $controller->noJSAction();
     }
 
+    /**
+     * Test the AutocompleteVilleAction method
+     *
+     * @return null
+     */
     public function testAutocompleteVilleAction()
     {
         $controller = new ArchitectureController();
@@ -83,6 +127,4 @@ class architectureControllerTest extends ControllerTestCase
         $controller->setContainer($containerMock->getContainer());
         $controller->noJSAction();
     }
-
-
 }

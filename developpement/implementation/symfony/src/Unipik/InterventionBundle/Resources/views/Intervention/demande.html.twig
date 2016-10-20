@@ -12,7 +12,6 @@
     <hr>
     {{ form_start(form, {'method': 'post', 'action': path('intervention_request', {id: id, etablissement: etablissement}), 'attr': {'class': 'intervention_request form-sm'}}) }}
 
-
     <h3> Etablissement</h3>
 
     <h5> Nom :</h5>
@@ -218,7 +217,6 @@
             border-color: #CCCCCC !important;
         }
 
-
         .btn-info {
             border-radius: 10px !important;
         }
@@ -261,10 +259,7 @@
             .form-annee-scolaire{
                 margin-left: 0px !important;
             }
-
         }
-
-
     </style>
 
 {% endblock %}
@@ -309,7 +304,6 @@
             source: codesPostaux,
             limit: 5
         });
-
 
         $('#demande_Etablissement_adresse_ville').change(function () {
             var ville = $(demande_Etablissement_adresse_ville).val().toUpperCase();
@@ -524,7 +518,6 @@
 		}
 
         function showSomeTheme(type,themesElt){
-            //console.log($(themesElt).find('option').get());
             switch(type){
                 case 'maternelle' :
                     $(themesElt).find('option').each(function(index) {
@@ -632,8 +625,6 @@
 
             function addIntervention($container) {
                 var template = $container.attr('data-prototype');
-
-
                 // On crée un objet jquery qui contient ce template
                 var $prototype = $(template);
 
@@ -738,7 +729,6 @@
             $(centerElt).fadeIn("medium").removeAttr("disabled").find("input").prop("required",true);
             $(instituteElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
             $(othersElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
-
         }
 
         function keepOther(){
@@ -753,9 +743,6 @@
         function verifyAll(e){
             verifyNumber(e);
             verifyCP(e);
-//            if($('#demande_Etablissement_uai').val().trim())
-//                verifyUAI(e);
-
         }
 
         function verifyNumber(e){
@@ -768,7 +755,7 @@
                 $('#demande_Contact_telPortable').css('border-color', 'red');
                 $('#demande_Etablissement_telFixe').css('border-color', 'red');
 
-            }else{
+            } else {
                 $('#demande_Contact_telFixe').removeAttr('border-color');
                 $('#demande_Contact_telPortable').removeAttr('border-color');
                 $('#demande_Etablissement_telFixe').removeAttr('border-color');
@@ -776,7 +763,6 @@
         }
 
         function verifyCP(e){
-
             if(!(/[0-9]{5}/.test($('#demande_Etablissement_adresse_codePostal').val()))){
                 e.preventDefault();
                 e.stopPropagation();
@@ -785,18 +771,6 @@
             }else
                 $('#demande_Etablissement_adresse_codePostal').removeAttr('border-color');
 
-        }
-
-        function verifyUAI(e){
-            console.log(verifyCodeUai($('#demande_Etablissement_uai').val()));
-            if(!verifyCodeUai($('#demande_Etablissement_uai').val())){
-                e.stopPropagation();
-                e.preventDefault();
-                $('#demande_Etablissement_uai').css('border-color', 'red');
-                alert("UAI au mauvais format, veuillez ne pas en indiquer si ce champs pose problème");
-            }else{
-                $('#demande_Etablissement_uai').removeAttr('border-color');
-            }
         }
 
         function verifyCodeUai(codeUai){

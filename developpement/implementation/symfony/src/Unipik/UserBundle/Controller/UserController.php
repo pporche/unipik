@@ -42,9 +42,6 @@ class UserController extends Controller {
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
-
-        $activites = $form->get("activites")->getData();
-        $responsabilites = $form->get("responsabilitesActivites")->getData();
         $ville = $form->get("ville")->getData();
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
@@ -134,10 +131,7 @@ class UserController extends Controller {
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.profile.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
-        $userManager = $this->get('fos_user.user_manager');
-
         $user = $this->getUser();
-       // $user = $userManager->findUserBy(array('id' => 1));
         $form = $formFactory->createForm();
         $form = $form->setData($user);
 

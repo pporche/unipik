@@ -79,7 +79,7 @@ class ContactTest extends  EntityTestCase
         $this->assertEquals($c->getEtablissement()[0], null);
     }
 
-    public function validEntityProvider() 
+    public function validEntityProvider()
     {
         $c = ContactMock::createMultiple(4);
         $p = ProjetMock::create();

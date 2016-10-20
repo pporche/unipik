@@ -142,7 +142,7 @@
 
         tbody {
             display:block;
-            max-height: 750px;
+            max-height: 58vh;
             overflow:auto;
         }
         thead, tbody tr {
@@ -587,10 +587,7 @@
                                         </p>
                                     {% elseif intervention.benevole %}
                                         {% if user==intervention.benevole %}
-                                            <button name="desattribution" type="button" class="btn btn-danger"
-                                                    onclick="desattributeIntervention(this, {{ intervention.id }})">
-                                                Se la désattribuer
-                                            </button>
+                                                Attribuée à vous
                                         {% else %}
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <button name="desattribution" type="button" class="btn btn-danger"

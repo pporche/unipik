@@ -22,10 +22,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class LoginType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        /*parent::buildForm($builder, $options);
-        $builder
-        ;*/
-
         $builder
             ->setAction($options['action'])
             ->setMethod('POST')

@@ -53,11 +53,11 @@ class MailController extends Controller {
         ;
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $repository = $em->getRepository('InterventionBundle:Etablissement');
-
-            $type = $form->get("type")->getData();
-
+//            $em = $this->getDoctrine()->getManager();
+//            $repository = $em->getRepository('InterventionBundle:Etablissement');
+//
+//            $type = $form->get("type")->getData();
+//
 //            $etablissements = $repository->getEnseignementsByType(array($type));
 
             $emails = array("dev1@yopmail.com", "dev2@yopmail.com");

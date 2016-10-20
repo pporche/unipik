@@ -63,8 +63,8 @@ class RegistrationType extends AbstractType {
         $builder
             ->add('nom')
             ->add('prenom', TextType::class, array('label' => 'Prénom'))
-            ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe'))
-            ->add('telPortable', TextType::class, array('label' => 'Téléphone portable'))
+            ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe', 'required' => false))
+            ->add('telPortable', TextType::class, array('label' => 'Téléphone portable', 'required' => false))
             ->add('email', TextType::class, array('label' => 'E-mail'))
             ->add('username', TextType::class, array('label' => 'Nom d\'utilisateur'))
             ->add('plainPassword', RepeatedType::class,

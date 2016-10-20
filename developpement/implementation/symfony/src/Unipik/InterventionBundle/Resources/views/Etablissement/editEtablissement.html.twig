@@ -9,16 +9,19 @@
             switch (e.target.value){
                 case 'ens' :
                     keepInstitute();
-                    $('.form-group:eq(7)').fadeIn("fast");
+                    $('#etablissement_uai').show();
+                    $('#uai').show();
                     break;
                 case 'centre' :
                     keepCenter();
-                    $('.form-group:eq(7)').fadeOut("fast");
+                    $('#etablissement_uai').hide();
+                    $('#uai').hide();
                     $('#etablissement_uai').val('');
                     break;
                 case 'autre' :
                     keepOther();
-                    $('.form-group:eq(7)').fadeOut("fast");
+                    $('#etablissement_uai').hide();
+                    $('#uai').hide();
                     $('#etablissement_uai').val('');
                     break;
             }
@@ -27,37 +30,40 @@
         switch ($("#etablissement_TypeGeneral").val()){
             case 'ens' :
                 keepInstitute();
-                $('.form-group:eq(7)').fadeIn("fast");
+                $('#etablissement_uai').show();
+                $('#uai').show();
                 break;
             case 'centre' :
                 keepCenter();
-                $('.form-group:eq(7)').fadeOut("fast");
+                $('#etablissement_uai').hide();
+                $('#uai').hide();
                 $('#etablissement_uai').val('');
                 break;
             case 'autre' :
                 keepOther();
-                $('.form-group:eq(7)').fadeOut("fast");
+                $('#etablissement_uai').hide();
+                $('#uai').hide();
                 $('#etablissement_uai').val('');
                 break;
         }
 
         function keepInstitute(){
-            $(".form-group:eq(4)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
+            $("#typeEnseignement").show().removeAttr("disabled");
+            $("#typeAutreEtablissement").hide().prop("disabled",true);
+            $("#typeCentre").hide().prop("disabled",true);
         }
 
         function keepCenter(){
-            $(".form-group:eq(6)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(4)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
+            $("#typeCentre").show().removeAttr("disabled");
+            $("#typeAutreEtablissement").hide().prop("disabled",true);
+            $("#typeEnseignement").hide().prop("disabled",true);
 
         }
 
         function keepOther(){
-            $(".form-group:eq(5)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(4)").fadeOut("slow").prop("disabled",true);
+            $("#typeAutreEtablissement").show().removeAttr("disabled");
+            $("#typeEnseignement").hide().prop("disabled",true);
+            $("#typeCentre").hide().prop("disabled",true);
         }
 
         document.getElementById("etablissement_Valider").className = "btn btn-primary";
@@ -87,8 +93,6 @@
                     $("input[id=etablissement_emails_"+i+"]").val(emails[i]);
                     i++;
                 })
-
-
             } else {
                 // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
                 $container.children('div').each(function() {
@@ -102,7 +106,7 @@
                 // - le texte "__name__label__" qu'il contient par le label du champ
                 // - le texte "__name__" qu'il contient par le numéro du champ
                 var template = $container.attr('data-prototype')
-                                .replace(/__name__label__/g, 'Email n°' + (index+1))
+                                .replace(/__name__label__/g, '' )
                                 .replace(/__name__/g,        index)
                         ;
 
@@ -121,7 +125,7 @@
             // La fonction qui ajoute un lien de suppression
             function addDeleteLink($prototype) {
                 // Création du lien
-                var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+                var $deleteLink = $('<a href="#" class="btn btn-danger" style="display: inline; font-weight: 600; font-size: 25px; padding: 5px; height: 30px">×</a>');
 
                 // Ajout du lien
                 $prototype.append($deleteLink);
@@ -146,10 +150,21 @@
 
 {% block body %}
     <style>
+
         @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
         h1{
             font-family: 'Ubuntu Condensed', sans-serif;
             margin-top: 40px;
+        }
+
+        #etablissement_emails label{
+            font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
+            font-size: 15px !important;
+        }
+
+        #etablissement label{
+            font-size: 15px !important;
+            font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
         }
 
         div{
@@ -158,6 +173,7 @@
 
         input[type="text"], select{
             width: 350px !important;
+            margin-left: 10px !important;
         }
         input:focus, select:focus{
             outline: none !important;
@@ -180,31 +196,99 @@
             margin-left: 30%;
         }
 
-        form{
-            padding-left: 25vw;
+        .required{
+            display: inline;
         }
 
-        @media(max-width: 1060px){
-            form{
-                padding-left: 0vw;
+        .required:after{
+            content: "*";
+            display: inline;
+        }
+
+        .emailDiv .col-sm-2{
+            width: 0px !important;
+        }
+
+        .emailDiv .col-sm-10{
+            padding-left: 15px !important;
+        }
+
+        .form-group a{
+            border-radius: 100px !important;
+            line-height : 1em !important;
+            outline: hidden !important;
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+        form{
+            max-width: 450px;
+            margin:auto;
+        }
+        @media(max-width: 767px){
+            h3{
+                margin-left: 10px !important;
             }
         }
-        @media(max-width: 1260px && min-width: 1060px){
-            form{
-                padding-left: 15vw;
-            }
+
+        h2, h3{
+            font-family: 'Ubuntu Condensed', sans-serif;
+            margin-top: 40px;
+        }
+        h5{
+            font-weight: 600;
         }
     </style>
-    <div class='well'>
+    <h1>Modifier établissement</h1>
+    <hr>
 
-        {{ form_start(form, {'method': 'post', 'action': path('etablissement_admin_edit', {'id': etablissement.id}), 'attr': {'class': 'etablissement_admin_edit'}}) }}
-        <div class="well">
-            {{ form_row(form.emails) }}
-            <a href="#" id="add_email" class="btn btn-default">Ajouter un email</a>
-        </div>
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
+    {{ form_start(form, {'method': 'post', 'action': path('etablissement_admin_add'), 'attr': {'class': 'etablissement_admin_add'}}) }}
 
+    <h5> Nom :</h5>
+    {{ form_widget(form.nom) }}
+
+    <div class="emailDiv">
+        <h5> Email :</h5>
+        {{ form_widget(form.emails) }}
+        <a href="#" id="add_email" class="btn btn-default" >Ajouter</a>
     </div>
+
+    <h5> Téléphone fixe* :</h5>
+    {{ form_widget(form.telFixe) }}
+
+    <h5> Type d'établissement :</h5>
+    {{ form_widget(form.TypeGeneral) }}
+
+    <div id="typeEnseignement">
+        <h5> Type d'enseignement :</h5>
+        {{ form_widget(form.typeEnseignement) }}
+    </div>
+
+    <div id="typeCentre">
+        <h5> Type Centre de loisir :</h5>
+        {{ form_widget(form.typeCentre) }}
+    </div>
+
+    <div id="typeAutreEtablissement">
+        <h5> Type Autre Établissement :</h5>
+        {{ form_widget(form.typeAutreEtablissement) }}
+    </div>
+
+    <h5 id="uai"> UAI :</h5>
+    {{ form_widget(form.uai) }}
+
+    <h5> Adresse :</h5>
+    {{ form_widget(form.adresse.adresse) }}
+
+    <h5> Complément :</h5>
+    {{ form_widget(form.adresse.complement) }}
+
+    <h5> Ville :</h5>
+    {{ form_widget(form.adresse.ville) }}
+
+    <h5> Code Postal :</h5>
+    {{  form_widget(form.adresse.codePostal) }}
+
+
+    {{ form_end(form) }}
 
 {% endblock %}

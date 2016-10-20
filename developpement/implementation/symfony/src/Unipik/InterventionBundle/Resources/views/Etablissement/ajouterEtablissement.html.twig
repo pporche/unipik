@@ -10,7 +10,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
-        #etablissement_adresse_ville {
+        #etablissement_adresse_ville, #etablissement_nom, #etablissement_adresse_adresse, #etablissement_adresse_complement {
             text-transform: uppercase;
         }
         .twitter-typeahead .tt-query,
@@ -113,21 +113,6 @@
             margin-left: 30%;
         }
 
-        form{
-            padding-left: 25vw;
-        }
-
-        @media(max-width: 1060px){
-            form{
-                padding-left: 0vw;
-            }
-        }
-        @media(max-width: 1260px && min-width: 1060px){
-            form{
-                padding-left: 15vw;
-            }
-        }
-
         .required{
             display: inline;
         }
@@ -137,6 +122,38 @@
             display: inline;
         }
 
+        .emailDiv .col-sm-2{
+            width: 0px !important;
+        }
+
+        .emailDiv .col-sm-10{
+            padding-left: 15px !important;
+        }
+
+        .form-group a{
+            border-radius: 100px !important;
+            line-height : 1em !important;
+            outline: hidden !important;
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+        form{
+            max-width: 450px;
+            margin:auto;
+        }
+        @media(max-width: 767px){
+            h3{
+                margin-left: 10px !important;
+            }
+        }
+
+        h2, h3{
+            font-family: 'Ubuntu Condensed', sans-serif;
+            margin-top: 40px;
+        }
+        h5{
+            font-weight: 600;
+        }
 
 
     </style>
@@ -205,6 +222,29 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+
+            $('#typeEnseignement').show();
+            $('#typeCentre').hide();
+            $('#typeAutreEtablissement').hide();
+
+            $('#etablissement_TypeGeneral').on('change', function(){
+                if($('#etablissement_TypeGeneral').find(":selected").text() == "Enseignement"){
+                    $('#typeEnseignement').show();
+                    $('#typeCentre').hide();
+                    $('#typeAutreEtablissement').hide();
+                }else if ($('#etablissement_TypeGeneral').find(":selected").text() == "Centre de loisirs"){
+                    $('#typeCentre').show();
+                    $('#typeEnseignement').hide();
+                    $('#typeAutreEtablissement').hide();
+                }
+                else
+                {
+                    $('#typeAutreEtablissement').show();
+                    $('#typeCentre').hide();
+                    $('#typeEnseignement').hide();
+                }
+            });
+
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
             var $container = $('div#etablissement_emails');
 
@@ -255,7 +295,8 @@
             // La fonction qui ajoute un lien de suppression d'une catégorie
             function addDeleteLink($prototype) {
                 // Création du lien
-                var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+                var $deleteLink = $('<a href="#" class="btn btn-danger" style="display: inline; font-weight: 600; font-size: 25px; padding: 5px; height: 30px">×</a>');
+
 
                 // Ajout du lien
                 $prototype.append($deleteLink);
@@ -283,16 +324,34 @@
             }
         });
 
+        switch ($("#etablissement_TypeGeneral").val()){
+            case 'ens' :
+                $(".form-group:eq(4)").fadeIn("fast").removeAttr("disabled");
+                $(".form-group:eq(6)").fadeOut("fast").prop("disabled",true);
+                $(".form-group:eq(5)").fadeOut("fast").prop("disabled",true);
+                break;
+            case 'centre' :
+                $(".form-group:eq(6)").fadeIn("fast").removeAttr("disabled");
+                $(".form-group:eq(4)").fadeOut("fast").prop("disabled",true);
+                $(".form-group:eq(5)").fadeOut("fast").prop("disabled",true);
+                break;
+            case 'autre' :
+                $(".form-group:eq(5)").fadeIn("medium").removeAttr("disabled");
+                $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
+                $(".form-group:eq(4)").fadeOut("slow").prop("disabled",true);
+                break;
+        }
+
         function keepInstitute(){
-            $(".form-group:eq(5)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(5)").fadeIn("fast").removeAttr("disabled");
+            $(".form-group:eq(6)").fadeOut("fast").prop("disabled",true);
+            $(".form-group:eq(7)").fadeOut("fast").prop("disabled",true);
         }
 
         function keepCenter(){
-            $(".form-group:eq(7)").fadeIn("medium").removeAttr("disabled");
-            $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
-            $(".form-group:eq(6)").fadeOut("slow").prop("disabled",true);
+            $(".form-group:eq(7)").fadeIn("fast").removeAttr("disabled");
+            $(".form-group:eq(5)").fadeOut("fast").prop("disabled",true);
+            $(".form-group:eq(6)").fadeOut("fast").prop("disabled",true);
         }
 
         function keepOther(){
@@ -308,20 +367,60 @@
 
     <h1>Ajout d'un établissement</h1>
     <hr>
-    <div class='well'>
 
         {{ form_start(form, {'method': 'post', 'action': path('etablissement_admin_add'), 'attr': {'class': 'etablissement_admin_add'}}) }}
-        <div class="well">
-            {{ form_row(form.emails) }}
+
+        <h5> Nom :</h5>
+        {{ form_widget(form.nom) }}
+
+        <div class="emailDiv">
+            <h5> Email :</h5>
+            {{ form_widget(form.emails) }}
             <a href="#" id="add_email" class="btn btn-default" >Ajouter</a>
         </div>
-        {{ form_widget(form) }}
-        <div>
+
+        <h5> Téléphone fixe* :</h5>
+        {{ form_widget(form.telFixe) }}
+
+        <h5> Type d'établissement :</h5>
+        {{ form_widget(form.TypeGeneral) }}
+
+        <div id="typeEnseignement">
+            <h5> Type d'enseignement :</h5>
+            {{ form_widget(form.typeEnseignement) }}
+        </div>
+
+        <div id="typeCentre">
+            <h5> Type Centre de loisir :</h5>
+            {{ form_widget(form.typeCentre) }}
+        </div>
+
+        <div id="typeAutreEtablissement">
+            <h5> Type Autre Établissement :</h5>
+            {{ form_widget(form.typeAutreEtablissement) }}
+        </div>
+
+    <h5> UAI :</h5>
+    {{ form_widget(form.uai) }}
+
+    <h5> Adresse :</h5>
+    {{ form_widget(form.adresse.adresse) }}
+
+    <h5> Complément :</h5>
+    {{ form_widget(form.adresse.complement) }}
+
+    <h5> Ville :</h5>
+    {{ form_widget(form.adresse.ville) }}
+
+    <h5> Code Postal :</h5>
+    {{  form_widget(form.adresse.codePostal) }}
+
+
+    <div>
             <input type="submit" value="Inscrire" class="btn btn-primary"/>
         </div>
         {{ form_end(form) }}
 
-    </div>
 {% endblock %}
 
 

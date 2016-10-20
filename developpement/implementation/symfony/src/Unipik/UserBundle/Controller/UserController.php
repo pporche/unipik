@@ -42,9 +42,6 @@ class UserController extends Controller {
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
-
-        $activites = $form->get("activites")->getData();
-        $responsabilites = $form->get("responsabilitesActivites")->getData();
         $ville = $form->get("ville")->getData();
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
@@ -134,10 +131,7 @@ class UserController extends Controller {
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.profile.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
-        $userManager = $this->get('fos_user.user_manager');
-
         $user = $this->getUser();
-       // $user = $userManager->findUserBy(array('id' => 1));
         $form = $formFactory->createForm();
         $form = $form->setData($user);
 
@@ -189,6 +183,20 @@ class UserController extends Controller {
 
         if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
 
+            $benevole->removeAllResponsabilitesActivites();
+            $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
+            foreach ($responsibilitiesArray as $responsabilite) {
+                $benevole->addResponsabiliteActivite($responsabilite);
+                if($responsabilite != 'admin_region' && $responsabilite != 'admin_comite') {
+                    $benevole->addActivitesPotentielles($responsabilite);
+                }
+            }
+
+            $activitesPotentiellesArray = $form->get("activitesPotentielles")->getData();
+            foreach ($activitesPotentiellesArray as $activite) {
+                $benevole->addActivitesPotentielles($activite);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($benevole);
             $em->flush();
@@ -196,7 +204,15 @@ class UserController extends Controller {
             return $this->redirectToRoute('user_admin_profil_benevole', array('username' => $benevole->getUsername()));
         }
 
-        return $this->render('UserBundle:Profile:editBenevole.html.twig', array('form' => $form->createView()));
+        $activities = json_encode($benevole->getActivitesPotentielles()->toArray());
+        $responsabilities = json_encode($benevole->getResponsabiliteActivite()->toArray());
+
+        return $this->render('UserBundle:Profile:editBenevole.html.twig', array(
+            'form' => $form->createView(),
+            'username' => $username,
+            'activitesPotentielles' => $activities,
+            'responsabiliteActivite' => $responsabilities
+        ));
     }
 
     /**

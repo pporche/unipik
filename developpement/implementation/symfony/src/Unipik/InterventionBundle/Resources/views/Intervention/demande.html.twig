@@ -260,6 +260,15 @@
                 margin-left: 0px !important;
             }
         }
+        #demande_Intervention___name___niveauTheme{
+            margin-left: -100px !important;
+        }
+        #demande_Intervention___name___niveauTheme .col-sm-10{
+            margin-left: -6px !important;
+        }
+        #demande_Intervention___name___niveauTheme_niveau{
+            margin-left: 53px !important;
+        }
     </style>
 
 {% endblock %}
@@ -328,7 +337,7 @@
         var addInterElt = document.createElement('a');
         addInterElt.id = 'add_intervention';
         buttonAddElement = document.createElement('button');
-        buttonAddElement.className = 'btn btn-info';
+        buttonAddElement.className = 'btn btn-success';
         buttonAddElement.textContent = 'Ajouter une Intervention';
         addInterElt.appendChild(buttonAddElement);
         document.getElementById('demande_Intervention').appendChild(addInterElt);

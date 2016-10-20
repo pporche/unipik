@@ -1,0 +1,113 @@
+% version 1.00	Auteur Kafui Atanley date 20/10/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\usepackage{hyperref}
+\DeclareUnicodeCharacter{00A0}{ }
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Pédagogique}}					%titre
+\begin{document}
+
+20/10/2016			 				%Date 
+\hfill   
+\hfill 	 09:06 - 09:29				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{3cm} | p{3cm} | p{3cm} | p{3.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 20/10/2016 & \Kafui & Création & Toutes \\
+				\hline			
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{4cm} | p{3cm} | p{3cm} | p{2.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RGC & \Melissa & -- & -- \\[30pt]
+				\hline
+				Validateur & \CP & \Pierre &  -- & -- \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+\section{Résumé de la semaine passée}
+La semaine précédente s'est orientée autour de 3 axes :  
+\begin{itemize}
+	\item Apport de correctif suite aux remarques énoncés lors de la démonstration à 		\nomTuteurPedago;
+	\item Séance de recette provisoire au client;
+	\item Hébergement de notre application.
+\end{itemize} 
+
+\section{Séance de recette provisiore avec le client}
+Une réunion a eu lieu le jeudi 17 octobre avec le client. Les clientes ont demandées 4 modifications : 
+\begin{itemize}
+	\item	La liste des interventions doit pouvoir être imprimée;
+	\item	Lorsque l'on affiche la liste des interventions, des filtres sur le niveau scolaire (la classe) et sur le thème doivent être présents;
+	\item	Sur l'agenda d'un bénévole, lorsqu'une intervention est affichée, le nom de l'école doit également apparaître;
+	\item	Lorsque l'on consulte une intervention, un lien doit permettre de remonter jusqu'à la demande correspondante.
+\end{itemize} 
+Le travail a été jugée satisfaisant, le cahier de recettes a été validée sous réserve de correction de remarques.
+
+\section{Hébergement}
+Quantic Télécom nous a répondu via Thibaud Dauce. Il serait disposé à hébergé notre application gratuitement dans le cas ou nous les signalions comme sponsor. Notre application est actuelllement disponible sur Internet. Nous utilisons un serveur privée virtuel hébergé chez DigitalOcean en attendant de sceller l'accord avec Quantic Télécom. \nomTuteurPedago{} nous suggére de réfléchir à un moyen d'offrir une gratification à Quantic avec notre client afin que l'accord soit durable et bénéfique au deux partis.
+
+\section{Séance de recette provisoire}
+La rédaction du cahier de recette est bientôt terminée. \nomTuteurPedago{} nous recommande d'utiliser un logiciel de simulation de clics pour la partie Frontend afin d'éviter de perdre du temps durant la séance. Nous devons ensuite montrer que ce qui a été fait en couche haute correspond avec ce qui est persisté en couche basse. Le but est de montrer que nous sommes capable de générer une multitute de cas d'utilisation.
+
+\section{Envoi d' email}
+\nomTuteurPedago{} nous suggére d'envoyer les courriels par tranche de 24 heures afin d'éviter de se faire bloquer par le SMTP et de continuer à avoir une solution gratuite.
+%--- fin de réunion ---%
+\newpage
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -80,7 +80,9 @@ class InterventionController extends Controller {
             }
 
             $heure = $form->get('heure')->get('hour')->getData();
+            $heure = sprintf("%02d", $heure);
             $minute = $form->get('heure')->get('minute')->getData();
+            $minute = sprintf("%02d", $minute);
             $heure .= ":".$minute;
             $intervention->setHeure($heure);
 

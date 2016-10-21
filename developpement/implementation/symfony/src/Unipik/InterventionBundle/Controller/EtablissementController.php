@@ -167,11 +167,9 @@ class EtablissementController extends Controller {
 
         $form = $this->get('form.factory')
             ->createBuilder(EtablissementType::class, $institute)
-            ->add('Valider', SubmitType::class)
             ->getForm();
 
-        if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
-
+        if ($form->handleRequest($request)->isValid() &&  $request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
             $institute->removeAllEmails();
 
@@ -180,7 +178,33 @@ class EtablissementController extends Controller {
                 $institute->addEmail($email);
             }
 
+            $instituteType =  $form->get('TypeGeneral')->getData();
+
+            if($instituteType == 'ens') {
+                $institute->setTypeEnseignement($form->get('typeEnseignement')->getData());
+                $institute->setTypeCentre(null);
+                $institute->setTypeAutreEtablissement(null);
+            } else if($instituteType == 'centre') {
+                $institute->setTypeCentre($form->get('typeCentre')->getData());
+                $institute->setTypeEnseignement(null);
+                $institute->setTypeAutreEtablissement(null);
+            } else {
+                $institute->setTypeAutreEtablissement($form->get('typeAutreEtablissement')->getData());
+                $institute->setTypeEnseignement(null);
+                $institute->setTypeCentre(null);
+            }
+
+            $institute->setNom(strtoupper($institute->getNom()));
+
             $em->persist($institute);
+            $em->flush();
+
+            $repositoryAdresse = $em->getRepository("ArchitectureBundle:Adresse");
+            $adresse = $repositoryAdresse->findOneBy(array('id' => $institute->getAdresse()));
+            $adresse->setAdresse(strtoupper($adresse->getAdresse()));
+            $adresse->setComplement(strtoupper($adresse->getComplement()));
+
+            $em->persist($adresse);
             $em->flush();
 
             return $this->redirectToRoute('etablissement_view', array('id' => $id));

@@ -116,7 +116,7 @@
         .required{
             display: inline;
         }
-        
+
         .required:after{
             content: "*";
             display: inline;
@@ -275,7 +275,7 @@
                 // - le texte "__name__label__" qu'il contient par le label du champ
                 // - le texte "__name__" qu'il contient par le numéro du champ
                 var template = $container.attr('data-prototype')
-                                .replace(/__name__label__/g, 'Email')
+                                .replace(/__name__label__/g, '')
                                 .replace(/__name__/g,        index)
                         ;
 

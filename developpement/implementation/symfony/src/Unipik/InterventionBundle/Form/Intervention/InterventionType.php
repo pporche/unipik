@@ -10,6 +10,7 @@ namespace Unipik\InterventionBundle\Form\Intervention;
 
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -79,9 +80,8 @@ class InterventionType extends AbstractFieldsetType {
             ->add('niveauTheme', NiveauThemeType::class)
             ->add('niveau', ChoiceType::class, $choiceClasse)
             ->add('heure', TimeType::class, array(
-                'placeholder' => array(
-                    'hour' => '00', 'minute' => '00',
-                )
+//                'input'  => 'string',
+                'widget' => 'choice',
             ))
         ;
     }

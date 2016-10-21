@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Unipik\ArchitectureBundle\Entity\Adresse;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 /**
@@ -75,6 +76,17 @@ class RegistrationController extends BaseController {
             foreach ($activitesPotentiellesArray as $activite) {
                 $user->addActivitesPotentielles($activite);
             }
+
+            $nom = $form->get('nom')->getData();
+            $prenom = $form->get('prenom')->getData();
+            $user->setNom(ucfirst(strtolower($nom)));
+            $user->setPrenom(ucfirst(strtolower($prenom)));
+
+            $adresse = $form->get('adresse')->getData();
+            $adresse->setAdresse(strtoupper($adresse->getAdresse()));
+            $adresse->setComplement(strtoupper($adresse->getComplement()));
+
+            $user->setAdresse($adresse);
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);

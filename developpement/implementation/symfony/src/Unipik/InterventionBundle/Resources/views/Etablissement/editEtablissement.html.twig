@@ -98,8 +98,6 @@
             $("#typeCentre").hide().prop("disabled",true);
         }
 
-        document.getElementById("etablissement_Valider").className = "btn btn-primary";
-
         $(document).ready(function() {
 
 
@@ -280,7 +278,7 @@
     <h1>Modifier établissement</h1>
     <hr>
 
-    {{ form_start(form, {'method': 'post', 'action': path('etablissement_admin_add'), 'attr': {'class': 'etablissement_admin_add'}}) }}
+    {{ form_start(form, {'method': 'post', 'action': path('etablissement_admin_edit', {'id': etablissement.id}), 'attr': {'class': 'etablissement_admin_edit'}}) }}
 
     <h5> Nom :</h5>
     {{ form_widget(form.nom) }}
@@ -332,7 +330,10 @@
 
     <h5> Code Postal :</h5>
     {{  form_widget(form.adresse.codePostal) }}
-
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" value="Modifier" class="btn btn-primary"/>
+    </div>
 
     {{ form_end(form) }}
 

@@ -11,7 +11,7 @@ all : imagespdf sp cleanrep cleaneps
 
 
 imagespdf : 
-	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf mvcGeneral organigrammeFonctionnel
+	$(BASHMAKEPATH)/imagesPdf.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf mvcGeneral analyseCause organigrammeFonctionnel
 
 imagespng : 
 	$(BASHMAKEPATH)/imagesPng.sh $(IMGDIR) $(PDFDIR)/$(NOM_FICHIER).pdf 

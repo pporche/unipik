@@ -22,8 +22,7 @@
         $(document).ready(function () {
             {% for intervention in interventionsNonRealiseesBenevole %}
                 {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
-                    var modalShown = "modalShown" + "{{ user }}";
-                    if (sessionStorage[modalShown] != "shown") {
+                    if (sessionStorage["modalShown" + "{{ user }}"] != "shown") {
                         $("#myModal").modal("show");
                     }
                 {% endif %}
@@ -180,9 +179,7 @@
 
             var interventions = JSON.stringify(selected);
 
-            var modalShown = "modalShown" + "{{ user }}";
-
-            sessionStorage[modalShown] = 'shown';
+            sessionStorage["modalShown" + "{{ user }}"] = 'shown';
 
             $.post("{{ path('intervention_multiple_done') }}", {'interventions': interventions},
                 function (data, status) {

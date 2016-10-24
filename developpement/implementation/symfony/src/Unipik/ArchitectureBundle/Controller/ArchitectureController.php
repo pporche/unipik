@@ -51,8 +51,7 @@ class ArchitectureController extends Controller {
             'interventionsNonRealiseesBenevole' => $interventionsNonRealiseesBenevole,
             'interventionsRealiseesBenevole' => $interventionsRealiseesBenevole,
             'interventionsNonRealisees' => $interventionsNonRealisees,
-            'interventionsRealisees' => $interventionsRealisees,
-            //'modalShown' => $modalShown
+            'interventionsRealisees' => $interventionsRealisees
         ));
     }
 

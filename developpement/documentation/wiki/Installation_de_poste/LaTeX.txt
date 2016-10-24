@@ -17,7 +17,7 @@ Installer les outils nécessaire à la compilation des documents LaTeX.
 
 1. Exécuter la commande suivante :
 
-''sudo apt-get install git rubber graphviz textlive-full curl dia openJDK7''
+''sudo apt-get install git rubber graphviz texlive-full curl dia openJDK7''
 
 2. Dans [[/etc/profile]] ajouter les lignes suivantes en adaptant le chemin vers le projet pic_unicef :
 

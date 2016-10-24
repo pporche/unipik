@@ -27,12 +27,46 @@
 \end{frame}
 
 \begin{frame}
+\frametitle{La sélection en base de données}
 	\begin{block}{Les méthodes de récupération des entités}
 		\begin{itemize}
 			\item méthodes de récupération de base : \\
 			 \texttt{find, findAll, findBy, findOneBy, findByX, findOneByX}
 			\item méthodes de récupération personnelle : \\
-			\texttt{DQL} et \texttt{Query Builder}
+			\begin{itemize}
+			\item \texttt{DQL (Doctrine Query Language)} : \texttt{SQL adapté à la vision objets}
+			\item \texttt{Query Builder}: construction de la requête étape par étape
+			\end{itemize}			
 		\end{itemize}
+	  \end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{Query Builder}}
+	\textbf{But :} récupérer les interventions attribuées au bénévole courant. \\
+	\vskip 0.5cm
+	\begin{block}{Requête SQL :}	
+	\texttt{ 
+	\noindent $\backslash$set idUtilisateurCourant 10 \\ 	
+	SELECT * FROM intervention i, benevole b \\
+	\setlength{\parindent}{1cm}	WHERE i.id\_benevole = b.id\\
+	\setlength{\parindent}{1cm}	AND WHERE b.id = :idUtilisateurCourant;}
+	\end{block}
+	\begin{block}{Requête Query Builer :}
+	\noindent \texttt{\$qb = \$this->createQueryBuilder('i'); \\
+	\noindent \$qb \\
+	\setlength{\parindent}{1cm} ->where('i.benevole = :user') \\
+    \setlength{\parindent}{1cm} ->setParameter('user', \$user);}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Attribution/réalisation d'une intervention}
+      \begin{figure}[r]
+		\includegraphics[scale=0.35]{images/ajax.png}
+		%\caption{Imprim-écran des possibilités de tris}
+	  \end{figure}
+      \begin{block}{AJAX (Asynchronous JavaScript And XML)}
+		Ajax est un concept de programmation Web dont le but est de faire communiquer une page Web avec un serveur Web recharger de la page.
 	  \end{block}
 \end{frame}

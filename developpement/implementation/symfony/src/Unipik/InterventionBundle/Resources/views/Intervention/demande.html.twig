@@ -49,7 +49,7 @@
     <h5> Adresse* :</h5>
     {{ form_widget(form.Etablissement.adresse.adresse) }}
 
-    <h5> Complément* :</h5>
+    <h5> Complément :</h5>
     {{ form_widget(form.Etablissement.adresse.complement) }}
 
     <h5> Ville* :</h5>
@@ -366,23 +366,23 @@
             var lblMatElt = parNode.getElementsByTagName('label')[1];
             switch(valueToChk){
                 case 'frim' :
-                    $(matClasElt).fadeOut('slow');
-                    $(matFriElt).fadeIn('medium');
-                    $(themElt).fadeOut('fast').find('select').prop('disabled',true).prop('required',false);
-                    $(lblMatElt).fadeOut('fast');
+                    $(matClasElt).hide().prop('disabled',true);
+                    $(matFriElt).show().prop('disabled',false);
+                    $(themElt).hide().find('select').prop('disabled',true).prop('required',false);
+                    $(lblMatElt).hide().prop('disabled',true);
                     break;
                 case 'pld' :
-                    $(lblMatElt).fadeIn('fast');
-                    $(matFriElt).fadeOut('slow');
-                    $(matClasElt).fadeIn('medium');
-                    $(themElt).fadeIn('fast').find('select').prop('disabled',false).prop('required',true);
+                    $(lblMatElt).show().prop('disabled',false);
+                    $(matFriElt).hide().prop('disabled',true);
+                    $(matClasElt).show().prop('disabled',false);
+                    $(themElt).show().find('select').prop('disabled',false).prop('required',true);
                     break;
 
                 case 'aut' :
-                    $(lblMatElt).fadeOut('fast');
-                    $(matClasElt).fadeOut('fast');
-                    $(matFriElt).fadeOut('fast');
-                    $(themElt).fadeIn('fast').find('select').prop('disabled',false).prop('required',false);
+                    $(lblMatElt).hide().prop('disabled',true);
+                    $(matClasElt).hide().prop('disabled',true);
+                    $(matFriElt).hide().prop('disabled',true);
+                    $(themElt).show().find('select').prop('disabled',false).prop('required',false);
                     break;
             }
 
@@ -633,7 +633,9 @@
             }
 
             function addIntervention($container) {
-                var template = $container.attr('data-prototype');
+                var template = $container.attr('data-prototype')
+                    .replace(/__name__label__/g, '')
+                    .replace(/__name__/g,        index);
                 // On crée un objet jquery qui contient ce template
                 var $prototype = $(template);
 
@@ -726,27 +728,27 @@
 			var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
 			var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
 			var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
-            $(instituteElt).fadeIn("medium").removeAttr("disabled").find("input").prop("required",true);
-            $(centerElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
-            $(othersElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
+            $(instituteElt).show().removeAttr("disabled");
+            $(centerElt).hide().prop("disabled",true);
+            $(othersElt).hide().prop("disabled",true);
         }
 
         function keepCenter(){
 			var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
 			var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
 			var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
-            $(centerElt).fadeIn("medium").removeAttr("disabled").find("input").prop("required",true);
-            $(instituteElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
-            $(othersElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
+            $(centerElt).show().removeAttr("disabled");
+            $(instituteElt).hide().prop("disabled",true);
+            $(othersElt).hide().prop("disabled",true);
         }
 
         function keepOther(){
 			var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
 			var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
 			var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
-            $(othersElt).fadeIn("medium").removeAttr("disabled").find("input").prop("required",true);
-            $(centerElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
-            $(instituteElt).fadeOut("slow").prop("disabled",true).find("input").prop("required",false);
+            $(othersElt).show().removeAttr("disabled");
+            $(centerElt).hide().prop("disabled",true);
+            $(instituteElt).hide().prop("disabled",true);
         }
 
         function verifyAll(e){
@@ -853,7 +855,6 @@
 
         $('#demande_jour').replaceWith($(tblElt));
 
-        //document.getElementsByClassName('form-group form-group')[16]
         //initialisation
         $('.form-group:eq(8)').fadeOut("fast");
         switch($("#demande_Etablissement_TypeGeneral").val()){
@@ -954,7 +955,9 @@
                 // Dans le contenu de l'attribut « data-prototype », on remplace :
                 // - le texte "__name__label__" qu'il contient par le label du champ
                 // - le texte "__name__" qu'il contient par le numéro du champ
-                var template = $container.attr('data-prototype');
+                var template = $container.attr('data-prototype')
+                    .replace(/__name__label__/g, '')
+                    .replace(/__name__/g,        index);
 
                 // On crée un objet jquery qui contient ce template
                 var $prototype = $(template);

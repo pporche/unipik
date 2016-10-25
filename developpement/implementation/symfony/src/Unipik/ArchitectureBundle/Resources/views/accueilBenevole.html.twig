@@ -17,6 +17,65 @@
         #lien {
             float: right;
         }
+
+        @media only screen and (max-width: 535px) {
+
+            .btn-danger{
+                max-width: 200px !important;
+            }
+
+            /* Force table to not be like tables anymore */
+            .interventions,
+            .interventions thead,
+            .interventions tbody,
+            .interventions th,
+            .interventions td,
+            .interventions tr {
+                display: block;
+            }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+            .interventions thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            .interventions tr {
+                border: 1px solid #ccc;
+            }
+
+            .interventions td {
+                /* Behave  like a "row" */
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50% !important;
+                white-space: normal;
+                text-align: left;
+            }
+
+            .interventions td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            /*
+            Label the data
+            */
+            .interventions td:before {
+                content: attr(data-title);
+            }
+        }
+
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -256,7 +315,7 @@
                 <h2 class="subtitle">Prochaines interventions </h2>
                 {% if interventionsNonRealiseesBenevole is not empty %}
                     <div class="table_outer">
-                        <table class="table table-striped table-hover ">
+                        <table class="table table-striped table-hover interventions">
                             <thead>
                             <tr>
                                 <th>Lieu
@@ -273,13 +332,13 @@
                                 {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
                                     <tr class="dangerTable">
                                 {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) %}
-                                    <tr class="warningTable" >
+                                    <tr class="warningTable">
                                 {% else %}
-                                    <tr>
+                                    <tr >
                                 {% endif %}
-                                <td>{{ intervention.etablissement.adresse.ville.nom }}</td>
-                                <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
-                                <td>
+                                <td data-title="Lieu">{{ intervention.etablissement.adresse.ville.nom }}</td>
+                                <td data-title="Date">{{ intervention.dateIntervention|date("d-m-Y") }}</td>
+                                <td data-title="Type">
                                     {% if intervention.plaidoyer %}
                                         Plaidoyer
                                     {% elseif intervention.frimousse %}
@@ -316,7 +375,7 @@
                 <h2 class="subtitle">Interventions réalisées </h2>
                 {% if interventionsRealiseesBenevole is not empty %}
                     <div class="table_outer">
-                        <table class="table table-striped table-hover ">
+                        <table class="table table-striped table-hover interventions">
                             <thead>
                             <tr>
                                 <th>Lieu
@@ -338,9 +397,9 @@
                                 {% else %}
                                     <tr>
                                 {% endif %}
-                                <td>{{ intervention.etablissement.adresse.ville.nom }}</td>
-                                <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
-                                <td>
+                                <td data-title="Lieu">{{ intervention.etablissement.adresse.ville.nom }}</td>
+                                <td data-title="Date">{{ intervention.dateIntervention|date("d-m-Y") }}</td>
+                                <td data-title="Type">
                                     {% if intervention.plaidoyer %}
                                         Plaidoyer
                                     {% elseif intervention.frimousse %}

@@ -24,19 +24,18 @@
                 position: relative;
                 margin-top: 20vh !important;
                 border-radius: 20px;
+
+                padding-bottom: 50px !important;
             }
             .container{
                 max-width: 450px;
                 margin-left: auto !important;
             }
 
-            div + .row{
-                margin-left: 0px !important;
-            }
 
             input[type="password"], input[type="text"]{
-                max-width: 300px !important;
-                margin-left: 45px;
+                max-width: 250px !important;
+                margin-left: 45px !important;
                 border-top: #ffffff;
                 border-right: #ffffff;
                 border-left: #ffffff;
@@ -59,27 +58,18 @@
                 margin-bottom: 50px;
             }
 
+            h4{
+                font-family: 'Ubuntu Condensed', sans-serif;
+                text-align: center;
+                font-size: 18px !important;
+                margin-top: 30px;
+                text-align: left;
+            }
+
             form button{
                 border-radius: 10px !important;
-                margin-left: -70px !important;
                 background-color: #1a6ecc !important;
                 border:none !important;
-            }
-
-            input[type="checkbox"]{
-                margin-left: -30px !important;
-            }
-
-            .checkbox label{
-                font-family: 'Ubuntu Condensed', sans-serif;
-                font-size: 16px;
-                padding-left: 0px;
-            }
-            .control-label{
-                width: 250px !important;
-                font-family: 'Ubuntu Condensed', sans-serif;
-                font-size: 18px;
-                text-align: left !important;
             }
 
             div > img{
@@ -98,14 +88,25 @@
             }
 
             @media(max-width: 470px){
-                input[type="password"], input[type="text"]{
-                    margin-left:0px;
-                }
+
                 .logologin{
                     width: 180px;
                     position: absolute;
                     top: -70px;
                     left: 20%;
+                }
+            }
+
+            @media (max-width: 400px) {
+                .container{
+                    padding:15px!important;
+                }
+            }
+
+            @media (max-width: 372px) {
+                input[type="password"], input[type="text"]{
+                    margin-left: 30px;
+                    width: 200px;
                 }
             }
         </style>
@@ -119,9 +120,17 @@
     {% endif %}
     <img src="{{ asset('img/unicef.jpeg') }}" alt="logo" class="logologin">
 
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_security_check'), 'attr': {'class': 'fos_user_security_login'}}) }}
 
-        {{ form(form) }}
+    <h4>Nom d'utilisateur</h4>
+    {{ form_widget(form._username) }}
 
+    <h4>Mot de passe</h4>
+    {{ form_widget(form._password) }}
+    <br>
+    {{ form_widget(form._remember_me) }}
+    <br><br>
+    {{ form_widget(form._submit) }}
 
 
 {% endblock %}

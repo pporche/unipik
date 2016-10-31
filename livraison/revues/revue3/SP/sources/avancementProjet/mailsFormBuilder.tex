@@ -4,19 +4,27 @@
 \begin{frame}
 \frametitle{F1 - Gestion utilisateur}
 \begin{block}{FOSUserBundle}
-	\begin{itemize}
-		\item Un schéma des familles
-	\end{itemize}
+	\includegraphics[scale=0.42]{images/gestionUtilisateur.png}
 \end{block}
 \end{frame}
 
 \begin{frame}
 \frametitle{F2 - Gestion des établissements}
-\begin{block}{Construction des formulaires}
-	\begin{itemize}
-		\item Un schéma
-	\end{itemize}
-\end{block}
+\begin{minipage}[c]{.3\linewidth}
+      \begin{figure}[r]
+		\includegraphics[scale=0.3]{images/formBuilder.png}
+		%\caption{Imprim-écran des possibilités de tris}
+	  \end{figure}
+   \end{minipage} \hfill
+   \begin{minipage}[c]{.4\linewidth}
+      \begin{block}{Les Formulaires}
+		\begin{itemize}
+			\item Entités : objets manipulés par l'ORM 
+			\item FormBuilder : construction de formulaire autour d'une entité
+			\item FormType : réutilisabilité des formulaires
+		\end{itemize}
+	  \end{block}
+   \end{minipage} \hfill
 \end{frame}
 
 \begin{frame}
@@ -25,8 +33,8 @@
 	\begin{itemize}
 		\item Bundle dédié aux fonctionnalités de mailing
 		\item Service de mailing
-		\item Serveur SMTP aux abonnés absents
-		\item Déporté au lot 3
+		\item Serveur SMTP manquant
+		\item Déportée au lot 3
 	\end{itemize}
 \end{block}
 \end{frame}
@@ -38,7 +46,7 @@
 		\item Lien unique pour chaque établissement
 		\item Complétion automatique des informations de l'établissement
 		\item Mail de confirmation
-		\item Possibilité d'annulation non implémenter
+		\item Possibilité d'annulation non implémentée
 	\end{itemize}
 \end{block}
 \end{frame}

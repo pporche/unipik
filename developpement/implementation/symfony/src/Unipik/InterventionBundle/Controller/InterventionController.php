@@ -679,7 +679,7 @@ class InterventionController extends Controller {
                     }
                 }
 
-                else if(isset($interventionRaw['materiauxFrimousse']) && !empty($interventionRaw['materiauxFrimousse'])){
+                 if(isset($interventionRaw['materiauxFrimousse']) && !empty($interventionRaw['materiauxFrimousse'])){
                     foreach ($interventionRaw['materiauxFrimousse']["materiel"] as $materiel){
                         $interventionTemp->addMateriauxFrimousse($materiel);
                     }

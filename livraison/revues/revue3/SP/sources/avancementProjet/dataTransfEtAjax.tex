@@ -5,15 +5,15 @@
 \frametitle{Aide à l'attribution des interventions}
 	\begin{minipage}[c]{.40\linewidth}
       \begin{figure}[r]
-		\includegraphics[scale=0.35]{images/filtreListeIntervention.png}
-		%\caption{Imprim-écran des possibilités de tris}
+		\includegraphics[scale=0.3]{images/filtreListeIntervention.png}
+		\caption{Capture d'écran des possibilités de tris}
 	  \end{figure}
    \end{minipage} \hfill
    \begin{minipage}[c]{.52\linewidth}
       \begin{block}{Les filtres}
 		\begin{itemize}
-			\item requêtes sur la base de données
-			\item notion de \texttt{Repository}
+			\item Requêtes sur la base de données
+			\item Notion de \texttt{Repository}
 		\end{itemize}
 	  \end{block}
 	  \begin{block}{Rôle des \texttt{Repository}}
@@ -30,9 +30,9 @@
 \frametitle{La sélection en base de données}
 	\begin{block}{Les méthodes de récupération des entités}
 		\begin{itemize}
-			\item méthodes de récupération de base : \\
+			\item Méthodes de récupération de base : \\
 			 \texttt{find, findAll, findBy, findOneBy, findByX, findOneByX}
-			\item méthodes de récupération personnelle : \\
+			\item Méthodes de récupération personnalisées : \\
 			\begin{itemize}
 			\item \texttt{DQL (Doctrine Query Language)} : \texttt{SQL adapté à la vision objets}
 			\item \texttt{Query Builder}: construction de la requête étape par étape
@@ -48,9 +48,8 @@
 	\begin{block}{Requête SQL :}	
 	\texttt{ 
 	\noindent $\backslash$set idUtilisateurCourant 10 \\ 	
-	SELECT * FROM intervention i, benevole b \\
-	\setlength{\parindent}{1cm}	WHERE i.id\_benevole = b.id\\
-	\setlength{\parindent}{1cm}	AND WHERE b.id = :idUtilisateurCourant;}
+	SELECT i.* FROM intervention i \\
+	\setlength{\parindent}{1cm}	WHERE i.id\_benevole = :idUtilisateurCourant;}
 	\end{block}
 	\begin{block}{Requête Query Builer :}
 	\noindent \texttt{\$qb = \$this->createQueryBuilder('i'); \\
@@ -63,10 +62,10 @@
 \begin{frame}
 \frametitle{Attribution/réalisation d'une intervention}
       \begin{figure}[r]
-		\includegraphics[scale=0.35]{images/ajax.png}
-		%\caption{Imprim-écran des possibilités de tris}
+		\includegraphics[scale=0.27]{images/ajax.png}
+		\caption{Schéma explicatif d'AJAX}
 	  \end{figure}
       \begin{block}{AJAX (Asynchronous JavaScript And XML)}
-		Ajax est un concept de programmation Web dont le but est de faire communiquer une page Web avec un serveur Web recharger de la page.
+		Ajax est un concept de programmation Web dont le but est de faire communiquer une page Web avec un serveur Web sans recharger la page.
 	  \end{block}
 \end{frame}

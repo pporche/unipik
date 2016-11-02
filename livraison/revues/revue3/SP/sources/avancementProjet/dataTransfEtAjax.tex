@@ -2,7 +2,7 @@
 \speaker{\Julie}
 
 \begin{frame}
-\frametitle{Aide à l'attribution des interventions}
+\frametitle{F5 : Aide à l'attribution des interventions}
 	\begin{minipage}[c]{.40\linewidth}
       \begin{figure}[r]
 		\includegraphics[scale=0.3]{images/filtreListeIntervention.png}
@@ -27,7 +27,7 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{La sélection en base de données}
+\frametitle{F5 : Aide à l'attribution des interventions}
 	\begin{block}{Les méthodes de récupération des entités}
 		\begin{itemize}
 			\item Méthodes de récupération de base : \\
@@ -42,25 +42,24 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{\texttt{Query Builder}}
+\frametitle{F5 : Aide à l'attribution des interventions}
 	\textbf{But :} récupérer les interventions attribuées au bénévole courant. \\
 	\vskip 0.5cm
 	\begin{block}{Requête SQL :}	
 	\texttt{ 
-	\noindent $\backslash$set idUtilisateurCourant 10 \\ 	
 	SELECT i.* FROM intervention i \\
-	\setlength{\parindent}{1cm}	WHERE i.id\_benevole = :idUtilisateurCourant;}
+	\setlength{\parindent}{1cm}	WHERE i.id\_benevole = \textcolor{blue}{:idUtilisateurCourant};}
 	\end{block}
 	\begin{block}{Requête Query Builer :}
 	\noindent \texttt{\$qb = \$this->createQueryBuilder('i'); \\
 	\noindent \$qb \\
 	\setlength{\parindent}{1cm} ->where('i.benevole = :user') \\
-    \setlength{\parindent}{1cm} ->setParameter('user', \$user);}
+    \setlength{\parindent}{1cm} ->setParameter('user', \textcolor{blue}{\$user});}
 	\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Attribution/réalisation d'une intervention}
+\frametitle{F6 : Attribution/réalisation d'une intervention}
       \begin{figure}[r]
 		\includegraphics[scale=0.27]{images/ajax.png}
 		\caption{Schéma explicatif d'AJAX}

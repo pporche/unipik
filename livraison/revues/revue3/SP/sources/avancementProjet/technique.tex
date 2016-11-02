@@ -5,43 +5,43 @@
 \frametitle{Outils techniques de qualité}
 \begin{block}{Intégration dans le projet de nombreux outils d'aide au développement}
 	\begin{itemize}
-		\item sonarQube
-		\item phpCodeSniffer %choisi par michel
-		\item phpUnit (+coverage) %choisi par michel
-		\item phpDocumentor
+		\item SonarQube
+		\item PhpCodeSniffer
+		\item PhpUnit (avec couverture de code)
+		\item PhpDocumentor
 	\end{itemize}
 \end{block}
 \end{frame}
 
 \begin{frame}
       \begin{figure}[r]
-		\includegraphics[scale=0.4]{images/coverage.png}
-		\caption{Imprim-écran de la couverture des tests}
+		\includegraphics[scale=0.3]{images/coverage.png}
+		\caption{Capture d'écran de la couverture des tests}
 	  \end{figure}
 \end{frame}
 
 \begin{frame}
       \begin{figure}[r]
 		\includegraphics[scale=0.2]{images/doc.png}
-		\caption{Imprim-écran de la documentation}
+		\caption{Capture d'écran de la documentation}
 	  \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Déploiement automatiques}
-\begin{block}{Environnement multiples}
+\frametitle{Déploiement automatique}
+\begin{block}{Environnements multiples}
 	\begin{itemize}
-		\item Dev: apache en local avec symlink vers le dossier de travail \\
+		\item Développement: apache avec symlink vers le dossier de travail \\
 		\emph{\tiny(http://prenom.unipik.insa-rouen.fr)}
-		\item Integ: VM sur le pare-feu de la salle PIC (Vagrant) \\
+		\item Intégration: VM sur le pare-feu de la salle PIC (Vagrant) \\
 		\emph{\tiny(http://integ.unipik.insa-rouen.fr)}
-		\item pre-prod: machine physique dédié dans la salle pic. \\
+		\item Pré-production: machine physique dédié dans la salle pic. \\
 		\emph{\tiny(http://pre-prod.unipik.insa-rouen.fr)}
-		\item prod: chez digital ocean (bientôt chez quantic telecom) \\
+		\item Production: chez Digital Ocean (bientôt chez Quantic Telecom) \\
 		\emph{\tiny(http://138.68.151.59)}
 	\end{itemize}
 \end{block}
 
-L'integ, la pré-prod et la prod sont approvisionnés automatiquement avec Ansible.
+L'intégration, la pré-production et la production sont approvisionnés automatiquement avec Ansible.
 
 \end{frame}

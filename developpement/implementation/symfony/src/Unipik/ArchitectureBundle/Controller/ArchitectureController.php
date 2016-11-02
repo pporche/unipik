@@ -36,7 +36,7 @@ class ArchitectureController extends Controller {
         $user = $this->getUser();
 
         if (!is_object($user) || !$user instanceof UserInterface) {
-            return $this->render('ArchitectureBundle::accueilAnonyme.html.twig');
+            return $this->redirectToRoute('fos_user_security_login');
         }
 
         $em = $this->getDoctrine()->getManager();

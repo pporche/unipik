@@ -254,7 +254,7 @@ class InterventionController extends Controller {
             $session =$request->getSession();
             $em->flush();
 
-
+            /*return new Response(print_r(\Doctrine\Common\Util\Debug::dump($interventionList)));*/
             $session->getFlashBag()->add('notice', array(
                 'title' => 'Félicitation',
                 'message' => 'Votre demande d\'intervention a bien été enregistrée. Nous vous contacterons sous peu.',
@@ -663,23 +663,29 @@ class InterventionController extends Controller {
                 $interventionTemp->setDateIntervention(null);
                 $interventionTemp->setNbPersonne($interventionRaw["nbPersonne"]);
                 $interventionTemp->setComite($comiteTest);
+                $lvlTheme = "";
                 if(isset($interventionRaw["materielDispoPlaidoyer"]) && !empty($interventionRaw["materielDispoPlaidoyer"])){
                     foreach ($interventionRaw["materielDispoPlaidoyer"]["materiel"] as $materiel){
                         $interventionTemp->addMaterielDispoPlaidoyer($materiel);
                     }
+                    if(isset($interventionRaw["niveauTheme"])){
+                        $lvlTheme = $lvlThemeRepository->findOneBy(
+                            array('niveau' => $interventionRaw["niveauTheme"]->getNiveau(),
+                                'theme' => $interventionRaw["niveauTheme"]->getTheme()
+                            )
+                        );
+                        $interventionTemp->setNiveauTheme($lvlTheme);
+
+                    }
                 }
+
                 else if(isset($interventionRaw['materiauxFrimousse']) && !empty($interventionRaw['materiauxFrimousse'])){
                     foreach ($interventionRaw['materiauxFrimousse']["materiel"] as $materiel){
                         $interventionTemp->addMateriauxFrimousse($materiel);
                     }
-                }
-                if(isset($interventionRaw["niveauTheme"])){
-                    $lvlTheme = $lvlThemeRepository->findOneBy(
-                        array('niveau' => $interventionRaw["niveauTheme"]->getNiveau(),
-                            'theme' => $interventionRaw["niveauTheme"]->getTheme()
-                        )
-                    );
-                    $interventionTemp->setNiveauTheme($lvlTheme);
+                    if(isset($interventionRaw["niveauTheme"])) {
+                        $interventionTemp->setNiveauFrimousse($interventionRaw["niveauTheme"]->getNiveau());
+                    }
                 }
 
                 $interventionList[] = $interventionTemp;

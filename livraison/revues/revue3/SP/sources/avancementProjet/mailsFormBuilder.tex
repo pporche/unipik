@@ -2,43 +2,51 @@
 \speaker{\Florian}
 
 \begin{frame}
-\frametitle{F1 - Gestion utilisateur}
+\frametitle{Gestion utilisateur}
 \begin{block}{FOSUserBundle}
-	\begin{itemize}
-		\item Un schéma des familles
-	\end{itemize}
+	\includegraphics[scale=0.42]{images/gestionUtilisateur.png}
 \end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{F2 - Gestion des établissements}
-\begin{block}{Construction des formulaires}
-	\begin{itemize}
-		\item Un schéma
-	\end{itemize}
-\end{block}
+\frametitle{Gestion des établissements et interventions}
+\begin{minipage}[c]{.3\linewidth}
+      \begin{figure}[r]
+		\includegraphics[scale=0.3]{images/formBuilder.png}
+		%\caption{Imprim-écran des possibilités de tris}
+	  \end{figure}
+   \end{minipage} \hfill
+   \begin{minipage}[c]{.4\linewidth}
+      \begin{block}{Les Formulaires}
+		\begin{itemize}
+			\item Entités : objets manipulés par l'ORM
+			\item FormType : réutilisabilité des formulaires
+			\item FormBuilder : construction de formulaire autour d'une entité
+		\end{itemize}
+	  \end{block}
+   \end{minipage} \hfill
 \end{frame}
 
 \begin{frame}
-\frametitle{F3 - Mailing}
-\begin{block}{Envoie de mails}
-	\begin{itemize}
-		\item Bundle dédié aux fonctionnalités de mailing
-		\item Service de mailing
-		\item Serveur SMTP aux abonnés absents
-		\item Déporté au lot 3
-	\end{itemize}
-\end{block}
-\end{frame}
-
-\begin{frame}
-\frametitle{F4 - Demande d'intervention}
+\frametitle{Demande d'intervention}
 \begin{block}{Le formulaire}
 	\begin{itemize}
 		\item Lien unique pour chaque établissement
 		\item Complétion automatique des informations de l'établissement
 		\item Mail de confirmation
-		\item Possibilité d'annulation non implémenter
+		\item Possibilité d'annulation non implémentée
+	\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mailing}
+\begin{block}{Envoie de mails}
+	\begin{itemize}
+		\item Bundle dédié aux fonctionnalités de mailing
+		\item Service de mailing
+		\item Serveur SMTP manquant
+		\item Déportée au lot 3
 	\end{itemize}
 \end{block}
 \end{frame}

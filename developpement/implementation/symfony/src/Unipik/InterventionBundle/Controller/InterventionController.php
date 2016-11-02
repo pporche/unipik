@@ -158,7 +158,7 @@ class InterventionController extends Controller {
             }
 
             $this->treatmentInterventions($interventionsRawList,$interventionList);
-
+            //return new Response(\Doctrine\Common\Util\Debug::dump($interventionsRawList[2]['materiauxFrimousse']));
             $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);
 

@@ -368,21 +368,21 @@
                 case 'frim' :
                     $(matClasElt).hide().prop('disabled',true);
                     $(matFriElt).show().prop('disabled',false);
-                    $(themElt).hide().find('select').prop('disabled',true).prop('required',false);
+                    $(themElt).hide().find('select').prop('disabled',true).prop('required',false).find('input').prop('disabled',true);
                     $(lblMatElt).hide().prop('disabled',true);
                     break;
                 case 'pld' :
                     $(lblMatElt).show().prop('disabled',false);
                     $(matFriElt).hide().prop('disabled',true);
                     $(matClasElt).show().prop('disabled',false);
-                    $(themElt).show().find('select').prop('disabled',false).prop('required',true);
+                    $(themElt).show().find('select').prop('disabled',false).prop('required',true).find('input').prop('disabled',false);
                     break;
 
                 case 'aut' :
                     $(lblMatElt).hide().prop('disabled',true);
                     $(matClasElt).hide().prop('disabled',true);
                     $(matFriElt).hide().prop('disabled',true);
-                    $(themElt).show().find('select').prop('disabled',false).prop('required',false);
+                    $(themElt).show().find('select').prop('disabled',false).prop('required',false).find('input').prop('disabled',false);
                     break;
             }
 

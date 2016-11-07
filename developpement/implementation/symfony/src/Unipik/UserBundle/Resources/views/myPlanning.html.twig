@@ -25,7 +25,7 @@
             {% for intervention in interventionsNonRealisees %}
                 {% if intervention.dateIntervention is not null  %}
                     {% if intervention.plaidoyer %}
-                        typeIntervention = "Plaidoyer";
+                        typeIntervention = "Action éducative";
                     {% elseif intervention.frimousse %}
                         typeIntervention = "Frimousse";
                     {% else %}
@@ -84,7 +84,7 @@
             {% for intervention in interventionsRealisees %}
                 {% if intervention.dateIntervention is not null  %}
                     {% if intervention.plaidoyer %}
-                        typeIntervention = "Plaidoyer";
+                        typeIntervention = "Action éducative";
                     {% elseif intervention.frimousse %}
                         typeIntervention = "Frimousse";
                     {% else %}

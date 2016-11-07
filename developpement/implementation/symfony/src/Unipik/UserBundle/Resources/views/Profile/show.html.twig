@@ -120,7 +120,7 @@
                         <ul class="list-group col-lg-offset-1 col-sm-7 ">
                             {% if ('plaidoyers' in user.responsabiliteActivite ) %}
                                 <li class="list-group-item">
-                                    Plaidoyer
+                                    Action éducative
                                 </li>
                             {% endif %}
                             {% if ('frimousses' in user.responsabiliteActivite) %}
@@ -219,7 +219,7 @@
                                 {% for intervention in listeInterventions %}
                                     <a href="{{ path('intervention_view', {'id': intervention.id}) }}" >
                                         {% if intervention.plaidoyer %}
-                                            Plaidoyer -
+                                            Action éducative -
                                         {% elseif intervention.frimousse %}
                                             Frimousse -
                                         {% else %}

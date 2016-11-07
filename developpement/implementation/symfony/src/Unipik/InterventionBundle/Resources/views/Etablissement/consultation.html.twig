@@ -96,13 +96,19 @@
                     </div>
                     <div class="col-sm-6 col-xs-12">
                         <div class="row-fuild">
-                            <iframe class="container span12"
-                                    src="http://www.openstreetmap.org/export/embed.html?bbox=8.5628,50.0781,8.8217,50.1877&amp;layer=mapnik"
-                                    style="
-                                        border: 1px solid black;
-                                        height: 350px ;
-                                        padding: 0px !important;
-                                        "></iframe>
+                            {% if etablissement.adresse.geolocalisation is not null %}
+                                {% set lat = etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] %}
+                                {% set lon = etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] %}
+                                <iframe class="container span12"
+                                        src="http://www.openstreetmap.org/export/embed.html?bbox={{ lat-0.1 }},{{ lon-0.1 }},{{ lat+0.1 }},{{ lon+0.1 }}&amp;marker={{ lon }},{{ lat }}&amp;layer=mapnik"
+                                        style="
+                                            border: 1px solid black;
+                                            height: 350px ;
+                                            padding: 0px !important;
+                                            "></iframe>
+                            {% else %}
+                                Les coordonnées de l'établissement ne sont pas renseignées
+                            {% endif %}
                         </div>
                     </div>
 

@@ -437,6 +437,11 @@
             {% endif %}
             :
         </h2>
+        {% if onlyMyIntervention %}
+            {% set vue =  'intervention_self' %}
+        {% else %}
+            {% set vue =  'intervention_list' %}
+        {% endif %}
         <div class="container">
             <div class="row">
                 <div class="table-responsive">
@@ -454,14 +459,14 @@
                                 {% if desc %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
                                                  id="sortLieu" alt="sort Down"/>
                                         </a>
                                     </th>
                                     <th>Date
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
                                                  id="sortDate" alt="sort Down"/>
                                         </a>
@@ -469,14 +474,14 @@
                                 {% else %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class="sort sort-up"
                                                  id="sortLieu" alt="sort Down"/>
                                         </a>
                                     </th>
                                     <th>Date
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
                                             <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
                                                  id="sortDate" alt="sort Up"/>
                                         </a>
@@ -486,14 +491,14 @@
                                 {% if desc %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
                                                  id="sortLieu" alt="sort Down"/>
                                         </a>
                                     </th>
                                     <th>Date
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
                                                  id="sortDate" alt="sort Down"/>
                                         </a>
@@ -501,14 +506,14 @@
                                 {% else %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortLieu"
                                                  alt="sort Up"/>
                                         </a>
                                     </th>
                                     <th>Date
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
                                                  id="sortDate" alt="sort Up"/>
                                         </a>
@@ -646,11 +651,11 @@
                         {% set pathReq = pathReq | merge({"desc":app.request.query.get('desc')}) | merge({"field":app.request.query.get('field')}) %}
                     {% endif %}
                     <ul>Par page :
-                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
-                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
-                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
-                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
-                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
+                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
+                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
+                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
+                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
+                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
                     </ul>
                     <ul class="pagination pagination-lg pager" id="myPager"></ul>
                 </div>
@@ -668,7 +673,7 @@
                     <h4 class="modal-title" id="myModalLabel">Attribuer l'intervention à</h4>
                 </div>
                 <div class="modal-body">
-                    {{ form_start(formAttr, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                    {{ form_start(formAttr, {'method': 'post', 'action': path(vue), 'attr': {'class': "{{ vue }} form-sm"}}) }}
                     <h5>Bénévole : {{ form_widget(formAttr.benevole) }}</h5>
                 </div>
                 <div class="modal-footer">

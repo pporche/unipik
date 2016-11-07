@@ -52,7 +52,6 @@ class Adresse
      */
     private $adresse;
 
-
     /**
      * @var string
      *

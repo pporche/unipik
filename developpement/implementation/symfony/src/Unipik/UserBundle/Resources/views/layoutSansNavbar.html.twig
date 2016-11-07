@@ -12,7 +12,6 @@
 
 {% block body %}
 
-
     {% if app.request.hasPreviousSession %}
         {% for type, messages in app.session.flashbag.all() %}
             {% for message in messages %}
@@ -27,5 +26,4 @@
         {% block fos_user_content %}
         {% endblock fos_user_content %}
     </div>
-
 {% endblock %}

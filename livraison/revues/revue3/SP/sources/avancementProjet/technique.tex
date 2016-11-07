@@ -15,9 +15,21 @@
 
 \begin{frame}
       \begin{figure}[r]
-		\includegraphics[scale=0.3]{images/coverage.png}
+		\includegraphics[scale=0.25]{images/coverage.png}
 		\caption{Capture d'écran de la couverture des tests}
 	  \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Outils techniques de qualité}
+\begin{block}{Intégration dans le projet de nombreux outils d'aide au développement}
+	\begin{itemize}
+		\item SonarQube
+		\item PhpCodeSniffer
+		\item PhpUnit (avec couverture de code)
+		\item PhpDocumentor
+	\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
@@ -35,13 +47,13 @@
 		\emph{\tiny(http://prenom.unipik.insa-rouen.fr)}
 		\item Intégration: VM sur le pare-feu de la salle PIC (Vagrant) \\
 		\emph{\tiny(http://integ.unipik.insa-rouen.fr)}
-		\item Pré-production: machine physique dédié dans la salle pic. \\
+		\item Pré-production: machine physique dédiée dans la salle pic \\
 		\emph{\tiny(http://pre-prod.unipik.insa-rouen.fr)}
 		\item Production: chez Digital Ocean (bientôt chez Quantic Telecom) \\
 		\emph{\tiny(http://138.68.151.59)}
 	\end{itemize}
 \end{block}
 
-L'intégration, la pré-production et la production sont approvisionnés automatiquement avec Ansible.
+L'intégration, la pré-production et la production sont approvisionnées automatiquement avec Ansible.
 
 \end{frame}

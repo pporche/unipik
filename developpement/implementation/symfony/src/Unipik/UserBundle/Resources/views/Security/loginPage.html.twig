@@ -8,9 +8,9 @@
 {% endblock %}
 
 {% block body %}
-
     <h2>Bienvenue!</h2>
 
     {{ render(controller("UserBundle:Security:login")) }}
-
+    <br/>
+    <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
 {% endblock %}

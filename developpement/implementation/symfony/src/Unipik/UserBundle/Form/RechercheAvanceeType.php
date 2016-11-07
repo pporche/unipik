@@ -45,7 +45,7 @@ class RechercheAvanceeType extends AbstractType {
             'choices' => [
                 'Actions pontuelles' => 'actions_ponctuelles',
                 'Plaidoyers' => 'plaidoyers',
-                'Frimousses' => 'frimousses',
+                'Actions éducatives' => 'frimousses',
                 'Projets' => 'projets',
                 'Autres' => 'autre'
             ],);
@@ -53,7 +53,7 @@ class RechercheAvanceeType extends AbstractType {
         $responsabilitesChoiceType = array('expanded' => true, 'multiple' => true, 'mapped' => false, 'required' => false,
             'choices' => [
                 'Actions pontuelles' => 'actionsPonctuelles',
-                'Plaidoyers' => 'plaidoyer',
+                'Actions éducatives' => 'plaidoyer',
                 'Frimousses' => 'frimousse',
                 'Projets' => 'projets',
                 'Admin Région' => 'adminRegion'

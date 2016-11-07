@@ -419,7 +419,7 @@
         <h2>
             Liste des
             {% if typeIntervention == "plaidoyer" %}
-                plaidoyers
+                actions éducatives
             {% elseif typeIntervention == "frimousse" %}
                 interventions frimousses
             {% elseif typeIntervention == "autreIntervention" %}
@@ -544,7 +544,7 @@
                                     {% endif %} </td>
                                 <td data-title="Type">
                                     {% if intervention.plaidoyer %}
-                                        Plaidoyer
+                                        Action éducative
                                     {% elseif intervention.frimousse %}
                                         Frimousse
                                     {% else %}

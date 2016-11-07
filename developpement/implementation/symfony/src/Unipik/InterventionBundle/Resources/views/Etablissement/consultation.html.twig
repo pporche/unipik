@@ -142,7 +142,7 @@
                             {% for intervention in listeInterventionsDemandeesNonRealisees %}
                                 <a href="{{ path('intervention_view', {'id': intervention.id})  }}" style="color:white">
                                     {% if intervention.plaidoyer %}
-                                        Plaidoyer -
+                                        Action éducative -
                                     {% elseif intervention.frimousse %}
                                         Frimousse -
                                     {% else %}
@@ -175,7 +175,7 @@
                                     padding:10px;">                            {% for intervention in listeInterventionsRealisees %}
                                 <a href="{{ path('intervention_view', {'id': intervention.id}) }}"  style="color:white">
                                     {% if intervention.plaidoyer %}
-                                        Plaidoyer -
+                                        Action éducative -
                                     {% elseif intervention.frimousse %}
                                         Frimousse -
                                     {% else %}

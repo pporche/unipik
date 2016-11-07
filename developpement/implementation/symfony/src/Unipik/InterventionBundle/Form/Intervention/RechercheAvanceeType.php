@@ -42,7 +42,7 @@ class RechercheAvanceeType extends AbstractType
         $optionChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
             'choices' => [
                 'Toutes' => '',
-                'Plaidoyers' => 'plaidoyer',
+                'Action éducative' => 'plaidoyer',
                 'Frimousses' => 'frimousse',
                 'Autres interventions' => 'autreIntervention'
             ],);

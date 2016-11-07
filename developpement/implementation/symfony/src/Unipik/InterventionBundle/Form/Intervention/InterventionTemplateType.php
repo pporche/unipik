@@ -29,7 +29,7 @@ class InterventionTemplateType extends AbstractFieldsetType {
         $generalType = array('required' => true, 'mapped' => false,
             'label' => 'Type d\'Intervention',
             'choices' => [
-                'Plaidoyer' => 'pld',
+                'Action éducative' => 'pld',
                 'Frimousse' => 'frim',
                 'Autre' => 'aut'
             ],);

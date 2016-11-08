@@ -110,7 +110,7 @@
             @media (max-width: 372px) {
                 input[type="password"], input[type="text"]{
                     margin-left: 30px;
-                    width: 200px;
+                    width: 160px;
                 }
             }
         </style>
@@ -124,12 +124,13 @@
     <img src="{{ asset('img/unicef.jpeg') }}" alt="logo" class="logologin">
 
     {{ form_start(form, {'method': 'post', 'action': path('fos_user_security_check'), 'attr': {'class': 'fos_user_security_login'}}) }}
-
+    <div style="margin-left:8%;">
     <h4>Nom d'utilisateur</h4>
     {{ form_widget(form._username) }}
 
     <h4>Mot de passe</h4>
     {{ form_widget(form._password) }}
+    </div>
     <br>
     {{ form_widget(form._remember_me) }}
     <br><br>

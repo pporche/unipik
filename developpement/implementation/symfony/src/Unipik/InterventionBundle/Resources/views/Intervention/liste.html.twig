@@ -546,9 +546,9 @@
                         <tbody id="myTable">
                         {% if liste is not empty %}
                         {% for intervention in liste %}
-                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention %}
+                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention and (user.nom=="admin" or user.nom==intervention.benevole.nom) %}
                             <tr class="dangerTable">
-                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) and intervention.dateIntervention %}
+                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) and intervention.dateIntervention and (user.nom=="admin" or user.nom==intervention.benevole.nom)%}
                             <tr class="warningTable" >
                             {% else %}
                             <tr>

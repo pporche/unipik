@@ -76,7 +76,7 @@ class EtablissementTest extends  EntityTestCase
         $this->assertEquals(null, $e->getContacts()[0]);
     }
 
-    public function validEntityProvider() 
+    public function validEntityProvider()
     {
         $e = EtablissementMock::createMultiple(2);
         $c = ContactMock::create();
@@ -90,7 +90,7 @@ class EtablissementTest extends  EntityTestCase
 
         return [
             "1 Etablissement" => [$e[0]],
-            "3 Etablissements" => [clone $e[0], clone $e[0], clone $e[0]],
+            "3 Etablissements" => [[clone $e[0], clone $e[0], clone $e[0]]],
             "1 Etablissement with all optional values" => [$e[1]]
         ];
     }

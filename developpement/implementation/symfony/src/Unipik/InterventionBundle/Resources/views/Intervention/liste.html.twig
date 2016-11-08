@@ -286,9 +286,7 @@
         function attributeIntervention(event, id) {
             $.post("{{ path('intervention_self_attribute') }}", {'id': id},
                 function (data, status) {
-                    $(event).attr('class', 'btn btn-danger');
-                    $(event).text('Se la désattribuer');
-                    $(event).attr("onclick", "desattributeIntervention(this, " + id + ")");
+                    $(event).hide();
                 })
                     .fail(function() {
                         alert( "Cette intervention a déjà été attribuée à un bénévole !" );

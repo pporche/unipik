@@ -529,6 +529,9 @@
                                     </th>
                                 {% endif %}
                             {% endif %}
+                            {% if onlyNonAttribues %}
+                                <th>Date de la Demande</th>
+                            {% endif %}
                             <th>Type</th>
                             <th>Etablissement</th>
                             <th>Classe</th>
@@ -556,6 +559,9 @@
                                         {{ intervention.dateIntervention|date("d-m-Y") }}
                                     {% else %} -
                                     {% endif %} </td>
+                                {% if onlyNonAttribues %}
+                                    <td data-title="DateDemande">{{ intervention.demande.dateDemande|date("d-m-Y") }}</td>
+                                {% endif %}
                                 <td data-title="Type">
                                     {% if intervention.plaidoyer %}
                                         Action éducative

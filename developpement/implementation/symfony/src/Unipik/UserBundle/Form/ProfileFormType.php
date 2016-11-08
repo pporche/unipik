@@ -43,7 +43,7 @@ class ProfileFormType extends BaseType {
         $optionActivite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Activités potentielles',
             'choices' => [
                 'Actions ponctuelles' => 'actions_ponctuelles',
-                'Plaidoyers' => 'plaidoyers',
+                'Actions éducatives' => 'plaidoyers',
                 'Frimousses' => 'frimousses',
                 'Projets' => 'projets',
                 'Autre' => 'autre',
@@ -52,7 +52,7 @@ class ProfileFormType extends BaseType {
         $optionResponsabilite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Responsable d\'activité',
             'choices' => [
                 'Actions ponctuelles' => 'actions_ponctuelles',
-                'Plaidoyers' => 'plaidoyers',
+                'Actions éducatives' => 'plaidoyers',
                 'Frimousses' => 'frimousses',
                 'Projets' => 'projets',
                 'Administrateur Régional' => 'admin_region',

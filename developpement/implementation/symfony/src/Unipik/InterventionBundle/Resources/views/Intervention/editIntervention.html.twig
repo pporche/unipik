@@ -169,6 +169,9 @@
         }
 
         $(document).ready(function () {
+            $(':input[type="number"]').attr("min", 0).keyup(function () {
+                this.value = this.value.replace(/[^0-9\.]/g,'');
+            });
             var etablissement;
             var typeEtablissement;
             {% if intervention.etablissement.enseignement %}

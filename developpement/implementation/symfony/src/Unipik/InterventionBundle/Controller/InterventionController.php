@@ -384,8 +384,62 @@ class InterventionController extends Controller {
             'form' => $form->createView(),
             'formAttr' => $f->createView(),
             'onlyMyIntervention' => false,
+            'onlyNonAttribues' => false
         ));
 
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function recentDemandesListeAction(Request $request){
+        $user = $this->getUser();
+
+        $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+
+        $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
+        $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
+
+        $statutIntervention = "nonAttribuees"; //Récupération du statut de l'intervention
+        $niveauFrimousse = $form->get("niveauFrimousse")->getData();
+        $niveauPlaidoyer = $form->get("niveauPlaidoyer")->getData();
+        $ville = $form->get("ville")->getData();
+        $theme = $form->get("theme")->getData();
+        $start = $form->get("start")->getData();
+        $end = $form->get("end")->getData();
+
+
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "dateIntervention");
+        $desc = $request->get("desc", false);
+
+        $repository = $this->getInterventionRepository();
+
+        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, null, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville);
+
+        //Création du formulaire pour la popup
+        $fB = $this->get('form.factory')->createBuilder(AttributionType::class);
+        $f = $fB->getForm();
+        $f->handleRequest($request);
+
+        return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+            'field' => $field,
+            'desc' => $desc,
+            'rowsPerPage' => $rowsPerPage,
+            'liste' => $listIntervention,
+            'typeIntervention' => $typeIntervention,
+            'isCheck' => $dateChecked,
+            'dateStart' => $start,
+            'dateEnd' => $end,
+            'user' => $user,
+            'form' => $form->createView(),
+            'formAttr' => $f->createView(),
+            'onlyMyIntervention' => false,
+            'onlyNonAttribues' => true
+        ));
     }
 
     /**
@@ -436,6 +490,7 @@ class InterventionController extends Controller {
             'form' => $form->createView(),
             'formAttr' => $f->createView(),
             'onlyMyIntervention' => true,
+            'onlyNonAttribues' => false
         ));
     }
 

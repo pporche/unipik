@@ -3,8 +3,7 @@
 {% extends "InterventionBundle::layout.html.twig" %}
 
 {% block title %}
-
-    Liste des interventions - {{ parent() }}
+        Liste des interventions - {{ parent() }}
 
 {% endblock %}
 
@@ -234,11 +233,16 @@
 
 
             {% if onlyMyIntervention==1 %}
-            $("#recherche_avancee_statutIntervention").hide();
-            $("#recherche_avancee_statutMesInterventions").show();
+                $("#recherche_avancee_statutIntervention").hide();
+                $("#recherche_avancee_statutMesInterventions").show();
             {% else %}
-            $("#recherche_avancee_statutIntervention").show();
-            $("#recherche_avancee_statutMesInterventions").hide();
+                $("#recherche_avancee_statutIntervention").show();
+                $("#recherche_avancee_statutMesInterventions").hide();
+            {% endif %}
+            {% if onlyNonAttribues==1 %}
+                $("#recherche_avancee_statutIntervention").hide();
+                $("#recherche_avancee_statutMesInterventions").hide();
+                $("form h5").first().hide();
             {% endif %}
 
 
@@ -371,9 +375,10 @@
             <div class='well'>
                 {% if onlyMyIntervention %}
                     {{ form_start(form, {'method': 'get', 'action': path('intervention_self'), 'attr': {'class': 'intervention_self form-sm'}}) }}
+                {% elseif onlyNonAttribues %}
+                    {{ form_start(form, {'method': 'get', 'action': path('demandes_recentes'), 'attr': {'class': 'intervention_list form-sm'}}) }}
                 {% else %}
                     {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
-
                 {% endif %}
 
                 <h5>Statut de l'intervention :</h5>
@@ -418,7 +423,9 @@
     <section id="listeIntervention" class="col-lg-10 col-md-10 col-sm-10">
         <h2>
             Liste des
-            {% if typeIntervention == "plaidoyer" %}
+            {% if onlyNonAttribues %}
+                demandes récentes
+            {% elseif typeIntervention == "plaidoyer" %}
                 actions éducatives
             {% elseif typeIntervention == "frimousse" %}
                 interventions frimousses
@@ -439,8 +446,10 @@
         </h2>
         {% if onlyMyIntervention %}
             {% set vue =  'intervention_self' %}
-        {% else %}
-            {% set vue =  'intervention_list' %}
+        {% elseif  onlyNonAttribues %}
+            {% set vue =  'demandes_recentes' %}
+            {% else %}
+                {% set vue =  'intervention_list' %}
         {% endif %}
         <div class="container">
             <div class="row">

@@ -22,6 +22,7 @@ Pour rapidement installer SonarQube.
 
 '''
 PATH="$PATH:/opt/sonarqube/bin/linux-x86-64"
+PATH="$PATH:/opt/sonarqube/scanner/bin/"
 
 '''
 4. Exécuter la commande:
@@ -30,7 +31,7 @@ PATH="$PATH:/opt/sonarqube/bin/linux-x86-64"
 source /etc/profile.d/sonarqube.sh
 '''
 
-5. Si plusieurs version de java sont installés, il faut indiquer à sonarqube d'utiliser la verstion 8, pour cela éditer le fichier [[/opt/sonarqube/conf/]] de la manière suivante:
+5. Si plusieurs version de java sont installés, il faut indiquer à sonarqube d'utiliser la verstion 8, pour cela éditer le fichier [[/opt/sonarqube/conf/wrapper.conf]] de la manière suivante:
 
 Trouver
 
@@ -80,13 +81,28 @@ sonar.sources=.
 '''
 8. Ajouter dans le dossier d'installation le dossier sonar-scanner puis ajouter tous les plugins nécessaires dans le dossier extension/plugins  :
 
-- javascript plugin
-- php-plugin
-- web-plugin
+- javascript plugin (http://docs.sonarqube.org/display/PLUG/JavaScript+Plugin)
+- php-plugin (http://docs.sonarqube.org/display/PLUG/PHP+Plugin)
+- web-plugin (http://docs.sonarqube.org/display/PLUG/Web+Plugin)
 
 8. Ajouter "SonarQube Scanner"  :
 http://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
+(extraire dans /opt/sonarqube/scanner)
 
+9. Éditer le fichier /opt/sonarqube/scanner/bin/sonar-scanner :
+
+Trouver :
+
+	if [ -n "$JAVA_HOME" ]
+	then
+	  JAVA_CMD="$JAVA_HOME/bin/java"
+	else
+	  JAVA_CMD="`which java`"
+	fi
+
+Remplacer par :
+
+	JAVA_CMD="/usr/lib/jvm/java-8-openjdk-amd64/bin/java"
 
 9. Pour lancer SonarQube, exécuter la commande suivante dans le dossier d'installation :
 

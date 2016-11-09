@@ -547,10 +547,22 @@
                         <tbody id="myTable">
                         {% if liste is not empty %}
                         {% for intervention in liste %}
-                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention and (user.nom=="admin" or user.nom==intervention.benevole.nom) %}
-                            <tr class="dangerTable">
-                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) and intervention.dateIntervention and (user.nom=="admin" or user.nom==intervention.benevole.nom)%}
-                            <tr class="warningTable" >
+                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention  %}
+                                {%  if intervention.benevole %}
+                                    {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
+                                        <tr class="dangerTable">
+                                    {% endif %}
+                                {% else %}
+                                    <tr class="dangerTable">
+                                {% endif %}
+                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) and intervention.dateIntervention %}
+                                {%  if intervention.benevole %}
+                                    {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
+                                        <tr class="warningTable" >
+                                    {% endif %}
+                                {% else %}
+                                    <tr class="warningTable" >
+                                {% endif %}
                             {% else %}
                             <tr>
                             {% endif %}

@@ -27,14 +27,17 @@ class ThemesType extends AbstractType {
              //   "Le rôle de l Unicef" => 'role de l Unicef', // ajout plus tard
                 "Convention internationale des Droits de l'Enfant" => 'convention internationale des droits de l enfant',
                 "L'éducation" => 'education',
+                "Le rôle de l'Unicef" => 'role unicef',
+                "La santé (en général)" => 'sante en generale',
                 "La santé - Alimentation" => 'sante et alimentation',
                 "L'eau" => 'eau',
                 "Le harcèlement" => 'harcelement',
-                "La santé (en général)" => 'sante en generale',
                 "Le travail des enfants" => 'travail des enfants',
                 "Les enfants soldats" => 'enfants et soldats',
                 "Les urgences mondiales" => 'urgences mondiales',
                 "VIH et sida" => 'VIH et sida',
+                "Les discriminations" => 'discrimination',
+                "Le millénaire pour le développement" => 'millenaire dev',
             ],);
 
         $builder

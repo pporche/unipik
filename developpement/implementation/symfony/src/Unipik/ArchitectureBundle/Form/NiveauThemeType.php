@@ -51,8 +51,8 @@ class NiveauThemeType extends AbstractType
         );
 
         $builder
-            ->add('niveau',ChoiceType::class,$choiceClasse)
-            ->add('theme',ThemesType::class, array('label' => 'Choix des thèmes'))
+            ->add('niveau',ChoiceType::class,$choiceClasse, array('required' => false))
+            ->add('theme',ThemesType::class, array('label' => 'Choix des thèmes', 'required' => false))
         ;
     }
 

@@ -27,7 +27,7 @@ class InterventionTemplateType extends AbstractFieldsetType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
 
-        $generalType = array('required' => true, 'mapped' => false,
+        $generalType = array('required' => true,
             'label' => 'Type d\'Intervention*',
             'attr' => ['class' => 'form-type-intervention'],
             'choices' => [
@@ -38,11 +38,11 @@ class InterventionTemplateType extends AbstractFieldsetType {
 
         $builder
             ->add('TypeGeneral',ChoiceType::class, $generalType)
-            ->add('materielDispoPlaidoyer', MaterielType::class, array('label' => 'Matériel*'))
-            ->add('materiauxFrimousse',MaterielFrimousseType::class, array('label' => 'Matériel frimousse*'))
+            ->add('materielDispoPlaidoyer', MaterielType::class, array('label' => 'Matériel*', 'required' => false))
+            ->add('materiauxFrimousse',MaterielFrimousseType::class, array('label' => 'Matériel frimousse*', 'required' => false))
             ->add('nbPersonne', IntegerType::class, array('label' => 'Nb de participants*'))
             ->add('niveauTheme', NiveauThemeType::class, array('label' => false))
-            ->add('remarques', TextareaType::class, array('label' => 'Remarques', 'attr'=> ['class' => 'form-remarques', 'rows' => '5', 'maxlength' => '500']))
+            ->add('remarques', TextareaType::class, array('label' => 'Remarques', 'attr'=> ['class' => 'form-remarques', 'rows' => '5', 'maxlength' => '500'], 'required' => false))
         ;
     }
 

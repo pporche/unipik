@@ -23,9 +23,9 @@ class ContactType extends AbstractType {
         $builder
             ->add('email',TextType::class)
             ->add('nom',TextType::class,array('label' => false))
-            ->add('prenom',TextType::class,array('label' => false))
-            ->add('telFixe',TextType::class,array('label' => 'Téléphone fixe'))
-            ->add('telPortable',TextType::class,array('label' => 'Téléphone portable'))
+            ->add('prenom',TextType::class,array('label' => false, 'required' => false))
+            ->add('telFixe',TextType::class,array('label' => 'Téléphone fixe', 'required' => false))
+            ->add('telPortable',TextType::class,array('label' => 'Téléphone portable', 'required' => false))
             ->add('typeContact',ChoiceType::class,array(
                 'choices' => array(
                     'Enseignant' => 'enseignant',

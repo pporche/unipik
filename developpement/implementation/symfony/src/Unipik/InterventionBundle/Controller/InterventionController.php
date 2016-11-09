@@ -119,8 +119,8 @@ class InterventionController extends Controller {
 
         $form = $this->createForm(DemandeType::class, $demande);
 
-        $repository = $this->getDoctrine()->getManager();
-        $repository = $repository->getRepository('InterventionBundle:Etablissement');
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('InterventionBundle:Etablissement');
 
         $instituteTest = $repository->find($id);
         $form->get('Etablissement')->setData($instituteTest);
@@ -158,7 +158,7 @@ class InterventionController extends Controller {
             }
 
             $this->treatmentInterventions($interventionsRawList,$interventionList);
-            //return new Response(\Doctrine\Common\Util\Debug::dump($interventionsRawList[2]['materiauxFrimousse']));
+//            return new Response(\Doctrine\Common\Util\Debug::dump($interventionsRawList[1]));
             $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);
 
@@ -719,7 +719,8 @@ class InterventionController extends Controller {
                 $interventionTemp->setNbPersonne($interventionRaw["nbPersonne"]);
                 $interventionTemp->setComite($comiteTest);
                 $lvlTheme = "";
-                if(isset($interventionRaw["materielDispoPlaidoyer"]) && !empty($interventionRaw["materielDispoPlaidoyer"])){
+
+                if($interventionRaw["TypeGeneral"]=="pld"){
                     foreach ($interventionRaw["materielDispoPlaidoyer"]["materiel"] as $materiel){
                         $interventionTemp->addMaterielDispoPlaidoyer($materiel);
                     }
@@ -732,16 +733,42 @@ class InterventionController extends Controller {
                         $interventionTemp->setNiveauTheme($lvlTheme);
 
                     }
-                }
-
-                 if(isset($interventionRaw['materiauxFrimousse']) && !empty($interventionRaw['materiauxFrimousse'])){
+                } elseif($interventionRaw["TypeGeneral"]=="frim") {
                     foreach ($interventionRaw['materiauxFrimousse']["materiel"] as $materiel){
                         $interventionTemp->addMateriauxFrimousse($materiel);
                     }
                     if(isset($interventionRaw["niveauTheme"])) {
                         $interventionTemp->setNiveauFrimousse($interventionRaw["niveauTheme"]->getNiveau());
                     }
+                } elseif($interventionRaw["TypeGeneral"]=="aut"){
+                    if(isset($interventionRaw["remarques"])) {
+                        $interventionTemp->setDescription($interventionRaw["remarques"]);
+                    }
                 }
+
+//                if(isset($interventionRaw["materielDispoPlaidoyer"]) && !empty($interventionRaw["materielDispoPlaidoyer"]["materiel"])){
+//                    foreach ($interventionRaw["materielDispoPlaidoyer"]["materiel"] as $materiel){
+//                        $interventionTemp->addMaterielDispoPlaidoyer($materiel);
+//                    }
+//                    if(isset($interventionRaw["niveauTheme"])){
+//                        $lvlTheme = $lvlThemeRepository->findOneBy(
+//                            array('niveau' => $interventionRaw["niveauTheme"]->getNiveau(),
+//                                'theme' => $interventionRaw["niveauTheme"]->getTheme()
+//                            )
+//                        );
+//                        $interventionTemp->setNiveauTheme($lvlTheme);
+//
+//                    }
+//                }
+//
+//                 if(isset($interventionRaw['materiauxFrimousse']) && !empty($interventionRaw['materiauxFrimousse']["materiel"])){
+//                    foreach ($interventionRaw['materiauxFrimousse']["materiel"] as $materiel){
+//                        $interventionTemp->addMateriauxFrimousse($materiel);
+//                    }
+//                    if(isset($interventionRaw["niveauTheme"])) {
+//                        $interventionTemp->setNiveauFrimousse($interventionRaw["niveauTheme"]->getNiveau());
+//                    }
+//                }
 
                 $interventionList[] = $interventionTemp;
             }

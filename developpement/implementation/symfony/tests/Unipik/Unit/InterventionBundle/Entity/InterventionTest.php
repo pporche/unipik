@@ -143,11 +143,11 @@ class InterventionTest extends  EntityTestCase
             ->setDescription("Long texte de description");
 
         return [
-            "1 Intervention"                        => [$i[0]],
-            "3 Interventions"                       => [clone $i[0], clone $i[0], clone $i[0]],
-            "1 Frimousse with all optional values"  => [$frimousse],
-            "1 Action éducative with all optional values"  => [$plaidoyer],
-            "1 Autre with all optional values"      => [$autre]
+            "1 Intervention"                        => [[$i[0]]],
+            "3 Interventions"                       => [[clone $i[0], clone $i[0], clone $i[0]]],
+            "1 Frimousse with all optional values"  => [[$frimousse]],
+            "1 Action éducative with all optional values"  => [[$plaidoyer]],
+            "1 Autre with all optional values"      => [[$autre]]
         ];
     }
 

@@ -45,51 +45,6 @@ class EtablissementRepository extends EntityRepository {
             ;
     }
 
-    /**
-     * Get Enseignements
-     *
-     * @return QueryBuilder
-     *
-     */
-    public function getEnseignements() {
-        $qb = $this->createQueryBuilder('e');
-
-        $qb
-            ->where($qb->expr()->isNotNull('e.typeEnseignement'));
-
-        return $qb;
-    }
-
-    /**
-     *  Get Centre Loisirs
-     *
-     * @return QueryBuilder
-     *
-     */
-    public function getCentresLoisirs() {
-        $qb = $this->createQueryBuilder('e');
-
-        $qb
-            ->where($qb->expr()->isNotNull('e.typeCentre'));
-
-        return $qb;
-    }
-
-    /**
-     * Get Autres Etablissements
-     *
-     * @return QueryBuilder
-     *
-     */
-    public function getAutresEtablissements() {
-        $qb = $this->createQueryBuilder('e');
-
-        $qb
-            ->where($qb->expr()->isNotNull('e.typeAutreEtablissement'));
-
-        return $qb;
-    }
-
 
     /**
      * Get Enseignements by Type
@@ -98,7 +53,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEnseignementsByType($typeEnseignement, $ville = null, $field = null, $desc = null) {
+    private function getEnseignementsByType($typeEnseignement, $ville = null, $field = null, $desc = null) {
         $results = array();
         foreach ($typeEnseignement as $te) {
             $qb = $this->createQueryBuilder('e');
@@ -121,7 +76,7 @@ class EtablissementRepository extends EntityRepository {
 
             $results = array_merge($results,$qb->getQuery()->getResult());
         }
-        
+
         return $results;
     }
 
@@ -133,7 +88,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCentresLoisirsByType($typeCentre, $ville = null, $field = null , $desc = null) {
+    private function getCentresLoisirsByType($typeCentre, $ville = null, $field = null , $desc = null) {
         $results = array();
         foreach ($typeCentre as $tc) {
             $qb = $this->createQueryBuilder('e');
@@ -168,7 +123,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAutresEtablissementsByType($typeAutreEtablissement, $ville = null, $field = null , $desc = null ) {
+    private function getAutresEtablissementsByType($typeAutreEtablissement, $ville = null, $field = null , $desc = null ) {
         $results = array();
         foreach ($typeAutreEtablissement as $tae) {
             $qb = $this->createQueryBuilder('e');
@@ -201,7 +156,7 @@ class EtablissementRepository extends EntityRepository {
      * @param $ville
      * @return array
      */
-    public function getTousEtablissements($ville, $field, $desc) {
+    private function getTousEtablissements($ville, $field, $desc) {
         $qb = $this->createQueryBuilder('e');
 
         if($ville){
@@ -225,7 +180,7 @@ class EtablissementRepository extends EntityRepository {
      * @param QueryBuilder $qb
      * @param $ville
      */
-    public function whereVilleIs(QueryBuilder $qb, $ville) {
+    private function whereVilleIs(QueryBuilder $qb, $ville) {
         $qb
             ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
             ->andWhere('e.adresse = a')

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Unipik" company="UNICEF" webLink="http://" view-date="2016-10-20" view-index="0" gantt-divider-location="509" resource-divider-location="363" version="2.7.1" locale="fr">
+<?xml version="1.0" encoding="UTF-8"?><project name="Unipik" company="UNICEF" webLink="http://" view-date="2016-10-27" view-index="0" gantt-divider-location="509" resource-divider-location="363" version="2.7.1" locale="fr">
     <description><![CDATA[Outil de gestion des interventions externes]]></description>
     <view zooming-state="default:3" id="gantt-chart">
         <field id="tpd3" name="Nom" width="54" order="0"/>
@@ -191,7 +191,7 @@
             </task>
             <task id="274" name="Developpement + tests - lot2" color="#ff0033" meeting="false" start="2016-05-02" duration="18" complete="0" expand="true"/>
         </task>
-        <task id="293" name="Semestre 2 lot 2" meeting="false" start="2016-09-05" duration="29" complete="93" expand="false">
+        <task id="293" name="Semestre 2 lot 2" meeting="false" start="2016-09-05" duration="29" complete="94" expand="false">
             <depend id="433" type="2" difference="0" hardness="Strong"/>
             <task id="294" name="Reprise en main des outils" color="#8cb6ce" meeting="false" start="2016-09-05" duration="5" complete="100" expand="true">
                 <depend id="295" type="2" difference="0" hardness="Strong"/>
@@ -243,7 +243,7 @@
                 <depend id="304" type="2" difference="0" hardness="Strong"/>
             </task>
             <task id="304" name="Formulaire de demande FE" color="#8cb6ce" meeting="false" start="2016-10-06" duration="6" complete="100" expand="true"/>
-            <task id="305" name="Tests Unitaire" meeting="false" start="2016-09-16" duration="7" complete="35" expand="true"/>
+            <task id="305" name="Tests Unitaire" meeting="false" start="2016-09-16" duration="7" complete="50" expand="true"/>
             <task id="306" name="Modifier Bénévole BE" meeting="false" start="2016-09-16" duration="1" complete="100" expand="true">
                 <depend id="307" type="2" difference="0" hardness="Strong"/>
                 <depend id="308" type="2" difference="0" hardness="Strong"/>
@@ -265,15 +265,21 @@
             <task id="313" name="Supprimer Etablissment FE" meeting="false" start="2016-09-23" duration="1" complete="100" expand="true"/>
             <task id="314" name="Formation PHP + Symfony" color="#8cb6ce" meeting="false" start="2016-09-12" duration="6" complete="100" expand="true"/>
         </task>
-        <task id="433" name="prépa revue" meeting="false" start="2016-10-14" duration="17" complete="0" expand="true">
+        <task id="433" name="prépa revue" meeting="false" start="2016-10-14" duration="15" complete="100" expand="true">
+            <depend id="610" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="610" name="Phase de specification lot3" meeting="false" start="2016-11-07" duration="1" complete="68" expand="true">
+            <depend id="612" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="612" name="Phase de conception lot3" meeting="false" start="2016-11-08" duration="1" complete="35" expand="true">
             <depend id="346" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="346" name="Semestre 2 lot 3" color="#000000" meeting="false" start="2016-11-09" duration="17" complete="11" expand="true">
-            <task id="378" name="Géolocalisation BE" meeting="false" start="2016-11-09" duration="1" complete="100" expand="true">
+        <task id="346" name="Semestre 2 lot 3" color="#000000" meeting="false" start="2016-11-09" duration="17" complete="4" expand="true">
+            <task id="378" name="Géolocalisation BE" meeting="false" start="2016-11-09" duration="1" complete="55" expand="true">
                 <depend id="381" type="2" difference="0" hardness="Strong"/>
             </task>
             <task id="379" name="Carte des interventions" meeting="false" start="2016-11-09" duration="1" complete="100" expand="true"/>
-            <task id="380" name="Carte des établissements" meeting="false" start="2016-11-09" duration="1" complete="100" expand="true"/>
+            <task id="380" name="Carte des établissements" meeting="false" start="2016-11-09" duration="1" complete="55" expand="true"/>
             <task id="381" name="Filtres interventions à +/- 10km" meeting="false" start="2016-11-10" duration="5" complete="0" expand="true"/>
             <task id="382" name="Mails - problème mailto" meeting="false" start="2016-11-09" duration="1" complete="100" expand="true">
                 <depend id="383" type="2" difference="0" hardness="Strong"/>

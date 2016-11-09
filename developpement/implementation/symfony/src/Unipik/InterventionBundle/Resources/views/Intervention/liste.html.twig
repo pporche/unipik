@@ -11,6 +11,7 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
     <link rel="stylesheet" href="{{ asset("vendor/chosen/chosen.css") }}"/>
+    <link rel="stylesheet" href="{{ asset('vendor/leaflet-geosearch/src/css/l.geosearch.css') }}" />
     <style>
         #recherche_avancee_ville {
             text-transform: uppercase;
@@ -162,6 +163,7 @@
     <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
+    <script src="{{ asset('vendor/leaflet-geosearch/src/js/l.control.geosearch.js') }}"></script>
     <script>
         $(document).ready(function () {
 
@@ -358,7 +360,6 @@
             $('#myModal').modal('hide');
         });
 
-
         //        $('#recherche_avancee_statutIntervention_2').hide();
         //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
         //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
@@ -409,8 +410,10 @@
                     {{ form_widget(form.end, { 'attr': {'class': 'input-sm'} }) }}
                 </div>
                 <br/>
-                <h5> Ville </h5>
+                <h5> Ville :</h5>
                 {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
+                <h5> Distance :</h5>
+                {{ form_widget(form.distance) }}
                 <div>
                     <input id="submit" type="submit" value="OK" class="btn btn-primary"/>
                 </div>

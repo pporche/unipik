@@ -158,7 +158,11 @@ class RechercheAvanceeType extends AbstractType
                 'format' => 'dd-MM-yyyy',
                 'required' => false
             ))
-            ->add('ville',VilleType::class, array('required' => false) )
+            ->add('ville', VilleType::class, array('required' => false) )
+            ->add('distance', CheckboxType::class, array(
+                'label' => 'Moins de 10km de mon domicile',
+                'required' => false
+            ))
         ;
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));

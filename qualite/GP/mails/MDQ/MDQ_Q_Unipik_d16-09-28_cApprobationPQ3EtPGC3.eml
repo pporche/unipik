@@ -1,0 +1,60 @@
+Return-Path: <Pascal.meslier@insa-rouen.fr>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id A4E1F23B06
+	for <pporche@insa-rouen.fr>; Wed, 28 Sep 2016 13:13:55 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DMAQBOpetXfQ8V3cNcHQEFAQsBgz8BAQEBAWd7umOGHgKBY0wBAgEBAQEBAhMBAQsUCUiEYgEBAQMjDwEFQBELGgIFFgsCAgkDAgECAQ04Bg0IAQGITbIzjQUBCwEkgQaFMYRUh0iCWgEEiHuQexpEijCGNYgOhgaJHINQg32FX4d4AQEB
+X-IPAS-Result: A0DMAQBOpetXfQ8V3cNcHQEFAQsBgz8BAQEBAWd7umOGHgKBY0wBAgEBAQEBAhMBAQsUCUiEYgEBAQMjDwEFQBELGgIFFgsCAgkDAgECAQ04Bg0IAQGITbIzjQUBCwEkgQaFMYRUh0iCWgEEiHuQexpEijCGNYgOhgaJHINQg32FX4d4AQEB
+X-IronPort-AV: E=Sophos;i="5.30,409,1470693600"; 
+   d="scan'208";a="106115264"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 28 Sep 2016 13:13:55 +0200
+Received: from [193.49.8.38] (unknown [193.49.8.38])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 6D9FA107D3
+	for <pierre.porche@insa-rouen.fr>; Wed, 28 Sep 2016 13:13:55 +0200 (CEST)
+Subject: Re: Modification PQ et PGC
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+References: <8b310fda-cbb4-0c0d-17b7-29f241f5436a@insa-rouen.fr>
+From: Pascal MESLIER <Pascal.meslier@insa-rouen.fr>
+Message-ID: <57EBA5F3.1010704@insa-rouen.fr>
+Date: Wed, 28 Sep 2016 13:13:55 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+ Thunderbird/38.2.0
+MIME-Version: 1.0
+In-Reply-To: <8b310fda-cbb4-0c0d-17b7-29f241f5436a@insa-rouen.fr>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+
+J'approuve ce jour le PGC en version 2.02 et le plan qualité en version 
+2.04 du PIC UNICEF. Merci de bien vouloir passer en version N+1.
+
+
+Salutations
+
+Pascal Meslier
+Responsable Mission qualité
+
+INSA de Rouen
+BP08- Avenue de l'université
+76801 Saint-Etienne-du-Rouvray
+
+tel : 02 32 95 66 15
+tel : 06 79 65 22 85
+
+Le 26/09/2016 10:05, Pierre Porche a écrit :
+> Bonjour,
+>
+> Veuillez trouver ci joint nos Plan Qualité et Plan de Gestion des 
+> Configuration dans leur nouvelle version.
+>
+> Bien respectueusement,
+>
+>
+> Pierre Porche
+> PIC UNICEF
+> ASI
+> INSA Rouen
+

@@ -1,0 +1,87 @@
+Return-Path: <picasi-3-owner@insa-rouen.fr>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 1997B238DA;
+	Sun, 11 Sep 2016 12:42:32 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DgBQCRNNVXfXIKMcFeHQYMgzoBAQEBAXUqUoMCt0keB4cyTAECAQEBAQECEwEBCxQJSIRjBgEBCRcJBgEFDjMDAwEBAQYKHAImAgIDAWYGAgEBAYhJlxOdJIwWDCAFgQaFKoF5CIdcgjaCWgEEmWNegQeXSIYBiQmDTIN7hTFuhysBAQE
+X-IPAS-Result: A0DgBQCRNNVXfXIKMcFeHQYMgzoBAQEBAXUqUoMCt0keB4cyTAECAQEBAQECEwEBCxQJSIRjBgEBCRcJBgEFDjMDAwEBAQYKHAImAgIDAWYGAgEBAYhJlxOdJIwWDCAFgQaFKoF5CIdcgjaCWgEEmWNegQeXSIYBiQmDTIN7hTFuhysBAQE
+X-IronPort-AV: E=Sophos;i="5.30,316,1470693600"; 
+   d="scan'208";a="104714516"
+Received: from smtpout.insa-rouen.fr ([193.49.10.114])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 11 Sep 2016 12:42:32 +0200
+Received: from newlistdiff.insa-rouen.fr (newlistdiff.insa-rouen.fr [193.49.10.34])
+	by smtpout.insa-rouen.fr (8.13.8/8.13.8) with ESMTP id u8BAgVAE021258;
+	Sun, 11 Sep 2016 12:42:31 +0200
+Received: from newlistdiff.insa-rouen.fr (localhost.localdomain [127.0.0.1])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id u8BAgVHK015095;
+	Sun, 11 Sep 2016 12:42:31 +0200
+Received: (from sympa@localhost)
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6/Submit) id u8BAgV5k015094;
+	Sun, 11 Sep 2016 12:42:31 +0200
+X-Authentication-Warning: newlistdiff.insa-rouen.fr: sympa set sender to picasi-3-owner@insa-rouen.fr using -f
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id u8BAgQ19015091
+	for <picasi-3@newlistdiff.insa-rouen.fr>; Sun, 11 Sep 2016 12:42:26 +0200
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DCCADpM9VXfQ8V3cNeHRgHBoMnAQEBAQF1KlKDArdOFAyFfYE1TAECAQEBAQECEwEBCxQJSEESAYQgFw8BBUEZHAImAmwGAgEBiEqXEZ0kjCIgBYEGhSqBeQiHXII2gloFmWNegQeXSIYBiQmDTIN7hTFugy6DfQEBAQ
+X-IPAS-Result: A0DCCADpM9VXfQ8V3cNeHRgHBoMnAQEBAQF1KlKDArdOFAyFfYE1TAECAQEBAQECEwEBCxQJSEESAYQgFw8BBUEZHAImAmwGAgEBiEqXEZ0kjCIgBYEGhSqBeQiHXII2gloFmWNegQeXSIYBiQmDTIN7hTFugy6DfQEBAQ
+X-IronPort-AV: E=Sophos;i="5.30,316,1470693600"; 
+   d="scan'208";a="94750644"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 11 Sep 2016 12:42:27 +0200
+Received: from [127.0.0.1] (sek76-3-88-181-37-67.fbx.proxad.net [88.181.37.67])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 8933F1076D;
+	Sun, 11 Sep 2016 12:42:24 +0200 (CEST)
+To: juliana.rossi@hotmail.com.ar
+From: Pierre Porche <pierre.porche@insa-rouen.fr>
+Cc: picasi-3@insa-rouen.fr
+Message-ID: <33057cdd-cb83-255d-6329-ad0eabd42382@insa-rouen.fr>
+Date: Sun, 11 Sep 2016 12:42:22 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.2.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Antivirus: avast! (VPS 160910-0, 10/09/2016), Outbound message
+X-Antivirus-Status: Clean
+Subject: [picasi-3] =?UTF-8?Q?D=C3=A9but?= du PIC
+X-Loop: picasi-3@insa-rouen.fr
+X-Sequence: 1179
+Errors-to: picasi-3-owner@insa-rouen.fr
+Precedence: list
+X-no-archive: yes
+List-Id: <picasi-3.insa-rouen.fr>
+List-Help: <mailto:sympa@insa-rouen.fr?subject=help>
+List-Subscribe: <mailto:sympa@insa-rouen.fr?subject=subscribe%20picasi-3>
+List-Unsubscribe: <mailto:sympa@insa-rouen.fr?subject=unsubscribe%20picasi-3>
+List-Post: <mailto:picasi-3@insa-rouen.fr>
+List-Owner: <mailto:picasi-3-request@insa-rouen.fr>
+
+Bonjour Juliana,
+
+Je suis désolé de ne pas t'avoir écrit plus tôt mais j'attendais encore 
+des informations de M. Chatelain.
+Le projet commencera pour toi dès demain (lundi 12/09/2016) après midi. 
+Nous aurons une réunion interne à 14h30 et j'aimerais que tu puisse être 
+là si ton emploi du temps te le permet.
+A cette occasion nous pourrons te présenter le projet, l'équipe et les 
+méthodes de travail plus en détail avant de pouvoir te lancer vraiment 
+dans le projet. Par ailleurs, à partir de maintenant il serait plus 
+confortable pour nous d'utiliser ton adresse INSA 
+(juliana.rossi@insa-rouen.fr).
+Nous sommes très heureux que tu ai choisi notre projet et notre équipe 
+pour ce semestre et t'attendons donc demain.
+
+Cordialement,
+
+
+Pierre Porche
+Chef PIC UNICEF
+ASI5
+INSA Rouen
+
+---
+L'absence de virus dans ce courrier électronique a été vérifiée par le logiciel antivirus Avast.
+https://www.avast.com/antivirus
+

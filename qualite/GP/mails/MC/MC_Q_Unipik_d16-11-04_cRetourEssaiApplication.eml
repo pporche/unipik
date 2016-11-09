@@ -1,0 +1,282 @@
+Return-Path: <cathyguest76@gmail.com>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 6AA3423B04
+	for <pporche@insa-rouen.fr>; Fri,  4 Nov 2016 19:43:52 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0C6AQCR1hxYhqnYVdFdHgYMgy4BAQEBAT06YhQEAgeCeqE3gk6GAIQFggGCVYRGBVoohXYDAgJDgU4HUwECAQEBAQECEwEBAQgLCwkdMIRiAQEBAgEMBhEEGQEKARAeAwELBgMCCwgvAgIiAQIPAQUBHAYTIogbAQMPCAkFkWyPTYEyPzKLT4Frgl8FgQABgl4KGScNBk6DGgwdAgYQiwSEKgEBgx+CXAWBJQEBgQqGYZEHCAEBgSkIhQOEcYUbgjyNTokcD4N2gkITHoERD4FsgjMsIIFpPTQBCwGFCoItAQEB
+X-IPAS-Result: A0C6AQCR1hxYhqnYVdFdHgYMgy4BAQEBAT06YhQEAgeCeqE3gk6GAIQFggGCVYRGBVoohXYDAgJDgU4HUwECAQEBAQECEwEBAQgLCwkdMIRiAQEBAgEMBhEEGQEKARAeAwELBgMCCwgvAgIiAQIPAQUBHAYTIogbAQMPCAkFkWyPTYEyPzKLT4Frgl8FgQABgl4KGScNBk6DGgwdAgYQiwSEKgEBgx+CXAWBJQEBgQqGYZEHCAEBgSkIhQOEcYUbgjyNTokcD4N2gkITHoERD4FsgjMsIIFpPTQBCwGFCoItAQEB
+X-IronPort-AV: E=Sophos;i="5.31,444,1473112800"; 
+   d="scan'208,217";a="109567605"
+Received: from mail-qt0-f169.google.com ([209.85.216.169])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 04 Nov 2016 19:43:52 +0100
+Received: by mail-qt0-f169.google.com with SMTP id n6so53862952qtd.1
+        for <pierre.porche@insa-rouen.fr>; Fri, 04 Nov 2016 11:43:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to;
+        bh=SHwJ4AzbFsvdp8g8j8Ge6qLZq1GID7MVr1zgdR/h/ZA=;
+        b=zbUNhNSunFfRpoKeWnGGJVuneX7HYBv0DD++EuWffbxQb6GoF6gidK5tjn27kg7Ra6
+         rNpcMbBELQLqL36bh8GSYg+bC8NIvGiJ42lJ81MHEGLjGP8rnD7yTlfVaG38T2T7ngBN
+         +a1O2lKEYN4AaWikswKZ/PCOJKt3LAYu24NpnEcqTrfWGZ82QUWFBbxttMh2NyFQBgDt
+         RlUKvnX6C9vLk4qUV+yS3qvoK1bYT+HI2No9wjdUPWV9j8bUlemAptUO+OTAb/q2cR0S
+         z716aM/UX9NBzyfcfIYIg2mNzaM44k7JEUg8Hid3L5LJ8sn7FZulSQAgIyNGvaO4wr5+
+         Riyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to;
+        bh=SHwJ4AzbFsvdp8g8j8Ge6qLZq1GID7MVr1zgdR/h/ZA=;
+        b=T2ZUseH0DpbhOuCQw/Lr4r5TpRcGvG7wLfsdmkSAt8+EhBd9PIEAt4euQufX2Rnc9b
+         Xkv0F6V5xDmp/lnk4SgHwEk0pZK43dPgHH/XnW2yOWdUDGZgJwq965YYWtXuakg/qlRu
+         be33VqggMHQBz1pa8m59I+LLKVf85h1PxW9OSBMbWFxZ/Td6xVgvVEEFK8dXEyEqJetz
+         QMnih2DF4BrQ5HTu1lR70V+xrtjSD3gU1HH7hdd7WgjgXgly+BTNECAN1tvuZz3gju6v
+         b6oJS3qx9fsQL5Lm5ezgEkamt+gdD0l4TiZu0A0KpRM1/tVnhWdkPAhhPjYOorL736oO
+         ZOTA==
+X-Gm-Message-State: ABUngvcGppEw4Le/5JxL9Dpxo3RF9kV1UbcQFXBTI3y7YwKL9rq1Vy10JCeY3IHPagFrVmPKwJC8pAmDc9VssQ==
+X-Received: by 10.200.37.7 with SMTP id 7mr15474814qtm.102.1478285030274; Fri,
+ 04 Nov 2016 11:43:50 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.55.201.18 with HTTP; Fri, 4 Nov 2016 11:43:49 -0700 (PDT)
+In-Reply-To: <0210eb7d-8db0-42ab-3619-c9651e435f4d@insa-rouen.fr>
+References: <7139bb39-62cb-2402-93b1-45597fcbeba3@insa-rouen.fr> <0210eb7d-8db0-42ab-3619-c9651e435f4d@insa-rouen.fr>
+From: Guest catherine <cathyguest76@gmail.com>
+Date: Fri, 4 Nov 2016 19:43:49 +0100
+Message-ID: <CAM17bm+9P6RVLhcdk_ge-NADPege2+uptZG4g3PMBb8yrU-xGQ@mail.gmail.com>
+Subject: Re: Mise en ligne de l'application
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+Content-Type: multipart/alternative; boundary=001a1141f99e1b3bb405407e0e9b
+
+--001a1141f99e1b3bb405407e0e9b
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+bonsoir,
+
+Encore merci pour votre pr=C3=A9sentation de qualit=C3=A9, je vais essayer =
+la semaine
+prochaine de rentrer plusieurs interventions, pour le mail =C3=A0 rentrer, =
+pas
+d'importance, on invente ou on met vraiment le mail d'une =C3=A9cole, pour
+l'instant pas de retour automatique aux =C3=A9tablissements je pense par ra=
+pport
+=C3=A0 cette demande fictive ..... ?
+
+N=C2=B0 TEL ----> format 06 03 93 50 18 ?  ---> c'est le bon (c'est le mien=
+.....
+)
+
+merci d'avance
+
+Le 4 novembre 2016 =C3=A0 17:04, Pierre Porche <pierre.porche@insa-rouen.fr=
+> a
+=C3=A9crit :
+
+> Bonsoir,
+>
+> Suite =C3=A0 notre r=C3=A9union de tout =C3=A0 l'heure, voici le lien per=
+mettant
+> d'acc=C3=A9der au formulaire de demande :
+> *http://138.68.151.59/intervention/demande/1*
+> <http://138.68.151.59/intervention/demande/1>
+> Comme pr=C3=A9cis=C3=A9 tout =C3=A0 l'heure, le num=C3=A9ro =C3=A0 la fin=
+ du lien repr=C3=A9sente un
+> =C3=A9tablissement. Si vous souhaitez simuler des demandes provenant de
+> diff=C3=A9rents =C3=A9tablissements, je vous invite =C3=A0 modifier ce nu=
+m=C3=A9ro, par exemple:
+>
+> *http://138.68.151.59/intervention/demande/503
+> <http://138.68.151.59/intervention/demande/503> *
+> Pour rappel, nous sommes disponibles en salle PIC ou pour une r=C3=A9unio=
+n =C3=A0
+> votre local le lundi, le mercredi et le jeudi matin. Notre num=C3=A9ro de
+> t=C3=A9l=C3=A9phone interne n'est pas contactable depuis l=E2=80=99ext=C3=
+=A9rieur mais voici mon
+> num=C3=A9ro de t=C3=A9l=C3=A9phone personnel : 0683615119. N'h=C3=A9sitez=
+ pas =C3=A0 me contacter
+> d=C3=A8s que le besoin s'en fait sentir.
+>
+> Bonne soir=C3=A9e et merci d'avoir assist=C3=A9 =C3=A0 notre revue,
+>
+>
+> Pierre Porche
+>
+>
+>
+>
+> -------- Message transf=C3=A9r=C3=A9 --------
+> Sujet : Mise en ligne de l'application
+> Date : Mon, 24 Oct 2016 11:13:23 +0200
+> De : Pierre Porche <pierre.porche@insa-rouen.fr>
+> <pierre.porche@insa-rouen.fr>
+> Pour : President <president.unicef76@laposte.net>
+> <president.unicef76@laposte.net>
+>
+> Bonjour,
+>
+> Veuillez trouver ci-apr=C3=A8s un raccourci vers l'application avec la
+> correction des remarques =C3=A9voqu=C3=A9es au moment de la recette. Je v=
+ous invite =C3=A0
+> la tester intensivement et =C3=A0 nous faire remonter toute remarque
+> suppl=C3=A9mentaire par mail.
+> http://tinyurl.com/zlk5kfo
+> Deux utilisateurs vous sont r=C3=A9serv=C3=A9s avec les identifiants suiv=
+ants :
+> Nom d'utilisateur : *vbarbier*     Mot de passe : *unicef76*
+> Nom d'utilisateur : *cguest*       Mot de passe : *unicef76*
+>
+> Concernant la revue, celle ci aura lieu le vendredi 4 novembre 2016 de
+> 15h30 =C3=A0 17h. Je vous invite donc =C3=A0 me communiquer les noms des =
+personnes
+> qui seront pr=C3=A9sentes en raison du plan vigipirate.
+>
+> Par ailleurs, en relisant le cahier des charges, nous nous sommes aper=C3=
+=A7u
+> que le lot 4 concernait les villes amies des enfants et les actions
+> ponctuelles. Il me semble me rappeler que nous avions discut=C3=A9 de ne =
+pas
+> impl=C3=A9menter enti=C3=A8rement ce lot. Pouvez vous me confirmer que ce=
+ lot n'est
+> pas une priorit=C3=A9 absolue?
+>
+> Bien cordialement,
+>
+>
+> Pierre Porche
+>
+
+--001a1141f99e1b3bb405407e0e9b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">bonsoir,<div><br></div><div>Encore merci pour votre pr=C3=
+=A9sentation de qualit=C3=A9, je vais essayer la semaine prochaine de rentr=
+er plusieurs interventions, pour le mail =C3=A0 rentrer, pas d&#39;importan=
+ce, on invente ou on met vraiment le mail d&#39;une =C3=A9cole, pour l&#39;=
+instant pas de retour automatique aux =C3=A9tablissements je pense par rapp=
+ort =C3=A0 cette demande fictive ..... ?=C2=A0</div><div><br></div><div>N=
+=C2=B0 TEL ----&gt; format 06 03 93 50 18 ? =C2=A0---&gt; c&#39;est le bon =
+(c&#39;est le mien..... )</div><div><br></div><div>merci d&#39;avance=C2=A0=
+</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">Le 4 =
+novembre 2016 =C3=A0 17:04, Pierre Porche <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:pierre.porche@insa-rouen.fr" target=3D"_blank">pierre.porche@insa-ro=
+uen.fr</a>&gt;</span> a =C3=A9crit :<br><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+ =20
+
+   =20
+ =20
+  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <div class=3D"m_-5574574664999018712moz-forward-container">Bonsoir,<br>
+      <br>
+      Suite =C3=A0 notre r=C3=A9union de tout =C3=A0 l&#39;heure, voici le =
+lien permettant
+      d&#39;acc=C3=A9der au formulaire de demande :<br>
+      <div class=3D"m_-5574574664999018712indent m_-5574574664999018712long=
+url"><a href=3D"http://138.68.151.59/intervention/demande/1" target=3D"_bla=
+nk"><b>http://138.68.151.59/<wbr>intervention/demande/1</b></a><br>
+        Comme pr=C3=A9cis=C3=A9 tout =C3=A0 l&#39;heure, le num=C3=A9ro =C3=
+=A0 la fin du lien
+        repr=C3=A9sente un =C3=A9tablissement. Si vous souhaitez simuler de=
+s
+        demandes provenant de diff=C3=A9rents =C3=A9tablissements, je vous =
+invite
+        =C3=A0 modifier ce num=C3=A9ro, par exemple:<br>
+        <b><a href=3D"http://138.68.151.59/intervention/demande/503" target=
+=3D"_blank">http://138.68.151.59/<wbr>intervention/demande/503</a><br>
+        </b><br>
+        Pour rappel, nous sommes disponibles en salle PIC ou pour une
+        r=C3=A9union =C3=A0 votre local le lundi, le mercredi et le jeudi m=
+atin.
+        Notre num=C3=A9ro de t=C3=A9l=C3=A9phone interne n&#39;est pas cont=
+actable depuis
+        l=E2=80=99ext=C3=A9rieur mais voici mon num=C3=A9ro de t=C3=A9l=C3=
+=A9phone personnel :
+        0683615119. N&#39;h=C3=A9sitez pas =C3=A0 me contacter d=C3=A8s que=
+ le besoin s&#39;en
+        fait sentir.<br>
+        <br>
+        Bonne soir=C3=A9e et merci d&#39;avoir assist=C3=A9 =C3=A0 notre re=
+vue,<br>
+        <br>
+        <br>
+        Pierre Porche<br>
+        <b></b></div><span class=3D"">
+      <br>
+      <br>
+      <br>
+      <br>
+      -------- Message transf=C3=A9r=C3=A9 --------
+      <table class=3D"m_-5574574664999018712moz-email-headers-table" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+        <tbody>
+          <tr>
+            <th nowrap valign=3D"BASELINE" align=3D"RIGHT">Sujet=C2=A0:
+            </th>
+            <td>Mise en ligne de l&#39;application</td>
+          </tr>
+          <tr>
+            <th nowrap valign=3D"BASELINE" align=3D"RIGHT">Date=C2=A0: </th=
+>
+            <td>Mon, 24 Oct 2016 11:13:23 +0200</td>
+          </tr>
+          <tr>
+            <th nowrap valign=3D"BASELINE" align=3D"RIGHT">De=C2=A0: </th>
+            <td>Pierre Porche <a class=3D"m_-5574574664999018712moz-txt-lin=
+k-rfc2396E" href=3D"mailto:pierre.porche@insa-rouen.fr" target=3D"_blank">&=
+lt;pierre.porche@insa-rouen.fr&gt;</a></td>
+          </tr>
+          <tr>
+            <th nowrap valign=3D"BASELINE" align=3D"RIGHT">Pour=C2=A0: </th=
+>
+            <td>President <a class=3D"m_-5574574664999018712moz-txt-link-rf=
+c2396E" href=3D"mailto:president.unicef76@laposte.net" target=3D"_blank">&l=
+t;president.unicef76@laposte.<wbr>net&gt;</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+     =20
+      Bonjour,<br>
+      <br>
+      Veuillez trouver ci-apr=C3=A8s un raccourci vers l&#39;application av=
+ec la
+      correction des remarques =C3=A9voqu=C3=A9es au moment de la recette. =
+Je vous
+      invite =C3=A0 la tester intensivement et =C3=A0 nous faire remonter t=
+oute
+      remarque suppl=C3=A9mentaire par mail.<br>
+      <a href=3D"http://tinyurl.com/zlk5kfo" target=3D"_blank">http://tinyu=
+rl.com/zlk5kfo</a><br>
+      Deux utilisateurs vous sont r=C3=A9serv=C3=A9s avec les identifiants
+      suivants :<br>
+      Nom d&#39;utilisateur : <u>vbarbier</u>=C2=A0=C2=A0=C2=A0=C2=A0 Mot d=
+e passe : <u>unicef76</u><br>
+      Nom d&#39;utilisateur : <u>cguest</u>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 =
+Mot de passe : <u>unicef76</u><br>
+      <br>
+      Concernant la revue, celle ci aura lieu le vendredi 4 novembre
+      2016 de 15h30 =C3=A0 17h. Je vous invite donc =C3=A0 me communiquer l=
+es noms
+      des personnes qui seront pr=C3=A9sentes en raison du plan vigipirate.=
+<br>
+      <br>
+      Par ailleurs, en relisant le cahier des charges, nous nous sommes
+      aper=C3=A7u que le lot 4 concernait les villes amies des enfants et l=
+es
+      actions ponctuelles. Il me semble me rappeler que nous avions
+      discut=C3=A9 de ne pas impl=C3=A9menter enti=C3=A8rement ce lot. Pouv=
+ez vous me
+      confirmer que ce lot n&#39;est pas une priorit=C3=A9 absolue?<b><br>
+        <br>
+      </b>Bien cordialement,<br>
+      <br>
+      <br>
+      Pierre Porche<br>
+    </span></div>
+  </div>
+
+</blockquote></div><br></div>
+
+--001a1141f99e1b3bb405407e0e9b--

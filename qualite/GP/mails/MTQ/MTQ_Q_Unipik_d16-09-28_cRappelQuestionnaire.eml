@@ -1,0 +1,123 @@
+Return-Path: <asi5-owner@insa-rouen.fr>
+Delivered-To: pporche@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 615B623AFB;
+	Wed, 28 Sep 2016 10:51:39 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0B0CQAcg+tXfXIKMcFcg28BAQEBAYEfQw+zO4cOIwGHZEwBAgEBAQEBAhMBAQsUCSYihGMGAQEgCRo2AwEBAQYQAT0CAgMBG0sGAgEBAYhMsXWNOIgzCIZ3AQFngjiCWgWIe5B7GkSKMI5DhgaJHIdNgyEBAQiCNHCEaIIfAQEB
+X-IPAS-Result: A0B0CQAcg+tXfXIKMcFcg28BAQEBAYEfQw+zO4cOIwGHZEwBAgEBAQEBAhMBAQsUCSYihGMGAQEgCRo2AwEBAQYQAT0CAgMBG0sGAgEBAYhMsXWNOIgzCIZ3AQFngjiCWgWIe5B7GkSKMI5DhgaJHIdNgyEBAQiCNHCEaIIfAQEB
+X-IronPort-AV: E=Sophos;i="5.30,409,1470693600"; 
+   d="scan'208,217";a="96106127"
+Received: from smtpout.insa-rouen.fr ([193.49.10.114])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 28 Sep 2016 10:51:38 +0200
+Received: from newlistdiff.insa-rouen.fr (newlistdiff.insa-rouen.fr [193.49.10.34])
+	by smtpout.insa-rouen.fr (8.13.8/8.13.8) with ESMTP id u8S8pcpx031719;
+	Wed, 28 Sep 2016 10:51:38 +0200
+Received: from newlistdiff.insa-rouen.fr (localhost.localdomain [127.0.0.1])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id u8S8pcs1032387;
+	Wed, 28 Sep 2016 10:51:38 +0200
+Received: (from sympa@localhost)
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6/Submit) id u8S8pcBc032385;
+	Wed, 28 Sep 2016 10:51:38 +0200
+X-Authentication-Warning: newlistdiff.insa-rouen.fr: sympa set sender to asi5-owner@insa-rouen.fr using -f
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id u8S8pbqC032381
+	for <asi5@newlistdiff.insa-rouen.fr>; Wed, 28 Sep 2016 10:51:37 +0200
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0AUCQAcg+tXfQ8V3cNcg28BAQEBAYEfQw+zO4cYFIdqTAECAQEBAQECEwEBCxQJSIULdQE9AiFLBgIBAYhNog+PZo04iDMIhncBAWeCOIJaBYh7kHsaRIowjkOGBokch02DIQELAYIxcIRogh8BAQE
+X-IPAS-Result: A0AUCQAcg+tXfQ8V3cNcg28BAQEBAYEfQw+zO4cYFIdqTAECAQEBAQECEwEBCxQJSIULdQE9AiFLBgIBAYhNog+PZo04iDMIhncBAWeCOIJaBYh7kHsaRIowjkOGBokch02DIQELAYIxcIRogh8BAQE
+X-IronPort-AV: E=Sophos;i="5.30,409,1470693600"; 
+   d="scan'208,217";a="96106124"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 28 Sep 2016 10:51:36 +0200
+Received: from [172.18.22.134] (natwifiinsa.insa-rouen.fr [194.254.15.136])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id CE9B6107D3
+	for <asi5@insa-rouen.fr>; Wed, 28 Sep 2016 10:51:36 +0200 (CEST)
+To: asi5@insa-rouen.fr
+From: Benjamin COELHO DE MATOS <benjamin.coelho-de-matos@insa-rouen.fr>
+Message-ID: <164e0451-9976-865b-aeb5-fc09a531070b@insa-rouen.fr>
+Date: Wed, 28 Sep 2016 10:51:38 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.3.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------EFF336AF0F3A89926A646253"
+Subject: [asi5] Rappel : Questionnaires de satisfaction Client R2
+X-Loop: asi5@insa-rouen.fr
+X-Sequence: 2772
+Errors-to: asi5-owner@insa-rouen.fr
+Precedence: list
+X-no-archive: yes
+List-Id: <asi5.insa-rouen.fr>
+List-Help: <mailto:sympa@insa-rouen.fr?subject=help>
+List-Owner: <mailto:asi5-request@insa-rouen.fr>
+List-Post: <mailto:asi5@insa-rouen.fr>
+List-Subscribe: <mailto:sympa@insa-rouen.fr?subject=subscribe%20asi5>
+List-Unsubscribe: <mailto:sympa@insa-rouen.fr?subject=unsubscribe%20asi5>
+
+This is a multi-part message in MIME format.
+--------------EFF336AF0F3A89926A646253
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+
+
+Je vous rappelle qu'il est obligatoire de récupérer les questionnaires 
+de satisfaction client.
+
+Merci de vérifier que vous avez les questionnaires client de l'ensemble 
+des revues.
+
+
+Cordialement,
+
+
+-- 
+*Benjamin Coelho de Matos*
+/Ingénieur de la Mission Qualité de l'INSA de ROUEN
+Tuteur Qualité pour les PIC ASI et MRIE
+INSA de Rouen, bureau DA AR 110
+685 Avenue de l'Université BP 08,
+76801 Saint Etienne du Rouvray Cedex
+/ Tel: (33).02.32.95.66.95
+mail: benjamin.coelho-de-matos@insa-rouen.fr
+
+--------------EFF336AF0F3A89926A646253
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Bonjour, <br>
+    </p>
+    <p><br>
+    </p>
+    <p>Je vous rappelle qu'il est obligatoire de récupérer les
+      questionnaires de satisfaction client.</p>
+    <p>Merci de vérifier que vous avez les questionnaires client de
+      l'ensemble des revues.</p>
+    <p><br>
+    </p>
+    <p>Cordialement,<br>
+    </p>
+    <br>
+    <div class="moz-signature">-- <br>
+      <b>Benjamin Coelho de Matos</b><br>
+      <i>Ingénieur de la Mission Qualité de l'INSA de ROUEN<br>
+        Tuteur Qualité pour les PIC ASI et MRIE<br>
+        INSA de Rouen, bureau DA AR 110<br>
+        685 Avenue de l'Université BP 08,<br>
+        76801 Saint Etienne du Rouvray Cedex<br>
+      </i>
+      Tel: (33).02.32.95.66.95<br>
+      mail: <a class="moz-txt-link-abbreviated" href="mailto:benjamin.coelho-de-matos@insa-rouen.fr">benjamin.coelho-de-matos@insa-rouen.fr</a>
+    </div>
+  </body>
+</html>
+
+--------------EFF336AF0F3A89926A646253--

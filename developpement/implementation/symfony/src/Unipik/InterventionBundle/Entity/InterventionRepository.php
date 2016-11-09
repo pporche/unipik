@@ -28,7 +28,7 @@ class InterventionRepository extends EntityRepository {
      * @param $user
      * @return array
      */
-    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null ){
+    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null/*, $distance = null*/ ){
 
         $qb = $this->createQueryBuilder('i');
 
@@ -123,6 +123,10 @@ class InterventionRepository extends EntityRepository {
         if($ville){
             $this->whereVilleIs($qb,$ville);
         }
+
+//        if(isset($distance)){
+//            $this->within10km($qb, $distance);
+//        }
 
         return $qb
             ->getQuery()
@@ -339,4 +343,27 @@ class InterventionRepository extends EntityRepository {
             ->andWhere('a.ville = :ville')
             ->setParameter('ville',$ville);
     }
+
+//    /**
+//     * @param QueryBuilder $qb
+//     * @param $ville
+//     */
+//    public function within10km(QueryBuilder $qb, $distance) {
+//        $qb
+//            ->andWhere(
+//                $qb->expr()->eq(
+//                    sprintf("ST_Distance()", $geoJsonPolygon),
+//                    $qb->expr()->literal(true)
+//                )
+//            );
+//
+//
+//
+//            ->from('Unipik\InterventionBundle\Entity\Etablissement','e')
+//            ->andWhere('i.etablissement = e')
+//            ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
+//            ->andWhere('e.adresse = a')
+//            ->andWhere('a.ville = :ville')
+//            ->setParameter('ville',$ville);
+//    }
 }

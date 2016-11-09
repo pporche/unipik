@@ -1,0 +1,102 @@
+Return-Path: <president.unicef76@laposte.net>
+Delivered-To: pporche@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id C870F238BC
+	for <pporche@insa-rouen.fr>; Mon, 12 Sep 2016 09:52:15 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0A6AwDHXdZXh2TVdcJeg2kBAQEBAYEfUoMCqV2CHoFxgXmDVoQShh0CgX4BAgEBAQEBAhMBAQEKCwkJGS+EYgEBAQMMFw8BBQgBATIGDwkCGgImAgIfOAYNCAEBiCsBAwwPlmKcPWeERwEBBYNTEDoTRYJTAQsdCIEGhGiCO4JXh0OCWgGBNJgpCAEBGpkThgGJCYNMg3uDV4FaboZ0AQEB
+X-IPAS-Result: A0A6AwDHXdZXh2TVdcJeg2kBAQEBAYEfUoMCqV2CHoFxgXmDVoQShh0CgX4BAgEBAQEBAhMBAQEKCwkJGS+EYgEBAQMMFw8BBQgBATIGDwkCGgImAgIfOAYNCAEBiCsBAwwPlmKcPWeERwEBBYNTEDoTRYJTAQsdCIEGhGiCO4JXh0OCWgGBNJgpCAEBGpkThgGJCYNMg3uDV4FaboZ0AQEB
+X-IronPort-AV: E=Sophos;i="5.30,321,1470693600"; 
+   d="scan'208";a="94805928"
+Received: from smtpoutz25.laposte.net (HELO smtp.laposte.net) ([194.117.213.100])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 12 Sep 2016 09:52:15 +0200
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout013 (Postfix) with ESMTP id 191DB1046BC
+	for <pierre.porche@insa-rouen.fr>; Mon, 12 Sep 2016 09:52:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1473666735; bh=gDbH6mwC4GIRFyuH65q8tvLpOmlBrVTZIr4zcpF88mw=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=EIE0DsiM7Qp8BKoSOwrpnucCpCgiJJZ0FQbQxm5G0bmuBMWoNWyyw+kQtWxxdgMSw
+	 4xcZsyCdEL4Q80YCZMLkhnRWPMoqu3shAEdvOMBRQBsG7R8S1LoM1hFXg/bIHWgYgL
+	 IgIwKmIIOESPC6JgExIiiTvs1bwCNDzoVNf98nf8kL/mjDl9yRbGQ+WKA/EEw5R2D4
+	 RnSGQIrQ+T2i55Hwh/QmKek0iCTBf/lewPEaLDONPoi0OX/w6Te25uljAlaZYr03H4
+	 1bIOTb2kdD1TJJiSwcp/R7b1BdqKhx0AhPxYRs0VOPmZukdx0saDuUNbalvc7wRY5u
+	 7tcNgzjWQqE8Q==
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout013 (Postfix) with ESMTP id 0B6421046BE
+	for <pierre.porche@insa-rouen.fr>; Mon, 12 Sep 2016 09:52:15 +0200 (CEST)
+Received: from lpn-prd-vrin001 (lpn-prd-vrin001.prosodie [10.128.63.2])
+	by lpn-prd-vrout013 (Postfix) with ESMTP id 07BB01046BC
+	for <pierre.porche@insa-rouen.fr>; Mon, 12 Sep 2016 09:52:15 +0200 (CEST)
+Received: from lpn-prd-vrin001 (localhost [127.0.0.1])
+	by lpn-prd-vrin001 (Postfix) with ESMTP id E840F366C1B
+	for <pierre.porche@insa-rouen.fr>; Mon, 12 Sep 2016 09:52:14 +0200 (CEST)
+Received: from [192.168.1.15] (LFbn-1-5727-78.w90-108.abo.wanadoo.fr [90.108.183.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin001 (Postfix) with ESMTPSA id C6045366C20
+	for <pierre.porche@insa-rouen.fr>; Mon, 12 Sep 2016 09:52:14 +0200 (CEST)
+Subject: =?UTF-8?Q?Re:_Projet_INSA_:_Rentr=c3=a9e?=
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+References: <9bad3633-ce34-521d-1334-36e37b463960@insa-rouen.fr>
+From: =?UTF-8?Q?Pr=c3=a9sident_UNICEF_76?= <president.unicef76@laposte.net>
+Message-ID: <5b9b4638-683e-f3b1-3d82-58f6eee7b714@laposte.net>
+Date: Mon, 12 Sep 2016 09:52:10 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.2.0
+MIME-Version: 1.0
+In-Reply-To: <9bad3633-ce34-521d-1334-36e37b463960@insa-rouen.fr>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-VR-SrcIP: 90.108.183.78
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeeluddrieejgdefudegucdltddurdefledtrddttddmucetufdo
+X-VR-Cause-2: teggodetrfdotffvucfrrhhofhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttden
+X-VR-Cause-3: ucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthek
+X-VR-Cause-4: redttdefjeenucfhrhhomheprfhrrohsihguvghnthgpfgfpkfevgffhpgejiecuoehprhgvshhiuggv
+X-VR-Cause-5: nhhtrdhunhhitggvfhejieeslhgrphhoshhtvgdrnhgvtheqnecukfhppeeltddruddtkedrudekfedr
+X-VR-Cause-6: jeeknecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghloheplgduledvrdduieekrddurddu
+X-VR-Cause-7: hegnpdhinhgvthepledtrddutdekrddukeefrdejkedpmhgrihhlfhhrohhmpehprhgvshhiuggvnhht
+X-VR-Cause-8: rdhunhhitggvfhejieeslhgrphhoshhtvgdrnhgvthdprhgtphhtthhopehpihgvrhhrvgdrphhorhgt
+X-VR-Cause-9: hhgvsehinhhsrgdqrhhouhgvnhdrfhhr
+X-VR-AvState: No
+X-VR-State: 0
+X-VR-State: 0
+
+Bonjour Pierre,
+
+Merci de vos nouvelles. Nous espérons que l'été s'est bien passé pour 
+toute l'équipe et que vous avez de bonnes nouvelles de vos camarades 
+partis en stage ou à l'étranger. Nous serons très heureux de vous 
+retrouver. Nous avons aussi d'autres projets à l'INSA dont nous aurons 
+l'occasion de vous parler.
+Cordialement, Véronique BARBIER
+
+
+Le 08/09/2016 à 08:45, Pierre Porche a écrit :
+> Bonjour,
+> J'ai le plaisir de vous annoncer qu'avec la rentrée, le PIC UNICEF 
+> reprend. Avec cette nouvelle année vient également un changement 
+> d'équipe et j'ai donc le privilège d'être à présent le chef du projet 
+> en succédant à Sergi. Nous avons un nouveau membre à l'équipe, 
+> François Decq qui revient de Nouvelle-Zélande, et trois membres en 
+> moins pour cause départ à l'étranger. Nous continuons donc notre 
+> projet sans Sergi, Michel et Mathieu.
+> Nous avons dès à présent repris là où nous nous étions arrêtés avant 
+> le stage de cet été afin de pouvoir effectuer la livraison complète en 
+> octobre, comme il avait été convenu avec Sergi. L'équipe et moi même 
+> redoublons de motivation afin de vous fournir un produit correspondant 
+> à vos attentes dans les délais attendus, et ce malgré un retard pris 
+> précédemment.
+> Je reste évidemment disponible pour toute demande d'information et 
+> vous souhaite une excellente rentrée.
+>
+> Bien cordialement,
+>
+>
+> Pierre Porche
+> Chef PIC
+> PIC ASI UNICEF
+> INSA Rouen
+

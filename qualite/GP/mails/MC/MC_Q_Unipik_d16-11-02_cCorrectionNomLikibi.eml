@@ -1,0 +1,80 @@
+Return-Path: <likibimj@yahoo.fr>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id B6102238ED
+	for <pporche@insa-rouen.fr>; Wed,  2 Nov 2016 13:09:18 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0BVAAAO1hlYhn5gUtRdHQEFAQsBgywBAQEBAYFzEYJwoTeIT4lphBaGIgKCHVMBAgEBAQEBAhMBAQEICwsJHTCEYgEBAQIBDBcdAQE3AQQLCQIaAiYCAh84BhOIOwEDDwyPZpxPZ4Frgl4BAQWDbAFKAxCDbQEBAQEBAQEBAQEBAQEBAQEBAQEBARQIFXKHM4JYhCoBARuDBC2CL5oiGkWPW4l1IIVzjQUThASBKggJgxkggV9xhjCCLAEBAQ
+X-IPAS-Result: A0BVAAAO1hlYhn5gUtRdHQEFAQsBgywBAQEBAYFzEYJwoTeIT4lphBaGIgKCHVMBAgEBAQEBAhMBAQEICwsJHTCEYgEBAQIBDBcdAQE3AQQLCQIaAiYCAh84BhOIOwEDDwyPZpxPZ4Frgl4BAQWDbAFKAxCDbQEBAQEBAQEBAQEBAQEBAQEBAQEBARQIFXKHM4JYhCoBARuDBC2CL5oiGkWPW4l1IIVzjQUThASBKggJgxkggV9xhjCCLAEBAQ
+X-IronPort-AV: E=Sophos;i="5.31,583,1473112800"; 
+   d="scan'208";a="109365346"
+Received: from nm7-vm1.bullet.mail.ir2.yahoo.com ([212.82.96.126])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 02 Nov 2016 13:09:18 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.fr; s=s2048; t=1478088557; bh=5da+ua7ZxovBOhaoA9XNUztqQOKfV1cZVMVvvTWrFAs=; h=Subject:From:In-Reply-To:Date:Cc:References:To:From:Subject; b=If3S8FEYtnYug74V89NK/xGyIEG7UQuXh03wVLhNMS/O+M3udBX9Q+Q0D0VTLke4QOOt5Sia+vxhL0+ibADBx+e3Kp8C7RhJXyvBHx+769Xvj6csbtlftqZ0ieqxhgrAaRrQXG7icYc1enT2LrArvEzDIP6Ihu2wiDkbx/1zdpXaaqjPO7Ln58htl+SZqnBCuDoG/BqWVXn6JD7fSop413ayKR2VTcLVET8r8I/QCXcjAz5XF3916IIyescfYMU5m2KZCTXIStYs6D175akWnl4gm8NfOCNo7qrHZUyudupGDfe9bMs80dTh4FcxQEUbBeazX0InhLf224kI6sty+g==
+Received: from [212.82.98.57] by nm7.bullet.mail.ir2.yahoo.com with NNFMP; 02 Nov 2016 12:09:17 -0000
+Received: from [46.228.39.98] by tm10.bullet.mail.ir2.yahoo.com with NNFMP; 02 Nov 2016 12:09:17 -0000
+Received: from [127.0.0.1] by smtp135.mail.ir2.yahoo.com with NNFMP; 02 Nov 2016 12:09:17 -0000
+X-Yahoo-Newman-Id: 564776.52508.bm@smtp135.mail.ir2.yahoo.com
+X-Yahoo-Newman-Property: ymail-3
+X-YMail-OSG: TsVqjvIVM1m54hHI_C87DsoPfbYwEGeRAzOhAFN6YHs6V8a
+ uW0sX0AHOV22VicGxFJzNRsmoo4xK2vu7Y06fOEbdYy6emfPujgbG4ql9XWy
+ rl09QspGWvisjepeDBwJ1NZHmDwkdGjsLjB8phfCwwGHsPs9YYiZuCy.JzL2
+ SJ9uLsCFUCSYe.RQd48Oc4Ay4paN9sO4G4fYmStJPucFSsLcj9tnUO7ffsRH
+ UywdIv7znNDzbrZ44FutLY9fCkVigHwaF4xV_s6ceT_y0lcc7V0fQ1NDd86T
+ 5qUBRbCsN0lJA0MFA40gG7AdXZUMjj_OYLk4LfsWUL3tqbMG4ZfoVa6TMh.U
+ IuOeNPXm.Vqk9XZKlwidjKtVRJkgQb5zNjAjYu6cw38o2vWAumPrughHEKvz
+ c5JN7e7WE19lGuhNB_rSY_uZtVzaTQGUJ.joHU3fcXOMJIhtWQ59fpPpzD0M
+ CJTMNjPalMvKpnX5ziqpfDqqcA.aSRW2R3QKoI81DcL2gUgwFyGle1FK0e7l
+ AtrIPI2Y3WkODPmAzAHW7tCJLN7DE8SPkRJV6nB.Q3RjySuI_vkQjKy_L
+X-Yahoo-SMTP: BvwBe8uswBAeB7uCsGwNmyF4aUlg
+Content-Type: text/plain;
+	charset=utf-8
+Mime-Version: 1.0 (1.0)
+Subject: =?utf-8?Q?Re:_Projet_INSA_:_troisi=C3=A8me_revue?=
+From: Marie Josee LIKIBI <likibimj@yahoo.fr>
+X-Mailer: iPhone Mail (14B72)
+In-Reply-To: <23339e99-b138-c748-62f5-2d5fc0e80d74@laposte.net>
+Date: Wed, 2 Nov 2016 13:09:16 +0100
+Cc: Pierre Porche <pierre.porche@insa-rouen.fr>,
+ Guest catherine <cathyguest76@gmail.com>,
+ Naoual Guery <naoual.guery@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <6DD7C30B-22C1-4CB1-875B-3B04BC4FF545@yahoo.fr>
+References: <0f1c451b-f4f7-df21-32cd-81aca96a7982@insa-rouen.fr> <23339e99-b138-c748-62f5-2d5fc0e80d74@laposte.net>
+To: =?utf-8?Q?Pr=C3=A9sident_UNICEF_76?= <president.unicef76@laposte.net>
+
+Bonjour =C3=A0 tous,
+Juste une petite pr=C3=A9cision mon nom s'=C3=A9crit: LIKIBI . Merci et bonn=
+e journ=C3=A9e !=20
+
+Envoy=C3=A9 de mon iPhone
+
+> Le 2 nov. 2016 =C3=A0 12:14, Pr=C3=A9sident UNICEF 76 <president.unicef76@=
+laposte.net> a =C3=A9crit :
+>=20
+>=20
+> Bonjour Pierre,
+> Voici les noms des 3 b=C3=A9n=C3=A9voles qui seront pr=C3=A9sentes pour la=
+ revue num=C3=A9ro 3. Vous les connaissez toutes les 3: il s'agit de Catheri=
+ne Guest, Naoual Gu=C3=A9ry et Marie-Jos=C3=A9e Libiki. Je les mets en copie=
+ du mail pour pouvoir, si n=C3=A9cessaire, vous organiser pour cette revue.
+> D'ici l=C3=A0 bon travail pour pr=C3=A9parer ce grand moment. V=C3=A9roniq=
+ue BARBIER
+>=20
+>=20
+>=20
+>> Le 02/11/2016 =C3=A0 08:33, Pierre Porche a =C3=A9crit :
+>> Bonjour,
+>>=20
+>> Je me permets de vous relancer concernant la (les) personne(s) qui pourra=
+(ont) se rendre =C3=A0 la revue num=C3=A9ro 3 ce vendredi 4 novembre de 15h3=
+0 =C3=A0 17h. Pouvez vous me transmettre leur noms afin que je puisse averti=
+r la s=C3=A9curit=C3=A9 de l'INSA?
+>>=20
+>> Merci d'avance,
+>>=20
+>>=20
+>> Pierre Porche
+>>=20
+>=20
+

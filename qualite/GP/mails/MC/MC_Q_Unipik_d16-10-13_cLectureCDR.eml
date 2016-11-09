@@ -1,0 +1,91 @@
+Return-Path: <president.unicef76@laposte.net>
+Delivered-To: pporche@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 8E5FC238DD
+	for <pporche@insa-rouen.fr>; Thu, 13 Oct 2016 18:39:33 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0B0AQBEuP9Xh2fVdcJcHhgHgy8BAQEBAXQqUoMBrgGBfod2I4V+AoJWAQIBAQEBAQITAQEBCgsJCRkvhGIBAQEDDBcPAQUIAQE4DwkCGgImAgIfOAYNCAEBiDEBAwwPmQGcSmeESQEBBYNxEDoTRYMnAQEIAQEBARsEBYEHhHKCQQiCUIQZEQGDIIJbAYElAYR9k1kIAQEajBSNOIYMiSmDUIN/hCqBYHCGRIIgAQEB
+X-IPAS-Result: A0B0AQBEuP9Xh2fVdcJcHhgHgy8BAQEBAXQqUoMBrgGBfod2I4V+AoJWAQIBAQEBAQITAQEBCgsJCRkvhGIBAQEDDBcPAQUIAQE4DwkCGgImAgIfOAYNCAEBiDEBAwwPmQGcSmeESQEBBYNxEDoTRYMnAQEIAQEBARsEBYEHhHKCQQiCUIQZEQGDIIJbAYElAYR9k1kIAQEajBSNOIYMiSmDUIN/hCqBYHCGRIIgAQEB
+X-IronPort-AV: E=Sophos;i="5.31,340,1473112800"; 
+   d="scan'208";a="97537441"
+Received: from smtpoutz28.laposte.net (HELO smtp.laposte.net) ([194.117.213.103])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 13 Oct 2016 18:39:32 +0200
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout016 (Postfix) with ESMTP id 48FB8114F5F
+	for <pierre.porche@insa-rouen.fr>; Thu, 13 Oct 2016 18:39:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1476376771; bh=TloGKbyVktVnSep1djZir7+UXHJzLr60bnZIpdxnDUQ=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=S9X5UIRVYcRSz1739mNjnxhzlWgJBsYp292K/Z4dUy77R0moFGqAOybkmb07gSCDQ
+	 /D62ylFwqgyvfUJSq7VytAgG51by6r1IGS/MRn8EiJv88zlfg8yX443zBis0rbp2TD
+	 OuYh2AxXPGP0PDGpCz7kIqp4+Bm2Va+gTCVYHzjnoLtgy33h79kzNAm2530z1M4luI
+	 kPfgXRckKD+vr2i/groTzpTrzx7tR4z+tBRMQKXAwJvGIG06JfItcY5csLa8L/1o/Y
+	 WOX+lepJmyOW9+ujsKzytmVK3wIELLx0egHpbgIjApt8y9pQFzSWaUSikTQqGuCM9M
+	 Py486MGuspzqw==
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout016 (Postfix) with ESMTP id 3B54C1150AD
+	for <pierre.porche@insa-rouen.fr>; Thu, 13 Oct 2016 18:39:31 +0200 (CEST)
+Received: from lpn-prd-vrin002 (lpn-prd-vrin002.laposte [10.128.63.3])
+	by lpn-prd-vrout016 (Postfix) with ESMTP id 392DE114F5F
+	for <pierre.porche@insa-rouen.fr>; Thu, 13 Oct 2016 18:39:31 +0200 (CEST)
+Received: from lpn-prd-vrin002 (localhost [127.0.0.1])
+	by lpn-prd-vrin002 (Postfix) with ESMTP id 26CCF5BF1EA
+	for <pierre.porche@insa-rouen.fr>; Thu, 13 Oct 2016 18:39:31 +0200 (CEST)
+Received: from [127.0.0.1] (ARouen-653-1-91-238.w82-126.abo.wanadoo.fr [82.126.106.238])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin002 (Postfix) with ESMTPSA id 04A3C5BF1DA
+	for <pierre.porche@insa-rouen.fr>; Thu, 13 Oct 2016 18:39:30 +0200 (CEST)
+Subject: Re: Cahier de recette du lot 2
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+References: <c4e2b8d5-85ca-8da2-8818-3e94005a8091@insa-rouen.fr>
+From: President UNICEF 76 <president.unicef76@laposte.net>
+Message-ID: <b47da39c-e38b-84e8-7643-c59175211b51@laposte.net>
+Date: Thu, 13 Oct 2016 18:39:25 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.1.1
+MIME-Version: 1.0
+In-Reply-To: <c4e2b8d5-85ca-8da2-8818-3e94005a8091@insa-rouen.fr>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Antivirus: avast! (VPS 161013-0, 13/10/2016), Outbound message
+X-Antivirus-Status: Clean
+X-VR-SrcIP: 82.126.106.238
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrgeeggddutdehucetufdoteggodetrfdotffvucfrrhho
+X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhht
+X-VR-Cause-3: shculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhep
+X-VR-Cause-4: rfhrvghsihguvghnthcufgfpkfevgffhucejiecuoehprhgvshhiuggvnhhtrdhunhhitggvfhejiees
+X-VR-Cause-5: lhgrphhoshhtvgdrnhgvtheqnecuffhomhgrihhnpegrvhgrshhtrdgtohhmnecukfhppeekvddruddv
+X-VR-Cause-6: iedruddtiedrvdefkeenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopegluddvjedr
+X-VR-Cause-7: tddrtddrudgnpdhinhgvthepkedvrdduvdeirddutdeirddvfeekpdhmrghilhhfrhhomhepphhrvghs
+X-VR-Cause-8: ihguvghnthdruhhnihgtvghfjeeisehlrghpohhsthgvrdhnvghtpdhrtghpthhtohepphhivghrrhgv
+X-VR-Cause-9: rdhpohhrtghhvgesihhnshgrqdhrohhuvghnrdhfrh
+X-VR-AvState: No
+X-VR-State: 0
+X-VR-State: 0
+
+j'ai été très dérangée et n'ai pu me pencher avec autant d'attention que 
+je l'aurai souhaité sur le cahier de recettes. Au demeurant, si tout 
+correspond à ce que nous avons testé l'autre jour avec Catherine Guest 
+(dont vous avez du avoir l'avis), je pense que c'est OK.
+Bonne soirée, Véronique BARBIER
+
+
+Le 12/10/2016 à 20:09, Pierre Porche a écrit :
+> Bonsoir,
+>
+> Veuillez trouver ci-joint le cahier de recette du lot numéro 2. 
+> Pourriez vous le lire et l'approuver par email?
+>
+> Bien cordialement,
+>
+>
+> Pierre Porche
+
+
+---
+L'absence de virus dans ce courrier électronique a été vérifiée par le logiciel antivirus Avast.
+https://www.avast.com/antivirus
+

@@ -1,0 +1,93 @@
+Return-Path: <president.unicef76@laposte.net>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 7FBB4238ED
+	for <pporche@insa-rouen.fr>; Wed,  2 Nov 2016 12:14:01 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CaAAAiyRlYh2XVdcJdHQEFAQsBgywBAQEBAXonUoMBrgqCA4NihBaGIgKCbwECAQEBAQECEwEBAQoLCQkdMIRiAQEBAwwXDwEFCAEBNwEPCQIaAiYCAh84Bg0IAQGINwEDDA+PJ5xPZ4RJAQEFg28QOhNGgycBAQEBAQUBAQEBGwiBB4RygkGCWIQqAQGDH4JcgSsBAZhrCAEBGpoVhhOJP4NZhASBdoJeIIFfcYYwgiwBAQE
+X-IPAS-Result: A0CaAAAiyRlYh2XVdcJdHQEFAQsBgywBAQEBAXonUoMBrgqCA4NihBaGIgKCbwECAQEBAQECEwEBAQoLCQkdMIRiAQEBAwwXDwEFCAEBNwEPCQIaAiYCAh84Bg0IAQGINwEDDA+PJ5xPZ4RJAQEFg28QOhNGgycBAQEBAQUBAQEBGwiBB4RygkGCWIQqAQGDH4JcgSsBAZhrCAEBGpoVhhOJP4NZhASBdoJeIIFfcYYwgiwBAQE
+X-IronPort-AV: E=Sophos;i="5.31,583,1473112800"; 
+   d="scan'208";a="109361093"
+Received: from smtpoutz26.laposte.net (HELO smtp.laposte.net) ([194.117.213.101])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 02 Nov 2016 12:14:02 +0100
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout014 (Postfix) with ESMTP id C146E1202EA
+	for <pierre.porche@insa-rouen.fr>; Wed,  2 Nov 2016 12:14:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1478085240; bh=ynTrPgSbW2ZngLhP0/Zp1u1BY7JHwvW+q6QpTMXV20E=;
+	h=Subject:To:References:Cc:From:Date:In-Reply-To;
+	b=SzMt7TLJ511qp1jP1tWl5xUpBAF+wbXMPosc2WLtAy20tZd6mJNhuYTVVRFhM2f72
+	 3h6FyRQG35lOuE4b8LkFqtDtlOZuV+R+mgCE1h/+pgUQZgejA5kKFtmIppxe+WndFr
+	 SPTSeI2p7QMbiB6h1O93EOCvkNZlXnTpzWhiiYr6JXVGGm1kkW0H8O4tilzCVEmIRy
+	 zCBe17F07oeCPVrt8uD0N5GiIBxme5OxP7MSTdimuS5wVylohQVfYBPLIOT5lb29u+
+	 K/+1X+RQGDZvYBYibetw+5E1b1vsUpw5EeSGYtsmwEvP4m1fXdWDIWsDWHo9EKyS3M
+	 tTlETKL0xSO8Q==
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout014 (Postfix) with ESMTP id B38BC121221
+	for <pierre.porche@insa-rouen.fr>; Wed,  2 Nov 2016 12:14:00 +0100 (CET)
+Received: from lpn-prd-vrin003 (lpn-prd-vrin003.laposte [10.128.63.4])
+	by lpn-prd-vrout014 (Postfix) with ESMTP id AF38E1202EA
+	for <pierre.porche@insa-rouen.fr>; Wed,  2 Nov 2016 12:14:00 +0100 (CET)
+Received: from lpn-prd-vrin003 (localhost [127.0.0.1])
+	by lpn-prd-vrin003 (Postfix) with ESMTP id 9C33448E0A7
+	for <pierre.porche@insa-rouen.fr>; Wed,  2 Nov 2016 12:14:00 +0100 (CET)
+Received: from [192.168.1.58] (220.138.130.77.rev.sfr.net [77.130.138.220])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin003 (Postfix) with ESMTPSA id 1FF9348E085;
+	Wed,  2 Nov 2016 12:14:00 +0100 (CET)
+Subject: =?UTF-8?Q?Re:_Projet_INSA_:_troisi=c3=a8me_revue?=
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+References: <0f1c451b-f4f7-df21-32cd-81aca96a7982@insa-rouen.fr>
+Cc: Guest catherine <cathyguest76@gmail.com>,
+ Naoual Guery <naoual.guery@gmail.com>, =?UTF-8?Q?LIKIBI_Marie_Jos=c3=a9e?=
+ <likibimj@yahoo.fr>
+From: =?UTF-8?Q?Pr=c3=a9sident_UNICEF_76?= <president.unicef76@laposte.net>
+Message-ID: <23339e99-b138-c748-62f5-2d5fc0e80d74@laposte.net>
+Date: Wed, 2 Nov 2016 12:14:00 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <0f1c451b-f4f7-df21-32cd-81aca96a7982@insa-rouen.fr>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-VR-SrcIP: 77.130.138.220
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrkeefgddvgecutefuodetggdotefrodftvfcurfhrohhf
+X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhs
+X-VR-Cause-3: ucdlqddutddtmdenucfjughrpefuvfhfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefr
+X-VR-Cause-4: rhorshhiuggvnhhtpggfpffkvefghfgpjeeiuceophhrvghsihguvghnthdruhhnihgtvghfjeeisehl
+X-VR-Cause-5: rghpohhsthgvrdhnvghtqeenucfkphepjeejrddufedtrddufeekrddvvddtnecurfgrrhgrmhepmhho
+X-VR-Cause-6: uggvpehsmhhtphhouhhtpdhhvghloheplgduledvrdduieekrddurdehkegnpdhinhgvthepjeejrddu
+X-VR-Cause-7: fedtrddufeekrddvvddtpdhmrghilhhfrhhomhepphhrvghsihguvghnthdruhhnihgtvghfjeeisehl
+X-VR-Cause-8: rghpohhsthgvrdhnvghtpdhrtghpthhtohepphhivghrrhgvrdhpohhrtghhvgesihhnshgrqdhrohhu
+X-VR-Cause-9: vghnrdhfrh
+X-VR-AvState: No
+X-VR-State: 0
+X-VR-State: 0
+
+
+Bonjour Pierre,
+Voici les noms des 3 bénévoles qui seront présentes pour la revue numéro 
+3. Vous les connaissez toutes les 3: il s'agit de Catherine Guest, 
+Naoual Guéry et Marie-Josée Libiki. Je les mets en copie du mail pour 
+pouvoir, si nécessaire, vous organiser pour cette revue.
+D'ici là bon travail pour préparer ce grand moment. Véronique BARBIER
+
+
+
+Le 02/11/2016 à 08:33, Pierre Porche a écrit :
+> Bonjour,
+>
+> Je me permets de vous relancer concernant la (les) personne(s) qui 
+> pourra(ont) se rendre à la revue numéro 3 ce vendredi 4 novembre de 
+> 15h30 à 17h. Pouvez vous me transmettre leur noms afin que je puisse 
+> avertir la sécurité de l'INSA?
+>
+> Merci d'avance,
+>
+>
+> Pierre Porche
+>
+

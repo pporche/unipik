@@ -15,6 +15,10 @@ intervention_self:
     path: /intervention/maliste
     defaults: {_controller: InterventionBundle:Intervention:maListe}
 
+demandes_recentes:
+    path: /intervention/demandes_recentes
+    defaults: {_controller: InterventionBundle:Intervention:recentDemandesListe}
+
 intervention_view:
     path: /intervention/{id}
     defaults: {_controller: InterventionBundle:Intervention:consultation}

@@ -1,0 +1,401 @@
+Return-Path: <president.unicef76@laposte.net>
+Delivered-To: pporche@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id D22B923A16
+	for <pporche@insa-rouen.fr>; Sat,  1 Oct 2016 18:40:43 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0BAGwDM5e9Xh2XVdcJdHAEBBAEBCgEBgz0BAQEBAYEfUoMBqVWCJoNuWIMDhBWGHgKCJAECAQEBAQECEwEBAQoLCQkZL0ESAYQOAQEBAwwXHQEBMgYPCQJCAgIfOAYNBgIBAYVUgloBAwwPkW2cRWeESQEBBYNoEDoTRYMDAQoBAQEbCIV1gkAIglCEIQYBAYMfglqBNZg+CAEBGop0jkuGCokeg1CDfoNlIIFdcIJ9gxoBDRcHggIBAQE
+X-IPAS-Result: A0BAGwDM5e9Xh2XVdcJdHAEBBAEBCgEBgz0BAQEBAYEfUoMBqVWCJoNuWIMDhBWGHgKCJAECAQEBAQECEwEBAQoLCQkZL0ESAYQOAQEBAwwXHQEBMgYPCQJCAgIfOAYNBgIBAYVUgloBAwwPkW2cRWeESQEBBYNoEDoTRYMDAQoBAQEbCIV1gkAIglCEIQYBAYMfglqBNZg+CAEBGop0jkuGCokeg1CDfoNlIIFdcIJ9gxoBDRcHggIBAQE
+X-IronPort-AV: E=Sophos;i="5.31,279,1473112800"; 
+   d="scan'208,217";a="96417418"
+Received: from smtpoutz26.laposte.net (HELO smtp.laposte.net) ([194.117.213.101])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 01 Oct 2016 18:40:43 +0200
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout014 (Postfix) with ESMTP id A9BB412094F
+	for <pierre.porche@insa-rouen.fr>; Sat,  1 Oct 2016 18:40:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1475340042; bh=oMnyUuk6ydiDj0RvvUTctJ7XgvXOfyb2Aw66FRr2jCc=;
+	h=Subject:References:To:From:Date:In-Reply-To;
+	b=cBPT/3zzYz5iishhExEDNRFG6R5SNXFtFckiFf4e6Nr1BioGyZIn1AYk6mgC9w8QZ
+	 ZNk7t7nVBS5foV2kG3ybPltPRnHkRAaWyRzaV5I1FIIqxd73KYtewNugl26hDO0YvD
+	 t8P+XoNYkTN47kqGQYoc/Gxrq5IiLrK9OzdztVIsdpmdffU0bAmktCnOugIjJfzbK6
+	 qM8yujW3x4NhPyyH7dBciPXYKwDeucAHz0cGIqRu9s3LBuxQp7pekbUHSwdDzWUm+p
+	 83wB4Fxpj0KJk9UbzlEgL4F9CrK8yAQjueRUIbBovUVFE+D4LQj0emnGqmFJneu5ZK
+	 hRB9IpCcn1YXQ==
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout014 (Postfix) with ESMTP id 9B08B120AE7
+	for <pierre.porche@insa-rouen.fr>; Sat,  1 Oct 2016 18:40:42 +0200 (CEST)
+Received: from lpn-prd-vrin003 (lpn-prd-vrin003.prosodie [10.128.63.4])
+	by lpn-prd-vrout014 (Postfix) with ESMTP id 95A0312094F
+	for <pierre.porche@insa-rouen.fr>; Sat,  1 Oct 2016 18:40:42 +0200 (CEST)
+Received: from lpn-prd-vrin003 (localhost [127.0.0.1])
+	by lpn-prd-vrin003 (Postfix) with ESMTP id 83F0D48E106
+	for <pierre.porche@insa-rouen.fr>; Sat,  1 Oct 2016 18:40:42 +0200 (CEST)
+Received: from [192.168.1.15] (LFbn-1-5727-78.w90-108.abo.wanadoo.fr [90.108.183.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin003 (Postfix) with ESMTPSA id 5F9AE48E0FA;
+	Sat,  1 Oct 2016 18:40:42 +0200 (CEST)
+Subject: =?UTF-8?Q?Re:_Fwd:_Re:_Projet_INSA_:_Rentr=c3=a9e?=
+References: <e4d68d2f-fec7-ac80-091d-2c9f995d9a08@insa-rouen.fr>
+ <e9aeefda-4228-4a61-f56f-29d2b9bf5144@insa-rouen.fr>
+ <1713c857-91a6-698a-9e26-a5978959ad6b@laposte.net>
+ <f89649cb-36dd-6b67-9eb9-08965c06db84@insa-rouen.fr>
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+From: =?UTF-8?Q?Pr=c3=a9sident_UNICEF_76?= <president.unicef76@laposte.net>
+Message-ID: <822ae25c-332d-9730-c92f-60660a91b519@laposte.net>
+Date: Sat, 1 Oct 2016 18:40:38 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.3.0
+MIME-Version: 1.0
+In-Reply-To: <f89649cb-36dd-6b67-9eb9-08965c06db84@insa-rouen.fr>
+Content-Type: multipart/alternative;
+ boundary="------------8635ED733BCAD50AB658425F"
+X-VR-SrcIP: 90.108.183.78
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrvddvgddutdekucetufdoteggodetrfdotffvucfrrhho
+X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhht
+X-VR-Cause-3: shculddquddttddmnecujfgurhepufhfvffhkffffgggjggtsegrtderredtfeejnecuhfhrohhmpefr
+X-VR-Cause-4: rhorshhiuggvnhhtpggfpffkvefghfgpjeeiuceophhrvghsihguvghnthdruhhnihgtvghfjeeisehl
+X-VR-Cause-5: rghpohhsthgvrdhnvghtqeenucfkphepledtrddutdekrddukeefrdejkeenucfrrghrrghmpehmohgu
+X-VR-Cause-6: vgepshhmthhpohhuthdphhgvlhhopegludelvddrudeikedruddrudehngdpihhnvghtpeeltddruddt
+X-VR-Cause-7: kedrudekfedrjeekpdhmrghilhhfrhhomhepphhrvghsihguvghnthdruhhnihgtvghfjeeisehlrghp
+X-VR-Cause-8: ohhsthgvrdhnvghtpdhrtghpthhtohepphhivghrrhgvrdhpohhrtghhvgesihhnshgrqdhrohhuvghn
+X-VR-Cause-9: rdhfrh
+X-VR-AvState: No
+X-VR-State: 0
+X-VR-State: 0
+
+This is a multi-part message in MIME format.
+--------------8635ED733BCAD50AB658425F
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour Pierre
+
+Un plaideur, utilisateur de l'application, peut être libre le jeudi 6 
+octobre à 10h. Et Véronique Davreux ou moi-même seront là aussi.
+Est-ce que ce moment vous convient?
+D'autre part, ce test doit -il se faite obligatoirement dans vos locaux, 
+ou peut-on imaginer de le faire dans notre local?
+Merci d'avance de votre réponse. Bon we. Cordialement, Véronique BARBIER
+
+
+Le 29/09/2016 à 14:26, Pierre Porche a écrit :
+> Bonjour,
+>
+> Aucun problème, le 17 octobre de 14h à 17h sera parfait.
+> Il serait effectivement pratique de pouvoir avoir un retour sur le 
+> design de l'application avant la livraison afin que nous puissions 
+> prendre en compte les remarques avant celle ci. Il nous semblerait 
+> toutefois plus pertinent dans le processus de livraison que l'une des 
+> personnes assistant à la livraison puisse également être la personne 
+> qui essaye l'application en avance. Pourriez vous, ou Véronique 
+> Davreux, nous rencontrer dans le courant de la semaine prochaine?
+>
+> Bien cordialement,
+>
+>
+> Pierre Porche
+>
+>
+>
+> Le 27/09/2016 à 17:07, Président UNICEF 76 a écrit :
+>>
+>> Bonjour Pierre,
+>>
+>> Désolée pour la lenteur de ma réponse. Véronique Davreux est moi-même 
+>> pouvons être à l'INSA le lundi 17 octobre de 14h à 17h. Est-ce que 
+>> cela vous convient?
+>> D'après votre message, je me demande s'il faut prévoir un autre 
+>> rendez-vous avec un utilisateur de l'application? vous devez avoir 
+>> les coordonnées d'Isabelle Becquart, responsable de l'équipe des 
+>> plaideurs, et qui a déjà participé à des rencontres avec vous et 
+>> celles de Catherine Guest, plaideur elle-même.
+>> Cordialement, Véronique BARBIER
+>>
+>>
+>> Le 26/09/2016 à 14:57, Pierre Porche a écrit :
+>>> Bonjour,
+>>>
+>>> Je me permets de vous relancer suite à mon mail de mercredi dernier. 
+>>> La date approchant et la livraison étant limitée par les 
+>>> établissements, je souhaiterais que nous puissions fixer la date au 
+>>> plus vite. Je vous demande de m'excuser pour cet empressement et 
+>>> vous saurais gré d'accepter mes plus amicales salutations. De plus, 
+>>> nous aimerions vous rencontrer au plus vite avant cette date afin de 
+>>> vous faire valider l'interface de l'application et s'assurer que la 
+>>> navigation vous est confortable.
+>>>
+>>> Bien cordialement,
+>>>
+>>>
+>>> Pierre Porche
+>>>
+>>>
+>>> -------- Message transféré --------
+>>> Sujet : 	Re: Projet INSA : Rentrée
+>>> Date : 	Wed, 21 Sep 2016 10:01:58 +0200
+>>> De : 	Pierre Porche <pierre.porche@insa-rouen.fr>
+>>> Pour : 	Président UNICEF 76 <president.unicef76@laposte.net>
+>>>
+>>>
+>>>
+>>> Bonjour,
+>>>
+>>> Je vous écris afin de fixer avec vous la date de livraison du lot 2.
+>>> Selon nos plannings, nous serons en mesure d'effectuer avec vous la
+>>> livraison le 17/10/2016 (ou dans la semaine qui suit, selon vos
+>>> disponibilités) à l'heure qui vous conviendra. La livraison se déroulera
+>>> de la même manière que la fois précédente. Je vous propose, juste avant
+>>> de passer à la livraison formelle, d'organiser une petite réunion afin
+>>> de faire un point sur l'équipe et sur les projets à l'INSA dont vous
+>>> souhaitiez nous parler. Je vous demanderais donc de prévoir trois heures
+>>> dans une journée de la semaine du 17 octobre. Je reste disponible pour
+>>> toute question que vous vous poseriez.
+>>>
+>>> Bien cordialement,
+>>>
+>>>
+>>> Pierre Porche
+>>> Chef PIC
+>>> PIC UNICEF
+>>> INSA Rouen
+>>>
+>>>
+>>>
+>>> Le 12/09/2016 à 09:52, Président UNICEF 76 a écrit :
+>>> > Bonjour Pierre,
+>>> >
+>>> > Merci de vos nouvelles. Nous espérons que l'été s'est bien passé pour
+>>> > toute l'équipe et que vous avez de bonnes nouvelles de vos camarades
+>>> > partis en stage ou à l'étranger. Nous serons très heureux de vous
+>>> > retrouver. Nous avons aussi d'autres projets à l'INSA dont nous aurons
+>>> > l'occasion de vous parler.
+>>> > Cordialement, Véronique BARBIER
+>>> >
+>>> >
+>>> > Le 08/09/2016 à 08:45, Pierre Porche a écrit :
+>>> >> Bonjour,
+>>> >> J'ai le plaisir de vous annoncer qu'avec la rentrée, le PIC UNICEF
+>>> >> reprend. Avec cette nouvelle année vient également un changement
+>>> >> d'équipe et j'ai donc le privilège d'être à présent le chef du projet
+>>> >> en succédant à Sergi. Nous avons un nouveau membre à l'équipe,
+>>> >> François Decq qui revient de Nouvelle-Zélande, et trois membres en
+>>> >> moins pour cause départ à l'étranger. Nous continuons donc notre
+>>> >> projet sans Sergi, Michel et Mathieu.
+>>> >> Nous avons dès à présent repris là où nous nous étions arrêtés avant
+>>> >> le stage de cet été afin de pouvoir effectuer la livraison complète
+>>> >> en octobre, comme il avait été convenu avec Sergi. L'équipe et moi
+>>> >> même redoublons de motivation afin de vous fournir un produit
+>>> >> correspondant à vos attentes dans les délais attendus, et ce malgré
+>>> >> un retard pris précédemment.
+>>> >> Je reste évidemment disponible pour toute demande d'information et
+>>> >> vous souhaite une excellente rentrée.
+>>> >>
+>>> >> Bien cordialement,
+>>> >>
+>>> >>
+>>> >> Pierre Porche
+>>> >> Chef PIC
+>>> >> PIC ASI UNICEF
+>>> >> INSA Rouen
+>>> >
+>>>
+>>
+>
+
+
+--------------8635ED733BCAD50AB658425F
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Bonjour Pierre</p>
+    <p>Un plaideur, utilisateur de l'application, peut être libre le
+      jeudi 6 octobre à 10h. Et Véronique Davreux ou moi-même seront là
+      aussi.<br>
+      Est-ce que ce moment vous convient?<br>
+      D'autre part, ce test doit -il se faite obligatoirement dans vos
+      locaux, ou peut-on imaginer de le faire dans notre local?<br>
+      Merci d'avance de votre réponse. Bon we. Cordialement, Véronique
+      BARBIER<br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">Le 29/09/2016 à 14:26, Pierre Porche a
+      écrit :<br>
+    </div>
+    <blockquote
+      cite="mid:f89649cb-36dd-6b67-9eb9-08965c06db84@insa-rouen.fr"
+      type="cite">
+      <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+      Bonjour,<br>
+      <br>
+      Aucun problème, le 17 octobre de 14h à 17h sera parfait.<br>
+      Il serait effectivement pratique de pouvoir avoir un retour sur le
+      design de l'application avant la livraison afin que nous puissions
+      prendre en compte les remarques avant celle ci. Il nous semblerait
+      toutefois plus pertinent dans le processus de livraison que l'une
+      des personnes assistant à la livraison puisse également être la
+      personne qui essaye l'application en avance. Pourriez vous, ou
+      Véronique Davreux, nous rencontrer dans le courant de la semaine
+      prochaine?<br>
+      <br>
+      Bien cordialement,<br>
+      <br>
+      <br>
+      Pierre Porche<br>
+      <br>
+      <br>
+      <br>
+      <div class="moz-cite-prefix">Le 27/09/2016 à 17:07, Président
+        UNICEF 76 a écrit :<br>
+      </div>
+      <blockquote
+        cite="mid:1713c857-91a6-698a-9e26-a5978959ad6b@laposte.net"
+        type="cite">
+        <meta content="text/html; charset=utf-8"
+          http-equiv="Content-Type">
+        <p>Bonjour Pierre,</p>
+        <p>Désolée pour la lenteur de ma réponse. Véronique Davreux est
+          moi-même pouvons être à l'INSA le lundi 17 octobre de 14h à
+          17h. Est-ce que cela vous convient?<br>
+          D'après votre message, je me demande s'il faut prévoir un
+          autre rendez-vous avec un utilisateur de l'application? vous
+          devez avoir les coordonnées d'Isabelle Becquart, responsable
+          de l'équipe des plaideurs, et qui a déjà participé à des
+          rencontres avec vous et celles de Catherine Guest, plaideur
+          elle-même.<br>
+          Cordialement, Véronique BARBIER<br>
+        </p>
+        <br>
+        <div class="moz-cite-prefix">Le 26/09/2016 à 14:57, Pierre
+          Porche a écrit :<br>
+        </div>
+        <blockquote
+          cite="mid:e9aeefda-4228-4a61-f56f-29d2b9bf5144@insa-rouen.fr"
+          type="cite">
+          <meta http-equiv="Context-Type" content="text/html; ">
+          Bonjour,<br>
+          <br>
+          Je me permets de vous relancer suite à mon mail de mercredi
+          dernier. La date approchant et la livraison étant limitée par
+          les établissements, je souhaiterais que nous puissions fixer
+          la date au plus vite. Je vous demande de m'excuser pour cet
+          empressement et vous saurais gré d'accepter mes plus amicales
+          salutations. De plus, nous aimerions vous rencontrer au plus
+          vite avant cette date afin de vous faire valider l'interface
+          de l'application et s'assurer que la navigation vous est
+          confortable.<br>
+          <br>
+          Bien cordialement,<br>
+          <br>
+          <br>
+          Pierre Porche<br>
+          <div class="moz-forward-container"><br>
+            <br>
+            -------- Message transféré --------
+            <table class="moz-email-headers-table">
+              <tbody>
+                <tr>
+                  <th nowrap="nowrap">Sujet : </th>
+                  <td>Re: Projet INSA : Rentrée</td>
+                </tr>
+                <tr>
+                  <th nowrap="nowrap">Date : </th>
+                  <td>Wed, 21 Sep 2016 10:01:58 +0200</td>
+                </tr>
+                <tr>
+                  <th nowrap="nowrap">De : </th>
+                  <td>Pierre Porche <a moz-do-not-send="true"
+                      class="moz-txt-link-rfc2396E"
+                      href="mailto:pierre.porche@insa-rouen.fr">&lt;pierre.porche@insa-rouen.fr&gt;</a></td>
+                </tr>
+                <tr>
+                  <th nowrap="nowrap">Pour : </th>
+                  <td>Président UNICEF 76 <a moz-do-not-send="true"
+                      class="moz-txt-link-rfc2396E"
+                      href="mailto:president.unicef76@laposte.net">&lt;president.unicef76@laposte.net&gt;</a></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+            <pre>Bonjour,
+
+Je vous écris afin de fixer avec vous la date de livraison du lot 2. 
+Selon nos plannings, nous serons en mesure d'effectuer avec vous la 
+livraison le 17/10/2016 (ou dans la semaine qui suit, selon vos 
+disponibilités) à l'heure qui vous conviendra. La livraison se déroulera 
+de la même manière que la fois précédente. Je vous propose, juste avant 
+de passer à la livraison formelle, d'organiser une petite réunion afin 
+de faire un point sur l'équipe et sur les projets à l'INSA dont vous 
+souhaitiez nous parler. Je vous demanderais donc de prévoir trois heures 
+dans une journée de la semaine du 17 octobre. Je reste disponible pour 
+toute question que vous vous poseriez.
+
+Bien cordialement,
+
+
+Pierre Porche
+Chef PIC
+PIC UNICEF
+INSA Rouen
+
+
+
+Le 12/09/2016 à 09:52, Président UNICEF 76 a écrit :
+&gt; Bonjour Pierre,
+&gt;
+&gt; Merci de vos nouvelles. Nous espérons que l'été s'est bien passé pour 
+&gt; toute l'équipe et que vous avez de bonnes nouvelles de vos camarades 
+&gt; partis en stage ou à l'étranger. Nous serons très heureux de vous 
+&gt; retrouver. Nous avons aussi d'autres projets à l'INSA dont nous aurons 
+&gt; l'occasion de vous parler.
+&gt; Cordialement, Véronique BARBIER
+&gt;
+&gt;
+&gt; Le 08/09/2016 à 08:45, Pierre Porche a écrit :
+&gt;&gt; Bonjour,
+&gt;&gt; J'ai le plaisir de vous annoncer qu'avec la rentrée, le PIC UNICEF 
+&gt;&gt; reprend. Avec cette nouvelle année vient également un changement 
+&gt;&gt; d'équipe et j'ai donc le privilège d'être à présent le chef du projet 
+&gt;&gt; en succédant à Sergi. Nous avons un nouveau membre à l'équipe, 
+&gt;&gt; François Decq qui revient de Nouvelle-Zélande, et trois membres en 
+&gt;&gt; moins pour cause départ à l'étranger. Nous continuons donc notre 
+&gt;&gt; projet sans Sergi, Michel et Mathieu.
+&gt;&gt; Nous avons dès à présent repris là où nous nous étions arrêtés avant 
+&gt;&gt; le stage de cet été afin de pouvoir effectuer la livraison complète 
+&gt;&gt; en octobre, comme il avait été convenu avec Sergi. L'équipe et moi 
+&gt;&gt; même redoublons de motivation afin de vous fournir un produit 
+&gt;&gt; correspondant à vos attentes dans les délais attendus, et ce malgré 
+&gt;&gt; un retard pris précédemment.
+&gt;&gt; Je reste évidemment disponible pour toute demande d'information et 
+&gt;&gt; vous souhaite une excellente rentrée.
+&gt;&gt;
+&gt;&gt; Bien cordialement,
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; Pierre Porche
+&gt;&gt; Chef PIC
+&gt;&gt; PIC ASI UNICEF
+&gt;&gt; INSA Rouen
+&gt;
+
+</pre>
+          </div>
+        </blockquote>
+        <br>
+      </blockquote>
+      <br>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------8635ED733BCAD50AB658425F--

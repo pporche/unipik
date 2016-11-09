@@ -1,0 +1,341 @@
+Return-Path: <president.unicef76@laposte.net>
+Delivered-To: pporche@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 5615C23A12
+	for <pporche@insa-rouen.fr>; Thu,  6 Oct 2016 08:28:22 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DxBgAc7vVXh8iaFrJeHAEFAQsBgz4BAQEBAYEfUoMBoTCHWIZoWIMFhBqGIAKCOgECAQEBAQECEwEBAQoLCQkZL0EOAYQSAQEBAgEMFx0BATgPCQI/AwICHwIlEQYBDAYCAQGILwEDDAMMknWcSmeESQEBBYNqEDoNBkWDEAEBAQEGAQEBAQEaCYV5gkCCWIJHgmOCIYJbgSYBh16QSisIAQEainSBY4xxhguIYkSDUIN/hBuBYHCBLIcUAQEB
+X-IPAS-Result: A0DxBgAc7vVXh8iaFrJeHAEFAQsBgz4BAQEBAYEfUoMBoTCHWIZoWIMFhBqGIAKCOgECAQEBAQECEwEBAQoLCQkZL0EOAYQSAQEBAgEMFx0BATgPCQI/AwICHwIlEQYBDAYCAQGILwEDDAMMknWcSmeESQEBBYNqEDoNBkWDEAEBAQEGAQEBAQEaCYV5gkCCWIJHgmOCIYJbgSYBh16QSisIAQEainSBY4xxhguIYkSDUIN/hBuBYHCBLIcUAQEB
+X-IronPort-AV: E=Sophos;i="5.31,452,1473112800"; 
+   d="scan'208,217";a="96887639"
+Received: from smtpoutz300.laposte.net (HELO smtp.laposte.net) ([178.22.154.200])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 06 Oct 2016 08:28:23 +0200
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout012 (Postfix) with ESMTP id 5F50A8CA53
+	for <pierre.porche@insa-rouen.fr>; Thu,  6 Oct 2016 08:28:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1475735301; bh=AmCNanyBL4FQdrMHW6Pgzga35EhUQd4K0AezVRLIsOs=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=BLi24/Nr7u2yzz5WFtAszN5Zwx2+txpRoBcjDhrW2uRhMMrkUwuPDkH7O16Gd6n/O
+	 LFhzApBbP6sB1MbsCVUD2l0K4pA6kA8D/E7Dzn5WiCfR8M2EQlfkBgElN4P6zXIJa+
+	 Kw1WIUxgomZDNteEv10yZ1G8ASouuIi5wT/ypJuUH35jb0R8y4oLmp3kvEU3dTNYag
+	 H2neMHEEHwQHrrIVtIsUqfbUX+NXfy1x4K8cFn5bIA/9SNeWApzShT8E/AnHidVLIP
+	 DFt/1rUM4ij02t6B3lDkx/yh4qAdEV1vgG6QTHxd4jb/xOE2XCq3effuCOPb3VPEk3
+	 XGz1tEpflsc6g==
+Received: from lpn-prd-vrin004 (lpn-prd-vrin004.prosodie [10.128.63.5])
+	by lpn-prd-vrout012 (Postfix) with ESMTP id 5A3F78C8F7
+	for <pierre.porche@insa-rouen.fr>; Thu,  6 Oct 2016 08:28:21 +0200 (CEST)
+Received: from lpn-prd-vrin004 (localhost [127.0.0.1])
+	by lpn-prd-vrin004 (Postfix) with ESMTP id 4731B710164
+	for <pierre.porche@insa-rouen.fr>; Thu,  6 Oct 2016 08:28:21 +0200 (CEST)
+Received: from [192.168.1.15] (LFbn-1-5727-78.w90-108.abo.wanadoo.fr [90.108.183.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin004 (Postfix) with ESMTPSA id 11353710125;
+	Thu,  6 Oct 2016 08:28:21 +0200 (CEST)
+Subject: =?UTF-8?Q?Re:_Fwd:_Re:_Projet_INSA_:_Rentr=c3=a9e?=
+To: pporche@insa-rouen.fr, "pierre.porche" <pierre.porche@insa-rouen.fr>,
+ Guest <cathyguest76@gmail.com>, veronique <veronique@davreux.com>
+References: <71fkdoqne0h3m4enywxpxphr.1475690345570@email.android.com>
+From: =?UTF-8?Q?Pr=c3=a9sident_UNICEF_76?= <president.unicef76@laposte.net>
+Message-ID: <b1bdb2b6-ea1e-0a67-b43c-bc62efc2d0d8@laposte.net>
+Date: Thu, 6 Oct 2016 08:28:14 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.3.0
+MIME-Version: 1.0
+In-Reply-To: <71fkdoqne0h3m4enywxpxphr.1475690345570@email.android.com>
+Content-Type: multipart/alternative;
+ boundary="------------A6E60D97A1079DAA500EBC96"
+X-VR-SrcIP: 90.108.183.78
+X-VR-FullState: 0
+X-VR-Score: 0
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrfedugdduudehucetufdoteggodetrfdotffvucfrrhho
+X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefuvfhfhffk
+X-VR-Cause-3: ffgfgggjtgesrgdtreertdefjeenucfhrhhomheprfhrrohsihguvghnthgpfgfpkfevgffhpgejiecu
+X-VR-Cause-4: oehprhgvshhiuggvnhhtrdhunhhitggvfhejieeslhgrphhoshhtvgdrnhgvtheqnecukfhppeeltddr
+X-VR-Cause-5: uddtkedrudekfedrjeeknecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghloheplgduledv
+X-VR-Cause-6: rdduieekrddurdduhegnpdhinhgvthepledtrddutdekrddukeefrdejkedpmhgrihhlfhhrohhmpehp
+X-VR-Cause-7: rhgvshhiuggvnhhtrdhunhhitggvfhejieeslhgrphhoshhtvgdrnhgvthdprhgtphhtthhopehpphho
+X-VR-Cause-8: rhgthhgvsehinhhsrgdqrhhouhgvnhdrfhhr
+X-VR-AvState: No
+X-VR-State: 0
+
+This is a multi-part message in MIME format.
+--------------A6E60D97A1079DAA500EBC96
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Je peux même être là à 15h, si nécessaire. Véronique BARBIER
+
+
+Le 05/10/2016 à 19:59, pporche@insa-rouen.fr a écrit :
+>
+> Bonsoir,
+>
+> Merci beaucoup, nous serons donc à votre local à 15 heures demain.
+>
+> Encore merci et à demain,
+>
+> Pierre Porche
+>
+> Le 5 oct. 2016 6:47 PM, Guest catherine <cathyguest76@gmail.com> a écrit :
+>
+>     bonsoir,
+>
+>     C'est possible pour moi d'être au local pour 15H, surtout vous me
+>     reconfirmez que c'est bien d'accord, véronique barbier nous
+>     rejoindra pour 16H
+>
+>     A demain, cordialement
+>
+>     catherine guest   06 03 93 50 18
+>
+>     Le 5 octobre 2016 à 17:09, Président UNICEF 76
+>     <president.unicef76@laposte.net
+>     <mailto:president.unicef76@laposte.net>> a écrit :
+>
+>
+>         je te transfère le message de Pierre Porche. Peux-tu lui
+>         répondre directement en fonction de ta disponibilité?
+>         De mon côté, je serai au local pour la permanence qui commence
+>         à 16h. je peux donc être là à 15h, mais je ne suis pas
+>         l'utilisateur final, donc le plus à même de tester.
+>         VB
+>
+>         -------- Message transféré --------
+>         Sujet : 	Re: Fwd: Re: Projet INSA : Rentrée
+>         Date : 	Wed, 5 Oct 2016 14:54:00 +0200
+>         De : 	Pierre Porche <pierre.porche@insa-rouen.fr>
+>         <mailto:pierre.porche@insa-rouen.fr>
+>         Pour : 	Président UNICEF 76 <president.unicef76@laposte.net>
+>         <mailto:president.unicef76@laposte.net>
+>
+>
+>
+>         Bonjour,
+>
+>         Serait il possible de décaler le rendez-vous de demain à 15h?
+>         L'INSA a en effet prévu une rencontre avec des entreprises sur
+>         l'ensemble de la matinée. S'il vous est possible de nous
+>         rencontrer à 15h, cela serait arrangeant pour nous.
+>
+>         Bien cordialement,
+>
+>
+>         Pierre Porche
+>
+>
+>
+>         Le 01/10/2016 à 18:40, Président UNICEF 76 a écrit :
+>
+>             Bonjour Pierre
+>
+>             Un plaideur, utilisateur de l'application, peut être libre
+>             le jeudi 6 octobre à 10h. Et Véronique Davreux ou moi-même
+>             seront là aussi.
+>             Est-ce que ce moment vous convient?
+>             D'autre part, ce test doit -il se faite obligatoirement
+>             dans vos locaux, ou peut-on imaginer de le faire dans
+>             notre local?
+>             Merci d'avance de votre réponse. Bon we. Cordialement,
+>             Véronique BARBIER
+>
+>
+>             Le 29/09/2016 à 14:26, Pierre Porche a écrit :
+>
+>                 Bonjour,
+>
+>                 Aucun problème, le 17 octobre de 14h à 17h sera parfait.
+>                 Il serait effectivement pratique de pouvoir avoir un
+>                 retour sur le design de l'application avant la
+>                 livraison afin que nous puissions prendre en compte
+>                 les remarques avant celle ci. Il nous semblerait
+>                 toutefois plus pertinent dans le processus de
+>                 livraison que l'une des personnes assistant à la
+>                 livraison puisse également être la personne qui essaye
+>                 l'application en avance. Pourriez vous, ou Véronique
+>                 Davreux, nous rencontrer dans le courant de la semaine
+>                 prochaine?
+>
+>                 Bien cordialement,
+>
+>
+>                 Pierre Porche
+>
+>
+>
+>                 Le 27/09/2016 à 17:07, Président UNICEF 76
+>
+
+
+--------------A6E60D97A1079DAA500EBC96
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Je peux même être là à 15h, si nécessaire. Véronique BARBIER<br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">Le 05/10/2016 à 19:59,
+      <a class="moz-txt-link-abbreviated" href="mailto:pporche@insa-rouen.fr">pporche@insa-rouen.fr</a> a écrit :<br>
+    </div>
+    <blockquote
+      cite="mid:71fkdoqne0h3m4enywxpxphr.1475690345570@email.android.com"
+      type="cite">
+      <p dir="ltr">Bonsoir,</p>
+      <p dir="ltr">Merci beaucoup, nous serons donc à votre local à 15
+        heures demain.</p>
+      <p dir="ltr">Encore merci et à demain,<br>
+      </p>
+      <p dir="ltr">Pierre Porche</p>
+      <div class="quote">Le 5 oct. 2016 6:47 PM, Guest catherine
+        <a class="moz-txt-link-rfc2396E" href="mailto:cathyguest76@gmail.com">&lt;cathyguest76@gmail.com&gt;</a> a écrit :<br type="attribution">
+        <blockquote class="quote" style="margin:0 0 0
+          .8ex;border-left:1px #ccc solid;padding-left:1ex">
+          <div dir="ltr">bonsoir,
+            <div><br>
+            </div>
+            <div>C'est possible pour moi d'être au local pour 15H,
+              surtout vous me reconfirmez que c'est bien d'accord,
+              véronique barbier nous rejoindra pour 16H</div>
+            <div><br>
+            </div>
+            <div>A demain, cordialement</div>
+            <div><br>
+            </div>
+            <div>catherine guest   06 03 93 50 18  </div>
+          </div>
+          <div><br>
+            <div class="elided-text">Le 5 octobre 2016 à 17:09,
+              Président UNICEF 76 <span dir="ltr">&lt;<a
+                  moz-do-not-send="true"
+                  href="mailto:president.unicef76@laposte.net">president.unicef76@laposte.net</a>&gt;</span>
+              a écrit :<br>
+              <blockquote style="margin:0 0 0 0.8ex;border-left:1px #ccc
+                solid;padding-left:1ex">
+                <div>
+                  <p><br>
+                  </p>
+                  <div>je te transfère le message de Pierre Porche.
+                    Peux-tu lui répondre directement en fonction de ta
+                    disponibilité?<br>
+                    De mon côté, je serai au local pour la permanence
+                    qui commence à 16h. je peux donc être là à 15h, mais
+                    je ne suis pas l'utilisateur final, donc le plus à
+                    même de tester.<br>
+                    VB<br>
+                    <br>
+                    -------- Message transféré --------
+                    <table border="0" cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr>
+                          <th align="RIGHT" nowrap="nowrap"
+                            valign="BASELINE">Sujet : </th>
+                          <td>Re: Fwd: Re: Projet INSA : Rentrée</td>
+                        </tr>
+                        <tr>
+                          <th align="RIGHT" nowrap="nowrap"
+                            valign="BASELINE">Date : </th>
+                          <td>Wed, 5 Oct 2016 14:54:00 +0200</td>
+                        </tr>
+                        <tr>
+                          <th align="RIGHT" nowrap="nowrap"
+                            valign="BASELINE">De : </th>
+                          <td>Pierre Porche <a moz-do-not-send="true"
+                              href="mailto:pierre.porche@insa-rouen.fr">&lt;pierre.porche@insa-rouen.fr&gt;</a></td>
+                        </tr>
+                        <tr>
+                          <th align="RIGHT" nowrap="nowrap"
+                            valign="BASELINE">Pour : </th>
+                          <td>Président UNICEF 76 <a
+                              moz-do-not-send="true"
+                              href="mailto:president.unicef76@laposte.net">&lt;president.unicef76@laposte.<wbr>net&gt;</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <p>Bonjour,</p>
+                    <p>Serait il possible de décaler le rendez-vous de
+                      demain à 15h? L'INSA a en effet prévu une
+                      rencontre avec des entreprises sur l'ensemble de
+                      la matinée. S'il vous est possible de nous
+                      rencontrer à 15h, cela serait arrangeant pour
+                      nous.</p>
+                    <div>
+                      <div>
+                        <p>Bien cordialement,</p>
+                        <p><br>
+                        </p>
+                        <p>Pierre Porche<br>
+                        </p>
+                        <p><br>
+                        </p>
+                        <br>
+                        <div>Le 01/10/2016 à 18:40, Président UNICEF 76
+                          a écrit :<br>
+                        </div>
+                        <blockquote>
+                          <p>Bonjour Pierre</p>
+                          <p>Un plaideur, utilisateur de l'application,
+                            peut être libre le jeudi 6 octobre à 10h. Et
+                            Véronique Davreux ou moi-même seront là
+                            aussi.<br>
+                            Est-ce que ce moment vous convient?<br>
+                            D'autre part, ce test doit -il se faite
+                            obligatoirement dans vos locaux, ou peut-on
+                            imaginer de le faire dans notre local?<br>
+                            Merci d'avance de votre réponse. Bon we.
+                            Cordialement, Véronique BARBIER<br>
+                          </p>
+                          <br>
+                          <div>Le 29/09/2016 à 14:26, Pierre Porche a
+                            écrit :<br>
+                          </div>
+                          <blockquote> Bonjour,<br>
+                            <br>
+                            Aucun problème, le 17 octobre de 14h à 17h
+                            sera parfait.<br>
+                            Il serait effectivement pratique de pouvoir
+                            avoir un retour sur le design de
+                            l'application avant la livraison afin que
+                            nous puissions prendre en compte les
+                            remarques avant celle ci. Il nous semblerait
+                            toutefois plus pertinent dans le processus
+                            de livraison que l'une des personnes
+                            assistant à la livraison puisse également
+                            être la personne qui essaye l'application en
+                            avance. Pourriez vous, ou Véronique Davreux,
+                            nous rencontrer dans le courant de la
+                            semaine prochaine?<br>
+                            <br>
+                            Bien cordialement,<br>
+                            <br>
+                            <br>
+                            Pierre Porche<br>
+                            <br>
+                            <br>
+                            <br>
+                            <div>Le 27/09/2016 à 17:07, Président UNICEF
+                              76</div>
+                          </blockquote>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </blockquote>
+            </div>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------A6E60D97A1079DAA500EBC96--

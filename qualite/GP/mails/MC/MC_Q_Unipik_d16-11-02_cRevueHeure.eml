@@ -1,0 +1,143 @@
+Return-Path: <cathyguest76@gmail.com>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id A4B16238ED
+	for <pporche@insa-rouen.fr>; Wed,  2 Nov 2016 14:18:55 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0AYAgCx5hlYhrbcVdFdHAEBBAEBCgEBgywBAQEBAYFzB4J6oTeIT4QEggODYoQWhiICghgHUwECAQEBAQECEwEBAQgLCwkdMIRiAQEBAgEMBhEdARsdAQMMBgMCBAc3AgIiAREBBQEcBhMIGogZAQMPCI9Cj02BMj8yi0aBa4JfBYNrChknDQZOgx8BAQEBAQEEAQEBAQEBGQIGEIsChCoBAYMfglwFgSYBAYdokQMIAQGBKAiJcoUYkAmNGIJCEx6BEYF2gl4ggV89NIYwgiwBAQE
+X-IPAS-Result: A0AYAgCx5hlYhrbcVdFdHAEBBAEBCgEBgywBAQEBAYFzB4J6oTeIT4QEggODYoQWhiICghgHUwECAQEBAQECEwEBAQgLCwkdMIRiAQEBAgEMBhEdARsdAQMMBgMCBAc3AgIiAREBBQEcBhMIGogZAQMPCI9Cj02BMj8yi0aBa4JfBYNrChknDQZOgx8BAQEBAQEEAQEBAQEBGQIGEIsChCoBAYMfglwFgSYBAYdokQMIAQGBKAiJcoUYkAmNGIJCEx6BEYF2gl4ggV89NIYwgiwBAQE
+X-IronPort-AV: E=Sophos;i="5.31,583,1473112800"; 
+   d="scan'208,217";a="109370985"
+Received: from mail-qk0-f182.google.com ([209.85.220.182])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 02 Nov 2016 14:18:55 +0100
+Received: by mail-qk0-f182.google.com with SMTP id n204so6912690qke.2
+        for <pierre.porche@insa-rouen.fr>; Wed, 02 Nov 2016 06:18:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+         :cc;
+        bh=SlMj16UNc9TBrUdeZbi4FCSv2BXPo7sZ4Iui03Fcr/8=;
+        b=QaYtK/4bbhM2FNsgWO3ee7u7ZazJa8PE39wr9EG+LfzZWXQ6r+i8wDG0fOlQirJKeR
+         lZTbV11ByCt8ybGy11Su1BLF8f7PsBfF144fcHYY1yjIrQRwBJzv9rHfhuKsoqMCcbBC
+         F6TZuzaGHjWfDUUdkTEgAxKYRMCz260OfNuEH0BNUV4r9Davu6YD7CHch/Iuf9Jb3h3d
+         Vc2x0YkvvhuGAwls29mGoKTUt53FhgZL6YoRUL4098adWW6ypukF9bwTiOPmwbcuZvJ1
+         Ti8uuqIH5EyYXHruppFJuoDvbYzwUUbSyZVVxQVEQKLu1p6PgGd5oRHTbc+3mHfsvwc2
+         ihjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to:cc;
+        bh=SlMj16UNc9TBrUdeZbi4FCSv2BXPo7sZ4Iui03Fcr/8=;
+        b=bRJWGvlsHvOzxZJNSRcv7QrqCyyysTLM6HfmYRvKFiseVgvwdT2u8TbhZwB8KP/ctX
+         l9LlVq+J48sxAWsXMNDC6cJ94SQAdC4q1/dHiyNLxNh5SDX63yYGbunNfs29FR9XG+dG
+         shN4QBelTUDM9A8OvtEl+cavkBJJDOxS6Myw8MHZR09kCNa2QI8p/Jdb5EZs5fPeZNOf
+         e32Tdgv5MUxxnLrkoxVg6+3mxEfF3heogPbNEFP9X5wgcBTjbyEK0e1uRZGAfnvH68fo
+         +H/ObDd25POqqLcpkD1aw1+Am0tQpWswHKLj9Zz4PVu1RWkhy4hqTac4AdS64QaI+bXm
+         Onmw==
+X-Gm-Message-State: ABUngvfzzC7k5+0mBLKHcapGhY+kT3c6+QX3qdm1Y5VJM0KPF9K4PJBOfRCtJj/KOAXzULGRK2xB+IGJ3JtpNA==
+X-Received: by 10.55.97.204 with SMTP id v195mr3101468qkb.158.1478092734377;
+ Wed, 02 Nov 2016 06:18:54 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.55.201.18 with HTTP; Wed, 2 Nov 2016 06:18:53 -0700 (PDT)
+In-Reply-To: <23339e99-b138-c748-62f5-2d5fc0e80d74@laposte.net>
+References: <0f1c451b-f4f7-df21-32cd-81aca96a7982@insa-rouen.fr> <23339e99-b138-c748-62f5-2d5fc0e80d74@laposte.net>
+From: Guest catherine <cathyguest76@gmail.com>
+Date: Wed, 2 Nov 2016 14:18:53 +0100
+Message-ID: <CAM17bmKWV=EqSbjhMmQrHkAePwmLPAPHDvTVpYhjOwGkpwdcpQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Re=3A_Projet_INSA_=3A_troisi=C3=A8me_revue?=
+To: =?UTF-8?Q?Pr=C3=A9sident_UNICEF_76?= <president.unicef76@laposte.net>
+Cc: Pierre Porche <pierre.porche@insa-rouen.fr>, Naoual Guery <naoual.guery@gmail.com>, 
+	=?UTF-8?Q?LIKIBI_Marie_Jos=C3=A9e?= <likibimj@yahoo.fr>
+Content-Type: multipart/alternative; boundary=94eb2c05c7ca60b93c05405148af
+
+--94eb2c05c7ca60b93c05405148af
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour Pierre,
+
+A quelle heure devons nous arriver, pourrait on se voir avant pour reparler
+du test de l'appli, j'aurais quelques pr=C3=A9cisions =C3=A0 voir avec vous=
+.....
+Merci d'avance, =C3=A0 vendredi,
+
+catherine guest
+
+Le 2 novembre 2016 =C3=A0 12:14, Pr=C3=A9sident UNICEF 76 <
+president.unicef76@laposte.net> a =C3=A9crit :
+
+>
+> Bonjour Pierre,
+> Voici les noms des 3 b=C3=A9n=C3=A9voles qui seront pr=C3=A9sentes pour l=
+a revue num=C3=A9ro
+> 3. Vous les connaissez toutes les 3: il s'agit de Catherine Guest, Naoual
+> Gu=C3=A9ry et Marie-Jos=C3=A9e Libiki. Je les mets en copie du mail pour =
+pouvoir, si
+> n=C3=A9cessaire, vous organiser pour cette revue.
+> D'ici l=C3=A0 bon travail pour pr=C3=A9parer ce grand moment. V=C3=A9roni=
+que BARBIER
+>
+>
+>
+> Le 02/11/2016 =C3=A0 08:33, Pierre Porche a =C3=A9crit :
+>
+>> Bonjour,
+>>
+>> Je me permets de vous relancer concernant la (les) personne(s) qui
+>> pourra(ont) se rendre =C3=A0 la revue num=C3=A9ro 3 ce vendredi 4 novemb=
+re de 15h30 =C3=A0
+>> 17h. Pouvez vous me transmettre leur noms afin que je puisse avertir la
+>> s=C3=A9curit=C3=A9 de l'INSA?
+>>
+>> Merci d'avance,
+>>
+>>
+>> Pierre Porche
+>>
+>>
+>
+
+--94eb2c05c7ca60b93c05405148af
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Bonjour Pierre,<div><br>A quelle heure devons nous arriver=
+, pourrait on se voir avant pour reparler du test de l&#39;appli, j&#39;aur=
+ais quelques pr=C3=A9cisions =C3=A0 voir avec vous..... Merci d&#39;avance,=
+ =C3=A0 vendredi,</div><div><br></div><div>catherine guest</div></div><div =
+class=3D"gmail_extra"><br><div class=3D"gmail_quote">Le 2 novembre 2016 =C3=
+=A0 12:14, Pr=C3=A9sident UNICEF 76 <span dir=3D"ltr">&lt;<a href=3D"mailto=
+:president.unicef76@laposte.net" target=3D"_blank">president.unicef76@lapos=
+te.net</a>&gt;</span> a =C3=A9crit :<br><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
+Bonjour Pierre,<br>
+Voici les noms des 3 b=C3=A9n=C3=A9voles qui seront pr=C3=A9sentes pour la =
+revue num=C3=A9ro 3. Vous les connaissez toutes les 3: il s&#39;agit de Cat=
+herine Guest, Naoual Gu=C3=A9ry et Marie-Jos=C3=A9e Libiki. Je les mets en =
+copie du mail pour pouvoir, si n=C3=A9cessaire, vous organiser pour cette r=
+evue.<br>
+D&#39;ici l=C3=A0 bon travail pour pr=C3=A9parer ce grand moment. V=C3=A9ro=
+nique BARBIER<br>
+<br>
+<br>
+<br>
+Le 02/11/2016 =C3=A0 08:33, Pierre Porche a =C3=A9crit :<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Bonjour,<br>
+<br>
+Je me permets de vous relancer concernant la (les) personne(s) qui pourra(o=
+nt) se rendre =C3=A0 la revue num=C3=A9ro 3 ce vendredi 4 novembre de 15h30=
+ =C3=A0 17h. Pouvez vous me transmettre leur noms afin que je puisse averti=
+r la s=C3=A9curit=C3=A9 de l&#39;INSA?<br>
+<br>
+Merci d&#39;avance,<br>
+<br>
+<br>
+Pierre Porche<br>
+<br>
+</blockquote>
+<br>
+</blockquote></div><br></div>
+
+--94eb2c05c7ca60b93c05405148af--

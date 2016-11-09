@@ -8,9 +8,8 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
         <div class="row">
-            <section class="jumbotron col-sm-12 col-lg-9 col-lg-offset-1">
+            <section class="jumbotron col-sm-12 col-lg-8 col-lg-offset-2">
                 <div class="infoPrincip">
                     <div class="row">
                         <h2 class="col-lg-9 titre" style="margin-top: 40px;"> {{ benevole.nom | upper }}
@@ -91,7 +90,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 col-sm-12 col-lg-9 col-lg-offset-1 infoContainer">
+            <div class="col-sm-12 col-sm-12 col-lg-8 col-lg-offset-2 infoContainer">
                 <div class="col-sm-4 containerOne">
                     <div class="circle circleOne">
                         <img src="{{ asset('img/location.png') }}" alt="Location">
@@ -174,7 +173,7 @@
                             <ul class="list-group col-lg-offset-1 col-sm-7 ">
                                 {% if ('plaidoyers' in benevole.activitesPotentielles ) %}
                                     <li class="list-group-item">
-                                        Plaidoyer
+                                        Actions éducatives
                                     </li>
                                 {% endif %}
                                 {% if ('frimousses' in benevole.activitesPotentielles) %}
@@ -208,7 +207,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-sm-offset-3 infoContainer">
+            <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3 infoContainer">
                 <div class="col-sm-6 containerFour">
                     <div class="circle circleFour">
                         <img src="{{ asset('img/speech-bubbles.png') }}" alt="bubbles">
@@ -218,7 +217,6 @@
                         {% if listeInterventions is not empty %}
                             <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0"
                                  data-target="#navbar-example" data-spy="scroll" style="
-                                    height: 200px;
                                     overflow: auto;
                                     position: relative;
                                     border:1px solid #cccccc;
@@ -251,7 +249,6 @@
                         {% if benevole.projet is not empty %}
                         <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0"
                              data-target="#navbar-example" data-spy="scroll" style="
-                                    height: 200px;
                                     overflow: auto;
                                     position: relative;
                                     border:1px solid #cccccc;
@@ -274,6 +271,5 @@
 
         </div>
 
-    </div>
     </div>
 {% endblock %}

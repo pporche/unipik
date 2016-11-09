@@ -1,0 +1,68 @@
+Return-Path: <president.unicef76@laposte.net>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 1903323A12
+	for <pporche@insa-rouen.fr>; Wed, 12 Oct 2016 15:42:41 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CnCgBPPf5Xh2fVdcJcg2wBAQEBAYEeUqRjKIcXbYNnDIl2CIkIAQIBAQEBAQITAQEBCA0JCRkvhQsPAQUIAQE4NAImAiEiEAwNCAEBiDEBAwwPtWRnhEkBAQWDcBA6E0WDSgmBB4RygkGKI4JbgSYBmFYIAQEakTsBiBCGDIkph0+DQwxXgWBwiGQBAQE
+X-IPAS-Result: A0CnCgBPPf5Xh2fVdcJcg2wBAQEBAYEeUqRjKIcXbYNnDIl2CIkIAQIBAQEBAQITAQEBCA0JCRkvhQsPAQUIAQE4NAImAiEiEAwNCAEBiDEBAwwPtWRnhEkBAQWDcBA6E0WDSgmBB4RygkGKI4JbgSYBmFYIAQEakTsBiBCGDIkph0+DQwxXgWBwiGQBAQE
+X-IronPort-AV: E=Sophos;i="5.31,482,1473112800"; 
+   d="scan'208";a="107461979"
+Received: from smtpoutz28.laposte.net (HELO smtp.laposte.net) ([194.117.213.103])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 12 Oct 2016 15:42:40 +0200
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout016 (Postfix) with ESMTP id 6523511423F
+	for <pierre.porche@insa-rouen.fr>; Wed, 12 Oct 2016 15:42:40 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1476279760; bh=nTkermJrnoJBuIFH/2siutyAabmM0CIqP5HajQcPrpY=;
+	h=To:From:Subject:Date;
+	b=SLLGL0o0fGxuH7r+Oq9+a2PuZ783wyRbqppGdNVMbKYazAnVr5d0ZAg0nXdZjI7Me
+	 MgIpDzWIV8gXgXFJiQax/9YkdswnF0g/NHCzHZeLh1PMlyfD5vgAxd7WJ6lvxxvbDL
+	 WfE43LtGfVt6NlKh1TPMh0eeQSzOJQSq8bubnes0/D1/HDRAUvKR+WAya4LuZZWdY2
+	 y/GPLcRJaNybcIgkFVcmNtH/EkPGCtVhcFBUP9UjxT0g5AmzWCIG0hev/qv3EmZPjR
+	 EtB5sj15Mk+RRt31rFkDw47HBu2opbrJiIUPAVeDDQ1RY7SjXJC8HvzGQ4PUyOK1lX
+	 5lg0IOntFr0jw==
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout016 (Postfix) with ESMTP id 59711114485
+	for <pierre.porche@insa-rouen.fr>; Wed, 12 Oct 2016 15:42:40 +0200 (CEST)
+Received: from lpn-prd-vrin001 (lpn-prd-vrin001.laposte [10.128.63.2])
+	by lpn-prd-vrout016 (Postfix) with ESMTP id 578DF11423F
+	for <pierre.porche@insa-rouen.fr>; Wed, 12 Oct 2016 15:42:40 +0200 (CEST)
+Received: from lpn-prd-vrin001 (localhost [127.0.0.1])
+	by lpn-prd-vrin001 (Postfix) with ESMTP id 469BF366C7E
+	for <pierre.porche@insa-rouen.fr>; Wed, 12 Oct 2016 15:42:40 +0200 (CEST)
+Received: from [192.168.1.15] (LFbn-1-5727-78.w90-108.abo.wanadoo.fr [90.108.183.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin001 (Postfix) with ESMTPSA id 2DAC7366C78
+	for <pierre.porche@insa-rouen.fr>; Wed, 12 Oct 2016 15:42:40 +0200 (CEST)
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+From: =?UTF-8?Q?Pr=c3=a9sident_UNICEF_76?= <president.unicef76@laposte.net>
+Subject: pour lundi
+Message-ID: <84902c69-56fb-e977-96fa-bf2e872dbffe@laposte.net>
+Date: Wed, 12 Oct 2016 15:42:27 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-VR-SrcIP: 90.108.183.78
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrgedvgdeijecutefuodetggdotefrodftvfcurfhrohhf
+X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhs
+X-VR-Cause-3: ucdlqddutddtmdenucfjughrpefvhffukffffgggtgfgsehtkeertddtfeejnecuhfhrohhmpefrrhor
+X-VR-Cause-4: shhiuggvnhhtpggfpffkvefghfgpjeeiuceophhrvghsihguvghnthdruhhnihgtvghfjeeisehlrghp
+X-VR-Cause-5: ohhsthgvrdhnvghtqeenucfkphepledtrddutdekrddukeefrdejkeenucfrrghrrghmpehmohguvgep
+X-VR-Cause-6: shhmthhpohhuthdphhgvlhhopegludelvddrudeikedruddrudehngdpihhnvghtpeeltddruddtkedr
+X-VR-Cause-7: udekfedrjeekpdhmrghilhhfrhhomhepphhrvghsihguvghnthdruhhnihgtvghfjeeisehlrghpohhs
+X-VR-Cause-8: thgvrdhnvghtpdhrtghpthhtohepphhivghrrhgvrdhpohhrtghhvgesihhnshgrqdhrohhuvghnrdhf
+X-VR-Cause-9: rh
+X-VR-AvState: No
+X-VR-State: 0
+X-VR-State: 0
+
+Bonjour Pierre, à quelle heure est prévue la fin de la remise du lot? 
+Merci d'avance de la réponse.
+Véronique Barbier
+

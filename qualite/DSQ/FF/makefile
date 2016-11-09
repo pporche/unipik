@@ -9,7 +9,7 @@ include makevars $(UNIPIKGENPATH)/pic_unicef/makevars
 all : ff cleanrep cleaneps
 
 ff : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements FF_Q_Unipik_cBaseDeDonnees FF_Q_Unipik_cArgoUml FF_Q_Unipik_cPHPUnit FF_Q_Unipik_cSymfony FF_Q_Unipik_cBootstrap 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements FF_Q_Unipik_cBaseDeDonnees FF_Q_Unipik_cArgoUml FF_Q_Unipik_cPHPUnit FF_Q_Unipik_cSymfony FF_Q_Unipik_cBootstrap FF_Q_Unipik_cSymfonyS2 
 
 
 # Archivage

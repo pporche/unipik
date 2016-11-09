@@ -260,7 +260,15 @@
                     $('#fos_user_registration_form_adresse_ville').val(data.ville);
                 });
         });
-
+        $(".fos_user_registration_form").submit(function( e ) {
+            e.preventDefault();
+            if($('#fos_user_registration_form_telFixe').val().trim().length==0 || $('#fos_user_registration_form_telPortable').val().trim().length==0){
+                $('#fos_user_registration_form_telPortable').after('<p style="color: red; font-weight: 400;">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+            }
+            else {
+                $(".fos_user_registration_form").submit();
+            }
+        });
     </script>
 {% endblock %}
 

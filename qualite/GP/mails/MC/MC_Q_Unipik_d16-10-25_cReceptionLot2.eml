@@ -1,0 +1,169 @@
+Return-Path: <president.unicef76@laposte.net>
+Delivered-To: pporche@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 5B53623AE1
+	for <pporche@insa-rouen.fr>; Tue, 25 Oct 2016 18:30:54 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CJAQDthw9Yh8aaFrJcg18BAQEBAXUJASBNBoMBsFuHHSOFfgKCRAECAQEBAQECEwEBAQoLCQkdMEIOAYQSAQEBAwwXHQEBOA8JAgQ+AgIfOAYNCAEBiDQBAwwPBZdWnE9nhEkBAQWDZBA6E0WDIQwdCIV5gkGCWIQqAQF+giGCW4EqAZhmCAEBGoYQhGuHPoc2hhGJCCuDVYQBhFeBX3AMAYFahAqCIAEBAQ
+X-IPAS-Result: A0CJAQDthw9Yh8aaFrJcg18BAQEBAXUJASBNBoMBsFuHHSOFfgKCRAECAQEBAQECEwEBAQoLCQkdMEIOAYQSAQEBAwwXHQEBOA8JAgQ+AgIfOAYNCAEBiDQBAwwPBZdWnE9nhEkBAQWDZBA6E0WDIQwdCIV5gkGCWIQqAQF+giGCW4EqAZhmCAEBGoYQhGuHPoc2hhGJCCuDVYQBhFeBX3AMAYFahAqCIAEBAQ
+X-IronPort-AV: E=Sophos;i="5.31,546,1473112800"; 
+   d="scan'208,217";a="98658952"
+Received: from smtpoutz298.laposte.net (HELO smtp.laposte.net) ([178.22.154.198])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 25 Oct 2016 18:30:55 +0200
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout010 (Postfix) with ESMTP id 9303A45AA87
+	for <pierre.porche@insa-rouen.fr>; Tue, 25 Oct 2016 18:30:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1477413053; bh=T5RZPtUbF99GlKM2PeT37jmNLBY5j9WrB/T7HaiLg7c=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=mQdC1Ws0PCEuD6n6mfZ9H9jRRlnd2nCMO75T+gDDKUdavdhJHmrrqGQSeIJdicV0t
+	 gJOPPgac1pcN2O2nQ3N3Zn/tTCnYoMe/w5gxv7Eptb1kyamjJbtrlLsxxY0nPQYQhM
+	 uJTEQFCg2hJ/kKNZ26odL5bCYHzfumNqqDQQBRqBjaOb4pvXyf7aIjmxcZw6hbO3Uw
+	 SJm5fEJNwis2qsXOgA1H9ik0zcI0KNNH3VCiqcureu/zgiLTyu0nS8GcXHUJC5DviH
+	 yKH8pj6/PplwEpJ8PeDNFhKywTzWvnQhdj9pkJYiwbxFZFwoLLrYT+tW0yz8Q7C2ah
+	 W1AGGDWu0jA4w==
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout010 (Postfix) with ESMTP id 8354045B44F
+	for <pierre.porche@insa-rouen.fr>; Tue, 25 Oct 2016 18:30:53 +0200 (CEST)
+Received: from lpn-prd-vrin002 (lpn-prd-vrin002.prosodie [10.128.63.3])
+	by lpn-prd-vrout010 (Postfix) with ESMTP id 7FBC345AA87
+	for <pierre.porche@insa-rouen.fr>; Tue, 25 Oct 2016 18:30:53 +0200 (CEST)
+Received: from lpn-prd-vrin002 (localhost [127.0.0.1])
+	by lpn-prd-vrin002 (Postfix) with ESMTP id 6FE5E5BF1A9
+	for <pierre.porche@insa-rouen.fr>; Tue, 25 Oct 2016 18:30:53 +0200 (CEST)
+Received: from [192.168.1.15] (LFbn-1-5727-78.w90-108.abo.wanadoo.fr [90.108.183.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin002 (Postfix) with ESMTPSA id 561395BF12E
+	for <pierre.porche@insa-rouen.fr>; Tue, 25 Oct 2016 18:30:53 +0200 (CEST)
+Subject: Re: Mise en ligne de l'application
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+References: <7139bb39-62cb-2402-93b1-45597fcbeba3@insa-rouen.fr>
+From: =?UTF-8?Q?Pr=c3=a9sident_UNICEF_76?= <president.unicef76@laposte.net>
+Message-ID: <6ef16e08-e765-a6d0-af3f-3189f3995bcc@laposte.net>
+Date: Tue, 25 Oct 2016 18:30:51 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <7139bb39-62cb-2402-93b1-45597fcbeba3@insa-rouen.fr>
+Content-Type: multipart/alternative;
+ boundary="------------550486103F63424134BE70FC"
+X-VR-SrcIP: 90.108.183.78
+X-VR-FullState: 0
+X-VR-Score: -51
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrieejgddutdefucetufdoteggodetrfdotffvucfrrhho
+X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhht
+X-VR-Cause-3: shculddquddttddmnegoufhushhpvggtthffohhmrghinhculdegledmnecujfgurhepuffvfhfhkfff
+X-VR-Cause-4: fgggjggtsegrtderredtfeejnecuhfhrohhmpefrrhorshhiuggvnhhtpggfpffkvefghfgpjeeiuceo
+X-VR-Cause-5: phhrvghsihguvghnthdruhhnihgtvghfjeeisehlrghpohhsthgvrdhnvghtqeenucffohhmrghinhep
+X-VR-Cause-6: thhinhihuhhrlhdrtghomhenucfkphepledtrddutdekrddukeefrdejkeenucfrrghrrghmpehmohgu
+X-VR-Cause-7: vgepshhmthhpohhuthdphhgvlhhopegludelvddrudeikedruddrudehngdpihhnvghtpeeltddruddt
+X-VR-Cause-8: kedrudekfedrjeekpdhmrghilhhfrhhomhepphhrvghsihguvghnthdruhhnihgtvghfjeeisehlrghp
+X-VR-Cause-9: ohhsthgvrdhnvghtpdhrtghpthhtohepphhivghrrhgvrdhpohhrtghhvgesihhnshgrqdhrohhuvghn
+X-VR-Cause-10: rdhfrh
+X-VR-AvState: No
+X-VR-State: 0
+X-VR-State: 0
+
+This is a multi-part message in MIME format.
+--------------550486103F63424134BE70FC
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+on va travailler à tester l'application.
+Pour la revue, je bats le rappel pour savoir qui pourra venir (de mon 
+côté je suis absente jusqu'au 7 novembre).
+Pour le lot 4, villes amies et actions ponctuelles, je crois que nous 
+avons déjà réalisé que ce serait difficile pour vous d'arriver jusque 
+là. L'important est que la gestion des actions éducatives soient le plus 
+opérationnelle possible.
+
+Bonnes vacances. Véronique Barbier
+
+
+Le 24/10/2016 à 11:13, Pierre Porche a écrit :
+> Bonjour,
+>
+> Veuillez trouver ci-après un raccourci vers l'application avec la 
+> correction des remarques évoquées au moment de la recette. Je vous 
+> invite à la tester intensivement et à nous faire remonter toute 
+> remarque supplémentaire par mail.
+> http://tinyurl.com/zlk5kfo
+> Deux utilisateurs vous sont réservés avec les identifiants suivants :
+> Nom d'utilisateur : _vbarbier_     Mot de passe : _unicef76_
+> Nom d'utilisateur : _cguest_       Mot de passe : _unicef76_
+>
+> Concernant la revue, celle ci aura lieu le vendredi 4 novembre 2016 de 
+> 15h30 à 17h. Je vous invite donc à me communiquer les noms des 
+> personnes qui seront présentes en raison du plan vigipirate.
+>
+> Par ailleurs, en relisant le cahier des charges, nous nous sommes 
+> aperçu que le lot 4 concernait les villes amies des enfants et les 
+> actions ponctuelles. Il me semble me rappeler que nous avions discuté 
+> de ne pas implémenter entièrement ce lot. Pouvez vous me confirmer que 
+> ce lot n'est pas une priorité absolue?*
+>
+> *Bien cordialement,
+>
+>
+> Pierre Porche
+
+
+--------------550486103F63424134BE70FC
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>on va travailler à tester l'application.<br>
+      Pour la revue, je bats le rappel pour savoir qui pourra venir (de
+      mon côté je suis absente jusqu'au 7 novembre).<br>
+      Pour le lot 4, villes amies et actions ponctuelles, je crois que
+      nous avons déjà réalisé que ce serait difficile pour vous
+      d'arriver jusque là. L'important est que la gestion des actions
+      éducatives soient le plus opérationnelle possible.</p>
+    <p>Bonnes vacances. Véronique Barbier<br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">Le 24/10/2016 à 11:13, Pierre Porche a
+      écrit :<br>
+    </div>
+    <blockquote
+      cite="mid:7139bb39-62cb-2402-93b1-45597fcbeba3@insa-rouen.fr"
+      type="cite">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      Bonjour,<br>
+      <br>
+      Veuillez trouver ci-après un raccourci vers l'application avec la
+      correction des remarques évoquées au moment de la recette. Je vous
+      invite à la tester intensivement et à nous faire remonter toute
+      remarque supplémentaire par mail.<br>
+      <a moz-do-not-send="true" href="http://tinyurl.com/zlk5kfo">http://tinyurl.com/zlk5kfo</a><br>
+      Deux utilisateurs vous sont réservés avec les identifiants
+      suivants :<br>
+      Nom d'utilisateur : <u>vbarbier</u>     Mot de passe : <u>unicef76</u><br>
+      Nom d'utilisateur : <u>cguest</u>       Mot de passe : <u>unicef76</u><br>
+      <br>
+      Concernant la revue, celle ci aura lieu le vendredi 4 novembre
+      2016 de 15h30 à 17h. Je vous invite donc à me communiquer les noms
+      des personnes qui seront présentes en raison du plan vigipirate.<br>
+      <br>
+      Par ailleurs, en relisant le cahier des charges, nous nous sommes
+      aperçu que le lot 4 concernait les villes amies des enfants et les
+      actions ponctuelles. Il me semble me rappeler que nous avions
+      discuté de ne pas implémenter entièrement ce lot. Pouvez vous me
+      confirmer que ce lot n'est pas une priorité absolue?<b><br>
+        <br>
+      </b>Bien cordialement,<br>
+      <br>
+      <br>
+      Pierre Porche<br>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------550486103F63424134BE70FC--

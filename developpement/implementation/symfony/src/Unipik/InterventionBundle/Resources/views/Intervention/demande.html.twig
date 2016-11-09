@@ -657,7 +657,9 @@
 
         }
 
-        $(document).ready(function () {
+
+        $(document).ready(function() {
+
 
             $("label:contains(\"Informations de l'établissement\")").hide();
 
@@ -699,6 +701,9 @@
                 $($prototype).children().find("select").on("change", displayTypeIntervention);
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;
+                $(':input[type="number"]').attr("min", 0).keyup(function () {
+                    this.value = this.value.replace(/[^0-9\.]/g,'');
+                });
             }
 
 

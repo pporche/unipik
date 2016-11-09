@@ -1,6 +1,8 @@
 @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
 
-
+h1{
+    margin-left: 20px;
+}
 .jumbotron {
     border-radius: 20px !important;
     position: relative;
@@ -45,6 +47,12 @@
     background-color: #dbdbdb;
     display: block;
     margin-top: 15px;
+}
+
+.row{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top:10px !important;
 }
 
 .bonjour{
@@ -120,8 +128,8 @@
 }
 
 .container{
-    padding-left: 30px !important;
-    padding-right: 30px !important;
+    padding-left: 5px !important;
+    padding-right: 10px !important;
     margin-top: 20px !important;
 }
 
@@ -219,7 +227,7 @@ iframe{
 }
 
 section{
-    margin-top: 30px !important;
+    margin-top: 50px !important;
 }
 
 .fc{

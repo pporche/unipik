@@ -6,7 +6,7 @@
 
 ## Référentiel qualite ##
 
-VERSIONPGC=v3.01
+VERSIONPGC=v3.02
 VERSIONPQ=v3.01
 VERSIONPF=v1.02
 VERSIONPRO=v3.01
@@ -15,7 +15,7 @@ VERSIONOF=v2.00
 
 ## Référentiel specifications ##
 
-VERSIONDSE=v2.00
+VERSIONDSE=v2.01
 VERSIONDSI=v2.00
 VERSIONPTV=v2.00
 

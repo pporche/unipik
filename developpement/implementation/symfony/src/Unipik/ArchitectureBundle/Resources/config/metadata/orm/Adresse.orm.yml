@@ -12,12 +12,6 @@ Adresse:
             generator:
                 strategy: SEQUENCE
     fields:
-        ville:
-            type: string
-            nullable: false
-            length: 100
-            options:
-                fixed: false
         adresse:
             type: string
             nullable: false

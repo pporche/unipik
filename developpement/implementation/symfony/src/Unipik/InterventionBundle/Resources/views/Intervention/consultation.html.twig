@@ -7,10 +7,16 @@
 
 {% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('vendor/leaflet/dist/leaflet.css') }}" />
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
+    <script src="{{ asset('vendor/leaflet/dist/leaflet.js') }}"></script>
+    <script src="{{ asset('vendor/turfjs/turf.min.js') }}"></script>
     <script>
 
         {% if intervention.benevole %}

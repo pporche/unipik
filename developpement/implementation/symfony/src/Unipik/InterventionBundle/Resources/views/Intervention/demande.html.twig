@@ -17,7 +17,7 @@
     <h5> Nom :</h5>
     {{ form_widget(form.Etablissement.nom) }}
 
-    <h5> Tel Fixe* :</h5>
+    <h5> Tel Fixe :</h5>
     {{ form_widget(form.Etablissement.telFixe) }}
 
     <div class="emailDiv">
@@ -25,21 +25,21 @@
         {{ form_widget(form.Etablissement.emails) }}
     </div>
 
-    <h5> Type d'etablissement :</h5>
+    <h5> Type d'etablissement* :</h5>
     {{ form_widget(form.Etablissement.TypeGeneral) }}
 
     {% if etablissement.enseignement %}
-        <h5> Type d'enseignement :</h5>
+        <h5> Type d'enseignement* :</h5>
         {{ form_widget(form.Etablissement.typeEnseignement) }}
     {% endif %}
 
     {% if etablissement.centreLoisirs %}
-        <h5> Type Centre de Loisir :</h5>
+        <h5> Type Centre de Loisir* :</h5>
         {{ form_widget(form.Etablissement.typeCentre) }}
     {% endif %}
 
     {% if etablissement.autreEtablissement %}
-        <h5> Type Autre Etablissement :</h5>
+        <h5> Type Autre Etablissement* :</h5>
         {{ form_widget(form.Etablissement.typeAutreEtablissement) }}
     {% endif %}
 
@@ -71,7 +71,7 @@
         {{ form_widget(form.jour) }}
     </div>
 
-    <h3> Intervention</h3>
+    <h3> Intervention* </h3>
     {{ form_widget(form.Intervention) }}
     {#<h5>Type d'intervention* :</h5>#}
     {#{{  form_widget(form.Intervention.TypeGeneral) }}#}
@@ -95,14 +95,14 @@
     <h5> Nom* :</h5>
     {{ form_widget(form.Contact.nom) }}
 
-    <h5> Prénom* :</h5>
+    <h5> Prénom :</h5>
     {{ form_widget(form.Contact.prenom) }}
 
 
-    <h5> Tel Fixe* :</h5>
+    <h5> Tel Fixe :</h5>
     {{ form_widget(form.Contact.telFixe) }}
 
-    <h5> Tel Portable* :</h5>
+    <h5> Tel Portable :</h5>
     {{ form_widget(form.Contact.telPortable) }}
 
     <h5> Type Contact* :</h5>
@@ -812,7 +812,7 @@
         }
 
         function verifyNumber(e) {
-            var re = /(0)[1-9][0-9]{8}/;
+            var re = /((0)[1-9][0-9]{8})?/;
             if (!(re.test($('#demande_Contact_telFixe').val()) && re.test($('#demande_Contact_telPortable').val()) && re.test($('#demande_Etablissement_telFixe').val()))) {
                 e.preventDefault();
                 e.stopPropagation();

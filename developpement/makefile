@@ -2,7 +2,7 @@
 # version 1.00 date 24/02/2016 auteur(s) Pierre Porche, Michel Cressant
 
 # Compilation
-all: Lot1 Lot2 Lot3 doc
+all: Lot1 Lot2 doc #Lot3 doc
 
 Lot1:
 	make -C lot1

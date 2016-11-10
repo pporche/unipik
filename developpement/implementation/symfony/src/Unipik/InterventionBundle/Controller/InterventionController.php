@@ -1,5 +1,18 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 namespace Unipik\InterventionBundle\Controller;
 
 use Doctrine\ORM\Repository\RepositoryFactory;
@@ -26,16 +39,22 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Util\Debug;
 /**
- * Created by PhpStorm.
- * User: florian
- * Date: 19/04/16
- * Time: 11:55
+ * Le controller qui gère les interventions
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class InterventionController extends Controller {
 
     /**
-     * @param Request $request
-     * @param $id
+     * Action édition
+     *
+     * @param Request $request La requete
+     * @param Int     $id      L'identifiant d'intervention
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * edit intervention
      */
@@ -46,14 +65,19 @@ class InterventionController extends Controller {
 
         $form = $this->createForm(InterventionType::class);
 
-        if($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
+        if ($form->handleRequest($request)->isValid()
+            && $request->isMethod('POST')
+        ) {
             $em = $this->getDoctrine()->getManager();
 
-            $intervention->setDateIntervention($form->get('dateIntervention')->getData());
+            $intervention->setDateIntervention(
+                $form->get('dateIntervention')
+                    ->getData()
+            );
             $intervention->setLieu($form->get('lieu')->getData());
             $intervention->setNbPersonne($form->get('nbPersonne')->getData());
 
-            if($intervention->isFrimousse()) {
+            if ($intervention->isFrimousse()) {
                 $intervention->removeAllMateriauxFrimousse();
                 $materiauxData = $form->get('materiauxFrimousse')->getData();
                 foreach (reset($materiauxData) as $mat) {
@@ -94,7 +118,7 @@ class InterventionController extends Controller {
             return $this->redirectToRoute('intervention_view', array('id' => $id));
         }
 
-        if($intervention->isFrimousse()) {
+        if ($intervention->isFrimousse()) {
             $materiaux = $intervention->getMateriauxFrimousse()->toArray();
         } elseif ($intervention->isPlaidoyer()) {
             $materiaux = $intervention->getMaterielDispoPlaidoyer()->toArray();
@@ -113,9 +137,9 @@ class InterventionController extends Controller {
     }
 
     /**
+     * Demande d'intervention
      * @param $request Request
      * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention.
-     * demande d'intervention
      */
     public function demandeAction(Request $request, $id) {
 

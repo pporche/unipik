@@ -94,21 +94,21 @@ class InterventionRepository extends EntityRepository {
         if($field=="lieu"){
             if($desc){
                 $qb
-                    ->from('Unipik\InterventionBundle\Entity\Etablissement','e')
-                    ->andWhere('i.etablissement = e')
-                    ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
-                    ->andWhere('e.adresse = a')
+                    ->from('Unipik\InterventionBundle\Entity\Etablissement','et')
+                    ->andWhere('i.etablissement = et')
+                    ->from('Unipik\ArchitectureBundle\Entity\Adresse','ad')
+                    ->andWhere('et.adresse = ad')
                     ->from('\Unipik\ArchitectureBundle\Entity\Ville','v')
-                    ->andWhere('a.ville = v')
+                    ->andWhere('ad.ville = v')
                     ->orderBy('v.nom','DESC');
             }else{
                 $qb
-                    ->from('Unipik\InterventionBundle\Entity\Etablissement','e')
-                    ->andWhere('i.etablissement = e')
-                    ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
-                    ->andWhere('e.adresse = a')
+                    ->from('Unipik\InterventionBundle\Entity\Etablissement','et')
+                    ->andWhere('i.etablissement = et')
+                    ->from('Unipik\ArchitectureBundle\Entity\Adresse','ad')
+                    ->andWhere('et.adresse = ad')
                     ->from('\Unipik\ArchitectureBundle\Entity\Ville','v')
-                    ->andWhere('a.ville = v')
+                    ->andWhere('ad.ville = v')
                     ->orderBy('v.nom','ASC');
             }
 

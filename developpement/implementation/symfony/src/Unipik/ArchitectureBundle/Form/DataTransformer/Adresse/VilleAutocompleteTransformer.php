@@ -16,6 +16,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Class VilleAutocompleteTransformer
+ *
  * @package Unipik\ArchitectureBundle\Form\DataTransformer\Adresse
  */
 class VilleAutocompleteTransformer implements DataTransformerInterface
@@ -24,6 +25,7 @@ class VilleAutocompleteTransformer implements DataTransformerInterface
 
     /**
      * VilleAutocompleteTransformer constructor.
+     *
      * @param ObjectManager $entityManager
      */
     public function __construct(ObjectManager $entityManager)
@@ -58,9 +60,12 @@ class VilleAutocompleteTransformer implements DataTransformerInterface
             ->getRepository('ArchitectureBundle:Ville')->findOneBy(array('nom' => $villeNom));
 
         if (null === $ville) {
-            throw new TransformationFailedException(sprintf('There is no "%s" exists',
-                $villeNom
-            ));
+            throw new TransformationFailedException(
+                sprintf(
+                    'There is no "%s" exists',
+                    $villeNom
+                )
+            );
         }
 
         return $ville;

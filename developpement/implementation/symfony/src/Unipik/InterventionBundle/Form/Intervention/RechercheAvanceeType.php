@@ -25,6 +25,7 @@ class RechercheAvanceeType extends AbstractType
 
     /**
      * VilleType constructor.
+     *
      * @param ObjectManager $entityManager
      */
     public function __construct(ObjectManager $entityManager)
@@ -34,8 +35,9 @@ class RechercheAvanceeType extends AbstractType
 
     /**
      * form builder
+     *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
@@ -60,7 +62,7 @@ class RechercheAvanceeType extends AbstractType
                 'Toutes' => '',
                 'En cours' => 'attribuees',
                 'Réalisées' => 'realisees',
-        ],);
+            ],);
 
         $niveauFrimousse = array( 'expanded' => false, 'multiple' => true, 'mapped' => false, 'required' => false,
             'choices' => [
@@ -132,11 +134,14 @@ class RechercheAvanceeType extends AbstractType
             ->add('niveauFrimousse', ChoiceType::class, $niveauFrimousse)
             ->add('niveauPlaidoyer', ChoiceType::class, $niveauPlaidoyer)
             ->add('theme', ChoiceType::class, $theme)
-            ->add('date', CheckboxType::class, array(
+            ->add(
+                'date', CheckboxType::class, array(
                 'label'    => 'Toutes',
                 'required' => false,
-            ))
-            ->add('start', DateType::class, array(
+                )
+            )
+            ->add(
+                'start', DateType::class, array(
                 'widget' => 'single_text',
 
                 // do not render as type="date", to avoid HTML5 date pickers
@@ -146,8 +151,10 @@ class RechercheAvanceeType extends AbstractType
                 'attr' => ['class' => 'js-datepicker'],
                 'format' => 'dd-MM-yyyy',
                 'required' => false
-            ))
-            ->add('end', DateType::class, array(
+                )
+            )
+            ->add(
+                'end', DateType::class, array(
                 'widget' => 'single_text',
 
                 // do not render as type="date", to avoid HTML5 date pickers
@@ -157,9 +164,15 @@ class RechercheAvanceeType extends AbstractType
                 'attr' => ['class' => 'js-datepicker'],
                 'format' => 'dd-MM-yyyy',
                 'required' => false
-            ))
-            ->add('ville',VilleType::class, array('required' => false) )
-        ;
+                )
+            )
+            ->add('ville', VilleType::class, array('required' => false))
+            ->add(
+                'distance', CheckboxType::class, array(
+                'label' => 'Moins de 10km de mon domicile',
+                'required' => false
+                )
+            );
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
     }

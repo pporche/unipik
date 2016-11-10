@@ -9,7 +9,7 @@ include makevars $(UNIPIKGENPATH)/pic_unicef/makevars
 all : ec cleanrep 
 
 ec : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements $(NOM_FICHIER)
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements EC_Q_Unipik_d16-05-10_cInspection EC_Q_Unipik_d16-10-17_cLivraison
 
 
 # Archivage

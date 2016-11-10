@@ -1,0 +1,119 @@
+% version 1.00	Auteur Kafui Atanley date 10/11/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\usepackage{hyperref}
+\DeclareUnicodeCharacter{00A0}{ }
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Pédagogique}}					%titre
+\begin{document}
+
+10/11/2016			 				%Date 
+\hfill   
+\hfill 	 13:33 - 14:25				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{3cm} | p{3cm} | p{3cm} | p{3.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 10/11/2016 & \Kafui & Création & Toutes \\
+				\hline			
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{4cm} | p{3cm} | p{3cm} | p{2.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RGC & \Melissa & 10/11/2016 & email \\[30pt]
+				\hline
+				Validateur & \CP & \Pierre &  10/11/2016 & email \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+\section{Résumé de la semaine passée}
+La semaine précédente s'est orientée autour de 3 axes :  
+\begin{itemize}
+	\item Apport de corrections suite aux remarques énoncées lors de la séance de recettes avec le client;
+	\item Préparation de l'audit à venir (09/11);
+	\item Déploiement de l'application.
+\end{itemize} 
+
+\section{Recommendations sur l'application}
+\nomTuteurPedago{} nous recommande d'établir un compte étalon pour chaque niveau de droit dans l'application afin de démontrer que chaque classe implémente strictement les autorisations de lecture et écriture qui lui sont attribuées. 
+Nous ne devons pas avoir une seule interface d'accès entre chaque module du modèle trois tiers. Ceci pose un problème de sécurité (une usurpation d'identité donne accès à tout un module).
+Ceci se traduit au niveau de la base de données par l'existence de plusieurs rôles disposant chacun de niveaux d'accès différents.
+
+\section{Retour sur la revue}
+La revue a été jugée globalement bonne. Le jury a cependant eu l'impression que notre gestion de projet était à revoir notamment au niveau de la planification.
+\nomTuteurPedago{} recommande au \CP{} d'adopter une vision d'ensemble. Pour cela il faut que Pierre estime un temps global pour les futures grosses tâches puis qu'il les re-découpe en plus petites tâches une fois que nous arrivons au début de celles-ci.
+
+
+\section{Hébergement}
+\nomTuteurPedago{} nous recommande de nous saisir du dossier au plus vite afin d'éviter de perdre notre occasion avec Quantic Telecom.
+
+\section{Semaine prochaine}
+\begin{itemize}
+\item Pierre s'occupera du dossier Quantic Télécom et de préparer l'audit;
+\item Kafui s'occupera de préparer l'audit ainsi que ses éventuelles corrections puis reviendra sur du développement;
+\item Mélissa s'occupera d'appliquer les modifications nécessaires à la base de données;
+\item Florian s'occupera de finaliser la partie email pour ce qui est de la demande d'intervention;
+\item Julie s'occupera de modifier le formulaire de demande;
+\item Matthieu s'occupera de mettre en place Jenkins et de développer les tests;
+\item François s'occupera de commencer les tâches liées à la géolocalisation;
+\item Juliana s'occupera de la partie Frontend.
+\end{itemize}
+%--- fin de réunion ---%
+\newpage
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

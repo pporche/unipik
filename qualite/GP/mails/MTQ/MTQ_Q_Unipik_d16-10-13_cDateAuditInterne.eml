@@ -1,0 +1,264 @@
+Return-Path: <picasi-3-owner@insa-rouen.fr>
+Delivered-To: pporche@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 6B33E23A0E;
+	Thu, 13 Oct 2016 14:10:11 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CeAQB4eP9XfXIKMcFcgzc1AQEBAQGBHkMPs1iHFyMBiANMAQIBAQEBAQITAQEJFglIhGMGAQEgCRo2AwEBAQZOAgIDARs/DAYCAQEBiE+2OI00iDqHAgEBgx+CWwWJA5B/GkSKMY5XhgyJKYNQg3+DRwGCQnCGRIIgAQEB
+X-IPAS-Result: A0CeAQB4eP9XfXIKMcFcgzc1AQEBAQGBHkMPs1iHFyMBiANMAQIBAQEBAQITAQEJFglIhGMGAQEgCRo2AwEBAQZOAgIDARs/DAYCAQEBiE+2OI00iDqHAgEBgx+CWwWJA5B/GkSKMY5XhgyJKYNQg3+DRwGCQnCGRIIgAQEB
+X-IronPort-AV: E=Sophos;i="5.31,339,1473112800"; 
+   d="scan'208,217";a="97514940"
+Received: from smtpout.insa-rouen.fr ([193.49.10.114])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 13 Oct 2016 14:10:11 +0200
+Received: from newlistdiff.insa-rouen.fr (newlistdiff.insa-rouen.fr [193.49.10.34])
+	by smtpout.insa-rouen.fr (8.13.8/8.13.8) with ESMTP id u9DCAAcg009753;
+	Thu, 13 Oct 2016 14:10:10 +0200
+Received: from newlistdiff.insa-rouen.fr (localhost.localdomain [127.0.0.1])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id u9DCAAKF018258;
+	Thu, 13 Oct 2016 14:10:10 +0200
+Received: (from sympa@localhost)
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6/Submit) id u9DCAAkW018253;
+	Thu, 13 Oct 2016 14:10:10 +0200
+X-Authentication-Warning: newlistdiff.insa-rouen.fr: sympa set sender to picasi-3-owner@insa-rouen.fr using -f
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id u9DCA6KX018242;
+	Thu, 13 Oct 2016 14:10:06 +0200
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0CdAQB4eP9XfQ8V3cNcgzc1AQEBAQGBHkMPs1iHHheICUwBAgEBAQEBAhMBAQkWCUiFC4EzAiE/DAYCAQGIULY4jTSIOocCAQGDH4JbBYkDkH8aRFyJVY5XhgyJKYNQg3+DR4JDcIZEgiABAQE
+X-IPAS-Result: A0CdAQB4eP9XfQ8V3cNcgzc1AQEBAQGBHkMPs1iHHheICUwBAgEBAQEBAhMBAQkWCUiFC4EzAiE/DAYCAQGIULY4jTSIOocCAQGDH4JbBYkDkH8aRFyJVY5XhgyJKYNQg3+DR4JDcIZEgiABAQE
+X-IronPort-AV: E=Sophos;i="5.31,339,1473112800"; 
+   d="scan'208,217";a="97514931"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 13 Oct 2016 14:10:06 +0200
+Received: from [193.49.8.228] (darwin228.insa-rouen.fr [193.49.8.228])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id 0E15F1084A;
+	Thu, 13 Oct 2016 14:10:06 +0200 (CEST)
+To: picasi-2@insa-rouen.fr, picasi-1@insa-rouen.fr, picasi-3@insa-rouen.fr,
+        picasi-5@insa-rouen.fr
+From: Benjamin COELHO DE MATOS <benjamin.coelho-de-matos@insa-rouen.fr>
+Message-ID: <ee2d83c5-0da5-bd59-50f8-75bb99cc5002@insa-rouen.fr>
+Date: Thu, 13 Oct 2016 14:10:05 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------C37ABAD33BE8961E988418B4"
+Subject: [picasi-3] Audit interne PIC ASI S2
+X-Loop: picasi-3@insa-rouen.fr
+X-Sequence: 1190
+Errors-to: picasi-3-owner@insa-rouen.fr
+Precedence: list
+X-no-archive: yes
+List-Id: <picasi-3.insa-rouen.fr>
+List-Help: <mailto:sympa@insa-rouen.fr?subject=help>
+List-Subscribe: <mailto:sympa@insa-rouen.fr?subject=subscribe%20picasi-3>
+List-Unsubscribe: <mailto:sympa@insa-rouen.fr?subject=unsubscribe%20picasi-3>
+List-Post: <mailto:picasi-3@insa-rouen.fr>
+List-Owner: <mailto:picasi-3-request@insa-rouen.fr>
+
+This is a multi-part message in MIME format.
+--------------C37ABAD33BE8961E988418B4
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+
+Nous vous proposons de réaliser les prochains audits internes le 
+*09/11/2016* :
+
+  * de 9h30 à 11h00,
+  * de 11h00 à 12h30,
+  * de 14h00 à 15h30,
+  * de 15h30 à 17h00,
+
+
+Merci donc de nous donner un ordre de passage pour les audits du second 
+semestre avant le *21 octobre 2016*.
+Ces audits d'une durée de *1h30* seront réalisés par Pascal Meslier et 
+moi-même.
+
+Voici donc le plan d'audit qui sera appliqué :
+
+  * Vérification de la maîtrise des informations documentées (/cf./ §7.5
+    de la norme ISO 9001 : 2015),
+  * Vérification de la Planification (/cf./ §8.1 et 8.3.2 de la norme
+    ISO 9001 : 2015),
+  * Vérification du management du support  (/cf./ §7.1, 7.2 et 7.3 de la
+    norme ISO 9001 : 2015),
+  * Vérification du processus d’achat (/cf./ §8.4 de la norme ISO 9001 :
+    2015),
+  * Vérification de la production et de la préparation du service (/cf./
+    §8.5 de la norme ISO 9001 : 2015),
+  * Vérification du produit non conforme et de l'amélioration (/cf./
+    §8.7 et 10 de la norme ISO 9001 : 2015),
+  * Vérification de la maîtrise des ressources pour la surveillance et
+    la mesure (/cf./ §7.1.5 de la norme ISO 9001 : 2015),
+  * Vérification de la gestion des risques et opportunités (/cf/. §6.1
+    et 10.3 de la norme ISO 9001 : 2015).
+
+Cordialement,
+-- 
+*Benjamin Coelho de Matos*
+/Ingénieur de la Mission Qualité de l'INSA de ROUEN
+Tuteur Qualité pour les PIC ASI et MRIE
+INSA de Rouen, bureau DA AR 110
+685 Avenue de l'Université BP 08,
+76801 Saint Etienne du Rouvray Cedex
+/ Tel: (33).02.32.95.66.95
+mail: benjamin.coelho-de-matos@insa-rouen.fr
+
+--------------C37ABAD33BE8961E988418B4
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Bonjour,</p>
+    <p>Nous vous proposons de réaliser les prochains audits internes le
+      <b><font color="#ff0000">09/11/2016</font></b> :<br>
+    </p>
+    <ul>
+      <li>de 9h30 à 11h00,</li>
+      <li>de 11h00 à 12h30,</li>
+      <li>de 14h00 à 15h30,</li>
+      <li>de 15h30 à 17h00,</li>
+    </ul>
+    <br>
+    Merci donc de nous donner un ordre de passage pour les audits du
+    second semestre avant le <b><font color="#ff0000">21 octobre 2016</font></b>.<br>
+    Ces audits d'une durée de <font color="#ff0000"><b>1h30</b></font>
+    seront réalisés par Pascal Meslier et moi-même.
+    <p>Voici donc le plan d'audit qui sera appliqué :<br>
+      <br>
+    </p>
+    <ul type="disc">
+      <li class="MsoNormal"
+        style="mso-margin-top-alt:auto;margin-bottom:0cm;
+        margin-bottom:.0001pt;line-height:normal;mso-list:l0 level1
+        lfo1; tab-stops:list
+        36.0pt;mso-layout-grid-align:none;text-autospace:none"><span
+style="font-size:12.0pt;mso-ascii-font-family:Calibri;mso-fareast-font-family:
+          &quot;Times New
+          Roman&quot;;mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;
+          mso-fareast-language:FR">Vérification de la maîtrise des
+          informations documentées (<i
+            style="mso-bidi-font-style:normal">cf.</i> §7.5 de la norme
+          ISO 9001 : 2015),</span><span style="font-size:12.0pt;
+          font-family:&quot;Times New
+          Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times
+          New Roman&quot;; mso-fareast-language:FR"><o:p></o:p></span></li>
+      <li class="MsoNormal"
+        style="mso-margin-top-alt:auto;margin-bottom:0cm;
+        margin-bottom:.0001pt;line-height:normal;mso-list:l0 level1
+        lfo1; tab-stops:list
+        36.0pt;mso-layout-grid-align:none;text-autospace:none"><span
+style="font-size:12.0pt;mso-ascii-font-family:Calibri;mso-fareast-font-family:
+          &quot;Times New
+          Roman&quot;;mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;
+          mso-fareast-language:FR">Vérification de la Planification (<i
+            style="mso-bidi-font-style:normal">cf.</i> §8.1 et 8.3.2 de
+          la norme ISO 9001 : 2015),</span><span
+          style="font-size:12.0pt;font-family:&quot;Times New
+          Roman&quot;,&quot;serif&quot;;
+          mso-fareast-font-family:&quot;Times New
+          Roman&quot;;mso-fareast-language:FR"><o:p></o:p></span></li>
+      <li class="MsoNormal"
+        style="mso-margin-top-alt:auto;margin-bottom:0cm;
+        margin-bottom:.0001pt;line-height:normal;mso-list:l0 level1
+        lfo1; tab-stops:list
+        36.0pt;mso-layout-grid-align:none;text-autospace:none"><span
+style="font-size:12.0pt;mso-ascii-font-family:Calibri;mso-fareast-font-family:
+          &quot;Times New
+          Roman&quot;;mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;
+          mso-fareast-language:FR">Vérification du management du
+          support  (<i style="mso-bidi-font-style:normal">cf.</i> §7.1,
+          7.2 et 7.3 de la norme ISO 9001 : 2015),</span><span
+          style="font-size:12.0pt;font-family:&quot;Times New
+          Roman&quot;,&quot;serif&quot;;
+          mso-fareast-font-family:&quot;Times New
+          Roman&quot;;mso-fareast-language:FR"><o:p></o:p></span></li>
+      <li class="MsoNormal"
+        style="mso-margin-top-alt:auto;margin-bottom:0cm;
+        margin-bottom:.0001pt;line-height:normal;mso-list:l0 level1
+        lfo1; tab-stops:list
+        36.0pt;mso-layout-grid-align:none;text-autospace:none"><span
+style="font-size:12.0pt;mso-ascii-font-family:Calibri;mso-fareast-font-family:
+          &quot;Times New
+          Roman&quot;;mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;
+          mso-fareast-language:FR">Vérification du processus d’achat (<i
+            style="mso-bidi-font-style:normal">cf.</i> §8.4 de la norme
+          ISO 9001 : 2015),</span><span
+          style="font-size:12.0pt;font-family:&quot;Times New
+          Roman&quot;,&quot;serif&quot;;
+          mso-fareast-font-family:&quot;Times New
+          Roman&quot;;mso-fareast-language:FR"><o:p></o:p></span></li>
+      <li class="MsoNormal"
+        style="mso-margin-top-alt:auto;margin-bottom:0cm;
+        margin-bottom:.0001pt;line-height:normal;mso-list:l0 level1
+        lfo1; tab-stops:list
+        36.0pt;mso-layout-grid-align:none;text-autospace:none"><span
+style="font-size:12.0pt;mso-ascii-font-family:Calibri;mso-fareast-font-family:
+          &quot;Times New
+          Roman&quot;;mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;
+          mso-fareast-language:FR">Vérification de la production et de
+          la préparation du service (<i
+            style="mso-bidi-font-style:normal">cf.</i> §8.5 de la norme
+          ISO 9001 : 2015),</span><span style="font-size:12.0pt;
+          font-family:&quot;Times New
+          Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times
+          New Roman&quot;; mso-fareast-language:FR"><o:p></o:p></span></li>
+      <li class="MsoNormal"
+        style="mso-margin-top-alt:auto;margin-bottom:0cm;
+        margin-bottom:.0001pt;line-height:normal;mso-list:l0 level1
+        lfo1; tab-stops:list
+        36.0pt;mso-layout-grid-align:none;text-autospace:none"><span
+style="font-size:12.0pt;mso-ascii-font-family:Calibri;mso-fareast-font-family:
+          &quot;Times New
+          Roman&quot;;mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;
+          mso-fareast-language:FR">Vérification du produit non conforme
+          et de l'amélioration (<i style="mso-bidi-font-style:normal">cf.</i>
+          §8.7 et 10 de la norme ISO 9001 : 2015),</span></li>
+      <li class="MsoNormal"
+        style="mso-margin-top-alt:auto;margin-bottom:0cm;
+        margin-bottom:.0001pt;line-height:normal;mso-list:l0 level1
+        lfo1; tab-stops:list
+        36.0pt;mso-layout-grid-align:none;text-autospace:none"><span
+style="font-size:12.0pt;mso-ascii-font-family:Calibri;mso-fareast-font-family:
+          &quot;Times New
+          Roman&quot;;mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;
+          mso-fareast-language:FR">Vérification de la maîtrise des
+          ressources pour la surveillance et la mesure (<i
+            style="mso-bidi-font-style:normal">cf.</i> §7.1.5 de la
+          norme ISO 9001 : 2015),</span></li>
+      <li class="MsoNormal"
+        style="mso-margin-top-alt:auto;margin-bottom:0cm;
+        margin-bottom:.0001pt;line-height:normal;mso-list:l0 level1
+        lfo1; tab-stops:list
+        36.0pt;mso-layout-grid-align:none;text-autospace:none"><span
+style="font-size:12.0pt;mso-ascii-font-family:Calibri;mso-fareast-font-family:
+          &quot;Times New
+          Roman&quot;;mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;
+          mso-fareast-language:FR">Vérification de la gestion des
+          risques et opportunités (<i>cf</i>. §6.1 et 10.3 de la norme
+          ISO 9001 : 2015).</span></li>
+    </ul>
+    Cordialement,<br>
+    <div class="moz-signature">-- <br>
+      <b>Benjamin Coelho de Matos</b><br>
+      <i>Ingénieur de la Mission Qualité de l'INSA de ROUEN<br>
+        Tuteur Qualité pour les PIC ASI et MRIE<br>
+        INSA de Rouen, bureau DA AR 110<br>
+        685 Avenue de l'Université BP 08,<br>
+        76801 Saint Etienne du Rouvray Cedex<br>
+      </i>
+      Tel: (33).02.32.95.66.95<br>
+      mail: <a class="moz-txt-link-abbreviated" href="mailto:benjamin.coelho-de-matos@insa-rouen.fr">benjamin.coelho-de-matos@insa-rouen.fr</a>
+    </div>
+  </body>
+</html>
+
+--------------C37ABAD33BE8961E988418B4--

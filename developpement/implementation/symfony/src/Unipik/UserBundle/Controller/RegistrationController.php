@@ -21,11 +21,15 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
+use Ivory\HttpAdapter\CurlHttpAdapter;
+use Geocoder\Provider\OpenStreetMap;
+
 
 /**
  * Manage the registration actions
  *
  * Class RegistrationController
+ *
  * @package Unipik\UserBundle\Controller
  */
 class RegistrationController extends BaseController {
@@ -33,16 +37,22 @@ class RegistrationController extends BaseController {
     /**
      * Action for registration
      *
-     * @param Request $request
+     * @param  Request $request
      * @return null|RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function registerAction(Request $request) {
 
-        /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
+        /**
+ * @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface 
+*/
         $formFactory = $this->get('fos_user.registration.form.factory');  // Récupération du service form factory de fos user
-        /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
+        /**
+ * @var $userManager \FOS\UserBundle\Model\UserManagerInterface 
+*/
         $userManager = $this->get('fos_user.user_manager');
-        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
+        /**
+ * @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface 
+*/
         $dispatcher = $this->get('event_dispatcher'); // Récupération du gestionnaire d'évènements
 
         $user = $userManager->createUser(); // Récupération de l'utilisateur -> bénévole
@@ -86,6 +96,12 @@ class RegistrationController extends BaseController {
             $adresse->setAdresse(strtoupper($adresse->getAdresse()));
             $adresse->setComplement(strtoupper($adresse->getComplement()));
 
+            //            var_dump($adresse);
+            //            $geolocalisation = $this->findGeolocalisation($adresse);
+            //            var_dump($geolocalisation);
+
+            //            $adresse->setGeolocalisation($geolocalisation);
+
             $user->setAdresse($adresse);
 
             $event = new FormEvent($form, $request);
@@ -102,9 +118,11 @@ class RegistrationController extends BaseController {
             return $response;
         }
 
-        return $this->render('FOSUserBundle:Registration:register.html.twig', array(
+        return $this->render(
+            'FOSUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
-        ));
+            )
+        );
     }
 
     /**
@@ -127,8 +145,8 @@ class RegistrationController extends BaseController {
     /**
      * Add values of responsibilities to the set of potential activities.
      *
-     * @param $responsibilitiesArray
-     * @param $activitiesString
+     * @param  $responsibilitiesArray
+     * @param  $activitiesString
      * @return string
      */
     public function setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString) {
@@ -165,10 +183,12 @@ class RegistrationController extends BaseController {
             throw new AccessDeniedException('L\'utilisateur n\'a pas accès à cette section.');
         }
 
-        return $this->render('UserBundle:Registration:confirmed.html.twig', array(
+        return $this->render(
+            'UserBundle:Registration:confirmed.html.twig', array(
             'user' => $user,
             'targetUrl' => $this->getTargetUrlFromSession(),
-        ));
+            )
+        );
     }
 
     /**
@@ -190,4 +210,16 @@ class RegistrationController extends BaseController {
         }
     }
 
+    //    /**
+    //     * Find the geolocalisation from an address.
+    //     *
+    //     * @param $adresse
+    //     * @return \Geocoder\Model\AddressCollection
+    //     */
+    //    private function findGeolocalisation($adresse) {
+    //        $adapter  = new CurlHttpAdapter();
+    //        $geocoder = new OpenStreetMap($adapter);
+    //
+    //        return $geocoder->geocode($adresse->getAdresse());
+    //    }
 }

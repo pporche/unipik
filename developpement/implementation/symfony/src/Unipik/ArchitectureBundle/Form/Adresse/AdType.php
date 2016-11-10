@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * Class AdType
+ *
  * @package Unipik\UserBundle\Form\Adresse
  */
 class AdType extends AbstractType {

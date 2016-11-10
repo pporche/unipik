@@ -18,6 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class LoginType
+ *
  * @package Unipik\UserBundle\Form
  */
 class LoginType extends AbstractType {
@@ -27,12 +28,13 @@ class LoginType extends AbstractType {
             ->setMethod('POST')
             ->add('_username', TextType::class, array('label' => 'Nom d\'utilisateur'))
             ->add('_password', PasswordType::class, array('label' => 'Mot de passe'))
-            ->add('_remember_me', CheckboxType::class, array(
+            ->add(
+                '_remember_me', CheckboxType::class, array(
                 'label' => 'Rester connecté',
                 'required' => false,
-                ))
-            ->add('_submit', SubmitType::class, array('label' => 'Connexion'))
-        ;
+                )
+            )
+            ->add('_submit', SubmitType::class, array('label' => 'Connexion'));
 
     }
 
@@ -40,9 +42,11 @@ class LoginType extends AbstractType {
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver) {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults(
+            array(
             'action' => '/',
-        ));
+            )
+        );
     }
 
     /**

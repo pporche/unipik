@@ -56,7 +56,7 @@ class Contact
     /**
      * @var string
      *
-     * @Assert\Regex(pattern="/^0[0-9]{9}$/")
+     * @Assert\Regex(pattern="/(^0[0-9]{9}$)?/")
      *
      * @ORM\Column(name="tel_fixe", type="string", length=30, nullable=true)
      */
@@ -65,7 +65,7 @@ class Contact
     /**
      * @var string
      *
-     * @Assert\Regex(pattern="/^0[0-9]{9}$/")
+     * @Assert\Regex(pattern="/(^0[0-9]{9}$)?/")
      *
      * @ORM\Column(name="tel_portable", type="string", length=30,  nullable=true)
      */
@@ -376,10 +376,10 @@ class Contact
      *
      * @return boolean
      */
-//    public function isEstTuteur()
-//    {
-//        return $this->estTuteur;
-//    }
+    //    public function isEstTuteur()
+    //    {
+    //        return $this->estTuteur;
+    //    }
 
 
     /**
@@ -391,12 +391,12 @@ class Contact
      *
      * @return Contact
      */
-//    public function setEstTuteur($estTuteur)
-//    {
-//        $this->estTuteur = $estTuteur;
-//
-//        return $this;
-//    }
+    //    public function setEstTuteur($estTuteur)
+    //    {
+    //        $this->estTuteur = $estTuteur;
+    //
+    //        return $this;
+    //    }
 
 
     /**

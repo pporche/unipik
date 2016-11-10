@@ -1,6 +1,8 @@
 @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
 
-
+h1{
+    margin-left: 20px;
+}
 .jumbotron {
     border-radius: 20px !important;
     position: relative;
@@ -225,7 +227,7 @@ iframe{
 }
 
 section{
-    margin-top: 30px !important;
+    margin-top: 50px !important;
 }
 
 .fc{

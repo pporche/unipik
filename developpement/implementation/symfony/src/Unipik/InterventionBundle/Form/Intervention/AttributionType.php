@@ -21,6 +21,7 @@ class AttributionType extends AbstractFieldsetType {
 
     /**
      * AdresseType constructor.
+     *
      * @param ObjectManager $entityManager
      */
     public function __construct(ObjectManager $entityManager)
@@ -30,14 +31,13 @@ class AttributionType extends AbstractFieldsetType {
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('idIntervention', HiddenType::class)
-            ->add('benevole', TextType::class)
-        ;
+            ->add('benevole', TextType::class);
 
         $builder->get("benevole")->addModelTransformer(new BenevoleTransformer($this->entityManager));
     }

@@ -23,6 +23,7 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
  * Manage the architecture actions
  *
  * Class ArchitectureController
+ *
  * @package Unipik\ArchitectureBundle\Controller
  */
 class ArchitectureController extends Controller {
@@ -46,13 +47,15 @@ class ArchitectureController extends Controller {
         $interventionsNonRealisees = $repository->getInterventionsRealiseesOuNon(false);
         $interventionsRealisees = $repository->getInterventionsRealiseesOuNon(true);
 
-        return $this->render('ArchitectureBundle::accueilBenevole.html.twig', array(
+        return $this->render(
+            'ArchitectureBundle::accueilBenevole.html.twig', array(
             'user' => $user,
             'interventionsNonRealiseesBenevole' => $interventionsNonRealiseesBenevole,
             'interventionsRealiseesBenevole' => $interventionsRealiseesBenevole,
             'interventionsNonRealisees' => $interventionsNonRealisees,
             'interventionsRealisees' => $interventionsRealisees
-        ));
+            )
+        );
     }
 
     /**
@@ -72,7 +75,7 @@ class ArchitectureController extends Controller {
         $entities = $em->getRepository('ArchitectureBundle:Ville')->createQueryBuilder('v')
             ->where('v.nom LIKE :name')
             ->setParameter('name', $term.'%')
-            ->orderBy('v.nom','ASC')
+            ->orderBy('v.nom', 'ASC')
             ->getQuery()
             ->getResult();
 
@@ -95,7 +98,7 @@ class ArchitectureController extends Controller {
         $entities = $em->getRepository('ArchitectureBundle:CodePostal')->createQueryBuilder('c')
             ->where('c.code LIKE :code')
             ->setParameter('code', $term.'%')
-            ->orderBy('c.code','ASC')
+            ->orderBy('c.code', 'ASC')
             ->getQuery()
             ->getResult();
 

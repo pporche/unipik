@@ -22,6 +22,7 @@ class RechercheAvanceeType  extends AbstractType
 
     /**
      * VilleType constructor.
+     *
      * @param ObjectManager $entityManager
      */
     public function __construct(ObjectManager $entityManager)
@@ -32,8 +33,9 @@ class RechercheAvanceeType  extends AbstractType
 
     /**
      * form builder
+     *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $optionChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
@@ -72,12 +74,11 @@ class RechercheAvanceeType  extends AbstractType
 
 
         $builder
-            ->add('typeEtablissement',ChoiceType::class, $optionChoiceType)
+            ->add('typeEtablissement', ChoiceType::class, $optionChoiceType)
             ->add('typeEnseignement', ChoiceType::class, $optionEnseignementType)
             ->add('typeCentre', ChoiceType::class, $optionCentreType)
             ->add('typeAutreEtablissement', ChoiceType::class, $optionAutreEtablissementType)
-            ->add('ville', TextType::class, array('required' => false))
-        ;
+            ->add('ville', TextType::class, array('required' => false));
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
     }

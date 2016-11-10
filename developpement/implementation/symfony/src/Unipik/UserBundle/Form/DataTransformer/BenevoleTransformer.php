@@ -17,6 +17,7 @@ class BenevoleTransformer  implements DataTransformerInterface
 
     /**
      * VilleAutocompleteTransformer constructor.
+     *
      * @param ObjectManager $entityManager
      */
     public function __construct(ObjectManager $entityManager)
@@ -27,7 +28,7 @@ class BenevoleTransformer  implements DataTransformerInterface
     /**
      * Return the string represetnation of a volunteer, his/her name
      *
-     * @param mixed $benevole
+     * @param  mixed $benevole
      * @return string
      */
     public function transform($benevole)
@@ -42,7 +43,7 @@ class BenevoleTransformer  implements DataTransformerInterface
     /**
      * Return the volunteer that has the name $benevoleNom
      *
-     * @param mixed $benevoleNom
+     * @param  mixed $benevoleNom
      * @return Benevole|void
      */
     public function reverseTransform($benevoleNom)
@@ -55,9 +56,12 @@ class BenevoleTransformer  implements DataTransformerInterface
             ->getRepository('UserBundle:Benevole')->findOneBy(array('nom' => $benevoleNom));
 
         if (null === $benevole) {
-            throw new TransformationFailedException(sprintf('There is no "%s" exists',
-                $benevoleNom
-            ));
+            throw new TransformationFailedException(
+                sprintf(
+                    'There is no "%s" exists',
+                    $benevoleNom
+                )
+            );
         }
 
         return $benevole;

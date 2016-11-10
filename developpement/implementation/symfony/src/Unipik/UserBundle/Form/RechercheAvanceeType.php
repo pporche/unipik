@@ -18,6 +18,7 @@ use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTran
 
 /**
  * Class RechercheAvanceeType
+ *
  * @package Unipik\UserBundle\Form
  */
 class RechercheAvanceeType extends AbstractType {
@@ -37,7 +38,7 @@ class RechercheAvanceeType extends AbstractType {
      * Build a form
      *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
@@ -60,9 +61,9 @@ class RechercheAvanceeType extends AbstractType {
             ],);
 
         $builder
-            ->add('activitesToutes',CheckboxType::class, array('label' => 'Toutes', 'required' => false))
+            ->add('activitesToutes', CheckboxType::class, array('label' => 'Toutes', 'required' => false))
             ->add('activites', ChoiceType::class, $activitesChoiceType)
-            ->add('respoActivitesToutes',CheckboxType::class, array('label' => 'Toutes', 'required' => false))
+            ->add('respoActivitesToutes', CheckboxType::class, array('label' => 'Toutes', 'required' => false))
             ->add('responsabilitesActivites', ChoiceType::class, $responsabilitesChoiceType)
             ->add('ville', TextType::class, array('required' => false));
 

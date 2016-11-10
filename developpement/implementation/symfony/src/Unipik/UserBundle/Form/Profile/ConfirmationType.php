@@ -22,24 +22,26 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * Class ConfirmationType
+ *
  * @package Unipik\UserBundle\Form\Profile
  */
 class ConfirmationType extends AbstractFieldsetType {
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
-            ->add('current_password', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'), array(
+            ->add(
+                'current_password', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'), array(
                 'label' => 'Mot de passe',
                 'translation_domain' => 'FOSUserBundle',
                 'mapped' => false,
                 'constraints' => new UserPassword(),
-            ))
-            ->add('_submit', SubmitType::class, array('label' => 'Confirmer'))
-        ;
+                )
+            )
+            ->add('_submit', SubmitType::class, array('label' => 'Confirmer'));
     }
 
     /**

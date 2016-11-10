@@ -14,6 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Class VilleType
+ *
  * @package Unipik\ArchitectureBundle\Form\Adresse
  */
 class VilleType extends AbstractType {

@@ -1,5 +1,18 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: julie
+ * Date: 19/04/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 namespace Unipik\InterventionBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -10,15 +23,23 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 /**
  * Demande
  *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ *
  * @ORM\Table(name="demande", indexes={@ORM\Index(name="IDX_2694D7A5E7A1254A", columns={"contact_id"})})
  * @ORM\Entity
  */
 class Demande
 {
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                                type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="demande_id_seq", allocationSize=1, initialValue=1)

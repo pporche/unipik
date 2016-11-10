@@ -1,5 +1,18 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 namespace Unipik\InterventionBundle\Controller;
 
 use Doctrine\ORM\Repository\RepositoryFactory;
@@ -26,16 +39,22 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Util\Debug;
 /**
- * Created by PhpStorm.
- * User: florian
- * Date: 19/04/16
- * Time: 11:55
+ * Le controller qui gère les interventions
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class InterventionController extends Controller {
 
     /**
-     * @param Request $request
-     * @param $id
+     * Action édition
+     *
+     * @param Request $request La requete
+     * @param Int     $id      L'identifiant d'intervention
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * edit intervention
      */
@@ -46,14 +65,19 @@ class InterventionController extends Controller {
 
         $form = $this->createForm(InterventionType::class);
 
-        if($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
+        if ($form->handleRequest($request)->isValid()
+            && $request->isMethod('POST')
+        ) {
             $em = $this->getDoctrine()->getManager();
 
-            $intervention->setDateIntervention($form->get('dateIntervention')->getData());
+            $intervention->setDateIntervention(
+                $form->get('dateIntervention')
+                    ->getData()
+            );
             $intervention->setLieu($form->get('lieu')->getData());
             $intervention->setNbPersonne($form->get('nbPersonne')->getData());
 
-            if($intervention->isFrimousse()) {
+            if ($intervention->isFrimousse()) {
                 $intervention->removeAllMateriauxFrimousse();
                 $materiauxData = $form->get('materiauxFrimousse')->getData();
                 foreach (reset($materiauxData) as $mat) {
@@ -71,9 +95,11 @@ class InterventionController extends Controller {
                 $repositoryTheme = $em->getRepository("ArchitectureBundle:NiveauTheme");
                 $themeArray = $form->get('niveauTheme')->get('theme')->getData();
                 $theme = reset($themeArray);
-                $niveauTheme = $repositoryTheme->findOneBy(array("theme" => $theme,
+                $niveauTheme = $repositoryTheme->findOneBy(
+                    array("theme" => $theme,
                     "niveau" => $form->get('niveauTheme')->get('niveau')->getData()
-                ));
+                    )
+                );
                 $intervention->setNiveauTheme($niveauTheme);
             } else {
                 $materiauxData = array();
@@ -92,7 +118,7 @@ class InterventionController extends Controller {
             return $this->redirectToRoute('intervention_view', array('id' => $id));
         }
 
-        if($intervention->isFrimousse()) {
+        if ($intervention->isFrimousse()) {
             $materiaux = $intervention->getMateriauxFrimousse()->toArray();
         } elseif ($intervention->isPlaidoyer()) {
             $materiaux = $intervention->getMaterielDispoPlaidoyer()->toArray();
@@ -102,16 +128,18 @@ class InterventionController extends Controller {
 
         $materiaux = json_encode($materiaux);
 
-        return $this->render('InterventionBundle:Intervention:editIntervention.html.twig', array('form' => $form->createView(),
+        return $this->render(
+            'InterventionBundle:Intervention:editIntervention.html.twig', array('form' => $form->createView(),
                                                                                  'intervention' => $intervention,
                                                                                  'materiaux' => $materiaux,
-        ));
+            )
+        );
     }
 
     /**
+     * Demande d'intervention
      * @param $request Request
      * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention.
-     * demande d'intervention
      */
     public function demandeAction(Request $request, $id) {
 
@@ -157,12 +185,12 @@ class InterventionController extends Controller {
                 $listWeek[] = $week;
             }
 
-            $this->treatmentInterventions($interventionsRawList,$interventionList);
-//            return new Response(\Doctrine\Common\Util\Debug::dump($interventionsRawList[1]));
+            $this->treatmentInterventions($interventionsRawList, $interventionList);
+            //            return new Response(\Doctrine\Common\Util\Debug::dump($interventionsRawList[1]));
             $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);
 
-            $this->treatmentMoment($form->get('jour')->getData(),$demande);
+            $this->treatmentMoment($form->get('jour')->getData(), $demande);
 
             $etablissement = $form->get('Etablissement');
 
@@ -207,14 +235,13 @@ class InterventionController extends Controller {
             }
 
             $list=[];
-            if(($instituteResearched) !== null)
-            {
+            if(($instituteResearched) !== null) {
                 $instituteResearched = array_filter($instituteResearched);
                 foreach($instituteResearched as $institute){
                     $list[] = $institute;
                 }
             }
-            if(sizeof($instituteResearched) == 0){
+            if(sizeof($instituteResearched) == 0) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($institute);
             } else {
@@ -248,18 +275,20 @@ class InterventionController extends Controller {
 
             $em->flush();
 
-            $this->linkAllMoments($demande->getMomentsVoulus(),$demande);
+            $this->linkAllMoments($demande->getMomentsVoulus(), $demande);
 
-            $this->linkAllBMoments($demande->getMomentsAEviter(),$demande);
+            $this->linkAllBMoments($demande->getMomentsAEviter(), $demande);
             $session =$request->getSession();
             $em->flush();
 
             /*return new Response(print_r(\Doctrine\Common\Util\Debug::dump($interventionList)));*/
-            $session->getFlashBag()->add('notice', array(
+            $session->getFlashBag()->add(
+                'notice', array(
                 'title' => 'Félicitation',
                 'message' => 'Votre demande d\'intervention a bien été enregistrée. Nous vous contacterons sous peu.',
                 'alert' => 'success'
-            ));
+                )
+            );
 
             $message = \Swift_Message::newInstance()
                 ->setSubject('Intervention de l\'unicef')
@@ -271,12 +300,12 @@ class InterventionController extends Controller {
             return $this->RedirectToRoute('architecture_homepage');
         }
 
-        if($instituteTest->getTypeEnseignement()){
+        if($instituteTest->getTypeEnseignement()) {
             $typeEtablissementEncoded = array(
                 'ens' => $instituteTest->getTypeEnseignement()
             );
         }
-        else if($instituteTest->getTypeCentre()){
+        else if($instituteTest->getTypeCentre()) {
             $typeEtablissementEncoded = array(
                 'centre' => $instituteTest->getTypeCentre()
             );
@@ -286,12 +315,14 @@ class InterventionController extends Controller {
             );
         }
 
-        return $this->render('InterventionBundle:Intervention:demande.html.twig', array(
+        return $this->render(
+            'InterventionBundle:Intervention:demande.html.twig', array(
             'form' => $form->createView(),
             'typEnseignement' => json_encode($typeEtablissementEncoded),
             'id' => $id,
             'etablissement' => $instituteTest
-        ));
+            )
+        );
     }
 
     /**
@@ -317,12 +348,12 @@ class InterventionController extends Controller {
         $formAttr = $this->get('form.factory')->createBuilder(AttributionType::class)->getForm()->createView();
 
         if($intervention->isFrimousse()) {
-            return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig',array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
+            return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
         } elseif ($intervention->isPlaidoyer()) {
-           return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig',array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
+            return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
         }
         else {
-            return $this->render('InterventionBundle:Intervention:consultation.html.twig',array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
+            return $this->render('InterventionBundle:Intervention:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
         }
     }
 
@@ -356,7 +387,7 @@ class InterventionController extends Controller {
         $theme = $form->get("theme")->getData();
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
-//        $distance = $form->get("distance")->getData() ? 10 : null;
+        //        $distance = $form->get("distance")->getData() ? 10 : null;
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
         $field = $request->get("field", "dateIntervention");
@@ -366,12 +397,13 @@ class InterventionController extends Controller {
 
         $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, null, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville/*, $distance*/);
 
-//        Création du formulaire pour la popup
+        //        Création du formulaire pour la popup
         $fB = $this->get('form.factory')->createBuilder(AttributionType::class);
         $f = $fB->getForm();
         $f->handleRequest($request);
 
-        return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+        return $this->render(
+            'InterventionBundle:Intervention:liste.html.twig', array(
             'field' => $field,
             'desc' => $desc,
             'rowsPerPage' => $rowsPerPage,
@@ -380,13 +412,14 @@ class InterventionController extends Controller {
             'isCheck' => $dateChecked,
             'dateStart' => $start,
             'dateEnd' => $end,
-//            'distance' => $distance,
+            //            'distance' => $distance,
             'user' => $user,
             'form' => $form->createView(),
             'formAttr' => $f->createView(),
             'onlyMyIntervention' => false,
             'onlyNonAttribues' => false
-        ));
+            )
+        );
 
     }
 
@@ -426,7 +459,8 @@ class InterventionController extends Controller {
         $f = $fB->getForm();
         $f->handleRequest($request);
 
-        return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+        return $this->render(
+            'InterventionBundle:Intervention:liste.html.twig', array(
             'field' => $field,
             'desc' => $desc,
             'rowsPerPage' => $rowsPerPage,
@@ -440,7 +474,8 @@ class InterventionController extends Controller {
             'formAttr' => $f->createView(),
             'onlyMyIntervention' => false,
             'onlyNonAttribues' => true
-        ));
+            )
+        );
     }
 
     /**
@@ -478,7 +513,8 @@ class InterventionController extends Controller {
         $f = $fB->getForm();
         $f->handleRequest($request);
 
-        return $this->render('InterventionBundle:Intervention:liste.html.twig', array(
+        return $this->render(
+            'InterventionBundle:Intervention:liste.html.twig', array(
             'field' => $field,
             'desc' => $desc,
             'rowsPerPage' => $rowsPerPage,
@@ -492,7 +528,8 @@ class InterventionController extends Controller {
             'formAttr' => $f->createView(),
             'onlyMyIntervention' => true,
             'onlyNonAttribues' => false
-        ));
+            )
+        );
     }
 
     /**
@@ -565,8 +602,7 @@ class InterventionController extends Controller {
                         'MailBundle::emailConfirmationPriseEnCharge.html.twig'
                     ),
                     'text/html'
-                )
-            ;
+                );
             $this->get('mailer')->send($message);
 
             return new JsonResponse($infos);
@@ -628,8 +664,7 @@ class InterventionController extends Controller {
                         'MailBundle::emailConfirmationPriseEnCharge.html.twig'
                     ),
                     'text/html'
-                )
-            ;
+                );
             $this->get('mailer')->send($message);
 
             return new Response();
@@ -656,7 +691,7 @@ class InterventionController extends Controller {
 
     public function realisationInterventionsAction(Request $request) {
         if($request->isXmlHttpRequest()) {
-            $interventions = json_decode( $request->request->get('interventions'));
+            $interventions = json_decode($request->request->get('interventions'));
 
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('InterventionBundle:Intervention');
@@ -674,8 +709,8 @@ class InterventionController extends Controller {
     /**
      * Class casting
      *
-     * @param string|object $destination
-     * @param object $sourceObject
+     * @param  string|object $destination
+     * @param  object        $sourceObject
      * @return object
      */
     function cast($destination, $sourceObject) {
@@ -721,11 +756,11 @@ class InterventionController extends Controller {
                 $interventionTemp->setComite($comiteTest);
                 $lvlTheme = "";
 
-                if($interventionRaw["TypeGeneral"]=="pld"){
+                if($interventionRaw["TypeGeneral"]=="pld") {
                     foreach ($interventionRaw["materielDispoPlaidoyer"]["materiel"] as $materiel){
                         $interventionTemp->addMaterielDispoPlaidoyer($materiel);
                     }
-                    if(isset($interventionRaw["niveauTheme"])){
+                    if(isset($interventionRaw["niveauTheme"])) {
                         $lvlTheme = $lvlThemeRepository->findOneBy(
                             array('niveau' => $interventionRaw["niveauTheme"]->getNiveau(),
                                 'theme' => $interventionRaw["niveauTheme"]->getTheme()
@@ -741,35 +776,35 @@ class InterventionController extends Controller {
                     if(isset($interventionRaw["niveauTheme"])) {
                         $interventionTemp->setNiveauFrimousse($interventionRaw["niveauTheme"]->getNiveau());
                     }
-                } elseif($interventionRaw["TypeGeneral"]=="aut"){
+                } elseif($interventionRaw["TypeGeneral"]=="aut") {
                     if(isset($interventionRaw["remarques"])) {
                         $interventionTemp->setDescription($interventionRaw["remarques"]);
                     }
                 }
 
-//                if(isset($interventionRaw["materielDispoPlaidoyer"]) && !empty($interventionRaw["materielDispoPlaidoyer"]["materiel"])){
-//                    foreach ($interventionRaw["materielDispoPlaidoyer"]["materiel"] as $materiel){
-//                        $interventionTemp->addMaterielDispoPlaidoyer($materiel);
-//                    }
-//                    if(isset($interventionRaw["niveauTheme"])){
-//                        $lvlTheme = $lvlThemeRepository->findOneBy(
-//                            array('niveau' => $interventionRaw["niveauTheme"]->getNiveau(),
-//                                'theme' => $interventionRaw["niveauTheme"]->getTheme()
-//                            )
-//                        );
-//                        $interventionTemp->setNiveauTheme($lvlTheme);
-//
-//                    }
-//                }
-//
-//                 if(isset($interventionRaw['materiauxFrimousse']) && !empty($interventionRaw['materiauxFrimousse']["materiel"])){
-//                    foreach ($interventionRaw['materiauxFrimousse']["materiel"] as $materiel){
-//                        $interventionTemp->addMateriauxFrimousse($materiel);
-//                    }
-//                    if(isset($interventionRaw["niveauTheme"])) {
-//                        $interventionTemp->setNiveauFrimousse($interventionRaw["niveauTheme"]->getNiveau());
-//                    }
-//                }
+                //                if(isset($interventionRaw["materielDispoPlaidoyer"]) && !empty($interventionRaw["materielDispoPlaidoyer"]["materiel"])){
+                //                    foreach ($interventionRaw["materielDispoPlaidoyer"]["materiel"] as $materiel){
+                //                        $interventionTemp->addMaterielDispoPlaidoyer($materiel);
+                //                    }
+                //                    if(isset($interventionRaw["niveauTheme"])){
+                //                        $lvlTheme = $lvlThemeRepository->findOneBy(
+                //                            array('niveau' => $interventionRaw["niveauTheme"]->getNiveau(),
+                //                                'theme' => $interventionRaw["niveauTheme"]->getTheme()
+                //                            )
+                //                        );
+                //                        $interventionTemp->setNiveauTheme($lvlTheme);
+                //
+                //                    }
+                //                }
+                //
+                //                 if(isset($interventionRaw['materiauxFrimousse']) && !empty($interventionRaw['materiauxFrimousse']["materiel"])){
+                //                    foreach ($interventionRaw['materiauxFrimousse']["materiel"] as $materiel){
+                //                        $interventionTemp->addMateriauxFrimousse($materiel);
+                //                    }
+                //                    if(isset($interventionRaw["niveauTheme"])) {
+                //                        $interventionTemp->setNiveauFrimousse($interventionRaw["niveauTheme"]->getNiveau());
+                //                    }
+                //                }
 
                 $interventionList[] = $interventionTemp;
             }
@@ -806,14 +841,14 @@ class InterventionController extends Controller {
      *  Iterates over the moments to fill the one from the demand
      */
     function treatmentMoment($moments,\Unipik\InterventionBundle\Entity\Demande &$demande) {
-        $this->treatmentAvoidDay(array_keys($moments,'a-eviter'),$demande);
-        $this->treatmentAllDay(array_keys($moments,'indifferent'),$demande);
-        $this->treatmentMorning(array_keys($moments,'matin'),$demande);
-        $this->treatmentAftNoon(array_keys($moments,'apres-midi'),$demande);
+        $this->treatmentAvoidDay(array_keys($moments, 'a-eviter'), $demande);
+        $this->treatmentAllDay(array_keys($moments, 'indifferent'), $demande);
+        $this->treatmentMorning(array_keys($moments, 'matin'), $demande);
+        $this->treatmentAftNoon(array_keys($moments, 'apres-midi'), $demande);
     }
 
     /**
-     * @param array $days
+     * @param array   $days
      * @param Demande $demande
      * traite les matins
      */
@@ -830,7 +865,7 @@ class InterventionController extends Controller {
     }
 
     /**
-     * @param array $days
+     * @param array   $days
      * @param Demande $demande
      * traite les apres midi
      */
@@ -847,7 +882,7 @@ class InterventionController extends Controller {
     }
 
     /**
-     * @param array $days
+     * @param array   $days
      * @param Demande $demande
      * liste les jours a eviter
      */
@@ -878,7 +913,7 @@ class InterventionController extends Controller {
     }
 
     /**
-     * @param array $days
+     * @param array   $days
      * @param Demande $demande
      * liste les jours complets
      */

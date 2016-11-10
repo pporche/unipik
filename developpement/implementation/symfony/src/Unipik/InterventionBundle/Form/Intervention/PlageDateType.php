@@ -16,23 +16,26 @@ class PlageDateType extends AbstractType {
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
-            ->add('debut', DateType::class,array(
+            ->add(
+                'debut', DateType::class, array(
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
                 'format' => 'dd/MM/yyyy',
                 'label'  => 'Début'
-            ))
-            ->add('fin', DateType::class,array(
+                )
+            )
+            ->add(
+                'fin', DateType::class, array(
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
                 'format' => 'dd/MM/yyyy'
-            ))
-        ;
+                )
+            );
     }
 
     /**

@@ -16,6 +16,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class FlashListener
+ *
  * @package Unipik\UserBundle\EventListener
  */
 class FlashListener implements EventSubscriberInterface
@@ -37,7 +38,8 @@ class FlashListener implements EventSubscriberInterface
 
     /**
      * FlashListener constructor.
-     * @param Session $session
+     *
+     * @param Session             $session
      * @param TranslatorInterface $translator
      */
     public function __construct(Session $session, TranslatorInterface $translator)
@@ -70,7 +72,7 @@ class FlashListener implements EventSubscriberInterface
      * Add a success Flash
      *
      * @param Event $event
-     * @param null $eventName
+     * @param null  $eventName
      */
     public function addSuccessFlash(Event $event, $eventName = null)
     {
@@ -84,19 +86,21 @@ class FlashListener implements EventSubscriberInterface
         }
 
         $this->session->getFlashBag()
-            ->add('notice', array(
-            'title'=>'Félicitations !',
-            'message'=> $this->trans(static::$successMessages[$eventName]),
-            'alert'=>'success'
-        ));
+            ->add(
+                'notice', array(
+                'title'=>'Félicitations !',
+                'message'=> $this->trans(static::$successMessages[$eventName]),
+                'alert'=>'success'
+                )
+            );
 
     }
 
     /**
      * Translate
      *
-     * @param $message
-     * @param array $params
+     * @param  $message
+     * @param  array   $params
      * @return string
      */
     private function trans($message, array $params = array())

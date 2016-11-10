@@ -18,7 +18,7 @@ class MailController extends Controller {
     /**
      * Render the mailing view
      *
-     * @param $name
+     * @param  $name
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function sendFormAction($name) {
@@ -32,8 +32,7 @@ class MailController extends Controller {
                     array('name' => $name)
                 ),
                 'text/html'
-            )
-        ;
+            );
 
         $this->get('mailer')->send($message);
 
@@ -43,22 +42,21 @@ class MailController extends Controller {
     /**
      * Render the view to send the email
      *
-     * @param Request $request
+     * @param  Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function mailingEtablissementAction(Request $request) {
         $form = $this->get('form.factory')
             ->createBuilder(MailingType::class)
-            ->getForm()
-        ;
+            ->getForm();
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
-//            $repository = $em->getRepository('InterventionBundle:Etablissement');
-//
-//            $type = $form->get("type")->getData();
-//
-//            $etablissements = $repository->getEnseignementsByType(array($type));
+            //            $em = $this->getDoctrine()->getManager();
+            //            $repository = $em->getRepository('InterventionBundle:Etablissement');
+            //
+            //            $type = $form->get("type")->getData();
+            //
+            //            $etablissements = $repository->getEnseignementsByType(array($type));
 
             $emails = array("dev1@yopmail.com", "dev2@yopmail.com");
 
@@ -75,8 +73,7 @@ class MailController extends Controller {
                             array('id' => $i)
                         ),
                         'text/html'
-                    )
-                ;
+                    );
 
                 $this->get('mailer')->send($message);
             }

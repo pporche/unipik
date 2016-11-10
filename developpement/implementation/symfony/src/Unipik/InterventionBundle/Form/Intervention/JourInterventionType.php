@@ -16,7 +16,7 @@ class JourInterventionType extends AbstractType {
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
@@ -33,8 +33,7 @@ class JourInterventionType extends AbstractType {
             ->add('mardi', ChoiceType::class, $optionChoiceType)
             ->add('mercredi', ChoiceType::class, $optionChoiceType)
             ->add('jeudi', ChoiceType::class, $optionChoiceType)
-            ->add('vendredi', ChoiceType::class, $optionChoiceType)
-        ;
+            ->add('vendredi', ChoiceType::class, $optionChoiceType);
     }
 
     /**

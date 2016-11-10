@@ -15,7 +15,7 @@ use Symfony\Component\Form\AbstractType;
 class MaterielFrimousseType extends AbstractType{
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
@@ -27,8 +27,7 @@ class MaterielFrimousseType extends AbstractType{
             ],);
 
         $builder
-            ->add('materiel', ChoiceType::class, $optionChoiceType)
-        ;
+            ->add('materiel', ChoiceType::class, $optionChoiceType);
     }
 
     /**

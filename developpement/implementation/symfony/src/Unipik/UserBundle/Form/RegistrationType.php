@@ -23,6 +23,7 @@ use Unipik\ArchitectureBundle\Form\Adresse\VilleType;
 
 /**
  * Class RegistrationType
+ *
  * @package Unipik\UserBundle\Form
  */
 class RegistrationType extends AbstractType {
@@ -31,7 +32,7 @@ class RegistrationType extends AbstractType {
      * Build a form
      *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         parent::buildForm($builder, $options);
@@ -67,17 +68,17 @@ class RegistrationType extends AbstractType {
             ->add('telPortable', TextType::class, array('label' => 'Téléphone portable', 'required' => false))
             ->add('email', TextType::class, array('label' => 'E-mail'))
             ->add('username', TextType::class, array('label' => 'Nom d\'utilisateur'))
-            ->add('plainPassword', RepeatedType::class,
-                    array('type' => PasswordType::class,
+            ->add(
+                'plainPassword', RepeatedType::class,
+                array('type' => PasswordType::class,
                           'first_options'  => array('label' => 'Mot de passe'),
                           'second_options' => array('label' => 'Confirmer le mot de passe')
                     )
-                 )
+            )
             ->add('adresse', AdresseType::class)
             ->add('roles', ChoiceType::class, $optionChoiceType)
             ->add('responsabiliteActivite', ChoiceType::class, $optionResponsabilite)
-            ->add('activitesPotentielles', ChoiceType::class, $optionActivite)
-        ;
+            ->add('activitesPotentielles', ChoiceType::class, $optionActivite);
     }
 
     /**

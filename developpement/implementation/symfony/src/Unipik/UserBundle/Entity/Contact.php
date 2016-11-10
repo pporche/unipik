@@ -376,10 +376,10 @@ class Contact
      *
      * @return boolean
      */
-//    public function isEstTuteur()
-//    {
-//        return $this->estTuteur;
-//    }
+    //    public function isEstTuteur()
+    //    {
+    //        return $this->estTuteur;
+    //    }
 
 
     /**
@@ -391,12 +391,12 @@ class Contact
      *
      * @return Contact
      */
-//    public function setEstTuteur($estTuteur)
-//    {
-//        $this->estTuteur = $estTuteur;
-//
-//        return $this;
-//    }
+    //    public function setEstTuteur($estTuteur)
+    //    {
+    //        $this->estTuteur = $estTuteur;
+    //
+    //        return $this;
+    //    }
 
 
     /**

@@ -11,7 +11,7 @@ class NiveauThemeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
@@ -51,9 +51,8 @@ class NiveauThemeType extends AbstractType
         );
 
         $builder
-            ->add('niveau',ChoiceType::class,$choiceClasse, array('required' => false))
-            ->add('theme',ThemesType::class, array('label' => 'Choix des thèmes', 'required' => false))
-        ;
+            ->add('niveau', ChoiceType::class, $choiceClasse, array('required' => false))
+            ->add('theme', ThemesType::class, array('label' => 'Choix des thèmes', 'required' => false));
     }
 
     /**
@@ -61,8 +60,10 @@ class NiveauThemeType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults(
+            array(
             'data_class' => 'Unipik\ArchitectureBundle\Entity\NiveauTheme'
-        ));
+            )
+        );
     }
 }

@@ -123,7 +123,7 @@ class ProfileController extends BaseController {
         }
         $em = $this->getDoctrine()->getManager();
         $repositoryIntervention = $em->getRepository('InterventionBundle:Intervention');
-        $listeInterventions = $repositoryIntervention->getType(null, null, true, null, null, null, null, $user);
+        $listeInterventions = $repositoryIntervention->getInterventionsBenevole($user);
 
         return $this->render(
             'FOSUserBundle:Profile:show.html.twig', array(

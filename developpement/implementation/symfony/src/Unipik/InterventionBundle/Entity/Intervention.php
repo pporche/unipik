@@ -1,5 +1,18 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: julie
+ * Date: 13/05/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 namespace Unipik\InterventionBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -8,15 +21,19 @@ use Doctrine\ORM\Mapping as ORM;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 /**
- * Intervention
+ * L'entity qui gère les interventions
  *
- * @ORM\Entity(repositoryClass="Unipik\InterventionBundle\Entity\InterventionRepository")
- * @ORM\Table(name="intervention",                                                        indexes={@ORM\Index(name="IDX_D11814ABE004B434", columns={"niveau_theme_id"}), @ORM\Index(name="IDX_D11814ABFF631228", columns={"etablissement_id"}), @ORM\Index(name="IDX_D11814ABD61C3573", columns={"comite_id"}), @ORM\Index(name="IDX_D11814ABE77B7C09", columns={"benevole_id"}), @ORM\Index(name="IDX_D11814AB80E95E18", columns={"demande_id"})})
- * @ORM\Entity
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class Intervention
 {
     /**
+     * L'id
+     *
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -27,6 +44,8 @@ class Intervention
     public $id;
 
     /**
+     * La date d'intervention
+     *
      * @var \DateTime
      *
      * @ORM\Column(name="date_intervention", type="date", nullable=true)
@@ -34,6 +53,8 @@ class Intervention
     public $dateIntervention;
 
     /**
+     * Le lieu
+     *
      * @var string
      *
      * @ORM\Column(name="lieu", type="string", length=100, nullable=true)
@@ -41,6 +62,8 @@ class Intervention
     public $lieu;
 
     /**
+     * Le nombre de personnes
+     *
      * @var integer
      *
      * @ORM\Column(name="nb_personne", type="integer", nullable=false)
@@ -48,6 +71,8 @@ class Intervention
     public $nbPersonne;
 
     /**
+     * Les remarques
+     *
      * @var string
      *
      * @ORM\Column(name="remarques", type="string", length=500 nullable=true)
@@ -55,6 +80,8 @@ class Intervention
     public $remarques;
 
     /**
+     * L'heure
+     *
      * @var string
      *
      * @ORM\Column(name="heure", type="string", length=30, nullable=true)
@@ -62,6 +89,8 @@ class Intervention
     public $heure;
 
     /**
+     * Realisee ou non
+     *
      * @var boolean
      *
      * @ORM\Column(name="realisee", type="boolean", nullable=false)
@@ -70,6 +99,8 @@ class Intervention
 
 
     /**
+     * Le materiel disponible en cas de plaidoyer
+     *
      * @var string
      *
      * @ORM\Column(name="materiel_dispo_plaidoyer", type="string", length=500, nullable=true)
@@ -78,6 +109,8 @@ class Intervention
     public $materielDispoPlaidoyer;
 
     /**
+     * Le niveau en cas de frimousse
+     *
      * @var string
      *
      * @ORM\Column(name="niveau_frimousse", type="string", length=30, nullable=true)
@@ -85,6 +118,8 @@ class Intervention
     public $niveauFrimousse;
 
     /**
+     * Le materiel disponible en cas de plaidoyer
+     *
      * @var string
      *
      * @ORM\Column(name="materiaux_frimousse", type="string", length=500, nullable=true)
@@ -92,6 +127,8 @@ class Intervention
     public $materiauxFrimousse;
 
     /**
+     * La description
+     *
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=500, nullable=true)
@@ -99,6 +136,8 @@ class Intervention
     public $description;
 
     /**
+     * Les themes en fonction du niveau
+     *
      * @var \Unipik\ArchitectureBundle\Entity\NiveauTheme
      *
      * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\NiveauTheme", cascade={"persist"})
@@ -109,6 +148,8 @@ class Intervention
     public $niveauTheme;
 
     /**
+     * L'etablissement
+     *
      * @var \Unipik\InterventionBundle\Entity\Etablissement
      *
      * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", cascade={"persist"})
@@ -119,6 +160,8 @@ class Intervention
     public $etablissement;
 
     /**
+     * Le comite
+     *
      * @var \Unipik\UserBundle\Entity\Comite
      *
      * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Comite", cascade={"persist"})
@@ -129,6 +172,8 @@ class Intervention
     public $comite;
 
     /**
+     * Le benevole
+     *
      * @var \Unipik\UserBundle\Entity\Benevole
      *
      * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Benevole", cascade={"persist"})
@@ -139,6 +184,8 @@ class Intervention
     public $benevole;
 
     /**
+     * La demande associee
+     *
      * @var \Unipik\InterventionBundle\Entity\Demande
      *
      * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Demande", cascade={"persist"})

@@ -76,7 +76,7 @@ class InterventionRepository extends EntityRepository {
             }
             break;
         case "frimousse":
-            $this->getFrimousses($qb, $start, $end, $dateChecked);
+            $this->_getFrimousses($qb, $start, $end, $dateChecked);
             if ($niveauFrimousse) {
                 $req = "i.niveauFrimousse = '".$niveauFrimousse[0]."'";
                 for ($i=1;$i<count($niveauFrimousse);$i++) {
@@ -165,7 +165,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return QueryBuilder
      */
-    private function getFrimousses(QueryBuilder $qb, $start, $end, $datesChecked) {
+    private function _getFrimousses(QueryBuilder $qb, $start, $end, $datesChecked) {
 
         $qb
             ->where($qb->expr()->isNotNull('i.niveauFrimousse'))

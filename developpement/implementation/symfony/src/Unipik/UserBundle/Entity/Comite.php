@@ -1,5 +1,19 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
+
 namespace Unipik\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,15 +21,20 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Comite
  *
- * @ORM\Table(name="comite")
- * @ORM\Entity
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class Comite
 {
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                               type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="comite_id_seq", allocationSize=1, initialValue=1)
@@ -24,21 +43,25 @@ class Comite
 
 
     /**
+     * Le niveau en fonction du theme
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\NiveauTheme", inversedBy="comite", cascade={"persist"})
      * @ORM\JoinTable(name="comite_niveau_theme",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="comite", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="comite",                                               referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="niveau_theme", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="niveau_theme",                                         referencedColumnName="id")
      *   }
      * )
      */
     private $niveauTheme;
 
     /**
+     * Le benevole
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Benevole", mappedBy="comite", cascade={"persist"})
@@ -46,6 +69,8 @@ class Comite
     private $benevole;
 
     /**
+     * Le departement
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Departement", mappedBy="comite", cascade={"persist"})
@@ -55,6 +80,8 @@ class Comite
 
     /**
      * Constructor
+     *
+     * @return object
      */
     public function __construct()
     {
@@ -78,7 +105,7 @@ class Comite
     /**
      * Add niveauTheme
      *
-     * @param \Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme
+     * @param \Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme Le niveautheme
      *
      * @return Comite
      */
@@ -92,7 +119,9 @@ class Comite
     /**
      * Remove niveauTheme
      *
-     * @param \Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme
+     * @param \Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme Le niveautheme
+     *
+     * @return object
      */
     public function removeNiveauTheme(\Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme)
     {
@@ -112,7 +141,7 @@ class Comite
     /**
      * Add benevole
      *
-     * @param \Unipik\UserBundle\Entity\Benevole $benevole
+     * @param \Unipik\UserBundle\Entity\Benevole $benevole Le benevole
      *
      * @return Comite
      */
@@ -126,7 +155,9 @@ class Comite
     /**
      * Remove benevole
      *
-     * @param \Unipik\UserBundle\Entity\Benevole $benevole
+     * @param \Unipik\UserBundle\Entity\Benevole $benevole le benevole
+     *
+     * @return object
      */
     public function removeBenevole(\Unipik\UserBundle\Entity\Benevole $benevole)
     {
@@ -147,7 +178,7 @@ class Comite
     /**
      * Add departement
      *
-     * @param \Unipik\ArchitectureBundle\Entity\Departement $departement
+     * @param \Unipik\ArchitectureBundle\Entity\Departement $departement Le departement
      *
      * @return Comite
      */
@@ -161,7 +192,9 @@ class Comite
     /**
      * Remove departement
      *
-     * @param \Unipik\ArchitectureBundle\Entity\Departement $departement
+     * @param \Unipik\ArchitectureBundle\Entity\Departement $departement Le departement
+     *
+     * @return object
      */
     public function removeDepartement(\Unipik\ArchitectureBundle\Entity\Departement $departement)
     {

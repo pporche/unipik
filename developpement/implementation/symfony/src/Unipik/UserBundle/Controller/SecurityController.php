@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: florian
- * Date: 22/04/16
- * Time: 11:30
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\UserBundle\Controller;
@@ -20,9 +28,11 @@ use Unipik\UserBundle\Form\RegistrationType;
 /**
  * Login/out actions
  *
- * Class SecurityController
- *
- * @package Unipik\UserBundle\Controller
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class SecurityController extends BaseController {
 
@@ -38,7 +48,8 @@ class SecurityController extends BaseController {
     /**
      * Render the login page
      *
-     * @param  Request $request
+     * @param Request $request La requete
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function loginAction(Request $request) {
@@ -48,7 +59,8 @@ class SecurityController extends BaseController {
     /**
      * Render the login page
      *
-     * @param  array $data
+     * @param array $data Les donnees
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function renderLogin(array $data) {

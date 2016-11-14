@@ -1,41 +1,60 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jpain01
- * Date: 09/09/16
- * Time: 16:51
+ * User: julie
+ * Date: 19/04/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
-
 namespace Unipik\InterventionBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
-
+/**
+ * Le repository qui gère les etablissements
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class EtablissementRepository extends EntityRepository {
 
     /**
      * Generic function for DB queries.
      *
-     * @param  $typeEtablissement
-     * @param  $ville
-     * @param  $field
-     * @param  $desc
+     * @param string $typeEtablissement Le type d'etablissement
+     * @param string $typeEnseignement  Le type en cas d'enseignement
+     * @param string $typeCentre        Le type en cas de centre
+     * @param string $typeAutre         Le type en cas d'autre
+     * @param string $ville             La ville
+     * @param string $field             Le champs
+     * @param bool   $desc              Descendant ou non
+     *
      * @return array
      */
     public function getType($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre,  $ville, $field, $desc){
         switch ($typeEtablissement) {
         case "enseignement":
-            $results = $this->getEnseignementsByType($typeEnseignement, $ville, $field, $desc);
+            $results = $this->_getEnseignementsByType($typeEnseignement, $ville, $field, $desc);
             break;
         case "centre":
-            $results = $this->getCentresLoisirsByType($typeCentre, $ville, $field, $desc);
+            $results = $this->_getCentresLoisirsByType($typeCentre, $ville, $field, $desc);
             break;
         case "autreEtablissement":
-            $results = $this->getAutresEtablissementsByType($typeAutre, $ville, $field, $desc);
+            $results = $this->_getAutresEtablissementsByType($typeAutre, $ville, $field, $desc);
             break;
         default:
-            $results = $this->getTousEtablissements($ville, $field, $desc);
+            $results = $this->_getTousEtablissements($ville, $field, $desc);
             break;
         }
 
@@ -49,25 +68,28 @@ class EtablissementRepository extends EntityRepository {
     /**
      * Get Enseignements by Type
      *
-     * @param $string $typeEnseignement
+     * @param string $typeEnseignement Le type
+     * @param string $ville            La ville
+     * @param string $field            Le champs
+     * @param string $desc             Descendant ou non
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    private function getEnseignementsByType($typeEnseignement, $ville = null, $field = null, $desc = null) {
+    private function _getEnseignementsByType($typeEnseignement, $ville = null, $field = null, $desc = null) {
         $results = array();
         foreach ($typeEnseignement as $te) {
             $qb = $this->createQueryBuilder('e');
             $qb
                 ->where('e.typeEnseignement = :typeE');
 
-            if($ville) {
-                $this->whereVilleIs($qb, $ville);
+            if ($ville) {
+                $this->_whereVilleIs($qb, $ville);
             }
 
-            if($field=="nom") {
-                if($desc) {
+            if ($field=="nom") {
+                if ($desc) {
                     $qb->orderBy('e.nom', 'DESC');
-                }else{
+                } else {
                     $qb->orderBy('e.nom', 'ASC');
                 }
             }
@@ -84,25 +106,28 @@ class EtablissementRepository extends EntityRepository {
     /**
      * Get Centres Loisirs by Type
      *
-     * @param $string $typeCentre
+     * @param string $typeCentre Le type de centre
+     * @param string $ville      La ville
+     * @param string $field      Le champs
+     * @param string $desc       Descendant ou non
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    private function getCentresLoisirsByType($typeCentre, $ville = null, $field = null , $desc = null) {
+    private function _getCentresLoisirsByType($typeCentre, $ville = null, $field = null , $desc = null) {
         $results = array();
         foreach ($typeCentre as $tc) {
             $qb = $this->createQueryBuilder('e');
             $qb
                 ->where('e.typeCentre = :typeC');
 
-            if($ville) {
-                $this->whereVilleIs($qb, $ville);
+            if ($ville) {
+                $this->_whereVilleIs($qb, $ville);
             }
 
-            if($field=="nom") {
-                if($desc) {
+            if ($field=="nom") {
+                if ($desc) {
                     $qb->orderBy('e.nom', 'DESC');
-                }else{
+                } else {
                     $qb->orderBy('e.nom', 'ASC');
                 }
             }
@@ -119,25 +144,28 @@ class EtablissementRepository extends EntityRepository {
     /**
      * Get Autres Etablissements by Type
      *
-     * @param $string $typeAutreEtablissement
+     * @param string $typeAutreEtablissement Le type de autre
+     * @param string $ville                  La ville
+     * @param string $field                  Le champs
+     * @param bool   $desc                   Descendant ou non
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    private function getAutresEtablissementsByType($typeAutreEtablissement, $ville = null, $field = null , $desc = null ) {
+    private function _getAutresEtablissementsByType($typeAutreEtablissement, $ville = null, $field = null , $desc = null ) {
         $results = array();
         foreach ($typeAutreEtablissement as $tae) {
             $qb = $this->createQueryBuilder('e');
             $qb
                 ->where('e.typeAutreEtablissement = :typeAE');
 
-            if($ville) {
-                $this->whereVilleIs($qb, $ville);
+            if ($ville) {
+                $this->_whereVilleIs($qb, $ville);
             }
 
-            if($field=="nom") {
-                if($desc) {
+            if ($field=="nom") {
+                if ($desc) {
                     $qb->orderBy('e.nom', 'DESC');
-                }else{
+                } else {
                     $qb->orderBy('e.nom', 'ASC');
                 }
             }
@@ -151,22 +179,25 @@ class EtablissementRepository extends EntityRepository {
 
 
     /**
-     * get tous etablissements
+     * Get tous etablissements
      *
-     * @param  $ville
+     * @param string $ville La ville
+     * @param string $field Le champs
+     * @param bool   $desc  Descendant ou non
+     *
      * @return array
      */
-    private function getTousEtablissements($ville, $field, $desc) {
+    private function _getTousEtablissements($ville, $field, $desc) {
         $qb = $this->createQueryBuilder('e');
 
-        if($ville) {
-            $this->whereVilleIs($qb, $ville);
+        if ($ville) {
+            $this->_whereVilleIs($qb, $ville);
         }
 
-        if($field=="nom") {
-            if($desc) {
+        if ($field=="nom") {
+            if ($desc) {
                 $qb->orderBy('e.nom', 'DESC');
-            }else{
+            } else {
                 $qb->orderBy('e.nom', 'ASC');
             }
         }
@@ -177,10 +208,12 @@ class EtablissementRepository extends EntityRepository {
     /**
      * Where ville is
      *
-     * @param QueryBuilder $qb
-     * @param $ville
+     * @param QueryBuilder $qb    Le querybuilder
+     * @param string       $ville La ville
+     *
+     * @return object
      */
-    private function whereVilleIs(QueryBuilder $qb, $ville) {
+    private function _whereVilleIs(QueryBuilder $qb, $ville) {
         $qb
             ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
             ->andWhere('e.adresse = a')

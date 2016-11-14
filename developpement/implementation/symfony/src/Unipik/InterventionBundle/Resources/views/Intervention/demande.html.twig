@@ -71,21 +71,8 @@
         {{ form_widget(form.jour) }}
     </div>
 
-    <h3> Intervention* </h3>
+    <h3> Intervention * </h3>
     {{ form_widget(form.Intervention) }}
-    {#<h5>Type d'intervention* :</h5>#}
-    {#{{  form_widget(form.Intervention.TypeGeneral) }}#}
-    {#<h5>Matériel :</h5>#}
-    {#{{  form_widget(form.Intervention.materielDispoPlaidoyer) }}#}
-    {#{{  form_widget(form.Intervention.materiauxFrimousse) }}#}
-    {#<h5>Nb de participants* :</h5>#}
-    {#{{  form_widget(form.Intervention.nbPersonne) }}#}
-    {#<h5>Année scolaire* :</h5>#}
-    {#{{   form_widget(form.Intervention.niveauTheme.niveau)  }}#}
-    {#<div id="theme">#}
-    {#<h5>Thème* :</h5>#}
-    {#{{   form_widget(form.Intervention.niveauTheme.theme)  }}#}
-    {#</div>#}
 
 
     <h3> Contact</h3>
@@ -503,7 +490,7 @@
 
         function treatmentInterventionType(template, grade) {
             var taille = $(template).find('option').length;
-            if (grade != 'elementaire'){
+            if (grade != 'elementaire') {
                 $(template).find('option:eq(1)').fadeOut().prop('disabled', true);
             } else {
                 $(template).find('option:eq(1)').fadeIn().prop('disabled', false);
@@ -658,8 +645,14 @@
         }
 
 
-        $(document).ready(function() {
+        $(document).ready(function () {
 
+            // Pré-cocher les jours de l'intervention en "Jour à éviter"
+            $('#demande_jour_lundi_3').prop("checked", true);
+            $('#demande_jour_mardi_3').prop("checked", true);
+            $('#demande_jour_mercredi_3').prop("checked", true);
+            $('#demande_jour_jeudi_3').prop("checked", true);
+            $('#demande_jour_vendredi_3').prop("checked", true);
 
             $("label:contains(\"Informations de l'établissement\")").hide();
 
@@ -702,7 +695,7 @@
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;
                 $(':input[type="number"]').attr("min", 0).keyup(function () {
-                    this.value = this.value.replace(/[^0-9\.]/g,'');
+                    this.value = this.value.replace(/[^0-9\.]/g, '');
                 });
             }
 
@@ -809,10 +802,11 @@
         function verifyAll(e) {
             verifyNumber(e);
             verifyCP(e);
+            verifyIntervention(e);
         }
 
         function verifyNumber(e) {
-            var re = /((0)[1-9][0-9]{8})?/;
+            var re = /^((0)[1-9][0-9]{8})?$/;
             if (!(re.test($('#demande_Contact_telFixe').val()) && re.test($('#demande_Contact_telPortable').val()) && re.test($('#demande_Etablissement_telFixe').val()))) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -861,6 +855,15 @@
 
             // On compare la lettre du code UAI à la lettre calculée et on retourne TRUE ou FALSE
             return codeUaiPropreLettre == lettreCalculee;
+        }
+
+        function verifyIntervention(e) {
+//            console.log($('#demande_Intervention_1_TypeGeneral').text());
+            if ($('#demande_Intervention_1_TypeGeneral').text()=='') {
+                e.preventDefault();
+                e.stopPropagation();
+                alert("Vous n'avez pas rempli d'intervention");
+            }
         }
 
         document.addEventListener('submit', verifyAll);

@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jpain01
+ * User: julie
  * Date: 09/09/16
- * Time: 16:55
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Entity;
@@ -11,21 +19,35 @@ namespace Unipik\InterventionBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use Unipik\InterventionBundle\Form\Intervention\InterventionType;
 
-
+/**
+ * Le repository qui gère les interventions
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class InterventionRepository extends EntityRepository {
 
     /**
      * Generic function for DB queries.
      *
-     * @param  $start
-     * @param  $end
-     * @param  $dateChecked
-     * @param  $typeIntervention
-     * @param  $field
-     * @param  $desc
-     * @param  $statut
-     * @param  $user
+     * @param date             $start            Le debut
+     * @param date             $end              La fin
+     * @param bool             $dateChecked      La date est elle cochée
+     * @param InterventionType $typeIntervention Le type d'intervention
+     * @param string           $field            Le champ de tri
+     * @param bool             $desc             Descendant
+     * @param string           $statut           Le statut
+     * @param user             $user             L'utilisateur
+     * @param array            $niveauFrimousse  Le niveau en cas de frimousse
+     * @param array            $niveauPlaidoyer  Le niveau en cas de plaidoyer
+     * @param string           $theme            Le theme
+     * @param string           $ville            La ville
+     *
      * @return array
      */
     public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null/*, $distance = null*/ ){
@@ -38,16 +60,16 @@ class InterventionRepository extends EntityRepository {
             $qb
                 ->from('\Unipik\ArchitectureBundle\Entity\NiveauTheme', 'nt')
                 ->andWhere('i.niveauTheme = nt');
-            if($niveauPlaidoyer) {
+            if ($niveauPlaidoyer) {
                 $req = "nt.niveau = '".$niveauPlaidoyer[0]."'";
-                for($i=1;$i<count($niveauPlaidoyer);$i++) {
+                for ($i=1;$i<count($niveauPlaidoyer);$i++) {
                     $req = $req." OR nt.niveau = '".$niveauPlaidoyer[$i]."'";
                 }
                 $qb->andWhere($req);
             }
-            if($theme) {
+            if ($theme) {
                 $req = "nt.theme = '".$theme[0]."'";
-                for($i=1;$i<count($theme);$i++) {
+                for ($i=1;$i<count($theme);$i++) {
                     $req = $req." OR nt.theme = '".$theme[$i]."'";
                 }
                 $qb->andWhere($req);
@@ -55,9 +77,9 @@ class InterventionRepository extends EntityRepository {
             break;
         case "frimousse":
             $this->getFrimousses($qb, $start, $end, $dateChecked);
-            if($niveauFrimousse) {
+            if ($niveauFrimousse) {
                 $req = "i.niveauFrimousse = '".$niveauFrimousse[0]."'";
-                for($i=1;$i<count($niveauFrimousse);$i++) {
+                for ($i=1;$i<count($niveauFrimousse);$i++) {
                     $req = $req." OR i.niveauFrimousse = '".$niveauFrimousse[$i]."'";
                 }
                 $qb->andWhere($req);
@@ -91,36 +113,36 @@ class InterventionRepository extends EntityRepository {
         }
 
 
-        if($field=="lieu") {
-            if($desc) {
+        if ($field=="lieu") {
+            if ($desc) {
                 $qb
-                    ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
-                    ->andWhere('i.etablissement = e')
-                    ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
-                    ->andWhere('e.adresse = a')
+                    ->from('Unipik\InterventionBundle\Entity\Etablissement', 'et')
+                    ->andWhere('i.etablissement = et')
+                    ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'ad')
+                    ->andWhere('e.adresse = ad')
                     ->from('\Unipik\ArchitectureBundle\Entity\Ville', 'v')
                     ->andWhere('a.ville = v')
                     ->orderBy('v.nom', 'DESC');
-            }else{
+            } else {
                 $qb
-                    ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
-                    ->andWhere('i.etablissement = e')
-                    ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
-                    ->andWhere('e.adresse = a')
+                    ->from('Unipik\InterventionBundle\Entity\Etablissement', 'et')
+                    ->andWhere('i.etablissement = et')
+                    ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'ad')
+                    ->andWhere('e.adresse = ad')
                     ->from('\Unipik\ArchitectureBundle\Entity\Ville', 'v')
                     ->andWhere('a.ville = v')
                     ->orderBy('v.nom', 'ASC');
             }
 
-        }else{
-            if($desc) {
+        } else {
+            if ($desc) {
                 $qb->orderBy('i.dateIntervention', 'DESC');
-            }else{
+            } else {
                 $qb->orderBy('i.dateIntervention', 'ASC');
             }
         }
 
-        if($ville) {
+        if ($ville) {
             $this->whereVilleIs($qb, $ville);
         }
 
@@ -136,9 +158,11 @@ class InterventionRepository extends EntityRepository {
     /**
      * Get Frimousses
      *
-     * @param  $start
-     * @param  $end
-     * @param  $datesChecked
+     * @param QueryBuilder $qb           Le QueryBuilder
+     * @param date         $start        La date de debut
+     * @param date         $end          La date de fin
+     * @param bool         $datesChecked La date est cochee
+     *
      * @return QueryBuilder
      */
     public function getFrimousses(QueryBuilder $qb, $start, $end, $datesChecked) {
@@ -147,7 +171,7 @@ class InterventionRepository extends EntityRepository {
             ->where($qb->expr()->isNotNull('i.niveauFrimousse'))
             ->andWhere($qb->expr()->isNotNull('i.materiauxFrimousse'));
 
-        if(!$datesChecked) {
+        if (!$datesChecked) {
             $this->whereInterventionsBetweenDates($start, $end, $qb);
         }
     }
@@ -155,9 +179,11 @@ class InterventionRepository extends EntityRepository {
     /**
      * Get Plaidoyers
      *
-     * @param  $start
-     * @param  $end
-     * @param  $datesChecked
+     * @param QueryBuilder $qb           Le QueryBuilder
+     * @param date         $start        La date de debut
+     * @param date         $end          La date de fin
+     * @param bool         $datesChecked La date est cochee
+     *
      * @return QueryBuilder
      */
     public function getPlaidoyers(QueryBuilder $qb, $start, $end, $datesChecked) {
@@ -166,7 +192,7 @@ class InterventionRepository extends EntityRepository {
             ->where($qb->expr()->isNotNull('i.niveauTheme'))
             ->andWhere($qb->expr()->isNotNull('i.materielDispoPlaidoyer'));
 
-        if(!$datesChecked) {
+        if (!$datesChecked) {
             $this->whereInterventionsBetweenDates($start, $end, $qb);
         }
     }
@@ -174,9 +200,11 @@ class InterventionRepository extends EntityRepository {
     /**
      * Get Autres Interventions
      *
-     * @param  $start
-     * @param  $end
-     * @param  $datesChecked
+     * @param QueryBuilder $qb           Le QueryBuilder
+     * @param date         $start        La date de debut
+     * @param date         $end          La date de fin
+     * @param bool         $datesChecked La date est cochee
+     *
      * @return QueryBuilder
      */
     public function getAutresInterventions(QueryBuilder $qb,$start,  $end , $datesChecked) {
@@ -184,7 +212,7 @@ class InterventionRepository extends EntityRepository {
         $qb
             ->where($qb->expr()->isNotNull('i.description'));
 
-        if(!$datesChecked) {
+        if (!$datesChecked) {
             $this->whereInterventionsBetweenDates($start, $end, $qb);
         }
     }
@@ -193,14 +221,16 @@ class InterventionRepository extends EntityRepository {
     /**
      *  Get Toutes Interventions
      *
-     * @param  $start
-     * @param  $end
-     * @param  $datesChecked
+     * @param QueryBuilder $qb           Le QueryBuilder
+     * @param date         $start        La date de debut
+     * @param date         $end          La date de fin
+     * @param bool         $datesChecked La date est cochee
+     *
      * @return QueryBuilder
      */
     public function getToutesInterventions(QueryBuilder $qb, $start,  $end , $datesChecked) {
 
-        if(!$datesChecked) {
+        if (!$datesChecked) {
             $this->whereInterventionsBetweenDates($start, $end, $qb);
         }
 
@@ -209,7 +239,7 @@ class InterventionRepository extends EntityRepository {
     /**
      * Get Interventions d'un bénévole
      *
-     * @param \Unipik\UserBundle\Entity\Benevole $benevole
+     * @param \Unipik\UserBundle\Entity\Benevole $benevole Le benevole
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -223,7 +253,7 @@ class InterventionRepository extends EntityRepository {
     /**
      * Get Interventions réalisées ou non réalisées
      *
-     * @param boolean $realisees
+     * @param boolean $realisees Realisee ou non
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -237,8 +267,8 @@ class InterventionRepository extends EntityRepository {
     /**
      * Get Interventions réalisées ou non réalisées d'un bénévole
      *
-     * @param boolean                            $realisees
-     * @param \Unipik\UserBundle\Entity\Benevole $benevole
+     * @param \Unipik\UserBundle\Entity\Benevole $benevole  Le benevole
+     * @param boolean                            $realisees Realisee ou non
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -253,9 +283,9 @@ class InterventionRepository extends EntityRepository {
     /**
      * Get Interventions réalisées ou non réalisées d'un bénévole
      *
-     * @param boolean                            $realisees
-     * @param \Unipik\UserBundle\Entity\Benevole $benevole
-     * @param int                                $maxResults
+     * @param \Unipik\UserBundle\Entity\Benevole $benevole   Le benevole
+     * @param boolean                            $realisees  Realisee ou non
+     * @param int                                $maxResults Le nombre max de resultats
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -270,8 +300,8 @@ class InterventionRepository extends EntityRepository {
     /**
      * Get Interventions réalisées ou non réalisées qu'un établissement a demandé
      *
-     * @param boolean                                         $realisees
-     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement L'etablissement
+     * @param boolean                                         $realisees     Realisee ou non
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -287,8 +317,11 @@ class InterventionRepository extends EntityRepository {
     /**
      * Where Interventions between dates
      *
-     * @param \DateTime $start
-     * @param \DateTime $end
+     * @param \DateTime    $start Le debut
+     * @param \DateTime    $end   La fin
+     * @param QueryBuilder $qb    Le querybuilder
+     *
+     * @return object
      */
     public function whereInterventionsBetweenDates($start, $end, QueryBuilder $qb) {
         $qb
@@ -298,7 +331,11 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
-     * @param QueryBuilder $qb
+     * Renvoie les interventions attribuees
+     *
+     * @param QueryBuilder $qb Le querybuilder
+     *
+     * @return object
      */
     public function getInterventionsAttribuees(QueryBuilder $qb){
         $qb
@@ -307,7 +344,11 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
-     * @param QueryBuilder $qb
+     * Renvoie les interventions non attribuees
+     *
+     * @param QueryBuilder $qb Le querybuilder
+     *
+     * @return object
      */
     public function getInterventionsNonAttribuees(QueryBuilder $qb){
         $qb
@@ -315,7 +356,11 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
-     * @param QueryBuilder $qb
+     * Renvoie les interventions realisees
+     *
+     * @param QueryBuilder $qb Le querybuilder
+     *
+     * @return object
      */
     public function getInterventionsRealisees(QueryBuilder $qb){
         $qb
@@ -327,8 +372,10 @@ class InterventionRepository extends EntityRepository {
     /**
      * Where ville is
      *
-     * @param QueryBuilder $qb
-     * @param $ville
+     * @param QueryBuilder $qb    Le querybuilder
+     * @param string       $ville La ville
+     *
+     * @return object
      */
     public function whereVilleIs(QueryBuilder $qb, $ville) {
         $qb

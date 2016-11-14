@@ -23,8 +23,6 @@ class ThemesType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options){
         $optionChoiceType = array( 'label' => false, 'attr' => ['class' => 'form-theme-pld'],
             'choices' => [
-              //  "Le millénaire pour le développement" => 'millenaire pour le developpement', // ajout ajout plus tard
-             //   "Le rôle de l Unicef" => 'role de l Unicef', // ajout plus tard
                 "Convention internationale des Droits de l'Enfant" => 'convention internationale des droits de l enfant',
                 "L'éducation" => 'education',
                 "Le rôle de l'Unicef" => 'role unicef',

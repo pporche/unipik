@@ -363,6 +363,18 @@ class InterventionController extends Controller {
         }
     }
 
+    public function consultationDemandeAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('InterventionBundle:Intervention');
+        $intervention = $repository->find($id);
+        $user = $this->getUser();
+        $demande = $intervention->getDemande();
+        $formAttr = $this->get('form.factory')->createBuilder(AttributionType::class)->getForm()->createView();
+        return $this->render('InterventionBundle:Intervention:demandeConsultation.html.twig', array('intervention'=>$intervention, 'user' => $user, 'formAttr' => $formAttr));
+
+    }
+
+
     /**
      * Renvoie le repository Intervention.
      *

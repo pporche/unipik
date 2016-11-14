@@ -25,6 +25,12 @@ intervention_view:
     requirements:
         id: \d+
 
+demande_view:
+    path: /intervention/{id}/demande
+    defaults: {_controller: InterventionBundle:Intervention:consultationDemande}
+    requirements:
+        id: \d+
+
 intervention_edit:
     path: /intervention/edit/{id}
     defaults: {_controller: InterventionBundle:Intervention:edit}

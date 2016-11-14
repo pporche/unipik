@@ -164,6 +164,7 @@ class RegistrationController extends BaseController {
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('L\'utilisateur n\'a pas accès à cette section.');
         }
+        $this->get('session')->getFlashBag()->clear();
 
         return $this->render('UserBundle:Registration:confirmed.html.twig', array(
             'user' => $user,

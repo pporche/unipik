@@ -363,6 +363,13 @@ class InterventionController extends Controller {
         }
     }
 
+    /**
+     * Action de demande
+     *
+     * @param int $id L'id
+     *
+     * @return mixed
+     */
     public function consultationDemandeAction($id) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('InterventionBundle:Intervention');

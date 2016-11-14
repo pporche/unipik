@@ -39,12 +39,8 @@ class EtablissementRepository extends EntityRepository {
                 break;
         }
 
-
-
-        return $results
-            ;
+        return $results;
     }
-
 
     /**
      * Get Enseignements by Type
@@ -99,7 +95,7 @@ class EtablissementRepository extends EntityRepository {
                 $this->whereVilleIs($qb,$ville);
             }
 
-            if($field=="nom"){
+            if($field=="nom") {
                 if($desc){
                     $qb->orderBy('e.nom','DESC');
                 }else{

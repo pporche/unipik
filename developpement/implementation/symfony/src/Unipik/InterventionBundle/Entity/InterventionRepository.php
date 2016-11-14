@@ -95,13 +95,13 @@ class InterventionRepository extends EntityRepository {
 
         switch ($statut) {
         case "attribuees":
-            $this->getInterventionsAttribuees($qb);
+            $this->whereInterventionIsAttribuee($qb);
             break;
         case "nonAttribuees":
-            $this->getInterventionsNonAttribuees($qb);
+            $this->whereInterventionIsNotAttribuee($qb);
             break;
         case "realisees":
-            $this->getInterventionsRealisees($qb);
+            $this->whereInterventionIsRealisee($qb);
             break;
         default:
             break;
@@ -165,7 +165,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return QueryBuilder
      */
-    public function getFrimousses(QueryBuilder $qb, $start, $end, $datesChecked) {
+    private function getFrimousses(QueryBuilder $qb, $start, $end, $datesChecked) {
 
         $qb
             ->where($qb->expr()->isNotNull('i.niveauFrimousse'))
@@ -186,7 +186,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return QueryBuilder
      */
-    public function getPlaidoyers(QueryBuilder $qb, $start, $end, $datesChecked) {
+    private function getPlaidoyers(QueryBuilder $qb, $start, $end, $datesChecked) {
 
         $qb
             ->where($qb->expr()->isNotNull('i.niveauTheme'))
@@ -207,7 +207,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return QueryBuilder
      */
-    public function getAutresInterventions(QueryBuilder $qb,$start,  $end , $datesChecked) {
+    private function getAutresInterventions(QueryBuilder $qb,$start,  $end , $datesChecked) {
 
         $qb
             ->where($qb->expr()->isNotNull('i.description'));
@@ -228,7 +228,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return QueryBuilder
      */
-    public function getToutesInterventions(QueryBuilder $qb, $start,  $end , $datesChecked) {
+    private function getToutesInterventions(QueryBuilder $qb, $start,  $end , $datesChecked) {
 
         if (!$datesChecked) {
             $this->whereInterventionsBetweenDates($start, $end, $qb);
@@ -323,7 +323,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    public function whereInterventionsBetweenDates($start, $end, QueryBuilder $qb) {
+    private function whereInterventionsBetweenDates($start, $end, QueryBuilder $qb) {
         $qb
             ->andWhere('i.dateIntervention BETWEEN :start AND :end')
             ->setParameter('start', $start)
@@ -337,7 +337,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    public function getInterventionsAttribuees(QueryBuilder $qb){
+    private function whereInterventionIsAttribuee(QueryBuilder $qb){
         $qb
             ->andWhere($qb->expr()->isNotNull('i.benevole'))
             ->andWhere($qb->expr()->eq('i.realisee', $qb->expr()->literal(false)));
@@ -350,7 +350,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    public function getInterventionsNonAttribuees(QueryBuilder $qb){
+    private function whereInterventionIsNotAttribuee(QueryBuilder $qb){
         $qb
             ->andWhere($qb->expr()->isNull('i.benevole'));
     }
@@ -362,7 +362,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    public function getInterventionsRealisees(QueryBuilder $qb){
+    private function whereInterventionIsRealisee(QueryBuilder $qb){
         $qb
             ->andWhere($qb->expr()->isNotNull('i.benevole'))
             ->andWhere($qb->expr()->eq('i.realisee', $qb->expr()->literal(true)));
@@ -377,7 +377,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    public function whereVilleIs(QueryBuilder $qb, $ville) {
+    private function whereVilleIs(QueryBuilder $qb, $ville) {
         $qb
             ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
             ->andWhere('i.etablissement = e')

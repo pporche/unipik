@@ -1,21 +1,39 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: julie
+ * Date: 23/05/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 namespace Unipik\InterventionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Vente
+ * L'entity qui gère les ventes
  *
- * @ORM\Table(name="vente", indexes={@ORM\Index(name="IDX_888A2A4C8EAE3863", columns={"intervention_id"}), @ORM\Index(name="IDX_888A2A4CFF631228", columns={"etablissement_id"})})
- * @ORM\Entity
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class Vente
 {
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                              type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="vente_id_seq", allocationSize=1, initialValue=1)
@@ -23,6 +41,8 @@ class Vente
     private $id;
 
     /**
+     * Le CA
+     *
      * @var float
      *
      * @ORM\Column(name="chiffre_affaire", type="float", precision=10, scale=0, nullable=false)
@@ -30,6 +50,8 @@ class Vente
     private $chiffreAffaire;
 
     /**
+     * La date de vente
+     *
      * @var \DateTime
      *
      * @ORM\Column(name="date_vente", type="date", nullable=false)
@@ -37,6 +59,8 @@ class Vente
     private $dateVente;
 
     /**
+     * Les remarques
+     *
      * @var string
      *
      * @ORM\Column(name="remarques", type="string", length=500, nullable=true)
@@ -44,21 +68,25 @@ class Vente
     private $remarques;
 
     /**
+     * L'intervention
+     *
      * @var \Unipik\InterventionBundle\Entity\Intervention
      *
      * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Intervention", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="intervention_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="intervention_id",                                      referencedColumnName="id")
      * })
      */
     private $intervention;
 
     /**
+     * L'etablissement
+     *
      * @var \Unipik\InterventionBundle\Entity\Etablissement
      *
      * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Etablissement", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="etablissement_id",                                      referencedColumnName="id")
      * })
      */
     private $etablissement;
@@ -78,7 +106,7 @@ class Vente
     /**
      * Set chiffreAffaire
      *
-     * @param float $chiffreAffaire
+     * @param float $chiffreAffaire Le CA
      *
      * @return Vente
      */
@@ -102,7 +130,7 @@ class Vente
     /**
      * Set date de vente
      *
-     * @param \DateTime $date
+     * @param \DateTime $date La date
      *
      * @return Vente
      */
@@ -126,7 +154,7 @@ class Vente
     /**
      * Set remarques
      *
-     * @param string $remarques
+     * @param string $remarques Les remarques
      *
      * @return Vente
      */
@@ -150,7 +178,7 @@ class Vente
     /**
      * Set intervention
      *
-     * @param \Unipik\InterventionBundle\Entity\Intervention $intervention
+     * @param \Unipik\InterventionBundle\Entity\Intervention $intervention L'intervention
      *
      * @return Vente
      */
@@ -174,7 +202,7 @@ class Vente
     /**
      * Set etablissement
      *
-     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement L'etablissement
      *
      * @return Vente
      */

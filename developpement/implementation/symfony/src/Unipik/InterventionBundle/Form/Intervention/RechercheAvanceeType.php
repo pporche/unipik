@@ -169,8 +169,8 @@ class RechercheAvanceeType extends AbstractType
             ->add('ville', VilleType::class, array('required' => false))
             ->add(
                 'distance', CheckboxType::class, array(
-                'label' => 'Moins de 10km de mon domicile',
-                'required' => false
+                    'label' => 'Moins de 10km de mon domicile',
+                    'required' => false
                 )
             );
 

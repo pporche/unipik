@@ -76,7 +76,7 @@ class InterventionRepositoryTest extends RepositoryTestCase
 
         // On test tous les types de requêtes possibles:
         return(array(
-            /*"test1" =>  [3, [0, 1, 2], $inter, $nt, null, null, true, "plaidoyer", null, true, null, "POUIC POUIC"],
+            "test1" =>  [3, [0, 1, 2], $inter, $nt, null, null, true, "plaidoyer", null, true, null, "POUIC POUIC"],
             "test2" =>  [1, [2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, ["CM2"]],
             "test3" =>  [2, [1, 2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, ["CM2", "CM1"]],
             "test4" =>  [1, [2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, ['enfants et soldats']],
@@ -94,7 +94,7 @@ class InterventionRepositoryTest extends RepositoryTestCase
             "test17" => [2, [1, 3], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, null, null, null, null, "POUIC POUIC"],
             "test18" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC", $b[0]],
             "test19" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, "attribuees", "POUIC POUIC"],
-            "test20" => [2, [4, 5], $inter, $nt, null, null, true, null, null, null, "nonAttribuees", "POUIC POUIC"],*/
+            "test20" => [2, [4, 5], $inter, $nt, null, null, true, null, null, null, "nonAttribuees", "POUIC POUIC"],
             "test21" => [2, [1, 3], $inter, $nt, null, null, true, null, null, null, "realisees", "POUIC POUIC"],
 
         ));

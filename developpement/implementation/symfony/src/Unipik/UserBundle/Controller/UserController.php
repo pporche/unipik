@@ -233,23 +233,27 @@ class UserController extends Controller {
      * @return JsonResponse
      */
     public function autocompleteAction(Request $request){
-        $username = array();
+        $users = array();
         $term = trim(strip_tags($request->get('term')));
 
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('UserBundle:Benevole')->createQueryBuilder('b')
-            ->where('LOWER(b.username) LIKE LOWER(:username)')
+            ->where('LOWER(b.nom) LIKE LOWER(:nom)')
+            ->setParameter('nom', '%'.$term.'%')
+            ->orWhere('LOWER(b.prenom) LIKE LOWER(:prenom)')
+            ->setParameter('prenom', '%'.$term.'%')
+            ->orWhere('LOWER(b.username) LIKE LOWER(:username)')
             ->setParameter('username', '%'.$term.'%')
             ->orderBy('b.username', 'ASC')
             ->getQuery()
             ->getResult();
 
         foreach ($entities as $entity) {
-            $username[] = $entity->getUsername();
+            $users[] = ucfirst($entity->getPrenom())." ".ucfirst($entity->getNom())." (".$entity->getUsername().")";
         }
 
         $response = new JsonResponse();
-        $response->setData($username);
+        $response->setData($users);
 
         return $response;
     }

@@ -17,7 +17,7 @@ class MomentType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
@@ -29,8 +29,7 @@ class MomentType extends AbstractType
             ],);
 
         $builder
-            ->add('Moment', ChoiceType::class, $optionChoiceType)
-        ;
+            ->add('Moment', ChoiceType::class, $optionChoiceType);
     }
 
 }

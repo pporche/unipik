@@ -24,7 +24,7 @@ class InterventionType extends AbstractFieldsetType {
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $choiceClasse = array('required' => false, 'label' => 'Année scolaire', 'attr' => ['class' => 'form-annee-scolaire'],
@@ -62,7 +62,8 @@ class InterventionType extends AbstractFieldsetType {
         );
 
         $builder
-            ->add('dateIntervention', DateType::class, array(
+            ->add(
+                'dateIntervention', DateType::class, array(
                 'widget' => 'single_text',
 
                 // do not render as type="date", to avoid HTML5 date pickers
@@ -72,18 +73,20 @@ class InterventionType extends AbstractFieldsetType {
                 'attr' => ['class' => 'js-datepicker'],
                 'format' => 'dd-MM-yyyy',
                 'required' => false
-            ))
+                )
+            )
             ->add('lieu', TextType::class)
             ->add('materielDispoPlaidoyer', MaterielType::class, array('label' => 'Matériel'))
-            ->add('materiauxFrimousse',MaterielFrimousseType::class, array('label' => 'Matériel frimousse'))
+            ->add('materiauxFrimousse', MaterielFrimousseType::class, array('label' => 'Matériel frimousse'))
             ->add('nbPersonne', IntegerType::class, array('label' => 'Participants'))
             ->add('niveauTheme', NiveauThemeType::class)
             ->add('niveau', ChoiceType::class, $choiceClasse)
-            ->add('heure', TimeType::class, array(
-//                'input'  => 'string',
+            ->add(
+                'heure', TimeType::class, array(
+                //                'input'  => 'string',
                 'widget' => 'choice',
-            ))
-        ;
+                )
+            );
     }
 
     /**

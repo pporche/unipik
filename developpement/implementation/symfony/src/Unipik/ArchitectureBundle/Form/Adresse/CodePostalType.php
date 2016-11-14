@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * Class CodePostalType
+ *
  * @package Unipik\ArchitectureBundle\Form\Adresse
  */
 class CodePostalType extends AbstractType {

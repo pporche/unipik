@@ -1,5 +1,18 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: julie
+ * Date: 19/04/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 namespace Unipik\InterventionBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -10,15 +23,23 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 /**
  * Demande
  *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ *
  * @ORM\Table(name="demande", indexes={@ORM\Index(name="IDX_2694D7A5E7A1254A", columns={"contact_id"})})
  * @ORM\Entity
  */
 class Demande
 {
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                                type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="demande_id_seq", allocationSize=1, initialValue=1)
@@ -26,6 +47,8 @@ class Demande
     private $id;
 
     /**
+     * La date de demande
+     *
      * @var \DateTime
      *
      * @ORM\Column(name="date_demande", type="date", nullable=false)
@@ -33,6 +56,8 @@ class Demande
     private $dateDemande;
 
     /**
+     * La liste de semaines
+     *
      * @var string
      *
      * @ORM\Column(name="liste_semaine", type="string", length=500, nullable=false)
@@ -40,17 +65,21 @@ class Demande
     private $listeSemaine;
 
     /**
+     * Le contact
+     *
      * @var \Unipik\UserBundle\Entity\Contact
      *
      * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Contact", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="contact_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="contact_id",                              referencedColumnName="id")
      * })
      */
     private $contact;
 
 
     /**
+     * Les moments voulus
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsVoulus", cascade={"persist"})
@@ -58,6 +87,8 @@ class Demande
     private $momentsVoulus;
 
     /**
+     * Les moments a éviter
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\MomentHebdomadaire", mappedBy="demandeMomentsAEviter", cascade={"persist"})
@@ -87,7 +118,7 @@ class Demande
     /**
      * Set date de demande
      *
-     * @param \DateTime $date
+     * @param \DateTime $date La date
      *
      * @return Demande
      */
@@ -111,11 +142,11 @@ class Demande
     /**
      * Set listeSemaine
      *
-     * @deprecated
-     *
-     * @param string $listeSemaine
+     * @param string $listeSemaine La liste de semaines
      *
      * @return Demande
+     *
+     * @deprecated
      */
     public function setListeSemaine($listeSemaine)
     {
@@ -127,9 +158,9 @@ class Demande
     /**
      * Get listeSemaine
      *
-     * @deprecated
-     *
      * @return string
+     *
+     * @deprecated
      */
     public function getListeSemaine()
     {
@@ -139,7 +170,7 @@ class Demande
     /**
      * Add semaine
      *
-     * @param string|array $semaine
+     * @param string|array $semaine La semaine
      *
      * @return Demande
      */
@@ -155,7 +186,9 @@ class Demande
     /**
      * Remove semaine
      *
-     * @param string $semaine
+     * @param string $semaine La semaine
+     *
+     * @return object
      */
     public function removeSemaine($semaine) {
         $this->listeSemaine = ArrayConverter::removeFromPgArray(
@@ -180,7 +213,7 @@ class Demande
     /**
      * Set contact
      *
-     * @param \Unipik\UserBundle\Entity\Contact $contact
+     * @param \Unipik\UserBundle\Entity\Contact $contact Le contact
      *
      * @return Demande
      */
@@ -204,7 +237,7 @@ class Demande
     /**
      * Add momentsVoulus
      *
-     * @param \Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus
+     * @param \Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus Les moments voulus
      *
      * @return Demande
      */
@@ -218,7 +251,9 @@ class Demande
     /**
      * Remove momentsVoulus
      *
-     * @param \Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus
+     * @param \Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus Les moments voulus
+     *
+     * @return object
      */
     public function removeMomentsVoulus(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus)
     {
@@ -238,7 +273,7 @@ class Demande
     /**
      * Add momentsAEviter
      *
-     * @param \Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsAEviter
+     * @param \Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsAEviter Les moments a eviter
      *
      * @return Demande
      */
@@ -252,7 +287,9 @@ class Demande
     /**
      * Remove momentsAEviter
      *
-     * @param \Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsAEviter
+     * @param \Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsAEviter Les moments a eviter
+     *
+     * @return object
      */
     public function removeMomentsAEviter(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsAEviter)
     {

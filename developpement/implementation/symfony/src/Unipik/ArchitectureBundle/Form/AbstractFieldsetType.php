@@ -24,20 +24,24 @@ abstract class AbstractFieldsetType extends AbstractType {
         parent::buildView($view, $form, $options);
 
 
-        $view->vars = array_replace($view->vars, array(
+        $view->vars = array_replace(
+            $view->vars, array(
             'fieldset' => $options['fieldset'],
             'legend' => $options['legend']
-        ));
+            )
+        );
     }
 
     /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver){
-        $resolver->setDefaults(array(
+        $resolver->setDefaults(
+            array(
             'fieldset' => true,
             'legend' => "",
-        ));
+            )
+        );
     }
 
 }

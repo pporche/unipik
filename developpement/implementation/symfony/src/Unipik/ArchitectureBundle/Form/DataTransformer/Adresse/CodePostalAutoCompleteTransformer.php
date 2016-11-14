@@ -15,6 +15,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Class CodePostalAutoCompleteTransformer
+ *
  * @package Unipik\ArchitectureBundle\Form\DataTransformer\Adresse
  */
 class CodePostalAutoCompleteTransformer implements DataTransformerInterface
@@ -23,6 +24,7 @@ class CodePostalAutoCompleteTransformer implements DataTransformerInterface
 
     /**
      * VilleAutocompleteTransformer constructor.
+     *
      * @param ObjectManager $entityManager
      */
     public function __construct(ObjectManager $entityManager)
@@ -57,9 +59,12 @@ class CodePostalAutoCompleteTransformer implements DataTransformerInterface
             ->getRepository('ArchitectureBundle:CodePostal')->findOneBy(array('code' => $codePostalNumero));
 
         if (null === $codePostal) {
-            throw new TransformationFailedException(sprintf('There is no "%s" exists',
-                $codePostalNumero
-            ));
+            throw new TransformationFailedException(
+                sprintf(
+                    'There is no "%s" exists',
+                    $codePostalNumero
+                )
+            );
         }
 
         return $codePostal;

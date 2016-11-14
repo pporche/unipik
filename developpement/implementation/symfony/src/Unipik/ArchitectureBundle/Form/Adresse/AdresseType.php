@@ -22,6 +22,7 @@ use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTran
 
 /**
  * Class AdresseType
+ *
  * @package Unipik\ArchitectureBundle\Form\Adresse
  */
 class AdresseType extends AbstractFieldsetType {
@@ -29,6 +30,7 @@ class AdresseType extends AbstractFieldsetType {
 
     /**
      * AdresseType constructor.
+     *
      * @param ObjectManager $entityManager
      */
     public function __construct(ObjectManager $entityManager)
@@ -38,15 +40,14 @@ class AdresseType extends AbstractFieldsetType {
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('adresse', AdType::class)
             ->add('complement', ComplementType::class, array('label' => "Complément","required" => false))
             ->add('ville', VilleType::class)
-            ->add('codePostal', CodePostalType::class)
-        ;
+            ->add('codePostal', CodePostalType::class);
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
         $builder->get("codePostal")->addModelTransformer(new CodePostalAutocompleteTransformer($this->entityManager));
@@ -58,9 +59,11 @@ class AdresseType extends AbstractFieldsetType {
     public function configureOptions(OptionsResolver $resolver) {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults(
+            array(
             'data_class' => 'Unipik\ArchitectureBundle\Entity\Adresse',
-        ));
+            )
+        );
 
     }
 

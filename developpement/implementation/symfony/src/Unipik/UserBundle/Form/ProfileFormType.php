@@ -18,6 +18,7 @@ use Unipik\ArchitectureBundle\Form\Adresse\AdresseType;
 
 /**
  * Class ProfileFormType
+ *
  * @package Unipik\UserBundle\Form
  */
 class ProfileFormType extends BaseType {
@@ -35,7 +36,7 @@ class ProfileFormType extends BaseType {
      * Build a form
      *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         parent::buildForm($builder, $options);
@@ -62,15 +63,14 @@ class ProfileFormType extends BaseType {
         $builder
             ->add('adresse', AdresseType::class)
             ->add('responsabiliteActivite', ChoiceType::class, $optionResponsabilite)
-            ->add('activitesPotentielles', ChoiceType::class, $optionActivite)
-        ;
+            ->add('activitesPotentielles', ChoiceType::class, $optionActivite);
     }
 
     /**
      * Build the form for user creation
      *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     protected function buildUserForm(FormBuilderInterface $builder, array $options) {
         parent::buildUserForm($builder, $options);
@@ -81,8 +81,7 @@ class ProfileFormType extends BaseType {
             ->add('nom')
             ->add('prenom', TextType::class, array('label' => 'Prénom'))
             ->add('telfixe', TextType::class, array('label' => 'Téléphone fixe'))
-            ->add('telportable', TextType::class, array('label' => 'Téléphone portable'))
-        ;
+            ->add('telportable', TextType::class, array('label' => 'Téléphone portable'));
     }
 
     /**

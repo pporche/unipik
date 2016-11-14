@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: mmartinsbaltar
- * Date: 04/05/16
- * Time: 09:48
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\DependencyInjection;
@@ -16,12 +24,21 @@ use Symfony\Component\DependencyInjection\Loader;
 /**
  * This is the class that loads and manages your bundle configuration.
  *
- * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class InterventionExtension extends Extension
 {
     /**
      * {@inheritdoc}
+     *
+     * @param array            $configs   Les configs
+     * @param ContainerBuilder $container Le container
+     *
+     * @return object
      */
     public function load(array $configs, ContainerBuilder $container)
     {

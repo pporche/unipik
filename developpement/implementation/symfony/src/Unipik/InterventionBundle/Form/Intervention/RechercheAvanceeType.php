@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jpain01
- * Date: 14/09/16
- * Time: 13:59
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form\Intervention;
@@ -18,7 +26,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Unipik\ArchitectureBundle\Form\Adresse\VilleType;
 use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
 
-
+/**
+ * Le type recherche avancee
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class RechercheAvanceeType extends AbstractType
 {
     private $entityManager;
@@ -26,7 +42,7 @@ class RechercheAvanceeType extends AbstractType
     /**
      * VilleType constructor.
      *
-     * @param ObjectManager $entityManager
+     * @param ObjectManager $entityManager Le manager
      */
     public function __construct(ObjectManager $entityManager)
     {
@@ -34,10 +50,12 @@ class RechercheAvanceeType extends AbstractType
     }
 
     /**
-     * form builder
+     * Form builder
      *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 

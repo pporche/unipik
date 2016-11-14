@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: mmartinsbaltar
- * Date: 03/05/16
- * Time: 14:50
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form\Intervention;
@@ -12,12 +20,24 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\AbstractType;
 
+/**
+ * Le type plage de dates
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class PlageDateType extends AbstractType {
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     * form builder
+     * Form builder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
@@ -40,7 +60,9 @@ class PlageDateType extends AbstractType {
 
     /**
      * {@inheritdoc}
-     * renvoie plage_date
+     * Renvoie plage_date
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'plage_date';

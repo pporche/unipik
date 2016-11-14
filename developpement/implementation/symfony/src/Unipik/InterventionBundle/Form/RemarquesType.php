@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: mmartinsbaltar
- * Date: 03/05/16
- * Time: 15:50
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form;
@@ -12,12 +20,24 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
 
+/**
+ * Le type remarques
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class RemarquesType extends AbstractFieldsetType {
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     * form builder
+     * Form builder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
@@ -26,7 +46,9 @@ class RemarquesType extends AbstractFieldsetType {
 
     /**
      * {@inheritdoc}
-     * renvoie remarques
+     * Renvoie remarques
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'remarques';

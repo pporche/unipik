@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: mmartinsbaltar
- * Date: 03/05/16
- * Time: 14:34
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form\Intervention;
@@ -17,13 +25,25 @@ use Unipik\InterventionBundle\Form\Intervention\MaterielFrimousseType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Unipik\ArchitectureBundle\Form\NiveauThemeType;
 
+/**
+ * Le type intervention template
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class InterventionTemplateType extends AbstractFieldsetType {
 
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     * form builder
+     * Form builder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
 
@@ -47,7 +67,9 @@ class InterventionTemplateType extends AbstractFieldsetType {
 
     /**
      * {@inheritdoc}
-     * renvoie intervention
+     * Renvoie intervention
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'intervention';

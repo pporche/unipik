@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: kyle
+ * User: Kafui
  * Date: 13/09/16
- * Time: 10:46
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form;
@@ -21,11 +29,23 @@ use Unipik\ArchitectureBundle\Form\Adresse\AdresseType;
 use Unipik\InterventionBundle\Form\Etablissement\AutreEtablissementType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 
+/**
+ * Le type etablissement
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class EtablissementType extends AbstractType {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     * form builder
+     * Form builder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
@@ -83,8 +103,11 @@ class EtablissementType extends AbstractType {
             ->add('adresse', AdresseType::class);
     }
     /**
-     * @param OptionsResolver $resolver
-     * configure les options
+     * Configure les options
+     *
+     * @param OptionsResolver $resolver Le resolver
+     *
+     * @return object
      */
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(

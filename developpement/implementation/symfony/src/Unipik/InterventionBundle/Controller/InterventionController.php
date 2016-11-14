@@ -190,7 +190,7 @@ class InterventionController extends Controller {
             }
 
             $this->treatmentInterventions($interventionsRawList, $interventionList);
-            //            return new Response(\Doctrine\Common\Util\Debug::dump($interventionsRawList[1]));
+//                        return new Response(\Doctrine\Common\Util\Debug::dump($interventionsRawList[1]));
             $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);
 
@@ -285,7 +285,6 @@ class InterventionController extends Controller {
             $session =$request->getSession();
             $em->flush();
 
-            /*return new Response(print_r(\Doctrine\Common\Util\Debug::dump($interventionList)));*/
             $session->getFlashBag()->add(
                 'notice', array(
                 'title' => 'Félicitation',
@@ -317,6 +316,7 @@ class InterventionController extends Controller {
                 'autre' => $instituteTest->getTypeAutreEtablissement()
             );
         }
+
 
         return $this->render(
             'InterventionBundle:Intervention:demande.html.twig', array(

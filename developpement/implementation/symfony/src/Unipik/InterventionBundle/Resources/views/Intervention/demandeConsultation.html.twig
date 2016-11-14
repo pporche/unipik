@@ -1,0 +1,276 @@
+{# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
+{% extends "InterventionBundle::layout.html.twig" %}
+
+{% block title %}
+
+    Consulter une intervention - {{ parent() }}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('vendor/leaflet/dist/leaflet.css') }}" />
+    <style>
+        #mapid { height: 380px; }
+
+        .alert-success{
+            margin-top:30px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
+    <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
+    <script src="{{ asset('vendor/leaflet/dist/leaflet.js') }}"></script>
+    <script src="{{ asset('vendor/turfjs/turf.min.js') }}"></script>
+    <script>
+
+        {% if intervention.etablissement.adresse.geolocalisation is not null %}
+            var lat = {{ intervention.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
+            var lon = {{ intervention.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
+            var mymap = L.map('mapid').setView([lon, lat], 15);
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+                maxZoom: 18,
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                id: 'mapbox.streets'
+            }).addTo(mymap);
+            var marker = L.marker([lon, lat]).addTo(mymap);
+            marker.bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}").openPopup();
+        {% else %}
+            $("#mapid").html("Les coordonnées de l'établissement ne sont pas renseignées.");
+        {% endif %}
+
+        {% if intervention.benevole %}
+        $("#attribueA").text("Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}");
+        {% endif %}
+
+
+
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+        <div class="row">
+            <section class="jumbotron col-sm-12 col-sm-12 col-lg-8 col-lg-offset-2">
+                <div class=" infoPrincip">
+                    <div class="row">
+                        <h2 class="col-lg-6 titre" style="margin-top: 20px">
+                            Demande d'intervention
+                        </h2>
+                         <img src="{{ asset('img/logo-gris.png') }}" class="logoGris" alt="logo gris">
+                    </div>
+                    <hr style="margin-top: 50px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <dl class="dl-horizontal">
+
+                                <br>
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-7">
+                                        <span class="glyphicon glyphicon-calendar"></span> &nbsp Date de la demande:
+                                </div>
+                                <div class="col-sm-4 col-xs-offset-1 col-md-offset-0 col-xs-11 col-md-4">
+                                    <em>{% if intervention.demande.dateDemande is empty %}
+                                            -
+                                        {% else %}
+                                            {{ intervention.demande.dateDemande|date('d-m-Y') }}
+                                        {% endif %}
+                                    </em>
+                                </div>
+
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-7">
+                                    <span class="glyphicon glyphicon-calendar"></span> &nbsp Plage de dates:
+                                </div>
+                                <div class="col-sm-4 col-xs-offset-1 col-md-offset-0 col-xs-11 col-md-4">
+                                    <em>{% if intervention.demande.dateDemande is empty %}
+                                            -
+                                        {% else %}
+                                            PLAGE DE DATES
+                                        {% endif %}
+                                    </em>
+                                </div>
+
+                                <div class="col-sm-12 col-xs-12 col-md-12 col-lg-7">
+                                    <span class="glyphicon glyphicon-calendar"></span> &nbsp Moments:
+                                </div>
+                                <div class="col-sm-6 col-xs-offset-1 col-md-offset-0 col-xs-11 col-md-5">
+                                    {% if intervention.demande.dateDemande is empty %}
+                                            -
+                                    {% else %}
+                                        <em>Lundi       &nbsp &nbsp Matin</em> <br>
+                                        <em>Mardi       &nbsp &nbsp Aprés-Midi</em> <br>
+                                        <em>Mercredi    &nbsp &nbsp Aprés-Midi</em> <br>
+                                        <em>Jeudi       &nbsp &nbsp À éviter</em> <br>
+                                        <em>Vendredi    &nbsp &nbsp À éviter</em> <br>
+                                        {% endif %}
+                                </div>
+
+                                {{ block('contenu') }}
+                            </dl>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div id="mapid"></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-sm-12 col-lg-8 col-lg-offset-2 infoContainer">
+
+                <div class="col-sm-4 containerTwo">
+                    <div class="circle circleTwo">
+                        <img src="{{ asset('img/location.png') }}" alt="location">
+                    </div>
+                    <h3>Établissement : </h3>
+                    <div class="well col-lg-offset-1 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-12">
+                                <dt>
+                                    Nom :
+                                </dt>
+                            </div>
+                            <div class="col-sm-8 col-sm-offset-0 col-xs-offset-1 col-xs-11">
+                                <em>{% if intervention.etablissement.nom %}
+                                        {{ intervention.etablissement.nom | capitalize }}
+                                    {% else %}
+                                        -
+                                    {% endif %}</em>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-12">
+                            <dt>
+                                Adresse :
+                            </dt>
+                        </div>
+                        <div class="col-sm-8 col-sm-offset-0  col-xs-offset-1 col-xs-11">
+                            <em>{% if intervention.etablissement.adresse %}
+                                    {{ intervention.etablissement.adresse.adresse }} {{ intervention.etablissement.adresse.codePostal.code }} {{ intervention.etablissement.adresse.ville.nom }}
+                                {% else %}
+                                    -
+                                {% endif %}</em>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-12">
+                            <dt>
+                                Téléphone :
+                            </dt>
+                        </div>
+                        <div class="col-sm-8 col-sm-offset-0 col-xs-offset-1 col-xs-11">
+                            <em>{% if intervention.etablissement.telFixe %}
+                                    {{ intervention.etablissement.telFixe }}
+                                {% else %}
+                                    -
+                                {% endif %}</em>
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-12">
+                                <dt>
+                                    Email :
+                                </dt>
+                            </div>
+                            <div class="col-sm-8 col-sm-offset-0 col-xs-offset-1 col-xs-11">
+                                <em>{% if intervention.etablissement.emails %}
+                                        {% for email in intervention.etablissement.emails %}
+                                            {{ email }}
+                                        {% endfor %}
+                                    {% else %}
+                                        -
+                                    {% endif %}</em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 containerThree">
+                    <div class="circle circleThree">
+                        <img src="{{ asset('img/telephone.png') }}" alt="telephone">
+                    </div>
+                    <h3>Contact : </h3>
+                    <div class="well col-lg-offset-1 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-12">
+                                <dt>
+                                    Nom :
+                                </dt>
+                            </div>
+                            <div class="col-sm-8 col-sm-offset-0 col-xs-offset-1 col-xs-11">
+                                <em>{% if intervention.demande.contact.nom %}
+                                        {{ intervention.demande.contact.nom | capitalize }} {{ intervention.demande.contact.prenom | capitalize}}
+                                    {% else %}
+                                        -
+                                    {% endif %}</em>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-12">
+                            <dt>
+                                Tél. fixe :
+                            </dt>
+                        </div>
+                        <div class="col-sm-8 col-sm-offset-0 col-xs-offset-1 col-xs-11">
+                            <em>{% if intervention.demande.contact.telFixe %}
+                                    {{ intervention.demande.contact.telFixe }}
+                                {% else %}
+                                    -
+                                {% endif %}</em>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-xs-12">
+                            <dt>
+                                Tél. portable :
+                            </dt>
+                        </div>
+                        <div class="col-sm-8 col-sm-offset-0 col-xs-offset-1 col-xs-11">
+                            <em>{% if intervention.demande.contact.telPortable %}
+                                    {{ intervention.demande.contact.telPortable }}
+                                {% else %}
+                                    -
+                                {% endif %}</em>
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-12">
+                                <dt>
+                                    Email :
+                                </dt>
+                            </div>
+                            <div class="col-sm-8 col-sm-offset-0 col-xs-offset-1 col-xs-11">
+                                <em>{% if intervention.demande.contact.email %}
+                                        {{ intervention.demande.contact.email }}
+                                    {% else %}
+                                        -
+                                    {% endif %}</em>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-12">
+                                <dt>
+                                    Type de contact :
+                                </dt>
+                            </div>
+                            <div class="col-sm-8 col-sm-offset-0 col-xs-offset-1 col-xs-11">
+                                <em>{% if intervention.demande.contact.typeContact %}
+                                        {{ intervention.demande.contact.typeContact |capitalize }}
+                                    {% else %}
+                                        -
+                                    {% endif %}</em>
+                            </div></div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+

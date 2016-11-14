@@ -133,6 +133,9 @@
     {{ parent() }}
     <script src="{{ asset('vendor/typeahead.js/dist/typeahead.jquery.js') }}"></script>
     <script src="{{ asset('vendor/typeahead.js/dist/bloodhound.js') }}"></script>
+    <script src="{{ asset('vendor/leaflet/dist/leaflet.js') }}"></script>
+    <script src="{{ asset('vendor/leaflet-geosearch/src/js/l.control.geosearch.js') }}"></script>
+    <script src="{{ asset('vendor/leaflet-geosearch/src/js/l.geosearch.provider.google.js') }}"></script>
     <script>
         var onResponsabiliteChecked = function (responsabilite, activite) {
             if ($(responsabilite).is(':checked')) {
@@ -260,13 +263,19 @@
                     $('#fos_user_registration_form_adresse_ville').val(data.ville);
                 });
         });
-        $(".fos_user_registration_form").submit(function( e ) {
+
+        $(".fos_user_admin_register").submit(function( e ) {
             e.preventDefault();
-            if($('#fos_user_registration_form_telFixe').val().trim().length==0 || $('#fos_user_registration_form_telPortable').val().trim().length==0){
+            if ($('#fos_user_registration_form_telFixe').val().trim().length==0 && $('#fos_user_registration_form_telPortable').val().trim().length==0) {
                 $('#fos_user_registration_form_telPortable').after('<p style="color: red; font-weight: 400;">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
             }
             else {
-                $(".fos_user_registration_form").submit();
+//                var provider = new L.GeoSearch.Provider.Google(), adresse = $("#fos_user_registration_form_adresse_adresse").value + ' ' + $('#fos_user_registration_form_adresse_codePostal').value + ' ' + $("#fos_user_registration_form_adresse_ville").value;
+//                provider.GetLocations(adresse, function (data) {
+//                    console.log(data);
+//                    $("#fos_user_registration_form_adresse_geolocalisation").val(data);
+//                });
+                console.log("geolocalisation : " + $("#fos_user_registration_form_adresse_geolocalisation").value);
             }
         });
     </script>

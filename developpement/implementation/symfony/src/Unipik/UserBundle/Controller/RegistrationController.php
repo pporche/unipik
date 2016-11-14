@@ -21,8 +21,9 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
+use Ivory\HttpAdapter\Guzzle6HttpAdapter;
 use Ivory\HttpAdapter\CurlHttpAdapter;
-use Geocoder\Provider\OpenStreetMap;
+use Geocoder\Provider\GoogleMaps;
 
 
 /**
@@ -96,11 +97,10 @@ class RegistrationController extends BaseController {
             $adresse->setAdresse(strtoupper($adresse->getAdresse()));
             $adresse->setComplement(strtoupper($adresse->getComplement()));
 
-            //            var_dump($adresse);
-            //            $geolocalisation = $this->findGeolocalisation($adresse);
-            //            var_dump($geolocalisation);
+//            $geolocalisation = $this->findGeolocalisation($adresse);
+//            var_dump($geolocalisation);
 
-            //            $adresse->setGeolocalisation($geolocalisation);
+//            $adresse->setGeolocalisation($geolocalisation);
 
             $user->setAdresse($adresse);
 
@@ -210,16 +210,16 @@ class RegistrationController extends BaseController {
         }
     }
 
-    //    /**
-    //     * Find the geolocalisation from an address.
-    //     *
-    //     * @param $adresse
-    //     * @return \Geocoder\Model\AddressCollection
-    //     */
-    //    private function findGeolocalisation($adresse) {
-    //        $adapter  = new CurlHttpAdapter();
-    //        $geocoder = new OpenStreetMap($adapter);
-    //
-    //        return $geocoder->geocode($adresse->getAdresse());
-    //    }
+//    /**
+//     * Find the geolocalisation from an address.
+//     *
+//     * @param $adresse
+//     * @return \Geocoder\Model\AddressCollection
+//     */
+//    private function findGeolocalisation($adresse) {
+//        $adapter  = new Guzzle6HttpAdapter();
+//        $geocoder = new GoogleMaps($adapter);
+//
+//        return $geocoder->geocode($adresse->getAdresse());
+//    }
 }

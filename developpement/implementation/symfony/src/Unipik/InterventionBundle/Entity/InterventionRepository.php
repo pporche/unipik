@@ -340,26 +340,26 @@ class InterventionRepository extends EntityRepository {
             ->setParameter('ville', $ville);
     }
 
-    //    /**
-    //     * @param QueryBuilder $qb
-    //     * @param $ville
-    //     */
-    //    public function within10km(QueryBuilder $qb, $distance) {
-    //        $qb
-    //            ->andWhere(
-    //                $qb->expr()->eq(
-    //                    sprintf("ST_Distance()", $geoJsonPolygon),
-    //                    $qb->expr()->literal(true)
-    //                )
-    //            );
-    //
-    //
-    //
-    //            ->from('Unipik\InterventionBundle\Entity\Etablissement','e')
-    //            ->andWhere('i.etablissement = e')
-    //            ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
-    //            ->andWhere('e.adresse = a')
-    //            ->andWhere('a.ville = :ville')
-    //            ->setParameter('ville',$ville);
-    //    }
+//    /**
+//     * @param QueryBuilder $qb
+//     * @param $distance
+//     */
+//    public function within10km(QueryBuilder $qb, $distance) {
+//        $qb
+//            ->andWhere(
+//                $qb->expr()->eq(
+//                    sprintf("ST_Distance()"),
+//                    $qb->expr()->literal(true)
+//                )
+//            );
+//
+//
+//
+//            ->from('Unipik\InterventionBundle\Entity\Etablissement','e')
+//            ->andWhere('i.etablissement = e')
+//            ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
+//            ->andWhere('e.adresse = a')
+//            ->andWhere('a.ville = :ville')
+//            ->setParameter('ville',$ville);
+//    }
 }

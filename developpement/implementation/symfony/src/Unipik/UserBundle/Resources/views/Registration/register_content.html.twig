@@ -1,11 +1,10 @@
 {# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
 
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_admin_register'), 'attr': {'class': 'fos_user_admin_register'}}) }}
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_admin_register'), 'attr': {'class': 'fos_user_admin_register', 'id': 'submit_formulaire'}}) }}
 <div class="well">
     <div class="row">
         {{ form_widget(form, {'attr':{'class':'typeahead'}}) }}
-{#{{ form_widget(form,{'attr':{'class':'col-sm-9'}}) }}#}
 
     </div>
 

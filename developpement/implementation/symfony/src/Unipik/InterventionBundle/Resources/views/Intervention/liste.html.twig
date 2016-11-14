@@ -11,6 +11,7 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
     <link rel="stylesheet" href="{{ asset("vendor/chosen/chosen.css") }}"/>
+    <link rel="stylesheet" href="{{ asset('vendor/leaflet-geosearch/src/css/l.geosearch.css') }}" />
     <style>
         #recherche_avancee_ville {
             text-transform: uppercase;
@@ -162,6 +163,7 @@
     <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
+    <script src="{{ asset('vendor/leaflet-geosearch/src/js/l.control.geosearch.js') }}"></script>
     <script>
         $(document).ready(function () {
 
@@ -358,7 +360,6 @@
             $('#myModal').modal('hide');
         });
 
-
         //        $('#recherche_avancee_statutIntervention_2').hide();
         //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
         //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
@@ -409,8 +410,10 @@
                     {{ form_widget(form.end, { 'attr': {'class': 'input-sm'} }) }}
                 </div>
                 <br/>
-                <h5> Ville </h5>
+                <h5> Ville :</h5>
                 {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
+                <h5> Distance :</h5>
+                {{ form_widget(form.distance) }}
                 <div>
                     <input id="submit" type="submit" value="OK" class="btn btn-primary"/>
                 </div>
@@ -544,10 +547,22 @@
                         <tbody id="myTable">
                         {% if liste is not empty %}
                         {% for intervention in liste %}
-                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention and (user.nom=="admin" or user.nom==intervention.benevole.nom) %}
-                            <tr class="dangerTable">
-                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) and intervention.dateIntervention and (user.nom=="admin" or user.nom==intervention.benevole.nom)%}
-                            <tr class="warningTable" >
+                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention  %}
+                                {%  if intervention.benevole %}
+                                    {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
+                                        <tr class="dangerTable">
+                                    {% endif %}
+                                {% else %}
+                                    <tr class="dangerTable">
+                                {% endif %}
+                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) and intervention.dateIntervention %}
+                                {%  if intervention.benevole %}
+                                    {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
+                                        <tr class="warningTable" >
+                                    {% endif %}
+                                {% else %}
+                                    <tr class="warningTable" >
+                                {% endif %}
                             {% else %}
                             <tr>
                             {% endif %}

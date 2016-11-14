@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * Class ComplementType
+ *
  * @package Unipik\ArchitectureBundle\Form\Adresse
  */
 class ComplementType extends AbstractType {

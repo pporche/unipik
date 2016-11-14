@@ -21,6 +21,7 @@ use Unipik\UserBundle\Form\RegistrationType;
  * Login/out actions
  *
  * Class SecurityController
+ *
  * @package Unipik\UserBundle\Controller
  */
 class SecurityController extends BaseController {
@@ -36,7 +37,8 @@ class SecurityController extends BaseController {
 
     /**
      * Render the login page
-     * @param Request $request
+     *
+     * @param  Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function loginAction(Request $request) {
@@ -45,16 +47,19 @@ class SecurityController extends BaseController {
 
     /**
      * Render the login page
-     * @param array $data
+     *
+     * @param  array $data
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function renderLogin(array $data) {
         $form = $this->createForm(LoginType::class, null,  array("action" => $this->generateUrl("fos_user_security_check")))
             ->createView();
 
-        return $this->render('UserBundle:Security:login.html.twig', array(
+        return $this->render(
+            'UserBundle:Security:login.html.twig', array(
             'form' => $form,
             'error' => $data['error']
-        ));
+            )
+        );
     }
 }

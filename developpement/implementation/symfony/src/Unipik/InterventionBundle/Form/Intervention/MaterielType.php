@@ -16,7 +16,7 @@ class MaterielType extends AbstractType {
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      * form builder
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
@@ -26,11 +26,10 @@ class MaterielType extends AbstractType {
             'Enceinte(s)' => 'enceinte',
             'Tableau intéractif' => 'tableau interactif',
             'Autres' => 'autre'
-        ],);
+            ],);
 
         $builder
-            ->add('materiel', ChoiceType::class, $optionChoiceType)
-        ;
+            ->add('materiel', ChoiceType::class, $optionChoiceType);
     }
 
     /**

@@ -16,6 +16,7 @@ use Unipik\UserBundle\Form\RegistrationType;
  * Manage volunteer actions
  *
  * Class UserController
+ *
  * @package Unipik\UserBundle\Controller
  */
 class UserController extends Controller {
@@ -33,7 +34,7 @@ class UserController extends Controller {
     /**
      * Render list of volunteers
      *
-     * @param Request $request
+     * @param  Request $request
      * @return Response
      */
     public function listeAction(Request $request) {
@@ -53,18 +54,20 @@ class UserController extends Controller {
         $listBenevoles = $repository->getType($field, $desc, $ville);
 
 
-        return $this->render('UserBundle::liste.html.twig', array(
+        return $this->render(
+            'UserBundle::liste.html.twig', array(
             'field' => $field,
             'desc' => $desc,
             'rowsPerPage' => $rowsPerPage,
             'listBenevoles' => $listBenevoles,
-            'form' => $form->createView()));
+            'form' => $form->createView())
+        );
     }
 
     /**
      * Delete a volunteer from the database
      *
-     * @param $username
+     * @param  $username
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteVolunteerAction($username) {
@@ -80,12 +83,12 @@ class UserController extends Controller {
     /**
      * Delete many volunteers from the database
      *
-     * @param Request $request
+     * @param  Request $request
      * @return Response
      */
     public function deleteVolunteersAction(Request $request) {
         if($request->isXmlHttpRequest()) {
-            $usernames = json_decode( $request->request->get('usernames'));
+            $usernames = json_decode($request->request->get('usernames'));
 
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('UserBundle:Benevole');
@@ -124,33 +127,39 @@ class UserController extends Controller {
     /**
      * Modify volunteer from the database
      *
-     * @param Request $request
+     * @param  Request $request
      * @return Response
      */
     public function modifyAction(Request $request) {
-        /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
+        /**
+ * @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface 
+*/
         $formFactory = $this->get('fos_user.profile.form.factory');
-        /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
+        /**
+ * @var $userManager \FOS\UserBundle\Model\UserManagerInterface 
+*/
         $user = $this->getUser();
         $form = $formFactory->createForm();
         $form = $form->setData($user);
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
+        if($form->isValid()) {
             $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
             $responsibilitiesString = $this->arrayToString($responsibilitiesArray);
             $user->setResponsabiliteActivite($responsibilitiesString);
         }
-        return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
+        return $this->render(
+            'FOSUserBundle:Profile:edit.html.twig', array(
             'form' => $form->createView(),
-        ));
+            )
+        );
     }
 
     /**
      * Render a volunteer's profile page
      *
-     * @param $username
+     * @param  $username
      * @return Response
      */
     public function showProfileAction($username) {
@@ -165,8 +174,8 @@ class UserController extends Controller {
     /**
      * Edit a volunteer's profile
      *
-     * @param Request $request
-     * @param $username
+     * @param  Request  $request
+     * @param  $username
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function editAction(Request $request, $username) {
@@ -207,38 +216,44 @@ class UserController extends Controller {
         $activities = json_encode($benevole->getActivitesPotentielles()->toArray());
         $responsabilities = json_encode($benevole->getResponsabiliteActivite()->toArray());
 
-        return $this->render('UserBundle:Profile:editBenevole.html.twig', array(
+        return $this->render(
+            'UserBundle:Profile:editBenevole.html.twig', array(
             'form' => $form->createView(),
             'username' => $username,
             'activitesPotentielles' => $activities,
             'responsabiliteActivite' => $responsabilities
-        ));
+            )
+        );
     }
 
     /**
      * Autocomplete user inputs
      *
-     * @param Request $request
+     * @param  Request $request
      * @return JsonResponse
      */
     public function autocompleteAction(Request $request){
-        $username = array();
+        $users = array();
         $term = trim(strip_tags($request->get('term')));
 
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('UserBundle:Benevole')->createQueryBuilder('b')
-            ->where('LOWER(b.username) LIKE LOWER(:username)')
+            ->where('LOWER(b.nom) LIKE LOWER(:nom)')
+            ->setParameter('nom', '%'.$term.'%')
+            ->orWhere('LOWER(b.prenom) LIKE LOWER(:prenom)')
+            ->setParameter('prenom', '%'.$term.'%')
+            ->orWhere('LOWER(b.username) LIKE LOWER(:username)')
             ->setParameter('username', '%'.$term.'%')
-            ->orderBy('b.username','ASC')
+            ->orderBy('b.username', 'ASC')
             ->getQuery()
             ->getResult();
 
         foreach ($entities as $entity) {
-            $username[] = $entity->getUsername();
+            $users[] = ucfirst($entity->getPrenom())." ".ucfirst($entity->getNom())." (".$entity->getUsername().")";
         }
 
         $response = new JsonResponse();
-        $response->setData($username);
+        $response->setData($users);
 
         return $response;
     }
@@ -246,10 +261,9 @@ class UserController extends Controller {
     /**
      * Render a volunteer's planning page
      *
-     * @param Request $request
-     * @param $username
+     * @param  Request  $request
+     * @param  $username
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     *
      */
     public function showPlanningAction(Request $request) {
         $user = $this->getUser();

@@ -15,13 +15,14 @@ use Symfony\Component\Form\AbstractType;
 
 /**
  * Class MailingType
+ *
  * @package Unipik\MailBundle\Form
  */
 class MailingType extends AbstractType {
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $typeInstitute = array( 'expanded' => true, 'multiple' => true, 'label' => "Type d'établissement",

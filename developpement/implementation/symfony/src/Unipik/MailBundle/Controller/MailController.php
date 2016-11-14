@@ -4,8 +4,9 @@ namespace Unipik\MailBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Unipik\MailBundle\Entity\CronTask;
+use Unipik\MailBundle\Entity\MailTask;
 use Unipik\MailBundle\Form\MailingType;
-use Unipik\MailBundle\Service\SecondMail;
 
 /**
  * Created by PhpStorm.
@@ -51,32 +52,31 @@ class MailController extends Controller {
             ->getForm();
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            //            $em = $this->getDoctrine()->getManager();
-            //            $repository = $em->getRepository('InterventionBundle:Etablissement');
-            //
-            //            $type = $form->get("type")->getData();
-            //
-            //            $etablissements = $repository->getEnseignementsByType(array($type));
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Etablissement');
 
-            $emails = array("dev1@yopmail.com", "dev2@yopmail.com");
+            $typeInstitute = $form->get("typeInstitute")->getData();
+            $typeCenter = $form->get("typeCenter")->getData();
 
-            $i = 0;
-            foreach ($emails as $email) {
-                $i++;
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Intervention de l\'unicef')
-                    ->setFrom('unipik.dev@gmail.com')
-                    ->setTo($email)
-                    ->setBody(
-                        $this->renderView(
-                            'MailBundle::emailMaternelle.html.twig',
-                            array('id' => $i)
-                        ),
-                        'text/html'
-                    );
+            $institutesArray = !empty($typeInstitute) ? $repository->getType("enseignement", $typeInstitute, null, null, null, null, null) : array();
+            $centersArray = !empty($typeCenter) ? $repository->getType("centre", null, $typeCenter, null, null, null, null) : array();
+            $mergedArray = array_merge($institutesArray, $centersArray);
 
-                $this->get('mailer')->send($message);
+            $ids = array();
+            foreach ($mergedArray as $institute) {
+                array_push($ids, $institute->getId());
             }
+
+            $mailtask = new MailTask();
+            $mailtask
+                ->setName('Mail task')
+                ->setInterval(300)
+                ->setDateInsert(new \DateTime())
+                ->setIdEtablissement($ids);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($mailtask);
+            $em->flush();
 
             return $this->redirectToRoute('architecture_homepage');
         }

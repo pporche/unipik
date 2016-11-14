@@ -56,34 +56,12 @@ class BenevoleRepository extends EntityRepository
     }
 
     /**
-         * @param $ville
-         * @return array
-         */
-    public function getBenevoles($ville){
-        $qb = $this->createQueryBuilder('b');
-
-        //        if(!empty($act)){
-        //            $this->getBenevolesByActivites($qb, $act);
-        //        }
-        //
-        //        if(!empty($resp)){
-        //            $this->getBenevolesByResponsabilites($qb, $act);
-        //        }
-
-        if($ville) {
-            $this->whereVilleIs($qb, $ville);
-        }
-
-        return $qb
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
      * @param QueryBuilder $qb
      * @param $act
+     *
+     * @deprecated
      */
-    public function getBenevolesByActivites(QueryBuilder $qb, $act){
+    private function getBenevolesByActivites(QueryBuilder $qb, $act){
         $qb
             ->andWhere('b.activitePotentielle @> array_append(ARRAY[]::type_activite[],:a)')
             ->setParameter('a', '('.$act[0].')');
@@ -99,8 +77,10 @@ class BenevoleRepository extends EntityRepository
     /**
      * @param QueryBuilder $qb
      * @param $resp
+     *
+     * @deprecated
      */
-    public function getBenevolesByResponsabilites(QueryBuilder $qb, $resp){
+    private function getBenevolesByResponsabilites(QueryBuilder $qb, $resp){
         $qb
             ->andWhere('b.responsabiliteActivite @> array_append(ARRAY[]::type_responsabilite_activite[],:a)')
             ->setParameter('a', '('.$resp[0].')');
@@ -117,7 +97,7 @@ class BenevoleRepository extends EntityRepository
      * @param QueryBuilder $qb
      * @param $ville
      */
-    public function whereVilleIs(QueryBuilder $qb, $ville) {
+    private function whereVilleIs(QueryBuilder $qb, $ville) {
         $qb
             ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'ad')
             ->andWhere('b.adresse = ad')

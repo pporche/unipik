@@ -312,6 +312,9 @@
         <div class="row">
             <div class="buttons">
 
+                <a href="{{ path("demande_view", {'id': intervention.id}) }}" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-eye-open"> </span>&nbsp Demande Associée
+                </a>
                 {% if (is_granted('ROLE_ADMIN') or ((intervention.benevole==user)) and not (intervention.realisee)) %}
                     <a id="boutonModifier" href="{{ path("intervention_edit", {'id': intervention.id}) }}"
                        class="btn btn-primary">

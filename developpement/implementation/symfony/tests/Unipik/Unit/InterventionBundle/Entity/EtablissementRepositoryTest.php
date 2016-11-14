@@ -90,11 +90,11 @@ class EtablissementRepositoryTest extends RepositoryTestCase
         ;
 
         // Test
-        $products = $this->em
+        $result = $this->em
             ->getRepository('InterventionBundle:Etablissement')
             ->getType($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre, $ville, "nom", $desc)
         ;
-        $this->assertCount($expectedResult, $products);
+        $this->assertCount($expectedResult, $result);
 
         // Rollback
         $this->em->rollBack();

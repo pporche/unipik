@@ -58,12 +58,8 @@ class EtablissementRepository extends EntityRepository {
             break;
         }
 
-
-
-        return $results
-            ;
+        return $results;
     }
-
 
     /**
      * Get Enseignements by Type

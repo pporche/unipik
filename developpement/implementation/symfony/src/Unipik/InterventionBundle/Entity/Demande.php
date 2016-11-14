@@ -244,6 +244,7 @@ class Demande
     public function addMomentsVoulus(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus)
     {
         $this->momentsVoulus[] = $momentsVoulus;
+        $momentsVoulus->addDemandeMomentsVoulus($this);
 
         return $this;
     }
@@ -280,7 +281,7 @@ class Demande
     public function addMomentsAEviter(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsAEviter)
     {
         $this->momentsAEviter[] = $momentsAEviter;
-
+        $momentsAEviter->addDemandeMomentsAEviter($this);
         return $this;
     }
 

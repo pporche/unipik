@@ -9,7 +9,7 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
            - { name: form.type, alias: user_profile }
-    second_mailer:
-            class:        Unipik\MailBundle\Service\SecondMail
-            arguments:    ['@swiftmailer.mailer.second_mailer']
+    #second_mailer:
+            #class:        Unipik\MailBundle\Service\SecondMail
+            #arguments:    ['@swiftmailer.mailer.second_mailer']
 

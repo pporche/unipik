@@ -68,12 +68,11 @@ class MailTaskCommand extends ContainerAwareCommand {
                             ->getContainer()
                             ->get('templating')
                             ->render(
-                            'MailBundle:mailsEtablissement:email'.ucfirst($type).'.html.twig',
-                            array('id' => $etablissement->getId())
-                        ),
+                                'MailBundle:mailsEtablissement:email'.ucfirst($type).'.html.twig',
+                                array('id' => $etablissement->getId())
+                            ),
                         'text/html'
-                    )
-                ;
+                    );
                 $this
                     ->getContainer()
                     ->get('mailer')

@@ -17,7 +17,6 @@ class MailTaskRepository extends EntityRepository {
             ->orderBy('mt.date_insert', 'ASC')
             ->setMaxResults(1)
             ->getQuery()
-            ->getOneOrNullResult()
-            ;
+            ->getOneOrNullResult();
     }
 }

@@ -44,8 +44,7 @@ class MailingType extends AbstractType {
 
         $builder
             ->add('typeInstitute', ChoiceType::class, $typeInstitute)
-            ->add('typeCenter', ChoiceType::class, $typeCenter)
-        ;
+            ->add('typeCenter', ChoiceType::class, $typeCenter);
     }
 
     /**

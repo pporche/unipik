@@ -283,9 +283,9 @@ class InterventionController extends Controller {
 
             $em->flush();
 
-//            $this->linkAllMoments($demande->getMomentsVoulus(), $demande);
-//
-//            $this->linkAllBMoments($demande->getMomentsAEviter(), $demande);
+            //            $this->linkAllMoments($demande->getMomentsVoulus(), $demande);
+            //
+            //            $this->linkAllBMoments($demande->getMomentsAEviter(), $demande);
             $session =$request->getSession();
             $em->flush();
 
@@ -930,7 +930,7 @@ class InterventionController extends Controller {
         foreach ($days as $day) {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
-            $moment = $repository->getByDayAndMoment($day,'matin');
+            $moment = $repository->getByDayAndMoment($day, 'matin');
 
             $demande->addMomentsVoulus($moment);
         }
@@ -948,7 +948,7 @@ class InterventionController extends Controller {
         foreach ($days as $day) {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
-            $moment = $repository->getByDayAndMoment($day,'apres-midi');
+            $moment = $repository->getByDayAndMoment($day, 'apres-midi');
 
             $this->getDoctrine()->getManager()->persist($moment);
             $this->getDoctrine()->getManager()->flush();
@@ -968,12 +968,12 @@ class InterventionController extends Controller {
         foreach ($days as $day) {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
-            $moment = $repository->getByDayAndMoment($day,'matin');
+            $moment = $repository->getByDayAndMoment($day, 'matin');
             $demande->addMomentsAEviter($moment);
 
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
-            $momentP = $repository->getByDayAndMoment($day,'apres-midi');
+            $momentP = $repository->getByDayAndMoment($day, 'apres-midi');
             $demande->addMomentsAEviter($momentP);
         }
     }
@@ -990,12 +990,12 @@ class InterventionController extends Controller {
         foreach ($days as $day) {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
-            $moment = $repository->getByDayAndMoment($day,'matin');
+            $moment = $repository->getByDayAndMoment($day, 'matin');
             $demande->addMomentsVoulus($moment);
 
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
-            $momentP = $repository->getByDayAndMoment($day,'apres-midi');
+            $momentP = $repository->getByDayAndMoment($day, 'apres-midi');
             $demande->addMomentsVoulus($momentP);
         }
     }

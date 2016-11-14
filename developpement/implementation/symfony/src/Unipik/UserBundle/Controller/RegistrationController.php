@@ -21,8 +21,9 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
+use Ivory\HttpAdapter\Guzzle6HttpAdapter;
 use Ivory\HttpAdapter\CurlHttpAdapter;
-use Geocoder\Provider\OpenStreetMap;
+use Geocoder\Provider\GoogleMaps;
 
 
 /**
@@ -96,7 +97,6 @@ class RegistrationController extends BaseController {
             $adresse->setAdresse(strtoupper($adresse->getAdresse()));
             $adresse->setComplement(strtoupper($adresse->getComplement()));
 
-            //            var_dump($adresse);
             //            $geolocalisation = $this->findGeolocalisation($adresse);
             //            var_dump($geolocalisation);
 
@@ -182,6 +182,7 @@ class RegistrationController extends BaseController {
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('L\'utilisateur n\'a pas accès à cette section.');
         }
+        $this->get('session')->getFlashBag()->clear();
 
         return $this->render(
             'UserBundle:Registration:confirmed.html.twig', array(
@@ -217,8 +218,8 @@ class RegistrationController extends BaseController {
     //     * @return \Geocoder\Model\AddressCollection
     //     */
     //    private function findGeolocalisation($adresse) {
-    //        $adapter  = new CurlHttpAdapter();
-    //        $geocoder = new OpenStreetMap($adapter);
+    //        $adapter  = new Guzzle6HttpAdapter();
+    //        $geocoder = new GoogleMaps($adapter);
     //
     //        return $geocoder->geocode($adresse->getAdresse());
     //    }

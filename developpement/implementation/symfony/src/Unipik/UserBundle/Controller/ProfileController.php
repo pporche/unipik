@@ -44,7 +44,7 @@ class ProfileController extends BaseController {
         }
 
         /**
- * @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface 
+ * @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface
 */
         $dispatcher = $this->get('event_dispatcher');
 
@@ -56,7 +56,7 @@ class ProfileController extends BaseController {
         }
 
         /**
- * @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface 
+ * @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface
 */
         $formFactory = $this->get('fos_user.profile.form.factory');
 
@@ -67,7 +67,7 @@ class ProfileController extends BaseController {
 
         if ($form->isValid()) {
             /**
- * @var $userManager \FOS\UserBundle\Model\UserManagerInterface 
+ * @var $userManager \FOS\UserBundle\Model\UserManagerInterface
 */
             $userManager = $this->get('fos_user.user_manager');
 

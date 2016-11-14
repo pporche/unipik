@@ -10,6 +10,7 @@ namespace Unipik\ArchitectureBundle\Form\Adresse;
 
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\F;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -47,7 +48,8 @@ class AdresseType extends AbstractFieldsetType {
             ->add('adresse', AdType::class)
             ->add('complement', ComplementType::class, array('label' => "Complément","required" => false))
             ->add('ville', VilleType::class)
-            ->add('codePostal', CodePostalType::class);
+            ->add('codePostal', CodePostalType::class)
+            ->add('geolocalisation', HiddenType::class, array("required" => false));
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
         $builder->get("codePostal")->addModelTransformer(new CodePostalAutocompleteTransformer($this->entityManager));

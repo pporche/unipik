@@ -190,7 +190,7 @@ class InterventionController extends Controller {
             }
 
             $this->treatmentInterventions($interventionsRawList, $interventionList);
-//                        return new Response(\Doctrine\Common\Util\Debug::dump($interventionsRawList[1]));
+            //                        return new Response(\Doctrine\Common\Util\Debug::dump($interventionsRawList[1]));
             $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);
 
@@ -366,7 +366,8 @@ class InterventionController extends Controller {
     /**
      * Consulter la demande associée à une intervention
      *
-     * @param $id
+     * @param int $id L'id
+     *
      * @return Response
      */
     public function consultationDemandeAction($id) {

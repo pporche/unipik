@@ -133,4 +133,33 @@ class MomentHebdomadaire
     {
         return $this->moment;
     }
+
+    /**
+     * Add momentsVoulus
+     *
+     * @param \Unipik\InterventionBundle\Entity\Demande $demande
+     *
+     * @return MomentHebdomadaire
+     */
+    public function addDemandeMomentsVoulus(\Unipik\InterventionBundle\Entity\Demande $demande)
+    {
+        $this->demandeMomentsVoulus[] = $demande;
+
+        return $this;
+    }
+
+    /**
+     * Add momentsAEviter
+     *
+     * @param \Unipik\InterventionBundle\Entity\Demande $demande
+     *
+     * @return MomentHebdomadaire
+     */
+    public function addDemandeMomentsAEviter(\Unipik\InterventionBundle\Entity\Demande $demande)
+    {
+        $this->demandeMomentsAEviter[] = $demande;
+
+        return $this;
+    }
+
 }

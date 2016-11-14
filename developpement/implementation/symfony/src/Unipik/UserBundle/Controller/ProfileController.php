@@ -44,7 +44,7 @@ class ProfileController extends BaseController {
         }
 
         /**
- * @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface 
+ * @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface
 */
         $dispatcher = $this->get('event_dispatcher');
 
@@ -56,7 +56,7 @@ class ProfileController extends BaseController {
         }
 
         /**
- * @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface 
+ * @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface
 */
         $formFactory = $this->get('fos_user.profile.form.factory');
 
@@ -67,7 +67,7 @@ class ProfileController extends BaseController {
 
         if ($form->isValid()) {
             /**
- * @var $userManager \FOS\UserBundle\Model\UserManagerInterface 
+ * @var $userManager \FOS\UserBundle\Model\UserManagerInterface
 */
             $userManager = $this->get('fos_user.user_manager');
 
@@ -123,7 +123,7 @@ class ProfileController extends BaseController {
         }
         $em = $this->getDoctrine()->getManager();
         $repositoryIntervention = $em->getRepository('InterventionBundle:Intervention');
-        $listeInterventions = $repositoryIntervention->getInterventionsBenevole($user);
+        $listeInterventions = $repositoryIntervention->getType(null, null, true, null, null, null, null, $user);
 
         return $this->render(
             'FOSUserBundle:Profile:show.html.twig', array(

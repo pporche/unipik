@@ -16,6 +16,18 @@
         .alert-success{
             margin-top:30px;
         }
+
+        table {
+            font-size: 14px;
+            text-align: center;
+            border-color: #333;
+            margin: 15px 0px 15px;
+            table-layout: auto;
+        }
+        td{
+            padding: 5px;
+            border-bottom: 1px solid #333;
+        }
     </style>
 {% endblock %}
 
@@ -98,16 +110,57 @@
                                 <div class="col-sm-12 col-xs-12 col-md-12 col-lg-7">
                                     <span class="glyphicon glyphicon-calendar"></span> &nbsp Moments:
                                 </div>
-                                <div class="col-sm-6 col-xs-offset-1 col-md-offset-0 col-xs-11 col-md-5">
+                                <div class="col-sm-11 col-xs-offset-0 col-md-offset-0 col-xs-11 col-md-11">
                                     {% if intervention.demande.dateDemande is empty %}
                                             -
                                     {% else %}
-                                        <em><strong>Lundi</strong>       &nbsp &nbsp Matin</em> <br>
-                                        <em><strong>Mardi</strong>       &nbsp &nbsp Aprés-Midi</em> <br>
-                                        <em><strong>Mercredi</strong>   &nbsp &nbsp Aprés-Midi</em> <br>
-                                        <em><strong>Jeudi</strong>       &nbsp &nbsp À éviter</em> <br>
-                                        <em><strong>Vendredi</strong>    &nbsp &nbsp À éviter</em> <br>
-                                        {% endif %}
+                                        <table class="table-hover">
+                                            <thead>
+                                                <td></td>
+                                                <td><strong>Matin</strong></td>
+                                                <td><strong>Après-Midi</strong></td>
+                                                <td><strong>Matin/Après-Midi</strong></td>
+                                                <td><strong>Éviter</strong></td>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Lun</strong></td>
+                                                    <td><span class="glyphicon glyphicon-ok"></span></td>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Mar</strong></td>
+                                                    <td> </td>
+                                                    <td><span class="glyphicon glyphicon-ok"</td>
+                                                    <td> </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Mer</strong></td>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                    <td><span class="glyphicon glyphicon-ok"</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Jeu</strong></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><span class="glyphicon glyphicon-ok"</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Ven</strong></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><span class="glyphicon glyphicon-ok"</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    {% endif %}
                                 </div>
 
                                 {{ block('contenu') }}

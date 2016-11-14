@@ -7,13 +7,3 @@ etablissements_mailing:
     path: /mailing/etablissements
     defaults:
         _controller: MailBundle:Mail:mailingEtablissement
-
-mailtask_test:
-    path: /mailtask
-    defaults:
-        _controller: MailBundle:CronTask:mailTask
-
-toast_test:
-    path: /toast
-    defaults:
-        _controller: MailBundle:CronTask:Toast

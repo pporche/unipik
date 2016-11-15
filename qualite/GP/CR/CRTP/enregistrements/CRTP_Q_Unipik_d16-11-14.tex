@@ -1,0 +1,122 @@
+% version 1.00	Auteur Kafui Atanley date 15/11/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\usepackage{hyperref}
+\DeclareUnicodeCharacter{00A0}{ }
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Pédagogique}}					%titre
+\begin{document}
+
+14/11/2016			 				%Date 
+\hfill   
+\hfill 	 13:30 - 14:15				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{3cm} | p{3cm} | p{3cm} | p{3.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 14/11/2016 & \Kafui & Création & Toutes \\
+				\hline			
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| p{2.5cm} | p{4cm} | p{3cm} | p{3cm} | p{2.5cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RGC & \Melissa & -- & -- \\[30pt]
+				\hline
+				Validateur & \CP & \Pierre &  -- & -- \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+\section{Résumé de la semaine passée}
+La semaine précédente s'est orientée autour de 5 axes :  
+\begin{itemize}
+	\item Réunion de découpage tâche unitaire;
+	\item Audit qualité passé;
+	\item Amélioration du Front de notre application;
+	\item Appel du client Mercredi dernier (feedback sur l'application, certains bugs ont été signalés et sont en cours de correction);
+	\item Modification de la base de données;
+	\item Communication avec Quantic Télécom;
+	\item Test unitaire avancé pour le Backend et la partie Repository(classe permettant l'acquisition de données via la base de données).
+\end{itemize} 
+
+\section{Test unitaires}
+Notre taux de couverture de test sur la partie Frontend est actuellement nul. \nomTuteurPedago{} nous fait remarquer que ceci est une mauvaise pratique. Il aurait fallu mettre en place des test unitaires dès le début de la phase de développement de manière à ce que chaque portion de code soit rigouresement testé. Ceci constitue la base des bonnes pratiques de management.\\
+\nomTuteurPedago{} recommande de mettre plusieurs ressources sur la partie test unitaire du Frontend.  
+
+\section{Géolocalisation}
+Nous arrivons actuellement à faire remonter les données de géolocalisation de la couche basse vers la couche haute. Ceci se réflète par la bonne position de la localisation des établissements/interventions sur les cartes dans l'application. Nous sommes en cours de développement des filtres demandés par le client concernant la géolocalisation. Certaines données clients semblent cependant éronnées, elles pointent vers la mauvaise adresse.\\
+\nomTuteurPedago{} nous recommande de vérifier si notre système de projection est conforme au formalisme utilisé par le client (WGS 84). 
+\nomTuteurPedago{} veut que nous lui envoyons les données qui semblent poser problème.
+
+\section{Hébergement}
+\nomTuteurPedago{} nous recommande de faciliter au maximum la tâche pour Quantic Telecom. Pour cela le \CP{} devra s'occuper de remplir la fiche du Trésor Public permettant à Quantic Telecom d'obtenir une exonération fiscale dû au don de service à Unicef Seine-Maritime.
+
+\section{Lotissement}
+Le \CP{} veut contacter la cliente afin de formaliser les spécifications propres au lot 3/4 et possiblement fusionner ces lots. \nomTuteurPedago{} pense que ceci est un mauvais plan car cela nous laissera un temps plus court pour développer un nombre conséquent de fonctionnalités et un temps plus cour pour le client pour nous donner un feedback.
+\nomTuteurPedago{} pense que nous devrions nous focaliser sur le rendu du lot 3 avant d'anticiper le lot 4.
+Le \CP{}  fixe la date de livraison du lot 3 au 5 décembre.
+
+\section{Test de l'application}
+\nomTuteurPedago{} a testé succintement l'application et a trouvé deux anomalies. \nomTuteurPedago{} ne trouve pas normal qu'il faille rentrer son mot de passe à chaque fois que nous modifions notre profil. Nous lui expliquons que ceci fait parti des standards actuels des applications web. Ceci permet l'authentification de l'utilisateur.\\
+\nomTuteurPedago{} a constaté que l'identifiant affiché en haut de l'application n'est pas le même que celui rentré. Il y a une majuscule à la première lettre de l'identifiant.\\
+\nomTuteurPedago{} ne comprend pas le fonctionnement de notre bouton annuler dans les fourmulaires. Il fait ici office de bouton effacer.
+Il faut un bouton annuler sur chaque page de notre formulaire qui permette de changer de page en annulant l'action de l'utilisateur en cours.
+Il faudrait que nous revoyion notre formalisme pour les couleurs des actions. En effet, la couleur rouge est souvent utiliser pour ce qui est lié à l'erreur, l'annulation. Ce n'est donc pas une bonne idée de l'avoir utiliser pour signaler les actions possibles uniquement par l'administrateur.
+%--- fin de réunion ---%
+\newpage
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

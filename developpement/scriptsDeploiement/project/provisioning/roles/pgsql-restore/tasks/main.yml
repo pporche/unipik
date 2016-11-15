@@ -1,0 +1,29 @@
+- name: copy bdunicef.sql to server
+  template: src=../files/{{ pgsqlRestore_dbToRestore }} dest=/tmp/bdunicef.sql owner=postgres group=postgres
+
+- name: drop all tables
+  command: |
+        su postgres -c " psql bdunicef << EOF
+        \c bdunicef
+        -- SELECT tablename FROM pg_tables WHERE schemaname = 'public' AND NOT tablename = 'spatial_ref_sys';
+        DO \\$\\$ DECLARE
+            r RECORD;
+        BEGIN
+            -- if the schema you operate on is not "current", you will want to
+            -- replace current_schema() in query with 'schematodeletetablesfrom'
+            -- *and* update the generate 'DROP...' accordingly.
+            FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = 'public' AND NOT tablename = 'spatial_ref_sys') LOOP
+                EXECUTE 'DROP TABLE IF EXISTS ' || quote_ident(r.tablename) || ' CASCADE';
+            END LOOP;
+        END \\$\\$;
+        \q
+        EOF
+        "
+
+
+- name: restore into postgresql
+  command: "su postgres -c 'psql bdunicef < /tmp/bdunicef.sql'"
+
+- name: remove the sql file from the server
+  command: rm -f /tmp/bdunicef.sql
+

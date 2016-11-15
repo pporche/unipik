@@ -112,6 +112,9 @@ class InterventionController extends Controller {
             $minute = sprintf("%02d", $minute);
             $heure .= ":".$minute;
             $intervention->setHeure($heure);
+            $description = $form->get('description')->getData();
+            $intervention->setDescription($description);
+
 
             $em->persist($intervention);
             $em->flush();
@@ -133,6 +136,7 @@ class InterventionController extends Controller {
             'InterventionBundle:Intervention:editIntervention.html.twig', array('form' => $form->createView(),
                                                                                  'intervention' => $intervention,
                                                                                  'materiaux' => $materiaux,
+                                                                                 'demande' => $intervention->getDemande(),
             )
         );
     }
@@ -190,7 +194,7 @@ class InterventionController extends Controller {
             }
 
             $this->treatmentInterventions($interventionsRawList, $interventionList);
-            //                        return new Response(\Doctrine\Common\Util\Debug::dump($interventionsRawList[1]));
+
             $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);
 
@@ -217,42 +221,13 @@ class InterventionController extends Controller {
 
             /* if the adress is already in the db it means the institute might be in there too */
             $repository = $this->getDoctrine()->getRepository('ArchitectureBundle:Adresse');
-            $adresses = $repository->findBy(
-                array('ville' => $institute->getAdresse()->getVille(),
-                    'adresse' => $institute->getAdresse()->getAdresse(),
-                    'codePostal' => $institute->getAdresse()->getCodePostal()
-                )
-            );
+
 
             $instituteResearched = null;
             $repository = $this->getDoctrine()->getManager();
             $repository = $repository->getRepository('InterventionBundle:Etablissement');
-            foreach ($adresses as $adresse) {
-                $adresseTemp = new Adresse();
-                $this->cast($adresseTemp, (object)$adresse);
-                $instituteResearched[] = $repository->findOneBy(
-                    array('nom' => $institute->getNom(),
-                        'typeEnseignement' => $institute->getTypeEnseignement(),
-                        'typeAutreEtablissement' => $institute->getTypeAutreEtablissement(),
-                        'typeCentre' => $institute->getTypeCentre(),
-                        'adresse' => $adresseTemp->getId()
-                    )
-                );
-            }
 
-            $list=[];
-            if (($instituteResearched) !== null) {
-                $instituteResearched = array_filter($instituteResearched);
-                foreach ($instituteResearched as $institute) {
-                    $list[] = $institute;
-                }
-            }
-            if (sizeof($instituteResearched) == 0) {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($institute);
-            } else {
-                $institute = array_pop($instituteResearched);
-            }
+            $institute = $instituteTest;
 
             if (sizeof($emails) != 0) {
                 foreach ($emails as $email) {
@@ -269,10 +244,10 @@ class InterventionController extends Controller {
             $this->treatmentMoment($form->get('jour')->getData(), $demande);
 
             $this->getDoctrine()->getManager()->persist($demande);
+
             $em = $this->getDoctrine()->getManager();
 
             $em->flush();
-
 
             foreach ($interventionList as $intervention) {
                 $intervention->setEtablissement($institute);
@@ -283,11 +258,13 @@ class InterventionController extends Controller {
 
             $em->flush();
 
+
             //            $this->linkAllMoments($demande->getMomentsVoulus(), $demande);
             //
             //            $this->linkAllBMoments($demande->getMomentsAEviter(), $demande);
             $session =$request->getSession();
             $em->flush();
+
 
             $session->getFlashBag()->add(
                 'notice', array(
@@ -419,7 +396,7 @@ class InterventionController extends Controller {
         $theme = $form->get("theme")->getData();
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
-//        $distance = $form->get("distance")->getData() ? 10 : null;
+        //        $distance = $form->get("distance")->getData() ? 10 : null;
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
         $field = $request->get("field", "dateIntervention");

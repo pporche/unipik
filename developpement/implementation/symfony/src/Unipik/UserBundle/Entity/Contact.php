@@ -1,5 +1,19 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
+
 namespace Unipik\UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,15 +26,20 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 /**
  * Contact
  *
- * @ORM\Table(name="contact")
- * @ORM\Entity
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class Contact
 {
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                                type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="contact_id_seq", allocationSize=1, initialValue=1)
@@ -28,6 +47,8 @@ class Contact
     private $id;
 
     /**
+     * L'email
+     *
      * @var string
      *
      * @Assert\Regex(pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/")
@@ -38,6 +59,8 @@ class Contact
     private $email;
 
     /**
+     * Le nom
+     *
      * @var string
      *
      * @Assert\NotBlank()
@@ -47,6 +70,8 @@ class Contact
     private $nom;
 
     /**
+     * Le prenom
+     *
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=100, nullable=true)
@@ -54,6 +79,8 @@ class Contact
     private $prenom;
 
     /**
+     * Le telephone fixe
+     *
      * @var string
      *
      * @Assert\Regex(pattern="/(^0[0-9]{9}$)?/")
@@ -63,6 +90,8 @@ class Contact
     private $telFixe;
 
     /**
+     * Le telephone portable
+     *
      * @var string
      *
      * @Assert\Regex(pattern="/(^0[0-9]{9}$)?/")
@@ -72,8 +101,9 @@ class Contact
     private $telPortable;
 
     /**
-     * @var string
+     * Le type de contact
      *
+     * @var string
      *
      * @ORM\Column(name="type_contact", type="string", length=30, nullable=false)
      */
@@ -83,30 +113,34 @@ class Contact
 
 
     /**
+     * L'etablissement
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", inversedBy="contact", cascade={"persist"})
      * @ORM\JoinTable(name="appartient",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="contact_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="contact_id",                                             referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="etablissement_id",                                       referencedColumnName="id")
      *   }
      * )
      */
     private $etablissement;
 
     /**
+     * Le projet
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Projet", inversedBy="contact", cascade={"persist"})
      * @ORM\JoinTable(name="participe",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="projet_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="projet_id",                               referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="contact_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="contact_id",                              referencedColumnName="id")
      *   }
      * )
      */
@@ -114,6 +148,8 @@ class Contact
 
 
     /**
+     * Est tuteur ou non
+     *
      * @var boolean
      *
      * @ORM\Column(name="est_tuteur", type="boolean", nullable=true)
@@ -121,6 +157,8 @@ class Contact
     private $estTuteur;
 
     /**
+     * Est responsable de l'etablissement ou non
+     *
      * @var boolean
      *
      * @ORM\Column(name="respo_etablissement", type="boolean", nullable=true)
@@ -128,6 +166,8 @@ class Contact
     private $respoEtablissement;
 
     /**
+     * Type d'activite
+     *
      * @var string
      *
      * @ORM\Column(name="type_activite", type="string", length=500, nullable=true)
@@ -138,6 +178,8 @@ class Contact
 
     /**
      * Constructor
+     *
+     * @return object
      */
     public function __construct()
     {
@@ -159,7 +201,7 @@ class Contact
     /**
      * Set email
      *
-     * @param string $email
+     * @param string $email L'mail
      *
      * @return Contact
      */
@@ -183,7 +225,7 @@ class Contact
     /**
      * Set nom
      *
-     * @param string $nom
+     * @param string $nom Le nom
      *
      * @return Contact
      */
@@ -207,7 +249,7 @@ class Contact
     /**
      * Set prenom
      *
-     * @param string $prenom
+     * @param string $prenom le prenom
      *
      * @return Contact
      */
@@ -231,7 +273,7 @@ class Contact
     /**
      * Set telFixe
      *
-     * @param string $telFixe
+     * @param string $telFixe Le tel fixe
      *
      * @return Contact
      */
@@ -255,7 +297,7 @@ class Contact
     /**
      * Set telPortable
      *
-     * @param string $telPortable
+     * @param string $telPortable Le tel portable
      *
      * @return Contact
      */
@@ -279,7 +321,7 @@ class Contact
     /**
      * Set typeContact
      *
-     * @param string $typeContact
+     * @param string $typeContact Le type de contact
      *
      * @return Contact
      */
@@ -303,7 +345,7 @@ class Contact
     /**
      * Add etablissement
      *
-     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement L'etablissement
      *
      * @return Contact
      */
@@ -317,7 +359,9 @@ class Contact
     /**
      * Remove etablissement
      *
-     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement L'etablissement
+     *
+     * @return object
      */
     public function removeEtablissement(\Unipik\InterventionBundle\Entity\Etablissement $etablissement)
     {
@@ -337,7 +381,7 @@ class Contact
     /**
      * Add projet
      *
-     * @param \Unipik\UserBundle\Entity\Projet $projet
+     * @param \Unipik\UserBundle\Entity\Projet $projet Le projet
      *
      * @return Contact
      */
@@ -351,7 +395,9 @@ class Contact
     /**
      * Remove projet
      *
-     * @param \Unipik\UserBundle\Entity\Projet $projet
+     * @param \Unipik\UserBundle\Entity\Projet $projet Le projet
+     *
+     * @return object
      */
     public function removeProjet(\Unipik\UserBundle\Entity\Projet $projet)
     {
@@ -368,35 +414,35 @@ class Contact
         return $this->projet;
     }
 
-
-    /**
-     * Get estTuteur
-     *
-     * @todo: déplacer estTuteur dans la colonne participe
-     *
-     * @return boolean
-     */
-    //    public function isEstTuteur()
-    //    {
-    //        return $this->estTuteur;
-    //    }
-
-
-    /**
-     * Set estTuteur
-     *
-     * @todo: déplacer estTuteur dans la colonne participe
-     *
-     * @param boolean $estTuteur
-     *
-     * @return Contact
-     */
-    //    public function setEstTuteur($estTuteur)
-    //    {
-    //        $this->estTuteur = $estTuteur;
     //
-    //        return $this;
-    //    }
+    //    /**
+    //     * Get estTuteur
+    //     *
+    //     * @todo: déplacer estTuteur dans la colonne participe
+    //     *
+    //     * @return boolean
+    //     */
+    //    //    public function isEstTuteur()
+    //    //    {
+    //    //        return $this->estTuteur;
+    //    //    }
+    //
+    //
+    //    /**
+    //     * Set estTuteur
+    //     *
+    //     * @todo: déplacer estTuteur dans la colonne participe
+    //     *
+    //     * @param bool $estTuteur Tuteur ou non
+    //     *
+    //     * @return Contact
+    //     */
+    //    //    public function setEstTuteur($estTuteur)
+    //    //    {
+    //    //        $this->estTuteur = $estTuteur;
+    //    //
+    //    //        return $this;
+    //    //    }
 
 
     /**
@@ -412,7 +458,7 @@ class Contact
     /**
      * Set respoEtablissement
      *
-     * @param boolean $respoEtablissement
+     * @param bool $respoEtablissement Est responsable de l'etablissement
      *
      * @return Contact
      */
@@ -426,11 +472,11 @@ class Contact
     /**
      * Set typeActivite
      *
-     * @deprecated
-     *
-     * @param string $typeActivite
+     * @param string $typeActivite Le type d'activite
      *
      * @return Contact
+     *
+     * @deprecated
      */
     public function setTypeActivite($typeActivite)
     {
@@ -442,7 +488,7 @@ class Contact
     /**
      * Add typeActivite
      *
-     * @param string|array $responsabilite
+     * @param string|array $responsabilite La responsabilite
      *
      * @return Contact
      */
@@ -458,7 +504,9 @@ class Contact
     /**
      * Remove typeActivite
      *
-     * @param string $typeActivite
+     * @param string $typeActivite Le type d'activite
+     *
+     * @return object
      */
     public function removetypeActivite($typeActivite) {
         $this->typeActivite = ArrayConverter::removeFromPgArray(

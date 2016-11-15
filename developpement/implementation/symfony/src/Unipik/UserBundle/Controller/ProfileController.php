@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: kyle
- * Date: 15/09/16
- * Time: 09:56
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\UserBundle\Controller;
@@ -23,16 +31,19 @@ use FOS\UserBundle\Controller\ProfileController as BaseController;
 /**
  * Manage the user profile
  *
- * Class ProfileController
- *
- * @package Unipik\UserBundle\Controller
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class ProfileController extends BaseController {
 
     /**
      * Edit the current user profile
      *
-     * @param  Request $request
+     * @param Request $request La requete
+     *
      * @return null|RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request) {
@@ -44,8 +55,10 @@ class ProfileController extends BaseController {
         }
 
         /**
- * @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface
-*/
+         * Le dispatcher
+         *
+         * @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface
+         */
         $dispatcher = $this->get('event_dispatcher');
 
         $event = new GetResponseUserEvent($user, $request);
@@ -56,8 +69,10 @@ class ProfileController extends BaseController {
         }
 
         /**
- * @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface
-*/
+         * Le formfactory
+         *
+         * @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface
+         */
         $formFactory = $this->get('fos_user.profile.form.factory');
 
         $form = $formFactory->createForm();
@@ -67,15 +82,17 @@ class ProfileController extends BaseController {
 
         if ($form->isValid()) {
             /**
- * @var $userManager \FOS\UserBundle\Model\UserManagerInterface
-*/
+             * Le manager
+             *
+             * @var $userManager \FOS\UserBundle\Model\UserManagerInterface
+             */
             $userManager = $this->get('fos_user.user_manager');
 
             $user->removeAllResponsabilitesActivites();
             $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
             foreach ($responsibilitiesArray as $responsabilite) {
                 $user->addResponsabiliteActivite($responsabilite);
-                if($responsabilite != 'admin_region' && $responsabilite != 'admin_comite') {
+                if ($responsabilite != 'admin_region' && $responsabilite != 'admin_comite') {
                     $user->addActivitesPotentielles($responsabilite);
                 }
             }

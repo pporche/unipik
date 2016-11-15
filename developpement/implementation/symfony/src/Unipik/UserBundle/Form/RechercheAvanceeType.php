@@ -4,6 +4,14 @@
  * User: jpain01
  * Date: 22/09/16
  * Time: 10:36
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\UserBundle\Form;
@@ -19,7 +27,11 @@ use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTran
 /**
  * Class RechercheAvanceeType
  *
- * @package Unipik\UserBundle\Form
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class RechercheAvanceeType extends AbstractType {
     private $entityManager;
@@ -27,7 +39,9 @@ class RechercheAvanceeType extends AbstractType {
     /**
      * VilleType constructor.
      *
-     * @param ObjectManager $entityManager
+     * @param ObjectManager $entityManager Le manager
+     *
+     * @return object
      */
     public function __construct(ObjectManager $entityManager)
     {
@@ -37,8 +51,10 @@ class RechercheAvanceeType extends AbstractType {
     /**
      * Build a form
      *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 

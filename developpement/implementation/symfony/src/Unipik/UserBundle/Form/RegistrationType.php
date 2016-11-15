@@ -4,6 +4,14 @@
  * User: florian
  * Date: 20/04/16
  * Time: 08:35
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\UserBundle\Form;
@@ -24,15 +32,21 @@ use Unipik\ArchitectureBundle\Form\Adresse\VilleType;
 /**
  * Class RegistrationType
  *
- * @package Unipik\UserBundle\Form
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class RegistrationType extends AbstractType {
 
     /**
      * Build a form
      *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         parent::buildForm($builder, $options);
@@ -82,6 +96,8 @@ class RegistrationType extends AbstractType {
     }
 
     /**
+     * Renvoie le parent
+     *
      * @return string
      */
     public function getParent() {
@@ -89,6 +105,8 @@ class RegistrationType extends AbstractType {
     }
 
     /**
+     * Renvoie user_registration
+     *
      * @return string
      */
     public function getBlockPrefix() {

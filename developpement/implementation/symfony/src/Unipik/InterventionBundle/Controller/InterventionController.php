@@ -159,6 +159,11 @@ class InterventionController extends Controller {
         $repository = $em->getRepository('InterventionBundle:Etablissement');
 
         $instituteTest = $repository->find($id);
+
+        /** Add a message to indicate the error to the user */
+        if(is_null($instituteTest)) {
+            return $this->RedirectToRoute('architecture_homepage');
+        }
         $form->get('Etablissement')->setData($instituteTest);
 
         $form->handleRequest($request);

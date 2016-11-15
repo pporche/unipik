@@ -88,7 +88,7 @@ class InterventionType extends AbstractFieldsetType {
                 'widget' => 'single_text',
 
                 // do not render as type="date", to avoid HTML5 date pickers
-                'html5' => false,
+                'html5' => true,
 
                 // add a class that can be selected in JavaScript
                 'attr' => ['class' => 'js-datepicker'],

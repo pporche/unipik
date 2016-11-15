@@ -322,8 +322,10 @@
             {{ form_widget(form.niveauTheme, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveau, {'attr': {'style': 'display: none'}}) }}
         {% endif %}
+        {% if not intervention.plaidoyer and not intervention.frimousse  %}
         {{ form_label(form.description, 'Description') }}
         {{ form_widget(form.description, {'value' : intervention.description}) }}
+        {% endif %}
         {{ form_widget(form) }}
         <div>
             <input type="submit" value="Modifier" class="btn btn-primary"/>

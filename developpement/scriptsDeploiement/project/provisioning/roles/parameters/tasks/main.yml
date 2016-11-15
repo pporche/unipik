@@ -1,0 +1,2 @@
+- name: add parameters.yml into symfony
+  template: src=./parameters.j2 dest=/var/www/my-app/current/app/config/parameters.yml owner=www-data group=www-data mode=0600

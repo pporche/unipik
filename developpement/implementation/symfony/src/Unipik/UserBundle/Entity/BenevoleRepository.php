@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jpain01
- * Date: 22/09/16
- * Time: 09:00
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\UserBundle\Entity;
@@ -16,36 +24,40 @@ use OpsWay\Doctrine\ORM\Query\AST\Functions\Contains;
 /**
  * Class BenevoleRepository
  *
- * @package Unipik\UserBundle\Entity
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class BenevoleRepository extends EntityRepository
 {
     /**
      * Generic function for DB queries.
      *
-     * @param  $field
-     * @param  $desc
+     * @param string $field Le champs
+     * @param bool   $desc  Descendant ou non
+     * @param string $ville La ville
+     *
      * @return array
      */
-
     public function getType($field, $desc, $ville){
         $qb = $this->createQueryBuilder('b');
 
-        if($ville) {
-            $this->whereVilleIs($qb, $ville);
+        if ($ville) {
+            $this->_whereVilleIs($qb, $ville);
         }
 
-        if($field=="nom") {
-            if($desc) {
+        if ($field=="nom") {
+            if ($desc) {
                 $qb = $qb->orderBy('b.nom', 'DESC');
-            }else{
+            } else {
                 $qb = $qb->orderBy('b.nom', 'ASC');
             }
-        }
-        else{
-            if($desc) {
+        } else {
+            if ($desc) {
                 $qb = $qb->orderBy('b.prenom', 'DESC');
-            }else{
+            } else {
                 $qb = $qb->orderBy('b.prenom', 'ASC');
             }
         }
@@ -56,39 +68,21 @@ class BenevoleRepository extends EntityRepository
     }
 
     /**
-         * @param $ville
-         * @return array
-         */
-    public function getBenevoles($ville){
-        $qb = $this->createQueryBuilder('b');
-
-        //        if(!empty($act)){
-        //            $this->getBenevolesByActivites($qb, $act);
-        //        }
-        //
-        //        if(!empty($resp)){
-        //            $this->getBenevolesByResponsabilites($qb, $act);
-        //        }
-
-        if($ville) {
-            $this->whereVilleIs($qb, $ville);
-        }
-
-        return $qb
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
-     * @param QueryBuilder $qb
-     * @param $act
+     * Benevoles par activites
+     *
+     * @param QueryBuilder $qb  Le querybuilder
+     * @param string       $act Les activites
+     *
+     * @return object
+     *
+     * @deprecated
      */
-    public function getBenevolesByActivites(QueryBuilder $qb, $act){
+    private function _getBenevolesByActivites(QueryBuilder $qb, $act){
         $qb
             ->andWhere('b.activitePotentielle @> array_append(ARRAY[]::type_activite[],:a)')
             ->setParameter('a', '('.$act[0].')');
 
-        for($i = 1; $i < (count($act)-1); $i+=1){
+        for ($i = 1; $i < (count($act)-1); $i+=1) {
             $qb
                 ->andWhere('b.activitePotentielle @> array_append(ARRAY[]::type_activite[],:a)')
                 ->setParameter('a', '('.$act[$i].')');
@@ -97,15 +91,21 @@ class BenevoleRepository extends EntityRepository
     }
 
     /**
-     * @param QueryBuilder $qb
-     * @param $resp
+     * Benevoles par responsabilites
+     *
+     * @param QueryBuilder $qb   Le querybuilder
+     * @param string       $resp Les responsabilites
+     *
+     * @return object
+     *
+     * @deprecated
      */
-    public function getBenevolesByResponsabilites(QueryBuilder $qb, $resp){
+    private function _getBenevolesByResponsabilites(QueryBuilder $qb, $resp){
         $qb
             ->andWhere('b.responsabiliteActivite @> array_append(ARRAY[]::type_responsabilite_activite[],:a)')
             ->setParameter('a', '('.$resp[0].')');
 
-        for($i = 1; $i < (count($resp)-1); $i+=1){
+        for ($i = 1; $i < (count($resp)-1); $i+=1) {
             $qb
                 ->andWhere('b.responsabiliteActivite @> array_append(ARRAY[]::type_responsabilite_activite[],:a)')
                 ->setParameter('a', '('.$resp[$i].')');
@@ -114,10 +114,14 @@ class BenevoleRepository extends EntityRepository
     }
 
     /**
-     * @param QueryBuilder $qb
-     * @param $ville
+     * Requete pour une ville
+     *
+     * @param QueryBuilder $qb    Le querybuilder
+     * @param string       $ville La ville
+     *
+     * @return object
      */
-    public function whereVilleIs(QueryBuilder $qb, $ville) {
+    private function _whereVilleIs(QueryBuilder $qb, $ville) {
         $qb
             ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'ad')
             ->andWhere('b.adresse = ad')

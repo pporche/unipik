@@ -133,6 +133,7 @@
     {{ parent() }}
     <script src="{{ asset('vendor/typeahead.js/dist/typeahead.jquery.js') }}"></script>
     <script src="{{ asset('vendor/typeahead.js/dist/bloodhound.js') }}"></script>
+    <script src="{{ asset('vendor/leaflet/dist/leaflet.js') }}"></script>
     <script>
         var onResponsabiliteChecked = function (responsabilite, activite) {
             if ($(responsabilite).is(':checked')) {
@@ -260,13 +261,27 @@
                     $('#fos_user_registration_form_adresse_ville').val(data.ville);
                 });
         });
-        $(".fos_user_registration_form").submit(function( e ) {
+
+        $(":submit").on('click', function( e ) {
             e.preventDefault();
-            if($('#fos_user_registration_form_telFixe').val().trim().length==0 || $('#fos_user_registration_form_telPortable').val().trim().length==0){
+            if ($('#fos_user_registration_form_telFixe').val().trim().length==0 && $('#fos_user_registration_form_telPortable').val().trim().length==0) {
                 $('#fos_user_registration_form_telPortable').after('<p style="color: red; font-weight: 400;">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
             }
             else {
-                $(".fos_user_registration_form").submit();
+                var adresse = $("#fos_user_registration_form_adresse_adresse").val() + ' ' + $('#fos_user_registration_form_adresse_codePostal').val() + ' ' + $("#fos_user_registration_form_adresse_ville").val();
+                var geolocalisation = '';
+                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+adresse, function (data) {
+                    switch (data.length) {
+                        case 0 :
+                            break;
+                        case 1 :
+                            geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
+                            break;
+                        default : //Si plusieurs résultats, faire choisir l'utilisateur.
+                    }
+                    $("#fos_user_registration_form_adresse_geolocalisation").val(geolocalisation);
+                    $(".fos_user_admin_register").submit();
+                });
             }
         });
     </script>

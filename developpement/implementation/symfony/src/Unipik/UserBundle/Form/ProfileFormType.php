@@ -4,7 +4,16 @@
  * User: mmartinsbaltar
  * Date: 29/04/16
  * Time: 08:25
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
+
 
 namespace Unipik\UserBundle\Form;
 
@@ -19,14 +28,20 @@ use Unipik\ArchitectureBundle\Form\Adresse\AdresseType;
 /**
  * Class ProfileFormType
  *
- * @package Unipik\UserBundle\Form
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class ProfileFormType extends BaseType {
 
     /**
      * ProfileFormType constructor.
      *
-     * @param string $class
+     * @param string $class La classe
+     *
+     * @return object
      */
     public function __construct($class) {
         parent::__construct($class);
@@ -35,8 +50,10 @@ class ProfileFormType extends BaseType {
     /**
      * Build a form
      *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         parent::buildForm($builder, $options);
@@ -69,8 +86,10 @@ class ProfileFormType extends BaseType {
     /**
      * Build the form for user creation
      *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     protected function buildUserForm(FormBuilderInterface $builder, array $options) {
         parent::buildUserForm($builder, $options);
@@ -85,6 +104,8 @@ class ProfileFormType extends BaseType {
     }
 
     /**
+     * Renvoie le parent
+     *
      * @return string
      */
     public function getParent() {
@@ -92,6 +113,8 @@ class ProfileFormType extends BaseType {
     }
 
     /**
+     * Renvoie user_profile
+     *
      * @return string
      */
     public function getBlockPrefix() {

@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: mmartinsbaltar
- * Date: 03/05/16
- * Time: 15:14
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form\Intervention;
@@ -14,11 +22,23 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 
+/**
+ * Le type eleves
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class ElevesType extends AbstractType {
 
     /**
-     * @param FormBuilderInterface $builder
-     * form builder
+     * Form builder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder){
         $builder
@@ -27,7 +47,9 @@ class ElevesType extends AbstractType {
 
     /**
      * {@inheritdoc}
-     * renvoie eleves
+     * Renvoie eleves
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'eleves';

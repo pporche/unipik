@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: scolomies
- * Date: 12/09/16
- * Time: 11:12
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\UserBundle\Controller;
@@ -21,38 +29,47 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Unipik\ArchitectureBundle\Entity\Adresse;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
+use Ivory\HttpAdapter\Guzzle6HttpAdapter;
 use Ivory\HttpAdapter\CurlHttpAdapter;
-use Geocoder\Provider\OpenStreetMap;
-
+use Geocoder\Provider\GoogleMaps;
 
 /**
  * Manage the registration actions
  *
- * Class RegistrationController
- *
- * @package Unipik\UserBundle\Controller
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class RegistrationController extends BaseController {
 
     /**
      * Action for registration
      *
-     * @param  Request $request
+     * @param Request $request La requete
+     *
      * @return null|RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function registerAction(Request $request) {
 
         /**
- * @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface 
-*/
+         * Le form factory
+         *
+         * @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface
+         */
         $formFactory = $this->get('fos_user.registration.form.factory');  // Récupération du service form factory de fos user
         /**
- * @var $userManager \FOS\UserBundle\Model\UserManagerInterface 
-*/
+         * Le user manager
+         *
+         * @var $userManager \FOS\UserBundle\Model\UserManagerInterface
+         */
         $userManager = $this->get('fos_user.user_manager');
         /**
- * @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface 
-*/
+         * Le dispatcher
+         *
+         * @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface
+         */
         $dispatcher = $this->get('event_dispatcher'); // Récupération du gestionnaire d'évènements
 
         $user = $userManager->createUser(); // Récupération de l'utilisateur -> bénévole
@@ -77,7 +94,7 @@ class RegistrationController extends BaseController {
             $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
             foreach ($responsibilitiesArray as $responsabilite) {
                 $user->addResponsabiliteActivite($responsabilite);
-                if($responsabilite != 'admin_region' && $responsabilite != 'admin_comite') {
+                if ($responsabilite != 'admin_region' && $responsabilite != 'admin_comite') {
                     $user->addActivitesPotentielles($responsabilite);
                 }
             }
@@ -96,7 +113,6 @@ class RegistrationController extends BaseController {
             $adresse->setAdresse(strtoupper($adresse->getAdresse()));
             $adresse->setComplement(strtoupper($adresse->getComplement()));
 
-            //            var_dump($adresse);
             //            $geolocalisation = $this->findGeolocalisation($adresse);
             //            var_dump($geolocalisation);
 
@@ -145,8 +161,9 @@ class RegistrationController extends BaseController {
     /**
      * Add values of responsibilities to the set of potential activities.
      *
-     * @param  $responsibilitiesArray
-     * @param  $activitiesString
+     * @param array $responsibilitiesArray Le tableau de responsabilites
+     * @param array $activitiesString      Le tableau d'activites
+     *
      * @return string
      */
     public function setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString) {
@@ -154,10 +171,10 @@ class RegistrationController extends BaseController {
         if ($activitiesString != '{') {
             $activitiesString = $activitiesString . ',';
         }
-        if(($key = array_search('(admin_region)', $responsibilitiesArray)) !== false) {
+        if (($key = array_search('(admin_region)', $responsibilitiesArray)) !== false) {
             unset($responsibilitiesArray[$key]);
         }
-        if(($key = array_search('(admin_comite)', $responsibilitiesArray)) !== false) {
+        if (($key = array_search('(admin_comite)', $responsibilitiesArray)) !== false) {
             unset($responsibilitiesArray[$key]);
         }
         if (empty($responsibilitiesArray)) {
@@ -165,7 +182,7 @@ class RegistrationController extends BaseController {
         }
         foreach ($responsibilitiesArray as $value) {
             $activitiesString = $activitiesString.$value;
-            if($value !== end($responsibilitiesArray)) {
+            if ($value !== end($responsibilitiesArray)) {
                 $activitiesString = $activitiesString.',';
             }
         }
@@ -187,7 +204,7 @@ class RegistrationController extends BaseController {
         return $this->render(
             'UserBundle:Registration:confirmed.html.twig', array(
             'user' => $user,
-            'targetUrl' => $this->getTargetUrlFromSession(),
+            'targetUrl' => $this->_getTargetUrlFromSession(),
             )
         );
     }
@@ -197,7 +214,7 @@ class RegistrationController extends BaseController {
      *
      * @return mixed
      */
-    private function getTargetUrlFromSession() {
+    private function _getTargetUrlFromSession() {
         if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
             $tokenStorage = $this->get('security.token_storage');
         } else {
@@ -218,8 +235,8 @@ class RegistrationController extends BaseController {
     //     * @return \Geocoder\Model\AddressCollection
     //     */
     //    private function findGeolocalisation($adresse) {
-    //        $adapter  = new CurlHttpAdapter();
-    //        $geocoder = new OpenStreetMap($adapter);
+    //        $adapter  = new Guzzle6HttpAdapter();
+    //        $geocoder = new GoogleMaps($adapter);
     //
     //        return $geocoder->geocode($adresse->getAdresse());
     //    }

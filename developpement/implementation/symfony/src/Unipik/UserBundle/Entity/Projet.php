@@ -1,5 +1,19 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
+
 namespace Unipik\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,15 +21,20 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Projet
  *
- * @ORM\Table(name="projet")
- * @ORM\Entity
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
-class Projet
-{
+class Projet {
+
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                               type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="projet_id_seq", allocationSize=1, initialValue=1)
@@ -23,6 +42,8 @@ class Projet
     private $id;
 
     /**
+     * Le CA
+     *
      * @var float
      *
      * @ORM\Column(name="chiffre_affaire", type="float", precision=10, scale=0, nullable=false)
@@ -30,6 +51,8 @@ class Projet
     private $chiffreAffaire;
 
     /**
+     * Les remarques
+     *
      * @var string
      *
      * @ORM\Column(name="remarques", type="string",length=500, nullable=true)
@@ -37,6 +60,8 @@ class Projet
     private $remarques;
 
     /**
+     * Le type
+     *
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=30, nullable=false)
@@ -44,6 +69,8 @@ class Projet
     private $type;
 
     /**
+     * Le nom
+     *
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
@@ -51,6 +78,8 @@ class Projet
     private $nom;
 
     /**
+     * Le benevole
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Benevole", mappedBy="projet", cascade={"persist"})
@@ -58,6 +87,8 @@ class Projet
     private $benevole;
 
     /**
+     * Le contact
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Contact", mappedBy="projet", cascade={"persist"})
@@ -66,6 +97,8 @@ class Projet
 
     /**
      * Constructor
+     *
+     * @return object
      */
     public function __construct()
     {
@@ -87,7 +120,7 @@ class Projet
     /**
      * Set chiffreAffaire
      *
-     * @param float $chiffreAffaire
+     * @param float $chiffreAffaire Le CA
      *
      * @return Projet
      */
@@ -111,7 +144,7 @@ class Projet
     /**
      * Set remarques
      *
-     * @param string $remarques
+     * @param string $remarques Les remarques
      *
      * @return Projet
      */
@@ -135,7 +168,7 @@ class Projet
     /**
      * Set type
      *
-     * @param string $type
+     * @param string $type Le type
      *
      * @return Projet
      */
@@ -159,7 +192,7 @@ class Projet
     /**
      * Set nom
      *
-     * @param string $nom
+     * @param string $nom Le nom
      *
      * @return Projet
      */
@@ -183,7 +216,7 @@ class Projet
     /**
      * Add benevole
      *
-     * @param \Unipik\UserBundle\Entity\Benevole $benevole
+     * @param \Unipik\UserBundle\Entity\Benevole $benevole Le benevole
      *
      * @return Projet
      */
@@ -197,7 +230,9 @@ class Projet
     /**
      * Remove benevole
      *
-     * @param \Unipik\UserBundle\Entity\Benevole $benevole
+     * @param \Unipik\UserBundle\Entity\Benevole $benevole Le benevole
+     *
+     * @return object
      */
     public function removeBenevole(\Unipik\UserBundle\Entity\Benevole $benevole)
     {
@@ -217,7 +252,7 @@ class Projet
     /**
      * Add contact
      *
-     * @param \Unipik\UserBundle\Entity\Contact $contact
+     * @param \Unipik\UserBundle\Entity\Contact $contact Le contact
      *
      * @return Projet
      */
@@ -231,7 +266,9 @@ class Projet
     /**
      * Remove contact
      *
-     * @param \Unipik\UserBundle\Entity\Contact $contact
+     * @param \Unipik\UserBundle\Entity\Contact $contact Le contact
+     *
+     * @return object
      */
     public function removeContact(\Unipik\UserBundle\Entity\Contact $contact)
     {

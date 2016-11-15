@@ -1,4 +1,18 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 
 namespace Unipik\UserBundle\Form;
 
@@ -9,16 +23,25 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Unipik\InterventionBundle\Form\EtablissementType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 /**
  * Class ContactType
  *
- * @package Unipik\UserBundle\Form
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class ContactType extends AbstractType {
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * Le form builder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
@@ -42,7 +65,11 @@ class ContactType extends AbstractType {
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * Configuration des options
+     *
+     * @param OptionsResolver $resolver Le resolver
+     *
+     * @return object
      */
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(

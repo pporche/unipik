@@ -25,7 +25,7 @@ class MailingType extends AbstractType {
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
-        $type = array( 'expanded' => true, 'multiple' => false, 'label' => "Type d'établissement",
+        $typeInstitute = array( 'expanded' => true, 'multiple' => true, 'label' => "Type d'établissement",
             'choices' => [
                 'Maternelle' => 'maternelle',
                 'Elémentaire' => 'elementaire',
@@ -34,8 +34,17 @@ class MailingType extends AbstractType {
                 'Supérieur' => 'superieur'
             ],);
 
+        $typeCenter = array( 'expanded' => true, 'multiple' => true, 'label' => "Type de centre de loisirs",
+            'choices' => [
+                'Maternelle' => 'maternelle',
+                'Elémentaire' => 'elementaire',
+                'Adolescent' => 'college',
+                'autre' => 'autre'
+            ],);
+
         $builder
-            ->add('type', ChoiceType::class, $type);
+            ->add('typeInstitute', ChoiceType::class, $typeInstitute)
+            ->add('typeCenter', ChoiceType::class, $typeCenter);
     }
 
     /**

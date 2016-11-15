@@ -10,6 +10,7 @@ namespace Tests\Unipik\Unit\InterventionBundle\Entity;
 
 
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\NiveauThemeMock;
+use Tests\Unipik\Unit\UserBundle\Entity\Mocks\BenevoleMock;
 use Unipik\InterventionBundle\Entity\Intervention;
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\VilleMock;
 use Tests\Unipik\Unit\InterventionBundle\Entity\Mocks\InterventionMock;
@@ -24,10 +25,13 @@ class InterventionRepositoryTest extends RepositoryTestCase
         // Dans la ville de POUIC POUIC, de nombreuses interventions ont été demandés:
         // 3 plaidoyers, 2 frimousses, 1 autre
 
+        $b = BenevoleMock::createMultiple(2);
+
         $nt = NiveauThemeMock::createMultiple(6);
         $inter[0]
             ->addMaterielDispoPlaidoyer("videoprojecteur")
             ->setDateIntervention(new \DateTime("2000-12-31"))
+            ->setBenevole($b[0])
         ;
 
         $nt[1]
@@ -36,6 +40,8 @@ class InterventionRepositoryTest extends RepositoryTestCase
         $inter[1]
             ->addMaterielDispoPlaidoyer("videoprojecteur")
             ->setDateIntervention(new \DateTime("2005-12-31"))
+            ->setBenevole($b[1])
+            ->setRealisee(true)
         ;
 
         $nt[2]
@@ -44,6 +50,7 @@ class InterventionRepositoryTest extends RepositoryTestCase
         $inter[2]
             ->addMaterielDispoPlaidoyer("videoprojecteur")
             ->setDateIntervention(new \DateTime("2010-12-31"))
+            ->setBenevole($b[0])
         ;
 
         $nt[3] = null;
@@ -51,6 +58,8 @@ class InterventionRepositoryTest extends RepositoryTestCase
             ->addMateriauxFrimousse("bourre")
             ->setNiveauFrimousse("CE1-CE2")
             ->setDateIntervention(new \DateTime("2005-12-31"))
+            ->setBenevole($b[1])
+            ->setRealisee(true)
         ;
 
         $nt[4] = null;
@@ -65,8 +74,9 @@ class InterventionRepositoryTest extends RepositoryTestCase
             ->setDescription("Intervention particulière")
         ;
 
+        // On test tous les types de requêtes possibles:
         return(array(
-            /*"test1" =>  [3, [0, 1, 2], $inter, $nt, null, null, true, "plaidoyer", null, true, null, "POUIC POUIC"],
+            "test1" =>  [3, [0, 1, 2], $inter, $nt, null, null, true, "plaidoyer", null, true, null, "POUIC POUIC"],
             "test2" =>  [1, [2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, ["CM2"]],
             "test3" =>  [2, [1, 2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, ["CM2", "CM1"]],
             "test4" =>  [1, [2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, ['enfants et soldats']],
@@ -78,7 +88,14 @@ class InterventionRepositoryTest extends RepositoryTestCase
             "test10" => [1, [4], $inter, $nt, null, null, true, "frimousse", null, null, null, "POUIC POUIC", null,["CM1-CM2"], null],
             "test11" => [2, [3, 4], $inter, $nt, null, null, true, "frimousse", null, null, null, "POUIC POUIC", null, ["CE1-CE2", "CM1-CM2"], null],
             "test12" => [1, [3], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "frimousse", null, null, null, "POUIC POUIC"],
-            "test14" => [1, [5], $inter, $nt, null, null, true, "autreIntervention", null, "Intervention particulière", null, "POUIC POUIC"],*/
+            "test14" => [1, [5], $inter, $nt, null, null, true, "autreIntervention", null, null, null, "POUIC POUIC"],
+            "test15" => [0, [], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "autreIntervention", null, null, null, "POUIC POUIC"],
+            "test16" => [6, [0, 1, 2, 3, 4, 5], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC"],
+            "test17" => [2, [1, 3], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, null, null, null, null, "POUIC POUIC"],
+            "test18" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC", $b[0]],
+            "test19" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, "attribuees", "POUIC POUIC"],
+            "test20" => [2, [4, 5], $inter, $nt, null, null, true, null, null, null, "nonAttribuees", "POUIC POUIC"],
+            "test21" => [2, [1, 3], $inter, $nt, null, null, true, null, null, null, "realisees", "POUIC POUIC"],
 
         ));
     }
@@ -112,17 +129,12 @@ class InterventionRepositoryTest extends RepositoryTestCase
         // Persist
         $ville = VilleMock::create();
         $ville->setNom($nomVille);
-        //$this->em->persist($ville);
         foreach ($interventions as $key=>$i) {
             $i->getEtablissement()->getAdresse()->setVille($ville);
             $i->setNiveauTheme($niveauxThemes[$key]);
-            //$this->em->persist($niveauxThemes[$key]);
-            //$this->em->persist($i->getEtablissement()->getAdresse());
-            //$this->em->persist($i->getEtablissement());
             $this->em->persist($i);
         }
         $this->em->flush();
-        //$this->em->clear();
 
 
         // get ville
@@ -133,13 +145,8 @@ class InterventionRepositoryTest extends RepositoryTestCase
             ))
         ;
 
-        //var_dump($ville->getNom());
-        //var_dump($interventions[0]->getEtablissement()->getAdresse()->getVille()->getNom());
-        //var_dump($interventions[0]->getNiveauTheme()->getNiveau());
-        //var_dump($interventions[1]->getNiveauTheme()->getNiveau());
-
         // Test getType method
-        $products = $this->em
+        $result = $this->em
             ->getRepository('InterventionBundle:Intervention')
             ->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville)
         ;
@@ -147,17 +154,15 @@ class InterventionRepositoryTest extends RepositoryTestCase
 
         // Prepare expected result
         $expectedIds = array();
-        foreach ($expectedResult as $r){
+        foreach ($expectedResult as $r) {
             $expectedIds[$interventions[$r]->getId()] = true;
         }
 
         // Check Result
-        foreach ($products as $p){
-            $this->assertArrayHasKey($p->getId(), $expectedIds);
+        foreach ($result as $r) {
+            $this->assertArrayHasKey($r->getId(), $expectedIds);
         }
-        $this->assertCount($expectedCount, $products);
-
-        //var_dump($products[2]->getNiveauTheme()->getNiveau());
+        $this->assertCount($expectedCount, $result);
 
         // Rollback
         $this->em->rollBack();

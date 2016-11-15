@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: scolomies
- * Date: 12/10/16
- * Time: 19:54
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form\Intervention;
@@ -20,12 +28,24 @@ use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
 use Unipik\ArchitectureBundle\Form\NiveauThemeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
+/**
+ * Le type intervention
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class InterventionType extends AbstractFieldsetType {
 
-
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * Le formbuilder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $choiceClasse = array('required' => false, 'label' => 'Année scolaire', 'attr' => ['class' => 'form-annee-scolaire'],
@@ -93,6 +113,9 @@ class InterventionType extends AbstractFieldsetType {
 
     /**
      * {@inheritdoc}
+     * Renvoie intervention
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'intervention';

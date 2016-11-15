@@ -221,42 +221,13 @@ class InterventionController extends Controller {
 
             /* if the adress is already in the db it means the institute might be in there too */
             $repository = $this->getDoctrine()->getRepository('ArchitectureBundle:Adresse');
-            $adresses = $repository->findBy(
-                array('ville' => $institute->getAdresse()->getVille(),
-                    'adresse' => $institute->getAdresse()->getAdresse(),
-                    'codePostal' => $institute->getAdresse()->getCodePostal()
-                )
-            );
+
 
             $instituteResearched = null;
             $repository = $this->getDoctrine()->getManager();
             $repository = $repository->getRepository('InterventionBundle:Etablissement');
-            foreach ($adresses as $adresse) {
-                $adresseTemp = new Adresse();
-                $this->cast($adresseTemp, (object)$adresse);
-                $instituteResearched[] = $repository->findOneBy(
-                    array('nom' => $institute->getNom(),
-                        'typeEnseignement' => $institute->getTypeEnseignement(),
-                        'typeAutreEtablissement' => $institute->getTypeAutreEtablissement(),
-                        'typeCentre' => $institute->getTypeCentre(),
-                        'adresse' => $adresseTemp->getId()
-                    )
-                );
-            }
 
-            $list=[];
-            if (($instituteResearched) !== null) {
-                $instituteResearched = array_filter($instituteResearched);
-                foreach ($instituteResearched as $institute) {
-                    $list[] = $institute;
-                }
-            }
-            if (sizeof($instituteResearched) == 0) {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($institute);
-            } else {
-                $institute = array_pop($instituteResearched);
-            }
+            $institute = $instituteTest;
 
             if (sizeof($emails) != 0) {
                 foreach ($emails as $email) {

@@ -1,0 +1,50 @@
+# PHP
+
+php_packages:
+  - php5
+#  - php5-xml
+  - php5-curl
+  - php5-pgsql
+  - libapache2-mod-php5
+  - php5-cli
+
+ansistrano_deploy_from: "{{ playbook_dir }}/../pic_unicef-prod/developpement/implementation/symfony/"
+ansistrano_deploy_via: copy
+#ansistrano_deploy_via: git
+
+
+#ansistrano_git_repo: http://mmartinsbaltar@monprojet.insa-rouen.fr/git/pic_unicef # Location of the git repository
+#ansistrano_git_branch: master # What version of the repository to check out. This can be the full 40-character SHA-1 hash, the literal string HEAD, a branch name, or a tag name
+#ansistrano_git_repo_tree: "" # If specified the subtree of the repository to deploy
+#ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
+
+#symfony_composer_path: "{{ ansistrano_deploy_to }}/developpement/implementation/symfony/composer.phar"
+
+
+pgsqlRestore_dbToRestore: bdunicef_prod.sql
+
+
+
+# parameters.yml
+
+database_host: 127.0.0.1
+database_port: null
+database_name: bdunicef
+database_user: unipik
+database_password: kaflmmppscmmbmcjpmb
+mailer_transport: smtp
+mailer_host: smtp.gmail.com
+mailer_user: unipik.dev@gmail.com
+mailer_password: taistoijulie
+mailer_port: 587
+mailer_encryption: tls
+mailer_auth_mode: login
+second_mailer_host: smtp.sfr.fr
+second_mailer_user: florian.leriche@neuf.fr
+second_mailer_password: biscotte
+second_mailer_port: 587
+second_mailer_encryption: tls
+second_mailer_auth_mode: login
+second_mailer_transport: smtp
+locale: fr
+secret: ThisTokenIsNotSoSecretChangeIt

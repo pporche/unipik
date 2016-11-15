@@ -96,7 +96,7 @@ class InterventionType extends AbstractFieldsetType {
                 'required' => false
                 )
             )
-            ->add('lieu', TextType::class)
+            ->add('lieu', TextType::class,array('required' => false))
             ->add('materielDispoPlaidoyer', MaterielType::class, array('label' => 'Matériel'))
             ->add('materiauxFrimousse', MaterielFrimousseType::class, array('label' => 'Matériel frimousse'))
             ->add('nbPersonne', IntegerType::class, array('label' => 'Participants'))

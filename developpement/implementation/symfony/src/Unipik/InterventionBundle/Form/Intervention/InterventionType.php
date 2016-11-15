@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
 use Unipik\ArchitectureBundle\Form\NiveauThemeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class InterventionType extends AbstractFieldsetType {
 
@@ -86,7 +87,8 @@ class InterventionType extends AbstractFieldsetType {
                 //                'input'  => 'string',
                 'widget' => 'choice',
                 )
-            );
+            )
+            ->add('description',TextareaType::class,array('required' => false));
     }
 
     /**

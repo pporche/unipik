@@ -112,6 +112,9 @@ class InterventionController extends Controller {
             $minute = sprintf("%02d", $minute);
             $heure .= ":".$minute;
             $intervention->setHeure($heure);
+            $description = $form->get('description')->getData();
+            $intervention->setDescription($description);
+
 
             $em->persist($intervention);
             $em->flush();
@@ -133,6 +136,7 @@ class InterventionController extends Controller {
             'InterventionBundle:Intervention:editIntervention.html.twig', array('form' => $form->createView(),
                                                                                  'intervention' => $intervention,
                                                                                  'materiaux' => $materiaux,
+                                                                                 'demande' => $intervention->getDemande(),
             )
         );
     }
@@ -190,7 +194,6 @@ class InterventionController extends Controller {
             }
 
             $this->treatmentInterventions($interventionsRawList, $interventionList);
-            //            return new Response(\Doctrine\Common\Util\Debug::dump($interventionsRawList[1]));
             $this->treatmentContact($contactPers);
             $demande->setContact($contactPers);
 
@@ -265,10 +268,10 @@ class InterventionController extends Controller {
             }
 
             $this->getDoctrine()->getManager()->persist($demande);
+
             $em = $this->getDoctrine()->getManager();
 
             $em->flush();
-
 
             foreach ($interventionList as $intervention) {
                 $intervention->setEtablissement($institute);
@@ -282,10 +285,11 @@ class InterventionController extends Controller {
             $this->linkAllMoments($demande->getMomentsVoulus(), $demande);
 
             $this->linkAllBMoments($demande->getMomentsAEviter(), $demande);
-            $session =$request->getSession();
+
             $em->flush();
 
-            /*return new Response(print_r(\Doctrine\Common\Util\Debug::dump($interventionList)));*/
+            $session =$request->getSession();
+
             $session->getFlashBag()->add(
                 'notice', array(
                 'title' => 'Félicitation',
@@ -340,7 +344,7 @@ class InterventionController extends Controller {
 
     /**
      * Consulter une action
-     * 
+     *
      * @param Integer $id Id de l'intervention.
      *
      * @return                      Response Permet de récupérer la vue consultation pour l'héritage.
@@ -749,7 +753,7 @@ class InterventionController extends Controller {
      *
      * @param string|object $destination  la destination
      * @param object        $sourceObject la source
-     * 
+     *
      * @return object
      */
     function cast($destination, $sourceObject) {

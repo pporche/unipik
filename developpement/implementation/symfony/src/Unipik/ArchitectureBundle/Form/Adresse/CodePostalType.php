@@ -4,6 +4,14 @@
  * User: mmartinsbaltar
  * Date: 27/04/16
  * Time: 09:09
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\ArchitectureBundle\Form\Adresse;
@@ -14,12 +22,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 /**
  * Class CodePostalType
  *
- * @package Unipik\ArchitectureBundle\Form\Adresse
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class CodePostalType extends AbstractType {
 
     /**
      * {@inheritdoc}
+     *
+     * @return TextType
      */
     public function getParent() {
         return TextType::class;
@@ -27,6 +41,8 @@ class CodePostalType extends AbstractType {
 
     /**
      * {@inheritdoc}
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'codePostal';

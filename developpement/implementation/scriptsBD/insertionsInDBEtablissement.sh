@@ -20,25 +20,25 @@ prompt_token() {
 
 function insertionBD {
 	if [[ $4 == *"Sans nom"* ]]; #si l'établissement n'a pas de nom, on ne donne de valeur à l'attribut nom dans la BD 
-	   	then
-			if [ -z "$7" ]; #si l'établissement n'a pas de numéro de téléphone (="") on n'entre pas de num de tel dans la BD 
-			then 
-	    		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, emails, $1) VALUES ($2,'$3', '{($5)}', '$6');" 
-			else
-				python python/retirerEspace.py $f > logfile.log 
-				read tel < logfile.log 
-	    		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, tel_fixe, emails, $1) VALUES ($2, '$3', '$tel', '{($5)}', '$6' );" 
-			fi
-	  	else 
-	  		if [ -z "$f" ];
-	  		then 
-	  			psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, nom, emails, $1) VALUES ($2, '$3', '$4', '{($5)}', '$6');" 
-	  		else
-	  			python python/retirerEspace.py $f > logfile.log 
-				read tel < logfile.log 
-	  			psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, nom, tel_fixe, emails, $1) VALUES ($2, '$3', '$4', '$tel', '{($5)}', '$6');" 
-	  		fi
+   	then
+		if [ -z "$7" ]; #si l'établissement n'a pas de numéro de téléphone (="") on n'entre pas de num de tel dans la BD 
+		then 
+    		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, emails, $1, nom) VALUES ($2,'$3', '{($5)}', '$6', $8);" 
+		else
+			python python/retirerEspace.py $f > logfile.log 
+			read tel < logfile.log 
+    		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, tel_fixe, emails, $1, nom) VALUES ($2, '$3', '$tel', '{($5)}', '$6', $8);" 
 		fi
+	else 
+  		if [ -z "$7" ];
+  		then 
+  			psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, nom, emails, $1) VALUES ($2, '$3', '$4', '{($5)}', '$6');" 
+  		else
+  			python python/retirerEspace.py $f > logfile.log 
+			read tel < logfile.log 
+  			psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, nom, tel_fixe, emails, $1) VALUES ($2, '$3', '$4', '$tel', '{($5)}', '$6');" 
+  		fi
+	fi
 }
 
 #si pas de chemin, on en demande un
@@ -72,26 +72,31 @@ do
 		if [[ $c = *"Elémentaire"* ]]; 
 		then
 			typeEnseignement='elementaire'
+			nom = "Ecole élémentaire de $a"
 		fi
 
 		if [[ $c = *"Maternelle"* ]]; 
 	    then
 	        typeEnseignement="maternelle"
+	        nom = "Ecole maternelle de $a"
 	    fi
 
 	    if [[ $c = *"Collège"* ]]; 
 	    then
 	        typeEnseignement="college"
+	        nom = "Collège de $a"
 	    fi 
 
 	    if [[ $c = *"Lycée"* ]]; 
 	    then
-	        typeEnseignement="lycee"  
+	        typeEnseignement="lycee"
+	        nom = "Lycée de $a" 
 	    fi
 
 	    if [[ $c = *"Supérieur"* ]]; 
 	    then
-	        typeEnseignement="superieur"  
+	        typeEnseignement="superieur"
+	        nom = "Ecole supérieur de $a"  
 	    fi
 		case $c in
     		'Elémentaire' )
@@ -107,23 +112,26 @@ do
 		esac
 
     
-		insertionBD "type_enseignement" "'$h'" $idAdresse $b $g $typeEnseignement $f
+		insertionBD "type_enseignement" "'$h'" $idAdresse $b $g $typeEnseignement $f $nom
 		;;
 		"Autre" )
-		insertionBD "type_autre_etablissement" "NULL" $idAdresse $b $g "autre" $f
+		insertionBD "type_autre_etablissement" "NULL" $idAdresse $b $g "autre" $f $nom
 		;;
 	esac
 done < ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/ressourcesNettoyees/etablissement.csv
 
-IFS=","
-while read a b c d e
+IFS=";"
+while read a b c
 do
 	if [[ $a != *"UAI"* ]];
 	then
 		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT adresse_id FROM etablissement WHERE uai='$a';" > idAdresse.txt
 		idAdresse=$(sed '3q;d' < idAdresse.txt)
-		
-		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "UPDATE adresse SET geolocalisation=ST_GeographyFromText('SRID=4326;POINT($d.$e $b.$c)') WHERE id=$idAdresse;" 
+		python python/validePointGeolocalisation.py $b > logfile.log 
+		read latitude < logfile.log 
+		python python/validePointGeolocalisation.py $c > logfile.log 
+		read longitude < logfile.log 
+		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "UPDATE adresse SET geolocalisation=ST_GeographyFromText('SRID=4326;POINT(longitude latitude)') WHERE id=$idAdresse;" 
 	fi
 done < ${UNIPIKGENPATH}/pic_unicef/developpement/implementation/ressourcesNettoyees/geolocalisation.csv
 

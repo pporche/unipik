@@ -86,8 +86,8 @@ php_executable: "php"
 
 ansistrano_allow_anonymous_stats: no
 
-#ansistrano_deploy_from: /home/mmartinsbaltar/repository/pic_unicef/developpement/implementation/symfony/ #"{{ playbook_dir }}/../my-app"
-ansistrano_deploy_from: "{{ playbook_dir }}/../pic_unicef/developpement/implementation/symfony/"
+ansistrano_deploy_from: "../../../implementation/symfony"
+#ansistrano_deploy_from: "{{ playbook_dir }}/../pic_unicef/developpement/implementation/symfony/"
 ansistrano_deploy_to: "/var/www/my-app"
 ansistrano_keep_releases: 3
 # There seems to be an issue with rsync in vagrant

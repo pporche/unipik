@@ -740,10 +740,13 @@
                     </table>
 
                 </div>
-                <button type="button" class="btn btn-danger" onclick="deleteInterventions()">Supprimer</button>
-                {% if liste %}
-                    <button type="button" class="btn btn-primary" onclick="imprimer()">Imprimer</button>
-                {% endif %}
+
+                <div class="buttons">
+                    <button type="button" class="btn btn-danger" onclick="deleteInterventions()">Supprimer</button>
+                    {% if liste %}
+                        <button type="button" class="btn btn-primary" onclick="imprimer()">Imprimer</button>
+                    {% endif %}
+                    </div>
                 <div class="col-md-12 text-center">
                     {% set pathReq = [] %}
                     {% if app.request.query.get('recherche_avancee') is not null %}

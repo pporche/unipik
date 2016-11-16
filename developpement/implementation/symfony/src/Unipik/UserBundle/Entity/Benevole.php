@@ -25,6 +25,11 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 /**
  * Benevole
  *
+ * @ORM\Entity(repositoryClass="Unipik\UserBundle\Entity\BenevoleRepository")
+ * @ORM\Table(name="benevole",                                                indexes={@ORM\Index(name="IDX_B4014FDB4DE7DC5C", columns={"adresse_id"})})
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
+ *
  * @category None
  * @package  UserBundle
  * @author   Unipik <unipik.unicef@laposte.com>

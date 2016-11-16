@@ -21,6 +21,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Departement
  *
+ * @ORM\Table(name="departement")
+ * @ORM\Entity
+ *
  * @category None
  * @package  ArchitectureBundle
  * @author   Unipik <unipik.unicef@laposte.com>

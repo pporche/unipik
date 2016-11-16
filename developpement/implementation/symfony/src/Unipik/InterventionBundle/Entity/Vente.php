@@ -20,6 +20,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * L'entity qui gère les ventes
  *
+ * @ORM\Table(name="vente", indexes={@ORM\Index(name="IDX_888A2A4C8EAE3863", columns={"intervention_id"}), @ORM\Index(name="IDX_888A2A4CFF631228", columns={"etablissement_id"})})
+ * @ORM\Entity
+ *
  * @category None
  * @package  InterventionBundle
  * @author   Unipik <unipik.unicef@laposte.com>

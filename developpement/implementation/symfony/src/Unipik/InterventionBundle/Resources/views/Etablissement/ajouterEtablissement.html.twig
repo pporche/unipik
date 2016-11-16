@@ -218,9 +218,6 @@
                 });
         });
 
-    </script>
-
-    <script type="text/javascript">
         $(document).ready(function() {
 
             $('#typeEnseignement').show();
@@ -359,6 +356,24 @@
             $(".form-group:eq(7)").fadeOut("slow").prop("disabled",true);
             $(".form-group:eq(5)").fadeOut("slow").prop("disabled",true);
         }
+
+        $(":submit").on('click', function( e ) {
+            e.preventDefault();
+            var adresse = $("#etablissement_adresse_adresse").val() + ' ' + $('#etablissement_adresse_codePostal').val() + ' ' + $("#etablissement_adresse_ville").val();
+            var geolocalisation = '';
+            $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+adresse, function (data) {
+                switch (data.length) {
+                    case 0 :
+                        break;
+                    case 1 :
+                        geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
+                        break;
+                    default : //Si plusieurs résultats, faire choisir l'utilisateur.
+                }
+                $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+                $(".etablissement_admin_add").submit();
+            });
+        });
     </script>
 {% endblock %}
 

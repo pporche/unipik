@@ -4,6 +4,14 @@
  * User: florian
  * Date: 19/04/16
  * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\ArchitectureBundle\Controller;
@@ -22,9 +30,11 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 /**
  * Manage the architecture actions
  *
- * Class ArchitectureController
- *
- * @package Unipik\ArchitectureBundle\Controller
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class ArchitectureController extends Controller {
 
@@ -59,12 +69,21 @@ class ArchitectureController extends Controller {
     }
 
     /**
+     * Action no JS
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function noJSAction(){
         return $this->render('::noJavascript.html.twig');
     }
 
+    /**
+     * Autocomplete de la ville
+     *
+     * @param Request $request La requete
+     *
+     * @return JsonResponse
+     */
     public function autocompleteVilleAction(Request $request) {
 
         $names = array();
@@ -89,6 +108,13 @@ class ArchitectureController extends Controller {
         return $response;
     }
 
+    /**
+     * Autocomplete du code postal
+     *
+     * @param Request $request La requete
+     *
+     * @return JsonResponse
+     */
     public function autocompleteCodeAction(Request $request) {
 
         $codes = array();
@@ -112,8 +138,15 @@ class ArchitectureController extends Controller {
         return $response;
     }
 
+    /**
+     * Action code postal
+     *
+     * @param Request $request La requete
+     *
+     * @return JsonResponse|Response
+     */
     public function codePostalAction(Request $request) {
-        if($request->isXmlHttpRequest()) {
+        if ($request->isXmlHttpRequest()) {
 
             $nomVille = $request->get('ville');
 
@@ -130,8 +163,15 @@ class ArchitectureController extends Controller {
         return new Response();
     }
 
+    /**
+     * Action ville
+     *
+     * @param Request $request La requete
+     *
+     * @return JsonResponse|Response
+     */
     public function villeAction(Request $request) {
-        if($request->isXmlHttpRequest()) {
+        if ($request->isXmlHttpRequest()) {
 
             $code = $request->get('codePostal');
 

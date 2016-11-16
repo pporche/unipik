@@ -296,7 +296,19 @@
                                             {{ intervention.nbPersonne }}
                                         {% endif %}</em>
                                 </div>
+                                <div class="col-sm-5 col-xs-12  col-md-4">
+                                    <dt>
+                                        <span class="glyphicon glyphicon-home"></span> &nbsp Adresse :
+                                    </dt>
+                                </div>
+                                <div class="col-sm-5 col-xs-offset-1 col-xs-11 col-md-7">
+                                        <div>{{  intervention.etablissement.adresse.adresse }}</div>
+                                        {%  if intervention.etablissement.adresse.complement %}
+                                        <div>{{ intervention.etablissement.adresse.complement }}</div>
+                                        {% endif %}
+                                       <div> {{ intervention.etablissement.adresse.codePostal.code }} {{ intervention.etablissement.adresse.ville.nom }}</div>
 
+                                </div>
                                 {{ block('contenu') }}
                             </dl>
                         </div>

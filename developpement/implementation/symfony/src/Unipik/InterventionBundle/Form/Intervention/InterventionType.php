@@ -26,6 +26,7 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
 use Unipik\ArchitectureBundle\Form\NiveauThemeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
  * Le type intervention
@@ -87,7 +88,7 @@ class InterventionType extends AbstractFieldsetType {
                 'widget' => 'single_text',
 
                 // do not render as type="date", to avoid HTML5 date pickers
-                'html5' => false,
+                'html5' => true,
 
                 // add a class that can be selected in JavaScript
                 'attr' => ['class' => 'js-datepicker'],
@@ -95,7 +96,7 @@ class InterventionType extends AbstractFieldsetType {
                 'required' => false
                 )
             )
-            ->add('lieu', TextType::class)
+            ->add('lieu', TextType::class, array('required' => false))
             ->add('materielDispoPlaidoyer', MaterielType::class, array('label' => 'Matériel'))
             ->add('materiauxFrimousse', MaterielFrimousseType::class, array('label' => 'Matériel frimousse'))
             ->add('nbPersonne', IntegerType::class, array('label' => 'Participants'))
@@ -106,7 +107,8 @@ class InterventionType extends AbstractFieldsetType {
                 //                'input'  => 'string',
                 'widget' => 'choice',
                 )
-            );
+            )
+            ->add('description', TextareaType::class, array('required' => false));
     }
 
     /**

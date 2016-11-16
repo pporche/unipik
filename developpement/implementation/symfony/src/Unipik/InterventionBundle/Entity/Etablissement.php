@@ -24,6 +24,10 @@ use Unipik\InterventionBundle\Form\EtablissementType;
 /**
  * L'entity qui gère les etablissements
  *
+ * @ORM\Entity(repositoryClass="Unipik\InterventionBundle\Entity\EtablissementRepository")
+ * @ORM\Table(name="etablissement",                                                        indexes={@ORM\Index(name="IDX_20FD592C4DE7DC5C", columns={"adresse_id"})})
+ * @ORM\Entity
+ *
  * @category None
  * @package  InterventionBundle
  * @author   Unipik <unipik.unicef@laposte.com>

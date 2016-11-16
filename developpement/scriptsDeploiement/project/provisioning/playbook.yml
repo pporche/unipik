@@ -1,0 +1,37 @@
+---
+- hosts: integ
+  gather_facts: yes
+
+  vars_files:
+    - vars/main.yml
+
+  pre_tasks:
+#    - name: install setfacl support #needed for copy
+#      become: yes
+#      apt: pkg=acl
+    - file: path=/var/www state=directory mode=0755 owner=www-data group=www-data
+
+  roles:
+#    - geerlingguy.firewall
+    - geerlingguy.git
+    - ANXS.postgresql-ubuntu
+    - geerlingguy.apache
+    - geerlingguy.php
+    - role: raul782.ansistrano-symfony-deploy
+    - pgsql-restore
+#    - ledongthuc.npm
+#    - ledongthuc.bower
+#    - martinmicunda.bower
+#    - manala.npm
+    - geerlingguy.nodejs
+
+  post_tasks:
+    - npm: name=bower global=yes
+    - bower: path=/var/www/my-app/current state=latest
+    - file: path=/var/www/my-app/current/var state=directory mode=0777 recurse=yes
+    - name: reload apache
+      service:
+        name: apache2
+        state: reloaded
+
+  environment: "{{proxy_env}}"

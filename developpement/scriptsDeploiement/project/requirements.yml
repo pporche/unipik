@@ -1,0 +1,11 @@
+---
+- src: geerlingguy.firewall
+- src: geerlingguy.git
+- src: ANXS.postgresql
+- src: geerlingguy.apache
+- src: geerlingguy.php
+#- src: raul782.ansistrano-symfony-deploy
+#- src: ledongthuc.bower
+- src: manala.nodejs
+- src: manala.npm
+- src: geerlingguy.nodejs

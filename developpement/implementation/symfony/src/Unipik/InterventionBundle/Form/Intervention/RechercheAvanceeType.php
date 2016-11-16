@@ -59,6 +59,15 @@ class RechercheAvanceeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
+        $distanceChoiceType = array('required' => false,
+            'choices' => [
+                5 => 5,
+                10 => 10,
+                20 => 20,
+                50 => 50,
+                100 => 100
+            ]);
+
         $optionChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
             'choices' => [
                 'Toutes' => '',
@@ -185,12 +194,7 @@ class RechercheAvanceeType extends AbstractType
                 )
             )
             ->add('ville', VilleType::class, array('required' => false))
-            ->add(
-                'distance', CheckboxType::class, array(
-                    'label' => 'Moins de 10km de mon domicile',
-                    'required' => false
-                )
-            );
+            ->add('distance', ChoiceType::class, $distanceChoiceType);
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
     }

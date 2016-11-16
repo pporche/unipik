@@ -1,0 +1,13 @@
+---
+- hosts: pre-prod
+  gather_facts: yes
+  become: yes
+
+  vars_files:
+    - vars/main.yml
+    - vars/pre-prod.yml
+
+  roles:
+    - pgsql-restore
+
+  environment: "{{proxy_env}}"

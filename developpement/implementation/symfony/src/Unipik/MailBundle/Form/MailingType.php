@@ -4,6 +4,14 @@
  * User: mmartinsbaltar
  * Date: 03/05/16
  * Time: 15:14
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\MailBundle\Form;
@@ -21,7 +29,11 @@ use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTran
 /**
  * Class MailingType
  *
- * @package Unipik\MailBundle\Form
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class MailingType extends AbstractFieldsetType {
     private $entityManager;
@@ -35,8 +47,12 @@ class MailingType extends AbstractFieldsetType {
     }
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * Le formbuilder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $typeInstitute = array( 'expanded' => true, 'multiple' => true, 'label' => "Type d'établissement",
@@ -84,6 +100,8 @@ class MailingType extends AbstractFieldsetType {
 
     /**
      * {@inheritdoc}
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'mailing';

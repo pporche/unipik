@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: scolomies
- * Date: 09/11/16
- * Time: 10:43
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\MailBundle\Command;
@@ -12,16 +20,38 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class MailTaskCommand
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class MailTaskCommand extends ContainerAwareCommand {
     private $output;
     private $limitEmails = 4;
 
+    /**
+     * Configurer les options
+     *
+     * @return void
+     */
     protected function configure() {
         $this
             ->setName('mailInstituteTask:run')
             ->setDescription('Cron task for delayed mailing');
     }
 
+    /**
+     * Executer
+     *
+     * @param InputInterface  $input  L'entree
+     * @param OutputInterface $output La sortie
+     *
+     * @return void
+     */
     protected function execute(InputInterface $input, OutputInterface $output) {
         $this->output = $output;
 
@@ -54,6 +84,7 @@ class MailTaskCommand extends ContainerAwareCommand {
             $mailTask->setLastRun(new \DateTime());
 
             foreach($etablissements as $etablissement) {
+
                 $type = !empty($etablissement->getTypeEnseignement()) ? $etablissement->getTypeEnseignement() : $etablissement->getTypeCentre();
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Intervention de l\'unicef')
@@ -92,4 +123,28 @@ class MailTaskCommand extends ContainerAwareCommand {
         $output->writeln('<comment>Done!</comment>');
         $em->flush();
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Commande run
+     *
+     * @param string $string La commande
+     *
+     * @return bool
+     */
+    private function _runCommand($string) {
+        // Split namespace and arguments
+        $namespace = split(' ', $string)[0];
+
+        // Set input
+        $command = $this->getApplication()->find($namespace);
+        $input = new StringInput($string);
+
+        // Send all output to the console
+        $returnCode = $command->run($input, $this->output);
+
+        return $returnCode != 0;
+    }
+>>>>>>> ebff829c82175d71d7f8232fb37e27d549342d27
 }

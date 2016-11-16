@@ -11,7 +11,10 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
     <link rel="stylesheet" href="{{ asset("vendor/chosen/chosen.css") }}"/>
-    <link rel="stylesheet" href="{{ asset('vendor/leaflet-geosearch/src/css/l.geosearch.css') }}" />
+    <link rel="stylesheet" href="{{ asset("vendor/leaflet-geosearch/src/css/l.geosearch.css") }}" />
+    <script src="{{ asset("vendor/pdfmake/build/pdfmake.min.js") }}"></script>
+    <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
+
     <style>
         #recherche_avancee_ville {
             text-transform: uppercase;
@@ -256,6 +259,83 @@
 
         });
 
+        function imprimer(){
+            var docDefinition = {
+                pageOrientation: 'landscape',
+                content: [
+                    {text: "Liste d'interventions", style: ['header']},
+                    {text: " ", style: ['header']},
+                    {
+                        style: 'table',
+                        table: {
+                            headerRows: 1,
+                            widths: [80, 50,50, 60, 80, 50, 80, 50, 50, 80],
+                            body: [
+                                [
+                                    { text: 'Lieu', style: 'tableHeader' },
+                                    { text: 'Date de la demande', style: 'tableHeader'},
+                                    { text: 'Plage de dates', style: 'tableHeader'},
+                                    { text: 'Type', style: 'tableHeader' },
+                                    { text: 'Établissement', style: 'tableHeader' },
+                                    { text: 'Classe', style: 'tableHeader' },
+                                    { text: 'Thème', style: 'tableHeader' },
+                                    { text: 'Statut', style: 'tableHeader' },
+                                    { text: 'Contact', style: 'tableHeader' },
+                                    { text: 'Email contact', style: 'tableHeader' }
+                                ],
+                                {% for intervention in liste %}
+                                    [ "{{ intervention.etablissement.adresse.ville.nom }}",
+                                        "{{ intervention.demande.dateDemande|date('d-m-Y') }}",
+                                         "PLAGE DE DATES",
+                                        {% if intervention.plaidoyer %}
+                                        "Action éducative",
+                                        {% elseif intervention.frimousse %}
+                                        "Frimousse",
+                                        {% else %}
+                                        "Autre intervention",
+                                        {% endif %}
+                                        "{{ intervention.etablissement.nom | capitalize }}",
+                                        {% if intervention.plaidoyer %}
+                                        "{{ intervention.niveauTheme.niveau | capitalize }}",
+                                        {% elseif intervention.frimousse %}
+                                        "{{ intervention.niveauFrimousse | capitalize }}",
+                                        {% else %}
+                                        "-",
+                                        {% endif %}
+                                        {% if intervention.plaidoyer %}
+                                        "{{ intervention.niveauTheme.theme | capitalize }}",
+                                        {% else %}
+                                        "-",
+                                        {% endif %}
+                                        {% if intervention.realisee %}
+                                        "Réalisée",
+                                        {% elseif intervention.benevole %}
+                                        "{{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}",
+                                        {% else %}
+                                        " ",
+                                        {% endif %}
+                                        "{{ intervention.demande.contact.prenom | capitalize }} {{ intervention.demande.contact.nom | capitalize }}",
+                                        "{{ intervention.demande.contact.email }}"
+                                    ],
+                                {% endfor %}
+                            ]
+                        },
+                        layout: 'lightHorizontalLines'
+                    }
+                ],
+                styles: {
+                    header: {
+                        fontSize: 13,
+                        alignment: 'center'
+                    },
+                    table: {
+                        fontSize: 7,
+                        alignment: 'left'
+                    }
+                }
+            };
+            pdfMake.createPdf(docDefinition).open();
+        }
 
         function deleteInterventions() {
             var conf = confirm('Souhaitez vous vraiment supprimer ces interventions ?');
@@ -412,7 +492,7 @@
                 <br/>
                 <h5> Ville :</h5>
                 {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
-                <h5> Distance :</h5>
+                <h5> Distance de mon domicile en km :</h5>
                 {{ form_widget(form.distance) }}
                 <div>
                     <input id="submit" type="submit" value="OK" class="btn btn-primary"/>
@@ -445,6 +525,11 @@
             {% endif %}
             :
         </h2>
+
+        {% if liste %}
+            <button type="button" class="btn btn-primary" onclick="imprimer()" style="float: right; margin-right: 20px;"><span class="glyphicon glyphicon-print"></span></button><br>
+        {% endif %}
+
         {% if onlyMyIntervention %}
             {% set vue =  'intervention_self' %}
         {% elseif  onlyNonAttribues %}
@@ -576,13 +661,13 @@
                                     <td data-title="DateDemande">{{ intervention.demande.dateDemande|date("d-m-Y") }}</td>
                                 {% endif %}
                                 <td data-title="Type">
-                                    {% if intervention.plaidoyer %}
-                                        Action éducative
-                                    {% elseif intervention.frimousse %}
-                                        Frimousse
-                                    {% else %}
-                                        Autre intervention
-                                    {% endif %}
+                                        {% if intervention.plaidoyer %}
+                                            Action éducative
+                                        {% elseif intervention.frimousse %}
+                                            Frimousse
+                                        {% else %}
+                                            Autre intervention
+                                        {% endif %}
                                 </td>
                                 <td data-title="Etablissement">
                                     <a href="{{ path('etablissement_view', {'id':intervention.etablissement.id}) }}">
@@ -669,7 +754,10 @@
                     </table>
 
                 </div>
-                <button type="button" class="btn btn-danger" onclick="deleteInterventions()">Supprimer</button>
+
+                <div class="buttons">
+                    <button type="button" class="btn btn-danger" onclick="deleteInterventions()">Supprimer</button>
+                    </div>
                 <div class="col-md-12 text-center">
                     {% set pathReq = [] %}
                     {% if app.request.query.get('recherche_avancee') is not null %}
@@ -705,7 +793,7 @@
                     <h5>Bénévole : {{ form_widget(formAttr.benevole) }}</h5>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
                     <button id="attribuerModal" type="button" class="btn btn-primary"
                             onclick="attributeInterventionAdmin(this, $('#attribution_benevole').val(), $('#attribution_idIntervention').val())">
                         Attribuer

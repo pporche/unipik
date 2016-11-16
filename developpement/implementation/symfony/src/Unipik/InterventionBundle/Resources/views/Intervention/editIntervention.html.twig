@@ -9,7 +9,15 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
     <script>
+        $('#intervention_dateIntervention').datepicker({
+            format: 'dd-mm-yyyy',
+            language: 'fr',
+            startDate: 'today',
+            autoclose: true
+        });
         {% if intervention.plaidoyer %}
         {% autoescape false %}
         var materiauxPlaidoyer = {{ materiaux }};
@@ -205,6 +213,28 @@
             }
         });
 
+        $(document).ready(compareDateAvailable);
+        $("#intervention_dateIntervention").on("change",compareDateAvailable);
+
+        function compareDateAvailable(){
+            console.log("je passe");
+            var dateBegin = new Date();
+            var dateEnd = new Date();
+            var dateWanted = formatDate(document.getElementsByClassName("js-datepicker")[0].value);
+            if(!(dateWanted >= dateBegin && dateWanted <= dateEnd)){
+                $("#checkDate").removeClass("alert-info").addClass("alert-warning");
+            }else{
+                $("#checkDate").removeClass("alert-warning").addClass("alert-info");
+            }
+
+            document.getElementById("checkDate").textContent = "L'établissement a une plage de disponibilité entre le " + dateBegin.toLocaleDateString() +" et le " +dateEnd.toLocaleDateString();
+        }
+
+        function formatDate(date){
+            var tabDate = date.split('-');
+            return new Date(tabDate[2],(tabDate[1]-1),tabDate[0]);
+        }
+
     </script>
 {% endblock %}
 
@@ -259,16 +289,53 @@
 
     </style>
 
-    <h1>Modification d'une intervention</h1>
+    {% if intervention.plaidoyer %}
+        <h1>Modification d'une  action éducative</h1>
+    {% elseif intervention.frimousse %}
+        <h1>Modification d'une frimousse</h1>
+    {% else %}
+        <h1>Modification d'une intervention</h1>
+    {% endif %}
+
     <hr>
     <div class='well'>
 
         {{ form_start(form, {'method': 'post', 'action': path('intervention_edit', {'id': intervention.id}), 'attr': {'class': 'intervention_edit'}}) }}
         {{ form_label(form.dateIntervention, 'Date d\'intervention') }}
         {{ form_widget(form.dateIntervention, {'value' : intervention.dateIntervention|date('d-m-Y') }) }}
+        <p class="alert" id="checkDate" style="margin-bottom: 2.5%; margin-top : 2.5%"></p>
+        {{ form_label(form.heure) }}
+        {{ form_widget(form.heure) }}
+        <p style="margin-bottom: 2.5%; margin-top : 2.5%">
+            {% if demande.momentsVoulus %}
+            Ici figurent les moments voulus pour l'intervention :
+        <table class="table table-striped table-bordered table-hover table-condensed">
+            <thead style="text-align: center">
+            <th>Moments Voulus</th>
+            <th>Moments à éviter</th>
+            </thead>
+            <td>
+                <ul>
+                    {% for moment in demande.momentsVoulus %}
+                        <li>{{ moment.jour|capitalize }} {{ moment.moment }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    {% for moment in demande.momentsAEviter %}
+                        <li>{{ moment.jour|capitalize }} {{ moment.moment }}</li>
+                    {% endfor %}
+
+                </ul>
+            </td>
+            {% endif %}
+            </td>
+        </table>
+        </p>
         {{ form_label(form.lieu, 'Lieu') }}
         {{ form_widget(form.lieu, {'value' : intervention.lieu}) }}
-        {{ form_label(form.nbPersonne, 'Nb de participants') }}
+        {{ form_label(form.nbPersonne, 'Nombre de participants') }}
         {{ form_widget(form.nbPersonne, {'value' : intervention.nbPersonne}) }}
         {% if intervention.plaidoyer %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
@@ -288,6 +355,12 @@
             {{ form_widget(form.niveauTheme, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveau, {'attr': {'style': 'display: none'}}) }}
         {% endif %}
+        {% if not intervention.plaidoyer and not intervention.frimousse  %}
+        {{ form_label(form.description, 'Description') }}
+        {{ form_widget(form.description, {'value' : intervention.description}) }}
+        {% endif %}
+
+
         {{ form_widget(form) }}
         <div>
             <input type="submit" value="Modifier" class="btn btn-primary"/>

@@ -1,5 +1,19 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
+
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,15 +21,23 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Pays
  *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ *
  * @ORM\Table(name="pays")
  * @ORM\Entity
  */
 class Pays
 {
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                             type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="pays_id_seq", allocationSize=1, initialValue=1)
@@ -23,6 +45,8 @@ class Pays
     private $id;
 
     /**
+     * Le nom
+     *
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
@@ -44,7 +68,7 @@ class Pays
     /**
      * Set nom
      *
-     * @param string $nom
+     * @param string $nom Le nom
      *
      * @return Pays
      */

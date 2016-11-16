@@ -26,6 +26,9 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 /**
  * Contact
  *
+ * @ORM\Table(name="contact")
+ * @ORM\Entity
+ *
  * @category None
  * @package  UserBundle
  * @author   Unipik <unipik.unicef@laposte.com>

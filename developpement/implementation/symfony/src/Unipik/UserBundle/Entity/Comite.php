@@ -21,6 +21,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Comite
  *
+ * @ORM\Table(name="comite")
+ * @ORM\Entity
+ *
  * @category None
  * @package  UserBundle
  * @author   Unipik <unipik.unicef@laposte.com>

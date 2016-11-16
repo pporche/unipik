@@ -21,6 +21,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Projet
  *
+ * @ORM\Table(name="projet")
+ * @ORM\Entity
+ *
  * @category None
  * @package  UserBundle
  * @author   Unipik <unipik.unicef@laposte.com>

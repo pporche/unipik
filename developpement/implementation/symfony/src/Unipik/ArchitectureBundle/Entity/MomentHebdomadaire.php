@@ -21,6 +21,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * MomentHebdomadaire
  *
+ * @ORM\Table(name="moment_hebdomadaire")
+ * @ORM\Entity
+ *
  * @category None
  * @package  ArchitectureBundle
  * @author   Unipik <unipik.unicef@laposte.com>

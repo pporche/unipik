@@ -220,11 +220,7 @@
             console.log("je passe");
             var dateBegin = new Date();
             var dateEnd = new Date();
-            console.log(dateBegin);
-            console.log(dateEnd);
-            var dateWanted = document.getElementsByClassName("js-datepicker")[0].value;
-            dateWanted = dateWanted.split('-');
-            dateWanted = new Date(dateWanted[2],(dateWanted[1]-1),dateWanted[0]);
+            var dateWanted = formatDate(document.getElementsByClassName("js-datepicker")[0].value);
             if(!(dateWanted >= dateBegin && dateWanted <= dateEnd)){
                 $("#checkDate").removeClass("alert-info").addClass("alert-warning");
             }else{
@@ -232,6 +228,11 @@
             }
 
             document.getElementById("checkDate").textContent = "L'établissement a une plage de disponibilité entre le " + dateBegin.toLocaleDateString() +" et le " +dateEnd.toLocaleDateString();
+        }
+
+        function formatDate(date){
+            var tabDate = date.split('-');
+            return new Date(tabDate[2],(tabDate[1]-1),tabDate[0]);
         }
 
     </script>
@@ -307,7 +308,7 @@
         {{ form_widget(form.heure) }}
         <p style="margin-bottom: 2.5%; margin-top : 2.5%">
             {% if demande.momentsVoulus %}
-            Ici figureront les moments voulus pour l'intervention :
+            Ici figurent les moments voulus pour l'intervention :
         <table class="table table-striped table-bordered table-hover table-condensed">
             <thead style="text-align: center">
             <th>Moments Voulus</th>

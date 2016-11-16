@@ -1,0 +1,40 @@
+---
+- hosts: pre-prod
+  gather_facts: yes
+  become: yes
+
+  vars_files:
+    - vars/main.yml
+    - vars/pre-prod.yml
+    - vars/prod-secrets.yml
+
+  pre_tasks:
+#    - name: install setfacl support #needed for copy
+#      become: yes
+#      apt: pkg=acl
+#    - file: path=/var/www state=directory mode=0755 owner=www-data group=www-data
+
+  roles:
+#    - geerlingguy.firewall
+    - geerlingguy.git
+    - ANXS.postgresql
+    - geerlingguy.apache
+    - geerlingguy.php
+    - role: raul782.ansistrano-symfony-deploy
+#      become_user: www-data
+#      become: yes
+#      sudo: no
+    - pgsql-restore
+#    - ledongthuc.npm
+#    - ledongthuc.bower
+#    - martinmicunda.bower
+#    - manala.npm
+    - geerlingguy.nodejs
+    - parameters
+
+  post_tasks:
+    - npm: name=bower global=yes
+    - bower: path=/var/www/my-app/current state=latest
+    - file: path=/var/www/my-app/current/var state=directory mode=0777 recurse=yes
+
+  environment: "{{proxy_env}}"

@@ -1,4 +1,18 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 
 namespace Unipik\MailBundle\DependencyInjection;
 
@@ -8,12 +22,18 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * This is the class that validates and merges configuration from your app/config files.
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/configuration.html}
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     http://symfony.com/doc/current/cookbook/bundles/configuration.html
  */
-class Configuration implements ConfigurationInterface
-{
+class Configuration implements ConfigurationInterface {
+
     /**
      * {@inheritdoc}
+     *
+     * @return TreeBuilder
      */
     public function getConfigTreeBuilder()
     {

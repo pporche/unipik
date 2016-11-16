@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: mmartinsbaltar
- * Date: 03/05/16
- * Time: 15:41
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form\Intervention;
@@ -13,12 +21,24 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
 
+/**
+ * Le type theme
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class ThemesType extends AbstractType {
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     * form builder
+     * Form builder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $optionChoiceType = array( 'label' => false, 'attr' => ['class' => 'form-theme-pld'],
@@ -43,8 +63,10 @@ class ThemesType extends AbstractType {
     }
 
     /**
-     * renvoie themes
+     * Renvoie themes
      * {@inheritdoc}
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'themes';

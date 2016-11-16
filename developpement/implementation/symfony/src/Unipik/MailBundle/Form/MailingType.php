@@ -4,6 +4,14 @@
  * User: mmartinsbaltar
  * Date: 03/05/16
  * Time: 15:14
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\MailBundle\Form;
@@ -16,16 +24,24 @@ use Symfony\Component\Form\AbstractType;
 /**
  * Class MailingType
  *
- * @package Unipik\MailBundle\Form
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class MailingType extends AbstractType {
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * Le formbuilder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
-        $type = array( 'expanded' => true, 'multiple' => false, 'label' => "Type d'établissement",
+        $typeInstitute = array( 'expanded' => true, 'multiple' => true, 'label' => "Type d'établissement",
             'choices' => [
                 'Maternelle' => 'maternelle',
                 'Elémentaire' => 'elementaire',
@@ -34,12 +50,23 @@ class MailingType extends AbstractType {
                 'Supérieur' => 'superieur'
             ],);
 
+        $typeCenter = array( 'expanded' => true, 'multiple' => true, 'label' => "Type de centre de loisirs",
+            'choices' => [
+                'Maternelle' => 'maternelle',
+                'Elémentaire' => 'elementaire',
+                'Adolescent' => 'college',
+                'autre' => 'autre'
+            ],);
+
         $builder
-            ->add('type', ChoiceType::class, $type);
+            ->add('typeInstitute', ChoiceType::class, $typeInstitute)
+            ->add('typeCenter', ChoiceType::class, $typeCenter);
     }
 
     /**
      * {@inheritdoc}
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'mailing';

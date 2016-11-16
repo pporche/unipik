@@ -1,0 +1,112 @@
+---
+ntp_timezone: America/Chicago
+
+firewall_allowed_tcp_ports:
+  - "22"
+  - "25"
+  - "80"
+  - "443"
+  - "8080"
+
+firewall_forwarded_tcp_ports:
+  - { src: "80", dest: "8080" }  
+  - { src: "443", dest: "8433" }
+
+
+firewall_forwarded_udp_ports: []
+
+proxy_env:
+  http_proxy:  http://cachemad.insa-rouen.fr:3128
+  https_proxy: http://cachemad.insa-rouen.fr:3128
+  NO_PROXY:    localhost,127.0.0.1,insa-rouen.fr
+
+jenkins_http_port: 8080
+
+
+# postgresql settings
+postgresql_version: 9.3
+postgresql_encoding: 'UTF-8'
+postgresql_locale: 'fr_FR.UTF-8'
+
+postgresql_admin_user: "postgres"
+postgresql_default_auth_method: "trust"
+
+postgresql_cluster_name: "main"
+postgresql_cluster_reset: false
+
+postgresql_ext_install_postgis: yes
+
+
+postgresql_users:
+  - name: unipik
+    pass: $2a$08$KLgBBJcozWTYXaBz3tyPSuwmFHKRVjkjC4M9mAiNySWQm364m7ZFu
+    encrypted: yes
+
+postgresql_databases:
+  - name: bdunicef
+    owner: unipik
+
+
+# Apache
+
+apache_listen_port: 80
+
+apache_remove_default_vhost: true
+
+apache_vhosts:
+  - servername: "integ.unipik.insa-rouen.fr"
+    serveralias: "www.integ.unipik.insa-rouen.fr"
+    documentroot: "/var/www/my-app/current/web"
+#    extra_parameters: |
+#      RewriteCond %{HTTP_HOST} ^www.example.com$ [NC]
+#      RewriteRule ^(.*)$ http://example.com/$1 [R=301,L
+
+# PHP
+
+php_packages: 
+  - php #php5
+  - php-xml
+  - php-curl
+  - php-pgsql #php5-pgsql
+  - libapache2-mod-php #libapache2-mod-php5
+
+php_conf_paths:
+  - /etc/php5/fpm
+  - /etc/php5/apache2
+  - /etc/php5/cli
+php_extension_conf_paths:
+  - /etc/php5/fpm/conf.d
+  - /etc/php5/apache2/conf.d
+  - /etc/php5/cli/conf.d
+
+php_webserver_daemon: "apache2"
+php_executable: "php"
+
+# symfony deployment
+
+ansistrano_allow_anonymous_stats: no
+
+ansistrano_deploy_from: "../../../implementation/symfony/"
+#ansistrano_deploy_from: "{{ playbook_dir }}/../pic_unicef/developpement/implementation/symfony/"
+ansistrano_deploy_to: "/var/www/my-app"
+ansistrano_keep_releases: 3
+# There seems to be an issue with rsync in vagrant
+ansistrano_deploy_via: copy #rsync
+
+#ansistrano_rsync_set_remote_user: www-data
+
+symfony_console_path: 'bin/console'
+symfony_run_assetic_dump: false
+
+# bower
+
+#bower_packages:
+#- path: /var/www/my-app/current
+
+#nodejs_version: latest
+#bower_version: latest
+
+manala_npm_packages:
+  - name:     bower
+    version:  latest
+    global:   true

@@ -224,6 +224,7 @@
 
 
 {% block navbarButtons %}
+
     <ul class="nav navbar-nav ">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <li>
@@ -236,7 +237,7 @@
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="{{ path('etablissement_list') }}">Liste</a></li>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <li><a href="{{ path('etablissement_admin_add') }}" class="bg-danger"><em
+                        <li><a href="{{ path('etablissement_admin_add') }}" class="adminOnly"><em
                                         class="glyphicon glyphicon-alert"></em> Ajouter</a></li>
                     {% endif %}
                     <li><a href="{{ path('etablissements_mailing') }}">Mailing</a></li>
@@ -256,9 +257,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bénévoles<span
                                 class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ path('user_admin_list') }}" class="bg-danger"><em
+                        <li><a href="{{ path('user_admin_list') }}" class="adminOnly"><em
                                         class="glyphicon glyphicon-alert"></em> Liste</a></li>
-                        <li><a href="{{ path('fos_user_admin_register') }}" class="bg-danger"><em
+                        <li><a href="{{ path('fos_user_admin_register') }}" class="adminOnly"><em
                                         class="glyphicon glyphicon-alert"></em> Ajouter</a></li>
                     </ul>
                 </li>
@@ -267,8 +268,8 @@
         {% include "ArchitectureBundle::boutonDeConnexion.html.twig" %}
         <ul class="nav navbar-right navbar-nav ">
             {% if is_granted('ROLE_ADMIN') %}
-                <li class="dropdown" style="background-color:red;" >
-                    <a style="background-color:red;"><em class="glyphicon glyphicon-alert"></em> Espace Admin</a>
+                <li class="dropdown adminOnly" >
+                    <a class="adminOnly"><em class="glyphicon glyphicon-alert"></em> Espace Admin</a>
                 </li>
             {% endif %}
         </ul>

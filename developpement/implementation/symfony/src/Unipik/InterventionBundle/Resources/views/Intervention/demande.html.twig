@@ -43,8 +43,10 @@
         {{ form_widget(form.Etablissement.typeAutreEtablissement) }}
     {% endif %}
 
-    <h5> UAI :</h5>
-    {{ form_widget(form.Etablissement.uai) }}
+    <div id="uai">
+        <h5> UAI :</h5>
+        {{ form_widget(form.Etablissement.uai) }}
+    </div>
 
     <h5> Adresse* :</h5>
     {{ form_widget(form.Etablissement.adresse.adresse) }}
@@ -318,7 +320,7 @@
         var villes = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+            //prefetch: '{{ path("architecture_ville_autocomplete") }}',
             remote: {
                 url: '{{ path("architecture_ville_autocomplete") }}?term=%QUERY',
                 wildcard: '%QUERY'
@@ -334,7 +336,7 @@
         var codesPostaux = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+            //prefetch: '{{ path("architecture_ville_autocomplete") }}',
             remote: {
                 url: '{{ path("architecture_code_autocomplete") }}?term=%QUERY',
                 wildcard: '%QUERY'
@@ -644,86 +646,6 @@
 
         }
 
-
-        $(document).ready(function () {
-
-            // Pré-cocher les jours de l'intervention en "Jour à éviter"
-            $('#demande_jour_lundi_3').prop("checked", true);
-            $('#demande_jour_mardi_3').prop("checked", true);
-            $('#demande_jour_mercredi_3').prop("checked", true);
-            $('#demande_jour_jeudi_3').prop("checked", true);
-            $('#demande_jour_vendredi_3').prop("checked", true);
-
-            $("label:contains(\"Informations de l'établissement\")").hide();
-
-            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-            var $container = $('div#demande_Intervention');
-
-            // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
-            var index = $container.find(':input').length;
-
-            // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-            $('#add_intervention').click(function (e) {
-                addIntervention($container);
-                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-                return false;
-            });
-
-            if (index == 0) {
-                addIntervention($container);
-            } else {
-                $container.children('div').each(function () {
-                    addDeleteLink($(this));
-                });
-            }
-
-            function addIntervention($container) {
-                var template = $container.attr('data-prototype')
-                    .replace(/__name__label__/g, '')
-                    .replace(/__name__/g, index);
-                // On crée un objet jquery qui contient ce template
-                var $prototype = $(template);
-
-                addDeleteLink($prototype);
-
-                $container.append($prototype);
-                $("#add_intervention").appendTo($container);
-                treatmentSelect();
-                displayThemeIntervention();
-                displayTypeIntervention($($prototype).children().find("select").get(0));
-                $($prototype).children().find("select").on("change", displayTypeIntervention);
-                // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-                index++;
-                $(':input[type="number"]').attr("min", 0).keyup(function () {
-                    this.value = this.value.replace(/[^0-9\.]/g, '');
-                });
-            }
-
-
-            function addDeleteLink($prototype) {
-                // Création du lien
-                var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
-                // Ajout du lien
-                $prototype.append($deleteLink);
-                // Ajout du listener sur le clic du lien pour effectivement
-                $deleteLink.click(function (e) {
-                    $prototype.remove();
-                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-                    return false;
-                });
-            }
-
-        });
-        var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
-        var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
-        var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
-        $(instituteElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
-        $(centerElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
-        $(othersElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
-        document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change', displayThemeIntervention);
-    </script>
-
-    <script type="application/javascript">
         document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change', function (e) {
             var uaiElt = $(document.getElementById('demande_Etablissement_uai').parentNode.parentNode).get(0);
             switch (e.target.value) {
@@ -745,31 +667,31 @@
         });
 
         var typeInstitute = {{ typEnseignement | raw }} ;
-        var uaiElt = $(document.getElementById('demande_Etablissement_uai').parentNode.parentNode).get(0);
+
         if (typeInstitute.hasOwnProperty('autre')) {
-            console.log(typeInstitute);
             $('#demande_Etablissement_TypeGeneral').val('autre').prop('disabled', true);
             level = typeInstitute['autre'];
             $("input[name='demande[Etablissement][typeAutreEtablissement]']").prop("readonly", true).attr("onClick", "return false");
             $("input[name='demande[Etablissement][typeAutreEtablissement]'][value='" + level + "']").prop("checked", true);
             keepOther();
-            $(uaiElt).fadeOut("fast");
             $('#demande_Etablissement_uai').val('');
+            $('#uai').show();
         } else if (typeInstitute.hasOwnProperty('centre')) {
             $('#demande_Etablissement_TypeGeneral').val('centre').prop('disabled', true);
             level = typeInstitute['centre'];
             $("input[name='demande[Etablissement][typeCentre]']").prop("readonly", true).attr("onClick", "return false");
             $("input[name='demande[Etablissement][typeCentre]'][value='" + level + "']").prop("checked", true);
             keepCenter();
-            $(uaiElt).fadeOut("fast");
             $('#demande_Etablissement_uai').val('');
+            $('#uai').hide();
         } else if (typeInstitute.hasOwnProperty('ens')) {
             $('#demande_Etablissement_TypeGeneral').val('ens').prop('disabled', true);
             level = typeInstitute['ens'];
             $("input[name='demande[Etablissement][typeEnseignement]']").prop("readonly", true).attr("onClick", "return false");
             $("input[name='demande[Etablissement][typeEnseignement]'][value='" + level + "']").prop("checked", true);
             keepInstitute();
-            $(uaiElt).fadeIn("fast");
+            $('#demande_Etablissement_uai').val('');
+            $('#uai').show();
         }
 
         function keepInstitute() {
@@ -984,11 +906,74 @@
 
         //$('.date-pick').datepicker();
 
-    </script>
-
-    <script type="text/javascript">
 
         $(document).ready(function () {
+
+            // Pré-cocher les jours de l'intervention en "Jour à éviter"
+            $('#demande_jour_lundi_3').prop("checked", true);
+            $('#demande_jour_mardi_3').prop("checked", true);
+            $('#demande_jour_mercredi_3').prop("checked", true);
+            $('#demande_jour_jeudi_3').prop("checked", true);
+            $('#demande_jour_vendredi_3').prop("checked", true);
+
+            $("label:contains(\"Informations de l'établissement\")").hide();
+
+            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+            var $container_intervention = $('div#demande_Intervention');
+
+            // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+            var index_intervention = $container_intervention.find(':input').length;
+
+            // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+            $('#add_intervention').click(function (e) {
+                addIntervention($container_intervention);
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+
+            if (index_intervention == 0) {
+                addIntervention($container_intervention);
+            } else {
+                $container_intervention.children('div').each(function () {
+                    addDeleteLink($(this));
+                });
+            }
+
+            function addIntervention($container) {
+                var template = $container.attr('data-prototype')
+                    .replace(/__name__label__/g, '')
+                    .replace(/__name__/g, index_intervention);
+                // On crée un objet jquery qui contient ce template
+                var $prototype = $(template);
+
+                addDeleteLink($prototype);
+
+                $container.append($prototype);
+                $("#add_intervention").appendTo($container);
+                treatmentSelect();
+                displayThemeIntervention();
+                displayTypeIntervention($($prototype).children().find("select").get(0));
+                $($prototype).children().find("select").on("change", displayTypeIntervention);
+                // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+                index_intervention++;
+                $(':input[type="number"]').attr("min", 0).keyup(function () {
+                    this.value = this.value.replace(/[^0-9\.]/g, '');
+                });
+            }
+
+
+            function addDeleteLink($prototype) {
+                // Création du lien
+                var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+                // Ajout du lien
+                $prototype.append($deleteLink);
+                // Ajout du listener sur le clic du lien pour effectivement
+                $deleteLink.click(function (e) {
+                    $prototype.remove();
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                });
+            }
 
             var addInterElt = document.createElement('a');
             addInterElt.id = 'add_email';
@@ -999,25 +984,25 @@
             document.getElementById('demande_Etablissement_emails').appendChild(addInterElt);
 
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-            var $container = $('#demande_Etablissement_emails');
+            var $container_email = $('#demande_Etablissement_emails');
 
             // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
-            var index = $container.find(':input').length;
+            var index_email = $container_email.find(':input').length;
 
             // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
             $('#add_email').click(function (e) {
-                addEmail($container);
+                addEmail($container_email);
 
                 e.preventDefault(); // évite qu'un # apparaisse dans l'URL
                 return false;
             });
 
             // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-            if (index == 0) {
-                addEmail($container);
+            if (index_email == 0) {
+                addEmail($container_email);
             } else {
                 // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
-                $container.children('div').each(function () {
+                $container_email.children('div').each(function () {
                     addDeleteLink($(this));
                 });
             }
@@ -1029,7 +1014,7 @@
                 // - le texte "__name__" qu'il contient par le numéro du champ
                 var template = $container.attr('data-prototype')
                     .replace(/__name__label__/g, '')
-                    .replace(/__name__/g, index);
+                    .replace(/__name__/g, index_email);
 
                 // On crée un objet jquery qui contient ce template
                 var $prototype = $(template);
@@ -1041,7 +1026,7 @@
                 $container.append($prototype);
                 $("#add_email").appendTo($container);
                 // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-                index++;
+                index_email++;
             }
 
             // La fonction qui ajoute un lien de suppression d'une catégorie
@@ -1060,8 +1045,15 @@
                     return false;
                 });
             }
-        });
 
+        });
+        var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
+        var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
+        var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
+        $(instituteElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
+        $(centerElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
+        $(othersElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
+        document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change', displayThemeIntervention);
     </script>
 
 {% endblock %}

@@ -1,5 +1,18 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: julie
+ * Date: 13/05/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 namespace Unipik\InterventionBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -8,18 +21,26 @@ use Doctrine\ORM\Mapping as ORM;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
 /**
- * Intervention
+ * L'entity qui gère les interventions
  *
  * @ORM\Entity(repositoryClass="Unipik\InterventionBundle\Entity\InterventionRepository")
  * @ORM\Table(name="intervention",                                                        indexes={@ORM\Index(name="IDX_D11814ABE004B434", columns={"niveau_theme_id"}), @ORM\Index(name="IDX_D11814ABFF631228", columns={"etablissement_id"}), @ORM\Index(name="IDX_D11814ABD61C3573", columns={"comite_id"}), @ORM\Index(name="IDX_D11814ABE77B7C09", columns={"benevole_id"}), @ORM\Index(name="IDX_D11814AB80E95E18", columns={"demande_id"})})
  * @ORM\Entity
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class Intervention
 {
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                                     type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="intervention_id_seq", allocationSize=1, initialValue=1)
@@ -27,6 +48,8 @@ class Intervention
     public $id;
 
     /**
+     * La date d'intervention
+     *
      * @var \DateTime
      *
      * @ORM\Column(name="date_intervention", type="date", nullable=true)
@@ -34,6 +57,8 @@ class Intervention
     public $dateIntervention;
 
     /**
+     * Le lieu
+     *
      * @var string
      *
      * @ORM\Column(name="lieu", type="string", length=100, nullable=true)
@@ -41,6 +66,8 @@ class Intervention
     public $lieu;
 
     /**
+     * Le nombre de personnes
+     *
      * @var integer
      *
      * @ORM\Column(name="nb_personne", type="integer", nullable=false)
@@ -48,6 +75,8 @@ class Intervention
     public $nbPersonne;
 
     /**
+     * Les remarques
+     *
      * @var string
      *
      * @ORM\Column(name="remarques", type="string", length=500 nullable=true)
@@ -55,6 +84,8 @@ class Intervention
     public $remarques;
 
     /**
+     * L'heure
+     *
      * @var string
      *
      * @ORM\Column(name="heure", type="string", length=30, nullable=true)
@@ -62,6 +93,8 @@ class Intervention
     public $heure;
 
     /**
+     * Realisee ou non
+     *
      * @var boolean
      *
      * @ORM\Column(name="realisee", type="boolean", nullable=false)
@@ -70,14 +103,18 @@ class Intervention
 
 
     /**
+     * Le materiel disponible en cas de plaidoyer
+     *
      * @var string
      *
      * @ORM\Column(name="materiel_dispo_plaidoyer", type="string", length=500, nullable=true)
-     * @example : '{(enceinte},(autre)'
+     * @example                                     : '{(enceinte},(autre)'
      */
     public $materielDispoPlaidoyer;
 
     /**
+     * Le niveau en cas de frimousse
+     *
      * @var string
      *
      * @ORM\Column(name="niveau_frimousse", type="string", length=30, nullable=true)
@@ -85,6 +122,8 @@ class Intervention
     public $niveauFrimousse;
 
     /**
+     * Le materiel disponible en cas de plaidoyer
+     *
      * @var string
      *
      * @ORM\Column(name="materiaux_frimousse", type="string", length=500, nullable=true)
@@ -92,6 +131,8 @@ class Intervention
     public $materiauxFrimousse;
 
     /**
+     * La description
+     *
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=500, nullable=true)
@@ -99,51 +140,61 @@ class Intervention
     public $description;
 
     /**
+     * Les themes en fonction du niveau
+     *
      * @var \Unipik\ArchitectureBundle\Entity\NiveauTheme
      *
      * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\NiveauTheme", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="niveau_theme_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="niveau_theme_id",                                     referencedColumnName="id")
      * })
      */
     public $niveauTheme;
 
     /**
+     * L'etablissement
+     *
      * @var \Unipik\InterventionBundle\Entity\Etablissement
      *
      * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="etablissement_id",                                      referencedColumnName="id")
      * })
      */
     public $etablissement;
 
     /**
+     * Le comite
+     *
      * @var \Unipik\UserBundle\Entity\Comite
      *
      * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Comite", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="comite_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="comite_id",                              referencedColumnName="id")
      * })
      */
     public $comite;
 
     /**
+     * Le benevole
+     *
      * @var \Unipik\UserBundle\Entity\Benevole
      *
      * @ORM\ManyToOne(targetEntity="Unipik\UserBundle\Entity\Benevole", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="benevole_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="benevole_id",                              referencedColumnName="id")
      * })
      */
     public $benevole;
 
     /**
+     * La demande associee
+     *
      * @var \Unipik\InterventionBundle\Entity\Demande
      *
      * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Demande", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="demande_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="demande_id",                                      referencedColumnName="id")
      * })
      */
     public $demande;
@@ -163,7 +214,7 @@ class Intervention
     /**
      * Set date d intervention
      *
-     * @param \DateTime $date
+     * @param \DateTime $date La date
      *
      * @return Intervention
      */
@@ -187,7 +238,7 @@ class Intervention
     /**
      * Set lieu
      *
-     * @param string $lieu
+     * @param string $lieu Le lieu
      *
      * @return Intervention
      */
@@ -211,7 +262,7 @@ class Intervention
     /**
      * Set nbPersonne
      *
-     * @param integer $nbPersonne
+     * @param integer $nbPersonne Le nombre de personnes
      *
      * @return Intervention
      */
@@ -235,7 +286,7 @@ class Intervention
     /**
      * Set remarques
      *
-     * @param string $remarques
+     * @param string $remarques Les remarques
      *
      * @return Intervention
      */
@@ -259,7 +310,7 @@ class Intervention
     /**
      * Set heure
      *
-     * @param string $heure
+     * @param string $heure L'heure
      *
      * @return Intervention
      */
@@ -285,7 +336,7 @@ class Intervention
     /**
      * Set realisee
      *
-     * @param boolean $realisee
+     * @param boolean $realisee Realisee ou non
      *
      * @return Intervention
      */
@@ -298,7 +349,7 @@ class Intervention
 
 
     /**
-     * isRealisee
+     * Is Realisee
      *
      * @return boolean
      */
@@ -311,11 +362,11 @@ class Intervention
     /**
      * Set materielDispoPlaidoyer
      *
-     * @deprecated
-     *
-     * @param string $materielDispoPlaidoyer
+     * @param string $materielDispoPlaidoyer Le materiel
      *
      * @return Intervention
+     *
+     * @deprecated
      */
     public function setMaterielDispoPlaidoyer($materielDispoPlaidoyer)
     {
@@ -327,7 +378,7 @@ class Intervention
     /**
      * Add materielDispoPlaidoyer
      *
-     * @param string|array $materielDispoPlaidoyer
+     * @param string|array $materielDispoPlaidoyer Le materiel
      *
      * @return Intervention
      */
@@ -343,7 +394,9 @@ class Intervention
     /**
      * Remove materielDispoPlaidoyer
      *
-     * @param string $materielDispoPlaidoyer
+     * @param string $materielDispoPlaidoyer Le materiel
+     *
+     * @return object
      */
     public function removeMaterielDispoPlaidoyer($materielDispoPlaidoyer) {
         $this->materielDispoPlaidoyer = ArrayConverter::removeFromPgArray(
@@ -366,6 +419,8 @@ class Intervention
     }
 
     /**
+     * Retire le materiel
+     *
      * @return $this
      */
     public function removeAllMaterielDispoPlaidoyer() {
@@ -376,7 +431,7 @@ class Intervention
     /**
      * Set niveauFrimousse
      *
-     * @param string $niveauFrimousse
+     * @param string $niveauFrimousse Le niveau en cas de frimousse
      *
      * @return Intervention
      */
@@ -400,11 +455,11 @@ class Intervention
     /**
      * Set materiauxFrimousse
      *
-     * @deprecated
-     *
-     * @param string $materiauxFrimousse
+     * @param string $materiauxFrimousse Les materiaux
      *
      * @return Intervention
+     *
+     * @deprecated
      */
     public function setMateriauxFrimousse($materiauxFrimousse)
     {
@@ -416,7 +471,7 @@ class Intervention
     /**
      * Add materiauxFrimousse
      *
-     * @param string|array $materiauxFrimousse
+     * @param string|array $materiau Matreriaux
      *
      * @return Intervention
      */
@@ -432,7 +487,9 @@ class Intervention
     /**
      * Remove materiauxFrimousse
      *
-     * @param string $materiauxFrimousse
+     * @param string $materiauxFrimousse Materiaux
+     *
+     * @return object
      */
     public function removeMateriauxFrimousse($materiauxFrimousse) {
         $this->materiauxFrimousse = ArrayConverter::removeFromPgArray(
@@ -455,6 +512,8 @@ class Intervention
     }
 
     /**
+     * Retire les materiaux
+     *
      * @return $this
      */
     public function removeAllMateriauxFrimousse() {
@@ -465,7 +524,7 @@ class Intervention
     /**
      * Set description
      *
-     * @param string $description
+     * @param string $description La description
      *
      * @return Intervention
      */
@@ -489,7 +548,7 @@ class Intervention
     /**
      * Set niveauTheme
      *
-     * @param \Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme
+     * @param \Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme Le theme en fonction du niveau
      *
      * @return Intervention
      */
@@ -513,7 +572,7 @@ class Intervention
     /**
      * Set etablissement
      *
-     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement L'etablissement
      *
      * @return Intervention
      */
@@ -537,7 +596,7 @@ class Intervention
     /**
      * Set comite
      *
-     * @param \Unipik\UserBundle\Entity\Comite $comite
+     * @param \Unipik\UserBundle\Entity\Comite $comite Le comite
      *
      * @return Intervention
      */
@@ -561,7 +620,7 @@ class Intervention
     /**
      * Set benevole
      *
-     * @param \Unipik\UserBundle\Entity\Benevole $benevole
+     * @param \Unipik\UserBundle\Entity\Benevole $benevole Le benevole
      *
      * @return Intervention
      */
@@ -585,7 +644,7 @@ class Intervention
     /**
      * Set demande
      *
-     * @param \Unipik\InterventionBundle\Entity\Demande $demande
+     * @param \Unipik\InterventionBundle\Entity\Demande $demande La demande
      *
      * @return Intervention
      */
@@ -607,7 +666,7 @@ class Intervention
     }
 
     /**
-     * isPlaidoyer
+     * Is Plaidoyer
      *
      * @return boolean
      */
@@ -618,7 +677,7 @@ class Intervention
     }
 
     /**
-     * isFrimousse
+     * Is Frimousse
      *
      * @return boolean
      */
@@ -629,7 +688,7 @@ class Intervention
     }
 
     /**
-     * isAutreIntervention
+     * Is Autre Intervention
      *
      * @return boolean
      */

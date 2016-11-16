@@ -50,13 +50,13 @@ class InterventionRepository extends EntityRepository {
      *
      * @return array
      */
-    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null/*, $distance = null*/ ){
+    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $mesInterventions, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null, $distance = null ){
 
         $qb = $this->createQueryBuilder('i');
 
         switch ($typeIntervention) {
         case "plaidoyer":
-            $this->getPlaidoyers($qb, $start, $end, $dateChecked);
+            $this->_getPlaidoyers($qb, $start, $end, $dateChecked);
             $qb
                 ->from('\Unipik\ArchitectureBundle\Entity\NiveauTheme', 'nt')
                 ->andWhere('i.niveauTheme = nt');
@@ -76,7 +76,7 @@ class InterventionRepository extends EntityRepository {
             }
             break;
         case "frimousse":
-            $this->getFrimousses($qb, $start, $end, $dateChecked);
+            $this->_getFrimousses($qb, $start, $end, $dateChecked);
             if ($niveauFrimousse) {
                 $req = "i.niveauFrimousse = '".$niveauFrimousse[0]."'";
                 for ($i=1;$i<count($niveauFrimousse);$i++) {
@@ -86,28 +86,28 @@ class InterventionRepository extends EntityRepository {
             }
             break;
         case "autreIntervention":
-            $this->getAutresInterventions($qb, $start, $end, $dateChecked);
+            $this->_getAutresInterventions($qb, $start, $end, $dateChecked);
             break;
         default:
-            $this->getToutesInterventions($qb, $start, $end, $dateChecked);
+            $this->_getToutesInterventions($qb, $start, $end, $dateChecked);
             break;
         }
 
         switch ($statut) {
         case "attribuees":
-            $this->getInterventionsAttribuees($qb);
+            $this->_whereInterventionIsAttribuee($qb);
             break;
         case "nonAttribuees":
-            $this->getInterventionsNonAttribuees($qb);
+            $this->_whereInterventionIsNotAttribuee($qb);
             break;
         case "realisees":
-            $this->getInterventionsRealisees($qb);
+            $this->_whereInterventionIsRealisee($qb);
             break;
         default:
             break;
         }
 
-        if ($user) {
+        if ($mesInterventions) {
             $qb->andWhere('i.benevole = :user')
                 ->setParameter('user', $user);
         }
@@ -143,12 +143,12 @@ class InterventionRepository extends EntityRepository {
         }
 
         if ($ville) {
-            $this->whereVilleIs($qb, $ville);
+            $this->_whereVilleIs($qb, $ville);
         }
 
-        //        if(isset($distance)){
-        //            $this->within10km($qb, $distance);
-        //        }
+        if(isset($distance)){
+            $this->_withinXkm($qb, $user, $distance);
+        }
 
         return $qb
             ->getQuery()
@@ -165,14 +165,14 @@ class InterventionRepository extends EntityRepository {
      *
      * @return QueryBuilder
      */
-    public function getFrimousses(QueryBuilder $qb, $start, $end, $datesChecked) {
+    private function _getFrimousses(QueryBuilder $qb, $start, $end, $datesChecked) {
 
         $qb
             ->where($qb->expr()->isNotNull('i.niveauFrimousse'))
             ->andWhere($qb->expr()->isNotNull('i.materiauxFrimousse'));
 
         if (!$datesChecked) {
-            $this->whereInterventionsBetweenDates($start, $end, $qb);
+            $this->_whereInterventionsBetweenDates($start, $end, $qb);
         }
     }
 
@@ -186,14 +186,14 @@ class InterventionRepository extends EntityRepository {
      *
      * @return QueryBuilder
      */
-    public function getPlaidoyers(QueryBuilder $qb, $start, $end, $datesChecked) {
+    private function _getPlaidoyers(QueryBuilder $qb, $start, $end, $datesChecked) {
 
         $qb
             ->where($qb->expr()->isNotNull('i.niveauTheme'))
             ->andWhere($qb->expr()->isNotNull('i.materielDispoPlaidoyer'));
 
         if (!$datesChecked) {
-            $this->whereInterventionsBetweenDates($start, $end, $qb);
+            $this->_whereInterventionsBetweenDates($start, $end, $qb);
         }
     }
 
@@ -207,13 +207,13 @@ class InterventionRepository extends EntityRepository {
      *
      * @return QueryBuilder
      */
-    public function getAutresInterventions(QueryBuilder $qb,$start,  $end , $datesChecked) {
+    private function _getAutresInterventions(QueryBuilder $qb,$start,  $end , $datesChecked) {
 
         $qb
             ->where($qb->expr()->isNotNull('i.description'));
 
         if (!$datesChecked) {
-            $this->whereInterventionsBetweenDates($start, $end, $qb);
+            $this->_whereInterventionsBetweenDates($start, $end, $qb);
         }
     }
 
@@ -228,10 +228,10 @@ class InterventionRepository extends EntityRepository {
      *
      * @return QueryBuilder
      */
-    public function getToutesInterventions(QueryBuilder $qb, $start,  $end , $datesChecked) {
+    private function _getToutesInterventions(QueryBuilder $qb, $start,  $end , $datesChecked) {
 
         if (!$datesChecked) {
-            $this->whereInterventionsBetweenDates($start, $end, $qb);
+            $this->_whereInterventionsBetweenDates($start, $end, $qb);
         }
 
     }
@@ -323,7 +323,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    public function whereInterventionsBetweenDates($start, $end, QueryBuilder $qb) {
+    private function _whereInterventionsBetweenDates($start, $end, QueryBuilder $qb) {
         $qb
             ->andWhere('i.dateIntervention BETWEEN :start AND :end')
             ->setParameter('start', $start)
@@ -337,7 +337,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    public function getInterventionsAttribuees(QueryBuilder $qb){
+    private function _whereInterventionIsAttribuee(QueryBuilder $qb){
         $qb
             ->andWhere($qb->expr()->isNotNull('i.benevole'))
             ->andWhere($qb->expr()->eq('i.realisee', $qb->expr()->literal(false)));
@@ -350,7 +350,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    public function getInterventionsNonAttribuees(QueryBuilder $qb){
+    private function _whereInterventionIsNotAttribuee(QueryBuilder $qb){
         $qb
             ->andWhere($qb->expr()->isNull('i.benevole'));
     }
@@ -362,7 +362,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    public function getInterventionsRealisees(QueryBuilder $qb){
+    private function _whereInterventionIsRealisee(QueryBuilder $qb){
         $qb
             ->andWhere($qb->expr()->isNotNull('i.benevole'))
             ->andWhere($qb->expr()->eq('i.realisee', $qb->expr()->literal(true)));
@@ -377,7 +377,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    public function whereVilleIs(QueryBuilder $qb, $ville) {
+    private function _whereVilleIs(QueryBuilder $qb, $ville) {
         $qb
             ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
             ->andWhere('i.etablissement = e')
@@ -387,26 +387,28 @@ class InterventionRepository extends EntityRepository {
             ->setParameter('ville', $ville);
     }
 
-//    /**
-//     * @param QueryBuilder $qb
-//     * @param $distance
-//     */
-//    public function within10km(QueryBuilder $qb, $distance) {
-//        $qb
-//            ->andWhere(
-//                $qb->expr()->eq(
-//                    sprintf("ST_Distance()"),
-//                    $qb->expr()->literal(true)
-//                )
-//            );
-//
-//
-//
-//            ->from('Unipik\InterventionBundle\Entity\Etablissement','e')
-//            ->andWhere('i.etablissement = e')
-//            ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
-//            ->andWhere('e.adresse = a')
-//            ->andWhere('a.ville = :ville')
-//            ->setParameter('ville',$ville);
-//    }
+    /**
+     * @param QueryBuilder $qb
+     * @param $user
+     * @param $distance
+     */
+    private function _withinXkm(QueryBuilder $qb, $user, $distance) {
+        $qb
+            ->from('Unipik\UserBundle\Entity\Benevole', 'b')
+            ->andWhere('b = :user')
+            ->setParameter('user', $user)
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'adresse')
+            ->andWhere('b.adresse = adresse')
+            ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
+            ->andWhere('i.etablissement = e')
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
+            ->andWhere('e.adresse = a')
+            ->andWhere(
+                $qb->expr()->eq(
+                    sprintf("STDWithin(a.geolocalisation, adresse.geolocalisation, :distance)"),
+                    $qb->expr()->literal(true)
+                )
+            )
+            ->setParameter('distance', $distance*1000);
+    }
 }

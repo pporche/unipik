@@ -24,7 +24,7 @@ Unipik\UserBundle\Entity\Projet:
             length: 500
             options:
                 fixed: false
-        type:
+        typeProjet:
             type: string
             nullable: false
             length: 30
@@ -45,13 +45,6 @@ Unipik\UserBundle\Entity\Projet:
             inversedBy: null
             joinTable: null
             orderBy: null
-        contact:
-            targetEntity: Contact
-            cascade: [ "persist" ]
-            fetch: LAZY
-            mappedBy: projet
-            inversedBy: null
-            joinTable: null
-            orderBy: null
+
 
     lifecycleCallbacks: {  }

@@ -17,9 +17,11 @@ class ComiteMock extends EntityMock
     /**
      * @return Comite
      */
-    public static function create() 
+    public static function create()
     {
         $c = new Comite();
+
+        $c->setNom("comité génial");
 
         return $c;
     }

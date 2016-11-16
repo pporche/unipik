@@ -61,11 +61,11 @@ class ContactTest extends  EntityTestCase
         $c->setRespoEtablissement(false);
         $this->assertEquals($c->isRespoEtablissement(), false);
 
-        $p = ProjetMock::create();
-        $c->addProjet($p);
-        $this->assertEquals($c->getProjet()[0], $p);
-        $c->removeProjet($p);
-        $this->assertEquals($c->getProjet()[0], null);
+//        $p = ProjetMock::create();
+//        $c->addProjet($p);
+//        $this->assertEquals($c->getProjet()[0], $p);
+//        $c->removeProjet($p);
+//        $this->assertEquals($c->getProjet()[0], null);
 
         $c->addTypeActivite("frimousses");
         $this->assertEquals($c->getTypeActivite()[0], "frimousses");
@@ -96,7 +96,6 @@ class ContactTest extends  EntityTestCase
             ->setTelFixe("0232010203")
             ->setTelPortable("0601020304")
             ->addTypeActivite("frimousses");
-        $c[3]->setRespoEtablissement(true);
         $c[3]->setRespoEtablissement(true);
 
         return [

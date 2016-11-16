@@ -1,6 +1,18 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
-// version 1.01 date 09/09/2016 auteur Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: julie
+ * Date: 23/05/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 namespace Unipik\InterventionBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -10,18 +22,26 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 use Unipik\InterventionBundle\Form\EtablissementType;
 
 /**
- * Etablissement
+ * L'entity qui gère les etablissements
  *
  * @ORM\Entity(repositoryClass="Unipik\InterventionBundle\Entity\EtablissementRepository")
  * @ORM\Table(name="etablissement",                                                        indexes={@ORM\Index(name="IDX_20FD592C4DE7DC5C", columns={"adresse_id"})})
  * @ORM\Entity
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class Etablissement
 {
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                                      type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="etablissement_id_seq", allocationSize=1, initialValue=1)
@@ -29,6 +49,8 @@ class Etablissement
     private $id;
 
     /**
+     * L'uai
+     *
      * @var string
      *
      * @ORM\Column(name="uai", type="string", length=100, nullable=true)
@@ -36,6 +58,8 @@ class Etablissement
     private $uai;
 
     /**
+     * Le nom
+     *
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=true)
@@ -43,6 +67,8 @@ class Etablissement
     private $nom;
 
     /**
+     * Le numero de tel fixe
+     *
      * @var string
      *
      * @ORM\Column(name="tel_fixe", type="string", length=30, nullable=true)
@@ -50,6 +76,8 @@ class Etablissement
     private $telFixe;
 
     /**
+     * Les emails
+     *
      * @var string
      *
      * @ORM\Column(name="emails", type="string", length=100, nullable=false)
@@ -57,6 +85,8 @@ class Etablissement
     private $emails;
 
     /**
+     * Le type en cas d'enseignement
+     *
      * @var string
      *
      * @ORM\Column(name="type_enseignement", type="string", length=30, nullable=true)
@@ -64,6 +94,8 @@ class Etablissement
     private $typeEnseignement;
 
     /**
+     * Le type en cas de centre
+     *
      * @var string
      *
      * @ORM\Column(name="type_centre", type="string", length=30, nullable=true)
@@ -71,6 +103,8 @@ class Etablissement
     private $typeCentre;
 
     /**
+     * Le type en cas d'autre etablissement
+     *
      * @var string
      *
      * @ORM\Column(name="type_autre_etablissement", type="string", length=30, nullable=true)
@@ -78,21 +112,26 @@ class Etablissement
     private $typeAutreEtablissement;
 
     /**
+     * L'adresse
+     *
      * @var \Unipik\ArchitectureBundle\Entity\Adresse
      *
      * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Adresse", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="adresse_id",                                      referencedColumnName="id")
      * })
      */
     private $adresse;
 
     /**
+     * Le contact
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Contact", mappedBy="etablissement", cascade={"persist"})
      */
     private $contact;
+
 
     /**
      * Constructor
@@ -116,7 +155,7 @@ class Etablissement
     /**
      * Set uai
      *
-     * @param string $uai
+     * @param string $uai L'uai
      *
      * @return Etablissement
      */
@@ -140,7 +179,7 @@ class Etablissement
     /**
      * Set nom
      *
-     * @param string $nom
+     * @param string $nom Le nom
      *
      * @return Etablissement
      */
@@ -164,7 +203,7 @@ class Etablissement
     /**
      * Set telFixe
      *
-     * @param string $telFixe
+     * @param string $telFixe Le tel fixe
      *
      * @return Etablissement
      */
@@ -188,7 +227,7 @@ class Etablissement
     /**
      * Set emails
      *
-     * @param string $emails
+     * @param string $emails Les emails
      *
      * @return Etablissement
      *
@@ -204,7 +243,7 @@ class Etablissement
     /**
      * Add email
      *
-     * @param string|array $email
+     * @param string|array $email L'email
      *
      * @return Etablissement
      */
@@ -220,7 +259,9 @@ class Etablissement
     /**
      * Remove email
      *
-     * @param string $email
+     * @param string $email L'email
+     *
+     * @return object
      */
     public function removeEmail($email) {
         $this->emails = ArrayConverter::removeFromPgArray(
@@ -255,7 +296,7 @@ class Etablissement
     /**
      * Set typeEnseignement
      *
-     * @param string $typeEnseignement
+     * @param string $typeEnseignement Type d'etablissement
      *
      * @return Etablissement
      */
@@ -279,7 +320,7 @@ class Etablissement
     /**
      * Set typeCentre
      *
-     * @param string $typeCentre
+     * @param string $typeCentre Type de centre
      *
      * @return Etablissement
      */
@@ -303,7 +344,7 @@ class Etablissement
     /**
      * Set typeAutreEtablissement
      *
-     * @param string $typeAutreEtablissement
+     * @param string $typeAutreEtablissement Type d'autre etablissement
      *
      * @return Etablissement
      */
@@ -327,7 +368,7 @@ class Etablissement
     /**
      * Set adresse
      *
-     * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse
+     * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse L'adresse
      *
      * @return Etablissement
      */
@@ -351,7 +392,7 @@ class Etablissement
     /**
      * Add contact
      *
-     * @param \Unipik\UserBundle\Entity\Contact $contact
+     * @param \Unipik\UserBundle\Entity\Contact $contact Le contact
      *
      * @return Etablissement
      */
@@ -365,7 +406,9 @@ class Etablissement
     /**
      * Remove contact
      *
-     * @param \Unipik\UserBundle\Entity\Contact $contact
+     * @param \Unipik\UserBundle\Entity\Contact $contact Le contact
+     *
+     * @return object
      */
     public function removeContact(\Unipik\UserBundle\Entity\Contact $contact)
     {
@@ -383,7 +426,7 @@ class Etablissement
     }
 
     /**
-     * isEnseignement
+     * Is Enseignement
      *
      * @return boolean
      */
@@ -394,7 +437,7 @@ class Etablissement
     }
 
     /**
-     * isCentreLoisirs
+     * Is Centre Loisirs
      *
      * @return boolean
      */
@@ -405,7 +448,7 @@ class Etablissement
     }
 
     /**
-     * isAutreEtablissement
+     * Is Autre Etablissement
      *
      * @return boolean
      */

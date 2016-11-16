@@ -4,6 +4,14 @@
  * User: matthieu
  * Date: 27/04/16
  * Time: 08:31
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\ArchitectureBundle\Form\Adresse;
@@ -24,7 +32,11 @@ use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTran
 /**
  * Class AdresseType
  *
- * @package Unipik\ArchitectureBundle\Form\Adresse
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class AdresseType extends AbstractFieldsetType {
     private $entityManager;
@@ -32,7 +44,9 @@ class AdresseType extends AbstractFieldsetType {
     /**
      * AdresseType constructor.
      *
-     * @param ObjectManager $entityManager
+     * @param ObjectManager $entityManager Le manager
+     *
+     * @return void
      */
     public function __construct(ObjectManager $entityManager)
     {
@@ -40,8 +54,12 @@ class AdresseType extends AbstractFieldsetType {
     }
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * Le form builder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
@@ -56,7 +74,11 @@ class AdresseType extends AbstractFieldsetType {
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * Configurer les options
+     *
+     * @param OptionsResolver $resolver Le resolver
+     *
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver) {
         parent::configureOptions($resolver);
@@ -71,6 +93,8 @@ class AdresseType extends AbstractFieldsetType {
 
     /**
      * {@inheritdoc}
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'adresse';

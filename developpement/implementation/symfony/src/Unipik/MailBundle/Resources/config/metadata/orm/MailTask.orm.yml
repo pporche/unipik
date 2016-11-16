@@ -1,0 +1,34 @@
+MailTask:
+    type: entity
+    repositoryClass: Unipik\MailBundle\Entity\MailTaskRepository
+    table: mailtask
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        interval:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        lastrun:
+            type: datetime
+            nullable: true
+        id_etablissement:
+            type: array
+        date_insert:
+            type: datetime
+            nullable: true
+    lifecycleCallbacks: {  }

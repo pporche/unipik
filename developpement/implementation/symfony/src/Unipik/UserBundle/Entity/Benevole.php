@@ -1,5 +1,19 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
+
 namespace Unipik\UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,13 +29,21 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
  * @ORM\Table(name="benevole",                                                indexes={@ORM\Index(name="IDX_B4014FDB4DE7DC5C", columns={"adresse_id"})})
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class Benevole extends BaseUser
 {
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                                 type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="benevole_id_seq", allocationSize=1, initialValue=1)
@@ -30,6 +52,8 @@ class Benevole extends BaseUser
 
 
     /**
+     * Le nom
+     *
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
@@ -37,6 +61,8 @@ class Benevole extends BaseUser
     protected $nom;
 
     /**
+     * Le prenom
+     *
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=100, nullable=true)
@@ -44,6 +70,8 @@ class Benevole extends BaseUser
     protected $prenom;
 
     /**
+     * Le telephone fixe
+     *
      * @var string
      *
      * @ORM\Column(name="tel_fixe", type="string", length=30, nullable=true)
@@ -51,6 +79,8 @@ class Benevole extends BaseUser
     protected $telFixe;
 
     /**
+     * Le telephone portable
+     *
      * @var string
      *
      * @ORM\Column(name="tel_portable", type="string", length=30, nullable=true)
@@ -59,58 +89,68 @@ class Benevole extends BaseUser
 
 
     /**
+     * Les activites potentielles
+     *
      * @var string
      *
      * @ORM\Column(name="activites_potentielles", type="string", length=500, nullable=true)
-     * @example : '{(frimousses),(plaidoyers),...}'
+     * @example                                   : '{(frimousses),(plaidoyers),...}'
      */
     protected $activitesPotentielles;
 
     /**
+     * Les responsabilites d'activite
+     *
      * @var string
      *
      * @ORM\Column(name="responsabilite_activite", type="string", length=500, nullable=true)
-     * @example : '{(frimousses),(admin_region),...}'
+     * @example                                    : '{(frimousses),(admin_region),...}'
      */
     protected $responsabiliteActivite;
 
 
     /**
+     * L'adresse
+     *
      * @var \Unipik\ArchitectureBundle\Entity\Adresse
      *
      * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Adresse", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="adresse_id", referencedColumnName="id" )
+     *   @ORM\JoinColumn(name="adresse_id",                                      referencedColumnName="id" )
      * })
-     * @ORM\Column(name="adresse_id", nullable=false)
+     * @ORM\Column(name="adresse_id",                                          nullable=false)
      */
     protected $adresse;
 
     /**
+     * Les projets
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Projet", inversedBy="benevole", cascade={"persist"})
      * @ORM\JoinTable(name="benevole_projet",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="benevole_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="benevole_id",                             referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="projet_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="projet_id",                               referencedColumnName="id")
      *   }
      * )
      */
     protected $projet;
 
     /**
+     * Le comite
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Comite", inversedBy="benevole", cascade={"persist"})
      * @ORM\JoinTable(name="benevole_comite",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="benevole_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="benevole_id",                             referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="comite_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="comite_id",                               referencedColumnName="id")
      *   }
      * )
      */
@@ -139,7 +179,7 @@ class Benevole extends BaseUser
     /**
      * Set nom
      *
-     * @param string $nom
+     * @param string $nom Le nom
      *
      * @return Benevole
      */
@@ -160,7 +200,7 @@ class Benevole extends BaseUser
     /**
      * Set prenom
      *
-     * @param string $prenom
+     * @param string $prenom Le prenom
      *
      * @return Benevole
      */
@@ -181,7 +221,7 @@ class Benevole extends BaseUser
     /**
      * Set telFixe
      *
-     * @param string $telFixe
+     * @param string $telFixe Le tel fixe
      *
      * @return Benevole
      */
@@ -202,7 +242,7 @@ class Benevole extends BaseUser
     /**
      * Set telPortable
      *
-     * @param string $telPortable
+     * @param string $telPortable Le tel portable
      *
      * @return Benevole
      */
@@ -223,7 +263,7 @@ class Benevole extends BaseUser
     /**
      * Set activitesPotentielles
      *
-     * @param string $activitesPotentielles
+     * @param string $activitesPotentielles Les activites potentielles
      *
      * @return Benevole
      *
@@ -237,7 +277,7 @@ class Benevole extends BaseUser
     /**
      * Add activitesPotentielles
      *
-     * @param string|array $activitesPotentielles
+     * @param string|array $activitesPotentielles Les activites potentielles
      *
      * @return Benevole
      */
@@ -253,7 +293,9 @@ class Benevole extends BaseUser
     /**
      * Remove activitesPotentielles
      *
-     * @param string $activitesPotentielles
+     * @param string $activitesPotentielles Les activites potentielles
+     *
+     * @return object
      */
     public function removeActivitesPotentielles($activitesPotentielles) {
         $this->activitesPotentielles = ArrayConverter::removeFromPgArray(
@@ -278,7 +320,7 @@ class Benevole extends BaseUser
     /**
      * Set responsabiliteActivite
      *
-     * @param string $responsabiliteActivite
+     * @param string $responsabiliteActivite Les responsabilites d'activites
      *
      * @return Benevole
      *
@@ -292,7 +334,9 @@ class Benevole extends BaseUser
     /**
      * Remove responsabiliteActivite
      *
-     * @param string $responsabiliteActivite
+     * @param string $responsabiliteActivite Les responsabilites d'activites
+     *
+     * @return object
      */
     public function removeResponsabiliteActive($responsabiliteActivite) {
         $this->responsabiliteActivite = ArrayConverter::removeFromPgArray(
@@ -317,7 +361,7 @@ class Benevole extends BaseUser
     /**
      * Add responsabiliteActivite
      *
-     * @param string|array $responsabilite
+     * @param string|array $responsabilite Les responsabilites d'activites
      *
      * @return Benevole
      */
@@ -344,7 +388,7 @@ class Benevole extends BaseUser
     /**
      * Set adresse
      *
-     * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse
+     * @param \Unipik\ArchitectureBundle\Entity\Adresse $adresse L'adresse
      *
      * @return Benevole
      */
@@ -365,7 +409,7 @@ class Benevole extends BaseUser
     /**
      * Add projet
      *
-     * @param \Unipik\UserBundle\Entity\Projet $projet
+     * @param \Unipik\UserBundle\Entity\Projet $projet Le projet
      *
      * @return Benevole
      */
@@ -377,7 +421,9 @@ class Benevole extends BaseUser
     /**
      * Remove projet
      *
-     * @param \Unipik\UserBundle\Entity\Projet $projet
+     * @param \Unipik\UserBundle\Entity\Projet $projet Le projet
+     *
+     * @return object
      */
     public function removeProjet(\Unipik\UserBundle\Entity\Projet $projet) {
         $this->projet->removeElement($projet);
@@ -395,7 +441,7 @@ class Benevole extends BaseUser
     /**
      * Add comite
      *
-     * @param \Unipik\UserBundle\Entity\Comite $comite
+     * @param \Unipik\UserBundle\Entity\Comite $comite Le comite
      *
      * @return Benevole
      */
@@ -407,7 +453,9 @@ class Benevole extends BaseUser
     /**
      * Remove comite
      *
-     * @param \Unipik\UserBundle\Entity\Comite $comite
+     * @param \Unipik\UserBundle\Entity\Comite $comite Le comite
+     *
+     * @return object
      */
     public function removeComite(\Unipik\UserBundle\Entity\Comite $comite) {
         $this->comite->removeElement($comite);

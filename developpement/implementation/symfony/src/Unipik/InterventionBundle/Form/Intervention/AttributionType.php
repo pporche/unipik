@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jpain01
- * Date: 05/10/16
- * Time: 18:24
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form\Intervention;
@@ -16,13 +24,22 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
 use Unipik\UserBundle\Form\DataTransformer\BenevoleTransformer;
 
+/**
+ * Le type attribution
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class AttributionType extends AbstractFieldsetType {
     private $entityManager;
 
     /**
      * AdresseType constructor.
      *
-     * @param ObjectManager $entityManager
+     * @param ObjectManager $entityManager Le manager
      */
     public function __construct(ObjectManager $entityManager)
     {
@@ -30,9 +47,12 @@ class AttributionType extends AbstractFieldsetType {
     }
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     * form builder
+     * Form builder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
@@ -44,7 +64,9 @@ class AttributionType extends AbstractFieldsetType {
 
     /**
      * {@inheritdoc}
-     * renvoie attribution
+     * Renvoie attribution
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'attribution';

@@ -1,4 +1,18 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 
 namespace Unipik\UserBundle\DependencyInjection;
 
@@ -10,12 +24,22 @@ use Symfony\Component\DependencyInjection\Loader;
 /**
  * This is the class that loads and manages your bundle configuration.
  *
- * @link
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class UserExtension extends Extension
 {
     /**
      * {@inheritdoc}
+     * Load la configuration
+     *
+     * @param array            $configs   Les configs
+     * @param ContainerBuilder $container Le container
+     *
+     * @return object
      */
     public function load(array $configs, ContainerBuilder $container)
     {

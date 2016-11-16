@@ -22,60 +22,60 @@ abstract class FormTestCase extends TypeTestCase
     protected static $testedType = \Symfony\Component\Form\AbstractType::class;
     protected static $testEntity = null;
 
-    protected function getExtensions()
-    {
-        $validator  = \Symfony\Component\Validator\Validation::createValidatorBuilder()
-            ->enableAnnotationMapping()
-            ->getValidator();
-
-        return array(
-            new ValidatorExtension($validator),
-        );
-    }
-
-    public function validDataProvider()
-    {
-        return array();
-    }
-
-    /**
-     * @dataProvider validDataProvider
-     */
-    public function testSubmitValidData($data, $entity)
-    {
-        $form = $this->factory->create(static::$testedType);
-
-        // submit the data to the form directly
-        $form->submit($data);
-
-        $this->assertTrue($form->isSynchronized());
-        $this->assertEquals($form->getData(), $entity);
-        $this->assertTrue($form->isValid());
-
-        $view = $form->createView();
-        $children = $view->children;
-
-        foreach (array_keys($data) as $key) {
-            $this->assertArrayHasKey($key, $children);
-        }
-    }
-
-    public function badDataProvider()
-    {
-        return array();
-    }
-
-    /**
-     * @dataProvider badDataProvider
-     */
-    public function testSubmitBadData($data)
-    {
-        $form = $this->factory->create(static::$testedType);
-
-        // submit the data to the form directly
-        $form->submit($data);
-
-        $this->assertTrue($form->isSynchronized());
-        $this->assertFalse($form->isValid());
-    }
+//    protected function getExtensions()
+//    {
+//        $validator  = \Symfony\Component\Validator\Validation::createValidatorBuilder()
+//            ->enableAnnotationMapping()
+//            ->getValidator();
+//
+//        return array(
+//            new ValidatorExtension($validator),
+//        );
+//    }
+//
+//    public function validDataProvider()
+//    {
+//        return array();
+//    }
+//
+//    /**
+//     * @dataProvider validDataProvider
+//     */
+//    public function testSubmitValidData($data, $entity)
+//    {
+//        $form = $this->factory->create(static::$testedType);
+//
+//        // submit the data to the form directly
+//        $form->submit($data);
+//
+//        $this->assertTrue($form->isSynchronized());
+//        $this->assertEquals($form->getData(), $entity);
+//        $this->assertTrue($form->isValid());
+//
+//        $view = $form->createView();
+//        $children = $view->children;
+//
+//        foreach (array_keys($data) as $key) {
+//            $this->assertArrayHasKey($key, $children);
+//        }
+//    }
+//
+//    public function badDataProvider()
+//    {
+//        return array();
+//    }
+//
+//    /**
+//     * @dataProvider badDataProvider
+//     */
+//    public function testSubmitBadData($data)
+//    {
+//        $form = $this->factory->create(static::$testedType);
+//
+//        // submit the data to the form directly
+//        $form->submit($data);
+//
+//        $this->assertTrue($form->isSynchronized());
+//        $this->assertFalse($form->isValid());
+//    }
 }

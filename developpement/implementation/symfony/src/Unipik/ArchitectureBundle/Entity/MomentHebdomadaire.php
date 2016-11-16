@@ -1,5 +1,19 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
+
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -9,13 +23,21 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="moment_hebdomadaire")
  * @ORM\Entity
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
-class MomentHebdomadaire
-{
+class MomentHebdomadaire {
+
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                                            type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="moment_hebdomadaire_id_seq", allocationSize=1, initialValue=1)
@@ -23,6 +45,8 @@ class MomentHebdomadaire
     private $id;
 
     /**
+     * Le jour
+     *
      * @var string
      *
      * @ORM\Column(name="jour", type="string", length=30, nullable=false)
@@ -30,6 +54,8 @@ class MomentHebdomadaire
     private $jour;
 
     /**
+     * Le moment
+     *
      * @var string
      *
      * @ORM\Column(name="moment", type="string", length=30, nullable=false)
@@ -37,30 +63,34 @@ class MomentHebdomadaire
     private $moment;
 
     /**
+     * Les moments voulus dans la demande
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Demande", inversedBy="momentsVoulus")
      * @ORM\JoinTable(name="demande_moments_voulus",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="moments_voulus", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="moments_voulus",                                   referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="demande_en_cours", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="demande_en_cours",                                 referencedColumnName="id")
      *   }
      * )
      */
     protected $demandeMomentsVoulus;
 
     /**
+     * Les moments a eviter dans la demande
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\Demande", inversedBy="momentsAEviter")
      * @ORM\JoinTable(name="demande_moments_a_eviter",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="moments_a_eviter", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="moments_a_eviter",                                 referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="demande", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="demande",                                          referencedColumnName="id")
      *   }
      * )
      */
@@ -89,7 +119,7 @@ class MomentHebdomadaire
     /**
      * Set jour
      *
-     * @param string $jour
+     * @param string $jour Le jour
      *
      * @return MomentHebdomadaire
      */
@@ -113,7 +143,7 @@ class MomentHebdomadaire
     /**
      * Set moment
      *
-     * @param string $moment
+     * @param string $moment Le moment
      *
      * @return MomentHebdomadaire
      */
@@ -133,4 +163,33 @@ class MomentHebdomadaire
     {
         return $this->moment;
     }
+
+    /**
+     * Add momentsVoulus
+     *
+     * @param \Unipik\InterventionBundle\Entity\Demande $demande La demande
+     *
+     * @return MomentHebdomadaire
+     */
+    public function addDemandeMomentsVoulus(\Unipik\InterventionBundle\Entity\Demande $demande)
+    {
+        $this->demandeMomentsVoulus[] = $demande;
+
+        return $this;
+    }
+
+    /**
+     * Add momentsAEviter
+     *
+     * @param \Unipik\InterventionBundle\Entity\Demande $demande La demande
+     *
+     * @return MomentHebdomadaire
+     */
+    public function addDemandeMomentsAEviter(\Unipik\InterventionBundle\Entity\Demande $demande)
+    {
+        $this->demandeMomentsAEviter[] = $demande;
+
+        return $this;
+    }
+
 }

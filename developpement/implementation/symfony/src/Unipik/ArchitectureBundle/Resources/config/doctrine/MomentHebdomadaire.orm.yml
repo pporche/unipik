@@ -1,6 +1,7 @@
 # version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 Unipik\ArchitectureBundle\Entity\MomentHebdomadaire:
     type: entity
+    repositoryClass: Unipik\ArchitectureBundle\Entity\MomentHebdomadaireRepository
     table: moment_hebdomadaire
     id:
         id:
@@ -27,7 +28,7 @@ Unipik\ArchitectureBundle\Entity\MomentHebdomadaire:
     manyToMany:
         demandeMomentsVoulus:
             targetEntity: Unipik\InterventionBundle\Entity\Demande
-            cascade: {  }
+            cascade: [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: momentsVoulus
@@ -44,7 +45,7 @@ Unipik\ArchitectureBundle\Entity\MomentHebdomadaire:
             orderBy: null
         demandeMomentsAEviter:
             targetEntity: Unipik\InterventionBundle\Entity\Demande
-            cascade: {  }
+            cascade:  [ "persist" ]
             fetch: LAZY
             mappedBy: null
             inversedBy: momentsAEviter

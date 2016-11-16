@@ -29,5 +29,9 @@
     - npm: name=bower global=yes
     - bower: path=/var/www/my-app/current state=latest
     - file: path=/var/www/my-app/current/var state=directory mode=0777 recurse=yes
+    - name: reload apache
+      service:
+        name: apache2
+        state: reloaded
 
   environment: "{{proxy_env}}"

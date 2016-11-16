@@ -7,10 +7,10 @@ firewall_allowed_tcp_ports:
   - "80"
   - "443"
   - "8080"
-  - "40776"
+  - "34690"
 
 firewall_allowed_udp_ports:
-  - "40776"
+  - "34690"
 
 firewall_forwarded_tcp_ports:
   - { src: "80", dest: "8080" }  

@@ -202,12 +202,13 @@ iframe{
 
 .buttons .btn{
     font-family: 'Ubuntu Condensed', sans-serif !important;
-    font-size: 18px !important;
+    font-size: 15px !important;
 }
 
 .btn{
-    margin-top: 15px;
+    margin-top: 16px;
     font-family: 'Ubuntu Condensed', sans-serif !important;
+    padding: 8px 15px;
 }
 
 .container{

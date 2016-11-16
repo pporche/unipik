@@ -1,4 +1,18 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 
 namespace Unipik\MailBundle\DependencyInjection;
 
@@ -10,12 +24,21 @@ use Symfony\Component\DependencyInjection\Loader;
 /**
  * This is the class that loads and manages your bundle configuration.
  *
- * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
 class MailExtension extends Extension
 {
     /**
      * {@inheritdoc}
+     *
+     * @param array            $configs   Les configurations
+     * @param ContainerBuilder $container Le container
+     *
+     * @return void
      */
     public function load(array $configs, ContainerBuilder $container)
     {

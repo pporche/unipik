@@ -1,5 +1,19 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
+
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,15 +21,23 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Region
  *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ *
  * @ORM\Table(name="region", indexes={@ORM\Index(name="IDX_F62F176A6E44244", columns={"pays_id"})})
  * @ORM\Entity
  */
-class Region
-{
+class Region {
+
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                               type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="region_id_seq", allocationSize=1, initialValue=1)
@@ -23,6 +45,8 @@ class Region
     private $id;
 
     /**
+     * Le nom
+     *
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
@@ -30,11 +54,13 @@ class Region
     private $nom;
 
     /**
+     * Le pays
+     *
      * @var \Unipik\ArchitectureBundle\Entity\Pays
      *
      * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Pays", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="pays_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="pays_id",                                      referencedColumnName="id")
      * })
      */
     private $pays;
@@ -54,7 +80,7 @@ class Region
     /**
      * Set nom
      *
-     * @param string $nom
+     * @param string $nom Le nom
      *
      * @return Region
      */
@@ -78,7 +104,7 @@ class Region
     /**
      * Set pays
      *
-     * @param \Unipik\ArchitectureBundle\Entity\Pays $pays
+     * @param \Unipik\ArchitectureBundle\Entity\Pays $pays Le pays
      *
      * @return Region
      */

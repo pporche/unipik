@@ -1,5 +1,19 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
+
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,15 +21,20 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * NiveauTheme
  *
- * @ORM\Table(name="niveau_theme")
- * @ORM\Entity
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class NiveauTheme
 {
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                                     type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="niveau_theme_id_seq", allocationSize=1, initialValue=1)
@@ -23,6 +42,8 @@ class NiveauTheme
     private $id;
 
     /**
+     * Le niveau
+     *
      * @var string
      *
      * @ORM\Column(name="niveau", type="string", length=30, nullable=true)
@@ -30,6 +51,8 @@ class NiveauTheme
     private $niveau;
 
     /**
+     * Le theme
+     *
      * @var string
      *
      * @ORM\Column(name="theme", type="string", length=100, nullable=true)
@@ -37,6 +60,8 @@ class NiveauTheme
     private $theme;
 
     /**
+     * Le comite
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Comite", mappedBy="niveauTheme", cascade={"persist"})
@@ -65,7 +90,7 @@ class NiveauTheme
     /**
      * Set niveau
      *
-     * @param string $niveau
+     * @param string $niveau Le niveau
      *
      * @return NiveauTheme
      */
@@ -89,7 +114,7 @@ class NiveauTheme
     /**
      * Set theme
      *
-     * @param string $theme
+     * @param string $theme Le theme
      *
      * @return NiveauTheme
      */
@@ -113,7 +138,7 @@ class NiveauTheme
     /**
      * Add comite
      *
-     * @param \Unipik\UserBundle\Entity\Comite $comite
+     * @param \Unipik\UserBundle\Entity\Comite $comite Le comite
      *
      * @return NiveauTheme
      */
@@ -127,7 +152,9 @@ class NiveauTheme
     /**
      * Remove comite
      *
-     * @param \Unipik\UserBundle\Entity\Comite $comite
+     * @param \Unipik\UserBundle\Entity\Comite $comite Le comite
+     *
+     * @return object
      */
     public function removeComite(\Unipik\UserBundle\Entity\Comite $comite)
     {

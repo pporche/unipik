@@ -11,6 +11,8 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <script src="{{ asset("vendor/pdfmake/build/pdfmake.min.js") }}"></script>
+    <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
     <style>
         #recherche_avancee_ville {
             text-transform: uppercase;
@@ -190,6 +192,56 @@
 
             $("#recherche_avancee_typeEtablissement").change(hide_or_show);
         });
+
+        function imprimer(){
+            var docDefinition = {
+                pageOrientation: 'landscape',
+                content: [
+                    {text: "Liste des établissements", style: ['header']},
+                    {text: " ", style: ['header']},
+                    {
+                        style: 'table',
+                        table: {
+                            headerRows: 1,
+                            widths: [80, 80, 150, 100, 100],
+                            body: [
+                                [{ text: 'Nom', style: 'tableHeader' },
+                                    { text: 'Type', style: 'tableHeader'},
+                                    { text: 'Téléphone', style: 'tableHeader' },
+                                    { text: 'Emails', style: 'tableHeader' },
+                                    { text: 'Adresse', style: 'tableHeader' }],
+                                {% for etablissement in liste %}
+                                [ "{{ etablissement.nom | capitalize}}",
+                                    {% if etablissement.centreLoisirs %}
+                                    "Centre de Loisirs"
+                                    {% elseif etablissement.autreEtablissement %}
+                                    "Autre établissement"
+                                    {% else %}
+                                    "Enseignement"
+                                    {% endif %},
+                                    " ",
+                                    " ",
+                                    "{{ etablissement.adresse.adresse }}, {{ etablissement.adresse.codePostal.code }} {{ etablissement.adresse.ville.nom }}"
+                                ],
+                                {% endfor %}
+                            ]
+                        },
+                        layout: 'lightHorizontalLines'
+                    }
+                ],
+                styles: {
+                    header: {
+                        fontSize: 13,
+                        alignment: 'center'
+                    },
+                    table: {
+                        fontSize: 9,
+                        alignment: 'left'
+                    }
+                }
+            };
+            pdfMake.createPdf(docDefinition).open();
+        }
 
         function deleteEtablissements() {
             var conf = confirm('Souhaitez vous vraiment supprimer ?');
@@ -387,14 +439,16 @@
                     </table>
 
                 </div>
-                {% if is_granted('ROLE_ADMIN') %}
+
                 <div class="buttons">
+                    {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('etablissement_admin_add') }}" class="btn btn-primary btn-success">
                         <em class="glyphicon glyphicon-alert"></em> Ajouter un établissement
                     </a>
                     <button type="button" class="btn btn-danger" onclick="deleteEtablissements()">Supprimer</button>
-                </div>
+
                 {% endif %}
+                </div>
                 <div class="col-md-12 text-center">
                     {% set pathReq = [] %}
                     {% if app.request.query.get('recherche_avancee') is not null %}

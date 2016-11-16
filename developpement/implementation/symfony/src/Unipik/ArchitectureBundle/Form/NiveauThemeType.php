@@ -1,4 +1,18 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 
 namespace Unipik\ArchitectureBundle\Form;
 
@@ -7,15 +21,27 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Unipik\InterventionBundle\Form\Intervention\ThemesType;
-class NiveauThemeType extends AbstractType
-{
+
+/**
+ * Manage the themes and niveaux
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
+class NiveauThemeType extends AbstractType {
+
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * Le formbuilder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-
-
         $choiceClasse = array('required' => false, 'label' => 'Année scolaire*', 'attr' => ['class' => 'form-annee-scolaire'],
             'choices' => [
                 'Petite Section' => 'petite section',
@@ -56,7 +82,11 @@ class NiveauThemeType extends AbstractType
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * Configure les options
+     *
+     * @param OptionsResolver $resolver Le resolver
+     *
+     * @return void
      */
     public function configureOptions(OptionsResolver $resolver)
     {

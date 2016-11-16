@@ -9,6 +9,9 @@
 
 {% block stylesheets %}
     {{ parent() }}
+
+    <script src="{{ asset("vendor/pdfmake/build/pdfmake.min.js") }}"></script>
+    <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
     <style>
         #recherche_avancee_ville {
             text-transform: uppercase;
@@ -96,8 +99,51 @@
             }
         }
 
-        //        formatMultiple("act");
-        //        formatMultiple("resp");
+        function imprimer(){
+            var docDefinition = {
+                pageOrientation: 'landscape',
+                content: [
+                    {text: "Liste de benevoles", style: ['header']},
+                    {text: " ", style: ['header']},
+                    {
+                        style: 'table',
+                        table: {
+                            headerRows: 1,
+                            widths: [80, 80, 150, 100, 100, 150],
+                            body: [
+                                [{ text: 'Nom', style: 'tableHeader' },
+                                    { text: 'Prenom', style: 'tableHeader'},
+                                    { text: 'Email', style: 'tableHeader' },
+                                    { text: 'Téléphone portable', style: 'tableHeader' },
+                                    { text: 'Téléphone fixe', style: 'tableHeader' },
+                                    { text: 'Adresse', style: 'tableHeader' }],
+                                {% for benevole in listBenevoles %}
+                                [ "{{ benevole.nom | capitalize}}",
+                                    "{{ benevole.prenom | capitalize }}",
+                                    "{{ benevole.email }}",
+                                    "{{ benevole.telFixe }}",
+                                    "{{ benevole.telPortable }}",
+                                    "{{ benevole.adresse.getAdresse() }}, {{ benevole.adresse.codePostal.code }} {{ benevole.adresse.ville.nom }}"
+                                ],
+                                {% endfor %}
+                            ]
+                        },
+                        layout: 'lightHorizontalLines'
+                    }
+                ],
+                styles: {
+                    header: {
+                        fontSize: 13,
+                        alignment: 'center'
+                    },
+                    table: {
+                        fontSize: 9,
+                        alignment: 'left'
+                    }
+                }
+            };
+            pdfMake.createPdf(docDefinition).open();
+        }
 
         function deleteBenevoles() {
             var conf = confirm('Souhaitez vous vraiment supprimer ces bénévoles ?');
@@ -484,7 +530,11 @@
                 <em class="glyphicon glyphicon-alert"></em> Ajouter un bénévole
             </a>
             <button type="button" class="btn btn-danger" onclick="deleteBenevoles()">Supprimer</button>
+            {% if listBenevoles %}
+                <button type="button" class="btn btn-primary" onclick="imprimer()">Imprimer</button>
+            {% endif %}
         </div>
+
     {% endif %}
 
     <div class="col-md-12 text-center">

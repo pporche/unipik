@@ -22,6 +22,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Adresse
  *
+ * @ORM\Table(name="adresse")
+ * @ORM\Entity
+ *
  * @category None
  * @package  ArchitectureBundle
  * @author   Unipik <unipik.unicef@laposte.com>

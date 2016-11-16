@@ -21,6 +21,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * NiveauTheme
  *
+ * @ORM\Table(name="niveau_theme")
+ * @ORM\Entity
+ *
  * @category None
  * @package  ArchitectureBundle
  * @author   Unipik <unipik.unicef@laposte.com>

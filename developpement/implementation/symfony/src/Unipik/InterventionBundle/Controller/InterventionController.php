@@ -156,38 +156,56 @@ class InterventionController extends Controller {
         $form = $this->createForm(DemandeType::class, $demande);
 
         $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('InterventionBundle:Etablissement');
+        $repositoryEtablissement = $em->getRepository('InterventionBundle:Etablissement');
 
-        $instituteTest = $repository->find($id);
+        $institute = $repositoryEtablissement->find($id);
 
-        /** Add a message to indicate the error to the user */
-        if(is_null($instituteTest)) {
+        if(is_null($institute)) {
+            $session =$request->getSession();
+
+            $session->getFlashBag()->add(
+                'notice', array(
+                    'title' => 'Erreur',
+                    'message' => 'L\'établissement demandé n\'existe pas.',
+                    'alert' => 'danger'
+                )
+            );
+            // rediriger vers demande anonyme
             return $this->RedirectToRoute('architecture_homepage');
         }
-        $form->get('Etablissement')->setData($instituteTest);
+
+        // Pré-remplir les champs d'établissement
+        $form->get('Etablissement')->setData($institute);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            // Spécifier la date de la demande
             $dt =new \DateTime();
             $demande->setDateDemande($dt);
 
-            // handle the contact
-
-            $test = (object) $form->get('Contact')->getData();
-
-            // Extraire le contact
-            $contactPers = new Contact();
-            $this->cast($contactPers, $test);
-            $contactPers->setRespoEtablissement($test->isRespoEtablissement());
-            $contactPers->setTypeContact($test->getTypeContact());
-
-            // handle the interventions
+            // Extraire et traiter les interventions
             $interventionsRawList = $form->get('Intervention')->getData();
-
             $interventionList = [];
-            $listWeek = [];
+            $this->treatmentInterventions($interventionsRawList, $interventionList);
 
+            // Extraire et traiter le contact
+            $contact = (object) $form->get('Contact')->getData();
+            $contactPers = new Contact();
+            $this->cast($contactPers, $contact);
+            $contactPers->setRespoEtablissement($contact->isRespoEtablissement());
+            $contactPers->setTypeContact($contact->getTypeContact());
+
+            $this->treatmentContact($contactPers);
+            $demande->setContact($contactPers);
+
+            // Extraire et traiter l'établissement
+            $etablissementRaw = $form->get('Etablissement');
+
+            $institute = $etablissementRaw->getData();
+            $this->treatmentEtablissement($institute,$etablissementRaw);
+
+            // Extraire et traiter la plage de disponibilité de l'établissement
             $startWeek = $form->get('plageDate')->get('debut')->getData()->format("W");
             $endWeek = $form->get('plageDate')->get('fin')->getData()->format("W");
             if ($startWeek > $endWeek) {
@@ -195,82 +213,27 @@ class InterventionController extends Controller {
             }
 
             for ($week = $startWeek; $week <= $endWeek; $week++) {
-                $listWeek[] = $week;
-            }
-
-            $this->treatmentInterventions($interventionsRawList, $interventionList);
-
-            $this->treatmentContact($contactPers);
-            $demande->setContact($contactPers);
-
-
-
-            $etablissement = $form->get('Etablissement');
-
-            $institute = $etablissement->getData();
-
-            $educationTypeArray = $etablissement->get("typeEnseignement")->getData();
-            $institute->setTypeEnseignement($educationTypeArray);
-
-            $otherTypeArray = $etablissement->get("typeAutreEtablissement")->getData();
-            $institute->setTypeAutreEtablissement($otherTypeArray);
-
-            $centreTypeArray = $etablissement->get("typeCentre")->getData();
-            $institute->setTypeCentre($centreTypeArray);
-
-            // TODO
-            // On ne doit pas effacer tous les emails puisque l'etablissement peut choisir de ne pas les re-remplir !!!!!!
-            $institute->removeAllEmails();
-
-            $emails = $etablissement->get("emails")->getData();
-
-            /* if the adress is already in the db it means the institute might be in there too */
-            $repository = $this->getDoctrine()->getRepository('ArchitectureBundle:Adresse');
-
-
-            $instituteResearched = null;
-            $repository = $this->getDoctrine()->getManager();
-            $repository = $repository->getRepository('InterventionBundle:Etablissement');
-
-            $institute = $instituteTest;
-
-            if (sizeof($emails) != 0) {
-                foreach ($emails as $email) {
-                    if (!$institute->getEmails()->contains($email)) {
-                        $institute->addEmail($email);
-                    }
-                }
-            }
-
-            foreach ($listWeek as $week) {
                 $demande->addSemaine($week);
             }
 
+            // Extraire et traiter les moments voulus et à éviter
             $this->treatmentMoment($form->get('jour')->getData(), $demande);
 
+            // Persit la demande
             $this->getDoctrine()->getManager()->persist($demande);
-
             $em = $this->getDoctrine()->getManager();
-
             $em->flush();
 
+            // Reliement des interventions avec leur établissement et la demande correspondant
             foreach ($interventionList as $intervention) {
                 $intervention->setEtablissement($institute);
                 $intervention->setDemande($demande);
-
                 $this->getDoctrine()->getManager()->persist($intervention);
             }
-
             $em->flush();
 
-
-            //            $this->linkAllMoments($demande->getMomentsVoulus(), $demande);
-            //
-            //            $this->linkAllBMoments($demande->getMomentsAEviter(), $demande);
+            // Message de félicitation
             $session =$request->getSession();
-            $em->flush();
-
-
             $session->getFlashBag()->add(
                 'notice', array(
                 'title' => 'Félicitation',
@@ -279,6 +242,7 @@ class InterventionController extends Controller {
                 )
             );
 
+            // Envoie de l'email
             $message = \Swift_Message::newInstance()
                 ->setSubject('Intervention de l\'unicef')
                 ->setFrom('unipik.dev@gmail.com')
@@ -289,17 +253,18 @@ class InterventionController extends Controller {
             return $this->RedirectToRoute('architecture_homepage');
         }
 
-        if ($instituteTest->getTypeEnseignement()) {
+        // Envoie de paramètres initiaux à la vue
+        if ($institute->getTypeEnseignement()) {
             $typeEtablissementEncoded = array(
-                'ens' => $instituteTest->getTypeEnseignement()
+                'ens' => $institute->getTypeEnseignement()
             );
-        } else if ($instituteTest->getTypeCentre()) {
+        } else if ($institute->getTypeCentre()) {
             $typeEtablissementEncoded = array(
-                'centre' => $instituteTest->getTypeCentre()
+                'centre' => $institute->getTypeCentre()
             );
         } else {
             $typeEtablissementEncoded = array(
-                'autre' => $instituteTest->getTypeAutreEtablissement()
+                'autre' => $institute->getTypeAutreEtablissement()
             );
         }
 
@@ -309,7 +274,7 @@ class InterventionController extends Controller {
             'form' => $form->createView(),
             'typEnseignement' => json_encode($typeEtablissementEncoded),
             'id' => $id,
-            'etablissement' => $instituteTest
+            'etablissement' => $institute
             )
         );
     }
@@ -790,9 +755,12 @@ class InterventionController extends Controller {
      * @return object
      */
     function treatmentInterventions($interventionsRawList, &$interventionList) {
-        $comiteTest = $this->getDoctrine()->getManager()->getRepository('UserBundle:Comite')->find(1);
-        $lvlThemeRepository = $this->getDoctrine()->getManager()->getRepository('ArchitectureBundle:NiveauTheme');
+        // Affectation de l'intervention au comite "Haute-normandie"
+        $comite = $this->getDoctrine()->getManager()->getRepository('UserBundle:Comite')->find(1);
+
+        $repositoryNiveauTheme = $this->getDoctrine()->getManager()->getRepository('ArchitectureBundle:NiveauTheme');
         if ($interventionsRawList !== null) {
+            // Si le formulaire a été validé sans intervention, $interventionsRawList = NULL
             $interventionsRawList = array_filter($interventionsRawList);
 
             foreach ($interventionsRawList as $interventionRaw) {
@@ -800,20 +768,19 @@ class InterventionController extends Controller {
                 $interventionTemp->setRealisee(false);
                 $interventionTemp->setDateIntervention(null);
                 $interventionTemp->setNbPersonne($interventionRaw["nbPersonne"]);
-                $interventionTemp->setComite($comiteTest);
-                $lvlTheme = "";
+                $interventionTemp->setComite($comite);
 
                 if ($interventionRaw["TypeGeneral"]=="pld") {
                     foreach ($interventionRaw["materielDispoPlaidoyer"]["materiel"] as $materiel) {
                         $interventionTemp->addMaterielDispoPlaidoyer($materiel);
                     }
                     if (isset($interventionRaw["niveauTheme"])) {
-                        $lvlTheme = $lvlThemeRepository->findOneBy(
+                        $niveauTheme = $repositoryNiveauTheme->findOneBy(
                             array('niveau' => $interventionRaw["niveauTheme"]->getNiveau(),
                                 'theme' => $interventionRaw["niveauTheme"]->getTheme()
                             )
                         );
-                        $interventionTemp->setNiveauTheme($lvlTheme);
+                        $interventionTemp->setNiveauTheme($niveauTheme);
 
                     }
                 } elseif ($interventionRaw["TypeGeneral"]=="frim") {
@@ -829,33 +796,30 @@ class InterventionController extends Controller {
                     }
                 }
 
-                //                if(isset($interventionRaw["materielDispoPlaidoyer"]) && !empty($interventionRaw["materielDispoPlaidoyer"]["materiel"])){
-                //                    foreach ($interventionRaw["materielDispoPlaidoyer"]["materiel"] as $materiel){
-                //                        $interventionTemp->addMaterielDispoPlaidoyer($materiel);
-                //                    }
-                //                    if(isset($interventionRaw["niveauTheme"])){
-                //                        $lvlTheme = $lvlThemeRepository->findOneBy(
-                //                            array('niveau' => $interventionRaw["niveauTheme"]->getNiveau(),
-                //                                'theme' => $interventionRaw["niveauTheme"]->getTheme()
-                //                            )
-                //                        );
-                //                        $interventionTemp->setNiveauTheme($lvlTheme);
-                //
-                //                    }
-                //                }
-                //
-                //                 if(isset($interventionRaw['materiauxFrimousse']) && !empty($interventionRaw['materiauxFrimousse']["materiel"])){
-                //                    foreach ($interventionRaw['materiauxFrimousse']["materiel"] as $materiel){
-                //                        $interventionTemp->addMateriauxFrimousse($materiel);
-                //                    }
-                //                    if(isset($interventionRaw["niveauTheme"])) {
-                //                        $interventionTemp->setNiveauFrimousse($interventionRaw["niveauTheme"]->getNiveau());
-                //                    }
-                //                }
-
                 $interventionList[] = $interventionTemp;
             }
         }
+    }
+
+    function treatmentEtablissement($institute, $etablissementRaw) {
+        $emails = $etablissementRaw->get("emails")->getData();
+        if (sizeof($emails) != 0) {
+            foreach ($emails as $email) {
+                if (!$institute->getEmails()->contains($email)) {
+                    $institute->addEmail($email);
+                }
+            }
+        }
+
+        $nomEtablissement = $etablissementRaw->get("nom")->getData();
+        $institute->setNom($nomEtablissement);
+
+        $telFixeEtablissement = $etablissementRaw->get("telFixe")->getData();
+        $institute->setTelFixe($telFixeEtablissement);
+
+        // Extraire et traiter l'adresse
+        $adresse = $etablissementRaw->get("adresse")->getData();
+        $institute->setAdresse($adresse);
     }
 
     /**
@@ -867,9 +831,10 @@ class InterventionController extends Controller {
      */
     function treatmentContact(&$contactPers) {
         $em = $this->getDoctrine()->getManager();
-        $em = $em->getRepository('UserBundle:Contact');
+        $repositoryContact = $em->getRepository('UserBundle:Contact');
 
-        $contactBase = $em->findOneBy(
+        // Récupération du contact en base de données
+        $contactBase = $repositoryContact->findOneBy(
             array(
                 'nom' => $contactPers->getNom(),
                 'prenom' => $contactPers->getPrenom(),
@@ -877,6 +842,7 @@ class InterventionController extends Controller {
             )
         );
 
+        // Si $contactBase=null alors le contact n'était pas présent dans la base de données, il faut donc l'ajouter
         if (!is_null($contactBase)) {
             $contactPers = $contactBase;
         } else {
@@ -911,8 +877,8 @@ class InterventionController extends Controller {
     function treatmentMorning(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande){
         foreach ($days as $day) {
             $em = $this->getDoctrine()->getManager();
-            $repository = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
-            $moment = $repository->getByDayAndMoment($day, 'matin');
+            $repositoryMomentHebdomadaire = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
+            $moment = $repositoryMomentHebdomadaire->getByDayAndMoment($day, 'matin');
 
             $demande->addMomentsVoulus($moment);
         }
@@ -929,11 +895,9 @@ class InterventionController extends Controller {
     function treatmentAftNoon(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande){
         foreach ($days as $day) {
             $em = $this->getDoctrine()->getManager();
-            $repository = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
-            $moment = $repository->getByDayAndMoment($day, 'apres-midi');
+            $repositoryMomentHebdomadaire = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
+            $moment = $repositoryMomentHebdomadaire->getByDayAndMoment($day, 'apres-midi');
 
-            $this->getDoctrine()->getManager()->persist($moment);
-            $this->getDoctrine()->getManager()->flush();
             $demande->addMomentsVoulus($moment);
         }
     }
@@ -949,14 +913,12 @@ class InterventionController extends Controller {
     function treatmentAvoidDay(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande) {
         foreach ($days as $day) {
             $em = $this->getDoctrine()->getManager();
-            $repository = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
-            $moment = $repository->getByDayAndMoment($day, 'matin');
-            $demande->addMomentsAEviter($moment);
+            $repositoryMomentHebdomadaire = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
+            $momentM = $repositoryMomentHebdomadaire->getByDayAndMoment($day, 'matin');
+            $demande->addMomentsAEviter($momentM);
 
-            $em = $this->getDoctrine()->getManager();
-            $repository = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
-            $momentP = $repository->getByDayAndMoment($day, 'apres-midi');
-            $demande->addMomentsAEviter($momentP);
+            $momentAM = $repositoryMomentHebdomadaire->getByDayAndMoment($day, 'apres-midi');
+            $demande->addMomentsAEviter($momentAM);
         }
     }
 
@@ -971,14 +933,12 @@ class InterventionController extends Controller {
     function treatmentAllDay(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande) {
         foreach ($days as $day) {
             $em = $this->getDoctrine()->getManager();
-            $repository = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
-            $moment = $repository->getByDayAndMoment($day, 'matin');
-            $demande->addMomentsVoulus($moment);
+            $repositoryMomentHebdomadaire = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
+            $momentM = $repositoryMomentHebdomadaire->getByDayAndMoment($day, 'matin');
+            $demande->addMomentsVoulus($momentM);
 
-            $em = $this->getDoctrine()->getManager();
-            $repository = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
-            $momentP = $repository->getByDayAndMoment($day, 'apres-midi');
-            $demande->addMomentsVoulus($momentP);
+            $momentAM = $repositoryMomentHebdomadaire->getByDayAndMoment($day, 'apres-midi');
+            $demande->addMomentsVoulus($momentAM);
         }
     }
 }

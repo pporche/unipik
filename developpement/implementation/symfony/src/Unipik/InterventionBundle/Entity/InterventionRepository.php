@@ -281,6 +281,17 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
+     * Get Interventions associées à une demande
+     * @param $demande
+     */
+    public function getInterventionsDeDemande($demande){
+        $query = $this->_em->createQuery('SELECT i FROM InterventionBundle:Intervention i  WHERE i.demande = :r ');
+        $query->setParameter('r', $demande);
+
+        return new ArrayCollection($query->getResult());
+    }
+
+    /**
      * Get Interventions réalisées ou non réalisées d'un bénévole
      *
      * @param \Unipik\UserBundle\Entity\Benevole $benevole   Le benevole

@@ -321,8 +321,52 @@
                             </div></div>
                         </div>
                 </div>
+
             </div>
-        </div>
+                <div class="row">
+                    <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3 infoContainer">
+                        <div class="col-sm-6 containerFour">
+                            <div class="circle circleFour">
+                                <img src="{{ asset('img/speech-bubbles.png') }}" alt="bubbles">
+                            </div>
+                            <h3>Interventions associées: </h3>
+                            <div class="row">
+                                {% if interventionsAssociees is not empty %}
+                                    <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0"
+                                         data-target="#navbar-example" data-spy="scroll" style="
+                                    overflow: auto;
+                                    position: relative;
+                                    border:1px solid #cccccc;
+                                    padding:10px;">
+                                        {% for intervention in interventionsAssociees %}
+                                            <a href="{{ path('intervention_view', {'id': intervention.id}) }}">
+                                                {% if intervention.dateIntervention %}
+                                                    {{ intervention.dateIntervention|date('Y-m-d') }} -
+                                                {% endif %}
+                                                {{ intervention.etablissement.adresse.ville.nom }}
+                                                {% if intervention.plaidoyer %}
+                                                    - Action éducative
+                                                {% elseif intervention.frimousse %}
+                                                    - Frimousse
+                                                {% else %}
+                                                    - Autre intervention
+                                                {% endif %}
+                                                </br>
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div class="col-lg-offset-1 col-sm-7">
+                                        Aucune
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
 {% endblock %}
 

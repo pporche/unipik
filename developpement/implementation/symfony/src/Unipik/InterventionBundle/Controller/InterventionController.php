@@ -362,8 +362,9 @@ class InterventionController extends Controller {
         $intervention = $repository->find($id);
         $user = $this->getUser();
         $demande = $intervention->getDemande();
+        $interventionsDeLaDemande = $repository->getInterventionsDeDemande($demande);
         $formAttr = $this->get('form.factory')->createBuilder(AttributionType::class)->getForm()->createView();
-        return $this->render('InterventionBundle:Intervention:demandeConsultation.html.twig', array('intervention'=>$intervention, 'user' => $user, 'formAttr' => $formAttr));
+        return $this->render('InterventionBundle:Intervention:demandeConsultation.html.twig', array('intervention'=>$intervention, 'interventionsAssociees'=>$interventionsDeLaDemande, 'user' => $user, 'formAttr' => $formAttr));
 
     }
 

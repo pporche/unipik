@@ -304,9 +304,9 @@
                                         {% if intervention.realisee %}
                                         "Réalisée"
                                         {% elseif intervention.benevole %}
-                                        "Attribuée à {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}"
+                                        "{{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}"
                                         {% else %}
-                                        "Non Attribuée"
+                                        " "
                                         {% endif %} ],
                                 {% endfor %}
                             ]

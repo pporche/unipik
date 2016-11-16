@@ -133,7 +133,7 @@
     {{ parent() }}
     <script src="{{ asset('vendor/typeahead.js/dist/typeahead.jquery.js') }}"></script>
     <script src="{{ asset('vendor/typeahead.js/dist/bloodhound.js') }}"></script>
-    <script src="{{ asset('vendor/leaflet/dist/leaflet.js') }}"></script>
+    {#<script src="{{ asset('vendor/leaflet/dist/leaflet.js') }}"></script>#}
     <script>
         var onResponsabiliteChecked = function (responsabilite, activite) {
             if ($(responsabilite).is(':checked')) {
@@ -276,14 +276,29 @@
                             break;
                         case 1 :
                             geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
+                            $("#fos_user_registration_form_adresse_geolocalisation").val(geolocalisation);
+                            $(".fos_user_admin_register").submit();
                             break;
-                        default : //Si plusieurs résultats, faire choisir l'utilisateur.
+                        default :
+                            var modal_content = "";
+                            data.forEach(function (item) {
+                                var latlon = item["lat"] + "," + item["lon"];
+                                modal_content += "<div class='row'><label class='radio-inline'><input type='radio' name='type' id='" + latlon + "'>" + item["display_name"] + "</label></div>";
+                            });
+                            $('#choices').html(modal_content);
+                            $("input:radio[name=type]:first").attr('checked', true);
+                            $("#myModal").modal('show');
                     }
-                    $("#fos_user_registration_form_adresse_geolocalisation").val(geolocalisation);
-                    $(".fos_user_admin_register").submit();
                 });
             }
         });
+
+        function setGeolocalisation(content){
+            var latlon = content.split(',');
+            var geolocalisation = 'SRID=4326;POINT(' + latlon[1] + ' ' + latlon[0] + ')';
+            $("#fos_user_registration_form_adresse_geolocalisation").val(geolocalisation);
+            $(".fos_user_admin_register").submit();
+        }
     </script>
 {% endblock %}
 

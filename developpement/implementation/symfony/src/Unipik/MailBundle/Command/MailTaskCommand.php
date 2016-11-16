@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: scolomies
- * Date: 09/11/16
- * Time: 10:43
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\MailBundle\Command;
@@ -13,16 +21,38 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class MailTaskCommand
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class MailTaskCommand extends ContainerAwareCommand {
     private $output;
     private $limitEmails = 4;
 
+    /**
+     * Configurer les options
+     *
+     * @return void
+     */
     protected function configure() {
         $this
             ->setName('mailInstituteTask:run')
             ->setDescription('Cron task for delayed mailing');
     }
 
+    /**
+     * Executer
+     *
+     * @param InputInterface  $input  L'entree
+     * @param OutputInterface $output La sortie
+     *
+     * @return void
+     */
     protected function execute(InputInterface $input, OutputInterface $output) {
         $this->output = $output;
 
@@ -56,7 +86,7 @@ class MailTaskCommand extends ContainerAwareCommand {
 
             $output->writeln(sprintf('Running Cron Task <info>%s</info>', $etablissements[0]->getId()));
 
-            foreach($etablissements as $etablissement) {
+            foreach ($etablissements as $etablissement) {
                 $type = !empty($etablissement->getTypeEnseignement()) ? $etablissement->getTypeEnseignement() : $etablissement->getTypeCentre();
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Intervention de l\'unicef')
@@ -96,7 +126,14 @@ class MailTaskCommand extends ContainerAwareCommand {
         $em->flush();
     }
 
-    private function runCommand($string) {
+    /**
+     * Commande run
+     *
+     * @param string $string La commande
+     *
+     * @return bool
+     */
+    private function _runCommand($string) {
         // Split namespace and arguments
         $namespace = split(' ', $string)[0];
 

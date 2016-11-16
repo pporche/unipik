@@ -200,6 +200,10 @@ iframe{
     font-family: 'Ubuntu Condensed', sans-serif;
 }
 
+.alert-warning{
+    background-color: #dca7a7 !important;
+}
+
 .buttons .btn{
     font-family: 'Ubuntu Condensed', sans-serif !important;
     font-size: 15px !important;

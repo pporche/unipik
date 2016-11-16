@@ -269,10 +269,11 @@
                         style: 'table',
                         table: {
                             headerRows: 1,
-                            widths: [100, 50, 70, 100, 100, 150, 100],
+                            widths: [80, 50,50, 70, 100, 100, 100, 100],
                             body: [
                                 [{ text: 'Lieu', style: 'tableHeader' },
-                                 { text: 'Date', style: 'tableHeader'},
+                                 { text: 'Date de la demande', style: 'tableHeader'},
+                                 { text: 'Plage de dates', style: 'tableHeader'},
                                  { text: 'Type', style: 'tableHeader' },
                                  { text: 'Établissement', style: 'tableHeader' },
                                  { text: 'Classe', style: 'tableHeader' },
@@ -281,6 +282,7 @@
                                 {% for intervention in liste %}
                                     [ "{{ intervention.etablissement.adresse.ville.nom }}",
                                         "{{ intervention.demande.dateDemande|date('d-m-Y') }}",
+                                         "PLAGE DE DATES",
                                         {% if intervention.plaidoyer %}
                                         "Action éducative"
                                         {% elseif intervention.frimousse %}
@@ -516,6 +518,11 @@
             {% endif %}
             :
         </h2>
+
+        {% if liste %}
+            <button type="button" class="btn btn-primary" onclick="imprimer()" style="float: right; margin-right: 20px;"><span class="glyphicon glyphicon-print"></span></button><br>
+        {% endif %}
+
         {% if onlyMyIntervention %}
             {% set vue =  'intervention_self' %}
         {% elseif  onlyNonAttribues %}
@@ -743,9 +750,6 @@
 
                 <div class="buttons">
                     <button type="button" class="btn btn-danger" onclick="deleteInterventions()">Supprimer</button>
-                    {% if liste %}
-                        <button type="button" class="btn btn-primary" onclick="imprimer()">Imprimer</button>
-                    {% endif %}
                     </div>
                 <div class="col-md-12 text-center">
                     {% set pathReq = [] %}

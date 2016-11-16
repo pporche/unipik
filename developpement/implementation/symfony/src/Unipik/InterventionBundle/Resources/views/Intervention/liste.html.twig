@@ -269,47 +269,54 @@
                         style: 'table',
                         table: {
                             headerRows: 1,
-                            widths: [80, 50,50, 70, 100, 100, 100, 100],
+                            widths: [80, 50,50, 60, 80, 50, 80, 50, 50, 80],
                             body: [
-                                [{ text: 'Lieu', style: 'tableHeader' },
-                                 { text: 'Date de la demande', style: 'tableHeader'},
-                                 { text: 'Plage de dates', style: 'tableHeader'},
-                                 { text: 'Type', style: 'tableHeader' },
-                                 { text: 'Établissement', style: 'tableHeader' },
-                                 { text: 'Classe', style: 'tableHeader' },
-                                 { text: 'Thème', style: 'tableHeader' },
-                                 { text: 'Statut', style: 'tableHeader' }],
+                                [
+                                    { text: 'Lieu', style: 'tableHeader' },
+                                    { text: 'Date de la demande', style: 'tableHeader'},
+                                    { text: 'Plage de dates', style: 'tableHeader'},
+                                    { text: 'Type', style: 'tableHeader' },
+                                    { text: 'Établissement', style: 'tableHeader' },
+                                    { text: 'Classe', style: 'tableHeader' },
+                                    { text: 'Thème', style: 'tableHeader' },
+                                    { text: 'Statut', style: 'tableHeader' },
+                                    { text: 'Contact', style: 'tableHeader' },
+                                    { text: 'Email contact', style: 'tableHeader' }
+                                ],
                                 {% for intervention in liste %}
                                     [ "{{ intervention.etablissement.adresse.ville.nom }}",
                                         "{{ intervention.demande.dateDemande|date('d-m-Y') }}",
                                          "PLAGE DE DATES",
                                         {% if intervention.plaidoyer %}
-                                        "Action éducative"
+                                        "Action éducative",
                                         {% elseif intervention.frimousse %}
-                                        "Frimousse"
+                                        "Frimousse",
                                         {% else %}
-                                        "Autre intervention"
-                                        {% endif %},
+                                        "Autre intervention",
+                                        {% endif %}
                                         "{{ intervention.etablissement.nom | capitalize }}",
                                         {% if intervention.plaidoyer %}
-                                        "{{ intervention.niveauTheme.niveau | capitalize }}"
+                                        "{{ intervention.niveauTheme.niveau | capitalize }}",
                                         {% elseif intervention.frimousse %}
-                                        "{{ intervention.niveauFrimousse | capitalize }}"
+                                        "{{ intervention.niveauFrimousse | capitalize }}",
                                         {% else %}
-                                        "-"
-                                        {% endif %},
+                                        "-",
+                                        {% endif %}
                                         {% if intervention.plaidoyer %}
-                                        "{{ intervention.niveauTheme.theme | capitalize }}"
+                                        "{{ intervention.niveauTheme.theme | capitalize }}",
                                         {% else %}
-                                        "-"
-                                        {% endif %},
+                                        "-",
+                                        {% endif %}
                                         {% if intervention.realisee %}
-                                        "Réalisée"
+                                        "Réalisée",
                                         {% elseif intervention.benevole %}
-                                        "{{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}"
+                                        "{{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}",
                                         {% else %}
-                                        " "
-                                        {% endif %} ],
+                                        " ",
+                                        {% endif %}
+                                        "{{ intervention.demande.contact.prenom | capitalize }} {{ intervention.demande.contact.nom | capitalize }}",
+                                        "{{ intervention.demande.contact.email }}"
+                                    ],
                                 {% endfor %}
                             ]
                         },
@@ -322,7 +329,7 @@
                         alignment: 'center'
                     },
                     table: {
-                        fontSize: 9,
+                        fontSize: 7,
                         alignment: 'left'
                     }
                 }

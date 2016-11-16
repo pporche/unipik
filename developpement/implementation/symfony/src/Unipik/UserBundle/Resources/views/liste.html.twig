@@ -350,7 +350,9 @@
 
     <section class="col-lg-10 col-md-10 col-sm-10">
         <h1>Liste des Bénévoles</h1>
-
+        {% if listBenevoles %}
+            <button type="button" class="btn btn-primary" onclick="imprimer()" style="float: right; margin-right: 20px;"><span class="glyphicon glyphicon-print"></span></button>
+        {% endif %}
         <table class="table table-striped table-hover ">
             <thead>
             <tr>
@@ -530,9 +532,7 @@
                 <em class="glyphicon glyphicon-alert"></em> Ajouter un bénévole
             </a>
             <button type="button" class="btn btn-danger" onclick="deleteBenevoles()">Supprimer</button>
-            {% if listBenevoles %}
-                <button type="button" class="btn btn-primary" onclick="imprimer()">Imprimer</button>
-            {% endif %}
+
         </div>
 
     {% endif %}

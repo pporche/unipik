@@ -123,28 +123,4 @@ class MailTaskCommand extends ContainerAwareCommand {
         $output->writeln('<comment>Done!</comment>');
         $em->flush();
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Commande run
-     *
-     * @param string $string La commande
-     *
-     * @return bool
-     */
-    private function _runCommand($string) {
-        // Split namespace and arguments
-        $namespace = split(' ', $string)[0];
-
-        // Set input
-        $command = $this->getApplication()->find($namespace);
-        $input = new StringInput($string);
-
-        // Send all output to the console
-        $returnCode = $command->run($input, $this->output);
-
-        return $returnCode != 0;
-    }
->>>>>>> ebff829c82175d71d7f8232fb37e27d549342d27
 }

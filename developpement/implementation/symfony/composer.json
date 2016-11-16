@@ -28,7 +28,8 @@
         "opsway/doctrine-dbal-postgresql": "~0.1",
         "willdurand/geocoder": "^3.3",
         "php-http/guzzle6-adapter": "^1.1",
-        "creof/doctrine2-spatial": "^1.1"
+        "creof/doctrine2-spatial": "^1.1",
+        "asm89/twig-lint": "@stable"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

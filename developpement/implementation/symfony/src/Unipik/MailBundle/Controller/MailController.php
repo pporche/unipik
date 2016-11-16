@@ -1,4 +1,18 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 
 namespace Unipik\MailBundle\Controller;
 
@@ -9,17 +23,21 @@ use Unipik\MailBundle\Entity\MailTask;
 use Unipik\MailBundle\Form\MailingType;
 
 /**
- * Created by PhpStorm.
- * User: florian
- * Date: 19/04/16
- * Time: 11:52
+ * Class MailBundle
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class MailController extends Controller {
 
     /**
      * Render the mailing view
      *
-     * @param  $name
+     * @param string $name Le nom
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function sendFormAction($name) {
@@ -43,7 +61,8 @@ class MailController extends Controller {
     /**
      * Render the view to send the email
      *
-     * @param  Request $request
+     * @param Request $request La requete
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function mailingEtablissementAction(Request $request) {
@@ -51,7 +70,7 @@ class MailController extends Controller {
             ->createBuilder(MailingType::class)
             ->getForm();
 
-        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('InterventionBundle:Etablissement');
 

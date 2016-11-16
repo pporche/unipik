@@ -88,7 +88,7 @@ class InterventionType extends AbstractFieldsetType {
                 'widget' => 'single_text',
 
                 // do not render as type="date", to avoid HTML5 date pickers
-                'html5' => false,
+                'html5' => true,
 
                 // add a class that can be selected in JavaScript
                 'attr' => ['class' => 'js-datepicker'],
@@ -96,7 +96,7 @@ class InterventionType extends AbstractFieldsetType {
                 'required' => false
                 )
             )
-            ->add('lieu', TextType::class,array('required' => false))
+            ->add('lieu', TextType::class, array('required' => false))
             ->add('materielDispoPlaidoyer', MaterielType::class, array('label' => 'Matériel'))
             ->add('materiauxFrimousse', MaterielFrimousseType::class, array('label' => 'Matériel frimousse'))
             ->add('nbPersonne', IntegerType::class, array('label' => 'Participants'))
@@ -108,7 +108,7 @@ class InterventionType extends AbstractFieldsetType {
                 'widget' => 'choice',
                 )
             )
-            ->add('description',TextareaType::class,array('required' => false));
+            ->add('description', TextareaType::class, array('required' => false));
     }
 
     /**

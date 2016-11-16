@@ -5,6 +5,14 @@
  * User: jpain01
  * Date: 28/09/16
  * Time: 14:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\ArchitectureBundle\Form\DataTransformer\Adresse;
@@ -17,16 +25,22 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 /**
  * Class VilleAutocompleteTransformer
  *
- * @package Unipik\ArchitectureBundle\Form\DataTransformer\Adresse
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
-class VilleAutocompleteTransformer implements DataTransformerInterface
-{
+class VilleAutocompleteTransformer implements DataTransformerInterface {
+
     private $entityManager;
 
     /**
      * VilleAutocompleteTransformer constructor.
      *
-     * @param ObjectManager $entityManager
+     * @param ObjectManager $entityManager L'entity manager
+     *
+     * @return void
      */
     public function __construct(ObjectManager $entityManager)
     {
@@ -34,7 +48,10 @@ class VilleAutocompleteTransformer implements DataTransformerInterface
     }
 
     /**
-     * @param mixed $ville
+     * Transformer
+     *
+     * @param mixed $ville La ville
+     *
      * @return string
      */
     public function transform($ville)
@@ -47,7 +64,10 @@ class VilleAutocompleteTransformer implements DataTransformerInterface
     }
 
     /**
-     * @param mixed $villeNom
+     * Transformer inverse
+     *
+     * @param mixed $villeNom Le nom de la ville
+     *
      * @return Ville|void
      */
     public function reverseTransform($villeNom)

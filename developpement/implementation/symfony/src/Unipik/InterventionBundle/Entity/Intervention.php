@@ -23,6 +23,10 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 /**
  * L'entity qui gère les interventions
  *
+ * @ORM\Entity(repositoryClass="Unipik\InterventionBundle\Entity\InterventionRepository")
+ * @ORM\Table(name="intervention",                                                        indexes={@ORM\Index(name="IDX_D11814ABE004B434", columns={"niveau_theme_id"}), @ORM\Index(name="IDX_D11814ABFF631228", columns={"etablissement_id"}), @ORM\Index(name="IDX_D11814ABD61C3573", columns={"comite_id"}), @ORM\Index(name="IDX_D11814ABE77B7C09", columns={"benevole_id"}), @ORM\Index(name="IDX_D11814AB80E95E18", columns={"demande_id"})})
+ * @ORM\Entity
+ *
  * @category None
  * @package  InterventionBundle
  * @author   Unipik <unipik.unicef@laposte.com>

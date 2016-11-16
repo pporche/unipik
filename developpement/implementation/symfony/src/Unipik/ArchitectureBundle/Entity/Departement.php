@@ -4,6 +4,14 @@
  * User: jpain01
  * Date: 26/09/16
  * Time: 10:45
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\ArchitectureBundle\Entity;
@@ -15,13 +23,21 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="departement")
  * @ORM\Entity
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
-class Departement
-{
+class Departement {
+
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                                    type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="departement_id_seq", allocationSize=1, initialValue=1)
@@ -29,6 +45,8 @@ class Departement
     private $id;
 
     /**
+     * Le nom
+     *
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
@@ -36,6 +54,8 @@ class Departement
     private $nom;
 
     /**
+     * Le numero
+     *
      * @var string
      *
      * @ORM\Column(name="numero", type="string", length=30, nullable=false)
@@ -43,25 +63,29 @@ class Departement
     private $numero;
 
     /**
+     * La region
+     *
      * @var \Unipik\ArchitectureBundle\Entity\Region
      *
      * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Region", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="region_id",                                      referencedColumnName="id")
      * })
      */
     private $region;
 
     /**
+     * Le comite
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Comite", inversedBy="departement", cascade={"persist"})
      * @ORM\JoinTable(name="comite_departement",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="departement_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="departement_id",                          referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="comite_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="comite_id",                               referencedColumnName="id")
      *   }
      * )
      */
@@ -90,7 +114,7 @@ class Departement
     /**
      * Set nom
      *
-     * @param string $nom
+     * @param string $nom Le nom
      *
      * @return Departement
      */
@@ -114,7 +138,7 @@ class Departement
     /**
      * Set numero
      *
-     * @param string $numero
+     * @param string $numero Le numero
      *
      * @return Departement
      */
@@ -138,7 +162,7 @@ class Departement
     /**
      * Set region
      *
-     * @param \Unipik\ArchitectureBundle\Entity\Region $region
+     * @param \Unipik\ArchitectureBundle\Entity\Region $region La region
      *
      * @return Departement
      */
@@ -162,7 +186,7 @@ class Departement
     /**
      * Add comite
      *
-     * @param \Unipik\UserBundle\Entity\Comite $comite
+     * @param \Unipik\UserBundle\Entity\Comite $comite Le comite
      *
      * @return Departement
      */
@@ -176,7 +200,9 @@ class Departement
     /**
      * Remove comite
      *
-     * @param \Unipik\UserBundle\Entity\Comite $comite
+     * @param \Unipik\UserBundle\Entity\Comite $comite Le comite
+     *
+     * @return object
      */
     public function removeComite(\Unipik\UserBundle\Entity\Comite $comite)
     {

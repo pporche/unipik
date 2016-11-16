@@ -50,7 +50,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return array
      */
-    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null/*, $distance = null*/ ){
+    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $mesInterventions, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null, $distance = null ){
 
         $qb = $this->createQueryBuilder('i');
 
@@ -107,7 +107,7 @@ class InterventionRepository extends EntityRepository {
             break;
         }
 
-        if ($user) {
+        if ($mesInterventions) {
             $qb->andWhere('i.benevole = :user')
                 ->setParameter('user', $user);
         }
@@ -146,9 +146,9 @@ class InterventionRepository extends EntityRepository {
             $this->_whereVilleIs($qb, $ville);
         }
 
-        //        if(isset($distance)){
-        //            $this->_within10km($qb, $user, $distance);
-        //        }
+        if(isset($distance)){
+            $this->_withinXkm($qb, $user, $distance);
+        }
 
         return $qb
             ->getQuery()
@@ -387,25 +387,28 @@ class InterventionRepository extends EntityRepository {
             ->setParameter('ville', $ville);
     }
 
-    //    /**
-    //     * @param QueryBuilder $qb
-    //     * @param $user
-    //     * @param $distance
-    //     */
-    //    private function _within10km(QueryBuilder $qb, $user, $distance) {
-    //        $qb
-    //            ->from('Unipik\UserBundle\Entity\Benevole', 'b')
-    //            ->andWhere('b = :user')
-    //            ->setParameter('user', $user)
-    //            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'adresse')
-    //            ->andWhere('b.adresse = adresse')
-    //            ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
-    //            ->andWhere('i.etablissement = e')
-    //            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
-    //            ->andWhere('e.adresse = a')
-    //            ->expr()->eq(sprintf('ST_Distance_Sphere(a.geolocalisation, adresse.geolocalisation) <= ' + $distance + '* 1609.34'), $qb->expr()->literal(true));
-    //
-    //            //->andWhere('ST_Distance_Sphere(a.geolocalisation, adresse.geolocalisation) <= :distance * 1609.34')
-    //            //->setParameter('distance', $distance);
-    //    }
+    /**
+     * @param QueryBuilder $qb
+     * @param $user
+     * @param $distance
+     */
+    private function _withinXkm(QueryBuilder $qb, $user, $distance) {
+        $qb
+            ->from('Unipik\UserBundle\Entity\Benevole', 'b')
+            ->andWhere('b = :user')
+            ->setParameter('user', $user)
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'adresse')
+            ->andWhere('b.adresse = adresse')
+            ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
+            ->andWhere('i.etablissement = e')
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
+            ->andWhere('e.adresse = a')
+            ->andWhere(
+                $qb->expr()->eq(
+                    sprintf("STDWithin(a.geolocalisation, adresse.geolocalisation, :distance)"),
+                    $qb->expr()->literal(true)
+                )
+            )
+            ->setParameter('distance', $distance*1000);
+    }
 }

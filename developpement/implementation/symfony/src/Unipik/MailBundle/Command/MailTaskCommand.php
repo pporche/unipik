@@ -10,7 +10,6 @@ namespace Unipik\MailBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class MailTaskCommand extends ContainerAwareCommand {
@@ -54,8 +53,6 @@ class MailTaskCommand extends ContainerAwareCommand {
             // Set dernière date d'exécution de la crontask
             $mailTask->setLastRun(new \DateTime());
 
-            $output->writeln(sprintf('Running Cron Task <info>%s</info>', $etablissements[0]->getId()));
-
             foreach($etablissements as $etablissement) {
                 $type = !empty($etablissement->getTypeEnseignement()) ? $etablissement->getTypeEnseignement() : $etablissement->getTypeCentre();
                 $message = \Swift_Message::newInstance()
@@ -94,19 +91,5 @@ class MailTaskCommand extends ContainerAwareCommand {
         }
         $output->writeln('<comment>Done!</comment>');
         $em->flush();
-    }
-
-    private function runCommand($string) {
-        // Split namespace and arguments
-        $namespace = split(' ', $string)[0];
-
-        // Set input
-        $command = $this->getApplication()->find($namespace);
-        $input = new StringInput($string);
-
-        // Send all output to the console
-        $returnCode = $command->run($input, $this->output);
-
-        return $returnCode != 0;
     }
 }

@@ -401,7 +401,7 @@ class InterventionController extends Controller {
         $theme = $form->get("theme")->getData();
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
-        $distance = $form->get("distance")->getData() ? 10 : null;
+        $distance = $form->get("distance")->getData() ? $form->get("distance")->getData() : null;
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
         $field = $request->get("field", "dateIntervention");

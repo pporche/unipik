@@ -4,8 +4,124 @@
     Mailing - {{ parent() }}
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+    #mailing_ville, #mailing_codePostal {
+    text-transform: uppercase;
+    }
+    .twitter-typeahead .tt-query,
+    .twitter-typeahead .tt-hint {
+    margin-bottom: 0;
+    }
+    .tt-hint {
+        display: none;
+        width: 100%;
+        height: 43px;
+        padding: 10px 18px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        color: #999;
+        vertical-align: middle;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    }
+    .tt-menu {
+        min-width: 160px;
+        margin-top: 2px;
+        padding: 5px 0;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        background-clip: padding-box;
+        max-height: 150px;
+        overflow-y: auto;
+
+    }
+    .tt-suggestion {
+        display: block;
+        padding: 3px 20px;
+    }
+    .tt-suggestion.tt-is-under-cursor {
+        color: #fff;
+        background-color: #428bca;
+    }
+    .tt-suggestion.tt-is-under-cursor a {
+        color: #fff;
+    }
+    .tt-suggestion p {
+        margin: 0;
+    }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+<script src="{{ asset('vendor/typeahead.js/dist/typeahead.jquery.js') }}"></script>
+<script src="{{ asset('vendor/typeahead.js/dist/bloodhound.js') }}"></script>
+<script>
+    var villes = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+        remote: {
+            url: '{{ path("architecture_ville_autocomplete") }}?term=%QUERY',
+            wildcard: '%QUERY'
+        }
+    });
+
+    $('#mailing_ville').typeahead(null, {
+        name: 'villes',
+        source: villes,
+        limit: 50
+    });
+
+    var codesPostaux = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+        remote: {
+            url: '{{ path("architecture_code_autocomplete") }}?term=%QUERY',
+            wildcard: '%QUERY'
+        }
+    });
+
+    $('#mailing_codePostal').typeahead(null, {
+        name: 'codesPostaux',
+        source: codesPostaux,
+        limit: 5
+    });
 
 
+    $('#mailing_ville').change(function () {
+        var ville = $(mailing_ville).val().toUpperCase();
+        console.log(ville);
+        $('#mailing_codePostal').val("");
+        $.post("{{ path('architecture_code_postal') }}", {'ville': ville},
+                function (data, status) {
+                    $('#mailing_codePostal').val(data.codePostal);
+                });
+    });
+
+    $('#mailing_codePostal').change(function () {
+        var codePostal = $(mailing_codePostal).val();
+        console.log(codePostal);
+        $('#mailing_ville').val("");
+        $.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},
+                function (data, status) {
+                    $('#mailing_ville').val(data.ville);
+                });
+    });
+</script>
+{% endblock %}
 
 {% block body %}
     <style>

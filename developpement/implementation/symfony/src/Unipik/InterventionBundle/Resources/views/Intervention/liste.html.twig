@@ -166,7 +166,7 @@
     <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
-    <script src="{{ asset('vendor/leaflet-geosearch/src/js/l.control.geosearch.js') }}"></script>
+    {#<script src="{{ asset('vendor/leaflet-geosearch/src/js/l.control.geosearch.js') }}"></script>#}
     <script>
         $(document).ready(function () {
 
@@ -327,10 +327,6 @@
                     header: {
                         fontSize: 13,
                         alignment: 'center'
-                    },
-                    table: {
-                        fontSize: 7,
-                        alignment: 'left'
                     }
                 }
             };
@@ -490,9 +486,13 @@
                     {{ form_widget(form.end, { 'attr': {'class': 'input-sm'} }) }}
                 </div>
                 <br/>
+                <h5> Filtre par lieu :</h5>
+                {{ form_widget(form.dansVilleOuParDistance) }}
                 <h5> Ville :</h5>
                 {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
-                <h5> Distance de mon domicile en km :</h5>
+                <h5> Distance de ville ou domicile ?</h5>
+                {{ form_widget(form.villeOuDomicile) }}
+                <h5> Distance en km :</h5>
                 {{ form_widget(form.distance) }}
                 <div>
                     <input id="submit" type="submit" value="OK" class="btn btn-primary"/>

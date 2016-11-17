@@ -161,7 +161,7 @@ class InterventionController extends Controller {
 
         $institute = $repositoryEtablissement->find($id);
 
-        if(is_null($institute)) {
+        if (is_null($institute)) {
             $session =$request->getSession();
 
             $session->getFlashBag()->add(
@@ -204,7 +204,7 @@ class InterventionController extends Controller {
             $etablissementRaw = $form->get('Etablissement');
 
             $institute = $etablissementRaw->getData();
-            $this->treatmentEtablissement($institute,$etablissementRaw);
+            $this->treatmentEtablissement($institute, $etablissementRaw);
 
             // Extraire et traiter la plage de disponibilité de l'établissement
             $startWeek = $form->get('plageDate')->get('debut')->getData()->format("W");
@@ -592,13 +592,11 @@ class InterventionController extends Controller {
         if ($request->isXmlHttpRequest()) {
             $username = $request->request->get('username');
             $id = $request->request->get('id');
-
             $em = $this->getDoctrine()->getManager();
             $repositoryVolunteer = $em->getRepository('UserBundle:Benevole');
             $volunteer = $repositoryVolunteer->findOneBy(array('username' => $username));
             $repositoryIntervention = $em->getRepository('InterventionBundle:Intervention');
             $intervention = $repositoryIntervention->find($id);
-
             $intervention->setBenevole($volunteer);
 
             $em->persist($intervention);
@@ -830,6 +828,8 @@ class InterventionController extends Controller {
      *
      * @param $institute
      * @param $etablissementRaw
+     *
+     * @return void
      */
     function treatmentEtablissement($institute, $etablissementRaw) {
         $emails = $etablissementRaw->get("emails")->getData();

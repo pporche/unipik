@@ -42,11 +42,13 @@ class InterventionRepository extends EntityRepository {
      * @param string           $field            Le champ de tri
      * @param bool             $desc             Descendant
      * @param string           $statut           Le statut
+     * @param array            $mesInterventions Mes interventions
      * @param user             $user             L'utilisateur
      * @param array            $niveauFrimousse  Le niveau en cas de frimousse
      * @param array            $niveauPlaidoyer  Le niveau en cas de plaidoyer
      * @param string           $theme            Le theme
      * @param string           $ville            La ville
+     * @param distance         $distance         La distance
      *
      * @return array
      */
@@ -146,7 +148,7 @@ class InterventionRepository extends EntityRepository {
             $this->_whereVilleIs($qb, $ville);
         }
 
-        if(isset($distance)){
+        if (isset($distance)) {
             $this->_withinXkm($qb, $user, $distance);
         }
 
@@ -282,7 +284,10 @@ class InterventionRepository extends EntityRepository {
 
     /**
      * Get Interventions associées à une demande
-     * @param $demande
+     *
+     * @param demande $demande La demande
+     *
+     * @return ArrayCollection
      */
     public function getInterventionsDeDemande($demande){
         $query = $this->_em->createQuery('SELECT i FROM InterventionBundle:Intervention i  WHERE i.demande = :r ');
@@ -399,9 +404,13 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
-     * @param QueryBuilder $qb
-     * @param $user
-     * @param $distance
+     * Verifie si un point est dans une distance
+     *
+     * @param QueryBuilder $qb       Le querybuilder
+     * @param user         $user     L'utilisateur
+     * @param distance     $distance La distance
+     *
+     * @return void
      */
     private function _withinXkm(QueryBuilder $qb, $user, $distance) {
         $qb

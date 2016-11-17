@@ -79,8 +79,9 @@ class MailController extends Controller {
             $typeOther = $form->get("typeAutre")->getData();
             $relance = $form->get("typeRelance")->getData();
             $ville = $form->get("ville")->getData();
-            if($ville=='')
+            if ($ville=='') {
                 $ville = null;
+            }
 
             $ids = array();
             if ($relance == 'relance') {
@@ -100,7 +101,7 @@ class MailController extends Controller {
                 }
             }
 
-           if(!empty($ids)) {
+            if (!empty($ids)) {
                 $mailtask = new MailTask();
                 $mailtask
                     ->setName('Mail task')
@@ -111,7 +112,7 @@ class MailController extends Controller {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($mailtask);
                 $em->flush();
-           }
+            }
 
             return $this->redirectToRoute('architecture_homepage');
         }

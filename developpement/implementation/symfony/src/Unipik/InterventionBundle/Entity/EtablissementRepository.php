@@ -33,29 +33,29 @@ class EtablissementRepository extends EntityRepository {
      * Generic function for DB queries.
      *
      * @param string $typeEtablissement Le type d'etablissement
-     * @param string $typeEnseignement Le type en cas d'enseignement
-     * @param string $typeCentre Le type en cas de centre
-     * @param string $typeAutre Le type en cas d'autre
-     * @param int $ville Id de la ville
-     * @param string $field Le champs
-     * @param bool $desc Descendant ou non
+     * @param string $typeEnseignement  Le type en cas d'enseignement
+     * @param string $typeCentre        Le type en cas de centre
+     * @param string $typeAutre         Le type en cas d'autre
+     * @param int    $ville             Id de la ville
+     * @param string $field             Le champs
+     * @param bool   $desc              Descendant ou non
      *
      * @return array
      */
     public function getType($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre, $ville, $field, $desc) {
         switch ($typeEtablissement) {
-            case "enseignement":
-                $results = $this->_getEnseignementsByType($typeEnseignement, $ville, $field, $desc);
-                break;
-            case "centre":
-                $results = $this->_getCentresLoisirsByType($typeCentre, $ville, $field, $desc);
-                break;
-            case "autreEtablissement":
-                $results = $this->_getAutresEtablissementsByType($typeAutre, $ville, $field, $desc);
-                break;
-            default:
-                $results = $this->_getTousEtablissements($ville, $field, $desc);
-                break;
+        case "enseignement":
+            $results = $this->_getEnseignementsByType($typeEnseignement, $ville, $field, $desc);
+            break;
+        case "centre":
+            $results = $this->_getCentresLoisirsByType($typeCentre, $ville, $field, $desc);
+            break;
+        case "autreEtablissement":
+            $results = $this->_getAutresEtablissementsByType($typeAutre, $ville, $field, $desc);
+            break;
+        default:
+            $results = $this->_getTousEtablissements($ville, $field, $desc);
+            break;
         }
 
         return $results;
@@ -65,27 +65,27 @@ class EtablissementRepository extends EntityRepository {
      * Query pour récupérer les établissements n'ayant pas répondu à une demande pour l'année scolaire en cours.
      *
      * @param string $typeEtablissement Le type d'etablissement
-     * @param string $typeEnseignement Le type en cas d'enseignement
-     * @param string $typeCentre Le type en cas de centre
-     * @param string $typeAutre Le type en cas d'autre
-     * @param int $ville Id de la ville
+     * @param string $typeEnseignement  Le type en cas d'enseignement
+     * @param string $typeCentre        Le type en cas de centre
+     * @param string $typeAutre         Le type en cas d'autre
+     * @param int    $ville             Id de la ville
      *
      * @return array
      */
     public function getTypeAndNoInterventionThisYear($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre, $ville) {
         switch ($typeEtablissement) {
-            case "enseignement":
-                $results = $this->_getEnseignementsByTypeAndNoInterventionThisYear($typeEnseignement, $ville);
-                break;
-            case "centre":
-                $results = $this->_getCentresLoisirsByTypeAndInterventionNotRealized($typeCentre, $ville);
-                break;
-            case "autreEtablissement":
-                $results = $this->_getAutresEtablissementsByTypeAndInterventionNotRealized($typeAutre, $ville);
-                break;
-            default:
-                $results = $this->_getEnseignementsByTypeAndNoInterventionThisYear($typeEnseignement, $ville);
-                break;
+        case "enseignement":
+            $results = $this->_getEnseignementsByTypeAndNoInterventionThisYear($typeEnseignement, $ville);
+            break;
+        case "centre":
+            $results = $this->_getCentresLoisirsByTypeAndInterventionNotRealized($typeCentre, $ville);
+            break;
+        case "autreEtablissement":
+            $results = $this->_getAutresEtablissementsByTypeAndInterventionNotRealized($typeAutre, $ville);
+            break;
+        default:
+            $results = $this->_getEnseignementsByTypeAndNoInterventionThisYear($typeEnseignement, $ville);
+            break;
         }
 
         return $results;
@@ -94,10 +94,10 @@ class EtablissementRepository extends EntityRepository {
     /**
      * Get Enseignements by Type
      *
-     * @param array $typeEnseignement Le type
-     * @param string $ville La ville
-     * @param string $field Le champs
-     * @param string $desc Descendant ou non
+     * @param array  $typeEnseignement Le type
+     * @param string $ville            La ville
+     * @param string $field            Le champs
+     * @param string $desc             Descendant ou non
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -131,8 +131,8 @@ class EtablissementRepository extends EntityRepository {
     /**
      * Query pour récupérer les établissements d'enseignement par type et ville n'ayant pas répondus à une demande pour l'année scolaire en cours.
      *
-     * @param array $typeEnseignement Le type
-     * @param string $ville La ville
+     * @param array  $typeEnseignement Le type
+     * @param string $ville            La ville
      *
      * @return array
      */
@@ -148,16 +148,14 @@ class EtablissementRepository extends EntityRepository {
             ->andWhere('d.dateDemande < :dateSup')
             ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup))
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
         $subIds = array_map('current', $sub);
 
         foreach ($typeEnseignement as $te) {
             $qb = $this->createQueryBuilder('e');
             $linked = $qb->select('e.id')
                 ->where('e.typeEnseignement = :typeE')
-                ->andWhere($qb->expr()->notIn('e.id', $subIds))
-            ;
+                ->andWhere($qb->expr()->notIn('e.id', $subIds));
 
             if ($ville) {
                 $this->_whereVilleIs($linked, $ville);
@@ -173,8 +171,8 @@ class EtablissementRepository extends EntityRepository {
     /**
      * Query pour récupérer les centres de loisirs par type et ville n'ayant pas répondus à une demande pour l'année scolaire en cours.
      *
-     * @param array $typeCentre Le type
-     * @param string $ville La ville
+     * @param array  $typeCentre Le type
+     * @param string $ville      La ville
      *
      * @return array
      */
@@ -190,16 +188,14 @@ class EtablissementRepository extends EntityRepository {
             ->andWhere('d.dateDemande < :dateSup')
             ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup))
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
         $subIds = array_map('current', $sub);
 
         foreach ($typeCentre as $tc) {
             $qb = $this->createQueryBuilder('e');
             $linked = $qb->select('e.id')
                 ->where('e.typeCentre = :typeC')
-                ->andWhere($qb->expr()->notIn('e.id', $subIds))
-            ;
+                ->andWhere($qb->expr()->notIn('e.id', $subIds));
 
             if ($ville) {
                 $this->_whereVilleIs($linked, $ville);
@@ -215,8 +211,8 @@ class EtablissementRepository extends EntityRepository {
     /**
      * Query pour récupérer les autres établissements par type et ville n'ayant pas répondus à une demande pour l'année scolaire en cours.
      *
-     * @param array $typeAutreEtablissement Le type
-     * @param string $ville La ville
+     * @param array  $typeAutreEtablissement Le type
+     * @param string $ville                  La ville
      *
      * @return array
      */
@@ -232,16 +228,14 @@ class EtablissementRepository extends EntityRepository {
             ->andWhere('d.dateDemande < :dateSup')
             ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup))
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
         $subIds = array_map('current', $sub);
 
         foreach ($typeAutreEtablissement as $tae) {
             $qb = $this->createQueryBuilder('e');
             $linked = $qb->select('e.id')
                 ->where('e.typeAutreEtablissement = :typeAE')
-                ->andWhere($qb->expr()->notIn('e.id', $subIds))
-            ;
+                ->andWhere($qb->expr()->notIn('e.id', $subIds));
 
             if ($ville) {
                 $this->_whereVilleIs($linked, $ville);
@@ -257,10 +251,10 @@ class EtablissementRepository extends EntityRepository {
     /**
      * Get Centres Loisirs by Type
      *
-     * @param array $typeCentre Le type de centre
-     * @param string $ville La ville
-     * @param string $field Le champs
-     * @param string $desc Descendant ou non
+     * @param array  $typeCentre Le type de centre
+     * @param string $ville      La ville
+     * @param string $field      Le champs
+     * @param string $desc       Descendant ou non
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -295,10 +289,10 @@ class EtablissementRepository extends EntityRepository {
     /**
      * Get Autres Etablissements by Type
      *
-     * @param array $typeAutreEtablissement Le type de autre
-     * @param string $ville La ville
-     * @param string $field Le champs
-     * @param bool $desc Descendant ou non
+     * @param array  $typeAutreEtablissement Le type de autre
+     * @param string $ville                  La ville
+     * @param string $field                  Le champs
+     * @param bool   $desc                   Descendant ou non
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -334,7 +328,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @param string $ville La ville
      * @param string $field Le champs
-     * @param bool $desc Descendant ou non
+     * @param bool   $desc  Descendant ou non
      *
      * @return array
      */
@@ -359,8 +353,8 @@ class EtablissementRepository extends EntityRepository {
     /**
      * Where ville is
      *
-     * @param QueryBuilder $qb Le querybuilder
-     * @param string $ville La ville
+     * @param QueryBuilder $qb    Le querybuilder
+     * @param string       $ville La ville
      *
      * @return object
      */

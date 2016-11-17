@@ -160,7 +160,7 @@ class InterventionController extends Controller {
 
         $institute = $repositoryEtablissement->find($id);
 
-        if(is_null($institute)) {
+        if (is_null($institute)) {
             $session =$request->getSession();
 
             $session->getFlashBag()->add(
@@ -203,7 +203,7 @@ class InterventionController extends Controller {
             $etablissementRaw = $form->get('Etablissement');
 
             $institute = $etablissementRaw->getData();
-            $this->treatmentEtablissement($institute,$etablissementRaw);
+            $this->treatmentEtablissement($institute, $etablissementRaw);
 
             // Extraire et traiter la plage de disponibilité de l'établissement
             $startWeek = $form->get('plageDate')->get('debut')->getData()->format("W");
@@ -802,6 +802,14 @@ class InterventionController extends Controller {
         }
     }
 
+    /**
+     * Traitement d'un etablissement
+     *
+     * @param string $institute        L'etablissement
+     * @param string $etablissementRaw L'etablissement en forme brute
+     *
+     * @return void
+     */
     function treatmentEtablissement($institute, $etablissementRaw) {
         $emails = $etablissementRaw->get("emails")->getData();
         if (sizeof($emails) != 0) {

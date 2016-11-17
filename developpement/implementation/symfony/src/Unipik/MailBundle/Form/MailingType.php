@@ -40,7 +40,8 @@ class MailingType extends AbstractFieldsetType {
 
     /**
      * MailingType constructor.
-     * @param ObjectManager $entityManager
+     *
+     * @param ObjectManager $entityManager Le manager
      */
     public function __construct(ObjectManager $entityManager) {
         $this->entityManager = $entityManager;
@@ -91,8 +92,7 @@ class MailingType extends AbstractFieldsetType {
             ->add('typeAutre', ChoiceType::class, $typeAutreEtablissement)
             ->add('typeRelance', ChoiceType::class, $relance)
             ->add('ville', VilleType::class, array('required' => false))
-            ->add('codePostal', CodePostalType::class, array('required' => false))
-        ;
+            ->add('codePostal', CodePostalType::class, array('required' => false));
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
         $builder->get("codePostal")->addModelTransformer(new CodePostalAutocompleteTransformer($this->entityManager));

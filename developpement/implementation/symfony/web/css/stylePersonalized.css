@@ -201,7 +201,11 @@ iframe{
 }
 
 .alert-warning{
-    background-color: #dca7a7 !important;
+    background-color: #ffb733 !important;
+}
+
+.alert-info{
+    background-color: #4252ff !important;
 }
 
 .buttons .btn{

@@ -206,15 +206,11 @@ class InterventionController extends Controller {
             $this->treatmentEtablissement($institute,$etablissementRaw);
 
             // Extraire et traiter la plage de disponibilité de l'établissement
-            $startWeek = $form->get('plageDate')->get('debut')->getData()->format("W");
-            $endWeek = $form->get('plageDate')->get('fin')->getData()->format("W");
-            if ($startWeek > $endWeek) {
-                $endWeek = 1;
-            }
+            $startDate = $form->get('plageDate')->get('debut')->getData();
+            $endDate = $form->get('plageDate')->get('fin')->getData();
+            $demande->setDateDebutDisponibilite($startDate);
+            $demande->setDateFinDisponibilite($endDate);
 
-            for ($week = $startWeek; $week <= $endWeek; $week++) {
-                $demande->addSemaine($week);
-            }
 
             // Extraire et traiter les moments voulus et à éviter
             $this->treatmentMoment($form->get('jour')->getData(), $demande);
@@ -772,6 +768,7 @@ class InterventionController extends Controller {
                 $interventionTemp->setComite($comite);
 
                 if ($interventionRaw["TypeGeneral"]=="pld") {
+                    $interventionTemp->setTypeIntervention("plaidoyers");
                     foreach ($interventionRaw["materielDispoPlaidoyer"]["materiel"] as $materiel) {
                         $interventionTemp->addMaterielDispoPlaidoyer($materiel);
                     }
@@ -785,6 +782,7 @@ class InterventionController extends Controller {
 
                     }
                 } elseif ($interventionRaw["TypeGeneral"]=="frim") {
+                    $interventionTemp->setTypeIntervention("frimousse");
                     foreach ($interventionRaw['materiauxFrimousse']["materiel"] as $materiel) {
                         $interventionTemp->addMateriauxFrimousse($materiel);
                     }
@@ -792,6 +790,7 @@ class InterventionController extends Controller {
                         $interventionTemp->setNiveauFrimousse($interventionRaw["niveauTheme"]->getNiveau());
                     }
                 } elseif ($interventionRaw["TypeGeneral"]=="aut") {
+                    $interventionTemp->setTypeIntervention("autre_intervention");
                     if (isset($interventionRaw["remarques"])) {
                         $interventionTemp->setDescription($interventionRaw["remarques"]);
                     }

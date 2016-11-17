@@ -60,7 +60,7 @@ CREATE DOMAIN domaine_niveau_scolaire_limite AS VARCHAR(:longueurChaineCourte)
 CHECK (VALUE IN ('CP', 'CP-CE1', 'CE1', 'CE1-CE2', 'CE2', 'CE2-CM1', 'CM1', 'CM1-CM2', 'CM2', 'autre'));
 
 CREATE DOMAIN domaine_theme AS VARCHAR(:longueurChaineMoyenne)
-CHECK (VALUE IN ('Droits', 'Droits - Education', 'Institution - Role de l Unicef', 'Sante', 'Sante - Alimentation', 'Sante - Eau', 'Droits - CIDE', 'Droits - Enfants soldats', 'Droits - Travail des enfants', 'Droits - Harcelement-Violence', 'Droits - Discriminations', 'Institution - Millenaire pour le developpement', 'Sante - VIH-Sida', 'Urgences'));
+CHECK (VALUE IN ('education', 'role unicef', 'sante en generale', 'sante et alimentation', 'eau', 'convention internationale des droits de l enfant', 'enfants et soldats', 'travail des enfants', 'harcelement', 'discrimination', 'millenaire dev', 'VIH et sida', 'urgences mondiales'));
 
 CREATE DOMAIN domaine_email AS VARCHAR(:longueurChaineMoyenne)
 CHECK (VALUE ~ '^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$' );
@@ -78,6 +78,9 @@ CHECK (VALUE ~ '^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}');
 
 CREATE DOMAIN domaine_code_postal AS VARCHAR(:longueurChaineCourte)
 CHECK (VALUE ~ '^[0-9]{5}$');
+
+CREATE DOMAIN domaine_type_intervention AS VARCHAR(:longueurChaineCourte)
+CHECK (VALUE IN ('plaidoyers', 'frimousse', 'autre_intervention'));
 
 
 -- il faut rajouter un domaine sur l'UAI d'un établissement (enseignement) --
@@ -278,7 +281,8 @@ CREATE TABLE IF NOT EXISTS intervention (
 	nb_personne domaine_entier_nb_personne NOT NULL, 
 	remarques VARCHAR(:longueurChaineLongue) DEFAULT NULL, 
 	heure domaine_heure DEFAULT NULL,
-	realisee BOOLEAN NOT NULL
+	realisee BOOLEAN NOT NULL, 
+	type_intervention domaine_type_intervention NOT NULL
 );
 
 -- Attributs de plaidoyer

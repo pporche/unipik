@@ -46,49 +46,42 @@ EOF
 
 psql -U $username -w -d $dbname  -h 127.0.0.1 -c "ALTER SEQUENCE niveau_theme_id_seq RESTART WITH 1;"
 
-list0=( "petite section" "petite-moyenne section" "moyenne section" "moyenne-grande section" "grande section" "petite-moyenne-grande section")
-for element in "${list0[@]}"    
-do   
-    psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Droits');"  
-	
-done
 
 list1=( "petite section" "petite-moyenne section" "moyenne section" "moyenne-grande section" "grande section" "petite-moyenne-grande section" "CP" "CP-CE1" "CE1" "CE1-CE2" "CE2" "CE2-CM1" "CM1" "CM1-CM2" "CM2" "6eme" "5eme" "4eme" "3eme" "2nde" "1ere" "terminale" "L1" "L2" "L3" "M1" "M2" "autre")   
 for element in "${list1[@]}"    
 do   
-    psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Droits - Education');"  
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Institution - Role de l Unicef');" 
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Sante');" 
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Sante - Alimentation');" 
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Sante - Eau');" 
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Droits - CIDE');" 
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Droits - Enfants soldats');" 
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Droits - Travail des enfants');" 
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Droits - Harcelement-Violence');" 
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Droits - Discriminations');" 
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Institution - Millenaire pour le developpement');" 
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Sante - VIH-Sida');" 
-	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'Urgences');" 
+    psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'education');"  
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'role unicef');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'sante en generale');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'sante et alimentation');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'eau');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'convention internationale des droits de l enfant');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'enfants et soldats');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'travail des enfants');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'harcelement');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'discrimination');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'millenaire dev');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'VIH et sida');" 
+	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'urgences mondiales');" 
 done
 
 
 
 
 
-psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM niveau_theme WHERE theme = 'Droits'
-																					OR theme = 'Droits - Education'
-																					OR theme = 'Institution - Role de l Unicef'
-																					OR theme = 'Sante'
-																					OR theme = 'Sante - Alimentation'
-																					OR theme = 'Sante - Eau'
-																					OR theme = 'Droits - CIDE'
-																					OR theme = 'Droits - Enfants soldats'
-																					OR theme = 'Droits - Travail des enfants'
-																					OR theme = 'Droits - Harcelement-Violence'
-																					OR theme = 'Droits - Discriminations'
-																					OR theme = 'Institution - Millenaire pour le developpement'
-																					OR theme = 'Sante - VIH-Sida'
-																					OR theme = 'Urgences';" > id.txt
+psql -U $username -w -d $dbname  -h 127.0.0.1 -c "SELECT id FROM niveau_theme WHERE theme = 'education'
+																					OR theme = 'role unicef'
+																					OR theme = 'sante en generale'
+																					OR theme = 'sante et alimentation'
+																					OR theme = 'eau'
+																					OR theme = 'convention internationale des droits de l enfant'
+																					OR theme = 'enfants et soldats'
+																					OR theme = 'travail des enfants'
+																					OR theme = 'harcelement'
+																					OR theme = 'discrimination'
+																					OR theme = 'millenaire dev'
+																					OR theme = 'VIH et sida'
+																					OR theme = 'urgences mondiales';" > id.txt
 continuerBoucle="true"
 
 i=2																			

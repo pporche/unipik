@@ -92,9 +92,9 @@ class MailController extends Controller {
             } else if ($relance == 'relancePlaidoyer') {
                 $ids = array();
             } else {
-                $institutesArray = !empty($typeInstitute) ? $repository->getType("enseignement", $typeInstitute, null, null, $ville, null, null) : array();
-                $centersArray = !empty($typeCenter) ? $repository->getType("centre", null, $typeCenter, null, $ville, null, null) : array();
-                $othersArray = !empty($typeOther) ? $repository->getType("autreEtablissement", null, null, $typeOther, $ville, null, null) : array();
+                $institutesArray = !empty($typeInstitute) ? $repository->getType("enseignement", $typeInstitute, $ville, null, null) : array();
+                $centersArray = !empty($typeCenter) ? $repository->getType("centre", $typeCenter, $ville, null, null) : array();
+                $othersArray = !empty($typeOther) ? $repository->getType("autreEtablissement", $typeOther, $ville, null, null) : array();
                 $mergedArray = array_merge($institutesArray, $centersArray, $othersArray);
                 foreach ($mergedArray as $institute) {
                     array_push($ids, $institute->getId());

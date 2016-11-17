@@ -6,6 +6,11 @@ intervention_request:
     requirements:
         id:  \d+
 
+intervention_request_anonyme:
+    path:     /intervention/demande
+    defaults:
+        _controller: InterventionBundle:Intervention:demandeAnonyme
+
 intervention_list:
     path:   /intervention
     defaults:

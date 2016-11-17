@@ -78,6 +78,37 @@ class ArchitectureController extends Controller {
     }
 
     /**
+     * Autocomplete du département
+     *
+     * @param Request $request La requete
+     *
+     * @return JsonResponse
+     */
+    public function autocompleteDepartementAction(Request $request) {
+
+        $names = array();
+        $term = trim(strip_tags($request->get('term')));
+        $term=strtoupper($term);
+
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('ArchitectureBundle:Departement')->createQueryBuilder('d')
+            ->where('d.nom LIKE :name')
+            ->setParameter('name', $term.'%')
+            ->orderBy('d.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        foreach ($entities as $entity) {
+            $names[] = $entity->getNom();
+        }
+
+        $response = new JsonResponse();
+        $response->setData($names);
+
+        return $response;
+    }
+
+    /**
      * Autocomplete de la ville
      *
      * @param Request $request La requete
@@ -87,14 +118,36 @@ class ArchitectureController extends Controller {
     public function autocompleteVilleAction(Request $request) {
 
         $names = array();
+        // Récupération de ce qui est tapé
         $term = trim(strip_tags($request->get('term')));
-        $term=strtoupper($term);
+        $term = strtoupper($term);
 
+        // Construction de la requête : on récupère les villes dont le nom commence par ce qui est tapé
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('ArchitectureBundle:Ville')->createQueryBuilder('v')
+        $qb = $em->getRepository('ArchitectureBundle:Ville')->createQueryBuilder('v')
             ->where('v.nom LIKE :name')
             ->setParameter('name', $term.'%')
-            ->orderBy('v.nom', 'ASC')
+            ->orderBy('v.nom', 'ASC');
+
+        $monfichier = fopen('/home/jpain01/Bureau/fichier.txt', 'r+');
+        fputs($monfichier, 'coucou : '.trim(strip_tags($request->get('?dep'))));
+        fclose($monfichier);
+        // Nous testons si un département a été envoyé dans la requête
+        if ($request->get('?dep')) {
+            // Si oui, nous récupérons le département et ne récupérons seulement les villes situées dans ce département
+            $dep = trim(strip_tags($request->get('?dep')));
+            $dep = strtoupper($dep);
+
+            $qb
+                ->from('ArchitectureBundle:CodePostal','cp')
+                ->andWhere('v.codePostal = cp')
+                ->andWhere('cp.departement = :dep')
+                ->setParameter('dep',$dep)
+                ;
+        }
+
+        // Récupération des résultats
+        $entities = $qb
             ->getQuery()
             ->getResult();
 

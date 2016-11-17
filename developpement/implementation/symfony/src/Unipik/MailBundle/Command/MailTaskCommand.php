@@ -83,7 +83,7 @@ class MailTaskCommand extends ContainerAwareCommand {
             // Set dernière date d'exécution de la crontask
             $mailTask->setLastRun(new \DateTime());
 
-            foreach($etablissements as $etablissement) {
+            foreach ($etablissements as $etablissement) {
 
                 $type = !empty($etablissement->getTypeEnseignement()) ? $etablissement->getTypeEnseignement() : $etablissement->getTypeCentre();
                 $message = \Swift_Message::newInstance()

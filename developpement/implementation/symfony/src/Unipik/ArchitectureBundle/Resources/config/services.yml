@@ -4,3 +4,8 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: form.type }
+    app.form.mailing:
+            class: Unipik\MailBundle\Form\MailingType
+            arguments: ["@doctrine.orm.entity_manager"]
+            tags:
+                - { name: form.type }

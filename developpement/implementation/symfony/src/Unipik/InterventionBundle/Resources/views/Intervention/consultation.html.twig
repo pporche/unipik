@@ -102,9 +102,9 @@
         }
 
         function attributeInterventionAdmin(event, username, id) {
+            username = parseUsername(username);
             $.post("{{ path('intervention_attribute') }}", {'username': username, 'id': id},
                 function (data, status) {
-                    console.log('ça marche !');
                     $("button[data-target='#myModal']").attr('class', 'btn btn-danger');
                     $("button[data-target='#myModal']").text('Désattribuer l\'intervention');
                     $("button[data-target='#myModal']").attr("onclick", "desattributeInterventionAdmin(this, " + id + ")");
@@ -112,6 +112,12 @@
                     $("button[data-target='#myModal']").removeAttr("data-toggle");
                     $("#attribueA").text("Attribuée à " + data.prenom + " " + data.nom);
                 });
+        }
+
+        function parseUsername(username){
+            var regexUsername = /\((.*?)\)/;
+            username = regexUsername.exec(username)[0].substring(1);
+            return username.substring(0,username.length-1);
         }
 
         function sendIdToModal(id) {

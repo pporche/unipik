@@ -33,7 +33,7 @@ class EtablissementRepository extends EntityRepository {
      * Generic function for DB queries.
      *
      * @param string $typeEtablissement Le type d'etablissement
-     * @param string $typeEnseignement Le type en cas d'enseignement
+     * @param array $typeEnseignement Le type en cas d'enseignement
      * @param string $typeCentre Le type en cas de centre
      * @param string $typeAutre Le type en cas d'autre
      * @param int $ville Id de la ville
@@ -42,22 +42,47 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return array
      */
-    public function getType($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre, $ville, $field, $desc) {
-        switch ($typeEtablissement) {
-            case "enseignement":
-                $results = $this->_getEnseignementsByType($typeEnseignement, $ville, $field, $desc);
-                break;
-            case "centre":
-                $results = $this->_getCentresLoisirsByType($typeCentre, $ville, $field, $desc);
-                break;
-            case "autreEtablissement":
-                $results = $this->_getAutresEtablissementsByType($typeAutre, $ville, $field, $desc);
-                break;
-            default:
-                $results = $this->_getTousEtablissements($ville, $field, $desc);
-                break;
-        }
+    public function getType($typeEtablissement, $type, $ville, $field, $desc) {
+        $results = array();
+        if(!isset($type))
+            $type = array("maternelle", "elementaire", "college", "lycee", "superieur", "adolescent", "maison de retraite", "mairie", "autre", "");
 
+        foreach ($type as $t) {
+            $qb = $this->createQueryBuilder('e');
+
+            switch ($typeEtablissement) {
+                case "enseignement":
+                    $qb->where('e.typeEnseignement = :type');
+                    break;
+                case "centre":
+                    $qb->where('e.typeCentre = :type');
+                    break;
+                case "autreEtablissement":
+                    $qb->where('e.typeAutreEtablissement = :type');
+                    break;
+                default:
+                    $qb->where('e.typeEnseignement = :type');
+                    $qb->orWhere('e.typeCentre = :type');
+                    $qb->orWhere('e.typeAutreEtablissement = :type');
+                    break;
+            }
+
+            if ($ville) {
+                $this->_whereVilleIs($qb, $ville);
+            }
+
+            if ($field == "nom") {
+                if ($desc) {
+                    $qb->orderBy('e.nom', 'DESC');
+                } else {
+                    $qb->orderBy('e.nom', 'ASC');
+                }
+            }
+
+            $qb->setParameter('type', $t);
+
+            $results = array_merge($results, $qb->getQuery()->getResult());
+        }
         return $results;
     }
 
@@ -73,6 +98,7 @@ class EtablissementRepository extends EntityRepository {
      * @return array
      */
     public function getTypeAndNoInterventionThisYear($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre, $ville) {
+
         switch ($typeEtablissement) {
             case "enseignement":
                 $results = $this->_getEnseignementsByTypeAndNoInterventionThisYear($typeEnseignement, $ville);

@@ -570,13 +570,11 @@ class InterventionController extends Controller {
         if ($request->isXmlHttpRequest()) {
             $username = $request->request->get('username');
             $id = $request->request->get('id');
-
             $em = $this->getDoctrine()->getManager();
             $repositoryVolunteer = $em->getRepository('UserBundle:Benevole');
             $volunteer = $repositoryVolunteer->findOneBy(array('username' => $username));
             $repositoryIntervention = $em->getRepository('InterventionBundle:Intervention');
             $intervention = $repositoryIntervention->find($id);
-
             $intervention->setBenevole($volunteer);
 
             $em->persist($intervention);

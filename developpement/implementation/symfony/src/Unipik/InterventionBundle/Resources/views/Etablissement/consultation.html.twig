@@ -42,6 +42,7 @@
         {% endif %}
     </script>
     <script>
+
         function imprimer(){
 
             var emails = "";
@@ -54,54 +55,47 @@
             {% endif %}
             var docDefinition = {
                 content: [
-                    {text: "Fiche d'Établissement", style: ['header']},
-                    {text: " ", style: ['header']},
-                    {text: "Nom: {{ etablissement.nom }}", style: ['body'] },
-                    {text: " ", style: ['header']},
-                    {text: "Téléphone: {{ etablissement.telFixe }}", style: ['body'] },
-                    {text: " ", style: ['header']},
-                    {text: "Emails:"+emails, style: ['body'] },
-                    {text: " ", style: ['header']},
-                    {text: "Adresse: {{ etablissement.adresse.adresse }} {{ etablissement.adresse.complement }}, {{ etablissement.adresse.codePostal.code }} {{ etablissement.adresse.ville.nom }}", style: ['body']},
-                    {text: " ", style: ['header']},
+                    {text: "Fiche d'Établissement\n\n", style: ['header']},
+                    {text: "Nom: {{ etablissement.nom }}\n\n", style: ['body'] },
+                    {text: "Téléphone: {{ etablissement.telFixe }}\n\n", style: ['body'] },
+                    {text: "Emails:"+emails+'\n\n', style: ['body'] },
+                    {text: "Adresse: {{ etablissement.adresse.adresse }} {{ etablissement.adresse.complement }}, {{ etablissement.adresse.codePostal.code }} {{ etablissement.adresse.ville.nom }}\n\n", style: ['body']},
                     {text: "Interventions demandées:", style: ['body'] },
                     {% if listeInterventionsDemandeesNonRealisees is not empty  %}
                         {% for intervention in listeInterventionsDemandeesNonRealisees %}
                             {% if intervention.plaidoyer %}
-                    {text: "    Action éducative - {{ intervention.etablissement.adresse.ville.nom }}", style: ['body'] },
+                    {text: "    Action éducative - {{ intervention.etablissement.adresse.ville.nom }}\n\n", style: ['body'] },
                             {% elseif intervention.frimousse %}
-                    {text: "    Frimousse - {{ intervention.etablissement.adresse.ville.nom }}", style: ['body'] },
+                    {text: "    Frimousse - {{ intervention.etablissement.adresse.ville.nom }}\n\n", style: ['body'] },
                             {% else %}
-                    {text: "    Autre intervention - {{ intervention.etablissement.adresse.ville.nom }}", style: ['body'] },
+                    {text: "    Autre intervention - {{ intervention.etablissement.adresse.ville.nom }}\n\n", style: ['body'] },
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                    {text: "Aucune", style: ['body'] },
+                    {text: "\t\tAucune\n\n", style: ['body'] },
                     {% endif %}
-                    {text: " ", style: ['header']},
                     {text: "Interventions réalisées:", style: ['body'] },
                     {% if listeInterventionsRealisees is not empty  %}
                     {% for intervention in listeInterventionsRealisees %}
                         {% if intervention.plaidoyer %}
-                    {text: "Action éducative - {{ intervention.etablissement.adresse.ville.nom }}, {{ intervention.dateIntervention|date('d-m-Y') }} {{ intervention.heure }}", style: ['body'] },
+                    {text: "Action éducative - {{ intervention.etablissement.adresse.ville.nom }}, {{ intervention.dateIntervention|date('d-m-Y') }} {{ intervention.heure }}\n\n", style: ['body'] },
                             {% elseif intervention.frimousse %}
-                    {text: "Frimousse - {{ intervention.etablissement.adresse.ville.nom }}, {{ intervention.dateIntervention|date('d-m-Y') }} {{ intervention.heure }}", style: ['body'] },
+                    {text: "Frimousse - {{ intervention.etablissement.adresse.ville.nom }}, {{ intervention.dateIntervention|date('d-m-Y') }} {{ intervention.heure }}\n\n", style: ['body'] },
                             {% else %}
-                    {text: "Autre intervention - {{ intervention.etablissement.adresse.ville.nom }}, {{ intervention.dateIntervention|date('d-m-Y') }} {{ intervention.heure }}", style: ['body'] },
+                    {text: "Autre intervention - {{ intervention.etablissement.adresse.ville.nom }}, {{ intervention.dateIntervention|date('d-m-Y') }} {{ intervention.heure }}\n\n", style: ['body'] },
                             {% endif %}
                     {% endfor %}
                     {% else %}
-                    {text: "Aucune", style: ['body'] },
+                    {text: "Aucune\n\n", style: ['body'] },
                     {% endif %}
-                    {text: " ", style: ['header']},
                     {% if etablissement.contacts is not empty%}
-                        {text: "Contacts:", style: ['body'] },
+                        {text: "Contacts:\n\n", style: ['body'] },
                         {% for contact in etablissement.contacts %}
-                            {text: "Contact 1:", style: ['body'] },
-                            {text: "Nom: {{ contact.nom |capitalize }}", style: ['body'] },
-                            {text: "Prenom: {{ contact.prenom |capitalize }}", style: ['body'] },
-                            {text: "Tel. Fixe: {{ contact.telFixe }}", style: ['body'] },
-                            {text: "Tel. Portable: {{ contact.telPortable }}", style: ['body'] },
+                            {text: "Contact 1:\n\n", style: ['body'] },
+                            {text: "Nom: {{ contact.nom |capitalize }}\n\n", style: ['body'] },
+                            {text: "Prenom: {{ contact.prenom |capitalize }}\n\n", style: ['body'] },
+                            {text: "Tel. Fixe: {{ contact.telFixe }}\n\n", style: ['body'] },
+                            {text: "Tel. Portable: {{ contact.telPortable }}\n\n", style: ['body'] },
                         {% endfor %}
                     {% endif %}
                 ],

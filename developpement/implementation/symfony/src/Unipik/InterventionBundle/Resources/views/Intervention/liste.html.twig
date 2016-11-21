@@ -462,6 +462,7 @@
         }
 
         function attributeInterventionAdmin(event, username, id) {
+            username = parseUsername(username);
             $.post("{{ path('intervention_attribute') }}", {'username': username, 'id': id},
                 function (data, status) {
                     var selector = "button[name=attribuer" + id + "]";
@@ -485,9 +486,16 @@
                 });
         }
 
+        function parseUsername(username){
+            var regexUsername = /\((.*?)\)/;
+            username = regexUsername.exec(username)[0].substring(1);
+            return username.substring(0,username.length-1);
+        }
+
         $('#attribuerModal').click(function () {
             $('#myModal').modal('hide');
         });
+
 
         //        $('#recherche_avancee_statutIntervention_2').hide();
         //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();

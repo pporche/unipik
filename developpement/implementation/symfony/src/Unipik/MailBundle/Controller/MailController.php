@@ -18,7 +18,7 @@ namespace Unipik\MailBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Unipik\MailBundle\Entity\CronTask;
+use Symfony\Component\HttpFoundation\Response;
 use Unipik\MailBundle\Entity\MailTask;
 use Unipik\MailBundle\Form\MailingType;
 
@@ -119,5 +119,4 @@ class MailController extends Controller {
 
         return $this->render('MailBundle:mailing:mailingEtablissements.html.twig', array('form' => $form->createView()));
     }
-
 }

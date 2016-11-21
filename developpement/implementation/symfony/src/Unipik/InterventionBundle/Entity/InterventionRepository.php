@@ -439,6 +439,21 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
+     * @param string $email Email du bénévole
+     * @return array Interventions du bénévole
+     */
+    public function getInterventionByEmailBenevole($email) {
+        $qb = $this->createQueryBuilder('i')
+            ->select('i')
+            ->from('UserBundle:Benevole', 'b')
+            ->where('b.id = i.benevole')
+            ->andWhere('b.email = :email')
+            ->setParameter('email', $email);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
      * Verifie si un point est dans une distance d'une ville
      *
      * @param QueryBuilder $qb       Le querybuilder

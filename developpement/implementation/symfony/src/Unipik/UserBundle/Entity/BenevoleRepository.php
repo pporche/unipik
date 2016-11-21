@@ -177,6 +177,18 @@ class BenevoleRepository extends EntityRepository
     //        return $results;
     //    }
 
+    public function getEmailBenevoleRappel() {
+        $dateTime = new \DateTime('23-09-2016');
+        $dateTime->add(new \DateInterval('P7D'));
+        $date = ''.$dateTime->format('d/m/Y');
 
+        $qb = $this->createQueryBuilder('b')
+            ->select('DISTINCT b.email')
+            ->from('InterventionBundle:Intervention', 'i')
+            ->where('b.id = i.benevole')
+            ->andWhere('i.dateIntervention = \''.$date.'\'')
+        ;
 
+        return array_map('current', $qb->getQuery()->getResult());
+    }
 }

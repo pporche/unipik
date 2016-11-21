@@ -431,4 +431,16 @@ class InterventionRepository extends EntityRepository {
             )
             ->setParameter('distance', $distance*1000);
     }
+
+    public function getInterventionByEmailBenevole($email) {
+        $qb = $this->createQueryBuilder('i')
+            ->select('i')
+            ->from('UserBundle:Benevole', 'b')
+            ->where('b.id = i.benevole')
+            ->andWhere('b.email = :email')
+            ->setParameter('email', $email)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

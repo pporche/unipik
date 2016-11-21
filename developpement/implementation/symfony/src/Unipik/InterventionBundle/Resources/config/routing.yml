@@ -83,11 +83,17 @@ etablissement_autocomplete:
          _controller: InterventionBundle:Etablissement:etablissementAutocomplete
 
 # Route Vente
-
 vente_list:
-    path:   /vente
+    path:   /ventes
     defaults:
         _controller: InterventionBundle:Vente:liste
+
+vente_list_detail:
+    path:   /ventes/{intervention}
+    defaults:
+        _controller: InterventionBundle:Vente:liste
+    requirements:
+            intervention: \d+
 
 vente_view:
     path: /vente/{id}
@@ -101,4 +107,7 @@ vente_edit:
     requirements:
         id: \d+
 
+vente_add:
+    path: /vente/ajouter
+    defaults: {_controller: InterventionBundle:Vente:add}
 

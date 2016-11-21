@@ -60,6 +60,7 @@ class RechercheAvanceeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $dansVilleOuParDistance = array('required' => false, 'expanded' => true, 'multiple' => false,
+            'placeholder' => 'Aucun',
             'choices' => [
                 'Dans une ville' => 'dansVille',
                 'Par distance d\'un lieu' => 'distanceLieu'

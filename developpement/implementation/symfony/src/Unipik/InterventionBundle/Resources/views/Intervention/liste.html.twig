@@ -479,7 +479,7 @@
             $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
                 function (data, status) {
                     $(event).attr('class', 'btn btn-primary');
-                    $(event).text('Attribuer l\'intervention à');
+                    $(event).text('Attribuer à');
                     $(event).attr("onclick", "sendIdToModal(" + id + ")");
                     $(event).attr("data-target", "#myModal");
                     $(event).attr("data-toggle", "modal");
@@ -780,7 +780,7 @@
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <button name="desattribution" type="button" class="btn btn-danger"
                                                         onclick="desattributeInterventionAdmin(this, {{ intervention.id }})" style="padding-right: 4px;padding-left: 4px; font-size: 14px; width: 100%; overflow: hidden; text-overflow: ellipsis; ">
-                                                    Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}.
+                                                    Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
 
                                                 </button>
                                             {% else %}

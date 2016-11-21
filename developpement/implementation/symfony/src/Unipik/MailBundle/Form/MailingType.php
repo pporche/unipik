@@ -82,7 +82,7 @@ class MailingType extends AbstractFieldsetType {
 
         $relance = array( 'expanded' => true, 'multiple' => false, 'label' => "Type d'envoi", 'required' => false,
             'choices' => [
-                'Non réponse à une précédente sollicitation pour cette année scolaire' => 'relance',
+                'Non réponse à une précédente sollicitation pour ce niveau scolaire' => 'relance',
                 'Réponse à une précédente sollicitation (frimousses ou action pontuelles mais pas plaidoyers)' => 'relancePlaidoyer'
             ],);
 

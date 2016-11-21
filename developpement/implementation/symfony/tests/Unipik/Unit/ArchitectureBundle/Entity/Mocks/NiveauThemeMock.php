@@ -23,7 +23,7 @@ class NiveauThemeMock extends EntityMock
 
         $r
             ->setNiveau("CM1-CM2")
-            ->setTheme("Droits - Education");
+            ->setTheme("education");
 
         return $r;
     }

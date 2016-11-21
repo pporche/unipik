@@ -24,15 +24,15 @@ prompt_token() {
 
 function insertionBD {
 
-	if [[ $4 == *"Sans nom"* ]]; #si l'établissement n'a pas de nom, on ne donne de valeur à l'attribut nom dans la BD 
+	if [[ $b = *"Sans nom"* ]]; #si l'établissement n'a pas de nom, on ne donne de valeur à l'attribut nom dans la BD 
    	then
 		if [ -z "$f" ]; #si l'établissement n'a pas de numéro de téléphone (="") on n'entre pas de num de tel dans la BD 
 		then 
-    		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, emails, $1, nom) VALUES ($2,'$3', '{($5)}', '$6', '$8');" 
+    		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, emails, $1, nom) VALUES ($2,'$3', '{($5)}', '$6', '$nom');" 
 		else
 			python python/retirerEspace.py $f > logfile.log 
 			read tel < logfile.log 
-    		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, tel_fixe, emails, $1, nom) VALUES ($2, '$3', '$tel', '{($5)}', '$6', '$8');" 
+    		psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO etablissement (uai, adresse_id, tel_fixe, emails, $1, nom) VALUES ($2, '$3', '$tel', '{($5)}', '$6', '$nom');" 
 		fi
 	else 
   		if [ -z "$f" ];

@@ -7,8 +7,3 @@ etablissements_mailing:
     path: /mailing/etablissements
     defaults:
         _controller: MailBundle:Mail:mailingEtablissement
-
-wsdvqdgxdh:
-    path: /mailing/lol
-    defaults:
-        _controller: MailBundle:Mail:mailing

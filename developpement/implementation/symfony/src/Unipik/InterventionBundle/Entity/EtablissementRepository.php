@@ -88,42 +88,12 @@ class EtablissementRepository extends EntityRepository {
      * Query pour récupérer les établissements n'ayant pas répondu à une demande pour l'année scolaire en cours.
      *
      * @param string $typeEtablissement Le type d'etablissement
-     * @param string $typeEnseignement  Le type en cas d'enseignement
-     * @param string $typeCentre        Le type en cas de centre
-     * @param string $typeAutre         Le type en cas d'autre
+     * @param array $type  Le type en cas d'enseignement
      * @param int    $ville             Id de la ville
      *
      * @return array
      */
-    public function getTypeAndNoInterventionThisYear($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre, $ville) {
-
-        switch ($typeEtablissement) {
-        case "enseignement":
-            $results = $this->_getEnseignementsByTypeAndNoInterventionThisYear($typeEnseignement, $ville);
-            break;
-        case "centre":
-            $results = $this->_getCentresLoisirsByTypeAndInterventionNotRealized($typeCentre, $ville);
-            break;
-        case "autreEtablissement":
-            $results = $this->_getAutresEtablissementsByTypeAndInterventionNotRealized($typeAutre, $ville);
-            break;
-        default:
-            $results = $this->_getEnseignementsByTypeAndNoInterventionThisYear($typeEnseignement, $ville);
-            break;
-        }
-
-        return $results;
-    }
-
-    /**
-     * Query pour récupérer les établissements d'enseignement par type et ville n'ayant pas répondus à une demande pour l'année scolaire en cours.
-     *
-     * @param array  $typeEnseignement Le type
-     * @param string $ville            La ville
-     *
-     * @return array
-     */
-    private function _getEnseignementsByTypeAndNoInterventionThisYear($typeEnseignement, $ville = null) {
+    public function getTypeAndNoInterventionThisYear($typeEtablissement, $type, $ville) {
         $results = array();
         $dateInf = '01/09/'.date('Y');
         $dateSup = '01/09/'.(date('Y')+1);
@@ -133,102 +103,40 @@ class EtablissementRepository extends EntityRepository {
             ->join('i.demande', 'd')
             ->where('d.dateDemande > :dateInf')
             ->andWhere('d.dateDemande < :dateSup')
+            //->andWhere('i.typeIntervention = '.$typeIntervention)
             ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup))
             ->getQuery()
             ->getResult();
         $subIds = array_map('current', $sub);
 
-        foreach ($typeEnseignement as $te) {
+        foreach ($type as $t) {
             $qb = $this->createQueryBuilder('e');
-            $linked = $qb->select('e.id')
-                ->where('e.typeEnseignement = :typeE')
-                ->andWhere($qb->expr()->notIn('e.id', $subIds));
+            $linked = $qb->select('e.id');
+
+            switch ($typeEtablissement) {
+                case "enseignement":
+                    $qb->where('e.typeEnseignement = :type');
+                    break;
+                case "centre":
+                    $qb->where('e.typeCentre = :type');
+                    break;
+                case "autreEtablissement":
+                    $qb->where('e.typeAutreEtablissement = :type');
+                    break;
+                default:
+                    $qb->where('e.typeEnseignement = :type');
+                    $qb->orWhere('e.typeCentre = :type');
+                    $qb->orWhere('e.typeAutreEtablissement = :type');
+                    break;
+            }
+
+            $qb->andWhere($qb->expr()->notIn('e.id', $subIds));
 
             if ($ville) {
                 $this->_whereVilleIs($linked, $ville);
             }
 
-            $linked->setParameter('typeE', $te);
-            $results = array_merge($results, $linked->getQuery()->getResult());
-        }
-
-        return array_map('current', $results);
-    }
-
-    /**
-     * Query pour récupérer les centres de loisirs par type et ville n'ayant pas répondus à une demande pour l'année scolaire en cours.
-     *
-     * @param array  $typeCentre Le type
-     * @param string $ville      La ville
-     *
-     * @return array
-     */
-    private function _getCentresLoisirsByTypeAndInterventionNotRealized($typeCentre, $ville = null) {
-        $results = array();
-        $dateInf = '01/09/'.date('Y');
-        $dateSup = '01/09/'.(date('Y')+1);
-        $qbSub = $this->getEntityManager()->createQueryBuilder();
-        $sub = $qbSub->select('IDENTITY(i.etablissement)')
-            ->from('InterventionBundle:Intervention', 'i')
-            ->join('i.demande', 'd')
-            ->where('d.dateDemande > :dateInf')
-            ->andWhere('d.dateDemande < :dateSup')
-            ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup))
-            ->getQuery()
-            ->getResult();
-        $subIds = array_map('current', $sub);
-
-        foreach ($typeCentre as $tc) {
-            $qb = $this->createQueryBuilder('e');
-            $linked = $qb->select('e.id')
-                ->where('e.typeCentre = :typeC')
-                ->andWhere($qb->expr()->notIn('e.id', $subIds));
-
-            if ($ville) {
-                $this->_whereVilleIs($linked, $ville);
-            }
-
-            $linked->setParameter('typeC', $tc);
-            $results = array_merge($results, $linked->getQuery()->getResult());
-        }
-
-        return array_map('current', $results);
-    }
-
-    /**
-     * Query pour récupérer les autres établissements par type et ville n'ayant pas répondus à une demande pour l'année scolaire en cours.
-     *
-     * @param array  $typeAutreEtablissement Le type
-     * @param string $ville                  La ville
-     *
-     * @return array
-     */
-    private function _getAutresEtablissementsByTypeAndInterventionNotRealized($typeAutreEtablissement, $ville = null) {
-        $results = array();
-        $dateInf = '01/09/'.date('Y');
-        $dateSup = '01/09/'.(date('Y')+1);
-        $qbSub = $this->getEntityManager()->createQueryBuilder();
-        $sub = $qbSub->select('IDENTITY(i.etablissement)')
-            ->from('InterventionBundle:Intervention', 'i')
-            ->join('i.demande', 'd')
-            ->where('d.dateDemande > :dateInf')
-            ->andWhere('d.dateDemande < :dateSup')
-            ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup))
-            ->getQuery()
-            ->getResult();
-        $subIds = array_map('current', $sub);
-
-        foreach ($typeAutreEtablissement as $tae) {
-            $qb = $this->createQueryBuilder('e');
-            $linked = $qb->select('e.id')
-                ->where('e.typeAutreEtablissement = :typeAE')
-                ->andWhere($qb->expr()->notIn('e.id', $subIds));
-
-            if ($ville) {
-                $this->_whereVilleIs($linked, $ville);
-            }
-
-            $linked->setParameter('typeAE', $tae);
+            $linked->setParameter('type', $t);
             $results = array_merge($results, $linked->getQuery()->getResult());
         }
 

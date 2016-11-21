@@ -116,7 +116,6 @@ class ArchitectureController extends Controller {
      * @return JsonResponse
      */
     public function autocompleteVilleAction(Request $request) {
-
         $names = array();
         // Récupération de ce qui est tapé
         $term = trim(strip_tags($request->get('term')));
@@ -124,14 +123,10 @@ class ArchitectureController extends Controller {
 
         // Construction de la requête : on récupère les villes dont le nom commence par ce qui est tapé
         $em = $this->getDoctrine()->getManager();
-        $qb = $em->getRepository('ArchitectureBundle:Ville')->createQueryBuilder('v')
-            ->where('v.nom LIKE :name')
-            ->setParameter('name', $term.'%')
-            ->orderBy('v.nom', 'ASC');
+        $qb = $em->getRepository('ArchitectureBundle:Ville')
+            ->createQueryBuilder('v')
+            ->where('v.nom LIKE :name');
 
-        $monfichier = fopen('/home/jpain01/Bureau/fichier.txt', 'r+');
-        fputs($monfichier, 'coucou : '.trim(strip_tags($request->get('?dep'))));
-        fclose($monfichier);
         // Nous testons si un département a été envoyé dans la requête
         if ($request->get('?dep')) {
             // Si oui, nous récupérons le département et ne récupérons seulement les villes situées dans ce département
@@ -139,15 +134,18 @@ class ArchitectureController extends Controller {
             $dep = strtoupper($dep);
 
             $qb
-                ->from('ArchitectureBundle:CodePostal','cp')
-                ->andWhere('v.codePostal = cp')
-                ->andWhere('cp.departement = :dep')
+                ->innerJoin('v.codePostal','cp')
+                ->from('Unipik\ArchitectureBundle\Entity\Departement','d')
+                ->andWhere('cp.departement = d')
+                ->andWhere('d.nom = :dep')
                 ->setParameter('dep',$dep)
                 ;
         }
 
         // Récupération des résultats
         $entities = $qb
+            ->setParameter('name', $term.'%')
+            ->orderBy('v.nom', 'ASC')
             ->getQuery()
             ->getResult();
 

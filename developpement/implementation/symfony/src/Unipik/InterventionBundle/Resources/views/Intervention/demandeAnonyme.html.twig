@@ -20,10 +20,6 @@
     <h5> Ville* :</h5>
     {{ form_widget(form.ville) }}
 
-    <h5> Code postal* :</h5>
-    {{ form_widget(form.codePostal) }}
-
-
     <h5> Type d'etablissement* :</h5>
     {{ form_widget(form.typeGeneral) }}
 
@@ -316,7 +312,7 @@
                         + encodeURIComponent(uriEncodedQuery));
                     } else {
                         var res = (url +  "?term="
-                        + encodeURIComponent(uriEncodedQuery) + "&dep=" + $('#demande_anonyme_departement').val() );
+                        + encodeURIComponent(uriEncodedQuery) + "&?dep=" + $('#demande_anonyme_departement').val() );
                     }
                     console.log(res);
                     return res
@@ -330,44 +326,52 @@
             limit: 50
         });
 
-        //Auto-complétion pour le champ code postal
-        var codesPostaux = new Bloodhound({
+        // Auto-completion pour le champ nom établissement
+        var etablissements = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
-            //prefetch: '{{ path("architecture_ville_autocomplete") }}',
+            //prefetch: '{{ path("etablissement_autocomplete") }}',
             remote: {
-                url: '{{ path("architecture_code_autocomplete") }}?term=%QUERY',
-                wildcard: '%QUERY'
+                url: '{{ path("etablissement_autocomplete") }}',
+                wildcard: '%QUERY',
+                replace: function(url, uriEncodedQuery) {
+                    if (( $('#demande_anonyme_departement').val().length==0) && ( $('#demande_anonyme_ville').val().length==0)) {
+                        var res = (url + "?term="
+                        + encodeURIComponent(uriEncodedQuery));
+                    } else if ( $('#demande_anonyme_departement').val().length==0) {
+                        var res = (url + "?term="
+                        + encodeURIComponent(uriEncodedQuery) + "&?ville=" + $('#demande_anonyme_ville').val() );
+                    } else if ($('#demande_anonyme_ville').val().length==0) {
+                        var res = (url +  "?term="
+                        + encodeURIComponent(uriEncodedQuery) + "&?dep=" + $('#demande_anonyme_departement').val() );
+                    } else {
+                        var res = (url +  "?term="
+                        + encodeURIComponent(uriEncodedQuery) + "&?ville=" + $('#demande_anonyme_ville').val() + "&?dep=" + $('#demande_anonyme_departement').val() );
+                    }
+                    console.log($('#demande_anonyme_typeGeneral').val());
+                    switch ($('#demande_anonyme_typeGeneral').val()) {
+                        case 'ens':
+                            res = res + "&?ens=" + $("input[name='demande_anonyme[typeEnseignement]']:checked").val();
+                            break;
+                        case 'centre':
+                            res = res + "&?centre=" + $("input[name='demande_anonyme[typeCentre]']:checked").val();
+                            break;
+                        case 'autre':
+                            res = res + "&?autre=" + $("input[name='demande_anonyme[typeAutreEtablissement]']:checked").val();
+                            break;
+                    }
+                    console.log(res);
+                    return res
+                }
             }
         });
 
-        $('#demande_anonyme_codePostal').typeahead(null, {
-            name: 'codesPostaux',
-            source: codesPostaux,
-            limit: 5
+        $('#demande_anonyme_nomEtablissement').typeahead(null, {
+            name: 'etablissements',
+            source: etablissements,
+            limit: 50
         });
 
-        // Le champ ville se remplit automatiquement si le champ code postal est rempli
-        $('#demande_anonyme_ville').change(function () {
-            var ville = $(demande_anonyme_ville).val().toUpperCase();
-            console.log(ville);
-            $('#demande_anonyme_codePostal').val("");
-            $.post("{{ path('architecture_code_postal') }}", {'ville': ville},
-                function (data, status) {
-                    $('#demande_anonyme_codePostal').val(data.codePostal);
-                });
-        });
-
-        // Le champ code postal se remplit automatiquement si le champ ville est rempli
-        $('#demande_anonyme_codePostal').change(function () {
-            var codePostal = $(demande_anonyme_codePostal).val();
-            console.log(codePostal);
-            $('#demande_anonyme_ville').val("");
-            $.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},
-                function (data, status) {
-                    $('#demande_anonyme_ville').val(data.ville);
-                });
-        });
 
         // Permet d'afficher un calendrier pour la plage de date
         $('#demande_anonyme_plageDate_debut').datepicker({
@@ -439,6 +443,10 @@
         addInterElt.appendChild(buttonAddElement);
         document.getElementById('demande_anonyme_Intervention').appendChild(addInterElt);
 
+        // Permet de précocher les radio buttons
+        $("input[name='demande_anonyme[typeEnseignement]']:first").attr('checked', true);
+        $("input[name='demande_anonyme[typeCentre]']:first").attr('checked', true);
+        $("input[name='demande_anonyme[typeAutreEtablissement]']:first").attr('checked', true);
 
         // Permet de cacher/montrer les types des établissement (type enseignement, type centre, type autre) en fonction du type d'etablissement sélectionné
         hide_or_show_types_etablissement = function() {

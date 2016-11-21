@@ -97,7 +97,6 @@ class DemandeAnonymeType extends AbstractType {
         $builder
             ->add('departement', TextType::class, array('mapped' => false, 'label' => 'Département'))
             ->add('ville', TextType::class, array('mapped' => false, 'label' => 'Ville'))
-            ->add('codePostal', TextType::class, array('mapped' => false, 'label' => 'Code postal'))
             ->add('typeGeneral', ChoiceType::class, $generalType)
             ->add('typeEnseignement', ChoiceType::class, $educationChoiceType)
             ->add('typeAutreEtablissement', ChoiceType::class, $otherChoiceType)
@@ -117,7 +116,6 @@ class DemandeAnonymeType extends AbstractType {
             ;
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
-        $builder->get("codePostal")->addModelTransformer(new CodePostalAutocompleteTransformer($this->entityManager));
         $builder->get("departement")->addModelTransformer(new DepartementAutocompleteTransformer($this->entityManager));
         $builder->get("nomEtablissement")->addModelTransformer(new EtablissementAutocompleteTransformer($this->entityManager));
 

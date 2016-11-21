@@ -69,7 +69,7 @@
     {{ form_widget(form.plageDate.fin) }}
 
     <div class="jours">
-        <h3> Jour de l'intervention *</h3>
+        <h3> Jours de l'intervention *</h3>
         {{ form_widget(form.jour) }}
     </div>
 
@@ -488,7 +488,6 @@
         }
 
         function treatmentInterventionType(template, grade) {
-            var taille = $(template).find('option').length;
             if (grade != 'elementaire') {
                 $(template).find('option:eq(1)').fadeOut().prop('disabled', true);
             } else {
@@ -563,6 +562,9 @@
                         type = inputElt.value;
                         $('.form-annee-scolaire').each(function () {
                             treatmentCenter($(this).get(0), type);
+                        });
+                        $('.form-type-intervention').each(function () {
+                            treatmentInterventionType($(this).get(0), type);
                         });
                     }
                     break;
@@ -840,24 +842,6 @@
                 keepOther();
                 break;
         }
-
-
-        $('#demande_plageDate_debut').datepicker({
-            format: 'dd-mm-yyyy',
-            language: 'fr',
-            autoclose: true
-        }).on('changeDate', function (selected) {
-            $('#demande_plageDate_fin').datepicker('setStartDate', new Date(selected.date.valueOf()));
-        });
-        $('#demande_plageDate_fin').datepicker({
-            format: 'dd-mm-yyyy',
-            language: 'fr',
-            autoclose: true
-        }).on('changeDate', function (selected) {
-            $('#demande_plageDate_debut').datepicker('setEndDate', new Date(selected.date.valueOf()));
-        });
-
-        //$('.date-pick').datepicker();
 
 
         $(document).ready(function () {

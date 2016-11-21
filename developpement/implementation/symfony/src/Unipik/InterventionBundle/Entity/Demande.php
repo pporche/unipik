@@ -56,14 +56,22 @@ class Demande
     private $dateDemande;
 
     /**
-     * La liste de semaines
+     * La date de debut de disponibilite de l'etablissement
      *
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="liste_semaine", type="string", length=500, nullable=false)
+     * @ORM\Column(name="date_debut_disponibilite", type="date", nullable=false)
      */
-    private $listeSemaine;
+    private $dateDebutDisponibilite;
 
+    /**
+     * La date de fin de disponibilite de l'etablissement
+     *
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_fin_disponibilite", type="date", nullable=false)
+     */
+    private $dateFinDisponibilite;
     /**
      * Le contact
      *
@@ -140,74 +148,51 @@ class Demande
     }
 
     /**
-     * Set listeSemaine
+     * Get date de debut de disponibilite de l'etablissement
      *
-     * @param string $listeSemaine La liste de semaines
+     * @return \DateTime
+     */
+    public function getDateDebutDisponibilite()
+    {
+        return $this->dateDebutDisponibilite;
+    }
+
+    /**
+     * Set date de debut de disponibilite de l'etablissement
+     *
+     * @param \DateTime
      *
      * @return Demande
-     *
-     * @deprecated
      */
-    public function setListeSemaine($listeSemaine)
+    public function setDateDebutDisponibilite($dateDebutDisponibilite)
     {
-        $this->listeSemaine = $listeSemaine;
+        $this->dateDebutDisponibilite = $dateDebutDisponibilite;
 
         return $this;
     }
 
     /**
-     * Get listeSemaine
+     * Get date de fin de disponibilite de l'etablissement
      *
-     * @return string
-     *
-     * @deprecated
+     * @return \DateTime
      */
-    public function getListeSemaine()
+    public function getDateFinDisponibilite()
     {
-        return $this->listeSemaine;
+        return $this->dateFinDisponibilite;
     }
 
     /**
-     * Add semaine
+     * Set date de fin de disponibilite de l'etablissement
      *
-     * @param string|array $semaine La semaine
+     * @param \DateTime
      *
      * @return Demande
      */
-    public function addSemaine($semaine) {
-        $this->listeSemaine = ArrayConverter::addIntoPgArray(
-            $this->listeSemaine,
-            $semaine
-        );
+    public function setDateFinDisponibilite($dateFinDisponibilite)
+    {
+        $this->dateFinDisponibilite = $dateFinDisponibilite;
 
         return $this;
-    }
-
-    /**
-     * Remove semaine
-     *
-     * @param string $semaine La semaine
-     *
-     * @return object
-     */
-    public function removeSemaine($semaine) {
-        $this->listeSemaine = ArrayConverter::removeFromPgArray(
-            $this->listeSemaine,
-            $semaine
-        );
-    }
-
-    /**
-     * Get semaine
-     *
-     * @return Collection
-     */
-    public function getSemaines() {
-        $array = array();
-        if ($this->listeSemaine != null) {
-            $array = ArrayConverter::pgArrayToPhpArray($this->listeSemaine);
-        }
-        return new ArrayCollection($array);
     }
 
     /**

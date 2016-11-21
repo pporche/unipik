@@ -18,16 +18,16 @@ class DemandeMock extends EntityMock
     /**
      * @return Demande
      */
-    public static function create() 
+    public static function create()
     {
         $c = ContactMock::create();
 
 
         $d = new Demande();
-        $d
-            ->setContact($c)
+        $d  ->setContact($c)
             ->setDateDemande(new \DateTime('2000-01-01'))
-            ->addSemaine("42");
+            ->setDateDebutDisponibilite(new \DateTime('2000-01-15'))
+            ->setDateFinDisponibilite(new \DateTime('2000-01-30')) ;
 
         return $d;
     }

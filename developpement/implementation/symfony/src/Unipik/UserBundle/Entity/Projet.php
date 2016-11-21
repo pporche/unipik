@@ -67,9 +67,9 @@ class Projet {
      *
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=30, nullable=false)
+     * @ORM\Column(name="type_projet", type="string", length=30, nullable=false)
      */
-    private $type;
+    private $typeProjet;
 
     /**
      * Le nom
@@ -90,15 +90,6 @@ class Projet {
     private $benevole;
 
     /**
-     * Le contact
-     *
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Contact", mappedBy="projet", cascade={"persist"})
-     */
-    private $contact;
-
-    /**
      * Constructor
      *
      * @return object
@@ -106,7 +97,7 @@ class Projet {
     public function __construct()
     {
         $this->benevole = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->contact = new \Doctrine\Common\Collections\ArrayCollection();
+        //$this->contact = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -175,9 +166,9 @@ class Projet {
      *
      * @return Projet
      */
-    public function setType($type)
+    public function setTypeProjet($typeProjet)
     {
-        $this->type = $type;
+        $this->typeProjet = $typeProjet;
 
         return $this;
     }
@@ -187,9 +178,9 @@ class Projet {
      *
      * @return string
      */
-    public function getType()
+    public function getTypeProjet()
     {
-        return $this->type;
+        return $this->typeProjet;
     }
 
     /**
@@ -259,12 +250,12 @@ class Projet {
      *
      * @return Projet
      */
-    public function addContact(\Unipik\UserBundle\Entity\Contact $contact)
-    {
-        $this->contact[] = $contact;
-
-        return $this;
-    }
+//    public function addContact(\Unipik\UserBundle\Entity\Contact $contact)
+//    {
+//        $this->contact[] = $contact;
+//
+//        return $this;
+//    }
 
     /**
      * Remove contact
@@ -273,18 +264,18 @@ class Projet {
      *
      * @return object
      */
-    public function removeContact(\Unipik\UserBundle\Entity\Contact $contact)
-    {
-        $this->contact->removeElement($contact);
-    }
+//    public function removeContact(\Unipik\UserBundle\Entity\Contact $contact)
+//    {
+//        $this->contact->removeElement($contact);
+//    }
 
     /**
      * Get contact
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getContact()
-    {
-        return $this->contact;
-    }
+//    public function getContact()
+//    {
+//        return $this->contact;
+//    }
 }

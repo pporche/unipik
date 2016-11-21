@@ -1,0 +1,16 @@
+Participe:
+  type: entity
+  id:
+    contact:
+      associationKey: true
+    projet:
+      associationKey: true
+  fields:
+    estTuteur:
+      type: boolean
+  manyToOne:
+    projet:
+      targetEntity: Projet
+    contact:
+          targetEntity: Contact
+          inversedBy: participe

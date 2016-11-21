@@ -26,4 +26,9 @@ Si vous voulez supprimer les données de votre page (sauf pays, région, départ
 	[[./emptyTables.sh]]
 Si vous souhaitez réinsérez les adresses,  les établissements, les informations du comité et les données de test ancer  dans le dossier developpement/implementation/scriptsBD la commande  : 
 	./insertAll.sh
+	
+===== Insertion depuis un dump : =====
+
+1. Placer votre dump SQL sous le nom de [[/tmp/bdunicef.sql]]
+2. Executer le script insertBdFromDump.sh dans scriptBD
 

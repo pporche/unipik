@@ -280,6 +280,7 @@
                     $('#distanceKm').show();
                     $('#ville').hide();
                     $('#distVilleOuDom').show();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
                 }
             });
 
@@ -551,13 +552,13 @@
                     <h5> Filtre par lieu :</h5>
                     {{ form_widget(form.dansVilleOuParDistance) }}
                 </div>
-                <div id="ville">
-                    <h5> Ville :</h5>
-                    {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
-                </div>
                 <div id="distVilleOuDom">
                     <h5> Distance de ville ou domicile ?</h5>
                     {{ form_widget(form.villeOuDomicile) }}
+                </div>
+                <div id="ville">
+                    <h5> Ville :</h5>
+                    {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
                 </div>
                 <div id="distanceKm">
                     <h5> Distance en km :</h5>

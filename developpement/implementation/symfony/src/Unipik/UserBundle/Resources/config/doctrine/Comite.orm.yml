@@ -11,6 +11,13 @@ Unipik\UserBundle\Entity\Comite:
             id: true
             generator:
                 strategy: SEQUENCE
+    fields:
+            nom:
+                type: string
+                nullable: false
+                length: 100
+                options:
+                    fixed: false
     manyToMany:
         niveauTheme:
             targetEntity: Unipik\ArchitectureBundle\Entity\NiveauTheme

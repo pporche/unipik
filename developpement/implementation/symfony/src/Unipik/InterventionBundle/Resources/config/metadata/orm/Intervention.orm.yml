@@ -89,6 +89,12 @@ Intervention:
             length: 500
             options:
                 fixed: false
+        typeIntervention:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
     manyToOne:
         niveauTheme:
             targetEntity: Unipik\ArchitectureBundle\Entity\NiveauTheme

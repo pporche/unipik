@@ -140,6 +140,15 @@ class Intervention
     public $description;
 
     /**
+     * Le type de l'intervention
+     *
+     * @var string
+     *
+     * @ORM\Column(name="type_intervention", type="string", length=100, nullable=false)
+     */
+    public $typeIntervention;
+
+    /**
      * Les themes en fonction du niveau
      *
      * @var \Unipik\ArchitectureBundle\Entity\NiveauTheme
@@ -546,6 +555,30 @@ class Intervention
     }
 
     /**
+     * Set le type de l'intervention
+     *
+     * @param string $typeIntervention La description
+     *
+     * @return Intervention
+     */
+    public function setTypeIntervention($typeIntervention)
+    {
+        $this->typeIntervention = $typeIntervention;
+
+        return $this;
+    }
+
+    /**
+     * Get le type de l'intervention
+     *
+     * @return string
+     */
+    public function getTypeIntervention()
+    {
+        return $this->typeIntervention;
+    }
+
+    /**
      * Set niveauTheme
      *
      * @param \Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme Le theme en fonction du niveau
@@ -672,8 +705,7 @@ class Intervention
      */
     public function isPlaidoyer()
     {
-        $type = $this->getMaterielDispoPlaidoyer();
-        return !($type->isEmpty());
+        return ($this->getTypeIntervention() == "plaidoyers");
     }
 
     /**
@@ -683,8 +715,7 @@ class Intervention
      */
     public function isFrimousse()
     {
-        $type = $this->getMateriauxFrimousse();
-        return !($type->isEmpty());
+        return ($this->getTypeIntervention() == "frimousse");
     }
 
     /**
@@ -694,8 +725,7 @@ class Intervention
      */
     public function isAutreIntervention()
     {
-        $type = $this->getDescription();
-        return !($type == "");
+        return !($this->getTypeIntervention() == "autre_intervention");
     }
 
 }

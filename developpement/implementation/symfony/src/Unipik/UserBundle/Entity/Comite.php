@@ -44,6 +44,13 @@ class Comite
      */
     private $id;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
+     */
+    private $nom;
+
 
     /**
      * Le niveau en fonction du theme
@@ -212,5 +219,29 @@ class Comite
     public function getDepartement()
     {
         return $this->departement;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Departement
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
     }
 }

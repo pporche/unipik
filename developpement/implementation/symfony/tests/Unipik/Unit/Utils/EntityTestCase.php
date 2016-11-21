@@ -88,9 +88,9 @@ abstract class EntityTestCase extends KernelTestCase
         try{
             static::$em->persist($e);
             static::$em->flush();
-        } catch (\Doctrine\DBAL\Exception\DriverException $e){
+        } catch (\Doctrine\DBAL\Exception\DriverException $e) {
 
-        } catch (\Doctrine\ORM\ORMInvalidArgumentException $e){
+        } catch (\Doctrine\ORM\ORMInvalidArgumentException $e) {
 
         } catch (Exception $e) {
             $this->hasFailed();

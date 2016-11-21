@@ -112,7 +112,6 @@
             function goTo(page) {
 
                 var pageTest = page+1;
-                console.log(pageTest);
 
 
                 var pagesLinks = document.getElementsByClassName("page_link");
@@ -211,7 +210,7 @@
 
 
 {% block brand %}
-    <img style="max-height: 100%" src="{{ asset("img/unicef-logo-blanche.jpg") }}" alt="Unicef Logo"/>
+    <img style="max-height: 100%" src="{{ asset("img/unicef-logo-blanche.jpg") }}" id="logoNavBar" alt="Unicef Logo"/>
 {% endblock %}
 
 

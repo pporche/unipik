@@ -121,18 +121,18 @@ class InterventionRepository extends EntityRepository {
                     ->from('Unipik\InterventionBundle\Entity\Etablissement', 'et')
                     ->andWhere('i.etablissement = et')
                     ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'ad')
-                    ->andWhere('e.adresse = ad')
+                    ->andWhere('et.adresse = ad')
                     ->from('\Unipik\ArchitectureBundle\Entity\Ville', 'v')
-                    ->andWhere('a.ville = v')
+                    ->andWhere('ad.ville = v')
                     ->orderBy('v.nom', 'DESC');
             } else {
                 $qb
                     ->from('Unipik\InterventionBundle\Entity\Etablissement', 'et')
                     ->andWhere('i.etablissement = et')
                     ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'ad')
-                    ->andWhere('e.adresse = ad')
+                    ->andWhere('et.adresse = ad')
                     ->from('\Unipik\ArchitectureBundle\Entity\Ville', 'v')
-                    ->andWhere('a.ville = v')
+                    ->andWhere('ad.ville = v')
                     ->orderBy('v.nom', 'ASC');
             }
 

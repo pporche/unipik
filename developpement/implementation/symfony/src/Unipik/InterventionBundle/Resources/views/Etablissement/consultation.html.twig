@@ -17,6 +17,9 @@
 
 {% block javascripts %}
     {{ parent() }}
+
+    <script src="{{ asset('vendor/pdfmake/build/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('vendor/pdfmake/build/vfs_fonts.js') }}"></script>
     <script src="{{ asset('vendor/leaflet/dist/leaflet.js') }}"></script>
     <script src="{{ asset('vendor/turfjs/turf.min.js') }}"></script>
     <script type="application/javascript">
@@ -37,6 +40,78 @@
         {% else %}
             $("#mapid").html("Les coordonnées de l'établissement ne sont pas renseignées.");
         {% endif %}
+    </script>
+    <script>
+
+        function imprimer(){
+
+            var emails = "";
+            {% if etablissement.emails is not empty %}
+                {% for email in etablissement.emails %}
+                    emails+="{{ email }} "
+                {% endfor %}
+            {% else %}
+                emails="-"
+            {% endif %}
+            var docDefinition = {
+                content: [
+                    {text: "Fiche d'Établissement\n\n", style: ['header']},
+                    {text: "Nom: {{ etablissement.nom }}\n\n", style: ['body'] },
+                    {text: "Téléphone: {{ etablissement.telFixe }}\n\n", style: ['body'] },
+                    {text: "Emails:"+emails+'\n\n', style: ['body'] },
+                    {text: "Adresse: {{ etablissement.adresse.adresse }} {{ etablissement.adresse.complement }}, {{ etablissement.adresse.codePostal.code }} {{ etablissement.adresse.ville.nom }}\n\n", style: ['body']},
+                    {text: "Interventions demandées:", style: ['body'] },
+                    {% if listeInterventionsDemandeesNonRealisees is not empty  %}
+                        {% for intervention in listeInterventionsDemandeesNonRealisees %}
+                            {% if intervention.plaidoyer %}
+                    {text: "    Action éducative - {{ intervention.etablissement.adresse.ville.nom }}\n\n", style: ['body'] },
+                            {% elseif intervention.frimousse %}
+                    {text: "    Frimousse - {{ intervention.etablissement.adresse.ville.nom }}\n\n", style: ['body'] },
+                            {% else %}
+                    {text: "    Autre intervention - {{ intervention.etablissement.adresse.ville.nom }}\n\n", style: ['body'] },
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                    {text: "\t\tAucune\n\n", style: ['body'] },
+                    {% endif %}
+                    {text: "Interventions réalisées:", style: ['body'] },
+                    {% if listeInterventionsRealisees is not empty  %}
+                    {% for intervention in listeInterventionsRealisees %}
+                        {% if intervention.plaidoyer %}
+                    {text: "Action éducative - {{ intervention.etablissement.adresse.ville.nom }}, {{ intervention.dateIntervention|date('d-m-Y') }} {{ intervention.heure }}\n\n", style: ['body'] },
+                            {% elseif intervention.frimousse %}
+                    {text: "Frimousse - {{ intervention.etablissement.adresse.ville.nom }}, {{ intervention.dateIntervention|date('d-m-Y') }} {{ intervention.heure }}\n\n", style: ['body'] },
+                            {% else %}
+                    {text: "Autre intervention - {{ intervention.etablissement.adresse.ville.nom }}, {{ intervention.dateIntervention|date('d-m-Y') }} {{ intervention.heure }}\n\n", style: ['body'] },
+                            {% endif %}
+                    {% endfor %}
+                    {% else %}
+                    {text: "Aucune\n\n", style: ['body'] },
+                    {% endif %}
+                    {% if etablissement.contacts is not empty%}
+                        {text: "Contacts:\n\n", style: ['body'] },
+                        {% for contact in etablissement.contacts %}
+                            {text: "Contact 1:\n\n", style: ['body'] },
+                            {text: "Nom: {{ contact.nom |capitalize }}\n\n", style: ['body'] },
+                            {text: "Prenom: {{ contact.prenom |capitalize }}\n\n", style: ['body'] },
+                            {text: "Tel. Fixe: {{ contact.telFixe }}\n\n", style: ['body'] },
+                            {text: "Tel. Portable: {{ contact.telPortable }}\n\n", style: ['body'] },
+                        {% endfor %}
+                    {% endif %}
+                ],
+                styles: {
+                    header: {
+                        fontSize: 14,
+                        alignment: 'center'
+                    },
+                    body: {
+                        fontSize: 9,
+                        alignment: 'left'
+                    }
+                }
+            };
+            pdfMake.createPdf(docDefinition).open();
+        }
     </script>
 
 {% endblock %}
@@ -140,6 +215,7 @@
         <div class="buttons">
             <a href="{{ path("etablissement_admin_edit", {'id': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> </span>&nbsp Modifier</a>
             <a href="{{ path("etablissement_admin_delete", {'id': etablissement.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'établissment {{ etablissement.nom }} ?')"><span class="glyphicon glyphicon-trash">  </span>&nbsp Supprimer </a>
+            <button type="button" class="btn btn-primary" onclick="imprimer()" ><span class="glyphicon glyphicon-print"></span> Imprimer</button>
         </div>
     </div>
     {% endif %}

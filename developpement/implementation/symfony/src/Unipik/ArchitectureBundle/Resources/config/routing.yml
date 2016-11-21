@@ -6,6 +6,11 @@ architecture_noJavascript:
     path:     /erreurJS
     defaults: { _controller: ArchitectureBundle:Architecture:noJS }
 
+architecture_departement_autocomplete:
+    path: /departement/autocomplete
+    defaults:
+        _controller: ArchitectureBundle:Architecture:autocompleteDepartement
+
 architecture_ville_autocomplete:
     path: /ville/autocomplete
     defaults:

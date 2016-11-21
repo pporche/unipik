@@ -113,7 +113,6 @@
 
         $('#etablissement_adresse_ville').change(function () {
             var ville = $(etablissement_adresse_ville).val().toUpperCase();
-            console.log(ville);
             $('#etablissement_adresse_codePostal').val("");
             $.post("{{ path('architecture_code_postal') }}", {'ville': ville},
                     function (data, status) {
@@ -123,7 +122,6 @@
 
         $('#etablissement_adresse_codePostal').change(function () {
             var codePostal = $(etablissement_adresse_codePostal).val();
-            console.log(codePostal);
             $('#etablissement_adresse_ville').val("");
             $.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},
                     function (data, status) {

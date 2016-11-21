@@ -18,7 +18,7 @@ class NiveauThemeTest extends EntityTestCase
 
     protected static $repository = "ArchitectureBundle:NiveauTheme";
 
-    public static function testCreate() 
+    public static function testCreate()
     {
         self::bootKernel();
 
@@ -30,10 +30,10 @@ class NiveauThemeTest extends EntityTestCase
     /**
      * @depends testCreate
      */
-    public function testGettersSetters(NiveauTheme $nt) 
+    public function testGettersSetters(NiveauTheme $nt)
     {
         $this->assertEquals($nt->getId(), null);
-        $this->assertEquals($nt->getTheme(), "convention internationale des droits de l enfant");
+        $this->assertEquals($nt->getTheme(), "Droits - Education");
         $this->assertEquals($nt->getNiveau(), "CM1-CM2");
 
         $nt->setTheme("enfants et soldats");
@@ -64,7 +64,7 @@ class NiveauThemeTest extends EntityTestCase
         );
     }
 
-    public function badEntityProvider() 
+    public function badEntityProvider()
     {
         $nt = NiveauThemeMock::createMultiple(5);
 

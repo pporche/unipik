@@ -4,7 +4,7 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><em class="glyphicon glyphicon-user"></em> &nbsp {{  app.user.username | capitalize }}<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><em class="glyphicon glyphicon-user"></em> &nbsp {{  app.user.username  }}<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li><a href="{{ path('fos_user_profile_show') }}">Profil</a></li>
                 <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion <em class="glyphicon glyphicon-log-out"></em></a></li>

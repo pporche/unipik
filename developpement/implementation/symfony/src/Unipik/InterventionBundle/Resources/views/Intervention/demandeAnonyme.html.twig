@@ -1,0 +1,493 @@
+{# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
+{% extends "InterventionBundle::layout.html.twig" %}
+
+{% block title %}
+
+    Demander une intervention - {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+    <h2>Demande d'intervention</h2>
+    <hr>
+    {{ form_start(form, {'method': 'post', 'action': path('intervention_request_anonyme'), 'attr': {'class': 'intervention_request form-sm'}}) }}
+
+    <h3> Etablissement</h3>
+
+    <h5> Département* :</h5>
+    {{ form_widget(form.departement) }}
+
+    <h5> Ville* :</h5>
+    {{ form_widget(form.ville) }}
+
+    <h5> Type d'etablissement* :</h5>
+    {{ form_widget(form.typeGeneral) }}
+
+    <div id="enseignement">
+        <h5> Type d'enseignement* :</h5>
+        {{ form_widget(form.typeEnseignement) }}
+    </div>
+
+    <div id="centre">
+        <h5> Type Centre de Loisir* :</h5>
+        {{ form_widget(form.typeCentre) }}
+    </div>
+
+    <div id="autre">
+        <h5> Type Autre Etablissement* :</h5>
+        {{ form_widget(form.typeAutreEtablissement) }}
+    </div>
+
+    <h5>Nom établissement* :</h5>
+    {{ form_widget(form.nomEtablissement) }}
+
+
+    <h3> Plage de dates</h3>
+
+    <h5> Début* :</h5>
+    {{ form_widget(form.plageDate.debut) }}
+
+    <h5> Fin* :</h5>
+    {{ form_widget(form.plageDate.fin) }}
+
+    <div class="jours">
+        <h3> Jours de l'intervention *</h3>
+        {{ form_widget(form.jour) }}
+    </div>
+
+    <h3> Intervention * </h3>
+    {{ form_widget(form.Intervention) }}
+
+
+    <h3> Contact</h3>
+    <h5> Email* :</h5>
+    {{ form_widget(form.Contact.email) }}
+
+    <h5> Nom* :</h5>
+    {{ form_widget(form.Contact.nom) }}
+
+    <h5> Prénom :</h5>
+    {{ form_widget(form.Contact.prenom) }}
+
+
+    <h5> Tel Fixe :</h5>
+    {{ form_widget(form.Contact.telFixe) }}
+
+    <h5> Tel Portable :</h5>
+    {{ form_widget(form.Contact.telPortable) }}
+
+    <h5> Type Contact* :</h5>
+    {{ form_widget(form.Contact.typeContact) }}
+
+    <h5></h5>
+
+    {{ form_widget(form.Contact.respoEtablissement) }}
+
+    <h5></h5>
+
+    {{ form_widget(form.Valider_la_demande) }}
+
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
+    <style>
+        h3 {
+            margin-left: -50px !important;
+        }
+
+        .emailDiv .col-sm-2 {
+            width: 0px !important;
+        }
+
+        .emailDiv .col-sm-10 {
+            padding-left: 15px !important;
+        }
+
+        .form-group a {
+            border-radius: 100px !important;
+            line-height: 1em !important;
+            outline: hidden !important;
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        #demande_anonyme_ville, #demande_anonyme_departement, #demande_anonyme_codePostal, #demande_anonyme_nomEtablissement {
+            text-transform: uppercase;
+        }
+
+        .twitter-typeahead .tt-query,
+        .twitter-typeahead .tt-hint {
+            margin-bottom: 0;
+        }
+
+        .tt-hint {
+            display: none;
+            width: 100%;
+            height: 43px;
+            padding: 10px 18px;
+            font-size: 14px;
+            line-height: 1.428571429;
+            color: #999;
+            vertical-align: middle;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        }
+
+        .tt-menu {
+            min-width: 160px;
+            margin-top: 2px;
+            padding: 5px 0;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            background-clip: padding-box;
+            max-height: 150px;
+            overflow-y: auto;
+
+        }
+
+        .tt-suggestion {
+            display: block;
+            padding: 3px 20px;
+        }
+
+        .tt-suggestion.tt-is-under-cursor {
+            color: #fff;
+            background-color: #428bca;
+        }
+
+        .tt-suggestion.tt-is-under-cursor a {
+            color: #fff;
+        }
+
+        .tt-suggestion p {
+            margin: 0;
+        }
+
+        @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+        h2, h3 {
+            font-family: 'Ubuntu Condensed', sans-serif;
+            margin-top: 40px;
+        }
+
+        div {
+            box-shadow: none !important;
+        }
+
+        .container {
+            padding-left: 10px !important;
+        }
+
+        .col-sm-10 {
+            padding-left: 45px !important;
+        }
+
+        .col-sm-10 .col-sm-10 {
+            padding-left: 0px !important;
+        }
+
+        .form-annee-scolaire {
+            margin-left: 48px !important;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 350px !important;
+            margin-left: 10px !important;
+        }
+
+        input:focus, select:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: #CCCCCC !important;
+        }
+
+        .btn-info {
+            border-radius: 10px !important;
+        }
+
+        .btn-default {
+            border-radius: 10px !important;
+            background-color: #1a6ecc !important;
+            border-color: #1a6ecc !important;
+        }
+
+        hr {
+            margin-top: 25px !important;
+        }
+
+        legend {
+            margin-top: 20px;
+        }
+
+        h5 {
+            font-weight: 600;
+            margin-top: 25px;
+        }
+
+        .btn-primary {
+            margin-left: 30%;
+        }
+
+        table, .table, .table-bordered {
+            max-width: 550px !important;
+        }
+
+        form {
+            max-width: 450px;
+            margin: auto;
+        }
+
+        @media (max-width: 767px) {
+            h3 {
+                margin-left: 10px !important;
+            }
+
+            .form-annee-scolaire {
+                margin-left: 0px !important;
+            }
+        }
+
+        #demande_Intervention___name___niveauTheme {
+            margin-left: -100px !important;
+        }
+
+        #demande_Intervention___name___niveauTheme .col-sm-10 {
+            margin-left: -6px !important;
+        }
+
+        #demande_Intervention___name___niveauTheme_niveau {
+            margin-left: 53px !important;
+        }
+    </style>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
+    <script src="{{ asset('vendor/typeahead.js/dist/typeahead.jquery.js') }}"></script>
+    <script src="{{ asset('vendor/typeahead.js/dist/bloodhound.js') }}"></script>
+
+    <script type="application/javascript">
+        // Auto-complétion pour le champ département
+        var departements = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            //prefetch: '{{ path("architecture_departement_autocomplete") }}',
+            remote: {
+                url: '{{ path("architecture_departement_autocomplete") }}?term=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+
+        $('#demande_anonyme_departement').typeahead(null, {
+            name: 'departements',
+            source: departements,
+            limit: 50
+        });
+
+        // Auto-complétion pour le champ ville
+        var villes = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            //prefetch: '{{ path("architecture_ville_autocomplete") }}',
+            remote: {
+                url: '{{ path("architecture_ville_autocomplete") }}',
+                wildcard: '%QUERY',
+                replace: function(url, uriEncodedQuery) {
+                    if ( $('#demande_anonyme_departement').val().length==0) {
+                        var res = (url + "?term="
+                        + encodeURIComponent(uriEncodedQuery));
+                    } else {
+                        var res = (url +  "?term="
+                        + encodeURIComponent(uriEncodedQuery) + "&?dep=" + $('#demande_anonyme_departement').val() );
+                    }
+                    console.log(res);
+                    return res
+                }
+            }
+        });
+
+        $('#demande_anonyme_ville').typeahead(null, {
+            name: 'villes',
+            source: villes,
+            limit: 50
+        });
+
+        // Auto-completion pour le champ nom établissement
+        var etablissements = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            //prefetch: '{{ path("etablissement_autocomplete") }}',
+            remote: {
+                url: '{{ path("etablissement_autocomplete") }}',
+                wildcard: '%QUERY',
+                replace: function(url, uriEncodedQuery) {
+                    if (( $('#demande_anonyme_departement').val().length==0) && ( $('#demande_anonyme_ville').val().length==0)) {
+                        var res = (url + "?term="
+                        + encodeURIComponent(uriEncodedQuery));
+                    } else if ( $('#demande_anonyme_departement').val().length==0) {
+                        var res = (url + "?term="
+                        + encodeURIComponent(uriEncodedQuery) + "&?ville=" + $('#demande_anonyme_ville').val() );
+                    } else if ($('#demande_anonyme_ville').val().length==0) {
+                        var res = (url +  "?term="
+                        + encodeURIComponent(uriEncodedQuery) + "&?dep=" + $('#demande_anonyme_departement').val() );
+                    } else {
+                        var res = (url +  "?term="
+                        + encodeURIComponent(uriEncodedQuery) + "&?ville=" + $('#demande_anonyme_ville').val() + "&?dep=" + $('#demande_anonyme_departement').val() );
+                    }
+                    console.log($('#demande_anonyme_typeGeneral').val());
+                    switch ($('#demande_anonyme_typeGeneral').val()) {
+                        case 'ens':
+                            res = res + "&?ens=" + $("input[name='demande_anonyme[typeEnseignement]']:checked").val();
+                            break;
+                        case 'centre':
+                            res = res + "&?centre=" + $("input[name='demande_anonyme[typeCentre]']:checked").val();
+                            break;
+                        case 'autre':
+                            res = res + "&?autre=" + $("input[name='demande_anonyme[typeAutreEtablissement]']:checked").val();
+                            break;
+                    }
+                    console.log(res);
+                    return res
+                }
+            }
+        });
+
+        $('#demande_anonyme_nomEtablissement').typeahead(null, {
+            name: 'etablissements',
+            source: etablissements,
+            limit: 50
+        });
+
+
+        // Permet d'afficher un calendrier pour la plage de date
+        $('#demande_anonyme_plageDate_debut').datepicker({
+            format: 'dd-mm-yyyy',
+            language: 'fr',
+            startDate: 'today',
+            autoclose: true
+        }).on('changeDate', function (selected) {
+            $('#demande_anonyme_plageDate_fin').datepicker('setStartDate', new Date(selected.date.valueOf()));
+        });
+        $('#demande_anonyme_plageDate_fin').datepicker({
+            format: 'dd-mm-yyyy',
+            language: 'fr',
+            startDate: 'today',
+            autoclose: true
+        }).on('changeDate', function (selected) {
+            $('#demande_anonyme_plageDate_debut').datepicker('setEndDate', new Date(selected.date.valueOf()));
+        });
+
+        // Permet de mettre en forme les jours de l'intervention
+        function construction(item) {
+            var newLineElt = document.createElement('tr');
+            var columnHeadElt = document.createElement('td');
+            $(item.getElementsByTagName('label')[0]).detach().appendTo($(columnHeadElt));
+            $(columnHeadElt).detach().appendTo($(newLineElt));
+            while (item.getElementsByTagName('input').length > 0) {
+                var columnElt = document.createElement('td');
+                var inputElt = item.getElementsByTagName('input')[0];
+                $(inputElt).detach().appendTo($(columnElt));
+                $(columnElt).detach().appendTo($(newLineElt));
+            }
+
+            $(newLineElt).detach().appendTo($(tblElt));
+        }
+        function constructHeader(item) {
+            var theadElt = document.createElement('thead');
+            var newLineElt = document.createElement('tr');
+            var columnHeadElt = document.createElement('th');
+            columnHeadElt.textContent = '#';
+            $(columnHeadElt).detach().appendTo($(newLineElt));
+            while (item.length > 0) {
+                var columnElt = document.createElement('th');
+                var inputElt = item[0];
+                $(inputElt).detach().appendTo($(columnElt));
+                $(columnElt).detach().appendTo($(newLineElt));
+            }
+            $(newLineElt).detach().appendTo($(theadElt));
+            $(theadElt).detach().appendTo($(tblElt));
+        }
+
+        var tblElt = document.createElement('table');
+        $(tblElt).addClass('table table-bordered table-striped');
+
+        for (var i = 0; i < document.getElementsByClassName('jours')[0].getElementsByClassName('form-group').length; i++) {
+            construction(document.getElementsByClassName('jours')[0].getElementsByClassName('form-group')[i]);
+        }
+
+        constructHeader(document.getElementsByClassName('jours')[0].getElementsByClassName('form-group')[0].getElementsByTagName('label'));
+
+        $('#demande_anonyme_jour').replaceWith($(tblElt));
+
+
+        // Permet d'ajouter le bouton 'Ajouter une intervention'
+        var addInterElt = document.createElement('a');
+        addInterElt.id = 'add_intervention';
+        buttonAddElement = document.createElement('button');
+        buttonAddElement.className = 'btn btn-success';
+        buttonAddElement.textContent = 'Ajouter une Intervention';
+        addInterElt.appendChild(buttonAddElement);
+        document.getElementById('demande_anonyme_Intervention').appendChild(addInterElt);
+
+        // Permet de précocher les radio buttons
+        $("input[name='demande_anonyme[typeEnseignement]']:first").attr('checked', true);
+        $("input[name='demande_anonyme[typeCentre]']:first").attr('checked', true);
+        $("input[name='demande_anonyme[typeAutreEtablissement]']:first").attr('checked', true);
+
+        // Permet de cacher/montrer les types des établissement (type enseignement, type centre, type autre) en fonction du type d'etablissement sélectionné
+        hide_or_show_types_etablissement = function() {
+            var type = $('#demande_anonyme_typeGeneral').val();
+            switch (type) {
+                case 'ens' :
+                    $('#enseignement').show();
+                    $('#centre').hide();
+                    $('#autre').hide();
+                    break;
+                case 'centre' :
+                    $('#enseignement').hide();
+                    $('#centre').show();
+                    $('#autre').hide();
+                    break;
+                case 'autre' :
+                    $('#enseignement').hide();
+                    $('#centre').hide();
+                    $('#autre').show();
+                    break;
+            }
+        };
+
+        hide_or_show_types_etablissement();
+
+        $('#demande_anonyme_typeGeneral').change(hide_or_show_types_etablissement);
+
+        // Pré-cocher les jours de l'intervention en "Jour à éviter"
+        $('#demande_anonyme_jour_lundi_3').prop("checked", true);
+        $('#demande_anonyme_jour_mardi_3').prop("checked", true);
+        $('#demande_anonyme_jour_mercredi_3').prop("checked", true);
+        $('#demande_anonyme_jour_jeudi_3').prop("checked", true);
+        $('#demande_anonyme_jour_vendredi_3').prop("checked", true);
+
+
+        $(document).ready(function () {
+
+        });
+
+    </script>
+
+{% endblock %}
+
+

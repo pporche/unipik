@@ -119,4 +119,17 @@ class MailController extends Controller {
 
         return $this->render('MailBundle:mailing:mailingEtablissements.html.twig', array('form' => $form->createView()));
     }
+
+    public function mailingAction() {
+        $em = $this->getDoctrine()->getManager();
+
+        $benevoles = $em->getRepository('UserBundle:Benevole')->getEmailBenevoleRappel();
+        $inter = $em->getRepository('InterventionBundle:Intervention')->getInterventionByBenevoleEmailRappel($benevoles[0]);
+        $emails = $em->getRepository('InterventionBundle:Etablissement')->find(15)->getEmails();
+        $interventions = $em->getRepository('InterventionBundle:Intervention')->getInterventionByEtablissementIdRappel(12);
+        var_dump($inter);
+        var_dump($benevoles);
+        var_dump($interventions);
+        return new Response('OK !');
+    }
 }

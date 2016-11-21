@@ -155,6 +155,7 @@ class EtablissementRepository extends EntityRepository {
      * @param $typeEns : le type d'enseignement
      * @param $typeCentre : le type de centre de loisirs
      * @param $typeAutre : le type d'autre établissement
+     *
      * @return array
      */
     public function etablissementAutocomplete($term, $dep, $ville, $typeEns, $typeCentre, $typeAutre) {
@@ -243,5 +244,20 @@ class EtablissementRepository extends EntityRepository {
             ->andWhere('e.adresse = a')
             ->andWhere('a.ville = :ville')
             ->setParameter('ville', $ville);
+    }
+
+    public function getEmailEtablissementRappel() {
+        $dateTime = new \DateTime();
+        $dateTime->add(new \DateInterval('P7D'));
+        $date = ''.$dateTime->format('d/m/Y');
+
+        $qb = $this->createQueryBuilder('e')
+            ->select('e.id')
+            ->from('InterventionBundle:Intervention', 'i')
+            ->where('e.id = i.etablissement')
+            ->andWhere('i.dateIntervention = \''.$date.'\'')
+        ;
+
+        return array_map('current', $qb->getQuery()->getResult());
     }
 }

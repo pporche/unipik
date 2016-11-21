@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: scolomies
  * Date: 21/11/16
- * Time: 09:38
+ * Time: 13:14
  */
 
 namespace Unipik\MailBundle\Command;
@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RappelBenevoleTaskCommand extends ContainerAwareCommand {
+class RappelEtablissementTaskCommand extends ContainerAwareCommand {
     private $output;
 
     /**
@@ -23,7 +23,7 @@ class RappelBenevoleTaskCommand extends ContainerAwareCommand {
      */
     protected function configure() {
         $this
-            ->setName('mailBenevoleRappelTask:run')
+            ->setName('mailEtablissementRappelTask:run')
             ->setDescription('Cron task for delayed mailing');
     }
 
@@ -39,25 +39,26 @@ class RappelBenevoleTaskCommand extends ContainerAwareCommand {
         $this->output = $output;
 
         $em = $this->getContainer()->get('doctrine')->getManager();
-        $benevolesEmails = $em->getRepository('UserBundle:Benevole')->getEmailBenevoleRappel();
+        $etablissements = $em->getRepository('InterventionBundle:Etablissement')->getEmailEtablissementRappel();
 
-        if (empty($benevolesEmails)) {
+        if (empty($etablissements)) {
             $output->writeln('<comment>pas d\'interventions prévues dans une semaine</comment>');
             exit();
         } else {
-            foreach ($benevolesEmails as $email) {
-                $interventions = $em->getRepository('InterventionBundle:Intervention')->getInterventionByBenevoleEmailRappel($email);
+            foreach ($etablissements as $id) {
+                $emails = $em->getRepository('InterventionBundle:Etablissement')->find($id)->getEmails();
+                $interventions = $em->getRepository('InterventionBundle:Intervention')->getInterventionByEtablissementIdRappel($id);
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Rappel intervention de l\'unicef')
                     ->setFrom('unipik.dev@gmail.com')
-                    //->setTo($email)
+                    //->setTo($emails)
                     ->setTo('dev1@yopmail.com')
                     ->setBody(
                         $this
                             ->getContainer()
                             ->get('templating')
                             ->render(
-                                'MailBundle:mailsRappel:rappelBenevole.html.twig',
+                                'MailBundle:mailsRappel:rappelEtablissement.html.twig',
                                 array('interventions' => $interventions)
                             ),
                         'text/html'

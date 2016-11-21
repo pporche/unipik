@@ -19,7 +19,7 @@ class VenteType extends AbstractType
         $builder->add('chiffreAffaire',NumberType::class)
                 ->add('dateVente',DateType::class)
                 ->add('remarques',TextareaType::class)
-                ->add('intervention');
+                ;
     }
 
     /**

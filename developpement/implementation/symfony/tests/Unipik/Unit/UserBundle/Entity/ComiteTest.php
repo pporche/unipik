@@ -33,7 +33,8 @@ class ComiteTest extends  EntityTestCase
      */
     public function testGettersSetters(Comite $c)
     {
-        $this->assertEquals($c->getId(), null);
+        $this->assertEquals(null, $c->getId());
+        $this->assertEquals("comité génial", $c->getNom());
 
         $b = BenevoleMock::create();
 

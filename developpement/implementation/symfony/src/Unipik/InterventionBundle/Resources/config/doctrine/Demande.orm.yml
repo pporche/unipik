@@ -19,13 +19,12 @@ Unipik\InterventionBundle\Entity\Demande:
         dateDemande:
             type: date
             nullable: false
-        listeSemaine:
-            type: string
+        dateDebutDisponibilite:
+            type: date
             nullable: false
-            length: 500
-            options:
-                fixed: false
-            column: liste_semaine
+        dateFinDisponibilite:
+            type: date
+            nullable: false
     manyToOne:
         contact:
             targetEntity: Unipik\UserBundle\Entity\Contact

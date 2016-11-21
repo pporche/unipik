@@ -132,6 +132,7 @@ class Etablissement
      */
     private $contact;
 
+
     /**
      * Constructor
      */

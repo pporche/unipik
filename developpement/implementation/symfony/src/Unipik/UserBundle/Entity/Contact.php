@@ -19,6 +19,7 @@ namespace Unipik\UserBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Unipik\UserBundle\Entity\Participe;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
@@ -113,8 +114,6 @@ class Contact
     //@Assert\NotBlank()
     private $typeContact;
 
-
-
     /**
      * L'etablissement
      *
@@ -133,31 +132,6 @@ class Contact
     private $etablissement;
 
     /**
-     * Le projet
-     *
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Unipik\UserBundle\Entity\Projet", inversedBy="contact", cascade={"persist"})
-     * @ORM\JoinTable(name="participe",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="projet_id",                               referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="contact_id",                              referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $projet;
-
-
-    /**
-     * Est tuteur ou non
-     *
-     * @var boolean
-     *
-     * @ORM\Column(name="est_tuteur", type="boolean", nullable=true)
-     */
-    private $estTuteur;
 
     /**
      * Est responsable de l'etablissement ou non
@@ -178,6 +152,12 @@ class Contact
     private $typeActivite;
 
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @OneToMany(targetEntity="Participe", mappedBy="contact", nullable=true)
+     */
+    private $participe;
 
     /**
      * Constructor
@@ -187,7 +167,8 @@ class Contact
     public function __construct()
     {
         $this->etablissement = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->projet = new \Doctrine\Common\Collections\ArrayCollection();
+        //$this->projet = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->participe = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -247,6 +228,17 @@ class Contact
     public function getNom()
     {
         return $this->nom;
+    }
+
+
+    /**
+     * Get participe
+     *
+     * @return Participe
+     */
+    public function getParticipe()
+    {
+        return $this->participe;
     }
 
     /**
@@ -391,7 +383,7 @@ class Contact
     public function addProjet(\Unipik\UserBundle\Entity\Projet $projet)
     {
         $this->projet[] = $projet;
-
+            //TODO
         return $this;
     }
 
@@ -530,4 +522,7 @@ class Contact
         }
         return new ArrayCollection($array);
     }
+
+
+
 }

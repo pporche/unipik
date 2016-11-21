@@ -10,6 +10,7 @@ namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
 use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\UserBundle\Entity\Contact;
+use Unipik\UserBundle\Entity\Participe;
 
 class ContactMock extends EntityMock
 {
@@ -17,7 +18,7 @@ class ContactMock extends EntityMock
     /**
      * @return Contact
      */
-    public static function create() 
+    public static function create()
     {
         $c = new Contact();
         $c

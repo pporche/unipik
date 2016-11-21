@@ -35,22 +35,23 @@ class DemandeTest extends  EntityTestCase
     public function testGettersSetters(Demande $d)
     {
         $this->assertEquals(null, $d->getId());
-        $this->assertEquals("42", $d->getSemaines()[0]);
+        $this->assertEquals(new \DateTime('2000-01-15'), $d->getDateDebutDisponibilite());
+        $this->assertEquals(new \DateTime('2000-01-30'), $d->getDateFinDisponibilite());
         $this->assertEquals(new \DateTime('2000-01-01'), $d->getDateDemande());
 
         $c = ContactMock::create();
 
         $d
             ->setContact($c)
-            ->setDateDemande(new \DateTime('2010-10-10'));
+            ->setDateDemande(new \DateTime('2010-10-10'))
+            ->setDateDebutDisponibilite(new \DateTime('2010-01-30'))
+            ->setDateFinDisponibilite(new \DateTime('2010-02-15')) ;
 
         $this->assertEquals($c, $d->getContact());
+        $this->assertEquals(new \DateTime('2010-01-30'), $d->getDateDebutDisponibilite());
+        $this->assertEquals(new \DateTime('2010-02-15'), $d->getDateFinDisponibilite());
         $this->assertEquals(new \DateTime('2010-10-10'), $d->getDateDemande());
 
-        $d->addSemaine(45);
-        $this->assertEquals(45, $d->getSemaines()[1]);
-        $d->removeSemaine(45);
-        $this->assertEquals(null, $d->getSemaines()[1]);
 
         $mh = MomentHebdomadaireMock::create();
 
@@ -65,13 +66,12 @@ class DemandeTest extends  EntityTestCase
         $this->assertEquals(null, $d->getMomentsAEviter()[0]);
     }
 
-    public function validEntityProvider() 
+    public function validEntityProvider()
     {
         $d = DemandeMock::createMultiple(2);
         $mh = MomentHebdomadaireMock::createMultiple(2);
 
         $d[1]
-            ->addSemaine(47)
             ->addMomentsVoulus($mh[0])
             ->addMomentsAEviter($mh[1]);
 
@@ -93,7 +93,7 @@ class DemandeTest extends  EntityTestCase
     /**
      * @dataProvider badEntityProvider
      */
-    public function testBadEntities($e) 
+    public function testBadEntities($e)
     {
         $this->assertTrue(true);
     }

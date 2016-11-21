@@ -33,7 +33,7 @@ class NiveauThemeTest extends EntityTestCase
     public function testGettersSetters(NiveauTheme $nt)
     {
         $this->assertEquals($nt->getId(), null);
-        $this->assertEquals($nt->getTheme(), "Droits - Education");
+        $this->assertEquals($nt->getTheme(), "education");
         $this->assertEquals($nt->getNiveau(), "CM1-CM2");
 
         $nt->setTheme("enfants et soldats");

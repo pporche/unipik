@@ -334,14 +334,14 @@
         {% if intervention.plaidoyer %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveau, {'attr': {'style': 'display: none'}}) }}
-            {{ form_label(form.niveauTheme.niveau, "Année scolaire") }}
+            {{ form_label(form.niveauTheme.niveau, "Niveau Scolaire") }}
             {{ form_widget(form.niveauTheme.niveau, {'value' : intervention.niveauTheme.niveau })  }}
             {{ form_label(form.niveauTheme.theme, "Choix des thèmes") }}
             {{ form_widget(form.niveauTheme.theme.themes, {'value' : intervention.niveauTheme.theme })  }}
         {% elseif intervention.frimousse %}
             {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveauTheme, {'attr': {'style': 'display: none'}}) }}
-            {{ form_label(form.niveau, "Année scolaire") }}
+            {{ form_label(form.niveau, "Niveau scolaire") }}
             {{ form_widget(form.niveau, {'value' : intervention.niveauFrimousse })  }}
         {% else %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}

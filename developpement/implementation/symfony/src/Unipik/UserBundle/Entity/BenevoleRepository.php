@@ -178,7 +178,7 @@ class BenevoleRepository extends EntityRepository
     //    }
 
     public function getEmailBenevoleRappel() {
-        $dateTime = new \DateTime('23-09-2016');
+        $dateTime = new \DateTime();
         $dateTime->add(new \DateInterval('P7D'));
         $date = ''.$dateTime->format('d/m/Y');
 

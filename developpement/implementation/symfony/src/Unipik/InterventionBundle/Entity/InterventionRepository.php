@@ -440,15 +440,44 @@ class InterventionRepository extends EntityRepository {
 
     /**
      * @param string $email Email du bénévole
+     *
      * @return array Interventions du bénévole
      */
-    public function getInterventionByEmailBenevole($email) {
+    public function getInterventionByBenevoleEmailRappel($email) {
+        $dateTime = new \DateTime();
+        $dateTime->add(new \DateInterval('P7D'));
+        $date = ''.$dateTime->format('d/m/Y');
+
         $qb = $this->createQueryBuilder('i')
             ->select('i')
             ->from('UserBundle:Benevole', 'b')
             ->where('b.id = i.benevole')
             ->andWhere('b.email = :email')
-            ->setParameter('email', $email);
+            ->setParameter('email', $email)
+            ->andWhere('i.dateIntervention = \''.$date.'\'')
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param $id
+     *
+     * @return array
+     */
+    public function getInterventionByEtablissementIdRappel($id) {
+        $dateTime = new \DateTime();
+        $dateTime->add(new \DateInterval('P7D'));
+        $date = ''.$dateTime->format('d/m/Y');
+
+        $qb = $this->createQueryBuilder('i')
+            ->select('i')
+            ->from('InterventionBundle:Etablissement', 'e')
+            ->where('i.etablissement = e.id')
+            ->andWhere('e.id = :id')
+            ->setParameter('id', $id)
+            ->andWhere('i.dateIntervention = \''.$date.'\'')
+        ;
 
         return $qb->getQuery()->getResult();
     }

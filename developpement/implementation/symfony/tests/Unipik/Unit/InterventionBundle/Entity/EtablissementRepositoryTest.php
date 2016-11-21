@@ -92,7 +92,7 @@ class EtablissementRepositoryTest extends RepositoryTestCase
         // Test
         $result = $this->em
             ->getRepository('InterventionBundle:Etablissement')
-            ->getType($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre, $ville, "nom", $desc)
+            ->getTypeIntervention($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre, $ville, "nom", $desc)
         ;
         $this->assertCount($expectedResult, $result);
 

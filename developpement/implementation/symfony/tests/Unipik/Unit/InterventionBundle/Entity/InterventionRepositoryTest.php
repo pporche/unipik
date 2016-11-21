@@ -77,22 +77,22 @@ class InterventionRepositoryTest extends RepositoryTestCase
         // On test tous les types de requêtes possibles:
         return(array(
             "test1" =>  [3, [0, 1, 2], $inter, $nt, null, null, true, "plaidoyer", null, true, null, "POUIC POUIC"],
-            "test2" =>  [1, [2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, ["CM2"]],
-            "test3" =>  [2, [1, 2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, ["CM2", "CM1"]],
-            "test4" =>  [1, [2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, ['enfants et soldats']],
-            "test5" =>  [2, [1, 2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, ['travail des enfants', 'enfants et soldats']],
+            "test2" =>  [1, [2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, ["CM2"]],
+            "test3" =>  [2, [1, 2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, ["CM2", "CM1"]],
+            "test4" =>  [1, [2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, null, ['enfants et soldats']],
+            "test5" =>  [2, [1, 2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, null, ['travail des enfants', 'enfants et soldats']],
             "test6" =>  [3, [0, 1, 2], $inter, $nt, null, null, true, "plaidoyer", "lieu", true, null, "POUIC POUIC"],
             "test7" =>  [3, [0, 1, 2], $inter, $nt, null, null, true, "plaidoyer", "lieu", false, null, "POUIC POUIC"],
             "test8" =>  [1, [1], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "plaidoyer", null, null, null, "POUIC POUIC"],
             "test9" =>  [2, [3, 4], $inter, $nt, null, null, true, "frimousse", null, true, null, "POUIC POUIC"],
-            "test10" => [1, [4], $inter, $nt, null, null, true, "frimousse", null, null, null, "POUIC POUIC", null,["CM1-CM2"], null],
-            "test11" => [2, [3, 4], $inter, $nt, null, null, true, "frimousse", null, null, null, "POUIC POUIC", null, ["CE1-CE2", "CM1-CM2"], null],
+            "test10" => [1, [4], $inter, $nt, null, null, true, "frimousse", null, null, null, "POUIC POUIC", null, null,["CM1-CM2"], null],
+            "test11" => [2, [3, 4], $inter, $nt, null, null, true, "frimousse", null, null, null, "POUIC POUIC", null, null, ["CE1-CE2", "CM1-CM2"], null],
             "test12" => [1, [3], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "frimousse", null, null, null, "POUIC POUIC"],
             "test14" => [1, [5], $inter, $nt, null, null, true, "autreIntervention", null, null, null, "POUIC POUIC"],
             "test15" => [0, [], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "autreIntervention", null, null, null, "POUIC POUIC"],
             "test16" => [6, [0, 1, 2, 3, 4, 5], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC"],
             "test17" => [2, [1, 3], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, null, null, null, null, "POUIC POUIC"],
-            "test18" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC", $b[0]],
+            "test18" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC", true, $b[0]],
             "test19" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, "attribuees", "POUIC POUIC"],
             "test20" => [2, [4, 5], $inter, $nt, null, null, true, null, null, null, "nonAttribuees", "POUIC POUIC"],
             "test21" => [2, [1, 3], $inter, $nt, null, null, true, null, null, null, "realisees", "POUIC POUIC"],
@@ -118,6 +118,7 @@ class InterventionRepositoryTest extends RepositoryTestCase
         $desc,
         $statut,
         $nomVille,
+        $mesInterventions = null,
         $user = null,
         $niveauFrimousse = null,
         $niveauPlaidoyer = null,
@@ -148,18 +149,20 @@ class InterventionRepositoryTest extends RepositoryTestCase
         // Test getType method
         $result = $this->em
             ->getRepository('InterventionBundle:Intervention')
-            ->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $user, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville)
+            ->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $mesInterventions, $user, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville)
         ;
 
 
         // Prepare expected result
         $expectedIds = array();
         foreach ($expectedResult as $r) {
+            /*var_dump($interventions[$r]->getId());*/
             $expectedIds[$interventions[$r]->getId()] = true;
         }
 
         // Check Result
         foreach ($result as $r) {
+            //var_dump($r->getId());
             $this->assertArrayHasKey($r->getId(), $expectedIds);
         }
         $this->assertCount($expectedCount, $result);

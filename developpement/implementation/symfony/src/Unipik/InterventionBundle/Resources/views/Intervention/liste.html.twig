@@ -171,6 +171,9 @@
         $(document).ready(function () {
 
             $('input:checkbox').removeAttr('checked');
+            $('#ville').hide();
+            $('#distanceKm').hide();
+            $('#distVilleOuDom').hide();
 
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',
@@ -256,8 +259,55 @@
 
             $("#recherche_avancee_typeIntervention").change(hide_or_show_intervention);
 
+            $('#recherche_avancee_dansVilleOuParDistance_placeholder').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_placeholder').is(':checked')) {
+                    $('#ville').hide();
+                    $('#distanceKm').hide();
+                    $('#distVilleOuDom').hide();
+                }
+            });
+
+            $('#recherche_avancee_dansVilleOuParDistance_0').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')) {
+                    $('#ville').show();
+                    $('#distanceKm').hide();
+                    $('#distVilleOuDom').hide();
+                }
+            });
+
+            $('#recherche_avancee_dansVilleOuParDistance_1').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
+                    $('#distanceKm').show();
+                    $('#ville').hide();
+                    $('#distVilleOuDom').show();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
+                }
+            });
+
+            $('#recherche_avancee_villeOuDomicile_0').click(function() {
+                if($('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
+                    $('#ville').show();
+                }
+            });
+
+            $('#recherche_avancee_villeOuDomicile_1').click(function() {
+                if($('#recherche_avancee_villeOuDomicile_1').is(':checked')) {
+                    $('#ville').hide();
+                }
+            });
+
+            $('#recherche_avancee_villeOuDomicile_placeholder').click(function() {
+                if($('#recherche_avancee_villeOuDomicile_placeholder').is(':checked')) {
+                    $('#distanceKm').hide();
+                    $('#ville').hide();
+                    $('#distVilleOuDom').hide();
+
+                }
+            });
 
         });
+
+
 
         function imprimer(){
             var docDefinition = {
@@ -284,38 +334,38 @@
                                     { text: 'Email contact', style: 'tableHeader' }
                                 ],
                                 {% for intervention in liste %}
-                                    [ "{{ intervention.etablissement.adresse.ville.nom }}",
-                                        "{{ intervention.demande.dateDemande|date('d-m-Y') }}",
-                                         "PLAGE DE DATES",
+                                    [ { text: "{{ intervention.etablissement.adresse.ville.nom }}", style: 'tableHeader' },
+                                      { text: "{{ intervention.demande.dateDemande|date('d-m-Y') }}", style: 'tableHeader' },
+                                      { text: "PLAGE DE DATES", style: 'tableHeader' },
                                         {% if intervention.plaidoyer %}
-                                        "Action éducative",
+                                        { text: "Action éducative", style: 'tableHeader' },
                                         {% elseif intervention.frimousse %}
-                                        "Frimousse",
+                                        { text: "Frimousse", style: 'tableHeader' },
                                         {% else %}
-                                        "Autre intervention",
+                                        { text: "Autre intervention", style: 'tableHeader' },
                                         {% endif %}
-                                        "{{ intervention.etablissement.nom | capitalize }}",
+                                        { text: "{{ intervention.etablissement.nom | capitalize }}", style: 'tableHeader' },
                                         {% if intervention.plaidoyer %}
-                                        "{{ intervention.niveauTheme.niveau | capitalize }}",
+                                        { text: "{{ intervention.niveauTheme.niveau | capitalize }}", style: 'tableHeader' },
                                         {% elseif intervention.frimousse %}
-                                        "{{ intervention.niveauFrimousse | capitalize }}",
+                                        { text: "{{ intervention.niveauFrimousse | capitalize }}", style: 'tableHeader' },
                                         {% else %}
-                                        "-",
+                                        { text: "-", style: 'tableHeader' },
                                         {% endif %}
                                         {% if intervention.plaidoyer %}
-                                        "{{ intervention.niveauTheme.theme | capitalize }}",
+                                        { text: "{{ intervention.niveauTheme.theme | capitalize }}", style: 'tableHeader' },
                                         {% else %}
-                                        "-",
+                                        { text: "-", style: 'tableHeader' },
                                         {% endif %}
                                         {% if intervention.realisee %}
-                                        "Réalisée",
+                                        { text: "Réalisée", style: 'tableHeader' },
                                         {% elseif intervention.benevole %}
-                                        "{{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}",
+                                        { text: "{{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}", style: 'tableHeader' },
                                         {% else %}
-                                        " ",
+                                        { text: " ", style: 'tableHeader' },
                                         {% endif %}
-                                        "{{ intervention.demande.contact.prenom | capitalize }} {{ intervention.demande.contact.nom | capitalize }}",
-                                        "{{ intervention.demande.contact.email }}"
+                                        { text: "{{ intervention.demande.contact.prenom | capitalize }} {{ intervention.demande.contact.nom | capitalize }}", style: 'tableHeader' },
+                                        { text: "{{ intervention.demande.contact.email }}", style: 'tableHeader' }
                                     ],
                                 {% endfor %}
                             ]
@@ -327,6 +377,10 @@
                     header: {
                         fontSize: 13,
                         alignment: 'center'
+                    },
+                    tableHeader: {
+                        fontSize: 9,
+                        alignment: 'left'
                     }
                 }
             };
@@ -486,14 +540,22 @@
                     {{ form_widget(form.end, { 'attr': {'class': 'input-sm'} }) }}
                 </div>
                 <br/>
-                <h5> Filtre par lieu :</h5>
-                {{ form_widget(form.dansVilleOuParDistance) }}
-                <h5> Ville :</h5>
-                {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
-                <h5> Distance de ville ou domicile ?</h5>
-                {{ form_widget(form.villeOuDomicile) }}
-                <h5> Distance en km :</h5>
-                {{ form_widget(form.distance) }}
+                <div id="filtrePar">
+                    <h5> Filtre par lieu :</h5>
+                    {{ form_widget(form.dansVilleOuParDistance) }}
+                </div>
+                <div id="distVilleOuDom">
+                    <h5> Distance de ville ou domicile ?</h5>
+                    {{ form_widget(form.villeOuDomicile) }}
+                </div>
+                <div id="ville">
+                    <h5> Ville :</h5>
+                    {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
+                </div>
+                <div id="distanceKm">
+                    <h5> Distance en km :</h5>
+                    {{ form_widget(form.distance) }}
+                </div>
                 <div>
                     <input id="submit" type="submit" value="OK" class="btn btn-primary"/>
                 </div>

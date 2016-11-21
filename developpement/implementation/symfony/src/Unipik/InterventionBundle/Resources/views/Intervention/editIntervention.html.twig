@@ -68,7 +68,6 @@
             }
         });
         {% else %}
-        console.log("autre");
         {% endif %}
 
 
@@ -125,10 +124,8 @@
                     for (i = 0; i < taille; i++) {
                         if (i >= 7) {
                             $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
-                            console.log(">7");
                         } else {
                             $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
-                            console.log("<7");
                         }
                     }
                     break;
@@ -185,7 +182,6 @@
             {% if intervention.etablissement.enseignement %}
             etablissement = 'ens';
             typeEtablissement = '{{ intervention.etablissement.typeEnseignement }}';
-            console.log("onch");
             {% elseif intervention.etablissement.centreLoisirs %}
             etablissement = 'centre';
             typeEtablissement = '{{ intervention.etablissement.typeCentre }}';
@@ -193,7 +189,6 @@
             etablissement = 'autre';
             typeEtablissement = '{{ intervention.etablissement.typeAutreEtablissement }}';
             {% endif %}
-            console.log(typeEtablissement);
             switch (etablissement) {
                 case 'ens' :
                     $('.form-annee-scolaire').each(function () {
@@ -217,7 +212,6 @@
         $("#intervention_dateIntervention").on("change",compareDateAvailable);
 
         function compareDateAvailable(){
-            console.log("je passe");
             var dateBegin = new Date();
             var dateEnd = new Date();
             var dateWanted = formatDate(document.getElementsByClassName("js-datepicker")[0].value);

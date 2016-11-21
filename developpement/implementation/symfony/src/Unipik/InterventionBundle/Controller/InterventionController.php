@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Intervention;
 use Unipik\InterventionBundle\Form\DemandeType;
+use Unipik\InterventionBundle\Form\DemandeAnonymeType;
 use Unipik\InterventionBundle\Form\Intervention\AttributionType;
 use Unipik\InterventionBundle\Form\Intervention\InterventionType;
 use Unipik\InterventionBundle\Form\MomentType;
@@ -145,7 +146,7 @@ class InterventionController extends Controller {
      * Demande d'intervention
      *
      * @param Request $request La requete
-     * @param Int     $id      L'identifiant de la demande
+     * @param Int     $id      L'identifiant de l'etablissement
      *
      * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention.
      */
@@ -271,6 +272,27 @@ class InterventionController extends Controller {
             'typEnseignement' => json_encode($typeEtablissementEncoded),
             'id' => $id,
             'etablissement' => $institute
+            )
+        );
+    }
+
+    /**
+     * Demande d'intervention anonyme (on ne connait pas l'établissement qui fait la demande)
+     *
+     * @param Request $request La requete
+     *
+     * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention anonyme.
+     */
+    public function demandeAnonymeAction(Request $request) {
+        $demande = new Demande();
+        $form = $this->createForm(DemandeAnonymeType::class, $demande);
+
+        return $this->render(
+            'InterventionBundle:Intervention:demandeAnonyme.html.twig', array(
+                'form' => $form->createView(),
+//                'typEnseignement' => json_encode($typeEtablissementEncoded),
+//                'id' => $id,
+//                'etablissement' => $institute
             )
         );
     }
@@ -800,10 +822,11 @@ class InterventionController extends Controller {
     }
 
     /**
-     * Traitement d'un etablissement
+     * Permet d'effectuer le traitement sur l'établissement
+     * Si l'établissement modifie les informations les concernant, elle doivent être enregistrées
      *
-     * @param string $institute        L'etablissement
-     * @param string $etablissementRaw L'etablissement en forme brute
+     * @param $institute
+     * @param $etablissementRaw
      *
      * @return void
      */
@@ -873,7 +896,7 @@ class InterventionController extends Controller {
     }
 
     /**
-     * Traite les matins
+     * Permet d'associer les matins où l'établissement est disponible avec la demande
      *
      * @param array   $days    les jours
      * @param Demande $demande la demande
@@ -891,7 +914,7 @@ class InterventionController extends Controller {
     }
 
     /**
-     * Traite les apres midi
+     * Permet d'associer les après-midi où l'établissement est disponible avec la demande
      *
      * @param array   $days    les jours
      * @param Demande $demande la demande
@@ -909,7 +932,7 @@ class InterventionController extends Controller {
     }
 
     /**
-     * Liste les jours a eviter
+     * Permet d'associer les jours complets où l'établissement n'est pas disponible avec la demande
      *
      * @param array   $days    les jours
      * @param Demande $demande la demande
@@ -929,7 +952,7 @@ class InterventionController extends Controller {
     }
 
     /**
-     * Liste les jours complets
+     * Permet d'associer les jours complets où l'établissement est disponible avec la demande
      *
      * @param array   $days    les jours
      * @param Demande $demande la demande

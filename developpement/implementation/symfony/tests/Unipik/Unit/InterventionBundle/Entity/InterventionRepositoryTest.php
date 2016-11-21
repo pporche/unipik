@@ -156,13 +156,13 @@ class InterventionRepositoryTest extends RepositoryTestCase
         // Prepare expected result
         $expectedIds = array();
         foreach ($expectedResult as $r) {
-            var_dump($interventions[$r]->getId());
+            /*var_dump($interventions[$r]->getId());*/
             $expectedIds[$interventions[$r]->getId()] = true;
         }
 
         // Check Result
         foreach ($result as $r) {
-            var_dump($r->getId());
+            //var_dump($r->getId());
             $this->assertArrayHasKey($r->getId(), $expectedIds);
         }
         $this->assertCount($expectedCount, $result);

@@ -73,32 +73,20 @@ class ParticipeTest extends  EntityTestCase {
         ];
     }
 
-    public function badEntityProvider()
-    {
-//        $c = ContactMock::createMultiple(9);
-//        $longName = str_repeat("a", 101);
-
+   public function badEntityProvider()
+   {
+        $c = ContactMock::createMultiple(9);
 
         return [
-//            "contact with badly formatted email" => [$c[0]->setEmail("invalid.email@")],
-//            "Contact with bad type contact" => [$c[1]->setTypeContact("enseignant-chercheur")],
-//            "Contact with too long nom" => [$c[2]->setNom($longName)],
-//            "Contact with too long prenom" => [$c[3]->setPrenom($longName)],
-//            "Contact with badly formatted Tel fixe" => [$c[4]->setTelFixe("02.32.01.02.03")],
-//            "Contact with badly formatted Tel portable" => [$c[5]->setTelPortable("06.32.01.02.03")],
+            //bidon pour eviter
+            "contact with badly formatted email" => [$c[0]->setEmail("invalid.email@")],
         ];
     }
 
     public function badSetterProvider()
     {
-//        $c = ContactMock::createMultiple(3);
-
-
         return [
             null
-            //"Contact with wrong type estTuteur" => [$c[0]->setEstTuteur("Vrai")],
-            //"Contact with est tuteur but without any Projet" => [$c[1]->setEstTuteur(true)],
-//            "Contact with wrong typeActivite" => [$c[2]->addTypeActivite("active inexistante")],
         ];
     }
 }

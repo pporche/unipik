@@ -85,7 +85,7 @@ class EtablissementRepository extends EntityRepository {
     }
 
     /**
-     * Query pour récupérer les établissements n'ayant pas répondu à une demande pour l'année scolaire en cours.
+     * Query pour récupérer les établissements n'ayant pas répondu à une demande pour le niveau scolaire en cours.
      *
      * @param string $typeEtablissement Le type d'etablissement
      * @param array $type  Le type en cas d'enseignement

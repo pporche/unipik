@@ -42,7 +42,7 @@ class NiveauThemeType extends AbstractType {
      * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $choiceClasse = array('required' => false, 'label' => 'Année scolaire*', 'attr' => ['class' => 'form-annee-scolaire'],
+        $choiceClasse = array('required' => false, 'label' => 'Niveau scolaire*', 'attr' => ['class' => 'form-annee-scolaire'],
             'choices' => [
                 'Petite Section' => 'petite section',
                 'Petite/Moyenne Section' => 'petite-moyenne section',

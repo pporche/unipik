@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RappelTaskCommand extends ContainerAwareCommand {
+class RappelBenevoleTaskCommand extends ContainerAwareCommand {
     private $output;
 
     /**
@@ -23,7 +23,7 @@ class RappelTaskCommand extends ContainerAwareCommand {
      */
     protected function configure() {
         $this
-            ->setName('mailRappelTask:run')
+            ->setName('mailBenevoleRappelTask:run')
             ->setDescription('Cron task for delayed mailing');
     }
 

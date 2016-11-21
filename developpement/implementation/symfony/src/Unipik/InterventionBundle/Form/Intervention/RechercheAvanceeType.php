@@ -68,7 +68,7 @@ class RechercheAvanceeType extends AbstractType
         $villeOuDomicile = array('required' => false, 'expanded' => true, 'multiple' => false,
             'choices' => [
                 'Ville' => 'ville',
-                'Domicile' => 'domicile'
+                'Mon domicile' => 'domicile'
             ]);
 
         $distanceChoiceType = array('required' => false,
@@ -206,9 +206,9 @@ class RechercheAvanceeType extends AbstractType
                 )
             )
             ->add('dansVilleOuParDistance', ChoiceType::class, $dansVilleOuParDistance)
+            ->add('villeOuDomicile', ChoiceType::class, $villeOuDomicile)
             ->add('ville', VilleType::class, array('required' => false))
-            ->add('distance', ChoiceType::class, $distanceChoiceType)
-            ->add('villeOuDomicile', ChoiceType::class, $villeOuDomicile);
+            ->add('distance', ChoiceType::class, $distanceChoiceType);
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
     }

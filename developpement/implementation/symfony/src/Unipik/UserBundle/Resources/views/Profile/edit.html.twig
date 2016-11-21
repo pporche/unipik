@@ -213,7 +213,6 @@
 
         $('#fos_user_profile_form_adresse_ville').change(function () {
             var ville = $(fos_user_profile_form_adresse_ville).val().toUpperCase();
-            console.log(ville);
             $('#fos_user_profile_form_adresse_codePostal').val("");
             $.post("{{ path('architecture_code_postal') }}", {'ville': ville},
                 function (data, status) {
@@ -223,7 +222,6 @@
 
         $('#fos_user_profile_form_adresse_codePostal').change(function () {
             var codePostal = $(user_registration_adresse_codePostal).val();
-            console.log(codePostal);
             $('#fos_user_profile_form_adresse_ville').val("");
             $.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},
                 function (data, status) {

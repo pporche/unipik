@@ -351,7 +351,6 @@
 
         $('#demande_Etablissement_adresse_ville').change(function () {
             var ville = $(demande_Etablissement_adresse_ville).val().toUpperCase();
-            console.log(ville);
             $('#demande_Etablissement_adresse_codePostal').val("");
             $.post("{{ path('architecture_code_postal') }}", {'ville': ville},
                 function (data, status) {
@@ -361,7 +360,6 @@
 
         $('#demande_Etablissement_adresse_codePostal').change(function () {
             var codePostal = $(demande_Etablissement_adresse_codePostal).val();
-            console.log(codePostal);
             $('#demande_Etablissement_adresse_ville').val("");
             $.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},
                 function (data, status) {
@@ -380,7 +378,6 @@
         function displayTypeIntervention(e) {
             var parNode = '';
             var valueToChk = '';
-            console.log(e);
             if (e.hasOwnProperty('originalEvent')) {
                 parNode = e.target;
                 parNode = parNode.parentNode;
@@ -771,9 +768,6 @@
 
             // On récupère la lettre calculée dans l'alphabet
             var lettreCalculee = alphabet[rangCalcule];
-            console.log(alphabet[rangCalcule]);
-            console.log(lettreCalculee);
-            console.log(alphabet[rangCalcule] == lettreCalculee);
 
             // On compare la lettre du code UAI à la lettre calculée et on retourne TRUE ou FALSE
             return codeUaiPropreLettre == lettreCalculee;

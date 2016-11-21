@@ -85,16 +85,16 @@ class MailController extends Controller {
 
             $ids = array();
             if ($relance == 'relance') {
-                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement', $typeInstitute, null, null, $ville) : array();
-                $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', null, $typeCenter, null, $ville) : array();
-                $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', null, null, $typeOther, $ville) : array();
+                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement', $typeInstitute, $ville) : array();
+                $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, $ville) : array();
+                $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, $ville) : array();
                 $ids = array_merge($institutesArray, $centersArray, $othersArray);
             } else if ($relance == 'relancePlaidoyer') {
                 $ids = array();
             } else {
-                $institutesArray = !empty($typeInstitute) ? $repository->getType("enseignement", $typeInstitute, null, null, $ville, null, null) : array();
-                $centersArray = !empty($typeCenter) ? $repository->getType("centre", null, $typeCenter, null, $ville, null, null) : array();
-                $othersArray = !empty($typeOther) ? $repository->getType("autreEtablissement", null, null, $typeOther, $ville, null, null) : array();
+                $institutesArray = !empty($typeInstitute) ? $repository->getType("enseignement", $typeInstitute, $ville, null, null) : array();
+                $centersArray = !empty($typeCenter) ? $repository->getType("centre", $typeCenter, $ville, null, null) : array();
+                $othersArray = !empty($typeOther) ? $repository->getType("autreEtablissement", $typeOther, $ville, null, null) : array();
                 $mergedArray = array_merge($institutesArray, $centersArray, $othersArray);
                 foreach ($mergedArray as $institute) {
                     array_push($ids, $institute->getId());

@@ -1,0 +1,39 @@
+{# version 1.00, date 17/11/2016, auteur Kafui Atanley #}
+{% extends "InterventionBundle::layout.html.twig" %}
+
+{% block title %}
+
+    Consulter une Vente - {{ parent() }}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('vendor/leaflet/dist/leaflet.css') }}" />
+    <style>
+        #mapid { height: 380px; }
+
+        .alert-success{
+            margin-top:30px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <section class="jumbotron col-sm-12 col-lg-8 col-lg-offset-2">
+            {% if vente %}
+            <h1> Vente n' {{ vente.id }}</h1>
+
+            <div> Date de la vente : {{ vente.dateVente }}</div>
+                <div>Lieu de la vente : {{ vente.etablissement.nom }}<hr>
+                                    {{ vente.etablissement.adresse.adresse }}<hr>
+                {{ vente.etablissement.adresse.ville.codePostal.code }} {{ vente.etablissement.adresse.ville.nom }} </div>
+            <div>Chiffre d'affaire : {{ vente.chiffreAffaire }} € </div>
+                    {% if vente.remarques %}
+                        <div> Remarques : {{ vente.remarques }} </div>
+                    {% endif  %}
+            {% endif %}
+        </section>
+    </div>
+{% endblock %}

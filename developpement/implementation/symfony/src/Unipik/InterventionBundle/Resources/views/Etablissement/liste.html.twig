@@ -98,6 +98,8 @@
         $(document).ready(function() {
             $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage }} });
 
+
+
             if($('#recherche_avancee_typeEtablissement_0').is(':checked')) {
                 $("#recherche_avancee_typeEnseignement").hide();
                 $("#recherche_avancee_typeCentre").hide();
@@ -213,12 +215,12 @@
                                 {% for etablissement in liste %}
                                 [ "{{ etablissement.nom | capitalize}}",
                                     {% if etablissement.centreLoisirs %}
-                                    "Centre de Loisirs"
+                                    "Centre de Loisirs",
                                     {% elseif etablissement.autreEtablissement %}
-                                    "Autre établissement"
+                                    "Autre établissement",
                                     {% else %}
-                                    "Enseignement"
-                                    {% endif %},
+                                    "Enseignement",
+                                    {% endif %}
                                     " ",
                                     " ",
                                     "{{ etablissement.adresse.adresse }}, {{ etablissement.adresse.codePostal.code }} {{ etablissement.adresse.ville.nom }}"

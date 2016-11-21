@@ -17,9 +17,9 @@ use Tests\Unipik\Unit\Utils\RepositoryTestCase;
 class EtablissementRepositoryTest extends RepositoryTestCase
 {
     public function getTypeDataProvider() {
-        $etab = EtablissementMock::createMultiple(7);
+        $etab = EtablissementMock::createMultiple(10);
 
-        // la ville "Pouic Pouic" a 2 lycées, 3 collèges, 1 centre de loisir et 1 etablissement "autre"
+        // la ville "Pouic Pouic" a 2 lycées, 3 collèges, 2 centre de loisir et 1 etablissement "autre"
 
         $etab[0]->setNom("lycée Pouic Pouic");
         $etab[0]->setTypeEnseignement("lycee");
@@ -42,16 +42,26 @@ class EtablissementRepositoryTest extends RepositoryTestCase
         $etab[6]->setNom("maison de retraite Pouic Pouic");
         $etab[6]->setTypeAutreEtablissement("maison de retraite");
 
+        $etab[7]->setNom("centre de loisir2 Pouic Pouic");
+        $etab[7]->setTypeCentre("adolescent");
+
+        $etab[8]->setNom("maternelle Pouic Pouic");
+        $etab[8]->setTypeEnseignement("maternelle");
+
+        $etab[9]->setNom("centre de loisirs3 Pouic Pouic");
+        $etab[9]->setTypeCentre("maternelle");
+
         return(array(
-            "lycées"            => [$etab, "POUIC POUIC", "enseignement", ["lycee"], null, null, true, 2],
-            "collèges"          => [$etab, "POUIC POUIC", "enseignement", ["college"], null, null, false, 3],
-            "lycées + collèges" => [$etab, "POUIC POUIC", "enseignement", ["lycee", "college"], null, true, null, 5],
-            "centres"           => [$etab, "POUIC POUIC", "centre", null, ["elementaire"], null, true, 1],
-            "centres2"          => [$etab, "POUIC POUIC", "centre", null, ["elementaire"], null, false, 1],
-            "autres"            => [$etab, "POUIC POUIC", "autreEtablissement", null, null, ["maison de retraite"], true, 1],
-            "autres2"           => [$etab, "POUIC POUIC", "autreEtablissement", null, null, ["maison de retraite"], false, 1],
-            "tout"              => [$etab, "POUIC POUIC", null, null, null, null, true, 7],
-            "tout2"             => [$etab, "POUIC POUIC", null, null, null, null, false, 7],
+            "lycées"            => [$etab, "POUIC POUIC", "enseignement", ["lycee"], true, 2],
+            "collèges"          => [$etab, "POUIC POUIC", "enseignement", ["college"], false, 3],
+            "lycées + collèges" => [$etab, "POUIC POUIC", "enseignement", ["lycee", "college"], true, 5],
+            "centres"           => [$etab, "POUIC POUIC", "centre", ["elementaire"], true, 1],
+            "centres2"          => [$etab, "POUIC POUIC", "centre", ["elementaire"], false, 1],
+            "autres"            => [$etab, "POUIC POUIC", "autreEtablissement", ["maison de retraite"], true, 1],
+            "autres2"           => [$etab, "POUIC POUIC", "autreEtablissement", ["maison de retraite"], false, 1],
+            "tout"              => [$etab, "POUIC POUIC", null, ["maternelle", "elementaire", "college", "lycee", "maison de retraite"], true, 9],
+            "tout2"             => [$etab, "POUIC POUIC", null, null, false, 10],
+            "toutes maternelles"             => [$etab, "POUIC POUIC", null, ["maternelle"], false, 2],
         ));
     }
 
@@ -62,9 +72,7 @@ class EtablissementRepositoryTest extends RepositoryTestCase
         $etablissements,
         $nomVille,
         $typeEtablissement,
-        $typeEnseignement,
-        $typeCentre,
-        $typeAutre,
+        $type,
         $desc,
         $expectedResult
     ) {
@@ -92,7 +100,7 @@ class EtablissementRepositoryTest extends RepositoryTestCase
         // Test
         $result = $this->em
             ->getRepository('InterventionBundle:Etablissement')
-            ->getType($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre, $ville, "nom", $desc)
+            ->getType($typeEtablissement, $type, $ville, "nom", $desc)
         ;
         $this->assertCount($expectedResult, $result);
 

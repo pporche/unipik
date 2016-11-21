@@ -1,10 +1,17 @@
 # version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+
+# Route intervention
 intervention_request:
     path:     /intervention/demande/{id}
     defaults:
         _controller: InterventionBundle:Intervention:demande
     requirements:
         id:  \d+
+
+intervention_request_anonyme:
+    path:     /intervention/demande
+    defaults:
+        _controller: InterventionBundle:Intervention:demandeAnonyme
 
 intervention_list:
     path:   /intervention
@@ -57,6 +64,7 @@ intervention_cancel:
     path: /intervention/annuler/{id}
     defaults: {_controller: InterventionBundle:Intervention:annuler}
 
+# Route etablissement
 etablissement_list:
     path:   /etablissement
     defaults:
@@ -69,6 +77,28 @@ etablissement_view:
     requirements:
         id: \d+
 
-interventions_benevole:
-    path: /intervention/toast
-    defaults: {_controller: InterventionBundle:Intervention:toast}
+etablissement_autocomplete:
+    path : /etablissement/autocomplete
+    defaults:
+         _controller: InterventionBundle:Etablissement:etablissementAutocomplete
+
+# Route Vente
+
+vente_list:
+    path:   /vente
+    defaults:
+        _controller: InterventionBundle:Vente:liste
+
+vente_view:
+    path: /vente/{id}
+    defaults: {_controller: InterventionBundle:Vente:consultation}
+    requirements:
+        id: \d+
+
+vente_edit:
+    path: /vente/edit/{id}
+    defaults: {_controller: InterventionBundle:Vente:edit}
+    requirements:
+        id: \d+
+
+

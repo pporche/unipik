@@ -69,7 +69,7 @@
     {{ form_widget(form.plageDate.fin) }}
 
     <div class="jours">
-        <h3> Jour de l'intervention *</h3>
+        <h3> Jours de l'intervention *</h3>
         {{ form_widget(form.jour) }}
     </div>
 
@@ -351,7 +351,6 @@
 
         $('#demande_Etablissement_adresse_ville').change(function () {
             var ville = $(demande_Etablissement_adresse_ville).val().toUpperCase();
-            console.log(ville);
             $('#demande_Etablissement_adresse_codePostal').val("");
             $.post("{{ path('architecture_code_postal') }}", {'ville': ville},
                 function (data, status) {
@@ -361,7 +360,6 @@
 
         $('#demande_Etablissement_adresse_codePostal').change(function () {
             var codePostal = $(demande_Etablissement_adresse_codePostal).val();
-            console.log(codePostal);
             $('#demande_Etablissement_adresse_ville').val("");
             $.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},
                 function (data, status) {
@@ -380,7 +378,6 @@
         function displayTypeIntervention(e) {
             var parNode = '';
             var valueToChk = '';
-            console.log(e);
             if (e.hasOwnProperty('originalEvent')) {
                 parNode = e.target;
                 parNode = parNode.parentNode;
@@ -491,7 +488,6 @@
         }
 
         function treatmentInterventionType(template, grade) {
-            var taille = $(template).find('option').length;
             if (grade != 'elementaire') {
                 $(template).find('option:eq(1)').fadeOut().prop('disabled', true);
             } else {
@@ -566,6 +562,9 @@
                         type = inputElt.value;
                         $('.form-annee-scolaire').each(function () {
                             treatmentCenter($(this).get(0), type);
+                        });
+                        $('.form-type-intervention').each(function () {
+                            treatmentInterventionType($(this).get(0), type);
                         });
                     }
                     break;
@@ -771,9 +770,6 @@
 
             // On récupère la lettre calculée dans l'alphabet
             var lettreCalculee = alphabet[rangCalcule];
-            console.log(alphabet[rangCalcule]);
-            console.log(lettreCalculee);
-            console.log(alphabet[rangCalcule] == lettreCalculee);
 
             // On compare la lettre du code UAI à la lettre calculée et on retourne TRUE ou FALSE
             return codeUaiPropreLettre == lettreCalculee;
@@ -846,24 +842,6 @@
                 keepOther();
                 break;
         }
-
-
-        $('#demande_plageDate_debut').datepicker({
-            format: 'dd-mm-yyyy',
-            language: 'fr',
-            autoclose: true
-        }).on('changeDate', function (selected) {
-            $('#demande_plageDate_fin').datepicker('setStartDate', new Date(selected.date.valueOf()));
-        });
-        $('#demande_plageDate_fin').datepicker({
-            format: 'dd-mm-yyyy',
-            language: 'fr',
-            autoclose: true
-        }).on('changeDate', function (selected) {
-            $('#demande_plageDate_debut').datepicker('setEndDate', new Date(selected.date.valueOf()));
-        });
-
-        //$('.date-pick').datepicker();
 
 
         $(document).ready(function () {

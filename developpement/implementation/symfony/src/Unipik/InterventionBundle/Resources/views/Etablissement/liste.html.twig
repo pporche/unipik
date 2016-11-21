@@ -98,6 +98,8 @@
         $(document).ready(function() {
             $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage }} });
 
+
+
             if($('#recherche_avancee_typeEtablissement_0').is(':checked')) {
                 $("#recherche_avancee_typeEnseignement").hide();
                 $("#recherche_avancee_typeCentre").hide();

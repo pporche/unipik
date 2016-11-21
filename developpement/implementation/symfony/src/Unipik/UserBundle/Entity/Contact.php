@@ -55,7 +55,7 @@ class Contact
      *
      * @var string
      *
-     * @Assert\Regex(pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$/")
      * @Assert\NotBlank()
      *
      * @ORM\Column(name="email", type="string", length=100, nullable=false)
@@ -68,6 +68,7 @@ class Contact
      * @var string
      *
      * @Assert\NotBlank()
+     * @Assert\Length(max=100)
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
@@ -78,6 +79,8 @@ class Contact
      *
      * @var string
      *
+     * @Assert\Length(max=100)
+     *
      * @ORM\Column(name="prenom", type="string", length=100, nullable=true)
      */
     private $prenom;
@@ -87,7 +90,7 @@ class Contact
      *
      * @var string
      *
-     * @Assert\Regex(pattern="/(^0[0-9]{9}$)?/")
+     * @Assert\Regex(pattern="/^0[0-9]{9}$/")
      *
      * @ORM\Column(name="tel_fixe", type="string", length=30, nullable=true)
      */
@@ -98,7 +101,7 @@ class Contact
      *
      * @var string
      *
-     * @Assert\Regex(pattern="/(^0[0-9]{9}$)?/")
+     * @Assert\Regex(pattern="/^0[0-9]{9}$/")
      *
      * @ORM\Column(name="tel_portable", type="string", length=30,  nullable=true)
      */

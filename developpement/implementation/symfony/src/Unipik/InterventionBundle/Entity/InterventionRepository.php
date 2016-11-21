@@ -144,12 +144,18 @@ class InterventionRepository extends EntityRepository {
             }
         }
 
-        if ($ville) {
-            $this->_whereVilleIs($qb, $ville);
+        if ($distance) {
+            if ($ville) {
+                $this->_withinXkmVille($qb, $ville, $distance);
+            }
+            else {
+                $this->_withinXkmDomicile($qb, $user, $distance);
+            }
         }
-
-        if (isset($distance)) {
-            $this->_withinXkm($qb, $user, $distance);
+        else {
+            if ($ville) {
+                $this->_whereVilleIs($qb, $ville);
+            }
         }
 
         return $qb
@@ -404,7 +410,7 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
-     * Verifie si un point est dans une distance
+     * Verifie si un point est dans une distance du domicile
      *
      * @param QueryBuilder $qb       Le querybuilder
      * @param user         $user     L'utilisateur
@@ -412,13 +418,55 @@ class InterventionRepository extends EntityRepository {
      *
      * @return void
      */
-    private function _withinXkm(QueryBuilder $qb, $user, $distance) {
+    private function _withinXkmDomicile(QueryBuilder $qb, $user, $distance) {
         $qb
             ->from('Unipik\UserBundle\Entity\Benevole', 'b')
             ->andWhere('b = :user')
             ->setParameter('user', $user)
             ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'adresse')
             ->andWhere('b.adresse = adresse')
+            ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
+            ->andWhere('i.etablissement = e')
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
+            ->andWhere('e.adresse = a')
+            ->andWhere(
+                $qb->expr()->eq(
+                    sprintf("STDWithin(a.geolocalisation, adresse.geolocalisation, :distance)"),
+                    $qb->expr()->literal(true)
+                )
+            )
+            ->setParameter('distance', $distance*1000);
+    }
+
+    /**
+     * @param string $email Email du bénévole
+     * @return array Interventions du bénévole
+     */
+    public function getInterventionByEmailBenevole($email) {
+        $qb = $this->createQueryBuilder('i')
+            ->select('i')
+            ->from('UserBundle:Benevole', 'b')
+            ->where('b.id = i.benevole')
+            ->andWhere('b.email = :email')
+            ->setParameter('email', $email);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Verifie si un point est dans une distance d'une ville
+     *
+     * @param QueryBuilder $qb       Le querybuilder
+     * @param ville        $ville    La ville
+     * @param distance     $distance La distance
+     *
+     * @return void
+     */
+    private function _withinXkmVille(QueryBuilder $qb, $ville, $distance) {
+        $qb
+            ->from('Unipik\ArchitectureBundle\Entity\Ville', 'v')
+            ->andWhere('v = :ville')
+            ->setParameter('ville', $ville)
             ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
             ->andWhere('i.etablissement = e')
             ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')

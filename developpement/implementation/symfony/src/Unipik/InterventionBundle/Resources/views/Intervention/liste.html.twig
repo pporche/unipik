@@ -463,6 +463,7 @@
         }
 
         function attributeInterventionAdmin(event, username, id) {
+            username = parseUsername(username);
             $.post("{{ path('intervention_attribute') }}", {'username': username, 'id': id},
                 function (data, status) {
                     var selector = "button[name=attribuer" + id + "]";
@@ -478,7 +479,7 @@
             $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
                 function (data, status) {
                     $(event).attr('class', 'btn btn-primary');
-                    $(event).text('Attribuer l\'intervention à');
+                    $(event).text('Attribuer à');
                     $(event).attr("onclick", "sendIdToModal(" + id + ")");
                     $(event).attr("data-target", "#myModal");
                     $(event).attr("data-toggle", "modal");
@@ -486,9 +487,16 @@
                 });
         }
 
+        function parseUsername(username){
+            var regexUsername = /\((.*?)\)/;
+            username = regexUsername.exec(username)[0].substring(1);
+            return username.substring(0,username.length-1);
+        }
+
         $('#attribuerModal').click(function () {
             $('#myModal').modal('hide');
         });
+
 
         //        $('#recherche_avancee_statutIntervention_2').hide();
         //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
@@ -772,7 +780,7 @@
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <button name="desattribution" type="button" class="btn btn-danger"
                                                         onclick="desattributeInterventionAdmin(this, {{ intervention.id }})" style="padding-right: 4px;padding-left: 4px; font-size: 14px; width: 100%; overflow: hidden; text-overflow: ellipsis; ">
-                                                    Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}.
+                                                    Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
 
                                                 </button>
                                             {% else %}

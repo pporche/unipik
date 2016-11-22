@@ -705,7 +705,7 @@ class Intervention
      */
     public function isPlaidoyer()
     {
-        return ($this->getTypeIntervention() == "plaidoyers");
+        return ($this->getTypeIntervention() == "plaidoyer");
     }
 
     /**

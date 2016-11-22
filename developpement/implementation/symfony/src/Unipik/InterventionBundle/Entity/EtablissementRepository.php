@@ -93,7 +93,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return array
      */
-    public function getTypeAndNoInterventionThisYear($typeEtablissement, $type, $ville) {
+    public function getTypeAndNoInterventionThisYear($typeEtablissement, $type, $typeIntervention, $ville) {
         $results = array();
         if(!isset($type))
             $type = array("maternelle", "elementaire", "college", "lycee", "superieur", "adolescent", "maison de retraite", "mairie", "autre", "");
@@ -106,8 +106,8 @@ class EtablissementRepository extends EntityRepository {
             ->join('i.demande', 'd')
             ->where('d.dateDemande > :dateInf')
             ->andWhere('d.dateDemande < :dateSup')
-            //->andWhere('i.typeIntervention = '.$typeIntervention)
-            ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup))
+            ->andWhere('i.typeIntervention = :typeIntervention')
+            ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup, 'typeIntervention' => $typeIntervention))
             ->getQuery()
             ->getResult();
         $subIds = array_map('current', $sub);

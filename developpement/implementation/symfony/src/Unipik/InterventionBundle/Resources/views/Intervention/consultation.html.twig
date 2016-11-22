@@ -340,7 +340,7 @@
                     </a>
                 {% endif %}
                 {% if intervention.niveauFrimousse %}
-                    <a href="{{ path("vente_list_detail", {'intervention': intervention.id}) }}" class="btn btn-primary">
+                    <a href="{{ path("vente_list", {'intervention': intervention.id}) }}" class="btn btn-primary">
                         <span class="glyphicon glyphicon-list"> </span> Consulter les ventes associées
                     </a>
                     <a href="{{ path("vente_add", {'intervention': intervention.id}) }}" class="btn btn-primary">

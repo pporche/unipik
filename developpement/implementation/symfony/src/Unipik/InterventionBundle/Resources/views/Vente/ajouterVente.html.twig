@@ -7,9 +7,37 @@
 {% endblock %}
 
 {%  block body %}
-    <h1>Ajout d'une vente </h1>
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" />
-{{ form_end(form) }}
+    <style>
+        h1, h2, h3{
+            font-family: 'Ubuntu Condensed', sans-serif;
+            margin-top: 40px;
+        }
+        h5{
+            font-weight: 600;
+        }
+        .formContainer{
+            max-width: 450px;
+            margin: auto;
+        }
+        .btn{
+            margin-left: calc(50% - 40px);
+        }
+    </style>
+    <h1>Ajout d'une vente </h1><hr>
+    <div class="formContainer">
+        {{ form_start(form) }}
+
+        <h5>Chiffre affaire</h5>
+        {{ form_widget(form.chiffreAffaire) }}
+
+        <h5>Date vente</h5>
+        {{ form_widget(form.dateVente) }}
+
+        <h5>Remarques</h5>
+        {{ form_widget(form.remarques) }}
+
+        <input type="submit" class="btn btn-success"/>
+        {{ form_end(form) }}
+    </div>
+
 {% endblock %}

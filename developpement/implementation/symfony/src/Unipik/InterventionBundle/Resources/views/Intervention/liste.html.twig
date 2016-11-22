@@ -431,7 +431,8 @@
                     }
                 }
             };
-            pdfMake.createPdf(docDefinition).open();
+
+            pdfMake.createPdf(docDefinition).open('pdf/test','name',null,false);
         }
 
         function deleteInterventions() {

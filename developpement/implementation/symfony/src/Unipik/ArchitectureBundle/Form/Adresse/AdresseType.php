@@ -65,8 +65,8 @@ class AdresseType extends AbstractFieldsetType {
         $builder
             ->add('adresse', AdType::class)
             ->add('complement', ComplementType::class, array('label' => "Complément","required" => false))
-            ->add('ville', VilleType::class)
-            ->add('codePostal', CodePostalType::class)
+            ->add('ville', VilleType::class, array('constraints' => new NotBlank()))
+            ->add('codePostal', CodePostalType::class, array('constraints' => new NotBlank()))
             ->add('geolocalisation', HiddenType::class, array("required" => false));
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));

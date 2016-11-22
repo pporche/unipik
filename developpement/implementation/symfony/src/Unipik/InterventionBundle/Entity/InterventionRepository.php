@@ -52,7 +52,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return array
      */
-    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $mesInterventions, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null, $distance = null ){
+    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $mesInterventions, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null, $distance = null, $geolocalisation = null ){
 
         $qb = $this->createQueryBuilder('i');
 
@@ -146,7 +146,7 @@ class InterventionRepository extends EntityRepository {
 
         if ($distance) {
             if ($ville) {
-                $this->_withinXkmVille($qb, $ville, $distance);
+                $this->_withinXkmVille($qb, $geolocalisation, $distance);
             }
             else {
                 $this->_withinXkmDomicile($qb, $user, $distance);
@@ -485,27 +485,25 @@ class InterventionRepository extends EntityRepository {
     /**
      * Verifie si un point est dans une distance d'une ville
      *
-     * @param QueryBuilder $qb       Le querybuilder
-     * @param ville        $ville    La ville
-     * @param distance     $distance La distance
+     * @param QueryBuilder $qb                 Le querybuilder
+     * @param string       $geolocalisation    La géolocalisation de la ville
+     * @param string       $distance           La distance
      *
      * @return void
      */
-    private function _withinXkmVille(QueryBuilder $qb, $ville, $distance) {
+    private function _withinXkmVille(QueryBuilder $qb, $geolocalisation, $distance) {
         $qb
-            ->from('Unipik\ArchitectureBundle\Entity\Ville', 'v')
-            ->andWhere('v = :ville')
-            ->setParameter('ville', $ville)
             ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
             ->andWhere('i.etablissement = e')
             ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
             ->andWhere('e.adresse = a')
             ->andWhere(
                 $qb->expr()->eq(
-                    sprintf("STDWithin(a.geolocalisation, adresse.geolocalisation, :distance)"),
+                    sprintf("STDWithin(a.geolocalisation, :geolocalisation, :distance)"),
                     $qb->expr()->literal(true)
                 )
             )
+            ->setParameter('geolocalisation', $geolocalisation)
             ->setParameter('distance', $distance*1000);
     }
 }

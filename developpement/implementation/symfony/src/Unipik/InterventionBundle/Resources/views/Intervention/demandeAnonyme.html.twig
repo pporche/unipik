@@ -12,34 +12,49 @@
     <hr>
     {{ form_start(form, {'method': 'post', 'action': path('intervention_request_anonyme'), 'attr': {'class': 'intervention_request form-sm'}}) }}
 
-    <h3> Etablissement</h3>
+    <div id="etablissement">
+        <h3> Etablissement</h3>
 
-    <h5> Département* :</h5>
-    {{ form_widget(form.departement) }}
+        <div id="location">
+            <h5> Département* :</h5>
+            {{ form_widget(form.departement) }}
+            <div id="dep">
+                Veuillez sélectionner un département valide
+            </div>
 
-    <h5> Ville* :</h5>
-    {{ form_widget(form.ville) }}
+            <h5> Ville* :</h5>
+            {{ form_widget(form.ville) }}
+            <div id="ville">
+                Veuillez sélectionner une ville valide
+            </div>
+        </div>
 
-    <h5> Type d'etablissement* :</h5>
-    {{ form_widget(form.typeGeneral) }}
+        <h5> Type d'etablissement* :</h5>
+        {{ form_widget(form.typeGeneral) }}
 
-    <div id="enseignement">
-        <h5> Type d'enseignement* :</h5>
-        {{ form_widget(form.typeEnseignement) }}
+        <div id="enseignement">
+            <h5> Type d'enseignement* :</h5>
+            {{ form_widget(form.typeEnseignement) }}
+        </div>
+
+        <div id="centre">
+            <h5> Type Centre de Loisir* :</h5>
+            {{ form_widget(form.typeCentre) }}
+        </div>
+
+        <div id="autre">
+            <h5> Type Autre Etablissement* :</h5>
+            {{ form_widget(form.typeAutreEtablissement) }}
+        </div>
+
+        <h5>Nom établissement* :</h5>
+        {{ form_widget(form.nomEtablissement) }}
+
+        <div id="note">
+            Note : si votre établissement n'apparaît pas dans la liste, veuillez contacter Unicef à l'adresse suivante : president.unicef76@unicef.fr
+        </div>
     </div>
 
-    <div id="centre">
-        <h5> Type Centre de Loisir* :</h5>
-        {{ form_widget(form.typeCentre) }}
-    </div>
-
-    <div id="autre">
-        <h5> Type Autre Etablissement* :</h5>
-        {{ form_widget(form.typeAutreEtablissement) }}
-    </div>
-
-    <h5>Nom établissement* :</h5>
-    {{ form_widget(form.nomEtablissement) }}
 
 
     <h3> Plage de dates</h3>
@@ -94,6 +109,16 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
     <style>
+        #note, #dep, #ville {
+            font-size : 13px;
+            font-style : italic;
+            color : red;
+        }
+
+        .error {
+            border: solid 2px #FF0000;
+        }
+
         h3 {
             margin-left: -50px !important;
         }
@@ -372,7 +397,6 @@
             limit: 50
         });
 
-
         // Permet d'afficher un calendrier pour la plage de date
         $('#demande_anonyme_plageDate_debut').datepicker({
             format: 'dd-mm-yyyy',
@@ -443,14 +467,19 @@
         addInterElt.appendChild(buttonAddElement);
         document.getElementById('demande_anonyme_Intervention').appendChild(addInterElt);
 
+
         // Permet de précocher les radio buttons
         $("input[name='demande_anonyme[typeEnseignement]']:first").attr('checked', true);
         $("input[name='demande_anonyme[typeCentre]']:first").attr('checked', true);
         $("input[name='demande_anonyme[typeAutreEtablissement]']:first").attr('checked', true);
 
+
         // Permet de cacher/montrer les types des établissement (type enseignement, type centre, type autre) en fonction du type d'etablissement sélectionné
         hide_or_show_types_etablissement = function() {
             var type = $('#demande_anonyme_typeGeneral').val();
+            $('#note').hide();
+            $('#dep').hide();
+            $('#ville').hide();
             switch (type) {
                 case 'ens' :
                     $('#enseignement').show();
@@ -474,6 +503,7 @@
 
         $('#demande_anonyme_typeGeneral').change(hide_or_show_types_etablissement);
 
+
         // Pré-cocher les jours de l'intervention en "Jour à éviter"
         $('#demande_anonyme_jour_lundi_3').prop("checked", true);
         $('#demande_anonyme_jour_mardi_3').prop("checked", true);
@@ -482,7 +512,467 @@
         $('#demande_anonyme_jour_vendredi_3').prop("checked", true);
 
 
+        // Permet de enable/disable le champ "nom établissement" si les champ du dessus sont vides
+        enable_or_disable_nom_etablissement = function() {
+            var dep = $('#demande_anonyme_departement').val();
+            var ville = $('#demande_anonyme_ville').val();
+            if (dep.length==0 || ville.length==0){
+                $('#demande_anonyme_nomEtablissement').prop('disabled',true);
+            }else {
+                $('#demande_anonyme_nomEtablissement').prop('disabled',false);
+            }
+        };
+
+        enable_or_disable_nom_etablissement();
+
+        $('#location').change(enable_or_disable_nom_etablissement);
+
+        // Remettre à zéro le champ établissement et ville si le champ département est modifié
+        reset_when_change_departement = function() {
+            $('#demande_anonyme_nomEtablissement').val("");
+            $('#demande_anonyme_ville').val("");
+        };
+
+        $('#demande_anonyme_departement').change(reset_when_change_departement);
+
+        // Remettre à zéro le champ établissement si la ville, le type d'établissement est changé
+        reset_etablissement = function() {
+            $('#demande_anonyme_nomEtablissement').val("");
+        };
+
+        $('#demande_anonyme_ville').change(reset_etablissement);
+        $('#demande_anonyme_typeGeneral').change(reset_etablissement);
+        $('#demande_anonyme_typeEnseignement').change(reset_etablissement);
+        $('#demande_anonyme_typeCentre').change(reset_etablissement);
+        $('#demande_anonyme_typeAutreEtablissement').change(reset_etablissement);
+
+
+
+        // Vérifier que la valeur du champs "département" est correcte et correspond à une entité de la BD
+        verify_departement = function() {
+            var dep = $('#demande_anonyme_departement').val();
+            $.post("{{ path('architecture_verify_departement') }}?dep="+dep+"",
+                function (data, status) {
+                    if (data.result) {
+                        $('#demande_anonyme_departement').removeClass("error");
+                        $('#dep').hide();
+                    }else {
+                        $('#demande_anonyme_departement').addClass("error");
+                        $('#dep').show();
+                    }
+                })
+        };
+
+        $('#demande_anonyme_departement').focusout(verify_departement);
+
+        // Vérifier que la valeur du champs "ville" est correcte et correspond à une entité de la BD
+        verify_ville = function() {
+            var ville = $('#demande_anonyme_ville').val();
+            $.post("{{ path('architecture_verify_ville') }}?ville="+ville+"",
+                function (data, status) {
+                    if (data.result) {
+                        $('#demande_anonyme_ville').removeClass("error");
+                        $('#ville').hide();
+                    }else {
+                        $('#demande_anonyme_ville').addClass("error");
+                        $('#ville').show();
+                    }
+                })
+        };
+
+        $('#demande_anonyme_ville').focusout(verify_ville);
+
+        // Vérifier que la valeur du champs "nom établissement" est correcte et correspond à une entité de la BD
+        verify_etablissement = function() {
+            var etablissement = $('#demande_anonyme_nomEtablissement').val();
+            $.post("{{ path('etablissement_verify_nom') }}?etablissement="+etablissement+"",
+                function (data, status) {
+                    if (data.result) {
+                        $('#demande_anonyme_nomEtablissement').removeClass("error");
+                        $('#note').hide();
+                    }else {
+                        $('#demande_anonyme_nomEtablissement').addClass("error");
+                        $('#note').show();
+                    }
+                })
+        };
+
+        $('#demande_anonyme_nomEtablissement').focusout(verify_etablissement);
+
+        // Si un champ dans Etablissement change 
+
+        // Permet de faire une vérification sur les numéros de téléphone
+        function verifyNumber(e) {
+            var re = /^((0)[1-9][0-9]{8})?$/;
+            if (!(re.test($('#demande_anonyme_Contact_telFixe').val()) && re.test($('#demande_anonyme_Contact_telPortable').val()) )) {
+                e.preventDefault();
+                e.stopPropagation();
+                alert("Numéro de téléphone au mauvais format");
+                $('#demande_anonyme_Contact_telFixe').css('border-color', 'red');
+                $('#demande_anonyme_Contact_telPortable').css('border-color', 'red');
+            } else {
+                $('#demande_anonyme_Contact_telFixe').removeAttr('border-color');
+                $('#demande_anonyme_Contact_telPortable').removeAttr('border-color');
+            }
+        }
+
+        // Permet de vérifier si une intervetion a été remplie
+        function verifyIntervention(e) {
+            if ($('div#demande_anonyme_Intervention fieldset:first-child').length==0) {
+                e.preventDefault();
+                e.stopPropagation();
+                alert("Vous n'avez pas rempli d'intervention");
+            }
+        }
+
+        // Permet de faire des vérifications à la validation du formulaire
+        function verifyAll(e) {
+            verifyNumber(e);
+            verifyIntervention(e);
+        }
+
+        document.addEventListener('submit', verifyAll);
+
+        // Permet d'afficher les éléments d'une intervention en fonction du type de l'intervention demandée
+        function displayTypeIntervention(e) {
+            var parNode = '';
+            var valueToChk = '';
+            if (e.hasOwnProperty('originalEvent')) {
+                parNode = e.target;
+                parNode = parNode.parentNode;
+                parNode = parNode.parentNode;
+                parNode = parNode.parentNode;
+                valueToChk = e.target.value;
+            } else {
+                parNode = e;
+                valueToChk = parNode.value;
+                parNode = parNode.parentNode;
+                parNode = parNode.parentNode;
+                parNode = parNode.parentNode;
+            }
+
+            var matClasElt = parNode.getElementsByClassName('form-group')[2];
+            var matFriElt = parNode.getElementsByClassName('form-group')[3];
+            var remarquesAutresInterentionElt = parNode.getElementsByClassName('form-remarques')[0].parentNode.parentNode;
+            var anneeScolaireElt = parNode.getElementsByClassName('form-annee-scolaire')[0].parentNode.parentNode;
+            var themElt = parNode.getElementsByClassName('form-theme-pld')[0].parentNode.parentNode.parentNode.parentNode.parentNode;
+            var lblMatElt = parNode.getElementsByTagName('label')[1];
+            switch (valueToChk) {
+                case 'frim' :
+                    $(matClasElt).hide().prop('disabled', true);
+                    $(matFriElt).show().prop('disabled', false);
+                    $(anneeScolaireElt).show().find('select').prop('disabled', false).prop('required', true).find('input').prop('disabled', false);
+                    $(themElt).hide().find('select').prop('disabled', true).prop('required', false).find('input').prop('disabled', true);
+                    $(lblMatElt).hide().prop('disabled', true);
+                    $(remarquesAutresInterentionElt).hide().prop('disabled', true);
+                    break;
+                case 'pld' :
+                    $(lblMatElt).show().prop('disabled', false);
+                    $(matFriElt).hide().prop('disabled', true);
+                    $(matClasElt).show().prop('disabled', false);
+                    $(anneeScolaireElt).show().find('select').prop('disabled', false).prop('required', true).find('input').prop('disabled', false);
+                    $(themElt).show().find('select').prop('disabled', false).prop('required', true).find('input').prop('disabled', false);
+                    $(remarquesAutresInterentionElt).hide().prop('disabled', true);
+                    break;
+
+                case 'aut' :
+                    $(lblMatElt).hide().prop('disabled', true);
+                    $(matClasElt).hide().prop('disabled', true);
+                    $(matFriElt).hide().prop('disabled', true);
+                    $(anneeScolaireElt).hide().find('select').prop('disabled', true).prop('required', false).find('input').prop('disabled', true);
+                    $(themElt).hide().find('select').prop('disabled', true).prop('required', false).find('input').prop('disabled', true);
+                    $(remarquesAutresInterentionElt).show().prop('disabled', false);
+                    break;
+            }
+
+            if (e.hasOwnProperty('originalEvent')) {
+                e.stopImmediatePropagation();
+            }
+        }
+
+        function treatmentInstitute(template, grade) {
+            var taille = $(template).find('option').length;
+            switch (grade) {
+                case 'maternelle' :
+                    for (i = 0; i < taille; i++) {
+                        if (i >= 7) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                case 'elementaire' :
+                    for (i = 0; i < taille; i++) {
+                        if (i != 0 && (i < 7 || i > 15)) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                case 'college' :
+                    for (i = 0; i < taille; i++) {
+                        if (i != 0 && (i <= 15 || i > 19)) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                case 'lycee' :
+                    for (i = 0; i < taille; i++) {
+                        if (i != 0 && (i <= 19 || i > 22)) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                case 'superieur' :
+                    for (i = 0; i < taille; i++) {
+                        if (i != 0 && i <= 22) {
+                            $($(template).find('option:eq(' + i + ')').get()[0]).fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                default:
+                    for (i = 0; i < taille; i++) {
+                        $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                    }
+                    break;
+            }
+        }
+
+        function treatmentInterventionType(template, grade) {
+            if (grade != 'elementaire') {
+                $(template).find('option:eq(1)').fadeOut().prop('disabled', true);
+            } else {
+                $(template).find('option:eq(1)').fadeIn().prop('disabled', false);
+            }
+        }
+
+        function treatmentCenter(template, grade) {
+            var taille = $(template).find('option').length;
+            switch (grade) {
+                case 'maternelle' :
+                    for (i = 0; i < taille; i++) {
+                        if (i >= 7) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                case 'elementaire' :
+                    for (i = 0; i < taille; i++) {
+                        if (i != 0 && (i < 7 || i > 15)) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                case 'adolescent' :
+                    for (i = 0; i < taille; i++) {
+                        if (i != 0 && (i <= 15 || i > 22)) {
+                            $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
+                        } else {
+                            $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                        }
+                    }
+                    break;
+                default:
+                    for (i = 0; i < taille; i++) {
+                        $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+                    }
+                    break;
+            }
+        }
+
+        function treatmentOthers(template, grade) {
+            var taille = $(template).find('option').length;
+            for (i = 0; i < taille; i++) {
+                $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
+            }
+        }
+
+        function treatmentSelect() {
+            var choiceEtabElt = document.getElementsByTagName('select')[0];
+            var type;
+            switch (choiceEtabElt.value) {
+                case 'ens' :
+                    var inputElt = document.querySelector('input[name="demande_anonyme[typeEnseignement]"]:checked');
+                    if (inputElt != null) {
+                        type = inputElt.value;
+                        $('.form-annee-scolaire').each(function () {
+                            treatmentInstitute($(this).get(0), type);
+                        });
+                        $('.form-type-intervention').each(function () {
+                            treatmentInterventionType($(this).get(0), type);
+                        });
+                    }
+                    break;
+                case 'centre' :
+                    var inputElt = document.querySelector('input[name="demande_anonyme[typeCentre]"]:checked');
+                    if (inputElt != null) {
+                        type = inputElt.value;
+                        $('.form-annee-scolaire').each(function () {
+                            treatmentCenter($(this).get(0), type);
+                        });
+                        $('.form-type-intervention').each(function () {
+                            treatmentInterventionType($(this).get(0), type);
+                        });
+                    }
+                    break;
+                case 'autre' :
+                    var inputElt = document.querySelector('input[name="demande_anonyme[typeAutreEtablissement]"]:checked');
+                    if (inputElt != null) {
+                        type = inputElt.value;
+                        $('.form-annee-scolaire').each(function () {
+                            treatmentOthers($(this).get(0), type);
+                        });
+                    }
+                    break;
+            }
+        }
+
+        function showSomeTheme(type, themesElt) {
+            switch (type) {
+                case 'maternelle' :
+                    $(themesElt).find('option').each(function (index) {
+                        if (index > 5) {
+                            $(this).fadeOut();
+                        } else {
+                            $(this).fadeIn();
+                        }
+                    });
+                    break;
+                case 'elementaire' :
+                case 'college' :
+                case 'adolescent' :
+                case 'lycee' :
+                case 'Supérieur' :
+                default :
+                    showAllTheme(themesElt);
+                    break;
+
+            }
+        }
+
+        function showAllTheme(themesElt) {
+            $(themesElt).find('option').each(function () {
+                $(this).fadeIn();
+            });
+        }
+
+        function displayThemeIntervention() {
+            var themesElts = document.getElementsByClassName('form-theme-pld');
+            if (themesElts.length == 0) {
+                return;
+            }
+            var choiceEtabElt = document.getElementsByTagName('select')[0];
+            var type;
+            switch (choiceEtabElt.value) {
+                case 'ens' :
+                    var inputElt = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked');
+                    if (inputElt != null) {
+                        type = inputElt.value;
+                        for (i = 0; i < themesElts.length; i++) {
+                            showSomeTheme(type, themesElts[i]);
+                        }
+                    }
+                    break;
+                case 'centre' :
+                    var inputElt = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked');
+                    if (inputElt != null) {
+                        type = inputElt.value;
+                        for (i = 0; i < themesElts.length; i++) {
+                            showSomeTheme(type, themesElts[i]);
+                        }
+                    }
+                    break;
+                case 'autre' :
+                default :
+                    for (i = 0; i < themesElts.length; i++) {
+                        showAllTheme(themesElts[i]);
+                    }
+                    break;
+            }
+
+        }
+
+
+
         $(document).ready(function () {
+
+            // Permet d'ajouter une à plusieurs interventions
+            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+            var $container_intervention = $('div#demande_anonyme_Intervention');
+
+            // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+            var index_intervention = $container_intervention.find(':input').length;
+
+            // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+            $('#add_intervention').click(function (e) {
+                addIntervention($container_intervention);
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+
+            if (index_intervention == 0) {
+                addIntervention($container_intervention);
+            } else {
+                $container_intervention.children('div').each(function () {
+                    addDeleteLink($(this));
+                });
+            }
+
+            function addIntervention($container) {
+                var template = $container.attr('data-prototype')
+                    .replace(/__name__label__/g, '')
+                    .replace(/__name__/g, index_intervention);
+                // On crée un objet jquery qui contient ce template
+                var $prototype = $(template);
+
+                addDeleteLink($prototype);
+
+                $container.append($prototype);
+                $("#add_intervention").appendTo($container);
+                treatmentSelect();
+                displayThemeIntervention();
+                displayTypeIntervention($($prototype).children().find("select").get(0));
+                $($prototype).children().find("select").on("change", displayTypeIntervention);
+                // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+                index_intervention++;
+                $(':input[type="number"]').attr("min", 0).keyup(function () {
+                    this.value = this.value.replace(/[^0-9\.]/g, '');
+                });
+            }
+
+
+            function addDeleteLink($prototype) {
+                // Création du lien
+                var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+                // Ajout du lien
+                $prototype.append($deleteLink);
+                // Ajout du listener sur le clic du lien pour effectivement
+                $deleteLink.click(function (e) {
+                    $prototype.remove();
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                });
+            }
+
+            var centerElt = document.getElementById("demande_anonyme_Etablissement_typeCentre").parentNode.parentNode;
+            var instituteElt = document.getElementById("demande_anonyme_Etablissement_typeEnseignement").parentNode.parentNode;
+            var othersElt = document.getElementById("demande_anonyme_Etablissement_typeAutreEtablissement").parentNode.parentNode;
+            $(instituteElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
+            $(centerElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
+            $(othersElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
+            document.getElementById('demande_anonyme_Etablissement_TypeGeneral').addEventListener('change', displayThemeIntervention);
 
         });
 

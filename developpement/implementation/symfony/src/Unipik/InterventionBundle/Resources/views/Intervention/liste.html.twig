@@ -171,6 +171,7 @@
             if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')){
                 $('#ville').show();
                 $('#distanceKm').hide();
+                $("#recherche_avancee_distance").val("");
                 $('#distVilleOuDom').hide();
                 $('#recherche_avancee_villeOuDomicile:first-child').hide();
             }else if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')){
@@ -185,6 +186,7 @@
                 }
             }else {
                 $('#ville').hide();
+                $("#recherche_avancee_distance").val("");
                 $('#distanceKm').hide();
                 $('#distVilleOuDom').hide();
                 $('#recherche_avancee_villeOuDomicile div:first-child').hide();
@@ -286,6 +288,7 @@
                     $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
                     $('#recherche_avancee_ville').val('');
                     $('#recherche_avancee_villeOuDomicile div:first-child').prop('checked', true);
+                    $("#recherche_avancee_distance").val("");
                 }
             });
 
@@ -297,6 +300,7 @@
                     $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
                     $('#recherche_avancee_ville').val('');
                     $('#recherche_avancee_villeOuDomicile div:first-child').prop('checked', true);
+                    $("#recherche_avancee_distance").val("");
                 }
             });
 

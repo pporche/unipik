@@ -85,5 +85,14 @@ class VenteController extends Controller
         );
     }
 
+    /*public function deleteVenteAction($id){
+        $em = $this->getDoctrine()->getEntityManager();
+        $vente = $this->getVenteRepository()->findOneBy(array('id' => $id));
+        $em->remove($vente);
+        $em->flush();
+
+        return $this->redirectToRoute('etablissement_list');
+    }*/
+
 }
 

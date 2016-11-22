@@ -42,3 +42,15 @@ etablissement_admin_deletes:
 etablissement_admin_edit:
     path:   /etablissement/edit/{id}
     defaults: { _controller: InterventionBundle:Etablissement:edit }
+
+vente_admin_edit:
+    path: /vente/edit/{id}
+    defaults: {_controller: InterventionBundle:Vente:edit}
+    requirements:
+        id: \d+
+
+vente_admin_delete:
+    path: /vente/supprimer/{id}
+    defaults: {_controller: InterventionBundle:Vente:deleteVente}
+    requirements:
+        id: \d+

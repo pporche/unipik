@@ -93,13 +93,6 @@ vente_list:
     defaults:
         _controller: InterventionBundle:Vente:liste
 
-vente_list_detail:
-    path:   /ventes/{intervention}
-    defaults:
-        _controller: InterventionBundle:Vente:liste
-    requirements:
-            intervention: \d+
-
 vente_view:
     path: /vente/{id}
     defaults: {_controller: InterventionBundle:Vente:consultation}

@@ -21,10 +21,25 @@ class VenteController extends Controller
 {
 
     public function listeAction(Request $request){
-        if(!is_null($request->get('intervention')))
-            return new Response("Ici s'affichera une liste de ventes par rapport à l'intervention" . $request->get('intervention'));
+        $em = $this->getDoctrine()->getManager();
+        $listVente = [];
+        $venteRepository = $em->getRepository('InterventionBundle:Vente');
+        if(!is_null($request->get('intervention'))){
+            $interventionRepository= $em->getRepository('InterventionBundle:Intervention');
+            $intervention = $interventionRepository->find($request->get('intervention'));
+            $listVente = $venteRepository->findBy(array('intervention' => $intervention));
+            return new Response("Ici s'affichera une liste de ventes par rapport à l'intervention" . count($listVente));
+        }
+        else if(!is_null($request->get('etablissement'))){
+            $etablissementRepository= $em->getRepository('InterventionBundle:Etablissement');
+            $etablissement = $etablissementRepository->find($request->get('etablissement'));
+            $listVente = $venteRepository->findBy(array('etablissement' => $etablissement));
+            return new Response("Ici s'affichera une liste de ventes par rapport à l'établissement" . count($listVente));
+        }
         else
             return new Response("Ici s'affichera une liste de ventes classique");
+
+
     }
 
     public function consultationAction($id){
@@ -42,10 +57,6 @@ class VenteController extends Controller
 
         $form = $this->createForm(VenteType::class,$vente);
 
-        return new Response(print_r($request->request->all()));
-        if(is_null($request->request->all()))
-            return new Response(" t'as rien rentré pti bout");
-
         if($form->handleRequest($request)->isValid()){
             /*
              * Faire le traitement de sauvegarde  de la vente
@@ -57,10 +68,10 @@ class VenteController extends Controller
                 return new Response(" t'as rien rentré pti bout");
             if(is_null($intervention)){
                 $etablissement = $this->getDoctrine()->getManager()->getRepository('InterventionBundle:Etablissement')->find($etablissement);
-                $vente->setIntervention($intervention);
                 $vente->setEtablissement($etablissement);
             }else{
                 $intervention = $this->getDoctrine()->getManager()->getRepository('InterventionBundle:Intervention')->find($intervention);
+                $vente->setIntervention($intervention);
                 $vente->setEtablissement($intervention->getEtablissement());
             }
             $this->getDoctrine()->getManager()->persist($vente);

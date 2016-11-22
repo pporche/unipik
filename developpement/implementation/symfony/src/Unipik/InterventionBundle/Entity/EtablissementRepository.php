@@ -252,6 +252,9 @@ class EtablissementRepository extends EntityRepository {
             ->setParameter('ville', $ville);
     }
 
+    /**
+     * @return array
+     */
     public function getEmailEtablissementRappel() {
         $dateTime = new \DateTime();
         $dateTime->add(new \DateInterval('P7D'));
@@ -267,6 +270,9 @@ class EtablissementRepository extends EntityRepository {
         return array_map('current', $qb->getQuery()->getResult());
     }
 
+    /**
+     * @return array
+     */
     public function getEtablissementDemandeNonSatisfaite() {
         $dateInf = '01/09/'.date('Y');
         $dateSup = '01/09/'.(date('Y')+1);

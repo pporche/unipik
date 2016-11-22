@@ -11,7 +11,6 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
     <link rel="stylesheet" href="{{ asset("vendor/chosen/chosen.css") }}"/>
-    <link rel="stylesheet" href="{{ asset("vendor/leaflet-geosearch/src/css/l.geosearch.css") }}" />
     <script src="{{ asset("vendor/pdfmake/build/pdfmake.min.js") }}"></script>
     <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
 
@@ -166,15 +165,34 @@
     <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
-    {#<script src="{{ asset('vendor/leaflet-geosearch/src/js/l.control.geosearch.js') }}"></script>#}
     <script>
         $(document).ready(function () {
-
             $('input:checkbox').removeAttr('checked');
-            $('#ville').hide();
-            $('#distanceKm').hide();
-            $('#distVilleOuDom').hide();
-            $('#recherche_avancee_villeOuDomicile:first-child').hide();
+            if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')){
+                $('#ville').show();
+                $('#distanceKm').hide();
+                $('#distVilleOuDom').hide();
+                $('#recherche_avancee_villeOuDomicile:first-child').hide();
+            }else if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')){
+                if($('#recherche_avancee_villeOuDomicile_0').is(':checked')){
+                    $('#ville').show();
+                    $('#distanceKm').show();
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                }else{
+                    $('#ville').hide();
+                    $('#distanceKm').show();
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                }
+            }else {
+                $('#ville').hide();
+                $('#distanceKm').hide();
+                $('#distVilleOuDom').hide();
+                $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+            }
+
+
+            $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+
 
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',

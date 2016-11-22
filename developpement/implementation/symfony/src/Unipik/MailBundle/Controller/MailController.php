@@ -84,13 +84,18 @@ class MailController extends Controller {
             }
 
             $ids = array();
+            $instituteExclude = $repository->getEtablissementDemandeNonSatisfaite(); // Les établissements qui ont fait une demande non satisfaite.
+
             if ($relance == 'relance') {
-                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement', $typeInstitute, 'plaidoyers', $ville) : array();
+                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement',$typeInstitute, null, $ville) : array();
+                $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, null, $ville) : array();
+                $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, null, $ville) : array();
+                $ids = array_merge($institutesArray, $centersArray, $othersArray);
+            } else if ($relance == 'relancePlaidoyer') {
+                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement',$typeInstitute, 'plaidoyers', $ville) : array();
                 $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, 'plaidoyers', $ville) : array();
                 $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, 'plaidoyers', $ville) : array();
                 $ids = array_merge($institutesArray, $centersArray, $othersArray);
-            } else if ($relance == 'relancePlaidoyer') {
-                $ids = array();
             } else {
                 $institutesArray = !empty($typeInstitute) ? $repository->getType("enseignement", $typeInstitute, $ville, null, null) : array();
                 $centersArray = !empty($typeCenter) ? $repository->getType("centre", $typeCenter, $ville, null, null) : array();
@@ -100,6 +105,7 @@ class MailController extends Controller {
                     array_push($ids, $institute->getId());
                 }
             }
+            $ids = array_diff($ids, $instituteExclude);
 
             if (!empty($ids)) {
                 $mailtask = new MailTask();
@@ -114,6 +120,7 @@ class MailController extends Controller {
                 $em->flush();
             }
 
+            var_dump($ids);
             return $this->redirectToRoute('architecture_homepage');
         }
 

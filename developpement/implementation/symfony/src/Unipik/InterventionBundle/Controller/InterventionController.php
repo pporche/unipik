@@ -790,7 +790,7 @@ class InterventionController extends Controller {
                 $interventionTemp->setComite($comite);
 
                 if ($interventionRaw["TypeGeneral"]=="pld") {
-                    $interventionTemp->setTypeIntervention("plaidoyers");
+                    $interventionTemp->setTypeIntervention("plaidoyer");
                     foreach ($interventionRaw["materielDispoPlaidoyer"]["materiel"] as $materiel) {
                         $interventionTemp->addMaterielDispoPlaidoyer($materiel);
                     }

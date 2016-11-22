@@ -73,27 +73,27 @@ do
 			if [[ $c = *"Elémentaire"* ]]; 
 			then
 				typeEnseignement='elementaire'
-				nom="Ecole élémentaire de $a"
+				nom="ECOLE ELEMENTAIRE DE $a"
 			fi
 			if [[ $c = *"Maternelle"* ]]; 
 		    then
 		        typeEnseignement="maternelle"
-		        nom="Ecole maternelle de $a"
+		        nom="ECOLE MATERNELLE DE $a"
 		    fi
 		    if [[ $c = *"Collège"* ]]; 
 		    then
 		        typeEnseignement="college"
-		        nom="Collège de $a"
+		        nom="COLLEGE DE $a"
 		    fi 
 		    if [[ $c = *"Lycée"* ]]; 
 		    then
 		        typeEnseignement="lycee"
-		        nom="Lycée de $a" 
+		        nom="LYCEE DE $a" 
 		    fi
 		    if [[ $c = *"Supérieur"* ]]; 
 		    then
 		        typeEnseignement="superieur"
-		        nom="Ecole supérieur de $a"  
+		        nom="ECOLE SUPERIEUR DE $a"  
 		    fi
 			case $c in
 	    		'Elémentaire' )

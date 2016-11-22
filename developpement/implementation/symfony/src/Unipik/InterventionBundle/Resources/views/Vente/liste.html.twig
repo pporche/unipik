@@ -1,0 +1,57 @@
+{# version 1.00, date 22/11/2016, auteur Kafui Atanley #}
+
+{% extends "InterventionBundle::layout.html.twig" %}
+
+{% block body %}
+    <section class="col-lg-10 col-md-10 col-sm-10">
+        <div class="row">
+            <h2> Liste des Ventes</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Date de la vente
+                                </th>
+                                <th>
+                                    Lieu
+                                </th>
+                                <th>
+                                    Chiffre d'affaire
+                                </th>
+                                <th>
+                                    Voir Détails
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if ventes is not empty %}
+                                {% for vente in ventes %}
+                                    <tr>
+                                        <td>
+                                           {{ vente.dateVente| date("d-m-y") }}
+                                        </td>
+                                        <td>
+                                            {{ vente.etablissement.adresse.adresse }}
+                                            (à changer)
+                                        </td>
+                                        <td>
+                                            {{ vente.chiffreAffaire }} €
+                                        </td>
+                                        <td>
+                                            linker avec le lien
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -28,18 +28,18 @@ class VenteController extends Controller
             $interventionRepository= $em->getRepository('InterventionBundle:Intervention');
             $intervention = $interventionRepository->find($request->get('intervention'));
             $listVente = $venteRepository->findBy(array('intervention' => $intervention));
-            return new Response("Ici s'affichera une liste de ventes par rapport à l'intervention" . count($listVente));
+            return $this->render('InterventionBundle:Vente:liste.html.twig',array('ventes' => $listVente));
         }
         else if(!is_null($request->get('etablissement'))){
             $etablissementRepository= $em->getRepository('InterventionBundle:Etablissement');
             $etablissement = $etablissementRepository->find($request->get('etablissement'));
             $listVente = $venteRepository->findBy(array('etablissement' => $etablissement));
-            return new Response("Ici s'affichera une liste de ventes par rapport à l'établissement" . count($listVente));
+            return $this->render('InterventionBundle:Vente:liste.html.twig',array('ventes' => $listVente));
         }
-        else
-            return new Response("Ici s'affichera une liste de ventes classique");
-
-
+        else{
+            $listVente = $venteRepository->findAll();
+            return $this->render('InterventionBundle:Vente:liste.html.twig',array('ventes' => $listVente));
+        }
     }
 
     public function consultationAction($id){

@@ -2,6 +2,12 @@
 
 {% extends "InterventionBundle::layout.html.twig" %}
 
+{% block title %}
+    Liste des Ventes - {{ parent() }}
+
+{% endblock %}
+
+
 {% block body %}
     <section class="col-lg-10 col-md-10 col-sm-10">
         <div class="row">
@@ -43,7 +49,7 @@
                                             {{ vente.chiffreAffaire }} €
                                         </td>
                                         <td>
-                                            linker avec le lien
+                                             <a class="btn-default btn" href="{{ path('vente_view' , {'id':vente.id}) }}">Détails</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

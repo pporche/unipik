@@ -11,6 +11,16 @@ architecture_departement_autocomplete:
     defaults:
         _controller: ArchitectureBundle:Architecture:autocompleteDepartement
 
+architecture_verify_departement:
+    path: /departement/verify
+    defaults:
+        _controller: ArchitectureBundle:Architecture:verifyDepartement
+
+architecture_verify_ville:
+    path: /ville/verify
+    defaults:
+        _controller: ArchitectureBundle:Architecture:verifyVille
+
 architecture_ville_autocomplete:
     path: /ville/autocomplete
     defaults:

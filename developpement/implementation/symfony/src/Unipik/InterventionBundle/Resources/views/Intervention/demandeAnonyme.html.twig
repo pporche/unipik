@@ -71,6 +71,9 @@
     </div>
 
     <h3> Intervention * </h3>
+    <div id="intervention">
+        Veuillez remplir une intervention
+    </div>
     {{ form_widget(form.Intervention) }}
 
 
@@ -87,9 +90,15 @@
 
     <h5> Tel Fixe :</h5>
     {{ form_widget(form.Contact.telFixe) }}
+    <div id="numeroFixe">
+        Numéro de téléphone au mauvais format
+    </div>
 
     <h5> Tel Portable :</h5>
     {{ form_widget(form.Contact.telPortable) }}
+    <div id="numeroPortable">
+        Numéro de téléphone au mauvais format
+    </div>
 
     <h5> Type Contact* :</h5>
     {{ form_widget(form.Contact.typeContact) }}
@@ -109,7 +118,7 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
     <style>
-        #note, #dep, #ville {
+        #note, #dep, #ville, #intervention, #numeroFixe, #numeroPortable {
             font-size : 13px;
             font-style : italic;
             color : red;
@@ -477,9 +486,6 @@
         // Permet de cacher/montrer les types des établissement (type enseignement, type centre, type autre) en fonction du type d'etablissement sélectionné
         hide_or_show_types_etablissement = function() {
             var type = $('#demande_anonyme_typeGeneral').val();
-            $('#note').hide();
-            $('#dep').hide();
-            $('#ville').hide();
             switch (type) {
                 case 'ens' :
                     $('#enseignement').show();
@@ -599,20 +605,38 @@
 
         $('#demande_anonyme_nomEtablissement').focusout(verify_etablissement);
 
-        // Si un champ dans Etablissement change 
+        // Si un champ dans Etablissement change,  si une intervention ou plusieurs interventions ont été remplies, il faut qu'elles soient effacées
+        // si div_anonyme_Intervention a dis fils <fieldset> -> il faut les supprimer !
+        delete_intervention = function() {
+            if ($('div#demande_anonyme_Intervention fieldset:first-child').length!=0) {
+                $('div#demande_anonyme_Intervention').children('fieldset').each(function () {
+                    $(this).remove();
+                });
+            }
+        };
+
+        $('#etablissement').change(delete_intervention);
 
         // Permet de faire une vérification sur les numéros de téléphone
         function verifyNumber(e) {
             var re = /^((0)[1-9][0-9]{8})?$/;
-            if (!(re.test($('#demande_anonyme_Contact_telFixe').val()) && re.test($('#demande_anonyme_Contact_telPortable').val()) )) {
+            if (!(re.test($('#demande_anonyme_Contact_telFixe').val()))){
                 e.preventDefault();
                 e.stopPropagation();
-                alert("Numéro de téléphone au mauvais format");
-                $('#demande_anonyme_Contact_telFixe').css('border-color', 'red');
-                $('#demande_anonyme_Contact_telPortable').css('border-color', 'red');
+                $('#numeroFixe').show();
+                $('#demande_anonyme_Contact_telFixe').addClass('error');
             } else {
-                $('#demande_anonyme_Contact_telFixe').removeAttr('border-color');
-                $('#demande_anonyme_Contact_telPortable').removeAttr('border-color');
+                $('#numeroFixe').hide();
+                $('#demande_anonyme_Contact_telFixe').removeClass('error');
+            }
+            if (!(re.test($('#demande_anonyme_Contact_telPortable').val()) )) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#numeroPortable').show();
+                $('#demande_anonyme_Contact_telPortable').addClass('error');
+            } else {
+                $('#numeroPortable').hide();
+                $('#demande_anonyme_Contact_telPortable').removeClass('error');
             }
         }
 
@@ -621,7 +645,17 @@
             if ($('div#demande_anonyme_Intervention fieldset:first-child').length==0) {
                 e.preventDefault();
                 e.stopPropagation();
-                alert("Vous n'avez pas rempli d'intervention");
+                $('#intervention').show();
+            } else {
+                $('#intervention').hide();
+            }
+        }
+
+        // Permet de vérifier si les champs de l'établissements sont correctes
+        function verifyEtablissement(e) {
+            if ($('#demande_anonyme_departement').hasClass('error') || $('#demande_anonyme_ville').hasClass('error') || $('#demande_anonyme_nomEtablissement').hasClass('error')) {
+                e.preventDefault();
+                e.stopPropagation();
             }
         }
 
@@ -629,6 +663,8 @@
         function verifyAll(e) {
             verifyNumber(e);
             verifyIntervention(e);
+            verifyEtablissement(e);
+            $('.error').focus();
         }
 
         document.addEventListener('submit', verifyAll);
@@ -690,6 +726,7 @@
             }
         }
 
+        // Permet d'afficher les niveaux scolaires correspondant au type de l'enseignement concerné lorsqu'il demande une action éducative
         function treatmentInstitute(template, grade) {
             var taille = $(template).find('option').length;
             switch (grade) {
@@ -746,6 +783,7 @@
             }
         }
 
+        // Permet de pouvoir demander une action frimousse si notre type est élémentaire, sinon non
         function treatmentInterventionType(template, grade) {
             if (grade != 'elementaire') {
                 $(template).find('option:eq(1)').fadeOut().prop('disabled', true);
@@ -754,6 +792,7 @@
             }
         }
 
+        // Permet d'afficher les niveaux scolaires correspondant au centre de loisir concerné lorsqu'il demande une action éducative
         function treatmentCenter(template, grade) {
             var taille = $(template).find('option').length;
             switch (grade) {
@@ -792,6 +831,7 @@
             }
         }
 
+        // Permet d'afficher toutes les classes possibles pour un autre établissement demandant une action éducative
         function treatmentOthers(template, grade) {
             var taille = $(template).find('option').length;
             for (i = 0; i < taille; i++) {
@@ -799,6 +839,7 @@
             }
         }
 
+        // Permet d'afficher correctement les interventions en fonction de l'établissement qui demande
         function treatmentSelect() {
             var choiceEtabElt = document.getElementsByTagName('select')[0];
             var type;
@@ -839,6 +880,7 @@
             }
         }
 
+        // Permet d'afficher les bons thèmes en fonctions du type d'établissement
         function showSomeTheme(type, themesElt) {
             switch (type) {
                 case 'maternelle' :
@@ -862,12 +904,14 @@
             }
         }
 
+        // Permet d'afficher tous les thèmes possibles
         function showAllTheme(themesElt) {
             $(themesElt).find('option').each(function () {
                 $(this).fadeIn();
             });
         }
 
+        // Permet d'afficher les thèmes en fonction du type de l'établissement
         function displayThemeIntervention() {
             var themesElts = document.getElementsByClassName('form-theme-pld');
             if (themesElts.length == 0) {
@@ -905,8 +949,15 @@
         }
 
 
-
         $(document).ready(function () {
+            // Initialisation
+            $('#note').hide();
+            $('#dep').hide();
+            $('#ville').hide();
+            $('#intervention').hide();
+            $('#numeroFixe').hide();
+            $('#numeroPortable').hide();
+
 
             // Permet d'ajouter une à plusieurs interventions
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.

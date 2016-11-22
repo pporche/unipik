@@ -1,6 +1,15 @@
 {# version 1.00, date 17/11/2016, auteur Kafui Atanley #}
+{% extends "InterventionBundle::layout.html.twig" %}
+{% block title %}
 
+    Ajouter une vente - {{ parent() }}
+
+{% endblock %}
+
+{%  block body %}
+    <h1>Ajout d'une vente </h1>
 {{ form_start(form) }}
     {{ form_widget(form) }}
     <input type="submit" />
 {{ form_end(form) }}
+{% endblock %}

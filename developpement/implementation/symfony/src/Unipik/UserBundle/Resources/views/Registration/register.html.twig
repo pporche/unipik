@@ -269,6 +269,18 @@
                 $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+adresse, function (data) {
                     switch (data.length) {
                         case 0 :
+                            var ville = $("#fos_user_registration_form_adresse_ville").val();
+                            //Match numéro département avec nom ?
+                            $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
+                                if (dataVille.length > 0) {
+                                    geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                                    $("#fos_user_registration_form_adresse_geolocalisation").val(geolocalisation);
+                                    $(".fos_user_admin_register").submit();
+                                }
+                                else {
+                                    //Que fait-on si 0 match ?
+                                }
+                            });
                             break;
                         case 1 :
                             geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';

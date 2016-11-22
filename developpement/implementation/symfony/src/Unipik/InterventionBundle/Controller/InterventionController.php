@@ -324,6 +324,7 @@ class InterventionController extends Controller {
         $formAttr = $this->get('form.factory')->createBuilder(AttributionType::class)->getForm()->createView();
 
         if ($intervention->isFrimousse()) {
+            $idvente = $this->getDoctrine()->getManager()->getRepository("InterventionBundle:Vente")->findOneBy(array('intervention' => $intervention));
             return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
         } elseif ($intervention->isPlaidoyer()) {
             return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
@@ -788,7 +789,7 @@ class InterventionController extends Controller {
                 $interventionTemp->setComite($comite);
 
                 if ($interventionRaw["TypeGeneral"]=="pld") {
-                    $interventionTemp->setTypeIntervention("plaidoyers");
+                    $interventionTemp->setTypeIntervention("plaidoyer");
                     foreach ($interventionRaw["materielDispoPlaidoyer"]["materiel"] as $materiel) {
                         $interventionTemp->addMaterielDispoPlaidoyer($materiel);
                     }

@@ -19,6 +19,7 @@ namespace Unipik\InterventionBundle\Form\Intervention;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -209,6 +210,7 @@ class RechercheAvanceeType extends AbstractType
             ->add('dansVilleOuParDistance', ChoiceType::class, $dansVilleOuParDistance)
             ->add('villeOuDomicile', ChoiceType::class, $villeOuDomicile)
             ->add('ville', VilleType::class, array('required' => false))
+            ->add('geolocalisation', HiddenType::class)
             ->add('distance', ChoiceType::class, $distanceChoiceType);
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));

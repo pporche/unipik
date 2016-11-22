@@ -472,7 +472,8 @@
                 function (data, status) {
                     var selector = "button[name=attribuer" + id + "]";
                     $(selector).attr('class', 'btn btn-danger');
-                    $(selector).text('Retirer ' + data.prenom + ' ' + data.nom );
+                    $(selector).text('Retirer ' + data.prenom.charAt(0).toUpperCase() + data.prenom.slice(1) + ' '
+                            + data.nom.charAt(0).toUpperCase() + data.nom.slice(1) );
                     $(selector).attr('text-overflow', 'ellipsis');
                     $(selector).attr("onclick", "desattributeInterventionAdmin(this, " + id + ")");
                     $(selector).removeAttr("data-target");
@@ -796,7 +797,8 @@
                                         {% if is_granted('ROLE_ADMIN') %}
                                             <button name="attribuer{{ intervention.id }}" type="button"
                                                     class="btn btn-primary" data-toggle="modal" data-target="#myModal"
-                                                    onclick="sendIdToModal({{ intervention.id }})">
+                                                    onclick="sendIdToModal({{ intervention.id }})"
+                                                    style="padding-right: 4px;padding-left: 4px; font-size: 14px; width: 100%; overflow: hidden; text-overflow: ellipsis; ">
                                                 Attribuer à
                                             </button>
                                         {% else %}

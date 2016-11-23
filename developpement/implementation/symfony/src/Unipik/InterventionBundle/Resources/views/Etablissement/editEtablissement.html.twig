@@ -107,7 +107,7 @@
                 $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + adresse, function (data) {
                     switch (data.length) {
                         case 0 :
-                            var ville = $("#fos_user_registration_form_adresse_ville").val();
+                            var ville = $("#etablissement_adresse_ville").val();
                             //Match numéro département avec nom ?
                             $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
                                 if (dataVille.length > 0) {

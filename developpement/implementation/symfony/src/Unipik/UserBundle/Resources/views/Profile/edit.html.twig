@@ -228,6 +228,57 @@
                     $('#fos_user_profile_form_adresse_ville').val(data.ville);
                 });
         });
+
+        $(":submit").on('click', function( e ) {
+            e.preventDefault();
+            var adresse = $("#fos_user_profile_form_adresse_adresse").val() + ' ' + $('#fos_user_profile_form_adresse_codePostal').val() + ' ' + $("#fos_user_profile_form_adresse_ville").val();
+            var previousAdresse = "{{ benevole.adresse.adresse }} " + "{{ benevole.adresse.codePostal.code }} " + "{{ benevole.adresse.ville.nom }}";
+            if (adresse != previousAdresse) {
+                var geolocalisation = '';
+                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + adresse, function (data) {
+                    switch (data.length) {
+                        case 0 :
+                            var ville = $("#fos_user_profile_form_adresse_ville").val();
+                            //Match numéro département avec nom ?
+                            $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
+                                if (dataVille.length > 0) {
+                                    geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                                    $("#fos_user_profile_form_adresse_geolocalisation").val(geolocalisation);
+                                    $(".fos_user_profile_edit").submit();
+                                }
+                                else {
+                                    //Que fait-on si 0 match ?
+                                }
+                            });
+                            break;
+                        case 1 :
+                            geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
+                            $("#fos_user_profile_form_adresse_geolocalisation").val(geolocalisation);
+                            $(".fos_user_profile_edit").submit();
+                            break;
+                        default :
+                            var modal_content = "";
+                            data.forEach(function (item) {
+                                var latlon = item["lat"] + "," + item["lon"];
+                                modal_content += "<div class='row'><label class='radio-inline'><input type='radio' name='type' id='" + latlon + "'>" + item["display_name"] + "</label></div>";
+                            });
+                            $('#choices').html(modal_content);
+                            $("input:radio[name=type]:first").attr('checked', true);
+                            $("#myModal").modal('show');
+                    }
+                });
+            }
+            else {
+                $(".fos_user_profile_edit").submit();
+            }
+        });
+
+        function setGeolocalisation(content){
+            var latlon = content.split(',');
+            var geolocalisation = 'SRID=4326;POINT(' + latlon[1] + ' ' + latlon[0] + ')';
+            $("#fos_user_profile_form_adresse_geolocalisation").val(geolocalisation);
+            $(".fos_user_profile_edit").submit();
+        }
     </script>
 {% endblock %}
 
@@ -238,6 +289,9 @@
 {% endblock %}
 
 {% block fos_user_content %}
+
+    <h1>Modification de mon profil</h1>
+
     {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit'} }) }}
     {{ form_widget(form, { 'attr': {'style': 'display: inline-block; width: 40%'} }) }}
     <div>
@@ -247,5 +301,30 @@
 
     </div>
     {{ form_end(form) }}
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Plusieurs résultats concordent avec l'adresse que vous avez donnée !</h4>
+                </div>
+                <div class="modal-body">
+                    <p> Veuillez choisir l'adresse dans la liste ci-dessous : </p>
+                    <div id="choices"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                        <button id="realiserModal" type="button" class="btn btn-primary"
+                                onclick="setGeolocalisation($('input:radio[name=type]:checked').attr('id'))">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock fos_user_content %}
 

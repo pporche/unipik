@@ -58,7 +58,7 @@ class ProfileFormType extends BaseType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         parent::buildForm($builder, $options);
 
-        $optionActivite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Activités potentielles',
+        $optionActivite = array( 'required'=>false, 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Activités potentielles',
             'choices' => [
                 'Actions ponctuelles' => 'actions_ponctuelles',
                 'Actions éducatives' => 'plaidoyers',
@@ -67,7 +67,7 @@ class ProfileFormType extends BaseType {
                 'Autre' => 'autre',
             ],);
 
-        $optionResponsabilite = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Responsable d\'activité',
+        $optionResponsabilite = array( 'required'=>false, 'expanded' => true, 'multiple' => true, 'mapped' => false, 'label' => 'Responsable d\'activité',
             'choices' => [
                 'Actions ponctuelles' => 'actions_ponctuelles',
                 'Actions éducatives' => 'plaidoyers',
@@ -99,8 +99,8 @@ class ProfileFormType extends BaseType {
             ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('nom')
             ->add('prenom', TextType::class, array('label' => 'Prénom'))
-            ->add('telfixe', TextType::class, array('label' => 'Téléphone fixe'))
-            ->add('telportable', TextType::class, array('label' => 'Téléphone portable'));
+            ->add('telfixe', TextType::class, array( 'required'=>false, 'label' => 'Téléphone fixe'))
+            ->add('telportable', TextType::class, array( 'required'=>false, 'label' => 'Téléphone portable'));
     }
 
     /**

@@ -261,7 +261,10 @@
         $(":submit").on('click', function( e ) {
             e.preventDefault();
             if ($('#fos_user_registration_form_telFixe').val().trim().length==0 && $('#fos_user_registration_form_telPortable').val().trim().length==0) {
-                $('#fos_user_registration_form_telPortable').after('<p style="color: red; font-weight: 400;">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                if(){
+
+                }
+                $('#fos_user_registration_form_telPortable').after('<p id="erreur"  style="color: red; font-weight: 400;">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
             }
             else {
                 var adresse = $("#fos_user_registration_form_adresse_adresse").val() + ' ' + $('#fos_user_registration_form_adresse_codePostal').val() + ' ' + $("#fos_user_registration_form_adresse_ville").val();

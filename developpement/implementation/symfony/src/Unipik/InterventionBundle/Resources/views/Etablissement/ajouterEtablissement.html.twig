@@ -120,11 +120,6 @@
             display: inline;
         }
 
-        .required:after{
-            content: "*";
-            display: inline;
-        }
-
         .emailDiv .col-sm-2{
             width: 0px !important;
         }
@@ -274,7 +269,7 @@
                 // - le texte "__name__" qu'il contient par le numéro du champ
                 var template = $container.attr('data-prototype')
                                 .replace(/__name__label__/g, '')
-                                .replace(/__name__/g,        index)
+                                .replace(/__name__/g,"")
                         ;
 
                 // On crée un objet jquery qui contient ce template
@@ -446,16 +441,16 @@
     <h5> UAI :</h5>
     {{ form_widget(form.uai) }}
 
-    <h5> Adresse :</h5>
+    <h5> Adresse* :</h5>
     {{ form_widget(form.adresse.adresse) }}
 
     <h5> Complément :</h5>
     {{ form_widget(form.adresse.complement) }}
 
-    <h5> Ville :</h5>
+    <h5> Ville* :</h5>
     {{ form_widget(form.adresse.ville) }}
 
-    <h5> Code Postal :</h5>
+    <h5> Code Postal* :</h5>
     {{  form_widget(form.adresse.codePostal) }}
 
 

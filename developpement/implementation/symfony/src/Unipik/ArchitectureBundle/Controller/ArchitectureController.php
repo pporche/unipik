@@ -238,4 +238,56 @@ class ArchitectureController extends Controller {
         }
         return new Response();
     }
+
+    /**
+     * verifyDepartementAction permet de vérifier que le département est dans la BD
+     *
+     * @param Request $request
+     * @return JsonResponse|Response
+     */
+    public function verifyDepartementAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $depNom = $request->get('dep');
+            $depNom = strtoupper($depNom);
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('ArchitectureBundle:Departement');
+
+            $departement = $repository->findOneBy(array('nom' => $depNom));
+
+            if ($departement){
+                return new JsonResponse(array('result' => true));
+            }else {
+                return new JsonResponse(array('result' => false));
+            }
+
+        }
+        return new Response();
+    }
+
+    /**
+     * verifyVilleAction vérifier que la ville est dans la BD
+     *
+     * @param Request $request
+     * @return JsonResponse|Response
+     */
+    public function verifyVilleAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $villeNom = $request->get('ville');
+            $villeNom = strtoupper($villeNom);
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('ArchitectureBundle:Ville');
+
+            $ville = $repository->findOneBy(array('nom' => $villeNom));
+
+            if ($ville){
+                return new JsonResponse(array('result' => true));
+            }else {
+                return new JsonResponse(array('result' => false));
+            }
+
+        }
+        return new Response();
+    }
 }

@@ -82,6 +82,11 @@ etablissement_autocomplete:
     defaults:
          _controller: InterventionBundle:Etablissement:etablissementAutocomplete
 
+etablissement_verify_nom:
+    path : /etablissement/verify
+    defaults:
+        _controller: InterventionBundle:Etablissement:verifyEtablissement
+
 # Route Vente
 vente_list:
     path:   /ventes

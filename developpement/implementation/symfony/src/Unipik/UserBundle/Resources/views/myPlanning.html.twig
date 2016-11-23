@@ -8,13 +8,24 @@
     <script src="{{ asset('vendor/fullcalendar/dist/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('vendor/fullcalendar/dist/locale/fr.js') }}"></script>
     <style>
-        .fc-month-view span.fc-title{
+        h1{
+            margin-top: 60px;
+            font-family: 'Ubuntu Condensed', sans-serif;
+            margin-left: 50px;
+        }
+        hr{
+            width: 90%;
+            margin-left: 50px;
+        }
+        table a:not(.btn), .table a:not(.btn){
+            text-decoration: none !important;
+        }
+        .fc-month-view span.fc-title {
             white-space: normal;
-
+        }
         #carre {
             width: 10%;
             padding-bottom: 30%; /* = width for a square aspect ratio */
-        }
         }
     </style>
     <script type="text/javascript">
@@ -70,11 +81,13 @@
                     {% if intervention.benevole is not null %}
                         {% if user.id == intervention.benevole.id %}
                             interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
-                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                                allDay: false,
                                 url: '{{ path('intervention_view', {id: intervention.id}) }}' });
                         {% else %}
                             interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
-                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                                allDay: false,
                                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
                                 color  : 'grey' });
                         {% endif %}
@@ -128,12 +141,14 @@
                     {% if intervention.benevole is not null %}
                         {% if user.id == intervention.benevole.id %}
                             interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
-                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                                allDay: false,
                                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
                                 color  : '#82C46C' });
                         {% else %}
                             interventions.push({ title  : typeIntervention +  ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
-                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                                allDay: false,
                                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
                                 color  : 'grey' });
                         {% endif %}
@@ -142,8 +157,44 @@
             {% endfor %}
 
             $('#calendar').fullCalendar({
-                locale:"fr",
-                events: interventions
+                locale: "fr",
+                events: interventions,
+                weekends: false,
+                header:
+                {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                eventLimit: 2,
+                views: {
+                    basic: {
+                        eventLimit: 2
+                    },
+                    agenda: {
+                        eventLimit: 2
+                    },
+                    week: {
+                        eventLimit: 2
+                    },
+                    agendaDay: {
+                        eventLimit: 2
+                    },
+                    month: {
+                        eventLimit: 2
+                    },
+                    basicWeek: {
+                        eventLimit: 2
+                    },
+                    basicDay: {
+                        eventLimit: 2
+                    },
+                    agendaWeek: {
+                        eventLimit: 2
+                    },
+
+                }
+
             })
 
 
@@ -165,29 +216,30 @@
     />
 {% endblock %}
 {% block body %}
-   <h2 style="text-align:center"> Votre planning  </h2>
+   <h1> Votre planning  </h1><hr>
 
     <div class="row">
-        <div class="col-xs-9 col-md-2"> <div class="panel panel-default">
-                <div class="panel-body">
-                    <div>
-                        <h4 style="text-align:center"> Légendes </h4>
-                        <button type="button" class="btn btn-default btn-xs"></button>
-                         Interventions d'autres bénévoles
-                        </br>
-                        <button type="button" class="btn btn-success btn-xs"></button> Mes interventions réalisées
-                        </br>
-                        <button type="button" class="btn btn-primary btn-xs"></button> Mes interventions à réaliser
-                        </br>
-                    </div>
-                </div>
-            </div></div>
-        <div class="col-xs-3 col-md-10">
+
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
             <div  id="calendar">
             </div>
         </div>
     </div>
+    <div class="row">
+    <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4"> <div class="panel panel-default">
+            <div class="panel-body">
+                <h4 class="bonjour" style="text-align:center"><strong>Légendes</strong></h4>
+                <span class="legende1"></span>Interventions d'autres bénévoles
+                </br>
+                <span class="legende2"></span> Mes interventions réalisées
+                </br>
+                <span class="legende3"></span> Mes interventions à réaliser
+                </br>
+            </div>
+        </div>
+    </div>
 
+    </div>
 
 
 {% endblock %}

@@ -74,6 +74,7 @@ class MailController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('InterventionBundle:Etablissement');
 
+            // On récupère les données du formulaire
             $typeInstitute = $form->get("typeInstitute")->getData();
             $typeCenter = $form->get("typeCenter")->getData();
             $typeOther = $form->get("typeAutre")->getData();
@@ -84,14 +85,19 @@ class MailController extends Controller {
             }
 
             $ids = array();
-            if ($relance == 'relance') {
-                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement', $typeInstitute, 'plaidoyers', $ville) : array();
+            $instituteExclude = $repository->getEtablissementDemandeNonSatisfaite(); // Les établissements qui ont fait une demande non satisfaite durant cette année scoalire
+
+            if ($relance == 'relance') { // Les établissements qui ont pas fait de demande durant cette année scolaire
+                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement',$typeInstitute, null, $ville) : array();
+                $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, null, $ville) : array();
+                $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, null, $ville) : array();
+                $ids = array_merge($institutesArray, $centersArray, $othersArray);
+            } else if ($relance == 'relancePlaidoyer') { // Les établissements qui ont pas fait de demande  de plaidoyers durant cette année scolaire
+                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement',$typeInstitute, 'plaidoyers', $ville) : array();
                 $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, 'plaidoyers', $ville) : array();
                 $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, 'plaidoyers', $ville) : array();
                 $ids = array_merge($institutesArray, $centersArray, $othersArray);
-            } else if ($relance == 'relancePlaidoyer') {
-                $ids = array();
-            } else {
+            } else { // Les établissements en général
                 $institutesArray = !empty($typeInstitute) ? $repository->getType("enseignement", $typeInstitute, $ville, null, null) : array();
                 $centersArray = !empty($typeCenter) ? $repository->getType("centre", $typeCenter, $ville, null, null) : array();
                 $othersArray = !empty($typeOther) ? $repository->getType("autreEtablissement", $typeOther, $ville, null, null) : array();
@@ -100,20 +106,20 @@ class MailController extends Controller {
                     array_push($ids, $institute->getId());
                 }
             }
+            $ids = array_diff($ids, $instituteExclude); // On dégage les établissements dont la demande a pas été satisfaite durant cette année scolaire
 
-            if (!empty($ids)) {
+            if (!empty($ids)) { // Si la recherche donne pas d'établissement on créé pas d'entrée BD pour rien
                 $mailtask = new MailTask();
                 $mailtask
                     ->setName('Mail task')
-                    ->setInterval(300)
-                    ->setDateInsert(new \DateTime())
-                    ->setIdEtablissement($ids);
+                    ->setInterval(300) // Interval pour savoir quand on peut exécuter la tâche
+                    ->setDateInsert(new \DateTime()) // Date d'insertion ie date à laquelle on effectue la demande d'envoi de mail
+                    ->setIdEtablissement($ids); // id des établissements à qui on fait l'envoi
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($mailtask);
                 $em->flush();
             }
-
             return $this->redirectToRoute('architecture_homepage');
         }
 

@@ -212,8 +212,8 @@
         $("#intervention_dateIntervention").on("change",compareDateAvailable);
 
         function compareDateAvailable(){
-            var dateBegin = new Date();
-            var dateEnd = new Date();
+            var dateBegin = formatDate("{{ intervention.demande.dateDebutDisponibilite| date('d-m-Y') }}");
+            var dateEnd = formatDate("{{ intervention.demande.dateFinDisponibilite| date('d-m-Y')}}");
             var dateWanted = formatDate(document.getElementsByClassName("js-datepicker")[0].value);
             if(!(dateWanted >= dateBegin && dateWanted <= dateEnd)){
                 $("#checkDate").removeClass("alert-info").addClass("alert-warning");

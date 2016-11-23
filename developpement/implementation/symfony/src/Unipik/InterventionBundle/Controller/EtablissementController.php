@@ -314,4 +314,25 @@ class EtablissementController extends Controller {
         return $response;
 
     }
+
+    public function verifyEtablissementAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $etablissementNom = $request->get('etablissement');
+            $etablissementNom = strtoupper($etablissementNom);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Etablissement');
+
+            $etablissement = $repository->findOneBy(array('nom' => $etablissementNom));
+
+            if ($etablissement){
+                return new JsonResponse(array('result' => true));
+            }else {
+                return new JsonResponse(array('result' => false));
+            }
+
+        }
+        return new Response();
+    }
 }

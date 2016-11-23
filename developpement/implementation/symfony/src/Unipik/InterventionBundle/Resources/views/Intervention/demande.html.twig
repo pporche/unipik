@@ -59,6 +59,9 @@
 
     <h5> Code Postal* :</h5>
     {{ form_widget(form.Etablissement.adresse.codePostal) }}
+    <div id="code">
+        Code postal au mauvais format
+    </div>
 
     <h3> Plage de dates</h3>
 
@@ -74,12 +77,18 @@
     </div>
 
     <h3> Intervention * </h3>
+    <div id="intervention">
+        Veuillez remplir une intervention
+    </div>
     {{ form_widget(form.Intervention) }}
 
 
     <h3> Contact</h3>
     <h5> Email* :</h5>
     {{ form_widget(form.Contact.email) }}
+    <div id="email">
+        Email au mauvais format
+    </div>
 
     <h5> Nom* :</h5>
     {{ form_widget(form.Contact.nom) }}
@@ -90,9 +99,15 @@
 
     <h5> Tel Fixe :</h5>
     {{ form_widget(form.Contact.telFixe) }}
+    <div id="numeroFixe">
+        Numéro de téléphone au mauvais format
+    </div>
 
     <h5> Tel Portable :</h5>
     {{ form_widget(form.Contact.telPortable) }}
+    <div id="numeroPortable">
+        Numéro de téléphone au mauvais format
+    </div>
 
     <h5> Type Contact* :</h5>
     {{ form_widget(form.Contact.typeContact) }}
@@ -112,6 +127,16 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
     <style>
+         #intervention, #numeroFixe, #numeroPortable, #code, #email {
+            font-size : 13px;
+            font-style : italic;
+            color : red;
+        }
+
+         .error, .errorMail {
+             border: solid 2px #FF0000;
+         }
+
         h3 {
             margin-left: -50px !important;
         }
@@ -728,23 +753,32 @@
         function verifyAll(e) {
             verifyNumber(e);
             verifyCP(e);
+            verifyEmail(e);
             verifyIntervention(e);
+            $('.error').focus();
+            $('.errorMail').focus();
+            $('#add_intervention').focus();
         }
 
         function verifyNumber(e) {
             var re = /^((0)[1-9][0-9]{8})?$/;
-            if (!(re.test($('#demande_Contact_telFixe').val()) && re.test($('#demande_Contact_telPortable').val()) && re.test($('#demande_Etablissement_telFixe').val()))) {
+            if (!(re.test($('#demande_Contact_telFixe').val()))){
                 e.preventDefault();
                 e.stopPropagation();
-                alert("Numéro de téléphone au mauvais format");
-                $('#demande_Contact_telFixe').css('border-color', 'red');
-                $('#demande_Contact_telPortable').css('border-color', 'red');
-                $('#demande_Etablissement_telFixe').css('border-color', 'red');
-
+                $('#numeroFixe').show();
+                $('#demande_Contact_telFixe').addClass('error');
             } else {
-                $('#demande_Contact_telFixe').removeAttr('border-color');
-                $('#demande_Contact_telPortable').removeAttr('border-color');
-                $('#demande_Etablissement_telFixe').removeAttr('border-color');
+                $('#numeroFixe').hide();
+                $('#demande_Contact_telFixe').removeClass('error');
+            }
+            if (!(re.test($('#demande_Contact_telPortable').val()) )) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#numeroPortable').show();
+                $('#demande_Contact_telPortable').addClass('error');
+            } else {
+                $('#numeroPortable').hide();
+                $('#demande_Contact_telPortable').removeClass('error');
             }
         }
 
@@ -752,10 +786,36 @@
             if (!(/[0-9]{5}/.test($('#demande_Etablissement_adresse_codePostal').val()))) {
                 e.preventDefault();
                 e.stopPropagation();
-                $('#demande_Etablissement_adresse_codePostal').css('border-color', 'red');
-                alert("Code Postal au mauvais format");
+                $('#code').show();
+                $('#demande_Etablissement_adresse_codePostal').addClass('error');
             } else
-                $('#demande_Etablissement_adresse_codePostal').removeAttr('border-color');
+                $('#code').hide();
+                $('#demande_Etablissement_adresse_codePostal').removeClass('error');
+
+        }
+
+        function verifyEmail(e) {
+            var re = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$/;
+            if (!(re.test($('#demande_Contact_email').val()))) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#email').show();
+                $('#demande_Contact_email').addClass('error');
+            } else {
+                $('#email').hide();
+                $('#demande_Contact_email').removeClass('error');
+            }
+            $('[id^=demande_Etablissement_emails_]').each(function () {
+                if (!re.test($(this).val())) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    $(this).addClass('errorMail');
+                    $("<div id='email'> Email au mauvais format <div>").insertAfter($(this))
+                } else {
+                    $(this).removeClass('errorMail');
+                    $(this).next().remove();
+                }
+            });
 
         }
 
@@ -784,7 +844,9 @@
             if ($('div#demande_Intervention fieldset:first-child').length==0) {
                 e.preventDefault();
                 e.stopPropagation();
-                alert("Vous n'avez pas rempli d'intervention");
+                $('#intervention').show();
+            } else {
+                $('#intervention').hide();
             }
         }
 
@@ -857,6 +919,13 @@
             $('#demande_jour_mercredi_3').prop("checked", true);
             $('#demande_jour_jeudi_3').prop("checked", true);
             $('#demande_jour_vendredi_3').prop("checked", true);
+
+            // Initialisation
+            $('#code').hide();
+            $('#numeroFixe').hide();
+            $('#numeroPortable').hide();
+            $('#intervention').hide();
+            $('#email').hide();
 
             $("label:contains(\"Informations de l'établissement\")").hide();
 

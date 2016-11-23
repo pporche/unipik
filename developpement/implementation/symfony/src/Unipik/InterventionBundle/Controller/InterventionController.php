@@ -403,7 +403,7 @@ class InterventionController extends Controller {
         } elseif ($intervention->isPlaidoyer()) {
             return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
         } else {
-            return $this->render('InterventionBundle:Intervention:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
+            return $this->render('InterventionBundle:Intervention/Autre:consultation.htm.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
         }
     }
 

@@ -1,0 +1,35 @@
+{# version 1.00, date 23/11/2016, auteur Julie Pain #}
+{% extends "InterventionBundle:Intervention:consultation.html.twig" %}
+
+{% block title %}
+
+    Consultation autre intervention - {{ parent() }}
+
+{% endblock %}
+
+{%  block contenu %}
+    {% if intervention.description %}
+        <div class="col-sm-5 col-xs-12  col-md-4">
+            <dl>
+                <dt>
+                    <span class="glyphicon glyphicon-pencil"></span> &nbsp Description:
+                </dt>
+            </dl>
+        </div>
+        <div class="row">
+            <div class="scrollspy-example col-sm-5 col-xs-offset-1 col-xs-11 col-md-7" data-offset="0"
+                 data-target="#navbar-example" data-spy="scroll" style="
+                            height: 200px;
+                            overflow: auto;
+                            position: relative;
+                            border:1px solid #cccccc;
+                            padding:10px;">
+                <em>{{ intervention.description | capitalize }}</em>
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+{%  endblock %}

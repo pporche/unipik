@@ -394,7 +394,8 @@
 
             var matClasElt = parNode.getElementsByClassName('form-group')[2];
             var matFriElt = parNode.getElementsByClassName('form-group')[3];
-            var remarquesAutresInterentionElt = parNode.getElementsByClassName('form-remarques')[0].parentNode.parentNode;
+            var remarquesElt = parNode.getElementsByClassName('form-remarques')[0].parentNode.parentNode;
+            var descriptionAutreInterventionElt = parNode.getElementsByClassName('form-description')[0].parentNode.parentNode;
             var anneeScolaireElt = parNode.getElementsByClassName('form-annee-scolaire')[0].parentNode.parentNode;
             var themElt = parNode.getElementsByClassName('form-theme-pld')[0].parentNode.parentNode.parentNode.parentNode.parentNode;
             var lblMatElt = parNode.getElementsByTagName('label')[1];
@@ -405,7 +406,8 @@
                     $(anneeScolaireElt).show().find('select').prop('disabled', false).prop('required', true).find('input').prop('disabled', false);
                     $(themElt).hide().find('select').prop('disabled', true).prop('required', false).find('input').prop('disabled', true);
                     $(lblMatElt).hide().prop('disabled', true);
-                    $(remarquesAutresInterentionElt).hide().prop('disabled', true);
+                    $(descriptionAutreInterventionElt).hide().prop('disabled', true);
+                    $(remarquesElt).show().prop('disabled', false);
                     break;
                 case 'pld' :
                     $(lblMatElt).show().prop('disabled', false);
@@ -413,7 +415,8 @@
                     $(matClasElt).show().prop('disabled', false);
                     $(anneeScolaireElt).show().find('select').prop('disabled', false).prop('required', true).find('input').prop('disabled', false);
                     $(themElt).show().find('select').prop('disabled', false).prop('required', true).find('input').prop('disabled', false);
-                    $(remarquesAutresInterentionElt).hide().prop('disabled', true);
+                    $(descriptionAutreInterventionElt).hide().prop('disabled', true);
+                    $(remarquesElt).show().prop('disabled', false);
                     break;
 
                 case 'aut' :
@@ -422,7 +425,8 @@
                     $(matFriElt).hide().prop('disabled', true);
                     $(anneeScolaireElt).hide().find('select').prop('disabled', true).prop('required', false).find('input').prop('disabled', true);
                     $(themElt).hide().find('select').prop('disabled', true).prop('required', false).find('input').prop('disabled', true);
-                    $(remarquesAutresInterentionElt).show().prop('disabled', false);
+                    $(descriptionAutreInterventionElt).show().prop('disabled', false);
+                    $(remarquesElt).show().prop('disabled', false);
                     break;
             }
 

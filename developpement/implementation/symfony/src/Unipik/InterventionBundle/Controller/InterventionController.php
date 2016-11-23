@@ -171,8 +171,7 @@ class InterventionController extends Controller {
                     'alert' => 'danger'
                 )
             );
-            // rediriger vers demande anonyme
-            return $this->RedirectToRoute('architecture_homepage');
+            return $this->RedirectToRoute('intervention_request_anonyme');
         }
 
         // Pré-remplir les champs d'établissement
@@ -284,15 +283,90 @@ class InterventionController extends Controller {
      * @return FormBuilderInterface Renvoie vers la page contenant le formualaire de demande d'intervention anonyme.
      */
     public function demandeAnonymeAction(Request $request) {
+        // création d'une nouvelle demande
         $demande = new Demande();
+
+        // création du formulaire
         $form = $this->createForm(DemandeAnonymeType::class, $demande);
+
+        // Récupération du formulaire
+        $form->handleRequest($request);
+
+        // Si le formulaire a été envoyé
+        if ($form->isValid()) {
+            var_dump("coucou");
+
+            // Spécifier la date de la demande
+            $dt =new \DateTime();
+            $demande->setDateDemande($dt);
+
+            // Extraire et traiter les interventions
+            $interventionsRawList = $form->get('Intervention')->getData();
+            $interventionList = [];
+            $this->treatmentInterventions($interventionsRawList, $interventionList);
+
+            // Extraire et traiter le contact
+            $contact = (object) $form->get('Contact')->getData();
+            $contactPers = new Contact();
+            $this->cast($contactPers, $contact);
+            $contactPers->setRespoEtablissement($contact->isRespoEtablissement());
+            $contactPers->setTypeContact($contact->getTypeContact());
+
+            $this->treatmentContact($contactPers);
+            $demande->setContact($contactPers);
+
+
+            // Récupérer l'établissement demandeur
+            $etablissement = $form->get('nomEtablissement')->getData();
+
+
+            // Extraire et traiter la plage de disponibilité de l'établissement
+            $startDate = $form->get('plageDate')->get('debut')->getData();
+            $endDate = $form->get('plageDate')->get('fin')->getData();
+            $demande->setDateDebutDisponibilite($startDate);
+            $demande->setDateFinDisponibilite($endDate);
+
+
+            // Extraire et traiter les moments voulus et à éviter
+            $this->treatmentMoment($form->get('jour')->getData(), $demande);
+
+            // Persit la demande
+            $this->getDoctrine()->getManager()->persist($demande);
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            // Reliement des interventions avec leur établissement et la demande correspondant
+            foreach ($interventionList as $intervention) {
+                $intervention->setEtablissement($etablissement);
+                $intervention->setDemande($demande);
+                $this->getDoctrine()->getManager()->persist($intervention);
+            }
+            $em->flush();
+
+            // Message de félicitation
+            $session =$request->getSession();
+            $session->getFlashBag()->add(
+                'notice', array(
+                    'title' => 'Félicitation',
+                    'message' => 'Votre demande d\'intervention a bien été enregistrée. Nous vous contacterons sous peu.',
+                    'alert' => 'success'
+                )
+            );
+
+            // Envoie de l'email
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Intervention de l\'unicef')
+                ->setFrom('unipik.dev@gmail.com')
+                ->setTo('dev1@yopmail.com')
+                ->setBody($this->renderView('MailBundle::emailConfirmationPriseEnCompte.html.twig'), 'text/html');
+            $this->get('mailer')->send($message);
+
+            return $this->RedirectToRoute('architecture_homepage');
+        }
 
         return $this->render(
             'InterventionBundle:Intervention:demandeAnonyme.html.twig', array(
                 'form' => $form->createView(),
-//                'typEnseignement' => json_encode($typeEtablissementEncoded),
-//                'id' => $id,
-//                'etablissement' => $institute
             )
         );
     }

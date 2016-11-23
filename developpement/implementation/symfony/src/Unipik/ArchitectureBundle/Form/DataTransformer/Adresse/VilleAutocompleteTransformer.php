@@ -73,7 +73,7 @@ class VilleAutocompleteTransformer implements DataTransformerInterface {
     public function reverseTransform($villeNom)
     {
         if (!$villeNom) {
-            return '';
+            return null;
         }
 
         $ville = $this->entityManager

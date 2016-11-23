@@ -9,6 +9,10 @@
     <script src="{{ asset('vendor/fullcalendar/dist/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('vendor/fullcalendar/dist/locale/fr.js') }}"></script>
     <style>
+
+        table a:not(.btn), .table a:not(.btn){
+            text-decoration: none !important;
+        }
         .fc-month-view span.fc-title {
             white-space: normal;
 
@@ -158,15 +162,17 @@
             {% if user.id == intervention.benevole.id %}
             interventions.push({
                 title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start: '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                url: '{{ path('intervention_view', {id: intervention.id}) }}'
+                start: '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                url: '{{ path('intervention_view', {id: intervention.id}) }}',
+                allDay: false
             });
             {% else %}
             interventions.push({
                 title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start: '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                start: '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                color: 'grey'
+                color: 'grey',
+                allDay: false
             });
             {% endif %}
             {% endif %}
@@ -220,16 +226,18 @@
             {% if user.id == intervention.benevole.id %}
             interventions.push({
                 title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start: '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                start: '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                color: '#82C46C'
+                color: '#82C46C',
+                allDay: false
             });
             {% else %}
             interventions.push({
                 title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start: '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                start: '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                color: 'grey'
+                color: 'grey',
+                allDay: false
             });
             {% endif %}
             {% endif %}
@@ -238,7 +246,43 @@
 
             $('#calendar').fullCalendar({
                 locale: "fr",
-                events: interventions
+                events: interventions,
+                weekends: false,
+                header:
+                {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                eventLimit: 2,
+                views: {
+                    basic: {
+                        eventLimit: 2
+                    },
+                    agenda: {
+                        eventLimit: 2
+                    },
+                    week: {
+                        eventLimit: 2
+                    },
+                    agendaDay: {
+                        eventLimit: 2
+                    },
+                    month: {
+                        eventLimit: 2
+                    },
+                    basicWeek: {
+                        eventLimit: 2
+                    },
+                    basicDay: {
+                        eventLimit: 2
+                    },
+                    agendaWeek: {
+                        eventLimit: 2
+                    },
+
+                }
+
             })
 
         });
@@ -246,7 +290,6 @@
         function okRealiserIntervention() {
 
             var selected = [];
-            //"input[name^='type']:checked").val
             $("input:radio:checked").each(function () {
                 var $this = $(this);
                 if ($this.val() == "oui") {
@@ -276,9 +319,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel='stylesheet' href="{{ asset('vendor/fullcalendar/dist/fullcalendar.css') }}"
-
-    />
+    <link rel='stylesheet' href="{{ asset('vendor/fullcalendar/dist/fullcalendar.css') }}"/>
 {% endblock %}
 
 

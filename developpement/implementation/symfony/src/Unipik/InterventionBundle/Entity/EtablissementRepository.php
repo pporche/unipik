@@ -106,9 +106,14 @@ class EtablissementRepository extends EntityRepository {
             ->join('i.demande', 'd')
             ->where('d.dateDemande > :dateInf')
             ->andWhere('d.dateDemande < :dateSup')
-            ->andWhere('i.typeIntervention = :typeIntervention')
-            ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup, 'typeIntervention' => $typeIntervention))
-            ->getQuery()
+            ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup));
+            if(isset($typeIntervention)) {
+                $sub = $sub->andWhere('i.typeIntervention = :typeIntervention')
+                    ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup, 'typeIntervention' => $typeIntervention));
+            } else {
+                $sub = $sub->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup));
+            }
+        $sub = $sub->getQuery()
             ->getResult();
         $subIds = array_map('current', $sub);
 
@@ -133,7 +138,8 @@ class EtablissementRepository extends EntityRepository {
                     break;
             }
 
-            $qb->andWhere($qb->expr()->notIn('e.id', $subIds));
+            if(!empty($subIds))
+                $qb->andWhere($qb->expr()->notIn('e.id', $subIds));
 
             if ($ville) {
                 $this->_whereVilleIs($linked, $ville);
@@ -246,6 +252,9 @@ class EtablissementRepository extends EntityRepository {
             ->setParameter('ville', $ville);
     }
 
+    /**
+     * @return array
+     */
     public function getEmailEtablissementRappel() {
         $dateTime = new \DateTime();
         $dateTime->add(new \DateInterval('P7D'));
@@ -259,5 +268,29 @@ class EtablissementRepository extends EntityRepository {
         ;
 
         return array_map('current', $qb->getQuery()->getResult());
+    }
+
+    /**
+     * @return array
+     */
+    public function getEtablissementDemandeNonSatisfaite() {
+        $dateInf = '01/09/'.date('Y');
+        $dateSup = '01/09/'.(date('Y')+1);
+
+        $sub = $this
+            ->getEntityManager()
+            ->createQueryBuilder()
+            ->select('IDENTITY(i.etablissement)')
+            ->from('InterventionBundle:Intervention', 'i')
+            ->join('i.demande', 'd')
+            ->where('d.dateDemande > :dateInf')
+            ->andWhere('d.dateDemande < :dateSup')
+            ->andWhere('i.dateIntervention < :date')
+            ->andWhere('i.realisee = false')
+            ->setParameters(array('date' => (new \DateTime())->format('d/m/Y'), 'dateInf' => $dateInf, 'dateSup' => $dateSup))
+            ->getQuery()
+            ->getResult();
+
+        return array_map('current', $sub);
     }
 }

@@ -108,7 +108,7 @@
                 padding-left: 0vw;
             }
         }
-        @media(max-width: 1260px && min-width: 1060px){
+        @media(max-width: 1260px) and (min-width: 1060px){
             form{
                 padding-left: 15vw;
             }
@@ -260,8 +260,11 @@
 
         $(":submit").on('click', function( e ) {
             e.preventDefault();
+
             if ($('#fos_user_registration_form_telFixe').val().trim().length==0 && $('#fos_user_registration_form_telPortable').val().trim().length==0) {
-                $('#fos_user_registration_form_telPortable').after('<p style="color: red; font-weight: 400;">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                if($('#erreurTelephone').prev()[0]==undefined){
+                    $('#fos_user_registration_form_telPortable').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                }
             }
             else {
                 var adresse = $("#fos_user_registration_form_adresse_adresse").val() + ' ' + $('#fos_user_registration_form_adresse_codePostal').val() + ' ' + $("#fos_user_registration_form_adresse_ville").val();

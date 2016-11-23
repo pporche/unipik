@@ -247,7 +247,7 @@ class UserController extends Controller {
         return $this->render(
             'UserBundle:Profile:editBenevole.html.twig', array(
             'form' => $form->createView(),
-            'username' => $username,
+            'benevole' => $benevole,
             'activitesPotentielles' => $activities,
             'responsabiliteActivite' => $responsabilities
             )

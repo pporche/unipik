@@ -294,7 +294,6 @@ class InterventionController extends Controller {
 
         // Si le formulaire a été envoyé
         if ($form->isValid()) {
-            var_dump("coucou");
 
             // Spécifier la date de la demande
             $dt =new \DateTime();

@@ -244,46 +244,54 @@
 
         $(":submit").on('click', function( e ) {
             e.preventDefault();
-            var adresse = $("#user_registration_adresse_adresse").val() + ' ' + $('#user_registration_adresse_codePostal').val() + ' ' + $("#user_registration_adresse_ville").val();
-            var previousAdresse = "{{ benevole.adresse.adresse }} " + "{{ benevole.adresse.codePostal.code }} " + "{{ benevole.adresse.ville.nom }}";
-            if (adresse != previousAdresse) {
-                var geolocalisation = '';
-                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + adresse, function (data) {
-                    switch (data.length) {
-                        case 0 :
-                            var ville = $("#user_registration_adresse_ville").val();
-                            //Match numéro département avec nom ?
-                            $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
-                                if (dataVille.length > 0) {
-                                    geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
-                                    $("#user_registration_adresse_geolocalisation").val(geolocalisation);
-                                    $(".user_admin_edit").submit();
-                                }
-                                else {
-                                    //Que fait-on si 0 match ?
-                                }
-                            });
-                            break;
-                        case 1 :
-                            geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
-                            $("#user_registration_adresse_geolocalisation").val(geolocalisation);
-                            $(".user_admin_edit").submit();
-                            break;
-                        default :
-                            var modal_content = "";
-                            data.forEach(function (item) {
-                                var latlon = item["lat"] + "," + item["lon"];
-                                modal_content += "<div class='row'><label class='radio-inline'><input type='radio' name='type' id='" + latlon + "'>" + item["display_name"] + "</label></div>";
-                            });
-                            $('#choices').html(modal_content);
-                            $("input:radio[name=type]:first").attr('checked', true);
-                            $("#myModal").modal('show');
-                    }
-                });
+            if ($('#user_registration_telPortable').val().trim().length==0 && $('#user_registration_telFixe').val().trim().length==0) {
+                if($('#erreurTelephone').prev()[0]==undefined){
+                    $('#user_registration_telPortable').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                }
             }
-            else {
-                $(".user_admin_edit").submit();
+            else{
+                var adresse = $("#user_registration_adresse_adresse").val() + ' ' + $('#user_registration_adresse_codePostal').val() + ' ' + $("#user_registration_adresse_ville").val();
+                var previousAdresse = "{{ benevole.adresse.adresse }} " + "{{ benevole.adresse.codePostal.code }} " + "{{ benevole.adresse.ville.nom }}";
+                if (adresse != previousAdresse) {
+                    var geolocalisation = '';
+                    $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + adresse, function (data) {
+                        switch (data.length) {
+                            case 0 :
+                                var ville = $("#user_registration_adresse_ville").val();
+                                //Match numéro département avec nom ?
+                                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
+                                    if (dataVille.length > 0) {
+                                        geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                                        $("#user_registration_adresse_geolocalisation").val(geolocalisation);
+                                        $(".user_admin_edit").submit();
+                                    }
+                                    else {
+                                        //Que fait-on si 0 match ?
+                                    }
+                                });
+                                break;
+                            case 1 :
+                                geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
+                                $("#user_registration_adresse_geolocalisation").val(geolocalisation);
+                                $(".user_admin_edit").submit();
+                                break;
+                            default :
+                                var modal_content = "";
+                                data.forEach(function (item) {
+                                    var latlon = item["lat"] + "," + item["lon"];
+                                    modal_content += "<div class='row'><label class='radio-inline'><input type='radio' name='type' id='" + latlon + "'>" + item["display_name"] + "</label></div>";
+                                });
+                                $('#choices').html(modal_content);
+                                $("input:radio[name=type]:first").attr('checked', true);
+                                $("#myModal").modal('show');
+                        }
+                    });
+                }
+                else {
+                    $(".user_admin_edit").submit();
+                }
             }
+
         });
 
         function setGeolocalisation(content){

@@ -89,7 +89,7 @@ class EtablissementType extends AbstractType {
             ->add('nom', TextType::class, array('required' => false))
             ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe', 'required' => false))
             ->add(
-                'emails', CollectionType::class, array('label'=> false,'mapped' => false,
+                'emails', CollectionType::class, array('label'=> '','mapped' => false,
                 'entry_type'   => TextType::class,
                 'allow_add'    => true,
                 'allow_delete' => true
@@ -99,8 +99,8 @@ class EtablissementType extends AbstractType {
             ->add('typeEnseignement', ChoiceType::class, $educationChoiceType)
             ->add('typeAutreEtablissement', ChoiceType::class, $otherChoiceType)
             ->add('typeCentre', ChoiceType::class, $centerChoiceType)
-            ->add('uai', TextType::class, array('label' => 'Unité Administrative Immatriculée' ,'required' => false))
-            ->add('adresse', AdresseType::class, array('required'=>true));
+            ->add('uai', TextType::class, array('label' => 'UAI' ,'required' => false))
+            ->add('adresse', AdresseType::class, array('label' =>false, 'required' => true));
     }
     /**
      * Configure les options

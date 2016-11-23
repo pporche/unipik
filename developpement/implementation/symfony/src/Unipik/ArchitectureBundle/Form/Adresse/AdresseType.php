@@ -65,7 +65,7 @@ class AdresseType extends AbstractFieldsetType {
         $builder
             ->add('adresse', AdType::class)
             ->add('complement', ComplementType::class, array('label' => "Complément","required" => false))
-            ->add('ville', VilleType::class, array('constraints' => new NotBlank()))
+            ->add('ville', VilleType::class, array('required'=>true, 'constraints' => new NotBlank()))
             ->add('codePostal', CodePostalType::class, array('constraints' => new NotBlank()))
             ->add('geolocalisation', HiddenType::class, array("required" => false));
 

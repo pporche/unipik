@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+//sudo php bin/console mailBenevoleRappelTask:run
 class RappelBenevoleTaskCommand extends ContainerAwareCommand {
     private $output;
 

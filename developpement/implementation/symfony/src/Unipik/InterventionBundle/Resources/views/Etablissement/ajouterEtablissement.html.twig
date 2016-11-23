@@ -355,40 +355,62 @@
 
         $(":submit").on('click', function( e ) {
             e.preventDefault();
-            var adresse = $("#etablissement_adresse_adresse").val() + ' ' + $('#etablissement_adresse_codePostal').val() + ' ' + $("#etablissement_adresse_ville").val();
-            var geolocalisation = '';
-            $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+adresse, function (data) {
-                switch (data.length) {
-                    case 0 :
-                        var ville = $("#fos_user_registration_form_adresse_ville").val();
-                        //Match numéro département avec nom ?
-                        $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
-                            if (dataVille.length > 0) {
-                                geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
-                                $("#etablissement_adresse_geolocalisation").val(geolocalisation);
-                                $(".etablissement_admin_add").submit();
-                            }
-                            else {
-                                //Que fait-on si 0 match ?
-                            }
-                        });
-                        break;
-                    case 1 :
-                        geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
-                        $("#etablissement_adresse_geolocalisation").val(geolocalisation);
-                        $(".etablissement_admin_add").submit();
-                        break;
-                    default :
-                        var modal_content = "";
-                        data.forEach(function (item) {
-                            var latlon = item["lat"] + "," + item["lon"];
-                            modal_content += "<div class='row'><label class='radio-inline'><input type='radio' name='type' id='" + latlon + "'>" + item["display_name"] + "</label></div>";
-                        });
-                        $('#choices').html(modal_content);
-                        $("input:radio[name=type]:first").attr('checked', true);
-                        $("#myModal").modal('show');
+            if ($('#etablissement_adresse_adresse').val().trim().length==0) {
+                if($('#erreurAdresse').prev()[0]==undefined){
+                    $('#etablissement_adresse_adresse').after('<p id="erreurAdresse"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
                 }
-            });
+            }
+            else {
+                if($('#etablissement_adresse_ville').val().trim().length==0){
+                    if($('#erreurVille').prev()[0]==undefined){
+                        $('#etablissement_adresse_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                    }
+                }
+                else {
+                    if($('#etablissement_adresse_codePostal').val().trim().length==0){
+                        if($('#erreurCP').prev()[0]==undefined){
+                            $('#etablissement_adresse_codePostal').after('<p id="erreurCP"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                        }
+                    }else{
+                        var adresse = $("#etablissement_adresse_adresse").val() + ' ' + $('#etablissement_adresse_codePostal').val() + ' ' + $("#etablissement_adresse_ville").val();
+                        var geolocalisation = '';
+                        $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+adresse, function (data) {
+                            switch (data.length) {
+                                case 0 :
+                                    var ville = $("#fos_user_registration_form_adresse_ville").val();
+                                    //Match numéro département avec nom ?
+                                    $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
+                                        if (dataVille.length > 0) {
+                                            geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                                            $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+                                            $(".etablissement_admin_add").submit();
+                                        }
+                                        else {
+                                            //Que fait-on si 0 match ?
+                                        }
+                                    });
+                                    break;
+                                case 1 :
+                                    geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
+                                    $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+                                    $(".etablissement_admin_add").submit();
+                                    break;
+                                default :
+                                    var modal_content = "";
+                                    data.forEach(function (item) {
+                                        var latlon = item["lat"] + "," + item["lon"];
+                                        modal_content += "<div class='row'><label class='radio-inline'><input type='radio' name='type' id='" + latlon + "'>" + item["display_name"] + "</label></div>";
+                                    });
+                                    $('#choices').html(modal_content);
+                                    $("input:radio[name=type]:first").attr('checked', true);
+                                    $("#myModal").modal('show');
+                            }
+                        });
+                    }
+                }
+
+            }
+
         });
 
         function setGeolocalisation(content){
@@ -397,6 +419,8 @@
             $("#etablissement_adresse_geolocalisation").val(geolocalisation);
             $(".etablissement_admin_add").submit();
         }
+
+
     </script>
 {% endblock %}
 

@@ -9,10 +9,11 @@
 namespace Unipik\InterventionBundle\Controller;
 
 
-use Symfony\Component\HttpKernel\Tests\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class StatsController extends Controller {
 
+    public function interventionsAction() {
 
-
+    }
 }

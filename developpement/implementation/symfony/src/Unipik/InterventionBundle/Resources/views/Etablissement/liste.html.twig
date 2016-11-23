@@ -471,7 +471,7 @@
 
                                 <th>Ville</th>
                                 <th>Type</th>
-                                <th>Voir détails</th>
+                                <th>Détails</th>
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <th>Supprimer</th>
                                 {% endif %}
@@ -492,7 +492,7 @@
                                         Enseignement
                                     {% endif %}
                                     </td>
-                                    <td data-title="Consulter"><a href="{{ path('etablissement_view', {id: etablissement.id}) }}" class="btn btn-primary">Voir détails</a></td>
+                                    <td data-title="Consulter"><a href="{{ path('etablissement_view', {id: etablissement.id}) }}" class="btn btn-primary">Détails</a></td>
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <td data-title="Supprimer">
                                             <div class="checkbox" style="text-align: center;">

@@ -361,17 +361,26 @@
                 }
             }
             else {
+                if($('#erreurAdresse').prev()[0]!=undefined){
+                    $('#erreurAdresse').hide();
+                }
                 if($('#etablissement_adresse_ville').val().trim().length==0){
                     if($('#erreurVille').prev()[0]==undefined){
                         $('#etablissement_adresse_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
                     }
                 }
                 else {
+                    if($('#erreurVille').prev()[0]!=undefined){
+                        $('#erreurVille').hide();
+                    }
                     if($('#etablissement_adresse_codePostal').val().trim().length==0){
                         if($('#erreurCP').prev()[0]==undefined){
                             $('#etablissement_adresse_codePostal').after('<p id="erreurCP"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
                         }
                     }else{
+                        if($('#erreurCP').prev()[0]!=undefined){
+                            $('#erreurCP').hide();
+                        }
                         var adresse = $("#etablissement_adresse_adresse").val() + ' ' + $('#etablissement_adresse_codePostal').val() + ' ' + $("#etablissement_adresse_ville").val();
                         var geolocalisation = '';
                         $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+adresse, function (data) {

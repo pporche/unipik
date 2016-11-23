@@ -1,0 +1,3 @@
+stats_chiffre_affaire:
+    path: /ca
+    defaults: {_controller: InterventionBundle:Intervention}

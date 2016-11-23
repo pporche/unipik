@@ -12,3 +12,8 @@ etablissement:
 ventes:
     resource: "@InterventionBundle/Resources/config/routingVentes.yml"
 
+# Route statistiques
+statistiques:
+    resource: "@InterventionBundle/Resources/config/routingStats.yml"
+    prefix: /stats
+

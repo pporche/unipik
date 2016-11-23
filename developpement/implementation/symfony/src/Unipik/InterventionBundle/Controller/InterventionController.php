@@ -862,6 +862,9 @@ class InterventionController extends Controller {
                 $interventionTemp->setDateIntervention(null);
                 $interventionTemp->setNbPersonne($interventionRaw["nbPersonne"]);
                 $interventionTemp->setComite($comite);
+                if (isset($interventionRaw["remarques"])) {
+                    $interventionTemp->setRemarques($interventionRaw["remarques"]);
+                }
 
                 if ($interventionRaw["TypeGeneral"]=="pld") {
                     $interventionTemp->setTypeIntervention("plaidoyer");
@@ -875,7 +878,6 @@ class InterventionController extends Controller {
                             )
                         );
                         $interventionTemp->setNiveauTheme($niveauTheme);
-
                     }
                 } elseif ($interventionRaw["TypeGeneral"]=="frim") {
                     $interventionTemp->setTypeIntervention("frimousse");
@@ -887,8 +889,8 @@ class InterventionController extends Controller {
                     }
                 } elseif ($interventionRaw["TypeGeneral"]=="aut") {
                     $interventionTemp->setTypeIntervention("autre_intervention");
-                    if (isset($interventionRaw["remarques"])) {
-                        $interventionTemp->setDescription($interventionRaw["remarques"]);
+                    if (isset($interventionRaw["description"])) {
+                        $interventionTemp->setDescription($interventionRaw["description"]);
                     }
                 }
 

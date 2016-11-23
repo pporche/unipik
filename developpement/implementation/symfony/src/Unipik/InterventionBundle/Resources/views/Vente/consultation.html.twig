@@ -3,7 +3,7 @@
 
 {% block title %}
 
-    Consulter une Vente - {{ parent() }}
+    Consulter une vente - {{ parent() }}
 
 {% endblock %}
 
@@ -12,15 +12,14 @@
     <link rel="stylesheet" href="{{ asset('vendor/leaflet/dist/leaflet.css') }}" />
     <style>
         #mapid { height: 380px; }
-
-        .alert-success{
-            margin-top:30px;
-        }
     </style>
 {% endblock %}
+
 {% block javascripts %}
+    {{ parent() }}
     <script src="{{ asset('vendor/leaflet/dist/leaflet.js') }}"></script>
-    <script>
+    <script type="application/javascript">
+
         {% if vente.etablissement.adresse.geolocalisation is not null %}
         var lat = {{ vente.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
         var lon = {{ vente.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
@@ -124,7 +123,7 @@
             {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path("vente_admin_delete", {'id': vente.id}) }}" class="btn btn-danger"
-                   onclick="return confirm('Souhaitez vous vraiment supprimer cette intervention ?')">
+                   onclick="return confirm('Souhaitez vous vraiment supprimer cette vente ?')">
                     <span class="glyphicon glyphicon-trash"> </span>&nbsp Supprimer
                 </a>
             {% endif %}

@@ -7,21 +7,80 @@
 
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("vendor/chosen/chosen.css") }}"/>
+    <script src="{{ asset("vendor/pdfmake/build/pdfmake.min.js") }}"></script>
+    <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
 
-{% block body %}
     <style>
-        h1, h2, h3{
-            font-family: 'Ubuntu Condensed', sans-serif;
-            margin-top: 40px;
-        }
-        .btn{
-            margin-left: calc(50% - 40px);
-        }
-        section{
-            margin-top:0px !important;
+        #recherche_avancee_ville {
+            text-transform: uppercase;
         }
 
-        @media only screen and (max-width: 600px) {
+        .twitter-typeahead .tt-query,
+        .twitter-typeahead .tt-hint {
+            margin-bottom: 0;
+        }
+
+        .tt-hint {
+            display: none;
+            width: 100%;
+            height: 43px;
+            padding: 10px 18px;
+            font-size: 14px;
+            line-height: 1.428571429;
+            color: #999;
+            vertical-align: middle;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+        }
+
+        .tt-menu {
+            min-width: 160px;
+            margin-top: 2px;
+            padding: 5px 0;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            background-clip: padding-box;
+            max-height: 150px;
+            overflow-y: auto;
+
+        }
+
+        .tt-suggestion {
+            display: block;
+            padding: 3px 20px;
+        }
+
+        .tt-suggestion.tt-is-under-cursor {
+            color: #fff;
+            background-color: #428bca;
+        }
+
+        .tt-suggestion.tt-is-under-cursor a {
+            color: #fff;
+        }
+
+        .tt-suggestion p {
+            margin: 0;
+        }
+
+        @media only screen and (max-width: 1090px) {
+
+            .btn-danger{
+                max-width: 200px !important;
+            }
 
             /* Force table to not be like tables anymore */
             table,
@@ -40,7 +99,9 @@
                 left: -9999px;
             }
 
-            tr { border: 1px solid #ccc; }
+            tr {
+                border: 1px solid #ccc;
+            }
 
             td {
                 /* Behave  like a "row" */
@@ -49,7 +110,7 @@
                 position: relative;
                 padding-left: 50% !important;
                 white-space: normal;
-                text-align:left;
+                text-align: left;
             }
 
             td:before {
@@ -61,66 +122,472 @@
                 width: 45%;
                 padding-right: 10px;
                 white-space: nowrap;
-                text-align:left;
+                text-align: left;
                 font-weight: bold;
             }
 
             /*
             Label the data
             */
-            td:before { content: attr(data-title); }
+            td:before {
+                content: attr(data-title);
+            }
+        }
+        .container{
+            padding-right: 15px !important;
+            padding-left: 20px !important;
+        }
+        tbody{
+            font-size: 15px !important;
         }
 
+
+        #myTable {
+            display:block;
+            max-height: 58vh;
+            overflow:auto;
+        }
+        #tableVente thead, #myTable tr {
+            display:table;
+            width:100%;
+            table-layout:fixed;
+        }
     </style>
-    <div class="row">
-        <h1> Liste des Ventes</h1><hr>
-    </div>
-    <section class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+{% endblock %}
 
 
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
+    <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
+    <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
+    <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('input:checkbox').removeAttr('checked');
+            if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')){
+                $('#ville').show();
+                $('#distanceKm').hide();
+                $("#recherche_avancee_distance").val("");
+                $('#distVilleOuDom').hide();
+                $('#recherche_avancee_villeOuDomicile:first-child').hide();
+            }else if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')){
+                if($('#recherche_avancee_villeOuDomicile_0').is(':checked')){
+                    $('#ville').show();
+                    $('#distanceKm').show();
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                }else{
+                    $('#ville').hide();
+                    $('#distanceKm').show();
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                }
+            }else {
+                $('#ville').hide();
+                $("#recherche_avancee_distance").val("");
+                $('#distanceKm').hide();
+                $('#distVilleOuDom').hide();
+                $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+            }
+
+
+            $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+
+
+            $('#myTable').pageMe({
+                pagerSelector: '#myPager',
+                showPrevNext: true,
+                hidePageNumbers: false,
+                perPage:{{ rowsPerPage }} });
+
+            $("#recherche_avancee_date").prop('checked', true);
+            $("#between_dates").hide();
+
+            hide_or_show = function () {
+                if ($(this).is(':checked')) {
+                    $("#between_dates").hide();
+                    $("#recherche_avancee_start").prop('required', false);
+                    $("#recherche_avancee_end").prop('required', false);
+                } else {
+                    $("#between_dates").show();
+                    $("#recherche_avancee_start").prop('required', true);
+                    $("#recherche_avancee_end").prop('required', true);
+                }
+            };
+
+            $("#recherche_avancee_date").change(hide_or_show);
+
+            $('#recherche_avancee_start').datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'fr',
+                autoclose: true
+            }).on('changeDate', function (selected) {
+                $('#recherche_avancee_end').datepicker('setStartDate', new Date(selected.date.valueOf()));
+            });
+            $('#recherche_avancee_end').datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'fr',
+                autoclose: true
+            }).on('changeDate', function (selected) {
+                $('#recherche_avancee_start').datepicker('setEndDate', new Date(selected.date.valueOf()));
+            });
+
+
+            $('#recherche_avancee_dansVilleOuParDistance_placeholder').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_placeholder').is(':checked')) {
+                    $('#ville').hide();
+                    $('#distanceKm').hide();
+                    $('#distVilleOuDom').hide();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
+                    $('#recherche_avancee_ville').val('');
+                    $('#recherche_avancee_villeOuDomicile div:first-child').prop('checked', true);
+                    $("#recherche_avancee_distance").val("");
+                }
+            });
+
+            $('#recherche_avancee_dansVilleOuParDistance_0').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')) {
+                    $('#ville').show();
+                    $('#distanceKm').hide();
+                    $('#distVilleOuDom').hide();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
+                    $('#recherche_avancee_ville').val('');
+                    $('#recherche_avancee_villeOuDomicile div:first-child').prop('checked', true);
+                    $("#recherche_avancee_distance").val("");
+                }
+            });
+
+            $('#recherche_avancee_dansVilleOuParDistance_1').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
+                    $('#distanceKm').show();
+                    $('#ville').hide();
+                    $('#distVilleOuDom').show();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
+
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                    $('#recherche_avancee_villeOuDomicile_1').prop('checked', true);
+                    $('#recherche_avancee_ville').val('');
+                }
+            });
+
+            $('#recherche_avancee_villeOuDomicile_0').click(function() {
+                if($('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
+                    $('#ville').show();
+                    $('#recherche_avancee_ville').val('');
+                }
+            });
+
+            $('#recherche_avancee_villeOuDomicile_1').click(function() {
+                if($('#recherche_avancee_villeOuDomicile_1').is(':checked')) {
+                    $('#ville').hide();
+                    $('#recherche_avancee_ville').val('');
+                }
+            });
+
+        });
+
+        $(':submit').on('click', function (e) {
+            e.preventDefault();
+            if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && $('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
+                var ville = $('#recherche_avancee_ville').val();
+                var geolocalisation = '';
+                //Match numéro département avec nom ?
+                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
+                    if (dataVille.length > 0) {
+                        geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                        $("#recherche_avancee_geolocalisation").val(geolocalisation);
+                        $(".vente_list").submit();
+                    }
+                    else {
+                        //Que fait-on si 0 match ?
+                    }
+                });
+            }
+            else {
+                $(".vente_list").submit();
+            }
+        });
+
+
+        function imprimer(){
+            var docDefinition = {
+                pageOrientation: 'portrait',
+                content: [
+                    {text: "Liste d'interventions", style: ['header']},
+                    {text: " ", style: ['header']},
+                    {
+                        style: 'table',
+                        table: {
+                            headerRows: 1,
+                            widths: [80, 50,50, 60, 80, 50, 80, 50, 50, 80],
+                            body: [
+                                [
+                                    { text: 'Lieu', style: 'tableHeader' },
+                                    { text: 'Date de la vente', style: 'tableHeader'},
+                                    { text: 'Établissement', style: 'tableHeader' },
+                                    { text: 'Intervention liée', style: 'tableHeader' },
+                                    { text: 'Chiffre d\'affaire', style: 'tableHeader' }
+                                ],
+                                {% for vente in ventes %}
+                                [ { text: "{{ vente.etablissement.adresse.ville.nom }}", style: 'tableHeader' },
+                                    { text: "{{ vente.dateVente|date('d-m-Y') }}", style: 'tableHeader' },
+                                    { text: "{{ vente.etablissement.nom | capitalize }}", style: 'tableHeader' },
+                                    { text: "FRIMOUSSE A L'{{ vente.intervention.etablissement.nom | capitalize }}", style: 'tableHeader' },
+                                    { text: "{{ vente.chiffreAffaire }} €", style: 'tableHeader' },
+                                ],
+                                {% endfor %}
+                            ]
+                        },
+                        layout: 'lightHorizontalLines'
+                    }
+                ],
+                styles: {
+                    header: {
+                        fontSize: 13,
+                        alignment: 'center'
+                    },
+                    tableHeader: {
+                        fontSize: 9,
+                        alignment: 'left'
+                    }
+                }
+            };
+
+            pdfMake.createPdf(docDefinition).open('pdf/test','name',null,false);
+        }
+
+        function deleteVentes() {
+            var conf = confirm('Souhaitez vous vraiment supprimer ces ventes ?');
+
+            if (conf) {
+                var selected = [];
+                $("input:checkbox[name=type]:checked").each(function () {
+                    var $this = $(this);
+                    selected.push($this.attr("id"));
+                });
+                var ids = JSON.stringify(selected);
+                $.post("{{ path('vente_admin_deletes') }}", {'ids': ids},
+                    function (data, status) {
+                        for (i = 0; i < selected.length; i++) {
+                            $("#" + selected[i]).closest('tr').remove();
+                        }
+                    });
+            }
+        }
+
+        var villes = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            //prefetch: '{{ path("architecture_ville_autocomplete") }}',
+            remote: {
+                url: '{{ path("architecture_ville_autocomplete") }}?term=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
+
+        $('#recherche_avancee_ville').typeahead(null, {
+            name: 'villes',
+            source: villes,
+            limit: 50
+        });
+
+    </script>
+{% endblock %}
+
+{% block body %}
+    <section class="col-lg-2 col-md-2 col-sm-2">
+        <div class="row">
+            <div class='well'>
+                {{ form_start(form, {'method': 'get', 'action': path('vente_list'), 'attr': {'class': 'vente_list form-sm'}}) }}
+                <h5>Dates de vente :</h5>
+                {{ form_widget(form.date) }}
+                <div id="between_dates">
+                    Ventes entre le
+                    {{ form_widget(form.start, { 'attr': {'class': 'input-sm'} }) }}
+                    et le
+                    {{ form_widget(form.end, { 'attr': {'class': 'input-sm'} }) }}
+                </div>
+                <br/>
+                <div id="filtrePar">
+                    <h5> Filtre par lieu :</h5>
+                    {{ form_widget(form.dansVilleOuParDistance) }}
+                </div>
+                <div id="distVilleOuDom">
+                    <h5> Distance de ville ou domicile ?</h5>
+                    {{ form_widget(form.villeOuDomicile) }}
+                </div>
+                <div id="ville">
+                    <h5> Ville :</h5>
+                    {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
+                </div>
+                <div id="distanceKm">
+                    <h5> Distance en km :</h5>
+                    {{ form_widget(form.distance) }}
+                </div>
+                <div>
+                    <input type="submit" value="OK" class="btn btn-primary"/>
+                </div>
+                </div>
+        </div>
+    </section>
+    <section id="listeVente" class="col-lg-10 col-md-10 col-sm-10">
+        <h2> Liste des Ventes : </h2>
+        {% if ventes %}
+            <button type="button" class="btn btn-primary" onclick="imprimer()" style="float: right; margin-right: 20px;"><span class="glyphicon glyphicon-print"></span></button><br>
+        {% endif %}
         <div class="container">
             <div class="row">
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover" id="tableVente">
                         <thead>
-                            <tr>
-                                <th>
-                                    Date de la vente
-                                </th>
-                                <th>
-                                    Lieu
-                                </th>
-                                <th>
-                                    Chiffre d'affaire
-                                </th>
-                                <th>
-                                    Voir Détails
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% if ventes is not empty %}
-                                {% for vente in ventes %}
-                                    <tr>
-                                        <td data-title="dateVente">
-                                           {{ vente.dateVente| date("d-m-y") }}
-                                        </td>
-                                        <td data-title="adresse">
-                                            {{ vente.etablissement.adresse.adresse }}
-                                            (à changer)
-                                        </td>
-                                        <td data-title="chiffreAffaire">
-                                            {{ vente.chiffreAffaire }} €
-                                        </td>
-                                        <td data-title="details">
-                                             <a class="btn-default btn" href="{{ path('vente_view' , {'id':vente.id}) }}">Détails</a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
+                        <tr>
+                            {% set pathReq = [] %}
+                            {% if app.request.query.get('recherche_avancee') is not null %}
+                                {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
                             {% endif %}
+                            {% if app.request.query.get('rowsPerPage') is not null %}
+                                {% set pathReq = pathReq | merge({"rowsPerPage":app.request.query.get('rowsPerPage')}) %}
+                            {% endif %}
+                            {% if field == "dateVente" %}
+                                {% if desc %}
+                                    <th> Lieu
+                                        <a class="sortButtonLieu" id="sortButtonLieu"
+                                                 href="{{ path('vente_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                 id="sortLieu" alt="sort Down"/>
+                                        </a></th>
+                                    <th> Date de la vente
+                                        <a class="sortButtonDate" id="sortButtonDate"
+                                           href="{{ path('vente_list', pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
+                                                 id="sortDate" alt="sort Down"/>
+                                        </a>
+                                    </th>
+                                {% else %}
+                                    <th>Lieu
+                                        <a class="sortButtonLieu" id="sortButtonLieu"
+                                           href="{{ path('vente_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-up"
+                                                 id="sortLieu" alt="sort Down"/>
+                                        </a>
+                                    </th>
+                                    <th> Date de la vente
+                                        <a class="sortButtonDate" id="sortButtonDate"
+                                           href="{{ path('vente_list', pathReq | merge({"desc":true, "field":"dateVente"}) ) }}">
+                                            <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
+                                                 id="sortDate" alt="sort Up"/>
+                                        </a>
+                                    </th>
+                                {% endif %}
+                            {% else %}
+                                {% if desc %}
+                                    <th>Lieu
+                                        <a class="sortButtonLieu" id="sortButtonLieu"
+                                           href="{{ path('vente_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                 id="sortLieu" alt="sort Down"/>
+                                        </a>
+                                    </th>
+                                    <th>Date de la vente
+                                        <a class="sortButtonDate" id="sortButtonDate"
+                                           href="{{ path('vente_list', pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
+                                                 id="sortDate" alt="sort Down"/>
+                                        </a>
+                                    </th>
+                                {% else %}
+                                    <th>Lieu
+                                        <a class="sortButtonLieu" id="sortButtonLieu"
+                                           href="{{ path('vente_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                            <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortLieu"
+                                                 alt="sort Up"/>
+                                        </a>
+                                    </th>
+                                    <th>Date de la vente
+                                        <a class="sortButtonDate" id="sortButtonDate"
+                                           href="{{ path('vente_list', pathReq | merge({"desc":true, "field":"dateVente"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
+                                                 id="sortDate" alt="sort Up"/>
+                                        </a>
+                                    </th>
+                                {% endif %}
+                            {% endif %}
+                            <th> Etablissement </th>
+                            <th> Intervention liée </th>
+                            <th> Chiffre d'affaire </th>
+                            <th>Voir détails</th>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <th>Supprimer</th>
+                            {% endif %}
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        {% if ventes is not empty %}
+                            {% for vente in ventes %}
+                                <tr>
+                                    <td data-title="Lieu">{{ vente.etablissement.adresse.ville.nom }}</td>
+                                    <td data-title="DateVente">{{ vente.dateVente|date("d-m-Y") }}</td>
+                                    <td data-title="Etablissement">
+                                        <a href="{{ path('etablissement_view', {'id':vente.etablissement.id}) }}">
+                                            {{ vente.etablissement.nom | capitalize}}
+                                        </a>
+                                    </td>
+                                    <td data-title="Intervention liée">
+                                        {% if vente.intervention %}
+                                            <a href="{{ path('intervention_view', {'id':vente.intervention.id}) }}">
+                                                Frimousse à l'{{ vente.intervention.etablissement.nom | lower}}
+                                            </a>
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                    <td data-title="ChiffreAffaire" style="text-align: center"> {{ vente.chiffreAffaire }} € </td>
+                                    <td data-title="Voir Détails">
+                                        <a href="{{ path('vente_view', {id: vente.id}) }}"
+                                           class="btn btn-primary">Voir détails</a>
+                                    </td>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <td data-title="Supprimer">
+                                            <div class="checkbox" style="text-align: center">
+                                                <label>
+                                                    <input type="checkbox" name="type" id="{{ vente.id }}">
+                                                </label>
+                                            </div>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
                         </tbody>
                     </table>
                 </div>
+                <div class="buttons">
+                    <a href="{{ path('vente_add') }}" class="btn btn-primary btn-success">
+                        Ajouter une vente
+                    </a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                            <button type="button" class="btn btn-danger" onclick="deleteVentes()">Supprimer</button>
+                    {% endif %}
+                    </div>
+                <div class="col-md-12 text-center">
+                    {% set pathReq = [] %}
+                    {% if app.request.query.get('recherche_avancee') is not null %}
+                        {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
+                    {% endif %}
+                    {% if app.request.query.get('desc') is not null %}
+                        {% set pathReq = pathReq | merge({"desc":app.request.query.get('desc')}) | merge({"field":app.request.query.get('field')}) %}
+                    {% endif %}
+                    <ul>Par page :
+                        <a href="{{ path('vente_list', pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
+                        <a href="{{ path('vente_list', pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
+                        <a href="{{ path('vente_list', pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
+                        <a href="{{ path('vente_list', pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
+                        <a href="{{ path('vente_list', pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
+                    </ul>
+                    <ul class="pagination pagination-lg pager" id="myPager"></ul>
+                </div>
+
             </div>
         </div>
     </section>

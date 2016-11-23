@@ -89,17 +89,19 @@ etablissement_verify_nom:
 
 # Route Vente
 vente_list:
-    path:   /ventes
+    path:   /vente
     defaults:
         _controller: InterventionBundle:Vente:liste
 
 vente_view:
     path: /vente/{id}
-    defaults: {_controller: InterventionBundle:Vente:consultation}
+    defaults:
+        _controller: InterventionBundle:Vente:consultation
     requirements:
         id: \d+
 
 vente_add:
     path: /vente/ajouter
-    defaults: {_controller: InterventionBundle:Vente:add}
+    defaults:
+        _controller: InterventionBundle:Vente:add
 

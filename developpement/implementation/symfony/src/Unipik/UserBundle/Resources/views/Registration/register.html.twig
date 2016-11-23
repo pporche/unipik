@@ -260,7 +260,7 @@
 
         $(":submit").on('click', function( e ) {
             e.preventDefault();
-            console.log($('#erreurTelephone').prev()[0]);
+
             if ($('#fos_user_registration_form_telFixe').val().trim().length==0 && $('#fos_user_registration_form_telPortable').val().trim().length==0) {
                 if($('#erreurTelephone').prev()[0]==undefined){
                     $('#fos_user_registration_form_telPortable').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');

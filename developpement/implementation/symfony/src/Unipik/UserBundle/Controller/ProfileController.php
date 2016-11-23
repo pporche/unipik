@@ -122,6 +122,7 @@ class ProfileController extends BaseController {
         return $this->render(
             'UserBundle:Profile:edit.html.twig', array(
             'form' => $form->createView(),
+            'benevole' => $user,
             'activitesPotentielles' => $activities,
             'responsabiliteActivite' => $responsabilities,
             )

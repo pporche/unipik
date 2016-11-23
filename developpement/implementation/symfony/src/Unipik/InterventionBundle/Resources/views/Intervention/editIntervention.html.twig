@@ -209,7 +209,11 @@
         });
 
         $(document).ready(compareDateAvailable);
-        $("#intervention_dateIntervention").on("change",compareDateAvailable);
+        $(document).ready(checkMoment);
+        $("#intervention_dateIntervention").change(function () {
+            compareDateAvailable();
+            checkMoment();
+        })
 
         function compareDateAvailable(){
             var dateBegin = formatDate("{{ intervention.demande.dateDebutDisponibilite| date('d-m-Y') }}");
@@ -227,6 +231,54 @@
         function formatDate(date){
             var tabDate = date.split('-');
             return new Date(tabDate[2],(tabDate[1]-1),tabDate[0]);
+        }
+
+        $('#intervention_heure_hour').change(function () {
+            checkMoment();
+        });
+
+        function checkMoment() {
+            var moment;
+            var hour = $("#intervention_heure_hour").val();
+            var weekday = new Array(7);
+            var day;
+            var date = formatDate($("#intervention_dateIntervention").val());
+            var momentsVoulus = [];
+            var momentsEviter = [];
+            var momentFinal;
+
+            if(hour > 0 && hour < 12)
+                moment = 'matin';
+            else
+                moment = 'apres-midi';
+
+            weekday[0]=  "dimanche";
+            weekday[1] = "lundi";
+            weekday[2] = "mardi";
+            weekday[3] = "mercredi";
+            weekday[4] = "jeudi";
+            weekday[5] = "vendredi";
+            weekday[6] = "samedi";
+            day = weekday[date.getDay()];
+
+            momentFinal = day + " " + moment;
+
+            {% for moment in demande.momentsVoulus %}
+            momentsVoulus.push('{{ moment.jour|capitalize }} {{ moment.moment }}'.toLowerCase());
+            {% endfor %}
+
+            {% for moment in demande.momentsAEviter %}
+            momentsEviter.push('{{ moment.jour|capitalize }} {{ moment.moment }}'.toLowerCase());
+            {% endfor %}
+
+            if($.inArray(momentFinal, momentsVoulus) != -1) {
+                document.getElementById("checkMoment").textContent = "Cet horaire correspond à un "+day+" "+moment+"."
+                $("#checkMoment").removeClass("alert-warning").addClass("alert-info");
+            } else {
+                document.getElementById("checkMoment").textContent = "Le "+day+" "+moment+" est un moment à éviter !";
+                $("#checkMoment").removeClass("alert-info").addClass("alert-warning");
+            }
+
         }
 
     </script>
@@ -300,6 +352,7 @@
         <p class="alert" id="checkDate" style="margin-bottom: 2.5%; margin-top : 2.5%"></p>
         {{ form_label(form.heure) }}
         {{ form_widget(form.heure) }}
+        <p class="alert" id="checkMoment" style="margin-bottom: 2.5%; margin-top : 2.5%"></p>
         <p style="margin-bottom: 2.5%; margin-top : 2.5%">
             {% if demande.momentsVoulus %}
             Ici figurent les moments voulus pour l'intervention :

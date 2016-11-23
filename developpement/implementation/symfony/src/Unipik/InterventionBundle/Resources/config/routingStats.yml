@@ -1,3 +1,4 @@
-stats_chiffre_affaire:
-    path: /ca
-    defaults: {_controller: InterventionBundle:Intervention}
+stats_nombre_interventions:
+    path : /interventions
+    defaults:
+         _controller: InterventionBundle:Stats:interventions

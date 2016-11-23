@@ -743,7 +743,7 @@
                             <th>Classe</th>
                             <th>Thème</th>
                             <th>Statut</th>
-                            <th>Voir détails</th>
+                            <th>Détails</th>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <th>Supprimer</th>
                             {% endif %}
@@ -855,7 +855,7 @@
                                 </td>
                                 <td data-title="Voir Détails">
                                     <a href="{{ path('intervention_view', {id: intervention.id}) }}"
-                                       class="btn btn-primary">Voir détails</a>
+                                       class="btn btn-primary">Détails</a>
                                 </td>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <td data-title="Supprimer">

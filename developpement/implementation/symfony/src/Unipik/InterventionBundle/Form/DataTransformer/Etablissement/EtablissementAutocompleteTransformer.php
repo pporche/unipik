@@ -67,7 +67,7 @@ class EtablissementAutocompleteTransformer implements DataTransformerInterface {
         }
 
         $etablissement = $this->entityManager
-            ->getRepository('ArchitectureBundle:Departement')->findOneBy(array('nom' => $etablissementNom));
+            ->getRepository('InterventionBundle:Etablissement')->findOneBy(array('nom' => $etablissementNom));
 
         if (null === $etablissement) {
             throw new TransformationFailedException(

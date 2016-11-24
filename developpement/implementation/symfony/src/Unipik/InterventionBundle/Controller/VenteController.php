@@ -56,7 +56,12 @@ class VenteController extends Controller
             return $this->render('InterventionBundle:Vente:liste.html.twig', array( 'ventes' => $listVente,
                                                                                     'rowsPerPage' => $rowsPerPage,
                                                                                     'field' => $field,
-                                                                                    'desc' => $desc));
+                                                                                    'desc' => $desc,
+                                                                                    'isCheck' => $dateChecked,
+                                                                                    'dateStart' => $start,
+                                                                                    'dateEnd' => $end,
+                                                                                    'user' => $user,
+                                                                                    'form' => $form->createView()));
         }
         else if(!is_null($request->get('etablissement'))){
             $etablissementRepository= $em->getRepository('InterventionBundle:Etablissement');
@@ -65,7 +70,12 @@ class VenteController extends Controller
             return $this->render('InterventionBundle:Vente:liste.html.twig',array( 'ventes' => $listVente,
                                                                                     'rowsPerPage' => $rowsPerPage,
                                                                                     'field' => $field,
-                                                                                    'desc' => $desc));
+                                                                                    'desc' => $desc,
+                                                                                    'isCheck' => $dateChecked,
+                                                                                    'dateStart' => $start,
+                                                                                    'dateEnd' => $end,
+                                                                                    'user' => $user,
+                                                                                    'form' => $form->createView()));
         }
         else{
             //$listVente = $venteRepository->findAll();

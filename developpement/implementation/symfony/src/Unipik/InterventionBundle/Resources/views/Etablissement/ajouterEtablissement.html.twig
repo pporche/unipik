@@ -39,6 +39,7 @@
         }
         .tt-menu {
             min-width: 160px;
+            width: 97%;
             margin-top: 2px;
             padding: 5px 0;
             background-color: #ffffff;
@@ -50,7 +51,7 @@
             background-clip: padding-box;
             max-height: 150px;
             overflow-y: auto;
-
+            margin-left: 10px;
         }
         .tt-suggestion {
             display: block;
@@ -488,6 +489,7 @@
 
 
     <div>
+            <a href="{{ path('etablissement_list') }}" class="btn btn-danger" style="margin-left:calc(50% - 140px)">Annuler</a>
             <input type="submit" value="Inscrire" class="btn btn-primary"/>
         </div>
         {{ form_end(form) }}

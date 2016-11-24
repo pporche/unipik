@@ -1,0 +1,63 @@
+intervention_request:
+    path:     /intervention/demande/{id}
+    defaults:
+        _controller: InterventionBundle:Intervention:demande
+    requirements:
+        id:  \d+
+
+intervention_request_anonyme:
+    path:     /intervention/demande
+    defaults:
+        _controller: InterventionBundle:Intervention:demandeAnonyme
+
+intervention_list:
+    path:   /intervention
+    defaults:
+        _controller: InterventionBundle:Intervention:liste
+
+intervention_self:
+    path: /intervention/maliste
+    defaults: {_controller: InterventionBundle:Intervention:maListe}
+
+demandes_recentes:
+    path: /intervention/demandes_recentes
+    defaults: {_controller: InterventionBundle:Intervention:recentDemandesListe}
+
+intervention_view:
+    path: /intervention/{id}
+    defaults: {_controller: InterventionBundle:Intervention:consultation}
+    requirements:
+        id: \d+
+
+demande_view:
+    path: /intervention/{id}/demande
+    defaults: {_controller: InterventionBundle:Intervention:consultationDemande}
+    requirements:
+        id: \d+
+
+intervention_edit:
+    path: /intervention/edit/{id}
+    defaults: {_controller: InterventionBundle:Intervention:edit}
+    requirements:
+        id: \d+
+
+intervention_self_attribute:
+    path: /intervention/attribution
+    defaults: {_controller: InterventionBundle:Intervention:attribution}
+
+intervention_self_desattribute:
+    path: /intervention/desattribution
+    defaults: {_controller: InterventionBundle:Intervention:desattribution}
+
+intervention_done:
+    path: /intervention/realisation
+    defaults: {_controller: InterventionBundle:Intervention:realisation}
+
+intervention_multiple_done:
+    path: /intervention/multiple/realisation
+    defaults: {_controller: InterventionBundle:Intervention:realisationInterventions}
+
+intervention_cancel:
+    path: /intervention/annuler/{id}
+    defaults: {_controller: InterventionBundle:Intervention:annuler}
+

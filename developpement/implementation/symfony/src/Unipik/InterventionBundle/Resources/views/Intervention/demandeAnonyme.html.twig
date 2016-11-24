@@ -80,6 +80,9 @@
     <h3> Contact</h3>
     <h5> Email* :</h5>
     {{ form_widget(form.Contact.email) }}
+    <div id="email">
+        Email au mauvais format
+    </div>
 
     <h5> Nom* :</h5>
     {{ form_widget(form.Contact.nom) }}
@@ -118,7 +121,7 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
     <style>
-        #note, #dep, #ville, #intervention, #numeroFixe, #numeroPortable {
+        #note, #dep, #ville, #intervention, #numeroFixe, #numeroPortable, #email {
             font-size : 13px;
             font-style : italic;
             color : red;
@@ -177,6 +180,7 @@
 
         .tt-menu {
             min-width: 160px;
+            width: 97%;
             margin-top: 2px;
             padding: 5px 0;
             background-color: #ffffff;
@@ -188,7 +192,7 @@
             background-clip: padding-box;
             max-height: 150px;
             overflow-y: auto;
-
+            margin-left: 10px;
         }
 
         .tt-suggestion {
@@ -650,6 +654,20 @@
             }
         }
 
+        // Permet de vérifier le format de l'email entré
+        function verifyEmail(e) {
+            var re = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$/;
+            if (!(re.test($('#demande_anonyme_Contact_email').val()))) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#email').show();
+                $('#demande_anonyme_Contact_email').addClass('error');
+            } else {
+                $('#email').hide();
+                $('#demande_anonyme_Contact_email').removeClass('error');
+            }
+        }
+
         // Permet de vérifier si les champs de l'établissements sont correctes
         function verifyEtablissement(e) {
             if ($('#demande_anonyme_departement').hasClass('error') || $('#demande_anonyme_ville').hasClass('error') || $('#demande_anonyme_nomEtablissement').hasClass('error')) {
@@ -663,7 +681,9 @@
             verifyNumber(e);
             verifyIntervention(e);
             verifyEtablissement(e);
+            verifyEmail(e);
             $('.error').focus();
+            $('#intervention').focus();
         }
 
         document.addEventListener('submit', verifyAll);

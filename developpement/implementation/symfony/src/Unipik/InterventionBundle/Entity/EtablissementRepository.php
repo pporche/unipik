@@ -40,7 +40,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return array
      */
-    public function getType($typeEtablissement, $type, $ville, $field, $desc) {
+    public function getType($typeEtablissement, $type, $ville, $field, $desc, $geolocalisation=null, $distance=null) {
         $results = array();
         if(!isset($type))
             $type = array("maternelle", "elementaire", "college", "lycee", "superieur", "adolescent", "maison de retraite", "mairie", "autre", "");
@@ -66,7 +66,12 @@ class EtablissementRepository extends EntityRepository {
             }
 
             if ($ville) {
-                $this->_whereVilleIs($qb, $ville);
+                if ($distance) {
+                    $this->_withinXkmVille($qb, $geolocalisation, $distance);
+                }
+                else {
+                    $this->_whereVilleIs($qb, $ville);
+                }
             }
 
             if ($field == "nom") {
@@ -93,7 +98,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return array
      */
-    public function getTypeAndNoInterventionThisYear($typeEtablissement, $type, $typeIntervention, $ville) {
+    public function getTypeAndNoInterventionThisYear($typeEtablissement, $type, $typeIntervention, $ville=null, $geolocalisation=null, $distance=null) {
         $results = array();
         if(!isset($type))
             $type = array("maternelle", "elementaire", "college", "lycee", "superieur", "adolescent", "maison de retraite", "mairie", "autre", "");
@@ -142,7 +147,12 @@ class EtablissementRepository extends EntityRepository {
                 $qb->andWhere($qb->expr()->notIn('e.id', $subIds));
 
             if ($ville) {
-                $this->_whereVilleIs($linked, $ville);
+                if ($distance) {
+                    $this->_withinXkmVille($qb, $geolocalisation, $distance);
+                }
+                else {
+                    $this->_whereVilleIs($qb, $ville);
+                }
             }
 
             $linked->setParameter('type', $t);
@@ -250,6 +260,29 @@ class EtablissementRepository extends EntityRepository {
             ->andWhere('e.adresse = a')
             ->andWhere('a.ville = :ville')
             ->setParameter('ville', $ville);
+    }
+
+    /**
+     * Verifie si un point est dans une distance d'une ville
+     *
+     * @param QueryBuilder $qb                 Le querybuilder
+     * @param string       $geolocalisation    La géolocalisation de la ville
+     * @param string       $distance           La distance
+     *
+     * @return void
+     */
+    private function _withinXkmVille(QueryBuilder $qb, $geolocalisation, $distance) {
+        $qb
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
+            ->andWhere('e.adresse = a')
+            ->andWhere(
+                $qb->expr()->eq(
+                    sprintf("STDWithin(a.geolocalisation, :geolocalisation, :distance)"),
+                    $qb->expr()->literal(true)
+                )
+            )
+            ->setParameter('geolocalisation', $geolocalisation)
+            ->setParameter('distance', $distance*1000);
     }
 
     /**

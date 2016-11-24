@@ -314,6 +314,7 @@
     <h1>Modification du bénévole {{ benevole.nom }}</h1>
 
     {{ form(form, {'attr': {'class': 'user_admin_edit'}}) }}
+    <a href="{{ path('user_admin_list') }}" class="btn btn-danger" style="margin-left:calc(50% - 140px)">Annuler</a>
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">

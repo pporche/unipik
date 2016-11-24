@@ -237,6 +237,8 @@
             checkMoment();
         });
 
+        $("#intervention_heure_hour").val("17"); //TODO
+        $("#intervention_heure_minute").val("17");
         function checkMoment() {
             var moment;
             var hour = $("#intervention_heure_hour").val();
@@ -410,6 +412,7 @@
 
         {{ form_widget(form) }}
         <div>
+            <a href="{{ path('intervention_list') }}" class="btn btn-danger" style="margin-left:calc(50% - 140px)">Annuler</a>
             <input type="submit" value="Modifier" class="btn btn-primary"/>
         </div>
         {{ form_end(form) }}

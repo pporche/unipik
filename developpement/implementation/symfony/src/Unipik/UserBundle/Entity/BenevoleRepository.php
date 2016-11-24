@@ -186,8 +186,7 @@ class BenevoleRepository extends EntityRepository
             ->select('DISTINCT b.email')
             ->from('InterventionBundle:Intervention', 'i')
             ->where('b.id = i.benevole')
-            ->andWhere('i.dateIntervention = \''.$date.'\'')
-        ;
+            ->andWhere('i.dateIntervention = \''.$date.'\'');
 
         return array_map('current', $qb->getQuery()->getResult());
     }

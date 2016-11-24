@@ -134,12 +134,11 @@ class ArchitectureController extends Controller {
             $dep = strtoupper($dep);
 
             $qb
-                ->innerJoin('v.codePostal','cp')
-                ->from('Unipik\ArchitectureBundle\Entity\Departement','d')
+                ->innerJoin('v.codePostal', 'cp')
+                ->from('Unipik\ArchitectureBundle\Entity\Departement', 'd')
                 ->andWhere('cp.departement = d')
                 ->andWhere('d.nom = :dep')
-                ->setParameter('dep',$dep)
-                ;
+                ->setParameter('dep', $dep);
         }
 
         // Récupération des résultats
@@ -242,7 +241,7 @@ class ArchitectureController extends Controller {
     /**
      * verifyDepartementAction permet de vérifier que le département est dans la BD
      *
-     * @param Request $request
+     * @param  Request $request
      * @return JsonResponse|Response
      */
     public function verifyDepartementAction(Request $request) {
@@ -255,7 +254,7 @@ class ArchitectureController extends Controller {
 
             $departement = $repository->findOneBy(array('nom' => $depNom));
 
-            if ($departement){
+            if ($departement) {
                 return new JsonResponse(array('result' => true));
             }else {
                 return new JsonResponse(array('result' => false));
@@ -268,7 +267,7 @@ class ArchitectureController extends Controller {
     /**
      * verifyVilleAction vérifier que la ville est dans la BD
      *
-     * @param Request $request
+     * @param  Request $request
      * @return JsonResponse|Response
      */
     public function verifyVilleAction(Request $request) {
@@ -281,7 +280,7 @@ class ArchitectureController extends Controller {
 
             $ville = $repository->findOneBy(array('nom' => $villeNom));
 
-            if ($ville){
+            if ($ville) {
                 return new JsonResponse(array('result' => true));
             }else {
                 return new JsonResponse(array('result' => false));

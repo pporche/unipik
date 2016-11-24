@@ -250,12 +250,12 @@ class Projet {
      *
      * @return Projet
      */
-//    public function addContact(\Unipik\UserBundle\Entity\Contact $contact)
-//    {
-//        $this->contact[] = $contact;
-//
-//        return $this;
-//    }
+    //    public function addContact(\Unipik\UserBundle\Entity\Contact $contact)
+    //    {
+    //        $this->contact[] = $contact;
+    //
+    //        return $this;
+    //    }
 
     /**
      * Remove contact
@@ -264,18 +264,18 @@ class Projet {
      *
      * @return object
      */
-//    public function removeContact(\Unipik\UserBundle\Entity\Contact $contact)
-//    {
-//        $this->contact->removeElement($contact);
-//    }
+    //    public function removeContact(\Unipik\UserBundle\Entity\Contact $contact)
+    //    {
+    //        $this->contact->removeElement($contact);
+    //    }
 
     /**
      * Get contact
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-//    public function getContact()
-//    {
-//        return $this->contact;
-//    }
+    //    public function getContact()
+    //    {
+    //        return $this->contact;
+    //    }
 }

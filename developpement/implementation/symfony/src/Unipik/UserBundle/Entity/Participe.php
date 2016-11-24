@@ -20,13 +20,19 @@ use Doctrine\ORM\Mapping as ORM;
  */
 
 class Participe {
-    /** @Id @ManyToOne(targetEntity="Contact") */
+    /**
+ * @Id @ManyToOne(targetEntity="Contact") 
+*/
     private $contact;
 
-    /** @Id @ManyToOne(targetEntity="Projet) */
+    /**
+ * @Id @ManyToOne(targetEntity="Projet) 
+*/
     private $projet;
 
-    /** @Column(type="boolean) */
+    /**
+ * @Column(type="boolean) 
+*/
     private $estTuteur;
 
 

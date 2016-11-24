@@ -27,6 +27,7 @@ use Unipik\InterventionBundle\Entity\Etablissement;
 use Unipik\InterventionBundle\Form\EtablissementType;
 use Unipik\InterventionBundle\Form\Etablissement\RechercheAvanceeType;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
+
 /**
  * Le controller qui gère les etablissements
  *
@@ -317,6 +318,13 @@ class EtablissementController extends Controller {
 
     }
 
+    /**
+     * Verify etablissement action
+     *
+     * @param Request $request La requete
+     *
+     * @return JsonResponse|Response
+     */
     public function verifyEtablissementAction(Request $request) {
         if ($request->isXmlHttpRequest()) {
             $etablissementNom = $request->get('etablissement');
@@ -328,9 +336,9 @@ class EtablissementController extends Controller {
 
             $etablissement = $repository->findOneBy(array('nom' => $etablissementNom));
 
-            if ($etablissement){
+            if ($etablissement) {
                 return new JsonResponse(array('result' => true));
-            }else {
+            } else {
                 return new JsonResponse(array('result' => false));
             }
 

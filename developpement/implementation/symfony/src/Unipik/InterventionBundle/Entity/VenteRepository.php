@@ -32,13 +32,15 @@ class VenteRepository extends EntityRepository {
     /**
      * Generic function for DB queries.
      *
-     * @param date             $start            Le debut
-     * @param date             $end              La fin
-     * @param bool             $dateChecked      La date est elle cochée
-     * @param string           $field            Le champ de tri
-     * @param bool             $desc             Descendant
-     * @param string           $ville            La ville
-     * @param distance         $distance         La distance
+     * @param date     $start           Le debut
+     * @param date     $end             La fin
+     * @param bool     $dateChecked     La date est elle cochée
+     * @param string   $field           Le champ de tri
+     * @param bool     $desc            Descendant
+     * @param user     $user            L'utilisateur
+     * @param string   $ville           La ville
+     * @param distance $distance        La distance
+     * @param geoloc   $geolocalisation La geolocalisation
      *
      * @return array
      */
@@ -81,12 +83,10 @@ class VenteRepository extends EntityRepository {
         if ($distance) {
             if ($ville) {
                 $this->_withinXkmVille($qb, $geolocalisation, $distance);
-            }
-            else {
+            } else {
                 $this->_withinXkmDomicile($qb, $user, $distance);
             }
-        }
-        else {
+        } else {
             if ($ville) {
                 $this->_whereVilleIs($qb, $ville);
             }
@@ -150,9 +150,9 @@ class VenteRepository extends EntityRepository {
     /**
      * Verifie si un point est dans une distance d'une ville
      *
-     * @param QueryBuilder $qb                 Le querybuilder
-     * @param string       $geolocalisation    La géolocalisation de la ville
-     * @param string       $distance           La distance
+     * @param QueryBuilder $qb              Le querybuilder
+     * @param string       $geolocalisation La géolocalisation de la ville
+     * @param string       $distance        La distance
      *
      * @return void
      */

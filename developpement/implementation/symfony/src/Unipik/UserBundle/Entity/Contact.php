@@ -135,7 +135,6 @@ class Contact
     private $etablissement;
 
     /**
-
     /**
      * Est responsable de l'etablissement ou non
      *

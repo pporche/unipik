@@ -371,7 +371,11 @@
                             position: relative;
                             border:1px solid #cccccc;
                             padding:10px;">
-                            <em>{{ intervention.remarques | capitalize }}</em>
+                            {% if intervention.remarques %}
+                                <em>{{ intervention.remarques | capitalize }}</em>
+                            {% else %}
+                                <em>Aucune</em>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

@@ -118,6 +118,74 @@
                     $('#mailing_ville').val(data.ville);
                 });
     });
+
+    $(document).ready(function () {
+
+        if ($('#mailing_dansVilleOuParDistance_placeholder').is(':checked')) {
+            $('#mailing_ville').parent().parent().parent().hide();
+            $('#mailing_distance').parent().parent().hide();
+            $('#mailing_ville').val('');
+            $('#mailing_distance').val('');
+        }
+        else if ($('#mailing_dansVilleOuParDistance_0').is(':checked')) {
+            $('#mailing_ville').parent().parent().parent().show();
+            $('#mailing_distance').parent().parent().hide();
+            $('#mailing_distance').val('');
+        }
+        else {
+            $('#mailing_ville').parent().parent().parent().show();
+            $('#mailing_distance').parent().parent().show();
+        }
+
+        $('#mailing_dansVilleOuParDistance_placeholder').click(function() {
+            if($('#mailing_dansVilleOuParDistance_placeholder').is(':checked')) {
+                $('#mailing_ville').parent().parent().parent().hide();
+                $('#mailing_distance').parent().parent().hide();
+                $('#mailing_ville').val('');
+                $('#mailing_distance').val('');
+            }
+        });
+
+        $('#mailing_dansVilleOuParDistance_0').click(function() {
+            if($('#mailing_dansVilleOuParDistance_0').is(':checked')) {
+                $('#mailing_ville').parent().parent().parent().show();
+                $('#mailing_distance').parent().parent().hide();
+                $('#mailing_ville').val('');
+                $('#mailing_distance').val('');
+            }
+        });
+
+        $('#mailing_dansVilleOuParDistance_1').click(function() {
+            if($('#mailing_dansVilleOuParDistance_1').is(':checked')) {
+                $('#mailing_ville').parent().parent().parent().show();
+                $('#mailing_distance').parent().parent().show();
+                $('#mailing_ville').val('');
+            }
+        });
+    });
+
+    $(':submit').on('click', function (e) {
+        e.preventDefault();
+        if ($('#mailing_dansVilleOuParDistance_1').is(':checked')) {
+            var ville = $('#mailing_ville').val();
+            var geolocalisation = '';
+            //Match numéro département avec nom ?
+            $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
+                console.log("length: " + dataVille.length);
+                if (dataVille.length > 0) {
+                    geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                    $("#mailing_geolocalisation").val(geolocalisation);
+                    $(".etablissements_mailing").submit();
+                }
+                else {
+                    //Que fait-on si 0 match ?
+                }
+            });
+        }
+        else {
+            $(".etablissements_mailing").submit();
+        }
+    });
 </script>
 {% endblock %}
 

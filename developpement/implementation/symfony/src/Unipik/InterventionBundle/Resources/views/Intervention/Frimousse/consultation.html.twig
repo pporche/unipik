@@ -24,17 +24,17 @@
     <div class="col-sm-5 col-xs-12 col-md-4">
         <dl>
             <dt>
-                <span class="glyphicon glyphicon-picture"></span> Matériel dispo. :
+                <span class="glyphicon glyphicon-picture"></span> Matériel dispo.:
             </dt>
         </dl>
     </div>
     <div class="col-sm-5 col-xs-offset-1 col-xs-11">
         <ul class="list-unstyled">
-            {% set materiels = intervention.materiauxFrimousse | split('),(')  %}
-            {% if materiels is not empty %}
+            {% set materiels = intervention.materiauxFrimousse | replace({'{(': ''}) | replace({')}': ''}) | replace({'}': ''})  | replace({'{': ''}) | split('),(')  %}
+            {% if materiels  %}
                 <ul class="list-group col-sm-7 ">
                     {% for materiel in materiels %}
-                        {{ materiel | trim ('{(') | trim (')}') | capitalize }} <br>
+                        {{ materiel | capitalize }} <br>
                     {% endfor %}
                 </ul>
             {% else %}

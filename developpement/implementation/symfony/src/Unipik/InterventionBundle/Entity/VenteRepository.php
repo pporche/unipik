@@ -41,14 +41,28 @@ class VenteRepository extends EntityRepository {
      * @param string   $ville           La ville
      * @param distance $distance        La distance
      * @param geoloc   $geolocalisation La geolocalisation
+     * @param etablissement $etablissement  L'établissement qui fait la vente
+     * @param intervention  $intervention   L'intervention liée à la vente
      *
      * @return array
      */
-    public function getType($start, $end, $dateChecked, $field, $desc, $user, $ville = null, $distance = null, $geolocalisation = null) {
+    public function getType($start, $end, $dateChecked, $field, $desc, $user, $ville = null, $distance = null, $geolocalisation = null, $etablissement = null, $intervention = null) {
 
         $qb = $this->createQueryBuilder('v');
 
         $this->_getVentes($qb, $start, $end, $dateChecked);
+
+        if ($etablissement != null) {
+            $qb
+                ->andWhere('v.etablissement = :etablissement')
+                ->setParameter('etablissement', $etablissement);
+        }
+
+        if ($intervention != null) {
+            $qb
+                ->andWhere('v.intervention = :intervention')
+                ->setParameter('intervention', $intervention);
+        }
 
 
         if ($field=="lieu") {
@@ -156,6 +170,7 @@ class VenteRepository extends EntityRepository {
      *
      * @return void
      */
+
     private function _withinXkmVille(QueryBuilder $qb, $geolocalisation, $distance) {
         $qb
             ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
@@ -171,6 +186,36 @@ class VenteRepository extends EntityRepository {
             ->setParameter('geolocalisation', $geolocalisation)
             ->setParameter('distance', $distance*1000);
     }
+
+    /**
+     * Verifie si un point est dans une distance du domicile
+     *
+     * @param QueryBuilder $qb       Le querybuilder
+     * @param user         $user     L'utilisateur
+     * @param distance     $distance La distance
+     *
+     * @return void
+     */
+    private function _withinXkmDomicile(QueryBuilder $qb, $user, $distance) {
+        $qb
+            ->from('Unipik\UserBundle\Entity\Benevole', 'b')
+            ->andWhere('b = :user')
+            ->setParameter('user', $user)
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'adresse')
+            ->andWhere('b.adresse = adresse')
+            ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
+            ->andWhere('i.etablissement = e')
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
+            ->andWhere('e.adresse = a')
+            ->andWhere(
+                $qb->expr()->eq(
+                    sprintf("STDWithin(a.geolocalisation, adresse.geolocalisation, :distance)"),
+                    $qb->expr()->literal(true)
+                )
+            )
+            ->setParameter('distance', $distance*1000);
+    }
+
 
 
 }

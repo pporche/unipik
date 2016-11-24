@@ -68,13 +68,10 @@ class VenteController extends Controller {
 
         $venteRepository = $em->getRepository('InterventionBundle:Vente');
 
-        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation);
+        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, $request->get('etablissement'), $request->get('intervention') );
 
 
-        if (!is_null($request->get('intervention'))) {
-            $interventionRepository= $em->getRepository('InterventionBundle:Intervention');
-            $intervention = $interventionRepository->find($request->get('intervention'));
-            $listVente = $venteRepository->findBy(array('intervention' => $intervention));
+
             return $this->render(
                 'InterventionBundle:Vente:liste.html.twig', array( 'ventes' => $listVente,
                                                                                     'rowsPerPage' => $rowsPerPage,
@@ -84,37 +81,8 @@ class VenteController extends Controller {
                                                                                     'dateStart' => $start,
                                                                                     'dateEnd' => $end,
                                                                                     'user' => $user,
-                'form' => $form->createView())
+                                                                                    'form' => $form->createView())
             );
-        } else if (!is_null($request->get('etablissement'))) {
-            $etablissementRepository= $em->getRepository('InterventionBundle:Etablissement');
-            $etablissement = $etablissementRepository->find($request->get('etablissement'));
-            $listVente = $venteRepository->findBy(array('etablissement' => $etablissement));
-            return $this->render(
-                'InterventionBundle:Vente:liste.html.twig', array( 'ventes' => $listVente,
-                                                                                    'rowsPerPage' => $rowsPerPage,
-                                                                                    'field' => $field,
-                                                                                    'desc' => $desc,
-                                                                                    'isCheck' => $dateChecked,
-                                                                                    'dateStart' => $start,
-                                                                                    'dateEnd' => $end,
-                                                                                    'user' => $user,
-                'form' => $form->createView())
-            );
-        } else {
-            //$listVente = $venteRepository->findAll();
-            return $this->render(
-                'InterventionBundle:Vente:liste.html.twig', array( 'ventes' => $listVente,
-                                                                                    'rowsPerPage' => $rowsPerPage,
-                                                                                    'field' => $field,
-                                                                                    'desc' => $desc,
-                                                                                    'isCheck' => $dateChecked,
-                                                                                    'dateStart' => $start,
-                                                                                    'dateEnd' => $end,
-                                                                                    'user' => $user,
-                'form' => $form->createView())
-            );
-        }
     }
 
     /**

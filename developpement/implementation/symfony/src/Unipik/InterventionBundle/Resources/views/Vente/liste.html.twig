@@ -332,7 +332,11 @@
                                 [ { text: "{{ vente.etablissement.adresse.ville.nom }}", style: 'tableHeader' },
                                     { text: "{{ vente.dateVente|date('d-m-Y') }}", style: 'tableHeader' },
                                     { text: "{{ vente.etablissement.nom | capitalize }}", style: 'tableHeader' },
-                                    { text: "FRIMOUSSE A L'{{ vente.intervention.etablissement.nom | capitalize }}", style: 'tableHeader' },
+                                    {% if vente.intervention %}
+                                        { text: "FRIMOUSSE A L'{{ vente.intervention.etablissement.nom | capitalize }}", style: 'tableHeader' }
+                                    {% else %}
+                                        { text: "-", style: 'tableHeader' }
+                                    {% endif %},
                                     { text: "{{ vente.chiffreAffaire }} €", style: 'tableHeader' },
                                 ],
                                 {% endfor %}

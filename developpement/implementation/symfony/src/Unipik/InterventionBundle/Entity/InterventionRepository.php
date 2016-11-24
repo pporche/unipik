@@ -176,8 +176,8 @@ class InterventionRepository extends EntityRepository {
     private function _getFrimousses(QueryBuilder $qb, $start, $end, $datesChecked) {
 
         $qb
-            ->where($qb->expr()->isNotNull('i.niveauFrimousse'))
-            ->andWhere($qb->expr()->isNotNull('i.materiauxFrimousse'));
+            ->where("i.typeIntervention = 'frimousse'");
+
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
@@ -197,8 +197,7 @@ class InterventionRepository extends EntityRepository {
     private function _getPlaidoyers(QueryBuilder $qb, $start, $end, $datesChecked) {
 
         $qb
-            ->where($qb->expr()->isNotNull('i.niveauTheme'))
-            ->andWhere($qb->expr()->isNotNull('i.materielDispoPlaidoyer'));
+            ->where("i.typeIntervention = 'plaidoyer'");
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
@@ -218,7 +217,7 @@ class InterventionRepository extends EntityRepository {
     private function _getAutresInterventions(QueryBuilder $qb,$start,  $end , $datesChecked) {
 
         $qb
-            ->where($qb->expr()->isNotNull('i.description'));
+            ->where("i.typeIntervention = 'autre_intervention'");
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);

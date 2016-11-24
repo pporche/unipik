@@ -54,3 +54,7 @@ vente_admin_delete:
     defaults: {_controller: InterventionBundle:Vente:deleteVente}
     requirements:
         id: \d+
+
+vente_admin_deletes:
+    path: /vente/supprimer
+    defaults: { _controller: InterventionBundle:Vente:deleteVentes }

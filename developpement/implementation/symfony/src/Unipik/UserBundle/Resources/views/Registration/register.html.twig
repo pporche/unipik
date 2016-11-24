@@ -261,7 +261,54 @@
 
         $(":submit").on('click', function( e ) {
             e.preventDefault();
+            if($('#fos_user_registration_form_email').val().trim().length==0){
+                if($('#erreurEmail').prev()[0]==undefined){
+                    $('#fos_user_registration_form_telPortable').after('<p id="erreurEmail"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                }
+            }
+            if($('#fos_user_registration_form_username').val().trim().length==0){
+                if($('#erreurUsername').prev()[0]==undefined){
+                    $('#fos_user_registration_form_username').after('<p id="erreurUsername"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                }
+            }
 
+            if($('#fos_user_registration_form_plainPassword_first').val().trim().length==0){
+                if($('#erreurPasswordFirst').prev()[0]==undefined){
+                    $('#fos_user_registration_form_plainPassword_first').after('<p id="erreurPasswordFirst"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                }
+            }
+
+            if($('#fos_user_registration_form_plainPassword_second').val().trim().length==0){
+                if($('#erreurPasswordFirst').prev()[0]==undefined){
+                    $('#fos_user_registration_form_plainPassword_second').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                }
+            }
+
+            if($('#fos_user_registration_form_nom').val().trim().length==0){
+                if($('#erreurTelephone').prev()[0]==undefined){
+                    $('#fos_user_registration_form_nom').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                }
+            }
+            if($('#fos_user_registration_form_prenom').val().trim().length==0){
+                if($('#erreurTelephone').prev()[0]==undefined){
+                    $('#fos_user_registration_form_prenom').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                }
+            }
+            if($('#fos_user_registration_form_adresse_ville').val().trim().length==0){
+                if($('#erreurTelephone').prev()[0]==undefined){
+                    $('#fos_user_registration_form_adresse_ville').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                }
+            }
+            if($('#fos_user_registration_form_adresse_adresse').val().trim().length==0){
+                if($('#erreurTelephone').prev()[0]==undefined){
+                    $('#fos_user_registration_form_adresse_adresse').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                }
+            }
+            if($('#fos_user_registration_form_adresse_codePostal').val().trim().length==0){
+                if($('#erreurTelephone').prev()[0]==undefined){
+                    $('#fos_user_registration_form_adresse_codePostal').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                }
+            }
             if ($('#fos_user_registration_form_telFixe').val().trim().length==0 && $('#fos_user_registration_form_telPortable').val().trim().length==0) {
                 if($('#erreurTelephone').prev()[0]==undefined){
                     $('#fos_user_registration_form_telPortable').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');

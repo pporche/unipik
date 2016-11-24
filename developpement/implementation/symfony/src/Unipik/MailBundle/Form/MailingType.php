@@ -59,6 +59,7 @@ class MailingType extends AbstractFieldsetType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $typeInstitute = array( 'expanded' => true, 'multiple' => true, 'label' => "Type d'établissement",
             'choices' => [
+                'Tous les types' => 'tous',
                 'Maternelle' => 'maternelle',
                 'Elémentaire' => 'elementaire',
                 'Collège' => 'college',
@@ -68,14 +69,16 @@ class MailingType extends AbstractFieldsetType {
 
         $typeCenter = array( 'expanded' => true, 'multiple' => true, 'label' => "Type de centre de loisirs",
             'choices' => [
+                'Tous les types' => 'tous',
                 'Maternelle' => 'maternelle',
                 'Elémentaire' => 'elementaire',
                 'Adolescent' => 'college',
-                'autre' => 'autre'
+                'Autre' => 'autre'
             ],);
 
         $typeAutreEtablissement = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'required' => false, 'label' => "Type autre établissement",
             'choices' => [
+                'Tous les types' => 'tous',
                 'Mairie' => 'mairie',
                 'Maison de retraite' => 'maison de retraite',
                 'Autre' => 'autre'

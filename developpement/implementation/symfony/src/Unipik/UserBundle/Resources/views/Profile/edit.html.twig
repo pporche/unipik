@@ -4,6 +4,15 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
+        @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+        h1{
+            font-family: 'Ubuntu Condensed', sans-serif;
+            margin-top: 40px;
+        }
+
+        hr{
+            margin-top: 0px;
+        }
         #fos_user_profile_form_adresse_ville {
             text-transform: uppercase;
         }
@@ -290,14 +299,13 @@
 
 {% block fos_user_content %}
 
-    <h1>Modification de mon profil</h1>
+    <h1>Modification de mon profil</h1><hr>
 
     {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit'} }) }}
     {{ form_widget(form, { 'attr': {'style': 'display: inline-block; width: 40%'} }) }}
-    <div>
+    <div class=buttons">
         <a href="{{ path('fos_user_profile_show') }}" class="btn btn-danger" style="margin-left:calc(50% - 140px)">Annuler</a>
-        <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-danger">Effacer</a>
-        <input type="submit" class="btn btn-default" value="Valider"/>
+        <input type="submit" class="btn btn-success" value="Valider"/>
 
     </div>
     {{ form_end(form) }}

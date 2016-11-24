@@ -1,6 +1,7 @@
 # version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
 Vente:
     type: entity
+    repositoryClass: Unipik\InterventionBundle\Entity\VenteRepository
     table: vente
     indexes:
         IDX_888A2A4C8EAE3863:

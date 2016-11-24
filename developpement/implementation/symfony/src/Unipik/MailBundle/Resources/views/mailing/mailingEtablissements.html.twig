@@ -119,6 +119,54 @@
                 });
     });
 
+    $('#mailing_typeInstitute_0').on('click', function () {
+        if ($(this).is(':checked')) {
+            var i = 1;
+            $('#mailing_typeInstitute').children().each(function () {
+                $('#mailing_typeInstitute_' + i).prop('checked',true);
+                i++;
+            });
+        }
+    });
+
+    $('#mailing_typeCenter_0').on('click', function () {
+        if ($(this).is(':checked')) {
+            var i = 1;
+            $('#mailing_typeCenter').children().each(function () {
+                $('#mailing_typeCenter_' + i).prop('checked',true);
+                i++;
+            });
+        }
+    });
+
+    $('#mailing_typeAutre_0').on('click', function () {
+        if ($(this).is(':checked')) {
+            var i = 1;
+            $('#mailing_typeAutre').children().each(function () {
+                $('#mailing_typeAutre_' + i).prop('checked',true);
+                i++;
+            });
+        }
+    });
+
+    for (var i=1; i<6; i++) {
+        $('#mailing_typeInstitute_' + i).on('click', function () {
+            if ($(this).not(':checked')) {
+                $('#mailing_typeInstitute_0').prop('checked', false);
+            }
+        });
+        $('#mailing_typeCenter_' + i).on('click', function () {
+            if ($(this).not(':checked')) {
+                $('#mailing_typeCenter_0').prop('checked', false);
+            }
+        });
+        $('#mailing_typeAutre_' + i).on('click', function () {
+            if ($(this).not(':checked')) {
+                $('#mailing_typeAutre_0').prop('checked', false);
+            }
+        });
+    }
+
     $(document).ready(function () {
 
         if ($('#mailing_dansVilleOuParDistance_placeholder').is(':checked')) {

@@ -239,9 +239,10 @@ class ArchitectureController extends Controller {
     }
 
     /**
-     * verifyDepartementAction permet de vérifier que le département est dans la BD
+     * VerifyDepartementAction permet de vérifier que le département est dans la BD
      *
-     * @param  Request $request
+     * @param Request $request La requete
+     *
      * @return JsonResponse|Response
      */
     public function verifyDepartementAction(Request $request) {
@@ -256,7 +257,7 @@ class ArchitectureController extends Controller {
 
             if ($departement) {
                 return new JsonResponse(array('result' => true));
-            }else {
+            } else {
                 return new JsonResponse(array('result' => false));
             }
 
@@ -265,9 +266,10 @@ class ArchitectureController extends Controller {
     }
 
     /**
-     * verifyVilleAction vérifier que la ville est dans la BD
+     * VerifyVilleAction vérifier que la ville est dans la BD
      *
-     * @param  Request $request
+     * @param Request $request La requete
+     *
      * @return JsonResponse|Response
      */
     public function verifyVilleAction(Request $request) {
@@ -282,7 +284,7 @@ class ArchitectureController extends Controller {
 
             if ($ville) {
                 return new JsonResponse(array('result' => true));
-            }else {
+            } else {
                 return new JsonResponse(array('result' => false));
             }
 

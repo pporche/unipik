@@ -45,6 +45,8 @@ class Comite
     private $id;
 
     /**
+     * Le nom
+     *
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
@@ -224,7 +226,7 @@ class Comite
     /**
      * Set nom
      *
-     * @param string $nom
+     * @param string $nom Le nom
      *
      * @return Departement
      */

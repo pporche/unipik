@@ -32,17 +32,17 @@ class VenteRepository extends EntityRepository {
     /**
      * Generic function for DB queries.
      *
-     * @param date     $start           Le debut
-     * @param date     $end             La fin
-     * @param bool     $dateChecked     La date est elle cochée
-     * @param string   $field           Le champ de tri
-     * @param bool     $desc            Descendant
-     * @param user     $user            L'utilisateur
-     * @param string   $ville           La ville
-     * @param distance $distance        La distance
-     * @param geoloc   $geolocalisation La geolocalisation
-     * @param etablissement $etablissement  L'établissement qui fait la vente
-     * @param intervention  $intervention   L'intervention liée à la vente
+     * @param date          $start           Le debut
+     * @param date          $end             La fin
+     * @param bool          $dateChecked     La date est elle cochée
+     * @param string        $field           Le champ de tri
+     * @param bool          $desc            Descendant
+     * @param user          $user            L'utilisateur
+     * @param string        $ville           La ville
+     * @param distance      $distance        La distance
+     * @param geoloc        $geolocalisation La geolocalisation
+     * @param etablissement $etablissement   L'établissement qui fait la vente
+     * @param intervention  $intervention    L'intervention liée à la vente
      *
      * @return array
      */
@@ -170,7 +170,6 @@ class VenteRepository extends EntityRepository {
      *
      * @return void
      */
-
     private function _withinXkmVille(QueryBuilder $qb, $geolocalisation, $distance) {
         $qb
             ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')

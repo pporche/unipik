@@ -68,7 +68,7 @@ class VenteController extends Controller {
 
         $venteRepository = $em->getRepository('InterventionBundle:Vente');
 
-        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, $request->get('etablissement'), $request->get('intervention') );
+        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, $request->get('etablissement'), $request->get('intervention'));
 
 
 

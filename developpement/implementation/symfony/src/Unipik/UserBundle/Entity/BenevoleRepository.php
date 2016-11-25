@@ -177,6 +177,11 @@ class BenevoleRepository extends EntityRepository
     //        return $results;
     //    }
 
+    /**
+     * Renvoie l'email d'un benevole pour rappel
+     *
+     * @return array
+     */
     public function getEmailBenevoleRappel() {
         $dateTime = new \DateTime();
         $dateTime->add(new \DateInterval('P7D'));

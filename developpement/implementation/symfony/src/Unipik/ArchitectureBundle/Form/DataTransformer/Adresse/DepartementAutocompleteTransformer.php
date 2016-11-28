@@ -4,6 +4,14 @@
  * User: jpain01
  * Date: 16/11/16
  * Time: 17:49
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\ArchitectureBundle\Form\DataTransformer\Adresse;

@@ -336,17 +336,18 @@
             </div>
         </section>
     </div>
-    {% if is_granted('ROLE_ADMIN') %}
     <div class="row">
         <div class="buttons">
-            <a href="{{ path("etablissement_admin_edit", {'id': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> </span>&nbsp Modifier</a>
             <button type="button" class="btn btn-primary" onclick="imprimer()" ><span class="glyphicon glyphicon-print"></span> Fiche descriptive de l'établissement</button>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path("etablissement_admin_edit", {'id': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> </span>&nbsp Modifier</a>
             <a href="{{ path("vente_list", {'etablissement': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-list"> </span> Consulter les ventes associées</a>
             <a href="{{ path("vente_add", {'etablissement': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-euro"> </span> Ajouter une vente</a>
             <a href="{{ path("etablissement_admin_delete", {'id': etablissement.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'établissment {{ etablissement.nom }} ?')"><span class="glyphicon glyphicon-trash">  </span>&nbsp Supprimer </a>
+            {% endif %}
         </div>
     </div>
-    {% endif %}
+
     <div class="row">
         <div class="col-sm-12 col-sm-12 col-lg-8 col-lg-offset-2 infoContainer">
             <div class="col-sm-4 containerOne">

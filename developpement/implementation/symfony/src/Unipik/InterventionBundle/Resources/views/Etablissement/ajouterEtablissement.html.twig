@@ -211,42 +211,43 @@
         $(":submit").on('click', function( e ) {
             e.preventDefault();
             if ($('#etablissement_adresse_adresse').val().trim().length==0) {
-                if($('#erreurAdresse').prev()[0]==undefined){
+                if ($('#erreurAdresse').prev()[0]==undefined) {
                     $('#etablissement_adresse_adresse').after('<p id="erreurAdresse"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
                 }
             }
             else {
-                if($('#erreurAdresse').prev()[0]!=undefined){
+                if ($('#erreurAdresse').prev()[0]!=undefined) {
                     $('#erreurAdresse').hide();
                 }
-                if($('#etablissement_adresse_ville').val().trim().length==0){
-                    if($('#erreurVille').prev()[0]==undefined){
+                if ($('#etablissement_adresse_ville').val().trim().length==0) {
+                    if ($('#erreurVille').prev()[0]==undefined) {
                         $('#etablissement_adresse_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
                     }
                 }
                 else {
-                    if($('#erreurVille').prev()[0]!=undefined){
+                    if ($('#erreurVille').prev()[0]!=undefined) {
                         $('#erreurVille').hide();
                     }
-                    if($('#etablissement_adresse_codePostal').val().trim().length==0){
+                    if ($('#etablissement_adresse_codePostal').val().trim().length==0) {
                         if($('#erreurCP').prev()[0]==undefined){
                             $('#etablissement_adresse_codePostal').after('<p id="erreurCP"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
                         }
-                    }else{
-                        if($('#erreurCP').prev()[0]!=undefined){
+                    } else {
+                        if ($('#erreurCP').prev()[0] != undefined) {
                             $('#erreurCP').hide();
                         }
                         var adresse = $("#etablissement_adresse_adresse").val() + ' ' + $('#etablissement_adresse_codePostal').val() + ' ' + $("#etablissement_adresse_ville").val();
                         var geolocalisation = '';
-                        $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+adresse, function (data) {
+                        $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + adresse, function (data) {
                             switch (data.length) {
                                 case 0 :
                                     var ville = $("#fos_user_registration_form_adresse_ville").val();
                                     //Match numéro département avec nom ?
-                                    $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
+                                    $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
                                         if (dataVille.length > 0) {
                                             geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
                                             $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+                                            $("#etablissement_adresse_ville").val($("#etablissement_adresse_ville").val().split(' (')[0]);
                                             $(".etablissement_admin_add").submit();
                                         }
                                         else {
@@ -257,6 +258,7 @@
                                 case 1 :
                                     geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
                                     $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+                                    $("#etablissement_adresse_ville").val($("#etablissement_adresse_ville").val().split(' (')[0]);
                                     $(".etablissement_admin_add").submit();
                                     break;
                                 default :
@@ -272,7 +274,6 @@
                         });
                     }
                 }
-
             }
 
         });
@@ -281,6 +282,7 @@
             var latlon = content.split(',');
             var geolocalisation = 'SRID=4326;POINT(' + latlon[1] + ' ' + latlon[0] + ')';
             $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+            $("#etablissement_adresse_ville").val($("#etablissement_adresse_ville").val().split(' (')[0]);
             $(".etablissement_admin_add").submit();
         }
 
@@ -344,7 +346,7 @@
 
     <div>
             <a href="{{ path('etablissement_list') }}" class="btn btn-danger" style="margin-left:calc(50% - 140px)">Annuler</a>
-            <input type="submit" value="Inscrire" class="btn btn-primary"/>
+            <input type="submit" value="Inscrire" class="btn btn-success"/>
         </div>
         {{ form_end(form) }}
 

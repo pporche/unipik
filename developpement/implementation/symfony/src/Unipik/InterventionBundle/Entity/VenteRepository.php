@@ -32,21 +32,37 @@ class VenteRepository extends EntityRepository {
     /**
      * Generic function for DB queries.
      *
-     * @param date             $start            Le debut
-     * @param date             $end              La fin
-     * @param bool             $dateChecked      La date est elle cochée
-     * @param string           $field            Le champ de tri
-     * @param bool             $desc             Descendant
-     * @param string           $ville            La ville
-     * @param distance         $distance         La distance
+     * @param date          $start           Le debut
+     * @param date          $end             La fin
+     * @param bool          $dateChecked     La date est elle cochée
+     * @param string        $field           Le champ de tri
+     * @param bool          $desc            Descendant
+     * @param user          $user            L'utilisateur
+     * @param string        $ville           La ville
+     * @param distance      $distance        La distance
+     * @param geoloc        $geolocalisation La geolocalisation
+     * @param etablissement $etablissement   L'établissement qui fait la vente
+     * @param intervention  $intervention    L'intervention liée à la vente
      *
      * @return array
      */
-    public function getType($start, $end, $dateChecked, $field, $desc, $user, $ville = null, $distance = null, $geolocalisation = null) {
+    public function getType($start, $end, $dateChecked, $field, $desc, $user, $ville = null, $distance = null, $geolocalisation = null, $etablissement = null, $intervention = null) {
 
         $qb = $this->createQueryBuilder('v');
 
         $this->_getVentes($qb, $start, $end, $dateChecked);
+
+        if ($etablissement != null) {
+            $qb
+                ->andWhere('v.etablissement = :etablissement')
+                ->setParameter('etablissement', $etablissement);
+        }
+
+        if ($intervention != null) {
+            $qb
+                ->andWhere('v.intervention = :intervention')
+                ->setParameter('intervention', $intervention);
+        }
 
 
         if ($field=="lieu") {
@@ -81,12 +97,10 @@ class VenteRepository extends EntityRepository {
         if ($distance) {
             if ($ville) {
                 $this->_withinXkmVille($qb, $geolocalisation, $distance);
-            }
-            else {
+            } else {
                 $this->_withinXkmDomicile($qb, $user, $distance);
             }
-        }
-        else {
+        } else {
             if ($ville) {
                 $this->_whereVilleIs($qb, $ville);
             }
@@ -150,9 +164,9 @@ class VenteRepository extends EntityRepository {
     /**
      * Verifie si un point est dans une distance d'une ville
      *
-     * @param QueryBuilder $qb                 Le querybuilder
-     * @param string       $geolocalisation    La géolocalisation de la ville
-     * @param string       $distance           La distance
+     * @param QueryBuilder $qb              Le querybuilder
+     * @param string       $geolocalisation La géolocalisation de la ville
+     * @param string       $distance        La distance
      *
      * @return void
      */
@@ -171,6 +185,36 @@ class VenteRepository extends EntityRepository {
             ->setParameter('geolocalisation', $geolocalisation)
             ->setParameter('distance', $distance*1000);
     }
+
+    /**
+     * Verifie si un point est dans une distance du domicile
+     *
+     * @param QueryBuilder $qb       Le querybuilder
+     * @param user         $user     L'utilisateur
+     * @param distance     $distance La distance
+     *
+     * @return void
+     */
+    private function _withinXkmDomicile(QueryBuilder $qb, $user, $distance) {
+        $qb
+            ->from('Unipik\UserBundle\Entity\Benevole', 'b')
+            ->andWhere('b = :user')
+            ->setParameter('user', $user)
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'adresse')
+            ->andWhere('b.adresse = adresse')
+            ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
+            ->andWhere('i.etablissement = e')
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
+            ->andWhere('e.adresse = a')
+            ->andWhere(
+                $qb->expr()->eq(
+                    sprintf("STDWithin(a.geolocalisation, adresse.geolocalisation, :distance)"),
+                    $qb->expr()->literal(true)
+                )
+            )
+            ->setParameter('distance', $distance*1000);
+    }
+
 
 
 }

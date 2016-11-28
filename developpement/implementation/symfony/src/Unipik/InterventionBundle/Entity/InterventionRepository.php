@@ -20,6 +20,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Unipik\InterventionBundle\Form\Intervention\InterventionType;
+use Unipik\InterventionBundle\InterventionBundle;
 
 /**
  * Le repository qui gère les interventions
@@ -49,6 +50,7 @@ class InterventionRepository extends EntityRepository {
      * @param string           $theme            Le theme
      * @param string           $ville            La ville
      * @param distance         $distance         La distance
+     * @param geoloc           $geolocalisation  La geolocalisation
      *
      * @return array
      */
@@ -147,12 +149,10 @@ class InterventionRepository extends EntityRepository {
         if ($distance) {
             if ($ville) {
                 $this->_withinXkmVille($qb, $geolocalisation, $distance);
-            }
-            else {
+            } else {
                 $this->_withinXkmDomicile($qb, $user, $distance);
             }
-        }
-        else {
+        } else {
             if ($ville) {
                 $this->_whereVilleIs($qb, $ville);
             }
@@ -438,6 +438,8 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
+     * Obtenir les interventions selon l'email du benevole
+     *
      * @param string $email Email du bénévole
      *
      * @return array Interventions du bénévole
@@ -453,14 +455,15 @@ class InterventionRepository extends EntityRepository {
             ->where('b.id = i.benevole')
             ->andWhere('b.email = :email')
             ->setParameter('email', $email)
-            ->andWhere('i.dateIntervention = \''.$date.'\'')
-        ;
+            ->andWhere('i.dateIntervention = \''.$date.'\'');
 
         return $qb->getQuery()->getResult();
     }
 
     /**
-     * @param $id
+     * Obtenir les interventions selon l'id de l'etablissement
+     *
+     * @param int $id L'id de l'etablissement
      *
      * @return array
      */
@@ -475,8 +478,7 @@ class InterventionRepository extends EntityRepository {
             ->where('i.etablissement = e.id')
             ->andWhere('e.id = :id')
             ->setParameter('id', $id)
-            ->andWhere('i.dateIntervention = \''.$date.'\'')
-        ;
+            ->andWhere('i.dateIntervention = \''.$date.'\'');
 
         return $qb->getQuery()->getResult();
     }
@@ -484,9 +486,9 @@ class InterventionRepository extends EntityRepository {
     /**
      * Verifie si un point est dans une distance d'une ville
      *
-     * @param QueryBuilder $qb                 Le querybuilder
-     * @param string       $geolocalisation    La géolocalisation de la ville
-     * @param string       $distance           La distance
+     * @param QueryBuilder $qb              Le querybuilder
+     * @param string       $geolocalisation La géolocalisation de la ville
+     * @param string       $distance        La distance
      *
      * @return void
      */
@@ -504,5 +506,39 @@ class InterventionRepository extends EntityRepository {
             )
             ->setParameter('geolocalisation', $geolocalisation)
             ->setParameter('distance', $distance*1000);
+    }
+
+    public function getNumberInterventionRealisee($dateSup = null, $dateInf = null, $typeEtablissement = null, $typeIntervention = null) {
+        $qb = $this->createQueryBuilder('i')
+            ->select('count(i)')
+            ->where('i.realisee = true')
+            ->join('i.etablissement', 'e')
+        ;
+
+        if(isset($typeIntervention)) {
+            $qb->andWhere('i.typeIntervention = :typeIntervention')
+                ->setParameter('typeIntervention', $typeIntervention)
+            ;
+        }
+
+        if(isset($dateSup)) {
+            $qb->andWhere('i.dateIntervention < :dateSup')
+                ->setParameter('dateSup', $dateSup)
+            ;
+        }
+
+        if(isset($dateInf)) {
+            $qb->andWhere('i.dateIntervention > :dateInf')
+                ->setParameter('dateInf', $dateInf)
+            ;
+        }
+
+        if(isset($typeEtablissement)) {
+            $qb->andWhere('e.typeEnseignement = :typeEtablissement')
+                ->setParameter('typeEtablissement', $typeEtablissement)
+            ;
+        }
+
+        return $qb->getQuery()->getSingleScalarResult();
     }
 }

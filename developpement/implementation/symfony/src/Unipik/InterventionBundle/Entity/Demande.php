@@ -160,7 +160,7 @@ class Demande
     /**
      * Set date de debut de disponibilite de l'etablissement
      *
-     * @param \DateTime
+     * @param \DateTime $dateDebutDisponibilite La date de debut
      *
      * @return Demande
      */
@@ -184,7 +184,7 @@ class Demande
     /**
      * Set date de fin de disponibilite de l'etablissement
      *
-     * @param \DateTime
+     * @param \DateTime $dateFinDisponibilite La date de fin
      *
      * @return Demande
      */

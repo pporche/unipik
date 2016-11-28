@@ -2,66 +2,12 @@
 
 {% block stylesheets %}
     {{ parent() }}
+
+    <link rel='stylesheet' href="{{ asset('css/twitterTypeahead.css') }}"/>
+
     <style>
         #user_registration_adresse_ville {
             text-transform: uppercase;
-        }
-
-        .twitter-typeahead .tt-query,
-        .twitter-typeahead .tt-hint {
-            margin-bottom: 0;
-        }
-
-        .tt-hint {
-            display: none;
-            width: 100%;
-            height: 43px;
-            padding: 10px 18px;
-            font-size: 14px;
-            line-height: 1.428571429;
-            color: #999;
-            vertical-align: middle;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-        }
-
-        .tt-menu {
-            min-width: 160px;
-            margin-top: 2px;
-            padding: 5px 0;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border: 1px solid rgba(0, 0, 0, 0.15);
-            border-radius: 4px;
-            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-            background-clip: padding-box;
-            max-height: 150px;
-            overflow-y: auto;
-
-        }
-
-        .tt-suggestion {
-            display: block;
-            padding: 3px 20px;
-        }
-
-        .tt-suggestion.tt-is-under-cursor {
-            color: #fff;
-            background-color: #428bca;
-        }
-
-        .tt-suggestion.tt-is-under-cursor a {
-            color: #fff;
-        }
-
-        .tt-suggestion p {
-            margin: 0;
         }
 
         @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
@@ -245,9 +191,9 @@
         $(":submit").on('click', function( e ) {
 
             e.preventDefault();
-            if($('#fos_user_registration_form_telPortable').val().trim().length==0 && $('#fos_user_registration_form_telFixe').val().trim().length==0){
+            if($('#user_registration_telPortable').val().trim().length==0 && $('#user_registration_telFixe').val().trim().length==0){
                 if($('#erreurTelephone').prev()[0]==undefined){
-                    $('#fos_user_registration_form_telPortable').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                    $('#user_registration_telPortable').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
                 }else{
                     $('#erreurTelephone').show();
                 }
@@ -255,18 +201,18 @@
                 $('#erreurTelephone').hide();
             }
 
-            if($('#fos_user_registration_form_email').val().trim().length==0){
+            if($('#user_registration_email').val().trim().length==0){
                 if($('#erreurEmail').prev()[0]==undefined){
-                    $('#fos_user_registration_form_email').after('<p id="erreurEmail"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_email').after('<p id="erreurEmail"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurEmail').show();
                 }
             }else{
                 $('#erreurEmail').hide();
             }
-            if($('#fos_user_registration_form_username').val().trim().length==0){
+            if($('#user_registration_username').val().trim().length==0){
                 if($('#erreurUsername').prev()[0]==undefined){
-                    $('#fos_user_registration_form_username').after('<p id="erreurUsername"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_username').after('<p id="erreurUsername"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurUsername').show();
                 }
@@ -274,72 +220,51 @@
                 $('#erreurUsername').hide();
             }
 
-            if($('#fos_user_registration_form_plainPassword_first').val().trim().length==0){
-                if($('#erreurPasswordFirst').prev()[0]==undefined){
-                    $('#fos_user_registration_form_plainPassword_first').after('<p id="erreurPasswordFirst"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
-                }else{
-                    $('#erreurPasswordFirst').show();
-                }
-            }else{
-                $('#erreurPasswordFirst').hide();
-            }
-
-            if($('#fos_user_registration_form_plainPassword_second').val().trim().length==0){
-                if($('#erreurPasswordSec').prev()[0]==undefined){
-                    $('#fos_user_registration_form_plainPassword_second').after('<p id="erreurPasswordSec"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
-                }else{
-                    $('#erreurPasswordSec').show();
-                }
-            }else{
-                $('#erreurPasswordSec').hide();
-            }
-
-            if($('#fos_user_registration_form_nom').val().trim().length==0){
+            if($('#user_registration_nom').val().trim().length==0){
                 if($('#erreurNom').prev()[0]==undefined){
-                    $('#fos_user_registration_form_nom').after('<p id="erreurNom"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_nom').after('<p id="erreurNom"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurNom').show();
                 }
             }else{
                 $('#erreurNom').hide();
             }
-            if($('#fos_user_registration_form_prenom').val().trim().length==0){
+            if($('#user_registration_prenom').val().trim().length==0){
                 if($('#erreurPrenom').prev()[0]==undefined){
-                    $('#fos_user_registration_form_prenom').after('<p id="erreurPrenom"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_prenom').after('<p id="erreurPrenom"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurPrenom').show();
                 }
             }else{
                 $('#erreurPrenom').hide();
             }
-            if($('#fos_user_registration_form_adresse_ville').val().trim().length==0){
+            if($('#user_registration_adresse_ville').val().trim().length==0){
                 if($('#erreurVille').prev()[0]==undefined){
-                    $('#fos_user_registration_form_adresse_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_adresse_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurVille').show();
                 }
             }else{
                 $('#erreurVille').hide();
             }
-            if($('#fos_user_registration_form_adresse_adresse').val().trim().length==0){
+            if($('#user_registration_adresse_adresse').val().trim().length==0){
                 if($('#erreurAdresse').prev()[0]==undefined){
-                    $('#fos_user_registration_form_adresse_adresse').after('<p id="erreurAdresse"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_adresse_adresse').after('<p id="erreurAdresse"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurAdresse').show();
                 }
             }else{
                 $('#erreurAdresse').hide();
             }
-            if($('#fos_user_registration_form_adresse_codePostal').val().trim().length==0){
+            if($('#user_registration_adresse_codePostal').val().trim().length==0){
                 if($('#erreurCode').prev()[0]==undefined){
-                    $('#fos_user_registration_form_adresse_codePostal').after('<p id="erreurCode"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_adresse_codePostal').after('<p id="erreurCode"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurCode').show();
                 }
             }else{
                 $('#erreurCode').hide();
             }
-            else {
                 var adresse = $("#user_registration_adresse_adresse").val() + ' ' + $('#user_registration_adresse_codePostal').val() + ' ' + $("#user_registration_adresse_ville").val();
                 var previousAdresse = "{{ benevole.adresse.adresse }} " + "{{ benevole.adresse.codePostal.code }} " + "{{ benevole.adresse.ville.nom }}";
                 if (adresse != previousAdresse) {
@@ -353,6 +278,7 @@
                                     if (dataVille.length > 0) {
                                         geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
                                         $("#user_registration_adresse_geolocalisation").val(geolocalisation);
+                                        $("#user_registration_adresse_ville").val($("#user_registration_adresse_ville").val().split(' (')[0]);
                                         $(".user_admin_edit").submit();
                                     }
                                     else {
@@ -363,8 +289,10 @@
                             case 1 :
                                 geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
                                 $("#user_registration_adresse_geolocalisation").val(geolocalisation);
+                                $("#user_registration_adresse_ville").val($("#user_registration_adresse_ville").val().split(' (')[0]);
                                 $(".user_admin_edit").submit();
                                 break;
+
                             default :
                                 var modal_content = "";
                                 data.forEach(function (item) {
@@ -380,7 +308,6 @@
                 else {
                     $(".user_admin_edit").submit();
                 }
-            }
 
         });
 
@@ -388,6 +315,7 @@
             var latlon = content.split(',');
             var geolocalisation = 'SRID=4326;POINT(' + latlon[1] + ' ' + latlon[0] + ')';
             $("#user_registration_adresse_geolocalisation").val(geolocalisation);
+            $("#user_registration_adresse_ville").val($("#user_registration_adresse_ville").val().split(' (')[0]);
             $(".user_admin_edit").submit();
         }
     </script>
@@ -404,10 +332,7 @@
     <h1>Modification du bénévole {{ benevole.nom }}</h1>
 
     {{ form(form, {'attr': {'class': 'user_admin_edit'}}) }}
-    <div class="buttons">
-        <a href="{{ path('user_admin_list') }}" class="btn btn-danger" >Annuler</a>
-    </div>
-
+        <a href="{{ path('user_admin_list') }}" class="btn btn-danger" style="display: inline;float: left;margin-top: -55px; margin-left: calc(50vw - 95px);">Annuler</a>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">

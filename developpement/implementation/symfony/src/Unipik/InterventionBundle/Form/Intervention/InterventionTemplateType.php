@@ -63,8 +63,7 @@ class InterventionTemplateType extends AbstractFieldsetType {
             ->add('nbPersonne', IntegerType::class, array('label' => 'Nb de participants*'))
             ->add('niveauTheme', NiveauThemeType::class, array('label' => false))
             ->add('description', TextareaType::class, array('label' => 'Description', 'attr'=> ['class' => 'form-description', 'rows' => '5', 'maxlength' => '500'], 'required' => false))
-            ->add('remarques', TextareaType::class, array('label' => 'Remarques', 'attr'=> ['class' => 'form-remarques', 'rows' => '5', 'maxlength' => '500'], 'required' => false))
-            ;
+            ->add('remarques', TextareaType::class, array('label' => 'Remarques', 'attr'=> ['class' => 'form-remarques', 'rows' => '5', 'maxlength' => '500'], 'required' => false));
     }
 
     /**

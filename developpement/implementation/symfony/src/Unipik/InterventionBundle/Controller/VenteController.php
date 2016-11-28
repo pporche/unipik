@@ -4,6 +4,14 @@
  * User: kyle
  * Date: 17/11/16
  * Time: 10:26
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Controller;
@@ -20,11 +28,25 @@ use Unipik\InterventionBundle\Form\Vente\VenteType;
 
 use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 
+/**
+ * Le controller qui gère les ventes
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
+class VenteController extends Controller {
 
-class VenteController extends Controller
-{
-
-    public function listeAction(Request $request){
+    /**
+     * Liste action
+     *
+     * @param Request $request La requete
+     *
+     * @return mixed
+     */
+    public function listeAction(Request $request) {
         $user = $this->getUser();
 
         $em = $this->getDoctrine()->getManager();
@@ -46,14 +68,12 @@ class VenteController extends Controller
 
         $venteRepository = $em->getRepository('InterventionBundle:Vente');
 
-        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation);
+        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, $request->get('etablissement'), $request->get('intervention'));
 
 
-        if(!is_null($request->get('intervention'))){
-            $interventionRepository= $em->getRepository('InterventionBundle:Intervention');
-            $intervention = $interventionRepository->find($request->get('intervention'));
-            $listVente = $venteRepository->findBy(array('intervention' => $intervention));
-            return $this->render('InterventionBundle:Vente:liste.html.twig', array( 'ventes' => $listVente,
+
+            return $this->render(
+                'InterventionBundle:Vente:liste.html.twig', array( 'ventes' => $listVente,
                                                                                     'rowsPerPage' => $rowsPerPage,
                                                                                     'field' => $field,
                                                                                     'desc' => $desc,
@@ -61,59 +81,55 @@ class VenteController extends Controller
                                                                                     'dateStart' => $start,
                                                                                     'dateEnd' => $end,
                                                                                     'user' => $user,
-                                                                                    'form' => $form->createView()));
-        }
-        else if(!is_null($request->get('etablissement'))){
-            $etablissementRepository= $em->getRepository('InterventionBundle:Etablissement');
-            $etablissement = $etablissementRepository->find($request->get('etablissement'));
-            $listVente = $venteRepository->findBy(array('etablissement' => $etablissement));
-            return $this->render('InterventionBundle:Vente:liste.html.twig',array( 'ventes' => $listVente,
-                                                                                    'rowsPerPage' => $rowsPerPage,
-                                                                                    'field' => $field,
-                                                                                    'desc' => $desc,
-                                                                                    'isCheck' => $dateChecked,
-                                                                                    'dateStart' => $start,
-                                                                                    'dateEnd' => $end,
-                                                                                    'user' => $user,
-                                                                                    'form' => $form->createView()));
-        }
-        else{
-            //$listVente = $venteRepository->findAll();
-            return $this->render('InterventionBundle:Vente:liste.html.twig',array( 'ventes' => $listVente,
-                                                                                    'rowsPerPage' => $rowsPerPage,
-                                                                                    'field' => $field,
-                                                                                    'desc' => $desc,
-                                                                                    'isCheck' => $dateChecked,
-                                                                                    'dateStart' => $start,
-                                                                                    'dateEnd' => $end,
-                                                                                    'user' => $user,
-                                                                                    'form' => $form->createView()));
-        }
+                                                                                    'form' => $form->createView())
+            );
     }
 
+    /**
+     * Consultation action
+     *
+     * @param int $id L'id
+     *
+     * @return mixed
+     */
     public function consultationAction($id) {
         $vente = $this->getDoctrine()->getManager()->getRepository("InterventionBundle:Vente")->find($id);
-        return $this->render('InterventionBundle:Vente:consultation.html.twig',array('vente' => $vente));
+        return $this->render('InterventionBundle:Vente:consultation.html.twig', array('vente' => $vente));
     }
 
+    /**
+     * Edit action
+     *
+     * @param int $id L'id
+     *
+     * @return Response
+     */
     public function editAction($id) {
         return new Response("Ici on pourra modifier la vente ".$id);
     }
 
+    /**
+     * Add action
+     *
+     * @param Request $request La requete
+     *
+     * @return Response
+     */
     public function addAction(Request $request) {
         $vente = new Vente();
-        $form = $this->createForm(VenteType::class,$vente);
+        $form = $this->createForm(VenteType::class, $vente);
 
-        if($form->handleRequest($request)->isValid()) {
+        if ($form->handleRequest($request)->isValid()) {
             /*
              * Faire le traitement de sauvegarde  de la vente
              */
             $intervention = $request->get('intervention');
             $etablissement = $request->get('etablissement');
 
-            if(is_null($etablissement) && is_null($intervention))
+            if (is_null($etablissement) && is_null($intervention)) {
                 return new Response(" t'as rien rentré pti bout");
-            if(is_null($intervention)) {
+            }
+            if (is_null($intervention)) {
                 $etablissement = $this->getDoctrine()->getManager()->getRepository('InterventionBundle:Etablissement')->find($etablissement);
                 $vente->setEtablissement($etablissement);
             } else {
@@ -126,12 +142,20 @@ class VenteController extends Controller
             return new Response("Voili voilou ");
         }
 
-        return $this->render('InterventionBundle:Vente:ajouterVente.html.twig',
+        return $this->render(
+            'InterventionBundle:Vente:ajouterVente.html.twig',
             array('form' => $form->createView(),
                 )
         );
     }
 
+    /**
+     * Delete vente action
+     *
+     * @param int $id L'id
+     *
+     * @return mixed
+     */
     public function deleteVenteAction($id){
         $em = $this->getDoctrine()->getEntityManager();
         $vente = $em->getRepository('InterventionBundle:Vente')->findOneBy(array('id' => $id));
@@ -141,6 +165,13 @@ class VenteController extends Controller
         return $this->redirectToRoute('vente_list');
     }
 
+    /**
+     * Delete ventes action
+     *
+     * @param Request $request La requete
+     *
+     * @return Response
+     */
     public function deleteVentesAction(Request $request) {
         if ($request->isXmlHttpRequest()) {
             $ids = json_decode($request->request->get('ids'));

@@ -108,10 +108,16 @@ class InterventionController extends Controller {
             }
 
             $heure = $form->get('heure')->get('hour')->getData();
-            $heure = sprintf("%02d", $heure);
             $minute = $form->get('heure')->get('minute')->getData();
-            $minute = sprintf("%02d", $minute);
-            $heure .= ":".$minute;
+            if(isset($heure) && isset($minute)){
+                $heure = sprintf("%02d", $heure);
+                $minute = sprintf("%02d", $minute);
+                $heure .= ":".$minute;
+            } else {
+                $heure = null;
+            }
+
+
             $intervention->setHeure($heure);
             $description = $form->get('description')->getData();
             $intervention->setDescription($description);
@@ -133,11 +139,23 @@ class InterventionController extends Controller {
 
         $materiaux = json_encode($materiaux);
 
+        $momentsVoulus = $intervention->getDemande()->getMomentsVoulus();
+        $moments = array();
+        $moments['lundi'] = array();
+        $moments['mardi'] = array();
+        $moments['mercredi'] = array();
+        $moments['jeudi'] = array();
+        $moments['vendredi'] = array();
+        foreach($momentsVoulus as $mv) {
+            array_push($moments, array_push($moments[$mv->getJour()], $mv->getMoment()));
+        }
+
         return $this->render(
             'InterventionBundle:Intervention:editIntervention.html.twig', array('form' => $form->createView(),
                                                                                  'intervention' => $intervention,
                                                                                  'materiaux' => $materiaux,
                                                                                  'demande' => $intervention->getDemande(),
+                                                                                 'moments' => $moments
             )
         );
     }
@@ -421,7 +439,19 @@ class InterventionController extends Controller {
         $demande = $intervention->getDemande();
         $interventionsDeLaDemande = $repository->getInterventionsDeDemande($demande);
         $formAttr = $this->get('form.factory')->createBuilder(AttributionType::class)->getForm()->createView();
-        return $this->render('InterventionBundle:Intervention:demandeConsultation.html.twig', array('intervention'=>$intervention, 'interventionsAssociees'=>$interventionsDeLaDemande, 'user' => $user, 'formAttr' => $formAttr));
+
+
+        $momentsVoulus = $intervention->getDemande()->getMomentsVoulus();
+        $moments = array();
+        $moments['lundi'] = array();
+        $moments['mardi'] = array();
+        $moments['mercredi'] = array();
+        $moments['jeudi'] = array();
+        $moments['vendredi'] = array();
+        foreach($momentsVoulus as $mv) {
+            array_push($moments, array_push($moments[$mv->getJour()], $mv->getMoment()));
+        }
+        return $this->render('InterventionBundle:Intervention:demandeConsultation.html.twig', array('intervention'=>$intervention, 'interventionsAssociees'=>$interventionsDeLaDemande, 'user' => $user, 'formAttr' => $formAttr, 'moments' => $moments));
 
     }
 

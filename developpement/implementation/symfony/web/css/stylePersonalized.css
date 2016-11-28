@@ -11,6 +11,10 @@ h1{
     background-color: #d3d3d3;
 }
 
+#recherche_avancee_distance {
+    width: 155px;
+}
+
 .jumbotron h4{
     font-family: 'Ubuntu Condensed', sans-serif;
     margin-top: 0px;

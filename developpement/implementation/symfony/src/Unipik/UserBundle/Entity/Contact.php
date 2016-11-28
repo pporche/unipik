@@ -155,6 +155,8 @@ class Contact
 
 
     /**
+     * Participe
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @OneToMany(targetEntity="Participe", mappedBy="contact", nullable=true)

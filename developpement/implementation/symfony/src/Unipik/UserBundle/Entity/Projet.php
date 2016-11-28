@@ -162,7 +162,7 @@ class Projet {
     /**
      * Set type
      *
-     * @param string $type Le type
+     * @param string $typeProjet Le type
      *
      * @return Projet
      */

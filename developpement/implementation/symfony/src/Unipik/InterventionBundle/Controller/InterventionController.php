@@ -100,7 +100,6 @@ class InterventionController extends Controller {
                 $repositoryTheme = $em->getRepository("ArchitectureBundle:NiveauTheme");
                 $themeArray = $form->get('niveauTheme')->get('theme')->getData();
                 $theme = reset($themeArray);
-                var_dump($form->get('niveauTheme')->get('niveau')->getData());
                 $niveauTheme = $repositoryTheme->findOneBy(
                     array("theme" => $theme,
                     "niveau" => $form->get('niveauTheme')->get('niveau')->getData()

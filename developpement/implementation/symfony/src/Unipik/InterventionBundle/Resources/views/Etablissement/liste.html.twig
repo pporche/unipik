@@ -11,63 +11,15 @@
 
 {% block stylesheets %}
     {{ parent() }}
+
+    <link rel='stylesheet' href="{{ asset('css/twitterTypeahead.css') }}"/>
+
     <script src="{{ asset("vendor/pdfmake/build/pdfmake.min.js") }}"></script>
     <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
     <style>
         #recherche_avancee_ville {
             text-transform: uppercase;
         }
-        .twitter-typeahead .tt-query,
-        .twitter-typeahead .tt-hint {
-            margin-bottom: 0;
-        }
-        .tt-hint {
-            display: none;
-            width: 100%;
-            height: 43px;
-            padding: 10px 18px;
-            font-size: 14px;
-            line-height: 1.428571429;
-            color: #999;
-            vertical-align: middle;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-        }
-        .tt-menu {
-            min-width: 160px;
-            margin-top: 2px;
-            padding: 5px 0;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border: 1px solid rgba(0, 0, 0, 0.15);
-            border-radius: 4px;
-            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-            background-clip: padding-box;
-            max-height: 150px;
-            overflow-y: auto;
-
-        }
-        .tt-suggestion {
-            display: block;
-            padding: 3px 20px;
-        }
-        .tt-suggestion.tt-is-under-cursor {
-            color: #fff;
-            background-color: #428bca;
-        }
-        .tt-suggestion.tt-is-under-cursor a {
-            color: #fff;
-        }
-        .tt-suggestion p {
-            margin: 0;
-        }
-
 
         tbody {
             display:block;
@@ -96,6 +48,20 @@
         $('input:checkbox').removeAttr('checked');
         
         $(document).ready(function() {
+            if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')){
+                $('#ville').show();
+                $('#distanceKm').hide();
+                $("#recherche_avancee_distance").val("");
+            }else if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')){
+                $('#ville').show();
+                $('#distanceKm').show();
+            }else {
+                $('#ville').hide();
+                $('#distanceKm').hide();
+                $("#recherche_avancee_ville").val("");
+                $("#recherche_avancee_distance").val("");
+            }
+
             $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage }} });
 
 
@@ -193,6 +159,33 @@
             };
 
             $("#recherche_avancee_typeEtablissement").change(hide_or_show);
+
+            $('#recherche_avancee_dansVilleOuParDistance_placeholder').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_placeholder').is(':checked')) {
+                    $('#ville').hide();
+                    $('#distanceKm').hide();
+                    $('#recherche_avancee_ville').val('');
+                    $("#recherche_avancee_distance").val("");
+                }
+            });
+
+            $('#recherche_avancee_dansVilleOuParDistance_0').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')) {
+                    $('#ville').show();
+                    $('#distanceKm').hide();
+                    $('#recherche_avancee_ville').val('');
+                    $("#recherche_avancee_distance").val("");
+                }
+            });
+
+            $('#recherche_avancee_dansVilleOuParDistance_1').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
+                    $('#distanceKm').show();
+                    $('#ville').show();
+                    $('#recherche_avancee_ville').val('');
+                    $("#recherche_avancee_distance").val("");
+                }
+            });
         });
 
         function imprimer(){
@@ -284,6 +277,28 @@
             limit: 50
         });
 
+        $(':submit').on('click', function (e) {
+            e.preventDefault();
+            if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
+                var ville = $('#recherche_avancee_ville').val();
+                var geolocalisation = '';
+                //Match numéro département avec nom ?
+                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
+                    if (dataVille.length > 0) {
+                        geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                        $("#recherche_avancee_geolocalisation").val(geolocalisation);
+                        $(".etablissement_list").submit();
+                    }
+                    else {
+                        //Que fait-on si 0 match ?
+                    }
+                });
+            }
+            else {
+                $(".etablissement_list").submit();
+            }
+        });
+
     </script>
 {% endblock %}
 
@@ -358,15 +373,22 @@
                 </div>
 
                 <br/>
-
-                <h5>Ville :</h5>
-                {{ form_widget(form.ville) }}
-
-                <br/>
+                <div id="filtrePar">
+                    <h5> Filtre par localisation :</h5>
+                    {{ form_widget(form.dansVilleOuParDistance) }}
+                </div>
+                <div id="ville">
+                    <h5> Ville :</h5>
+                    {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
+                </div>
+                <div id="distanceKm">
+                    <h5> Distance en km :</h5>
+                    {{ form_widget(form.distance) }}
+                </div>
                 <br/>
 
                 <div>
-                    <input id="submit" type="submit" value="OK" class="btn btn-primary"/>
+                    <input type="submit" value="OK" class="btn btn-primary"/>
                 </div>
 
                 {{ form_end(form) }}
@@ -401,7 +423,7 @@
 
                                 <th>Ville</th>
                                 <th>Type</th>
-                                <th>Voir détails</th>
+                                <th>Détails</th>
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <th>Supprimer</th>
                                 {% endif %}
@@ -422,7 +444,7 @@
                                         Enseignement
                                     {% endif %}
                                     </td>
-                                    <td data-title="Consulter"><a href="{{ path('etablissement_view', {id: etablissement.id}) }}" class="btn btn-primary">Voir détails</a></td>
+                                    <td data-title="Consulter"><a href="{{ path('etablissement_view', {id: etablissement.id}) }}" class="btn btn-primary">Détails</a></td>
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <td data-title="Supprimer">
                                             <div class="checkbox" style="text-align: center;">

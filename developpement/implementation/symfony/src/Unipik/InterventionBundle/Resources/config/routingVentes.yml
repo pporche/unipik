@@ -1,5 +1,5 @@
 vente_list:
-    path:   /ventes
+    path:   /vente
     defaults:
         _controller: InterventionBundle:Vente:liste
 

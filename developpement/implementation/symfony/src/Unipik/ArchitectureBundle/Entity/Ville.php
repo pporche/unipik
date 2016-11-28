@@ -48,7 +48,7 @@ class Ville
     /**
      * Le nom
      *
-     * @var string
+     * @var                    string
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
     private $nom;

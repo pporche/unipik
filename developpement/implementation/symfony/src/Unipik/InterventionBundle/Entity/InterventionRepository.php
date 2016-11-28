@@ -50,6 +50,7 @@ class InterventionRepository extends EntityRepository {
      * @param string           $theme            Le theme
      * @param string           $ville            La ville
      * @param distance         $distance         La distance
+     * @param geoloc           $geolocalisation  La geolocalisation
      *
      * @return array
      */
@@ -148,12 +149,10 @@ class InterventionRepository extends EntityRepository {
         if ($distance) {
             if ($ville) {
                 $this->_withinXkmVille($qb, $geolocalisation, $distance);
-            }
-            else {
+            } else {
                 $this->_withinXkmDomicile($qb, $user, $distance);
             }
-        }
-        else {
+        } else {
             if ($ville) {
                 $this->_whereVilleIs($qb, $ville);
             }
@@ -177,8 +176,8 @@ class InterventionRepository extends EntityRepository {
     private function _getFrimousses(QueryBuilder $qb, $start, $end, $datesChecked) {
 
         $qb
-            ->where($qb->expr()->isNotNull('i.niveauFrimousse'))
-            ->andWhere($qb->expr()->isNotNull('i.materiauxFrimousse'));
+            ->where("i.typeIntervention = 'frimousse'");
+
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
@@ -198,8 +197,7 @@ class InterventionRepository extends EntityRepository {
     private function _getPlaidoyers(QueryBuilder $qb, $start, $end, $datesChecked) {
 
         $qb
-            ->where($qb->expr()->isNotNull('i.niveauTheme'))
-            ->andWhere($qb->expr()->isNotNull('i.materielDispoPlaidoyer'));
+            ->where("i.typeIntervention = 'plaidoyer'");
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
@@ -219,7 +217,7 @@ class InterventionRepository extends EntityRepository {
     private function _getAutresInterventions(QueryBuilder $qb,$start,  $end , $datesChecked) {
 
         $qb
-            ->where($qb->expr()->isNotNull('i.description'));
+            ->where("i.typeIntervention = 'autre_intervention'");
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
@@ -440,6 +438,8 @@ class InterventionRepository extends EntityRepository {
     }
 
     /**
+     * Obtenir les interventions selon l'email du benevole
+     *
      * @param string $email Email du bénévole
      *
      * @return array Interventions du bénévole
@@ -455,14 +455,15 @@ class InterventionRepository extends EntityRepository {
             ->where('b.id = i.benevole')
             ->andWhere('b.email = :email')
             ->setParameter('email', $email)
-            ->andWhere('i.dateIntervention = \''.$date.'\'')
-        ;
+            ->andWhere('i.dateIntervention = \''.$date.'\'');
 
         return $qb->getQuery()->getResult();
     }
 
     /**
-     * @param $id
+     * Obtenir les interventions selon l'id de l'etablissement
+     *
+     * @param int $id L'id de l'etablissement
      *
      * @return array
      */
@@ -477,8 +478,7 @@ class InterventionRepository extends EntityRepository {
             ->where('i.etablissement = e.id')
             ->andWhere('e.id = :id')
             ->setParameter('id', $id)
-            ->andWhere('i.dateIntervention = \''.$date.'\'')
-        ;
+            ->andWhere('i.dateIntervention = \''.$date.'\'');
 
         return $qb->getQuery()->getResult();
     }
@@ -486,9 +486,9 @@ class InterventionRepository extends EntityRepository {
     /**
      * Verifie si un point est dans une distance d'une ville
      *
-     * @param QueryBuilder $qb                 Le querybuilder
-     * @param string       $geolocalisation    La géolocalisation de la ville
-     * @param string       $distance           La distance
+     * @param QueryBuilder $qb              Le querybuilder
+     * @param string       $geolocalisation La géolocalisation de la ville
+     * @param string       $distance        La distance
      *
      * @return void
      */

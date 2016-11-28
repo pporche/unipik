@@ -33,18 +33,18 @@ Les informations associées à un bénévole sont :
 Un administrateur global est un utilisateur qui a tous les droits. \\ Un administrateur local est un responsable d'activité, il a des droits de lecture et de modification sur son activité. \\ Un bénévole a des droits de lecture et de modification sur ses informations personnelles et seulement des droits de lecture sur les informations concernant ses domaines d'activité. Il pourra également s'attribuer une activité, entrer et modifier des informations sur cette activité.\\
 Il pourra exister plusieurs administrateurs globaux, plusieurs administrateurs locaux et plusieurs bénévoles. Un administrateur local peut être responsable de plusieurs activités.
 
-Les activités potentielles pourront ainsi avoir plusieurs responsables et seront composées des actions ponctuelles, des plaidoyers et des actions frimousses. \\
+Les activités potentielles pourront ainsi avoir plusieurs responsables et seront composées  des actions éducatives et des actions frimousses. \\
 
-Un ou plusieurs utilisateurs peuvent être responsable d'un, plusieurs ou aucun projets (école, lycéen ou étudiant).\\
-
-La création et la modification d'une caractéristique concernant un bénévole devront faire l'objet d'un envoi de mail au bénévole l'informant de la création ou modification voulue et donnant l'ensemble des informations le concernant. Un an après une modification sur une caractéristique sur un utilisateur, l'ancienne caractéristique sera supprimée. \\
+La création et la modification d'une caractéristique concernant un bénévole devront faire l'objet d'un envoi de mail au bénévole l'informant de la création ou modification voulue et donnant l'ensemble des informations le concernant. 
+\textbf{->Un an après une modification sur une caractéristique sur un utilisateur, l'ancienne caractéristique sera supprimée}. \\
 
 
 Une contrainte d'intégrité du système est que toute action effectuée doit avoir été réalisée par un bénévole existant. \\
-Si le nom de l'intervenant ayant effectué une action n'est pas connu, l'action sera attribuée a un bénévole spécial. Une fonction d'interrogation permettant de donner la liste des interventions effectuées par ce bénévole fictif sera implémentée afin d'engager les actions nécessaires pour trouver le nom du bénévole ayant effectué cette action. \\
+Si le nom de l'intervenant ayant effectué une action n'est pas connu, l'action sera attribuée a un bénévole spécial. 
+->\textbf{Une fonction d'interrogation permettant de donner la liste des interventions effectuées par ce bénévole fictif sera implémentée afin d'engager les actions nécessaires pour trouver le nom du bénévole ayant effectué cette action.} \\
 
 
-La procédure de connexion au système sera basée sur le couple login (adresse e-mail) / mot de passe.
+La procédure de connexion au système sera basée sur le couple login / mot de passe.
 \\
 
 
@@ -61,9 +61,8 @@ Les informations associées à un établissement sont :
 \item son adresse,
 \item son code postal,
 \item le responsable de l'établissement, 
-\item le contact plaidoyers (facultatif),
+\item le contact chargé d'action éducative (facultatif),
 \item le contact frimousse (facultatif),
-\item le contact pour les activités ponctuelles (facultatif),
 \item le numéro de téléphone fixe de l'établissement, 
 \item la ou les adresse(s) électronique(s) de l'établissement (attention toutes les adresses électroniques ne sont pas forcément celles définies par le rectorat notamment pour les établissements privés ou pour les centres de loisirs), 
 \item le nom, le numéro de téléphone fixe et/ou portable de l'enseignant demandant une intervention, son adresse électronique (toutes ces informations ne sont pas forcément disponibles). Il peut y avoir plusieurs enseignants pour la même classe (donc plusieurs contacts possibles).
@@ -83,7 +82,7 @@ Cette fonctionnalité doit également permettre un envoi ciblé en fonction de p
 \item le type de l'établissement (maternelle, élémentaire, centre de loisirs,...), 
 \item la distance des villes suivantes : Rouen, Le Havre, Yvetot, Fécamp, Dieppe et Neuchâtel en Bray à la ville de l'établissement,
 \item la non-réponse à une précédente sollicitation pour cette année scolaire (un mail de relance),
-\item la réponse à une précédente sollicitation pour cette année scolaire (les établissements ayant demandé une action de frimousses ou une action ponctuelle mais pas de plaidoyer),
+\item la réponse à une précédente sollicitation pour cette année scolaire (les établissements ayant demandé une action de frimousses mais pas d'action éducative),
 \item un sous-ensemble spécifique des adresses obtenues soit manuellement soit par l'application d'un critère (les écoles d'une ville donnée, un type donné par exemple),
 \item exclure de la liste les établissements ayant fait une demande qui n'a pas pu être satisfaite par les plaideurs (pour des raisons d'emploi du temps, distance, ...). \\
 \end{itemize}
@@ -109,7 +108,7 @@ Concernant le matériel disponible , plusieurs matériels pourront être choisis
 Concernant le niveau de la classe, nous reprendrons ceux proposés dans le formulaire actuel. Si la classe regroupe le niveau Grande Section et CP, l'information doit être précisée en remarque.
 Concernant les classes spéciales (classe pour l'inclusion scolaire, sections d'enseignement général et professionnel adapté, etc...), elles ne seront pas traitées comme les classes par défaut, elles seront précisées dans le champs remarque.
 \\
-Les thèmes des interventions ne seront pas prédéfinis pour les lycées et l'enseignement supérieur. Ceux-ci seront renseignés dans un champs texte par l'établissement demandeur. Pour les autres types d'établissement, nous reprendrons les thèmes du formulaire actuel.
+Les thèmes des interventions seront prédéfinis pour les lycées et l'enseignement supérieur. Ceux-ci seront renseignés dans un champs texte par l'établissement demandeur. Pour les autres types d'établissement, nous reprendrons les thèmes du formulaire actuel.
 
 
 \subsubsection{Fonctionnalité 4}
@@ -126,10 +125,10 @@ La fonctionnalité 5 permettra d'afficher une carte montrant les lieux où des d
 La fonctionnalité 5 consistera également à planifier les interventions c'est-à-dire qu'un plaideur s'attribue une intervention.
 Lors de chaque affectation, un e-mail d'information de prise en charge de la demande par l'équipe de plaideur sera envoyé à l'établissement demandeur ainsi qu'au responsable de l'activité demandée.
 Une intervention ne peut être attribuée qu'à un utilisateur. \\
-Cette fonctionnalité permettra aussi de visualiser la combinaison du nom du plaideur, du nom de la ville, du nom de l'établissement et de la date fixée du plaidoyer.
+Cette fonctionnalité permettra aussi de visualiser la combinaison du nom du chargé d'action éducatives, du nom de la ville, du nom de l'établissement et de la date fixée de l'action éducative.
 
 \subsubsection{Fonctionnalité 6}
-Une fois que le plaideur a défini une date pour son intervention (suite à échange de courriers électroniques avec le contact de l'établissement), il met à jour les informations concernant l'intervention (date, heure, nombre d'élèves, ...). Le demandeur reçoit alors un mail de confirmation l'informant du jour de l'heure et du lieu de l'intervention avec le nom et les coordonnées (adresse électronique, téléphone) du plaideur. Le texte de ce message est à définir et à faire valider par le responsable des plaideurs. \\
+Une fois que le chargé d'action éducatives a défini une date pour son intervention (suite à échange de courriers électroniques avec le contact de l'établissement), il met à jour les informations concernant l'intervention (date, heure, nombre d'élèves, ...). Le demandeur reçoit alors un mail de confirmation l'informant du jour de l'heure et du lieu de l'intervention avec le nom et les coordonnées (adresse électronique, téléphone) du plaideur. Le texte de ce message est à définir et à faire valider par le responsable des plaideurs. \\
 
 \subsubsection{Fonctionnalité 7}
 La fonctionnalité 7 permettra d'envoyer un e-mail de rappel à l'établissement et au contact dans l'établissement (si son adresse électronique est différente de celle de l'établissement), une semaine avant l'intervention. Le texte de ce message sera à définir avec \nomClient{} et à faire valider par le responsable des plaideurs. \\
@@ -137,11 +136,32 @@ Trois jours avant l'intervention, le plaideur recevra un e-mail de rappel avec l
 \\
 
 \subsection{Lot 3}
-Le lot 3 devra faire état de sept fonctionnalités additionnelles. Il devra être impérativement livré au client avant le lundi 23 mai 2016. Un hébergeur devra avoir été trouvé à la fin de ce lot et la livraison devra être effectuée sur celui-ci.
+Le lot 3 devra faire état de cinq fonctionnalités additionnelles. Il devra être impérativement livré au client avant le vendredi 9 décembre 2016. Un hébergeur devra avoir été trouvé à la fin de ce lot et la livraison devra être effectuée sur celui-ci.
 
 \subsubsection{Fonctionnalité 8}
 La fonctionnalité 8 correspond au mailing des frimousses. Elle est très similaire à la fonctionnalité 3.
 
 \subsubsection{Fonctionnalité 9}
 La fonctionnalité 9 permet l'attribution d'intervention de type frimousse. Elle est très similaire à la fonctionnalité 5.
+
+\subsubsection{Fonctionnalité 10}
+La fonctionnalité 10 correspond à la fonctionnalité F9 énoncé dans le cahier des charges. Les frimousses engrangent des ventes qui doivent être gérée par l'outil.
+Il devra être possible de tracer le montant collecté lors de la vente afin de permettre de faire un bilan en fin d'année.
+
+\subsubsection{Fonctionnalité 11}
+Une vente peut également avoir lieu dans un établissement, il devra être possible de tracer celle-ci.
+
+\subsubsection{Fonctionnalité 12}
+L'outil devra faciliter la géolocalisation des établissements, bénévoles et interventions. Une carte devra pouvoir être accessible quand l'une des entité possède une adresse et il devra être possible de filtrer ces entités en fonction de la distance à une ville ou un point géographique particulier.
+
+
+
+\subsection{Lot 4}
+Le lot 3 devra faire état d'une fonctionnalité additionnelle. Il devra être impérativement livré au client avant le vendredi 16 décembre 2016. 
+
+\subsubsection{Fonctionnalité 13}
+La fonctionnalité 13 concerne le module de statistiques concernant les données de l'Unicef. Ce module de statistiques contribuera à effectuer le bilan annuel. 
+Il devra permettre de comptabiliser le nombre d'établissement partenaires ainsi que leur type. Il devra aussi permettre de comptabiliser le nombre de personnes ayant été sensibilisé.
+Il devra permettre de comptabiliser le nombre d'intervention effectué, les thèmes les plus plebiscités en fonction de critère tel que le type d'établissement.
+Il devra enfin permettre de comptabiliser les ventes effectuées à l'année en fonction de la zone géographique et du chiffre d'affaire.
 

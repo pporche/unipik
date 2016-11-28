@@ -33,40 +33,47 @@ class EtablissementRepository extends EntityRepository {
      * Generic function for DB queries.
      *
      * @param string $typeEtablissement Le type d'etablissement
-     * @para array $type Le type spécifique (domaines)
-     * @param int $ville Id de la ville
-     * @param string $field Le champs
-     * @param bool $desc Descendant ou non
+     * @param array  $type              Le type spécifique (domaines)
+     * @param int    $ville             Id de la ville
+     * @param string $field             Le champs
+     * @param bool   $desc              Descendant ou non
+     * @param geoloc $geolocalisation   La geolocalisation
+     * @param int    $distance          La distance
      *
      * @return array
      */
-    public function getType($typeEtablissement, $type, $ville, $field, $desc) {
+    public function getType($typeEtablissement, $type, $ville, $field, $desc, $geolocalisation=null, $distance=null) {
         $results = array();
-        if(!isset($type))
+        if (!isset($type)) {
             $type = array("maternelle", "elementaire", "college", "lycee", "superieur", "adolescent", "maison de retraite", "mairie", "autre", "");
+        }
 
         foreach ($type as $t) {
             $qb = $this->createQueryBuilder('e');
 
             switch ($typeEtablissement) {
-                case "enseignement":
-                    $qb->where('e.typeEnseignement = :type');
-                    break;
-                case "centre":
-                    $qb->where('e.typeCentre = :type');
-                    break;
-                case "autreEtablissement":
-                    $qb->where('e.typeAutreEtablissement = :type');
-                    break;
-                default:
-                    $qb->where('e.typeEnseignement = :type');
-                    $qb->orWhere('e.typeCentre = :type');
-                    $qb->orWhere('e.typeAutreEtablissement = :type');
-                    break;
+            case "enseignement":
+                $qb->where('e.typeEnseignement = :type');
+                break;
+            case "centre":
+                $qb->where('e.typeCentre = :type');
+                break;
+            case "autreEtablissement":
+                $qb->where('e.typeAutreEtablissement = :type');
+                break;
+            default:
+                $qb->where('e.typeEnseignement = :type');
+                $qb->orWhere('e.typeCentre = :type');
+                $qb->orWhere('e.typeAutreEtablissement = :type');
+                break;
             }
 
             if ($ville) {
-                $this->_whereVilleIs($qb, $ville);
+                if ($distance) {
+                    $this->_withinXkmVille($qb, $geolocalisation, $distance);
+                } else {
+                    $this->_whereVilleIs($qb, $ville);
+                }
             }
 
             if ($field == "nom") {
@@ -88,15 +95,19 @@ class EtablissementRepository extends EntityRepository {
      * Query pour récupérer les établissements n'ayant pas répondu à une demande pour le niveau scolaire en cours.
      *
      * @param string $typeEtablissement Le type d'etablissement
-     * @param array $type  Le type en cas d'enseignement
+     * @param array  $type              Le type en cas d'enseignement
+     * @param array  $typeIntervention  Le type d'intervention
      * @param int    $ville             Id de la ville
+     * @param geoloc $geolocalisation   La geolocalisation
+     * @param int    $distance          La distance
      *
      * @return array
      */
-    public function getTypeAndNoInterventionThisYear($typeEtablissement, $type, $typeIntervention, $ville) {
+    public function getTypeAndNoInterventionThisYear($typeEtablissement, $type, $typeIntervention, $ville=null, $geolocalisation=null, $distance=null) {
         $results = array();
-        if(!isset($type))
+        if (!isset($type)) {
             $type = array("maternelle", "elementaire", "college", "lycee", "superieur", "adolescent", "maison de retraite", "mairie", "autre", "");
+        }
 
         $dateInf = '01/09/'.date('Y');
         $dateSup = '01/09/'.(date('Y')+1);
@@ -107,12 +118,12 @@ class EtablissementRepository extends EntityRepository {
             ->where('d.dateDemande > :dateInf')
             ->andWhere('d.dateDemande < :dateSup')
             ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup));
-            if(isset($typeIntervention)) {
-                $sub = $sub->andWhere('i.typeIntervention = :typeIntervention')
-                    ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup, 'typeIntervention' => $typeIntervention));
-            } else {
-                $sub = $sub->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup));
-            }
+        if (isset($typeIntervention)) {
+            $sub = $sub->andWhere('i.typeIntervention = :typeIntervention')
+                ->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup, 'typeIntervention' => $typeIntervention));
+        } else {
+            $sub = $sub->setParameters(array('dateInf' => $dateInf, 'dateSup' => $dateSup));
+        }
         $sub = $sub->getQuery()
             ->getResult();
         $subIds = array_map('current', $sub);
@@ -122,27 +133,32 @@ class EtablissementRepository extends EntityRepository {
             $linked = $qb->select('e.id');
 
             switch ($typeEtablissement) {
-                case "enseignement":
-                    $qb->where('e.typeEnseignement = :type');
-                    break;
-                case "centre":
-                    $qb->where('e.typeCentre = :type');
-                    break;
-                case "autreEtablissement":
-                    $qb->where('e.typeAutreEtablissement = :type');
-                    break;
-                default:
-                    $qb->where('e.typeEnseignement = :type');
-                    $qb->orWhere('e.typeCentre = :type');
-                    $qb->orWhere('e.typeAutreEtablissement = :type');
-                    break;
+            case "enseignement":
+                $qb->where('e.typeEnseignement = :type');
+                break;
+            case "centre":
+                $qb->where('e.typeCentre = :type');
+                break;
+            case "autreEtablissement":
+                $qb->where('e.typeAutreEtablissement = :type');
+                break;
+            default:
+                $qb->where('e.typeEnseignement = :type');
+                $qb->orWhere('e.typeCentre = :type');
+                $qb->orWhere('e.typeAutreEtablissement = :type');
+                break;
             }
 
-            if(!empty($subIds))
+            if (!empty($subIds)) {
                 $qb->andWhere($qb->expr()->notIn('e.id', $subIds));
+            }
 
             if ($ville) {
-                $this->_whereVilleIs($linked, $ville);
+                if ($distance) {
+                    $this->_withinXkmVille($qb, $geolocalisation, $distance);
+                } else {
+                    $this->_whereVilleIs($qb, $ville);
+                }
             }
 
             $linked->setParameter('type', $t);
@@ -153,14 +169,14 @@ class EtablissementRepository extends EntityRepository {
     }
 
     /**
-     * etablissementAutocomplete permet l'autocomplétion de l'établissement en fonction de plusieurs paramètres
+     * EtablissementAutocomplete permet l'autocomplétion de l'établissement en fonction de plusieurs paramètres
      *
-     * @param $term : ce qui est tapé dans le champs
-     * @param $dep : le département
-     * @param $ville : la ville
-     * @param $typeEns : le type d'enseignement
-     * @param $typeCentre : le type de centre de loisirs
-     * @param $typeAutre : le type d'autre établissement
+     * @param string $term       Ce qui est tapé dans le champs
+     * @param string $dep        Le département
+     * @param string $ville      La ville
+     * @param array  $typeEns    Le type d'enseignement
+     * @param array  $typeCentre Le type de centre de loisirs
+     * @param array  $typeAutre  Le type d'autre établissement
      *
      * @return array
      */
@@ -174,29 +190,27 @@ class EtablissementRepository extends EntityRepository {
         if ($dep) {
             // Si oui, nous récupérons seulement les établissements situées dans ce département
             $qb
-                ->from('Unipik\ArchitectureBundle\Entity\Adresse','a')
+                ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
                 ->andWhere('e.adresse = a')
-                ->from('Unipik\ArchitectureBundle\Entity\Ville','v')
+                ->from('Unipik\ArchitectureBundle\Entity\Ville', 'v')
                 ->andWhere('a.ville = v')
-                ->innerJoin('v.codePostal','cp')
-                ->from('Unipik\ArchitectureBundle\Entity\Departement','d')
+                ->innerJoin('v.codePostal', 'cp')
+                ->from('Unipik\ArchitectureBundle\Entity\Departement', 'd')
                 ->andWhere('cp.departement = d')
                 ->andWhere('d.nom = :dep')
-                ->setParameter('dep',$dep)
-            ;
+                ->setParameter('dep', $dep);
         }
 
         // Nous testons si une ville a été envoyée dans la requete
         if ($ville) {
             // Si oui, nous récupérons les établissements de cette ville
             $qb
-                ->from('Unipik\ArchitectureBundle\Entity\Adresse','ad')
+                ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'ad')
                 ->andWhere('e.adresse = ad')
-                ->from('Unipik\ArchitectureBundle\Entity\Ville','vi')
+                ->from('Unipik\ArchitectureBundle\Entity\Ville', 'vi')
                 ->andWhere('ad.ville = vi')
                 ->andWhere('vi.nom = :ville')
-                ->setParameter('ville',$ville)
-            ;
+                ->setParameter('ville', $ville);
         }
 
 
@@ -206,8 +220,7 @@ class EtablissementRepository extends EntityRepository {
 
             $qb
                 ->andWhere('e.typeEnseignement = :ens')
-                ->setParameter('ens',$typeEns)
-            ;
+                ->setParameter('ens', $typeEns);
         }
 
         // Nous testons si l'etablissement est de type centreLoisirs
@@ -215,8 +228,7 @@ class EtablissementRepository extends EntityRepository {
             // Si oui, nous récupérons seulement les etablissements de ce type
             $qb
                 ->andWhere('e.typeCentre = :centre')
-                ->setParameter('centre',$typeCentre)
-            ;
+                ->setParameter('centre', $typeCentre);
         }
 
         // Nous testons si l'etablissement est de type autre
@@ -224,13 +236,12 @@ class EtablissementRepository extends EntityRepository {
             // Si oui, nous récupérons seulement les etablissements de ce type
             $qb
                 ->andWhere('e.typeAutreEtablissement = :autre')
-                ->setParameter('autre',$typeAutre)
-            ;
+                ->setParameter('autre', $typeAutre);
         }
 
         // Récupération des résultats
         return $qb
-            ->setParameter('name','%'.$term.'%')
+            ->setParameter('name', '%'.$term.'%')
             ->orderBy('e.nom', 'ASC')
             ->getQuery()
             ->getResult();
@@ -253,6 +264,31 @@ class EtablissementRepository extends EntityRepository {
     }
 
     /**
+     * Verifie si un point est dans une distance d'une ville
+     *
+     * @param QueryBuilder $qb              Le querybuilder
+     * @param string       $geolocalisation La géolocalisation de la ville
+     * @param string       $distance        La distance
+     *
+     * @return void
+     */
+    private function _withinXkmVille(QueryBuilder $qb, $geolocalisation, $distance) {
+        $qb
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
+            ->andWhere('e.adresse = a')
+            ->andWhere(
+                $qb->expr()->eq(
+                    sprintf("STDWithin(a.geolocalisation, :geolocalisation, :distance)"),
+                    $qb->expr()->literal(true)
+                )
+            )
+            ->setParameter('geolocalisation', $geolocalisation)
+            ->setParameter('distance', $distance*1000);
+    }
+
+    /**
+     * Retourne l'email de l'etablissement
+     *
      * @return array
      */
     public function getEmailEtablissementRappel() {
@@ -264,13 +300,14 @@ class EtablissementRepository extends EntityRepository {
             ->select('e.id')
             ->from('InterventionBundle:Intervention', 'i')
             ->where('e.id = i.etablissement')
-            ->andWhere('i.dateIntervention = \''.$date.'\'')
-        ;
+            ->andWhere('i.dateIntervention = \''.$date.'\'');
 
         return array_map('current', $qb->getQuery()->getResult());
     }
 
     /**
+     * Retourne les etablissements avec une demande non satisfaite
+     *
      * @return array
      */
     public function getEtablissementDemandeNonSatisfaite() {

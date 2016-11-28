@@ -135,7 +135,6 @@ class Contact
     private $etablissement;
 
     /**
-
     /**
      * Est responsable de l'etablissement ou non
      *
@@ -156,6 +155,8 @@ class Contact
 
 
     /**
+     * Participe
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @OneToMany(targetEntity="Participe", mappedBy="contact", nullable=true)

@@ -108,10 +108,16 @@ class InterventionController extends Controller {
             }
 
             $heure = $form->get('heure')->get('hour')->getData();
-            $heure = sprintf("%02d", $heure);
             $minute = $form->get('heure')->get('minute')->getData();
-            $minute = sprintf("%02d", $minute);
-            $heure .= ":".$minute;
+            if(isset($heure) && isset($minute)){
+                $heure = sprintf("%02d", $heure);
+                $minute = sprintf("%02d", $minute);
+                $heure .= ":".$minute;
+            } else {
+                $heure = null;
+            }
+
+
             $intervention->setHeure($heure);
             $description = $form->get('description')->getData();
             $intervention->setDescription($description);
@@ -133,11 +139,23 @@ class InterventionController extends Controller {
 
         $materiaux = json_encode($materiaux);
 
+        $momentsVoulus = $intervention->getDemande()->getMomentsVoulus();
+        $moments = array();
+        $moments['lundi'] = array();
+        $moments['mardi'] = array();
+        $moments['mercredi'] = array();
+        $moments['jeudi'] = array();
+        $moments['vendredi'] = array();
+        foreach($momentsVoulus as $mv) {
+            array_push($moments, array_push($moments[$mv->getJour()], $mv->getMoment()));
+        }
+
         return $this->render(
             'InterventionBundle:Intervention:editIntervention.html.twig', array('form' => $form->createView(),
                                                                                  'intervention' => $intervention,
                                                                                  'materiaux' => $materiaux,
                                                                                  'demande' => $intervention->getDemande(),
+                                                                                 'moments' => $moments
             )
         );
     }
@@ -294,7 +312,6 @@ class InterventionController extends Controller {
 
         // Si le formulaire a été envoyé
         if ($form->isValid()) {
-            var_dump("coucou");
 
             // Spécifier la date de la demande
             $dt =new \DateTime();
@@ -403,7 +420,7 @@ class InterventionController extends Controller {
         } elseif ($intervention->isPlaidoyer()) {
             return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
         } else {
-            return $this->render('InterventionBundle:Intervention:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
+            return $this->render('InterventionBundle:Intervention/Autre:consultation.htm.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
         }
     }
 
@@ -422,7 +439,19 @@ class InterventionController extends Controller {
         $demande = $intervention->getDemande();
         $interventionsDeLaDemande = $repository->getInterventionsDeDemande($demande);
         $formAttr = $this->get('form.factory')->createBuilder(AttributionType::class)->getForm()->createView();
-        return $this->render('InterventionBundle:Intervention:demandeConsultation.html.twig', array('intervention'=>$intervention, 'interventionsAssociees'=>$interventionsDeLaDemande, 'user' => $user, 'formAttr' => $formAttr));
+
+
+        $momentsVoulus = $intervention->getDemande()->getMomentsVoulus();
+        $moments = array();
+        $moments['lundi'] = array();
+        $moments['mardi'] = array();
+        $moments['mercredi'] = array();
+        $moments['jeudi'] = array();
+        $moments['vendredi'] = array();
+        foreach($momentsVoulus as $mv) {
+            array_push($moments, array_push($moments[$mv->getJour()], $mv->getMoment()));
+        }
+        return $this->render('InterventionBundle:Intervention:demandeConsultation.html.twig', array('intervention'=>$intervention, 'interventionsAssociees'=>$interventionsDeLaDemande, 'user' => $user, 'formAttr' => $formAttr, 'moments' => $moments));
 
     }
 
@@ -903,8 +932,8 @@ class InterventionController extends Controller {
      * Permet d'effectuer le traitement sur l'établissement
      * Si l'établissement modifie les informations les concernant, elle doivent être enregistrées
      *
-     * @param $institute
-     * @param $etablissementRaw
+     * @param Etablissement $institute        L'etablissement
+     * @param String        $etablissementRaw L'etablissement en brut
      *
      * @return void
      */

@@ -80,27 +80,35 @@ class MailController extends Controller {
             $typeOther = $form->get("typeAutre")->getData();
             $relance = $form->get("typeRelance")->getData();
             $ville = $form->get("ville")->getData();
+            $geolocalisation = $form->get("geolocalisation")->getData();
+            $distance = $form->get("distance")->getData();
             if ($ville=='') {
                 $ville = null;
+            }
+            if ($geolocalisation=='') {
+                $geolocalisation = null;
+            }
+            if ($distance=='') {
+                $distance = null;
             }
 
             $ids = array();
             $instituteExclude = $repository->getEtablissementDemandeNonSatisfaite(); // Les établissements qui ont fait une demande non satisfaite durant cette année scoalire
 
             if ($relance == 'relance') { // Les établissements qui ont pas fait de demande durant cette année scolaire
-                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement',$typeInstitute, null, $ville) : array();
-                $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, null, $ville) : array();
-                $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, null, $ville) : array();
+                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement', $typeInstitute, null, $ville, $geolocalisation, $distance) : array();
+                $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, null, $ville, $geolocalisation, $distance) : array();
+                $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, null, $ville, $geolocalisation, $distance) : array();
                 $ids = array_merge($institutesArray, $centersArray, $othersArray);
             } else if ($relance == 'relancePlaidoyer') { // Les établissements qui ont pas fait de demande  de plaidoyers durant cette année scolaire
-                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement',$typeInstitute, 'plaidoyer', $ville) : array();
-                $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, 'plaidoyer', $ville) : array();
-                $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, 'plaidoyer', $ville) : array();
+                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement', $typeInstitute, 'plaidoyers', $ville, $geolocalisation, $distance) : array();
+                $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, 'plaidoyers', $ville, $geolocalisation, $distance) : array();
+                $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, 'plaidoyers', $ville, $geolocalisation, $distance) : array();
                 $ids = array_merge($institutesArray, $centersArray, $othersArray);
             } else { // Les établissements en général
-                $institutesArray = !empty($typeInstitute) ? $repository->getType("enseignement", $typeInstitute, $ville, null, null) : array();
-                $centersArray = !empty($typeCenter) ? $repository->getType("centre", $typeCenter, $ville, null, null) : array();
-                $othersArray = !empty($typeOther) ? $repository->getType("autreEtablissement", $typeOther, $ville, null, null) : array();
+                $institutesArray = !empty($typeInstitute) ? $repository->getType("enseignement", $typeInstitute, $ville, null, null, $geolocalisation, $distance) : array();
+                $centersArray = !empty($typeCenter) ? $repository->getType("centre", $typeCenter, $ville, null, null, $geolocalisation, $distance) : array();
+                $othersArray = !empty($typeOther) ? $repository->getType("autreEtablissement", $typeOther, $ville, null, null, $geolocalisation, $distance) : array();
                 $mergedArray = array_merge($institutesArray, $centersArray, $othersArray);
                 foreach ($mergedArray as $institute) {
                     array_push($ids, $institute->getId());
@@ -122,7 +130,6 @@ class MailController extends Controller {
             }
             return $this->redirectToRoute('architecture_homepage');
         }
-
         return $this->render('MailBundle:mailing:mailingEtablissements.html.twig', array('form' => $form->createView()));
     }
 }

@@ -35,6 +35,7 @@
         min-width: 160px;
         margin-top: 2px;
         padding: 5px 0;
+        width: 100%;
         background-color: #ffffff;
         border: 1px solid #cccccc;
         border: 1px solid rgba(0, 0, 0, 0.15);
@@ -44,7 +45,9 @@
         background-clip: padding-box;
         max-height: 150px;
         overflow-y: auto;
-
+        font-size: 14px !important;
+        font-family:"Open Sans", sans-serif !important;
+        font-weight: 400;
     }
     .tt-suggestion {
         display: block;
@@ -118,6 +121,122 @@
                     $('#mailing_ville').val(data.ville);
                 });
     });
+
+    $('#mailing_typeInstitute_0').on('click', function () {
+        if ($(this).is(':checked')) {
+            var i = 1;
+            $('#mailing_typeInstitute').children().each(function () {
+                $('#mailing_typeInstitute_' + i).prop('checked',true);
+                i++;
+            });
+        }
+    });
+
+    $('#mailing_typeCenter_0').on('click', function () {
+        if ($(this).is(':checked')) {
+            var i = 1;
+            $('#mailing_typeCenter').children().each(function () {
+                $('#mailing_typeCenter_' + i).prop('checked',true);
+                i++;
+            });
+        }
+    });
+
+    $('#mailing_typeAutre_0').on('click', function () {
+        if ($(this).is(':checked')) {
+            var i = 1;
+            $('#mailing_typeAutre').children().each(function () {
+                $('#mailing_typeAutre_' + i).prop('checked',true);
+                i++;
+            });
+        }
+    });
+
+    for (var i=1; i<6; i++) {
+        $('#mailing_typeInstitute_' + i).on('click', function () {
+            if ($(this).not(':checked')) {
+                $('#mailing_typeInstitute_0').prop('checked', false);
+            }
+        });
+        $('#mailing_typeCenter_' + i).on('click', function () {
+            if ($(this).not(':checked')) {
+                $('#mailing_typeCenter_0').prop('checked', false);
+            }
+        });
+        $('#mailing_typeAutre_' + i).on('click', function () {
+            if ($(this).not(':checked')) {
+                $('#mailing_typeAutre_0').prop('checked', false);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+
+        if ($('#mailing_dansVilleOuParDistance_placeholder').is(':checked')) {
+            $('#mailing_ville').parent().parent().parent().hide();
+            $('#mailing_distance').parent().parent().hide();
+            $('#mailing_ville').val('');
+            $('#mailing_distance').val('');
+        }
+        else if ($('#mailing_dansVilleOuParDistance_0').is(':checked')) {
+            $('#mailing_ville').parent().parent().parent().show();
+            $('#mailing_distance').parent().parent().hide();
+            $('#mailing_distance').val('');
+        }
+        else {
+            $('#mailing_ville').parent().parent().parent().show();
+            $('#mailing_distance').parent().parent().show();
+        }
+
+        $('#mailing_dansVilleOuParDistance_placeholder').click(function() {
+            if($('#mailing_dansVilleOuParDistance_placeholder').is(':checked')) {
+                $('#mailing_ville').parent().parent().parent().hide();
+                $('#mailing_distance').parent().parent().hide();
+                $('#mailing_ville').val('');
+                $('#mailing_distance').val('');
+            }
+        });
+
+        $('#mailing_dansVilleOuParDistance_0').click(function() {
+            if($('#mailing_dansVilleOuParDistance_0').is(':checked')) {
+                $('#mailing_ville').parent().parent().parent().show();
+                $('#mailing_distance').parent().parent().hide();
+                $('#mailing_ville').val('');
+                $('#mailing_distance').val('');
+            }
+        });
+
+        $('#mailing_dansVilleOuParDistance_1').click(function() {
+            if($('#mailing_dansVilleOuParDistance_1').is(':checked')) {
+                $('#mailing_ville').parent().parent().parent().show();
+                $('#mailing_distance').parent().parent().show();
+                $('#mailing_ville').val('');
+            }
+        });
+    });
+
+    $(':submit').on('click', function (e) {
+        e.preventDefault();
+        if ($('#mailing_dansVilleOuParDistance_1').is(':checked')) {
+            var ville = $('#mailing_ville').val();
+            var geolocalisation = '';
+            //Match numéro département avec nom ?
+            $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
+                console.log("length: " + dataVille.length);
+                if (dataVille.length > 0) {
+                    geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                    $("#mailing_geolocalisation").val(geolocalisation);
+                    $(".etablissements_mailing").submit();
+                }
+                else {
+                    //Que fait-on si 0 match ?
+                }
+            });
+        }
+        else {
+            $(".etablissements_mailing").submit();
+        }
+    });
 </script>
 {% endblock %}
 
@@ -172,7 +291,7 @@
         {{ form_start(form, {'method': 'post', 'action': path('etablissements_mailing'), 'attr': {'class': 'etablissements_mailing'}}) }}
         {{ form_widget(form) }}
         <div>
-            <input type="submit" value="Envoyer" class="btn btn-primary"/>
+            <input type="submit" value="Envoyer" class="btn btn-primary"  style="margin-top: 60px; margin-bottom: 20px;"/>
         </div>
         {{ form_end(form) }}
 

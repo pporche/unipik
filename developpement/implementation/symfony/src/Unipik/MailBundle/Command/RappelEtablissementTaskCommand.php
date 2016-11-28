@@ -4,6 +4,14 @@
  * User: scolomies
  * Date: 21/11/16
  * Time: 13:14
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\MailBundle\Command;
@@ -14,6 +22,15 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 //sudo php bin/console mailEtablissementRappelTask:run
+/**
+ * Class MailTaskCommand
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class RappelEtablissementTaskCommand extends ContainerAwareCommand {
     private $output;
 

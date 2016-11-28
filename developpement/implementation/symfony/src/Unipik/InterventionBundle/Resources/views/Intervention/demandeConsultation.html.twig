@@ -125,38 +125,118 @@
                                             <tbody>
                                                 <tr>
                                                     <td><strong>Lun</strong></td>
-                                                    <td><span class="glyphicon glyphicon-ok"></span></td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td> </td>
+                                                    <td>
+                                                        {%  if moments['lundi']|length == 1 and moments['lundi'][0]=='matin' %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['lundi']|length == 1 and moments['lundi'][0]=='apres-midi' %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['lundi']|length == 2 %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['lundi']|length == 0   %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Mar</strong></td>
-                                                    <td> </td>
-                                                    <td><span class="glyphicon glyphicon-ok"</td>
-                                                    <td> </td>
-                                                    <td></td>
+                                                    <td>
+                                                        {%  if moments['mardi']|length == 1 and moments['mardi'][0]=='matin' %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['mardi']|length == 1 and moments['mardi'][0]=='apres-midi' %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['mardi']|length == 2 %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['mardi']|length == 0   %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Mer</strong></td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td><span class="glyphicon glyphicon-ok"</td>
-                                                    <td></td>
+                                                    <td>
+                                                        {%  if moments['mercredi']|length == 1 and moments['mercredi'][0]=='matin' %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['mercredi']|length == 1 and moments['mercredi'][0]=='apres-midi' %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['mercredi']|length == 2 %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['mercredi']|length == 0   %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Jeu</strong></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td><span class="glyphicon glyphicon-ok"</td>
+                                                    <td>
+                                                        {%  if moments['jeudi']|length == 1 and moments['jeudi'][0]=='matin' %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['jeudi']|length == 1 and moments['jeudi'][0]=='apres-midi' %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['jeudi']|length == 2 %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['jeudi']|length == 0   %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Ven</strong></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td><span class="glyphicon glyphicon-ok"</td>
+                                                    <td>
+                                                        {%  if moments['vendredi']|length == 1 and moments['vendredi'][0]=='matin' %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['vendredi']|length == 1 and moments['vendredi'][0]=='apres-midi' %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['vendredi']|length == 2 %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['vendredi']|length == 0   %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>

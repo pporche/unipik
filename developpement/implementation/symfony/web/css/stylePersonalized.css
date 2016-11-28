@@ -33,6 +33,12 @@ h1{
     color: #fff;
 }
 
+@media (min-width: 1030px){
+    .collapse {
+        display: none !important;
+    }
+}
+
 .subtitle{
     font-family: 'Ubuntu Condensed', sans-serif;
 }

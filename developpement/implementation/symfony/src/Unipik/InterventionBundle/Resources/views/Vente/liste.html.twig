@@ -338,7 +338,6 @@
             source: villes,
             limit: 50
         });
-
     </script>
 {% endblock %}
 
@@ -381,7 +380,7 @@
     <section id="listeVente" class="col-lg-10 col-md-10 col-sm-10">
         <h2> Liste des Ventes : </h2>
         {% if ventes %}
-            <button type="button" class="btn btn-primary" onclick="imprimer()" style="float: right; margin-right: 20px;"><span class="glyphicon glyphicon-print"></span></button><br>
+            <button type="button" class="imprimente" onclick="imprimer()"><span class="glyphicon glyphicon-print"></span></button><br>
         {% endif %}
         <div class="container">
             <div class="row">
@@ -396,6 +395,7 @@
                             {% if app.request.query.get('rowsPerPage') is not null %}
                                 {% set pathReq = pathReq | merge({"rowsPerPage":app.request.query.get('rowsPerPage')}) %}
                             {% endif %}
+
                             {% if field == "dateVente" %}
                                 {% if desc %}
                                     <th> Lieu
@@ -427,7 +427,7 @@
                                         </a>
                                     </th>
                                 {% endif %}
-                            {% else %}
+                            {% elseif field == "lieu" %}
                                 {% if desc %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
@@ -486,7 +486,7 @@
                                                 Frimousse à l'{{ vente.intervention.etablissement.nom | lower}}
                                             </a>
                                         {% else %}
-                                            -
+                                            <div style="text-align: center"> - </div>
                                         {% endif %}
                                     </td>
                                     <td data-title="ChiffreAffaire" style="text-align: center"> {{ vente.chiffreAffaire }} € </td>

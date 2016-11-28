@@ -191,9 +191,9 @@
         $(":submit").on('click', function( e ) {
 
             e.preventDefault();
-            if($('#fos_user_registration_form_telPortable').val().trim().length==0 && $('#fos_user_registration_form_telFixe').val().trim().length==0){
+            if($('#user_registration_telPortable').val().trim().length==0 && $('#user_registration_telFixe').val().trim().length==0){
                 if($('#erreurTelephone').prev()[0]==undefined){
-                    $('#fos_user_registration_form_telPortable').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
+                    $('#user_registration_telPortable').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
                 }else{
                     $('#erreurTelephone').show();
                 }
@@ -201,18 +201,18 @@
                 $('#erreurTelephone').hide();
             }
 
-            if($('#fos_user_registration_form_email').val().trim().length==0){
+            if($('#user_registration_email').val().trim().length==0){
                 if($('#erreurEmail').prev()[0]==undefined){
-                    $('#fos_user_registration_form_email').after('<p id="erreurEmail"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_email').after('<p id="erreurEmail"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurEmail').show();
                 }
             }else{
                 $('#erreurEmail').hide();
             }
-            if($('#fos_user_registration_form_username').val().trim().length==0){
+            if($('#user_registration_username').val().trim().length==0){
                 if($('#erreurUsername').prev()[0]==undefined){
-                    $('#fos_user_registration_form_username').after('<p id="erreurUsername"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_username').after('<p id="erreurUsername"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurUsername').show();
                 }
@@ -220,65 +220,45 @@
                 $('#erreurUsername').hide();
             }
 
-            if($('#fos_user_registration_form_plainPassword_first').val().trim().length==0){
-                if($('#erreurPasswordFirst').prev()[0]==undefined){
-                    $('#fos_user_registration_form_plainPassword_first').after('<p id="erreurPasswordFirst"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
-                }else{
-                    $('#erreurPasswordFirst').show();
-                }
-            }else{
-                $('#erreurPasswordFirst').hide();
-            }
-
-            if($('#fos_user_registration_form_plainPassword_second').val().trim().length==0){
-                if($('#erreurPasswordSec').prev()[0]==undefined){
-                    $('#fos_user_registration_form_plainPassword_second').after('<p id="erreurPasswordSec"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
-                }else{
-                    $('#erreurPasswordSec').show();
-                }
-            }else{
-                $('#erreurPasswordSec').hide();
-            }
-
-            if($('#fos_user_registration_form_nom').val().trim().length==0){
+            if($('#user_registration_nom').val().trim().length==0){
                 if($('#erreurNom').prev()[0]==undefined){
-                    $('#fos_user_registration_form_nom').after('<p id="erreurNom"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_nom').after('<p id="erreurNom"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurNom').show();
                 }
             }else{
                 $('#erreurNom').hide();
             }
-            if($('#fos_user_registration_form_prenom').val().trim().length==0){
+            if($('#user_registration_prenom').val().trim().length==0){
                 if($('#erreurPrenom').prev()[0]==undefined){
-                    $('#fos_user_registration_form_prenom').after('<p id="erreurPrenom"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_prenom').after('<p id="erreurPrenom"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurPrenom').show();
                 }
             }else{
                 $('#erreurPrenom').hide();
             }
-            if($('#fos_user_registration_form_adresse_ville').val().trim().length==0){
+            if($('#user_registration_adresse_ville').val().trim().length==0){
                 if($('#erreurVille').prev()[0]==undefined){
-                    $('#fos_user_registration_form_adresse_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_adresse_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurVille').show();
                 }
             }else{
                 $('#erreurVille').hide();
             }
-            if($('#fos_user_registration_form_adresse_adresse').val().trim().length==0){
+            if($('#user_registration_adresse_adresse').val().trim().length==0){
                 if($('#erreurAdresse').prev()[0]==undefined){
-                    $('#fos_user_registration_form_adresse_adresse').after('<p id="erreurAdresse"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_adresse_adresse').after('<p id="erreurAdresse"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurAdresse').show();
                 }
             }else{
                 $('#erreurAdresse').hide();
             }
-            if($('#fos_user_registration_form_adresse_codePostal').val().trim().length==0){
+            if($('#user_registration_adresse_codePostal').val().trim().length==0){
                 if($('#erreurCode').prev()[0]==undefined){
-                    $('#fos_user_registration_form_adresse_codePostal').after('<p id="erreurCode"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
+                    $('#user_registration_adresse_codePostal').after('<p id="erreurCode"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
                 }else{
                     $('#erreurCode').show();
                 }
@@ -352,7 +332,7 @@
     <h1>Modification du bénévole {{ benevole.nom }}</h1>
 
     {{ form(form, {'attr': {'class': 'user_admin_edit'}}) }}
-        <a href="{{ path('user_admin_list') }}" class="btn btn-danger" style="display: inline;float: left;margin-top: -55px; margin-left: calc(50vw - 100px);">Annuler</a>
+        <a href="{{ path('user_admin_list') }}" class="btn btn-danger" style="display: inline;float: left;margin-top: -55px; margin-left: calc(50vw - 95px);">Annuler</a>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">

@@ -591,7 +591,7 @@
         </h2>
 
         {% if liste %}
-            <button type="button" class="btn btn-primary" onclick="imprimer()" style="float: right; margin-right: 20px;"><span class="glyphicon glyphicon-print"></span></button><br>
+            <button type="button" class="imprimente" onclick="imprimer()"><span class="glyphicon glyphicon-print"></span></button><br>
         {% endif %}
 
         {% if onlyMyIntervention %}
@@ -719,10 +719,11 @@
                                 <td data-title="Date">
                                     {% if intervention.dateIntervention %}
                                         {{ intervention.dateIntervention|date("d-m-Y") }}
-                                    {% else %} -
+                                    {% else %}
+                                        <em style="color: #868282">Entre le {{ intervention.demande.dateDebutDisponibilite|date("d-m-Y")  }} et le {{ intervention.demande.dateFinDisponibilite|date("d-m-Y")  }}</em>
                                     {% endif %} </td>
                                 {% if onlyNonAttribues %}
-                                    <td data-title="DateDemande">{{ intervention.demande.dateDemande|date("d-m-Y") }}</td>
+                                    <td data-title="Date Demande">{{ intervention.demande.dateDemande|date("d-m-Y") }}</td>
                                 {% endif %}
                                 <td data-title="Type">
                                         {% if intervention.plaidoyer %}

@@ -415,16 +415,17 @@ class InterventionController extends Controller {
         $repository = $em->getRepository('InterventionBundle:Intervention');
         $intervention = $repository->find($id);
         $user = $this->getUser();
+        $_SESSION['back'] = $_SERVER["HTTP_REFERER"];
 
         $formAttr = $this->get('form.factory')->createBuilder(AttributionType::class)->getForm()->createView();
 
         if ($intervention->isFrimousse()) {
             $idvente = $this->getDoctrine()->getManager()->getRepository("InterventionBundle:Vente")->findOneBy(array('intervention' => $intervention));
-            return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
+            return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr, 'precedentUrl'=>$_SESSION['back']));
         } elseif ($intervention->isPlaidoyer()) {
-            return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
+            return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr, 'precedentUrl'=>$_SESSION['back']));
         } else {
-            return $this->render('InterventionBundle:Intervention/Autre:consultation.htm.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
+            return $this->render('InterventionBundle:Intervention/Autre:consultation.htm.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr, 'precedentUrl'=>$_SESSION['back']));
         }
     }
 

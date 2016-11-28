@@ -181,9 +181,9 @@
                         {text: "Type d'intervention: Autre intervention\n\n", style: ['title']},
                         {% endif %}
                         {% if intervention.realisee %}
-                        {text: "Statut: Réalisée\n\n", style: ['title']},
+                        {text: "Statut: Réalisée par {{ intervention.benevole.prenom |capitalize }} {{ intervention.benevole.nom |capitalize }}\n\n", style: ['title']},
                         {% elseif intervention.benevole %}
-                        {text: "Statut: Attribuée à {{ intervention.benevole.nom | capitalize}} {{ intervention.benevole.prenom | capitalize }}\n\n", style: ['title']},
+                        {text: "Statut: Attribuée à {{ intervention.benevole.prenom | capitalize}} {{ intervention.benevole.nom | capitalize }}\n\n", style: ['title']},
                         {% else %}
                         {text: "Statut: Non Atribuée\n\n", style: ['title']},
                         {% endif %}

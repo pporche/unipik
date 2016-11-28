@@ -3,153 +3,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <style>
-        #etablissement_adresse_ville, #etablissement_nom, #etablissement_adresse_adresse, #etablissement_adresse_complement {
-            text-transform: uppercase;
-        }
-        .twitter-typeahead .tt-query,
-        .twitter-typeahead .tt-hint {
-            margin-bottom: 0;
-        }
-        legend{
-            display: none;
-        }
-        .tt-hint {
-            display: none;
-            width: 100%;
-            height: 43px;
-            padding: 10px 18px;
-            font-size: 14px;
-            line-height: 1.428571429;
-            color: #999;
-            vertical-align: middle;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-        }
-        .tt-menu {
-            min-width: 160px;
-            width: 97%;
-            margin-top: 2px;
-            padding: 5px 0;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border: 1px solid rgba(0, 0, 0, 0.15);
-            border-radius: 4px;
-            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-            background-clip: padding-box;
-            max-height: 150px;
-            overflow-y: auto;
-            margin-left: 10px;
-        }
-        .tt-suggestion {
-            display: block;
-            padding: 3px 20px;
-        }
-        .tt-suggestion.tt-is-under-cursor {
-            color: #fff;
-            background-color: #428bca;
-        }
-        .tt-suggestion.tt-is-under-cursor a {
-            color: #fff;
-        }
-        .tt-suggestion p {
-            margin: 0;
-        }
-
-        @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
-        h1{
-            font-family: 'Ubuntu Condensed', sans-serif;
-            margin-top: 40px;
-        }
-
-        .form-group:first-child{
-            font-family: 'Ubuntu Condensed', sans-serif;
-            font-size: 22px;
-        }
-        #etablissement_emails label{
-            font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
-            font-size: 15px !important;
-        }
-
-        #etablissement label{
-            font-size: 15px !important;
-            font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif;
-        }
-
-        div{
-            box-shadow: none !important;
-        }
-
-        input[type="text"], select{
-            width: 350px !important;
-            margin-left: 10px !important;
-        }
-        input:focus, select:focus{
-            outline: none !important;
-            box-shadow: none !important;
-            border-color: #CCCCCC !important;
-        }
-
-        .btn-default{
-            border-radius: 10px !important;
-            background-color: #3fb618 !important;
-            border-color: #3fb618 !important;
-        }
-
-        hr{
-            margin-top: 0px;
-        }
-
-
-        .btn-primary{
-            margin-left: 30%;
-        }
-
-        .required{
-            display: inline;
-        }
-
-        .emailDiv .col-sm-2{
-            width: 0px !important;
-        }
-
-        .emailDiv .col-sm-10{
-            padding-left: 15px !important;
-        }
-
-        .form-group a{
-            border-radius: 100px !important;
-            line-height : 1em !important;
-            outline: hidden !important;
-            padding-top: 0px !important;
-            padding-bottom: 0px !important;
-        }
-        form{
-            max-width: 450px;
-            margin:auto;
-        }
-        @media(max-width: 767px){
-            h3{
-                margin-left: 10px !important;
-            }
-        }
-
-        h2, h3{
-            font-family: 'Ubuntu Condensed', sans-serif;
-            margin-top: 40px;
-        }
-        h5{
-            font-weight: 600;
-        }
-
-
-    </style>
+    <link rel='stylesheet' href="{{ asset('css/styleFormEtablissement.css') }}"/>
 
 {% endblock %}
 
@@ -303,48 +157,77 @@
             $("#typeCentre").hide().prop("disabled",true);
         }
 
-        $(":submit").on('click', function( e ) {
-            e.preventDefault();
-            var adresse = $("#etablissement_adresse_adresse").val() + ' ' + $('#etablissement_adresse_codePostal').val() + ' ' + $("#etablissement_adresse_ville").val();
-            var previousAdresse = "{{ etablissement.adresse.adresse }} " + "{{ etablissement.adresse.codePostal.code }} " + "{{ etablissement.adresse.ville.nom }}";
-            if (adresse != previousAdresse) {
-                var geolocalisation = '';
-                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + adresse, function (data) {
-                    switch (data.length) {
-                        case 0 :
-                            var ville = $("#etablissement_adresse_ville").val();
-                            //Match numéro département avec nom ?
-                            $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
-                                if (dataVille.length > 0) {
-                                    geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
-                                    $("#etablissement_adresse_geolocalisation").val(geolocalisation);
-                                    $(".etablissement_admin_edit").submit();
-                                }
-                                else {
-                                    //Que fait-on si 0 match ?
-                                }
-                            });
-                            break;
-                        case 1 :
-                            geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
-                            $("#etablissement_adresse_geolocalisation").val(geolocalisation);
-                            $(".etablissement_admin_edit").submit();
-                            break;
-                        default :
-                            var modal_content = "";
-                            data.forEach(function (item) {
-                                var latlon = item["lat"] + "," + item["lon"];
-                                modal_content += "<div class='row'><label class='radio-inline'><input type='radio' name='type' id='" + latlon + "'>" + item["display_name"] + "</label></div>";
-                            });
-                            $('#choices').html(modal_content);
-                            $("input:radio[name=type]:first").attr('checked', true);
-                            $("#myModal").modal('show');
+            $(":submit").on('click', function( e ) {
+                e.preventDefault();
+                if ($('#etablissement_adresse_adresse').val().trim().length==0) {
+                    if($('#erreurAdresse').prev()[0]==undefined){
+                        $('#etablissement_adresse_adresse').after('<p id="erreurAdresse"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
                     }
-                });
-            }
-            else {
-                $(".etablissement_admin_edit").submit();
-            }
+                }
+                else {
+                    if ($('#erreurAdresse').prev()[0] != undefined) {
+                        $('#erreurAdresse').hide();
+                    }
+                    if ($('#etablissement_adresse_ville').val().trim().length == 0) {
+                        if ($('#erreurVille').prev()[0] == undefined) {
+                            $('#etablissement_adresse_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                        }
+                    }
+                    else {
+                        if ($('#erreurVille').prev()[0] != undefined) {
+                            $('#erreurVille').hide();
+                        }
+                        if ($('#etablissement_adresse_codePostal').val().trim().length == 0) {
+                            if ($('#erreurCP').prev()[0] == undefined) {
+                                $('#etablissement_adresse_codePostal').after('<p id="erreurCP"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                            }
+                        } else {
+                            if ($('#erreurCP').prev()[0] != undefined) {
+                                $('#erreurCP').hide();
+                            }
+                            var adresse = $("#etablissement_adresse_adresse").val() + ' ' + $('#etablissement_adresse_codePostal').val() + ' ' + $("#etablissement_adresse_ville").val();
+                            var previousAdresse = "{{ etablissement.adresse.adresse }} " + "{{ etablissement.adresse.codePostal.code }} " + "{{ etablissement.adresse.ville.nom }}";
+                            if (adresse != previousAdresse) {
+                                var geolocalisation = '';
+                                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + adresse, function (data) {
+                                    switch (data.length) {
+                                        case 0 :
+                                            var ville = $("#etablissement_adresse_ville").val();
+                                            //Match numéro département avec nom ?
+                                            $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
+                                                if (dataVille.length > 0) {
+                                                    geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                                                    $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+                                                    $(".etablissement_admin_edit").submit();
+                                                }
+                                                else {
+                                                    //Que fait-on si 0 match ?
+                                                }
+                                            });
+                                            break;
+                                        case 1 :
+                                            geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
+                                            $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+                                            $(".etablissement_admin_edit").submit();
+                                            break;
+                                        default :
+                                            var modal_content = "";
+                                            data.forEach(function (item) {
+                                                var latlon = item["lat"] + "," + item["lon"];
+                                                modal_content += "<div class='row'><label class='radio-inline'><input type='radio' name='type' id='" + latlon + "'>" + item["display_name"] + "</label></div>";
+                                            });
+                                            $('#choices').html(modal_content);
+                                            $("input:radio[name=type]:first").attr('checked', true);
+                                            $("#myModal").modal('show');
+                                    }
+                                });
+                            }
+                            else {
+                                $(".etablissement_admin_edit").submit();
+                            }
+                        }
+                    }
+                }
         });
 
         function setGeolocalisation(content){
@@ -437,6 +320,9 @@
 
 {% block body %}
     <style>
+        input{
+            font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif !important;
+        }
 
         @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
         h1{
@@ -589,7 +475,7 @@
     {{ form_widget(form) }}
     <div>
         <a href="{{ path('etablissement_list') }}" class="btn btn-danger" style="margin-left:calc(50% - 140px)">Annuler</a>
-        <input type="submit" value="Modifier" class="btn btn-primary"/>
+        <input type="submit" value="Modifier" class="btn btn-success"/>
     </div>
 
     {{ form_end(form) }}

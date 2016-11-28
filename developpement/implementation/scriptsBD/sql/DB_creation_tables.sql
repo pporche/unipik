@@ -63,7 +63,7 @@ CREATE DOMAIN domaine_theme AS VARCHAR(:longueurChaineMoyenne)
 CHECK (VALUE IN ('education', 'role unicef', 'sante en generale', 'sante et alimentation', 'eau', 'convention internationale des droits de l enfant', 'enfants et soldats', 'travail des enfants', 'harcelement', 'discrimination', 'millenaire dev', 'VIH et sida', 'urgences mondiales'));
 
 CREATE DOMAIN domaine_email AS VARCHAR(:longueurChaineMoyenne)
-CHECK (VALUE ~ '^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$' );
+CHECK (VALUE ~ '^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$' );
 
 
 CREATE DOMAIN domaine_tel_portable AS VARCHAR(:longueurChaineCourte)
@@ -80,7 +80,7 @@ CREATE DOMAIN domaine_code_postal AS VARCHAR(:longueurChaineCourte)
 CHECK (VALUE ~ '^[0-9]{5}$');
 
 CREATE DOMAIN domaine_type_intervention AS VARCHAR(:longueurChaineCourte)
-CHECK (VALUE IN ('plaidoyers', 'frimousse', 'autre_intervention'));
+CHECK (VALUE IN ('plaidoyer', 'frimousse', 'autre_intervention'));
 
 
 -- il faut rajouter un domaine sur l'UAI d'un établissement (enseignement) --
@@ -141,6 +141,15 @@ CREATE TABLE IF NOT EXISTS moment_hebdomadaire (
 	id SERIAL PRIMARY KEY,
 	jour domaine_jour NOT NULL, 
 	moment domaine_moment_quotidien NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS mailtask (
+	id SERIAL PRIMARY KEY, 
+	name TEXT, 
+	interval INT, 
+	lastrun DATE, 
+	id_etablissement TEXT NOT NULL, 
+	date_insert DATE NOT NULL
 );
 
 

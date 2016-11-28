@@ -932,8 +932,8 @@ class InterventionController extends Controller {
      * Permet d'effectuer le traitement sur l'établissement
      * Si l'établissement modifie les informations les concernant, elle doivent être enregistrées
      *
-     * @param $institute
-     * @param $etablissementRaw
+     * @param Etablissement $institute        L'etablissement
+     * @param String        $etablissementRaw L'etablissement en brut
      *
      * @return void
      */

@@ -514,6 +514,29 @@
                             {%  endif %}
                         </td>
                     </tr>
+                    <tr>
+                        <td><strong>Sam</strong></td>
+                        <td>
+                            {%  if moments['samedi']|length == 1 and moments['samedi'][0]=='matin' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['samedi']|length == 1 and moments['samedi'][0]=='apres-midi' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['samedi']|length == 2 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['samedi']|length == 0   %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             {% endif %}
@@ -529,11 +552,13 @@
             {{ form_widget(form.niveauTheme.niveau, {'value' : intervention.niveauTheme.niveau })  }}
             {{ form_label(form.niveauTheme.theme, "Choix des thèmes") }}
             {{ form_widget(form.niveauTheme.theme.themes, {'value' : intervention.niveauTheme.theme })  }}
+            {{ form_widget(form.description, {'value' : intervention.description, 'attr': {'style': 'display: none'}}) }}
         {% elseif intervention.frimousse %}
             {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveauTheme, {'attr': {'style': 'display: none'}}) }}
             {{ form_label(form.niveau, "Niveau scolaire") }}
             {{ form_widget(form.niveau, {'value' : intervention.niveauFrimousse })  }}
+            {{ form_widget(form.description, {'value' : intervention.description, 'attr': {'style': 'display: none'}}) }}
         {% else %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
@@ -541,8 +566,8 @@
             {{ form_widget(form.niveau, {'attr': {'style': 'display: none'}}) }}
         {% endif %}
         {% if not intervention.plaidoyer and not intervention.frimousse  %}
-        {{ form_label(form.description, 'Description') }}
-        {{ form_widget(form.description, {'value' : intervention.description}) }}
+            {{ form_widget(form.description, {'value' : intervention.description, 'attr': {'style': 'display: none'}}) }}
+            {{ form_label(form.description, 'Description') }}
         {% endif %}
 
 

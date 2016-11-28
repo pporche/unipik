@@ -109,7 +109,9 @@ class InterventionType extends AbstractFieldsetType {
                 'required' => false,
                 )
             )
-            ->add('description', TextareaType::class, array('required' => false));
+            ->add('description', TextareaType::class, array('required' => false))
+            ->add('remarques', TextareaType::class, array('required' => false))
+        ;
     }
 
     /**

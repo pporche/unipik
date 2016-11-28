@@ -238,6 +238,29 @@
                                                         {%  endif %}
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td><strong>Sam</strong></td>
+                                                    <td>
+                                                        {%  if moments['samedi']|length == 1 and moments['samedi'][0]=='matin' %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['samedi']|length == 1 and moments['samedi'][0]=='apres-midi' %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['samedi']|length == 2 %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                    <td>
+                                                        {%  if moments['samedi']|length == 0   %}
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        {%  endif %}
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     {% endif %}

@@ -64,12 +64,9 @@ class InterventionController extends Controller {
         $repository = $this->getInterventionRepository();
 
         $intervention = $repository->find(array('id' => $id));
-
         $form = $this->createForm(InterventionType::class);
 
-        if ($form->handleRequest($request)->isValid()
-            && $request->isMethod('POST')
-        ) {
+        if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
 
             $intervention->setDateIntervention(
@@ -79,49 +76,55 @@ class InterventionController extends Controller {
             $intervention->setLieu($form->get('lieu')->getData());
             $intervention->setNbPersonne($form->get('nbPersonne')->getData());
 
-            if ($intervention->isFrimousse()) {
+            // Gestion des matériaux en fonction des types
+            if ($intervention->getTypeIntervention() == "frimousse") {
                 $intervention->removeAllMateriauxFrimousse();
                 $materiauxData = $form->get('materiauxFrimousse')->getData();
-                foreach (reset($materiauxData) as $mat) {
-                    $intervention->addMateriauxFrimousse($mat);
-                }
+                if(reset($materiauxData)) {
+                    foreach (reset($materiauxData) as $mat)
+                        $intervention->addMateriauxFrimousse($mat);
+                } else
+                    $intervention->setMateriauxFrimousse(null);
+
                 $niveauFrimousse = $form->get('niveau')->getData();
                 $intervention->setNiveauFrimousse($niveauFrimousse);
-            } elseif ($intervention->isPlaidoyer()) {
+            } elseif ($intervention->getTypeIntervention() == "plaidoyer") {
                 $intervention->removeAllMaterielDispoPlaidoyer();
                 $materiauxData = $form->get('materielDispoPlaidoyer')->getData();
-                foreach (reset($materiauxData) as $mat) {
-                    $intervention->addMaterielDispoPlaidoyer($mat);
-                }
+                if(reset($materiauxData)) {
+                    foreach (reset($materiauxData) as $mat)
+                        $intervention->addMaterielDispoPlaidoyer($mat);
+                } else
+                    $intervention->setMaterielDispoPlaidoyer(null);
 
                 $repositoryTheme = $em->getRepository("ArchitectureBundle:NiveauTheme");
                 $themeArray = $form->get('niveauTheme')->get('theme')->getData();
                 $theme = reset($themeArray);
+                var_dump($form->get('niveauTheme')->get('niveau')->getData());
                 $niveauTheme = $repositoryTheme->findOneBy(
                     array("theme" => $theme,
                     "niveau" => $form->get('niveauTheme')->get('niveau')->getData()
                     )
                 );
                 $intervention->setNiveauTheme($niveauTheme);
-            } else {
-                $materiauxData = array();
             }
 
+            // Gestion des heures
             $heure = $form->get('heure')->get('hour')->getData();
             $minute = $form->get('heure')->get('minute')->getData();
-            if(isset($heure) && isset($minute)){
+            if(isset($heure) && isset($minute)) {
                 $heure = sprintf("%02d", $heure);
                 $minute = sprintf("%02d", $minute);
                 $heure .= ":".$minute;
-            } else {
+            } else
                 $heure = null;
-            }
-
-
             $intervention->setHeure($heure);
+
             $description = $form->get('description')->getData();
             $intervention->setDescription($description);
 
+            $remarques = $form->get('remarques')->getData();
+            $intervention->setRemarques($remarques);
 
             $em->persist($intervention);
             $em->flush();
@@ -146,6 +149,7 @@ class InterventionController extends Controller {
         $moments['mercredi'] = array();
         $moments['jeudi'] = array();
         $moments['vendredi'] = array();
+        $moments['samedi'] = array();
         foreach($momentsVoulus as $mv) {
             array_push($moments, array_push($moments[$mv->getJour()], $mv->getMoment()));
         }
@@ -448,6 +452,7 @@ class InterventionController extends Controller {
         $moments['mercredi'] = array();
         $moments['jeudi'] = array();
         $moments['vendredi'] = array();
+        $moments['samedi'] = array();
         foreach($momentsVoulus as $mv) {
             array_push($moments, array_push($moments[$mv->getJour()], $mv->getMoment()));
         }

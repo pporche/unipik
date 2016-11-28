@@ -93,9 +93,9 @@ class MailController extends Controller {
                 $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, null, $ville) : array();
                 $ids = array_merge($institutesArray, $centersArray, $othersArray);
             } else if ($relance == 'relancePlaidoyer') { // Les établissements qui ont pas fait de demande  de plaidoyers durant cette année scolaire
-                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement',$typeInstitute, 'plaidoyers', $ville) : array();
-                $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, 'plaidoyers', $ville) : array();
-                $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, 'plaidoyers', $ville) : array();
+                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement',$typeInstitute, 'plaidoyer', $ville) : array();
+                $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, 'plaidoyer', $ville) : array();
+                $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, 'plaidoyer', $ville) : array();
                 $ids = array_merge($institutesArray, $centersArray, $othersArray);
             } else { // Les établissements en général
                 $institutesArray = !empty($typeInstitute) ? $repository->getType("enseignement", $typeInstitute, $ville, null, null) : array();

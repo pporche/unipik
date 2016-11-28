@@ -44,7 +44,7 @@ SET search_path = public, pg_catalog;
 --
 
 CREATE DOMAIN domaine_activite AS character varying(30)
-	CONSTRAINT domaine_activite_check CHECK (((VALUE)::text = ANY ((ARRAY['actions_ponctuelles'::character varying, 'plaidoyers'::character varying, 'frimousses'::character varying, 'projets'::character varying, 'autre'::character varying])::text[])));
+	CONSTRAINT domaine_activite_check CHECK (((VALUE)::text = ANY (ARRAY[('actions_ponctuelles'::character varying)::text, ('plaidoyers'::character varying)::text, ('frimousses'::character varying)::text, ('projets'::character varying)::text, ('autre'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_activite OWNER TO unipik;
@@ -64,7 +64,7 @@ ALTER DOMAIN public.domaine_code_postal OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_email AS character varying(100)
-	CONSTRAINT domaine_email_check CHECK (((VALUE)::text ~ '^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$'::text));
+	CONSTRAINT domaine_email_check CHECK (((VALUE)::text ~ '^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$'::text));
 
 
 ALTER DOMAIN public.domaine_email OWNER TO unipik;
@@ -94,7 +94,7 @@ ALTER DOMAIN public.domaine_heure OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_jour AS character varying(30)
-	CONSTRAINT domaine_jour_check CHECK (((VALUE)::text = ANY ((ARRAY['lundi'::character varying, 'mardi'::character varying, 'mercredi'::character varying, 'jeudi'::character varying, 'vendredi'::character varying, 'samedi'::character varying])::text[])));
+	CONSTRAINT domaine_jour_check CHECK (((VALUE)::text = ANY (ARRAY[('lundi'::character varying)::text, ('mardi'::character varying)::text, ('mercredi'::character varying)::text, ('jeudi'::character varying)::text, ('vendredi'::character varying)::text, ('samedi'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_jour OWNER TO unipik;
@@ -104,7 +104,7 @@ ALTER DOMAIN public.domaine_jour OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_materiel_frimousse AS character varying(30)
-	CONSTRAINT domaine_materiel_frimousse_check CHECK (((VALUE)::text = ANY ((ARRAY['patron'::character varying, 'bourre'::character varying, 'decoration'::character varying])::text[])));
+	CONSTRAINT domaine_materiel_frimousse_check CHECK (((VALUE)::text = ANY (ARRAY[('patron'::character varying)::text, ('bourre'::character varying)::text, ('decoration'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_materiel_frimousse OWNER TO unipik;
@@ -114,7 +114,7 @@ ALTER DOMAIN public.domaine_materiel_frimousse OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_materiel_plaidoyer AS character varying(30)
-	CONSTRAINT domaine_materiel_plaidoyer_check CHECK (((VALUE)::text = ANY ((ARRAY['videoprojecteur'::character varying, 'tableau interactif'::character varying, 'enceinte'::character varying, 'autre'::character varying])::text[])));
+	CONSTRAINT domaine_materiel_plaidoyer_check CHECK (((VALUE)::text = ANY (ARRAY[('videoprojecteur'::character varying)::text, ('tableau interactif'::character varying)::text, ('enceinte'::character varying)::text, ('autre'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_materiel_plaidoyer OWNER TO unipik;
@@ -124,7 +124,7 @@ ALTER DOMAIN public.domaine_materiel_plaidoyer OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_moment_quotidien AS character varying(30)
-	CONSTRAINT domaine_moment_quotidien_check CHECK (((VALUE)::text = ANY ((ARRAY['matin'::character varying, 'apres-midi'::character varying, 'soir'::character varying])::text[])));
+	CONSTRAINT domaine_moment_quotidien_check CHECK (((VALUE)::text = ANY (ARRAY[('matin'::character varying)::text, ('apres-midi'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_moment_quotidien OWNER TO unipik;
@@ -134,7 +134,7 @@ ALTER DOMAIN public.domaine_moment_quotidien OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_niveau_scolaire_complet AS character varying(30)
-	CONSTRAINT domaine_niveau_scolaire_complet_check CHECK (((VALUE)::text = ANY ((ARRAY['petite section'::character varying, 'petite-moyenne section'::character varying, 'moyenne section'::character varying, 'moyenne-grande section'::character varying, 'grande section'::character varying, 'petite-moyenne-grande section'::character varying, 'CP'::character varying, 'CP-CE1'::character varying, 'CE1'::character varying, 'CE1-CE2'::character varying, 'CE2'::character varying, 'CE2-CM1'::character varying, 'CM1'::character varying, 'CM1-CM2'::character varying, 'CM2'::character varying, '6eme'::character varying, '5eme'::character varying, '4eme'::character varying, '3eme'::character varying, '2nde'::character varying, '1ere'::character varying, 'terminale'::character varying, 'L1'::character varying, 'L2'::character varying, 'L3'::character varying, 'M1'::character varying, 'M2'::character varying, 'autre'::character varying])::text[])));
+	CONSTRAINT domaine_niveau_scolaire_complet_check CHECK (((VALUE)::text = ANY (ARRAY[('petite section'::character varying)::text, ('petite-moyenne section'::character varying)::text, ('moyenne section'::character varying)::text, ('moyenne-grande section'::character varying)::text, ('grande section'::character varying)::text, ('petite-moyenne-grande section'::character varying)::text, ('CP'::character varying)::text, ('CP-CE1'::character varying)::text, ('CE1'::character varying)::text, ('CE1-CE2'::character varying)::text, ('CE2'::character varying)::text, ('CE2-CM1'::character varying)::text, ('CM1'::character varying)::text, ('CM1-CM2'::character varying)::text, ('CM2'::character varying)::text, ('6eme'::character varying)::text, ('5eme'::character varying)::text, ('4eme'::character varying)::text, ('3eme'::character varying)::text, ('2nde'::character varying)::text, ('1ere'::character varying)::text, ('terminale'::character varying)::text, ('L1'::character varying)::text, ('L2'::character varying)::text, ('L3'::character varying)::text, ('M1'::character varying)::text, ('M2'::character varying)::text, ('autre'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_niveau_scolaire_complet OWNER TO unipik;
@@ -144,7 +144,7 @@ ALTER DOMAIN public.domaine_niveau_scolaire_complet OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_niveau_scolaire_limite AS character varying(30)
-	CONSTRAINT domaine_niveau_scolaire_limite_check CHECK (((VALUE)::text = ANY ((ARRAY['CP'::character varying, 'CP-CE1'::character varying, 'CE1'::character varying, 'CE1-CE2'::character varying, 'CE2'::character varying, 'CE2-CM1'::character varying, 'CM1'::character varying, 'CM1-CM2'::character varying, 'CM2'::character varying, 'autre'::character varying])::text[])));
+	CONSTRAINT domaine_niveau_scolaire_limite_check CHECK (((VALUE)::text = ANY (ARRAY[('CP'::character varying)::text, ('CP-CE1'::character varying)::text, ('CE1'::character varying)::text, ('CE1-CE2'::character varying)::text, ('CE2'::character varying)::text, ('CE2-CM1'::character varying)::text, ('CM1'::character varying)::text, ('CM1-CM2'::character varying)::text, ('CM2'::character varying)::text, ('autre'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_niveau_scolaire_limite OWNER TO unipik;
@@ -154,20 +154,10 @@ ALTER DOMAIN public.domaine_niveau_scolaire_limite OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_reponsabilite_activite AS character varying(30)
-	CONSTRAINT domaine_reponsabilite_activite_check CHECK (((VALUE)::text = ANY ((ARRAY['actions_ponctuelles'::character varying, 'plaidoyers'::character varying, 'frimousses'::character varying, 'projets'::character varying, 'admin_region'::character varying, 'admin_comite'::character varying])::text[])));
+	CONSTRAINT domaine_reponsabilite_activite_check CHECK (((VALUE)::text = ANY (ARRAY[('actions_ponctuelles'::character varying)::text, ('plaidoyers'::character varying)::text, ('frimousses'::character varying)::text, ('projets'::character varying)::text, ('admin_region'::character varying)::text, ('admin_comite'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_reponsabilite_activite OWNER TO unipik;
-
---
--- Name: domaine_semaine; Type: DOMAIN; Schema: public; Owner: unipik
---
-
-CREATE DOMAIN domaine_semaine AS integer
-	CONSTRAINT domaine_semaine_check CHECK (((VALUE < 54) AND (VALUE > 0)));
-
-
-ALTER DOMAIN public.domaine_semaine OWNER TO unipik;
 
 --
 -- Name: domaine_tel_fixe; Type: DOMAIN; Schema: public; Owner: unipik
@@ -194,7 +184,7 @@ ALTER DOMAIN public.domaine_tel_portable OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_theme AS character varying(100)
-	CONSTRAINT domaine_theme_check CHECK (((VALUE)::text = ANY ((ARRAY['convention internationale des droits de l enfant'::character varying, 'education'::character varying, 'sante en generale'::character varying, 'sante et alimentation'::character varying, 'VIH et sida'::character varying, 'eau'::character varying, 'urgences mondiales'::character varying, 'travail des enfants'::character varying, 'enfants et soldats'::character varying, 'harcelement'::character varying, 'role de l Unicef'::character varying, 'millenaire pour le developpement'::character varying])::text[])));
+	CONSTRAINT domaine_theme_check CHECK (((VALUE)::text = ANY (ARRAY[('education'::character varying)::text, ('role unicef'::character varying)::text, ('sante en generale'::character varying)::text, ('sante et alimentation'::character varying)::text, ('eau'::character varying)::text, ('convention internationale des droits de l enfant'::character varying)::text, ('enfants et soldats'::character varying)::text, ('travail des enfants'::character varying)::text, ('harcelement'::character varying)::text, ('discrimination'::character varying)::text, ('millenaire dev'::character varying)::text, ('VIH et sida'::character varying)::text, ('urgences mondiales'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_theme OWNER TO unipik;
@@ -204,7 +194,7 @@ ALTER DOMAIN public.domaine_theme OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_type_autre_etablissement AS character varying(30)
-	CONSTRAINT domaine_type_autre_etablissement_check CHECK (((VALUE)::text = ANY ((ARRAY['mairie'::character varying, 'maison de retraite'::character varying, 'autre'::character varying])::text[])));
+	CONSTRAINT domaine_type_autre_etablissement_check CHECK (((VALUE)::text = ANY (ARRAY[('mairie'::character varying)::text, ('maison de retraite'::character varying)::text, ('autre'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_type_autre_etablissement OWNER TO unipik;
@@ -214,7 +204,7 @@ ALTER DOMAIN public.domaine_type_autre_etablissement OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_type_centre AS character varying(30)
-	CONSTRAINT domaine_type_centre_check CHECK (((VALUE)::text = ANY ((ARRAY['maternelle'::character varying, 'elementaire'::character varying, 'adolescent'::character varying, 'autre'::character varying])::text[])));
+	CONSTRAINT domaine_type_centre_check CHECK (((VALUE)::text = ANY (ARRAY[('maternelle'::character varying)::text, ('elementaire'::character varying)::text, ('adolescent'::character varying)::text, ('autre'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_type_centre OWNER TO unipik;
@@ -224,7 +214,7 @@ ALTER DOMAIN public.domaine_type_centre OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_type_contact AS character varying(30)
-	CONSTRAINT domaine_type_contact_check CHECK (((VALUE)::text = ANY ((ARRAY['enseignant'::character varying, 'animateur'::character varying, 'eleve'::character varying, 'etudiant'::character varying, 'autre'::character varying])::text[])));
+	CONSTRAINT domaine_type_contact_check CHECK (((VALUE)::text = ANY (ARRAY[('enseignant'::character varying)::text, ('animateur'::character varying)::text, ('eleve'::character varying)::text, ('etudiant'::character varying)::text, ('autre'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_type_contact OWNER TO unipik;
@@ -234,17 +224,27 @@ ALTER DOMAIN public.domaine_type_contact OWNER TO unipik;
 --
 
 CREATE DOMAIN domaine_type_enseignement AS character varying(30)
-	CONSTRAINT domaine_type_enseignement_check CHECK (((VALUE)::text = ANY ((ARRAY['maternelle'::character varying, 'elementaire'::character varying, 'college'::character varying, 'lycee'::character varying, 'superieur'::character varying])::text[])));
+	CONSTRAINT domaine_type_enseignement_check CHECK (((VALUE)::text = ANY (ARRAY[('maternelle'::character varying)::text, ('elementaire'::character varying)::text, ('college'::character varying)::text, ('lycee'::character varying)::text, ('superieur'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_type_enseignement OWNER TO unipik;
+
+--
+-- Name: domaine_type_intervention; Type: DOMAIN; Schema: public; Owner: unipik
+--
+
+CREATE DOMAIN domaine_type_intervention AS character varying(30)
+	CONSTRAINT domaine_type_intervention_check CHECK (((VALUE)::text = ANY (ARRAY[('plaidoyer'::character varying)::text, ('frimousse'::character varying)::text, ('autre_intervention'::character varying)::text])));
+
+
+ALTER DOMAIN public.domaine_type_intervention OWNER TO unipik;
 
 --
 -- Name: domaine_type_projet; Type: DOMAIN; Schema: public; Owner: unipik
 --
 
 CREATE DOMAIN domaine_type_projet AS character varying(30)
-	CONSTRAINT domaine_type_projet_check CHECK (((VALUE)::text = ANY ((ARRAY['primaire'::character varying, 'college'::character varying, 'lycee'::character varying, 'superieur'::character varying])::text[])));
+	CONSTRAINT domaine_type_projet_check CHECK (((VALUE)::text = ANY (ARRAY[('primaire'::character varying)::text, ('college'::character varying)::text, ('lycee'::character varying)::text, ('superieur'::character varying)::text])));
 
 
 ALTER DOMAIN public.domaine_type_projet OWNER TO unipik;
@@ -305,26 +305,163 @@ CREATE TYPE type_responsabilite_activite AS (
 ALTER TYPE public.type_responsabilite_activite OWNER TO unipik;
 
 --
--- Name: type_semaine; Type: TYPE; Schema: public; Owner: unipik
+-- Name: ajouter_activites_potentielles_benevole(); Type: FUNCTION; Schema: public; Owner: unipik
 --
 
-CREATE TYPE type_semaine AS (
-	semaine domaine_semaine
-);
+CREATE FUNCTION ajouter_activites_potentielles_benevole() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+	DECLARE 
+	responsabilites VARCHAR(100);
+	activites VARCHAR(100);
+	chaine_activites type_activite[];
+    BEGIN
+    	SELECT responsabilite_activite INTO responsabilites FROM benevole WHERE id = NEW.id ;
+    	SELECT activites_potentielles INTO activites FROM benevole WHERE id = NEW.id ;
+    	-- plaidoyers
+    	IF responsabilites LIKE '%plaidoyers%' THEN 
+    		IF activites IS NULL THEN 
+    			chaine_activites = '{(plaidoyers)}';
+    		ELSE 
+    			IF activites NOT LIKE '%plaidoyers%' THEN 
+    				SELECT SUBSTR(activites, 1, length(activites)-1) INTO activites;
+    				SELECT RPAD(activites, length(activites)+length(',(plaidoyers)}'), ',(plaidoyers)}')  INTO chaine_activites ;
+    			ELSE 
+    				chaine_activites = activites ; 
+    			END IF;
+    		END IF;	
+			UPDATE benevole SET activites_potentielles = chaine_activites
+				WHERE id = NEW.id;
+    	END IF;
+    	SELECT responsabilite_activite INTO responsabilites FROM benevole WHERE id = NEW.id ;
+    	SELECT activites_potentielles INTO activites FROM benevole WHERE id = NEW.id ;
+    	-- frimousses
+    	IF responsabilites LIKE '%frimousses%' THEN 
+    		IF activites IS NULL THEN 
+    			chaine_activites = '{(frimousses)}';
+    		ELSE 
+    			IF activites NOT LIKE '%frimousses%' THEN 
+    				SELECT SUBSTR(activites, 1, length(activites)-1) INTO activites;
+    				SELECT RPAD(activites, length(activites)+length(',(frimousses)}'), ',(frimousses)}')  INTO chaine_activites ;
+    			ELSE 
+    				chaine_activites = activites ; 
+    			END IF;
+    		END IF;	
+			UPDATE benevole SET activites_potentielles = chaine_activites
+				WHERE id = NEW.id;
+    	END IF;
+    	SELECT responsabilite_activite INTO responsabilites FROM benevole WHERE id = NEW.id ;
+    	SELECT activites_potentielles INTO activites FROM benevole WHERE id = NEW.id ;
+    	-- actions ponctuelles
+    	IF responsabilites LIKE '%actions_ponctuelles%' THEN 
+    		IF activites IS NULL THEN 
+    			chaine_activites = '{(actions_ponctuelles)}';
+    		ELSE 
+    			IF activites NOT LIKE '%actions_ponctuelles%' THEN 
+    				SELECT SUBSTR(activites, 1, length(activites)-1) INTO activites;
+    				SELECT RPAD(activites, length(activites)+length(',(actions_ponctuelles)}'), ',(actions_ponctuelles)}')  INTO chaine_activites ;
+    			ELSE 
+    				chaine_activites = activites ; 
+    			END IF;
+    		END IF;	
+			UPDATE benevole SET activites_potentielles = chaine_activites
+				WHERE id = NEW.id;
+    	END IF;
+    	SELECT responsabilite_activite INTO responsabilites FROM benevole WHERE id = NEW.id ;
+    	SELECT activites_potentielles INTO activites FROM benevole WHERE id = NEW.id ;
+    	-- projets
+    	IF responsabilites LIKE '%projets%' THEN 
+    		IF activites IS NULL THEN 
+    			chaine_activites = '{(projets)}';
+    		ELSE 
+    			IF activites NOT LIKE '%projets%' THEN 
+    				SELECT SUBSTR(activites, 1, length(activites)-1) INTO activites;
+    				SELECT RPAD(activites, length(activites)+length(',(projets)}'), ',(projets)}')  INTO chaine_activites ;
+    			ELSE 
+    				chaine_activites = activites ; 
+    			END IF;
+    		END IF;	
+			UPDATE benevole SET activites_potentielles = chaine_activites
+				WHERE id = NEW.id;
+    	END IF;
+        RETURN NEW;
+    END;
+$$;
 
 
-ALTER TYPE public.type_semaine OWNER TO unipik;
+ALTER FUNCTION public.ajouter_activites_potentielles_benevole() OWNER TO unipik;
 
 --
--- Name: recupererprojets(integer); Type: FUNCTION; Schema: public; Owner: unipik
+-- Name: inserer_intervention(); Type: FUNCTION; Schema: public; Owner: unipik
 --
 
-CREATE FUNCTION recupererprojets(integer) RETURNS SETOF integer
-    LANGUAGE sql
-    AS $_$select projet_id from benevole_projet where benevole_id = $1 ;$_$;
+CREATE FUNCTION inserer_intervention() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+	DECLARE 
+	BEGIN
+
+	RETURN NEW;
+	END;
+$$;
 
 
-ALTER FUNCTION public.recupererprojets(integer) OWNER TO unipik;
+ALTER FUNCTION public.inserer_intervention() OWNER TO unipik;
+
+--
+-- Name: modifier_benevole_fictif(); Type: FUNCTION; Schema: public; Owner: unipik
+--
+
+CREATE FUNCTION modifier_benevole_fictif() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $_$
+	DECLARE 
+		benevole_fictif_id int;
+    BEGIN
+    	SELECT id INTO benevole_fictif_id FROM benevole WHERE username = 'anonyme' ;
+    	IF benevole_fictif_id IS NULL THEN 
+    		INSERT INTO benevole (username, username_canonical, email, email_canonical, enabled, salt, password, last_login, locked, expired, expires_at, confirmation_token, password_requested_at, roles, credentials_expired, credentials_expire_at, nom, prenom, tel_fixe, tel_portable,adresse_id) VALUES ('anonyme', 'xxxxxx', 'xxxxxx@xxxxxx.xxxxxx', 'xxxxxx@xxxxxx.xxxxxx', true, '3ar576dvu76soswskk8gwsks8cgkg44', '$2y$13$iUW6/KVzaux5HD0rVkpAq.MJyyKEo8XdKBdFe/DRJKobRauMal3Um', NULL, false, false, NULL, NULL, NULL, 'a:0:{}', false, NULL,'anonyme','benevole','0000000000','0000000000',1);
+    		SELECT id INTO benevole_fictif_id FROM benevole WHERE username = 'anonyme' ;
+    	END IF;
+        UPDATE intervention SET  benevole_id = benevole_fictif_id
+          WHERE  benevole_id = OLD.id;
+        UPDATE benevole_projet SET  benevole_id = benevole_fictif_id
+          WHERE  benevole_id = OLD.id;
+        RETURN OLD;
+    END;
+$_$;
+
+
+ALTER FUNCTION public.modifier_benevole_fictif() OWNER TO unipik;
+
+--
+-- Name: modifier_etablissement_fictif(); Type: FUNCTION; Schema: public; Owner: unipik
+--
+
+CREATE FUNCTION modifier_etablissement_fictif() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+	DECLARE 
+		adresse_id int;
+		etablissement_fictif_id int;
+    BEGIN
+    	SELECT id INTO etablissement_fictif_id FROM etablissement WHERE nom = 'etablissement fictif' ;
+    	IF etablissement_fictif_id IS NULL THEN 
+    		INSERT INTO adresse (adresse, ville_id, code_postal_id) VALUES ('adresse de l''etablissement fictif', '1','1');   
+    		SELECT id INTO adresse_id FROM adresse WHERE adresse = 'adresse de l''etablissement fictif' ;
+			INSERT INTO etablissement (nom, adresse_id, emails) VALUES ('etablissement fictif', adresse_id, '{(email-etablissement-fictif@fausse.fr)}');    		
+			SELECT id INTO etablissement_fictif_id FROM etablissement WHERE nom = 'etablissement fictif' ;
+    	END IF;
+        UPDATE intervention SET  etablissement_id = etablissement_fictif_id
+          WHERE  etablissement_id = OLD.id;
+        UPDATE vente SET  etablissement_id = etablissement_fictif_id
+          WHERE  etablissement_id = OLD.id;
+        RETURN OLD;
+    END;
+$$;
+
+
+ALTER FUNCTION public.modifier_etablissement_fictif() OWNER TO unipik;
 
 SET default_tablespace = '';
 
@@ -432,6 +569,7 @@ CREATE TABLE intervention (
     remarques character varying(500) DEFAULT NULL::character varying,
     heure domaine_heure DEFAULT NULL::character varying,
     realisee boolean NOT NULL,
+    type_intervention domaine_type_intervention NOT NULL,
     niveau_theme_id integer,
     materiel_dispo_plaidoyer type_materiel_plaidoyer[],
     niveau_frimousse domaine_niveau_scolaire_limite,
@@ -601,7 +739,8 @@ ALTER SEQUENCE code_postal_id_seq OWNED BY code_postal.id;
 --
 
 CREATE TABLE comite (
-    id integer NOT NULL
+    id integer NOT NULL,
+    nom character varying(100) NOT NULL
 );
 
 
@@ -701,7 +840,10 @@ CREATE TABLE demande (
     id integer NOT NULL,
     contact_id integer NOT NULL,
     date_demande date NOT NULL,
-    liste_semaine type_semaine[] NOT NULL
+    date_debut_disponibilite date NOT NULL,
+    date_fin_disponibilite date NOT NULL,
+    CONSTRAINT demande_check CHECK ((date_demande <= date_debut_disponibilite)),
+    CONSTRAINT demande_check1 CHECK ((date_debut_disponibilite <= date_fin_disponibilite))
 );
 
 
@@ -872,6 +1014,43 @@ ALTER SEQUENCE intervention_id_seq OWNED BY intervention.id;
 
 
 --
+-- Name: mailtask; Type: TABLE; Schema: public; Owner: unipik; Tablespace: 
+--
+
+CREATE TABLE mailtask (
+    id integer NOT NULL,
+    name text,
+    "interval" integer,
+    lastrun date,
+    id_etablissement text NOT NULL,
+    date_insert date NOT NULL
+);
+
+
+ALTER TABLE public.mailtask OWNER TO unipik;
+
+--
+-- Name: mailtask_id_seq; Type: SEQUENCE; Schema: public; Owner: unipik
+--
+
+CREATE SEQUENCE mailtask_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.mailtask_id_seq OWNER TO unipik;
+
+--
+-- Name: mailtask_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: unipik
+--
+
+ALTER SEQUENCE mailtask_id_seq OWNED BY mailtask.id;
+
+
+--
 -- Name: moment_hebdomadaire; Type: TABLE; Schema: public; Owner: unipik; Tablespace: 
 --
 
@@ -911,8 +1090,8 @@ ALTER SEQUENCE moment_hebdomadaire_id_seq OWNED BY moment_hebdomadaire.id;
 
 CREATE TABLE niveau_theme (
     id integer NOT NULL,
-    niveau domaine_niveau_scolaire_complet,
-    theme domaine_theme
+    niveau domaine_niveau_scolaire_complet NOT NULL,
+    theme domaine_theme NOT NULL
 );
 
 
@@ -945,7 +1124,8 @@ ALTER SEQUENCE niveau_theme_id_seq OWNED BY niveau_theme.id;
 
 CREATE TABLE participe (
     projet_id integer NOT NULL,
-    contact_id integer NOT NULL
+    contact_id integer NOT NULL,
+    est_tuteur boolean NOT NULL
 );
 
 
@@ -1036,7 +1216,7 @@ CREATE TABLE projet (
     id integer NOT NULL,
     chiffre_affaire double precision NOT NULL,
     remarques character varying(500) DEFAULT NULL::character varying,
-    type domaine_type_projet NOT NULL,
+    type_projet domaine_type_projet NOT NULL,
     nom character varying(100) NOT NULL
 );
 
@@ -1247,6 +1427,13 @@ ALTER TABLE ONLY intervention ALTER COLUMN id SET DEFAULT nextval('intervention_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: unipik
 --
 
+ALTER TABLE ONLY mailtask ALTER COLUMN id SET DEFAULT nextval('mailtask_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: unipik
+--
+
 ALTER TABLE ONLY moment_hebdomadaire ALTER COLUMN id SET DEFAULT nextval('moment_hebdomadaire_id_seq'::regclass);
 
 
@@ -1297,1583 +1484,1585 @@ ALTER TABLE ONLY ville ALTER COLUMN id SET DEFAULT nextval('ville_id_seq'::regcl
 --
 
 COPY adresse (id, adresse, complement, ville_id, code_postal_id, geolocalisation) FROM stdin;
-755	71 RUE EDMOND ROSTAND	\N	29072	4808	0101000020E6100000C8CEF72D1C83BC3F9D2CB5DEEFC14840
-72	RUE FRANCIS YARD	\N	28998	4794	0101000020E61000004BDD9DCE788FEE3FD53A589CBDC54840
-7	PLACE EVODE CHEVALIER	\N	29201	4822	\N
-35	185 RUE DE LA MAIRIE	\N	29110	4813	0101000020E610000050949828C189D73FE0D6DD3C55D74840
-22	76 ROUTE DE DIEPPE	\N	29446	4832	0101000020E6100000A88E132EFDFEFC3F395BC4A0E1EA4840
-11	2 RUE NOTRE DAME	\N	29203	4823	\N
-59	RUE JULES MOREL	\N	29217	4827	0101000020E6100000291A10C6F409F93F5A86B49DA1E44840
-14	8 RUE DES ECOLES	\N	29107	4814	\N
-84	52 AVENUE ARISTIDE BRIAND	\N	28998	4794	0101000020E61000002D436879289EEE3FD00D4DD969C54840
-21	RUE DES ECOLES	\N	28995	4792	\N
-125	1 RUE DE VERDUN	\N	28941	4773	0101000020E61000009C6A281389E2F13FDF23933A9EBA4840
-24	76 ROUTE DE DIEPPE	\N	29446	4832	\N
-126	15 RUE PHILIBERT CAUX	\N	28941	4773	0101000020E61000003B9E0B2D2FD4F13F7E449FD1CEBA4840
-37	RUE EMMANUEL LECOEUR	\N	29208	4826	0101000020E6100000DFF4575DC1C5F13F5A21F6532DDB4840
-28	9 RUE DU MONT SAUVEUR	\N	29448	4778	\N
-39	RUE HENRY DUNANT	\N	29451	4848	0101000020E6100000FCECC4088801FC3FEAF349D513E34840
-1577	Rue Saint Nicolas	\N	28937	4769	\N
-45	108 RUE LEMARINIER	\N	29209	4827	\N
-48	5 ALLEE DES TISSERANDS	\N	29212	4796	\N
 50	ROUTE DE CAUDEBEC	\N	29213	4796	\N
-51	309 RUE DE L EGLISE	\N	29213	4796	\N
-58	CROIX LORGERIE	\N	29216	4827	\N
-66	2 RUE DES ECOLES	\N	29377	4838	\N
-69	RUE DE L ECOLE	\N	28997	4792	\N
-82	76 AVENUE ARISTIDE BRIAND	\N	28998	4794	\N
 85	AVENUE ANDRE MAUROIS	\N	28998	4794	\N
-94	PLACE DU COMMANDANT SCHLOESING	\N	29460	4851	\N
-96	51 ROUTE DE LA VALLEE	\N	29112	4813	\N
-98	RUE DU GENERAL DE GAULLE	\N	28940	4772	\N
-100	ROUTE DE LA HEUZE	\N	29461	4847	\N
-103	PLACE DE LA MAIRIE	\N	29379	4836	\N
-110	VILLAGE	\N	29056	4805	\N
-114	RUE DU VILLAGE	\N	29000	4792	\N
-116	VILLAGE	\N	29001	4796	\N
-121	PLACE DE LA MAIRIE	\N	29058	4805	\N
-123	11 RUE DE L EGLISE	\N	29464	4851	\N
-131	15 RUE PHILIBERT CAUX	\N	28941	4773	\N
-132	RUE GEORGES MELIÈS	\N	28941	4773	\N
-134	ALLEE RENE COTY	\N	28941	4773	\N
-135	15 RUE PHILIBERT CAUX	\N	28941	4773	\N
-43	1 RUE HENRI DUNANT	\N	29451	4848	0101000020E61000008D0A0EC2EB01FC3F7A3FC978EFE24840
+44	108 RUE LEMARINIER	\N	29209	4827	0101000020E6100000F86D11E3F873F03FBF092A4F45EA4840
+120	PLACE DE LA MAIRIE	\N	29058	4805	0101000020E61000006FCE90432728E13FB3FC2BF121C94840
+74	76 AVENUE ARISTIDE BRIAND	\N	28998	4794	0101000020E61000009D26B25D419DEE3F35F3817047C54840
+10	2 RUE NOTRE DAME	\N	29203	4823	0101000020E6100000A1208D17C6FEEE3F67697E6741D44840
+47	5 ALLEE DES TISSERANDS	\N	29212	4796	0101000020E6100000D5F7F6BB6B41E73FF914DFD430D34840
+20	RUE DES ECOLES	\N	28995	4792	0101000020E61000007B4F6635BD41EC3F20B5CBAF4DBB4840
+113	RUE DU VILLAGE	\N	29000	4792	0101000020E6100000B8F320E48CD6EC3FF8C4D72A83BC4840
+94	PLACE DU COMMANDANT SCHLOESING	\N	29460	4851	0101000020E610000063F2BFC26D60F93FD721ED3573C04840
+95	51 ROUTE DE LA VALLEE	\N	29112	4813	0101000020E61000009B2ECBA47493DC3FFC4685FB12DA4840
+97	RUE DU GENERAL DE GAULLE	\N	28940	4772	0101000020E6100000BC231CE06D41F23F379E95D570B14840
+57	CROIX LORGERIE	\N	29216	4827	0101000020E6100000882EF4FDDECAED3FB0D5B35ABFEC4840
+93	PLACE DU COMMANDANT SCHLOESING	\N	29460	4851	0101000020E610000063F2BFC26D60F93FD721ED3573C04840
 31	27 RUE CENTRALE	\N	29449	4848	0101000020E61000003FBE3B3457C6FA3F540B99E966E74840
-54	20 ROUTE DE LA MER	\N	29215	4827	0101000020E6100000ABDD3284BCDEED3F078FDBD465DF4840
-118	3 PLACE DE LA MAIRIE	\N	29057	4805	0101000020E61000007E1C60F56665DB3F20D82B0BAACB4840
+45	108 RUE LEMARINIER	\N	29209	4827	0101000020E6100000F86D11E3F873F03FBF092A4F45EA4840
+36	RUE JEAN MACE	\N	29208	4826	0101000020E61000006B78B24F8BB7F13FEF4C7003A1DB4840
 108	RUE LOIC DUBIGEON	\N	29380	4836	0101000020E6100000FAD0AA3BBBF1F23F2460B695C5FA4840
-53	72 CHEMIN DE LA CÔTE	\N	28939	4771	0101000020E610000080B9B30285FAF43F290A4F43AFB84840
+207	1 LIEU-DIT LE BOCAGE	\N	29382	4836	0101000020E6100000FDCF3EAFA863F23F5839B4C876F84840
+112	ROUTE DE YERVILLE	\N	29225	5931	0101000020E61000006164E82989A4EA3F3A95CAE382DA4840
 128	41 RUE DU DOCTEUR CARON	\N	28941	4773	0101000020E6100000121A26F2DBDAF13F1948E56095BA4840
 124	RUE DES FOSSES TREMBLES	\N	29465	4855	0101000020E6100000194DA3D33754F43F651BD911DEC44840
-120	PLACE DE LA MAIRIE	\N	29058	4805	0101000020E61000006FCE90432728E13FB3FC2BF121C94840
-87	2 RUE DE LA FORÊT	\N	29456	4849	0101000020E6100000D053D3E418CFF83F93E1FC7627FA4840
-6	PLACE EVODE CHEVALIER	\N	29201	4822	0101000020E61000005FD000E67321FA3F3CE9D02B96C94840
+110	VILLAGE	\N	29056	4805	0101000020E6100000F4D15B9C2E94DE3F3AC250246BCF4840
+121	PLACE DE LA MAIRIE	\N	29058	4805	0101000020E61000006FCE90432728E13FB3FC2BF121C94840
+7	PLACE EVODE CHEVALIER	\N	29201	4822	0101000020E6100000A3E1CC635803F13F3CE9D02B96C94840
+46	419 RUE DE L ECOLE	\N	29210	4828	0101000020E6100000F40C0FD1505AF23FA7CBA47E45CD4840
 18	4 PLACE DE L EGLISE	\N	29108	4814	0101000020E61000008CEE28E7EE27CE3F0E60BADEF0D04840
 106	2 RUE DU BEAUSOLEIL	\N	5169	868	0101000020E61000002085E89929F0CF3F7F066900CEDB4840
 26	198 ROUTE DE L EGLISE	\N	28996	4793	0101000020E61000004439C93DFA42E43F3BEC74D65DC44840
 64	RUE DE L ECOLE	\N	29455	4852	0101000020E6100000594AC984F5FDF63FA55E22A48FE54840
-104	RUE DU STADE	\N	29462	4832	0101000020E6100000788E542116A8F73FC666ECF07CE24840
-111	ROUTE DE LA MAIRIE	\N	29463	4832	0101000020E6100000B84D4401D360F83FAF9764EC1DE74840
-3	RUE DE L ANCIENNE MARE	\N	29371	4835	0101000020E6100000F497CC672FF1F23FF5D2DA55C4ED4840
+23	37 ROUTE DE DIEPPE	\N	29446	4832	0101000020E61000007D0DD5550062F13F18C06B0252EA4840
+111	ROUTE DE LA MAIRIE	\N	29463	4832	0101000020E61000002C6E20807BD6F03FAF9764EC1DE74840
+3	RUE DE L ANCIENNE MARE	\N	29371	4835	0101000020E61000003D2070278807F03FF5D2DA55C4ED4840
 33	32 RUE HENRY IV	\N	29374	4835	0101000020E6100000CE8F36C34AF3F13FCDE26A091EED4840
 9	50 RUE DE L EGLISE	\N	29202	4821	0101000020E6100000DA1BDAD23325E53F0D5E897A20D94840
-76	ALLEE DES ECOLES LE HAMELET	\N	28998	4794	0101000020E6100000E8C62977F5C3EE3FC824658333C44840
-115	VILLAGE	\N	29001	4796	0101000020E6100000D9ABA623345DE93FD0EE906280C64840
-83	8 RUE FRANCIS YARD	\N	28998	4794	0101000020E61000003037EAB1C58FEE3F8BD07C8CC1C54840
+119	VILLAGE	\N	29226	4825	0101000020E610000012F92EA52EC9E33FAA592DD155DB4840
+82	76 AVENUE ARISTIDE BRIAND	\N	28998	4794	0101000020E61000009D26B25D419DEE3F35F3817047C54840
+116	VILLAGE	\N	29001	4796	0101000020E6100000D9ABA623345DE93FD0EE906280C64840
 80	RUE COLETTE YVER	\N	28998	4794	0101000020E6100000AC886AAFDD54EE3F5F460C9645C54840
-38	19 RUE JULES FERRY	\N	29208	4826	0101000020E6100000954F10EE2EA5F13FF61FA17FE5DB4840
 15	ROUTE DE L EGLISE	\N	29106	4812	0101000020E6100000F7C029D41C0EE03F4CF77CC581E14840
-52	13 ROUTE ETENNEMARE	\N	29214	4823	0101000020E6100000160B1B1C2760EC3F0645562B51D24840
-47	5 ALLEE DES TISSERANDS	\N	29212	4796	0101000020E6100000D5F7F6BB6B41E73FF914DFD430D34840
+11	2 RUE NOTRE DAME	\N	29203	4823	0101000020E6100000A1208D17C6FEEE3F67697E6741D44840
+48	5 ALLEE DES TISSERANDS	\N	29212	4796	0101000020E6100000D5F7F6BB6B41E73FF914DFD430D34840
 67	376 RUE DE L ECHEVIN	\N	29218	4796	0101000020E61000006DC3C895F1C4E83FFD38509610D24840
-122	11 RUE DE L EGLISE	\N	29464	4851	0101000020E6100000A6CE060DBBF7F93F399AC00084B84840
-107	CHEMIN DE L ECOLE	\N	29115	4811	0101000020E6100000B67F77880552E43F89F1161FD1D14840
+55	1 PLACE DE LA PETITE MORETTE	\N	29453	4851	0101000020E6100000465840E002C2FA3F19F9823720BC4840
+123	11 RUE DE L EGLISE	\N	29464	4851	0101000020E6100000A6CE060DBBF7F93F399AC00084B84840
+2	4 RUE DES TILLEULS	\N	29103	4811	0101000020E6100000A055FE66762EE43F00E28D505CCD4840
 16	RUE DE LA MER	\N	29204	4824	0101000020E610000049B3442A365DE93F68ADECAB40E94840
 19	ROUTE DE L EGLISE	\N	29205	4824	0101000020E610000064A55653EA06E93F790C878CE4E34840
 91	480 RUE PRINCIPALE	\N	29459	4854	0101000020E6100000E04978338402F93FE6D37CF8A6D74840
 12	12 ROUTE DE L ECOLE	\N	29105	4813	0101000020E6100000860D72BEA842DD3F59D0492947D54840
 105	54 ROUTE DE LIMPIVILLE	\N	29113	4813	0101000020E6100000FEE0F5F9258BDF3F5C4DC7314CD64840
-20	RUE DES ECOLES	\N	28995	4792	0101000020E61000007B4F6635BD41EC3F20B5CBAF4DBB4840
-113	RUE DU VILLAGE	\N	29000	4792	0101000020E6100000B8F320E48CD6EC3FF8C4D72A83BC4840
+21	RUE DES ECOLES	\N	28995	4792	0101000020E61000007B4F6635BD41EC3F20B5CBAF4DBB4840
+114	RUE DU VILLAGE	\N	29000	4792	0101000020E6100000B8F320E48CD6EC3FF8C4D72A83BC4840
 56	VILLAGE	\N	29376	4838	0101000020E6100000DD0A5C7CDC67F63F5528FB7CCEF54840
 89	110 ROUTE EAWY	\N	29458	4830	0101000020E6100000904BAA23387FF33FB3EB62C3E8D44840
-41	10 RUE JEAN MOULIN	\N	29451	4848	0101000020E6100000183340A40AFFFB3F3AEC191DEBE24840
-61	19 RUE DU DOCTEUR BOURGOIX	\N	29217	4827	0101000020E61000004527413B84DAEF3F48B8B9C6A1E44840
-65	2 RUE DES ECOLES	\N	29377	4838	0101000020E61000003FDA0772B364F53F354F438E8CF44840
+14	8 RUE DES ECOLES	\N	29107	4814	0101000020E6100000C24B70EA0329D53F1B7FC3C0CAC74840
+42	22 BOULEVARD DES FONTAINES	\N	29451	4848	0101000020E6100000E523CE2FEF0EFC3FD8BC47899FE24840
+37	RUE EMMANUEL LECOEUR	\N	29208	4826	0101000020E6100000DFF4575DC1C5F13F5A21F6532DDB4840
+129	1 RUE JOSEPH ROY	\N	28941	4773	0101000020E6100000881EA5D081DEF13FC96F971E49BA4840
+66	2 RUE DES ECOLES	\N	29377	4838	0101000020E61000003FDA0772B364F53F354F438E8CF44840
+96	51 ROUTE DE LA VALLEE	\N	29112	4813	0101000020E61000009B2ECBA47493DC3FFC4685FB12DA4840
 75	RUE DANIEL AUBER	\N	28998	4794	0101000020E6100000096385073F84EE3F41BE9DA7AEC54840
-127	RUE GEORGES MELIÈS	\N	28941	4773	0101000020E61000009130DE1F874AF23F1C9029C448BC4840
-117	7 ROUTE DU VILLAGE	\N	29057	4805	0101000020E6100000C64EFC41F248DB3FC8EBA0968FCB4840
 78	3 RUE DE VERDUN	\N	28998	4794	0101000020E61000006BB03BA016AAEE3FCA6B889E52C44840
 4	PARC LACOSTE	\N	28938	4770	0101000020E610000066C5AA208AFAF13FD61B18ED2FB44840
-5	ROUTE DE MESNIL ESNARD	\N	28938	4770	0101000020E6100000AC7008AB6A17F23F13E2FC137DB34840
+98	RUE DU GENERAL DE GAULLE	\N	28940	4772	0101000020E6100000BC231CE06D41F23F379E95D570B14840
 77	72 SQUARE BADIN	\N	28998	4794	0101000020E610000001DE79172C4BEE3FE8D8A44F69C54840
-99	ROUTE DE LA HEUZE	\N	29461	4847	0101000020E6100000267D3B38C1A7F33F4DA4B06223DB4840
-57	CROIX LORGERIE	\N	29216	4827	0101000020E6100000882EF4FDDECAED3FB0D5B35ABFEC4840
+73	3 RUE LALIZEL	\N	28998	4794	0101000020E6100000854F33D77B87EE3F070BC43E43C74840
+100	ROUTE DE LA HEUZE	\N	29461	4847	0101000020E6100000267D3B38C1A7F33F4DA4B06223DB4840
+58	CROIX LORGERIE	\N	29216	4827	0101000020E6100000882EF4FDDECAED3FB0D5B35ABFEC4840
 29	PLACE LEON BAUDELOT	\N	29373	4837	0101000020E6100000CF2819DD9A0CF23F6C800CFCACF04840
-130	ALLEE RENE COTY	\N	28941	4773	0101000020E61000008DB4295E320CF23FCC89A84F13BB4840
-139	ROUTE DE FREVILLE	\N	29002	4796	\N
-141	ROUTE DE MORGNY-LA-POMMERAYE	\N	29466	4771	\N
-147	284 RUE DE L EGLISE	\N	28942	4774	\N
-1032	ROUTE DE ROCADE	\N	29575	4850	0101000020E6100000C0CF9C1BF101F73F8297CFA82FDE4840
-153	2719 ROUTE DE NEUFCHATEL	\N	28943	4775	\N
-157	220 RUE REINE DES BOIS	\N	28943	4775	0101000020E610000069D313C1F8C4F13FD62F43A95EBD4840
-181	2 RUE ARMAND REQUIER	\N	28945	4772	0101000020E61000008CA552308601F23F965E597143B64840
-219	ROUTE DE FORGES-LES-EAUX	\N	20834	3291	0101000020E61000002816D4C4F6CBF53FAD0549E1F2CA4840
-146	284 RUE DE L EGLISE	\N	28942	4774	0101000020E6100000C7178F80411AF43FAEA7EBC359B74840
-200	ROUTE DU BOURG	\N	29478	4850	0101000020E6100000CE4562D361CDF73FD3F3B048FADA4840
-180	2 RUE DU BOIS BAGNERES	\N	28945	4772	0101000020E6100000775C06FC1711F23F8C5D0D166FB64840
-178	33 RUE DU CALVAIRE	\N	29059	4805	0101000020E61000002FAE510C19BADE3F24D2992800C94840
-162	9 AVENUE MARECHAL JOFFRE	\N	29059	4805	0101000020E61000008F04C1B3A205DF3F511D610704C94840
-163	19 RUE GEORGES LEMAITRE	\N	29059	4805	0101000020E6100000A2695B5DE605DE3F46BFAE0D32C94840
-218	379 ROUTE DE FORGES-LES-EAUX	\N	20834	3291	0101000020E61000008542C2FF6FCFF53F3485AD5D03CB4840
+103	PLACE DE LA MAIRIE	\N	29379	4836	0101000020E61000002B809E107EA5F23F2B34CEAE94F94840
+60	ROUTE DE PIERREVILLE	\N	29217	4827	0101000020E61000005516AB24B708F03FDCB2E842D1E44840
+72	RUE FRANCIS YARD	\N	28998	4794	0101000020E61000004BDD9DCE788FEE3FD53A589CBDC54840
+147	284 RUE DE L EGLISE	\N	28942	4774	0101000020E6100000C7178F80411AF43FAEA7EBC359B74840
+101	PLACE DE L EGLISE	\N	29220	4795	0101000020E61000005FA80D98D1B9EF3FEFF66A91FED94840
+24	76 ROUTE DE DIEPPE	\N	29446	4832	0101000020E6100000AAF401EBB24CF13F395BC4A0E1EA4840
+59	RUE JULES MOREL	\N	29217	4827	0101000020E610000006F64CBA2317F03F5A86B49DA1E44840
+125	1 RUE DE VERDUN	\N	28941	4773	0101000020E61000009C6A281389E2F13FDF23933A9EBA4840
+40	20 RUE CLAUDE DAMOIS	\N	29451	4848	0101000020E6100000FD5C11552805FC3F809509E062E24840
+135	15 RUE PHILIBERT CAUX	\N	28941	4773	0101000020E61000003B9E0B2D2FD4F13F7E449FD1CEBA4840
+39	RUE HENRY DUNANT	\N	29451	4848	0101000020E6100000FCECC4088801FC3FEAF349D513E34840
+71	AVENUE ANDRE MAUROIS	\N	28998	4794	0101000020E6100000E99EEC9B387FEE3FC685453D2BC74840
+131	15 RUE PHILIBERT CAUX	\N	28941	4773	0101000020E61000003B9E0B2D2FD4F13F7E449FD1CEBA4840
 173	18 RUE DES HORTENSIAS	\N	29059	4805	\N
-233	1 AVENUE CHARLES GOUNOD	\N	29004	4791	0101000020E6100000C62C41674E2EF53FC63A6E5B08BA4840
-250	22 RUE DU HOME	\N	29246	4825	0101000020E61000009E93D4C54A45E43F53F203BA23E54840
-259	277 RUE DES CHAMPS	\N	28977	4784	0101000020E6100000D2AAFE570975DD3FB41F08145AC84840
 187	6 ROUTE D ETRETAT	\N	29116	4815	\N
-177	130 BIS RUE GEORGES CLEMENCEAU	\N	29059	4805	0101000020E6100000EC306360D699F83F289EB30504CF4840
-192	ROUTE DE TENDOS	\N	29231	4822	\N
-198	VILLAGE	\N	29232	4825	\N
-204	VILLAGE	\N	10756	5738	\N
 206	3 PLACE JACQUES CLATOT	\N	29236	4827	\N
-213	8 RUE RENE COTY	\N	29118	4813	\N
 215	LE CHATEAU	\N	29480	4851	\N
-217	78 ROUTE DE GODERVILLE	\N	29119	4813	\N
-221	RUE DES ECOLES	\N	15710	2467	\N
-225	ROUTE DE SAINT ANDRE DU CAILLY	\N	29242	4828	\N
 227	18 ROUTE DES ESSARTS	\N	29482	4850	\N
-230	ROUTE NEUVE	\N	29483	4849	\N
-241	RUE JOSEPH DELATTRE	\N	29004	4791	\N
-244	21 AVENUE DE VERSAILLES	\N	29004	4791	\N
-245	AVENUE DU PRESIDENT ALLENDE	\N	29004	4791	\N
-246	2 QUAI DU DANEMARK	\N	29004	4791	\N
-247	11 ROUTE DE DUCLAIR	\N	29004	4791	\N
-195	616 ROUTE DU CENTRE	\N	29476	4847	0101000020E6100000E647666FD597F53FCBBF7549C5D44840
-205	2 PLACE JACQUES CLATOT	\N	29236	4827	0101000020E61000005A1D1F7E1568EE3FB5C4463040E84840
+197	VILLAGE	\N	29232	4825	0101000020E61000005F3EFE77E90BE63F60C56F2BB9E04840
+191	ROUTE DE TENDOS	\N	29231	4822	0101000020E6100000C7EA5987D8D5F13FFB93F8DC89C54840
+203	VILLAGE	\N	10756	5738	0101000020E61000001DC272300D96EC3F71C971A7F4C74840
+239	2 QUAI DU DANEMARK	\N	29004	4791	0101000020E61000005A1784E05B52F03FDA809DD561B64840
+220	RUE DES ECOLES	\N	15710	2467	0101000020E61000003BC6151747DDF53F2103BB92CBDC4840
+247	11 ROUTE DE DUCLAIR	\N	29004	4791	0101000020E6100000D5D3AC0BF669F03FE1604E545FB84840
+146	284 RUE DE L EGLISE	\N	28942	4774	0101000020E6100000C7178F80411AF43FAEA7EBC359B74840
+273	RUE LILAS	\N	28978	4785	\N
+352	16 RUE JEHAN VERON	\N	29390	4836	0101000020E6100000C0D352E31F32F13F0961E24D06F64840
+348	2 RUE DU FAUBOURG DE LA BARRE	\N	29390	4836	0101000020E6100000F5AA89962029F13F118A10CB24F64840
+354	14 RUE DE BLAINVILLE	\N	29390	4836	0101000020E6100000EBB49192EE34F13FBDF0941F02F64840
 199	RUE DE L ECOLE	\N	29233	4821	0101000020E610000053A949586A29EC3FEA00902CC3DC4840
-249	1 ROUTE DE SAINT LAURENT	\N	29245	4821	0101000020E6100000C8D698AF49E9EA3F654CEA9998E24840
-149	PLACE DES ERABLES	\N	28943	4775	0101000020E6100000AE10C8B8F1CDF13F8F99B81374BD4840
+319	2 RUE FRANÇOIS DURECU	\N	28946	4774	0101000020E6100000DD6D9562726BF23F1CD4FA3203B94840
+133	4 BIS RUE JEANNE D ARC	\N	28941	4773	0101000020E610000029C69EE2DDDEF13F14A39D891FBA4840
+155	1770 RUE DE LA HAIE	\N	28943	4775	0101000020E6100000CF06898253E6F13FF7C24B0D40BC4840
 150	1900 RUE DE LA HAIE	\N	28943	4775	0101000020E610000054C823252EE9F13F9B86D14151BC4840
 160	RUE PRINCIPALE	\N	28944	4774	0101000020E6100000ECF9952CF938F43F0F61DB2685B94840
-251	12 RUE DU HOME	\N	29246	4825	0101000020E6100000D4B28585324BE43FDAE7EFADE1E44840
+158	RUE DU CHÂTEAU	\N	29469	4855	0101000020E61000003A2C300BBD8BF63F550F5EDC42C84840
+161	RUE DE LA CLEF DES CHAMPS	\N	29470	4855	0101000020E6100000633C271628BCF53F4E4808E27EC24840
 189	3 PLACE DES BORDES	\N	29472	4855	0101000020E6100000D34435AB928EF63F438D4292D9CB4840
-190	VILLAGE	\N	29473	4855	0101000020E610000076B9CDC325D9F63F51DCD018D6C84840
 196	6 RUE DELAHAYE	\N	29477	4855	0101000020E61000001BA8AAD5F93DF63F319A32C388CA4840
-197	VILLAGE	\N	29232	4825	0101000020E61000005F3EFE77E90BE63F60C56F2BB9E04840
-232	1 IMPASSE DE L ECOLE	\N	29244	4825	0101000020E6100000D8C745E00845E33F82A00EF130E74840
+198	VILLAGE	\N	29232	4825	0101000020E61000005F3EFE77E90BE63F60C56F2BB9E04840
 167	43 RUE DES MARTYRS	\N	29059	4805	0101000020E6100000A92ACFE4E4A3DE3F94F59B8969C94840
-164	42 RUE ALCIDE DAMBOISE	\N	29059	4805	0101000020E6100000BCB278A20537DE3F78712C3938C84840
-169	8 RUE VICTOR HUGO	\N	29059	4805	0101000020E6100000219366D5E231DE3FCCD655DC13C94840
+165	527 AVENUE JOFFRE	\N	29059	4805	0101000020E61000002B98AFCDF10ADF3F9E8D439A04C94840
+166	50 RUE DU 8 MAI 1945	\N	29059	4805	0101000020E61000009EFDAEF362CDDE3F44952FA2CCC94840
 176	15 RUE PAUL BERT	\N	29059	4805	0101000020E6100000D80642402B01DE3F045F0B5961C84840
-170	2 BIS RUE HENRI FLEURY	\N	29059	4805	0101000020E610000020B4B6DAD7E2DD3F3403A61DC8C84840
+172	1 RUE SAINT MICHEL	\N	29059	4805	0101000020E61000004D971E7D2E3BDE3F36FBEA4716C94840
+171	110 RUE DES MARTYRS	\N	29059	4805	0101000020E610000019287286B7AEDE3FA8B561FB66C94840
 179	5 RUE DES ECOLES	\N	18134	4805	0101000020E61000007BD852DAF705E23FF903B37CBCCC4840
-144	RUE MORGAN	\N	29467	4849	0101000020E6100000A09B2601A4F5F93F439EB00620F74840
+192	ROUTE DE TENDOS	\N	29231	4822	0101000020E6100000C7EA5987D8D5F13FFB93F8DC89C54840
 258	RUE DES TANNEURS	\N	29006	4793	0101000020E610000098292C3F1023E73FD43ADCD461C34840
-222	GRANDE RUE	\N	29481	4852	0101000020E61000004F880CED9455F53F8622599785E34840
-138	ROUTE DE FREVILLE	\N	29002	4796	0101000020E6100000385B8AF55789EA3F7106B96AA2C84840
-203	VILLAGE	\N	10756	5738	0101000020E61000001DC272300D96EC3F71C971A7F4C74840
-228	50 RUE DE L ECOLE	\N	29243	4795	0101000020E61000002CD7572E8658F43F8FC578C53ADA4840
-159	4 RUE DE LA PIERRE NOIRE	\N	29230	4796	0101000020E61000005143D2A9564FE63F2FBB0E726ACA4840
-239	2 QUAI DU DANEMARK	\N	29004	4791	0101000020E610000083E928C59637F33FDA809DD561B64840
-236	11 ROUTE DE DUCLAIR	\N	29004	4791	0101000020E61000005746C0749C23F43FE1604E545FB84840
+240	RUE GASTON BOULET BAPEAUME	\N	29004	4791	0101000020E6100000BDA2D0BC60C3F03F77C4F89B16BA4840
+139	ROUTE DE FREVILLE	\N	29002	4796	0101000020E6100000385B8AF55789EA3F7106B96AA2C84840
+204	VILLAGE	\N	10756	5738	0101000020E61000001DC272300D96EC3F71C971A7F4C74840
+208	96 RUE DU PUITS	\N	29237	4830	0101000020E6100000958BA506A2A8F23F7BAF8CD331D54840
+201	1 PLACE DE LA MAIRIE	\N	29234	4823	0101000020E6100000A5A290E88E43EE3F5443F2005CD64840
+246	2 QUAI DU DANEMARK	\N	29004	4791	0101000020E61000005A1784E05B52F03FDA809DD561B64840
+200	ROUTE DU BOURG	\N	29478	4850	0101000020E6100000CE4562D361CDF73FD3F3B048FADA4840
+244	21 AVENUE DE VERSAILLES	\N	29004	4791	0101000020E6100000C5824E4A3986F03F171183C83BB94840
+236	11 ROUTE DE DUCLAIR	\N	29004	4791	0101000020E6100000D5D3AC0BF669F03FE1604E545FB84840
 145	1 PLACE DE L EGLISE	\N	29229	4829	0101000020E6100000DA3EEE9FCA60E93FD7CCCE605BED4840
 214	83 RUE DU BOS MALLARD	\N	29480	4851	0101000020E61000008B5F25DD9EC1F93FE24C5D43BAC04840
-202	RUE DU BOURG	\N	29235	4824	0101000020E61000006825754E284EEA3FC57ABCF3B8E54840
+181	2 RUE ARMAND REQUIER	\N	28945	4772	0101000020E61000008CA552308601F23F965E597143B64840
 210	8 RUE DE L EGLISE	\N	29238	4824	0101000020E610000056FF1DDA92B8EB3F08C2FCB287E44840
-260	79 RUE LOUIS BLANC	\N	28977	4784	0101000020E6100000EA0DEF20137CF33F6A2201DD76A44840
-263	2 RUE REVEL	\N	28977	4784	0101000020E6100000177FDB132476F33F5D36D7BC6CA44840
-267	119 BIS RUE DE LA REPUBLIQUE	\N	28977	4784	0101000020E61000001E8189891765F33FA625FB8C30A44840
+213	8 RUE RENE COTY	\N	29118	4813	0101000020E6100000591F328C8B88D93F02EDF58B65D04840
 231	120 RUE DES POTIERS	\N	29384	4839	0101000020E610000016B68FAA6093F53FB28CC34FD2FD4840
 137	2 RUE DE L EGLISE	\N	29381	4838	0101000020E610000067F0F78BD912F43FA962CF4392FD4840
-152	2719 ROUTE DE NEUFCHATEL	\N	28943	4775	0101000020E6100000B989B80B5DD9F13FF114AC50A8BB4840
-212	28 RUE JEAN BAPTISTE DELAMBRE	\N	29118	4813	0101000020E6100000A4312555858DD93FEE86E1E145D04840
+1270	1 RUE LEON GAMBETTA	\N	28989	4785	0101000020E61000005EC76E55C82BF03FF33FD8AD0EA64840
 252	72 RUE DU GENERAL DE GAULLE	\N	29246	4825	0101000020E61000001837177A225AE43F24CF9AC4C5E44840
-220	RUE DES ECOLES	\N	15710	2467	0101000020E61000003BC6151747DDF53F2103BB92CBDC4840
-136	151 RUE ANDRE MALLET	\N	29227	4795	0101000020E6100000620D7AE36274F73FFE83823126DC4840
-242	ALLEE SAINT-ANTOINE	\N	29004	4791	0101000020E610000098655773E3DAF33FF41D788CDDB94840
-229	ROUTE NEUVE	\N	29483	4849	0101000020E6100000CC7B34864D85FA3FDA51FFCDC9ED4840
-143	ROUTE DE GRANDE VALLEE	\N	29467	4849	0101000020E6100000B783505F48F7F93F76274CD630F74840
-174	15 AVENUE PABLO NERUDA	\N	29059	4805	0101000020E6100000C799D52440B9DE3F2E9F7ADE6CC84840
-257	12 GRANDE RUE	\N	29006	4793	0101000020E6100000BAD662E04E3CE73FFDE4FFC062C34840
-184	50 RUE D UELZEN	\N	15253	2402	0101000020E61000005167DFF6B331F33FA921DC2AA9B14840
-216	78 ROUTE DE GODERVILLE	\N	29119	4813	0101000020E6100000296FC6B717FBD83F76B09334DED44840
-185	247 RUE DE LA CHESNAYE	\N	15253	2402	0101000020E6100000B5E74619F030F33F19BD010394B14840
-140	ROUTE DE MORGNY-LA-POMMERAYE	\N	29466	4771	0101000020E6100000DA74921ACBBDF43F4A7B41137AC04840
-265	RUE SAINT-EXUPERY	\N	28977	4784	0101000020E6100000D4E541386E4AF43FEA0E5AF641A34840
-261	389 RUE DES THERMES	\N	28977	4784	0101000020E6100000760FF9FC6A2DF43F8E4B0B4D48A34840
-269	2 RUE SAINT NICOLAS	\N	29120	4816	\N
-273	RUE LILAS	\N	28978	4785	\N
-322	RUE GUYNEMER	\N	28946	4774	0101000020E610000041C04D8B6962F23F378AAC3594B84840
-278	RUE CHARLES PERRAULT	\N	28978	4785	\N
-349	1 RUE PAUL BERT	\N	29390	4836	0101000020E6100000D464C6DB4A1FFF3FE66A96911BF74840
-299	71 RUE PRINCIPALE	\N	29490	4848	0101000020E610000006E3B7530055FB3F2FD6BB685DD64840
-344	33 AVENUE JEAN JAURÈS	\N	29390	4836	0101000020E61000007D9F1E99161EFB3F7523C9FFA6F44840
-287	35 IMPASSE DES ECOLES	\N	29122	4817	\N
-363	RUE DU VALLON	\N	29390	4836	0101000020E610000014D9BDCBFB3EFD3F2633839D07F44840
-358	RUE CHARLES NICOLLE	\N	29390	4836	0101000020E6100000B854E749809FF13FF4D2A0AABAF64840
-327	4 RUE GEORGES HEBERT	\N	28947	4777	0101000020E6100000B64436A9CBA6F83F809D7A287ABA4840
-297	6 ROUTE DE TURRETOT	\N	29126	4814	\N
-368	25 RUE ROGER LECOFFRE	\N	29390	4836	0101000020E6100000807FADBFE313FA3FCAA5121A18F64840
-367	2 RUE DE STALINGRAD	\N	29390	4836	0101000020E6100000923ECEB02827FD3FF5513EEB37F54840
-402	1 RUE DE LORRAINE	\N	28979	4786	0101000020E61000004711A5FFDDD9F23FE8C8C2BE3AA54840
-304	VILLAGE	\N	29007	4796	\N
-337	AVENUE CHARLES NICOLLE	\N	29390	4836	0101000020E6100000E5E8D8DEFAAAF13FEDF6F63AEBF64840
-308	2 RUE ROGER CRESSENT	\N	29496	4851	\N
-274	ALLEE FREDERIC MISTRAL	\N	28978	4785	0101000020E6100000159FE409E26EF33FBBE854C764F04840
-313	52 RUE TABLE DE PIERRE	\N	28946	4774	0101000020E6100000FD8D3E3292BFF23F236A60B375B84840
-296	6 ROUTE DE TURRETOT	\N	29126	4814	0101000020E6100000CC5063E259F9D03FE0901D861CD24840
-340	RUE LOUIS FROMAGER	\N	29390	4836	0101000020E6100000F41A370C51CBFB3F2B43A894CFF44840
-371	RUE DE BAD NENNDORF	\N	29256	4821	0101000020E610000052BBDBCC53F3E83FF1F76ACBA9DC4840
-320	RUE PIERRE LEFÈBVRE	\N	28946	4774	\N
-321	RUE DE VERDUN	\N	28946	4774	\N
-280	830 RUE EDMOND SPALIKOWSKI	\N	29251	4828	0101000020E6100000D248F89CC3EEF13FFB38DC3FFDCC4840
-325	RUE DE FONTENELLE	\N	28947	4777	0101000020E610000098910FB4E104F93FB19E62EEBDBC4840
-330	14 RUE DE L EGLISE	\N	28947	4777	\N
-386	1 RUE DE LA GARE	\N	28979	4786	0101000020E6100000FA0CA837A3E6FD3FACBD57C669A44840
-385	2 RUE D ALSACE	\N	28979	4786	0101000020E61000002B68C245DA05BB3F6B8885B50CC04840
-335	14 RUE DE L EGLISE	\N	28947	4777	\N
-366	43 CHEMIN DU GOLF	\N	29390	4836	0101000020E6100000DAFBCEDB4AC2C13F6A9FD0E3DEBE4840
-346	CHEMIN DES VERTUS	\N	29390	4836	\N
-357	CHEMIN DES VERTUS	\N	29390	4836	\N
-359	RUE ALEXANDRE LEGROS	\N	29390	4836	\N
-369	CHEMIN DES VERTUS	\N	29390	4836	\N
-376	3 RUE DES ECOLES	\N	29391	4838	\N
-382	115 RUE DU VILLAGE	\N	29128	4813	\N
-395	15 RUE DES TRAITES	\N	28979	4786	\N
-397	AVENUE DU CHARTRIER	\N	28979	4786	\N
-399	15 RUE DU TAPIS VERT	\N	28979	4786	\N
-289	RUE DE L ECOLE	\N	5354	1539	0101000020E610000062484E266E2DFA3FD74366F4C4D84840
-352	16 RUE JEHAN VERON	\N	29390	4836	0101000020E610000081453CE13EF5FB3F0961E24D06F64840
-348	2 RUE DU FAUBOURG DE LA BARRE	\N	29390	4836	0101000020E610000095AD60E1459BFB3F118A10CB24F64840
-354	14 RUE DE BLAINVILLE	\N	29390	4836	0101000020E61000002F11B1B95111FC3FBDF0941F02F64840
-282	110 RUE HENRI LEMARCHAND	\N	29251	4828	0101000020E6100000FA33778522BBF13F193CE9D0ABCC4840
-364	33 QUAI HENRI IV	\N	29390	4836	0101000020E6100000535780E7C5D6FC3F536253BED2F64840
-360	13 RUE JOSEPH BRUNEL	\N	29390	4836	0101000020E610000046218F0155F3FD3F722D41E395F64840
-319	2 RUE FRANÇOIS DURECU	\N	28946	4774	0101000020E6100000DD6D9562726BF23F1CD4FA3203B94840
-316	39 RUE JULES FERRY	\N	28946	4774	0101000020E6100000F88B6CF6265FF23F3975CC169CB84840
-318	127 RUE DE LONGPAON	\N	28946	4774	0101000020E6100000CF4DC138BD5DF23F0DF159E814B94840
-291	110 RUE DE BAZOMESNIL	\N	29488	4826	0101000020E61000004D4BAC8C46A6F23F0A01D09378DC4840
-281	38 RUE HENRI LEMARCHAND	\N	29251	4828	0101000020E6100000E84A2A7122BCF13F1934FCC0B8CC4840
-272	28 RUE DE L ECOLE	\N	29250	4828	0101000020E6100000DEFEE525C2F8F23FFE1C9383E1CC4840
-271	23 RUE DE L EGLISE	\N	29485	4852	0101000020E61000009B0BA5F4213FF73F708F8C723CE74840
-305	2 IMPASSE DE LA CAVEE	\N	29495	4832	0101000020E61000006C140623FE7AFE3F5101071F10E94840
-380	VILLAGE	\N	29009	4796	0101000020E61000001C659A3CA751EA3F94F2205ED3CE4840
-270	55 RUE DU CENTRE	\N	29248	4797	0101000020E6100000565CC1DB28A7EC3F2F059C8CC7CE4840
-298	299 RUE DE L AVENIR	\N	29255	4823	0101000020E6100000B3345F41740AEB3F2CCB21F392D64840
-328	7 RUE ROBERT EUDE	\N	28947	4777	0101000020E6100000A2E1DE461494F83FCD073EE59CBB4840
-333	1 RUE DUMONT	\N	28947	4777	0101000020E6100000799C79A48762F83FAE7189652BBB4840
-307	2 RUE ROGER CRESSENT	\N	29496	4851	0101000020E610000072CB60EF7227FB3F806B61F5CBC14840
-350	73 RUE ALBERT LAMOTTE	\N	29390	4836	0101000020E610000059F3FACBA2A3F13F4FEE6FB7C1F64840
-329	ALLEE DE SYSTON	\N	28947	4777	0101000020E6100000A64C8305A47BF83F6B42FFA9DDBC4840
-285	586 ROUTE DE LA MER	\N	29121	4811	0101000020E6100000DF2C833C4B08E53F121CB00EF4D64840
-381	115 RUE DU VILLAGE	\N	29128	4813	0101000020E610000070CF860B5FD0D43F55CE8BD142D34840
-378	222 RUE VICTOR HUGO	\N	29008	4792	0101000020E6100000CEFB8371052EEC3F8E39741F25BE4840
-398	15 RUE SALVANDY	\N	28979	4786	0101000020E6100000C5460F327F9BF73FD3AF00E8A8A44840
-401	RUE PIERRE NOURY	\N	28979	4786	0101000020E610000066C042AE20F2EF3F16B9AF1C84A54840
-400	178 RUE PETOU	\N	28979	4786	0101000020E61000002BC17A8D71F6EF3F4838EB5BFFA44840
-294	67 RUE DE L ECOLE	\N	29124	4818	0101000020E6100000ACD17DC95E40D53FC1DD401ECDDE4840
-310	325 AVENUE DU CHATEAU	\N	29388	4841	0101000020E6100000E198654F0233F33FDE6C18AA07EE4840
-379	CHEMIN DU CATEL	\N	29008	4792	0101000020E61000002FAF59B70C1BEC3F345C2E2CC9BD4840
-342	7 BOULEVARD DE VERDUN	\N	29390	4836	0101000020E610000017540A7030DAFB3FACE6F7058DF64840
-332	74 RUE RENE COTY	\N	28947	4777	0101000020E61000005A9376BC2C7AF83F2736BCACCBBC4840
-373	1 RUE EUGENE GUILLOTIN	\N	29256	4821	0101000020E61000001EE5BBEF7327E93FFFF9C78C01DC4840
-390	23 RUE JEAN JAURES	\N	28979	4786	0101000020E6100000D4A535BC0FD6FF3F1C8C43C303A54840
-396	RUE DE LA ROCHELLE	\N	28979	4786	0101000020E6100000FA1388E368FAEF3F94FB1D8A82A54840
-374	26 RUE DES PRES	\N	29256	4821	0101000020E610000075DCA7E5320EE93F26E7FEC9E3DB4840
-343	12 RUE JACQUES PREVERT	\N	29390	4836	0101000020E6100000C5A9FC89CF9FF13FBA92917194F54840
-303	VILLAGE	\N	29007	4796	0101000020E610000052BC8D778E2BEB3F97165874A9CC4840
+221	RUE DES ECOLES	\N	15710	2467	0101000020E61000003BC6151747DDF53F2103BB92CBDC4840
+241	RUE JOSEPH DELATTRE	\N	29004	4791	0101000020E610000099886888EB8FF03FAE0F88631FBA4840
+242	ALLEE SAINT-ANTOINE	\N	29004	4791	0101000020E6100000298A5558B062F03FF41D788CDDB94840
+132	RUE GEORGES MELIÈS	\N	28941	4773	0101000020E61000009130DE1F874AF23F1C9029C448BC4840
 356	RUE DU DOCTEUR JEAN MERAULT	\N	29390	4836	0101000020E61000005012B7AFA89DF13FEF02E3E843F74840
-293	90 BIS RUE DE LA LIBERATION	\N	29386	4840	0101000020E6100000412BCD39BA22F53F5B7E3BE4C1184940
-276	RUE PAUL LANGEVIN	\N	28978	4785	0101000020E61000002DA5DBD09CDEF43F70E0822A3DA84840
-283	RUE DE L EGLISE	\N	29252	4825	0101000020E61000004E9424D2AD3CE43F53DEF90BDEDA4840
+253	RUE LOUIS BOUILHET	\N	29246	4825	0101000020E610000044E55C139D58E43FF0CD04FDE4E44840
+230	ROUTE NEUVE	\N	29483	4849	0101000020E6100000CC7B34864D85FA3FDA51FFCDC9ED4840
+143	ROUTE DE GRANDE VALLEE	\N	29467	4849	0101000020E6100000B783505F48F7F93F76274CD630F74840
+226	17 ROUTE DES ESSARTS	\N	29482	4850	0101000020E6100000F949B54FC773F83F82DC6E17D4E84840
+257	12 GRANDE RUE	\N	29006	4793	0101000020E6100000BAD662E04E3CE73FFDE4FFC062C34840
+194	RUE DU PETIT CHÂTEAU	\N	29475	4830	0101000020E610000078BADC28FED4F23F89EACE8F16D04840
+217	78 ROUTE DE GODERVILLE	\N	29119	4813	0101000020E6100000296FC6B717FBD83F76B09334DED44840
+282	110 RUE HENRI LEMARCHAND	\N	29251	4828	0101000020E6100000FA33778522BBF13F193CE9D0ABCC4840
+185	247 RUE DE LA CHESNAYE	\N	15253	2402	0101000020E6100000B5E74619F030F33F19BD010394B14840
+154	255 RUE FIRMIN	\N	28943	4775	0101000020E61000007F345FCF1EAAF13FC050D1A288BA4840
+256	RUE SAINTE GERTRUDE	\N	29006	4793	0101000020E610000054082830442EE73FEF5EC51472C34840
+134	ALLEE RENE COTY	\N	28941	4773	0101000020E61000008DB4295E320CF23FCC89A84F13BB4840
+245	AVENUE DU PRESIDENT ALLENDE	\N	29004	4791	0101000020E6100000F250B8773D93F03FF6E48A2088B94840
+142	PLACE JEAN MOULIN	\N	29467	4849	0101000020E610000045FFBA8910CDF93F1F8588277DF74840
+178	33 RUE DU CALVAIRE	\N	29059	4805	0101000020E61000002FAE510C19BADE3F24D2992800C94840
+234	PLACE MICHEL TOUYE	\N	29004	4791	0101000020E61000006CD64ED1E774F03F3842507F87B84840
+163	19 RUE GEORGES LEMAITRE	\N	29059	4805	0101000020E6100000A2695B5DE605DE3F46BFAE0D32C94840
+148	186 RUE VITTECOQ	\N	28943	4775	0101000020E6100000E020D8F36003F23F149B87FA7ABC4840
+233	1 AVENUE CHARLES GOUNOD	\N	29004	4791	0101000020E6100000ADB7B970A184F03FC63A6E5B08BA4840
+274	ALLEE FREDERIC MISTRAL	\N	28978	4785	0101000020E6100000159FE409E26EF33FBBE854C764F04840
+183	RUE DU COLOMBIER	\N	15253	2402	0101000020E61000002B1A388EC257F03F347568A299AE4840
+336	RUE DU PETIT AULNAY	\N	28947	4777	0101000020E6100000F1E83F9E6F91E83FAFCB32BCC0CE4840
+259	277 RUE DES CHAMPS	\N	28977	4784	0101000020E6100000D2AAFE570975DD3FB41F08145AC84840
+248	41 ROUTE DE DUCLAIR	\N	29004	4791	0101000020E610000090AB2109AC20F13F4F92AE997CB44840
+330	14 RUE DE L EGLISE	\N	28947	4777	\N
+335	14 RUE DE L EGLISE	\N	28947	4777	\N
+357	CHEMIN DES VERTUS	\N	29390	4836	\N
+369	CHEMIN DES VERTUS	\N	29390	4836	\N
+268	2 RUE SAINT NICOLAS	\N	29120	4816	0101000020E610000037089111F2AFC03F535F334C2FCC4840
+381	115 RUE DU VILLAGE	\N	29128	4813	0101000020E610000070CF860B5FD0D43F55CE8BD142D34840
+317	RUE DE VERDUN	\N	28946	4774	0101000020E61000005746074A282AF23F820B68D85EB84840
+303	VILLAGE	\N	29007	4796	0101000020E610000052BC8D778E2BEB3F97165874A9CC4840
 375	3 RUE DES ECOLES	\N	29391	4838	0101000020E610000060C2FE711624F53F2676860C58EF4840
-362	RUE PAUL BERT	\N	29390	4836	0101000020E6100000D5B16BF78221FF3F7725130118F74840
-347	RUE ALEXANDRE LEGROS	\N	29390	4836	0101000020E6100000385DA2BC87C2FA3F5FA6DC3381F54840
-389	89 RUE DE LA REPUBLIQUE	\N	28979	4786	0101000020E61000000B06AC5C75EBEF3FCC210CB04DA54840
-277	RUE CHARLES PERRAULT	\N	28978	4785	0101000020E61000005C4E74234D18F53F0B38F88048A74840
 403	2 RUE D ALSACE	\N	28979	4786	\N
 406	9 COURS GAMBETTA	\N	28979	4786	\N
-432	4 RUE DES TOURTERELLES	\N	29264	4830	0101000020E6100000B74A1564828CF23F6FB35F1410D24840
-410	RUE DE L EGLISE	\N	29130	4812	\N
-530	ROUTE DE GODERVILLE	\N	29145	4813	0101000020E61000006194B95C71EFDB3F8CE79E3B62D34840
-404	6 RUE AUGUSTE HOUZEAU	\N	28979	4786	0101000020E610000061F48189E470F43F0B538469D2A44840
 413	RUE DE LA HALLE	\N	29392	4838	\N
 414	RUE DU GENERAL DE GAULLE	\N	29392	4838	\N
-416	2 RUE DE LA REPUBLIQUE	\N	29131	4811	\N
-418	VILLAGE	\N	29010	4792	\N
-449	RUE DE GRAFSCHAFT	\N	29135	4811	0101000020E6100000CAE810D02E43E33FCA573CD43AD34840
-421	RUE JOSEPH BOULARD	\N	29132	4819	\N
-405	5 RUE HERVIEUX	\N	28979	4786	0101000020E610000066C0594A96D3F13FD3BEB9BFFAA44840
-424	8 RUE DE L EGLISE	\N	29133	4817	\N
-493	3 RUE ANDRE BERTRAND	\N	29511	4853	0101000020E61000001D7738242F97F83FD883A4AAE4CE4840
-446	45 RUE JEANNE D ARC	\N	29394	4839	0101000020E61000002E83BDCB3DABF63F149A7F4F073B4940
-434	105 RUE DES ANCIENS COMBATTANTS	\N	29061	4806	\N
-455	29 RUE DE L INONDATION	\N	29136	4817	0101000020E6100000381247A2C070D83F4D226F77DEE04840
-437	1 PLACE DE L EGLISE	\N	29393	4839	\N
-526	15 RUE PIERRE CORNEILLE	\N	29144	4813	0101000020E61000009AAB0FB95319D73F3E064C5C9ED24840
-531	16 AVENUE EBERHARD	\N	29063	4807	0101000020E61000003571C10518D7CD3F44AD616DA9C04840
-453	23 RUE DU CAPITAINE CHARLES GILLES	\N	29136	4817	0101000020E61000002AAACFECF281D73F596C516EF4E04840
-419	ROUTE DE COUPEAUVILLE	\N	29132	4819	0101000020E61000008DBF27B59B91F83F92D1BF2C06CF4840
-504	461 ROUTE DE BELBEUF	\N	28950	4776	0101000020E6100000A12C6D5280A1F13FDCA3B3A323B84840
-473	35 RUE QUEUE DE RENARD	\N	29136	4817	0101000020E6100000B82E677C80DAFE3FB34677EFACB94840
-465	7 RUE D ALSACE	\N	29136	4817	\N
-468	248 AVENUE JEAN LORRAIN	\N	29136	4817	\N
-469	145 RUE GUSTAVE COUTURIER	\N	29136	4817	\N
-472	1575 BOULEVARD NELSON MANDELA	\N	29136	4817	\N
-474	84 QUAI GUY DE MAUPASSANT	\N	29136	4817	\N
-476	1 CHEMIN DE LA MESSE	\N	29507	4851	\N
-481	CHEMIN DEPARTEMENTAL 940	\N	29395	4839	\N
-492	RUE DES FURETS	\N	10416	2158	\N
-503	PLACE MARCEL RAGOT	\N	28950	4776	\N
-506	PLACE DES SAULES	\N	28980	4785	\N
-509	2 PLACE CESAIRE LEVILLAIN	\N	29515	4852	\N
-513	PLACE DE LA MAIRIE	\N	29012	5640	\N
-516	61 RUE DU CHÂTEAU	\N	29140	4817	\N
-520	1 ROUTE DE ROGERVILLE	\N	29062	4807	\N
-522	6 RUE FERNAND FERON	\N	29141	4817	\N
-529	RUE DU COMTE LOUIS HOQUART DE TU	\N	10784	1614	\N
-528	RUE DU COMTE LOUIS HOQUART DE TU	\N	10784	1614	0101000020E61000000FA715A4EE8AD73F5009FC9F4BC74840
 483	VILLAGE	\N	29510	4853	0101000020E61000002E11981CB1CDF63F80819C0762D64840
+275	4 RUE DES ECOLES	\N	28978	4785	0101000020E61000004BABCB70D67CF03F4D89C14FDEA74840
+364	33 QUAI HENRI IV	\N	29390	4836	0101000020E6100000EF3BF363AD48F13F536253BED2F64840
+372	34 RUE LEMERCIER	\N	29256	4821	0101000020E61000003F8346E36212E93FE9C1B4DA09DC4840
+316	39 RUE JULES FERRY	\N	28946	4774	0101000020E6100000F88B6CF6265FF23F3975CC169CB84840
+320	RUE PIERRE LEFÈBVRE	\N	28946	4774	0101000020E61000002AF7DFA32E5CF23F94315FDA47B84840
+318	127 RUE DE LONGPAON	\N	28946	4774	0101000020E6100000CF4DC138BD5DF23F0DF159E814B94840
 408	PLACE DE L EGLISE	\N	28948	4778	0101000020E61000000176E230A060F63F57B7D507EDBB4840
-490	ROUTE DE DARNETAL	\N	28949	4774	0101000020E6100000DAB0180811AFF23F8EAFFB96D2BD4840
-507	CHEMIN DU PATIS	\N	28951	4776	0101000020E610000073AD0224B6BDF43F63377D87ECB44840
-428	RUE DES BRUYÈRES	\N	29262	4822	0101000020E6100000C0AAFE314292F83FD06EA1E9F4C54840
-430	116 RUE DE LA MAIRIE	\N	29263	4828	0101000020E61000009DC4394D1394F33F601B548F72CD4840
-482	VILLAGE	\N	29137	4814	0101000020E6100000559B0210AC87D33FA0D67E7CD3D64840
-427	RUE DU CENTRE	\N	29504	4850	0101000020E6100000A24BC3E69F35F63FF9D6EA1F82DA4840
-479	RUE DE LA FORGE	\N	29509	4850	0101000020E61000006C7910FB3741F93FE6140DE7D4DD4840
+426	527 RUE DE LA MAIRIE	\N	29503	4855	0101000020E61000001C630B67D5C4F53F1F5F4A76CFC44840
+291	110 RUE DE BAZOMESNIL	\N	29488	4826	0101000020E61000004D4BAC8C46A6F23F0A01D09378DC4840
+448	6 RUE DE LA MAIRIE	\N	29506	4849	0101000020E6100000AF91EA5CCD11F93F28AE959632EF4840
+281	38 RUE HENRI LEMARCHAND	\N	29251	4828	0101000020E6100000E84A2A7122BCF13F1934FCC0B8CC4840
+272	28 RUE DE L ECOLE	\N	29250	4828	0101000020E6100000DEFEE525C2F8F23FFE1C9383E1CC4840
+428	RUE DES BRUYÈRES	\N	29262	4822	0101000020E6100000E0DDFF046DDBF03FD06EA1E9F4C54840
+271	23 RUE DE L EGLISE	\N	29485	4852	0101000020E61000009B0BA5F4213FF73F708F8C723CE74840
+305	2 IMPASSE DE LA CAVEE	\N	29495	4832	0101000020E6100000A49B8003B372F13F5101071F10E94840
+380	VILLAGE	\N	29009	4796	0101000020E61000001C659A3CA751EA3F94F2205ED3CE4840
+287	35 IMPASSE DES ECOLES	\N	29122	4817	0101000020E61000002956A896F6CBDC3F655F2648F4DF4840
+270	55 RUE DU CENTRE	\N	29248	4797	0101000020E6100000565CC1DB28A7EC3F2F059C8CC7CE4840
+298	299 RUE DE L AVENIR	\N	29255	4823	0101000020E6100000B3345F41740AEB3F2CCB21F392D64840
+328	7 RUE ROBERT EUDE	\N	28947	4777	0101000020E61000005DE3AFA09BDBF03FCD073EE59CBB4840
+333	1 RUE DUMONT	\N	28947	4777	0101000020E61000003F290C2AA7D6F03FAE7189652BBB4840
+269	2 RUE SAINT NICOLAS	\N	29120	4816	0101000020E610000037089111F2AFC03F535F334C2FCC4840
+350	73 RUE ALBERT LAMOTTE	\N	29390	4836	0101000020E610000059F3FACBA2A3F13F4FEE6FB7C1F64840
+284	40 ROUTE DU MOULIN	\N	4841	821	0101000020E610000087FB869177E1E33F1E1D70C0DBCE4840
+285	586 ROUTE DE LA MER	\N	29121	4811	0101000020E6100000DF2C833C4B08E53F121CB00EF4D64840
+382	115 RUE DU VILLAGE	\N	29128	4813	0101000020E610000070CF860B5FD0D43F55CE8BD142D34840
+388	42 RUE POUSSIN	\N	28979	4786	0101000020E6100000212534519D11F03F8E96A01299A44840
+260	79 RUE LOUIS BLANC	\N	28977	4784	0101000020E610000097B4E41C3559F03F6A2201DD76A44840
+264	1 RUE VAUQUELIN	\N	28977	4784	0101000020E6100000A4A4154CED3EF03F2E7F95AE26A44840
+262	22 RUE GAMBETTA	\N	28977	4784	0101000020E610000041ECFB59F442F03F72352EF308A44840
+306	PLACE RENE DELORIERE	\N	29387	4839	0101000020E610000020ECE471F063F63F26DBE99CD9FA4840
+310	325 AVENUE DU CHATEAU	\N	29388	4841	0101000020E6100000E198654F0233F33FDE6C18AA07EE4840
+379	CHEMIN DU CATEL	\N	29008	4792	0101000020E61000002FAF59B70C1BEC3F345C2E2CC9BD4840
+342	7 BOULEVARD DE VERDUN	\N	29390	4836	0101000020E6100000CF6E673E6B2FF13FACE6F7058DF64840
+315	37 RUE SAINT PIERRE	\N	28946	4774	0101000020E610000064B0E70D254AF23FA77686A92DB84840
+446	45 RUE JEANNE D ARC	\N	29394	4839	0101000020E61000002E83BDCB3DABF63F9CC28C21E7054940
+346	CHEMIN DES VERTUS	\N	29390	4836	0101000020E610000004CF802433B1CC3F91B376FC13C84840
+374	26 RUE DES PRES	\N	29256	4821	0101000020E610000075DCA7E5320EE93F26E7FEC9E3DB4840
+321	RUE DE VERDUN	\N	28946	4774	0101000020E61000005746074A282AF23F820B68D85EB84840
+331	1 PLACE CHURCHILL	\N	28947	4777	0101000020E6100000498F6F8737B7F03FCE618C823FBC4840
+304	VILLAGE	\N	29007	4796	0101000020E610000052BC8D778E2BEB3F97165874A9CC4840
+293	90 BIS RUE DE LA LIBERATION	\N	29386	4840	0101000020E6100000412BCD39BA22F53F09F305CA79024940
+276	RUE PAUL LANGEVIN	\N	28978	4785	0101000020E6100000EBF61548A97CF03F70E0822A3DA84840
+283	RUE DE L EGLISE	\N	29252	4825	0101000020E61000004E9424D2AD3CE43F53DEF90BDEDA4840
+376	3 RUE DES ECOLES	\N	29391	4838	0101000020E610000060C2FE711624F53F2676860C58EF4840
+266	RUE FAIDHERBE	\N	28977	4784	0101000020E61000005BD83DF31E61F03F8CCBA77DA9A34840
+359	RUE ALEXANDRE LEGROS	\N	29390	4836	0101000020E6100000B96F43F97313F13F5FA6DC3381F54840
+265	RUE SAINT-EXUPERY	\N	28977	4784	0101000020E610000062FD6CD2D76DF03FEA0E5AF641A34840
+261	389 RUE DES THERMES	\N	28977	4784	0101000020E6100000251B4C19F16AF03F8E4B0B4D48A34840
+322	RUE GUYNEMER	\N	28946	4774	0101000020E610000041C04D8B6962F23F378AAC3594B84840
+349	1 RUE PAUL BERT	\N	29390	4836	0101000020E6100000483DFA152183F13FE66A96911BF74840
+299	71 RUE PRINCIPALE	\N	29490	4848	0101000020E610000006E3B7530055FB3F2FD6BB685DD64840
+288	VILLAGE	\N	29486	4853	0101000020E6100000AFBED880AAF7F83FA897AD2FF1D44840
+363	RUE DU VALLON	\N	29390	4836	0101000020E61000008262F92D1953F13F2633839D07F44840
+358	RUE CHARLES NICOLLE	\N	29390	4836	0101000020E6100000B854E749809FF13FF4D2A0AABAF64840
+312	18 RUE ANDRE MAUROIS	\N	28946	4774	0101000020E6100000EAC93EC04178F23F653E7B898CB84840
+368	25 RUE ROGER LECOFFRE	\N	29390	4836	0101000020E6100000C08CC42CFD01F13FCAA5121A18F64840
+339	18 RUE ROGER EVRARD	\N	29390	4836	0101000020E610000049EC2EDEFC17F13F637A67591CF44840
+377	118 RUE GUSTAVE FLAUBERT	\N	29008	4792	0101000020E610000029C7C79BBA2AEC3FA153882E45BE4840
+419	ROUTE DE COUPEAUVILLE	\N	29132	4819	0101000020E61000008DBF27B59B91F83F92D1BF2C06CF4840
+326	14 RUE DE L EGLISE	\N	28947	4777	0101000020E6100000CD74C62F70D4F03FC76C035612BB4840
+313	52 RUE TABLE DE PIERRE	\N	28946	4774	0101000020E6100000FD8D3E3292BFF23F236A60B375B84840
+456	2 RUE PAUL BERT	\N	29136	4817	0101000020E6100000D4AB84CB8384D83FB27E543FC6E04840
+340	RUE LOUIS FROMAGER	\N	29390	4836	0101000020E6100000E5B53881EE2DF13F2B43A894CFF44840
+371	RUE DE BAD NENNDORF	\N	29256	4821	0101000020E610000052BBDBCC53F3E83FF1F76ACBA9DC4840
+370	1 RUE SALVADOR ALLENDE	\N	29390	4836	0101000020E6100000579FC903331CF13F89686C96E8F34840
+441	RUE DU MONT VITOT	\N	29394	4839	0101000020E61000008D76A7FEEB93F63FF003253FC1054940
+325	RUE DE FONTENELLE	\N	28947	4777	0101000020E61000005C5BCE5EE3E6F03FB19E62EEBDBC4840
+385	2 RUE D ALSACE	\N	28979	4786	0101000020E61000002B68C245DA05BB3F6B8885B50CC04840
+497	5 RUE ANDRE BERTRAND	\N	29511	4853	0101000020E61000006520D9A0520CF73F79EC46A3ABDE4840
+473	35 RUE QUEUE DE RENARD	\N	29136	4817	0101000020E6100000DFB7700C407CF13FB34677EFACB94840
+474	84 QUAI GUY DE MAUPASSANT	\N	29136	4817	\N
 491	RUE DES FURETS	\N	10416	2158	0101000020E61000002D6D10643FB6C73FBE09AE8769C74840
-510	57 RUE DU CENTRE	\N	29011	4797	0101000020E6100000F403B2327572F93F1766C2AB3CC84840
+512	PLACE DE LA MAIRIE	\N	29012	5640	0101000020E610000083B050F48B95EA3FF5C14BD394C84840
 409	RUE DE L EGLISE	\N	29130	4812	0101000020E6100000A745F9599700DD3F1AD63B79E4E44840
-523	2 ROUTE DE THEUVILLE	\N	29142	4812	0101000020E6100000057C3AFB230CE23FAA08793527E04840
-478	18 RUE DE L ECOLE	\N	18160	2929	0101000020E6100000FC0F71F2A9D3EA3FC6A4BF9742D14840
-532	AVENUE LENINE	\N	29063	4807	0101000020E610000094F2627A25BDCD3FE04C4C17E2C04840
-460	19 RUE GEORGES BOURGEOIS	\N	29136	4817	0101000020E610000078C8D9E3A189D83FC6E725314EE04840
-459	22 RUE GUSTAVE NICOLE	\N	29136	4817	0101000020E61000005B3B8E752AA6D73F7AF76CC2E2E04840
-451	51 PLACE DE L EGLISE	\N	29135	4811	0101000020E61000007BE201B1E1D3E23FCF075782BDD34840
-464	5 RUE PAUL DOUMER	\N	29136	4817	0101000020E61000009594E907DDB4D73F1C331EDF3DE04840
 515	61 RUE DU CHÂTEAU	\N	29140	4817	0101000020E610000067AD9B644147D53FFF3E46EDBCDC4840
 415	2 RUE DE LA REPUBLIQUE	\N	29131	4811	0101000020E610000049BF6B3A7C6EE53FE6438AE083D44840
-425	ROUTE DE LA CROIX DE REALCAN	\N	29261	4824	0101000020E6100000B50E2D03E52EE93FD4761BED1BE64840
-494	24 RUE MARETTE	\N	29511	4853	0101000020E6100000D95359B14BA6F83F0DD4520EA0CE4840
-417	VILLAGE	\N	29010	4792	0101000020E6100000093E9B8F4AB5EA3F91BE627041C34840
-505	PLACE DES SAULES	\N	28980	4785	0101000020E6100000FDF675E09CA1FC3F491BDC10C2A74840
-436	1 PLACE DE L EGLISE	\N	29393	4839	0101000020E61000009ACA51698C2AF63F99767B5A8F254940
+506	PLACE DES SAULES	\N	28980	4785	0101000020E6100000B398D87C5C43F13F491BDC10C2A74840
+436	1 PLACE DE L EGLISE	\N	29393	4839	0101000020E61000009ACA51698C2AF63FA9580C89C1034940
 462	145 RUE GUSTAVE COUTURIER	\N	29136	4817	0101000020E6100000A33F0E2C422FD93FF81F919D54E04840
-461	248 AVENUE JEAN LORRAIN	\N	29136	4817	0101000020E6100000245E6E95FF07D83F74E70D2091E14840
-524	2 RUE DU CHANT DES OISEAUX	\N	29143	4815	0101000020E610000088059121D4E0D43F94577C7D0CD94840
-511	RUE DES 2 VALLEES	\N	29396	4841	0101000020E6100000BB9DA8659EBEF33F91F69A79CDE94840
 508	2 PLACE CESAIRE LEVILLAIN	\N	29515	4852	0101000020E6100000D3B54FF79CE4F63F2A292457B9F14840
 458	7 RUE D ALSACE	\N	29136	4817	0101000020E6100000A9F9ED95C0A0D73FCD01A34763DF4840
-463	25 RUE JEAN LOUIS LECLERC	\N	29136	4817	0101000020E61000002A08A418AE1BD83F3AF27A0F9BE04840
-525	46 RUE GUY DE MAUPASSANT	\N	29144	4813	0101000020E610000047D48303D349D73FEAE1919987D24840
 423	8 RUE DE L EGLISE	\N	29133	4817	0101000020E6100000881C79256B62D73FE491CBC164DA4840
-499	RUE DE NEUFCHATEL	\N	29512	4849	0101000020E61000005DAA9F25320DF93FBFC8152873EC4840
-485	2 RUE DES ERABLES	\N	29138	4820	0101000020E61000009F6E615CF821C23FDD6B9437B8C44840
-444	1 RUE FLEMING	\N	29394	4839	0101000020E6100000245DC1A37EA0F63F4A7CEE04FB374940
-486	28 RUE DES ECOLES	\N	29267	4828	0101000020E6100000679637994E99F23F11B32CD223C84840
-439	44 RUE GUY DE MAUPASSANT	\N	29134	4815	0101000020E6100000F4CABD0C3B56CA3FC0FEF34D7DDA4840
-484	14 AVENUE JEAN JAURÈS	\N	29138	4820	0101000020E610000002DA65DEFBB2C23FAF6097B840C44840
 475	1 CHEMIN DE LA MESSE	\N	29507	4851	0101000020E6100000489D7E2597ECFB3F8949F23BD1BD4840
+420	RUE JOSEPH BOULARD	\N	29132	4819	0101000020E6100000B9925C7FC48FCC3FCE37C3893FC84840
+642	VILLAGE	\N	29537	4778	0101000020E6100000F9D5E72DC8ADF73F1A798B4D4CC24840
+599	275 RUE DES ECOLES	\N	29525	4848	0101000020E61000003492197C5547FB3FC105346CEFDD4840
+578	137 RUE DE L ECOLE	\N	29277	4833	0101000020E6100000863F3F63913CED3FDA249A9BCAE74840
+588	IMPASSE DES ECOLIERS	\N	29280	4827	0101000020E61000000DE49210D0E0EE3F3D82B8FE9FEA4840
+560	72 RUE DES ECOLES	\N	28952	4771	0101000020E6100000A985041F92D0F43F6B1AA93100BD4840
+579	RUE DE L EGLISE	\N	29522	4830	0101000020E6100000991FEA04550FF33F504C8347C0D34840
+587	RUE DES ALLIES	\N	29524	4849	0101000020E61000002893E02E7735F83FCF30527BD3FA4840
+616	RUE DE L EGLISE	\N	29529	4849	0101000020E6100000929E87B26E56FB3FEBD600DF4CEE4840
+585	40 RUE DE LA REPUBLIQUE	\N	29279	4828	0101000020E6100000078DD037B8C0F13FE3E71AC121CF4840
+643	37 ROUTE DE CLERES	\N	29295	4828	0101000020E610000032F26899FB5AF13F41A11A06DED04840
+482	VILLAGE	\N	29137	4814	0101000020E6100000559B0210AC87D33FA0D67E7CD3D64840
+614	47 RUE DU MANOIR	\N	10436	4814	0101000020E6100000A384C17E4DEBC23FEC81FBA6D5CE4840
+635	RUE JOSEPH DEVAUX	\N	29534	5529	0101000020E6100000D1196C78E7E9F13F69E25FFC1BE94840
+562	VILLAGE	\N	10167	1541	0101000020E61000008F284056E82AE23F34394A9848C34840
+477	ROUTE DE LA FONTAINE	\N	29508	4850	0101000020E6100000B99FAC48E7A4F73F7FB3FFC72AE54840
+604	RUE EMILE BOURDON	\N	29402	4835	0101000020E6100000B9005FCAF3DAF03F60C12600B9F34840
+492	RUE DES FURETS	\N	10416	2158	0101000020E61000002D6D10643FB6C73FBE09AE8769C74840
+510	57 RUE DU CENTRE	\N	29011	4797	0101000020E6100000B8C781402F18F03F1766C2AB3CC84840
+513	PLACE DE LA MAIRIE	\N	29012	5640	0101000020E610000083B050F48B95EA3FF5C14BD394C84840
+410	RUE DE L EGLISE	\N	29130	4812	0101000020E6100000A745F9599700DD3F1AD63B79E4E44840
+460	19 RUE GEORGES BOURGEOIS	\N	29136	4817	0101000020E610000078C8D9E3A189D83FC6E725314EE04840
+470	37 TER BOULEVARD DE LA REPUBLIQUE	\N	29136	4817	0101000020E6100000C99166DD535AD83F8AD9FDF014E14840
+390	23 RUE JEAN JAURES	\N	28979	4786	0101000020E610000042DBB8658A28F03F1C8C43C303A54840
+457	2 RUE PAUL DOUMER	\N	29136	4817	0101000020E6100000BCD76C8C6DB7D73F787EEE5743E04840
+516	61 RUE DU CHÂTEAU	\N	29140	4817	0101000020E610000067AD9B644147D53FFF3E46EDBCDC4840
+416	2 RUE DE LA REPUBLIQUE	\N	29131	4811	0101000020E610000049BF6B3A7C6EE53FE6438AE083D44840
+494	24 RUE MARETTE	\N	29511	4853	0101000020E6100000D95359B14BA6F83F0DD4520EA0CE4840
+517	17 RUE DE LA FOULERIE	\N	29517	4854	0101000020E61000003C53693DDCE3F93FEDDAF70B6AD34840
+418	VILLAGE	\N	29010	4792	0101000020E6100000093E9B8F4AB5EA3F91BE627041C34840
+398	15 RUE SALVANDY	\N	28979	4786	0101000020E61000008C648A977913F03FD3AF00E8A8A44840
+442	53 & 70 RUE DE LA REPUBLIQUE	\N	29394	4839	0101000020E610000008FDF6BCB5C0F63FBA8123FD4D064940
+505	PLACE DES SAULES	\N	28980	4785	0101000020E6100000B398D87C5C43F13F491BDC10C2A74840
+437	1 PLACE DE L EGLISE	\N	29393	4839	0101000020E61000009ACA51698C2AF63FA9580C89C1034940
+481	CHEMIN DEPARTEMENTAL 940	\N	29395	4839	0101000020E6100000734B8A1388CCF53F41AE1E41BB044940
+469	145 RUE GUSTAVE COUTURIER	\N	29136	4817	0101000020E6100000A33F0E2C422FD93FF81F919D54E04840
+467	17 BIS RUE DU 14 JUILLET	\N	29136	4817	0101000020E6100000D1E8718C22B3D73F1820342FC5E04840
+511	RUE DES 2 VALLEES	\N	29396	4841	0101000020E6100000BB9DA8659EBEF33F91F69A79CDE94840
+509	2 PLACE CESAIRE LEVILLAIN	\N	29515	4852	0101000020E6100000D3B54FF79CE4F63F2A292457B9F14840
+465	7 RUE D ALSACE	\N	29136	4817	0101000020E6100000A9F9ED95C0A0D73FCD01A34763DF4840
+495	17 RUE DE LA REPUBLIQUE	\N	29511	4853	0101000020E6100000AB822311B2B5F83FD10A671250CE4840
+424	8 RUE DE L EGLISE	\N	29133	4817	0101000020E6100000881C79256B62D73FE491CBC164DA4840
+396	RUE DE LA ROCHELLE	\N	28979	4786	0101000020E6100000FA1388E368FAEF3F94FB1D8A82A54840
+485	2 RUE DES ERABLES	\N	29138	4820	0101000020E61000009F6E615CF821C23FDD6B9437B8C44840
+488	74 RUE ALFRED LABARBE	\N	29268	4824	0101000020E610000090BF1C8CC433EB3FF3F374E8D3E74840
+637	4 RUE DU CENTRE	\N	18054	2916	0101000020E61000001E527473DD43F83F1A17CC6712BB4840
+486	28 RUE DES ECOLES	\N	29267	4828	0101000020E6100000679637994E99F23F11B32CD223C84840
+440	4 RUE DES ECOLES	\N	29134	4815	0101000020E6100000595BA94EA4C7CA3FB7DC2E6E02DA4840
+476	1 CHEMIN DE LA MESSE	\N	29507	4851	0101000020E6100000489D7E2597ECFB3F8949F23BD1BD4840
 466	LE VAL DE BUCAILLE	\N	29136	4817	0101000020E6100000CFF35646EB74D73F003E36D180DF4840
-518	17 RUE DE LA HOULERIE	\N	29517	4854	0101000020E6100000B84FB78175E3F93F74D2DAB86ED34840
 431	VILLAGE	\N	29505	4855	0101000020E61000004719FAF2C510F53FDB6D9361C7CB4840
+395	15 RUE DES TRAITES	\N	28979	4786	0101000020E610000082103DE77640F03F67F9707FE4A44840
 498	15 RUE DOUCE	\N	29512	4849	0101000020E6100000149EAC25D818F93F22A66520A6EC4840
-429	RUE DES LILAS	\N	29262	4822	0101000020E6100000D6F05FE65C86F83FC5106BB7FEC54840
+429	RUE DES LILAS	\N	29262	4822	0101000020E61000007CFE6F7D3CDAF03FC5106BB7FEC54840
 487	48 RUE DES ECOLES	\N	29267	4828	0101000020E6100000E56F36AE639AF23F0F9E43F81BC84840
 489	RUE LABARBE	\N	29268	4824	0101000020E610000090BF1C8CC433EB3FF3F374E8D3E74840
-502	577 RUE GENERAL DE GAULLE	\N	28950	4776	0101000020E6100000E0B3AD1A0FDCF23FEBAE473C34B34840
-60	ROUTE DE PIERREVILLE	\N	29217	4827	0101000020E61000002AB9D4528A67F33FDCB2E842D1E44840
-566	RUE FERDINAND BUISSON	\N	28981	4787	0101000020E6100000DCD5ABC8E840FC3F1584FAAFD6AD4840
-539	PLACE JEAN JAURÈS	\N	29063	4807	\N
-541	RUE MAURICE THOREZ	\N	29063	4807	\N
-543	1 RUE DE LA REPUBLIQUE	\N	29146	4814	\N
-626	172 RUE MAINBERTE	\N	29017	4792	0101000020E6100000A79A0093B951EA3FD2C2A73188B74840
-591	1 RUE ALBERT CAMUS	\N	29066	4807	0101000020E6100000873455F00EC2C73F6BCEA89680C14840
-555	SENTE DU POSTE	\N	757	4776	\N
-549	4 RUE LEGRAND BAUDU	\N	29519	4851	0101000020E6100000DECE8B017C91FB3FF7F9B51662BD4840
-557	130 ROUTE D ETAINHUS	\N	29064	4806	\N
-559	2 RUE DES ECOLES	\N	29275	4825	\N
-593	13 RUE DES CARAQUES	\N	29066	4807	0101000020E61000006D65EFB07CE2C93F29E219D9BAC04840
-651	4 PLACE DE LA MAIRIE	\N	29152	4814	0101000020E61000002925BDD55E37C83F4E0E1B3CFED54840
-567	RUE DE SEELZE	\N	28981	4787	\N
-592	72 RUE ROBERT ANCEL	\N	29066	4807	0101000020E6100000123B9CBE732FCA3FCF3393FB5FC24840
-571	RUE DE SEELZE	\N	28981	4787	\N
-583	894 RUE MAETERLINCK	\N	29278	4833	0101000020E610000092C834563FCFEC3F18AA8BA92EEA4840
-573	RUE DU PRESBYTÈRE	\N	28981	4787	\N
-553	43 BIS RUE DE FERRIERES	\N	29519	4851	0101000020E61000001A521F2A88A7FB3F083BC5AAC1BD4840
-576	8 ROUTE DE DIEPPE	\N	29520	5189	\N
-548	3 BOULEVARD DE MONTMORENCY	\N	29519	4851	0101000020E6100000D8F3604BC28FFB3F5B37EF4971BD4840
-584	894 RUE MAETERLINCK	\N	29278	4833	\N
-586	40 RUE DE LA REPUBLIQUE	\N	29279	4828	\N
-590	RUE FRIEDRICH ENGELS	\N	29066	4807	0101000020E610000019DC09084323C83FDDEB07E967C14840
-595	72 RUE ROBERT ANCEL	\N	29066	4807	\N
-637	4 RUE DU CENTRE	\N	18054	2916	0101000020E61000001E527473DD43F83F1A17CC6712BB4840
-565	RUE JEAN RENOIR	\N	28981	4787	0101000020E6100000592880FF395EF23F27AF84A405A54840
-580	2 RUE DU COLLEGE	\N	29065	4805	0101000020E61000003A801344BCF9F63FC409C86E51BB4840
-624	RUE ISNEL	\N	28953	4775	0101000020E610000028A8139699AEFF3F492909057CB94840
-606	56 RUE SAINT ANTONIN	\N	28982	4788	\N
-610	RUE SAINT RIQUIER	\N	29286	4821	\N
-614	47 RUE DU MANOIR	\N	10436	4814	\N
-616	RUE DE L EGLISE	\N	29529	4849	\N
-628	172 RUE MAINBERTE	\N	29017	4792	\N
-631	ALLEE DES SAULES	\N	28983	4787	\N
-633	VILLAGE	\N	29067	4806	\N
-655	RUE JULES CANTAIS	\N	29071	4804	\N
-660	9 PLACE DE LA MAIRIE	\N	29069	4805	\N
-662	RUE DE L EGLISE	\N	29297	4828	\N
-668	9 RUE DE L EPTE	\N	29543	4853	\N
-652	RUE DES CHATAIGNIERS	\N	29070	4806	0101000020E610000087D4FE1884C3D93F4381EB487DC34840
-617	24 ROUTE PRINCIPALE	\N	29530	4778	0101000020E6100000CE9FABB74A1BF93FFA24FB10E9C34840
-621	3 RUE DE L EGLISE	\N	29531	4848	0101000020E61000001DDD7D98016AFA3FC6BA3CC6AADF4840
-578	137 RUE DE L ECOLE	\N	29277	4833	0101000020E6100000863F3F63913CED3FDA249A9BCAE74840
-577	RUE GRANDE RUE	\N	29399	4836	0101000020E610000058EF42034961F23F3B3CBE9CDDF54840
-658	ROUTE DE MORGNY	\N	28955	4774	0101000020E61000004529F6D7F8F2F33FDFB78C61EFBF4840
-636	344 AVENUE DE LA HETRAIE	\N	29535	4830	0101000020E6100000A63F03036B29F33FFAE926CE5DD84840
-587	RUE DES ALLIES	\N	29524	4849	0101000020E61000002893E02E7735F83FCF30527BD3FA4840
-615	RUE DE L EGLISE	\N	29529	4849	0101000020E6100000929E87B26E56FB3FEBD600DF4CEE4840
-585	40 RUE DE LA REPUBLIQUE	\N	29279	4828	0101000020E6100000078DD037B8C0F13FE3E71AC121CF4840
-653	ROUTE DE CAILLY	\N	23032	4828	0101000020E610000096E425A4DAECF33F0E1A55E12AC84840
+412	PLACE DU MARCHE	\N	29392	4838	0101000020E610000094EEFDF9F53CF43FE5A14A28D8F24840
+421	RUE JOSEPH BOULARD	\N	29132	4819	0101000020E6100000B9925C7FC48FCC3FCE37C3893FC84840
+432	4 RUE DES TOURTERELLES	\N	29264	4830	0101000020E6100000B74A1564828CF23F6FB35F1410D24840
+404	6 RUE AUGUSTE HOUZEAU	\N	28979	4786	0101000020E61000000BDC03725E0BF03F0B538469D2A44840
+447	PLACE GASTON LEROUX	\N	29394	4839	0101000020E6100000649621B43CBCF63FA108D25A0B064940
+405	5 RUE HERVIEUX	\N	28979	4786	0101000020E6100000B90EDD05AD04F03FD3BEB9BFFAA44840
+472	1575 BOULEVARD NELSON MANDELA	\N	29136	4817	0101000020E61000006295217A91EAD83FB483DFC043DF4840
+493	3 RUE ANDRE BERTRAND	\N	29511	4853	0101000020E61000001D7738242F97F83FD883A4AAE4CE4840
+454	391 RUE DES MURS FONTAINE	\N	29136	4817	0101000020E6100000C72E2BF692C4D83FE6AFB1C79BE04840
+531	16 AVENUE EBERHARD	\N	29063	4807	0101000020E61000003571C10518D7CD3F44AD616DA9C04840
+571	RUE DE SEELZE	\N	28981	4787	0101000020E61000001FA264819504F03F69723106D6AC4840
+565	RUE JEAN RENOIR	\N	28981	4787	0101000020E6100000A39D59669F3CF03F27AF84A405A54840
+580	2 RUE DU COLLEGE	\N	29065	4805	0101000020E6100000D38C9BD392B2F03FC409C86E51BB4840
+624	RUE ISNEL	\N	28953	4775	0101000020E61000006A2A35C27591F13F492909057CB94840
+556	130 ROUTE D ETAINHUS	\N	29064	4806	0101000020E6100000CE160BA155F6D43F4F7633A31FC94840
 613	47 RUE DU MANOIR	\N	10436	4814	0101000020E6100000A384C17E4DEBC23FEC81FBA6D5CE4840
-663	RUE DE LA VARENNE	\N	29540	4832	0101000020E6100000E098DF15335DF23FEBCD45CFEFEA4840
-635	RUE JOSEPH DEVAUX	\N	29534	5529	0101000020E6100000D1196C78E7E9F13F69E25FFC1BE94840
-612	31 A RUE DE L EGLISE	\N	29528	4826	0101000020E61000008761D1BE03ADFF3F40CB673782DD4840
-654	RUE JULES CANTAIS	\N	29071	4804	0101000020E61000000183E66B7DAEE13FFBA86D607EC54840
-603	RUE DES FONTAINES	\N	29402	4835	0101000020E6100000EB7C4F17EFB8F83FEE4D801FDDF34840
-656	RUE DE L EGLISE	\N	29020	4801	0101000020E610000078B971534FDBEF3F3150849A42BE4840
-601	RUE DE L ECOLE	\N	29283	4825	0101000020E6100000B10B9739830DE83F161F76116CE14840
-546	160 ROUTE DE CLERES	\N	5380	1523	0101000020E6100000989CBCC34B82EF3FEA2243961ECB4840
-545	RUE DE LA MAIRIE	\N	29273	4832	0101000020E610000047EB4540C78FFB3F7DD580F7C4E04840
-594	2 RUE JEAN CHARCOT	\N	29066	4807	0101000020E6100000777BB5487F14C83F87E54B7F61C14840
-589	41 RUE DU FOUR À PAIN	\N	29281	4829	0101000020E6100000A320BF510716E83FC539EAE8B8EB4840
 542	1 RUE DE LA REPUBLIQUE	\N	29146	4814	0101000020E6100000D1C062E95081CC3FEB598C91D7D14840
-605	56 RUE SAINT ANTONIN	\N	28982	4788	0101000020E61000008FCE841C1722EF3F18F7D50BF4AD4840
-537	10 AVENUE LENINE	\N	29063	4807	0101000020E6100000886A59DD3BC1CD3F8C71D5A7E2C04840
-540	6 AVENUE CHARLES DE GAULLE	\N	29063	4807	0101000020E6100000840AAEBC5BCEC93F904C4532FDBF4840
-598	VILLAGE	\N	29148	4811	0101000020E61000000D155DC37E32E13FA01111A38CD34840
-634	494 GRANDE RUE	\N	29292	4824	0101000020E6100000A2E12AD5592BEB3F01A1370D38EE4840
-667	9 RUE DE L EPTE	\N	29543	4853	0101000020E61000008F6707C43A29F93FD8AFA678FDCD4840
-561	1 PLACE DE LA MAIRIE	\N	29147	4813	0101000020E61000004C19842EEBA2DA3FA328C8B629D44840
-607	RUE DU STADE	\N	29014	4798	0101000020E610000052DCE4FCBCA5EE3F56D636C563BD4840
-630	3 PLACE DE LA LIBERATION	\N	28983	4787	0101000020E61000009DFFE7C87BB9ED3F227A08991AAD4840
-550	4 BOULEVARD DE MONTMORENCY	\N	29519	4851	0101000020E61000002280276F7890FB3FB71B6DEA76BD4840
-538	RUE DES CORDERIES	\N	29063	4807	0101000020E6100000592CBAFF0C52CC3F05E4644501C34840
-640	3 PLACE DE L EUROPE	\N	29068	4804	0101000020E6100000AF48D7424C36E23F38CF222587C34840
-552	1 RUE PIERRE ET MARIE CURIE	\N	29519	4851	0101000020E6100000A6AC1BF90078FB3F78D0CBAC4EBD4840
-558	2 RUE DES ECOLES	\N	29275	4825	0101000020E6100000EBDCC6FC627AE43F48CBDCD7DCDF4840
-581	RUE DU DOCTEUR GERNEZ	\N	29065	4805	0101000020E61000003BC512250DEDDE3FD8B36B6B59C74840
-570	RUE VARLIN	\N	28981	4787	0101000020E61000002A7143AA2DB7EF3FAA07718A33AC4840
-582	PLACE DESGENETAIS	\N	29065	4805	0101000020E6100000411845FD98F0DE3FBD24E72749C74840
-645	355 RUE FRETE	\N	28984	4786	0101000020E610000090FA88EB5AC3EE3F9143C4CD29A74840
-534	16 AVENUE DE GAULLE	\N	29063	4807	0101000020E61000006BF46A80D2D0C93FEE0C113F18C04840
-638	6 RUE DU CENTRE	\N	18054	2916	0101000020E6100000A0346C45AF3FF83F5C6CDE6128BB4840
-625	PLACE DE LA MAIRIE	\N	28953	4775	0101000020E6100000042B17C21B3EF23F533E677FDEBF4840
-650	186 RUE DU FROC AUX MOINES	\N	28954	4776	0101000020E61000004D15668347E9F33FE1BD7A4753AF4840
-627	80 RUE MAINBERTE	\N	29017	4792	0101000020E6100000EA775CB2FC89EA3F8E219D0DBBB74840
-649	166 RUE DU FROC AUX MOINES	\N	28954	4776	0101000020E61000004BA9FA7E32EAF33F64FD0BA947AF4840
-563	35 RUE DES ECOLES	\N	10167	1541	0101000020E61000004B0F1FE51B22E33F5355CB4AD1C64840
-657	ALLEE DU VAL ST LEONARD	\N	29020	4801	0101000020E6100000F8A095EBD5D6EF3F1E78AD6B51BE4840
-608	RUE DE LA MAIRIE	\N	29014	4798	0101000020E6100000BF866BAB15AAEE3F8D250FB8ECBC4840
-569	RUE DU PRESBYTÈRE	\N	28981	4787	0101000020E6100000557A1AEE2BE8F13FAD7B5491C4AD4840
-719	51 RUE DE SOQUENCE	\N	29072	4808	0101000020E610000098D5645B40C7C63F7A159D5534C04840
-680	RUE MICHEL CORROY	\N	28985	4789	\N
-739	6 RUE LOUIS BLANC	\N	29072	4808	0101000020E61000008B01263187ABBF3FA658FB5CE9C04840
-688	AV GEORGES BRAQUE	\N	28985	4789	\N
-682	RUE NEIL ARMSTRONG	\N	28985	4789	0101000020E6100000073BCD1B8A1FF83FE668E1F4A6B44840
-741	40 RUE SERY	\N	29072	4808	0101000020E6100000D8C8780B591ABA3FB48EAA2608BF4840
-684	11 RUE SALVADOR ALLENDE	\N	28985	4789	0101000020E6100000F13B1B2C7B96F73F047E017BD4B34840
-746	1 RUE DE L OBSERVATOIRE	\N	29072	4808	0101000020E61000004C634EAC60CFC13F737A83D412C04840
-685	RUE TOULOUSE LAUTREC	\N	28985	4789	0101000020E61000002CD568E68739F63F8D3C39D855B34840
-796	2 RUE LOUIS BLANC	\N	29072	4808	0101000020E610000042F89978DC77BF3F366964A1E7C04840
-718	RUE EMILE AUBRY	\N	29072	4808	\N
-736	18 RUE DE LA VIVANDIÈRE	\N	29072	4808	0101000020E61000002D8F8EDBCA73BF3FD23517A85AC24840
-716	106 RUE EDOUARD VAILLANT	\N	29072	4808	0101000020E610000011F51D248D8FC63F17539F9A01C24840
-764	18 RUE DE METZ	\N	29072	4808	0101000020E61000002EF30CD06CCDEC3F55E2957F08C24840
-724	140 RUE DE LA VALLEE	\N	29072	4808	0101000020E6100000B0317578842AC43F303FA2CF68BF4840
-734	13 AVENUE D ARROMANCHES	\N	29072	4808	\N
-738	24 RUE DES ECOLES	\N	29072	4808	\N
-744	19 RUE MAURICE BOUCHOR	\N	29072	4808	\N
-697	32 RUE JULES VALLES	\N	29072	4808	0101000020E6100000BF8B61C89697C63F7361E63387C14840
-703	25 RUE DICQUEMARE	\N	29072	4808	0101000020E61000000ADFBEB89B7ABA3FE58A4116D8BE4840
-696	65 RUE SARAH BERNHARDT	\N	29072	4808	0101000020E61000000FD057721052BF3F59DF9FD6DDC14840
-753	23 RUE FRANCIS CARCO	\N	29072	4808	\N
-702	19 RUE CLOVIS	\N	29072	4808	0101000020E6100000A4FA5268EEDBC03F6B6C657822C04840
-756	253 RUE ARISTIDE BRIAND	\N	29072	4808	\N
-671	6 RUE DU DOCTEUR LAENNEC	\N	28985	4789	0101000020E6100000C4E3CBD975EEF93F9B11CE3CF3B34840
-705	RUE DES GLYCINES	\N	29072	4808	0101000020E61000004CCF42A2D32AC43FAB9D9B15D5C04840
-689	65 RUE HANNES MONTLAIRY	\N	29072	4808	0101000020E61000000A1D096E83DEBA3FF38A8E8148C24840
-694	29 RUE MICHELET	\N	29072	4808	0101000020E6100000A10246E87E06BF3F6986F99749BF4840
-692	10 ALLE GEORGES POLITZER	\N	29072	4808	0101000020E610000092A01B41FA8BC73F107E3DBAECC04840
-704	39 RUE ARQUIS	\N	29072	4808	0101000020E6100000355289C752DFBB3F4FC7A5227CC24840
-687	AV GEORGES BRAQUE	\N	28985	4789	0101000020E61000002F3C0696E988F53FDD9203130BB34840
-695	66 RUE RENE VIVIANI	\N	29072	4808	0101000020E6100000643ACD3226E5C33F75C959541BBF4840
-773	37 RUE CHARLES VICTOIRE	\N	29072	4808	\N
-670	RUE LAMARTINE	\N	28985	4789	0101000020E610000061E145DB08D6F83FB2BF897401B54840
-698	42 AVENUE LEO LAGRANGE	\N	29072	4808	0101000020E61000001994318A5A24C53F04E12B363DC04840
-781	23 RUE FRANCIS CARCO	\N	29072	4808	\N
-708	49 RUE THEOPHILE GAUTIER	\N	29072	4808	0101000020E6100000D434BDFE03F0EC3F70F91FCBC8C14840
-707	207 RUE FELIX FAURE	\N	29072	4808	0101000020E6100000E537246C7A33F23FCD721B05EFB34840
-785	9 RUE MAURICE TRONELLE	\N	29072	4808	\N
-786	9 RUE MAURICE TRONELLE	\N	29072	4808	\N
-789	13 AVENUE D ARROMANCHES	\N	29072	4808	\N
-790	16 RUE DU HOMET	\N	29072	4808	\N
+521	6 RUE FERNAND FERON	\N	29141	4817	0101000020E61000008CA7884D1067DA3F6E4528D710DE4840
+535	PLACE JEAN JAURÈS	\N	29063	4807	0101000020E6100000C710DF0D92D3CD3F39A958CA6CC04840
+567	RUE DE SEELZE	\N	28981	4787	0101000020E61000001FA264819504F03F69723106D6AC4840
+575	8 ROUTE DE DIEPPE	\N	29520	5189	0101000020E6100000169988D06BE0F73F3FF341E803F54840
+569	RUE DU PRESBYTÈRE	\N	28981	4787	0101000020E61000003C0C6931D130F03FAD7B5491C4AD4840
+632	VILLAGE	\N	29067	4806	0101000020E6100000C0F8D4779F7FDA3F0B751E368DC04840
+687	AV GEORGES BRAQUE	\N	28985	4789	0101000020E6100000050667F5B08DF03FDD9203130BB34840
+662	RUE DE L EGLISE	\N	29297	4828	0101000020E6100000188D17330B4AF13F2771D20BA9CD4840
+655	RUE JULES CANTAIS	\N	29071	4804	0101000020E61000000183E66B7DAEE13FFBA86D607EC54840
+723	36 RUE FREDERIC BELLANGER	\N	29072	4808	0101000020E6100000D64A5D3C0005BF3FA23272D4D9BF4840
 748	51 RUE DES IRIS	\N	29072	4808	0101000020E610000034997036BD4EC53F015BB10109C14840
-750	6 RUE PIERRE FARCIS	\N	29072	4808	0101000020E6100000D4F2035779E2EE3F694EC18E3DC24840
-725	8 RUE DES GOBELINS	\N	29072	4808	0101000020E61000008844049098E8EF3FCD36FDFA9DBF4840
+763	130 RUE STENDHAL	\N	29072	4808	0101000020E61000008B9CA44AAB59B43FEDA06D90A4C24840
+725	8 RUE DES GOBELINS	\N	29072	4808	0101000020E61000003A9D3673E086B93FCD36FDFA9DBF4840
 766	10 RUE GUSTAVE BRINDEAU	\N	29072	4808	0101000020E61000000384CA50F97DC23FF07508D27BBE4840
 735	1 RUE DU DOCTEUR VELPEAU	\N	29072	4808	0101000020E610000063AD7EC54AE7BA3FEDCBC26CBCC04840
+696	65 RUE SARAH BERNHARDT	\N	29072	4808	0101000020E61000000FD057721052BF3F59DF9FD6DDC14840
 747	49 RUE DES IRIS	\N	29072	4808	0101000020E6100000461589FFF744C53F2512F9EC08C14840
-743	19 RUE MAURICE BOUCHOR	\N	29072	4808	0101000020E6100000AE20893B37DDC23F62A1B52606C14840
 742	168 RUE MARECHAL JOFFRE	\N	29072	4808	0101000020E61000006D71A9249479C03F4E6A3F84FEBF4840
 731	45 RUE JEAN ZAY	\N	29072	4808	0101000020E6100000873A4946105FBA3F3E3F8C109EC04840
-733	13 AVENUE D ARROMANCHES	\N	29072	4808	0101000020E6100000ACDAB4A097D4C63F2A81BD57E7C04840
-722	36 RUE RASPAIL	\N	29072	4808	0101000020E61000005E663B53A620BF3F07280D358ABF4840
-677	RUE HILSZ	\N	28985	4789	0101000020E61000001197F3F7185DF93F409F0AB076B44840
-686	26 RUE LOUIS PASTEUR	\N	28985	4789	0101000020E610000022F9CE58C9A1F53FC324854755B54840
-793	25 RUE LUC OTTAVI	\N	29072	4808	0101000020E61000006138FDF7E56EC13F994121A754C14840
-797	25 RUE GENERAL MANGIN	\N	29072	4808	0101000020E61000007C1939C95E08EF3F4433EC836EC24840
+664	ROUTE DE DIEPPE	\N	29405	4824	0101000020E610000003385D19CB79EC3FCE3A5FC3BEEE4840
+656	RUE DE L EGLISE	\N	29020	4801	0101000020E610000078B971534FDBEF3F3150849A42BE4840
+601	RUE DE L ECOLE	\N	29283	4825	0101000020E6100000B10B9739830DE83F161F76116CE14840
+610	RUE SAINT RIQUIER	\N	29286	4821	0101000020E6100000FA97E64E9742E63FBAB67DB008D94840
+545	RUE DE LA MAIRIE	\N	29273	4832	0101000020E610000021313A53FA27F13F7DD580F7C4E04840
+523	2 ROUTE DE THEUVILLE	\N	29142	4812	0101000020E6100000057C3AFB230CE23FAA08793527E04840
+597	19 PLACE D ARMES	\N	29066	4807	0101000020E61000004B7FBA7790BBC93FD6CB29E0A2C04840
+543	1 RUE DE LA REPUBLIQUE	\N	29146	4814	0101000020E6100000D1C062E95081CC3FEB598C91D7D14840
+568	3 RUE PIERRE BROSSOLETTE	\N	28981	4787	0101000020E610000038E29B367B51F03F1F008AF44FAC4840
+606	56 RUE SAINT ANTONIN	\N	28982	4788	0101000020E61000008FCE841C1722EF3F18F7D50BF4AD4840
+647	25 RUE DE LA LIBERATION	\N	29019	4799	0101000020E610000082D86CC15F87E83F88022ADA24BD4840
+540	6 AVENUE CHARLES DE GAULLE	\N	29063	4807	0101000020E6100000840AAEBC5BCEC93F904C4532FDBF4840
+551	1 RUE DES ECOLES	\N	29519	4851	0101000020E6100000A2DFDD1B5A94FB3F8D968775F8BD4840
+634	494 GRANDE RUE	\N	29292	4824	0101000020E6100000A2E12AD5592BEB3F01A1370D38EE4840
+600	3 RUE DES MOISSONNEURS	\N	29526	4853	0101000020E61000003A6762BFC9A4FA3F190C431EA0CA4840
+561	1 PLACE DE LA MAIRIE	\N	29147	4813	0101000020E61000004C19842EEBA2DA3FA328C8B629D44840
+522	6 RUE FERNAND FERON	\N	29141	4817	0101000020E61000008CA7884D1067DA3F6E4528D710DE4840
+539	PLACE JEAN JAURÈS	\N	29063	4807	0101000020E6100000C710DF0D92D3CD3F39A958CA6CC04840
+630	3 PLACE DE LA LIBERATION	\N	28983	4787	0101000020E61000009DFFE7C87BB9ED3F227A08991AAD4840
+710	32 RUE LORD KITCHENER	\N	29072	4808	0101000020E610000085A63B3B5800BD3F8797120F49BF4840
+553	43 BIS RUE DE FERRIERES	\N	29519	4851	0101000020E61000001A521F2A88A7FB3F083BC5AAC1BD4840
+759	35 RUE EUGENE GAS	\N	29072	4808	0101000020E61000009CDAA2971449BB3FE0FCC03490BF4840
+602	VILLAGE	\N	29284	4796	0101000020E6100000D5A565F525C3E73F83A069AA23D74840
+538	RUE DES CORDERIES	\N	29063	4807	0101000020E6100000592CBAFF0C52CC3F05E4644501C34840
+640	3 PLACE DE L EUROPE	\N	29068	4804	0101000020E6100000AF48D7424C36E23F38CF222587C34840
+563	35 RUE DES ECOLES	\N	10167	1541	0101000020E61000004B0F1FE51B22E33F5355CB4AD1C64840
+674	1 RUE TOULOUSE LAUTREC	\N	28985	4789	0101000020E6100000B54906FFA9A0F03FFEB06B9C49B34840
+536	RUE MAURICE THOREZ	\N	29063	4807	0101000020E610000096A6E0A7AC11CE3F8EEC29BD5FC04840
+552	1 RUE PIERRE ET MARIE CURIE	\N	29519	4851	0101000020E6100000A6AC1BF90078FB3F78D0CBAC4EBD4840
+572	PLACE CESAIRE LEVILLAIN	\N	28981	4787	0101000020E610000058B72B08A651F03F69709D774AAC4840
+559	2 RUE DES ECOLES	\N	29275	4825	0101000020E6100000EBDCC6FC627AE43F48CBDCD7DCDF4840
+570	RUE VARLIN	\N	28981	4787	0101000020E61000002A7143AA2DB7EF3FAA07718A33AC4840
+646	356 RUE FRETE	\N	28984	4786	0101000020E610000034CA6569C8C4EE3F57FE42B026A74840
+518	17 RUE DE LA HOULERIE	\N	29517	4854	0101000020E6100000B84FB78175E3F93F74D2DAB86ED34840
+576	8 ROUTE DE DIEPPE	\N	29520	5189	0101000020E6100000169988D06BE0F73F3FF341E803F54840
+638	6 RUE DU CENTRE	\N	18054	2916	0101000020E6100000A0346C45AF3FF83F5C6CDE6128BB4840
+622	RUE PIERRE ET MARIE CURIE	\N	29403	4843	0101000020E6100000C0C5099A36EEF73FBB134779C1014940
+625	PLACE DE LA MAIRIE	\N	28953	4775	0101000020E6100000042B17C21B3EF23F533E677FDEBF4840
+627	80 RUE MAINBERTE	\N	29017	4792	0101000020E6100000EA775CB2FC89EA3F8E219D0DBBB74840
+620	1 RUE DES ECOLES	\N	29016	4800	0101000020E6100000F2A3AF5A7832F13F690D73BC61C14840
+520	1 ROUTE DE ROGERVILLE	\N	29062	4807	0101000020E61000006C2955DF4FE6D03FAACC5A2B56C24840
+639	8 RUE DU CENTRE	\N	18054	2916	0101000020E61000000A37F0D5543FF83F0171915A2CBB4840
+608	RUE DE LA MAIRIE	\N	29014	4798	0101000020E6100000BF866BAB15AAEE3F8D250FB8ECBC4840
+573	RUE DU PRESBYTÈRE	\N	28981	4787	0101000020E61000003C0C6931D130F03FAD7B5491C4AD4840
+641	2 PLACE DE L EUROPE	\N	29068	4804	0101000020E6100000AF48D7424C36E23F38CF222587C34840
+566	RUE FERDINAND BUISSON	\N	28981	4787	0101000020E610000094FFE27C5E1FF03F1584FAAFD6AD4840
+628	172 RUE MAINBERTE	\N	29017	4792	0101000020E6100000A79A0093B951EA3FD2C2A73188B74840
+633	VILLAGE	\N	29067	4806	0101000020E6100000C0F8D4779F7FDA3F0B751E368DC04840
+549	4 RUE LEGRAND BAUDU	\N	29519	4851	0101000020E6100000DECE8B017C91FB3FF7F9B51662BD4840
+619	RUE ANDRE PICAN	\N	29016	4800	0101000020E610000036D8D67A7F2EF13F44E0279258C14840
+530	ROUTE DE GODERVILLE	\N	29145	4813	0101000020E61000006194B95C71EFDB3F8CE79E3B62D34840
+595	72 RUE ROBERT ANCEL	\N	29066	4807	0101000020E6100000123B9CBE732FCA3FCF3393FB5FC24840
+555	SENTE DU POSTE	\N	757	4776	0101000020E6100000A7A04530BA5EF23F9AF6626252AD4840
+584	894 RUE MAETERLINCK	\N	29278	4833	0101000020E610000092C834563FCFEC3F18AA8BA92EEA4840
+547	24 RUE CROQUET DU BOSC	\N	29519	4851	0101000020E61000003291B15E357CFB3F8F0929268CBD4840
+699	24 RUE DES ECOLES	\N	29072	4808	0101000020E61000007A0D229BA965C13F1FAFB44A38C14840
+756	253 RUE ARISTIDE BRIAND	\N	29072	4808	0101000020E6100000E9F078A9C434C13FC6B52D0C09C04840
+526	15 RUE PIERRE CORNEILLE	\N	29144	4813	0101000020E61000009AAB0FB95319D73F3E064C5C9ED24840
+688	AV GEORGES BRAQUE	\N	28985	4789	0101000020E6100000050667F5B08DF03FDD9203130BB34840
+707	207 RUE FELIX FAURE	\N	29072	4808	0101000020E6100000E537246C7A33F23FCD721B05EFB34840
+738	24 RUE DES ECOLES	\N	29072	4808	\N
+661	RUE DE L EGLISE	\N	29297	4828	0101000020E6100000188D17330B4AF13F2771D20BA9CD4840
+654	RUE JULES CANTAIS	\N	29071	4804	0101000020E61000000183E66B7DAEE13FFBA86D607EC54840
+743	19 RUE MAURICE BOUCHOR	\N	29072	4808	0101000020E6100000AE20893B37DDC23F62A1B52606C14840
+672	RUE MICHEL CORROY	\N	28985	4789	0101000020E6100000100498979BEEF03FA1AE20932DB34840
+660	9 PLACE DE LA MAIRIE	\N	29069	4805	0101000020E6100000764364A252D6E03F5AABC995F2CA4840
+706	253 RUE ARISTIDE BRIAND	\N	29072	4808	0101000020E6100000E9F078A9C434C13FC6B52D0C09C04840
+781	23 RUE FRANCIS CARCO	\N	29072	4808	\N
+830	267 RUE FELIX FAURE	\N	29072	4808	\N
+843	6 RUE DE NEUVILLETTE	\N	28957	4772	\N
+847	6 RUE DE NEUVILLETTE	\N	28957	4772	\N
+835	VILLAGE	\N	28956	4778	0101000020E6100000C38978831967F63FB6D2CEDD6CBE4840
+845	RUE LOUIS PASTEUR	\N	28957	4772	0101000020E6100000B6AE8C9E3F33F23F49D366BD94B44840
+870	RUE RENE COTY	\N	29153	4815	0101000020E61000009C8AA0A6A0DFC93F4DB967026AD74840
+898	62 RUE DE LA LIBERATION	\N	29074	4804	0101000020E6100000F3E9494A8E6CE13F03EF81A928C34840
+848	12 RUE RENE DELCOURT	\N	29406	4839	0101000020E61000000C3DCAD75124F73FE42EA1067CFC4840
+789	13 AVENUE D ARROMANCHES	\N	29072	4808	0101000020E6100000ACDAB4A097D4C63F2A81BD57E7C04840
+853	3 RUE CHEVREUL	\N	28973	4780	0101000020E61000001121C280A4F6F03FDEA59A7A59B64840
+677	RUE HILSZ	\N	28985	4789	0101000020E6100000B52865B2B5EFF03F409F0AB076B44840
+858	10 RUE LOUIS PASTEUR	\N	28973	4780	0101000020E61000001A6FA78492FFF03FACB0327D23B74840
+681	PLACE ANNETTE LESUEUR	\N	28985	4789	0101000020E6100000A17330FB72EFF03F1FFED4575BB44840
+864	26 BOULEVARD CHARLES DE GAULLE	\N	28973	4780	0101000020E6100000A48E7CC8D504F13F0C894181F3B54840
+862	30 BOULEVARD STANISLAS GIRARDIN	\N	28973	4780	0101000020E6100000EB5C44200616F13F6888D7B3EFB44840
+768	6 BIS RUE ERNEST RENAN	\N	29072	4808	0101000020E61000007C5707B7EAF7BC3F5F0EF59AA2BF4840
+806	65 AVENUE PAUL BERT	\N	29072	4808	0101000020E61000008C4E3DA2A760C53F3508180225C14840
+816	120 RUE STENDHAL	\N	29072	4808	0101000020E61000000173AEDA9513B43F7472D06FA9C24840
+797	25 RUE GENERAL MANGIN	\N	29072	4808	0101000020E610000030E160077FD3B83F4433EC836EC24840
 770	330 RUE ARISTIDE BRIAND	\N	29072	4808	0101000020E6100000529731AAB1E9C13FDAC2DAB510C04840
-775	94 RUE DESRAME	\N	29072	4808	0101000020E6100000AD3A3BB13830BA3FF7AEFF42A8C24840
+771	15 RUE CHARLES AUGUSTE MARANDE	\N	29072	4808	0101000020E6100000E0E7E886E017BA3F712622D38CBF4840
+668	9 RUE DE L EPTE	\N	29543	4853	0101000020E61000008F6707C43A29F93FD8AFA678FDCD4840
+675	3 RUE SALVADOR ALLENDE	\N	28985	4789	0101000020E610000082A0CCD45ECBF03F048E2528D5B34840
+746	1 RUE DE L OBSERVATOIRE	\N	29072	4808	0101000020E61000004C634EAC60CFC13F737A83D412C04840
+757	3 RUE JEAN BORDA	\N	29072	4808	0101000020E6100000F1A37A68A89CBB3F26968C4A07C14840
+758	89 RUE BOURDALOUE	\N	29072	4808	0101000020E6100000517DC408118BC23FE109FF1AF7BF4840
+760	16 RUE SAINT NICOLAS	\N	29072	4808	0101000020E61000007EECE97BF12BC13F577CE0B6F8BD4840
+690	RUE EUGENE VARLIN	\N	29072	4808	0101000020E6100000DBB459C2C8F5C53FBCFC14E80FC24840
+718	RUE EMILE AUBRY	\N	29072	4808	0101000020E61000000B4125E60DBBC53F0B8949F23BC24840
+773	37 RUE CHARLES VICTOIRE	\N	29072	4808	0101000020E6100000CCF75953C3F8BE3FFAF00B335DC34840
+659	9 PLACE DE LA MAIRIE	\N	29069	4805	0101000020E6100000764364A252D6E03F5AABC995F2CA4840
+772	23 RUE BEREULT	\N	29072	4808	0101000020E6100000FF2896CDAF75C33FBB3ED60063BF4840
+679	RUE DU 19 MARS	\N	28985	4789	0101000020E6100000430CC27C7CB1F03FE3D7F613A1B44840
+728	22 RUE ETIENNE MEHUL	\N	29072	4808	0101000020E6100000307DAA687E45C03FB98ECC7EB8C24840
+751	31 RUE PAUL LANGEVIN	\N	29072	4808	0101000020E6100000EDBFE2318214BC3F34EE309A53C14840
+650	186 RUE DU FROC AUX MOINES	\N	28954	4776	0101000020E61000004D15668347E9F33FE1BD7A4753AF4840
+856	65 RUE GAMBETTA	\N	28973	4780	0101000020E61000004A6FA3F49113F13F757CCDD503B54840
+732	105 RUE MASSILLON	\N	29072	4808	0101000020E6100000C8667C9CBF42C23FE7C5AABDDFBF4840
+649	166 RUE DU FROC AUX MOINES	\N	28954	4776	0101000020E61000004BA9FA7E32EAF33F64FD0BA947AF4840
+680	RUE MICHEL CORROY	\N	28985	4789	0101000020E6100000100498979BEEF03FA1AE20932DB34840
+657	ALLEE DU VAL ST LEONARD	\N	29020	4801	0101000020E6100000F8A095EBD5D6EF3F1E78AD6B51BE4840
+722	36 RUE RASPAIL	\N	29072	4808	0101000020E61000005E663B53A620BF3F07280D358ABF4840
+648	RUE DE LA LIBERATION	\N	29019	4799	0101000020E61000008094E0260695E83FF3906B3B54BD4840
+719	51 RUE DE SOQUENCE	\N	29072	4808	0101000020E610000098D5645B40C7C63F7A159D5534C04840
+755	71 RUE EDMOND ROSTAND	\N	29072	4808	0101000020E6100000C8CEF72D1C83BC3F9D2CB5DEEFC14840
+682	RUE NEIL ARMSTRONG	\N	28985	4789	0101000020E61000004DECFA35F4CFF03FE668E1F4A6B44840
+863	4 RUE SPINNEWEBER	\N	28973	4780	0101000020E610000017900C25D2EFF03F1229B449D1B54840
+741	40 RUE SERY	\N	29072	4808	0101000020E6100000D8C8780B591ABA3FB48EAA2608BF4840
+684	11 RUE SALVADOR ALLENDE	\N	28985	4789	0101000020E6100000981F69843FC2F03F047E017BD4B34840
+779	3 RUE EMILE AUBRY	\N	29072	4808	0101000020E61000000B4125E60DBBC53F0B8949F23BC24840
+685	RUE TOULOUSE LAUTREC	\N	28985	4789	0101000020E61000008448D7635A9FF03F8D3C39D855B34840
+1165	33 RUE GASTON VEYSSIÈRE	\N	28937	4769	0101000020E6100000CC9ED6FDFB35F23F69F06BE2ECB84840
+796	2 RUE LOUIS BLANC	\N	29072	4808	0101000020E610000042F89978DC77BF3F366964A1E7C04840
+753	23 RUE FRANCIS CARCO	\N	29072	4808	0101000020E610000013694BB8B88FBD3F83173BE996C34840
+716	106 RUE EDOUARD VAILLANT	\N	29072	4808	0101000020E610000011F51D248D8FC63F17539F9A01C24840
+724	140 RUE DE LA VALLEE	\N	29072	4808	0101000020E6100000B0317578842AC43F303FA2CF68BF4840
+669	ALLEE SALVADOR ALLENDE	\N	28985	4789	0101000020E61000008E5AF45D30C9F03F16C120659BB34840
+703	25 RUE DICQUEMARE	\N	29072	4808	0101000020E61000000ADFBEB89B7ABA3FE58A4116D8BE4840
+832	26 BOULEVARD AMIRAL MOUCHEZ	\N	29072	4808	0101000020E61000003A9B0AC8C94AC13F9D205E9513BE4840
+827	33 RUE FLEURUS	\N	29072	4808	0101000020E6100000DAFBCEDB4AC2C13F6A9FD0E3DEBE4840
+869	59 BOULEVARD CHARLES DE GAULLE	\N	28973	4780	0101000020E6100000D775385267FAF03F0E18C1529FB54840
+884	1 RUE JEAN MOULIN	\N	29408	4844	0101000020E610000098AE3C5579DBF53F2688806436074940
+834	1 RUE DUME D APLEMONT	\N	29072	4808	0101000020E61000003F4BCCBD04CABF3FC01D4D9AABBF4840
+823	267 RUE FELIX FAURE	\N	29072	4808	0101000020E61000006784CBEB0743BC3F019D0FF020C04840
+671	6 RUE DU DOCTEUR LAENNEC	\N	28985	4789	0101000020E61000002DFD2DFC3EFEF03F9B11CE3CF3B34840
+689	65 RUE HANNES MONTLAIRY	\N	29072	4808	0101000020E61000000A1D096E83DEBA3FF38A8E8148C24840
+691	85 RUE LABEDOYERE	\N	29072	4808	0101000020E6100000F55F616DFEB2C13FE60297C79ABF4840
+692	10 ALLE GEORGES POLITZER	\N	29072	4808	0101000020E610000092A01B41FA8BC73F107E3DBAECC04840
+700	18 AVENUE VICTORIA	\N	29072	4808	0101000020E61000002075F7DDCD03BE3FAAC0E2D310C04840
+822	51 RUE DES MOTEAUX	\N	29072	4808	0101000020E6100000C021C6FEC126EF3F40FCBADB8EC44840
+670	RUE LAMARTINE	\N	28985	4789	0101000020E61000005663ED1534E2F03FB2BF897401B54840
+698	42 AVENUE LEO LAGRANGE	\N	29072	4808	0101000020E61000001994318A5A24C53F04E12B363DC04840
+701	63 RUE GUSTAVE BRINDEAU	\N	29072	4808	0101000020E61000009BA2FBF02E02C23F0BD0D7A8DEBE4840
+841	6 RUE DE NEUVILLETTE	\N	28957	4772	0101000020E6100000DAAEFB87275DF13F118C623D5EB94840
+872	RUE WORMS	\N	29023	4802	\N
+785	9 RUE MAURICE TRONELLE	\N	29072	4808	0101000020E61000004A9B93DFEE21BE3F2780E69CEDC24840
+849	1140 ROUTE DU MANOIR	\N	29022	4792	0101000020E6100000A49EA52E9085EB3F46289574BDB44840
+857	25 RUE PABLO NERUDA	\N	28973	4780	0101000020E610000087452B484AF2F03F7847844EA1B64840
+903	PLACE PIERRE DE COUBERTIN	\N	29074	4804	\N
+927	RUE DES ALLIES	\N	29303	4833	0101000020E6100000FB80D012154EED3F2085A1C41DEA4840
+951	190 RUE DU CHÂTEAU	\N	28959	4771	0101000020E6100000A8AAFBC088BFF43FF9C27D4701BB4840
+970	RUE DE LA MAIRIE	\N	28960	4776	0101000020E6100000A6E73611985FF43FA0A6F9D730B24840
+1009	251 RUE DE LA MAIRIE	\N	7706	1193	0101000020E6100000A84F38DCC3DDF33FCCEC14274EB44840
+976	17 ROUTE DE CLÈRES	\N	29306	4828	0101000020E61000007A51748A79C1F13FD643A81017C94840
+1012	PLACE DU GENERAL LECLERC	\N	29308	4822	0101000020E6100000E2C31A9EC634F13FDC98851324C64840
+925	976 ROUTE D ALLOUVILLE	\N	29025	4793	0101000020E61000003AD408607738E63F91FF97A57CC94840
+958	195 RUE SAINT LEONARD	\N	29028	4793	0101000020E6100000F812C50CD62DE73FC34727BF03C74840
+900	27 BIS RUE THIERS	\N	29074	4804	0101000020E6100000F513246FE60BE13F2EE385F8B0C24840
+902	68 BIS RUE DE LA LIBERATION	\N	29074	4804	0101000020E61000008BA7F3E81377E13F8516657864C34840
+962	1 RUE DE L ECOLE	\N	29559	4850	0101000020E61000002DAF10E155E2F73F89D27BB6D0E24840
+965	3 PLACE DE LA MAIRIE	\N	29561	4850	0101000020E610000005E9F27E8D18F63F4895174FF3E14840
+952	ALLEE SAINTE CLAIRE	\N	1183	4837	0101000020E61000008B785028C278F23F2F74FC82A3EE4840
+908	30 ROUTE DU STADE	\N	29024	4797	0101000020E6100000F17D4629EE96ED3F5519219793CE4840
+910	100 PLACE DU MARRONNIER	\N	29154	4812	0101000020E6100000409C8F84E015E03F58C51B9947D84840
+947	2 RUE ERNEST DANET	\N	29027	4801	0101000020E6100000F67487AA1E9CF03F707A590B1ABD4840
+940	PLACE SAINT JUST	\N	29027	4801	0101000020E6100000B2733D4B3CAAF03F0204BD8193BD4840
+992	RUE DES CHAMPS	\N	5430	2693	0101000020E61000008CD420713404F03FCFB9A14AC9BA4840
+944	RUE DE LA MARNE	\N	29027	4801	0101000020E610000039F4042C33A1F03F43CC5F00E5BD4840
+1001	PLACE DU CHAMP DE FOIRE	\N	29160	4820	0101000020E6100000BB4EA966643DC83FAB71DB630EC64840
+997	2 PLACE JULES FERRY	\N	29160	4820	0101000020E61000001DF4D238C785C83F51C5A6F8ECC54840
+938	RUE D ESTOUTEVILLE	\N	29158	4820	0101000020E61000007DF81DB6397DC63F562DE92887CC4840
+800	50 AVENUE DE FRILEUSE	\N	29072	4808	0101000020E61000003F12B2D027E2C23F6713FD2D43C14840
+877	RUE PIERRE LEROUX	\N	29023	4802	0101000020E6100000F313ED7BEBFBE93F20455B9D35BD4840
+787	61 RUE MASSILLON	\N	29072	4808	0101000020E6100000C37249AAF6B6C13F969C6E34DBBF4840
+813	70 AVENUE MAURICE PIMONT	\N	29072	4808	0101000020E6100000499D138A934CC43FCA2544AF75C14840
 794	23 RUE RAOUL ANCEL	\N	29072	4808	0101000020E6100000223AE838D59FC43F5ED90583EBC04840
 795	2 RUE DE TOURVILLE	\N	29072	4808	0101000020E6100000E51039C9CBA4BF3F0CAC251574BF4840
 777	5 RUE ARTHUR HONEGGER	\N	29072	4808	0101000020E61000000A427CD7D5A1BA3FD9701E6F6EBE4840
-771	15 RUE CHARLES AUGUSTE MARANDE	\N	29072	4808	0101000020E6100000E0E7E886E017BA3F712622D38CBF4840
-791	45 RUE FONTAINE DE LA MALLET	\N	29072	4808	0101000020E61000002D4552086D84BF3FF39CA17647C24840
-772	23 RUE BEREULT	\N	29072	4808	0101000020E6100000FF2896CDAF75C33FBB3ED60063BF4840
-792	4 AVENUE JULES MASSENET	\N	29072	4808	0101000020E6100000770B2C99C623C43F86D2ACA64AC04840
-774	8 RUE HIPPOLYTE FENOUX	\N	29072	4808	0101000020E6100000A66AF5B44758ED3F11FF4D7B0CC14840
-788	18 RUE ETIENNE MEHUL	\N	29072	4808	0101000020E6100000627E55CB2943C03FD6C785FBAFC24840
-798	ALLEE LEON MOUSSINAC	\N	29072	4808	0101000020E61000001C9998456060C73F63507D5233C14840
-675	3 RUE SALVADOR ALLENDE	\N	28985	4789	0101000020E61000001545FE4FB4F1F73F048E2528D5B34840
-762	112 RUE ERNEST RENAN	\N	29072	4808	0101000020E610000059EDD183D118BF3F43DDAC66C2BF4840
-710	32 RUE LORD KITCHENER	\N	29072	4808	0101000020E610000085A63B3B5800BD3F8797120F49BF4840
-757	3 RUE JEAN BORDA	\N	29072	4808	0101000020E6100000F1A37A68A89CBB3F26968C4A07C14840
-758	89 RUE BOURDALOUE	\N	29072	4808	0101000020E6100000517DC408118BC23FE109FF1AF7BF4840
-737	62 RUE DE CHATEAUDUN	\N	29072	4808	0101000020E610000042EB6F765C6EBE3F26EDFC91D8C14840
-751	31 RUE PAUL LANGEVIN	\N	29072	4808	0101000020E6100000EDBFE2318214BC3F34EE309A53C14840
-780	69 RUE DE SOQUENCE	\N	29072	4808	0101000020E61000008B31ABD529DFC63FD3E3EFC534C04840
-674	1 RUE TOULOUSE LAUTREC	\N	28985	4789	0101000020E610000011E13EF6A346F63FFEB06B9C49B34840
-683	5 ALLEE SALVADOR ALLENDE	\N	28985	4789	0101000020E610000008FAF29FC1E8F73F909934DBCFB34840
-729	16 RUE DU HOMET	\N	29072	4808	0101000020E610000087EA0EAB3D01C53F2B0551B565BD4840
-679	RUE DU 19 MARS	\N	28985	4789	0101000020E6100000A17A94DFDCEEF63FE3D7F613A1B44840
-730	58 RUE JEAN MARIDOR	\N	29072	4808	0101000020E6100000F8A6775E1B4BC43F29E4CE752FC04840
-720	31 BIS RUE DU PERE FLAVIGNY	\N	29072	4808	0101000020E61000000A1D46D19B7BC03FA189A870A1C14840
-673	RUE GUSTAVE BOUTIGNY	\N	28985	4789	0101000020E61000008CC69052BF01F53FE7B612F4F6B44840
-732	105 RUE MASSILLON	\N	29072	4808	0101000020E6100000C8667C9CBF42C23FE7C5AABDDFBF4840
-672	RUE MICHEL CORROY	\N	28985	4789	0101000020E61000009D28F0EB1352F93FA1AE20932DB34840
-715	111 BOULEVARD FRANÇOIS 1ER	\N	29072	4808	0101000020E61000008203A648C804BA3F6A56CFAC99BE4840
-930	RUE DU DOCTEUR LEROY	\N	29026	4800	0101000020E610000075F5F8F7F8F8F53F028559EC1FC34840
-805	29 BIS RUE DU PERE FLAVIGNY	\N	29072	4808	0101000020E610000056FA1D4B9E79C03FD3563E2E9EC14840
-899	RUE GOUBERMOULINS	\N	29074	4804	0101000020E6100000548461E1A054E13FBF11175F38C34840
-808	69 RUE DE SOQUENCE	\N	29072	4808	\N
-916	12 RUE JEAN JAURES	\N	29409	4839	0101000020E610000038FAA2817B95F83F31F2ECD19FFE4840
-810	AVENUE DU GENERAL DE GAULLE	\N	29072	4808	\N
-824	2 RUE JEAN-PAUL SARTRE	\N	29072	4808	0101000020E6100000FE26985A841CBD3FD0EE906280BF4840
-914	RUE DE LA LOCARDIE	\N	29549	4852	0101000020E61000001571EE3A1150F63F194EC21A21EA4840
-846	2 RUE CHARLES SCHERER	\N	28957	4772	0101000020E61000005C18CBEF925AF23FAB121BE20EB54840
-822	51 RUE DES MOTEAUX	\N	29072	4808	0101000020E6100000C021C6FEC126EF3F40FCBADB8EC44840
-830	267 RUE FELIX FAURE	\N	29072	4808	\N
-833	51 AVENUE DU 8 MAI 1945	\N	29072	4808	\N
-834	1 RUE DUME D APLEMONT	\N	29072	4808	\N
-868	197 AVENUE DES ALLIES	\N	28973	4780	0101000020E61000006F360CD58388F83F4DD204A3F5B54840
-884	1 RUE JEAN MOULIN	\N	29408	4844	0101000020E610000098AE3C5579DBF53F795105ED1F484940
-828	1 RUE DUME D APLEMONT	\N	29072	4808	0101000020E61000003F4BCCBD04CABF3FC01D4D9AABBF4840
-823	267 RUE FELIX FAURE	\N	29072	4808	0101000020E61000006784CBEB0743BC3F019D0FF020C04840
-843	6 RUE DE NEUVILLETTE	\N	28957	4772	\N
-826	86 RUE DE CHATEAUDUN	\N	29072	4808	0101000020E6100000A79285D82EA7BE3F1E447C71F3C14840
-847	6 RUE DE NEUVILLETTE	\N	28957	4772	\N
-850	1140 ROUTE DU MANOIR	\N	29022	4792	\N
-851	2 RUE DE L ESPLANADE	\N	28973	4780	0101000020E6100000CFDAAF336C61F93FA04F6882F6B54840
-836	1 RUE DU 11 NOVEMBRE	\N	29021	4800	0101000020E610000057088AA39B02F53F169E3CD19AC24840
-861	25 RUE PABLO NERUDA	\N	28973	4780	\N
-873	3 RUE EDOUARD BRANLY	\N	29023	4802	0101000020E6100000EAC83BCE0720EA3FD972D30BE3BC4840
-872	RUE WORMS	\N	29023	4802	\N
-880	AVENUE JEAN MOULIN	\N	29408	4844	0101000020E61000004D10ADC9DED8F53F86048C2E6F474940
-926	RUE DU COLLEGE	\N	29303	4833	0101000020E61000005C4AC314D838ED3FB73AE7440EEA4840
-886	50 RUE DU CLOS DU MOUCHEL	\N	28958	4776	\N
-894	RUE THIERS	\N	29074	4804	0101000020E6100000D071C15B1810E13F0102EF477EC24840
-825	16 RUE DE LA VALLEE	\N	29072	4808	0101000020E6100000CE56B9ABB25AF93F1FC408C0C3F54840
-892	26 RUE DU VILLAGE	\N	29073	4806	\N
-901	AVENUE DU CLAIRVAL	\N	29074	4804	\N
-903	PLACE PIERRE DE COUBERTIN	\N	29074	4804	\N
-904	RUE GOUBERMOULINS	\N	29074	4804	\N
-905	ALLEE DE LA COTE BLANCHE	\N	29074	4804	\N
-908	30 ROUTE DU STADE	\N	29024	4797	\N
-910	100 PLACE DU MARRONNIER	\N	29154	4812	\N
-917	12 RUE JEAN JAURES	\N	29409	4839	\N
-919	RIE DE BLAINVILLE	\N	29410	4845	\N
-923	ROUTE DE NEWTON	\N	29552	4832	\N
-925	976 ROUTE D ALLOUVILLE	\N	29025	4793	\N
-871	VILLAGE	\N	29301	4821	0101000020E610000070BB569676C7EC3F74D9224829DC4840
-835	VILLAGE	\N	28956	4778	0101000020E6100000C38978831967F63FB6D2CEDD6CBE4840
-912	2 PLACE DE LA MAIRIE	\N	29548	4832	0101000020E61000001825093EDDABFB3F722A427F5BE64840
-887	155 RUE DE SAINT VAAST	\N	29546	4856	0101000020E6100000CD61610263AFF33FF5DB9565A1E44840
-870	RUE RENE COTY	\N	29153	4815	0101000020E61000009C8AA0A6A0DFC93F4DB967026AD74840
-898	62 RUE DE LA LIBERATION	\N	29074	4804	0101000020E6100000F3E9494A8E6CE13F03EF81A928C34840
-900	27 BIS RUE THIERS	\N	29074	4804	0101000020E6100000F513246FE60BE13F2EE385F8B0C24840
-897	PLACE PIERRE DE COUBERTIN	\N	29074	4804	0101000020E610000073E23157940FE13F4D6CDB8352C24840
-848	12 RUE RENE DELCOURT	\N	29406	4839	0101000020E61000000C3DCAD75124F73FE42EA1067CFC4840
-906	30 ROUTE DU STADE	\N	29024	4797	0101000020E6100000F17D4629EE96ED3F5519219793CE4840
-911	466 RUE DES TILLEULS	\N	29302	4823	0101000020E6100000707A1CA88116ED3F9088C66609DB4840
-858	10 RUE LOUIS PASTEUR	\N	28973	4780	0101000020E610000006578A2EB9FBF93FACB0327D23B74840
-865	4 RUE JEAN BAPTISTE CLEMENT	\N	28973	4780	0101000020E6100000E80C31033AD8F83F16BB229D26B74840
-862	30 BOULEVARD STANISLAS GIRARDIN	\N	28973	4780	0101000020E61000002EA1AB423DDCFA3F6888D7B3EFB44840
-806	65 AVENUE PAUL BERT	\N	29072	4808	0101000020E61000008C4E3DA2A760C53F3508180225C14840
-816	120 RUE STENDHAL	\N	29072	4808	0101000020E6100000C10F5A517B18E93F7472D06FA9C24840
-813	70 AVENUE MAURICE PIMONT	\N	29072	4808	0101000020E6100000499D138A934CC43FCA2544AF75C14840
-812	15 RUE JERÔME BELLARMATO	\N	29072	4808	0101000020E6100000167B023DE160BD3F9CEF547EA1BE4840
+783	13 RUE PAUL MARION	\N	29072	4808	0101000020E61000007CDE85943C2AC13F7390632D36BE4840
+786	9 RUE MAURICE TRONELLE	\N	29072	4808	0101000020E61000004A9B93DFEE21BE3F2780E69CEDC24840
+799	39 RUE VICTOR HUGO	\N	29072	4808	0101000020E6100000840E482F5B4CBA3F056522BEF6BE4840
+815	12 RUE KLEBER	\N	29072	4808	0101000020E6100000FFF4BD8B9972C03FA0AC9475EABF4840
 803	12 RUE MAXIMILIEN ROBESPIERRE	\N	29072	4808	0101000020E610000077F4063217C5C53FB47C3407CEC14840
 821	55 RUE ROMAIN ROLLAND	\N	29072	4808	0101000020E610000015AFA58C271EBB3FA1A71A20C5C04840
-814	79 RUE EDMOND ROSTAND	\N	29072	4808	0101000020E6100000026058D8B5B8BC3F2E5C4EF0EAC14840
-820	1 RUE DE VALMY	\N	29072	4808	0101000020E6100000A30371A28684C23F872DE2E077BE4840
-849	1140 ROUTE DU MANOIR	\N	29022	4792	0101000020E6100000A49EA52E9085EB3F46289574BDB44840
-878	1180 RUE DU MARECHAL GALLIENI	\N	29023	4802	0101000020E610000014CD549FE357E93F5D5273C1B2BF4840
-883	89 RUE ALEXANDRE PAPIN	\N	29408	4844	0101000020E6100000C5F2356BF3FEF53FEE9815E52D4C4940
-890	3 LIEU-DIT VILLAGE	\N	5410	2992	0101000020E6100000100E147DE038D23FB329B2318AD94840
-876	4 RUE ANTOINE DE LAVOISIER	\N	29023	4802	0101000020E6100000B4EA108B5A22EA3F0FBA8443EFBC4840
-817	75 RUE THEOPHILE GAUTIER	\N	29072	4808	0101000020E6100000B7E84B0C5533ED3F81896809ECC14840
-802	21 IMPASSE TALMA	\N	29072	4808	0101000020E6100000D4999C56E101BD3F07D90D3650C24840
-907	80 GDER	\N	29024	4797	0101000020E61000006E91FDF13395ED3F349E6B0C78CE4840
-844	1 RUE FRANCOIS HERR	\N	28957	4772	0101000020E61000001C7E20413D2AF23F7CDC6DCD0CB54840
+809	36 RUE BEAULIEU	\N	29072	4808	0101000020E6100000A24B729FA03DBC3F271DDDEF6DC14840
+774	8 RUE HIPPOLYTE FENOUX	\N	29072	4808	0101000020E6100000B8BB2AF7D279B73F11FF4D7B0CC14840
+819	48 RUE MICHELET	\N	29072	4808	0101000020E6100000273F9D834BEDBE3F38B8F8049EBF4840
+804	AVENUE DU MONT LE COMTE	\N	29072	4808	0101000020E61000004FE0C6FBABA6C63FEBF6A3F240C14840
+778	18 RUE CHARLES DELESCLUZE	\N	29072	4808	0101000020E6100000F680CA0F944FC63FE064FAA91AC24840
+850	1140 ROUTE DU MANOIR	\N	29022	4792	0101000020E6100000A49EA52E9085EB3F46289574BDB44840
+881	15 RUE SUZANNE	\N	29408	4844	0101000020E6100000CE68B8BCCAF6F53F6CFB477489074940
+883	89 RUE ALEXANDRE PAPIN	\N	29408	4844	0101000020E6100000C5F2356BF3FEF53FE52882309E074940
+889	VILLAGE	\N	5410	2992	0101000020E6100000100E147DE038D23FB329B2318AD94840
+798	ALLEE LEON MOUSSINAC	\N	29072	4808	0101000020E61000001C9998456060C73F63507D5233C14840
+817	75 RUE THEOPHILE GAUTIER	\N	29072	4808	0101000020E6100000C553D609445CB73F81896809ECC14840
+846	2 RUE CHARLES SCHERER	\N	28957	4772	0101000020E61000005C18CBEF925AF23FAB121BE20EB54840
+983	1 RUE HENAULT	\N	28961	4779	0101000020E610000077C178B7C670F13FE38A8BA372BA4840
+837	9 PLACE DES CANADIENS	\N	29021	4800	0101000020E6100000BED40746E9A0F03FD30FD185E4C04840
 874	78 RUE PIERRE LEROUX	\N	29023	4802	0101000020E6100000472F3D762402EA3F3BC316B30CBD4840
-877	RUE PIERRE LEROUX	\N	29023	4802	0101000020E6100000F313ED7BEBFBE93F20455B9D35BD4840
-918	RIE DE BLAINVILLE	\N	29410	4845	0101000020E6100000890B4A15E85AEE3F421F8F8DFEF04840
+808	69 RUE DE SOQUENCE	\N	29072	4808	0101000020E61000008B31ABD529DFC63FD3E3EFC534C04840
+854	90 BOULEVARD CHARLES DE GAULLE	\N	28973	4780	0101000020E610000003441C469CF1F03FB208ACB9AFB54840
+860	4 RUE SALVADOR ALLENDE	\N	28973	4780	0101000020E6100000D1CD7096A1F0F03F904B5E95F2B64840
+867	RUE JACQUES PREVERT	\N	28973	4780	0101000020E6100000926B0D1C05FDF03F455C088BEDB64840
 879	RUE ANTOINE DE LAVOISIER	\N	29023	4802	0101000020E6100000B4EA108B5A22EA3F0FBA8443EFBC4840
-882	4 AVENUE JEAN MOULIN	\N	29408	4844	0101000020E61000005009F22D58D4F53FC81DDBD726464940
-860	4 RUE SALVADOR ALLENDE	\N	28973	4780	0101000020E61000002A0A68E04F66F93F904B5E95F2B64840
-888	127 RUE DE SAINT VAAST	\N	29546	4856	0101000020E61000003FC3B78AA7A9F33F4DF7B6708BE44840
-857	25 RUE PABLO NERUDA	\N	28973	4780	0101000020E610000042B7B0D1E676F93F7847844EA1B64840
-855	6 RUE PORTE DE DIANE	\N	28973	4780	0101000020E6100000134183EA72DCF73FD80971DDFBB64840
-867	RUE JACQUES PREVERT	\N	28973	4780	0101000020E6100000B633861833E2F93F455C088BEDB64840
-866	14 RUE PASTEUR	\N	28973	4780	0101000020E6100000DEBFC3FEFCF8F93F03B6620312B74840
+861	25 RUE PABLO NERUDA	\N	28973	4780	0101000020E610000087452B484AF2F03F7847844EA1B64840
+855	6 RUE PORTE DE DIANE	\N	28973	4780	0101000020E61000001B200DB13EC9F03FD80971DDFBB64840
+790	16 RUE DU HOMET	\N	29072	4808	0101000020E610000087EA0EAB3D01C53F2B0551B565BD4840
+1007	36 RUE PAUL ELUARD	\N	29160	4820	0101000020E61000002899715ABD31C63FAB251DE5E0C54840
+866	14 RUE PASTEUR	\N	28973	4780	0101000020E6100000FD5FE07F4CFFF03F03B6620312B74840
 801	28 AVENUE DU BOIS DE BLEVILLE	\N	29072	4808	0101000020E610000086CFF4171CD3BF3F4E701C3E0AC34840
-913	RUE DU MARECHAL LECLERC	\N	29549	4852	0101000020E6100000EB4F7D48416DF63F42BCE80ABAEA4840
-856	65 RUE GAMBETTA	\N	28973	4780	0101000020E6100000E658628EB3C3FA3F757CCDD503B54840
-853	3 RUE CHEVREUL	\N	28973	4780	0101000020E6100000AA4A95076DA2F93FDEA59A7A59B64840
-885	50 RUE DU CLOS DU MOUCHEL	\N	28958	4776	0101000020E6100000F5BCB3279521F23FF5437421B9AB4840
-931	444 ROUTE DE DIEPPE	\N	29026	4800	\N
-1016	6 RUE DES ECOLES	\N	29568	4855	0101000020E6100000F126A6A886F7F33FC394EDE8A4C24840
-936	146 ROUTE GUY DE MAUPASSANT	\N	29157	4813	0101000020E6100000B0202812A7AED63FE1BFB31CECCD4840
-935	2 PLACE DE LA MAIRIE	\N	29155	4819	\N
-938	RUE D ESTOUTEVILLE	\N	29158	4820	\N
-978	BD SIEGFRIED	\N	28961	4779	0101000020E610000013A16C25CFB0FA3F53EC681C6ABB4840
-1034	2 PLACE DE LA MAIRIE	\N	29577	4850	0101000020E6100000D37E9E18EF4DF73FBCEA2201FADA4840
-949	34 RUE FERDINAND CARTIER	\N	29027	4801	\N
-971	ROUTE DE DIEPPE	\N	29413	4841	0101000020E6100000C793F3B1FA9CF33FDD359503C5EB4840
-948	5 SENTE AUX LOUPS	\N	29027	4801	0101000020E61000000FB4656D1170F73FF5A69EDCA1BC4840
-958	195 RUE SAINT LEONARD	\N	29028	4793	\N
-1008	AVENUE JEAN PREVOST	\N	29160	4820	0101000020E6100000E554C362FAFCC63F8730446FEDC54840
-965	3 PLACE DE LA MAIRIE	\N	29561	4850	\N
-967	CHATEAU DE MESNIERES	\N	29561	4850	\N
+810	AVENUE DU GENERAL DE GAULLE	\N	29072	4808	0101000020E61000002ACFDA72D013C43FCB21D20444C24840
+829	44 RUE EMILE ZOLA	\N	29072	4808	0101000020E61000006A5A857448CFBA3F8EE3C96675BE4840
+905	ALLEE DE LA COTE BLANCHE	\N	29074	4804	0101000020E6100000D071C15B1810E13F0102EF477EC24840
+977	2 RUE JEAN DE LA VARENDE	\N	28961	4779	0101000020E6100000E2F0A0DE2E49F13F8E567BF999BB4840
 1028	5 RUE DU COLLEGE	\N	29575	4850	0101000020E6100000137B84745A0AF73FB6C9970634DE4840
-1031	27 BOULEVARD GUSTAVE EIFFEL	\N	29575	4850	0101000020E6100000AD73FAE4A21EF23F7A84818434BA4840
-1011	PLACE KEREBEL	\N	29308	4822	0101000020E6100000AD8493D9C5B9FB3FB290EB6CE9C54840
-976	17 ROUTE DE CLÈRES	\N	29306	4828	\N
-1052	RUE JEAN MARIDOR	\N	29080	4809	0101000020E610000080B6AA2CD759E23F534C525746BF4840
-993	RUE PABLO NERUDA	\N	29160	4820	0101000020E6100000D31FB3161359C63FFE38CC5D6CC64840
-984	BD SIEGFRIED	\N	28961	4779	\N
-966	CHATEAU DE MESNIERES	\N	29561	4850	0101000020E610000076359AD853BDF73F39BD28CDA8EB4840
-986	CHEMIN DE LA PLANQUETTE	\N	28961	4779	\N
-992	RUE DES CHAMPS	\N	5430	2693	\N
-1000	20 RUE CHARLES BLANCHET	\N	29160	4820	\N
-1014	RUE ANDRE MARTIN	\N	29308	4822	\N
+833	51 AVENUE DU 8 MAI 1945	\N	29072	4808	0101000020E61000006070771D4447C53FC988F2A202C24840
+851	2 RUE DE L ESPLANADE	\N	28973	4780	0101000020E6100000E195916B24F0F03FA04F6882F6B54840
+836	1 RUE DU 11 NOVEMBRE	\N	29021	4800	0101000020E6100000A2CD8DC34280F03F169E3CD19AC24840
+873	3 RUE EDOUARD BRANLY	\N	29023	4802	0101000020E6100000EAC83BCE0720EA3FD972D30BE3BC4840
+922	3 ALLEE LEBAUDY	\N	29552	4832	0101000020E6100000252A4CC6CEDFF13FC12E16C864E54840
+880	AVENUE JEAN MOULIN	\N	29408	4844	0101000020E61000004D10ADC9DED8F53F41CDDAB724074940
+1011	PLACE KEREBEL	\N	29308	4822	0101000020E610000078C08E622D2CF13FB290EB6CE9C54840
+926	RUE DU COLLEGE	\N	29303	4833	0101000020E61000005C4AC314D838ED3FB73AE7440EEA4840
+894	RUE THIERS	\N	29074	4804	0101000020E6100000D071C15B1810E13F0102EF477EC24840
+967	CHATEAU DE MESNIERES	\N	29561	4850	0101000020E610000076359AD853BDF73F39BD28CDA8EB4840
 1017	1240 RUE SAINT OUEN	\N	29570	4778	\N
-1019	RUE DU BOIS SAINT JACQUES	\N	29309	4831	\N
-1024	5 ROUTE DE LA GARE	\N	29573	4849	\N
-1026	4 RUE JULES FERRY	\N	29576	4851	\N
+975	17 ROUTE DE CLÈRES	\N	29306	4828	0101000020E61000007A51748A79C1F13FD643A81017C94840
+924	976 ROUTE D ALLOUVILLE	\N	29025	4793	0101000020E61000003AD408607738E63F91FF97A57CC94840
+942	34 RUE FERDINAND CARTIER	\N	29027	4801	0101000020E6100000EB614968B4B5F03FEDEB868E19BE4840
+964	3 PLACE DE LA MAIRIE	\N	29561	4850	0101000020E610000005E9F27E8D18F63F4895174FF3E14840
+966	CHATEAU DE MESNIERES	\N	29561	4850	0101000020E610000076359AD853BDF73F39BD28CDA8EB4840
+909	100 PLACE DU MARRONNIER	\N	29154	4812	0101000020E6100000409C8F84E015E03F58C51B9947D84840
+991	RUE DES CHAMPS	\N	5430	2693	0101000020E61000008CD420713404F03FCFB9A14AC9BA4840
+1019	RUE DU BOIS SAINT JACQUES	\N	29309	4831	0101000020E61000007478F9B77A37EB3F5E63FAD299D14840
+1023	5 ROUTE DE LA GARE	\N	29573	4849	0101000020E610000096BFC41D44BAFA3FBEFE7FF769F44840
+916	12 RUE JEAN JAURES	\N	29409	4839	0101000020E610000038FAA2817B95F83F31F2ECD19FFE4840
+919	RIE DE BLAINVILLE	\N	29410	4845	0101000020E6100000890B4A15E85AEE3F421F8F8DFEF04840
+980	CHEMIN DE LA PLANQUETTE	\N	28961	4779	0101000020E61000008F97AD76C65FF13F4201800896BC4840
 1030	BOULEVARD GUSTAVE EIFFEL	\N	29575	4850	\N
-1036	RUE DE L EGLISE	\N	29310	4829	\N
-1038	RUE DES ECOLES	\N	29078	4805	\N
-1041	256 RUE DES ECOLES	\N	10074	1500	\N
-1043	11 RUE DE L ECOLE	\N	29079	4809	\N
-1045	129 GRANDE RUE	\N	29416	4841	\N
-1050	RUE DES LONGS VALLONS	\N	29033	4803	\N
-1063	RUE DE L EGLISE	\N	29311	4825	\N
-989	HAMEAU DE SAVEAUMARE	\N	29566	4847	0101000020E61000000F7D9DF2ED4FF53F1948066FFECD4840
-1039	9 RUE MARCEAU FORTIN	\N	29578	4778	0101000020E61000000D6863D1E6B3F73FE6AEA91C28BF4840
+1136	VILLAGE	\N	22884	4847	0101000020E610000017F378FC0C87F43F41827F9D5DCD4840
 1061	31 ROUTE DE L EGLISE	\N	29580	4848	0101000020E61000008EFC614E4745FA3F16BF089E6BE24840
-951	190 RUE DU CHÂTEAU	\N	28959	4771	0101000020E6100000A8AAFBC088BFF43FF9C27D4701BB4840
-970	RUE DE LA MAIRIE	\N	28960	4776	0101000020E6100000A6E73611985FF43FA0A6F9D730B24840
-1037	RUE DES ECOLES	\N	29078	4805	0101000020E6100000F901E28A986DDE3F9672631F89CC4840
-973	8 RUE ANDRE CARPENTIER	\N	29565	4849	0101000020E61000006660129E3867F93FEC7DF49727FA4840
-957	195 RUE SAINT LEONARD	\N	29028	4793	0101000020E6100000F812C50CD62DE73FC34727BF03C74840
-1013	RUE ANDRE MARTIN	\N	29308	4822	0101000020E6100000783C56BEA1EFFB3F6383E04CA7C54840
-1046	VILLAGE	\N	29032	4799	0101000020E6100000ECD9D6C3552DE83FA23A46472CBE4840
+1133	39 RUE CENTRALE	\N	21425	4848	0101000020E610000034E56B180350FA3FB1B7BD7277E74840
+1119	506 RUE DES ECOLES	\N	2583	4774	0101000020E6100000EE129087A26EF33F4E0B1CD843BE4840
+1004	10 IMPASSE JEAN DE LA FONTAINE	\N	29160	4820	0101000020E6100000D1156A227372C73F088E70FFB6C54840
+1062	RUE DE L EGLISE	\N	29311	4825	0101000020E61000000A21B5C33E15E63FB76345685FE64840
+1124	RUE DU FRESNAY	\N	28962	4776	0101000020E61000000908A1149107F33F3DF79AF594AD4840
+1116	RTOUE DE DIEPPE	\N	29584	4847	0101000020E61000007D466198C5F4F43F6735B0971EDE4840
+1038	RUE DES ECOLES	\N	29078	4805	0101000020E6100000F901E28A986DDE3F9672631F89CC4840
+1129	2 RUE DE LA VENTILETTE	\N	29590	4849	0101000020E6100000CE2C62089B82F93F12D841CAF4E84840
+1134	ROUTE DE DIEPPE	\N	11735	3242	0101000020E610000093B1CDD2BD4AF93FBEB5FA8780F74840
+1081	44 ROUTE DE NEUFCHATEL	\N	29581	4852	0101000020E61000002BE381F65A28F53FD9DE1B01E4E54840
 1055	PLACE NORMANDIE	\N	29080	4809	0101000020E61000004743FB952408E23F7949528836BF4840
 1056	RUE MAURICE RAVEL	\N	29080	4809	0101000020E61000007006965B0E8FE23F27A87E311DBF4840
-1029	ROUTE DE FOUCARMONT	\N	29575	4850	0101000020E6100000A973637F7B14F73F1316CBE31FDE4840
-955	22 ROUTE DE NEUFCHATEL	\N	27621	5784	0101000020E6100000ED21C3252567F63FEBD8735F6FD84840
-964	3 PLACE DE LA MAIRIE	\N	29561	4850	0101000020E610000005E9F27E8D18F63F4895174FF3E14840
-952	ALLEE SAINTE CLAIRE	\N	1183	4837	0101000020E61000008B785028C278F23F2F74FC82A3EE4840
-969	VILLAGE	\N	29030	4797	0101000020E6100000BC329D0D619BEC3F16708DD7D5CB4840
-940	PLACE SAINT JUST	\N	29027	4801	0101000020E6100000EF8466F05AA6F63F0204BD8193BD4840
-991	RUE DES CHAMPS	\N	5430	2693	0101000020E6100000A306D3307CA4F13FCFB9A14AC9BA4840
-981	31 BIS CHEMIN DES COTTES	\N	28961	4779	0101000020E6100000E528DDE91050FE3F096BA508D7BA4840
-1051	RUE PAUL MASSET	\N	29033	4803	0101000020E6100000B78F051AA695F73F2F79D1913BBE4840
-944	RUE DE LA MARNE	\N	29027	4801	0101000020E61000003C8A31B8FF4BF63F43CC5F00E5BD4840
-1003	30 RUE DU PONT CALLOUARD	\N	29160	4820	0101000020E6100000BE32959C18F4C83FE921BF23CFC54840
-997	2 PLACE JULES FERRY	\N	29160	4820	0101000020E61000001DF4D238C785C83F51C5A6F8ECC54840
-937	RUE D ESTOUTEVILLE	\N	29158	4820	0101000020E61000007DF81DB6397DC63F562DE92887CC4840
-1002	2 AVENUE DU PRESIDENT WILSON	\N	29160	4820	0101000020E6100000E375C01FC5D3C73F0C683398D0C54840
+1109	4 RUE DE L ECOLE	\N	5115	4809	0101000020E610000090207B0E43C3E23FA429AF5334BB4840
+1067	289 RUE DE LA HÊTRAIE	\N	29417	4835	0101000020E6100000D9D0B1A911BFF03FAD6E9272B9EF4840
+1090	ALLEE DE LA SAANE	\N	29418	4845	0101000020E6100000D2414DE3CDB0EE3FB70A83AED4EF4840
+1096	7 RUE DE LA VIERGE	\N	29034	4797	0101000020E610000013BBEBA92B48EE3F7B6C896461C84840
+1098	33 BIS AVENUE J SIEGFRIED	\N	29034	4797	0101000020E6100000B403253A0840EE3F8D793E7FB1C84840
+1075	51 RUE DE LA REPUBLIQUE	\N	28974	4781	0101000020E610000099CEA205D57FF13FC0C4E59993AB4840
+1135	2 RUE DU BOSC AUX MOINES	\N	29165	4812	0101000020E6100000D2CA34CF4EFCE13FD8C7D843DADC4840
+1088	3 ROUTE DE BERVILLE	\N	29316	4823	0101000020E610000093947A6A8330EB3F164C5F7C8FD94840
+1049	2 RUE VICTOR HUGO	\N	29033	4803	0101000020E6100000E084D0AE33C7F03FD7ED1E66D0BE4840
 1020	RUE LOUIS MOGUEN	\N	28986	4787	0101000020E6100000F884D31FEDE1EE3FE6568CE3D5AB4840
-961	PLACE DE L EGLISE	\N	29558	4851	0101000020E6100000A1DD0570D18EFA3FA2AC08CC7DC84840
-1040	256 RUE DES ECOLES	\N	10074	1500	0101000020E6100000C06F2FA8F019E33F4EE47251E7D84840
+1126	RUE DU SUD	\N	29320	4775	0101000020E610000008AA620436FAF23FE8BC29590CC34840
+1010	PLACE DE L EGLISE	\N	29567	4851	0101000020E6100000AD2D95E75CAAFA3FCDD091BF28B84840
+1041	256 RUE DES ECOLES	\N	10074	1500	0101000020E6100000C06F2FA8F019E33F4EE47251E7D84840
+1130	10 PLACE DE LA MAIRIE	\N	29164	4811	0101000020E6100000B51D4194A96EE33F7DF266C350D14840
 963	27 ROUTE DE L ECOLE	\N	29159	4813	0101000020E6100000A8344E82B804DA3FF0F9618470D84840
 960	RUE DES TILLEULS	\N	29412	4839	0101000020E6100000B7F3830E4897F73F763B1468A4FA4840
 974	PLACE DE LA MAIRIE	\N	29415	4839	0101000020E6100000A7A7FF14DD36F73FB8C5A1235EFF4840
-1058	RUE DU PRESIDENT RENE COTY	\N	29080	4809	0101000020E610000001DEC0ECB749E23F5E897AA099BE4840
-1033	37 GRANDE RUE	\N	29575	4850	0101000020E6100000F3764C29241BF73FE857E7D6F3DD4840
-945	RUE FRANÇOIS BLANCHARD	\N	29027	4801	0101000020E61000006ABFB5132581F33F174EEB9952BD4840
-1005	AVENUE CHARLES DE GAULLE	\N	29160	4820	0101000020E61000004C5907B9EBA2C73F3427B36A25C64840
+1066	AVENUE DE L EPINE	\N	29417	4835	0101000020E610000005BF9BDB75A0F03F07F71CBB38EF4840
+1156	37 BOULEVARD DE LA MARNE	\N	28937	4769	0101000020E610000099CB5CCC0E72F13FE0DFB95A1BB94840
+918	RIE DE BLAINVILLE	\N	29410	4845	0101000020E6100000890B4A15E85AEE3F421F8F8DFEF04840
+988	44 RUE AROUX	\N	28961	4779	0101000020E610000029EFA14CBC5EF13FA9119FE007BC4840
+996	60 AVENUE CHARLES DE GAULLE	\N	29160	4820	0101000020E61000008A517768CF1AC73F13E1157772C64840
 1057	AVENUE DU CHATEAU	\N	29080	4809	0101000020E61000002F0576C5246DE23FB053516191C04840
-1054	AVENUE DU CHÂTEAU	\N	29080	4809	0101000020E61000002F0576C5246DE23FB053516191C04840
-941	ROUTE DE DUCLAIR	\N	29027	4801	0101000020E61000008E7E0B1D010DF43F2D9FBCFA3EBD4840
-932	16 ROUTE DE MONTVILLE	\N	29026	4800	0101000020E6100000B466F9F4B748F73FE7DADD2482C34840
-988	44 RUE AROUX	\N	28961	4779	0101000020E6100000965753FE5AB3FD3FA9119FE007BC4840
-1048	RUE DE LA LIBERTE	\N	29033	4803	0101000020E610000043F36BB1FC65F83F605AD427B9BE4840
-999	38 RUE PAUL ELUARD	\N	29160	4820	0101000020E61000002899715ABD31C63FAB251DE5E0C54840
-946	RUE DES BELGES	\N	29027	4801	0101000020E610000007086A219687F63FE6DAA379F8BC4840
-1023	5 ROUTE DE LA GARE	\N	29573	4849	0101000020E610000096BFC41D44BAFA3FBEFE7FF769F44840
-953	7 CHEMIN DES FAUX SAULNIERS	\N	29411	4836	0101000020E6100000756996E0E141F23F6523083EA3F34840
-954	7 RUE DE L ANCIEN PORT	\N	29411	4836	0101000020E610000023460C918CBAF13F7199CBF468F44840
+1018	RUE DU BOIS SAINT JACQUES	\N	29309	4831	0101000020E61000007478F9B77A37EB3F5E63FAD299D14840
+921	ROUTE DE NEWTON	\N	29552	4832	0101000020E6100000789BC5F821C0F13FC768FC4664E54840
+982	35 RUE AROUX	\N	28961	4779	0101000020E6100000172C475BA457F13FAD96E8EA16BC4840
+1026	4 RUE JULES FERRY	\N	29576	4851	0101000020E6100000465CF6A7317AFB3FAFC8968241B64840
+1024	5 ROUTE DE LA GARE	\N	29573	4849	0101000020E610000096BFC41D44BAFA3FBEFE7FF769F44840
+998	4 RUE PABLO PICASSO	\N	29160	4820	0101000020E6100000D2A5DDBA2BD3C53FEBBE6BE934C64840
 1006	RUE PABLO PICASSO	\N	29160	4820	0101000020E6100000C80399B6E2CFC53F0ED539AB2AC64840
-990	3 RUE DE L ECOLE	\N	29566	4847	0101000020E6100000E39995C2C351F53FCA4862EEFFCD4840
-1004	10 IMPASSE JEAN DE LA FONTAINE	\N	29160	4820	0101000020E6100000D1156A227372C73F088E70FFB6C54840
-979	BOULEVARD DE BROGLIE	\N	28961	4779	0101000020E6100000CB1B37670AFEFB3F1CA9088126BB4840
-1015	RUE DES DEPORTES	\N	29308	4822	0101000020E6100000BBE0E37E4D27FC3F21A00C9F3EC64840
-980	CHEMIN DE LA PLANQUETTE	\N	28961	4779	0101000020E610000092EBC7A2C0BDFD3F4201800896BC4840
-1064	7 ROUTE DE MONTIVILLIERS	\N	29162	4816	0101000020E6100000123C9AF7F3FEBD3F39F74F1E33C74840
-1162	17 RUE DES AUGUSTINS	\N	28937	4769	0101000020E610000060630BFFF1D7FF3F41E8A8BC00B84840
-1080	2 AVENUE DES TILLEULS	\N	5798	4786	\N
-1159	6 RUE DE BERNE	\N	28937	4769	0101000020E6100000378BF6FC5901F23F34D8D479D4B84840
-1165	33 RUE GASTON VEYSSIÈRE	\N	28937	4769	0101000020E6100000CC9ED6FDFB35F23F69F06BE2ECB84840
-1086	124 RUE DE L ECOLE	\N	29315	4825	\N
-1088	3 ROUTE DE BERVILLE	\N	29316	4823	\N
-1071	RUE DES ECOLES	\N	28974	4781	0101000020E6100000F6532D33B6E1FF3FFD74B0BCB3AD4840
-1090	ALLEE DE LA SAANE	\N	29418	4845	\N
-1155	39 RUE DE L AVALASSE	\N	28937	4769	0101000020E610000091819774EF9CF23FC70E6C8D6FA44840
-1070	38 RUE DES VIOLETTES	\N	28974	4781	0101000020E6100000C12EB39D2933FF3FCB2CA5DBD0AD4840
-1149	32 RUE BLAISE PASCAL	\N	28937	4769	0101000020E61000006451E0B619FBFB3FFBE5F63FFEF24840
-1100	RUE DES HARES	\N	29419	4838	\N
-1145	200 RUE ALBERT DUPUIS	\N	28937	4769	0101000020E61000006D96352B8720F23F91CA5E00ABBA4840
-1153	247 RUE LOUIS BLANC	\N	28937	4769	0101000020E61000002959B16CA4C4FB3F9679488408B64840
-1105	RUE DES ECOLES	\N	28987	4790	\N
-1106	RUE BOILEAU	\N	28987	4790	\N
-1107	RUE DU POMMERET	\N	28987	4790	\N
-1109	4 RUE DE L ECOLE	\N	5115	4809	\N
-1152	2 RUE GIUSEPPE VERDI	\N	28937	4769	0101000020E610000014C6BBC8A932F23F5EE1F2925EB94840
-1112	CHEMIN DU BEAU SOLEIL	\N	29582	4855	\N
-1114	2 RUE DE L ECOLE	\N	29035	4794	\N
-1118	4 RUE LEGOUT LESAGE	\N	29420	4839	\N
-1093	6 RUE MAURICE GENEVOIX	\N	29034	4797	0101000020E610000093DB4FF63157EE3F6154EFFC64C94840
-1122	5 RUE DE LA RIVIÈRE BOURDET	\N	29036	4798	\N
-1148	9 RUE D ERNEMONT	\N	28937	4769	0101000020E610000055243B432C9BF13F01F1C2EF89B94840
-1124	RUE DU FRESNAY	\N	28962	4776	\N
-1157	44 RUE VERTE	\N	28937	4769	0101000020E6100000E9013D1E44FCFE3F3ADF991AB2B94840
-1151	RUE JEAN-PHILIPPE RAMEAU	\N	28937	4769	0101000020E6100000EA2A6D09AA42F23FA8A11531CFB94840
-1066	AVENUE DE L EPINE	\N	29417	4835	0101000020E6100000347615949A44F63F07F71CBB38EF4840
-1156	37 BOULEVARD DE LA MARNE	\N	28937	4769	0101000020E6100000FCF39FFB9374FE3FE0DFB95A1BB94840
-1133	39 RUE CENTRALE	\N	21425	4848	\N
-1138	RUE RENE COTY	\N	29084	4807	\N
-1140	1 RUE DE LA GARE	\N	29167	4819	\N
-1143	27 RUE DES EMOUQUETS	\N	28963	4774	\N
-1168	39 RUE DE L AVALASSE	\N	28937	4769	\N
-1173	84 RUE SAINT GERVAIS	\N	28937	4769	\N
-1186	32 RUE BLAISE PASCAL	\N	28937	4769	\N
-1191	23 RUE DE LA CHAINE	\N	28937	4769	\N
-1195	2 RUE GIUSEPPE VERDI	\N	28937	4769	\N
-1194	8 RUE DE BERNE	\N	28937	4769	0101000020E61000002ABBEC19BA00F23F896B08D0E7B84840
-1161	53 RUE DE CONSTANTINE	\N	28937	4769	0101000020E6100000C16580D1060CFC3FEECB1D262FB94840
-1172	16 RUE JEAN MULLOT	\N	28937	4769	0101000020E6100000781694D4CF8CFC3F5A1C0037ACB64840
-1185	21 RUE NEWTON	\N	28937	4769	0101000020E61000004611B229E031F23FDA5616F9B3BA4840
-1183	31 RUE DES PEUPLIERS	\N	28937	4769	0101000020E6100000907B04487EE6F13FAECB191FA0B84840
-1166	19 RUE NEWTON	\N	28937	4769	0101000020E610000048CC0591B930F23FFA40B82398BA4840
-1182	20 RUE DU BEFFROY	\N	28937	4769	0101000020E610000064B554394863FF3F2EA9DA6E02B94840
-1196	1 RUE DU GENERAL GIRAUD	\N	28937	4769	0101000020E61000006396A0332717FE3F58AC023160B84840
-1115	ROUTE DU MORET	\N	29318	4829	0101000020E6100000962F234DA0AEE83F68FCA98EA8E84840
-1084	155 ROUTE DE L EGLISE	\N	29081	4806	0101000020E6100000C7004452EF4FD33FC5BE6C540AC14840
-1136	VILLAGE	\N	22884	4847	0101000020E610000017F378FC0C87F43F41827F9D5DCD4840
-1144	RUE DES CERISIERS	\N	29592	4848	0101000020E610000050D1724F400BFA3F3813D38558DC4840
-1078	PLACE DE LA MAIRIE	\N	29313	4827	0101000020E610000060387C77D041F73FCFAA0981E0E54840
+913	RUE DU MARECHAL LECLERC	\N	29549	4852	0101000020E6100000EB4F7D48416DF63F42BCE80ABAEA4840
+915	RUE DES CANADIENS	\N	29549	4852	0101000020E6100000FE6104BA1A5CF63F33782D5B4AEA4840
+1118	4 RUE LEGOUT LESAGE	\N	29420	4839	0101000020E6100000CFCCA806551BF73FD6272D1A3A054940
+1143	27 RUE DES EMOUQUETS	\N	28963	4774	0101000020E6100000A8402EBD72EFF23F8C3C5AE6BEBB4840
+979	BOULEVARD DE BROGLIE	\N	28961	4779	0101000020E6100000944F520A0133F13F1CA9088126BB4840
+1015	RUE DES DEPORTES	\N	29308	4822	0101000020E610000013307D592137F13F21A00C9F3EC64840
 1127	2 RUE DU SUD	\N	29320	4775	0101000020E6100000740539FA28FBF23F0814DA0713C34840
-1082	255 RUE MALDESTOUR	\N	29314	4825	0101000020E6100000F8AD0B7C9BE7E23F0283412570E44840
-1091	VILLAGE	\N	29317	4825	0101000020E61000008A49A3F5FC18E43F8132F8C19AEA4840
-1116	RTOUE DE DIEPPE	\N	29584	4847	0101000020E61000007D466198C5F4F43F6735B0971EDE4840
-1110	6 RUE DE LA MAIRIE	\N	27200	4849	0101000020E610000035325809C750FA3FD8E0F1AB41F24840
-1128	16 GRANDE RUE	\N	29588	4849	0101000020E6100000C7ED58EB12EDF93F1A93F6ED41ED4840
-1134	ROUTE DE DIEPPE	\N	11735	3242	0101000020E610000093B1CDD2BD4AF93FBEB5FA8780F74840
-1108	4 RUE DE L ECOLE	\N	5115	4809	0101000020E610000090207B0E43C3E23FA429AF5334BB4840
-1067	289 RUE DE LA HÊTRAIE	\N	29417	4835	0101000020E61000007C28F2A0B076F73FAD6E9272B9EF4840
-1125	PLACE DE LA MAIRIE	\N	29421	4845	0101000020E61000009CCB0ACEAB5DED3F0C3CD610C5F24840
-1096	7 RUE DE LA VIERGE	\N	29034	4797	0101000020E610000013BBEBA92B48EE3F7B6C896461C84840
-1097	RUE DU VAL DE L ESNE	\N	29034	4797	0101000020E61000005E144C1B5F92EE3FBB7D358BC0C84840
-1076	2485 AVENUE DU GENERAL DE GAULLE	\N	28974	4781	0101000020E6100000CCD1040620F0FF3F0790259CABAD4840
-1075	51 RUE DE LA REPUBLIQUE	\N	28974	4781	0101000020E6100000FA115C3852FEFE3FC0C4E59993AB4840
-1087	3 ROUTE DE BERVILLE	\N	29316	4823	0101000020E610000093947A6A8330EB3F164C5F7C8FD94840
-1113	2 RUE DE L ECOLE	\N	29035	4794	0101000020E61000002745E7D905D3EF3F188B325D80C34840
-1102	55 RUE DES ECOLES	\N	28987	4790	0101000020E610000036A47A00C577F43F039ECD0DFAB14840
-1141	5 RUE DE LA MAIRIE	\N	29591	4853	0101000020E61000001B0BF1E59169F73F02733E86D8CE4840
-1121	5 RUE DE LA RIVIÈRE BOURDET	\N	29036	4798	0101000020E6100000ACC0BE0D9941EE3FE1AEC16F01B54840
-1099	RUE DES HARES	\N	29419	4838	0101000020E61000008FAF6DEC3ABDF33F5CB47C3487FD4840
-1131	8 RUE DU CHARME	\N	29422	4841	0101000020E610000013C2122B7D62F43FEE26957CAEE74840
-1074	6 RUE EMILE COMBES	\N	28974	4781	0101000020E61000004707A0283B83FF3F2D10F39B78AB4840
-1095	9 RUE ARISTIDE BRIAND	\N	29034	4797	0101000020E6100000865596CAD678EE3F88BE586BEAC84840
-1188	1 RUE BINET	\N	28937	4769	0101000020E61000000E4C0BEA9D12FA3F5B998D21C2B94840
-1190	74 RUE SAINT VIVIEN	\N	28937	4769	0101000020E6100000838EDCEE73A9F13F74A297309EB84840
-1184	RUE DE GESSARD	\N	28937	4769	0101000020E61000005D742E9CD6B3FB3FAC3FBABF97B64840
-1164	16 RUE MARECHAL GALLIENI	\N	28937	4769	0101000020E6100000B7346DB53D40FC3FC5F6A45D96B54840
-1072	132 RUE GUSTAVE LECOMTE	\N	28974	4781	0101000020E610000070A5B3A0EB9BF13F248AA09C2EAC4840
-1065	AVENUE MICHEL ADAM	\N	29162	4816	0101000020E61000007C1D669F2F8CBE3FBF552AEA44C74840
-1177	7 RUE MARIE DUBOCCAGE	\N	28937	4769	0101000020E61000005689CB5435CFFD3F6EAD69BDE3B64840
-1117	4 RUE LEGOUT LESAGE	\N	29420	4839	0101000020E6100000CFCCA806551BF73F608EC30545344940
-1077	RUE DONAT AGACHE	\N	28974	4781	0101000020E610000012FEE2A5DDE0FF3F81DF8E8977AE4840
 1120	106 RUE DES ECOLES	\N	2583	4774	0101000020E610000011D52E82D36EF33F8D2551D43EBE4840
-1083	IMPASSE DES ECOLES	\N	29314	4825	0101000020E610000056B47178CCE6E23F9E160F3156E44840
-1169	202 RUE ALBERT DUPUIS	\N	28937	4769	0101000020E6100000B49AD6EF871CF23F4FB272BBD9BA4840
-1163	31 BOULEVARD D ORLEANS	\N	28937	4769	0101000020E6100000EDFE467519C2FC3F078EF437DBB74840
-1170	1 RUE PIERRE RENAUDEL	\N	28937	4769	0101000020E6100000131206F1C3A9FE3F080AB42287B64840
+1107	RUE DU POMMERET	\N	28987	4790	0101000020E61000006E4D3E66356FF03FF4AB94F922B14840
+912	2 PLACE DE LA MAIRIE	\N	29548	4832	0101000020E61000001CEA0053C92AF13F722A427F5BE64840
+986	CHEMIN DE LA PLANQUETTE	\N	28961	4779	0101000020E61000008F97AD76C65FF13F4201800896BC4840
+959	IMPASSE DE L ECOLE	\N	29557	4853	0101000020E61000003ABDBD31257EF73F9EEC242A6DCD4840
+936	146 ROUTE GUY DE MAUPASSANT	\N	29157	4813	0101000020E6100000B0202812A7AED63FE1BFB31CECCD4840
+984	BD SIEGFRIED	\N	28961	4779	0101000020E6100000E8DC8A50AE11F13F53EC681C6ABB4840
+929	444 ROUTE DE DIEPPE	\N	29026	4800	0101000020E610000027E7176704AAF03FB85B2FD9BAC34840
+904	RUE GOUBERMOULINS	\N	29074	4804	0101000020E6100000548461E1A054E13FBF11175F38C34840
+1140	1 RUE DE LA GARE	\N	29167	4819	0101000020E6100000BD5A49867794CB3F8110E22D84CA4840
+943	RUE ERNEST DANET	\N	29027	4801	0101000020E6100000A9DE8C2D139CF03F0D3BA5E61FBD4840
+917	12 RUE JEAN JAURES	\N	29409	4839	0101000020E610000038FAA2817B95F83F31F2ECD19FFE4840
+948	5 SENTE AUX LOUPS	\N	29027	4801	0101000020E61000009B2B8A2468BEF03FF5A69EDCA1BC4840
+1153	247 RUE LOUIS BLANC	\N	28937	4769	0101000020E6100000842278A4432DF13F9679488408B64840
+1158	23 RUE DE LA CHAINE	\N	28937	4769	0101000020E6100000C200F779E28AF13FFF475CB68CB84840
+994	8 RUE DU CHAMP DE FOIRE	\N	29160	4820	0101000020E610000003A80F48B554C83F91EA01141FC64840
+1031	27 BOULEVARD GUSTAVE EIFFEL	\N	29575	4850	0101000020E6100000AD73FAE4A21EF23F7A84818434BA4840
+1132	39 RUE CENTRALE	\N	21425	4848	0101000020E610000034E56B180350FA3FB1B7BD7277E74840
+1037	RUE DES ECOLES	\N	29078	4805	0101000020E6100000F901E28A986DDE3F9672631F89CC4840
+1063	RUE DE L EGLISE	\N	29311	4825	0101000020E61000000A21B5C33E15E63FB76345685FE64840
+1108	4 RUE DE L ECOLE	\N	5115	4809	0101000020E610000090207B0E43C3E23FA429AF5334BB4840
+1089	ALLEE DE LA SAANE	\N	29418	4845	0101000020E6100000D2414DE3CDB0EE3FB70A83AED4EF4840
+1111	CHEMIN DU BEAU SOLEIL	\N	29582	4855	0101000020E610000040BE5E436B1BF43FBB0C410659C54840
+1044	129 GRANDE RUE	\N	29416	4841	0101000020E610000085816D1893B3F43F6C755A3309ED4840
+1085	124 RUE DE L ECOLE	\N	29315	4825	0101000020E6100000D4D9CE99E241E33F2A7390632DDD4840
+1117	4 RUE LEGOUT LESAGE	\N	29420	4839	0101000020E6100000CFCCA806551BF73FD6272D1A3A054940
+1042	11 RUE DE L ECOLE	\N	29079	4809	0101000020E610000012C818643A60E43F02A048FFE4BC4840
+1101	RUE DES ECOLES	\N	28987	4790	0101000020E6100000ECA750F4F871F03FCCE2EE41C2B14840
+1047	RUE DES LONGS VALLONS	\N	29033	4803	0101000020E6100000B29F88EF0BEAF03FF247CD2ECABD4840
+1104	RUE DU POMMERET	\N	28987	4790	0101000020E61000006E4D3E66356FF03FF4AB94F922B14840
+1168	39 RUE DE L AVALASSE	\N	28937	4769	\N
+1191	23 RUE DE LA CHAINE	\N	28937	4769	\N
 1200	39 RUE DE L AVALASSE	\N	28937	4769	\N
-1210	2 RUE SAINT-ANDRE	\N	28937	4769	0101000020E6100000A338EC63AA45FE3FB9CC025039B94840
-1386	2 RUE FELIX FAURE	\N	29609	4847	0101000020E610000064F9049A198FF43F8EB53B7B19D64840
-1282	RUE DU DOCTEUR MAGNIER	\N	28975	4782	0101000020E6100000B40AF6BAA0A1F13F0129B9DCC3AF4840
-1310	VILLAGE	\N	29040	4793	0101000020E6100000EF7253FB5B9FE43FD420167B79C74840
-1207	84 RUE SAINT GERVAIS	\N	28937	4769	\N
-1289	3 RUE DE L ARGONNE	\N	28975	4782	0101000020E61000004CB6CBC86A54FF3F1072C562A7AF4840
-1318	RUE DE L EGLISE	\N	29041	4801	0101000020E610000058607E5D3C92FE3F0C25EE0CAEC04840
-1326	10 RUE DU BOURG	\N	22985	4849	0101000020E610000083D715D097C8F93FDCDF34D8AFEA4840
-1213	154 RUE DU RENARD	\N	28937	4769	\N
-1233	4 RUE DU MAULEVRIER	\N	28937	4769	0101000020E6100000015532B97E9DF13FA35B4CBF06B94840
-1223	5 RUE DES EMMUREES	\N	28937	4769	0101000020E61000008E3C31678DBCFD3F9135B8E758B74840
 1221	6 RUE HENRI DUNANT	\N	28937	4769	\N
-1237	50 RUE MERIDIENNE	\N	28937	4769	0101000020E610000060C126003980FD3FFCD9556987B64840
-1224	22 RUE SAINT-LO	\N	28937	4769	\N
-1228	1 RUE ALBERT DUPUIS	\N	28937	4769	\N
-1229	84 RUE SAINT GERVAIS	\N	28937	4769	\N
 1230	39 RUE DE L AVALASSE	\N	28937	4769	\N
-1239	PLACE DE LA LIBERTE	\N	29037	4792	\N
-1262	4 RUE BACHELET DAMVILLE	\N	28989	4785	0101000020E61000006277AA1134F5F23F13F283EBB8A64840
-1232	11 RUE SENARD	\N	28937	4769	0101000020E61000009AEB97FC0D92FE3F3BF0FF1DB0B94840
-1234	42 RUE DE LE NOSTRE	\N	28937	4769	0101000020E6100000CEA3A85405CAFC3F8F7E87E4DCB84840
-1246	PLACE MAURICE ALEXANDRE	\N	28988	4788	\N
-1248	ROUTE DE L EGLISE	\N	29085	4806	\N
-1280	RUE DES COQUELICOTS	\N	28975	4782	0101000020E610000045EA8722EE9BF13FC3BB3BB60EB24840
-1236	31 RUE BLAISE PASCAL	\N	28937	4769	0101000020E61000001B54B00085AEFC3FEA177830DAB64840
-1278	RUE DE L OREE DU ROUVRAY	\N	28975	4782	0101000020E610000097421826F04AFD3FE1943D326BB24840
-1261	RUE CLAUDE GROULARD	\N	29424	4841	\N
-1281	1 RUE JULES RAIMU	\N	28975	4782	0101000020E6100000D9E08E8186D8FA3F6174B31EC2B24840
-1226	1 AVENUE DES QUATRE CANTONS	\N	28937	4769	0101000020E610000000F3DAB6398FF43F7B1EB31E84A74840
-1270	1 RUE LEON GAMBETTA	\N	28989	4785	\N
-1272	RUE DE LA GRANDE FERME	\N	29087	4806	\N
-1295	RUE GUYNEMER	\N	28975	4782	\N
-1304	82 GRANDE RUE	\N	29088	4805	\N
-1306	58 PLACE DE LA MAIRIE	\N	29331	4828	\N
-1317	15 RUE PRINCIPALE	\N	29091	4805	\N
-1319	RUE DE L EGLISE	\N	29041	4801	\N
-1321	SENTE DES HETRES	\N	29171	4814	\N
-1323	8 PLACE DE LA MAIRIE	\N	29092	4807	\N
-1325	RUE BERTHELOT	\N	29333	4821	\N
-1216	13 RUE DU CORDIER	\N	28937	4769	0101000020E6100000B33A83D08B64FF3FE4D1741308B94840
+1216	13 RUE DU CORDIER	\N	28937	4769	0101000020E6100000AB5240FB0D8AF13FE4D1741308B94840
+1172	16 RUE JEAN MULLOT	\N	28937	4769	0101000020E6100000A668A8FB4741F13F5A1C0037ACB64840
+1181	5 RUE DU GENERAL GIRAUD	\N	28937	4769	0101000020E6100000A433DAF1F965F13F9D514E0F65B84840
+1183	31 RUE DES PEUPLIERS	\N	28937	4769	0101000020E6100000907B04487EE6F13FAECB191FA0B84840
+1178	16 RUE LE GOUY	\N	28937	4769	0101000020E6100000B7246FCFDFA3F13F5CE24C3CB5B84840
+1182	20 RUE DU BEFFROY	\N	28937	4769	0101000020E61000005745559FED89F13F2EA9DA6E02B94840
 1205	AVENUE JACQUES CHASTELLAIN	\N	28937	4769	0101000020E61000007B5C7C5356A0F13F54CBEF9743B74840
-1214	41 RUE DE SOTTEVILLE	\N	28937	4769	0101000020E61000000BBD7AEC99EBFD3FB552A5B9D7B64840
-1211	2 RUE ENSEIGNE RENAUD	\N	28937	4769	0101000020E61000009D71DA866303F23FB196D097BDB74840
+1202	10 RUE EMILE LEUDET	\N	28937	4769	0101000020E61000008D73C9A89A3FF13FEA09C703FCB84840
+1197	23 BOULEVARD D ORLEANS	\N	28937	4769	0101000020E610000017B7A1C7C745F13FC4DFA3BCDEB74840
+1196	1 RUE DU GENERAL GIRAUD	\N	28937	4769	0101000020E61000003D42C31EB768F13F58AC023160B84840
+1219	19 RUE SAINTE CLAIRE	\N	28937	4769	0101000020E6100000B1599DB8F6BFF13F78F47D40B9B84840
 1215	199 RUE ALBERT DUPUIS	\N	28937	4769	0101000020E6100000D56AC6A4EA17F23FC85E5229B4BA4840
-1198	1 RUE PIERRE CURIE	\N	28937	4769	0101000020E610000007CE7C7B9544FC3F3AB0FB129AB54840
-1217	96 RUE SAINT JULIEN	\N	28937	4769	0101000020E610000000C77D2FAE76FC3F5A00A64EB8B64840
+1217	96 RUE SAINT JULIEN	\N	28937	4769	0101000020E6100000802D266B113FF13F5A00A64EB8B64840
 1247	ROUTE DE L EGLISE	\N	29085	4806	0101000020E6100000F78ABD037B6DD23F86ECF63857C74840
-1311	188 ROUTE DE GOMMERVILLE	\N	29089	4806	0101000020E610000056AAB82F6F07D83F3C2F151B73C94840
 1243	1 CHEMIN DU MOULIN À CUIR	\N	28964	4771	0101000020E61000008891B6D5D282F53F1D4D810E6BBC4840
 1258	ROUTE DE FRANQUEVILLE	\N	28966	4774	0101000020E61000001F64243E21DAF23F6000E14309B64840
-1329	RUE DES PRAIRIES	\N	28969	4774	0101000020E610000093B3D3B6318BF23F750279FA31B74840
-1328	747 ROUTE DE LYONS	\N	28969	4774	0101000020E610000098871CC0FA7EF23FDB2668D55FB74840
+1073	RUE DE LA REPUBLIQUE	\N	28974	4781	0101000020E610000049D97869F082F13FC67F68839FAB4840
 1249	1 PLACE DES ACACIAS	\N	29594	4771	0101000020E6100000BFE0B948B8A0F53FD9B6E6966FC04840
-1312	35 RUE VALLONS	\N	29602	4847	0101000020E610000063C487D7CA0BF33F048B26C49ADD4840
 1240	50 ROUTE DE VALMONT	\N	22885	3729	0101000020E6100000CB9291975BF8DF3F13FE770ADACE4840
-1316	15 RUE PRINCIPALE	\N	29091	4805	0101000020E610000080702421A8D2DA3F52DD126F53C94840
-1305	58 PLACE DE LA MAIRIE	\N	29331	4828	0101000020E61000003B225B6D30DAF23FD7F466F58AC54840
-1257	51 RUE DE LA MAIRIE	\N	29038	4796	0101000020E6100000C91A7949316AE43FB333F9247FC84840
+1254	11 ALLEE DES PEUPLIERS	\N	5126	2430	0101000020E61000006976546A3344E53FD85A2579AAC34840
 1253	221 RUE POMONE	\N	29086	4804	0101000020E6100000D05F2A2E754DDE3F8DE801A048C44840
-1273	HAMEAU DES VERTUS	\N	29425	4835	0101000020E61000001D0C8EF581F2FB3FEACE13CF59F24840
-1292	49 RUE AMPÈRE	\N	28975	4782	0101000020E6100000E280054CBA9FF13F0E9B4C05AAAF4840
-1301	2 RUE PAUL BERT	\N	28975	4782	0101000020E610000079000F359F9DFB3FD0A24EAB2EB34840
-1285	RUE CHARLES NICOLLE	\N	28975	4782	0101000020E6100000655CCC2AC75FFC3F09C91BC310B34840
-1284	RUE GUYNEMER	\N	28975	4782	0101000020E6100000FE22703D6D61FC3FEF95F5720AB34840
-1299	188 RUE DE PARIS	\N	28975	4782	0101000020E6100000991D7784B2B4F13FABDD23590FB14840
+1274	711 ROUTE DE ROUEN	\N	29425	4835	0101000020E6100000AAC8A463271CF13F8D8112F283EF4840
+1277	ROUTE D AUFFAY	\N	29329	4795	0101000020E61000004376E37F2088F13F5A8121AB5BDA4840
+1284	RUE GUYNEMER	\N	28975	4782	0101000020E6100000199DF152F13CF13FEF95F5720AB34840
 1275	RUE DE L EGLISE	\N	29328	4796	0101000020E610000053B57F93DD14E93FF3B00E4FC8CD4840
-1238	PLACE DE LA LIBERTE	\N	29037	4792	0101000020E6100000A5E25F01D53AEF3F829155195FC14840
-1268	7 RUE DE LA REPUBLIQUE	\N	28989	4785	0101000020E61000009A04359D19B4F13F02117FA01EA64840
-1313	345 RUE DE LA MAIRIE	\N	29428	4841	0101000020E610000031ED7534093CF43F020CCB9F6FEC4840
-1269	6 RUE BACHELET DAMVILLE	\N	28989	4785	0101000020E61000002FB5AD7F3A02F33FB51C435BA9A64840
+1114	2 RUE DE L ECOLE	\N	29035	4794	0101000020E61000002745E7D905D3EF3F188B325D80C34840
+1036	RUE DE L EGLISE	\N	29310	4829	0101000020E6100000497525F5AACDE63F95EBD05DD0E94840
+1141	5 RUE DE LA MAIRIE	\N	29591	4853	0101000020E61000001B0BF1E59169F73F02733E86D8CE4840
+1122	5 RUE DE LA RIVIÈRE BOURDET	\N	29036	4798	0101000020E6100000ACC0BE0D9941EE3FE1AEC16F01B54840
+1079	2 AVENUE DES TILLEULS	\N	5798	4786	0101000020E61000003B9B329097E0EF3FA5D5560DBEA74840
+1045	129 GRANDE RUE	\N	29416	4841	0101000020E610000085816D1893B3F43F6C755A3309ED4840
+1100	RUE DES HARES	\N	29419	4838	0101000020E61000008FAF6DEC3ABDF33F5CB47C3487FD4840
+1131	8 RUE DU CHARME	\N	29422	4841	0101000020E610000013C2122B7D62F43FEE26957CAEE74840
+1033	37 GRANDE RUE	\N	29575	4850	0101000020E6100000F3764C29241BF73FE857E7D6F3DD4840
+1074	6 RUE EMILE COMBES	\N	28974	4781	0101000020E6100000BA0010841F8DF13F2D10F39B78AB4840
+1187	44 RUE VERT	\N	28937	4769	0101000020E61000001509C4F0B37FF13FC7A0D125B5B94840
+1189	36 RUE ETIENNE DELARUE	\N	28937	4769	0101000020E61000001EB73C2F4544F13FCAA40A6FA4B64840
+1190	74 RUE SAINT VIVIEN	\N	28937	4769	0101000020E6100000838EDCEE73A9F13F74A297309EB84840
+1157	44 RUE VERTE	\N	28937	4769	0101000020E610000031806C69A07FF13F3ADF991AB2B94840
+1237	50 RUE MERIDIENNE	\N	28937	4769	0101000020E6100000F0ACD04C9F59F13FFCD9556987B64840
+1203	79 RUE JEAN BAPTISTE LULLI	\N	28937	4769	0101000020E61000006D21BB170743F23FD5D7889A47B94840
+1265	ESPLANADE PATTENSEN	\N	28989	4785	0101000020E6100000DC7C56AB0C39F03F390753BD4AA64840
+1043	11 RUE DE L ECOLE	\N	29079	4809	0101000020E610000012C818643A60E43F02A048FFE4BC4840
+1220	5 ALLEE DES PEPINIÈRES	\N	28937	4769	0101000020E610000099C4BE3C1B2CF13F14385D3F92B64840
+1208	8 RUE JOSEPH COURT	\N	28937	4769	0101000020E6100000D4D4CE0AEEB2F13FF9C9E6E4A4B94840
+1048	RUE DE LA LIBERTE	\N	29033	4803	0101000020E6100000549857ABFFD6F03F605AD427B9BE4840
+1106	RUE BOILEAU	\N	28987	4790	0101000020E6100000884240C8F68DF03F1CEEE19AD4B14840
+1065	AVENUE MICHEL ADAM	\N	29162	4816	0101000020E61000007C1D669F2F8CBE3FBF552AEA44C74840
+1255	ALLEE DES PRÈS VERTS	\N	5126	2430	0101000020E6100000871868A4C958E53F9C290008D0C34840
+1177	7 RUE MARIE DUBOCCAGE	\N	28937	4769	0101000020E6100000BC8D47558561F13F6EAD69BDE3B64840
+1050	RUE DES LONGS VALLONS	\N	29033	4803	0101000020E6100000B29F88EF0BEAF03FF247CD2ECABD4840
+1251	HAMEAU BOULEVET	\N	29327	4828	0101000020E61000002D0549449D7EF33FA16771CE21C64840
+1286	RUE HECTOR MALOT	\N	28975	4782	0101000020E610000026BDEEFBD70CF13FC130683A9EB24840
+1112	CHEMIN DU BEAU SOLEIL	\N	29582	4855	0101000020E610000040BE5E436B1BF43FBB0C410659C54840
+1064	7 ROUTE DE MONTIVILLIERS	\N	29162	4816	0101000020E6100000123C9AF7F3FEBD3F39F74F1E33C74840
+805	29 BIS RUE DU PERE FLAVIGNY	\N	29072	4808	0101000020E610000056FA1D4B9E79C03FD3563E2E9EC14840
+1155	39 RUE DE L AVALASSE	\N	28937	4769	0101000020E610000023657C79B006F03FC70E6C8D6FA44840
+1070	38 RUE DES VIOLETTES	\N	28974	4781	0101000020E61000007A51F8C21D85F13FCB2CA5DBD0AD4840
+1105	RUE DES ECOLES	\N	28987	4790	0101000020E6100000ECA750F4F871F03FCCE2EE41C2B14840
+1228	1 RUE ALBERT DUPUIS	\N	28937	4769	0101000020E6100000018271245BF3F13FFB720B02D0B94840
+1280	RUE DES COQUELICOTS	\N	28975	4782	0101000020E610000045EA8722EE9BF13FC3BB3BB60EB24840
+1093	6 RUE MAURICE GENEVOIX	\N	29034	4797	0101000020E610000093DB4FF63157EE3F6154EFFC64C94840
+1146	RUE DE BAMMEVILLE	\N	28937	4769	0101000020E610000090148CA85B6EF13FE811E503E9B64840
+1150	20 RUE DES REQUIS	\N	28937	4769	0101000020E61000003612367668ACF13FC425C79DD2B84840
+1229	84 RUE SAINT GERVAIS	\N	28937	4769	0101000020E610000060CDDBBA964EF13F0DC0CC98FEB64840
+1248	ROUTE DE L EGLISE	\N	29085	4806	0101000020E6100000F78ABD037B6DD23F86ECF63857C74840
+1207	84 RUE SAINT GERVAIS	\N	28937	4769	0101000020E610000060CDDBBA964EF13F0DC0CC98FEB64840
+1245	PLACE MAURICE ALEXANDRE	\N	28988	4788	0101000020E610000074BDA2981232EE3F3B86CFEFDEAD4840
+1173	84 RUE SAINT GERVAIS	\N	28937	4769	0101000020E610000060CDDBBA964EF13F0DC0CC98FEB64840
+1271	RUE DE LA GRANDE FERME	\N	29087	4806	0101000020E6100000003B11A623DED43FF36D6699EAC24840
+1295	RUE GUYNEMER	\N	28975	4782	\N
+1393	170 RUE DE L EGLISE	\N	29436	4841	\N
+1404	VILLAGE	\N	29097	4806	0101000020E6100000DF6598706E27D73F6009208C8AC04840
+1405	VILLAGE	\N	29097	4806	0101000020E6100000DF6598706E27D73F6009208C8AC04840
+1359	140 ROUTE MANOIR DE LESTANVILLE	\N	29338	4827	0101000020E61000008187A441CAC2EE3F3EAD056AEFE04840
+1329	RUE DES PRAIRIES	\N	28969	4774	0101000020E610000093B3D3B6318BF23F750279FA31B74840
+1327	ROUTE DE LYONS	\N	28969	4774	0101000020E6100000C45F9DA75D5BF23F4A3D6E6CB4B74840
+1345	ROUTE DE LA VALLEE	\N	28970	4774	0101000020E6100000963F8ECF2C95F23FDF720E01B4BB4840
+1307	ROUTE DE BOISSAY	\N	29599	4855	0101000020E610000063482D18851AF53FB1CF7376F8C44840
+1337	3 ROUTE DU VAL	\N	29337	4825	0101000020E6100000755FFEA56DB5E13F3A5FAAA1A6E94840
+1304	82 GRANDE RUE	\N	29088	4805	0101000020E61000008196467DA6DFDC3F1CA90881A6C64840
+1341	18 ROUTE DE CROIXMARE	\N	29173	4819	0101000020E61000008221226ADFB2CA3F5097DE6107CD4840
+1413	6 GRAND RUE DE NORMANDIE	\N	29596	4852	0101000020E610000050E89C6FA94AF53FF2E9F349D5E94840
+1389	151 RUE DE LA GARE	\N	29610	4850	0101000020E61000000754D758C4E3F73F61CB4474FCD84840
+1415	RUE ANDRE MARIE	\N	24049	3860	0101000020E6100000F772749CA833EF3FC5B91B7E96CC4840
+1358	VILLAGE	\N	29045	4795	0101000020E610000051F9283ACAADF03F41B1FC968CD34840
+1292	49 RUE AMPÈRE	\N	28975	4782	0101000020E6100000E280054CBA9FF13F0E9B4C05AAAF4840
+1298	1 RUE DE STALINGRAD	\N	28975	4782	0101000020E6100000B2FF9F625381F13F331DB604CBB14840
+1296	1 RUE HECTOR MALOT	\N	28975	4782	0101000020E61000003B439E48230BF13FE2A4596EA3B24840
+1299	188 RUE DE PARIS	\N	28975	4782	0101000020E6100000991D7784B2B4F13FABDD23590FB14840
+1332	RUE DE LA GARE	\N	29334	4795	0101000020E6100000A464D4DDBEB4F13F9437D96918D74840
+1369	11 RUE DU MUSEE	\N	29175	4812	0101000020E61000003089EDCDF3D0DF3FC804A16156E74840
+1335	150 RUE ABBE PIERRE DELEAU	\N	29336	4823	0101000020E6100000A647882F6995EC3F76DE088319D34840
+1239	PLACE DE LA LIBERTE	\N	29037	4792	0101000020E6100000A5E25F01D53AEF3F829155195FC14840
+1342	RUE A MABIRE	\N	29174	4820	0101000020E6100000E141A4C0B110CE3FDDD92E9FF2C34840
+1381	141 RUE DU FOUR BANAL	\N	29341	4829	0101000020E6100000C0DA79647144E53FC681804A4FE94840
+1246	PLACE MAURICE ALEXANDRE	\N	28988	4788	0101000020E610000074BDA2981232EE3F3B86CFEFDEAD4840
+1364	9 ROUTE DE SAHURS	\N	28990	4788	0101000020E6100000ECDB6F0B9BD3ED3F03F7340E12B24840
+1383	10 RUE DOCTEUR DUBOIS	\N	29095	4806	0101000020E61000009955E47F0EADD63FC3ADCCA502C44840
+1333	VILLAGE	\N	29172	4813	0101000020E610000023D1B744AFD8DD3F809C0F53CBD34840
+1365	RUE DES ECOLES	\N	29047	4792	0101000020E6100000BFF024CB44CFED3F8A0E9AC021C04840
+1272	RUE DE LA GRANDE FERME	\N	29087	4806	0101000020E6100000003B11A623DED43FF36D6699EAC24840
+1348	10 RUE JEAN DE BETHENCOURT	\N	29430	4839	0101000020E61000008A6E67A64EECF53FF2295B7F26FD4840
+1379	RUE DES ANTONINS	\N	29435	4839	0101000020E610000090EEC9BE8953F63F610A41D41E014940
+1331	3 RUE VICTOR CORIAUX	\N	12431	2952	0101000020E61000003763B72072F2D63F795D1A1AAADE4840
+1260	RUE CLAUDE GROULARD	\N	29424	4841	0101000020E61000009ED5E16C63E1F23FA943B81336EF4840
+1353	10 RUE DES TILLEULS	\N	29431	4841	0101000020E6100000A18C5B46965EF33FBD68B89603F04840
+1411	12 RUE DU MANOIR	\N	29102	4810	0101000020E6100000C2BB0B7D7862B53F6A3B3B5347C14840
+1174	6 BIS RUE JEAN PHILIPPE RAMEAU	\N	28937	4769	0101000020E61000002198B7ABD648F23F3905E03CA8B94840
+1264	10 RUE BACHELET DAMVILLE	\N	28989	4785	0101000020E6100000324425E09D4DF03FDD31C89FA0A64840
 1320	SENTE DES HETRES	\N	29171	4814	0101000020E6100000B5F1E8C5D73EC53F45ABE67B3ED24840
 1199	53 RUE GASTON VEYSSIÈRE	\N	28937	4769	0101000020E61000005509193FC235F23FA8FB63CEF1B84840
-1266	1 RUE LEON GAMBETTA	\N	28989	4785	0101000020E6100000ACC95356D3B5F13FF33FD8AD0EA64840
-1287	98 RUE DE LA REPUBLIQUE	\N	28975	4782	0101000020E610000020DB2A6FE4ADF13F8FF4D4B080B14840
-1322	8 PLACE DE LA MAIRIE	\N	29092	4807	0101000020E61000003471EA844971D03FFD476C981DC44840
-1300	1 RUE DES JONQUILLES	\N	28975	4782	0101000020E61000005FB1C8A7AEF9FE3F1DF6AD9C5EB24840
-1220	5 ALLEE DES PEPINIÈRES	\N	28937	4769	0101000020E6100000F8AD735F10B9FB3F14385D3F92B64840
-1263	RUE DE LA RESISTANCE	\N	28989	4785	0101000020E610000049BBD1C77C80F53FB9F6AA3AD0A64840
-1324	RUE BERTHELOT	\N	29333	4821	0101000020E61000006076249EB925EC3F01FA3BE314E04840
-1308	67 ROUTE DE LA MAIRIE	\N	29332	4828	0101000020E6100000D41A5F88904BF33FA35B4CBF06CA4840
+1167	11 RUE D ERNEMONT	\N	28937	4769	0101000020E61000005273FE95B19BF13FFF81495C8DB94840
+1226	1 AVENUE DES QUATRE CANTONS	\N	28937	4769	0101000020E6100000B37EAFF8B874F03F7B1EB31E84A74840
+1387	5 RUE ARISTIDE BRIAND	\N	29609	4847	0101000020E610000068A611B9348CF43F257FE66242D64840
+1294	RUE DES ALPES	\N	28975	4782	0101000020E6100000644D25363122F13F57C4972678B24840
+1323	8 PLACE DE LA MAIRIE	\N	29092	4807	0101000020E61000003471EA844971D03FFD476C981DC44840
+1338	ROUTE DE L ABBAYE	\N	29042	4798	0101000020E6100000AC2E597553D3EE3FB788BD8AEBB84840
+1376	67 RUE GALBOIS	\N	28991	4784	0101000020E610000097D92C062BC8F03F774FBBEBAEA24840
+1300	1 RUE DES JONQUILLES	\N	28975	4782	0101000020E61000002378FA435E7FF13F1DF6AD9C5EB24840
+1263	RUE DE LA RESISTANCE	\N	28989	4785	0101000020E6100000BB922E47D98CF03FB9F6AA3AD0A64840
+1241	13 RUE DU CHAMP DE COURSES	\N	29423	4836	0101000020E610000008D3C5E0407CF13F83AF9E49D1F34840
 1252	143 RUE POMONE	\N	29086	4804	0101000020E6100000D05F2A2E754DDE3F8DE801A048C44840
-1291	1 RUE VICTOR DURUY	\N	28975	4782	0101000020E61000006A3B3B53C78EFB3F21C652C134B34840
-1314	1059 RUE DU GENERAL DE GAULLE	\N	28968	4774	0101000020E6100000C48333E6184AF33FAB2BFA9E6CB84840
-1255	ALLEE DES PRÈS VERTS	\N	5126	2430	0101000020E6100000871868A4C958E53F9C290008D0C34840
-1265	ESPLANADE PATTENSEN	\N	28989	4785	0101000020E610000096E060B17E3AF23F390753BD4AA64840
-1251	HAMEAU BOULEVET	\N	29327	4828	0101000020E61000002D0549449D7EF33FA16771CE21C64840
-1242	RUE DU VALLON	\N	29423	4836	0101000020E6100000938DA43031AEFE3F68A13238A9F34840
+1175	RUE DE L ENSEIGNE RENAUD	\N	28937	4769	0101000020E6100000D2B959BE5903F23FF4A3E194B9B74840
 1259	RUE DE L EGLISE	\N	28966	4774	0101000020E6100000BD8CD40E8ED8F23F861E106C05B64840
-1271	RUE DE LA GRANDE FERME	\N	29087	4806	0101000020E6100000003B11A623DED43FF36D6699EAC24840
-1331	3 RUE VICTOR CORIAUX	\N	12431	2952	\N
-1462	RUE RASPAIL	\N	28976	4783	0101000020E61000005EFFC76C3DE1FE3F25BD1C3443B54840
-1435	RUE DES ECOLES	\N	29178	4812	0101000020E61000007630582D8DF8E03F3D4BCABCD9E64840
-1408	56 RUE D IGNAUVAL	\N	29102	4810	0101000020E610000064A042E00E35EA3FF5B9DA8AFDC14840
-1350	8 RUE DU STADE	\N	29605	4847	0101000020E6100000E920C1EA4EB3F43FE084BECB77D14840
-1337	3 ROUTE DU VAL	\N	29337	4825	\N
-1450	VILLAGE	\N	29612	4830	0101000020E61000006CA51C3BC491F23F2F22FE1F2FDA4840
-1351	96 RUE DES BRUYERES	\N	29431	4841	0101000020E61000006C36C6B65B66F33F5BD09C7171F04840
-1341	18 ROUTE DE CROIXMARE	\N	29173	4819	\N
-1461	RUE SAINT-YON	\N	28976	4783	0101000020E61000004B9BC31805EFFD3F3912A25BB3B34840
-1384	ROUTE DE LA GARE	\N	29095	4806	0101000020E61000003894025436A1D63F378B170B43C44840
-1345	ROUTE DE LA VALLEE	\N	28970	4774	\N
-1347	RUE DES PAPILLONS	\N	29429	4836	\N
-1412	22 RUE DU GENERAL DE GAULLE	\N	29102	4810	0101000020E6100000D3EF882BE396EC3F3AD109FC3CC04840
-1372	220 RUE DES SAULNIERS	\N	28991	4784	0101000020E6100000DE422EA31E93F63F63B53B9CA7A34840
-1358	VILLAGE	\N	29045	4795	\N
-1407	30 RUE GEORGES BOISSAYE DU BOCAGE	\N	29102	4810	0101000020E6100000E19B85C12515E93FDE5572C242C14840
-1364	9 ROUTE DE SAHURS	\N	28990	4788	\N
-1369	11 RUE DU MUSEE	\N	29175	4812	\N
-1371	46 RUE DE L EGALITE	\N	29433	4839	\N
-1378	RUE DU PUITS MEROT	\N	28991	4784	\N
-1381	141 RUE DU FOUR BANAL	\N	29341	4829	\N
-1391	694 ROUTE DES DEUX EGLISES	\N	29177	4813	\N
-1393	170 RUE DE L EGLISE	\N	29436	4841	\N
-1403	40 CHEMIN DE LA GROTTE	\N	29096	4806	\N
-1405	VILLAGE	\N	29097	4806	\N
-1415	RUE ANDRE MARIE	\N	24049	3860	\N
-1419	32 ROUTE DE BLAINVILLE	\N	29598	4855	\N
-1421	16 ROUTE DE PUITS MARTIN	\N	15360	5446	\N
-1424	1 RUE MICHEL ROUSSELET	\N	29168	4817	\N
-1430	PLACE DU PROFESSEUR GOSSET	\N	29170	4814	\N
-1432	38 AVENUE RENE COTY	\N	29330	4796	\N
-1434	154 RUE DE L EGLISE	\N	29098	4806	\N
-1436	RUE DES ECOLES	\N	29178	4812	\N
-1444	50 RUE SAINTE ANNE	\N	29180	4817	\N
-1447	1058 RUE DE LA GARE	\N	19070	2989	\N
-1449	62 RUE FOSSE AUX LOUPS	\N	28971	4771	\N
-1452	240 ROUTE DE PAVILLY	\N	29348	4828	\N
-1454	VILLAGE	\N	29613	4778	\N
-1456	11 IMPASSE DU CHATEAU	\N	29614	4852	\N
-1458	VILLAGE	\N	29615	4853	\N
-1404	VILLAGE	\N	29097	4806	0101000020E6100000DF6598706E27D73F6009208C8AC04840
-1349	11 ROUTE DE LA LIBERATION	\N	29605	4847	0101000020E6100000AB5CC90A55CCF43F0F115044B3D14840
-1422	336 ROUTE DE L EGLISE	\N	594	3123	0101000020E610000096A0FE3467EDF63FC56804B8ACD34840
-1359	140 ROUTE MANOIR DE LESTANVILLE	\N	29338	4827	0101000020E61000008187A441CAC2EE3F3EAD056AEFE04840
-1448	62 RUE FOSSE AUX LOUPS	\N	28971	4771	0101000020E6100000BE8D6F1D534FF43F6054B551DBBC4840
-1426	10 RUE DE SAINT WANDRILLE	\N	29039	4792	0101000020E61000001BD8C2DD6DDFEA3FBC0CF7783EC14840
-1451	240 ROUTE DE PAVILLY	\N	29348	4828	0101000020E610000032F66FA82933F53F9A4E809BA4CB4840
-1429	PLACE DU PROFESSEUR GOSSET	\N	29170	4814	0101000020E6100000CD0C643BB4CFC93FC7C5E61D06D54840
-1355	GRANDE RUE	\N	29043	4799	0101000020E6100000A6754EC52377E73FD10789BCFEC04840
-1367	RUE PRINCIPALE	\N	29607	4852	0101000020E6100000B1233B5AC838F73FDA0EFC5EF9EC4840
-1455	5 ROUTE DE DIEPPE	\N	29614	4852	0101000020E6100000B544FCFD41A0F73FB7ED9CE2C8EB4840
-1420	16 ROUTE DE PUITS MARTIN	\N	15360	5446	0101000020E610000024CF58A8F3F0F13FD23B9137ABE54840
-1416	RUE DE LA VALLEE	\N	29597	4850	0101000020E61000006D44C5722A7DF83F00016BD5AEE14840
-1427	PLACE DU 4ÈME COMMANDO	\N	29427	4846	0101000020E6100000DB8F53F5A44CEE3F05EF582A77F44840
+1169	202 RUE ALBERT DUPUIS	\N	28937	4769	0101000020E6100000B49AD6EF871CF23F4FB272BBD9BA4840
+1378	RUE DU PUITS MEROT	\N	28991	4784	0101000020E61000006F5ED4A2C9B3F03FAE65321C4FA34840
+1293	8 AVENUE DU VAL ABBE	\N	28975	4782	0101000020E610000035AEB2C80CA2F13F8292E1FC76B04840
+1210	2 RUE SAINT-ANDRE	\N	28937	4769	0101000020E610000077D2CAD65D6DF13FB9CC025039B94840
+1386	2 RUE FELIX FAURE	\N	29609	4847	0101000020E610000064F9049A198FF43F8EB53B7B19D64840
+1288	184 RUE DE PARIS	\N	28975	4782	0101000020E6100000E096DEEA78B5F13F4425E09D1DB14840
+1160	32 RUE SAINT ANDRE	\N	28937	4769	0101000020E610000042C040616762F13F0E44FDCB41B94840
+1403	40 CHEMIN DE LA GROTTE	\N	29096	4806	0101000020E6100000FD0A34009D07D73F0A23A40B3DBF4840
+1310	VILLAGE	\N	29040	4793	0101000020E6100000EF7253FB5B9FE43FD420167B79C74840
+1283	RUE DU JURA	\N	28975	4782	0101000020E6100000C4CAC655F522F13FBFBDE79773B24840
+1256	PLACE DE LA MAIRIE	\N	28965	4776	0101000020E6100000124CCDCF2181F23F3F94E490BFAE4840
+1231	2 RUE SAINTE-GENEVIEVE DU MONT	\N	28937	4769	0101000020E610000025E103BA7DBEF13F82870E26EAB84840
+1407	30 RUE GEORGES BOISSAYE DU BOCAGE	\N	29102	4810	0101000020E6100000E7AF3701EB10B43FDE5572C242C14840
+1223	5 RUE DES EMMUREES	\N	28937	4769	0101000020E610000075EC84BDA75FF13F9135B8E758B74840
+1262	4 RUE BACHELET DAMVILLE	\N	28989	4785	0101000020E61000008AA52A68B84BF03F13F283EBB8A64840
+1235	4342 ROUTE DE NEUFCHÂTEL	\N	28937	4769	0101000020E6100000FE01B39B497EF13F23CF3F0B53B94840
+1278	RUE DE L OREE DU ROUVRAY	\N	28975	4782	0101000020E61000000F6D02374B54F13FE1943D326BB24840
+1385	2 ROUTE DES BOIS	\N	29609	4847	0101000020E6100000BA63E43ECF95F43F70F043AD02D64840
+1281	1 RUE JULES RAIMU	\N	28975	4782	0101000020E610000016B0F40CA715F13F6174B31EC2B24840
+1224	22 RUE SAINT-LO	\N	28937	4769	0101000020E61000001F0FC9057182F13F965E7A7FACB84840
+1186	32 RUE BLAISE PASCAL	\N	28937	4769	0101000020E6100000F0D47CC5B532F13FFBE5F63FFEF24840
+1302	AVENUE DE L UNIVERSITE	\N	28975	4782	0101000020E6100000BBB2064D1D34C33FDBB39DA51ABF4840
+1336	3 ROUTE DU VAL	\N	29337	4825	0101000020E6100000755FFEA56DB5E13F3A5FAAA1A6E94840
+1303	82 GRANDE RUE	\N	29088	4805	0101000020E61000008196467DA6DFDC3F1CA90881A6C64840
+1305	58 PLACE DE LA MAIRIE	\N	29331	4828	0101000020E61000003B225B6D30DAF23FD7F466F58AC54840
+1340	18 ROUTE DE CROIXMARE	\N	29173	4819	0101000020E61000008221226ADFB2CA3F5097DE6107CD4840
 1414	RUE ANDRE MARIE	\N	24049	3860	0101000020E6100000F772749CA833EF3FC5B91B7E96CC4840
-1357	VILLAGE	\N	29045	4795	0101000020E61000002BBD9945E6C9F63F41B1FC968CD34840
-1362	6 RUE DE LA VALLEE	\N	29339	4795	0101000020E61000006C1ADE23D00DEF3FF68FAE67C2DE4840
-1368	11 RUE DU MUSEE	\N	29175	4812	0101000020E61000003089EDCDF3D0DF3FC804A16156E74840
-1459	1 SENTE DES ECOLES	\N	29181	4812	0101000020E610000053EA5055BA9EE13FB2C41C6747DA4840
-1441	PLACE DE LA MAIRIE	\N	10634	1595	0101000020E6100000E576F092860AEE3FE4AC802920D14840
-1431	38 AVENUE RENE COTY	\N	29330	4796	0101000020E610000012CC91C850CBE83FB4CD4BCDB7CF4840
-1398	8 RUE JULES SAINT SAËNS	\N	29344	4829	0101000020E6100000B72EFD97E0AEE63F395BC4A061EE4840
-1417	31 IMPASSE DE L ECOLE	\N	2178	2395	0101000020E6100000DB2B51C85E47E83FDB3B9B3C02E64840
+1380	141 RUE DU FOUR BANAL	\N	29341	4829	0101000020E6100000C0DA79647144E53FC681804A4FE94840
 1363	9 ROUTE DE SAHURS	\N	28990	4788	0101000020E6100000ECDB6F0B9BD3ED3F03F7340E12B24840
-1383	10 RUE DOCTEUR DUBOIS	\N	29095	4806	0101000020E61000009955E47F0EADD63FC3ADCCA502C44840
+1321	SENTE DES HETRES	\N	29171	4814	0101000020E6100000B5F1E8C5D73EC53F45ABE67B3ED24840
+1390	694 ROUTE DES DEUX EGLISES	\N	29177	4813	0101000020E610000059CC981A5259D33F437D60012BCD4840
+1370	46 RUE DE L EGALITE	\N	29433	4839	0101000020E610000053A6BC49181DF73F5E6F933848024940
+1456	11 IMPASSE DU CHATEAU	\N	29614	4852	\N
+1453	VILLAGE	\N	29613	4778	0101000020E6100000C75D03A9B4D0F73F4B39C216F9C54840
+1448	62 RUE FOSSE AUX LOUPS	\N	28971	4771	0101000020E6100000BE8D6F1D534FF43F6054B551DBBC4840
+1507	RUE DE MIROMESNIL	\N	29443	4835	0101000020E61000005A975704B8A6F13F836A6205E8ED4840
+1454	VILLAGE	\N	29613	4778	0101000020E6100000C75D03A9B4D0F73F4B39C216F9C54840
+1449	62 RUE FOSSE AUX LOUPS	\N	28971	4771	0101000020E6100000BE8D6F1D534FF43F6054B551DBBC4840
+1508	RUE DE MIROMESNIL	\N	29443	4835	0101000020E61000005A975704B8A6F13F836A6205E8ED4840
+1535	RUE DELAMARE	\N	29364	4825	0101000020E6100000E1069D8C01F4E23FE961AA9144EC4840
+1544	2 RUE DES TILLEULS	\N	29620	4849	0101000020E6100000B4A439382C03F93F09C42D1758EB4840
+1451	240 ROUTE DE PAVILLY	\N	29348	4828	0101000020E610000038320BC41D85F03F9A4E809BA4CB4840
+1513	2 PLACE DE LA MAIRIE	\N	29190	4814	0101000020E61000005B0FB52643F9CD3FDD154DA9C3CD4840
+1533	15 ROUTE DU CARREAU	\N	29193	4814	0101000020E6100000FF9F7EA8180DD23F76C3953730CF4840
+1498	RUE DU RELAIS	\N	29049	4804	0101000020E6100000B485C94F08DFE33F1B53C963FAC24840
+1495	52 ROUTE DE DIEPPE	\N	3709	548	0101000020E6100000EB6BBBDB85C6F23F21EA3E0029E84840
+1489	136 RUE DE L ECOLE	\N	29352	4825	0101000020E61000006225E4581ED1E33FFE3AC316B3D84840
+1433	154 RUE DE L EGLISE	\N	29098	4806	0101000020E610000095EFE94FBA6BD43FDC0A278A8CBF4840
+1466	2 RUE PHILIPPE LANOUX	\N	28976	4783	0101000020E610000071D1E2EF8B49F13FF45F5242D1B44840
+1517	PLACE JEHAN LE POVREMOYNE	\N	29356	4795	0101000020E6100000E82F1F092ED8EE3F435A42C220DA4840
+1459	1 SENTE DES ECOLES	\N	29181	4812	0101000020E610000053EA5055BA9EE13FB2C41C6747DA4840
+1485	ROUTE DE SASSETOT	\N	29183	4812	0101000020E61000008E62F8091968E13F1D3C55B6F6E14840
+1486	11 RUE AUGUSTE MALLET	\N	29184	4812	0101000020E6100000152AB684A7B0DF3F7662412725DC4840
+1510	8 RUE DE ROUEN	\N	29188	4817	0101000020E61000000FE8C1E7CB2EDB3F0D4460F67CDE4840
+1441	PLACE DE LA MAIRIE	\N	10634	1595	0101000020E6100000E576F092860AEE3FE4AC802920D14840
+1432	38 AVENUE RENE COTY	\N	29330	4796	0101000020E610000012CC91C850CBE83FB4CD4BCDB7CF4840
+1499	378 RUE DES ECOLES	\N	29355	4796	0101000020E6100000EA51D72B4384E83FBAC7CA1666CA4840
+1417	31 IMPASSE DE L ECOLE	\N	2178	2395	0101000020E6100000DB2B51C85E47E83FDB3B9B3C02E64840
+1516	VILLAGE	\N	28994	4791	0101000020E61000007918AE9C2A08F03FC34AE4066CB04840
+1531	RUE DU DUN	\N	29362	4827	0101000020E6100000EB74A16BBFC2EC3FAB434D78B2E54840
 1439	17 RUE DE L EGLISE	\N	29611	4853	0101000020E6100000AF6F97659EE0F93F98C7376706CA4840
 1442	ROUTE D AUBERVILLE	\N	29179	4813	0101000020E61000000801C9D913FBD53FB973FE795CD54840
-1365	RUE DES ECOLES	\N	29047	4792	0101000020E6100000BFF024CB44CFED3F8A0E9AC021C04840
-1423	1 RUE MICHEL ROUSSELET	\N	29168	4817	0101000020E61000009893A3426D82DD3F236FB189E9E24840
-1373	67 RUE AUX SAULNIERS	\N	28991	4784	0101000020E6100000FD28B021B465F63FFEFE83FE78A34840
-1348	10 RUE JEAN DE BETHENCOURT	\N	29430	4839	0101000020E61000008A6E67A64EECF53FF2295B7F26FD4840
-1379	RUE DES ANTONINS	\N	29435	4839	0101000020E610000090EEC9BE8953F63F060E68E90A704940
-1330	3 RUE VICTOR CORIAUX	\N	12431	2952	0101000020E61000003763B72072F2D63F795D1A1AAADE4840
-1418	32 ROUTE DE BLAINVILLE	\N	29598	4855	0101000020E6100000DA034F4F8F95F53FEF0A964D2DC84840
-1354	1 RUE EDOUARD CANNEVEL	\N	29431	4841	0101000020E6100000AF6C512CD882F33F9BA375F18AF04840
-1352	701 RUE DE VAILLANTCOURT	\N	29431	4841	0101000020E6100000170E38D6BBFBF33F98A04CC4D7EF4840
-1411	12 RUE DU MANOIR	\N	29102	4810	0101000020E6100000B3AA4E9C16BBEA3F6A3B3B5347C14840
-1433	154 RUE DE L EGLISE	\N	29098	4806	0101000020E610000095EFE94FBA6BD43FDC0A278A8CBF4840
-1387	5 RUE ARISTIDE BRIAND	\N	29609	4847	0101000020E610000068A611B9348CF43F257FE66242D64840
-1338	ROUTE DE L ABBAYE	\N	29042	4798	0101000020E6100000AC2E597553D3EE3FB788BD8AEBB84840
-1376	67 RUE GALBOIS	\N	28991	4784	0101000020E6100000E27FC03DAED1F73F774FBBEBAEA24840
+1526	1 RUE DES ECOLES	\N	29191	4813	0101000020E6100000B0BB13C8F996DC3FD8B92717FCCF4840
+1479	115 RUE DU VILLAGE	\N	28992	4785	0101000020E61000006F7B0BB6D4FBF13F9FBAA8CC03A94840
+1501	8 RUE DE L EGLISE	\N	29441	4840	0101000020E61000008294CB8BBB2DF53F87A4F53B3D004940
+1545	14 RUE DE LA VALLEE	\N	29445	4839	0101000020E6100000BC94BF1DD633F73F01C96C77ACF84840
+1444	50 RUE SAINTE ANNE	\N	29180	4817	0101000020E610000065C792AEA38EDA3F0C5F7888F3E24840
+1506	25 RUE J SIMON	\N	29187	4817	0101000020E61000005C48ED697A95D93F757CCDD583DB4840
+1497	RUE SAINT EXUPERY	\N	29354	4795	0101000020E61000005EEA065B03C3F03F1A5D73812AD74840
+1503	RUE JEANINE BRIANCON	\N	29442	4838	0101000020E61000000CBB34ED7E3FF43F7FBE0C4AC1F84840
+1472	3 RUE VICTOR BERTEL	\N	28976	4783	0101000020E6100000A51AE498A68CF13FF80D9FB63EB44840
+1546	13 GRANDE RUE	\N	29366	4825	0101000020E6100000B55CF1658663E43FC0F61FDBAAE84840
+1521	RUE JULES CROCHEMORE	\N	21365	4812	0101000020E6100000E4BF1F023770E03FB2A32F8C0DDF4840
+1529	111 RUE DES ECOLES	\N	29050	4799	0101000020E61000008FDCF32CA3E9E53F984252D1F9BE4840
 1343	ROUTE DE NEWTON LONGVILLE	\N	29174	4820	0101000020E6100000D53AA9E3BCB5CE3F3E8C188F35C44840
-1457	VILLAGE	\N	29615	4853	0101000020E6100000B12F16DCC80AF73F3D8C2000FED04840
+1325	RUE BERTHELOT	\N	29333	4821	0101000020E61000006076249EB925EC3F01FA3BE314E04840
+1308	67 ROUTE DE LA MAIRIE	\N	29332	4828	0101000020E6100000D41A5F88904BF33FA35B4CBF06CA4840
+1505	RUE JEAN JAURÈS	\N	28993	4785	0101000020E6100000F1007CDB3FB3F13F3EBCBE4141AA4840
+1471	RUE LE NOTRE	\N	28976	4783	0101000020E6100000AE9972415A9CF13F1721866753B34840
+1458	VILLAGE	\N	29615	4853	0101000020E6100000B12F16DCC80AF73F3D8C2000FED04840
 1399	RUE ARMAND COLIN	\N	29344	4829	0101000020E610000067092890B69AE63FF99C3F96D3EE4840
-1390	694 ROUTE DES DEUX EGLISES	\N	29177	4813	0101000020E610000059CC981A5259D33F437D60012BCD4840
-1446	1058 RUE DE LA GARE	\N	19070	2989	0101000020E61000001E5E1292C598F83F3E41DE82D7D04840
+1392	169 RUE DE L EGLISE	\N	29436	4841	0101000020E6100000CC4A651AE53AF43FAE2AB992B6E84840
+1315	945 RUE DU GENERAL DE GAULLE	\N	28968	4774	0101000020E61000001E05C22DA341F33FE3635EE471B84840
+1391	694 ROUTE DES DEUX EGLISES	\N	29177	4813	0101000020E610000059CC981A5259D33F437D60012BCD4840
+1447	1058 RUE DE LA GARE	\N	19070	2989	0101000020E61000001E5E1292C598F83F3E41DE82D7D04840
 1396	RUE J A COLIN	\N	29344	4829	0101000020E610000067092890B69AE63FF99C3F96D3EE4840
-1370	46 RUE DE L EGALITE	\N	29433	4839	0101000020E610000053A6BC49181DF73FAC59C235D2164940
-1366	ROUTE DE ROUEN	\N	29047	4792	0101000020E6100000C75EB553EFD0ED3F93A662DF25C04840
-1437	7 RUE CAUCHOISE	\N	29347	4825	0101000020E610000008C57225E4BEE53FEBB9B7E805E54840
-1346	RUE DES PAPILLONS	\N	29429	4836	0101000020E610000041A51C5CD282F33F76B481A66BFA4840
-1377	RUE DU PUITS MEROT	\N	28991	4784	0101000020E610000058B04B5CE005F73FAE65321C4FA34840
-1539	2 ROUTE DE SAINT MARTIN	\N	29619	4848	0101000020E61000008400FFE57180FB3F7435C35705EB4840
-1468	RUE RASPAIL	\N	28976	4783	\N
-1469	RUE PIERRE CORNEILLE	\N	28976	4783	\N
-1470	RUE CLAUDINE GUERIN	\N	28976	4783	\N
-1492	158 ROUTE DE LA VALLEE	\N	3708	548	0101000020E6100000F64897BFC1CDF23F8377664045E64840
-1472	3 RUE VICTOR BERTEL	\N	28976	4783	\N
-1565	27 RUE CARNOT	\N	29370	4796	0101000020E610000017E4995D1845E83FFF45E9356ACF4840
-1477	128 RUE LEON SALVA	\N	28976	4783	\N
+1339	PLACE DE LA MAIRIE	\N	29042	4798	0101000020E61000004A80F51329C8EE3FE396A841C5B84840
+1371	46 RUE DE L EGALITE	\N	29433	4839	0101000020E610000053A6BC49181DF73F5E6F933848024940
+1540	2 ROUTE DE SAINT MARTIN	\N	29619	4848	0101000020E61000008400FFE57180FB3F7435C35705EB4840
+1361	49 ROUTE BOUVILLE	\N	29046	4792	0101000020E6100000663CB9C29525EC3F50CFB34058C24840
+1524	RUE MARGUERITE ROLL	\N	29444	4846	0101000020E610000065003B4698D3EF3F29DAC99E0CF44840
+1538	IMPASSE DES ECOLES	\N	29618	4855	0101000020E6100000B12C2E1404B5F43FDE77CA72ABC84840
+1436	RUE DES ECOLES	\N	29178	4812	0101000020E61000007630582D8DF8E03F3D4BCABCD9E64840
+1493	158 ROUTE DE LA VALLEE	\N	3708	548	0101000020E6100000F64897BFC1CDF23F8377664045E64840
+1408	56 RUE D IGNAUVAL	\N	29102	4810	0101000020E6100000B6E6CE193FF7B43FF5B9DA8AFDC14840
+1289	3 RUE DE L ARGONNE	\N	28975	4782	0101000020E6100000085F14147188F13F1072C562A7AF4840
+1319	RUE DE L EGLISE	\N	29041	4801	0101000020E610000067BE55674D25F03F0C25EE0CAEC04840
+1326	10 RUE DU BOURG	\N	22985	4849	0101000020E610000083D715D097C8F93FDCDF34D8AFEA4840
 1530	46 IMPASSE DE L ECOLE	\N	29360	4796	0101000020E61000000C4463AE8B69E83FBB4416E5A9D34840
-1479	115 RUE DU VILLAGE	\N	28992	4785	\N
-1467	RUE PIERRE CORNEILLE	\N	28976	4783	0101000020E6100000C12DABF235F2FE3F03701E14B5B54840
-1475	67 AVENUE DES CANADIENS	\N	28976	4783	0101000020E61000007CAC6C610EF9FB3FB478EBDBCDB44840
-1564	29 RUE BELLANGER	\N	29370	4796	0101000020E610000068F959E36E2BE83FE5B37E2BC0CE4840
-1563	17 RUE RETIMARE	\N	29370	4796	0101000020E6100000DE6B8254FC92E83FADB68BFE0ACF4840
-1476	128 RUE LEON SALVA	\N	28976	4783	0101000020E61000004FE8B30B1F84FD3F845FD14A2DB54840
-1553	11 RUE JULES GUEVILLE	\N	29367	4823	0101000020E61000006EE966B94BA6EC3FFD4CDE7C7AD54840
-1572	RUE DU DOCTEUR ZAMENHOF	\N	29370	4796	0101000020E6100000876EB4EBF7B7F43F78AFFFDF7DA74840
-1493	158 ROUTE DE LA VALLEE	\N	3708	548	\N
-1495	52 ROUTE DE DIEPPE	\N	3709	548	\N
-1500	378 RUE DES ECOLES	\N	29355	4796	\N
-1503	RUE JEANINE BRIANCON	\N	29442	4838	\N
-1508	RUE DE MIROMESNIL	\N	29443	4835	\N
-1510	8 RUE DE ROUEN	\N	29188	4817	\N
-1516	VILLAGE	\N	28994	4791	\N
-1524	RUE MARGUERITE ROLL	\N	29444	4846	\N
-1529	111 RUE DES ECOLES	\N	29050	4799	\N
-1538	IMPASSE DES ECOLES	\N	29618	4855	\N
-1540	2 ROUTE DE SAINT MARTIN	\N	29619	4848	\N
-1543	2529 ROUTE DE DUCLAIR	\N	29052	4794	\N
-1547	13 GRANDE RUE	\N	29366	4825	\N
-1557	GRAND RUE	\N	28972	4776	\N
-1562	RUE DES ECOLES	\N	29369	4821	\N
-1574	VILLAGE	\N	29054	4787	\N
-1192	9 RUE DU VERT BUISSON	\N	28937	4769	0101000020E6100000B5E9428BF0CFFF3FC2621E4311B94840
+1543	2529 ROUTE DE DUCLAIR	\N	29052	4794	0101000020E61000009C632759DADBED3F3F0E185EA8C34840
+1450	VILLAGE	\N	29612	4830	0101000020E61000006CA51C3BC491F23F2F22FE1F2FDA4840
+1351	96 RUE DES BRUYERES	\N	29431	4841	0101000020E61000006C36C6B65B66F33F5BD09C7171F04840
+1394	AVENUE LOUIS SAVOYE	\N	29344	4829	0101000020E610000002C90E06ABB5E63F7E6F36CA38EE4840
+1412	22 RUE DU GENERAL DE GAULLE	\N	29102	4810	0101000020E61000000FF3D3221CDFB63F3AD109FC3CC04840
+1477	128 RUE LEON SALVA	\N	28976	4783	0101000020E6100000D530C51A035AF13F845FD14A2DB54840
+1420	16 ROUTE DE PUITS MARTIN	\N	15360	5446	0101000020E610000024CF58A8F3F0F13FD23B9137ABE54840
+1494	52 ROUTE DE DIEPPE	\N	3709	548	0101000020E6100000EB6BBBDB85C6F23F21EA3E0029E84840
+1539	2 ROUTE DE SAINT MARTIN	\N	29619	4848	0101000020E61000008400FFE57180FB3F7435C35705EB4840
+1509	8 RUE DE ROUEN	\N	29188	4817	0101000020E61000000FE8C1E7CB2EDB3F0D4460F67CDE4840
+1431	38 AVENUE RENE COTY	\N	29330	4796	0101000020E610000012CC91C850CBE83FB4CD4BCDB7CF4840
+1515	VILLAGE	\N	28994	4791	0101000020E61000007918AE9C2A08F03FC34AE4066CB04840
+1478	115 RUE DU VILLAGE	\N	28992	4785	0101000020E61000006F7B0BB6D4FBF13F9FBAA8CC03A94840
+1452	240 ROUTE DE PAVILLY	\N	29348	4828	0101000020E610000038320BC41D85F03F9A4E809BA4CB4840
+1434	154 RUE DE L EGLISE	\N	29098	4806	0101000020E610000095EFE94FBA6BD43FDC0A278A8CBF4840
+1465	3 RUE VICTOR BERTEL	\N	28976	4783	0101000020E6100000A51AE498A68CF13FF80D9FB63EB44840
+1528	111 RUE DES ECOLES	\N	29050	4799	0101000020E61000008FDCF32CA3E9E53F984252D1F9BE4840
+1457	VILLAGE	\N	29615	4853	0101000020E6100000B12F16DCC80AF73F3D8C2000FED04840
+1523	RUE MARGUERITE ROLL	\N	29444	4846	0101000020E610000065003B4698D3EF3F29DAC99E0CF44840
+1537	IMPASSE DES ECOLES	\N	29618	4855	0101000020E6100000B12C2E1404B5F43FDE77CA72ABC84840
+1463	RUE CLAUDINE GUERIN	\N	28976	4783	0101000020E6100000D060C53C3A5CF13FD1BE878539B34840
+1435	RUE DES ECOLES	\N	29178	4812	0101000020E61000007630582D8DF8E03F3D4BCABCD9E64840
+1318	RUE DE L EGLISE	\N	29041	4801	0101000020E610000067BE55674D25F03F0C25EE0CAEC04840
+433	105 RUE DES ANCIENS COMBATTANTS	\N	29061	4806	0101000020E6100000571021B355F7D33F3FC5F5187AC84840
+1137	RUE RENE COTY	\N	29084	4807	0101000020E61000004FDA3017AC09D13F5AE873835BC04840
+891	26 RUE DU VILLAGE	\N	29073	4806	0101000020E610000023831E626A88DA3F8E9B12F7F5C54840
+314	RUE PIERRE LEFÈBVRE	\N	28946	4774	0101000020E61000002AF7DFA32E5CF23F94315FDA47B84840
+1344	ROUTE DE LA VALLEE	\N	28970	4774	0101000020E6100000963F8ECF2C95F23FDF720E01B4BB4840
+1574	VILLAGE	\N	29054	4787	0101000020E610000079BD1AF17B33EC3FEC95E44632B34840
+1142	27 RUE DES EMOUQUETS	\N	28963	4774	0101000020E6100000A8402EBD72EFF23F8C3C5AE6BEBB4840
+102	PLACE DE LA MAIRIE	\N	29379	4836	0101000020E61000002B809E107EA5F23F2B34CEAE94F94840
 1222	214 ROUTE DE DARNETAL	\N	28937	4769	0101000020E6100000924583DC91E6F13F81AC0A819AB84840
-1171	8 BIS RUE JOSEPH COURT	\N	28937	4769	0101000020E61000005A9A262FDCB0F13FBEBB5B7AB0B94840
+1194	8 RUE DE BERNE	\N	28937	4769	0101000020E61000002ABBEC19BA00F23F896B08D0E7B84840
 1176	93 RUE EAU DE ROBEC	\N	28937	4769	0101000020E6100000DC83AD6574B0F13F006C48F580B84840
-1181	5 RUE DU GENERAL GIRAUD	\N	28937	4769	0101000020E610000066048672C3FBFD3F9D514E0F65B84840
-1178	16 RUE LE GOUY	\N	28937	4769	0101000020E6100000B7246FCFDFA3F13F5CE24C3CB5B84840
-1206	2 RUE DU DOCTEUR DEVE	\N	28937	4769	0101000020E610000021672F15FAA4FE3FF30E850982B64840
-1202	10 RUE EMILE LEUDET	\N	28937	4769	0101000020E61000008483DE970A7CFC3FEA09C703FCB84840
-1197	23 BOULEVARD D ORLEANS	\N	28937	4769	0101000020E6100000E42651CCCDB9FC3FC4DFA3BCDEB74840
-1219	19 RUE SAINTE CLAIRE	\N	28937	4769	0101000020E6100000B1599DB8F6BFF13F78F47D40B9B84840
-1193	97 RUE DU RENARD	\N	28937	4769	0101000020E610000089A1CD58D1A2FC3FEC14AB0661B94840
-1218	44 AVENUE DE LA PORTE DES CHAMPS	\N	28937	4769	0101000020E6100000A3B2FE22AAB0F13F06985C39B9B84840
+1185	21 RUE NEWTON	\N	28937	4769	0101000020E61000004611B229E031F23FDA5616F9B3BA4840
+1206	2 RUE DU DOCTEUR DEVE	\N	28937	4769	0101000020E6100000EA23EBCEE576F13FF30E850982B64840
+1214	41 RUE DE SOTTEVILLE	\N	28937	4769	0101000020E61000004E793F315C64F13FB552A5B9D7B64840
+1211	2 RUE ENSEIGNE RENAUD	\N	28937	4769	0101000020E61000009D71DA866303F23FB196D097BDB74840
+1193	97 RUE DU RENARD	\N	28937	4769	0101000020E6100000C129AE557B43F13FEC14AB0661B94840
+1198	1 RUE PIERRE CURIE	\N	28937	4769	0101000020E610000034AEBFF20E3AF13F3AB0FB129AB54840
 1212	6 RUE DU DOCTEUR SEGUIN	\N	28937	4769	0101000020E6100000AF43866C5807F23F5E6124283CBA4840
 1382	47 AVENUE DU MARECHAL DE LATTRE	\N	29095	4806	0101000020E61000003D83DCFEC2D6D63FD05AD95701C44840
 422	PLACE DE L ECOLE	\N	29060	4806	0101000020E610000012242610C510D43F6529271401C54840
-1532	RUE DE L EGLISE	\N	29617	4847	0101000020E610000012DC4D92DCE1F43F8F08BE50DDDA4840
-1561	RUE DES ECOLES	\N	29369	4821	0101000020E61000008399B47E3AEBE93F5BF1894C2BD84840
-1535	RUE DELAMARE	\N	29364	4825	0101000020E6100000E1069D8C01F4E23FE961AA9144EC4840
-1496	RUE GASTON DELACROIX	\N	29354	4795	0101000020E6100000FFE6C589AF96F73F0819D02414D74840
-1544	2 RUE DES TILLEULS	\N	29620	4849	0101000020E6100000B4A439382C03F93F09C42D1758EB4840
-1513	2 PLACE DE LA MAIRIE	\N	29190	4814	0101000020E61000005B0FB52643F9CD3FDD154DA9C3CD4840
-1541	704 ROUTE D ETRETAT	\N	29194	4814	0101000020E610000096C67E02672ACF3F75CC37AA6CD44840
-1548	36 GRANDE RUE	\N	29621	4852	0101000020E61000009BC839A25CB9F53F3EB7C824C0ED4840
-1494	52 ROUTE DE DIEPPE	\N	3709	548	0101000020E6100000EB6BBBDB85C6F23F21EA3E0029E84840
-1489	136 RUE DE L ECOLE	\N	29352	4825	0101000020E61000006225E4581ED1E33FFE3AC316B3D84840
-1466	2 RUE PHILIPPE LANOUX	\N	28976	4783	0101000020E61000006A2EDC5E77DFFC3FF45F5242D1B44840
-1525	55 IMPASSE BELLEVUE	\N	29359	4795	0101000020E6100000979F8635B6B3FE3FF383E3C7D2D84840
-1484	PLACE DU SERGENT RITCHIE	\N	29182	4812	0101000020E6100000A8B685FB89B9E03F27E15BBB61E04840
-1486	11 RUE AUGUSTE MALLET	\N	29184	4812	0101000020E6100000152AB684A7B0DF3F7662412725DC4840
-1509	8 RUE DE ROUEN	\N	29188	4817	0101000020E61000000FE8C1E7CB2EDB3F0D4460F67CDE4840
-1560	2 ROUTE DE VALMONT	\N	29199	4812	0101000020E610000069BEBF4BED08E13F5481C5A721D94840
-1536	RUE DE LA MARE DES CHAMPS	\N	29365	4823	0101000020E6100000267B19FF1DE5EC3FF159A678BFD84840
-1569	29 RUE CARNOT	\N	29370	4796	0101000020E61000000427EFA4044BE83F5EC8D92A77CF4840
-1519	51 RUE DE LA MAIRIE	\N	29357	4796	0101000020E6100000A56C755FEC12E63F978FE6C059CE4840
-1534	24 RUE DU DOCTEUR GIRARD	\N	29363	4834	0101000020E6100000E8A82ED6F392E93F22D34E8BC9EF4840
-1515	VILLAGE	\N	28994	4791	0101000020E61000004C8F0134A530F33FC34AE4066CB04840
-1480	RUE DE BEAUMONT	\N	29350	4824	0101000020E61000003278E93DCD8DEA3FC243A4E8F9F04840
-1526	1 RUE DES ECOLES	\N	29191	4813	0101000020E6100000B0BB13C8F996DC3FD8B92717FCCF4840
-1573	VILLAGE	\N	29054	4787	0101000020E610000079BD1AF17B33EC3FEC95E44632B34840
-1504	1 RUE JEAN JAURÈS	\N	28993	4785	0101000020E6100000A2B581BF88B3F13F5A39E60238AA4840
-1545	14 RUE DE LA VALLEE	\N	29445	4839	0101000020E6100000BC94BF1DD633F73F01C96C77ACF84840
-1506	25 RUE J SIMON	\N	29187	4817	0101000020E61000005C48ED697A95D93F757CCDD583DB4840
-1558	RUE CRAMOISAN	\N	29198	4818	0101000020E61000008C06F3CED61ED43F1CCAD44D77DE4840
-1546	13 GRANDE RUE	\N	29366	4825	0101000020E6100000B55CF1658663E43FC0F61FDBAAE84840
-1567	RUE CLOVIS CAPPON	\N	29370	4796	0101000020E6100000B98B4C9AE82EE83F1791724147CF4840
-1568	16 RUE DES PETITS BEZOTS	\N	29370	4796	0101000020E6100000413FA2F52F7AE83F4F0B989F9FCE4840
-1555	RUE DES ACACIAS	\N	29367	4823	0101000020E6100000612B454B4E88EC3FD689B2546AD54840
-1528	111 RUE DES ECOLES	\N	29050	4799	0101000020E61000008FDCF32CA3E9E53F984252D1F9BE4840
-1550	83 RUE JULES FERRY	\N	29053	4792	0101000020E6100000A628FAF0EA84EA3FDB5561966ABA4840
-1552	25 RUE CLAUDE MONET	\N	29197	4811	0101000020E6100000D80916240914E13FBD8CA4D5F7D04840
-1514	PLACE DE LA MAIRIE	\N	29190	4814	0101000020E61000005B0FB52643F9CD3FDD154DA9C3CD4840
-1505	RUE JEAN JAURÈS	\N	28993	4785	0101000020E6100000F1007CDB3FB3F13F3EBCBE4141AA4840
-1464	RUE GADEAU DE KERVILLE	\N	28976	4783	0101000020E6100000406A2F7C269EF13F7855B1425BB34840
-1522	RUE DU 8 MAI 1945	\N	21365	4812	0101000020E6100000CAB061B80055E03FF0B215EA1FDF4840
-1556	GRAND RUE	\N	28972	4776	0101000020E61000005DB07CDFBDD0F23F790BA0EFD9AC4840
-1566	6 RUE NIATEL	\N	29370	4796	0101000020E6100000956226D5671CE83FA3F68D7592CE4840
-1523	RUE MARGUERITE ROLL	\N	29444	4846	0101000020E610000065003B4698D3EF3F29DAC99E0CF44840
-1497	RUE SAINT EXUPERY	\N	29354	4795	0101000020E6100000A727458E219EF73F1A5D73812AD74840
-1518	RUE MOULIN DU TRAVERSIN	\N	29356	4795	0101000020E6100000A11D725E5CDDEE3F8AD9FDF014DA4840
-433	105 RUE DES ANCIENS COMBATTANTS	\N	29061	4806	0101000020E6100000571021B355F7D33F3FC5F5187AC84840
-556	130 ROUTE D ETAINHUS	\N	29064	4806	0101000020E6100000CE160BA155F6D43F4F7633A31FC94840
-1137	RUE RENE COTY	\N	29084	4807	0101000020E61000004FDA3017AC09D13F5AE873835BC04840
+528	RUE DU COMTE LOUIS HOQUART DE TU	\N	10784	1614	0101000020E61000000FA715A4EE8AD73F5009FC9F4BC74840
+1084	155 ROUTE DE L EGLISE	\N	29081	4806	0101000020E6100000C7004452EF4FD33FC5BE6C540AC14840
+652	RUE DES CHATAIGNIERS	\N	29070	4806	0101000020E610000087D4FE1884C3D93F4381EB487DC34840
+1311	188 ROUTE DE GOMMERVILLE	\N	29089	4806	0101000020E610000056AAB82F6F07D83F3C2F151B73C94840
 1482	PLACE DE L EGLISE	\N	29099	4806	0101000020E61000007B2D09CC1A07DD3FF34F993054BE4840
-891	26 RUE DU VILLAGE	\N	29073	4806	0101000020E610000023831E626A88DA3F8E9B12F7F5C54840
-1388	60 AVENUE EMMANUEL BRION	\N	29609	4847	0101000020E6100000767F2CAC6A8DF43FB9A7ED57E8D54840
 188	VILLAGE	\N	29471	4847	0101000020E6100000563C60E4861BF43F1556099A3FD14840
-209	PLACE LOUIS ROUSSELIN	\N	29479	4847	0101000020E6100000FC170349AA37F63FD30E0386FAD34840
+195	616 ROUTE DU CENTRE	\N	29476	4847	0101000020E6100000E647666FD597F53FCBBF7549C5D44840
 300	VILLAGE	\N	29491	4847	0101000020E610000098B486AB3309F43F0AE99DC81BCE4840
 956	VILLAGE	\N	29555	4847	0101000020E6100000EC29886DCA26F63F33ABB163A7CF4840
-1204	25 RUE DES AUGUSTINS	\N	28937	4769	0101000020E6100000A01607C00DBBFF3FCE0AFB2C05B84840
-1027	ROUTE DE MATHONVILLE	\N	29574	4847	0101000020E6100000D79FDB83C4D1F53F2CF71B5063D24840
-27	9 RUE DU MONT SAUVEUR	\N	29448	4778	0101000020E61000000A3779C7B243F83F7A86362129C54840
-93	PLACE DU COMMANDANT SCHLOESING	\N	29460	4851	0101000020E610000063F2BFC26D60F93FD721ED3573C04840
+989	HAMEAU DE SAVEAUMARE	\N	29566	4847	0101000020E61000000F7D9DF2ED4FF53F1948066FFECD4840
+1349	11 ROUTE DE LA LIBERATION	\N	29605	4847	0101000020E6100000AB5CC90A55CCF43F0F115044B3D14840
+1422	336 ROUTE DE L EGLISE	\N	594	3123	0101000020E610000096A0FE3467EDF63FC56804B8ACD34840
 301	ROUTE DE LA CAPELLE	\N	29492	4778	0101000020E6100000BBDA5253074BF63F80CD62F7D7BA4840
-642	VILLAGE	\N	29537	4778	0101000020E6100000F9D5E72DC8ADF73F1A798B4D4CC24840
-1453	VILLAGE	\N	29613	4778	0101000020E6100000C75D03A9B4D0F73F4B39C216F9C54840
-599	275 RUE DES ECOLES	\N	29525	4848	0101000020E61000003492197C5547FB3FC105346CEFDD4840
+617	24 ROUTE PRINCIPALE	\N	29530	4778	0101000020E6100000CE9FABB74A1BF93FFA24FB10E9C34840
+1039	9 RUE MARCEAU FORTIN	\N	29578	4778	0101000020E61000000D6863D1E6B3F73FE6AEA91C28BF4840
+43	1 RUE HENRI DUNANT	\N	29451	4848	0101000020E61000008D0A0EC2EB01FC3F7A3FC978EFE24840
+621	3 RUE DE L EGLISE	\N	29531	4848	0101000020E61000001DDD7D98016AFA3FC6BA3CC6AADF4840
 950	265 ROUTE PRINCIPALE	\N	29554	4848	0101000020E6100000CEEC3CEF9B0AFB3FED8B7C4554E44840
-1132	39 RUE CENTRALE	\N	21425	4848	0101000020E610000034E56B180350FA3FB1B7BD7277E74840
-44	108 RUE LEMARINIER	\N	29209	4827	0101000020E6100000AD4BAEDEB887F43FBF092A4F45EA4840
-588	IMPASSE DES ECOLIERS	\N	29280	4827	0101000020E61000000DE49210D0E0EE3F3D82B8FE9FEA4840
-927	RUE DES ALLIES	\N	29303	4833	0101000020E6100000FB80D012154EED3F2085A1C41DEA4840
+1144	RUE DES CERISIERS	\N	29592	4848	0101000020E610000050D1724F400BFA3F3813D38558DC4840
+54	20 ROUTE DE LA MER	\N	29215	4827	0101000020E6100000ABDD3284BCDEED3F078FDBD465DF4840
+205	2 PLACE JACQUES CLATOT	\N	29236	4827	0101000020E61000005A1D1F7E1568EE3FB5C4463040E84840
 1488	ROUTE DES CANADIENS	\N	29351	4827	0101000020E61000005B906A2EF0B2EF3F338AA37A84EB4840
-345	35 AVENUE DU GENERAL LECLERC	\N	29390	4836	0101000020E61000007ED415229663FE3F75EF9705C9F64840
-8	5 RUE DES MOULINS	\N	29372	4836	0101000020E610000040C179FCD4E4F23FD848AF5970F44840
-207	1 LIEU-DIT LE BOCAGE	\N	29382	4836	0101000020E6100000FDCF3EAFA863F23F5839B4C876F84840
+345	35 AVENUE DU GENERAL LECLERC	\N	29390	4836	0101000020E61000000D6235D05B70F13F75EF9705C9F64840
+577	RUE GRANDE RUE	\N	29399	4836	0101000020E610000058EF42034961F23F3B3CBE9CDDF54840
 351	2 RUE JEAN PUECH	\N	29390	4836	0101000020E61000001A6A7C7541A4F13FB9C966163AF64840
-365	RUE PIERRE ALBERT ROGER	\N	29390	4836	0101000020E6100000F7F165DCB362FB3F8B77BAD2B6F44840
-372	34 RUE LEMERCIER	\N	29256	4821	0101000020E61000003F8346E36212E93FE9C1B4DA09DC4840
-112	ROUTE DE YERVILLE	\N	29225	5931	0101000020E61000006164E82989A4EA3F3A95CAE382DA4840
-435	1 RUE DE L ECOLE	\N	29265	4821	0101000020E61000007A7E9F116F64EA3F7BC721C949DE4840
-314	RUE PIERRE LEFÈBVRE	\N	28946	4774	0101000020E61000002AF7DFA32E5CF23F94315FDA47B84840
-133	4 BIS RUE JEANNE D ARC	\N	28941	4773	0101000020E610000029C69EE2DDDEF13F14A39D891FBA4840
-155	1770 RUE DE LA HAIE	\N	28943	4775	0101000020E6100000CF06898253E6F13FF7C24B0D40BC4840
-151	416 RUE DU CARMEL	\N	28943	4775	0101000020E61000004A86B1BFCBA8F13FA5F14DCB76BA4840
-560	72 RUE DES ECOLES	\N	28952	4771	0101000020E6100000A985041F92D0F43F6B1AA93100BD4840
-1119	506 RUE DES ECOLES	\N	2583	4774	0101000020E6100000EE129087A26EF33F4E0B1CD843BE4840
+360	13 RUE JOSEPH BRUNEL	\N	29390	4836	0101000020E61000005483C1192265F13F722D41E395F64840
 1276	618 ROUTE DE LA VALLEE	\N	28967	4771	0101000020E6100000B321588568CDF53FC70F9546CCBA4840
-1327	ROUTE DE LYONS	\N	28969	4774	0101000020E6100000C45F9DA75D5BF23F4A3D6E6CB4B74840
-1344	ROUTE DE LA VALLEE	\N	28970	4774	0101000020E6100000963F8ECF2C95F23FDF720E01B4BB4840
-158	RUE DU CHÂTEAU	\N	29469	4855	0101000020E61000003A2C300BBD8BF63F550F5EDC42C84840
-161	RUE DE LA CLEF DES CHAMPS	\N	29470	4855	0101000020E6100000633C271628BCF53F4E4808E27EC24840
-254	RUE DES POMMIERS	\N	29484	4771	0101000020E6100000C227A5B97824F53F4F8C13FCC2C14840
-426	527 RUE DE LA MAIRIE	\N	29503	4855	0101000020E61000001C630B67D5C4F53F1F5F4A76CFC44840
-920	6 PLACE DE L EGLISE	\N	29551	4855	0101000020E61000001F0F01B0CF9EF43F6E2BC5A763C64840
-1307	ROUTE DE BOISSAY	\N	29599	4855	0101000020E610000063482D18851AF53FB1CF7376F8C44840
-863	4 RUE SPINNEWEBER	\N	28973	4780	0101000020E6100000EBA07D72355EF93F1229B449D1B54840
-223	HAMEAU DU NID DE GEAI	\N	29240	4825	0101000020E6100000772DDA4968DEE23F99DD8B16BDE74840
-1062	RUE DE L EGLISE	\N	29311	4825	0101000020E61000000A21B5C33E15E63FB76345685FE64840
-1336	3 ROUTE DU VAL	\N	29337	4825	0101000020E6100000755FFEA56DB5E13F3A5FAAA1A6E94840
-845	RUE LOUIS PASTEUR	\N	28957	4772	0101000020E6100000B6AE8C9E3F33F23F49D366BD94B44840
-1009	251 RUE DE LA MAIRIE	\N	7706	1193	0101000020E6100000A84F38DCC3DDF33FCCEC14274EB44840
+190	VILLAGE	\N	29473	4855	0101000020E610000076B9CDC325D9F63F51DCD018D6C84840
+1470	RUE CLAUDINE GUERIN	\N	28976	4783	0101000020E6100000D060C53C3A5CF13FD1BE878539B34840
+1518	RUE MOULIN DU TRAVERSIN	\N	29356	4795	0101000020E6100000A11D725E5CDDEE3F8AD9FDF014DA4840
+1475	67 AVENUE DES CANADIENS	\N	28976	4783	0101000020E6100000A67724708132F13FB478EBDBCDB44840
+1554	PLACE BERNARD ALEXANDRE	\N	29367	4823	0101000020E6100000F0920FAC70ACEC3FA23E0B3A88D54840
+1569	29 RUE CARNOT	\N	29370	4796	0101000020E61000000427EFA4044BE83F5EC8D92A77CF4840
+1573	VILLAGE	\N	29054	4787	0101000020E610000079BD1AF17B33EC3FEC95E44632B34840
+1567	RUE CLOVIS CAPPON	\N	29370	4796	0101000020E6100000B98B4C9AE82EE83F1791724147CF4840
+1555	RUE DES ACACIAS	\N	29367	4823	0101000020E6100000612B454B4E88EC3FD689B2546AD54840
+1550	83 RUE JULES FERRY	\N	29053	4792	0101000020E6100000A628FAF0EA84EA3FDB5561966ABA4840
+1522	RUE DU 8 MAI 1945	\N	21365	4812	0101000020E6100000CAB061B80055E03FF0B215EA1FDF4840
+1557	GRAND RUE	\N	28972	4776	0101000020E61000005DB07CDFBDD0F23F790BA0EFD9AC4840
+1426	10 RUE DE SAINT WANDRILLE	\N	29039	4792	0101000020E61000001BD8C2DD6DDFEA3FBC0CF7783EC14840
+1424	1 RUE MICHEL ROUSSELET	\N	29168	4817	0101000020E61000009893A3426D82DD3F236FB189E9E24840
+885	50 RUE DU CLOS DU MOUCHEL	\N	28958	4776	0101000020E6100000F5BCB3279521F23FF5437421B9AB4840
+1520	ROUTE DE THIERGEVILLE	\N	21365	4812	0101000020E61000002DBCDF2963AADF3FE3E4D94015DC4840
+1461	RUE SAINT-YON	\N	28976	4783	0101000020E61000002129ADB5B364F13F3912A25BB3B34840
+1564	29 RUE BELLANGER	\N	29370	4796	0101000020E610000068F959E36E2BE83FE5B37E2BC0CE4840
+1562	RUE DES ECOLES	\N	29369	4821	0101000020E61000008399B47E3AEBE93F5BF1894C2BD84840
 1123	RUE DU FRESNAY	\N	28962	4776	0101000020E61000000908A1149107F33F3DF79AF594AD4840
-290	PLACE DE L EGLISE	\N	29487	4830	0101000020E61000008423C26B098CF33F50D147CFE3D04840
-579	RUE DE L EGLISE	\N	29522	4830	0101000020E6100000991FEA04550FF33F504C8347C0D34840
-165	527 AVENUE JOFFRE	\N	29059	4805	0101000020E61000002B98AFCDF10ADF3F9E8D439A04C94840
-166	50 RUE DU 8 MAI 1945	\N	29059	4805	0101000020E61000009EFDAEF362CDDE3F44952FA2CCC94840
-172	1 RUE SAINT MICHEL	\N	29059	4805	0101000020E61000004D971E7D2E3BDE3F36FBEA4716C94840
-171	110 RUE DES MARTYRS	\N	29059	4805	0101000020E610000019287286B7AEDE3FA8B561FB66C94840
 109	VILLAGE	\N	29056	4805	0101000020E6100000F4D15B9C2E94DE3F3AC250246BCF4840
+615	RUE DE L EGLISE	\N	29529	4849	0101000020E6100000929E87B26E56FB3FEBD600DF4CEE4840
+6	PLACE EVODE CHEVALIER	\N	29201	4822	0101000020E6100000A3E1CC635803F13F3CE9D02B96C94840
+957	195 RUE SAINT LEONARD	\N	29028	4793	0101000020E6100000F812C50CD62DE73FC34727BF03C74840
+609	RUE SAINT RIQUIER	\N	29286	4821	0101000020E6100000FA97E64E9742E63FBAB67DB008D94840
+115	VILLAGE	\N	29001	4796	0101000020E6100000D9ABA623345DE93FD0EE906280C64840
+138	ROUTE DE FREVILLE	\N	29002	4796	0101000020E6100000385B8AF55789EA3F7106B96AA2C84840
+906	30 ROUTE DU STADE	\N	29024	4797	0101000020E6100000F17D4629EE96ED3F5519219793CE4840
+1357	VILLAGE	\N	29045	4795	0101000020E610000051F9283ACAADF03F41B1FC968CD34840
+286	35 IMPASSE DES ECOLES	\N	29122	4817	0101000020E61000002956A896F6CBDC3F655F2648F4DF4840
+1556	GRAND RUE	\N	28972	4776	0101000020E61000005DB07CDFBDD0F23F790BA0EFD9AC4840
+871	VILLAGE	\N	29301	4821	0101000020E610000070BB569676C7EC3F74D9224829DC4840
+1561	RUE DES ECOLES	\N	29369	4821	0101000020E61000008399B47E3AEBE93F5BF1894C2BD84840
+149	PLACE DES ERABLES	\N	28943	4775	0101000020E6100000AE10C8B8F1CDF13F8F99B81374BD4840
+151	416 RUE DU CARMEL	\N	28943	4775	0101000020E61000004A86B1BFCBA8F13FA5F14DCB76BA4840
+490	ROUTE DE DARNETAL	\N	28949	4774	0101000020E6100000DAB0180811AFF23F8EAFFB96D2BD4840
+1328	747 ROUTE DE LYONS	\N	28969	4774	0101000020E610000098871CC0FA7EF23FDB2668D55FB74840
+1418	32 ROUTE DE BLAINVILLE	\N	29598	4855	0101000020E6100000DA034F4F8F95F53FEF0A964D2DC84840
+254	RUE DES POMMIERS	\N	29484	4771	0101000020E6100000C227A5B97824F53F4F8C13FCC2C14840
+920	6 PLACE DE L EGLISE	\N	29551	4855	0101000020E61000001F0F01B0CF9EF43F6E2BC5A763C64840
+1462	RUE RASPAIL	\N	28976	4783	0101000020E6100000BDCCE08AEC7CF13F25BD1C3443B54840
+232	1 IMPASSE DE L ECOLE	\N	29244	4825	0101000020E6100000D8C745E00845E33F82A00EF130E74840
+1082	255 RUE MALDESTOUR	\N	29314	4825	0101000020E6100000F8AD0B7C9BE7E23F0283412570E44840
+507	CHEMIN DU PATIS	\N	28951	4776	0101000020E610000073AD0224B6BDF43F63377D87ECB44840
+290	PLACE DE L EGLISE	\N	29487	4830	0101000020E61000008423C26B098CF33F50D147CFE3D04840
+636	344 AVENUE DE LA HETRAIE	\N	29535	4830	0101000020E6100000A63F03036B29F33FFAE926CE5DD84840
+887	155 RUE DE SAINT VAAST	\N	29546	4856	0101000020E6100000CD61610263AFF33FF5DB9565A1E44840
+1312	35 RUE VALLONS	\N	29602	4847	0101000020E610000063C487D7CA0BF33F048B26C49ADD4840
+164	42 RUE ALCIDE DAMBOISE	\N	29059	4805	0101000020E6100000BCB278A20537DE3F78712C3938C84840
+169	8 RUE VICTOR HUGO	\N	29059	4805	0101000020E6100000219366D5E231DE3FCCD655DC13C94840
+170	2 BIS RUE HENRI FLEURY	\N	29059	4805	0101000020E610000020B4B6DAD7E2DD3F3403A61DC8C84840
 1092	18 RUE SAINT BLAISE	\N	29082	4805	0101000020E610000087D197D1D41AD93F402D482BA5CA4840
-1303	82 GRANDE RUE	\N	29088	4805	0101000020E61000008196467DA6DFDC3F1CA90881A6C64840
-1512	1037 ROUTE DE LA VOIE ROMAINE	\N	29101	4805	0101000020E610000020AB0DAEB62BE33F3835E919EFC94840
+1316	15 RUE PRINCIPALE	\N	29091	4805	0101000020E610000080702421A8D2DA3F52DD126F53C94840
+144	RUE MORGAN	\N	29467	4849	0101000020E6100000A09B2601A4F5F93F439EB00620F74840
 32	8 RUE DE L EGLISE	\N	29450	4849	0101000020E610000067FF99C7B517F93F2D86FE4BCAE94840
-311	5 PLACE GEORGES HOUSSAYE	\N	29498	4849	0101000020E610000028B8F06D0EC0F83F77F4228746F24840
-448	6 RUE DE LA MAIRIE	\N	29506	4849	0101000020E6100000AF91EA5CCD11F93F28AE959632EF4840
-1129	2 RUE DE LA VENTILETTE	\N	29590	4849	0101000020E6100000CE2C62089B82F93F12D841CAF4E84840
-46	419 RUE DE L ECOLE	\N	29210	4828	0101000020E6100000F40C0FD1505AF23FA7CBA47E45CD4840
-661	RUE DE L EGLISE	\N	29297	4828	0101000020E6100000F082EBFE6FE4FC3F2771D20BA9CD4840
-191	ROUTE DE TENDOS	\N	29231	4822	0101000020E6100000C7EA5987D8D5F13FFB93F8DC89C54840
-514	89 ROUTE DU CHEMIN DES FEES	\N	29270	4828	0101000020E6100000ACDD62BDD233F23F79461108AACF4840
-643	37 ROUTE DE CLERES	\N	29295	4828	0101000020E6100000F37519FED38DFD3F41A11A06DED04840
-975	17 ROUTE DE CLÈRES	\N	29306	4828	0101000020E61000007A51748A79C1F13FD643A81017C94840
-1012	PLACE DU GENERAL LECLERC	\N	29308	4822	0101000020E6100000D2A60B2DC20FFC3FDC98851324C64840
+1128	16 GRANDE RUE	\N	29588	4849	0101000020E6100000C7ED58EB12EDF93F1A93F6ED41ED4840
+430	116 RUE DE LA MAIRIE	\N	29263	4828	0101000020E61000009DC4394D1394F33F601B548F72CD4840
+653	ROUTE DE CAILLY	\N	23032	4828	0101000020E610000096E425A4DAECF33F0E1A55E12AC84840
 1250	ROUTE DE CAILLY	\N	29327	4828	0101000020E61000005C57CC086F7FF33FE4C625751FC64840
 295	ROUTE DE TURRETOT	\N	29126	4814	0101000020E6100000CC5063E259F9D03FE0901D861CD24840
 90	2 RUE DU BOCAGE	\N	14444	2291	0101000020E6100000E81CE35A524DCC3F01D64FA420D54840
-186	5 ROUTE D ETRETAT	\N	29116	4815	0101000020E61000005D936B935574D03F901C02AAACD94840
 611	350 ROUTE DU VILLAGE	\N	29150	4814	0101000020E61000000E4465AFB6C3D03FFF0A3601C8CC4840
-1340	18 ROUTE DE CROIXMARE	\N	29173	4819	0101000020E61000008221226ADFB2CA3F5097DE6107CD4840
-1533	15 ROUTE DU CARREAU	\N	29193	4814	0101000020E6100000FF9F7EA8180DD23F76C3953730CF4840
-924	976 ROUTE D ALLOUVILLE	\N	29025	4793	0101000020E61000003AD408607738E63F91FF97A57CC94840
-1254	11 ALLEE DES PEUPLIERS	\N	5126	2430	0101000020E61000006976546A3344E53FD85A2579AAC34840
-1356	12 RUE DE L EGLISE	\N	29044	4793	0101000020E610000024D08161D0E4E33F90CF541D2CC74840
-1498	RUE DU RELAIS	\N	29049	4804	0101000020E6100000B485C94F08DFE33F1B53C963FAC24840
-1081	44 ROUTE DE NEUFCHATEL	\N	29581	4852	0101000020E61000002BE381F65A28F53FD9DE1B01E4E54840
-1111	CHEMIN DU BEAU SOLEIL	\N	29582	4855	0101000020E610000040BE5E436B1BF43FBB0C410659C54840
-1413	6 GRAND RUE DE NORMANDIE	\N	29596	4852	0101000020E610000050E89C6FA94AF53FF2E9F349D5E94840
+1429	PLACE DU PROFESSEUR GOSSET	\N	29170	4814	0101000020E6100000CD0C643BB4CFC93FC7C5E61D06D54840
+1541	704 ROUTE D ETRETAT	\N	29194	4814	0101000020E610000096C67E02672ACF3F75CC37AA6CD44840
+1046	VILLAGE	\N	29032	4799	0101000020E6100000ECD9D6C3552DE83FA23A46472CBE4840
+1257	51 RUE DE LA MAIRIE	\N	29038	4796	0101000020E6100000C91A7949316AE43FB333F9247FC84840
+1367	RUE PRINCIPALE	\N	29607	4852	0101000020E6100000B1233B5AC838F73FDA0EFC5EF9EC4840
+1455	5 ROUTE DE DIEPPE	\N	29614	4852	0101000020E6100000B544FCFD41A0F73FB7ED9CE2C8EB4840
 63	PLACE DE L ECOLE	\N	29454	4852	0101000020E6100000988A67B27AC5F63FF82466AC6CE74840
-23	37 ROUTE DE DIEPPE	\N	29446	4832	0101000020E6100000E186525A03D4FD3F18C06B0252EA4840
+222	GRANDE RUE	\N	29481	4852	0101000020E61000004F880CED9455F53F8622599785E34840
+104	RUE DU STADE	\N	29462	4832	0101000020E6100000A674883602C4F03FC666ECF07CE24840
 665	45 RUE DU BALLON	\N	29541	4832	0101000020E610000023A24C2EBC5EF23FD3EE3E649DE04840
-324	5 ROUTE DES CYCLAMENS	\N	29499	4832	0101000020E61000008AE874AC9496FF3FB7106068E0E74840
+324	5 ROUTE DES CYCLAMENS	\N	29499	4832	0101000020E6100000DBB00BDE0E8FF13FB7106068E0E74840
+612	31 A RUE DE L EGLISE	\N	29528	4826	0101000020E6100000C189AE2C4D91F13F40CB673782DD4840
 34	4 RUE DU BOURG	\N	29055	4804	0101000020E6100000CB7BF0685015E33F8C4A2C2186C44840
-562	VILLAGE	\N	10167	1541	0101000020E61000008F284056E82AE23F34394A9848C34840
 1053	AVENUE GENERAL GASSOUIN	\N	29080	4809	0101000020E6100000E8B7544A74FBE13F8751AD1103BF4840
 1059	PLACE DE NORMANDIE	\N	29080	4809	0101000020E61000004743FB952408E23F7949528836BF4840
-902	68 BIS RUE DE LA LIBERATION	\N	29074	4804	0101000020E61000008BA7F3E81377E13F8516657864C34840
-1511	66 ROUTE DE VILLEQUIER	\N	29100	4804	0101000020E61000003F0EDBFA0F17E43F550D67237CC04840
-477	ROUTE DE LA FONTAINE	\N	29508	4850	0101000020E6100000B99FAC48E7A4F73F7FB3FFC72AE54840
-962	1 RUE DE L ECOLE	\N	29559	4850	0101000020E61000002DAF10E155E2F73F89D27BB6D0E24840
+1029	ROUTE DE FOUCARMONT	\N	29575	4850	0101000020E6100000A973637F7B14F73F1316CBE31FDE4840
+427	RUE DU CENTRE	\N	29504	4850	0101000020E6100000A24BC3E69F35F63FF9D6EA1F82DA4840
+955	22 ROUTE DE NEUFCHATEL	\N	27621	5784	0101000020E6100000ED21C3252567F63FEBD8735F6FD84840
 1022	459 RUE CENTRE	\N	29572	4850	0101000020E6100000A6ED713C2513F83F8EB76CDF69DA4840
-1389	151 RUE DE LA GARE	\N	29610	4850	0101000020E61000000754D758C4E3F73F61CB4474FCD84840
+1416	RUE DE LA VALLEE	\N	29597	4850	0101000020E61000006D44C5722A7DF83F00016BD5AEE14840
 709	22 RUE AMIRAL COURBET	\N	29072	4808	0101000020E610000010F8964EF8E0C03F49DF20312CBE4840
-723	36 RUE FREDERIC BELLANGER	\N	29072	4808	0101000020E6100000D64A5D3C0005BF3FA23272D4D9BF4840
-763	130 RUE STENDHAL	\N	29072	4808	0101000020E6100000ADC34D1D1670E93FEDA06D90A4C24840
+750	6 RUE PIERRE FARCIS	\N	29072	4808	0101000020E6100000DD5B36DF2DB5B83F694EC18E3DC24840
 745	14 RUE MAXIMILIEN ROBESPIERRE	\N	29072	4808	0101000020E61000005D871903B3CEC53F7D7AE892DCC14840
 714	90 QUAI LAMBLARDIE	\N	29072	4808	0101000020E610000056E459472A93BD3F9C5E7358ABBE4840
-749	4 RUE PIERRE FARCIS	\N	29072	4808	0101000020E61000009B52458E00D0EE3FF7AF8B2640C24840
+749	4 RUE PIERRE FARCIS	\N	29072	4808	0101000020E6100000487537D866A6B83FF7AF8B2640C24840
 727	20 RUE HENRY GENESTAL	\N	29072	4808	0101000020E6100000B1DAF24D7777BB3F1B0A65027ABF4840
 765	8 RUE GUSTAVE BRINDEAU	\N	29072	4808	0101000020E61000002486109CA27FC23F32D6696A7ABE4840
 30	3 RUE DES BOURGUIGNONS	\N	29373	4837	0101000020E610000077DD953C2207F23F18A29628F3F04840
-664	ROUTE DE DIEPPE	\N	29405	4824	0101000020E610000003385D19CB79EC3FCE3A5FC3BEEE4840
-604	RUE EMILE BOURDON	\N	29402	4835	0101000020E61000003907B6E7858DF83F60C12600B9F34840
-1089	ALLEE DE LA SAANE	\N	29418	4845	0101000020E6100000D2414DE3CDB0EE3FB70A83AED4EF4840
-1274	711 ROUTE DE ROUEN	\N	29425	4835	0101000020E6100000A8D66FE48919FB3F8D8112F283EF4840
-1440	RUE DE LA MAIRIE	\N	29438	4835	0101000020E610000069D7105EB303FB3FDD282E9EACED4840
-240	RUE GASTON BOULET BAPEAUME	\N	29004	4791	0101000020E61000005E5B2660C7A1F73F77C4F89B16BA4840
-119	VILLAGE	\N	29226	4825	0101000020E610000012F92EA52EC9E33FAA592DD155DB4840
-609	RUE SAINT RIQUIER	\N	29286	4821	0101000020E6100000FA97E64E9742E63FBAB67DB008D94840
-74	76 AVENUE ARISTIDE BRIAND	\N	28998	4794	0101000020E61000009D26B25D419DEE3F35F3817047C54840
-411	223 ROUTE DE SAINTE AUSTREBERTHE	\N	10020	1524	0101000020E6100000D0E1EA98A4E6EE3F8218AE2F0ECF4840
-512	PLACE DE LA MAIRIE	\N	29012	5640	0101000020E610000083B050F48B95EA3FF5C14BD394C84840
+603	RUE DES FONTAINES	\N	29402	4835	0101000020E61000004B59EE1B4BDFF03FEE4D801FDDF34840
+1125	PLACE DE LA MAIRIE	\N	29421	4845	0101000020E61000009CCB0ACEAB5DED3F0C3CD610C5F24840
+1273	HAMEAU DES VERTUS	\N	29425	4835	0101000020E61000009C67C1CBD931F13FEACE13CF59F24840
+1440	RUE DE LA MAIRIE	\N	29438	4835	0101000020E610000057E23456F819F13FDD282E9EACED4840
+76	ALLEE DES ECOLES LE HAMELET	\N	28998	4794	0101000020E6100000E8C62977F5C3EE3FC824658333C44840
+1551	1 ROUTE DE SAINT MACLOU	\N	29197	4811	0101000020E61000004F98AC61F121E13FF402E4320BD14840
+92	ROUTE DU TORTILLARD	\N	29219	4795	0101000020E61000001DDCAADFDD4EF03F86C82B084CDF4840
+1559	66 RUE DU GENERAL DE GAULLE	\N	29198	4818	0101000020E6100000D00B9DF52E40D43FB53223B44CDE4840
+1566	6 RUE NIATEL	\N	29370	4796	0101000020E6100000956226D5671CE83FA3F68D7592CE4840
+1553	11 RUE JULES GUEVILLE	\N	29367	4823	0101000020E61000006EE966B94BA6EC3FFD4CDE7C7AD54840
+1368	11 RUE DU MUSEE	\N	29175	4812	0101000020E61000003089EDCDF3D0DF3FC804A16156E74840
+1087	3 ROUTE DE BERVILLE	\N	29316	4823	0101000020E610000093947A6A8330EB3F164C5F7C8FD94840
+1113	2 RUE DE L ECOLE	\N	29035	4794	0101000020E61000002745E7D905D3EF3F188B325D80C34840
+1238	PLACE DE LA LIBERTE	\N	29037	4792	0101000020E6100000A5E25F01D53AEF3F829155195FC14840
+780	69 RUE DE SOQUENCE	\N	29072	4808	0101000020E61000008B31ABD529DFC63FD3E3EFC534C04840
+733	13 AVENUE D ARROMANCHES	\N	29072	4808	0101000020E6100000ACDAB4A097D4C63F2A81BD57E7C04840
+937	RUE D ESTOUTEVILLE	\N	29158	4820	0101000020E61000007DF81DB6397DC63F562DE92887CC4840
+1035	RUE DE L EGLISE	\N	29310	4829	0101000020E6100000497525F5AACDE63F95EBD05DD0E94840
+605	56 RUE SAINT ANTONIN	\N	28982	4788	0101000020E61000008FCE841C1722EF3F18F7D50BF4AD4840
+122	11 RUE DE L EGLISE	\N	29464	4851	0101000020E6100000A6CE060DBBF7F93F399AC00084B84840
+1040	256 RUE DES ECOLES	\N	10074	1500	0101000020E6100000C06F2FA8F019E33F4EE47251E7D84840
+667	9 RUE DE L EPTE	\N	29543	4853	0101000020E61000008F6707C43A29F93FD8AFA678FDCD4840
+211	8 RUE RENE COTY	\N	29118	4813	0101000020E6100000591F328C8B88D93F02EDF58B65D04840
+417	VILLAGE	\N	29010	4792	0101000020E6100000093E9B8F4AB5EA3F91BE627041C34840
+1121	5 RUE DE LA RIVIÈRE BOURDET	\N	29036	4798	0101000020E6100000ACC0BE0D9941EE3FE1AEC16F01B54840
+394	15 RUE DU TAPIS VERT	\N	28979	4786	0101000020E61000003C802CE15C25F03F86A52666E2A34840
+238	AVENUE DU PRESIDENT ALLENDE	\N	29004	4791	0101000020E6100000F250B8773D93F03FF6E48A2088B94840
+592	72 RUE ROBERT ANCEL	\N	29066	4807	0101000020E6100000123B9CBE732FCA3FCF3393FB5FC24840
+736	18 RUE DE LA VIVANDIÈRE	\N	29072	4808	0101000020E61000002D8F8EDBCA73BF3FD23517A85AC24840
+1355	GRANDE RUE	\N	29043	4799	0101000020E6100000A6754EC52377E73FD10789BCFEC04840
+1013	RUE ANDRE MARTIN	\N	29308	4822	0101000020E61000003F39A22C9031F13F6383E04CA7C54840
 1094	15 RUE ARISTIDE BRIAND	\N	29034	4797	0101000020E6100000D67E6D28756CEE3F36E58E2717C94840
 81	3 RUE GUILLAUME LALIZEL	\N	28998	4794	0101000020E6100000854F33D77B87EE3F070BC43E43C74840
-1098	33 BIS AVENUE J SIEGFRIED	\N	29034	4797	0101000020E6100000B403253A0840EE3F8D793E7FB1C84840
-1298	1 RUE DE STALINGRAD	\N	28975	4782	0101000020E6100000F0FC3FDA410DFF3F331DB604CBB14840
-1296	1 RUE HECTOR MALOT	\N	28975	4782	0101000020E610000051A02ED6606FFA3FE2A4596EA3B24840
-1297	2 RUE JULES RAIMU	\N	28975	4782	0101000020E6100000F3C7F6525F13FB3F982B8BDBCBB24840
-92	ROUTE DU TORTILLARD	\N	29219	4795	0101000020E61000002699ACBCAA14F33F86C82B084CDF4840
-208	96 RUE DU PUITS	\N	29237	4830	0101000020E6100000958BA506A2A8F23F7BAF8CD331D54840
-544	21 RUE DE LA MAIRIE	\N	29273	4832	0101000020E6100000A25AE95A2096FB3F9EEC6646BFE04840
-1277	ROUTE D AUFFAY	\N	29329	4795	0101000020E61000009B9EE2FE4451FF3F5A8121AB5BDA4840
-1332	RUE DE LA GARE	\N	29334	4795	0101000020E6100000A464D4DDBEB4F13F9437D96918D74840
-1401	2 PLACE GUILLAUME LE CONQUERANT	\N	29345	4795	0101000020E6100000E20FA42A24EBF13FAC8283835ED64840
-1517	PLACE JEHAN LE POVREMOYNE	\N	29356	4795	0101000020E6100000E82F1F092ED8EE3F435A42C220DA4840
-286	35 IMPASSE DES ECOLES	\N	29122	4817	0101000020E61000002956A896F6CBDC3F655F2648F4DF4840
-909	100 PLACE DU MARRONNIER	\N	29154	4812	0101000020E6100000409C8F84E015E03F58C51B9947D84840
-1135	2 RUE DU BOSC AUX MOINES	\N	29165	4812	0101000020E6100000D2CA34CF4EFCE13FD8C7D843DADC4840
-1485	ROUTE DE SASSETOT	\N	29183	4812	0101000020E61000008E62F8091968E13F1D3C55B6F6E14840
+1301	2 RUE PAUL BERT	\N	28975	4782	0101000020E61000000C8081B85C29F13FD0A24EAB2EB34840
+1285	RUE CHARLES NICOLLE	\N	28975	4782	0101000020E6100000703CE11DC73CF13F09C91BC310B34840
+1297	2 RUE JULES RAIMU	\N	28975	4782	0101000020E6100000CBE04B88891BF13F982B8BDBCBB24840
+228	50 RUE DE L ECOLE	\N	29243	4795	0101000020E6100000EBFB3B9E406FF03F8FC578C53ADA4840
+544	21 RUE DE LA MAIRIE	\N	29273	4832	0101000020E6100000AA22E4D59C28F13F9EEC6646BFE04840
+1362	6 RUE DE LA VALLEE	\N	29339	4795	0101000020E61000006C1ADE23D00DEF3FF68FAE67C2DE4840
+1525	55 IMPASSE BELLEVUE	\N	29359	4795	0101000020E610000029435A055F78F13FF383E3C7D2D84840
+1484	PLACE DU SERGENT RITCHIE	\N	29182	4812	0101000020E6100000A8B685FB89B9E03F27E15BBB61E04840
 1487	5 RUE DE LA MAIRIE	\N	29185	4812	0101000020E6100000710C4F4F2259E03FB81270BE47DB4840
-1554	PLACE BERNARD ALEXANDRE	\N	29367	4823	0101000020E6100000F0920FAC70ACEC3FA23E0B3A88D54840
-10	2 RUE NOTRE DAME	\N	29203	4823	0101000020E6100000A1208D17C6FEEE3F67697E6741D44840
-201	1 PLACE DE LA MAIRIE	\N	29234	4823	0101000020E6100000A5A290E88E43EE3F5443F2005CD64840
+1560	2 ROUTE DE VALMONT	\N	29199	4812	0101000020E610000069BEBF4BED08E13F5481C5A721D94840
 384	12 RUE DU MOULIN	\N	29260	4831	0101000020E6100000EAF648394EC0E93FFFC5F9BCDED14840
 438	148 RUE DU PRIEURE	\N	29266	4796	0101000020E61000005B0D51D1CD28E93FE127ED9176D64840
-1335	150 RUE ABBE PIERRE DELEAU	\N	29336	4823	0101000020E6100000A647882F6995EC3F76DE088319D34840
+1536	RUE DE LA MARE DES CHAMPS	\N	29365	4823	0101000020E6100000267B19FF1DE5EC3FF159A678BFD84840
 49	309 RUE DE L EGLISE	\N	29213	4796	0101000020E6100000DA496305D629E73FB3607F6567CC4840
-1499	378 RUE DES ECOLES	\N	29355	4796	0101000020E6100000EA51D72B4384E83FBAC7CA1666CA4840
+159	4 RUE DE LA PIERRE NOIRE	\N	29230	4796	0101000020E61000005143D2A9564FE63F2FBB0E726ACA4840
+1519	51 RUE DE LA MAIRIE	\N	29357	4796	0101000020E6100000A56C755FEC12E63F978FE6C059CE4840
 1570	4 RUE JULES FERRY	\N	29370	4796	0101000020E6100000CF65F3031A26E83F13E8FADB71CE4840
-947	2 RUE ERNEST DANET	\N	29027	4801	0101000020E61000009F914AA93219F63F707A590B1ABD4840
-839	ROUTE DE DIEPPE	\N	29021	4800	0101000020E6100000A60AA94F305BF63F8E452E93BCC04840
-933	17 RUE DU DOCTEUR LEROY	\N	29026	4800	0101000020E610000072414B915BB7F53FCAF7EF6E23C34840
-985	BD DE BROGLIE	\N	28961	4779	0101000020E610000097644FC8EFF9FB3F67D79C0720BB4840
-1049	2 RUE VICTOR HUGO	\N	29033	4803	0101000020E6100000BC3025D404C8F73FD7ED1E66D0BE4840
-334	3 RUE SCHWACH	\N	28947	4777	0101000020E61000007516C5C4492EF83F4428001041BC4840
-1001	PLACE DU CHAMP DE FOIRE	\N	29160	4820	0101000020E6100000BB4EA966643DC83FAB71DB630EC64840
-268	2 RUE SAINT NICOLAS	\N	29120	4816	0101000020E610000037089111F2AFC03F535F334C2FCC4840
-1060	ROUTE DE LA LEZARDE	\N	29161	4819	0101000020E61000008B72360B1E20CB3F3016C073F3CA4840
-1342	RUE A MABIRE	\N	29174	4820	0101000020E6100000E141A4C0B110CE3FDDD92E9FF2C34840
-597	19 PLACE D ARMES	\N	29066	4807	0101000020E61000004B7FBA7790BBC93FD6CB29E0A2C04840
-1035	RUE DE L EGLISE	\N	29310	4829	0101000020E6100000497525F5AACDE63F95EBD05DD0E94840
-1380	141 RUE DU FOUR BANAL	\N	29341	4829	0101000020E6100000C0DA79647144E53FC681804A4FE94840
-568	3 RUE PIERRE BROSSOLETTE	\N	28981	4787	0101000020E610000030D61622D02EF33F1F008AF44FAC4840
-678	42 RUE ALFRED DE MUSSET	\N	28985	4789	0101000020E61000004FDBAFD04126F93F55841FC54EB44840
-1245	PLACE MAURICE ALEXANDRE	\N	28988	4788	0101000020E610000074BDA2981232EE3F3B86CFEFDEAD4840
-681	PLACE ANNETTE LESUEUR	\N	28985	4789	0101000020E61000004F84E4CF7D5AF93F1FFED4575BB44840
-864	26 BOULEVARD CHARLES DE GAULLE	\N	28973	4780	0101000020E61000006D92DDD45930FA3F0C894181F3B54840
-1410	54 BIS RUE D IGNAUVAL	\N	29102	4810	0101000020E61000008E6996990C46EA3F80B4833AFAC14840
-1465	3 RUE VICTOR BERTEL	\N	28976	4783	0101000020E6100000700AE9F8817EFF3FF80D9FB63EB44840
-896	AVENUE DU CLAIRVAL	\N	29074	4804	0101000020E61000000982FF61D651E13FD40BA1F704C34840
-1104	RUE DU POMMERET	\N	28987	4790	0101000020E610000048066FFE1558F43FF4AB94F922B14840
-1463	RUE CLAUDINE GUERIN	\N	28976	4783	0101000020E610000023C8B55F469AFD3FD1BE878539B34840
-768	6 BIS RUE ERNEST RENAN	\N	29072	4808	0101000020E61000007C5707B7EAF7BC3F5F0EF59AA2BF4840
-807	18 RUE PIERRE GUILLAUME PETIT	\N	29072	4808	0101000020E6100000712FBCD4002CEF3F2120A15E57C24840
-800	50 AVENUE DE FRILEUSE	\N	29072	4808	0101000020E61000003F12B2D027E2C23F6713FD2D43C14840
+933	17 RUE DU DOCTEUR LEROY	\N	29026	4800	0101000020E6100000F2ECEDF45592F03FCAF7EF6E23C34840
+981	31 BIS CHEMIN DES COTTES	\N	28961	4779	0101000020E61000007DEA6217686EF13F096BA508D7BA4840
+334	3 RUE SCHWACH	\N	28947	4777	0101000020E61000003F82E0C66DD1F03F4428001041BC4840
+1003	30 RUE DU PONT CALLOUARD	\N	29160	4820	0101000020E6100000BE32959C18F4C83FE921BF23CFC54840
+594	2 RUE JEAN CHARCOT	\N	29066	4807	0101000020E6100000777BB5487F14C83F87E54B7F61C14840
+1398	8 RUE JULES SAINT SAËNS	\N	29344	4829	0101000020E6100000B72EFD97E0AEE63F395BC4A061EE4840
+589	41 RUE DU FOUR À PAIN	\N	29281	4829	0101000020E6100000A320BF510716E83FC539EAE8B8EB4840
+1534	24 RUE DU DOCTEUR GIRARD	\N	29363	4834	0101000020E6100000E8A82ED6F392E93F22D34E8BC9EF4840
+678	42 RUE ALFRED DE MUSSET	\N	28985	4789	0101000020E6100000EE9511C839EAF03F55841FC54EB44840
+865	4 RUE JEAN BAPTISTE CLEMENT	\N	28973	4780	0101000020E6100000B1E784336CE2F03F16BB229D26B74840
+537	10 AVENUE LENINE	\N	29063	4807	0101000020E6100000886A59DD3BC1CD3F8C71D5A7E2C04840
+1410	54 BIS RUE D IGNAUVAL	\N	29102	4810	0101000020E61000003F2145E1D604B53F80B4833AFAC14840
+793	25 RUE LUC OTTAVI	\N	29072	4808	0101000020E61000006138FDF7E56EC13F994121A754C14840
+807	18 RUE PIERRE GUILLAUME PETIT	\N	29072	4808	0101000020E6100000F42530AA00F0B83F2120A15E57C24840
 767	RUE DES RAFFINERIES	\N	29072	4808	0101000020E6100000F04485F45816C23F897B0B6FFFBE4840
-787	61 RUE MASSILLON	\N	29072	4808	0101000020E6100000C37249AAF6B6C13F969C6E34DBBF4840
+775	94 RUE DESRAME	\N	29072	4808	0101000020E6100000AD3A3BB13830BA3FF7AEFF42A8C24840
 776	9 RUE DESMALLIÈRES	\N	29072	4808	0101000020E610000051DCAA513357C23FFF62111EC8BF4840
-784	10 RUE GUSTAVE FLAUBERT	\N	29072	4808	0101000020E61000000A804AC56191BB3F693E84449CBF4840
-783	13 RUE PAUL MARION	\N	29072	4808	0101000020E61000007CDE85943C2AC13F7390632D36BE4840
-799	39 RUE VICTOR HUGO	\N	29072	4808	0101000020E6100000840E482F5B4CBA3F056522BEF6BE4840
-815	12 RUE KLEBER	\N	29072	4808	0101000020E6100000FFF4BD8B9972C03FA0AC9475EABF4840
+791	45 RUE FONTAINE DE LA MALLET	\N	29072	4808	0101000020E61000002D4552086D84BF3FF39CA17647C24840
+812	15 RUE JERÔME BELLARMATO	\N	29072	4808	0101000020E6100000167B023DE160BD3F9CEF547EA1BE4840
 782	150 RUE DE LA VALLEE	\N	29072	4808	0101000020E610000017FDBA36C822C43F3E55093F86BF4840
-809	36 RUE BEAULIEU	\N	29072	4808	0101000020E6100000A24B729FA03DBC3F271DDDEF6DC14840
-819	48 RUE MICHELET	\N	29072	4808	0101000020E6100000273F9D834BEDBE3F38B8F8049EBF4840
-551	1 RUE DES ECOLES	\N	29519	4851	0101000020E6100000A2DFDD1B5A94FB3F8D968775F8BD4840
-55	1 PLACE DE LA PETITE MORETTE	\N	29453	4851	0101000020E6100000465840E002C2FA3F19F9823720BC4840
+814	79 RUE EDMOND ROSTAND	\N	29072	4808	0101000020E6100000026058D8B5B8BC3F2E5C4EF0EAC14840
+820	1 RUE DE VALMY	\N	29072	4808	0101000020E6100000A30371A28684C23F872DE2E077BE4840
 193	RUE PRINCIPALE	\N	29474	4851	0101000020E610000035AE4F9E5179FA3F8529677BB6B94840
-309	3 PLACE DE LA MAIRIE	\N	29497	4851	0101000020E6100000D7FD0A69F28CFA3FBED6087123C44840
+307	2 RUE ROGER CRESSENT	\N	29496	4851	0101000020E610000072CB60EF7227FB3F806B61F5CBC14840
 407	75 RUE DE LA LIBERTE	\N	29500	4851	0101000020E6100000120FF8615C48FA3F73765BB77BBE4840
-1010	PLACE DE L EGLISE	\N	29567	4851	0101000020E6100000AD2D95E75CAAFA3FCDD091BF28B84840
-470	37 TER BOULEVARD DE LA REPUBLIQUE	\N	29136	4817	0101000020E6100000C99166DD535AD83F8AD9FDF014E14840
-457	2 RUE PAUL DOUMER	\N	29136	4817	0101000020E6100000BCD76C8C6DB7D73F787EEE5743E04840
+961	PLACE DE L EGLISE	\N	29558	4851	0101000020E6100000A1DD0570D18EFA3FA2AC08CC7DC84840
+459	22 RUE GUSTAVE NICOLE	\N	29136	4817	0101000020E61000005B3B8E752AA6D73F7AF76CC2E2E04840
 496	8 RUE BEAUFILS	\N	29511	4853	0101000020E61000007E5255B766AAF83F0092C8C280CE4840
-804	AVENUE DU MONT LE COMTE	\N	29072	4808	0101000020E61000004FE0C6FBABA6C63FEBF6A3F240C14840
+788	18 RUE ETIENNE MEHUL	\N	29072	4808	0101000020E6100000627E55CB2943C03FD6C785FBAFC24840
 182	49 RUE DES HAUTES HAIES	\N	28945	4772	0101000020E6100000CB14C4577304F23F0476F35C78B64840
-778	18 RUE CHARLES DELESCLUZE	\N	29072	4808	0101000020E6100000F680CA0F944FC63FE064FAA91AC24840
-2	4 RUE DES TILLEULS	\N	29103	4811	0101000020E6100000A055FE66762EE43F00E28D505CCD4840
-284	40 ROUTE DU MOULIN	\N	4841	821	0101000020E610000087FB869177E1E33F1E1D70C0DBCE4840
-500	31 ROUTE DE SAINT MARTIN	\N	29139	4811	0101000020E61000002FC235F3BBFBE23FAE1D188294CE4840
-1130	10 PLACE DE LA MAIRIE	\N	29164	4811	0101000020E6100000B51D4194A96EE33F7DF266C350D14840
+329	ALLEE DE SYSTON	\N	28947	4777	0101000020E610000044218D002AD9F03F6B42FFA9DDBC4840
+107	CHEMIN DE L ECOLE	\N	29115	4811	0101000020E6100000B67F77880552E43F89F1161FD1D14840
+598	VILLAGE	\N	29148	4811	0101000020E61000000D155DC37E32E13FA01111A38CD34840
 17	2 RUE D ICLON	\N	29204	4824	0101000020E61000001AA2771BB551E93F9A547E6319EA4840
-1531	RUE DU DUN	\N	29362	4827	0101000020E6100000EB74A16BBFC2EC3FAB434D78B2E54840
 618	RUE AU BOUT DE LA RUE AUX CHIENS	\N	29288	4824	0101000020E61000002363393224B1E93FF97DC53B3CE84840
+1480	RUE DE BEAUMONT	\N	29350	4824	0101000020E61000003278E93DCD8DEA3FC243A4E8F9F04840
 88	238 PLACE DE LA PRESLE	\N	29457	4853	0101000020E610000076036A09B082F83F51E05B60A8D24840
-517	17 RUE DE LA FOULERIE	\N	29517	4854	0101000020E61000003C53693DDCE3F93FEDDAF70B6AD34840
-600	3 RUE DES MOISSONNEURS	\N	29526	4853	0101000020E61000003A6762BFC9A4FA3F190C431EA0CA4840
 968	ROUTE DU CENTRE	\N	29563	4853	0101000020E6100000042CFE5E2644F83F92FD987BEDD54840
 25	4 RUE DE LA MAIRIE	\N	29109	4813	0101000020E6100000D4BBA3BFCAB3DB3F090A7206B5D64840
-211	8 RUE RENE COTY	\N	29118	4813	0101000020E6100000591F328C8B88D93F02EDF58B65D04840
 323	23 RUE DE LA VALLEE	\N	29127	4813	0101000020E61000006B0E5C5A177BDE3FBA4E7EE607D94840
-1333	VILLAGE	\N	29172	4813	0101000020E610000023D1B744AFD8DD3F809C0F53CBD34840
+224	ROUTE DE SAINT ANDRE DU CAILLY	\N	29242	4828	0101000020E6100000313733887CA8F33F6C713216F2C94840
+480	CHEMIN DEPARTEMENTAL 940	\N	29395	4839	0101000020E6100000734B8A1388CCF53F41AE1E41BB044940
+1330	3 RUE VICTOR CORIAUX	\N	12431	2952	0101000020E61000003763B72072F2D63F795D1A1AAADE4840
+1443	50 RUE SAINTE ANNE	\N	29180	4817	0101000020E610000065C792AEA38EDA3F0C5F7888F3E24840
+1099	RUE DES HARES	\N	29419	4838	0101000020E61000008FAF6DEC3ABDF33F5CB47C3487FD4840
+1502	RUE JEANINE BRIANCON	\N	29442	4838	0101000020E61000000CBB34ED7E3FF43F7FBE0C4AC1F84840
+13	8 RUE DES ECOLES	\N	29107	4814	0101000020E6100000C24B70EA0329D53F1B7FC3C0CAC74840
+1266	1 RUE LEON GAMBETTA	\N	28989	4785	0101000020E61000005EC76E55C82BF03FF33FD8AD0EA64840
+65	2 RUE DES ECOLES	\N	29377	4838	0101000020E61000003FDA0772B364F53F354F438E8CF44840
+235	RUE JOSEPH DELATTRE	\N	29004	4791	0101000020E610000099886888EB8FF03FAE0F88631FBA4840
+1322	8 PLACE DE LA MAIRIE	\N	29092	4807	0101000020E61000003471EA844971D03FFD476C981DC44840
+712	37 RUE CHARLES VICTOIRE	\N	29072	4808	0101000020E6100000CCF75953C3F8BE3FFAF00B335DC34840
+127	RUE GEORGES MELIÈS	\N	28941	4773	0101000020E61000009130DE1F874AF23F1C9029C448BC4840
+717	RUE EMILE AUBRY	\N	29072	4808	0101000020E61000000B4125E60DBBC53F0B8949F23BC24840
+726	9 RUE MAURICE TRONELLE	\N	29072	4808	0101000020E61000004A9B93DFEE21BE3F2780E69CEDC24840
+752	AVENUE DU GENERAL DE GAULLE	\N	29072	4808	0101000020E61000002ACFDA72D013C43FCB21D20444C24840
+1377	RUE DU PUITS MEROT	\N	28991	4784	0101000020E61000006F5ED4A2C9B3F03FAE65321C4FA34840
+899	RUE GOUBERMOULINS	\N	29074	4804	0101000020E6100000548461E1A054E13FBF11175F38C34840
+341	CHEMIN DES VERTUS	\N	29390	4836	0101000020E610000004CF802433B1CC3F91B376FC13C84840
+564	RUE DE SEELZE	\N	28981	4787	0101000020E61000001FA264819504F03F69723106D6AC4840
+1154	84 RUE SAINT GERVAIS	\N	28937	4769	0101000020E610000060CDDBBA964EF13F0DC0CC98FEB64840
+52	13 ROUTE ETENNEMARE	\N	29214	4823	0101000020E6100000160B1B1C2760EC3F0645562B51D24840
+839	ROUTE DE DIEPPE	\N	29021	4800	0101000020E6100000DD4DF707B8A2F03F8E452E93BCC04840
+464	5 RUE PAUL DOUMER	\N	29136	4817	0101000020E61000009594E907DDB4D73F1C331EDF3DE04840
 1491	3 RUE DE L EGLISE	\N	29186	4813	0101000020E610000005FF3ABBA5EADF3FB3BAEE1073D54840
 68	RUE DE L ECOLE	\N	28997	4792	0101000020E610000003EDED1A1DA5ED3F1C39986E8EB74840
+607	RUE DU STADE	\N	29014	4798	0101000020E610000052DCE4FCBCA5EE3F56D636C563BD4840
 1360	VILLAGE	\N	29046	4792	0101000020E6100000B95DB1848A31EC3F5CA49AA358C14840
-1425	ROUTE DE SAINT WANDRILLE	\N	29039	4792	0101000020E610000030F4D45FB9D2EA3F1C51EB4754C14840
-388	42 RUE POUSSIN	\N	28979	4786	0101000020E6100000BF805EB873E1F63F8E96A01299A44840
-264	1 RUE VAUQUELIN	\N	28977	4784	0101000020E61000006C6ED8F84475F23F2E7F95AE26A44840
-262	22 RUE GAMBETTA	\N	28977	4784	0101000020E61000008F3AD7838B9DF23F72352EF308A44840
-1079	2 AVENUE DES TILLEULS	\N	5798	4786	0101000020E61000003B9B329097E0EF3FA5D5560DBEA74840
-1374	127 RUE AUX SAULNIERS	\N	28991	4784	0101000020E6100000B88C1F530C5AF63FABA8878982A34840
-1478	115 RUE DU VILLAGE	\N	28992	4785	0101000020E61000006F7B0BB6D4FBF13F9FBAA8CC03A94840
-445	PLACE DE LA MOUILLETTE	\N	29394	4839	0101000020E610000033D4473157CEF63F6D86C036873D4940
+878	1180 RUE DU MARECHAL GALLIENI	\N	29023	4802	0101000020E610000014CD549FE357E93F5D5273C1B2BF4840
+263	2 RUE REVEL	\N	28977	4784	0101000020E6100000B68C2F359D58F03F5D36D7BC6CA44840
+267	119 BIS RUE DE LA REPUBLIQUE	\N	28977	4784	0101000020E61000008326F4C0E856F03FA625FB8C30A44840
+1374	127 RUE AUX SAULNIERS	\N	28991	4784	0101000020E610000046C11CD59AA2F03FABA8878982A34840
+400	178 RUE PETOU	\N	28979	4786	0101000020E61000002BC17A8D71F6EF3F4838EB5BFFA44840
 86	1 ROUTE DE SAINT REMY	\N	29378	4839	0101000020E6100000BB840BC5928CF63F94FA4F8A18FE4840
-306	PLACE RENE DELORIERE	\N	29387	4839	0101000020E610000020ECE471F063F63F26DBE99CD9FA4840
-480	CHEMIN DEPARTEMENTAL 940	\N	29395	4839	0101000020E6100000734B8A1388CCF53F89CE328B502F4940
 972	40 RUE DE LA FORÊT	\N	29414	4839	0101000020E6100000778BB8E796D9F73FA3E43864C1FC4840
 1445	11 RUE DE L YERES	\N	29439	4839	0101000020E610000031E8BC7AA0BBF63F7490BEE628FA4840
-1501	8 RUE DE L EGLISE	\N	29441	4840	0101000020E61000008294CB8BBB2DF53FE144F46BEB174940
-881	15 RUE SUZANNE	\N	29408	4844	0101000020E6100000CE68B8BCCAF6F53F3BD2CF8A5E4B4940
-521	6 RUE FERNAND FERON	\N	29141	4817	0101000020E61000008CA7884D1067DA3F6E4528D710DE4840
-889	VILLAGE	\N	5410	2992	0101000020E6100000100E147DE038D23FB329B2318AD94840
-1443	50 RUE SAINTE ANNE	\N	29180	4817	0101000020E610000065C792AEA38EDA3F0C5F7888F3E24840
+294	67 RUE DE L ECOLE	\N	29124	4818	0101000020E6100000ACD17DC95E40D53FC1DD401ECDDE4840
+461	248 AVENUE JEAN LORRAIN	\N	29136	4817	0101000020E6100000245E6E95FF07D83F74E70D2091E14840
+524	2 RUE DU CHANT DES OISEAUX	\N	29143	4815	0101000020E610000088059121D4E0D43F94577C7D0CD94840
+890	3 LIEU-DIT VILLAGE	\N	5410	2992	0101000020E6100000100E147DE038D23FB329B2318AD94840
 1527	415 ROUTE D YPORT	\N	29192	4818	0101000020E61000001962ABBAFDE8D13F02C62BF71FDD4840
-467	17 BIS RUE DU 14 JUILLET	\N	29136	4817	0101000020E6100000D1E8718C22B3D73F1820342FC5E04840
-1044	129 GRANDE RUE	\N	29416	4841	0101000020E610000085816D1893B3F43F6C755A3309ED4840
-1260	RUE CLAUDE GROULARD	\N	29424	4841	0101000020E61000009ED5E16C63E1F23FA943B81336EF4840
-1353	10 RUE DES TILLEULS	\N	29431	4841	0101000020E6100000A18C5B46965EF33FBD68B89603F04840
-1438	19 RUE DU PRIEURE	\N	29437	4838	0101000020E61000007EAC7D8D6635F33F27FC8CEAF8F54840
-1502	RUE JEANINE BRIANCON	\N	29442	4838	0101000020E61000000CBB34ED7E3FF43F7FBE0C4AC1F84840
-392	54 RUE DU NEUBOURG	\N	28979	4786	0101000020E610000004CAA65CE11DFD3F21F375D761A44840
-535	PLACE JEAN JAURÈS	\N	29063	4807	0101000020E6100000C710DF0D92D3CD3F39A958CA6CC04840
+1558	RUE CRAMOISAN	\N	29198	4818	0101000020E61000008C06F3CED61ED43F1CCAD44D77DE4840
+1352	701 RUE DE VAILLANTCOURT	\N	29431	4841	0101000020E6100000170E38D6BBFBF33F98A04CC4D7EF4840
+876	4 RUE ANTOINE DE LAVOISIER	\N	29023	4802	0101000020E6100000B4EA108B5A22EA3F0FBA8443EFBC4840
+392	54 RUE DU NEUBOURG	\N	28979	4786	0101000020E6100000D24E722C9421F03F21F375D761A44840
 928	RUE DES TROIS PORTES	\N	29303	4833	0101000020E6100000F8AF9A516D7CED3F10C2ABFE6BEA4840
-361	RUE PAUL BAZIN	\N	29390	4836	0101000020E6100000B083D605B48BFF3FB4931C0B65F64840
-13	8 RUE DES ECOLES	\N	29107	4814	0101000020E6100000C24B70EA0329D53F1B7FC3C0CAC74840
+361	RUE PAUL BAZIN	\N	29390	4836	0101000020E6100000F8D9FB66F88DF13FB4931C0B65F64840
+1058	RUE DU PRESIDENT RENE COTY	\N	29080	4809	0101000020E610000001DEC0ECB749E23F5E897AA099BE4840
 175	6 RUE CALMETTE ET GUERIN	\N	29059	4805	0101000020E6100000FAA87A8A00CDDE3FEC18B2150FCA4840
-647	25 RUE DE LA LIBERATION	\N	29019	4799	0101000020E610000082D86CC15F87E83F88022ADA24BD4840
-1174	6 BIS RUE JEAN PHILIPPE RAMEAU	\N	28937	4769	0101000020E61000002198B7ABD648F23F3905E03CA8B94840
-1264	10 RUE BACHELET DAMVILLE	\N	28989	4785	0101000020E6100000F6A974C12A08F33FDD31C89FA0A64840
-1209	82 RUE MICHEL RICHARD DELALANDE	\N	28937	4769	0101000020E6100000234808038D49F23F2FAFF1D397B94840
-224	ROUTE DE SAINT ANDRE DU CAILLY	\N	29242	4828	0101000020E6100000313733887CA8F33F6C713216F2C94840
-983	1 RUE HENAULT	\N	28961	4779	0101000020E6100000A28EB72AC367FE3FE38A8BA372BA4840
-1167	11 RUE D ERNEMONT	\N	28937	4769	0101000020E61000005273FE95B19BF13FFF81495C8DB94840
-1187	44 RUE VERT	\N	28937	4769	0101000020E6100000D35AA86707FDFE3FC7A0D125B5B94840
-1189	36 RUE ETIENNE DELARUE	\N	28937	4769	0101000020E61000002D275FD8B3AAFC3FCAA40A6FA4B64840
-1409	5 RUE DES GUEPES	\N	29102	4810	0101000020E61000000AA9D3680F27EC3FEAAA06827CC04840
+1269	6 RUE BACHELET DAMVILLE	\N	28989	4785	0101000020E6100000EB5E91D9054DF03FB51C435BA9A64840
+332	74 RUE RENE COTY	\N	28947	4777	0101000020E6100000BC0E3F7904D9F03F2736BCACCBBC4840
+802	21 IMPASSE TALMA	\N	29072	4808	0101000020E6100000D4999C56E101BD3F07D90D3650C24840
+1095	9 RUE ARISTIDE BRIAND	\N	29034	4797	0101000020E6100000865596CAD678EE3F88BE586BEAC84840
+1188	1 RUE BINET	\N	28937	4769	0101000020E61000009B876797DC01F13F5B998D21C2B94840
+1409	5 RUE DES GUEPES	\N	29102	4810	0101000020E6100000D52076EDA585B63FEAAA06827CC04840
 1397	14 AVENUE FOCH	\N	29344	4829	0101000020E6100000B316392016C5E63F4FF76CE3F0EE4840
-394	15 RUE DU TAPIS VERT	\N	28979	4786	0101000020E61000004C1762F54798FE3F86A52666E2A34840
-42	22 BOULEVARD DES FONTAINES	\N	29451	4848	0101000020E6100000E523CE2FEF0EFC3FD8BC47899FE24840
-129	1 RUE JOSEPH ROY	\N	28941	4773	0101000020E6100000881EA5D081DEF13FC96F971E49BA4840
+61	19 RUE DU DOCTEUR BOURGOIX	\N	29217	4827	0101000020E61000004527413B84DAEF3F48B8B9C6A1E44840
 168	19 RUE GEORGES LEMAÎTRE	\N	29059	4805	0101000020E6100000A2695B5DE605DE3F46BFAE0D32C94840
-315	37 RUE SAINT PIERRE	\N	28946	4774	0101000020E610000064B0E70D254AF23FA77686A92DB84840
-443	62 RUE DE LA REPUBLIQUE	\N	29394	4839	0101000020E61000000FCBC47F4AC5F63FB4C12E2F653D4940
-495	17 RUE DE LA REPUBLIQUE	\N	29511	4853	0101000020E6100000AB822311B2B5F83FD10A671250CE4840
-761	20 RUE LOUIS PHILIPPE	\N	29072	4808	0101000020E610000048F3F03368E7EF3F59C0046E5DBF4840
+443	62 RUE DE LA REPUBLIQUE	\N	29394	4839	0101000020E61000000FCBC47F4AC5F63F5F13EBB723064940
+463	25 RUE JEAN LOUIS LECLERC	\N	29136	4817	0101000020E61000002A08A418AE1BD83F3AF27A0F9BE04840
+550	4 BOULEVARD DE MONTMORENCY	\N	29519	4851	0101000020E61000002280276F7890FB3FB71B6DEA76BD4840
+761	20 RUE LOUIS PHILIPPE	\N	29072	4808	0101000020E6100000395C5AF6EC85B93F59C0046E5DBF4840
 711	5 RUE DE TAHURE	\N	29072	4808	0101000020E6100000DB89DE1E8E72BF3FC008D816B7C14840
-760	16 RUE SAINT NICOLAS	\N	29072	4808	0101000020E61000007EECE97BF12BC13F577CE0B6F8BD4840
-759	35 RUE EUGENE GAS	\N	29072	4808	0101000020E61000009CDAA2971449BB3FE0FCC03490BF4840
-895	28 RUE DE LA REPUBLIQUE	\N	29074	4804	0101000020E6100000C57087E37F26E13FCD3361C11EC24840
-1294	RUE DES ALPES	\N	28975	4782	0101000020E6100000E605751DEC55FB3F57C4972678B24840
-1473	RUE PHILIPPE LANOUX	\N	28976	4783	0101000020E6100000E9A7309D73D3FC3F92A79309CBB44840
+737	62 RUE DE CHATEAUDUN	\N	29072	4808	0101000020E610000042EB6F765C6EBE3F26EDFC91D8C14840
+907	80 GDER	\N	29024	4797	0101000020E61000006E91FDF13395ED3F349E6B0C78CE4840
+844	1 RUE FRANCOIS HERR	\N	28957	4772	0101000020E61000001C7E20413D2AF23F7CDC6DCD0CB54840
+1473	RUE PHILIPPE LANOUX	\N	28976	4783	0101000020E610000097DD845C5848F13F92A79309CBB44840
 875	RUE DU MARECHAL GALLIENI	\N	29023	4802	0101000020E610000014CD549FE357E93F5D5273C1B2BF4840
-602	VILLAGE	\N	29284	4796	0101000020E6100000D5A565F525C3E73F83A069AA23D74840
-95	51 ROUTE DE LA VALLEE	\N	29112	4813	0101000020E61000009B2ECBA47493DC3FFC4685FB12DA4840
-235	RUE JOSEPH DELATTRE	\N	29004	4791	0101000020E6100000FE551554339FF53FAE0F88631FBA4840
-854	90 BOULEVARD CHARLES DE GAULLE	\N	28973	4780	0101000020E610000022A81ABD1A70F93FB208ACB9AFB54840
-666	5 RUE DE L ABBE DELFORGE	\N	29542	4848	0101000020E61000007B33C577BD77F93F415D077BD1E14840
-450	109 ALLEE DES TILLEULS	\N	29135	4811	0101000020E61000000909CACD6D0BE33F75338A826CD34840
+525	46 RUE GUY DE MAUPASSANT	\N	29144	4813	0101000020E610000047D48303D349D73FEAE1919987D24840
 527	RUE DU HAMEAU MARTIN	\N	29144	4813	0101000020E61000009206B7B58547D73FDEC9C8D59FD24840
-1085	124 RUE DE L ECOLE	\N	29315	4825	0101000020E6100000D4D9CE99E241E33F2A7390632DDD4840
-243	AVENUE GEORGES BIZET	\N	29004	4791	0101000020E61000007E62328FDB93F53F1DDAF089AFBA4840
-279	RUE I ET F JOLIOT-CURIE	\N	28978	4785	0101000020E61000006DE30D386416F53F5AD4ABF1E7A74840
-818	73 RUE THEOPHILE GAUTIER	\N	29072	4808	0101000020E6100000DE2FF2F44228ED3FA324E2B5E4C14840
-1203	79 RUE JEAN BAPTISTE LULLI	\N	28937	4769	0101000020E61000006D21BB170743F23FD5D7889A47B94840
-996	60 AVENUE CHARLES DE GAULLE	\N	29160	4820	0101000020E61000008A517768CF1AC73F13E1157772C64840
-712	37 RUE CHARLES VICTOIRE	\N	29072	4808	0101000020E6100000CCF75953C3F8BE3FFAF00B335DC34840
-317	RUE DE VERDUN	\N	28946	4774	0101000020E61000005746074A282AF23F820B68D85EB84840
-1018	RUE DU BOIS SAINT JACQUES	\N	29309	4831	0101000020E61000007478F9B77A37EB3F5E63FAD299D14840
-1521	RUE JULES CROCHEMORE	\N	21365	4812	0101000020E6100000E4BF1F023770E03FB2A32F8C0DDF4840
-536	RUE MAURICE THOREZ	\N	29063	4807	0101000020E610000096A6E0A7AC11CE3F8EEC29BD5FC04840
-1042	11 RUE DE L ECOLE	\N	29079	4809	0101000020E610000012C818643A60E43F02A048FFE4BC4840
-79	2 RUE JEAN TITELOUZE	\N	28998	4794	0101000020E6100000946C120F6A07EE3F71C0536DDCC64840
-859	3 RUE SALVADOR ALLENDE	\N	28973	4780	0101000020E6100000494332891FA8F93F8C163D43FAB64840
-1375	131 RUE GALBOIS	\N	28991	4784	0101000020E6100000E04AB888D6C7F73FBD808737A5A24840
-717	RUE EMILE AUBRY	\N	29072	4808	0101000020E61000000B4125E60DBBC53F0B8949F23BC24840
-331	1 PLACE CHURCHILL	\N	28947	4777	0101000020E6100000D8985B4A2B28F73FCE618C823FBC4840
+243	AVENUE GEORGES BIZET	\N	29004	4791	0101000020E61000004070EB27C98EF03F1DDAF089AFBA4840
+279	RUE I ET F JOLIOT-CURIE	\N	28978	4785	0101000020E61000005830CE383D82F03F5AD4ABF1E7A74840
+818	73 RUE THEOPHILE GAUTIER	\N	29072	4808	0101000020E610000018F3F4C36853B73FA324E2B5E4C14840
+1005	AVENUE CHARLES DE GAULLE	\N	29160	4820	0101000020E61000004C5907B9EBA2C73F3427B36A25C64840
+1568	16 RUE DES PETITS BEZOTS	\N	29370	4796	0101000020E6100000413FA2F52F7AE83F4F0B989F9FCE4840
+1054	AVENUE DU CHÂTEAU	\N	29080	4809	0101000020E61000002F0576C5246DE23FB053516191C04840
+444	1 RUE FLEMING	\N	29394	4839	0101000020E6100000245DC1A37EA0F63F3BD9171A99054940
+1375	131 RUE GALBOIS	\N	28991	4784	0101000020E61000007D07AC0D2FC7F03FBD808737A5A24840
+343	12 RUE JACQUES PREVERT	\N	29390	4836	0101000020E6100000C5A9FC89CF9FF13FBA92917194F54840
+1184	RUE DE GESSARD	\N	28937	4769	0101000020E61000003CA50476952BF13FAC3FBABF97B64840
+932	16 ROUTE DE MONTVILLE	\N	29026	4800	0101000020E6100000458AB2CB78BAF03FE7DADD2482C34840
 1481	42 RUE DE LA SEINE	\N	29099	4806	0101000020E610000009C3A6ECF9BCDD3F77DA5C2D5EBD4840
-488	74 RUE ALFRED LABARBE	\N	29268	4824	0101000020E610000090BF1C8CC433EB3FF3F374E8D3E74840
-440	4 RUE DES ECOLES	\N	29134	4815	0101000020E6100000595BA94EA4C7CA3FB7DC2E6E02DA4840
-355	18 RUE JACQUES PREVERT	\N	29390	4836	0101000020E6100000511F16A4F89CF13FAE1C10D7A0F54840
-253	RUE LOUIS BOUILHET	\N	29246	4825	0101000020E610000044E55C139D58E43FF0CD04FDE4E44840
-572	PLACE CESAIRE LEVILLAIN	\N	28981	4787	0101000020E61000006D29B5517C30F33F69709D774AAC4840
-921	ROUTE DE NEWTON	\N	29552	4832	0101000020E6100000789BC5F821C0F13FC768FC4664E54840
-1068	RUE DE THURMASTON	\N	29417	4835	0101000020E6100000AB3D70BEA641F73F2300CD5AE9EF4840
-1208	8 RUE JOSEPH COURT	\N	28937	4769	0101000020E6100000D4D4CE0AEEB2F13FF9C9E6E4A4B94840
-292	RUE DE LA LIBERATION	\N	29386	4840	0101000020E610000024121089FE25F53F9CA96B4837184940
-659	9 PLACE DE LA MAIRIE	\N	29069	4805	0101000020E6100000764364A252D6E03F5AABC995F2CA4840
-1549	316 BIS RUE DE LA REPUBLIQUE	\N	29053	4792	0101000020E6100000492F0214377FEA3FF9F94A7B5EBA4840
-811	49 RUE PAULINE KERGOMARD	\N	29072	4808	0101000020E61000002A17208DE70CBD3FEEA4CF5845C34840
-1103	RUE BOILEAU	\N	28987	4790	0101000020E61000004D9982D2A38BF53F1CEEE19AD4B14840
-1267	35 RUE DE LA RESISTANCE	\N	28989	4785	0101000020E6100000EB1BDAF8FA77F53FFF839BCEC6A64840
-97	RUE DU GENERAL DE GAULLE	\N	28940	4772	0101000020E6100000BC231CE06D41F23F379E95D570B14840
-726	9 RUE MAURICE TRONELLE	\N	29072	4808	0101000020E61000004A9B93DFEE21BE3F2780E69CEDC24840
-646	356 RUE FRETE	\N	28984	4786	0101000020E610000034CA6569C8C4EE3F57FE42B026A74840
-982	35 RUE AROUX	\N	28961	4779	0101000020E6100000E7B8C7906B6CFD3FAD96E8EA16BC4840
-1241	13 RUE DU CHAMP DE COURSES	\N	29423	4836	0101000020E6100000553EBAC788DAFE3F83AF9E49D1F34840
+229	ROUTE NEUVE	\N	29483	4849	0101000020E6100000CC7B34864D85FA3FDA51FFCDC9ED4840
+558	2 RUE DES ECOLES	\N	29275	4825	0101000020E6100000EBDCC6FC627AE43F48CBDCD7DCDF4840
+1103	RUE BOILEAU	\N	28987	4790	0101000020E6100000884240C8F68DF03F1CEEE19AD4B14840
+1324	RUE BERTHELOT	\N	29333	4821	0101000020E61000006076249EB925EC3F01FA3BE314E04840
+729	16 RUE DU HOMET	\N	29072	4808	0101000020E610000087EA0EAB3D01C53F2B0551B565BD4840
 1025	4 RUE JULES FERRY	\N	29576	4851	0101000020E6100000465CF6A7317AFB3FAFC8968241B64840
-1395	1 RUE COSTES ET BELLONTE	\N	29344	4829	0101000020E6100000F210B925E19EE63F4B87DA7828EE4840
-1007	36 RUE PAUL ELUARD	\N	29160	4820	0101000020E61000002899715ABD31C63FAB251DE5E0C54840
-1559	66 RUE DU GENERAL DE GAULLE	\N	29198	4818	0101000020E6100000D00B9DF52E40D43FB53223B44CDE4840
-1471	RUE LE NOTRE	\N	28976	4783	0101000020E6100000AE9972415A9CF13F1721866753B34840
-1392	169 RUE DE L EGLISE	\N	29436	4841	0101000020E6100000CC4A651AE53AF43FAE2AB992B6E84840
-1180	154 RUE DU RENARD	\N	28937	4769	0101000020E6100000EE94920EA4A5FA3F3F08B76BF8B94840
-842	6 RUE DES PERETS	\N	28957	4772	0101000020E6100000F13094E3B334F23F688D6AA6B5B44840
-754	54 AVENUE MAURICE PIMONT	\N	29072	4808	0101000020E61000004BBA8EBA9B3CC43FB24AC88B75C14840
-501	PLACE MARCEL RAGOT	\N	28950	4776	0101000020E61000001DEF8162D3D6F23F34D25AEA83B34840
-391	AVENUE DU CHARTRIER	\N	28979	4786	0101000020E6100000C5CF219E5C1BEF3F9D2FF65EFCA44840
-266	RUE FAIDHERBE	\N	28977	4784	0101000020E610000091736A8035CBF33F8CCBA77DA9A34840
-226	17 ROUTE DES ESSARTS	\N	29482	4850	0101000020E6100000F949B54FC773F83F82DC6E17D4E84840
-387	15 RUE DES TRAITES	\N	28979	4786	0101000020E610000011A56208A584F23F67F9707FE4A44840
-575	8 ROUTE DE DIEPPE	\N	29520	5189	0101000020E6100000169988D06BE0F73F3FF341E803F54840
-1315	945 RUE DU GENERAL DE GAULLE	\N	28968	4774	0101000020E61000001E05C22DA341F33FE3635EE471B84840
-73	3 RUE LALIZEL	\N	28998	4794	0101000020E6100000854F33D77B87EE3F070BC43E43C74840
-194	RUE DU PETIT CHÂTEAU	\N	29475	4830	0101000020E610000078BADC28FED4F23F89EACE8F16D04840
-533	29 ROUTE DE SAINT-LAURENT	\N	29063	4807	0101000020E6100000566AE9162970CC3FEC6EF9A303C34840
+1180	154 RUE DU RENARD	\N	28937	4769	0101000020E61000004B75DB679010F13F3F08B76BF8B94840
+387	15 RUE DES TRAITES	\N	28979	4786	0101000020E610000082103DE77640F03F67F9707FE4A44840
 934	2 PLACE DE LA MAIRIE	\N	29155	4819	0101000020E6100000D92FF1AA7B62D03F7E71883C72C84840
-998	4 RUE PABLO PICASSO	\N	29160	4820	0101000020E6100000D2A5DDBA2BD3C53FEBBE6BE934C64840
-1406	4 RUE DE L OISEAU BLEU	\N	29048	4793	0101000020E6100000FEBFD8E5D555E83F32ACC17F63C34840
-420	RUE JOSEPH BOULARD	\N	29132	4819	0101000020E6100000B9925C7FC48FCC3FCE37C3893FC84840
-36	RUE JEAN MACE	\N	29208	4826	0101000020E61000006B78B24F8BB7F13FEF4C7003A1DB4840
-1	PLACE PAUL LEVIEUX	nul	29200	4796	0101000020E610000084706FF889B5E53F70BE853347CC4840
-341	CHEMIN DES VERTUS	\N	29390	4836	0101000020E610000004CF802433B1CC3F91B376FC13C84840
-841	6 RUE DE NEUVILLETTE	\N	28957	4772	0101000020E610000083D4D44F8BA3FD3F118C623D5EB94840
-728	22 RUE ETIENNE MEHUL	\N	29072	4808	0101000020E6100000307DAA687E45C03FB98ECC7EB8C24840
-752	AVENUE DU GENERAL DE GAULLE	\N	29072	4808	0101000020E61000002ACFDA72D013C43FCB21D20444C24840
-622	RUE PIERRE ET MARIE CURIE	\N	29403	4843	0101000020E6100000C0C5099A36EEF73F4CC5C6BC8E114940
+1446	1058 RUE DE LA GARE	\N	19070	2989	0101000020E61000001E5E1292C598F83F3E41DE82D7D04840
+99	ROUTE DE LA HEUZE	\N	29461	4847	0101000020E6100000267D3B38C1A7F33F4DA4B06223DB4840
+216	78 ROUTE DE GODERVILLE	\N	29119	4813	0101000020E6100000296FC6B717FBD83F76B09334DED44840
+347	RUE ALEXANDRE LEGROS	\N	29390	4836	0101000020E6100000B96F43F97313F13F5FA6DC3381F54840
+519	1 ROUTE DE ROGERVILLE	\N	29062	4807	0101000020E61000006C2955DF4FE6D03FAACC5A2B56C24840
+1346	RUE DES PAPILLONS	\N	29429	4836	0101000020E610000041A51C5CD282F33F76B481A66BFA4840
+1423	1 RUE MICHEL ROUSSELET	\N	29168	4817	0101000020E61000009893A3426D82DD3F236FB189E9E24840
+130	ALLEE RENE COTY	\N	28941	4773	0101000020E61000008DB4295E320CF23FCC89A84F13BB4840
+978	BD SIEGFRIED	\N	28961	4779	0101000020E6100000E8DC8A50AE11F13F53EC681C6ABB4840
+1542	2529 ROUTE DE DUCLAIR	\N	29052	4794	0101000020E61000009C632759DADBED3F3F0E185EA8C34840
+117	7 ROUTE DU VILLAGE	\N	29057	4805	0101000020E6100000C64EFC41F248DB3FC8EBA0968FCB4840
+439	44 RUE GUY DE MAUPASSANT	\N	29134	4815	0101000020E6100000F4CABD0C3B56CA3FC0FEF34D7DDA4840
+888	127 RUE DE SAINT VAAST	\N	29546	4856	0101000020E61000003FC3B78AA7A9F33F4DF7B6708BE44840
+355	18 RUE JACQUES PREVERT	\N	29390	4836	0101000020E6100000511F16A4F89CF13FAE1C10D7A0F54840
+1552	25 RUE CLAUDE MONET	\N	29197	4811	0101000020E6100000D80916240914E13FBD8CA4D5F7D04840
+292	RUE DE LA LIBERATION	\N	29386	4840	0101000020E610000024121089FE25F53FC35DA4ED6B024940
+484	14 AVENUE JEAN JAURÈS	\N	29138	4820	0101000020E610000002DA65DEFBB2C23FAF6097B840C44840
+1267	35 RUE DE LA RESISTANCE	\N	28989	4785	0101000020E6100000CB02497FFF8BF03FFF839BCEC6A64840
+1	PLACE PAUL LEVIEUX	\N	29200	4796	0101000020E610000084706FF889B5E53F70BE853347CC4840
+582	PLACE DESGENETAIS	\N	29065	4805	0101000020E6100000411845FD98F0DE3FBD24E72749C74840
+645	355 RUE FRETE	\N	28984	4786	0101000020E610000090FA88EB5AC3EE3F9143C4CD29A74840
+1395	1 RUE COSTES ET BELLONTE	\N	29344	4829	0101000020E6100000F210B925E19EE63F4B87DA7828EE4840
+946	RUE DES BELGES	\N	29027	4801	0101000020E6100000CD00F19C28A7F03FE6DAA379F8BC4840
+1464	RUE GADEAU DE KERVILLE	\N	28976	4783	0101000020E6100000406A2F7C269EF13F7855B1425BB34840
+842	6 RUE DES PERETS	\N	28957	4772	0101000020E6100000F13094E3B334F23F688D6AA6B5B44840
+362	RUE PAUL BERT	\N	29390	4836	0101000020E6100000FCC48AE55983F13F7725130118F74840
+501	PLACE MARCEL RAGOT	\N	28950	4776	0101000020E61000001DEF8162D3D6F23F34D25AEA83B34840
+174	15 AVENUE PABLO NERUDA	\N	29059	4805	0101000020E6100000C799D52440B9DE3F2E9F7ADE6CC84840
+1291	1 RUE VICTOR DURUY	\N	28975	4782	0101000020E610000057EC85BBE027F13F21C652C134B34840
+730	58 RUE JEAN MARIDOR	\N	29072	4808	0101000020E6100000F8A6775E1B4BC43F29E4CE752FC04840
+1314	1059 RUE DU GENERAL DE GAULLE	\N	28968	4774	0101000020E6100000C48333E6184AF33FAB2BFA9E6CB84840
+534	16 AVENUE DE GAULLE	\N	29063	4807	0101000020E61000006BF46A80D2D0C93FEE0C113F18C04840
+5	ROUTE DE MESNIL ESNARD	\N	28938	4770	0101000020E6100000AC7008AB6A17F23F13E2FC137DB34840
+184	50 RUE D UELZEN	\N	15253	2402	0101000020E61000005167DFF6B331F33FA921DC2AA9B14840
+533	29 ROUTE DE SAINT-LAURENT	\N	29063	4807	0101000020E6100000566AE9162970CC3FEC6EF9A303C34840
+954	7 RUE DE L ANCIEN PORT	\N	29411	4836	0101000020E610000023460C918CBAF13F7199CBF468F44840
+720	31 BIS RUE DU PERE FLAVIGNY	\N	29072	4808	0101000020E61000000A1D46D19B7BC03FA189A870A1C14840
 623	RUE DU MONT ROTY	\N	28953	4775	0101000020E610000078609344153FF23FEC9227FFC9BF4840
 1309	6 RUE DU LIEUTENANT MASQUEREL	\N	29601	4850	0101000020E61000005C1C60A9D82FF83FC03EBEAD09E24840
+990	3 RUE DE L ECOLE	\N	29566	4847	0101000020E6100000E39995C2C351F53FCA4862EEFFCD4840
+1115	ROUTE DU MORET	\N	29318	4829	0101000020E6100000962F234DA0AEE83F68FCA98EA8E84840
 302	ROUTE NATIONALE	\N	29492	4778	0101000020E6100000DD0823A7C34BF63F7BA86552E0BA4840
-1339	PLACE DE LA MAIRIE	\N	29042	4798	0101000020E61000004A80F51329C8EE3FE396A841C5B84840
-915	RUE DES CANADIENS	\N	29549	4852	0101000020E6100000FE6104BA1A5CF63F33782D5B4AEA4840
-620	1 RUE DES ECOLES	\N	29016	4800	0101000020E61000007567DC8AB3F8FB3F690D73BC61C14840
-1047	RUE DES LONGS VALLONS	\N	29033	4803	0101000020E6100000F93C565B7724F93FF247CD2ECABD4840
 1179	4 RUE DU DOCTEUR SEGUIN	\N	28937	4769	0101000020E610000072D8220E7E07F23F908D7A6738BA4840
-62	10 ROUTE DE PIERREVILLE	\N	29217	4827	0101000020E61000002AB9D4528A67F33FDCB2E842D1E44840
-519	1 ROUTE DE ROGERVILLE	\N	29062	4807	0101000020E61000006C2955DF4FE6D03FAACC5A2B56C24840
-1142	27 RUE DES EMOUQUETS	\N	28963	4774	0101000020E6100000A8402EBD72EFF23F8C3C5AE6BEBB4840
-156	260 RUE DU GENERAL DE GAULLE	\N	28943	4775	0101000020E6100000BC58BD6834BEF13F695829909BBC4840
-1361	49 ROUTE BOUVILLE	\N	29046	4792	0101000020E6100000663CB9C29525EC3F50CFB34058C24840
+62	10 ROUTE DE PIERREVILLE	\N	29217	4827	0101000020E61000005516AB24B708F03FDCB2E842D1E44840
+941	ROUTE DE DUCLAIR	\N	29027	4801	0101000020E61000007559B44FB367F03F2D9FBCFA3EBD4840
+1077	RUE DONAT AGACHE	\N	28974	4781	0101000020E610000002B396907C96F13F81DF8E8977AE4840
+1366	ROUTE DE ROUEN	\N	29047	4792	0101000020E6100000C75EB553EFD0ED3F93A662DF25C04840
 1490	78 RUE SAINT PIERRE	\N	29353	4827	0101000020E61000001447A97AB510ED3FABE408BE0EE44840
-1286	RUE HECTOR MALOT	\N	28975	4782	0101000020E61000007F6353D76F80FA3FC130683A9EB24840
-713	52 RUE HENRI BARBUSSE	\N	29072	4808	0101000020E61000000B0FF5166A68ED3FEF2286FC37C14840
-275	4 RUE DES ECOLES	\N	28978	4785	0101000020E6100000ECB0F46760E0F43F4D89C14FDEA74840
-838	IMPASSE JEAN LURÇAT	\N	29021	4800	0101000020E6100000EE4AC3D77450F53FFE380E7ABEC14840
-987	31 TER CHEMIN DES COTTES	\N	28961	4779	0101000020E6100000F17739364C2EFE3F6D171E24D9BA4840
+499	RUE DE NEUFCHATEL	\N	29512	4849	0101000020E61000005DAA9F25320DF93FBFC8152873EC4840
+713	52 RUE HENRI BARBUSSE	\N	29072	4808	0101000020E6100000D6D89045BB86B73FEF2286FC37C14840
+838	IMPASSE JEAN LURÇAT	\N	29021	4800	0101000020E610000018212DAF0B88F03FFE380E7ABEC14840
+987	31 TER CHEMIN DES COTTES	\N	28961	4779	0101000020E610000032BF059F076BF13F6D171E24D9BA4840
+1242	RUE DU VALLON	\N	29423	4836	0101000020E61000008F7410B8D177F13F68A13238A9F34840
 1428	2220 ROUTE MER	\N	29427	4846	0101000020E61000009B8E84A6BA4AEE3F9864897379F44840
-1537	IMPASSE DES ECOLES	\N	29618	4855	0101000020E6100000B12C2E1404B5F43FDE77CA72ABC84840
-1175	RUE DE L ENSEIGNE RENAUD	\N	28937	4769	0101000020E6100000D2B959BE5903F23FF4A3E194B9B74840
+1083	IMPASSE DES ECOLES	\N	29314	4825	0101000020E610000056B47178CCE6E23F9E160F3156E44840
 1483	11 ROUTE DE SAINT ROMAIN	\N	29099	4806	0101000020E61000003724F0B21FDCDC3F06EABDC668BE4840
-639	8 RUE DU CENTRE	\N	18054	2916	0101000020E61000000A37F0D5543FF83F0171915A2CBB4840
-102	PLACE DE LA MAIRIE	\N	29379	4836	0101000020E61000002B809E107EA5F23F2B34CEAE94F94840
+251	12 RUE DU HOME	\N	29246	4825	0101000020E6100000D4B28585324BE43FDAE7EFADE1E44840
 452	BD ALLEAUME	\N	29135	4811	0101000020E6100000FA0E3CC62EF4E23F49AC7B1A66D34840
-1507	RUE DE MIROMESNIL	\N	29443	4835	0101000020E61000005A975704B8A6F13F836A6205E8ED4840
 1244	3 RUE DU MOULIN À CUIR	\N	28964	4771	0101000020E610000083C007055E83F53FB98852EF67BC4840
-644	55 ROUTE DE LA JOSERIE	\N	29295	4828	0101000020E6100000C4CFC12B30B1FD3F5ED40F66EAD04840
-154	255 RUE FIRMIN	\N	28943	4775	0101000020E61000007F345FCF1EAAF13FC050D1A288BA4840
-256	RUE SAINTE GERTRUDE	\N	29006	4793	0101000020E610000054082830442EE73FEF5EC51472C34840
-393	16 RUE JEAN GAUMENT	\N	28979	4786	0101000020E61000003122F6AEE665FA3F360DA38322A54840
-412	PLACE DU MARCHE	\N	29392	4838	0101000020E610000094EEFDF9F53CF43FE5A14A28D8F24840
-1126	RUE DU SUD	\N	29320	4775	0101000020E610000008AA620436FAF23FE8BC29590CC34840
-1021	CHEMIN DES COQUELICOTS	\N	28986	4787	0101000020E6100000732A1900AAE8EE3FCCC9D5D9DAAB4840
-648	RUE DE LA LIBERATION	\N	29019	4799	0101000020E61000008094E0260695E83FF3906B3B54BD4840
-1293	8 AVENUE DU VAL ABBE	\N	28975	4782	0101000020E610000035AEB2C80CA2F13F8292E1FC76B04840
-769	17 RUE DU DR GIBERT	\N	29072	4808	0101000020E6100000544AB6577237EF3F6AB5F25854BF4840
-1201	3 RUE DU HAMEAU DES BROUETTES	\N	28937	4769	0101000020E6100000EEE87FB916CDFC3FD956581586B64840
-353	ALLEE DES ORMES LE VAL DRUEL	\N	29390	4836	0101000020E61000006B7FCAA5AF1FFD3FC8A7325210F44840
-1073	RUE DE LA REPUBLIQUE	\N	28974	4781	0101000020E6100000DF7CB81E641DFF3FC67F68839FAB4840
+644	55 ROUTE DE LA JOSERIE	\N	29295	4828	0101000020E61000002DFB2CD1845EF13F5ED40F66EAD04840
+389	89 RUE DE LA REPUBLIQUE	\N	28979	4786	0101000020E61000000B06AC5C75EBEF3FCC210CB04DA54840
+277	RUE CHARLES PERRAULT	\N	28978	4785	0101000020E6100000093B251D6E82F03F0B38F88048A74840
+1163	31 BOULEVARD D ORLEANS	\N	28937	4769	0101000020E61000004BE653259C46F13F078EF437DBB74840
+715	111 BOULEVARD FRANÇOIS 1ER	\N	29072	4808	0101000020E61000008203A648C804BA3F6A56CFAC99BE4840
+393	16 RUE JEAN GAUMENT	\N	28979	4786	0101000020E61000001A7682779E1AF03F360DA38322A54840
+502	577 RUE GENERAL DE GAULLE	\N	28950	4776	0101000020E6100000E0B3AD1A0FDCF23FEBAE473C34B34840
+769	17 RUE DU DR GIBERT	\N	29072	4808	0101000020E6100000AA6E2B4628F9B83F6AB5F25854BF4840
+1032	ROUTE DE ROCADE	\N	29575	4850	0101000020E6100000C0CF9C1BF101F73F8297CFA82FDE4840
+739	6 RUE LOUIS BLANC	\N	29072	4808	0101000020E61000008B01263187ABBF3FA658FB5CE9C04840
+353	ALLEE DES ORMES LE VAL DRUEL	\N	29390	4836	0101000020E610000057A6FAF6F74FF13FC8A7325210F44840
 596	7 RUE SADI CARNOT	\N	29066	4807	0101000020E6100000BFCAC50B2EC5C93F6DD94A7D13C14840
-641	2 PLACE DE L EUROPE	\N	29068	4804	0101000020E6100000AF48D7424C36E23F38CF222587C34840
-1551	1 ROUTE DE SAINT MACLOU	\N	29197	4811	0101000020E61000004F98AC61F121E13FF402E4320BD14840
-676	9 ALLEE SALVADOR ALLENDE	\N	28985	4789	0101000020E610000088D0CE8A24A1F73FFCF5F16DCDB34840
-1288	184 RUE DE PARIS	\N	28975	4782	0101000020E6100000E096DEEA78B5F13F4425E09D1DB14840
-1160	32 RUE SAINT ANDRE	\N	28937	4769	0101000020E6100000968287CC09D8FD3F0E44FDCB41B94840
+1474	RUE DE LA REPUBLIQUE	\N	28976	4783	0101000020E6100000B5BBEE4A1E79F13FABCF722CB1B54840
+626	172 RUE MAINBERTE	\N	29017	4792	0101000020E6100000A79A0093B951EA3FD2C2A73188B74840
 1402	40 CHEMIN DE LA GROTTE	\N	29096	4806	0101000020E6100000FD0A34009D07D73F0A23A40B3DBF4840
-632	VILLAGE	\N	29067	4806	0101000020E6100000C0F8D4779F7FDA3F0B751E368DC04840
-442	53 & 70 RUE DE LA REPUBLIQUE	\N	29394	4839	0101000020E610000008FDF6BCB5C0F63F471163E30B3F4940
-929	444 ROUTE DE DIEPPE	\N	29026	4800	0101000020E61000008A07EF062CA4F63FB85B2FD9BAC34840
-288	VILLAGE	\N	29486	4853	0101000020E6100000AFBED880AAF7F83FA897AD2FF1D44840
-629	ALLEE DES SAULES	\N	28983	4787	0101000020E6100000C6477296E5CDED3FE57AFC5AEEAC4840
-619	RUE ANDRE PICAN	\N	29016	4800	0101000020E61000001A7264CCFAD0FB3F44E0279258C14840
-959	IMPASSE DE L ECOLE	\N	29557	4853	0101000020E61000003ABDBD31257EF73F9EEC242A6DCD4840
-1290	1 RUE JULIAN GRIMAU	\N	28975	4782	0101000020E61000006026C43B440CFF3FABE6FF76D5B14840
-238	AVENUE DU PRESIDENT ALLENDE	\N	29004	4791	0101000020E6100000782933AD66C0F53FF6E48A2088B94840
+1492	158 ROUTE DE LA VALLEE	\N	3708	548	0101000020E6100000F64897BFC1CDF23F8377664045E64840
 721	23 RUE FRANCIS CARCO	\N	29072	4808	0101000020E610000013694BB8B88FBD3F83173BE996C34840
-1283	RUE DU JURA	\N	28975	4782	0101000020E6100000A8EBC359955DFB3FBFBDE79773B24840
-779	3 RUE EMILE AUBRY	\N	29072	4808	0101000020E61000000B4125E60DBBC53F0B8949F23BC24840
-1474	RUE DE LA REPUBLIQUE	\N	28976	4783	0101000020E6100000125553ED2EBBFE3FABCF722CB1B54840
 1139	1 RUE DE LA GARE	\N	29167	4819	0101000020E6100000BD5A49867794CB3F8110E22D84CA4840
-1256	PLACE DE LA MAIRIE	\N	28965	4776	0101000020E6100000124CCDCF2181F23F3F94E490BFAE4840
-1542	2529 ROUTE DE DUCLAIR	\N	29052	4794	0101000020E61000009C632759DADBED3F3F0E185EA8C34840
-383	105 RUE DE L EGLISE	\N	29259	4823	0101000020E6100000CBF9500C0ABFED3FE214464817D34840
-554	SENTE DU POSTE	\N	757	4776	0101000020E6100000A7A04530BA5EF23F9AF6626252AD4840
-740	3 ALLEE LEON MOUSSINAC	\N	29072	4808	0101000020E61000001C9998456060C73F63507D5233C14840
-101	PLACE DE L EGLISE	\N	29220	4795	0101000020E61000005FA80D98D1B9EF3FEFF66A91FED94840
-237	21 AVENUE DE VERSAILLES	\N	29004	4791	0101000020E6100000B11B11E73C3EF53F171183C83BB94840
-837	9 PLACE DES CANADIENS	\N	29021	4800	0101000020E61000006E4F4EBC1C49F63FD30FD185E4C04840
-943	RUE ERNEST DANET	\N	29027	4801	0101000020E610000098B280C7BF18F63F0D3BA5E61FBD4840
-1334	22 RUE PRINCIPALE	\N	29603	4849	0101000020E61000001AAA0972B59DFA3FF68391C96FEA4840
-142	PLACE JEAN MOULIN	\N	29467	4849	0101000020E610000045FFBA8910CDF93F1F8588277DF74840
-234	PLACE MICHEL TOUYE	\N	29004	4791	0101000020E61000003460142D0E91F43F3842507F87B84840
-312	18 RUE ANDRE MAUROIS	\N	28946	4774	0101000020E6100000EAC93EC04178F23F653E7B898CB84840
-339	18 RUE ROGER EVRARD	\N	29390	4836	0101000020E6100000DA3AD5ADE0EFFA3F637A67591CF44840
-447	PLACE GASTON LEROUX	\N	29394	4839	0101000020E6100000649621B43CBCF63F4956348C713C4940
+22	76 ROUTE DE DIEPPE	\N	29446	4832	0101000020E6100000AAF401EBB24CF13F395BC4A0E1EA4840
+583	894 RUE MAETERLINCK	\N	29278	4833	0101000020E610000092C834563FCFEC3F18AA8BA92EEA4840
 471	1575 BOULEVARD NELSON MANDELA	\N	29136	4817	0101000020E61000006295217A91EAD83FB483DFC043DF4840
-547	24 RUE CROQUET DU BOSC	\N	29519	4851	0101000020E61000003291B15E357CFB3F8F0929268CBD4840
-669	ALLEE SALVADOR ALLENDE	\N	28985	4789	0101000020E61000008C898BABE3DBF73F16C120659BB34840
-829	44 RUE EMILE ZOLA	\N	29072	4808	0101000020E61000006A5A857448CFBA3F8EE3C96675BE4840
-71	AVENUE ANDRE MAUROIS	\N	28998	4794	0101000020E6100000E99EEC9B387FEE3FC685453D2BC74840
-827	33 RUE FLEURUS	\N	29072	4808	0101000020E6100000DAFBCEDB4AC2C13F6A9FD0E3DEBE4840
-699	24 RUE DES ECOLES	\N	29072	4808	0101000020E61000007A0D229BA965C13F1FAFB44A38C14840
-939	PLACE ALAIN	\N	29027	4801	0101000020E6100000C2E3F458A758F63F788FBFF644BD4840
-977	2 RUE JEAN DE LA VARENDE	\N	28961	4779	0101000020E6100000D56849B2D4DBFC3F8E567BF999BB4840
-1069	RUE DU CHATEAU	\N	29417	4835	0101000020E610000001E65243B8A5F33F515D0A59A7ED4840
-1101	RUE DES ECOLES	\N	28987	4790	0101000020E6100000368F268BB973F43FCCE2EE41C2B14840
-869	59 BOULEVARD CHARLES DE GAULLE	\N	28973	4780	0101000020E6100000669A343609C8F93F0E18C1529FB54840
-1231	2 RUE SAINTE-GENEVIEVE DU MONT	\N	28937	4769	0101000020E610000025E103BA7DBEF13F82870E26EAB84840
-1394	AVENUE LOUIS SAVOYE	\N	29344	4829	0101000020E610000002C90E06ABB5E63F7E6F36CA38EE4840
-1520	ROUTE DE THIERGEVILLE	\N	21365	4812	0101000020E61000002DBCDF2963AADF3FE3E4D94015DC4840
-377	118 RUE GUSTAVE FLAUBERT	\N	29008	4792	0101000020E610000029C7C79BBA2AEC3FA153882E45BE4840
+828	1 RUE DUME D APLEMONT	\N	29072	4808	0101000020E61000003F4BCCBD04CABF3FC01D4D9AABBF4840
 1227	1 RUE ALBERT DUPUIS	\N	28937	4769	0101000020E6100000018271245BF3F13FFB720B02D0B94840
 831	51 AVENUE DU 8 MAI 1945	\N	29072	4808	0101000020E61000006070771D4447C53FC988F2A202C24840
-706	253 RUE ARISTIDE BRIAND	\N	29072	4808	0101000020E6100000E9F078A9C434C13FC6B52D0C09C04840
+1476	128 RUE LEON SALVA	\N	28976	4783	0101000020E6100000D530C51A035AF13F845FD14A2DB54840
 995	20 RUE CHARLES BLANCHET	\N	29160	4820	0101000020E6100000370D29BD71BDC83F95102872F3C54840
-1158	23 RUE DE LA CHAINE	\N	28937	4769	0101000020E61000009107A6C3D86CFF3FFF475CB68CB84840
-942	34 RUE FERDINAND CARTIER	\N	29027	4801	0101000020E61000002FD3DD120C19F73FEDEB868E19BE4840
-832	26 BOULEVARD AMIRAL MOUCHEZ	\N	29072	4808	0101000020E61000003A9B0AC8C94AC13F9D205E9513BE4840
-1225	36 BIS AVENUE DES CANADIENS	\N	28937	4769	0101000020E610000003D791FA1DD0FD3F3D19F3A57DB94840
-1460	38 RUE ALEXANDRE RIBOT	\N	28976	4783	0101000020E6100000BB6A75A4C073FD3F0A85A50D49B44840
-691	85 RUE LABEDOYERE	\N	29072	4808	0101000020E6100000F55F616DFEB2C13FE60297C79ABF4840
-454	391 RUE DES MURS FONTAINE	\N	29136	4817	0101000020E6100000C72E2BF692C4D83FE6AFB1C79BE04840
-700	18 AVENUE VICTORIA	\N	29072	4808	0101000020E61000002075F7DDCD03BE3FAAC0E2D310C04840
-1235	4342 ROUTE DE NEUFCHÂTEL	\N	28937	4769	0101000020E6100000ED13FE14E0EEFE3F23CF3F0B53B94840
+126	15 RUE PHILIBERT CAUX	\N	28941	4773	0101000020E61000003B9E0B2D2FD4F13F7E449FD1CEBA4840
+296	6 ROUTE DE TURRETOT	\N	29126	4814	0101000020E6100000CC5063E259F9D03FE0901D861CD24840
+1147	22 RUE SAINT-LO	\N	28937	4769	0101000020E61000001F0FC9057182F13F965E7A7FACB84840
+529	RUE DU COMTE LOUIS HOQUART DE TU	\N	10784	1614	0101000020E61000000FA715A4EE8AD73F5009FC9F4BC74840
+705	RUE DES GLYCINES	\N	29072	4808	0101000020E61000004CCF42A2D32AC43FAB9D9B15D5C04840
+676	9 ALLEE SALVADOR ALLENDE	\N	28985	4789	0101000020E6100000A7E1477450C3F03FFCF5F16DCDB34840
+391	AVENUE DU CHARTRIER	\N	28979	4786	0101000020E6100000C5CF219E5C1BEF3F9D2FF65EFCA44840
+1282	RUE DU DOCTEUR MAGNIER	\N	28975	4782	0101000020E6100000B40AF6BAA0A1F13F0129B9DCC3AF4840
+591	1 RUE ALBERT CAMUS	\N	29066	4807	0101000020E6100000873455F00EC2C73F6BCEA89680C14840
+344	33 AVENUE JEAN JAURÈS	\N	29390	4836	0101000020E61000008DA91CDC9B1CF13F7523C9FFA6F44840
+930	RUE DU DOCTEUR LEROY	\N	29026	4800	0101000020E610000025B265B2E598F03F028559EC1FC34840
+1159	6 RUE DE BERNE	\N	28937	4769	0101000020E6100000378BF6FC5901F23F34D8D479D4B84840
+1565	27 RUE CARNOT	\N	29370	4796	0101000020E610000017E4995D1845E83FFF45E9356ACF4840
+593	13 RUE DES CARAQUES	\N	29066	4807	0101000020E61000006D65EFB07CE2C93F29E219D9BAC04840
+157	220 RUE REINE DES BOIS	\N	28943	4775	0101000020E610000069D313C1F8C4F13FD62F43A95EBD4840
+1290	1 RUE JULIAN GRIMAU	\N	28975	4782	0101000020E6100000D603FA053A81F13FABE6FF76D5B14840
+1016	6 RUE DES ECOLES	\N	29568	4855	0101000020E6100000F126A6A886F7F33FC394EDE8A4C24840
+383	105 RUE DE L EGLISE	\N	29259	4823	0101000020E6100000CBF9500C0ABFED3FE214464817D34840
+219	ROUTE DE FORGES-LES-EAUX	\N	20834	3291	0101000020E61000002816D4C4F6CBF53FAD0549E1F2CA4840
+1071	RUE DES ECOLES	\N	28974	4781	0101000020E6100000325551389296F13FFD74B0BCB3AD4840
+764	18 RUE DE METZ	\N	29072	4808	0101000020E6100000588F3D73BD0AB73F55E2957F08C24840
+35	185 RUE DE LA MAIRIE	\N	29110	4813	0101000020E610000050949828C189D73FE0D6DD3C55D74840
+971	ROUTE DE DIEPPE	\N	29413	4841	0101000020E6100000C793F3B1FA9CF33FDD359503C5EB4840
+1334	22 RUE PRINCIPALE	\N	29603	4849	0101000020E61000001AAA0972B59DFA3FF68391C96FEA4840
+327	4 RUE GEORGES HEBERT	\N	28947	4777	0101000020E6100000DF061FC47ADDF03F809D7A287ABA4840
+84	52 AVENUE ARISTIDE BRIAND	\N	28998	4794	0101000020E61000002D436879289EEE3FD00D4DD969C54840
+180	2 RUE DU BOIS BAGNERES	\N	28945	4772	0101000020E6100000775C06FC1711F23F8C5D0D166FB64840
+367	2 RUE DE STALINGRAD	\N	29390	4836	0101000020E6100000A86CE144B750F13FF5513EEB37F54840
+402	1 RUE DE LORRAINE	\N	28979	4786	0101000020E6100000BA819099FC48F03FE8C8C2BE3AA54840
+449	RUE DE GRAFSCHAFT	\N	29135	4811	0101000020E6100000CAE810D02E43E33FCA573CD43AD34840
+824	2 RUE JEAN-PAUL SARTRE	\N	29072	4808	0101000020E6100000FE26985A841CBD3FD0EE906280BF4840
+1008	AVENUE JEAN PREVOST	\N	29160	4820	0101000020E6100000E554C362FAFCC63F8730446FEDC54840
+1069	RUE DU CHATEAU	\N	29417	4835	0101000020E61000009AB0EE395F5DF03F515D0A59A7ED4840
+868	197 AVENUE DES ALLIES	\N	28973	4780	0101000020E610000072054E9573DAF03F4DD204A3F5B54840
+1233	4 RUE DU MAULEVRIER	\N	28937	4769	0101000020E6100000015532B97E9DF13FA35B4CBF06B94840
+1145	200 RUE ALBERT DUPUIS	\N	28937	4769	0101000020E61000006D96352B8720F23F91CA5E00ABBA4840
+1563	17 RUE RETIMARE	\N	29370	4796	0101000020E6100000DE6B8254FC92E83FADB68BFE0ACF4840
+914	RUE DE LA LOCARDIE	\N	29549	4852	0101000020E61000001571EE3A1150F63F194EC21A21EA4840
+702	19 RUE CLOVIS	\N	29072	4808	0101000020E6100000A4FA5268EEDBC03F6B6C657822C04840
+1232	11 RUE SENARD	\N	28937	4769	0101000020E610000029310F660175F13F3BF0FF1DB0B94840
+1234	42 RUE DE LE NOSTRE	\N	28937	4769	0101000020E6100000FBA9DDEE6647F13F8F7E87E4DCB84840
+826	86 RUE DE CHATEAUDUN	\N	29072	4808	0101000020E6100000A79285D82EA7BE3F1E447C71F3C14840
+1384	ROUTE DE LA GARE	\N	29095	4806	0101000020E61000003894025436A1D63F378B170B43C44840
+1460	38 RUE ALEXANDRE RIBOT	\N	28976	4783	0101000020E6100000462472106058F13F0A85A50D49B44840
+1152	2 RUE GIUSEPPE VERDI	\N	28937	4769	0101000020E610000014C6BBC8A932F23F5EE1F2925EB94840
+694	29 RUE MICHELET	\N	29072	4808	0101000020E6100000A10246E87E06BF3F6986F99749BF4840
+162	9 AVENUE MARECHAL JOFFRE	\N	29059	4805	0101000020E61000008F04C1B3A205DF3F511D610704C94840
+337	AVENUE CHARLES NICOLLE	\N	29390	4836	0101000020E6100000E5E8D8DEFAAAF13FEDF6F63AEBF64840
+1148	9 RUE D ERNEMONT	\N	28937	4769	0101000020E610000055243B432C9BF13F01F1C2EF89B94840
+1236	31 RUE BLAISE PASCAL	\N	28937	4769	0101000020E6100000690878E6A644F13FEA177830DAB64840
 1571	16 RUE DE LA GARE	\N	29370	4796	0101000020E610000029566B33DE4EE83FD5988C3AA5CF4840
-40	20 RUE CLAUDE DAMOIS	\N	29451	4848	0101000020E6100000FD5C11552805FC3F809509E062E24840
-326	14 RUE DE L EGLISE	\N	28947	4777	0101000020E6100000FE8FC0DD614CF83FC76C035612BB4840
-1146	RUE DE BAMMEVILLE	\N	28937	4769	0101000020E61000009CCD7895944FFE3FE811E503E9B64840
-690	RUE EUGENE VARLIN	\N	29072	4808	0101000020E6100000DBB459C2C8F5C53FBCFC14E80FC24840
-456	2 RUE PAUL BERT	\N	29136	4817	0101000020E6100000D4AB84CB8384D83FB27E543FC6E04840
-852	13 RUE AMPERE	\N	28973	4780	0101000020E61000001AF9401B4E53FA3FBA40F638DBB64840
-148	186 RUE VITTECOQ	\N	28943	4775	0101000020E6100000E020D8F36003F23F149B87FA7ABC4840
-1385	2 ROUTE DES BOIS	\N	29609	4847	0101000020E6100000BA63E43ECF95F43F70F043AD02D64840
-564	RUE DE SEELZE	\N	28981	4787	0101000020E6100000FB534F8B66CAF13F69723106D6AC4840
-255	RUE DE LA SAINTE-GERTRUDE	\N	29006	4793	0101000020E610000054082830442EE73FEF5EC51472C34840
-922	3 ALLEE LEBAUDY	\N	29552	4832	0101000020E6100000252A4CC6CEDFF13FC12E16C864E54840
-1150	20 RUE DES REQUIS	\N	28937	4769	0101000020E61000003612367668ACF13FC425C79DD2B84840
+548	3 BOULEVARD DE MONTMORENCY	\N	29519	4851	0101000020E6100000D8F3604BC28FFB3F5B37EF4971BD4840
+704	39 RUE ARQUIS	\N	29072	4808	0101000020E6100000355289C752DFBB3F4FC7A5227CC24840
+1372	220 RUE DES SAULNIERS	\N	28991	4784	0101000020E6100000E3391EDD4FA8F03F63B53B9CA7A34840
+1151	RUE JEAN-PHILIPPE RAMEAU	\N	28937	4769	0101000020E6100000EA2A6D09AA42F23FA8A11531CFB94840
+695	66 RUE RENE VIVIANI	\N	29072	4808	0101000020E6100000643ACD3226E5C33F75C959541BBF4840
+852	13 RUE AMPERE	\N	28973	4780	0101000020E61000001C4C539C5408F13FBA40F638DBB64840
+218	379 ROUTE DE FORGES-LES-EAUX	\N	20834	3291	0101000020E61000008542C2FF6FCFF53F3485AD5D03CB4840
+250	22 RUE DU HOME	\N	29246	4825	0101000020E61000009E93D4C54A45E43F53F203BA23E54840
 693	22 ALLEE HENRI WALLON	\N	29072	4808	0101000020E6100000C74F5AED9E92BD3F2A884703F4C24840
+590	RUE FRIEDRICH ENGELS	\N	29066	4807	0101000020E610000019DC09084323C83FDDEB07E967C14840
 1279	RUE FELIX FAURE	\N	28975	4782	0101000020E610000076A8D1A447ADF13FAAE23A8479B04840
-370	1 RUE SALVADOR ALLENDE	\N	29390	4836	0101000020E61000006639E025FE19FB3F89686C96E8F34840
-441	RUE DU MONT VITOT	\N	29394	4839	0101000020E61000008D76A7FEEB93F63F652772778C394940
-701	63 RUE GUSTAVE BRINDEAU	\N	29072	4808	0101000020E61000009BA2FBF02E02C23F0BD0D7A8DEBE4840
-338	22 RUE JACQUES PREVERT	\N	29390	4836	0101000020E610000025EBB74921A5F13F75CC9AD4A7F54840
+1052	RUE JEAN MARIDOR	\N	29080	4809	0101000020E610000080B6AA2CD759E23F534C525746BF4840
+280	830 RUE EDMOND SPALIKOWSKI	\N	29251	4828	0101000020E6100000D248F89CC3EEF13FFB38DC3FFDCC4840
+708	49 RUE THEOPHILE GAUTIER	\N	29072	4808	0101000020E6100000775D97986926B73F70F91FCBC8C14840
+993	RUE PABLO NERUDA	\N	29160	4820	0101000020E6100000D31FB3161359C63FFE38CC5D6CC64840
 840	RUE HECTOR MALOT	\N	28957	4772	0101000020E610000062438BFA917BF23FC2BAD85128B44840
-994	8 RUE DU CHAMP DE FOIRE	\N	29160	4820	0101000020E610000003A80F48B554C83F91EA01141FC64840
-1147	22 RUE SAINT-LO	\N	28937	4769	0101000020E61000003B97DA396A18FF3F965E7A7FACB84840
-1154	84 RUE SAINT GERVAIS	\N	28937	4769	0101000020E6100000BB05964CE311FD3F0DC0CC98FEB64840
-497	5 RUE ANDRE BERTRAND	\N	29511	4853	0101000020E61000006520D9A0520CF73F79EC46A3ABDE4840
-893	ALLEE DE LA COTE BLANCHE	\N	29074	4804	0101000020E6100000D071C15B1810E13F0102EF477EC24840
-70	351 BOULEVARD DE NORMANDIE	\N	28998	4794	0101000020E61000003330B8079D87EF3FEB69B03E58C34840
-183	RUE DU COLOMBIER	\N	15253	2402	0101000020E6100000B105318E996DF33F347568A299AE4840
+453	23 RUE DU CAPITAINE CHARLES GILLES	\N	29136	4817	0101000020E61000002AAACFECF281D73F596C516EF4E04840
+28	9 RUE DU MONT SAUVEUR	\N	29448	4778	0101000020E61000000A3779C7B243F83F7A86362129C54840
+1317	15 RUE PRINCIPALE	\N	29091	4805	0101000020E610000080702421A8D2DA3F52DD126F53C94840
+586	40 RUE DE LA REPUBLIQUE	\N	29279	4828	0101000020E6100000078DD037B8C0F13FE3E71AC121CF4840
+1014	RUE ANDRE MARTIN	\N	29308	4822	0101000020E61000003F39A22C9031F13F6383E04CA7C54840
+1430	PLACE DU PROFESSEUR GOSSET	\N	29170	4814	0101000020E6100000CD0C643BB4CFC93FC7C5E61D06D54840
+51	309 RUE DE L EGLISE	\N	29213	4796	0101000020E6100000DA496305D629E73FB3607F6567CC4840
+1500	378 RUE DES ECOLES	\N	29355	4796	0101000020E6100000EA51D72B4384E83FBAC7CA1666CA4840
+734	13 AVENUE D ARROMANCHES	\N	29072	4808	0101000020E6100000ACDAB4A097D4C63F2A81BD57E7C04840
+308	2 RUE ROGER CRESSENT	\N	29496	4851	0101000020E610000072CB60EF7227FB3F806B61F5CBC14840
+69	RUE DE L ECOLE	\N	28997	4792	0101000020E610000003EDED1A1DA5ED3F1C39986E8EB74840
+1080	2 AVENUE DES TILLEULS	\N	5798	4786	0101000020E61000003B9B329097E0EF3FA5D5560DBEA74840
+468	248 AVENUE JEAN LORRAIN	\N	29136	4817	0101000020E6100000245E6E95FF07D83F74E70D2091E14840
+1261	RUE CLAUDE GROULARD	\N	29424	4841	0101000020E61000009ED5E16C63E1F23FA943B81336EF4840
+1547	13 GRANDE RUE	\N	29366	4825	0101000020E6100000B55CF1658663E43FC0F61FDBAAE84840
+153	2719 ROUTE DE NEUFCHATEL	\N	28943	4775	0101000020E6100000B989B80B5DD9F13FF114AC50A8BB4840
+901	AVENUE DU CLAIRVAL	\N	29074	4804	0101000020E61000000982FF61D651E13FD40BA1F704C34840
+541	RUE MAURICE THOREZ	\N	29063	4807	0101000020E610000096A6E0A7AC11CE3F8EEC29BD5FC04840
+923	ROUTE DE NEWTON	\N	29552	4832	0101000020E6100000789BC5F821C0F13FC768FC4664E54840
+1419	32 ROUTE DE BLAINVILLE	\N	29598	4855	0101000020E6100000DA034F4F8F95F53FEF0A964D2DC84840
+886	50 RUE DU CLOS DU MOUCHEL	\N	28958	4776	0101000020E6100000F5BCB3279521F23FF5437421B9AB4840
+237	21 AVENUE DE VERSAILLES	\N	29004	4791	0101000020E6100000C5824E4A3986F03F171183C83BB94840
+1469	RUE PIERRE CORNEILLE	\N	28976	4783	0101000020E6100000C6B7AAFE9E7EF13F03701E14B5B54840
+1195	2 RUE GIUSEPPE VERDI	\N	28937	4769	0101000020E610000014C6BBC8A932F23F5EE1F2925EB94840
+1149	32 RUE BLAISE PASCAL	\N	28937	4769	0101000020E6100000F0D47CC5B532F13FFBE5F63FFEF24840
+503	PLACE MARCEL RAGOT	\N	28950	4776	0101000020E61000001DEF8162D3D6F23F34D25AEA83B34840
+397	AVENUE DU CHARTRIER	\N	28979	4786	0101000020E6100000C5CF219E5C1BEF3F9D2FF65EFCA44840
+141	ROUTE DE MORGNY-LA-POMMERAYE	\N	29466	4771	0101000020E6100000DA74921ACBBDF43F4A7B41137AC04840
+278	RUE CHARLES PERRAULT	\N	28978	4785	0101000020E6100000093B251D6E82F03F0B38F88048A74840
+1468	RUE RASPAIL	\N	28976	4783	0101000020E6100000BDCCE08AEC7CF13F25BD1C3443B54840
+1388	60 AVENUE EMMANUEL BRION	\N	29609	4847	0101000020E6100000767F2CAC6A8DF43FB9A7ED57E8D54840
+1204	25 RUE DES AUGUSTINS	\N	28937	4769	0101000020E6100000AAE83393B492F13FCE0AFB2C05B84840
+1078	PLACE DE LA MAIRIE	\N	29313	4827	0101000020E610000070D2F20BC8B9F03FCFAA0981E0E54840
+8	5 RUE DES MOULINS	\N	29372	4836	0101000020E610000040C179FCD4E4F23FD848AF5970F44840
+365	RUE PIERRE ALBERT ROGER	\N	29390	4836	0101000020E610000099FED6627823F13F8B77BAD2B6F44840
+435	1 RUE DE L ECOLE	\N	29265	4821	0101000020E61000007A7E9F116F64EA3F7BC721C949DE4840
+53	72 CHEMIN DE LA CÔTE	\N	28939	4771	0101000020E610000080B9B30285FAF43F290A4F43AFB84840
+1091	VILLAGE	\N	29317	4825	0101000020E61000008A49A3F5FC18E43F8132F8C19AEA4840
+1512	1037 ROUTE DE LA VOIE ROMAINE	\N	29101	4805	0101000020E610000020AB0DAEB62BE33F3835E919EFC94840
+87	2 RUE DE LA FORÊT	\N	29456	4849	0101000020E6100000D053D3E418CFF83F93E1FC7627FA4840
+1110	6 RUE DE LA MAIRIE	\N	27200	4849	0101000020E610000035325809C750FA3FD8E0F1AB41F24840
+186	5 ROUTE D ETRETAT	\N	29116	4815	0101000020E61000005D936B935574D03F901C02AAACD94840
+1356	12 RUE DE L EGLISE	\N	29044	4793	0101000020E610000024D08161D0E4E33F90CF541D2CC74840
+1548	36 GRANDE RUE	\N	29621	4852	0101000020E61000009BC839A25CB9F53F3EB7C824C0ED4840
+663	RUE DE LA VARENNE	\N	29540	4832	0101000020E6100000E098DF15335DF23FEBCD45CFEFEA4840
+1427	PLACE DU 4ÈME COMMANDO	\N	29427	4846	0101000020E6100000DB8F53F5A44CEE3F05EF582A77F44840
+546	160 ROUTE DE CLERES	\N	5380	1523	0101000020E6100000989CBCC34B82EF3FEA2243961ECB4840
+969	VILLAGE	\N	29030	4797	0101000020E6100000BC329D0D619BEC3F16708DD7D5CB4840
+83	8 RUE FRANCIS YARD	\N	28998	4794	0101000020E61000003037EAB1C58FEE3F8BD07C8CC1C54840
+1401	2 PLACE GUILLAUME LE CONQUERANT	\N	29345	4795	0101000020E6100000E20FA42A24EBF13FAC8283835ED64840
+478	18 RUE DE L ECOLE	\N	18160	2929	0101000020E6100000FC0F71F2A9D3EA3FC6A4BF9742D14840
+911	466 RUE DES TILLEULS	\N	29302	4823	0101000020E6100000707A1CA88116ED3F9088C66609DB4840
+985	BD DE BROGLIE	\N	28961	4779	0101000020E6100000DC566EFA9732F13F67D79C0720BB4840
+1051	RUE PAUL MASSET	\N	29033	4803	0101000020E61000002C5BCD352AC2F03F2F79D1913BBE4840
+532	AVENUE LENINE	\N	29063	4807	0101000020E610000094F2627A25BDCD3FE04C4C17E2C04840
+784	10 RUE GUSTAVE FLAUBERT	\N	29072	4808	0101000020E61000000A804AC56191BB3F693E84449CBF4840
+792	4 AVENUE JULES MASSENET	\N	29072	4808	0101000020E6100000770B2C99C623C43F86D2ACA64AC04840
+1102	55 RUE DES ECOLES	\N	28987	4790	0101000020E61000009F430C806072F03F039ECD0DFAB14840
+500	31 ROUTE DE SAINT MARTIN	\N	29139	4811	0101000020E61000002FC235F3BBFBE23FAE1D188294CE4840
+202	RUE DU BOURG	\N	29235	4824	0101000020E61000006825754E284EEA3FC57ABCF3B8E54840
+378	222 RUE VICTOR HUGO	\N	29008	4792	0101000020E6100000CEFB8371052EEC3F8E39741F25BE4840
+1373	67 RUE AUX SAULNIERS	\N	28991	4784	0101000020E6100000B39D9136C5A3F03FFEFE83FE78A34840
+1504	1 RUE JEAN JAURÈS	\N	28993	4785	0101000020E6100000A2B581BF88B3F13F5A39E60238AA4840
+401	RUE PIERRE NOURY	\N	28979	4786	0101000020E610000066C042AE20F2EF3F16B9AF1C84A54840
+1354	1 RUE EDOUARD CANNEVEL	\N	29431	4841	0101000020E6100000AF6C512CD882F33F9BA375F18AF04840
+41	10 RUE JEAN MOULIN	\N	29451	4848	0101000020E6100000183340A40AFFFB3F3AEC191DEBE24840
+1287	98 RUE DE LA REPUBLIQUE	\N	28975	4782	0101000020E610000020DB2A6FE4ADF13F8FF4D4B080B14840
+451	51 PLACE DE L EGLISE	\N	29135	4811	0101000020E61000007BE201B1E1D3E23FCF075782BDD34840
+762	112 RUE ERNEST RENAN	\N	29072	4808	0101000020E610000059EDD183D118BF3F43DDAC66C2BF4840
+945	RUE FRANÇOIS BLANCHARD	\N	29027	4801	0101000020E61000008BF95EE8B659F03F174EEB9952BD4840
+136	151 RUE ANDRE MALLET	\N	29227	4795	0101000020E6100000570159B0D6BEF03FFE83823126DC4840
+882	4 AVENUE JEAN MOULIN	\N	29408	4844	0101000020E61000005009F22D58D4F53F2EB662E203074940
+79	2 RUE JEAN TITELOUZE	\N	28998	4794	0101000020E6100000946C120F6A07EE3F71C0536DDCC64840
+1068	RUE DE THURMASTON	\N	29417	4835	0101000020E61000002B06D8DFC3B9F03F2300CD5AE9EF4840
+386	1 RUE DE LA GARE	\N	28979	4786	0101000020E6100000E124DF028F03F03FACBD57C669A44840
 574	CHEMIN DES COQUEREAUX	\N	28981	4787	0101000020E6100000CE50BBE33D7CDF3FD8C7D843DAC64840
-336	RUE DU PETIT AULNAY	\N	28947	4777	0101000020E6100000F1E83F9E6F91E83FAFCB32BCC0CE4840
+1572	RUE DU DOCTEUR ZAMENHOF	\N	29370	4796	0101000020E61000007471F8FDCB78F03F78AFFFDF7DA74840
+504	461 ROUTE DE BELBEUF	\N	28950	4776	0101000020E6100000A12C6D5280A1F13FDCA3B3A323B84840
+177	130 BIS RUE GEORGES CLEMENCEAU	\N	29059	4805	0101000020E6100000EC306360D699F83F289EB30504CF4840
 1400	24 BIS RUE DU NOROIT	\N	29344	4829	0101000020E61000006EE966B94BA6EC3FFD4CDE7C7AD54840
-1302	AVENUE DE L UNIVERSITE	\N	28975	4782	0101000020E6100000BBB2064D1D34C33FDBB39DA51ABF4840
-248	41 ROUTE DE DUCLAIR	\N	29004	4791	0101000020E6100000A2B3505BB846FB3F4F92AE997CB44840
-1575	365 Av. de l'université	Cedex	28975	4782	\N
-1576	365 Av. de l'université	Dept. ASI	28975	4782	\N
+825	16 RUE DE LA VALLEE	\N	29072	4808	0101000020E61000007B555F4478EFF03F1FC408C0C3F54840
+366	43 CHEMIN DU GOLF	\N	29390	4836	0101000020E6100000DAFBCEDB4AC2C13F6A9FD0E3DEBE4840
+931	444 ROUTE DE DIEPPE	\N	29026	4800	0101000020E610000027E7176704AAF03FB85B2FD9BAC34840
+631	ALLEE DES SAULES	\N	28983	4787	0101000020E6100000C6477296E5CDED3FE57AFC5AEEAC4840
+554	SENTE DU POSTE	\N	757	4776	0101000020E6100000A7A04530BA5EF23F9AF6626252AD4840
+893	ALLEE DE LA COTE BLANCHE	\N	29074	4804	0101000020E6100000D071C15B1810E13F0102EF477EC24840
+225	ROUTE DE SAINT ANDRE DU CAILLY	\N	29242	4828	0101000020E6100000313733887CA8F33F6C713216F2C94840
+1192	9 RUE DU VERT BUISSON	\N	28937	4769	0101000020E6100000924A2041CB94F13FC2621E4311B94840
+1171	8 BIS RUE JOSEPH COURT	\N	28937	4769	0101000020E61000005A9A262FDCB0F13FBEBB5B7AB0B94840
+1161	53 RUE DE CONSTANTINE	\N	28937	4769	0101000020E6100000603DF3146734F13FEECB1D262FB94840
+1166	19 RUE NEWTON	\N	28937	4769	0101000020E610000048CC0591B930F23FFA40B82398BA4840
+1218	44 AVENUE DE LA PORTE DES CHAMPS	\N	28937	4769	0101000020E6100000A3B2FE22AAB0F13F06985C39B9B84840
+434	105 RUE DES ANCIENS COMBATTANTS	\N	29061	4806	0101000020E6100000571021B355F7D33F3FC5F5187AC84840
+557	130 ROUTE D ETAINHUS	\N	29064	4806	0101000020E6100000CE160BA155F6D43F4F7633A31FC94840
+1138	RUE RENE COTY	\N	29084	4807	0101000020E61000004FDA3017AC09D13F5AE873835BC04840
+892	26 RUE DU VILLAGE	\N	29073	4806	0101000020E610000023831E626A88DA3F8E9B12F7F5C54840
+209	PLACE LOUIS ROUSSELIN	\N	29479	4847	0101000020E6100000FC170349AA37F63FD30E0386FAD34840
+1027	ROUTE DE MATHONVILLE	\N	29574	4847	0101000020E6100000D79FDB83C4D1F53F2CF71B5063D24840
+1532	RUE DE L EGLISE	\N	29617	4847	0101000020E610000012DC4D92DCE1F43F8F08BE50DDDA4840
+27	9 RUE DU MONT SAUVEUR	\N	29448	4778	0101000020E61000000A3779C7B243F83F7A86362129C54840
+289	RUE DE L ECOLE	\N	5354	1539	0101000020E610000062484E266E2DFA3FD74366F4C4D84840
+249	1 ROUTE DE SAINT LAURENT	\N	29245	4821	0101000020E6100000C8D698AF49E9EA3F654CEA9998E24840
+658	ROUTE DE MORGNY	\N	28955	4774	0101000020E61000004529F6D7F8F2F33FDFB78C61EFBF4840
+223	HAMEAU DU NID DE GEAI	\N	29240	4825	0101000020E6100000772DDA4968DEE23F99DD8B16BDE74840
+311	5 PLACE GEORGES HOUSSAYE	\N	29498	4849	0101000020E610000028B8F06D0EC0F83F77F4228746F24840
+973	8 RUE ANDRE CARPENTIER	\N	29565	4849	0101000020E61000006660129E3867F93FEC7DF49727FA4840
+514	89 ROUTE DU CHEMIN DES FEES	\N	29270	4828	0101000020E6100000ACDD62BDD233F23F79461108AACF4840
+1306	58 PLACE DE LA MAIRIE	\N	29331	4828	0101000020E61000003B225B6D30DAF23FD7F466F58AC54840
+1421	16 ROUTE DE PUITS MARTIN	\N	15360	5446	0101000020E610000024CF58A8F3F0F13FD23B9137ABE54840
+897	PLACE PIERRE DE COUBERTIN	\N	29074	4804	0101000020E610000073E23157940FE13F4D6CDB8352C24840
+1511	66 ROUTE DE VILLEQUIER	\N	29100	4804	0101000020E61000003F0EDBFA0F17E43F550D67237CC04840
+479	RUE DE LA FORGE	\N	29509	4850	0101000020E61000006C7910FB3741F93FE6140DE7D4DD4840
+744	19 RUE MAURICE BOUCHOR	\N	29072	4808	0101000020E6100000AE20893B37DDC23F62A1B52606C14840
+411	223 ROUTE DE SAINTE AUSTREBERTHE	\N	10020	1524	0101000020E6100000D0E1EA98A4E6EE3F8218AE2F0ECF4840
+1097	RUE DU VAL DE L ESNE	\N	29034	4797	0101000020E61000005E144C1B5F92EE3FBB7D358BC0C84840
+1076	2485 AVENUE DU GENERAL DE GAULLE	\N	28974	4781	0101000020E61000002E48CD330398F13F0790259CABAD4840
+38	19 RUE JULES FERRY	\N	29208	4826	0101000020E6100000954F10EE2EA5F13FF61FA17FE5DB4840
+1060	ROUTE DE LA LEZARDE	\N	29161	4819	0101000020E61000008B72360B1E20CB3F3016C073F3CA4840
+1002	2 AVENUE DU PRESIDENT WILSON	\N	29160	4820	0101000020E6100000E375C01FC5D3C73F0C683398D0C54840
+686	26 RUE LOUIS PASTEUR	\N	28985	4789	0101000020E610000083B214BC2D90F03FC324854755B54840
+309	3 PLACE DE LA MAIRIE	\N	29497	4851	0101000020E6100000D7FD0A69F28CFA3FBED6087123C44840
+425	ROUTE DE LA CROIX DE REALCAN	\N	29261	4824	0101000020E6100000B50E2D03E52EE93FD4761BED1BE64840
+1425	ROUTE DE SAINT WANDRILLE	\N	29039	4792	0101000020E610000030F4D45FB9D2EA3F1C51EB4754C14840
+1268	7 RUE DE LA REPUBLIQUE	\N	28989	4785	0101000020E61000000F1A52299C2BF03F02117FA01EA64840
+445	PLACE DE LA MOUILLETTE	\N	29394	4839	0101000020E610000033D4473157CEF63FA540131F27064940
+1313	345 RUE DE LA MAIRIE	\N	29428	4841	0101000020E610000031ED7534093CF43F020CCB9F6FEC4840
+1438	19 RUE DU PRIEURE	\N	29437	4838	0101000020E61000007EAC7D8D6635F33F27FC8CEAF8F54840
+1209	82 RUE MICHEL RICHARD DELALANDE	\N	28937	4769	0101000020E6100000234808038D49F23F2FAFF1D397B94840
+152	2719 ROUTE DE NEUFCHATEL	\N	28943	4775	0101000020E6100000B989B80B5DD9F13FF114AC50A8BB4840
+212	28 RUE JEAN BAPTISTE DELAMBRE	\N	29118	4813	0101000020E6100000A4312555858DD93FEE86E1E145D04840
+373	1 RUE EUGENE GUILLOTIN	\N	29256	4821	0101000020E61000001EE5BBEF7327E93FFFF9C78C01DC4840
+895	28 RUE DE LA REPUBLIQUE	\N	29074	4804	0101000020E6100000C57087E37F26E13FCD3361C11EC24840
+896	AVENUE DU CLAIRVAL	\N	29074	4804	0101000020E61000000982FF61D651E13FD40BA1F704C34840
+666	5 RUE DE L ABBE DELFORGE	\N	29542	4848	0101000020E61000007B33C577BD77F93F415D077BD1E14840
+450	109 ALLEE DES TILLEULS	\N	29135	4811	0101000020E61000000909CACD6D0BE33F75338A826CD34840
+1086	124 RUE DE L ECOLE	\N	29315	4825	0101000020E6100000D4D9CE99E241E33F2A7390632DDD4840
+859	3 RUE SALVADOR ALLENDE	\N	28973	4780	0101000020E6100000BB06855A36F7F03F8C163D43FAB64840
+399	15 RUE DU TAPIS VERT	\N	28979	4786	0101000020E61000003C802CE15C25F03F86A52666E2A34840
+581	RUE DU DOCTEUR GERNEZ	\N	29065	4805	0101000020E61000003BC512250DEDDE3FD8B36B6B59C74840
+1164	16 RUE MARECHAL GALLIENI	\N	28937	4769	0101000020E610000079B857C59F39F13FC5F6A45D96B54840
+1072	132 RUE GUSTAVE LECOMTE	\N	28974	4781	0101000020E610000070A5B3A0EB9BF13F248AA09C2EAC4840
+811	49 RUE PAULINE KERGOMARD	\N	29072	4808	0101000020E61000002A17208DE70CBD3FEEA4CF5845C34840
+683	5 ALLEE SALVADOR ALLENDE	\N	28985	4789	0101000020E6100000CEE531C379CAF03F909934DBCFB34840
+1514	PLACE DE LA MAIRIE	\N	29190	4814	0101000020E61000005B0FB52643F9CD3FDD154DA9C3CD4840
+999	38 RUE PAUL ELUARD	\N	29160	4820	0101000020E61000002899715ABD31C63FAB251DE5E0C54840
+1213	154 RUE DU RENARD	\N	28937	4769	0101000020E61000004B75DB679010F13F3F08B76BF8B94840
+953	7 CHEMIN DES FAUX SAULNIERS	\N	29411	4836	0101000020E6100000756996E0E141F23F6523083EA3F34840
+1406	4 RUE DE L OISEAU BLEU	\N	29048	4793	0101000020E6100000FEBFD8E5D555E83F32ACC17F63C34840
+1496	RUE GASTON DELACROIX	\N	29354	4795	0101000020E6100000B330FAC044C2F03F0819D02414D74840
+156	260 RUE DU GENERAL DE GAULLE	\N	28943	4775	0101000020E6100000BC58BD6834BEF13F695829909BBC4840
+1437	7 RUE CAUCHOISE	\N	29347	4825	0101000020E610000008C57225E4BEE53FEBB9B7E805E54840
+118	3 PLACE DE LA MAIRIE	\N	29057	4805	0101000020E61000007E1C60F56665DB3F20D82B0BAACB4840
+1021	CHEMIN DES COQUELICOTS	\N	28986	4787	0101000020E6100000732A1900AAE8EE3FCCC9D5D9DAAB4840
+1201	3 RUE DU HAMEAU DES BROUETTES	\N	28937	4769	0101000020E6100000E530F378B547F13FD956581586B64840
+651	4 PLACE DE LA MAIRIE	\N	29152	4814	0101000020E61000002925BDD55E37C83F4E0E1B3CFED54840
+1350	8 RUE DU STADE	\N	29605	4847	0101000020E6100000E920C1EA4EB3F43FE084BECB77D14840
+1034	2 PLACE DE LA MAIRIE	\N	29577	4850	0101000020E6100000D37E9E18EF4DF73FBCEA2201FADA4840
+1467	RUE PIERRE CORNEILLE	\N	28976	4783	0101000020E6100000C6B7AAFE9E7EF13F03701E14B5B54840
+939	PLACE ALAIN	\N	29027	4801	0101000020E610000093E37E2277A2F03F788FBFF644BD4840
+1549	316 BIS RUE DE LA REPUBLIQUE	\N	29053	4792	0101000020E6100000492F0214377FEA3FF9F94A7B5EBA4840
+754	54 AVENUE MAURICE PIMONT	\N	29072	4808	0101000020E61000004BBA8EBA9B3CC43FB24AC88B75C14840
+935	2 PLACE DE LA MAIRIE	\N	29155	4819	0101000020E6100000D92FF1AA7B62D03F7E71883C72C84840
+673	RUE GUSTAVE BOUTIGNY	\N	28985	4789	0101000020E6100000A8E074BB2C80F03FE7B612F4F6B44840
+1347	RUE DES PAPILLONS	\N	29429	4836	0101000020E610000041A51C5CD282F33F76B481A66BFA4840
+140	ROUTE DE MORGNY-LA-POMMERAYE	\N	29466	4771	0101000020E6100000DA74921ACBBDF43F4A7B41137AC04840
+1170	1 RUE PIERRE RENAUDEL	\N	28937	4769	0101000020E6100000CF01E7646077F13F080AB42287B64840
+1162	17 RUE DES AUGUSTINS	\N	28937	4769	0101000020E610000023BD1A339895F13F41E8A8BC00B84840
+629	ALLEE DES SAULES	\N	28983	4787	0101000020E6100000C6477296E5CDED3FE57AFC5AEEAC4840
+740	3 ALLEE LEON MOUSSINAC	\N	29072	4808	0101000020E61000001C9998456060C73F63507D5233C14840
+697	32 RUE JULES VALLES	\N	29072	4808	0101000020E6100000BF8B61C89697C63F7361E63387C14840
+1000	20 RUE CHARLES BLANCHET	\N	29160	4820	0101000020E6100000370D29BD71BDC83F95102872F3C54840
+949	34 RUE FERDINAND CARTIER	\N	29027	4801	0101000020E6100000EB614968B4B5F03FEDEB868E19BE4840
+1225	36 BIS AVENUE DES CANADIENS	\N	28937	4769	0101000020E610000080950E999C61F13F3D19F3A57DB94840
+455	29 RUE DE L INONDATION	\N	29136	4817	0101000020E6100000381247A2C070D83F4D226F77DEE04840
+297	6 ROUTE DE TURRETOT	\N	29126	4814	0101000020E6100000CC5063E259F9D03FE0901D861CD24840
+255	RUE DE LA SAINTE-GERTRUDE	\N	29006	4793	0101000020E610000054082830442EE73FEF5EC51472C34840
+338	22 RUE JACQUES PREVERT	\N	29390	4836	0101000020E610000025EBB74921A5F13F75CC9AD4A7F54840
+70	351 BOULEVARD DE NORMANDIE	\N	28998	4794	0101000020E6100000C259936C4A39B93FEB69B03E58C34840
+3197	365 AV. DE L'UNIVERSITé	DEPT. ASI	28975	4782	0101000020E61000000ECD8646C1FDF03F15E06014A9B14840
+3198	40 RUE DES PRAIRIES	\N	28937	4769	0101000020E610000063145F48E280F13FE0DCBAF660B84840
+3199	26 RUE SAINT NICOLAS		28937	4769	0101000020E61000001460B3B7EF8CF13F24EAAAE573B84840
+3200	40 RUE DES PRAIRIES		28937	4769	0101000020E610000063145F48E280F13FE0DCBAF660B84840
+3196	365 AV. DE L'UNIVERSITé	CéDEX	28937	4769	0101000020E610000063145F48E280F13FE0DCBAF660B84840
 \.
 
 
@@ -2881,7 +3070,7 @@ COPY adresse (id, adresse, complement, ville_id, code_postal_id, geolocalisation
 -- Name: adresse_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('adresse_id_seq', 1577, true);
+SELECT pg_catalog.setval('adresse_id_seq', 3200, true);
 
 
 --
@@ -2902,9 +3091,12 @@ COPY appartient (etablissement_id, contact_id) FROM stdin;
 --
 
 COPY benevole (id, username, username_canonical, email, email_canonical, enabled, salt, password, last_login, locked, expired, expires_at, confirmation_token, password_requested_at, roles, credentials_expired, credentials_expire_at, nom, prenom, tel_fixe, tel_portable, adresse_id, activites_potentielles, responsabilite_activite) FROM stdin;
-13	unipik	unipik	unipik@yopmail.com	unipik@yopmail.com	t	hwskw41e0js4c8sccgwgs4skwscs4sc	$2y$13$dGjP65UxUxpHetsfc/a/G.Gy5CKS9XuW1gdBdRujvYKlTTdKJx982	2016-10-20 09:40:20	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Unipik	PIC	0102030405	0605040302	1575	{(actions_ponctuelles),(plaidoyers),(frimousses),(projets),(autre)}	{(actions_ponctuelles),(plaidoyers),(frimousses),(projets),(admin_region),(admin_comite)}
-14	mmainguenaud	mmainguenaud	michel.mainguenaud@insa-rouen.fr	michel.mainguenaud@insa-rouen.fr	t	kdgrlnf7ae8kog8ko4wwgsw4008kkgg	$2y$13$GtxbEnqV04D2HS3rSDcUYeZaw6Na16VxuvcIDLVCay3Az/j70R5ki	2016-10-20 09:45:09	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Mainguenaud	Michel	0102030405	0605040302	1576	{}	{}
-15	cguest	cguest	cathyguest@yopmail.com	cathyguest@yopmail.com	t	1yhypnr6gpz48cgw8kgw8gsgw0s8400	$2y$13$IW3tZRKICtvjdMnXZUAG2uejOzRZNwe/1NkGDHfYjHE692Ko4nHdm	2016-10-20 09:47:23	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Guest	Catherine	0102030405	0605040302	1577	{(plaidoyers)}	{(plaidoyers)}
+14	unipik	unipik	unipik@yopmail.com	unipik@yopmail.com	t	8gakvp2i1fcww4wk04oosg0sc480k0o	$2y$13$0xs7ikxcD6X.lUSuAQXBO.KQvQDWbifel/lA3x/e029bbkMk0/ZRu	2016-11-28 11:13:29	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Unipik	Pic	0102030404	0605040302	3196	{}	{}
+16	mmainguenaud	mmainguenaud	michel.mainguenaud@insa-rouen.fr	michel.mainguenaud@insa-rouen.fr	t	f68odffw2ds8wkw40sw444g4kg04wc4	$2y$13$17y05HJoUePaT5rzPbaFl.c47.6rKy9BNiuBleQClw6w.VhaFRUdu	2016-11-28 10:02:36	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Mainguenaud	Michel	0102030405	0605040302	3197	{}	{}
+15	anonyme	xxxxxx	xxxxxx@xxxxxx.xxxxxx	xxxxxx@xxxxxx.xxxxxx	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$iUW6/KVzaux5HD0rVkpAq.MJyyKEo8XdKBdFe/DRJKobRauMal3Um	\N	f	f	\N	\N	\N	a:0:{}	f	\N	anonyme	benevole	0000000000	0000000000	1	\N	\N
+18	vbarbier	vbarbier	veroniquebarbier@yopmail.com	veroniquebarbier@yopmail.com	t	fhk7tj7bcs0s0ggcow844coggss0osg	$2y$13$70d98oDzS7Jgwhw4ohpXyODUt4of.xt9vnlZL/Q5aGYD7ISa/Z/SO	2016-11-28 10:15:47	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Barbier	Véronique	0235889888	0622564030	3199	{(actions_ponctuelles),(plaidoyers),(projets)}	\N
+17	cguest	cguest	cathyguest76@gmail.com	cathyguest76@gmail.com	t	m4an32sh6j4cgwo4gok44kw088o008s	$2y$13$BWR8v/9MMmR8XlRqJ9u0UeO4ocVNBoSuaajTMe3k2k0f3IS/LA5d6	2016-11-28 10:09:58	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Guest	Catherine	0276002224	0603935018	3198	{}	{}
+19	unicef	unicef	simple.utilisateur@yopmail.com	simple.utilisateur@yopmail.com	t	oazx2psi340wg8ckcc48kggsccgkw0k	$2y$13$cNNw057oTZDmSZwaEiULAOD2jzfUliOF8kjzOQzLc3un8oPV4sWNm	2016-11-28 11:03:14	f	f	\N	\N	\N	a:0:{}	f	\N	Unicef	Utilisateur	\N	\N	3200	\N	\N
 \.
 
 
@@ -2920,7 +3112,7 @@ COPY benevole_comite (benevole_id, comite_id) FROM stdin;
 -- Name: benevole_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('benevole_id_seq', 15, true);
+SELECT pg_catalog.setval('benevole_id_seq', 19, true);
 
 
 --
@@ -9056,73 +9248,6 @@ COPY code_postal (id, code, departement_id) FROM stdin;
 6118	97690	102
 6119	97630	102
 6120	97640	102
-6121	76000	103
-6122	76000	104
-6123	76000	105
-6128	76000	110
-6129	76000	111
-6130	76000	112
-6135	76000	117
-6136	76000	118
-6137	76000	119
-6142	76000	124
-6143	76000	125
-6144	76000	126
-6151	76000	133
-6152	76000	134
-6153	76000	135
-6158	76000	140
-6159	76000	141
-6162	76000	144
-6163	76000	145
-6166	76000	152
-6167	76000	153
-6168	76000	154
-6175	76000	161
-6176	76000	162
-6177	76000	163
-6182	76000	168
-6183	76000	169
-6186	76000	172
-6187	76000	173
-6190	76000	180
-6191	76000	181
-6192	76000	182
-6199	76000	189
-6200	76000	190
-6201	76000	191
-6202	76000	192
-6203	76000	193
-6204	76000	194
-6205	76000	195
-6206	76000	196
-6211	76000	201
-6212	76000	202
-6213	76000	203
-6214	76000	204
-6215	76000	205
-6216	76000	206
-6221	76000	211
-6222	76000	212
-6225	76000	215
-6226	76000	216
-6229	76000	223
-6230	76000	224
-6231	76000	225
-6238	76000	232
-6239	76000	233
-6240	76000	234
-6241	76000	235
-6242	76000	236
-6243	76000	237
-6244	76000	238
-6245	76000	239
-6250	76000	244
-6251	76000	245
-6252	76000	246
-6253	76000	247
-6254	76000	248
-6255	76000	249
 \.
 
 
@@ -9130,16 +9255,16 @@ COPY code_postal (id, code, departement_id) FROM stdin;
 -- Name: code_postal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('code_postal_id_seq', 6454, true);
+SELECT pg_catalog.setval('code_postal_id_seq', 7756, true);
 
 
 --
 -- Data for Name: comite; Type: TABLE DATA; Schema: public; Owner: unipik
 --
 
-COPY comite (id) FROM stdin;
-1
-2
+COPY comite (id, nom) FROM stdin;
+1	Comité de Seine-Maritime
+2	Comité de l'Eure
 \.
 
 
@@ -9402,6 +9527,133 @@ COPY comite_niveau_theme (comite, niveau_theme) FROM stdin;
 1	235
 1	236
 1	237
+1	238
+1	239
+1	240
+1	241
+1	242
+1	243
+1	244
+1	245
+1	246
+1	247
+1	248
+1	249
+1	250
+1	251
+1	252
+1	253
+1	254
+1	255
+1	256
+1	257
+1	258
+1	259
+1	260
+1	261
+1	262
+1	263
+1	264
+1	265
+1	266
+1	267
+1	268
+1	269
+1	270
+1	271
+1	272
+1	273
+1	274
+1	275
+1	276
+1	277
+1	278
+1	279
+1	280
+1	281
+1	282
+1	283
+1	284
+1	285
+1	286
+1	287
+1	288
+1	289
+1	290
+1	291
+1	292
+1	293
+1	294
+1	295
+1	296
+1	297
+1	298
+1	299
+1	300
+1	301
+1	302
+1	303
+1	304
+1	305
+1	306
+1	307
+1	308
+1	309
+1	310
+1	311
+1	312
+1	313
+1	314
+1	315
+1	316
+1	317
+1	318
+1	319
+1	320
+1	321
+1	322
+1	323
+1	324
+1	325
+1	326
+1	327
+1	328
+1	329
+1	330
+1	331
+1	332
+1	333
+1	334
+1	335
+1	336
+1	337
+1	338
+1	339
+1	340
+1	341
+1	342
+1	343
+1	344
+1	345
+1	346
+1	347
+1	348
+1	349
+1	350
+1	351
+1	352
+1	353
+1	354
+1	355
+1	356
+1	357
+1	358
+1	359
+1	360
+1	361
+1	362
+1	363
+1	364
 \.
 
 
@@ -9415,7 +9667,8 @@ COPY contact (id, email, nom, prenom, tel_fixe, tel_portable, type_contact, est_
 3	contact3@contact.fr	nom3	prenom3	\N	0247282552	eleve	\N	f	{(plaidoyers),(actions_ponctuelles)}
 4	contact4@contact.fr	nom4	prenom4	\N	\N	etudiant	t	\N	\N
 5	contact5@contact.fr	nom5	prenom5	\N	\N	autre	\N	t	{(frimousses),(projets),(autre)}
-6	pierre@yopmail.com	porche	pierre	0102030405	0605040302	enseignant	\N	t	\N
+6	mon.email@yopmail.com	Marie	Jean	0102030405	\N	enseignant	\N	f	\N
+7	contact@yopmail.com	Marie	Jean	\N	\N	enseignant	\N	f	\N
 \.
 
 
@@ -9423,21 +9676,23 @@ COPY contact (id, email, nom, prenom, tel_fixe, tel_portable, type_contact, est_
 -- Name: contact_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('contact_id_seq', 6, true);
+SELECT pg_catalog.setval('contact_id_seq', 7, true);
 
 
 --
 -- Data for Name: demande; Type: TABLE DATA; Schema: public; Owner: unipik
 --
 
-COPY demande (id, contact_id, date_demande, liste_semaine) FROM stdin;
-1	1	2016-12-05	{(40),(42)}
-2	2	2016-11-05	{(3),(7),(42),(51)}
-3	3	2016-10-05	{(1),(12)}
-4	4	2016-09-30	{(24),(25),(34),(37),(1),(12)}
-5	5	2016-12-15	{(34),(37)}
-6	6	2016-10-19	{(41),(42),(43)}
-7	6	2016-10-19	{(41),(42),(43)}
+COPY demande (id, contact_id, date_demande, date_debut_disponibilite, date_fin_disponibilite) FROM stdin;
+1	1	2016-12-05	2017-01-02	2017-02-02
+2	2	2016-11-05	2017-02-02	2017-03-02
+3	3	2016-10-05	2016-10-15	2016-12-02
+4	4	2016-09-30	2016-10-02	2016-12-16
+5	5	2016-12-15	2017-01-02	2017-03-02
+6	6	2016-11-28	2016-12-01	2017-03-31
+7	7	2016-11-28	2016-11-28	2017-04-30
+8	7	2016-11-28	2017-01-01	2017-05-31
+9	7	2016-11-28	2016-11-28	2017-04-30
 \.
 
 
@@ -9445,7 +9700,7 @@ COPY demande (id, contact_id, date_demande, liste_semaine) FROM stdin;
 -- Name: demande_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('demande_id_seq', 7, true);
+SELECT pg_catalog.setval('demande_id_seq', 9, true);
 
 
 --
@@ -9453,6 +9708,54 @@ SELECT pg_catalog.setval('demande_id_seq', 7, true);
 --
 
 COPY demande_moments_a_eviter (demande_moments_a_eviter, moments_a_eviter) FROM stdin;
+1	5
+1	6
+1	7
+1	8
+1	9
+1	10
+1	11
+1	12
+2	1
+2	2
+2	3
+2	4
+2	6
+2	7
+2	8
+2	9
+2	10
+2	11
+2	12
+3	1
+3	2
+3	3
+3	4
+3	5
+4	7
+4	8
+4	9
+4	10
+4	11
+4	12
+5	1
+5	2
+5	3
+5	4
+5	5
+5	6
+5	7
+5	10
+5	11
+5	12
+6	5
+6	6
+7	5
+7	6
+7	7
+7	8
+9	9
+9	10
 \.
 
 
@@ -9461,6 +9764,45 @@ COPY demande_moments_a_eviter (demande_moments_a_eviter, moments_a_eviter) FROM 
 --
 
 COPY demande_moments_voulus (demande_moments_voulus, moments_voulus) FROM stdin;
+1	1
+1	2
+1	3
+1	4
+2	5
+3	6
+3	7
+3	8
+3	9
+3	10
+3	11
+3	12
+4	1
+4	2
+4	3
+4	4
+4	5
+4	6
+5	8
+5	9
+6	7
+6	8
+6	1
+6	4
+6	10
+7	9
+7	10
+7	1
+7	4
+8	1
+8	3
+8	5
+8	7
+8	9
+9	7
+9	8
+9	5
+9	2
+9	4
 \.
 
 
@@ -9571,82 +9913,6 @@ COPY departement (id, nom, numero, region_id) FROM stdin;
 100	REUNION	974	26
 101	SAINT-PIERRE-ET-MIQUELON	975	27
 102	MAYOTTE	976	28
-103	Eure	27	41
-104	Eure	27	42
-105	Eure	27	43
-110	Eure	27	52
-111	Eure	27	53
-112	Eure	27	54
-117	Eure	27	63
-118	Eure	27	64
-119	Eure	27	65
-124	Eure	27	74
-125	Eure	27	75
-126	Eure	27	76
-133	Eure	27	83
-134	Eure	27	84
-135	Eure	27	85
-140	Eure	27	90
-141	Eure	27	91
-144	Eure	27	94
-145	Eure	27	95
-148	Eure	27	98
-149	Eure	27	99
-151	Departement inexistante	27	101
-152	Eure	27	106
-153	Eure	27	107
-154	Eure	27	108
-161	Eure	27	115
-162	Eure	27	116
-163	Eure	27	117
-168	Eure	27	122
-169	Eure	27	123
-172	Eure	27	126
-173	Eure	27	127
-176	Eure	27	130
-177	Eure	27	131
-179	Departement inexistante	27	133
-180	Eure	27	138
-181	Eure	27	139
-182	Eure	27	140
-189	Eure	27	147
-190	Eure	27	148
-191	Eure	27	149
-192	Eure	27	150
-193	Eure	27	151
-194	Eure	27	152
-195	Eure	27	153
-196	Eure	27	154
-201	Eure	27	159
-202	Eure	27	160
-203	Eure	27	161
-204	Eure	27	162
-205	Eure	27	163
-206	Eure	27	164
-211	Eure	27	169
-212	Eure	27	170
-215	Eure	27	173
-216	Eure	27	174
-219	Eure	27	177
-220	Eure	27	178
-222	Departement inexistante	27	180
-223	Eure	27	185
-224	Eure	27	186
-225	Eure	27	187
-232	Eure	27	194
-233	Eure	27	195
-234	Eure	27	196
-235	Eure	27	197
-236	Eure	27	198
-237	Eure	27	199
-238	Eure	27	200
-239	Eure	27	201
-244	Eure	27	206
-245	Eure	27	207
-246	Eure	27	208
-247	Eure	27	209
-248	Eure	27	210
-249	Eure	27	211
 \.
 
 
@@ -9654,7 +9920,7 @@ COPY departement (id, nom, numero, region_id) FROM stdin;
 -- Name: departement_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('departement_id_seq', 468, true);
+SELECT pg_catalog.setval('departement_id_seq', 1753, true);
 
 
 --
@@ -9662,41 +9928,40 @@ SELECT pg_catalog.setval('departement_id_seq', 468, true);
 --
 
 COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignement, type_centre, type_autre_etablissement) FROM stdin;
-2	0761377J	2	\N	0235960379	{(0761377J@ac-rouen.fr)}	maternelle	\N	\N
-3	0760847H	3	\N	0235830779	{(0760847H@ac-rouen.fr)}	elementaire	\N	\N
+2	0761377J	2	ECOLE MATERNELLE DE ALVIMARE	0235960379	{(0761377J@ac-rouen.fr)}	maternelle	\N	\N
+3	0760847H	3	ECOLE ELEMENTAIRE DE AMBRUMESNIL	0235830779	{(0760847H@ac-rouen.fr)}	elementaire	\N	\N
 4	0762519A	4	ECOLE ELEMENTAIRE GERARD PHILIPE	0235234523	{(0762519A@ac-rouen.fr)}	elementaire	\N	\N
 5	0762520B	5	ECOLE MATERNELLE LOUISE MICHEL	0235237720	{(0762520B@ac-rouen.fr)}	maternelle	\N	\N
-6	0760613D	6	ECOLE ELEMENTAIRE CAMILLE CLAUDEL	0235323625	{(0760613D@ac-rouen.fr)}	elementaire	\N	\N
-7	0760613D	6	ECOLE MATERNELLE CAMILLE CLAUDEL	0235323625	{(0760613D@ac-rouen.fr)}	maternelle	\N	\N
-8	0760389K	8	\N	0235041332	{(0760389K@ac-rouen.fr)}	maternelle	\N	\N
-9	0760885Z	9	\N	0235969229	{(0760885Z@ac-rouen.fr)}	elementaire	\N	\N
-10	0761038R	10	\N	0235560319	{(0761038R@ac-rouen.fr)}	elementaire	\N	\N
-11	0761038R	10	\N	0235560319	{(0761038R@ac-rouen.fr)}	maternelle	\N	\N
-12	0761439B	12	\N	0235277083	{(0761439B@ac-rouen.fr)}	elementaire	\N	\N
-13	0761878D	13	ECOLE ELEMENTAIRE BERNARD GAUVAIN	0235209375	{(0761878D@ac-rouen.fr)}	elementaire	\N	\N
-14	0761878D	13	ECOLE MATERNELLE BERNARD GAUVAIN	0235209375	{(0761878D@ac-rouen.fr)}	maternelle	\N	\N
-15	0761013N	15	\N	0235299933	{(0761013N@ac-rouen.fr)}	elementaire	\N	\N
-16	0761395D	16	\N	0235970293	{(0761395D@ac-rouen.fr)}	elementaire	\N	\N
-17	0761396E	17	\N	0235970391	{(0761396E@ac-rouen.fr)}	maternelle	\N	\N
-18	0760643L	18	\N	0235203915	{(0760643L@ac-rouen.fr)}	elementaire	\N	\N
-19	0761397F	19	\N	0235573157	{(0761397F@ac-rouen.fr)}	elementaire	\N	\N
-20	0761469J	20	ECOLE ELEMENTAIRE JEAN MERMOZ	0235375878	{(0761469J@ac-rouen.fr)}	elementaire	\N	\N
-21	0761469J	20	ECOLE MATERNELLE JEAN MERMOZ	0235375878	{(0761469J@ac-rouen.fr)}	maternelle	\N	\N
-22	0763360P	22	\N	0235843490	{(0763360P@ac-rouen.fr)}	elementaire	\N	\N
-23	0760707F	23	\N	0235040566	{(0760707F@ac-rouen.fr)}	elementaire	\N	\N
-24	0763360P	22	\N	0235843490	{(0763360P@ac-rouen.fr)}	maternelle	\N	\N
-25	0761440C	25	\N	0235276283	{(0761440C@ac-rouen.fr)}	elementaire	\N	\N
-26	0760667M	26	\N	0235952468	{(0760667M@ac-rouen.fr)}	elementaire	\N	\N
+6	0760613D	7	ECOLE ELEMENTAIRE CAMILLE CLAUDEL	0235323625	{(0760613D@ac-rouen.fr)}	elementaire	\N	\N
+7	0760613D	7	ECOLE MATERNELLE CAMILLE CLAUDEL	0235323625	{(0760613D@ac-rouen.fr)}	maternelle	\N	\N
+8	0760389K	8	ECOLE MATERNELLE DE ANCOURT	0235041332	{(0760389K@ac-rouen.fr)}	maternelle	\N	\N
+9	0760885Z	9	ECOLE ELEMENTAIRE DE ANCOURTEVILLE-SUR-HERICOURT	0235969229	{(0760885Z@ac-rouen.fr)}	elementaire	\N	\N
+10	0761038R	11	ECOLE ELEMENTAIRE DE ANCRETIEVILLE-SAINT-VICTOR	0235560319	{(0761038R@ac-rouen.fr)}	elementaire	\N	\N
+12	0761439B	12	ECOLE ELEMENTAIRE DE ANGERVILLE-BAILLEUL	0235277083	{(0761439B@ac-rouen.fr)}	elementaire	\N	\N
+13	0761878D	14	ECOLE ELEMENTAIRE BERNARD GAUVAIN	0235209375	{(0761878D@ac-rouen.fr)}	elementaire	\N	\N
+14	0761878D	14	ECOLE MATERNELLE BERNARD GAUVAIN	0235209375	{(0761878D@ac-rouen.fr)}	maternelle	\N	\N
+15	0761013N	15	ECOLE ELEMENTAIRE DE ANGERVILLE-LA-MARTEL	0235299933	{(0761013N@ac-rouen.fr)}	elementaire	\N	\N
+16	0761395D	16	ECOLE ELEMENTAIRE DE ANGIENS	0235970293	{(0761395D@ac-rouen.fr)}	elementaire	\N	\N
+17	0761396E	17	ECOLE MATERNELLE DE ANGIENS	0235970391	{(0761396E@ac-rouen.fr)}	maternelle	\N	\N
+18	0760643L	18	ECOLE ELEMENTAIRE DE ANGLESQUEVILLE-L ESNEVAL	0235203915	{(0760643L@ac-rouen.fr)}	elementaire	\N	\N
+19	0761397F	19	ECOLE ELEMENTAIRE DE ANGLESQUEVILLE-LA-BRAS-LONG	0235573157	{(0761397F@ac-rouen.fr)}	elementaire	\N	\N
+20	0761469J	21	ECOLE ELEMENTAIRE JEAN MERMOZ	0235375878	{(0761469J@ac-rouen.fr)}	elementaire	\N	\N
+21	0761469J	21	ECOLE MATERNELLE JEAN MERMOZ	0235375878	{(0761469J@ac-rouen.fr)}	maternelle	\N	\N
+22	0763360P	24	ECOLE ELEMENTAIRE DE ANNEVILLE-SUR-SCIE	0235843490	{(0763360P@ac-rouen.fr)}	elementaire	\N	\N
+23	0760707F	23	ECOLE ELEMENTAIRE DE ANNEVILLE-SUR-SCIE	0235040566	{(0760707F@ac-rouen.fr)}	elementaire	\N	\N
+24	0763360P	24	ECOLE MATERNELLE DE ANNEVILLE-SUR-SCIE	0235843490	{(0763360P@ac-rouen.fr)}	maternelle	\N	\N
+25	0761440C	25	ECOLE ELEMENTAIRE DE ANNOUVILLE-VILMESNIL	0235276283	{(0761440C@ac-rouen.fr)}	elementaire	\N	\N
+26	0760667M	26	ECOLE ELEMENTAIRE DE ANQUETIERVILLE	0235952468	{(0760667M@ac-rouen.fr)}	elementaire	\N	\N
 27	0760306V	27	ECOLE ELEMENTAIRE LE MONT-HULEU	0235099616	{(0760306V@ac-rouen.fr)}	elementaire	\N	\N
 28	0760306V	27	ECOLE MATERNELLE LE MONT-HULEU	0235099616	{(0760306V@ac-rouen.fr)}	maternelle	\N	\N
-29	0762707E	29	\N	0235855107	{(0762707E@ac-rouen.fr)}	elementaire	\N	\N
-30	0760848J	30	\N	0235855168	{(0760848J@ac-rouen.fr)}	maternelle	\N	\N
-31	0760326S	31	\N	0235937329	{(0760326S@ac-rouen.fr)}	elementaire	\N	\N
-32	0760587A	32	\N	0235934145	{(0760587A@ac-rouen.fr)}	elementaire	\N	\N
-33	0760851M	33	\N	0235845475	{(0760851M@ac-rouen.fr)}	elementaire	\N	\N
-34	0760733J	34	\N	0235389200	{(0760733J@ac-rouen.fr)}	elementaire	\N	\N
-35	0763334L	35	\N	0235295559	{(0763334L@ac-rouen.fr)}	elementaire	\N	\N
-36	0762938F	36	\N	0235320387	{(0762938F@ac-rouen.fr)}	maternelle	\N	\N
+29	0762707E	29	ECOLE ELEMENTAIRE DE ARQUES-LA-BATAILLE	0235855107	{(0762707E@ac-rouen.fr)}	elementaire	\N	\N
+30	0760848J	30	ECOLE MATERNELLE DE ARQUES-LA-BATAILLE	0235855168	{(0760848J@ac-rouen.fr)}	maternelle	\N	\N
+31	0760326S	31	ECOLE ELEMENTAIRE DE AUBEGUIMONT	0235937329	{(0760326S@ac-rouen.fr)}	elementaire	\N	\N
+32	0760587A	32	ECOLE ELEMENTAIRE DE AUBERMESNIL-AUX-ERABLES	0235934145	{(0760587A@ac-rouen.fr)}	elementaire	\N	\N
+33	0760851M	33	ECOLE ELEMENTAIRE DE AUBERMESNIL-BEAUMAIS	0235845475	{(0760851M@ac-rouen.fr)}	elementaire	\N	\N
+34	0760733J	34	ECOLE ELEMENTAIRE DE AUBERVILLE-LA-CAMPAGNE	0235389200	{(0760733J@ac-rouen.fr)}	elementaire	\N	\N
+35	0763334L	35	ECOLE ELEMENTAIRE DE AUBERVILLE-LA-RENAULT	0235295559	{(0763334L@ac-rouen.fr)}	elementaire	\N	\N
+36	0762938F	36	ECOLE MATERNELLE DE AUFFAY	0235320387	{(0762938F@ac-rouen.fr)}	maternelle	\N	\N
 37	0761956N	37	COLLEGE RENE COTY	0232808300	{(0761956N@ac-rouen.fr)}	college	\N	\N
 38	0760987K	38	ECOLE ELEMENTAIRE JULES FERRY	0235328252	{(0760987K@ac-rouen.fr)}	elementaire	\N	\N
 39	0762107C	39	COLLEGE HENRY DUNANT	0235934350	{(0762107C@ac-rouen.fr)}	college	\N	\N
@@ -9704,37 +9969,38 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 41	0761879E	41	ECOLE ELEMENTAIRE GUY DE MAUPASSANT	0235934057	{(0761879E@ac-rouen.fr)}	elementaire	\N	\N
 42	0761995F	42	ECOLE ELEMENTAIRE JEANNE D ARC	0235934151	{(0761995F@ac-rouen.fr)}	elementaire	\N	\N
 43	0760323N	43	ECOLE MATERNELLE CHARLES PERRAULT	0235934065	{(0760323N@ac-rouen.fr)}	maternelle	\N	\N
-44	0760350T	44	\N	0235041218	{(0760350T@ac-rouen.fr)}	elementaire	\N	\N
-45	0760350T	44	\N	0235041218	{(0760350T@ac-rouen.fr)}	maternelle	\N	\N
-46	0760614E	46	\N	0235331003	{(0760614E@ac-rouen.fr)}	elementaire	\N	\N
-47	0761061R	47	\N	0235566573	{(0761061R@ac-rouen.fr)}	elementaire	\N	\N
-48	0761061R	47	\N	0235566573	{(0761061R@ac-rouen.fr)}	maternelle	\N	\N
-49	0761062S	49	\N	0235567025	{(0761062S@ac-rouen.fr)}	elementaire	\N	\N
-50	0761315S	50	\N	0235959480	{(0761315S@ac-rouen.fr)}	lycee	\N	\N
-51	0761062S	49	\N	0235567025	{(0761062S@ac-rouen.fr)}	maternelle	\N	\N
+44	0760350T	45	ECOLE ELEMENTAIRE DE AUPPEGARD	0235041218	{(0760350T@ac-rouen.fr)}	elementaire	\N	\N
+45	0760350T	45	ECOLE MATERNELLE DE AUPPEGARD	0235041218	{(0760350T@ac-rouen.fr)}	maternelle	\N	\N
+11	\N	11	ECOLE MATERNELLE DE ANCRETIEVILLE-SAINT-VICTOR	0235560319	{(0761038R@ac-rouen.fr)}	maternelle	\N	\N
+46	0760614E	46	ECOLE ELEMENTAIRE DE AUTHIEUX-RATIEVILLE	0235331003	{(0760614E@ac-rouen.fr)}	elementaire	\N	\N
+47	0761061R	48	ECOLE ELEMENTAIRE DE AUTRETOT	0235566573	{(0761061R@ac-rouen.fr)}	elementaire	\N	\N
+48	0761061R	48	ECOLE MATERNELLE DE AUTRETOT	0235566573	{(0761061R@ac-rouen.fr)}	maternelle	\N	\N
+49	0761062S	49	ECOLE ELEMENTAIRE DE AUZEBOSC	0235567025	{(0761062S@ac-rouen.fr)}	elementaire	\N	\N
+50	0761315S	50	LYCEE DE AUZEBOSC	0235959480	{(0761315S@ac-rouen.fr)}	lycee	\N	\N
+51	0761062S	49	ECOLE MATERNELLE DE AUZEBOSC	0235567025	{(0761062S@ac-rouen.fr)}	maternelle	\N	\N
 52	0761039S	52	ECOLE ELEMENTAIRE VAL DES MARES	0235968079	{(0761039S@ac-rouen.fr)}	elementaire	\N	\N
-53	0760434J	53	\N	0235235556	{(0760434J@ac-rouen.fr)}	elementaire	\N	\N
-54	0760351U	54	\N	0235041651	{(0760351U@ac-rouen.fr)}	elementaire	\N	\N
-55	0761270T	55	\N	0235903462	{(0761270T@ac-rouen.fr)}	elementaire	\N	\N
-56	0761596X	56	\N	0235936484	{(0761596X@ac-rouen.fr)}	elementaire	\N	\N
-57	0762627T	57	\N	0235853799	{(0762627T@ac-rouen.fr)}	elementaire	\N	\N
-58	0762627T	57	\N	0235853799	{(0762627T@ac-rouen.fr)}	maternelle	\N	\N
+53	0760434J	53	ECOLE ELEMENTAIRE DE AUZOUVILLE-SUR-RY	0235235556	{(0760434J@ac-rouen.fr)}	elementaire	\N	\N
+54	0760351U	54	ECOLE ELEMENTAIRE DE AUZOUVILLE-SUR-SAANE	0235041651	{(0760351U@ac-rouen.fr)}	elementaire	\N	\N
+55	0761270T	55	ECOLE ELEMENTAIRE DE AVESNES-EN-BRAY	0235903462	{(0761270T@ac-rouen.fr)}	elementaire	\N	\N
+56	0761596X	56	ECOLE ELEMENTAIRE DE AVESNES-EN-VAL	0235936484	{(0761596X@ac-rouen.fr)}	elementaire	\N	\N
+57	0762627T	58	ECOLE ELEMENTAIRE DE AVREMESNIL	0235853799	{(0762627T@ac-rouen.fr)}	elementaire	\N	\N
+58	0762627T	58	ECOLE MATERNELLE DE AVREMESNIL	0235853799	{(0762627T@ac-rouen.fr)}	maternelle	\N	\N
 59	0760004S	59	COLLEGE GUY DE MAUPASSANT	0235832007	{(0760004S@ac-rouen.fr)}	college	\N	\N
 60	0762977Y	60	ECOLE ELEMENTAIRE BACQUEVILLE-PIERVILLE	0235832112	{(0762977Y@ac-rouen.fr)}	elementaire	\N	\N
 61	0761996G	61	ECOLE ELEMENTAIRE SAINT LEONARD	0235832834	{(0761996G@ac-rouen.fr)}	elementaire	\N	\N
 62	0762658B	62	ECOLE MATERNELLE PIERREVILLE	0235837423	{(0762658B@ac-rouen.fr)}	maternelle	\N	\N
-63	0760699X	63	\N	0232970212	{(0760699X@ac-rouen.fr)}	elementaire	\N	\N
-64	0760701Z	64	\N	0235949534	{(0760701Z@ac-rouen.fr)}	maternelle	\N	\N
-65	0762069L	65	\N	0235859227	{(0762069L@ac-rouen.fr)}	elementaire	\N	\N
-66	0762069L	65	\N	0235859227	{(0762069L@ac-rouen.fr)}	maternelle	\N	\N
+63	0760699X	63	ECOLE ELEMENTAIRE DE BAILLEUL-NEUVILLE	0232970212	{(0760699X@ac-rouen.fr)}	elementaire	\N	\N
+64	0760701Z	64	ECOLE MATERNELLE DE BAILLOLET	0235949534	{(0760701Z@ac-rouen.fr)}	maternelle	\N	\N
+65	0762069L	66	ECOLE ELEMENTAIRE DE BAILLY-EN-RIVIERE	0235859227	{(0762069L@ac-rouen.fr)}	elementaire	\N	\N
+66	0762069L	66	ECOLE MATERNELLE DE BAILLY-EN-RIVIERE	0235859227	{(0762069L@ac-rouen.fr)}	maternelle	\N	\N
 67	0761063T	67	ECOLE MATERNELLE JEAN DE LA FONTAINE	0235566672	{(0761063T@ac-rouen.fr)}	maternelle	\N	\N
-68	0761470K	68	\N	0235370706	{(0761470K@ac-rouen.fr)}	elementaire	\N	\N
-69	0761470K	68	\N	0235370706	{(0761470K@ac-rouen.fr)}	maternelle	\N	\N
+68	0761470K	68	ECOLE ELEMENTAIRE DE BARDOUVILLE	0235370706	{(0761470K@ac-rouen.fr)}	elementaire	\N	\N
+69	0761470K	68	ECOLE MATERNELLE DE BARDOUVILLE	0235370706	{(0761470K@ac-rouen.fr)}	maternelle	\N	\N
 70	0762764S	70	COLLEGE ANDRE MARIE	0235923669	{(0762764S@ac-rouen.fr)}	college	\N	\N
 71	0762286X	71	COLLEGE CATHERINE BERNARD	0232949350	{(0762286X@ac-rouen.fr)}	college	\N	\N
 72	0763022X	72	ECOLE ELEMENTAIRE ANATOLE FRANCE-ANNA DE NOAILLE	0235910606	{(0763022X@ac-rouen.fr)}	elementaire	\N	\N
 73	0762522D	73	ECOLE ELEMENTAIRE LA CHAMPMESLE FONTENELLE	0235910710	{(0762522D@ac-rouen.fr)}	elementaire	\N	\N
-74	0760904V	74	ECOLE ELEMENTAIRE LOUIS PERGAUD	0235910260	{(0760904V@ac-rouen.fr)}	elementaire	\N	\N
+74	0760904V	82	ECOLE ELEMENTAIRE LOUIS PERGAUD	0235910260	{(0760904V@ac-rouen.fr)}	elementaire	\N	\N
 75	0762233P	75	ECOLE ELEMENTAIRE MARCEL DUPRE	0235910323	{(0762233P@ac-rouen.fr)}	elementaire	\N	\N
 76	0760901S	76	ECOLE ELEMENTAIRE PIERRE BEREGOVOY	0235910280	{(0760901S@ac-rouen.fr)}	elementaire	\N	\N
 77	0762521C	77	ECOLE ELEMENTAIRE PIERRE CORNEILLE-MME DE SEVIGNE	0235910050	{(0762521C@ac-rouen.fr)}	elementaire	\N	\N
@@ -9742,72 +10008,73 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 79	0762234R	79	ECOLE MATERNELLE BERNARD HAVEL	0235911515	{(0762234R@ac-rouen.fr)}	maternelle	\N	\N
 80	0760936E	80	ECOLE MATERNELLE FRANCISQUE POULBOT	0235912628	{(0760936E@ac-rouen.fr)}	maternelle	\N	\N
 81	0760935D	81	ECOLE MATERNELLE LA MESANGERE	0235910707	{(0760935D@ac-rouen.fr)}	maternelle	\N	\N
-82	0760904V	74	ECOLE MATERNELLE LOUIS PERGAUD	0235910260	{(0760904V@ac-rouen.fr)}	maternelle	\N	\N
+82	0760904V	82	ECOLE MATERNELLE LOUIS PERGAUD	0235910260	{(0760904V@ac-rouen.fr)}	maternelle	\N	\N
 83	0760934C	83	ECOLE MATERNELLE MARIE PAPE CARPANTIER	0235911550	{(0760934C@ac-rouen.fr)}	maternelle	\N	\N
 84	0760007V	84	LYCEE EDMOND LABBE	0232949696	{(0760007V@ac-rouen.fr)}	lycee	\N	\N
 85	0760005T	71	LYCEE THOMAS CORNEILLE	0232949636	{(0760005T@ac-rouen.fr)}	lycee	\N	\N
-86	0761539K	86	\N	0235502473	{(0761539K@ac-rouen.fr)}	elementaire	\N	\N
-87	0760588B	87	\N	0232970271	{(0760588B@ac-rouen.fr)}	elementaire	\N	\N
-88	0761415A	88	\N	0232890090	{(0761415A@ac-rouen.fr)}	elementaire	\N	\N
-89	0761628G	89	\N	0235338493	{(0761628G@ac-rouen.fr)}	elementaire	\N	\N
-90	0760644M	90	\N	0235287261	{(0760644M@ac-rouen.fr)}	elementaire	\N	\N
-91	0761416B	91	\N	0235092971	{(0761416B@ac-rouen.fr)}	maternelle	\N	\N
-92	0760988L	92	\N	0235326028	{(0760988L@ac-rouen.fr)}	maternelle	\N	\N
-93	0760307W	93	\N	0235096971	{(0760307W@ac-rouen.fr)}	elementaire	\N	\N
-94	0760307W	93	\N	0235096971	{(0760307W@ac-rouen.fr)}	maternelle	\N	\N
-95	0762082A	95	ECOLE ELEMENTAIRE DE LA VALLEE	0235277427	{(0762082A@ac-rouen.fr)}	elementaire	\N	\N
-96	0762082A	95	ECOLE MATERNELLE DE LA VALLEE	0235277427	{(0762082A@ac-rouen.fr)}	maternelle	\N	\N
-97	0762414L	97	ECOLE ELEMENTAIRE MAURICE GENEVOIX	0235802420	{(0762414L@ac-rouen.fr)}	elementaire	\N	\N
-98	0762415M	97	ECOLE MATERNELLE MAURICE GENEVOIX	0235800392	{(0762415M@ac-rouen.fr)}	maternelle	\N	\N
-99	0762558T	99	ECOLE ELEMENTAIRE DAVID DOUILLET	0965109770	{(0762558T@ac-rouen.fr)}	elementaire	\N	\N
-100	0762558T	99	ECOLE MATERNELLE DAVID DOUILLET	0965109770	{(0762558T@ac-rouen.fr)}	maternelle	\N	\N
+86	0761539K	86	ECOLE ELEMENTAIRE DE BAROMESNIL	0235502473	{(0761539K@ac-rouen.fr)}	elementaire	\N	\N
+87	0760588B	87	ECOLE ELEMENTAIRE DE BAZINVAL	0232970271	{(0760588B@ac-rouen.fr)}	elementaire	\N	\N
+88	0761415A	88	ECOLE ELEMENTAIRE DE BEAUBEC-LA-ROSIERE	0232890090	{(0761415A@ac-rouen.fr)}	elementaire	\N	\N
+89	0761628G	89	ECOLE ELEMENTAIRE DE BEAUMONT-LE-HARENG	0235338493	{(0761628G@ac-rouen.fr)}	elementaire	\N	\N
+90	0760644M	90	ECOLE ELEMENTAIRE DE BEAUREPAIRE	0235287261	{(0760644M@ac-rouen.fr)}	elementaire	\N	\N
+367	0760024N	367	LYCEE EMULATION DIEPPOISE	0235842221	{(0760024N@ac-rouen.fr)}	lycee	\N	\N
+91	0761416B	91	ECOLE MATERNELLE DE BEAUSSAULT	0235092971	{(0761416B@ac-rouen.fr)}	maternelle	\N	\N
+92	0760988L	92	ECOLE MATERNELLE DE BEAUVAL-EN-CAUX	0235326028	{(0760988L@ac-rouen.fr)}	maternelle	\N	\N
+93	0760307W	93	ECOLE ELEMENTAIRE DE BEAUVOIR-EN-LYONS	0235096971	{(0760307W@ac-rouen.fr)}	elementaire	\N	\N
+94	0760307W	93	ECOLE MATERNELLE DE BEAUVOIR-EN-LYONS	0235096971	{(0760307W@ac-rouen.fr)}	maternelle	\N	\N
+95	0762082A	96	ECOLE ELEMENTAIRE DE LA VALLEE	0235277427	{(0762082A@ac-rouen.fr)}	elementaire	\N	\N
+96	0762082A	96	ECOLE MATERNELLE DE LA VALLEE	0235277427	{(0762082A@ac-rouen.fr)}	maternelle	\N	\N
+97	0762414L	98	ECOLE ELEMENTAIRE MAURICE GENEVOIX	0235802420	{(0762414L@ac-rouen.fr)}	elementaire	\N	\N
+98	0762415M	98	ECOLE MATERNELLE MAURICE GENEVOIX	0235800392	{(0762415M@ac-rouen.fr)}	maternelle	\N	\N
+99	0762558T	100	ECOLE ELEMENTAIRE DAVID DOUILLET	0965109770	{(0762558T@ac-rouen.fr)}	elementaire	\N	\N
+100	0762558T	100	ECOLE MATERNELLE DAVID DOUILLET	0965109770	{(0762558T@ac-rouen.fr)}	maternelle	\N	\N
 101	0763338R	101	ECOLE MATERNELLE JULIEN GOUDOUT	0235325268	{(0763338R@ac-rouen.fr)}	maternelle	\N	\N
-102	0760390L	102	ECOLE ELEMENTAIRE LA CARAVELLE	0235047761	{(0760390L@ac-rouen.fr)}	elementaire	\N	\N
-103	0762754F	102	ECOLE MATERNELLE LA CARAVELLE	0235857059	{(0762754F@ac-rouen.fr)}	maternelle	\N	\N
-104	0760708G	104	\N	0235041366	{(0760708G@ac-rouen.fr)}	elementaire	\N	\N
-105	0761445H	105	\N	0235271029	{(0761445H@ac-rouen.fr)}	elementaire	\N	\N
-106	0760645N	106	\N	0235270505	{(0760645N@ac-rouen.fr)}	elementaire	\N	\N
-107	0761380M	107	\N	0235969697	{(0761380M@ac-rouen.fr)}	elementaire	\N	\N
-108	0760391M	108	\N	0232905410	{(0760391M@ac-rouen.fr)}	elementaire	\N	\N
-109	0760565B	109	ECOLE ELEMENTAIRE LE LIN BLEU	0235397594	{(0760565B@ac-rouen.fr)}	elementaire	\N	\N
-110	0760565B	109	ECOLE MATERNELLE LE LIN BLEU	0235397594	{(0760565B@ac-rouen.fr)}	maternelle	\N	\N
-111	0760709H	111	\N	0235857210	{(0760709H@ac-rouen.fr)}	elementaire	\N	\N
-112	0760412K	112	\N	0232700922	{(0760412K@ac-rouen.fr)}	maternelle	\N	\N
-113	0761471L	113	\N	0235375726	{(0761471L@ac-rouen.fr)}	elementaire	\N	\N
-114	0761471L	113	\N	0235375726	{(0761471L@ac-rouen.fr)}	maternelle	\N	\N
-115	0760909A	115	\N	0235916378	{(0760909A@ac-rouen.fr)}	elementaire	\N	\N
-116	0760909A	115	\N	0235916378	{(0760909A@ac-rouen.fr)}	maternelle	\N	\N
+102	0760390L	103	ECOLE ELEMENTAIRE LA CARAVELLE	0235047761	{(0760390L@ac-rouen.fr)}	elementaire	\N	\N
+103	0762754F	103	ECOLE MATERNELLE LA CARAVELLE	0235857059	{(0762754F@ac-rouen.fr)}	maternelle	\N	\N
+104	0760708G	104	ECOLE ELEMENTAIRE DE BELMESNIL	0235041366	{(0760708G@ac-rouen.fr)}	elementaire	\N	\N
+105	0761445H	105	ECOLE ELEMENTAIRE DE BENARVILLE	0235271029	{(0761445H@ac-rouen.fr)}	elementaire	\N	\N
+106	0760645N	106	ECOLE ELEMENTAIRE DE BENOUVILLE	0235270505	{(0760645N@ac-rouen.fr)}	elementaire	\N	\N
+107	0761380M	107	ECOLE ELEMENTAIRE DE BERMONVILLE	0235969697	{(0761380M@ac-rouen.fr)}	elementaire	\N	\N
+108	0760391M	108	ECOLE ELEMENTAIRE DE BERNEVAL-LE-GRAND	0232905410	{(0760391M@ac-rouen.fr)}	elementaire	\N	\N
+109	0760565B	110	ECOLE ELEMENTAIRE LE LIN BLEU	0235397594	{(0760565B@ac-rouen.fr)}	elementaire	\N	\N
+110	0760565B	110	ECOLE MATERNELLE LE LIN BLEU	0235397594	{(0760565B@ac-rouen.fr)}	maternelle	\N	\N
+111	0760709H	111	ECOLE ELEMENTAIRE DE BERTREVILLE-SAINT-OUEN	0235857210	{(0760709H@ac-rouen.fr)}	elementaire	\N	\N
+112	0760412K	112	ECOLE MATERNELLE DE BERVILLE	0232700922	{(0760412K@ac-rouen.fr)}	maternelle	\N	\N
+113	0761471L	114	ECOLE ELEMENTAIRE DE BERVILLE-SUR-SEINE	0235375726	{(0761471L@ac-rouen.fr)}	elementaire	\N	\N
+114	0761471L	114	ECOLE MATERNELLE DE BERVILLE-SUR-SEINE	0235375726	{(0761471L@ac-rouen.fr)}	maternelle	\N	\N
+115	0760909A	116	ECOLE ELEMENTAIRE DE BETTEVILLE	0235916378	{(0760909A@ac-rouen.fr)}	elementaire	\N	\N
+116	0760909A	116	ECOLE MATERNELLE DE BETTEVILLE	0235916378	{(0760909A@ac-rouen.fr)}	maternelle	\N	\N
 117	0762338D	117	ECOLE ELEMENTAIRE LUCIENNE JULIEN	0235319626	{(0762338D@ac-rouen.fr)}	elementaire	\N	\N
 118	0762842B	118	ECOLE MATERNELLE PIERRE JULIEN	0235386232	{(0762842B@ac-rouen.fr)}	maternelle	\N	\N
-119	0760887B	119	\N	0235299873	{(0760887B@ac-rouen.fr)}	elementaire	\N	\N
-120	0760568E	120	\N	0235319625	{(0760568E@ac-rouen.fr)}	elementaire	\N	\N
-121	0760568E	120	\N	0235319625	{(0760568E@ac-rouen.fr)}	maternelle	\N	\N
-122	0761271U	122	\N	0235092110	{(0761271U@ac-rouen.fr)}	elementaire	\N	\N
-123	0761271U	122	\N	0235092110	{(0761271U@ac-rouen.fr)}	maternelle	\N	\N
-124	0760468W	124	\N	0235323832	{(0760468W@ac-rouen.fr)}	elementaire	\N	\N
+119	0760887B	119	ECOLE ELEMENTAIRE DE BEUZEVILLE-LA-GUERARD	0235299873	{(0760887B@ac-rouen.fr)}	elementaire	\N	\N
+120	0760568E	121	ECOLE ELEMENTAIRE DE BEUZEVILLETTE	0235319625	{(0760568E@ac-rouen.fr)}	elementaire	\N	\N
+121	0760568E	121	ECOLE MATERNELLE DE BEUZEVILLETTE	0235319625	{(0760568E@ac-rouen.fr)}	maternelle	\N	\N
+122	0761271U	123	ECOLE ELEMENTAIRE DE BEZANCOURT	0235092110	{(0761271U@ac-rouen.fr)}	elementaire	\N	\N
+123	0761271U	123	ECOLE MATERNELLE DE BEZANCOURT	0235092110	{(0761271U@ac-rouen.fr)}	maternelle	\N	\N
+124	0760468W	124	ECOLE ELEMENTAIRE DE BIERVILLE	0235323832	{(0760468W@ac-rouen.fr)}	elementaire	\N	\N
 125	0761692B	125	COLLEGE JULES MICHELET	0235592690	{(0761692B@ac-rouen.fr)}	college	\N	\N
-126	0761724L	126	COLLEGE SAINTE-VICTRICE	0235602379	{(0761724L@ac-rouen.fr)}	college	\N	\N
-127	0762185M	127	ECOLE ELEMENTAIRE GEORGES MELIES	0235600735	{(0762185M@ac-rouen.fr)}	elementaire	\N	\N
+126	0761724L	135	COLLEGE SAINTE-VICTRICE	0235602379	{(0761724L@ac-rouen.fr)}	college	\N	\N
+127	0762185M	132	ECOLE ELEMENTAIRE GEORGES MELIES	0235600735	{(0762185M@ac-rouen.fr)}	elementaire	\N	\N
 128	0760436L	128	ECOLE ELEMENTAIRE LARPIN	0235600693	{(0760436L@ac-rouen.fr)}	elementaire	\N	\N
 129	0761998J	129	ECOLE ELEMENTAIRE NOTRE DAME DES ANGES	0235603748	{(0761998J@ac-rouen.fr)}	elementaire	\N	\N
-130	0762921M	130	ECOLE ELEMENTAIRE RENE COTY	0235604919	{(0762921M@ac-rouen.fr)}	elementaire	\N	\N
-131	0761997H	126	ECOLE ELEMENTAIRE SAINT VICTRICE	0235602379	{(0761997H@ac-rouen.fr)}	elementaire	\N	\N
-132	0762158H	127	ECOLE MATERNELLE GEORGES MELIES	0235601300	{(0762158H@ac-rouen.fr)}	maternelle	\N	\N
+130	0762921M	134	ECOLE ELEMENTAIRE RENE COTY	0235604919	{(0762921M@ac-rouen.fr)}	elementaire	\N	\N
+131	0761997H	135	ECOLE ELEMENTAIRE SAINT VICTRICE	0235602379	{(0761997H@ac-rouen.fr)}	elementaire	\N	\N
+132	0762158H	132	ECOLE MATERNELLE GEORGES MELIES	0235601300	{(0762158H@ac-rouen.fr)}	maternelle	\N	\N
 133	0760435K	133	ECOLE MATERNELLE JEAN MACE	0235601461	{(0760435K@ac-rouen.fr)}	maternelle	\N	\N
-134	0761310L	130	ECOLE MATERNELLE RENE COTY	0235601436	{(0761310L@ac-rouen.fr)}	maternelle	\N	\N
-135	0761997H	126	ECOLE MATERNELLE SAINT VICTRICE	0235602379	{(0761997H@ac-rouen.fr)}	maternelle	\N	\N
+134	0761310L	134	ECOLE MATERNELLE RENE COTY	0235601436	{(0761310L@ac-rouen.fr)}	maternelle	\N	\N
+135	0761997H	135	ECOLE MATERNELLE SAINT VICTRICE	0235602379	{(0761997H@ac-rouen.fr)}	maternelle	\N	\N
 136	0762137K	136	ECOLE ELEMENTAIRE ANDRE MALLET	0235328619	{(0762137K@ac-rouen.fr)}	elementaire	\N	\N
-137	0761600B	137	\N	0235838034	{(0761600B@ac-rouen.fr)}	elementaire	\N	\N
-138	0760910B	138	\N	0235912267	{(0760910B@ac-rouen.fr)}	elementaire	\N	\N
-139	0760910B	138	\N	0235912267	{(0760910B@ac-rouen.fr)}	maternelle	\N	\N
-140	0760470Y	140	\N	0235340258	{(0760470Y@ac-rouen.fr)}	elementaire	\N	\N
-141	0762725Z	140	\N	0235340022	{(0762725Z@ac-rouen.fr)}	maternelle	\N	\N
+137	0761600B	137	ECOLE ELEMENTAIRE DE BIVILLE-SUR-MER	0235838034	{(0761600B@ac-rouen.fr)}	elementaire	\N	\N
+138	0760910B	139	ECOLE ELEMENTAIRE DE BLACQUEVILLE	0235912267	{(0760910B@ac-rouen.fr)}	elementaire	\N	\N
+139	0760910B	139	ECOLE MATERNELLE DE BLACQUEVILLE	0235912267	{(0760910B@ac-rouen.fr)}	maternelle	\N	\N
+140	0760470Y	140	ECOLE ELEMENTAIRE DE BLAINVILLE-CREVON	0235340258	{(0760470Y@ac-rouen.fr)}	elementaire	\N	\N
+141	0762725Z	140	ECOLE MATERNELLE DE BLAINVILLE-CREVON	0235340022	{(0762725Z@ac-rouen.fr)}	maternelle	\N	\N
 142	0760009X	142	COLLEGE LE CAMPIGNY	0235935128	{(0760009X@ac-rouen.fr)}	college	\N	\N
 143	0762416N	143	ECOLE ELEMENTAIRE CHARLES FRECHON	0235935182	{(0762416N@ac-rouen.fr)}	elementaire	\N	\N
 144	0760586Z	144	ECOLE MATERNELLE LE CATALPA	0235935164	{(0760586Z@ac-rouen.fr)}	maternelle	\N	\N
 145	0761156U	145	ECOLE ELEMENTAIRE LE MANOIR DU VENT	0235979848	{(0761156U@ac-rouen.fr)}	elementaire	\N	\N
-146	0763325B	146	ECOLE ELEMENTAIRE DU BOIS TISON	0235235809	{(0763325B@ac-rouen.fr)}	elementaire	\N	\N
-147	0763325B	146	ECOLE MATERNELLE DU BOIS TISON	0235235809	{(0763325B@ac-rouen.fr)}	maternelle	\N	\N
+146	0763325B	147	ECOLE ELEMENTAIRE DU BOIS TISON	0235235809	{(0763325B@ac-rouen.fr)}	elementaire	\N	\N
+147	0763325B	147	ECOLE MATERNELLE DU BOIS TISON	0235235809	{(0763325B@ac-rouen.fr)}	maternelle	\N	\N
 148	0761950G	148	COLLEGE LEONARD DE VINCI	0235592580	{(0761950G@ac-rouen.fr)}	college	\N	\N
 149	0760442T	149	ECOLE ELEMENTAIRE DES PORTES DE LA FORET	0235599868	{(0760442T@ac-rouen.fr)}	elementaire	\N	\N
 150	0760443U	150	ECOLE ELEMENTAIRE FRANCOIS CODET	0235122487	{(0760443U@ac-rouen.fr)}	elementaire	\N	\N
@@ -9818,10 +10085,10 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 155	0760441S	155	ECOLE MATERNELLE GERMAINE COTY	0235122486	{(0760441S@ac-rouen.fr)}	maternelle	\N	\N
 156	0762673T	156	ECOLE MATERNELLE LES BOCQUETS	0235601666	{(0762673T@ac-rouen.fr)}	maternelle	\N	\N
 157	0763162Z	157	ECOLE MATERNELLE LES CLAIRIERES	0235599861	{(0763162Z@ac-rouen.fr)}	maternelle	\N	\N
-158	0760466U	158	\N	0235342802	{(0760466U@ac-rouen.fr)}	elementaire	\N	\N
+158	0760466U	158	ECOLE ELEMENTAIRE DE BOIS-HEROULT	0235342802	{(0760466U@ac-rouen.fr)}	elementaire	\N	\N
 159	0761064U	159	ECOLE ELEMENTAIRE RAOUL DODELIN	0235951662	{(0761064U@ac-rouen.fr)}	elementaire	\N	\N
-160	0760445W	160	\N	0235233931	{(0760445W@ac-rouen.fr)}	elementaire	\N	\N
-161	0760473B	161	\N	0235326952	{(0760473B@ac-rouen.fr)}	elementaire	\N	\N
+160	0760445W	160	ECOLE ELEMENTAIRE DE BOIS-L EVEQUE	0235233931	{(0760445W@ac-rouen.fr)}	elementaire	\N	\N
+161	0760473B	161	ECOLE ELEMENTAIRE DE BOISSAY	0235326952	{(0760473B@ac-rouen.fr)}	elementaire	\N	\N
 162	0761701L	162	COLLEGE RONCHEROLLES	0232841330	{(0761701L@ac-rouen.fr)}	college	\N	\N
 163	0761725M	163	COLLEGE SAINTE-GENEVIEVE	0235310565	{(0761725M@ac-rouen.fr)}	college	\N	\N
 164	0760555R	164	ECOLE ELEMENTAIRE CLAUDE CHAPELLE	0235310432	{(0760555R@ac-rouen.fr)}	elementaire	\N	\N
@@ -9839,79 +10106,78 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 176	0760559V	176	ECOLE MATERNELLE PAUL BERT	0235310505	{(0760559V@ac-rouen.fr)}	maternelle	\N	\N
 177	0762920L	177	LYCEE COUBERTIN	0235310279	{(0762920L@ac-rouen.fr)}	lycee	\N	\N
 178	0760013B	178	LYCEE PIERRE ET MARIE CURIE	0232841950	{(0760013B@ac-rouen.fr)}	lycee	\N	\N
-179	0760569F	179	\N	0235385996	{(0760569F@ac-rouen.fr)}	elementaire	\N	\N
+179	0760569F	179	ECOLE ELEMENTAIRE DE BOLLEVILLE	0235385996	{(0760569F@ac-rouen.fr)}	elementaire	\N	\N
 180	0760010Y	180	COLLEGE EMILE VERHAEREN	0232865586	{(0760010Y@ac-rouen.fr)}	college	\N	\N
 181	0763188C	181	ECOLE ELEMENTAIRE JOSE MARIA DE HEREDIA	0235805925	{(0763188C@ac-rouen.fr)}	elementaire	\N	\N
 182	0761311M	182	ECOLE MATERNELLE LA FERME DU PLAN	0235800960	{(0761311M@ac-rouen.fr)}	maternelle	\N	\N
 183	0762816Y	183	COLLEGE MASSEOT ABAQUESNE	0235804333	{(0762816Y@ac-rouen.fr)}	college	\N	\N
 184	0762523E	184	ECOLE ELEMENTAIRE MAURICE GENEVOIX	0235808684	{(0762523E@ac-rouen.fr)}	elementaire	\N	\N
 185	0762709G	185	ECOLE MATERNELLE MAURICE GENEVOIX	0235801665	{(0762709G@ac-rouen.fr)}	maternelle	\N	\N
-186	0760646P	186	\N	0235272859	{(0760646P@ac-rouen.fr)}	elementaire	\N	\N
-187	0760646P	187	\N	0335272859	{(0760646P@ac-rouen.fr)}	maternelle	\N	\N
-188	0760289B	188	\N	0235340449	{(0760289B@ac-rouen.fr)}	elementaire	\N	\N
-189	0760474C	189	\N	0232808825	{(0760474C@ac-rouen.fr)}	elementaire	\N	\N
-190	0760475D	190	\N	0232801446	{(0760475D@ac-rouen.fr)}	maternelle	\N	\N
-191	0760616G	191	ECOLE ELEMENTAIRE FRANCOISE DOLTO	0235335808	{(0760616G@ac-rouen.fr)}	elementaire	\N	\N
-192	0760616G	191	ECOLE MATERNELLE FRANCOISE DOLTO	0235335808	{(0760616G@ac-rouen.fr)}	maternelle	\N	\N
-193	0761272V	193	\N	0232890385	{(0761272V@ac-rouen.fr)}	elementaire	\N	\N
+186	0760646P	186	ECOLE ELEMENTAIRE DE BORDEAUX-SAINT-CLAIR	0235272859	{(0760646P@ac-rouen.fr)}	elementaire	\N	\N
+187	0760646P	187	ECOLE MATERNELLE DE BORDEAUX-SAINT-CLAIR	0335272859	{(0760646P@ac-rouen.fr)}	maternelle	\N	\N
+188	0760289B	188	ECOLE ELEMENTAIRE DE BOSC-BERENGER	0235340449	{(0760289B@ac-rouen.fr)}	elementaire	\N	\N
+189	0760474C	189	ECOLE ELEMENTAIRE DE BOSC-BORDEL	0232808825	{(0760474C@ac-rouen.fr)}	elementaire	\N	\N
+190	0760475D	190	ECOLE MATERNELLE DE BOSC-EDELINE	0232801446	{(0760475D@ac-rouen.fr)}	maternelle	\N	\N
+191	0760616G	192	ECOLE ELEMENTAIRE FRANCOISE DOLTO	0235335808	{(0760616G@ac-rouen.fr)}	elementaire	\N	\N
+192	0760616G	192	ECOLE MATERNELLE FRANCOISE DOLTO	0235335808	{(0760616G@ac-rouen.fr)}	maternelle	\N	\N
+193	0761272V	193	ECOLE ELEMENTAIRE DE BOSC-HYONS	0232890385	{(0761272V@ac-rouen.fr)}	elementaire	\N	\N
 194	0762524F	194	ECOLE ELEMENTAIRE GUY DE MAUPASSANT	0235333752	{(0762524F@ac-rouen.fr)}	elementaire	\N	\N
-195	0760290C	195	\N	0235325123	{(0760290C@ac-rouen.fr)}	elementaire	\N	\N
+195	0760290C	195	ECOLE ELEMENTAIRE DE BOSC-MESNIL	0235325123	{(0760290C@ac-rouen.fr)}	elementaire	\N	\N
 196	0760476E	196	ECOLE ELEMENTAIRE RENE DELAHAYE	0235343198	{(0760476E@ac-rouen.fr)}	elementaire	\N	\N
-197	0760494Z	197	\N	0235973799	{(0760494Z@ac-rouen.fr)}	elementaire	\N	\N
-198	0760494Z	197	\N	0235973799	{(0760494Z@ac-rouen.fr)}	maternelle	\N	\N
-199	0760413L	199	\N	0235967673	{(0760413L@ac-rouen.fr)}	elementaire	\N	\N
-200	0763428N	200	\N	\N	{(0763428N@ac-rouen.fr)}	elementaire	\N	\N
+197	0760494Z	198	ECOLE ELEMENTAIRE DE BOSVILLE	0235973799	{(0760494Z@ac-rouen.fr)}	elementaire	\N	\N
+198	0760494Z	198	ECOLE MATERNELLE DE BOSVILLE	0235973799	{(0760494Z@ac-rouen.fr)}	maternelle	\N	\N
+199	0760413L	199	ECOLE ELEMENTAIRE DE BOUDEVILLE	0235967673	{(0760413L@ac-rouen.fr)}	elementaire	\N	\N
+200	0763428N	200	ECOLE ELEMENTAIRE DE BOUELLES	\N	{(0763428N@ac-rouen.fr)}	elementaire	\N	\N
 201	0761040T	201	ECOLE ELEMENTAIRE COMMANDANT BERTHET	0235956218	{(0761040T@ac-rouen.fr)}	elementaire	\N	\N
-202	0761399H	202	\N	0235573350	{(0761399H@ac-rouen.fr)}	elementaire	\N	\N
-203	0760911C	203	ECOLE ELEMENTAIRE THOMAS CORNEILLE	0235924662	{(0760911C@ac-rouen.fr)}	elementaire	\N	\N
-204	0760911C	203	ECOLE MATERNELLE THOMAS CORNEILLE	0235924662	{(0760911C@ac-rouen.fr)}	maternelle	\N	\N
-205	0760356Z	205	\N	0235506656	{(0760356Z@ac-rouen.fr)}	elementaire	\N	\N
-206	0760356Z	206	\N	0235506656	{(0760356Z@ac-rouen.fr)}	maternelle	\N	\N
+202	0761399H	202	ECOLE ELEMENTAIRE DE BOURVILLE	0235573350	{(0761399H@ac-rouen.fr)}	elementaire	\N	\N
+203	0760911C	204	ECOLE ELEMENTAIRE THOMAS CORNEILLE	0235924662	{(0760911C@ac-rouen.fr)}	elementaire	\N	\N
+204	0760911C	204	ECOLE MATERNELLE THOMAS CORNEILLE	0235924662	{(0760911C@ac-rouen.fr)}	maternelle	\N	\N
+205	0760356Z	205	ECOLE ELEMENTAIRE DE BRACHY	0235506656	{(0760356Z@ac-rouen.fr)}	elementaire	\N	\N
+206	0760356Z	206	ECOLE MATERNELLE DE BRACHY	0235506656	{(0760356Z@ac-rouen.fr)}	maternelle	\N	\N
 207	0760392N	207	ECOLE ELEMENTAIRE ANDRE MALRAUX	0235834147	{(0760392N@ac-rouen.fr)}	elementaire	\N	\N
-208	0760993S	208	\N	0235324698	{(0760993S@ac-rouen.fr)}	elementaire	\N	\N
-209	0760291D	209	\N	0235348696	{(0760291D@ac-rouen.fr)}	maternelle	\N	\N
-210	0761400J	210	\N	0235570836	{(0761400J@ac-rouen.fr)}	elementaire	\N	\N
-211	0761447K	211	ECOLE ELEMENTAIRE HENRI BLANC	0235279255	{(0761447K@ac-rouen.fr)}	elementaire	\N	\N
+208	0760993S	208	ECOLE ELEMENTAIRE DE BRACQUETUIT	0235324698	{(0760993S@ac-rouen.fr)}	elementaire	\N	\N
+209	0760291D	209	ECOLE MATERNELLE DE BRADIANCOURT	0235348696	{(0760291D@ac-rouen.fr)}	maternelle	\N	\N
+210	0761400J	210	ECOLE ELEMENTAIRE DE BRAMETOT	0235570836	{(0761400J@ac-rouen.fr)}	elementaire	\N	\N
+211	0761447K	213	ECOLE ELEMENTAIRE HENRI BLANC	0235279255	{(0761447K@ac-rouen.fr)}	elementaire	\N	\N
 212	0762004R	212	ECOLE ELEMENTAIRE NOTRE DAME	0235277703	{(0762004R@ac-rouen.fr)}	elementaire	\N	\N
-213	0761447K	211	ECOLE MATERNELLE HENRI BLANC	0235279255	{(0761447K@ac-rouen.fr)}	maternelle	\N	\N
-214	0761273W	214	\N	0235090678	{(0761273W@ac-rouen.fr)}	elementaire	\N	\N
+213	0761447K	213	ECOLE MATERNELLE HENRI BLANC	0235279255	{(0761447K@ac-rouen.fr)}	maternelle	\N	\N
+214	0761273W	214	ECOLE ELEMENTAIRE DE BREMONTIER-MERVAL	0235090678	{(0761273W@ac-rouen.fr)}	elementaire	\N	\N
 215	0761767H	215	LYCEE AGRICOLE	0232899660	{(0761767H@ac-rouen.fr)}	lycee	\N	\N
-216	0762611A	216	\N	0235278521	{(0762611A@ac-rouen.fr)}	elementaire	\N	\N
-217	0762611A	216	\N	0235278521	{(0762611A@ac-rouen.fr)}	maternelle	\N	\N
+216	0762611A	217	ECOLE ELEMENTAIRE DE BRETTEVILLE-DU-GRAND-CAUX	0235278521	{(0762611A@ac-rouen.fr)}	elementaire	\N	\N
+217	0762611A	217	ECOLE MATERNELLE DE BRETTEVILLE-DU-GRAND-CAUX	0235278521	{(0762611A@ac-rouen.fr)}	maternelle	\N	\N
 218	0761952J	218	COLLEGE FRANCIS YARD	0235344250	{(0761952J@ac-rouen.fr)}	college	\N	\N
 219	0763324A	219	ECOLE ELEMENTAIRE BERNARD LEMAISTRE	0235344040	{(0763324A@ac-rouen.fr)}	elementaire	\N	\N
-220	0762108D	220	\N	0235941670	{(0762108D@ac-rouen.fr)}	elementaire	\N	\N
-221	0762108D	220	\N	0235941670	{(0762108D@ac-rouen.fr)}	maternelle	\N	\N
-222	0760703B	222	\N	0235949744	{(0760703B@ac-rouen.fr)}	elementaire	\N	\N
-223	0760495A	223	\N	0235975026	{(0760495A@ac-rouen.fr)}	elementaire	\N	\N
+220	0762108D	221	ECOLE ELEMENTAIRE DE BULLY	0235941670	{(0762108D@ac-rouen.fr)}	elementaire	\N	\N
+221	0762108D	221	ECOLE MATERNELLE DE BULLY	0235941670	{(0762108D@ac-rouen.fr)}	maternelle	\N	\N
+222	0760703B	222	ECOLE ELEMENTAIRE DE BURES-EN-BRAY	0235949744	{(0760703B@ac-rouen.fr)}	elementaire	\N	\N
+223	0760495A	223	ECOLE ELEMENTAIRE DE BUTOT-VENESVILLE	0235975026	{(0760495A@ac-rouen.fr)}	elementaire	\N	\N
 224	0760617H	224	ECOLE ELEMENTAIRE DE LA SOURCE	0235349778	{(0760617H@ac-rouen.fr)}	elementaire	\N	\N
 225	0762934B	224	ECOLE MATERNELLE DE LA SOURCE	0235324746	{(0762934B@ac-rouen.fr)}	maternelle	\N	\N
 226	0762501F	226	ECOLE ELEMENTAIRE ANTOINE DE SAINT-EXUPERY	0235944358	{(0762501F@ac-rouen.fr)}	elementaire	\N	\N
 227	0762501F	227	ECOLE MATERNELLE ANTOINE DE SAINT-EXUPERY	0235944358	{(0762501F@ac-rouen.fr)}	maternelle	\N	\N
 228	0760994T	228	ECOLE ELEMENTAIRE DES MONTIERS	0235320971	{(0760994T@ac-rouen.fr)}	elementaire	\N	\N
-229	0762364G	229	\N	0235934247	{(0762364G@ac-rouen.fr)}	elementaire	\N	\N
-230	0762364G	229	\N	0235934247	{(0762364G@ac-rouen.fr)}	maternelle	\N	\N
-231	0761540L	231	\N	0235860487	{(0761540L@ac-rouen.fr)}	elementaire	\N	\N
-232	0760496B	232	\N	0235975776	{(0760496B@ac-rouen.fr)}	elementaire	\N	\N
+229	0762364G	230	ECOLE ELEMENTAIRE DE CAMPNEUSEVILLE	0235934247	{(0762364G@ac-rouen.fr)}	elementaire	\N	\N
+230	0762364G	230	ECOLE MATERNELLE DE CAMPNEUSEVILLE	0235934247	{(0762364G@ac-rouen.fr)}	maternelle	\N	\N
+231	0761540L	231	ECOLE ELEMENTAIRE DE CANEHAN	0235860487	{(0761540L@ac-rouen.fr)}	elementaire	\N	\N
+232	0760496B	232	ECOLE ELEMENTAIRE DE CANOUVILLE	0235975776	{(0760496B@ac-rouen.fr)}	elementaire	\N	\N
 233	0762089H	233	COLLEGE CHARLES GOUNOD	0235362880	{(0762089H@ac-rouen.fr)}	college	\N	\N
 234	0760017F	234	COLLEGE LE CEDRE	0232832910	{(0760017F@ac-rouen.fr)}	college	\N	\N
-235	0762103Y	235	ECOLE ELEMENTAIRE CLAUDE MONET	0235360945	{(0762103Y@ac-rouen.fr)}	elementaire	\N	\N
+235	0762103Y	241	ECOLE ELEMENTAIRE CLAUDE MONET	0235360945	{(0762103Y@ac-rouen.fr)}	elementaire	\N	\N
 236	0761089W	236	ECOLE ELEMENTAIRE DU VILLAGE	0235362670	{(0761089W@ac-rouen.fr)}	elementaire	\N	\N
-237	0763344X	237	ECOLE ELEMENTAIRE GUSTAVE FLAUBERT	0235360271	{(0763344X@ac-rouen.fr)}	elementaire	\N	\N
-238	0763207Y	238	ECOLE ELEMENTAIRE GUY DE MAUPASSANT	0235362860	{(0763207Y@ac-rouen.fr)}	elementaire	\N	\N
-239	0761081M	239	ECOLE ELEMENTAIRE HECTOR MALOT	0235362588	{(0761081M@ac-rouen.fr)}	elementaire	\N	\N
+237	0763344X	244	ECOLE ELEMENTAIRE GUSTAVE FLAUBERT	0235360271	{(0763344X@ac-rouen.fr)}	elementaire	\N	\N
+238	0763207Y	245	ECOLE ELEMENTAIRE GUY DE MAUPASSANT	0235362860	{(0763207Y@ac-rouen.fr)}	elementaire	\N	\N
+239	0761081M	246	ECOLE ELEMENTAIRE HECTOR MALOT	0235362588	{(0761081M@ac-rouen.fr)}	elementaire	\N	\N
 240	0760878S	240	ECOLE ELEMENTAIRE PIERRE CURIE	0235363661	{(0760878S@ac-rouen.fr)}	elementaire	\N	\N
-241	0762057Y	235	ECOLE MATERNELLE CLAUDE MONET	0235360687	{(0762057Y@ac-rouen.fr)}	maternelle	\N	\N
+241	0762057Y	241	ECOLE MATERNELLE CLAUDE MONET	0235360687	{(0762057Y@ac-rouen.fr)}	maternelle	\N	\N
 242	0762329U	242	ECOLE MATERNELLE EMILE ZOLA	0235361450	{(0762329U@ac-rouen.fr)}	maternelle	\N	\N
 243	0762138L	243	ECOLE MATERNELLE GEORGES BIZET	0235361191	{(0762138L@ac-rouen.fr)}	maternelle	\N	\N
-244	0761083P	237	ECOLE MATERNELLE GUSTAVE FLAUBERT	0235362887	{(0761083P@ac-rouen.fr)}	maternelle	\N	\N
-245	0761086T	238	ECOLE MATERNELLE GUY DE MAUPASSANT	0235362833	{(0761086T@ac-rouen.fr)}	maternelle	\N	\N
-246	0761081M	239	ECOLE MATERNELLE HECTOR MALOT	0235362588	{(0761081M@ac-rouen.fr)}	maternelle	\N	\N
+244	0761083P	244	ECOLE MATERNELLE GUSTAVE FLAUBERT	0235362887	{(0761083P@ac-rouen.fr)}	maternelle	\N	\N
+245	0761086T	245	ECOLE MATERNELLE GUY DE MAUPASSANT	0235362833	{(0761086T@ac-rouen.fr)}	maternelle	\N	\N
+246	0761081M	246	ECOLE MATERNELLE HECTOR MALOT	0235362588	{(0761081M@ac-rouen.fr)}	maternelle	\N	\N
 247	0761089W	236	ECOLE MATERNELLE VILLAGE	0235362670	{(0761089W@ac-rouen.fr)}	maternelle	\N	\N
 248	0763237F	248	LYCEE GEORGES BAPTISTE	0232125500	{(0763237F@ac-rouen.fr)}	lycee	\N	\N
-249	0760415N	249	\N	0235953548	{(0760415N@ac-rouen.fr)}	elementaire	\N	\N
+249	0760415N	249	ECOLE ELEMENTAIRE DE CANVILLE-LES-DEUX-EGLISES	0235953548	{(0760415N@ac-rouen.fr)}	elementaire	\N	\N
 250	0762126Y	250	COLLEGE LOUIS BOUILHET	0235978086	{(0762126Y@ac-rouen.fr)}	college	\N	\N
-300	0760292E	300	\N	0235344643	{(0760292E@ac-rouen.fr)}	maternelle	\N	\N
 251	0762752D	251	ECOLE ELEMENTAIRE LOUIS PERGAUD	0235978176	{(0762752D@ac-rouen.fr)}	elementaire	\N	\N
 252	0762005S	252	ECOLE ELEMENTAIRE SAINTE JEANNE D ARC	0235977914	{(0762005S@ac-rouen.fr)}	elementaire	\N	\N
 253	0762350S	253	ECOLE MATERNELLE LES LUTINS	0235977290	{(0762350S@ac-rouen.fr)}	maternelle	\N	\N
@@ -9929,11 +10195,11 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 265	0762811T	265	ECOLE MATERNELLE ANTOINE DE SAINT-EXUPERY	0235789056	{(0762811T@ac-rouen.fr)}	maternelle	\N	\N
 266	0762490U	266	ECOLE MATERNELLE LOUISE MICHEL	0235815440	{(0762490U@ac-rouen.fr)}	maternelle	\N	\N
 267	0761515J	267	ECOLE MATERNELLE M.P. PREVEL	0235771156	{(0761515J@ac-rouen.fr)}	maternelle	\N	\N
-268	0761124J	268	\N	0235203697	{(0761124J@ac-rouen.fr)}	elementaire	\N	\N
-269	0761124J	268	\N	0235203697	{(0761124J@ac-rouen.fr)}	maternelle	\N	\N
-270	0761041U	270	\N	0235910284	{(0761041U@ac-rouen.fr)}	elementaire	\N	\N
-271	0760702A	271	\N	0235931940	{(0760702A@ac-rouen.fr)}	elementaire	\N	\N
-272	0760618J	272	\N	0235331013	{(0760618J@ac-rouen.fr)}	elementaire	\N	\N
+268	0761124J	269	ECOLE ELEMENTAIRE DE CAUVILLE-SUR-MER	0235203697	{(0761124J@ac-rouen.fr)}	elementaire	\N	\N
+269	0761124J	269	ECOLE MATERNELLE DE CAUVILLE-SUR-MER	0235203697	{(0761124J@ac-rouen.fr)}	maternelle	\N	\N
+270	0761041U	270	ECOLE ELEMENTAIRE DE CIDEVILLE	0235910284	{(0761041U@ac-rouen.fr)}	elementaire	\N	\N
+271	0760702A	271	ECOLE ELEMENTAIRE DE CLAIS	0235931940	{(0760702A@ac-rouen.fr)}	elementaire	\N	\N
+272	0760618J	272	ECOLE ELEMENTAIRE DE CLAVILLE-MOTTEVILLE	0235331013	{(0760618J@ac-rouen.fr)}	elementaire	\N	\N
 273	\N	273	Centre de Loisirs	0619088135	{(lake.joelle@neuf.fr)}	\N	\N	autre
 274	0762679Z	274	COLLEGE JACQUES BREL	0235817255	{(0762679Z@ac-rouen.fr)}	college	\N	\N
 275	0762710H	275	ECOLE ELEMENTAIRE PIERRE ET MARIE CURIE	0235771886	{(0762710H@ac-rouen.fr)}	elementaire	\N	\N
@@ -9944,47 +10210,48 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 280	0762197A	280	COLLEGE JEAN DELACOUR	0235332352	{(0762197A@ac-rouen.fr)}	college	\N	\N
 281	0760612C	281	ECOLE ELEMENTAIRE L OREE DU PARC	0235332281	{(0760612C@ac-rouen.fr)}	elementaire	\N	\N
 282	0762659C	282	ECOLE MATERNELLE LES OIES SAUVAGES	0235332245	{(0762659C@ac-rouen.fr)}	maternelle	\N	\N
-283	0762451B	283	\N	0235293129	{(0762451B@ac-rouen.fr)}	maternelle	\N	\N
-284	0761381N	284	\N	0232700625	{(0761381N@ac-rouen.fr)}	elementaire	\N	\N
-285	0761382P	285	\N	0235961216	{(0761382P@ac-rouen.fr)}	elementaire	\N	\N
-286	0761014P	286	\N	0235270825	{(0761014P@ac-rouen.fr)}	elementaire	\N	\N
-287	0761014P	286	\N	0235270825	{(0761014P@ac-rouen.fr)}	maternelle	\N	\N
-288	0763086S	288	\N	0235905339	{(0763086S@ac-rouen.fr)}	elementaire	\N	\N
+283	0762451B	283	ECOLE MATERNELLE DE CLEUVILLE	0235293129	{(0762451B@ac-rouen.fr)}	maternelle	\N	\N
+284	0761381N	284	ECOLE ELEMENTAIRE DE CLEVILLE	0232700625	{(0761381N@ac-rouen.fr)}	elementaire	\N	\N
+285	0761382P	285	ECOLE ELEMENTAIRE DE CLIPONVILLE	0235961216	{(0761382P@ac-rouen.fr)}	elementaire	\N	\N
+286	0761014P	287	ECOLE ELEMENTAIRE DE COLLEVILLE	0235270825	{(0761014P@ac-rouen.fr)}	elementaire	\N	\N
+287	0761014P	287	ECOLE MATERNELLE DE COLLEVILLE	0235270825	{(0761014P@ac-rouen.fr)}	maternelle	\N	\N
+288	0763086S	288	ECOLE ELEMENTAIRE DE COMPAINVILLE	0235905339	{(0763086S@ac-rouen.fr)}	elementaire	\N	\N
 289	0760330W	289	ECOLE MATERNELLE ROGER POUJOL	0235941877	{(0760330W@ac-rouen.fr)}	maternelle	\N	\N
-290	0760540Z	290	\N	0235331142	{(0760540Z@ac-rouen.fr)}	elementaire	\N	\N
-291	0760541A	291	\N	0235939843	{(0760541A@ac-rouen.fr)}	elementaire	\N	\N
+290	0760540Z	290	ECOLE ELEMENTAIRE DE COTTEVRARD	0235331142	{(0760540Z@ac-rouen.fr)}	elementaire	\N	\N
+291	0760541A	291	ECOLE ELEMENTAIRE DE CRESSY	0235939843	{(0760541A@ac-rouen.fr)}	elementaire	\N	\N
 292	0762365H	292	ECOLE ELEMENTAIRE LE TOURMONT	0235867220	{(0762365H@ac-rouen.fr)}	elementaire	\N	\N
 293	0762351T	293	ECOLE MATERNELLE LA CLAIRIERE	0235507238	{(0762351T@ac-rouen.fr)}	maternelle	\N	\N
-294	0761574Y	294	\N	0235293298	{(0761574Y@ac-rouen.fr)}	elementaire	\N	\N
-295	0760640H	295	\N	0235272183	{(0760640H@ac-rouen.fr)}	elementaire	\N	\N
-296	0761784B	296	COLLEGE L OISEAU BLANC	0235103190	{(0761784B@ac-rouen.fr)}	college	\N	\N
-297	0762592E	296	ECOLE MATERNELLE LES PRIMEVERES	0235272490	{(0762592E@ac-rouen.fr)}	maternelle	\N	\N
-298	0761042V	298	\N	0235956828	{(0761042V@ac-rouen.fr)}	elementaire	\N	\N
+294	0761574Y	294	ECOLE ELEMENTAIRE DE CRIQUEBEUF-EN-CAUX	0235293298	{(0761574Y@ac-rouen.fr)}	elementaire	\N	\N
+295	0760640H	295	ECOLE ELEMENTAIRE DE CRIQUETOT-L ESNEVAL	0235272183	{(0760640H@ac-rouen.fr)}	elementaire	\N	\N
+296	0761784B	297	COLLEGE L OISEAU BLANC	0235103190	{(0761784B@ac-rouen.fr)}	college	\N	\N
+297	0762592E	297	ECOLE MATERNELLE LES PRIMEVERES	0235272490	{(0762592E@ac-rouen.fr)}	maternelle	\N	\N
+298	0761042V	298	ECOLE ELEMENTAIRE DE CRIQUETOT-SUR-OUVILLE	0235956828	{(0761042V@ac-rouen.fr)}	elementaire	\N	\N
 299	0762986H	299	ECOLE ELEMENTAIRE DU CENTRE	0235936812	{(0762986H@ac-rouen.fr)}	elementaire	\N	\N
-301	0760310Z	301	\N	0235020398	{(0760310Z@ac-rouen.fr)}	elementaire	\N	\N
+300	0760292E	300	ECOLE MATERNELLE DE CRITOT	0235344643	{(0760292E@ac-rouen.fr)}	maternelle	\N	\N
+301	0760310Z	301	ECOLE ELEMENTAIRE DE CROISY-SUR-ANDELLE	0235020398	{(0760310Z@ac-rouen.fr)}	elementaire	\N	\N
 302	0762593F	302	ECOLE MATERNELLE MAURICE PREVERT	0235235948	{(0762593F@ac-rouen.fr)}	maternelle	\N	\N
-303	0762333Y	303	ECOLE ELEMENTAIRE JACQUES PREVERT	0235923501	{(0762333Y@ac-rouen.fr)}	elementaire	\N	\N
-304	0762333Y	303	ECOLE MATERNELLE JACQUES PREVERT	0235923501	{(0762333Y@ac-rouen.fr)}	maternelle	\N	\N
-305	0760715P	305	\N	0235847356	{(0760715P@ac-rouen.fr)}	elementaire	\N	\N
-306	0761544R	306	\N	0235500948	{(0761544R@ac-rouen.fr)}	maternelle	\N	\N
+303	0762333Y	304	ECOLE ELEMENTAIRE JACQUES PREVERT	0235923501	{(0762333Y@ac-rouen.fr)}	elementaire	\N	\N
+304	0762333Y	304	ECOLE MATERNELLE JACQUES PREVERT	0235923501	{(0762333Y@ac-rouen.fr)}	maternelle	\N	\N
+305	0760715P	305	ECOLE ELEMENTAIRE DE CROSVILLE-SUR-SCIE	0235847356	{(0760715P@ac-rouen.fr)}	elementaire	\N	\N
+306	0761544R	306	ECOLE MATERNELLE DE CUVERVILLE-SUR-YERES	0235500948	{(0761544R@ac-rouen.fr)}	maternelle	\N	\N
 307	0761274X	307	ECOLE ELEMENTAIRE ROGER CRESSENT	0235903123	{(0761274X@ac-rouen.fr)}	elementaire	\N	\N
 308	0761274X	307	ECOLE MATERNELLE ROGER CRESSENT	0235903123	{(0761274X@ac-rouen.fr)}	maternelle	\N	\N
-309	0761275Y	309	\N	0235090824	{(0761275Y@ac-rouen.fr)}	elementaire	\N	\N
+309	0761275Y	309	ECOLE ELEMENTAIRE DE DAMPIERRE-EN-BRAY	0235090824	{(0761275Y@ac-rouen.fr)}	elementaire	\N	\N
 310	0761602D	310	ECOLE ELEMENTAIRE SENECHAL	0235045448	{(0761602D@ac-rouen.fr)}	elementaire	\N	\N
-311	0760591E	311	\N	0235938142	{(0760591E@ac-rouen.fr)}	elementaire	\N	\N
+311	0760591E	311	ECOLE ELEMENTAIRE DE DANCOURT	0235938142	{(0760591E@ac-rouen.fr)}	elementaire	\N	\N
 312	0760021K	312	COLLEGE EMILE CHARTIER	0235084094	{(0760021K@ac-rouen.fr)}	college	\N	\N
 313	0761778V	313	COLLEGE JEAN-JACQUES ROUSSEAU	0232108720	{(0761778V@ac-rouen.fr)}	college	\N	\N
-314	0760428C	314	ECOLE ELEMENTAIRE GEORGES CLEMENCEAU	0235084253	{(0760428C@ac-rouen.fr)}	elementaire	\N	\N
+314	0760428C	320	ECOLE ELEMENTAIRE GEORGES CLEMENCEAU	0235084253	{(0760428C@ac-rouen.fr)}	elementaire	\N	\N
 315	0762008V	315	ECOLE ELEMENTAIRE JEAN BAPTISTE DE LA SALLE	0235084139	{(0762008V@ac-rouen.fr)}	elementaire	\N	\N
 316	0760431F	316	ECOLE ELEMENTAIRE JULES FERRY	0235084530	{(0760431F@ac-rouen.fr)}	elementaire	\N	\N
-317	0762180G	317	ECOLE ELEMENTAIRE MARCEL PAGNOL	0235085452	{(0762180G@ac-rouen.fr)}	elementaire	\N	\N
+317	0762180G	321	ECOLE ELEMENTAIRE MARCEL PAGNOL	0235085452	{(0762180G@ac-rouen.fr)}	elementaire	\N	\N
 318	0760432G	318	ECOLE ELEMENTAIRE SUZANNE SAVALE	0235084071	{(0760432G@ac-rouen.fr)}	elementaire	\N	\N
 319	0760430E	319	ECOLE MATERNELLE ANDREE CANDELLIER	0235084238	{(0760430E@ac-rouen.fr)}	maternelle	\N	\N
-320	0760427B	314	ECOLE MATERNELLE GEORGES CLEMENCEAU	0235084021	{(0760427B@ac-rouen.fr)}	maternelle	\N	\N
-321	0762179F	317	ECOLE MATERNELLE MARCEL PAGNOL	0235085455	{(0762179F@ac-rouen.fr)}	maternelle	\N	\N
+320	0760427B	320	ECOLE MATERNELLE GEORGES CLEMENCEAU	0235084021	{(0760427B@ac-rouen.fr)}	maternelle	\N	\N
+321	0762179F	321	ECOLE MATERNELLE MARCEL PAGNOL	0235085455	{(0762179F@ac-rouen.fr)}	maternelle	\N	\N
 322	0762943L	322	ECOLE MATERNELLE MOZART	0235083641	{(0762943L@ac-rouen.fr)}	maternelle	\N	\N
-323	0761451P	323	\N	0235296669	{(0761451P@ac-rouen.fr)}	maternelle	\N	\N
-324	0760716R	324	\N	0975696650	{(0760716R@ac-rouen.fr)}	elementaire	\N	\N
+323	0761451P	323	ECOLE MATERNELLE DE DAUBEUF-SERVILLE	0235296669	{(0761451P@ac-rouen.fr)}	maternelle	\N	\N
+324	0760716R	324	ECOLE ELEMENTAIRE DE DENESTANVILLE	0975696650	{(0760716R@ac-rouen.fr)}	elementaire	\N	\N
 325	0762202F	325	COLLEGE JULES VERNE	0235744525	{(0762202F@ac-rouen.fr)}	college	\N	\N
 326	0761727P	326	COLLEGE SAINT-ANTOINE	0235740838	{(0761727p@ac-rouen.fr)}	college	\N	\N
 327	0763427M	327	ECOLE ELEMENTAIRE GEORGES CHARPAK	0235336534	{(0763427M@ac-rouen.fr)}	elementaire	\N	\N
@@ -10001,14 +10268,13 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 338	0762225F	338	COLLEGE ALEXANDRE DUMAS	0232146210	{(0762225F@ac-rouen.fr)}	college	\N	\N
 339	0760026R	339	COLLEGE CLAUDE DELVINCOURT	0235063980	{(0760026R@ac-rouen.fr)}	college	\N	\N
 340	0761786D	340	COLLEGE GEORGES BRAQUE	0232905370	{(0761786D@ac-rouen.fr)}	college	\N	\N
-341	0762569E	341	COLLEGE LA PROVIDENCE	0232146146	{(0762569e@ac-rouen.fr)}	college	\N	\N
+341	0762569E	346	COLLEGE LA PROVIDENCE	0232146146	{(0762569e@ac-rouen.fr)}	college	\N	\N
 342	0761881G	342	ECOLE ELEMENTAIRE DESCELIERS-FENELON	0235061211	{(0761881G@ac-rouen.fr)}	elementaire	\N	\N
 343	0762245C	343	ECOLE ELEMENTAIRE JACQUES PREVERT	0235061212	{(0762245C@ac-rouen.fr)}	elementaire	\N	\N
 344	0763020V	344	ECOLE ELEMENTAIRE JULES FERRY	0235061213	{(0763020V@ac-rouen.fr)}	elementaire	\N	\N
 345	0760384E	345	ECOLE ELEMENTAIRE JULES MICHELET	0235061216	{(0760384E@ac-rouen.fr)}	elementaire	\N	\N
-346	0762010X	341	ECOLE ELEMENTAIRE LA PROVIDENCE	0232146149	{(0762010X@ac-rouen.fr)}	elementaire	\N	\N
-347	0762616F	347	ECOLE ELEMENTAIRE LOUIS DE BROGLIE	0235061215	{(0762616F@ac-rouen.fr)}	elementaire	\N	\N
-542	0762923P	542	\N	0235559244	{(0762923P@ac-rouen.fr)}	elementaire	\N	\N
+346	0762010X	346	ECOLE ELEMENTAIRE LA PROVIDENCE	0232146149	{(0762010X@ac-rouen.fr)}	elementaire	\N	\N
+347	0762616F	359	ECOLE ELEMENTAIRE LOUIS DE BROGLIE	0235061215	{(0762616F@ac-rouen.fr)}	elementaire	\N	\N
 348	0760388J	348	ECOLE ELEMENTAIRE MADAME DE SEVIGNE	0235061222	{(0760388J@ac-rouen.fr)}	elementaire	\N	\N
 349	0762982D	349	ECOLE ELEMENTAIRE PAUL BERT	0235061217	{(0762982D@ac-rouen.fr)}	elementaire	\N	\N
 350	0761306G	350	ECOLE ELEMENTAIRE PAUL LANGEVIN	0235061219	{(0761306G@ac-rouen.fr)}	elementaire	\N	\N
@@ -10018,9 +10284,9 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 354	0760402Z	354	ECOLE MATERNELLE BLAINVILLE	0235061196	{(0760402Z@ac-rouen.fr)}	maternelle	\N	\N
 355	0762343J	355	ECOLE MATERNELLE ELSA TRIOLET	0235061197	{(0762343J@ac-rouen.fr)}	maternelle	\N	\N
 356	0762344K	356	ECOLE MATERNELLE JEANNE MAGNY	0235061198	{(0762344K@ac-rouen.fr)}	maternelle	\N	\N
-357	0762010X	341	ECOLE MATERNELLE LA PROVIDENCE	0232146149	{(0762010X@ac-rouen.fr)}	maternelle	\N	\N
+357	0762010X	346	ECOLE MATERNELLE LA PROVIDENCE	0232146149	{(0762010X@ac-rouen.fr)}	maternelle	\N	\N
 358	0763349C	358	ECOLE MATERNELLE LANGEVIN-MICHEL	0235061204	{(0763349C@ac-rouen.fr)}	maternelle	\N	\N
-359	0760403A	347	ECOLE MATERNELLE LOUIS DE BROGLIE	0235061199	{(0760403A@ac-rouen.fr)}	maternelle	\N	\N
+359	0760403A	359	ECOLE MATERNELLE LOUIS DE BROGLIE	0235061199	{(0760403A@ac-rouen.fr)}	maternelle	\N	\N
 360	0760407E	360	ECOLE MATERNELLE LOUIS VAUQUELIN	0235061208	{(0760407E@ac-rouen.fr)}	maternelle	\N	\N
 361	0761763D	361	ECOLE MATERNELLE MARIE CURIE	0235061201	{(0761763D@ac-rouen.fr)}	maternelle	\N	\N
 362	0762821D	362	ECOLE MATERNELLE PAUL BERT	0235061203	{(0762821D@ac-rouen.fr)}	maternelle	\N	\N
@@ -10028,39 +10294,38 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 364	0760406D	364	ECOLE MATERNELLE THOMAS	0235061206	{(0760406D@ac-rouen.fr)}	maternelle	\N	\N
 365	0760404B	365	ECOLE MATERNELLE VALENTIN FELDMANN	0235061207	{(0760404B@ac-rouen.fr)}	maternelle	\N	\N
 366	0763002A	366	LYCEE DU GOLF	0235069340	{(0763002A@ac-rouen.fr)}	lycee	\N	\N
-367	0760024N	367	LYCEE EMULATION DIEPPOISE	0235842221	{(0760024N@ac-rouen.fr)}	lycee	\N	\N
 368	0760023M	368	LYCEE JEHAN ANGO	0232140120	{(0760023M@ac-rouen.fr)}	lycee	\N	\N
-369	0761707T	341	LYCEE LA PROVIDENCE	0232146146	{(0761707t@ac-rouen.fr)}	lycee	\N	\N
+369	0761707T	346	LYCEE LA PROVIDENCE	0232146146	{(0761707t@ac-rouen.fr)}	lycee	\N	\N
 370	0762169V	370	LYCEE PABLO NERUDA	0235065500	{(0762169V@ac-rouen.fr)}	lycee	\N	\N
 371	0762123V	371	COLLEGE ANDRE RAIMBOURG	0235965314	{(0762123V@ac-rouen.fr)}	college	\N	\N
 372	0760408F	372	ECOLE ELEMENTAIRE JULES BRETON	0235964299	{(0760408F@ac-rouen.fr)}	elementaire	\N	\N
 373	0762011Y	373	ECOLE ELEMENTAIRE SAINTE MARIE	0235965123	{(0762011Y@ac-rouen.fr)}	elementaire	\N	\N
 374	0762213T	374	ECOLE MATERNELLE RAYMOND MENSIRE	0235964356	{(0762213T@ac-rouen.fr)}	maternelle	\N	\N
-375	0762488S	375	\N	0235851922	{(0762488S@ac-rouen.fr)}	elementaire	\N	\N
-376	0762488S	375	\N	0235851922	{(0762488S@ac-rouen.fr)}	maternelle	\N	\N
+375	0762488S	376	ECOLE ELEMENTAIRE DE DOUVREND	0235851922	{(0762488S@ac-rouen.fr)}	elementaire	\N	\N
+376	0762488S	376	ECOLE MATERNELLE DE DOUVREND	0235851922	{(0762488S@ac-rouen.fr)}	maternelle	\N	\N
 377	0760136K	377	COLLEGE GUSTAVE FLAUBERT	0235375024	{(0760136K@ac-rouen.fr)}	college	\N	\N
 378	0761466F	378	ECOLE ELEMENTAIRE ANDRE MALRAUX	0235375123	{(0761466F@ac-rouen.fr)}	elementaire	\N	\N
 379	0761761B	379	ECOLE MATERNELLE ANDRE MALRAUX	0235375190	{(0761761B@ac-rouen.fr)}	maternelle	\N	\N
-380	0760917J	380	\N	0235567177	{(0760917J@ac-rouen.fr)}	elementaire	\N	\N
-381	0761452R	381	ECOLE ELEMENTAIRE LES CHARMILLES	0235283775	{(0761452R@ac-rouen.fr)}	elementaire	\N	\N
-382	0761452R	381	ECOLE MATERNELLE LES CHARMILLES	0235283775	{(0761452R@ac-rouen.fr)}	maternelle	\N	\N
-383	0763310K	383	\N	0235956395	{(0763310K@ac-rouen.fr)}	maternelle	\N	\N
-384	0761044X	384	\N	0235954165	{(0761044X@ac-rouen.fr)}	elementaire	\N	\N
+380	0760917J	380	ECOLE ELEMENTAIRE DE ECALLES-ALIX	0235567177	{(0760917J@ac-rouen.fr)}	elementaire	\N	\N
+381	0761452R	382	ECOLE ELEMENTAIRE LES CHARMILLES	0235283775	{(0761452R@ac-rouen.fr)}	elementaire	\N	\N
+382	0761452R	382	ECOLE MATERNELLE LES CHARMILLES	0235283775	{(0761452R@ac-rouen.fr)}	maternelle	\N	\N
+383	0763310K	383	ECOLE MATERNELLE DE ECTOT-L AUBER	0235956395	{(0763310K@ac-rouen.fr)}	maternelle	\N	\N
+384	0761044X	384	ECOLE ELEMENTAIRE DE ECTOT-LES-BAONS	0235954165	{(0761044X@ac-rouen.fr)}	elementaire	\N	\N
 385	0762563Y	385	COLLEGE FENELON	0232969832	{(0762563Y@ac-rouen.fr)}	college	\N	\N
 386	0762459K	386	COLLEGE NELSON MANDELA	0235814640	{(0762459K@ac-rouen.fr)}	college	\N	\N
-387	0762485N	387	ECOLE ELEMENTAIRE ALPHONSE DAUDET	0235771656	{(0762485N@ac-rouen.fr)}	elementaire	\N	\N
+387	0762485N	395	ECOLE ELEMENTAIRE ALPHONSE DAUDET	0235771656	{(0762485N@ac-rouen.fr)}	elementaire	\N	\N
 388	0761502V	388	ECOLE ELEMENTAIRE ANTOINE DE CONDORCET	0235810288	{(0761502V@ac-rouen.fr)}	elementaire	\N	\N
 389	0762784N	389	ECOLE ELEMENTAIRE CHARLES MOUCHEL	0235771166	{(0762784N@ac-rouen.fr)}	elementaire	\N	\N
 390	0762013A	390	ECOLE ELEMENTAIRE FENELON	0235810737	{(0762013A@ac-rouen.fr)}	elementaire	\N	\N
 391	0762486P	391	ECOLE ELEMENTAIRE GEORGES BRASSENS	0235770596	{(0762486P@ac-rouen.fr)}	elementaire	\N	\N
 392	0761729S	392	ECOLE ELEMENTAIRE IMMACULEE CONCEPTION	0235810680	{(0761729S@ac-rouen.fr)}	elementaire	\N	\N
 393	0762847G	393	ECOLE ELEMENTAIRE JULES MICHELET	0235771910	{(0762847G@ac-rouen.fr)}	elementaire	\N	\N
-394	0761507A	394	ECOLE ELEMENTAIRE MOLIERE	0235810187	{(0761507A@ac-rouen.fr)}	elementaire	\N	\N
-395	0762502G	387	ECOLE MATERNELLE ALPHONSE DAUDET	0235771684	{(0762502G@ac-rouen.fr)}	maternelle	\N	\N
+394	0761507A	399	ECOLE ELEMENTAIRE MOLIERE	0235810187	{(0761507A@ac-rouen.fr)}	elementaire	\N	\N
+395	0762502G	395	ECOLE MATERNELLE ALPHONSE DAUDET	0235771684	{(0762502G@ac-rouen.fr)}	maternelle	\N	\N
 396	0762140N	396	ECOLE MATERNELLE ANDRE MALRAUX	0235771415	{(0762140N@ac-rouen.fr)}	maternelle	\N	\N
 397	0762487R	391	ECOLE MATERNELLE GEORGES BRASSENS	0235770610	{(0762487R@ac-rouen.fr)}	maternelle	\N	\N
 398	0761503W	398	ECOLE MATERNELLE JACQUES PREVERT	0235771457	{(0761503W@ac-rouen.fr)}	maternelle	\N	\N
-399	0762353V	394	ECOLE MATERNELLE MOLIERE	0235770789	{(0762353V@ac-rouen.fr)}	maternelle	\N	\N
+399	0762353V	399	ECOLE MATERNELLE MOLIERE	0235770789	{(0762353V@ac-rouen.fr)}	maternelle	\N	\N
 400	0761534E	400	ECOLE MATERNELLE RAYMONDE LEFRANCOIS	0235771316	{(0761534E@ac-rouen.fr)}	maternelle	\N	\N
 401	0761533D	401	ECOLE MATERNELLE SUZANNE LEFEVRE	0235771272	{(0761533D@ac-rouen.fr)}	maternelle	\N	\N
 402	0760029U	402	LYCEE ANDRE MAUROIS	0232969440	{(0760029U@ac-rouen.fr)}	lycee	\N	\N
@@ -10068,39 +10333,39 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 404	0760030V	404	LYCEE FERDINAND BUISSON	0232964800	{(0760030V@ac-rouen.fr)}	lycee	\N	\N
 405	0761347B	405	LYCEE NOTRE-DAME	0232969160	{(0761347b@ac-rouen.fr)}	lycee	\N	\N
 406	\N	406	MJC	0235814130	{(accueil_mjcelbeuf@yahoo.fr)}	\N	\N	autre
-407	0761277A	407	\N	0232890956	{(0761277A@ac-rouen.fr)}	elementaire	\N	\N
-408	0760446X	408	\N	0235020616	{(0760446X@ac-rouen.fr)}	elementaire	\N	\N
-409	0761018U	409	\N	0235284314	{(0761018U@ac-rouen.fr)}	elementaire	\N	\N
-410	0761018U	409	\N	0235284314	{(0761018U@ac-rouen.fr)}	maternelle	\N	\N
-411	0760918K	411	\N	0235912768	{(0760918K@ac-rouen.fr)}	elementaire	\N	\N
-412	0762852M	412	\N	0235857294	{(0762852M@ac-rouen.fr)}	elementaire	\N	\N
+407	0761277A	407	ECOLE ELEMENTAIRE DE ELBEUF-EN-BRAY	0232890956	{(0761277A@ac-rouen.fr)}	elementaire	\N	\N
+408	0760446X	408	ECOLE ELEMENTAIRE DE ELBEUF-SUR-ANDELLE	0235020616	{(0760446X@ac-rouen.fr)}	elementaire	\N	\N
+409	0761018U	410	ECOLE ELEMENTAIRE DE ELETOT	0235284314	{(0761018U@ac-rouen.fr)}	elementaire	\N	\N
+410	0761018U	410	ECOLE MATERNELLE DE ELETOT	0235284314	{(0761018U@ac-rouen.fr)}	maternelle	\N	\N
+411	0760918K	411	ECOLE ELEMENTAIRE DE EMANVILLE	0235912768	{(0760918K@ac-rouen.fr)}	elementaire	\N	\N
+412	0762852M	412	ECOLE ELEMENTAIRE DE ENVERMEU	0235857294	{(0762852M@ac-rouen.fr)}	elementaire	\N	\N
 413	0762852M	413	ECOLE MATERNELLE les Petits Lutins	0235857189	{(0762852M@ac-rouen.fr)}	maternelle	\N	\N
 414	0763004C	414	LYCEE METIERS DU BOIS	0232063040	{(lpa.envermeu@educagri.fr)}	lycee	\N	\N
-415	0761383R	415	ECOLE ELEMENTAIRE PIERRE SIQUIER	0235958313	{(0761383R@ac-rouen.fr)}	elementaire	\N	\N
-416	0761383R	415	ECOLE MATERNELLE PIERRE SIQUIER	0235958313	{(0761383R@ac-rouen.fr)}	maternelle	\N	\N
-417	0761472M	417	ECOLE ELEMENTAIRE DENISE CARPENTIER	0235376329	{(0761472M@ac-rouen.fr)}	elementaire	\N	\N
-418	0761472M	417	ECOLE MATERNELLE DENISE CARPENTIER	0235376329	{(0761472M@ac-rouen.fr)}	maternelle	\N	\N
+415	0761383R	416	ECOLE ELEMENTAIRE PIERRE SIQUIER	0235958313	{(0761383R@ac-rouen.fr)}	elementaire	\N	\N
+416	0761383R	416	ECOLE MATERNELLE PIERRE SIQUIER	0235958313	{(0761383R@ac-rouen.fr)}	maternelle	\N	\N
+417	0761472M	418	ECOLE ELEMENTAIRE DENISE CARPENTIER	0235376329	{(0761472M@ac-rouen.fr)}	elementaire	\N	\N
+418	0761472M	418	ECOLE MATERNELLE DENISE CARPENTIER	0235376329	{(0761472M@ac-rouen.fr)}	maternelle	\N	\N
 419	0762598L	419	COLLEGE GEORGES BRASSENS	0235300735	{(0762598L@ac-rouen.fr)}	college	\N	\N
-420	0762922N	420	ECOLE ELEMENTAIRE JOSEPH BOULARD	0235301856	{(0762922N@ac-rouen.fr)}	elementaire	\N	\N
-421	0762417P	420	ECOLE MATERNELLE MARGUERITE MULLER	0235301586	{(0762417P@ac-rouen.fr)}	maternelle	\N	\N
-422	0760265A	422	\N	0235205469	{(0760265A@ac-rouen.fr)}	elementaire	\N	\N
-423	0762110F	423	\N	0235274460	{(0762110F@ac-rouen.fr)}	elementaire	\N	\N
-424	0762110F	423	\N	0235274460	{(0762110F@ac-rouen.fr)}	maternelle	\N	\N
-425	0761403M	425	\N	0235571564	{(0761403M@ac-rouen.fr)}	maternelle	\N	\N
-426	0760478G	426	\N	0235329935	{(0760478G@ac-rouen.fr)}	elementaire	\N	\N
-427	0760762R	427	\N	0235941096	{(0760762R@ac-rouen.fr)}	elementaire	\N	\N
+420	0762922N	421	ECOLE ELEMENTAIRE JOSEPH BOULARD	0235301856	{(0762922N@ac-rouen.fr)}	elementaire	\N	\N
+421	0762417P	421	ECOLE MATERNELLE MARGUERITE MULLER	0235301586	{(0762417P@ac-rouen.fr)}	maternelle	\N	\N
+422	0760265A	422	ECOLE ELEMENTAIRE DE EPRETOT	0235205469	{(0760265A@ac-rouen.fr)}	elementaire	\N	\N
+423	0762110F	424	ECOLE ELEMENTAIRE DE EPREVILLE	0235274460	{(0762110F@ac-rouen.fr)}	elementaire	\N	\N
+424	0762110F	424	ECOLE MATERNELLE DE EPREVILLE	0235274460	{(0762110F@ac-rouen.fr)}	maternelle	\N	\N
+425	0761403M	425	ECOLE MATERNELLE DE ERMENOUVILLE	0235571564	{(0761403M@ac-rouen.fr)}	maternelle	\N	\N
+426	0760478G	426	ECOLE ELEMENTAIRE DE ERNEMONT-SUR-BUCHY	0235329935	{(0760478G@ac-rouen.fr)}	elementaire	\N	\N
+427	0760762R	427	ECOLE ELEMENTAIRE DE ESCLAVELLES	0235941096	{(0760762R@ac-rouen.fr)}	elementaire	\N	\N
 428	0760619K	428	ECOLE ELEMENTAIRE DENIS DIDEROT	0235336040	{(0760619K@ac-rouen.fr)}	elementaire	\N	\N
 429	0762711J	429	ECOLE MATERNELLE CLAUDINE GUERIN	0235336065	{(0762711J@ac-rouen.fr)}	maternelle	\N	\N
-430	0760620L	430	\N	0232801176	{(0760620L@ac-rouen.fr)}	elementaire	\N	\N
+430	0760620L	430	ECOLE ELEMENTAIRE DE ESTEVILLE	0232801176	{(0760620L@ac-rouen.fr)}	elementaire	\N	\N
 431	0762556R	431	ECOLE ELEMENTAIRE GUILLAUME ESTOUTEVILLE	0235348170	{(0762556R@ac-rouen.fr)}	elementaire	\N	\N
-432	0763131R	432	\N	0235331205	{(0763131R@ac-rouen.fr)}	maternelle	\N	\N
-433	0760266B	433	\N	0235204567	{(0760266B@ac-rouen.fr)}	elementaire	\N	\N
-434	0760266B	433	\N	0235204567	{(0760266B@ac-rouen.fr)}	maternelle	\N	\N
-435	0760416P	435	\N	0232700376	{(0760416P@ac-rouen.fr)}	elementaire	\N	\N
-436	0761545S	436	ECOLE ELEMENTAIRE FRANCOISE DOLTO	0235502179	{(0761545S@ac-rouen.fr)}	elementaire	\N	\N
-437	0761545S	436	ECOLE MATERNELLE FRANCOISE DOLTO	0235502179	{(0761545S@ac-rouen.fr)}	maternelle	\N	\N
+432	0763131R	432	ECOLE MATERNELLE DE ETAIMPUIS	0235331205	{(0763131R@ac-rouen.fr)}	maternelle	\N	\N
+433	0760266B	434	ECOLE ELEMENTAIRE DE ETAINHUS	0235204567	{(0760266B@ac-rouen.fr)}	elementaire	\N	\N
+434	0760266B	434	ECOLE MATERNELLE DE ETAINHUS	0235204567	{(0760266B@ac-rouen.fr)}	maternelle	\N	\N
+435	0760416P	435	ECOLE ELEMENTAIRE DE ETALLEVILLE	0232700376	{(0760416P@ac-rouen.fr)}	elementaire	\N	\N
+436	0761545S	437	ECOLE ELEMENTAIRE FRANCOISE DOLTO	0235502179	{(0761545S@ac-rouen.fr)}	elementaire	\N	\N
+437	0761545S	437	ECOLE MATERNELLE FRANCOISE DOLTO	0235502179	{(0761545S@ac-rouen.fr)}	maternelle	\N	\N
 438	0761045Y	438	ECOLE ELEMENTAIRE JOSETTE ET CLAUDE BOYER	0235968358	{(0761045Y@ac-rouen.fr)}	elementaire	\N	\N
-439	0762340F	439	\N	0235270003	{(0762340F@ac-rouen.fr)}	elementaire	\N	\N
+439	0762340F	439	ECOLE ELEMENTAIRE DE ETRETAT	0235270003	{(0762340F@ac-rouen.fr)}	elementaire	\N	\N
 440	0762341G	440	ECOLE MATERNELLE LA SIRENE	0235271331	{(0762341G@ac-rouen.fr)}	maternelle	\N	\N
 441	0762170W	441	COLLEGE LOUIS PHILIPPE	0235505050	{(0762170W@ac-rouen.fr)}	college	\N	\N
 442	0763019U	442	ECOLE ELEMENTAIRE BROCELIANDE	0235861256	{(0763019U@ac-rouen.fr)}	elementaire	\N	\N
@@ -10109,7 +10374,7 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 445	0761537H	445	ECOLE MATERNELLE PRIMEVERE	0235860135	{(0761537H@ac-rouen.fr)}	maternelle	\N	\N
 446	0761730T	446	LYCEE LA PROVIDENCE NAZARETH	0235861366	{(0761730t@ac-rouen.fr)}	lycee	\N	\N
 447	0760032X	447	LYCEE METIER ANGUIER	0235066960	{(0760032X@ac-rouen.fr)}	lycee	\N	\N
-448	0760594H	448	\N	0235944219	{(0760594H@ac-rouen.fr)}	elementaire	\N	\N
+448	0760594H	448	ECOLE ELEMENTAIRE DE FALLENCOURT	0235944219	{(0760594H@ac-rouen.fr)}	elementaire	\N	\N
 449	0760034Z	449	COLLEGE FRANCOIS VILLON	0235967722	{(0760034Z@ac-rouen.fr)}	college	\N	\N
 450	0762111G	450	ECOLE ELEMENTAIRE JEAN-LOUP CHRETIEN	0235967043	{(0762111G@ac-rouen.fr)}	elementaire	\N	\N
 451	0762017E	451	ECOLE ELEMENTAIRE SAINT LOUIS	0235967735	{(0762017E@ac-rouen.fr)}	elementaire	\N	\N
@@ -10119,32 +10384,32 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 455	0761731U	455	COLLEGE LA PROVIDENCE	0235104205	{(0761731u@ac-rouen.fr)}	college	\N	\N
 456	0761785C	456	COLLEGE PAUL BERT	0235102460	{(0761785C@ac-rouen.fr)}	college	\N	\N
 457	0761291R	457	ECOLE ELEMENTAIRE ALBERT CAMUS	0235280724	{(0761291R@ac-rouen.fr)}	elementaire	\N	\N
-458	0761290P	458	ECOLE ELEMENTAIRE ALPHONSE ALLAIS	0235280100	{(0761290P@ac-rouen.fr)}	elementaire	\N	\N
+458	0761290P	465	ECOLE ELEMENTAIRE ALPHONSE ALLAIS	0235280100	{(0761290P@ac-rouen.fr)}	elementaire	\N	\N
 459	0761288M	459	ECOLE ELEMENTAIRE DU PORT	0235281644	{(0761288M@ac-rouen.fr)}	elementaire	\N	\N
 460	0761285J	460	ECOLE ELEMENTAIRE FRANCOIS RABELAIS	0235282998	{(0761285J@ac-rouen.fr)}	elementaire	\N	\N
 461	0761570U	461	ECOLE ELEMENTAIRE JEAN LORRAIN	0235283973	{(0761570U@ac-rouen.fr)}	elementaire	\N	\N
-462	0761573X	462	ECOLE ELEMENTAIRE JEAN MACE	0235282886	{(0761573X@ac-rouen.fr)}	elementaire	\N	\N
+462	0761573X	469	ECOLE ELEMENTAIRE JEAN MACE	0235282886	{(0761573X@ac-rouen.fr)}	elementaire	\N	\N
 463	0762018F	463	ECOLE ELEMENTAIRE LA PROVIDENCE	0235104215	{(0762018F@ac-rouen.fr)}	elementaire	\N	\N
 464	0761292S	464	ECOLE MATERNELLE ALBERT CAMUS	0235282275	{(0761292S@ac-rouen.fr)}	maternelle	\N	\N
-465	0761936S	458	ECOLE MATERNELLE ALPHONSE ALLAIS	0235282211	{(0761936S@ac-rouen.fr)}	maternelle	\N	\N
+465	0761936S	465	ECOLE MATERNELLE ALPHONSE ALLAIS	0235282211	{(0761936S@ac-rouen.fr)}	maternelle	\N	\N
 466	0762484M	466	ECOLE MATERNELLE DU PARC	0235287119	{(0762484M@ac-rouen.fr)}	maternelle	\N	\N
 467	0761591S	467	ECOLE MATERNELLE GERMAINE COTY	0235280746	{(0761591S@ac-rouen.fr)}	maternelle	\N	\N
 468	0761569T	461	ECOLE MATERNELLE JEAN LORRAIN	0235299661	{(0761569T@ac-rouen.fr)}	maternelle	\N	\N
-469	0761296W	462	ECOLE MATERNELLE JEAN MACE	0235282364	{(0761296W@ac-rouen.fr)}	maternelle	\N	\N
+469	0761296W	469	ECOLE MATERNELLE JEAN MACE	0235282364	{(0761296W@ac-rouen.fr)}	maternelle	\N	\N
 470	0761287L	470	ECOLE MATERNELLE PAVILLON DE L ENFANCE	0235281286	{(0761287L@ac-rouen.fr)}	maternelle	\N	\N
-471	0760036B	471	LYCEE DESCARTES	0235102424	{(0760036B@ac-rouen.fr)}	lycee	\N	\N
-472	0760035A	471	LYCEE GUY DE MAUPASSANT	0235102424	{(0760035A@ac-rouen.fr)}	lycee	\N	\N
+471	0760036B	472	LYCEE DESCARTES	0235102424	{(0760036B@ac-rouen.fr)}	lycee	\N	\N
+472	0760035A	472	LYCEE GUY DE MAUPASSANT	0235102424	{(0760035A@ac-rouen.fr)}	lycee	\N	\N
 473	0763112V	473	LYCEE LA PROVIDENCE	0235104225	{(0763112v@ac-rouen.fr)}	lycee	\N	\N
 474	0762735K	474	LYCEE Maritime	0235104530	{(LPM-Fecamp@developpement-durable.gouv.fr)}	lycee	\N	\N
-475	0762446W	475	\N	0235090945	{(0762446W@ac-rouen.fr)}	elementaire	\N	\N
-476	0762446W	475	\N	0235090945	{(0762446W@ac-rouen.fr)}	maternelle	\N	\N
-477	0760763S	477	\N	0235938922	{(0760763S@ac-rouen.fr)}	maternelle	\N	\N
-478	0761046Z	478	\N	0235968487	{(0761046Z@ac-rouen.fr)}	elementaire	\N	\N
-479	0760764T	479	\N	0235933582	{(0760764T@ac-rouen.fr)}	elementaire	\N	\N
-480	0761546T	480	ECOLE ELEMENTAIRE DU TILLEUL	0235861579	{(0761546T@ac-rouen.fr)}	elementaire	\N	\N
-481	0761546T	480	ECOLE MATERNELLE DU TILLEUL	0235861579	{(0761546T@ac-rouen.fr)}	maternelle	\N	\N
-482	0760650U	482	\N	0235105013	{(0760650U@ac-rouen.fr)}	maternelle	\N	\N
-483	0760293F	483	\N	0232890797	{(0760293F@ac-rouen.fr)}	elementaire	\N	\N
+475	0762446W	476	ECOLE ELEMENTAIRE DE FERRIERES-EN-BRAY	0235090945	{(0762446W@ac-rouen.fr)}	elementaire	\N	\N
+476	0762446W	476	ECOLE MATERNELLE DE FERRIERES-EN-BRAY	0235090945	{(0762446W@ac-rouen.fr)}	maternelle	\N	\N
+477	0760763S	477	ECOLE MATERNELLE DE FESQUES	0235938922	{(0760763S@ac-rouen.fr)}	maternelle	\N	\N
+478	0761046Z	478	ECOLE ELEMENTAIRE DE FLAMANVILLE	0235968487	{(0761046Z@ac-rouen.fr)}	elementaire	\N	\N
+479	0760764T	479	ECOLE ELEMENTAIRE DE FLAMETS-FRETILS	0235933582	{(0760764T@ac-rouen.fr)}	elementaire	\N	\N
+480	0761546T	481	ECOLE ELEMENTAIRE DU TILLEUL	0235861579	{(0761546T@ac-rouen.fr)}	elementaire	\N	\N
+481	0761546T	481	ECOLE MATERNELLE DU TILLEUL	0235861579	{(0761546T@ac-rouen.fr)}	maternelle	\N	\N
+482	0760650U	482	ECOLE MATERNELLE DE FONGUEUSEMARE	0235105013	{(0760650U@ac-rouen.fr)}	maternelle	\N	\N
+483	0760293F	483	ECOLE ELEMENTAIRE DE FONTAINE-EN-BRAY	0232890797	{(0760293F@ac-rouen.fr)}	elementaire	\N	\N
 484	0762366J	484	ECOLE ELEMENTAIRE JEAN MONNET	0235559332	{(0762366J@ac-rouen.fr)}	elementaire	\N	\N
 485	0762182J	485	ECOLE MATERNELLE JEAN FERBOURG	0235559098	{(0762182J@ac-rouen.fr)}	maternelle	\N	\N
 486	0762339E	486	ECOLE ELEMENTAIRE JACQUES-YVES COUSTEAU	0235346594	{(0762339E@ac-rouen.fr)}	elementaire	\N	\N
@@ -10152,17 +10417,16 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 488	0762336B	488	ECOLE ELEMENTAIRE PIERRE GIFFARD	0235974353	{(0762336B@ac-rouen.fr)}	elementaire	\N	\N
 489	0762820C	489	ECOLE MATERNELLE PIERRE GIFFARD	0235974222	{(0762820C@ac-rouen.fr)}	maternelle	\N	\N
 490	0760447Y	490	ECOLE ELEMENTAIRE DES SOURCES	0235590453	{(0760447Y@ac-rouen.fr)}	elementaire	\N	\N
-491	0760881V	491	\N	0235300484	{(0760881V@ac-rouen.fr)}	elementaire	\N	\N
-492	0760881V	491	\N	0235300484	{(0760881V@ac-rouen.fr)}	maternelle	\N	\N
-543	0762923P	542	\N	0235559244	{(0762923P@ac-rouen.fr)}	maternelle	\N	\N
+491	0760881V	492	ECOLE ELEMENTAIRE DE FONTENAY	0235300484	{(0760881V@ac-rouen.fr)}	elementaire	\N	\N
+492	0760881V	492	ECOLE MATERNELLE DE FONTENAY	0235300484	{(0760881V@ac-rouen.fr)}	maternelle	\N	\N
 493	0761695E	493	COLLEGE ANTOINE DE SAINT-EXUPERY	0235905370	{(0761695E@ac-rouen.fr)}	college	\N	\N
 494	0761412X	494	ECOLE ELEMENTAIRE EUGENE ANNE	0235905187	{(0761412X@ac-rouen.fr)}	elementaire	\N	\N
 495	0762020H	495	ECOLE ELEMENTAIRE SACRE COEUR	0235905103	{(0762020H@ac-rouen.fr)}	elementaire	\N	\N
 496	0761297X	496	ECOLE MATERNELLE MARGUERITE COUTURIER	0235905424	{(0761297X@ac-rouen.fr)}	maternelle	\N	\N
 497	0762600N	497	LYCEE E. DELAMARE DEBOUTTEVILLE	0235905436	{(0762600N@ac-rouen.fr)}	lycee	\N	\N
-498	0762660D	498	\N	0235937202	{(0762660D@ac-rouen.fr)}	elementaire	\N	\N
-499	0762682C	499	\N	0235948434	{(0762682C@ac-rouen.fr)}	maternelle	\N	\N
-500	0761384S	500	\N	0235562710	{(0761384S@ac-rouen.fr)}	elementaire	\N	\N
+498	0762660D	498	ECOLE ELEMENTAIRE DE FOUCARMONT	0235937202	{(0762660D@ac-rouen.fr)}	elementaire	\N	\N
+499	0762682C	499	ECOLE MATERNELLE DE FOUCARMONT	0235948434	{(0762682C@ac-rouen.fr)}	maternelle	\N	\N
+500	0761384S	500	ECOLE ELEMENTAIRE DE FOUCART	0235562710	{(0761384S@ac-rouen.fr)}	elementaire	\N	\N
 501	0762482K	501	ECOLE ELEMENTAIRE LOUIS LEMONNIER	0235802392	{(0762482K@ac-rouen.fr)}	elementaire	\N	\N
 502	0762905V	502	ECOLE MATERNELLE LE PETIT POUCET	0235798895	{(0762905V@ac-rouen.fr)}	maternelle	\N	\N
 503	0762483L	501	ECOLE MATERNELLE LOUIS LEMONNIER	0235809131	{(0762483L@ac-rouen.fr)}	maternelle	\N	\N
@@ -10170,43 +10434,45 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 505	0761518M	505	ECOLE ELEMENTAIRE LES CYGNES	0235773824	{(0761518M@ac-rouen.fr)}	elementaire	\N	\N
 506	0761518M	505	ECOLE MATERNELLE LES CYGNES	0235773824	{(0761518M@ac-rouen.fr)}	maternelle	\N	\N
 507	0760521D	507	ECOLE ELEMENTAIRE LES MALIERES	0235799367	{(0760521D@ac-rouen.fr)}	elementaire	\N	\N
-508	0761882H	508	\N	0235940525	{(0761882H@ac-rouen.fr)}	elementaire	\N	\N
-509	0761882H	508	\N	0235940525	{(0761882H@ac-rouen.fr)}	maternelle	\N	\N
-510	0760919L	510	\N	0235321849	{(0760919L@ac-rouen.fr)}	elementaire	\N	\N
+508	0761882H	509	ECOLE ELEMENTAIRE DE FRESNOY-FOLNY	0235940525	{(0761882H@ac-rouen.fr)}	elementaire	\N	\N
+509	0761882H	509	ECOLE MATERNELLE DE FRESNOY-FOLNY	0235940525	{(0761882H@ac-rouen.fr)}	maternelle	\N	\N
+510	0760919L	510	ECOLE ELEMENTAIRE DE FRESQUIENNES	0235321849	{(0760919L@ac-rouen.fr)}	elementaire	\N	\N
 511	0761605G	511	ECOLE ELEMENTAIRE MARIE PAPE CARPANTIER	0235833999	{(0761605G@ac-rouen.fr)}	elementaire	\N	\N
-512	0760920M	512	\N	0235917952	{(0760920M@ac-rouen.fr)}	elementaire	\N	\N
-513	0760920M	512	\N	0235917952	{(0760920M@ac-rouen.fr)}	maternelle	\N	\N
+512	0760920M	513	ECOLE ELEMENTAIRE DE FREVILLE	0235917952	{(0760920M@ac-rouen.fr)}	elementaire	\N	\N
+513	0760920M	513	ECOLE MATERNELLE DE FREVILLE	0235917952	{(0760920M@ac-rouen.fr)}	maternelle	\N	\N
 514	0760624R	514	ECOLE ELEMENTAIRE DU CHEMIN DES FEES	0235336425	{(0760624R@ac-rouen.fr)}	elementaire	\N	\N
-515	0761577B	515	ECOLE ELEMENTAIRE JACQUES PREVERT	0235275515	{(0761577B@ac-rouen.fr)}	elementaire	\N	\N
-516	0761577B	515	ECOLE MATERNELLE JACQUES PREVERT	0235275515	{(0761577B@ac-rouen.fr)}	maternelle	\N	\N
+515	0761577B	516	ECOLE ELEMENTAIRE JACQUES PREVERT	0235275515	{(0761577B@ac-rouen.fr)}	elementaire	\N	\N
+516	0761577B	516	ECOLE MATERNELLE JACQUES PREVERT	0235275515	{(0761577B@ac-rouen.fr)}	maternelle	\N	\N
 517	0761422H	517	ECOLE ELEMENTAIRE LAZARE HOCHE	0235909150	{(0761422H@ac-rouen.fr)}	elementaire	\N	\N
 518	0762503H	518	ECOLE MATERNELLE LAZARE HOCHE	0235096248	{(0762503H@ac-rouen.fr)}	maternelle	\N	\N
-519	0762113J	519	ECOLE ELEMENTAIRE LOUIS ARAGON	0232795952	{(0762113J@ac-rouen.fr)}	elementaire	\N	\N
-520	0762661E	519	ECOLE MATERNELLE LOUIS ARAGON	0232795955	{(0762661E@ac-rouen.fr)}	maternelle	\N	\N
-521	0761578C	521	\N	0235292885	{(0761578C@ac-rouen.fr)}	elementaire	\N	\N
-522	0761578C	521	\N	0235292885	{(0761578C@ac-rouen.fr)}	maternelle	\N	\N
-523	0761019V	523	\N	0235270644	{(0761019V@ac-rouen.fr)}	elementaire	\N	\N
-524	0761579D	524	\N	0235279343	{(0761579D@ac-rouen.fr)}	elementaire	\N	\N
-525	0762105A	525	\N	0235277800	{(0762105A@ac-rouen.fr)}	maternelle	\N	\N
+519	0762113J	520	ECOLE ELEMENTAIRE LOUIS ARAGON	0232795952	{(0762113J@ac-rouen.fr)}	elementaire	\N	\N
+520	0762661E	520	ECOLE MATERNELLE LOUIS ARAGON	0232795955	{(0762661E@ac-rouen.fr)}	maternelle	\N	\N
+521	0761578C	522	ECOLE ELEMENTAIRE DE GANZEVILLE	0235292885	{(0761578C@ac-rouen.fr)}	elementaire	\N	\N
+522	0761578C	522	ECOLE MATERNELLE DE GANZEVILLE	0235292885	{(0761578C@ac-rouen.fr)}	maternelle	\N	\N
+523	0761019V	523	ECOLE ELEMENTAIRE DE GERPONVILLE	0235270644	{(0761019V@ac-rouen.fr)}	elementaire	\N	\N
+524	0761579D	524	ECOLE ELEMENTAIRE DE GERVILLE	0235279343	{(0761579D@ac-rouen.fr)}	elementaire	\N	\N
+525	0762105A	525	ECOLE MATERNELLE DE GODERVILLE	0235277800	{(0762105A@ac-rouen.fr)}	maternelle	\N	\N
 526	0761741E	526	COLLEGE ANDRE GIDE	0235277369	{(0761741E@ac-rouen.fr)}	college	\N	\N
 527	0762114K	527	ECOLE ELEMENTAIRE JEAN SAVIGNY	0235277316	{(0762114K@ac-rouen.fr)}	elementaire	\N	\N
-528	0760267C	528	\N	0235208046	{(0760267C@ac-rouen.fr)}	elementaire	\N	\N
-529	0760267C	528	\N	0235208046	{(0760267C@ac-rouen.fr)}	maternelle	\N	\N
+528	0760267C	528	ECOLE ELEMENTAIRE DE GOMMERVILLE	0235208046	{(0760267C@ac-rouen.fr)}	elementaire	\N	\N
+529	0760267C	528	ECOLE MATERNELLE DE GOMMERVILLE	0235208046	{(0760267C@ac-rouen.fr)}	maternelle	\N	\N
 530	0763132S	530	ECOLE MATERNELLE LA CAILLOTINE	0235274043	{(0763132S@ac-rouen.fr)}	maternelle	\N	\N
 531	0761954L	531	COLLEGE GUSTAVE COURBET	0235470850	{(0761954L@ac-rouen.fr)}	college	\N	\N
 532	0761211D	532	ECOLE ELEMENTAIRE ARTHUR FLEURY	0235135151	{(0761211D@ac-rouen.fr)}	elementaire	\N	\N
 533	0762528K	533	ECOLE ELEMENTAIRE DE GOURNAY	0235555839	{(0762528K@ac-rouen.fr)}	elementaire	\N	\N
 534	0762508N	534	ECOLE ELEMENTAIRE JACQUES EBERHARD	0235131685	{(0762508N@ac-rouen.fr)}	elementaire	\N	\N
-535	0761210C	535	ECOLE ELEMENTAIRE JEAN JAURES	0235131643	{(0761210C@ac-rouen.fr)}	elementaire	\N	\N
+535	0761210C	539	ECOLE ELEMENTAIRE JEAN JAURES	0235131643	{(0761210C@ac-rouen.fr)}	elementaire	\N	\N
 536	0762184L	536	ECOLE ELEMENTAIRE TURGAUVILLE	0235476632	{(0762184L@ac-rouen.fr)}	elementaire	\N	\N
 537	0761224T	537	ECOLE MATERNELLE ARTHUR FLEURY	0235131634	{(0761224T@ac-rouen.fr)}	maternelle	\N	\N
 538	0762075T	538	ECOLE MATERNELLE DE GOURNAY	0235555854	{(0762075T@ac-rouen.fr)}	maternelle	\N	\N
-539	0761754U	535	ECOLE MATERNELLE JEAN JAURES	0235131645	{(0761754U@ac-rouen.fr)}	maternelle	\N	\N
+539	0761754U	539	ECOLE MATERNELLE JEAN JAURES	0235131645	{(0761754U@ac-rouen.fr)}	maternelle	\N	\N
 540	0761227W	540	ECOLE MATERNELLE PAUL LANGEVIN-HENRI WALLON	0235454501	{(0761227W@ac-rouen.fr)}	maternelle	\N	\N
 541	0762190T	536	ECOLE MATERNELLE TURGAUVILLE	0235476229	{(0762190T@ac-rouen.fr)}	maternelle	\N	\N
-544	0760997W	544	\N	0235328578	{(0760997W@ac-rouen.fr)}	maternelle	\N	\N
-545	0760998X	545	\N	0232801697	{(0760998X@ac-rouen.fr)}	maternelle	\N	\N
-546	0760921N	546	\N	0235916239	{(0760921N@ac-rouen.fr)}	elementaire	\N	\N
+542	0762923P	543	ECOLE ELEMENTAIRE DE GONNEVILLE-LA-MALLET	0235559244	{(0762923P@ac-rouen.fr)}	elementaire	\N	\N
+543	0762923P	543	ECOLE MATERNELLE DE GONNEVILLE-LA-MALLET	0235559244	{(0762923P@ac-rouen.fr)}	maternelle	\N	\N
+544	0760997W	544	ECOLE MATERNELLE DE GONNEVILLE-SUR-SCIE	0235328578	{(0760997W@ac-rouen.fr)}	maternelle	\N	\N
+545	0760998X	545	ECOLE MATERNELLE DE GONNEVILLE-SUR-SCIE	0232801697	{(0760998X@ac-rouen.fr)}	maternelle	\N	\N
+546	0760921N	546	ECOLE ELEMENTAIRE DE GOUPILLIERES	0235916239	{(0760921N@ac-rouen.fr)}	elementaire	\N	\N
 547	0760046M	547	COLLEGE ROLLON	0235900484	{(0760046M@ac-rouen.fr)}	college	\N	\N
 548	0761734X	548	COLLEGE SAINT-HILDEVERT	0235900270	{(0761734x@ac-rouen.fr)}	college	\N	\N
 549	0763100G	549	ECOLE ELEMENTAIRE GEORGES BRASSENS	0235900912	{(0763100G@ac-rouen.fr)}	elementaire	\N	\N
@@ -10214,86 +10480,86 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 551	0761267P	551	ECOLE MATERNELLE JACQUES PREVERT	0235900418	{(0761267P@ac-rouen.fr)}	maternelle	\N	\N
 552	0762325P	552	ECOLE MATERNELLE PIERRE ET MARIE CURIE	0235900616	{(0762325P@ac-rouen.fr)}	maternelle	\N	\N
 553	0761348C	553	LYCEE SAINT-HILDVERT	0235090745	{(0761348c@ac-rouen.fr)}	lycee	\N	\N
-554	0763314P	554	ECOLE ELEMENTAIRE PREHISTOVAL	0235232116	{(0763314P@ac-rouen.fr)}	elementaire	\N	\N
-555	0763314P	554	ECOLE MATERNELLE PREHISTOVAL	0235232116	{(0763314P@ac-rouen.fr)}	maternelle	\N	\N
-556	0760268D	556	ECOLE ELEMENTAIRE HENRI BOULLEN	0235209817	{(0760268D@ac-rouen.fr)}	elementaire	\N	\N
-557	0760268D	556	ECOLE MATERNELLE HENRI BOULLEN	0235209817	{(0760268D@ac-rouen.fr)}	maternelle	\N	\N
-558	0762367K	558	ECOLE ELEMENTAIRE CHARLES DE GAULLE	0235970729	{(0762367K@ac-rouen.fr)}	elementaire	\N	\N
-559	0762367K	558	ECOLE MATERNELLE CHARLES DE GAULLE	0235970729	{(0762367K@ac-rouen.fr)}	maternelle	\N	\N
-560	0760448Z	560	\N	0235232624	{(0760448Z@ac-rouen.fr)}	elementaire	\N	\N
-561	0761454T	561	\N	0235277267	{(0761454T@ac-rouen.fr)}	elementaire	\N	\N
+554	0763314P	555	ECOLE ELEMENTAIRE PREHISTOVAL	0235232116	{(0763314P@ac-rouen.fr)}	elementaire	\N	\N
+555	0763314P	555	ECOLE MATERNELLE PREHISTOVAL	0235232116	{(0763314P@ac-rouen.fr)}	maternelle	\N	\N
+556	0760268D	557	ECOLE ELEMENTAIRE HENRI BOULLEN	0235209817	{(0760268D@ac-rouen.fr)}	elementaire	\N	\N
+557	0760268D	557	ECOLE MATERNELLE HENRI BOULLEN	0235209817	{(0760268D@ac-rouen.fr)}	maternelle	\N	\N
+558	0762367K	559	ECOLE ELEMENTAIRE CHARLES DE GAULLE	0235970729	{(0762367K@ac-rouen.fr)}	elementaire	\N	\N
+559	0762367K	559	ECOLE MATERNELLE CHARLES DE GAULLE	0235970729	{(0762367K@ac-rouen.fr)}	maternelle	\N	\N
+560	0760448Z	560	ECOLE ELEMENTAIRE DE GRAINVILLE-SUR-RY	0235232624	{(0760448Z@ac-rouen.fr)}	elementaire	\N	\N
+561	0761454T	561	ECOLE ELEMENTAIRE DE GRAINVILLE-YMAUVILLE	0235277267	{(0761454T@ac-rouen.fr)}	elementaire	\N	\N
 562	0760736M	562	ECOLE ELEMENTAIRE ANTOINE DE SAINT-EXUPERY	0235316342	{(0760736M@ac-rouen.fr)}	elementaire	\N	\N
 563	0762745W	563	ECOLE MATERNELLE LES GEANTS	0235397590	{(0762745W@ac-rouen.fr)}	maternelle	\N	\N
-564	0762080Y	564	COLLEGE HENRI MATISSE	0235676959	{(0762080Y@ac-rouen.fr)}	college	\N	\N
+564	0762080Y	571	COLLEGE HENRI MATISSE	0235676959	{(0762080Y@ac-rouen.fr)}	college	\N	\N
 565	0762461M	565	COLLEGE JEAN RENOIR	0235678065	{(0762461M@ac-rouen.fr)}	college	\N	\N
 566	0763008G	566	ECOLE ELEMENTAIRE FERDINAND BUISSON	0235676633	{(0763008G@ac-rouen.fr)}	elementaire	\N	\N
-567	0762235S	564	ECOLE ELEMENTAIRE PABLO PICASSO	0235676647	{(0762235S@ac-rouen.fr)}	elementaire	\N	\N
+567	0762235S	571	ECOLE ELEMENTAIRE PABLO PICASSO	0235676647	{(0762235S@ac-rouen.fr)}	elementaire	\N	\N
 568	0761173M	568	ECOLE ELEMENTAIRE PIERRE BROSSOLETTE	0235672158	{(0761173M@ac-rouen.fr)}	elementaire	\N	\N
-569	0762857T	569	ECOLE ELEMENTAIRE VICTOR HUGO	0235677533	{(0762857T@ac-rouen.fr)}	elementaire	\N	\N
+569	0762857T	573	ECOLE ELEMENTAIRE VICTOR HUGO	0235677533	{(0762857T@ac-rouen.fr)}	elementaire	\N	\N
 570	0762390K	570	ECOLE MATERNELLE JACQUES PREVERT	0235677550	{(0762390K@ac-rouen.fr)}	maternelle	\N	\N
-571	0762207L	564	ECOLE MATERNELLE PABLO PICASSO	0235676677	{(0762207L@ac-rouen.fr)}	maternelle	\N	\N
+571	0762207L	571	ECOLE MATERNELLE PABLO PICASSO	0235676677	{(0762207L@ac-rouen.fr)}	maternelle	\N	\N
 572	0762356Y	572	ECOLE MATERNELLE PIERRE BROSSOLETTE	0235672057	{(0762356Y@ac-rouen.fr)}	maternelle	\N	\N
-573	0761170J	569	ECOLE MATERNELLE VICTOR HUGO	0235677091	{(0761170J@ac-rouen.fr)}	maternelle	\N	\N
+573	0761170J	573	ECOLE MATERNELLE VICTOR HUGO	0235677091	{(0761170J@ac-rouen.fr)}	maternelle	\N	\N
 574	0762836V	574	LYCEE FERNAND LEGER	0235673131	{(0762836V@ac-rouen.fr)}	lycee	\N	\N
-575	0762504J	575	\N	0235941747	{(0762504J@ac-rouen.fr)}	elementaire	\N	\N
-576	0762504J	575	\N	0235941747	{(0762504J@ac-rouen.fr)}	maternelle	\N	\N
-577	0760394R	577	\N	0235851590	{(0760394R@ac-rouen.fr)}	elementaire	\N	\N
-578	0760358B	578	\N	0235045097	{(0760358B@ac-rouen.fr)}	elementaire	\N	\N
-579	0760546F	579	\N	0235334780	{(0760546F@ac-rouen.fr)}	elementaire	\N	\N
+575	0762504J	576	ECOLE ELEMENTAIRE DE GRANDCOURT	0235941747	{(0762504J@ac-rouen.fr)}	elementaire	\N	\N
+576	0762504J	576	ECOLE MATERNELLE DE GRANDCOURT	0235941747	{(0762504J@ac-rouen.fr)}	maternelle	\N	\N
+577	0760394R	577	ECOLE ELEMENTAIRE DE GREGES	0235851590	{(0760394R@ac-rouen.fr)}	elementaire	\N	\N
+578	0760358B	578	ECOLE ELEMENTAIRE DE GREUVILLE	0235045097	{(0760358B@ac-rouen.fr)}	elementaire	\N	\N
+579	0760546F	579	ECOLE ELEMENTAIRE DE GRIGNEUSEVILLE	0235334780	{(0760546F@ac-rouen.fr)}	elementaire	\N	\N
 580	0762861X	580	COLLEGE JEAN MONNET	0232841150	{(0762861X@ac-rouen.fr)}	college	\N	\N
 581	0762368L	581	ECOLE ELEMENTAIRE HELENE BOUCHER	0235312305	{(0762368L@ac-rouen.fr)}	elementaire	\N	\N
 582	0762419S	582	ECOLE MATERNELLE FRANCOISE DOLTO	0235315373	{(0762419S@ac-rouen.fr)}	maternelle	\N	\N
-583	0763363T	583	\N	0235853052	{(0763363T@ac-rouen.fr)}	elementaire	\N	\N
-584	0763363T	583	\N	0235853052	{(0763363T@ac-rouen.fr)}	maternelle	\N	\N
-585	0760625S	585	\N	0235331793	{(0760625S@ac-rouen.fr)}	elementaire	\N	\N
-586	0760625S	585	\N	0235331793	{(0760625S@ac-rouen.fr)}	maternelle	\N	\N
-587	0760598M	587	\N	0232970522	{(0760598M@ac-rouen.fr)}	elementaire	\N	\N
-588	0760361E	588	\N	0235049213	{(0760361E@ac-rouen.fr)}	elementaire	\N	\N
+583	0763363T	584	ECOLE ELEMENTAIRE DE GRUCHET-SAINT-SIMEON	0235853052	{(0763363T@ac-rouen.fr)}	elementaire	\N	\N
+584	0763363T	584	ECOLE MATERNELLE DE GRUCHET-SAINT-SIMEON	0235853052	{(0763363T@ac-rouen.fr)}	maternelle	\N	\N
+585	0760625S	585	ECOLE ELEMENTAIRE DE GRUGNY	0235331793	{(0760625S@ac-rouen.fr)}	elementaire	\N	\N
+586	0760625S	585	ECOLE MATERNELLE DE GRUGNY	0235331793	{(0760625S@ac-rouen.fr)}	maternelle	\N	\N
+587	0760598M	587	ECOLE ELEMENTAIRE DE GUERVILLE	0232970522	{(0760598M@ac-rouen.fr)}	elementaire	\N	\N
+588	0760361E	588	ECOLE ELEMENTAIRE DE GUEURES	0235049213	{(0760361E@ac-rouen.fr)}	elementaire	\N	\N
 589	0761158W	589	ECOLE ELEMENTAIRE LES MARRONNIERS	0235975505	{(0761158W@ac-rouen.fr)}	elementaire	\N	\N
 590	0762129B	590	COLLEGE PABLO PICASSO	0235454445	{(0762129B@ac-rouen.fr)}	college	\N	\N
 591	0763017S	591	ECOLE ELEMENTAIRE ANDRE GIDE	0235454240	{(0763017S@ac-rouen.fr)}	elementaire	\N	\N
-592	0763241K	592	ECOLE ELEMENTAIRE FLEURVILLE	0235454171	{(0763241K@ac-rouen.fr)}	elementaire	\N	\N
+592	0763241K	595	ECOLE ELEMENTAIRE FLEURVILLE	0235454171	{(0763241K@ac-rouen.fr)}	elementaire	\N	\N
 593	0763108R	593	ECOLE ELEMENTAIRE LES CARAQUES	0235454244	{(0763108R@ac-rouen.fr)}	elementaire	\N	\N
 594	0761136X	594	ECOLE MATERNELLE ANDRE GIDE	0235454163	{(0761136X@ac-rouen.fr)}	maternelle	\N	\N
-595	0763241K	592	ECOLE MATERNELLE FLEURVILLE	0235454171	{(0763241K@ac-rouen.fr)}	maternelle	\N	\N
+595	0763241K	595	ECOLE MATERNELLE FLEURVILLE	0235454171	{(0763241K@ac-rouen.fr)}	maternelle	\N	\N
 596	0762994S	596	ECOLE MATERNELLE FRANCOISE DOLTO	0235451357	{(0762994S@ac-rouen.fr)}	maternelle	\N	\N
 597	0761152P	597	ECOLE MATERNELLE GERMAINE COTY	0235454205	{(0761152P@ac-rouen.fr)}	maternelle	\N	\N
 598	0761385T	598	ECOLE ELEMENTAIRE CELESTIN FREINET	0235964348	{(0761385T@ac-rouen.fr)}	elementaire	\N	\N
-599	0760334A	599	\N	0232971763	{(0760334A@ac-rouen.fr)}	elementaire	\N	\N
-600	0761427N	600	\N	0235901142	{(0761427N@ac-rouen.fr)}	maternelle	\N	\N
-601	0760891F	601	\N	0235965165	{(0760891F@ac-rouen.fr)}	elementaire	\N	\N
-602	0762070M	602	\N	0235963272	{(0762070M@ac-rouen.fr)}	elementaire	\N	\N
+599	0760334A	599	ECOLE ELEMENTAIRE DE HAUDRICOURT	0232971763	{(0760334A@ac-rouen.fr)}	elementaire	\N	\N
+600	0761427N	600	ECOLE MATERNELLE DE HAUSSEZ	0235901142	{(0761427N@ac-rouen.fr)}	maternelle	\N	\N
+601	0760891F	601	ECOLE ELEMENTAIRE DE HAUTOT-L AUVRAY	0235965165	{(0760891F@ac-rouen.fr)}	elementaire	\N	\N
+602	0762070M	602	ECOLE ELEMENTAIRE DE HAUTOT-SAINT-SULPICE	0235963272	{(0762070M@ac-rouen.fr)}	elementaire	\N	\N
 603	0760856T	603	ECOLE ELEMENTAIRE LES FONTAINES	0235841146	{(0760856T@ac-rouen.fr)}	elementaire	\N	\N
 604	0760857U	604	ECOLE MATERNELLE LES SOURCES	0235824439	{(0760857U@ac-rouen.fr)}	maternelle	\N	\N
-605	0761186B	605	ECOLE ELEMENTAIRE MAURICE GENEVOIX	0235349046	{(0761186B@ac-rouen.fr)}	elementaire	\N	\N
-606	0761186B	605	ECOLE MATERNELLE MAURICE GENEVOIX	0235349046	{(0761186B@ac-rouen.fr)}	maternelle	\N	\N
+605	0761186B	606	ECOLE ELEMENTAIRE MAURICE GENEVOIX	0235349046	{(0761186B@ac-rouen.fr)}	elementaire	\N	\N
+606	0761186B	606	ECOLE MATERNELLE MAURICE GENEVOIX	0235349046	{(0761186B@ac-rouen.fr)}	maternelle	\N	\N
 607	0761473N	607	ECOLE ELEMENTAIRE JEAN FERRAT	0235321122	{(0761473N@ac-rouen.fr)}	elementaire	\N	\N
 608	0762840Z	608	ECOLE MATERNELLE JEAN FERRAT	0235323775	{(0762840Z@ac-rouen.fr)}	maternelle	\N	\N
-609	0760892G	609	ECOLE ELEMENTAIRE LA RONDE DES COULEURS	0235965219	{(0760892G@ac-rouen.fr)}	elementaire	\N	\N
-610	0760892G	609	ECOLE MATERNELLE LA RONDE DES COULEURS	0235965219	{(0760892G@ac-rouen.fr)}	maternelle	\N	\N
-611	0760653X	611	\N	0235205663	{(0760653X@ac-rouen.fr)}	elementaire	\N	\N
-612	0760717S	612	\N	0235327675	{(0760717S@ac-rouen.fr)}	elementaire	\N	\N
-613	0760654Y	613	ECOLE ELEMENTAIRE LE COLOMBIER	0235136849	{(0760654Y@ac-rouen.fr)}	elementaire	\N	\N
-614	0760654Y	613	ECOLE MATERNELLE LE COLOMBIER	0235136849	{(0760654Y@ac-rouen.fr)}	maternelle	\N	\N
-615	0760600P	615	\N	0235939311	{(0760600P@ac-rouen.fr)}	elementaire	\N	\N
-616	0760600P	615	\N	0235939311	{(0760600P@ac-rouen.fr)}	maternelle	\N	\N
-617	0760316F	617	\N	0235092710	{(0760316F@ac-rouen.fr)}	elementaire	\N	\N
-618	0761407S	618	\N	0235574560	{(0761407S@ac-rouen.fr)}	elementaire	\N	\N
+609	0760892G	610	ECOLE ELEMENTAIRE LA RONDE DES COULEURS	0235965219	{(0760892G@ac-rouen.fr)}	elementaire	\N	\N
+610	0760892G	610	ECOLE MATERNELLE LA RONDE DES COULEURS	0235965219	{(0760892G@ac-rouen.fr)}	maternelle	\N	\N
+611	0760653X	611	ECOLE ELEMENTAIRE DE HERMEVILLE	0235205663	{(0760653X@ac-rouen.fr)}	elementaire	\N	\N
+612	0760717S	612	ECOLE ELEMENTAIRE DE HEUGLEVILLE-SUR-SCIE	0235327675	{(0760717S@ac-rouen.fr)}	elementaire	\N	\N
+613	0760654Y	614	ECOLE ELEMENTAIRE LE COLOMBIER	0235136849	{(0760654Y@ac-rouen.fr)}	elementaire	\N	\N
+614	0760654Y	614	ECOLE MATERNELLE LE COLOMBIER	0235136849	{(0760654Y@ac-rouen.fr)}	maternelle	\N	\N
+615	0760600P	616	ECOLE ELEMENTAIRE DE HODENG-AU-BOSC	0235939311	{(0760600P@ac-rouen.fr)}	elementaire	\N	\N
+616	0760600P	616	ECOLE MATERNELLE DE HODENG-AU-BOSC	0235939311	{(0760600P@ac-rouen.fr)}	maternelle	\N	\N
+617	0760316F	617	ECOLE ELEMENTAIRE DE HODENG-HODENGER	0235092710	{(0760316F@ac-rouen.fr)}	elementaire	\N	\N
+618	0761407S	618	ECOLE ELEMENTAIRE DE HOUDETOT	0235574560	{(0761407S@ac-rouen.fr)}	elementaire	\N	\N
 619	0763127L	619	ECOLE ELEMENTAIRE GERARD PHILIPE	0235591195	{(0763127L@ac-rouen.fr)}	elementaire	\N	\N
 620	0762606V	620	ECOLE MATERNELLE JEAN DE LA FONTAINE	0235591312	{(0762606V@ac-rouen.fr)}	maternelle	\N	\N
-621	0760335B	621	\N	0235932027	{(0760335B@ac-rouen.fr)}	elementaire	\N	\N
+621	0760335B	621	ECOLE ELEMENTAIRE DE ILLOIS	0235932027	{(0760335B@ac-rouen.fr)}	elementaire	\N	\N
 622	0762548G	622	ECOLE ELEMENTAIRE CHARLES PERRAULT	0235503143	{(0762548G@ac-rouen.fr)}	elementaire	\N	\N
-623	0762550J	623	\N	0235610867	{(0762550J@ac-rouen.fr)}	maternelle	\N	\N
+623	0762550J	623	ECOLE MATERNELLE DE ISNEAUVILLE	0235610867	{(0762550J@ac-rouen.fr)}	maternelle	\N	\N
 624	0763368Y	624	COLLEGE LUCIE AUBRAC	0235126220	{(0763368Y@ac-rouen.fr)}	college	\N	\N
 625	0762549H	625	ECOLE ELEMENTAIRE GEORGE SAND	0235597441	{(0762549H@ac-rouen.fr)}	elementaire	\N	\N
-626	0763011K	626	\N	0235372429	{(0763011K@ac-rouen.fr)}	elementaire	\N	\N
-627	0762595H	627	\N	0235374650	{(0762595H@ac-rouen.fr)}	maternelle	\N	\N
-628	0763011K	626	ECOLE ELEMENTAIRE DU BOURG	0235372429	{(0763011K@ac-rouen.fr)}	elementaire	\N	\N
+626	0763011K	628	ECOLE ELEMENTAIRE DE JUMIEGES	0235372429	{(0763011K@ac-rouen.fr)}	elementaire	\N	\N
+627	0762595H	627	ECOLE MATERNELLE DE JUMIEGES	0235374650	{(0762595H@ac-rouen.fr)}	maternelle	\N	\N
+628	0763011K	628	ECOLE ELEMENTAIRE DU BOURG	0235372429	{(0763011K@ac-rouen.fr)}	elementaire	\N	\N
 629	0763099F	629	ECOLE ELEMENTAIRE LE PETIT PRINCE	0235180811	{(0763099F@ac-rouen.fr)}	elementaire	\N	\N
 630	0762003P	630	ECOLE ELEMENTAIRE SAINTE-MARIE	0235180866	{(0762003P@ac-rouen.fr)}	elementaire	\N	\N
 631	0763099F	629	ECOLE MATERNELLE LE PETIT PRINCE	0235180811	{(0763099F@ac-rouen.fr)}	maternelle	\N	\N
-632	0763016R	632	ECOLE ELEMENTAIRE LES PEPINIERES	0235203728	{(0763016R@ac-rouen.fr)}	elementaire	\N	\N
-633	0763016R	632	ECOLE MATERNELLE LES PEPINIERES	0235203728	{(0763016R@ac-rouen.fr)}	maternelle	\N	\N
+632	0763016R	633	ECOLE ELEMENTAIRE LES PEPINIERES	0235203728	{(0763016R@ac-rouen.fr)}	elementaire	\N	\N
+633	0763016R	633	ECOLE MATERNELLE LES PEPINIERES	0235203728	{(0763016R@ac-rouen.fr)}	maternelle	\N	\N
 634	0761401K	634	ECOLE ELEMENTAIRE LES JONQUILLES	0235979572	{(0761401K@ac-rouen.fr)}	elementaire	\N	\N
 635	0760713M	635	ECOLE ELEMENTAIRE JOSEPH DEVAUX	0235060111	{(0760713M@ac-rouen.fr)}	elementaire	\N	\N
 636	0760542B	636	ECOLE ELEMENTAIRE COCAGNE	0235940498	{(0760542B@ac-rouen.fr)}	elementaire	\N	\N
@@ -10302,37 +10568,38 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 639	0762748Z	639	ECOLE MATERNELLE LES PETITS FEUILLOIS	0235908380	{(0762748Z@ac-rouen.fr)}	maternelle	\N	\N
 640	0762112H	640	ECOLE ELEMENTAIRE MARCEL PAGNOL	0235387879	{(0762112H@ac-rouen.fr)}	elementaire	\N	\N
 641	0762995T	641	ECOLE MATERNELLE ANNE SYLVESTRE	0235382654	{(0762995T@ac-rouen.fr)}	maternelle	\N	\N
-642	0760314D	642	\N	0235091247	{(0760314D@ac-rouen.fr)}	elementaire	\N	\N
-643	0760626T	643	\N	0235331735	{(0760626T@ac-rouen.fr)}	elementaire	\N	\N
-644	0762779H	644	\N	0235331619	{(0762779H@ac-rouen.fr)}	maternelle	\N	\N
-645	0762428B	645	\N	0235872934	{(0762428B@ac-rouen.fr)}	elementaire	\N	\N
-646	0762427A	646	\N	0235871364	{(0762427A@ac-rouen.fr)}	maternelle	\N	\N
+642	0760314D	642	ECOLE ELEMENTAIRE DE LA HALLOTIERE	0235091247	{(0760314D@ac-rouen.fr)}	elementaire	\N	\N
+643	0760626T	643	ECOLE ELEMENTAIRE DE LA HOUSSAYE-BERANGER	0235331735	{(0760626T@ac-rouen.fr)}	elementaire	\N	\N
+690	0761782Z	690	COLLEGE EUGENE VARLIN	0235472832	{(0761782Z@ac-rouen.fr)}	college	\N	\N
+644	0762779H	644	ECOLE MATERNELLE DE LA HOUSSAYE-BERANGER	0235331619	{(0762779H@ac-rouen.fr)}	maternelle	\N	\N
+645	0762428B	645	ECOLE ELEMENTAIRE DE LA LONDE	0235872934	{(0762428B@ac-rouen.fr)}	elementaire	\N	\N
+646	0762427A	646	ECOLE MATERNELLE DE LA LONDE	0235871364	{(0762427A@ac-rouen.fr)}	maternelle	\N	\N
 647	0761892U	647	ECOLE ELEMENTAIRE LOUIS BIGNON	0235371227	{(0761892U@ac-rouen.fr)}	elementaire	\N	\N
 648	0762901R	648	ECOLE MATERNELLE D ARELAUNE	0235372951	{(0762901R@ac-rouen.fr)}	maternelle	\N	\N
 649	0762689K	649	ECOLE ELEMENTAIRE GEORGES BRASSENS	0960447389	{(0762689K@ac-rouen.fr)}	elementaire	\N	\N
 650	0762594G	650	ECOLE MATERNELLE L OISEAU DE FEU	0235798861	{(0762594G@ac-rouen.fr)}	maternelle	\N	\N
-651	0763221N	651	\N	0235287825	{(0763221N@ac-rouen.fr)}	maternelle	\N	\N
+651	0763221N	651	ECOLE MATERNELLE DE LA POTERIE-CAP-D ANTIFER	0235287825	{(0763221N@ac-rouen.fr)}	maternelle	\N	\N
 652	0760270F	652	ECOLE ELEMENTAIRE HENRI DES	0960531159	{(0760270F@ac-rouen.fr)}	elementaire	\N	\N
-653	0760633A	653	\N	0235345932	{(0760633A@ac-rouen.fr)}	elementaire	\N	\N
-654	0760750C	654	\N	0235380590	{(0760750C@ac-rouen.fr)}	elementaire	\N	\N
-655	0760750C	654	\N	0235380590	{(0760750C@ac-rouen.fr)}	maternelle	\N	\N
-656	0760880U	656	\N	0232939395	{(0760880U@ac-rouen.fr)}	elementaire	\N	\N
-657	0762777F	657	\N	0232939396	{(0762777F@ac-rouen.fr)}	maternelle	\N	\N
+653	0760633A	653	ECOLE ELEMENTAIRE DE LA RUE-SAINT-PIERRE	0235345932	{(0760633A@ac-rouen.fr)}	elementaire	\N	\N
+654	0760750C	655	ECOLE ELEMENTAIRE DE LA TRINITE-DU-MONT	0235380590	{(0760750C@ac-rouen.fr)}	elementaire	\N	\N
+655	0760750C	655	ECOLE MATERNELLE DE LA TRINITE-DU-MONT	0235380590	{(0760750C@ac-rouen.fr)}	maternelle	\N	\N
+656	0760880U	656	ECOLE ELEMENTAIRE DE LA VAUPALIERE	0232939395	{(0760880U@ac-rouen.fr)}	elementaire	\N	\N
+657	0762777F	657	ECOLE MATERNELLE DE LA VAUPALIERE	0232939396	{(0762777F@ac-rouen.fr)}	maternelle	\N	\N
 658	0760465T	658	ECOLE ELEMENTAIRE MARIE BIGOT	0235344992	{(0760465T@ac-rouen.fr)}	elementaire	\N	\N
-659	0762370N	659	\N	0235311670	{(0762370N@ac-rouen.fr)}	elementaire	\N	\N
-660	0762370N	659	\N	0235311670	{(0762370N@ac-rouen.fr)}	maternelle	\N	\N
-661	0760615F	661	ECOLE ELEMENTAIRE FERTEL	0235331107	{(0760615F@ac-rouen.fr)}	elementaire	\N	\N
-662	0760615F	661	ECOLE MATERNELLE FERTEL	0235331107	{(0760615F@ac-rouen.fr)}	maternelle	\N	\N
-663	0760710J	663	\N	0235047753	{(0760710J@ac-rouen.fr)}	elementaire	\N	\N
+659	0762370N	659	ECOLE ELEMENTAIRE DE LANQUETOT	0235311670	{(0762370N@ac-rouen.fr)}	elementaire	\N	\N
+660	0762370N	659	ECOLE MATERNELLE DE LANQUETOT	0235311670	{(0762370N@ac-rouen.fr)}	maternelle	\N	\N
+661	0760615F	662	ECOLE ELEMENTAIRE FERTEL	0235331107	{(0760615F@ac-rouen.fr)}	elementaire	\N	\N
+662	0760615F	662	ECOLE MATERNELLE FERTEL	0235331107	{(0760615F@ac-rouen.fr)}	maternelle	\N	\N
+663	0760710J	663	ECOLE ELEMENTAIRE DE LE BOIS-ROBERT	0235047753	{(0760710J@ac-rouen.fr)}	elementaire	\N	\N
 664	0760852N	664	ECOLE ELEMENTAIRE PAULINE KERGOMARD	0235041938	{(0760852N@ac-rouen.fr)}	elementaire	\N	\N
-665	0760711K	665	\N	0235835820	{(0760711K@ac-rouen.fr)}	elementaire	\N	\N
-666	0762109E	666	\N	0235942441	{(0762109E@ac-rouen.fr)}	elementaire	\N	\N
-667	0761421G	667	ECOLE ELEMENTAIRE MAURICE DECORDE	0235906138	{(0761421G@ac-rouen.fr)}	elementaire	\N	\N
-668	0761421G	667	ECOLE MATERNELLE MAURICE DECORDE	0235906138	{(0761421G@ac-rouen.fr)}	maternelle	\N	\N
+665	0760711K	665	ECOLE ELEMENTAIRE DE LE CATELIER	0235835820	{(0760711K@ac-rouen.fr)}	elementaire	\N	\N
+666	0762109E	666	ECOLE ELEMENTAIRE DE LE CAULE-SAINTE-BEUVE	0235942441	{(0762109E@ac-rouen.fr)}	elementaire	\N	\N
+667	0761421G	668	ECOLE ELEMENTAIRE MAURICE DECORDE	0235906138	{(0761421G@ac-rouen.fr)}	elementaire	\N	\N
+668	0761421G	668	ECOLE MATERNELLE MAURICE DECORDE	0235906138	{(0761421G@ac-rouen.fr)}	maternelle	\N	\N
 669	0760049R	669	COLLEGE CLAUDE BERNARD	0232114470	{(0760049R@ac-rouen.fr)}	college	\N	\N
 670	0762093M	670	COLLEGE EDOUARD BRANLY	0235694145	{(0762093M@ac-rouen.fr)}	college	\N	\N
 671	0761690Z	671	COLLEGE JEAN TEXCIER	0235695767	{(0761690Z@ac-rouen.fr)}	college	\N	\N
-672	0762724Y	672	ECOLE ELEMENTAIRE CESAIRE LEVILLAIN	0235678324	{(0762724Y@ac-rouen.fr)}	elementaire	\N	\N
+672	0762724Y	680	ECOLE ELEMENTAIRE CESAIRE LEVILLAIN	0235678324	{(0762724Y@ac-rouen.fr)}	elementaire	\N	\N
 673	0762605U	673	ECOLE ELEMENTAIRE CURIE-JAURES	0235670148	{(0762605U@ac-rouen.fr)}	elementaire	\N	\N
 674	0762214U	674	ECOLE ELEMENTAIRE HENRI RIBIERE	0235678310	{(0762214U@ac-rouen.fr)}	elementaire	\N	\N
 675	0761885L	675	ECOLE ELEMENTAIRE JEAN CAVAILLES	0235670119	{(0761885L@ac-rouen.fr)}	elementaire	\N	\N
@@ -10340,17 +10607,16 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 677	0761183Y	677	ECOLE ELEMENTAIRE MARYSE BASTIE	0235670222	{(0761183Y@ac-rouen.fr)}	elementaire	\N	\N
 678	0761180V	678	ECOLE ELEMENTAIRE ROGER SALENGRO	0235670146	{(0761180V@ac-rouen.fr)}	elementaire	\N	\N
 679	0762481J	679	ECOLE MATERNELLE ANNE FRANK	0235678325	{(0762481J@ac-rouen.fr)}	maternelle	\N	\N
-680	0761177S	672	ECOLE MATERNELLE CESAIRE LEVILLAIN	0235678312	{(0761177S@ac-rouen.fr)}	maternelle	\N	\N
+680	0761177S	680	ECOLE MATERNELLE CESAIRE LEVILLAIN	0235678312	{(0761177S@ac-rouen.fr)}	maternelle	\N	\N
 681	0761204W	681	ECOLE MATERNELLE CHARLES CALMETTE	0235670021	{(0761204W@ac-rouen.fr)}	maternelle	\N	\N
 682	0762942K	682	ECOLE MATERNELLE CHARLES PERRAULT	0235670173	{(0762942K@ac-rouen.fr)}	maternelle	\N	\N
 683	0762409F	683	ECOLE MATERNELLE JEAN CAVAILLES	0235678316	{(0762409F@ac-rouen.fr)}	maternelle	\N	\N
 684	0763023Y	684	ECOLE MATERNELLE JEAN MOULIN	0235670346	{(0763023Y@ac-rouen.fr)}	maternelle	\N	\N
 685	0763160X	685	ECOLE MATERNELLE JEAN ZAY	0235670373	{(0763160X@ac-rouen.fr)}	maternelle	\N	\N
 686	0761205X	686	ECOLE MATERNELLE LOUIS PASTEUR	0235670124	{(0761205X@ac-rouen.fr)}	maternelle	\N	\N
-687	0761742F	687	LYCEE VAL DE SEINE	0235182969	{(0761742F@ac-rouen.fr)}	lycee	\N	\N
-688	0760145V	687	LYCEE VAL DE SEINE	0235182969	{(0760145V@ac-rouen.fr)}	lycee	\N	\N
+687	0761742F	688	LYCEE VAL DE SEINE	0235182969	{(0761742F@ac-rouen.fr)}	lycee	\N	\N
+688	0760145V	688	LYCEE VAL DE SEINE	0235182969	{(0760145V@ac-rouen.fr)}	lycee	\N	\N
 689	0761697G	689	COLLEGE CLAUDE BERNARD	0235448061	{(0761697G@ac-rouen.fr)}	college	\N	\N
-690	0761782Z	690	COLLEGE EUGENE VARLIN	0235472832	{(0761782Z@ac-rouen.fr)}	college	\N	\N
 691	0761698H	691	COLLEGE GERARD PHILIPPE	0235241165	{(0761698H@ac-rouen.fr)}	college	\N	\N
 692	0761700K	692	COLLEGE GUY MOQUET	0235471966	{(0761700K@ac-rouen.fr)}	college	\N	\N
 693	0762127Z	693	COLLEGE HENRI WALLON	0235464243	{(0762127Z@ac-rouen.fr)}	college	\N	\N
@@ -10366,35 +10632,35 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 703	0760053V	703	COLLEGE RAOUL DUFY	0232740540	{(0760053V@ac-rouen.fr)}	college	\N	\N
 704	0761739C	704	COLLEGE RENE DESCARTES	0235463316	{(0761739C@ac-rouen.fr)}	college	\N	\N
 705	0761696F	705	COLLEGE ROMAIN ROLLAND	0235470118	{(0761696F@ac-rouen.fr)}	college	\N	\N
-706	0761328F	706	COLLEGE SACRE-COEUR	0235413812	{(0761328f@ac-rouen.fr)}	college	\N	\N
+706	0761328F	756	COLLEGE SACRE-COEUR	0235413812	{(0761328f@ac-rouen.fr)}	college	\N	\N
 707	0762564Z	707	COLLEGE SAINT-JOSEPH	0235465152	{(0762564z@ac-rouen.fr)}	college	\N	\N
 708	0762226G	708	COLLEGE THEOPHILE GAUTIER	0235467920	{(0762226G@ac-rouen.fr)}	college	\N	\N
 709	0760782M	709	ECOLE ELEMENTAIRE AMIRAL COURBET	0235251235	{(0760782M@ac-rouen.fr)}	elementaire	\N	\N
 710	0762025N	710	ECOLE ELEMENTAIRE ASSOMPTION	0235436068	{(0762025N@ac-rouen.fr)}	elementaire	\N	\N
 711	0762029T	711	ECOLE ELEMENTAIRE CHARLES DE FOUCAULD	0235463747	{(0762029T@ac-rouen.fr)}	elementaire	\N	\N
-712	0762143S	712	ECOLE ELEMENTAIRE CHARLES VICTOIRE	0235442015	{(0762143S@ac-rouen.fr)}	elementaire	\N	\N
+712	0762143S	773	ECOLE ELEMENTAIRE CHARLES VICTOIRE	0235442015	{(0762143S@ac-rouen.fr)}	elementaire	\N	\N
 713	0762695S	713	ECOLE ELEMENTAIRE COLETTE	0235446147	{(0762695S@ac-rouen.fr)}	elementaire	\N	\N
 714	0760814X	714	ECOLE ELEMENTAIRE DAUPHINE	0235412965	{(0760814X@ac-rouen.fr)}	elementaire	\N	\N
 715	0762839Y	715	ECOLE ELEMENTAIRE EDOUARD HERRIOT	0235413366	{(0762839Y@ac-rouen.fr)}	elementaire	\N	\N
 716	0763307G	716	ECOLE ELEMENTAIRE EDOUARD VAILLANT	0235473556	{(0763307G@ac-rouen.fr)}	elementaire	\N	\N
-717	0762247E	717	ECOLE ELEMENTAIRE EUGENE VARLIN I	0235473156	{(0762247E@ac-rouen.fr)}	elementaire	\N	\N
-718	0761937T	717	ECOLE ELEMENTAIRE EUGENE VARLIN II	0235478750	{(0761937T@ac-rouen.fr)}	elementaire	\N	\N
+717	0762247E	718	ECOLE ELEMENTAIRE EUGENE VARLIN I	0235473156	{(0762247E@ac-rouen.fr)}	elementaire	\N	\N
+718	0761937T	718	ECOLE ELEMENTAIRE EUGENE VARLIN II	0235478750	{(0761937T@ac-rouen.fr)}	elementaire	\N	\N
 719	0762925S	719	ECOLE ELEMENTAIRE FERDINAND BUISSON	0235471300	{(0762925S@ac-rouen.fr)}	elementaire	\N	\N
 720	0762544C	720	ECOLE ELEMENTAIRE FLAVIGNY	0235442023	{(0762544C@ac-rouen.fr)}	elementaire	\N	\N
-721	0763226U	721	ECOLE ELEMENTAIRE FRANCIS CARCO	0235442243	{(0763226U@ac-rouen.fr)}	elementaire	\N	\N
+721	0763226U	753	ECOLE ELEMENTAIRE FRANCIS CARCO	0235442243	{(0763226U@ac-rouen.fr)}	elementaire	\N	\N
 722	0762782L	722	ECOLE ELEMENTAIRE FRANCOIS RASPAIL	0235412769	{(0762782L@ac-rouen.fr)}	elementaire	\N	\N
 723	0760788U	723	ECOLE ELEMENTAIRE FREDERIC BELLANGER	0235417792	{(0760788U@ac-rouen.fr)}	elementaire	\N	\N
 724	0763350D	724	ECOLE ELEMENTAIRE GEORGE SAND	0235265894	{(0763350D@ac-rouen.fr)}	elementaire	\N	\N
 725	0760828M	725	ECOLE ELEMENTAIRE GOBELINS	0235420139	{(0760828M@ac-rouen.fr)}	elementaire	\N	\N
-726	0762425Y	726	ECOLE ELEMENTAIRE HENRI WALLON	0235441672	{(0762425Y@ac-rouen.fr)}	elementaire	\N	\N
+726	0762425Y	786	ECOLE ELEMENTAIRE HENRI WALLON	0235441672	{(0762425Y@ac-rouen.fr)}	elementaire	\N	\N
 727	0760831R	727	ECOLE ELEMENTAIRE HENRY GENESTAL	0235225505	{(0760831R@ac-rouen.fr)}	elementaire	\N	\N
 728	0762542A	728	ECOLE ELEMENTAIRE JACQUES PREVERT	0235441900	{(0762542A@ac-rouen.fr)}	elementaire	\N	\N
-729	0762422V	729	ECOLE ELEMENTAIRE JEAN JAURES	0235251642	{(0762422V@ac-rouen.fr)}	elementaire	\N	\N
+729	0762422V	790	ECOLE ELEMENTAIRE JEAN JAURES	0235251642	{(0762422V@ac-rouen.fr)}	elementaire	\N	\N
 730	0762505K	730	ECOLE ELEMENTAIRE JEAN MARIDOR	0235471131	{(0762505K@ac-rouen.fr)}	elementaire	\N	\N
 731	0760842C	731	ECOLE ELEMENTAIRE JEAN ZAY	0235441723	{(0760842C@ac-rouen.fr)}	elementaire	\N	\N
 732	0762683D	732	ECOLE ELEMENTAIRE JEAN-BAPTISTE MASSILLON	0235240187	{(0762683D@ac-rouen.fr)}	elementaire	\N	\N
-733	0761132T	733	ECOLE ELEMENTAIRE JEHAN DE GROUCHY I	0235472079	{(0761132T@ac-rouen.fr)}	elementaire	\N	\N
-734	0761133U	733	ECOLE ELEMENTAIRE JEHAN DE GROUCHY II	0235472599	{(0761133U@ac-rouen.fr)}	elementaire	\N	\N
+733	0761132T	789	ECOLE ELEMENTAIRE JEHAN DE GROUCHY I	0235472079	{(0761132T@ac-rouen.fr)}	elementaire	\N	\N
+734	0761133U	789	ECOLE ELEMENTAIRE JEHAN DE GROUCHY II	0235472599	{(0761133U@ac-rouen.fr)}	elementaire	\N	\N
 735	0760812V	735	ECOLE ELEMENTAIRE JULES FERRY	0235441911	{(0760812V@ac-rouen.fr)}	elementaire	\N	\N
 736	0763240J	736	ECOLE ELEMENTAIRE JULES GUESDE	0235442301	{(0763240J@ac-rouen.fr)}	elementaire	\N	\N
 737	0762033X	737	ECOLE ELEMENTAIRE LA PROVIDENCE	0235462447	{(0762033X@ac-rouen.fr)}	elementaire	\N	\N
@@ -10403,8 +10669,8 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 740	0763329F	740	ECOLE ELEMENTAIRE LOUISE MICHEL	0235472800	{(0763329F@ac-rouen.fr)}	elementaire	\N	\N
 741	0762998W	741	ECOLE ELEMENTAIRE MAILLERAYE	0235412612	{(0762998W@ac-rouen.fr)}	elementaire	\N	\N
 742	0760833T	742	ECOLE ELEMENTAIRE MARECHAL JOFFRE	0235244198	{(0760833T@ac-rouen.fr)}	elementaire	\N	\N
-743	0760820D	743	ECOLE ELEMENTAIRE MAURICE BOUCHOR I	0235470146	{(0760820D@ac-rouen.fr)}	elementaire	\N	\N
-744	0760795B	743	ECOLE ELEMENTAIRE MAURICE BOUCHOR II	0235470155	{(0760795B@ac-rouen.fr)}	elementaire	\N	\N
+743	0760820D	744	ECOLE ELEMENTAIRE MAURICE BOUCHOR I	0235470146	{(0760820D@ac-rouen.fr)}	elementaire	\N	\N
+744	0760795B	744	ECOLE ELEMENTAIRE MAURICE BOUCHOR II	0235470155	{(0760795B@ac-rouen.fr)}	elementaire	\N	\N
 745	0760809S	745	ECOLE ELEMENTAIRE MAXIMILIEN DE ROBESPIERRE	0235472102	{(0760809S@ac-rouen.fr)}	elementaire	\N	\N
 746	0763075E	746	ECOLE ELEMENTAIRE OBSERVATOIRE/ZURICH	0235530091	{(0763075E@ac-rouen.fr)}	elementaire	\N	\N
 747	0760817A	747	ECOLE ELEMENTAIRE PAUL BERT I	0235471135	{(0760817A@ac-rouen.fr)}	elementaire	\N	\N
@@ -10412,11 +10678,11 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 749	0760819C	749	ECOLE ELEMENTAIRE PAUL ELUARD I	0235442337	{(0760819C@ac-rouen.fr)}	elementaire	\N	\N
 750	0760791X	750	ECOLE ELEMENTAIRE PAUL ELUARD II	0235446185	{(0760791X@ac-rouen.fr)}	elementaire	\N	\N
 751	0762559U	751	ECOLE ELEMENTAIRE PAUL LANGEVIN	0235442361	{(0762559U@ac-rouen.fr)}	elementaire	\N	\N
-752	0762547F	752	ECOLE ELEMENTAIRE PAUL MULOT	0235471415	{(0762547F@ac-rouen.fr)}	elementaire	\N	\N
-753	0763074D	721	ECOLE ELEMENTAIRE PAULINE KERGOMARD	0235543176	{(0763074D@ac-rouen.fr)}	elementaire	\N	\N
+752	0762547F	810	ECOLE ELEMENTAIRE PAUL MULOT	0235471415	{(0762547F@ac-rouen.fr)}	elementaire	\N	\N
+753	0763074D	753	ECOLE ELEMENTAIRE PAULINE KERGOMARD	0235543176	{(0763074D@ac-rouen.fr)}	elementaire	\N	\N
 754	0762480H	754	ECOLE ELEMENTAIRE PIERRE ET MARIE CURIE	0235495725	{(0762480H@ac-rouen.fr)}	elementaire	\N	\N
 755	0762926T	755	ECOLE ELEMENTAIRE RENAISSANCE	0235441794	{(0762926T@ac-rouen.fr)}	elementaire	\N	\N
-756	0762034Y	706	ECOLE ELEMENTAIRE SACRE COEUR	0235413812	{(0762034Y@ac-rouen.fr)}	elementaire	\N	\N
+756	0762034Y	756	ECOLE ELEMENTAIRE SACRE COEUR	0235413812	{(0762034Y@ac-rouen.fr)}	elementaire	\N	\N
 757	0762028S	757	ECOLE ELEMENTAIRE SAINT DENIS	0235461964	{(0762028S@ac-rouen.fr)}	elementaire	\N	\N
 758	0762030U	758	ECOLE ELEMENTAIRE SAINT LEON	0235241261	{(0762030U@ac-rouen.fr)}	elementaire	\N	\N
 759	0762036A	759	ECOLE ELEMENTAIRE SAINT MICHEL	0235423928	{(0762036A@ac-rouen.fr)}	elementaire	\N	\N
@@ -10433,24 +10699,24 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 770	0761236F	770	ECOLE MATERNELLE ARISTIDE BRIAND	0235241367	{(0761236F@ac-rouen.fr)}	maternelle	\N	\N
 771	0761250W	771	ECOLE MATERNELLE CHARLES AUGUSTE MARANDE	0235426420	{(0761250W@ac-rouen.fr)}	maternelle	\N	\N
 772	0762475C	772	ECOLE MATERNELLE CHARLES PERRAULT	0235243237	{(0762475C@ac-rouen.fr)}	maternelle	\N	\N
-773	0762160K	712	ECOLE MATERNELLE CHARLES VICTOIRE	0235441287	{(0762160K@ac-rouen.fr)}	maternelle	\N	\N
+773	0762160K	773	ECOLE MATERNELLE CHARLES VICTOIRE	0235441287	{(0762160K@ac-rouen.fr)}	maternelle	\N	\N
 774	0761264L	774	ECOLE MATERNELLE COLETTE	0235542309	{(0761264L@ac-rouen.fr)}	maternelle	\N	\N
 775	0761242M	775	ECOLE MATERNELLE CROIX-BLANCHE	0235441321	{(0761242M@ac-rouen.fr)}	maternelle	\N	\N
 776	0761245R	776	ECOLE MATERNELLE DESMALLIERES	0235241324	{(0761245R@ac-rouen.fr)}	maternelle	\N	\N
 777	0761249V	777	ECOLE MATERNELLE EDOUARD HERRIOT	0235423728	{(0761249V@ac-rouen.fr)}	maternelle	\N	\N
 778	0761316T	778	ECOLE MATERNELLE EDOUARD VAILLANT I	0235472488	{(0761316T@ac-rouen.fr)}	maternelle	\N	\N
 779	0763229X	779	ECOLE MATERNELLE EUGENE VARLIN	0235472460	{(0763229X@ac-rouen.fr)}	maternelle	\N	\N
-780	0761239J	780	ECOLE MATERNELLE FERDINAND BUISSON	0235471969	{(0761239J@ac-rouen.fr)}	maternelle	\N	\N
-781	0762345L	721	ECOLE MATERNELLE FRANCIS CARCO II	0235542959	{(0762345L@ac-rouen.fr)}	maternelle	\N	\N
+780	0761239J	808	ECOLE MATERNELLE FERDINAND BUISSON	0235471969	{(0761239J@ac-rouen.fr)}	maternelle	\N	\N
+781	0762345L	753	ECOLE MATERNELLE FRANCIS CARCO II	0235542959	{(0762345L@ac-rouen.fr)}	maternelle	\N	\N
 782	0761260G	782	ECOLE MATERNELLE GEORGE SAND	0235265873	{(0761260G@ac-rouen.fr)}	maternelle	\N	\N
 783	0761251X	783	ECOLE MATERNELLE GRAVELOTTE	0235251514	{(0761251X@ac-rouen.fr)}	maternelle	\N	\N
 784	0761247T	784	ECOLE MATERNELLE GUSTAVE FLAUBERT	0235211249	{(0761247T@ac-rouen.fr)}	maternelle	\N	\N
-785	0762192V	726	ECOLE MATERNELLE HENRI WALLON I	0235441508	{(0762192V@ac-rouen.fr)}	maternelle	\N	\N
-786	0762215V	726	ECOLE MATERNELLE HENRI WALLON II	0235441549	{(0762215V@ac-rouen.fr)}	maternelle	\N	\N
+785	0762192V	786	ECOLE MATERNELLE HENRI WALLON I	0235441508	{(0762192V@ac-rouen.fr)}	maternelle	\N	\N
+786	0762215V	786	ECOLE MATERNELLE HENRI WALLON II	0235441549	{(0762215V@ac-rouen.fr)}	maternelle	\N	\N
 787	0761240K	787	ECOLE MATERNELLE JACQUES CASSARD	0235241239	{(0761240K@ac-rouen.fr)}	maternelle	\N	\N
 788	0761300A	788	ECOLE MATERNELLE JACQUES PREVERT	0235443730	{(0761300A@ac-rouen.fr)}	maternelle	\N	\N
-789	0761131S	733	ECOLE MATERNELLE JEHAN DE GROUCHY	0235471921	{(0761131S@ac-rouen.fr)}	maternelle	\N	\N
-790	0761253Z	729	ECOLE MATERNELLE JULES DURAND	0235251033	{(0761253Z@ac-rouen.fr)}	maternelle	\N	\N
+789	0761131S	789	ECOLE MATERNELLE JEHAN DE GROUCHY	0235471921	{(0761131S@ac-rouen.fr)}	maternelle	\N	\N
+790	0761253Z	790	ECOLE MATERNELLE JULES DURAND	0235251033	{(0761253Z@ac-rouen.fr)}	maternelle	\N	\N
 791	0761252Y	791	ECOLE MATERNELLE JULES GUESDE	0235441660	{(0761252Y@ac-rouen.fr)}	maternelle	\N	\N
 792	0761255B	792	ECOLE MATERNELLE JULES MASSENET	0235471190	{(0761255B@ac-rouen.fr)}	maternelle	\N	\N
 793	0761228X	793	ECOLE MATERNELLE LES ACACIAS	0235470122	{(0761228X@ac-rouen.fr)}	maternelle	\N	\N
@@ -10468,9 +10734,9 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 805	0763218K	805	ECOLE MATERNELLE MUSSET-FLAVIGNY	0235441373	{(0763218K@ac-rouen.fr)}	maternelle	\N	\N
 806	0761230Z	806	ECOLE MATERNELLE PAUL BERT	0235471262	{(0761230Z@ac-rouen.fr)}	maternelle	\N	\N
 807	0761232B	807	ECOLE MATERNELLE PAUL ELUARD	0235440538	{(0761232B@ac-rouen.fr)}	maternelle	\N	\N
-808	0762076U	780	ECOLE MATERNELLE PAUL ET VIRGINIE	0235471794	{(0762076U@ac-rouen.fr)}	maternelle	\N	\N
+808	0762076U	808	ECOLE MATERNELLE PAUL ET VIRGINIE	0235471794	{(0762076U@ac-rouen.fr)}	maternelle	\N	\N
 809	0761262J	809	ECOLE MATERNELLE PAUL LANGEVIN	0235440669	{(0761262J@ac-rouen.fr)}	maternelle	\N	\N
-810	0762062D	752	ECOLE MATERNELLE PAUL MULOT	0235514693	{(0762062D@ac-rouen.fr)}	maternelle	\N	\N
+810	0762062D	810	ECOLE MATERNELLE PAUL MULOT	0235514693	{(0762062D@ac-rouen.fr)}	maternelle	\N	\N
 811	0762389J	811	ECOLE MATERNELLE PAULINE KERGOMARD	0235442853	{(0762389J@ac-rouen.fr)}	maternelle	\N	\N
 812	0761257D	812	ECOLE MATERNELLE PERCANVILLE	0235211287	{(0761257D@ac-rouen.fr)}	maternelle	\N	\N
 813	0761243N	813	ECOLE MATERNELLE PIERRE ET MARIE CURIE	0235471067	{(0761243N@ac-rouen.fr)}	maternelle	\N	\N
@@ -10488,14 +10754,14 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 825	0762976X	825	LYCEE FRANCOISE DE GRACE	0235246340	{(0762976X@ac-rouen.fr)}	lycee	\N	\N
 826	0761359P	826	LYCEE GERMAINE COTY	0235545666	{(0761359p@ac-rouen.fr)}	lycee	\N	\N
 827	0760062E	827	LYCEE JULES LE CESNE	0235224131	{(0760062E@ac-rouen.fr)}	lycee	\N	\N
-828	0760132F	828	LYCEE JULES SIEGFRIED	0235413132	{(0760132F@ac-rouen.fr)}	lycee	\N	\N
+828	0760132F	834	LYCEE JULES SIEGFRIED	0235413132	{(0760132F@ac-rouen.fr)}	lycee	\N	\N
 829	0760054W	829	LYCEE PORTE OCEANE	0235213008	{(0760054W@ac-rouen.fr)}	lycee	\N	\N
 830	0761322Z	823	LYCEE PRO CLAUDE MONET	0235546181	{(0761322Z@ac-rouen.fr)}	lycee	\N	\N
-831	0760144U	831	LYCEE PRO SCHUMAN-PERRET	0235134900	{(0760144U@ac-rouen.fr)}	lycee	\N	\N
+831	0760144U	833	LYCEE PRO SCHUMAN-PERRET	0235134900	{(0760144U@ac-rouen.fr)}	lycee	\N	\N
 832	0761349D	832	LYCEE SAINT-VINCENT DE PAUL	0235250718	{(0761349d@ac-rouen.fr)}	lycee	\N	\N
-833	0760058A	831	LYCEE SCHUMAN-PERRET	0235134900	{(0760058A@ac-rouen.fr)}	lycee	\N	\N
-834	0760056Y	828	LYCEE TECHNO JULES SIEGFRIED	0235413132	{(0760056Y@ac-rouen.fr)}	lycee	\N	\N
-835	0760449A	835	\N	0235234414	{(0760449A@ac-rouen.fr)}	elementaire	\N	\N
+833	0760058A	833	LYCEE SCHUMAN-PERRET	0235134900	{(0760058A@ac-rouen.fr)}	lycee	\N	\N
+834	0760056Y	834	LYCEE TECHNO JULES SIEGFRIED	0235413132	{(0760056Y@ac-rouen.fr)}	lycee	\N	\N
+835	0760449A	835	ECOLE ELEMENTAIRE DE LE HERON	0235234414	{(0760449A@ac-rouen.fr)}	elementaire	\N	\N
 836	0761746K	836	COLLEGE JEAN ZAY	0232828150	{(0761746K@ac-rouen.fr)}	college	\N	\N
 837	0763346Z	837	ECOLE ELEMENTAIRE PREVERT-ARAGON	0235745754	{(0763346Z@ac-rouen.fr)}	elementaire	\N	\N
 838	0762713L	838	ECOLE MATERNELLE JEAN LURCAT	0235762763	{(0762713L@ac-rouen.fr)}	maternelle	\N	\N
@@ -10508,20 +10774,19 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 845	0760523F	845	ECOLE MATERNELLE SAINT EXUPERY-LA FONTAINE	0235805585	{(0760523F@ac-rouen.fr)}	maternelle	\N	\N
 846	0761343X	846	LYCEE LA CHATAIGNERAIE	0232865300	{(0761343x@ac-rouen.fr)}	lycee	\N	\N
 847	0761713Z	841	LYCEE LA PROVIDENCE	0232865090	{(0761713z@ac-rouen.fr)}	lycee	\N	\N
-848	0760877R	848	\N	0235503859	{(0760877R@ac-rouen.fr)}	elementaire	\N	\N
-849	0761479V	849	ECOLE ELEMENTAIRE LES ABEILLES	0235370911	{(0761479V@ac-rouen.fr)}	elementaire	\N	\N
-850	0761479V	849	ECOLE MATERNELLE LES ABEILLES	0235370911	{(0761479V@ac-rouen.fr)}	maternelle	\N	\N
+848	0760877R	848	ECOLE ELEMENTAIRE DE LE MESNIL-REAUME	0235503859	{(0760877R@ac-rouen.fr)}	elementaire	\N	\N
+849	0761479V	850	ECOLE ELEMENTAIRE LES ABEILLES	0235370911	{(0761479V@ac-rouen.fr)}	elementaire	\N	\N
+850	0761479V	850	ECOLE MATERNELLE LES ABEILLES	0235370911	{(0761479V@ac-rouen.fr)}	maternelle	\N	\N
 851	0761737A	851	COLLEGE DENIS DIDEROT	0235620496	{(0761737A@ac-rouen.fr)}	college	\N	\N
-852	0761949F	852	COLLEGE FERNAND LEGER	0235583010	{(0761949F@ac-rouen.fr)}	college	\N	\N
 853	0762771Z	853	ECOLE ELEMENTAIRE CHEVREUL - GAY	0235723170	{(0762771Z@ac-rouen.fr)}	elementaire	\N	\N
 854	0762106B	854	ECOLE ELEMENTAIRE HENRI WALLON	0235725253	{(0762106B@ac-rouen.fr)}	elementaire	\N	\N
 855	0762374T	855	ECOLE ELEMENTAIRE IRENE JOLIOT-CURIE	0235622213	{(0762374T@ac-rouen.fr)}	elementaire	\N	\N
 856	0762653W	856	ECOLE ELEMENTAIRE J. FERRY - G. MERET	0235726221	{(0762653W@ac-rouen.fr)}	elementaire	\N	\N
-857	0762324N	857	ECOLE ELEMENTAIRE LOUIS DE SAINT JUST	0235620036	{(0762324N@ac-rouen.fr)}	elementaire	\N	\N
+857	0762324N	861	ECOLE ELEMENTAIRE LOUIS DE SAINT JUST	0235620036	{(0762324N@ac-rouen.fr)}	elementaire	\N	\N
 858	0761194K	858	ECOLE ELEMENTAIRE LOUIS PASTEUR	0235723901	{(0761194K@ac-rouen.fr)}	elementaire	\N	\N
 859	0762237U	859	ECOLE ELEMENTAIRE PABLO PICASSO	0235623380	{(0762237U@ac-rouen.fr)}	elementaire	\N	\N
 860	0762236T	860	ECOLE MATERNELLE CASANOVA	0235732810	{(0762236T@ac-rouen.fr)}	maternelle	\N	\N
-861	0762332X	857	ECOLE MATERNELLE ELSA TRIOLET	0235620232	{(0762332X@ac-rouen.fr)}	maternelle	\N	\N
+861	0762332X	861	ECOLE MATERNELLE ELSA TRIOLET	0235620232	{(0762332X@ac-rouen.fr)}	maternelle	\N	\N
 862	0761208A	862	ECOLE MATERNELLE GERARD PHILIPE	0235720182	{(0761208A@ac-rouen.fr)}	maternelle	\N	\N
 863	0762989L	863	ECOLE MATERNELLE HENRI WALLON	0235721024	{(0762989L@ac-rouen.fr)}	maternelle	\N	\N
 864	0761207Z	864	ECOLE MATERNELLE JEAN JAURES	0235721077	{(0761207Z@ac-rouen.fr)}	maternelle	\N	\N
@@ -10530,8 +10795,8 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 867	0762440P	867	ECOLE MATERNELLE ROBERT DESNOS	0235621017	{(0762440P@ac-rouen.fr)}	maternelle	\N	\N
 868	0760087G	868	LYCEE COLBERT	0235726911	{(0760087G@ac-rouen.fr)}	lycee	\N	\N
 869	0760088H	869	LYCEE ELISA LEMONNIER	0232668540	{(0760088H@ac-rouen.fr)}	lycee	\N	\N
-870	0760660E	870	\N	0235270302	{(0760660E@ac-rouen.fr)}	elementaire	\N	\N
-871	0760425Z	871	\N	0235968822	{(0760425Z@ac-rouen.fr)}	elementaire	\N	\N
+870	0760660E	870	ECOLE ELEMENTAIRE DE LE TILLEUL	0235270302	{(0760660E@ac-rouen.fr)}	elementaire	\N	\N
+871	0760425Z	871	ECOLE ELEMENTAIRE DE LE TORP-MESNIL	0235968822	{(0760425Z@ac-rouen.fr)}	elementaire	\N	\N
 872	\N	872	Centre de Loisirs	0235055748	{(enfance@letrait.fr)}	\N	\N	autre
 873	0762085D	873	COLLEGE COMMANDANT CHARCOT	0235059170	{(0762085D@ac-rouen.fr)}	college	\N	\N
 874	0762067J	874	ECOLE ELEMENTAIRE GUSTAVE FLAUBERT	0235372124	{(0762067J@ac-rouen.fr)}	elementaire	\N	\N
@@ -10551,41 +10816,41 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 888	0762342H	888	ECOLE MATERNELLE L ARBRE QUI CHANTE	0235834667	{(0762342H@ac-rouen.fr)}	maternelle	\N	\N
 889	0761581F	889	ECOLE ELEMENTAIRE JULES VERNE	0235296070	{(0761581F@ac-rouen.fr)}	elementaire	\N	\N
 890	0761580E	890	ECOLE MATERNELLE CHARLES PERRAULT	0235270792	{(0761580E@ac-rouen.fr)}	maternelle	\N	\N
-891	0760285X	891	\N	0960034401	{(0760285X@ac-rouen.fr)}	elementaire	\N	\N
-892	0760285X	891	\N	0960034401	{(0760285X@ac-rouen.fr)}	maternelle	\N	\N
-893	0762738N	893	COLLEGE COTE BLANCHE	0235383879	{(0762738N@ac-rouen.fr)}	college	\N	\N
+891	0760285X	892	ECOLE ELEMENTAIRE DE LES TROIS-PIERRES	0960034401	{(0760285X@ac-rouen.fr)}	elementaire	\N	\N
+892	0760285X	892	ECOLE MATERNELLE DE LES TROIS-PIERRES	0960034401	{(0760285X@ac-rouen.fr)}	maternelle	\N	\N
+893	0762738N	905	COLLEGE COTE BLANCHE	0235383879	{(0762738N@ac-rouen.fr)}	college	\N	\N
 894	0762289A	894	COLLEGE PIERRE MENDES FRANCE	0235386416	{(0762289A@ac-rouen.fr)}	college	\N	\N
 895	0762037B	895	ECOLE ELEMENTAIRE DESGENETAIS-NOTRE-DAME	0235380040	{(0762037B@ac-rouen.fr)}	elementaire	\N	\N
 896	0760728D	896	ECOLE ELEMENTAIRE DU CLAIRVAL	0235380030	{(0760728D@ac-rouen.fr)}	elementaire	\N	\N
 897	0760730F	897	ECOLE ELEMENTAIRE GLATIGNY	0235380308	{(0760730F@ac-rouen.fr)}	elementaire	\N	\N
 898	0760727C	898	ECOLE ELEMENTAIRE HIPPOLYTE CARNOT	0235380644	{(0760727C@ac-rouen.fr)}	elementaire	\N	\N
-899	0763242L	899	ECOLE ELEMENTAIRE JACQUES PREVERT	0235382547	{(0763242L@ac-rouen.fr)}	elementaire	\N	\N
+899	0763242L	904	ECOLE ELEMENTAIRE JACQUES PREVERT	0235382547	{(0763242L@ac-rouen.fr)}	elementaire	\N	\N
 900	0760731G	900	ECOLE ELEMENTAIRE LEBIGRE	0235380093	{(0760731G@ac-rouen.fr)}	elementaire	\N	\N
 901	0762059A	896	ECOLE MATERNELLE DU CLAIRVAL	0235380853	{(0762059A@ac-rouen.fr)}	maternelle	\N	\N
 902	0760753F	902	ECOLE MATERNELLE ELSA TRIOLET	0235384900	{(0760753F@ac-rouen.fr)}	maternelle	\N	\N
 903	0760729E	897	ECOLE MATERNELLE GLATIGNY	0235380773	{(0760729E@ac-rouen.fr)}	maternelle	\N	\N
-904	0763242L	899	ECOLE MATERNELLE JACQUES PREVERT	0235382547	{(0763242L@ac-rouen.fr)}	maternelle	\N	\N
-905	0760072R	893	LYCEE GUILLAUME LE CONQUERANT	0232841350	{(0760072R@ac-rouen.fr)}	lycee	\N	\N
-906	0760923R	906	ECOLE ELEMENTAIRE ALBERT MALET	0235911450	{(0760923R@ac-rouen.fr)}	elementaire	\N	\N
+904	0763242L	904	ECOLE MATERNELLE JACQUES PREVERT	0235382547	{(0763242L@ac-rouen.fr)}	maternelle	\N	\N
+905	0760072R	905	LYCEE GUILLAUME LE CONQUERANT	0232841350	{(0760072R@ac-rouen.fr)}	lycee	\N	\N
+906	0760923R	908	ECOLE ELEMENTAIRE ALBERT MALET	0235911450	{(0760923R@ac-rouen.fr)}	elementaire	\N	\N
 907	0762038C	907	ECOLE ELEMENTAIRE SAINTE ISABELLE	0235910586	{(0762038C@ac-rouen.fr)}	elementaire	\N	\N
-908	0760923R	906	ECOLE MATERNELLE ALBERT MALET	0235911450	{(0760923R@ac-rouen.fr)}	maternelle	\N	\N
-909	0761020W	909	\N	0235276737	{(0761020W@ac-rouen.fr)}	elementaire	\N	\N
-910	0761020W	909	\N	0235276737	{(0761020W@ac-rouen.fr)}	maternelle	\N	\N
-911	0761049C	911	\N	0235968694	{(0761049C@ac-rouen.fr)}	elementaire	\N	\N
-912	0762913D	912	\N	0235040708	{(0762913D@ac-rouen.fr)}	elementaire	\N	\N
-913	0762591D	913	\N	0235949483	{(0762591D@ac-rouen.fr)}	maternelle	\N	\N
+908	0760923R	908	ECOLE MATERNELLE ALBERT MALET	0235911450	{(0760923R@ac-rouen.fr)}	maternelle	\N	\N
+909	0761020W	910	ECOLE ELEMENTAIRE DE LIMPIVILLE	0235276737	{(0761020W@ac-rouen.fr)}	elementaire	\N	\N
+910	0761020W	910	ECOLE MATERNELLE DE LIMPIVILLE	0235276737	{(0761020W@ac-rouen.fr)}	maternelle	\N	\N
+911	0761049C	911	ECOLE ELEMENTAIRE DE LINDEBEUF	0235968694	{(0761049C@ac-rouen.fr)}	elementaire	\N	\N
+912	0762913D	912	ECOLE ELEMENTAIRE DE LINTOT-LES-BOIS	0235040708	{(0762913D@ac-rouen.fr)}	elementaire	\N	\N
+913	0762591D	913	ECOLE MATERNELLE DE LONDINIERES	0235949483	{(0762591D@ac-rouen.fr)}	maternelle	\N	\N
 914	0760137L	914	COLLEGE PAUL-HENRI CAHINGT	0235938910	{(0760137L@ac-rouen.fr)}	college	\N	\N
 915	0762603S	915	ECOLE ELEMENTAIRE DU TILLEUL	0235938035	{(0762603S@ac-rouen.fr)}	elementaire	\N	\N
-916	0763358M	916	\N	0322309334	{(0763358M@ac-rouen.fr)}	elementaire	\N	\N
-917	0763358M	916	\N	0322309334	{(0763358M@ac-rouen.fr)}	maternelle	\N	\N
-918	0762115L	918	\N	0235042081	{(0762115L@ac-rouen.fr)}	elementaire	\N	\N
-919	0762115L	918	\N	0235042081	{(0762115L@ac-rouen.fr)}	maternelle	\N	\N
-920	0760481K	920	\N	0235343021	{(0760481K@ac-rouen.fr)}	elementaire	\N	\N
-921	0762358A	921	\N	0235842517	{(0762358A@ac-rouen.fr)}	maternelle	\N	\N
+916	0763358M	917	ECOLE ELEMENTAIRE DE LONGROY	0322309334	{(0763358M@ac-rouen.fr)}	elementaire	\N	\N
+917	0763358M	917	ECOLE MATERNELLE DE LONGROY	0322309334	{(0763358M@ac-rouen.fr)}	maternelle	\N	\N
+918	0762115L	918	ECOLE ELEMENTAIRE DE LONGUEIL	0235042081	{(0762115L@ac-rouen.fr)}	elementaire	\N	\N
+919	0762115L	918	ECOLE MATERNELLE DE LONGUEIL	0235042081	{(0762115L@ac-rouen.fr)}	maternelle	\N	\N
+920	0760481K	920	ECOLE ELEMENTAIRE DE LONGUERUE	0235343021	{(0760481K@ac-rouen.fr)}	elementaire	\N	\N
+921	0762358A	921	ECOLE MATERNELLE DE LONGUEVILLE-SUR-SCIE	0235842517	{(0762358A@ac-rouen.fr)}	maternelle	\N	\N
 922	0762086E	922	COLLEGE JEAN MALAURIE	0235046490	{(0762086E@ac-rouen.fr)}	college	\N	\N
 923	0762116M	921	ECOLE ELEMENTAIRE PIERRE CORNEILLE	0235833557	{(0762116M@ac-rouen.fr)}	elementaire	\N	\N
-924	0760668N	924	\N	0235955380	{(0760668N@ac-rouen.fr)}	elementaire	\N	\N
-925	0760668N	924	\N	0235955380	{(0760668N@ac-rouen.fr)}	maternelle	\N	\N
+924	0760668N	925	ECOLE ELEMENTAIRE DE LOUVETOT	0235955380	{(0760668N@ac-rouen.fr)}	elementaire	\N	\N
+925	0760668N	925	ECOLE MATERNELLE DE LOUVETOT	0235955380	{(0760668N@ac-rouen.fr)}	maternelle	\N	\N
 926	0762199C	926	COLLEGE MAURICE MAETERLINCK	0235047190	{(0762199C@ac-rouen.fr)}	college	\N	\N
 927	0760367L	927	ECOLE ELEMENTAIRE MAURICE GENEVOIX	0235853068	{(0760367L@ac-rouen.fr)}	elementaire	\N	\N
 928	0761755V	928	ECOLE MATERNELLE LE PETIT PRINCE	0235853270	{(0761755V@ac-rouen.fr)}	maternelle	\N	\N
@@ -10594,73 +10859,73 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 931	0763080K	929	ECOLE MATERNELLE GEORGES BRASSENS	0235748496	{(0763080K@ac-rouen.fr)}	maternelle	\N	\N
 932	0762330V	932	ECOLE MATERNELLE JEAN EFFEL	0235757558	{(0762330V@ac-rouen.fr)}	maternelle	\N	\N
 933	0761099G	933	ECOLE MATERNELLE OLIVIER MIANNAY	0235740164	{(0761099G@ac-rouen.fr)}	maternelle	\N	\N
-934	0762530M	934	ECOLE ELEMENTAIRE GEORGES BRAQUE	0235303649	{(0762530M@ac-rouen.fr)}	elementaire	\N	\N
-935	0762530M	934	ECOLE MATERNELLE GEORGES BRAQUE	0235303649	{(0762530M@ac-rouen.fr)}	maternelle	\N	\N
+934	0762530M	935	ECOLE ELEMENTAIRE GEORGES BRAQUE	0235303649	{(0762530M@ac-rouen.fr)}	elementaire	\N	\N
+935	0762530M	935	ECOLE MATERNELLE GEORGES BRAQUE	0235303649	{(0762530M@ac-rouen.fr)}	maternelle	\N	\N
 936	0763026B	936	ECOLE ELEMENTAIRE ERIC TABARLY	0235295275	{(0763026B@ac-rouen.fr)}	elementaire	\N	\N
-937	0761142D	937	ECOLE ELEMENTAIRE LE CLOS PERRINE	0235208157	{(0761142D@ac-rouen.fr)}	elementaire	\N	\N
-938	0761142D	937	ECOLE MATERNELLE LE CLOS PERRINE	0235208157	{(0761142D@ac-rouen.fr)}	maternelle	\N	\N
+937	0761142D	938	ECOLE ELEMENTAIRE LE CLOS PERRINE	0235208157	{(0761142D@ac-rouen.fr)}	elementaire	\N	\N
+938	0761142D	938	ECOLE MATERNELLE LE CLOS PERRINE	0235208157	{(0761142D@ac-rouen.fr)}	maternelle	\N	\N
 939	0760075U	939	COLLEGE ALAIN	0232828400	{(0760075U@ac-rouen.fr)}	college	\N	\N
 940	0761076G	940	ECOLE ELEMENTAIRE GUSTAVE FLAUBERT	0232822235	{(0761076G@ac-rouen.fr)}	elementaire	\N	\N
 941	0762665J	941	ECOLE ELEMENTAIRE JULES FERRY	0232822231	{(0762665J@ac-rouen.fr)}	elementaire	\N	\N
-942	0762039D	942	ECOLE ELEMENTAIRE SAINTE THERESE	0235741624	{(0762039D@ac-rouen.fr)}	elementaire	\N	\N
+942	0762039D	949	ECOLE ELEMENTAIRE SAINTE THERESE	0235741624	{(0762039D@ac-rouen.fr)}	elementaire	\N	\N
 943	0763347A	943	ECOLE ELEMENTAIRE THERESE DELBOS	0276081708	{(0763347A@ac-rouen.fr)}	elementaire	\N	\N
 944	0761118C	944	ECOLE MATERNELLE LUCIE DELARUE MARDRUS	0235743275	{(0761118C@ac-rouen.fr)}	maternelle	\N	\N
 945	0762060B	945	ECOLE MATERNELLE PAUL FORT	0232822232	{(0762060B@ac-rouen.fr)}	maternelle	\N	\N
 946	0762444U	946	ECOLE MATERNELLE ROBERT DESNOS	0235757251	{(0762444U@ac-rouen.fr)}	maternelle	\N	\N
 947	0761074E	947	ECOLE MATERNELLE THERESE DELBOS	0235740011	{(0761074E@ac-rouen.fr)}	maternelle	\N	\N
 948	0760022L	948	LYCEE BERNARD PALISSY	0232821020	{(0760022L@ac-rouen.fr)}	lycee	\N	\N
-949	0761344Y	942	LYCEE SAINTE-THERESE	0235741624	{(0761344y@ac-rouen.fr)}	lycee	\N	\N
-950	0760337D	950	\N	0235946299	{(0760337D@ac-rouen.fr)}	elementaire	\N	\N
-951	0760452D	951	\N	0235235755	{(0760452D@ac-rouen.fr)}	elementaire	\N	\N
+949	0761344Y	949	LYCEE SAINTE-THERESE	0235741624	{(0761344y@ac-rouen.fr)}	lycee	\N	\N
+950	0760337D	950	ECOLE ELEMENTAIRE DE MARQUES	0235946299	{(0760337D@ac-rouen.fr)}	elementaire	\N	\N
+951	0760452D	951	ECOLE ELEMENTAIRE DE MARTAINVILLE-EPREVILLE	0235235755	{(0760452D@ac-rouen.fr)}	elementaire	\N	\N
 952	0760860X	952	ECOLE MATERNELLE ANDRE TAVERNIER	0235856472	{(0760860X@ac-rouen.fr)}	maternelle	\N	\N
 953	0762531N	953	ECOLE ELEMENTAIRE LE VALLON	0235044287	{(0762531N@ac-rouen.fr)}	elementaire	\N	\N
 954	0762532P	954	ECOLE MATERNELLE LES FARFADETS	0235825026	{(0762532P@ac-rouen.fr)}	maternelle	\N	\N
-955	0760768X	955	\N	0235944508	{(0760768X@ac-rouen.fr)}	maternelle	\N	\N
-956	0760294G	956	\N	0235342899	{(0760294G@ac-rouen.fr)}	elementaire	\N	\N
-957	0760671S	957	\N	0235962469	{(0760671S@ac-rouen.fr)}	elementaire	\N	\N
-958	0760671S	957	\N	0235962469	{(0760671S@ac-rouen.fr)}	maternelle	\N	\N
-959	0763133T	959	\N	0235902762	{(0763133T@ac-rouen.fr)}	maternelle	\N	\N
-960	0761552Z	960	\N	0235508663	{(0761552Z@ac-rouen.fr)}	elementaire	\N	\N
-961	0761281E	961	\N	0235906338	{(0761281E@ac-rouen.fr)}	elementaire	\N	\N
-962	0760769Y	962	\N	0235942100	{(0760769Y@ac-rouen.fr)}	elementaire	\N	\N
-963	0761458X	963	\N	0235291694	{(0761458X@ac-rouen.fr)}	elementaire	\N	\N
-964	0760771A	964	\N	0235939925	{(0760771A@ac-rouen.fr)}	elementaire	\N	\N
-965	0760771A	964	\N	0235939925	{(0760771A@ac-rouen.fr)}	maternelle	\N	\N
-966	0761330H	966	COLLEGE SAINT-JOSEPH	0235931004	{(0761330h@ac-rouen.fr)}	college	\N	\N
-967	0762442S	966	LYCEE SAINT-JOSEPH	0235938551	{(0762442s@ac-rouen.fr)}	lycee	\N	\N
-968	0761429R	968	\N	0232890973	{(0761429R@ac-rouen.fr)}	elementaire	\N	\N
+955	0760768X	955	ECOLE MATERNELLE DE MASSY	0235944508	{(0760768X@ac-rouen.fr)}	maternelle	\N	\N
+956	0760294G	956	ECOLE ELEMENTAIRE DE MATHONVILLE	0235342899	{(0760294G@ac-rouen.fr)}	elementaire	\N	\N
+957	0760671S	958	ECOLE ELEMENTAIRE DE MAULEVRIER-SAINTE-GERTRUDE	0235962469	{(0760671S@ac-rouen.fr)}	elementaire	\N	\N
+958	0760671S	958	ECOLE MATERNELLE DE MAULEVRIER-SAINTE-GERTRUDE	0235962469	{(0760671S@ac-rouen.fr)}	maternelle	\N	\N
+959	0763133T	959	ECOLE MATERNELLE DE MAUQUENCHY	0235902762	{(0763133T@ac-rouen.fr)}	maternelle	\N	\N
+960	0761552Z	960	ECOLE ELEMENTAIRE DE MELLEVILLE	0235508663	{(0761552Z@ac-rouen.fr)}	elementaire	\N	\N
+961	0761281E	961	ECOLE ELEMENTAIRE DE MENERVAL	0235906338	{(0761281E@ac-rouen.fr)}	elementaire	\N	\N
+962	0760769Y	962	ECOLE ELEMENTAIRE DE MENONVAL	0235942100	{(0760769Y@ac-rouen.fr)}	elementaire	\N	\N
+963	0761458X	963	ECOLE ELEMENTAIRE DE MENTHEVILLE	0235291694	{(0761458X@ac-rouen.fr)}	elementaire	\N	\N
+964	0760771A	965	ECOLE ELEMENTAIRE DE MESNIERES-EN-BRAY	0235939925	{(0760771A@ac-rouen.fr)}	elementaire	\N	\N
+965	0760771A	965	ECOLE MATERNELLE DE MESNIERES-EN-BRAY	0235939925	{(0760771A@ac-rouen.fr)}	maternelle	\N	\N
+966	0761330H	967	COLLEGE SAINT-JOSEPH	0235931004	{(0761330h@ac-rouen.fr)}	college	\N	\N
+967	0762442S	967	LYCEE SAINT-JOSEPH	0235938551	{(0762442s@ac-rouen.fr)}	lycee	\N	\N
+968	0761429R	968	ECOLE ELEMENTAIRE DE MESNIL-MAUGER	0232890973	{(0761429R@ac-rouen.fr)}	elementaire	\N	\N
 969	0760925T	969	ECOLE ELEMENTAIRE NORBERT HEDOUIN	0235926840	{(0760925T@ac-rouen.fr)}	elementaire	\N	\N
 970	0760526J	970	ECOLE MATERNELLE LA PETITE SIRENE	0235790756	{(0760526J@ac-rouen.fr)}	maternelle	\N	\N
-971	0763359N	971	\N	0235838747	{(0763359N@ac-rouen.fr)}	maternelle	\N	\N
+971	0763359N	971	ECOLE MATERNELLE DE MEULERS	0235838747	{(0763359N@ac-rouen.fr)}	maternelle	\N	\N
 972	0761553A	972	ECOLE MATERNELLE GREMONT	0235500828	{(0761553A@ac-rouen.fr)}	maternelle	\N	\N
-973	0760599N	973	\N	0235947655	{(0760599N@ac-rouen.fr)}	elementaire	\N	\N
-974	0761555C	974	\N	0235507720	{(0761555C@ac-rouen.fr)}	elementaire	\N	\N
-975	0760627U	975	\N	0235335899	{(0760627U@ac-rouen.fr)}	elementaire	\N	\N
-976	0760627U	975	\N	0235335899	{(0760627U@ac-rouen.fr)}	maternelle	\N	\N
+973	0760599N	973	ECOLE ELEMENTAIRE DE MONCHAUX-SORENG	0235947655	{(0760599N@ac-rouen.fr)}	elementaire	\N	\N
+974	0761555C	974	ECOLE ELEMENTAIRE DE MONCHY-SUR-EU	0235507720	{(0761555C@ac-rouen.fr)}	elementaire	\N	\N
+975	0760627U	976	ECOLE ELEMENTAIRE DE MONT-CAUVAIRE	0235335899	{(0760627U@ac-rouen.fr)}	elementaire	\N	\N
+976	0760627U	976	ECOLE MATERNELLE DE MONT-CAUVAIRE	0235335899	{(0760627U@ac-rouen.fr)}	maternelle	\N	\N
 977	0760077W	977	COLLEGE JEAN DE LA VARENDE	0235157200	{(0760077W@ac-rouen.fr)}	college	\N	\N
-978	0762928V	978	ECOLE ELEMENTAIRE ALBERT CAMUS	0232820149	{(0762928V@ac-rouen.fr)}	elementaire	\N	\N
+978	0762928V	984	ECOLE ELEMENTAIRE ALBERT CAMUS	0232820149	{(0762928V@ac-rouen.fr)}	elementaire	\N	\N
 979	0762716P	979	ECOLE ELEMENTAIRE ANTOINE DE SAINT-EXUPERY	0232101651	{(0762716P@ac-rouen.fr)}	elementaire	\N	\N
-980	0762909Z	980	ECOLE ELEMENTAIRE DU VILLAGE	0235748820	{(0762909Z@ac-rouen.fr)}	elementaire	\N	\N
+980	0762909Z	986	ECOLE ELEMENTAIRE DU VILLAGE	0235748820	{(0762909Z@ac-rouen.fr)}	elementaire	\N	\N
 981	0761101J	981	ECOLE ELEMENTAIRE MARCELIN BERTHELOT	0235885355	{(0761101J@ac-rouen.fr)}	elementaire	\N	\N
 982	0762430D	982	ECOLE ELEMENTAIRE PIERRE CURIE	0235750715	{(0762430D@ac-rouen.fr)}	elementaire	\N	\N
 983	0761961U	983	ECOLE ELEMENTAIRE SAINT ANDRE	0235706873	{(0761961U@ac-rouen.fr)}	elementaire	\N	\N
-984	0763107P	978	ECOLE MATERNELLE ALBERT CAMUS	0232820144	{(0763107P@ac-rouen.fr)}	maternelle	\N	\N
+984	0763107P	984	ECOLE MATERNELLE ALBERT CAMUS	0232820144	{(0763107P@ac-rouen.fr)}	maternelle	\N	\N
 985	0761105N	985	ECOLE MATERNELLE ANTOINE DE SAINT-EXUPERY	0235101527	{(0761105N@ac-rouen.fr)}	maternelle	\N	\N
-986	0762907X	980	ECOLE MATERNELLE DU VILLAGE	0235749020	{(0762907X@ac-rouen.fr)}	maternelle	\N	\N
+986	0762907X	986	ECOLE MATERNELLE DU VILLAGE	0235749020	{(0762907X@ac-rouen.fr)}	maternelle	\N	\N
 987	0762715N	987	ECOLE MATERNELLE MARCELIN BERTHELOT	0235885067	{(0762715N@ac-rouen.fr)}	maternelle	\N	\N
 988	0762429C	988	ECOLE MATERNELLE MARIE CURIE	0235750452	{(0762429C@ac-rouen.fr)}	maternelle	\N	\N
 989	0760298L	989	ECOLE ELEMENTAIRE PAUL BERT	0235344275	{(0760298L@ac-rouen.fr)}	elementaire	\N	\N
 990	0762557S	990	ECOLE MATERNELLE LOUIS PASTEUR	0235344293	{(0762557S@ac-rouen.fr)}	maternelle	\N	\N
-991	0761100H	991	\N	0235360281	{(0761100H@ac-rouen.fr)}	elementaire	\N	\N
-992	0761100H	991	\N	0235360281	{(0761100H@ac-rouen.fr)}	maternelle	\N	\N
+991	0761100H	992	ECOLE ELEMENTAIRE DE MONTIGNY	0235360281	{(0761100H@ac-rouen.fr)}	elementaire	\N	\N
+992	0761100H	992	ECOLE MATERNELLE DE MONTIGNY	0235360281	{(0761100H@ac-rouen.fr)}	maternelle	\N	\N
 993	0762227H	993	COLLEGE BELLE ETOILE	0235205417	{(0762227H@ac-rouen.fr)}	college	\N	\N
 994	0762288Z	994	COLLEGE RAYMOND QUENEAU	0235205221	{(0762288Z@ac-rouen.fr)}	college	\N	\N
-995	0761331J	995	COLLEGE SAINTE-CROIX	0235302673	{(0761331j@ac-rouen.fr)}	college	\N	\N
+995	0761331J	1000	COLLEGE SAINTE-CROIX	0235302673	{(0761331j@ac-rouen.fr)}	college	\N	\N
 996	0762147W	996	ECOLE ELEMENTAIRE JULES COLLET	0235302123	{(0762147W@ac-rouen.fr)}	elementaire	\N	\N
 997	0761123H	997	ECOLE ELEMENTAIRE JULES FERRY	0235302456	{(0761123H@ac-rouen.fr)}	elementaire	\N	\N
 998	0762533R	998	ECOLE ELEMENTAIRE LOUISE MICHEL	0235305708	{(0762533R@ac-rouen.fr)}	elementaire	\N	\N
 999	0762441R	999	ECOLE ELEMENTAIRE MARIUS GROUT	0235302130	{(0762441R@ac-rouen.fr)}	elementaire	\N	\N
-1000	0761960T	995	ECOLE ELEMENTAIRE SAINTE CROIX	0235302673	{(0761960T@ac-rouen.fr)}	elementaire	\N	\N
+1000	0761960T	1000	ECOLE ELEMENTAIRE SAINTE CROIX	0235302673	{(0761960T@ac-rouen.fr)}	elementaire	\N	\N
 1001	0761122G	1001	ECOLE ELEMENTAIRE VICTOR HUGO	0235300116	{(0761122G@ac-rouen.fr)}	elementaire	\N	\N
 1002	0761151N	1002	ECOLE MATERNELLE CHARLES PERRAULT	0235300150	{(0761151N@ac-rouen.fr)}	maternelle	\N	\N
 1003	0761121F	1003	ECOLE MATERNELLE DU PONT CALLOUARD	0235301610	{(0761121F@ac-rouen.fr)}	maternelle	\N	\N
@@ -10670,47 +10935,47 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1007	0762449Z	1007	ECOLE MATERNELLE MARIUS GROUT	0235302197	{(0762449Z@ac-rouen.fr)}	maternelle	\N	\N
 1008	0760076V	1008	LYCEE JEAN PREVOST	0232795777	{(0760076V@ac-rouen.fr)}	lycee	\N	\N
 1009	0760527K	1009	ECOLE ELEMENTAIRE LES CATELAINES	0235790956	{(0760527K@ac-rouen.fr)}	elementaire	\N	\N
-1010	0761282F	1010	\N	0235098471	{(0761282F@ac-rouen.fr)}	maternelle	\N	\N
+1010	0761282F	1010	ECOLE MATERNELLE DE MONTROTY	0235098471	{(0761282F@ac-rouen.fr)}	maternelle	\N	\N
 1011	0762090J	1011	COLLEGE EUGENE NOEL	0235337290	{(0762090J@ac-rouen.fr)}	college	\N	\N
 1012	0760630X	1012	ECOLE ELEMENTAIRE EVODE CHEVALIER	0235337175	{(0760630X@ac-rouen.fr)}	elementaire	\N	\N
 1013	0760629W	1013	ECOLE ELEMENTAIRE HECTOR BERLIOZ	0235337041	{(0760629W@ac-rouen.fr)}	elementaire	\N	\N
 1014	0760628V	1013	ECOLE MATERNELLE HECTOR BERLIOZ	0235337038	{(0760628V@ac-rouen.fr)}	maternelle	\N	\N
 1015	0762717R	1015	ECOLE MATERNELLE JEANNE PINCEPRE	0235336187	{(0762717R@ac-rouen.fr)}	maternelle	\N	\N
 1016	0763309J	1016	ECOLE ELEMENTAIRE LES TROIS HAMEAUX	0232801701	{(0763309J@ac-rouen.fr)}	elementaire	\N	\N
-1017	0760319J	1017	\N	0235906432	{(0760319J@ac-rouen.fr)}	elementaire	\N	\N
+1017	0760319J	1017	ECOLE ELEMENTAIRE DE MORVILLE-SUR-ANDELLE	0235906432	{(0760319J@ac-rouen.fr)}	elementaire	\N	\N
 1018	0762183K	1018	ECOLE ELEMENTAIRE JOSEPH DENEUVE	0235560274	{(0762183K@ac-rouen.fr)}	elementaire	\N	\N
 1019	0762183K	1018	ECOLE MATERNELLE JOSEPH DENEUVE	0235560274	{(0762183K@ac-rouen.fr)}	maternelle	\N	\N
 1020	0761187C	1020	ECOLE ELEMENTAIRE PIERRE LE TRIVIDIC	0235180565	{(0761187C@ac-rouen.fr)}	elementaire	\N	\N
 1021	0762898M	1021	ECOLE MATERNELLE CLAUDE MONET	0235180048	{(0762898M@ac-rouen.fr)}	maternelle	\N	\N
-1022	0760773C	1022	\N	0232970711	{(0760773C@ac-rouen.fr)}	elementaire	\N	\N
-1023	0762470X	1023	\N	0235940688	{(0762470X@ac-rouen.fr)}	elementaire	\N	\N
-1024	0762470X	1023	\N	0235940688	{(0762470X@ac-rouen.fr)}	maternelle	\N	\N
-1025	0762435J	1025	ECOLE ELEMENTAIRE JEAN MOULIN	0235906208	{(0762435J@ac-rouen.fr)}	elementaire	\N	\N
-1026	0762435J	1025	ECOLE MATERNELLE JEAN MOULIN	0235906208	{(0762435J@ac-rouen.fr)}	maternelle	\N	\N
-1027	0760299M	1027	\N	0235324601	{(0760299M@ac-rouen.fr)}	elementaire	\N	\N
+1022	0760773C	1022	ECOLE ELEMENTAIRE DE NESLE-HODENG	0232970711	{(0760773C@ac-rouen.fr)}	elementaire	\N	\N
+1023	0762470X	1024	ECOLE ELEMENTAIRE DE NESLE-NORMANDEUSE	0235940688	{(0762470X@ac-rouen.fr)}	elementaire	\N	\N
+1024	0762470X	1024	ECOLE MATERNELLE DE NESLE-NORMANDEUSE	0235940688	{(0762470X@ac-rouen.fr)}	maternelle	\N	\N
+1025	0762435J	1026	ECOLE ELEMENTAIRE JEAN MOULIN	0235906208	{(0762435J@ac-rouen.fr)}	elementaire	\N	\N
+1026	0762435J	1026	ECOLE MATERNELLE JEAN MOULIN	0235906208	{(0762435J@ac-rouen.fr)}	maternelle	\N	\N
+1027	0760299M	1027	ECOLE ELEMENTAIRE DE NEUFBOSC	0235324601	{(0760299M@ac-rouen.fr)}	elementaire	\N	\N
 1028	0760079Y	1028	COLLEGE ALBERT SCHWEITZER	0235930136	{(0760079Y@ac-rouen.fr)}	college	\N	\N
 1029	0760756J	1029	ECOLE MATERNELLE CHARLES PERRAULT	0235930171	{(0760756J@ac-rouen.fr)}	maternelle	\N	\N
 1030	0761744H	1030	LYCEE AGRICOLE	0232975630	{(lpa.neufchatel@educagri.fr)}	lycee	\N	\N
 1031	0762601P	1031	LYCEE GEORGES BRASSENS	0235943126	{(0762601P@ac-rouen.fr)}	lycee	\N	\N
 1032	0762929W	1032	ECOLE ELEMENTAIRE CLAUDE MONET	0235930101	{(0762929W@ac-rouen.fr)}	elementaire	\N	\N
 1033	0761963W	1033	ECOLE ELEMENTAIRE SAINT JACQUES	0235930208	{(0761963W@ac-rouen.fr)}	elementaire	\N	\N
-1034	0763336N	1034	\N	0235940909	{(0763336N@ac-rouen.fr)}	maternelle	\N	\N
-1035	0761161Z	1035	\N	0235970794	{(0761161Z@ac-rouen.fr)}	elementaire	\N	\N
-1036	0761161Z	1035	\N	0235970794	{(0761161Z@ac-rouen.fr)}	maternelle	\N	\N
-1037	0760576N	1037	\N	0235319759	{(0760576N@ac-rouen.fr)}	elementaire	\N	\N
-1038	0760576N	1037	\N	0235319759	{(0760576N@ac-rouen.fr)}	maternelle	\N	\N
-1039	0760320K	1039	\N	0235098481	{(0760320K@ac-rouen.fr)}	elementaire	\N	\N
-1040	0761387V	1040	\N	0235299122	{(0761387V@ac-rouen.fr)}	elementaire	\N	\N
-1041	0761387V	1040	\N	0235299122	{(0761387V@ac-rouen.fr)}	maternelle	\N	\N
-1042	0762195Y	1042	ECOLE ELEMENTAIRE DU MARAIS	0235386815	{(0762195Y@ac-rouen.fr)}	elementaire	\N	\N
-1043	0762195Y	1042	ECOLE MATERNELLE DU MARAIS	0235386815	{(0762195Y@ac-rouen.fr)}	maternelle	\N	\N
-1044	0761612P	1044	ECOLE ELEMENTAIRE MARCEL BRETON	0235858121	{(0761612P@ac-rouen.fr)}	elementaire	\N	\N
-1045	0761612P	1044	ECOLE MATERNELLE MARCEL BRETON	0235858121	{(0761612P@ac-rouen.fr)}	maternelle	\N	\N
+1034	0763336N	1034	ECOLE MATERNELLE DE NEUVILLE-FERRIERES	0235940909	{(0763336N@ac-rouen.fr)}	maternelle	\N	\N
+1035	0761161Z	1036	ECOLE ELEMENTAIRE DE NEVILLE	0235970794	{(0761161Z@ac-rouen.fr)}	elementaire	\N	\N
+1036	0761161Z	1036	ECOLE MATERNELLE DE NEVILLE	0235970794	{(0761161Z@ac-rouen.fr)}	maternelle	\N	\N
+1037	0760576N	1038	ECOLE ELEMENTAIRE DE NOINTOT	0235319759	{(0760576N@ac-rouen.fr)}	elementaire	\N	\N
+1038	0760576N	1038	ECOLE MATERNELLE DE NOINTOT	0235319759	{(0760576N@ac-rouen.fr)}	maternelle	\N	\N
+1039	0760320K	1039	ECOLE ELEMENTAIRE DE NOLLEVAL	0235098481	{(0760320K@ac-rouen.fr)}	elementaire	\N	\N
+1040	0761387V	1041	ECOLE ELEMENTAIRE DE NORMANVILLE	0235299122	{(0761387V@ac-rouen.fr)}	elementaire	\N	\N
+1041	0761387V	1041	ECOLE MATERNELLE DE NORMANVILLE	0235299122	{(0761387V@ac-rouen.fr)}	maternelle	\N	\N
+1042	0762195Y	1043	ECOLE ELEMENTAIRE DU MARAIS	0235386815	{(0762195Y@ac-rouen.fr)}	elementaire	\N	\N
+1043	0762195Y	1043	ECOLE MATERNELLE DU MARAIS	0235386815	{(0762195Y@ac-rouen.fr)}	maternelle	\N	\N
+1044	0761612P	1045	ECOLE ELEMENTAIRE MARCEL BRETON	0235858121	{(0761612P@ac-rouen.fr)}	elementaire	\N	\N
+1045	0761612P	1045	ECOLE MATERNELLE MARCEL BRETON	0235858121	{(0761612P@ac-rouen.fr)}	maternelle	\N	\N
 1046	0760672T	1046	ECOLE ELEMENTAIRE BLIQU EN SEINE	0235377638	{(0760672T@ac-rouen.fr)}	elementaire	\N	\N
-1047	0762194X	1047	ECOLE ELEMENTAIRE ANDRE MARIE	0235740350	{(0762194X@ac-rouen.fr)}	elementaire	\N	\N
+1047	0762194X	1050	ECOLE ELEMENTAIRE ANDRE MARIE	0235740350	{(0762194X@ac-rouen.fr)}	elementaire	\N	\N
 1048	0762431E	1048	ECOLE ELEMENTAIRE JEAN MOULIN	0235743229	{(0762431E@ac-rouen.fr)}	elementaire	\N	\N
 1049	0761111V	1049	ECOLE ELEMENTAIRE VICTOR HUGO	0235740346	{(0761111V@ac-rouen.fr)}	elementaire	\N	\N
-1050	0762610Z	1047	ECOLE MATERNELLE ANDRE MARIE	0235769132	{(0762610Z@ac-rouen.fr)}	maternelle	\N	\N
+1050	0762610Z	1050	ECOLE MATERNELLE ANDRE MARIE	0235769132	{(0762610Z@ac-rouen.fr)}	maternelle	\N	\N
 1051	0761109T	1051	ECOLE MATERNELLE LOUIS DUTEURTRE	0235742870	{(0761109T@ac-rouen.fr)}	maternelle	\N	\N
 1052	0762176C	1052	COLLEGE ALBERT CALMETTE	0235394115	{(0762176C@ac-rouen.fr)}	college	\N	\N
 1053	0760740S	1053	ECOLE ELEMENTAIRE ALBERT SCHWEITZER	0235386073	{(0760740S@ac-rouen.fr)}	elementaire	\N	\N
@@ -10720,10 +10985,10 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1057	0762168U	1057	ECOLE MATERNELLE CHARLES PEGUY	0235386626	{(0762168U@ac-rouen.fr)}	maternelle	\N	\N
 1058	0761764E	1058	ECOLE MATERNELLE JEAN DE LA FONTAINE	0235386462	{(0761764E@ac-rouen.fr)}	maternelle	\N	\N
 1059	0760744W	1059	ECOLE MATERNELLE PETITE CAMPAGNE	0235386022	{(0760744W@ac-rouen.fr)}	maternelle	\N	\N
-1060	0761143E	1060	\N	0235205989	{(0761143E@ac-rouen.fr)}	elementaire	\N	\N
-1061	0760339F	1061	\N	0235936655	{(0760339F@ac-rouen.fr)}	maternelle	\N	\N
-1062	0760502H	1062	\N	0235977454	{(0760502H@ac-rouen.fr)}	elementaire	\N	\N
-1063	0760502H	1062	\N	0235977454	{(0760502H@ac-rouen.fr)}	maternelle	\N	\N
+1060	0761143E	1060	ECOLE ELEMENTAIRE DE NOTRE-DAME-DU-BEC	0235205989	{(0761143E@ac-rouen.fr)}	elementaire	\N	\N
+1061	0760339F	1061	ECOLE MATERNELLE DE NULLEMONT	0235936655	{(0760339F@ac-rouen.fr)}	maternelle	\N	\N
+1062	0760502H	1062	ECOLE ELEMENTAIRE DE OCQUEVILLE	0235977454	{(0760502H@ac-rouen.fr)}	elementaire	\N	\N
+1063	0760502H	1062	ECOLE MATERNELLE DE OCQUEVILLE	0235977454	{(0760502H@ac-rouen.fr)}	maternelle	\N	\N
 1064	0762996U	1064	ECOLE ELEMENTAIRE JULES VERNE	0235463708	{(0762996U@ac-rouen.fr)}	elementaire	\N	\N
 1065	0762432F	1065	ECOLE MATERNELLE LES LUTINS	0235462598	{(0762432F@ac-rouen.fr)}	maternelle	\N	\N
 1066	0762125X	1066	COLLEGE JEAN COCTEAU	0235047580	{(0762125X@ac-rouen.fr)}	college	\N	\N
@@ -10738,83 +11003,83 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1075	0760983F	1075	ECOLE MATERNELLE CAMILLE CLAUDEL	0235647183	{(0760983F@ac-rouen.fr)}	maternelle	\N	\N
 1076	0760956B	1076	ECOLE MATERNELLE JEAN JAURES	0235661261	{(0760956B@ac-rouen.fr)}	maternelle	\N	\N
 1077	0762666K	1077	ECOLE MATERNELLE PIERRE TOUTAIN	0235665872	{(0762666K@ac-rouen.fr)}	maternelle	\N	\N
-1078	0760368M	1078	\N	0235857831	{(0760368M@ac-rouen.fr)}	maternelle	\N	\N
+1078	0760368M	1078	ECOLE MATERNELLE DE OMONVILLE	0235857831	{(0760368M@ac-rouen.fr)}	maternelle	\N	\N
 1079	0761522S	1079	ECOLE ELEMENTAIRE MAURICE DANTAN	0235770221	{(0761522S@ac-rouen.fr)}	elementaire	\N	\N
 1080	0761522S	1079	ECOLE MATERNELLE MAURICE DANTAN	0235770221	{(0761522S@ac-rouen.fr)}	maternelle	\N	\N
-1081	0760689L	1081	\N	0235930590	{(0760689L@ac-rouen.fr)}	elementaire	\N	\N
+1081	0760689L	1081	ECOLE ELEMENTAIRE DE OSMOY-SAINT-VALERY	0235930590	{(0760689L@ac-rouen.fr)}	elementaire	\N	\N
 1082	0760503J	1082	ECOLE ELEMENTAIRE REMI BLONDEL	0235978779	{(0760503J@ac-rouen.fr)}	elementaire	\N	\N
 1083	0762737M	1083	ECOLE MATERNELLE REMI BLONDEL	0235978528	{(0762737M@ac-rouen.fr)}	maternelle	\N	\N
 1084	0760269E	1084	ECOLE ELEMENTAIRE ANTOINE DE SAINT-EXUPERY	0235201377	{(0760269E@ac-rouen.fr)}	elementaire	\N	\N
-1085	0762117N	1085	ECOLE ELEMENTAIRE LA ROSACE	0235294069	{(0762117N@ac-rouen.fr)}	elementaire	\N	\N
-1086	0762117N	1085	ECOLE MATERNELLE LA ROSACE	0235294069	{(0762117N@ac-rouen.fr)}	maternelle	\N	\N
-1087	0761052F	1087	\N	0235564131	{(0761052F@ac-rouen.fr)}	elementaire	\N	\N
-1088	0761052F	1087	\N	0235564131	{(0761052F@ac-rouen.fr)}	maternelle	\N	\N
-1089	0760863A	1089	\N	0235830928	{(0760863A@ac-rouen.fr)}	elementaire	\N	\N
-1090	0760863A	1089	\N	0235830928	{(0760863A@ac-rouen.fr)}	maternelle	\N	\N
-1091	0760504K	1091	\N	0235976208	{(0760504K@ac-rouen.fr)}	elementaire	\N	\N
-1092	0760578R	1092	\N	0235310542	{(0760578R@ac-rouen.fr)}	elementaire	\N	\N
+1085	0762117N	1086	ECOLE ELEMENTAIRE LA ROSACE	0235294069	{(0762117N@ac-rouen.fr)}	elementaire	\N	\N
+1086	0762117N	1086	ECOLE MATERNELLE LA ROSACE	0235294069	{(0762117N@ac-rouen.fr)}	maternelle	\N	\N
+1087	0761052F	1088	ECOLE ELEMENTAIRE DE OUVILLE-L ABBAYE	0235564131	{(0761052F@ac-rouen.fr)}	elementaire	\N	\N
+1088	0761052F	1088	ECOLE MATERNELLE DE OUVILLE-L ABBAYE	0235564131	{(0761052F@ac-rouen.fr)}	maternelle	\N	\N
+1089	0760863A	1090	ECOLE ELEMENTAIRE DE OUVILLE-LA-RIVIERE	0235830928	{(0760863A@ac-rouen.fr)}	elementaire	\N	\N
+1090	0760863A	1090	ECOLE MATERNELLE DE OUVILLE-LA-RIVIERE	0235830928	{(0760863A@ac-rouen.fr)}	maternelle	\N	\N
+1091	0760504K	1091	ECOLE ELEMENTAIRE DE PALUEL	0235976208	{(0760504K@ac-rouen.fr)}	elementaire	\N	\N
+1092	0760578R	1092	ECOLE ELEMENTAIRE DE PARC-D ANXTOT	0235310542	{(0760578R@ac-rouen.fr)}	elementaire	\N	\N
 1093	0761694D	1093	COLLEGE LES HAUTS DE SAFFIMBEC	0235910165	{(0761694D@ac-rouen.fr)}	college	\N	\N
 1094	0760929X	1094	ECOLE ELEMENTAIRE JEAN MAILLARD	0235918047	{(0760929X@ac-rouen.fr)}	elementaire	\N	\N
 1095	0761965Y	1095	ECOLE ELEMENTAIRE NOTRE DAME	0235912076	{(0761965Y@ac-rouen.fr)}	elementaire	\N	\N
 1096	0760927V	1096	ECOLE ELEMENTAIRE PIERRE ET MARIE CURIE	0235912238	{(0760927V@ac-rouen.fr)}	elementaire	\N	\N
 1097	0760937F	1097	ECOLE MATERNELLE ANDRE MARIE	0235910385	{(0760937F@ac-rouen.fr)}	maternelle	\N	\N
 1098	0760938G	1098	ECOLE MATERNELLE FRANCIS YARD	0235911950	{(0760938G@ac-rouen.fr)}	maternelle	\N	\N
-1099	0761613R	1099	\N	0235835798	{(0761613R@ac-rouen.fr)}	elementaire	\N	\N
-1100	0761613R	1099	\N	0235835798	{(0761613R@ac-rouen.fr)}	maternelle	\N	\N
-1101	0760086F	1101	COLLEGE LOUIS PASTEUR	0235681383	{(0760086F@ac-rouen.fr)}	college	\N	\N
+1099	0761613R	1100	ECOLE ELEMENTAIRE DE PENLY	0235835798	{(0761613R@ac-rouen.fr)}	elementaire	\N	\N
+1100	0761613R	1100	ECOLE MATERNELLE DE PENLY	0235835798	{(0761613R@ac-rouen.fr)}	maternelle	\N	\N
+1101	0760086F	1105	COLLEGE LOUIS PASTEUR	0235681383	{(0760086F@ac-rouen.fr)}	college	\N	\N
 1102	0761307H	1102	ECOLE ELEMENTAIRE GUSTAVE FLAUBERT	0235681276	{(0761307H@ac-rouen.fr)}	elementaire	\N	\N
-1103	0762381A	1103	ECOLE ELEMENTAIRE GUY DE MAUPASSANT	0235681628	{(0762381A@ac-rouen.fr)}	elementaire	\N	\N
-1104	0762783M	1104	ECOLE ELEMENTAIRE LOUISE MICHEL	0235681257	{(0762783M@ac-rouen.fr)}	elementaire	\N	\N
-1105	0762061C	1101	ECOLE MATERNELLE GUSTAVE FLAUBERT	0235681115	{(0762061C@ac-rouen.fr)}	maternelle	\N	\N
-1106	0762391L	1103	ECOLE MATERNELLE GUY DE MAUPASSANT	0235681637	{(0762391L@ac-rouen.fr)}	maternelle	\N	\N
-1107	0761188D	1104	ECOLE MATERNELLE LOUISE MICHEL	0235681582	{(0761188D@ac-rouen.fr)}	maternelle	\N	\N
-1108	0760751D	1108	ECOLE ELEMENTAIRE ANTOINE DE SAINT-EXUPERY	0235399079	{(0760751D@ac-rouen.fr)}	elementaire	\N	\N
-1109	0760751D	1108	ECOLE MATERNELLE ANTOINE DE SAINT-EXUPERY	0235399079	{(0760751D@ac-rouen.fr)}	maternelle	\N	\N
-1110	0760604U	1110	\N	0235941858	{(0760604U@ac-rouen.fr)}	elementaire	\N	\N
-1111	0760483M	1111	\N	0235349341	{(0760483M@ac-rouen.fr)}	elementaire	\N	\N
-1112	0762831P	1111	ECOLE MATERNELLE DU BEAU SOLEIL	0235342692	{(0762831P@ac-rouen.fr)}	maternelle	\N	\N
-1113	0761114Y	1113	\N	0235914123	{(0761114Y@ac-rouen.fr)}	elementaire	\N	\N
-1114	0761114Y	1113	\N	0235914123	{(0761114Y@ac-rouen.fr)}	maternelle	\N	\N
-1115	0762560V	1115	\N	0235970478	{(0762560V@ac-rouen.fr)}	maternelle	\N	\N
-1116	0760549J	1116	\N	0235946879	{(0760549J@ac-rouen.fr)}	elementaire	\N	\N
-1117	0762613C	1117	\N	0227282830	{(0762613C@ac-rouen.fr)}	elementaire	\N	\N
-1118	0762613C	1117	\N	0227282830	{(0762613C@ac-rouen.fr)}	maternelle	\N	\N
+1103	0762381A	1106	ECOLE ELEMENTAIRE GUY DE MAUPASSANT	0235681628	{(0762381A@ac-rouen.fr)}	elementaire	\N	\N
+1104	0762783M	1107	ECOLE ELEMENTAIRE LOUISE MICHEL	0235681257	{(0762783M@ac-rouen.fr)}	elementaire	\N	\N
+1105	0762061C	1105	ECOLE MATERNELLE GUSTAVE FLAUBERT	0235681115	{(0762061C@ac-rouen.fr)}	maternelle	\N	\N
+1106	0762391L	1106	ECOLE MATERNELLE GUY DE MAUPASSANT	0235681637	{(0762391L@ac-rouen.fr)}	maternelle	\N	\N
+1107	0761188D	1107	ECOLE MATERNELLE LOUISE MICHEL	0235681582	{(0761188D@ac-rouen.fr)}	maternelle	\N	\N
+1108	0760751D	1109	ECOLE ELEMENTAIRE ANTOINE DE SAINT-EXUPERY	0235399079	{(0760751D@ac-rouen.fr)}	elementaire	\N	\N
+1109	0760751D	1109	ECOLE MATERNELLE ANTOINE DE SAINT-EXUPERY	0235399079	{(0760751D@ac-rouen.fr)}	maternelle	\N	\N
+1110	0760604U	1110	ECOLE ELEMENTAIRE DE PIERRECOURT	0235941858	{(0760604U@ac-rouen.fr)}	elementaire	\N	\N
+1111	0760483M	1112	ECOLE ELEMENTAIRE DE PIERREVAL	0235349341	{(0760483M@ac-rouen.fr)}	elementaire	\N	\N
+1112	0762831P	1112	ECOLE MATERNELLE DU BEAU SOLEIL	0235342692	{(0762831P@ac-rouen.fr)}	maternelle	\N	\N
+1113	0761114Y	1114	ECOLE ELEMENTAIRE DE PISSY-POVILLE	0235914123	{(0761114Y@ac-rouen.fr)}	elementaire	\N	\N
+1114	0761114Y	1114	ECOLE MATERNELLE DE PISSY-POVILLE	0235914123	{(0761114Y@ac-rouen.fr)}	maternelle	\N	\N
+1115	0762560V	1115	ECOLE MATERNELLE DE PLEINE-SEVE	0235970478	{(0762560V@ac-rouen.fr)}	maternelle	\N	\N
+1116	0760549J	1116	ECOLE ELEMENTAIRE DE POMMEREVAL	0235946879	{(0760549J@ac-rouen.fr)}	elementaire	\N	\N
+1117	0762613C	1118	ECOLE ELEMENTAIRE DE PONTS-ET-MARAIS	0227282830	{(0762613C@ac-rouen.fr)}	elementaire	\N	\N
+1118	0762613C	1118	ECOLE MATERNELLE DE PONTS-ET-MARAIS	0227282830	{(0762613C@ac-rouen.fr)}	maternelle	\N	\N
 1119	0760453E	1119	ECOLE ELEMENTAIRE JACQUES PREVERT	0235590611	{(0760453E@ac-rouen.fr)}	elementaire	\N	\N
 1120	0762726A	1120	ECOLE MATERNELLE JACQUES PREVERT	0235590437	{(0762726A@ac-rouen.fr)}	maternelle	\N	\N
-1121	0761480W	1121	\N	0235349805	{(0761480W@ac-rouen.fr)}	elementaire	\N	\N
-1122	0761480W	1121	\N	0235349805	{(0761480W@ac-rouen.fr)}	maternelle	\N	\N
-1123	0760531P	1123	ECOLE ELEMENTAIRE PIERRE MENDES-FRANCE	0235791133	{(0760531P@ac-rouen.fr)}	elementaire	\N	\N
-1124	0760531P	1123	ECOLE MATERNELLE PIERRE MENDES-FRANCE	0235791133	{(0760531P@ac-rouen.fr)}	maternelle	\N	\N
-1125	0760864B	1125	\N	0235854783	{(0760864B@ac-rouen.fr)}	elementaire	\N	\N
+1121	0761480W	1122	ECOLE ELEMENTAIRE DE QUEVILLON	0235349805	{(0761480W@ac-rouen.fr)}	elementaire	\N	\N
+1122	0761480W	1122	ECOLE MATERNELLE DE QUEVILLON	0235349805	{(0761480W@ac-rouen.fr)}	maternelle	\N	\N
+1123	0760531P	1124	ECOLE ELEMENTAIRE PIERRE MENDES-FRANCE	0235791133	{(0760531P@ac-rouen.fr)}	elementaire	\N	\N
+1124	0760531P	1124	ECOLE MATERNELLE PIERRE MENDES-FRANCE	0235791133	{(0760531P@ac-rouen.fr)}	maternelle	\N	\N
+1125	0760864B	1125	ECOLE ELEMENTAIRE DE QUIBERVILLE	0235854783	{(0760864B@ac-rouen.fr)}	elementaire	\N	\N
 1126	0762886Z	1126	ECOLE ELEMENTAIRE ANTOINE DE SAINT-EXUPERY	0235348973	{(0762886Z@ac-rouen.fr)}	elementaire	\N	\N
 1127	0762718S	1127	ECOLE MATERNELLE HELENE BOUCHER	0235347294	{(0762718S@ac-rouen.fr)}	maternelle	\N	\N
-1128	0760605V	1128	\N	0235947740	{(0760605V@ac-rouen.fr)}	elementaire	\N	\N
-1129	0760606W	1129	\N	0235931152	{(0760606W@ac-rouen.fr)}	elementaire	\N	\N
-1130	0761388W	1130	\N	0235967464	{(0761388W@ac-rouen.fr)}	elementaire	\N	\N
-1131	0761614S	1131	\N	0235834940	{(0761614S@ac-rouen.fr)}	elementaire	\N	\N
-1132	0760340G	1132	\N	0235944965	{(0760340G@ac-rouen.fr)}	elementaire	\N	\N
-1133	0760340G	1132	\N	0235944965	{(0760340G@ac-rouen.fr)}	maternelle	\N	\N
-1134	0760607X	1134	\N	0235933527	{(0760607X@ac-rouen.fr)}	maternelle	\N	\N
+1128	0760605V	1128	ECOLE ELEMENTAIRE DE REALCAMP	0235947740	{(0760605V@ac-rouen.fr)}	elementaire	\N	\N
+1129	0760606W	1129	ECOLE ELEMENTAIRE DE RETONVAL	0235931152	{(0760606W@ac-rouen.fr)}	elementaire	\N	\N
+1130	0761388W	1130	ECOLE ELEMENTAIRE DE RICARVILLE	0235967464	{(0761388W@ac-rouen.fr)}	elementaire	\N	\N
+1131	0761614S	1131	ECOLE ELEMENTAIRE DE RICARVILLE-DU-VAL	0235834940	{(0761614S@ac-rouen.fr)}	elementaire	\N	\N
+1132	0760340G	1133	ECOLE ELEMENTAIRE DE RICHEMONT	0235944965	{(0760340G@ac-rouen.fr)}	elementaire	\N	\N
+1133	0760340G	1133	ECOLE MATERNELLE DE RICHEMONT	0235944965	{(0760340G@ac-rouen.fr)}	maternelle	\N	\N
+1134	0760607X	1134	ECOLE MATERNELLE DE RIEUX	0235933527	{(0760607X@ac-rouen.fr)}	maternelle	\N	\N
 1135	0761021X	1135	ECOLE MATERNELLE LEROUX	0235283846	{(0761021X@ac-rouen.fr)}	maternelle	\N	\N
-1136	0760300N	1136	\N	0235348307	{(0760300N@ac-rouen.fr)}	elementaire	\N	\N
-1137	0760271G	1137	ECOLE ELEMENTAIRE EDGAR DEGAS	0965202015	{(0760271G@ac-rouen.fr)}	elementaire	\N	\N
-1138	0760271G	1137	ECOLE MATERNELLE EDGAR DEGAS	0965202015	{(0760271G@ac-rouen.fr)}	maternelle	\N	\N
-1139	0763252X	1139	ECOLE ELEMENTAIRE VOYELLES	0235558304	{(0763252X@ac-rouen.fr)}	elementaire	\N	\N
-1140	0763252X	1139	ECOLE MATERNELLE VOYELLES	0235558304	{(0763252X@ac-rouen.fr)}	maternelle	\N	\N
-1141	0761430S	1141	\N	0235096482	{(0761430S@ac-rouen.fr)}	elementaire	\N	\N
-1142	0760454F	1142	\N	0235590931	{(0760454F@ac-rouen.fr)}	elementaire	\N	\N
-1143	0762668M	1142	ECOLE MATERNELLE LES EMOUQUETS	0235598848	{(0762668M@ac-rouen.fr)}	maternelle	\N	\N
-1144	0760342J	1144	\N	0235936250	{(0760342J@ac-rouen.fr)}	maternelle	\N	\N
+1136	0760300N	1136	ECOLE ELEMENTAIRE DE ROCQUEMONT	0235348307	{(0760300N@ac-rouen.fr)}	elementaire	\N	\N
+1137	0760271G	1138	ECOLE ELEMENTAIRE EDGAR DEGAS	0965202015	{(0760271G@ac-rouen.fr)}	elementaire	\N	\N
+1138	0760271G	1138	ECOLE MATERNELLE EDGAR DEGAS	0965202015	{(0760271G@ac-rouen.fr)}	maternelle	\N	\N
+1139	0763252X	1140	ECOLE ELEMENTAIRE VOYELLES	0235558304	{(0763252X@ac-rouen.fr)}	elementaire	\N	\N
+1140	0763252X	1140	ECOLE MATERNELLE VOYELLES	0235558304	{(0763252X@ac-rouen.fr)}	maternelle	\N	\N
+1141	0761430S	1141	ECOLE ELEMENTAIRE DE RONCHEROLLES-EN-BRAY	0235096482	{(0761430S@ac-rouen.fr)}	elementaire	\N	\N
+1142	0760454F	1143	ECOLE ELEMENTAIRE DE RONCHEROLLES-SUR-LE-VIVIER	0235590931	{(0760454F@ac-rouen.fr)}	elementaire	\N	\N
+1143	0762668M	1143	ECOLE MATERNELLE LES EMOUQUETS	0235598848	{(0762668M@ac-rouen.fr)}	maternelle	\N	\N
+1144	0760342J	1144	ECOLE MATERNELLE DE RONCHOIS	0235936250	{(0760342J@ac-rouen.fr)}	maternelle	\N	\N
 1145	0760100W	1145	COLLEGE BOIELDIEU	0235592790	{(0760100W@ac-rouen.fr)}	college	\N	\N
 1146	0761745J	1146	COLLEGE CAMILLE CLAUDEL	0232185700	{(0761745J@ac-rouen.fr)}	college	\N	\N
-1147	0762290B	1147	COLLEGE CAMILLE SAINT-SAENS	0235078350	{(0762290B@ac-rouen.fr)}	college	\N	\N
+1147	0762290B	1224	COLLEGE CAMILLE SAINT-SAENS	0235078350	{(0762290B@ac-rouen.fr)}	college	\N	\N
 1148	0761717D	1148	COLLEGE COURS NOTRE-DAME	0235715603	{(0761717d@ac-rouen.fr)}	college	\N	\N
-1149	0762568D	1149	COLLEGE DU SACRE-COEUR	0232816710	{(0762568d@ac-rouen.fr)}	college	\N	\N
+1149	0762568D	1186	COLLEGE DU SACRE-COEUR	0232816710	{(0762568d@ac-rouen.fr)}	college	\N	\N
 1150	0762091K	1150	COLLEGE FONTENELLE	0235984850	{(0762091K@ac-rouen.fr)}	college	\N	\N
 1151	0761780X	1151	COLLEGE GEORGES BRAQUE	0235605560	{(0761780X@ac-rouen.fr)}	college	\N	\N
 1152	0761693C	1152	COLLEGE JEAN GIRAUDOUX	0235592470	{(0761693C@ac-rouen.fr)}	college	\N	\N
 1153	0760172Z	1153	COLLEGE JEAN LECANUET	0235725750	{(0760172Z@ac-rouen.fr)}	college	\N	\N
-1154	0762566B	1154	COLLEGE JEAN-BAPTISTE DE LA SALLE	0235716843	{(0762566b@ac-rouen.fr)}	college	\N	\N
+1154	0762566B	1229	COLLEGE JEAN-BAPTISTE DE LA SALLE	0235716843	{(0762566b@ac-rouen.fr)}	college	\N	\N
 1155	0763406P	1155	COLLEGE JEAN-PAUL II	0235712355	{(0763406P@ac-rouen.fr)}	college	\N	\N
 1156	0762178E	1156	COLLEGE JULES BARBEY D AUREVILLY	0235713193	{(0762178E@ac-rouen.fr)}	college	\N	\N
 1157	0761720G	1157	COLLEGE SAINT-DOMINIQUE	0235078160	{(0761720g@ac-rouen.fr)}	college	\N	\N
@@ -10833,20 +11098,20 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1170	0762889C	1170	ECOLE ELEMENTAIRE HONORE DE BALZAC	0235729106	{(0762889C@ac-rouen.fr)}	elementaire	\N	\N
 1171	0760205K	1171	ECOLE ELEMENTAIRE JEAN DE LA FONTAINE	0235700902	{(0760205K@ac-rouen.fr)}	elementaire	\N	\N
 1172	0760217Y	1172	ECOLE ELEMENTAIRE JEAN MULLOT	0235720513	{(0760217Y@ac-rouen.fr)}	elementaire	\N	\N
-1173	0761981R	1154	ECOLE ELEMENTAIRE JEAN-BAPTISTE DE LA SALLE	0235716843	{(0761981R@ac-rouen.fr)}	elementaire	\N	\N
+1173	0761981R	1229	ECOLE ELEMENTAIRE JEAN-BAPTISTE DE LA SALLE	0235716843	{(0761981R@ac-rouen.fr)}	elementaire	\N	\N
 1174	0761897Z	1174	ECOLE ELEMENTAIRE JEAN-PHILIPPE RAMEAU	0235601826	{(0761897Z@ac-rouen.fr)}	elementaire	\N	\N
 1175	0762744V	1175	ECOLE ELEMENTAIRE JULES FERRY	0235716755	{(0762744V@ac-rouen.fr)}	elementaire	\N	\N
 1176	0760216X	1176	ECOLE ELEMENTAIRE JULES MICHELET	0235716874	{(0760216X@ac-rouen.fr)}	elementaire	\N	\N
 1177	0762561W	1177	ECOLE ELEMENTAIRE L.VAUQUELIN-M.DUBOCCAGE	0235720201	{(0762561W@ac-rouen.fr)}	elementaire	\N	\N
 1178	0760237V	1178	ECOLE ELEMENTAIRE LE GOUY	0235719421	{(0760237V@ac-rouen.fr)}	elementaire	\N	\N
 1179	0762628U	1179	ECOLE ELEMENTAIRE LES SAPINS	0235605459	{(0762628U@ac-rouen.fr)}	elementaire	\N	\N
-1180	0762468V	1180	ECOLE ELEMENTAIRE LOUIS PASTEUR	0235711884	{(0762468V@ac-rouen.fr)}	elementaire	\N	\N
+1180	0762468V	1213	ECOLE ELEMENTAIRE LOUIS PASTEUR	0235711884	{(0762468V@ac-rouen.fr)}	elementaire	\N	\N
 1181	0760221C	1181	ECOLE ELEMENTAIRE LOUIS-EZECHIEL POUCHET	0235718738	{(0760221C@ac-rouen.fr)}	elementaire	\N	\N
 1182	0760244C	1182	ECOLE ELEMENTAIRE MARIE HOUDEMARE	0235710067	{(0760244C@ac-rouen.fr)}	elementaire	\N	\N
 1183	0760230M	1183	ECOLE ELEMENTAIRE MARTHE CORNEILLE	0235711841	{(0760230M@ac-rouen.fr)}	elementaire	\N	\N
 1184	0762327S	1184	ECOLE ELEMENTAIRE PEPINIERES ST JULIEN	0235727972	{(0762327S@ac-rouen.fr)}	elementaire	\N	\N
 1185	0760223E	1185	ECOLE ELEMENTAIRE RONSARD-VILLON	0235600070	{(0760223E@ac-rouen.fr)}	elementaire	\N	\N
-1186	0761970D	1149	ECOLE ELEMENTAIRE SACRE COEUR	0232816710	{(0761970D@ac-rouen.fr)}	elementaire	\N	\N
+1186	0761970D	1186	ECOLE ELEMENTAIRE SACRE COEUR	0232816710	{(0761970D@ac-rouen.fr)}	elementaire	\N	\N
 1187	0761971E	1187	ECOLE ELEMENTAIRE SAINT DOMINIQUE	0235078160	{(0761971E@ac-rouen.fr)}	elementaire	\N	\N
 1188	0761976K	1188	ECOLE ELEMENTAIRE SAINT LEON	0235980297	{(0761976K@ac-rouen.fr)}	elementaire	\N	\N
 1189	0761979N	1189	ECOLE ELEMENTAIRE SAINT SEVER - ST CLEMENT	0235726551	{(0761979N@ac-rouen.fr)}	elementaire	\N	\N
@@ -10867,13 +11132,13 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1204	0760296J	1204	ECOLE MATERNELLE GUILLAUME LION	0235711846	{(0760296J@ac-rouen.fr)}	maternelle	\N	\N
 1205	0760246E	1205	ECOLE MATERNELLE HENRY BREVIERE	0235700309	{(0760246E@ac-rouen.fr)}	maternelle	\N	\N
 1206	0760245D	1206	ECOLE MATERNELLE HONORE DE BALZAC	0235721104	{(0760245D@ac-rouen.fr)}	maternelle	\N	\N
-1207	0761981R	1154	ECOLE MATERNELLE JEAN BAPTISTE DE LA SALLE	0235716843	{(0761981R@ac-rouen.fr)}	maternelle	\N	\N
+1207	0761981R	1229	ECOLE MATERNELLE JEAN BAPTISTE DE LA SALLE	0235716843	{(0761981R@ac-rouen.fr)}	maternelle	\N	\N
 1208	0762362E	1208	ECOLE MATERNELLE JEAN DE LA FONTAINE	0235719323	{(0762362E@ac-rouen.fr)}	maternelle	\N	\N
 1209	0761934P	1209	ECOLE MATERNELLE JEAN-PHILIPPE RAMEAU	0235601906	{(0761934P@ac-rouen.fr)}	maternelle	\N	\N
 1210	0762937E	1210	ECOLE MATERNELLE JEANNE HACHETTE	0235719334	{(0762937E@ac-rouen.fr)}	maternelle	\N	\N
 1211	0760252L	1211	ECOLE MATERNELLE JULES FERRY	0235714355	{(0760252L@ac-rouen.fr)}	maternelle	\N	\N
 1212	0760262X	1212	ECOLE MATERNELLE LES SAPINS	0235605422	{(0760262X@ac-rouen.fr)}	maternelle	\N	\N
-1213	0760260V	1180	ECOLE MATERNELLE LOUIS PASTEUR	0235703020	{(0760260V@ac-rouen.fr)}	maternelle	\N	\N
+1213	0760260V	1213	ECOLE MATERNELLE LOUIS PASTEUR	0235703020	{(0760260V@ac-rouen.fr)}	maternelle	\N	\N
 1214	0760249H	1214	ECOLE MATERNELLE MARCEL CARTIER	0235720523	{(0760249H@ac-rouen.fr)}	maternelle	\N	\N
 1215	0760256R	1215	ECOLE MATERNELLE MARGUERITE MESSIER	0235601999	{(0760256R@ac-rouen.fr)}	maternelle	\N	\N
 1216	0760207M	1216	ECOLE MATERNELLE MARIE HOUDEMARE	0235702865	{(0760207M@ac-rouen.fr)}	maternelle	\N	\N
@@ -10884,12 +11149,12 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1221	0760261W	1221	ECOLE MATERNELLE PIERRE DE RONSARD	0235602097	{(0760261W@ac-rouen.fr)}	maternelle	\N	\N
 1222	0760203H	1222	ECOLE MATERNELLE THOMAS CORNEILLE	0235710116	{(0760203H@ac-rouen.fr)}	maternelle	\N	\N
 1223	0760095R	1223	LYCEE BLAISE PASCAL	0232815800	{(0760095R@ac-rouen.fr)}	lycee	\N	\N
-1224	0760093N	1147	LYCEE CAMILLE SAINT-SAENS	0235078350	{(0760093N@ac-rouen.fr)}	lycee	\N	\N
+1224	0760093N	1224	LYCEE CAMILLE SAINT-SAENS	0235078350	{(0760093N@ac-rouen.fr)}	lycee	\N	\N
 1225	0761353H	1225	LYCEE DE LA COIFFURE A. POURRIERE	0235712243	{(0761353h@ac-rouen.fr)}	lycee	\N	\N
 1226	0762602R	1226	LYCEE DES 4 CANTONS - GRIEU	0235596210	{(0762602R@ac-rouen.fr)}	lycee	\N	\N
-1227	0760096S	1227	LYCEE GUSTAVE FLAUBERT	0235128888	{(0760096S@ac-rouen.fr)}	lycee	\N	\N
-1228	0760142S	1227	LYCEE GUSTAVE FLAUBERT	0235128844	{(0760142S@ac-rouen.fr)}	lycee	\N	\N
-1229	0761715B	1154	LYCEE JEAN BAPTISTE DE LA SALLE	0235716843	{(0761715b@ac-rouen.fr)}	lycee	\N	\N
+1227	0760096S	1228	LYCEE GUSTAVE FLAUBERT	0235128888	{(0760096S@ac-rouen.fr)}	lycee	\N	\N
+1228	0760142S	1228	LYCEE GUSTAVE FLAUBERT	0235128844	{(0760142S@ac-rouen.fr)}	lycee	\N	\N
+1229	0761715B	1229	LYCEE JEAN BAPTISTE DE LA SALLE	0235716843	{(0761715b@ac-rouen.fr)}	lycee	\N	\N
 1230	0763409T	1155	LYCEE JEAN-PAUL II	0235712355	{(0763409T@ac-rouen.fr)}	lycee	\N	\N
 1231	0760091L	1231	LYCEE JEANNE D ARC	0232081000	{(0760091L@ac-rouen.fr)}	lycee	\N	\N
 1232	0761341V	1232	LYCEE LES TOURELLES	0235713809	{(0761341v@ac-rouen.fr)}	lycee	\N	\N
@@ -10898,46 +11163,46 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1235	0761718E	1235	LYCEE REY	0235714063	{(0761718e@ac-rouen.fr)}	lycee	\N	\N
 1236	0761719F	1236	LYCEE SACRE-COEUR	0232816710	{(0761719f@ac-rouen.fr)}	lycee	\N	\N
 1237	0760143T	1237	LYCEE SDES METIERS ECOLE INDUSTRIELLE	0232815590	{(0760143t@ac-rouen.fr)}	lycee	\N	\N
-1238	0761115Z	1238	\N	0235335206	{(0761115Z@ac-rouen.fr)}	elementaire	\N	\N
-1239	0761115Z	1238	\N	0235335206	{(0761115Z@ac-rouen.fr)}	maternelle	\N	\N
+1238	0761115Z	1239	ECOLE ELEMENTAIRE DE ROUMARE	0235335206	{(0761115Z@ac-rouen.fr)}	elementaire	\N	\N
+1239	0761115Z	1239	ECOLE MATERNELLE DE ROUMARE	0235335206	{(0761115Z@ac-rouen.fr)}	maternelle	\N	\N
 1240	0760580T	1240	ECOLE ELEMENTAIRE LE LIN BLEU	0232844632	{(0760580T@ac-rouen.fr)}	elementaire	\N	\N
 1241	0762433G	1241	ECOLE ELEMENTAIRE LA SALICORNE	0235843517	{(0762433G@ac-rouen.fr)}	elementaire	\N	\N
 1242	0762719T	1242	ECOLE MATERNELLE LES FARFADETS	0235846017	{(0762719T@ac-rouen.fr)}	maternelle	\N	\N
 1243	0760455G	1243	ECOLE ELEMENTAIRE SOBELMAN	0235236805	{(0760455G@ac-rouen.fr)}	elementaire	\N	\N
 1244	0762778G	1244	ECOLE MATERNELLE SOBELMAN	0235234341	{(0762778G@ac-rouen.fr)}	maternelle	\N	\N
-1245	0761201T	1245	ECOLE ELEMENTAIRE FRANCK INNOCENT	0235346632	{(0761201T@ac-rouen.fr)}	elementaire	\N	\N
-1246	0761201T	1245	ECOLE MATERNELLE FRANCK INNOCENT	0235346632	{(0761201T@ac-rouen.fr)}	maternelle	\N	\N
+1245	0761201T	1246	ECOLE ELEMENTAIRE FRANCK INNOCENT	0235346632	{(0761201T@ac-rouen.fr)}	elementaire	\N	\N
+1246	0761201T	1246	ECOLE MATERNELLE FRANCK INNOCENT	0235346632	{(0761201T@ac-rouen.fr)}	maternelle	\N	\N
 1247	0760272H	1247	ECOLE ELEMENTAIRE LES POMMIERS	0235208826	{(0760272H@ac-rouen.fr)}	elementaire	\N	\N
 1248	0760272H	1247	ECOLE MATERNELLE LES POMMIERS	0235208826	{(0760272H@ac-rouen.fr)}	maternelle	\N	\N
-1249	0760485P	1249	\N	0235805833	{(0760485P@ac-rouen.fr)}	elementaire	\N	\N
-1250	0760634B	1250	\N	0235323699	{(0760634B@ac-rouen.fr)}	elementaire	\N	\N
-1251	0762676W	1251	\N	0235347389	{(0762676W@ac-rouen.fr)}	maternelle	\N	\N
+1249	0760485P	1249	ECOLE ELEMENTAIRE DE SAINT-AIGNAN-SUR-RY	0235805833	{(0760485P@ac-rouen.fr)}	elementaire	\N	\N
+1250	0760634B	1250	ECOLE ELEMENTAIRE DE SAINT-ANDRE-SUR-CAILLY	0235323699	{(0760634B@ac-rouen.fr)}	elementaire	\N	\N
+1251	0762676W	1251	ECOLE MATERNELLE DE SAINT-ANDRE-SUR-CAILLY	0235347389	{(0762676W@ac-rouen.fr)}	maternelle	\N	\N
 1252	0762434H	1252	ECOLE MATERNELLE RAYMOND QUENEAU	0235398098	{(0762434H@ac-rouen.fr)}	maternelle	\N	\N
 1253	0760745X	1253	ECOLE ELEMENTAIRE MAURICE LEBLANC	0235398130	{(0760745X@ac-rouen.fr)}	elementaire	\N	\N
 1254	0760673U	1254	ECOLE ELEMENTAIRE HENRI DES	0235965301	{(0760673U@ac-rouen.fr)}	elementaire	\N	\N
 1255	0762551K	1255	ECOLE MATERNELLE HENRI DES	0235567938	{(0762551K@ac-rouen.fr)}	maternelle	\N	\N
 1256	0763306F	1256	ECOLE ELEMENTAIRE RIMBAUD-DOISNEAU	0235808432	{(0763306F@ac-rouen.fr)}	elementaire	\N	\N
-1257	0760674V	1257	\N	0235962429	{(0760674V@ac-rouen.fr)}	elementaire	\N	\N
-1258	0760456H	1258	\N	0235089174	{(0760456H@ac-rouen.fr)}	elementaire	\N	\N
+1257	0760674V	1257	ECOLE ELEMENTAIRE DE SAINT-AUBIN-DE-CRETOT	0235962429	{(0760674V@ac-rouen.fr)}	elementaire	\N	\N
+1258	0760456H	1258	ECOLE ELEMENTAIRE DE SAINT-AUBIN-EPINAY	0235089174	{(0760456H@ac-rouen.fr)}	elementaire	\N	\N
 1259	0762780J	1259	ECOLE MATERNELLE L EAU VIVE	0235084167	{(0762780J@ac-rouen.fr)}	maternelle	\N	\N
-1260	0761616U	1260	\N	0235050426	{(0761616U@ac-rouen.fr)}	elementaire	\N	\N
-1261	0761616U	1260	\N	0235050426	{(0761616U@ac-rouen.fr)}	maternelle	\N	\N
+1260	0761616U	1260	ECOLE ELEMENTAIRE DE SAINT-AUBIN-LE-CAUF	0235050426	{(0761616U@ac-rouen.fr)}	elementaire	\N	\N
+1261	0761616U	1260	ECOLE MATERNELLE DE SAINT-AUBIN-LE-CAUF	0235050426	{(0761616U@ac-rouen.fr)}	maternelle	\N	\N
 1262	0760101X	1262	COLLEGE ARTHUR RIMBAUD	0235770815	{(0760101X@ac-rouen.fr)}	college	\N	\N
 1263	0762383C	1263	ECOLE ELEMENTAIRE ANDRE MALRAUX	0235810478	{(0762383C@ac-rouen.fr)}	elementaire	\N	\N
 1264	0761899B	1264	ECOLE ELEMENTAIRE MARCEL TOUCHARD	0235773175	{(0761899B@ac-rouen.fr)}	elementaire	\N	\N
 1265	0762614D	1265	ECOLE ELEMENTAIRE PAUL BERT-VICTOR HUGO	0235772353	{(0762614D@ac-rouen.fr)}	elementaire	\N	\N
-1266	0761984U	1266	ECOLE ELEMENTAIRE SAINT JOSEPH	0235772443	{(0761984U@ac-rouen.fr)}	elementaire	\N	\N
+1266	0761984U	1270	ECOLE ELEMENTAIRE SAINT JOSEPH	0235772443	{(0761984U@ac-rouen.fr)}	elementaire	\N	\N
 1267	0762392M	1267	ECOLE MATERNELLE ANDRE MALRAUX	0235810282	{(0762392M@ac-rouen.fr)}	maternelle	\N	\N
 1268	0761523T	1268	ECOLE MATERNELLE I MAILLE ET G PECOUD	0235771696	{(0761523T@ac-rouen.fr)}	maternelle	\N	\N
 1269	0761898A	1269	ECOLE MATERNELLE MARCEL TOUCHARD	0235772546	{(0761898A@ac-rouen.fr)}	maternelle	\N	\N
-1270	0761984U	1266	ECOLE MATERNELLE SAINT JOSEPH	0235772443	{(0761984U@ac-rouen.fr)}	maternelle	\N	\N
-1271	0762882V	1271	ECOLE ELEMENTAIRE LE PRE VERT	0235205481	{(0762882V@ac-rouen.fr)}	elementaire	\N	\N
-1272	0762882V	1271	ECOLE MATERNELLE LE PRE VERT	0235205481	{(0762882V@ac-rouen.fr)}	maternelle	\N	\N
-1273	0760868F	1273	\N	0235848293	{(0760868F@ac-rouen.fr)}	maternelle	\N	\N
+1270	0761984U	1270	ECOLE MATERNELLE SAINT JOSEPH	0235772443	{(0761984U@ac-rouen.fr)}	maternelle	\N	\N
+1271	0762882V	1272	ECOLE ELEMENTAIRE LE PRE VERT	0235205481	{(0762882V@ac-rouen.fr)}	elementaire	\N	\N
+1272	0762882V	1272	ECOLE MATERNELLE LE PRE VERT	0235205481	{(0762882V@ac-rouen.fr)}	maternelle	\N	\N
+1273	0760868F	1273	ECOLE MATERNELLE DE SAINT-AUBIN-SUR-SCIE	0235848293	{(0760868F@ac-rouen.fr)}	maternelle	\N	\N
 1274	0760867E	1274	ECOLE ELEMENTAIRE LES PETITS PRINCES	0235040351	{(0760867E@ac-rouen.fr)}	elementaire	\N	\N
-1275	0761066W	1275	\N	0235568098	{(0761066W@ac-rouen.fr)}	elementaire	\N	\N
+1275	0761066W	1275	ECOLE ELEMENTAIRE DE SAINT-CLAIR-SUR-LES-MONTS	0235568098	{(0761066W@ac-rouen.fr)}	elementaire	\N	\N
 1276	0760457J	1276	ECOLE ELEMENTAIRE FERNAND GRANDIN	0235020380	{(0760457J@ac-rouen.fr)}	elementaire	\N	\N
-1277	0761001A	1277	\N	0232802997	{(0761001A@ac-rouen.fr)}	elementaire	\N	\N
+1277	0761001A	1277	ECOLE ELEMENTAIRE DE SAINT-DENIS-SUR-SCIE	0232802997	{(0761001A@ac-rouen.fr)}	elementaire	\N	\N
 1278	0761777U	1278	COLLEGE LOUISE MICHEL	0235653497	{(0761777U@ac-rouen.fr)}	college	\N	\N
 1279	0762133F	1279	COLLEGE PABLO PICASSO	0235651490	{(0762133F@ac-rouen.fr)}	college	\N	\N
 1280	0761647C	1280	COLLEGE PAUL ELUARD	0235651075	{(0761647C@ac-rouen.fr)}	college	\N	\N
@@ -10963,97 +11228,97 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1300	0762246D	1300	ECOLE MATERNELLE PIERRE SEMARD	0235651017	{(0762246D@ac-rouen.fr)}	maternelle	\N	\N
 1301	0760973V	1301	ECOLE MATERNELLE VICTOR DURUY	0235665215	{(0760973V@ac-rouen.fr)}	maternelle	\N	\N
 1302	0762964J	1302	LYCEE LE CORBUSIER	0232958515	{(0762964J@ac-rouen.fr)}	lycee	\N	\N
-1303	0760581U	1303	\N	0235318795	{(0760581U@ac-rouen.fr)}	elementaire	\N	\N
-1304	0760581U	1303	\N	0235318795	{(0760581U@ac-rouen.fr)}	maternelle	\N	\N
-1305	0760635C	1305	ECOLE ELEMENTAIRE CHASSE-MAREE	0235347622	{(0760635C@ac-rouen.fr)}	elementaire	\N	\N
-1306	0760635C	1305	ECOLE MATERNELLE CHASSE-MAREE	0235347951	{(0760635C@ac-rouen.fr)}	maternelle	\N	\N
-1307	0760486R	1307	\N	0235348102	{(0760486R@ac-rouen.fr)}	maternelle	\N	\N
-1308	0762412J	1308	\N	0232803195	{(0762412J@ac-rouen.fr)}	elementaire	\N	\N
-1309	0762555P	1309	\N	0235930740	{(0762555P@ac-rouen.fr)}	elementaire	\N	\N
-1310	0763084P	1310	\N	0235560944	{(0763084P@ac-rouen.fr)}	maternelle	\N	\N
-1311	0760274K	1311	\N	0235200334	{(0760274K@ac-rouen.fr)}	elementaire	\N	\N
-1312	0760551L	1312	\N	0235944351	{(0760551L@ac-rouen.fr)}	elementaire	\N	\N
-1313	0761617V	1313	\N	0235043780	{(0761617V@ac-rouen.fr)}	elementaire	\N	\N
+1303	0760581U	1304	ECOLE ELEMENTAIRE DE SAINT-EUSTACHE-LA-FORET	0235318795	{(0760581U@ac-rouen.fr)}	elementaire	\N	\N
+1304	0760581U	1304	ECOLE MATERNELLE DE SAINT-EUSTACHE-LA-FORET	0235318795	{(0760581U@ac-rouen.fr)}	maternelle	\N	\N
+1305	0760635C	1306	ECOLE ELEMENTAIRE CHASSE-MAREE	0235347622	{(0760635C@ac-rouen.fr)}	elementaire	\N	\N
+1306	0760635C	1306	ECOLE MATERNELLE CHASSE-MAREE	0235347951	{(0760635C@ac-rouen.fr)}	maternelle	\N	\N
+1307	0760486R	1307	ECOLE MATERNELLE DE SAINT-GERMAIN-DES-ESSOURTS	0235348102	{(0760486R@ac-rouen.fr)}	maternelle	\N	\N
+1308	0762412J	1308	ECOLE ELEMENTAIRE DE SAINT-GERMAIN-SOUS-CAILLY	0232803195	{(0762412J@ac-rouen.fr)}	elementaire	\N	\N
+1309	0762555P	1309	ECOLE ELEMENTAIRE DE SAINT-GERMAIN-SUR-EAULNE	0235930740	{(0762555P@ac-rouen.fr)}	elementaire	\N	\N
+1310	0763084P	1310	ECOLE MATERNELLE DE SAINT-GILLES-DE-CRETOT	0235560944	{(0763084P@ac-rouen.fr)}	maternelle	\N	\N
+1311	0760274K	1311	ECOLE ELEMENTAIRE DE SAINT-GILLES-DE-LA-NEUVILLE	0235200334	{(0760274K@ac-rouen.fr)}	elementaire	\N	\N
+1312	0760551L	1312	ECOLE ELEMENTAIRE DE SAINT-HELLIER	0235944351	{(0760551L@ac-rouen.fr)}	elementaire	\N	\N
+1313	0761617V	1313	ECOLE ELEMENTAIRE DE SAINT-JACQUES-D ALIERMONT	0235043780	{(0761617V@ac-rouen.fr)}	elementaire	\N	\N
 1314	0762507M	1314	ECOLE ELEMENTAIRE JULES FERRY	0235234320	{(0762507M@ac-rouen.fr)}	elementaire	\N	\N
 1315	0762506L	1315	ECOLE MATERNELLE DUVAL LEGAY	0235234216	{(0762506L@ac-rouen.fr)}	maternelle	\N	\N
-1316	0760582V	1316	\N	0235387379	{(0760582V@ac-rouen.fr)}	elementaire	\N	\N
-1317	0760582V	1316	\N	0235387379	{(0760582V@ac-rouen.fr)}	maternelle	\N	\N
-1318	0763225T	1318	ECOLE ELEMENTAIRE JEANNE D ARC	0235338776	{(0763225T@ac-rouen.fr)}	elementaire	\N	\N
-1319	0763225T	1318	ECOLE MATERNELLE JEANNE D ARC	0235338776	{(0763225T@ac-rouen.fr)}	maternelle	\N	\N
+1316	0760582V	1316	ECOLE ELEMENTAIRE DE SAINT-JEAN-DE-LA-NEUVILLE	0235387379	{(0760582V@ac-rouen.fr)}	elementaire	\N	\N
+1317	0760582V	1316	ECOLE MATERNELLE DE SAINT-JEAN-DE-LA-NEUVILLE	0235387379	{(0760582V@ac-rouen.fr)}	maternelle	\N	\N
+1318	0763225T	1319	ECOLE ELEMENTAIRE JEANNE D ARC	0235338776	{(0763225T@ac-rouen.fr)}	elementaire	\N	\N
+1319	0763225T	1319	ECOLE MATERNELLE JEANNE D ARC	0235338776	{(0763225T@ac-rouen.fr)}	maternelle	\N	\N
 1320	0761900C	1320	ECOLE ELEMENTAIRE LE PELICAN	0235208161	{(0761900C@ac-rouen.fr)}	elementaire	\N	\N
 1321	0761900C	1320	ECOLE MATERNELLE LE PELICAN	0235208161	{(0761900C@ac-rouen.fr)}	maternelle	\N	\N
-1322	0762118P	1322	\N	0235201996	{(0762118P@ac-rouen.fr)}	elementaire	\N	\N
-1323	0762118P	1322	\N	0235201996	{(0762118P@ac-rouen.fr)}	maternelle	\N	\N
-1324	0762395R	1324	ECOLE ELEMENTAIRE CHARLES ANGRAND	0235964250	{(0762395R@ac-rouen.fr)}	elementaire	\N	\N
-1325	0762395R	1324	ECOLE MATERNELLE CHARLES ANGRAND	0235964250	{(0762395R@ac-rouen.fr)}	maternelle	\N	\N
-1326	0763247S	1326	\N	0235937007	{(0763247S@ac-rouen.fr)}	maternelle	\N	\N
+1322	0762118P	1323	ECOLE ELEMENTAIRE DE SAINT-LAURENT-DE-BREVEDENT	0235201996	{(0762118P@ac-rouen.fr)}	elementaire	\N	\N
+1323	0762118P	1323	ECOLE MATERNELLE DE SAINT-LAURENT-DE-BREVEDENT	0235201996	{(0762118P@ac-rouen.fr)}	maternelle	\N	\N
+1324	0762395R	1325	ECOLE ELEMENTAIRE CHARLES ANGRAND	0235964250	{(0762395R@ac-rouen.fr)}	elementaire	\N	\N
+1325	0762395R	1325	ECOLE MATERNELLE CHARLES ANGRAND	0235964250	{(0762395R@ac-rouen.fr)}	maternelle	\N	\N
+1326	0763247S	1326	ECOLE MATERNELLE DE SAINT-LEGER-AUX-BOIS	0235937007	{(0763247S@ac-rouen.fr)}	maternelle	\N	\N
 1327	0760462P	1327	ECOLE ELEMENTAIRE RENE COTY I	0235083336	{(0760462P@ac-rouen.fr)}	elementaire	\N	\N
 1328	0760461N	1328	ECOLE ELEMENTAIRE RENE COTY II	0235084375	{(0760461N@ac-rouen.fr)}	elementaire	\N	\N
 1329	0760460M	1329	ECOLE MATERNELLE LES SOURCES	0235082791	{(0760460M@ac-rouen.fr)}	maternelle	\N	\N
-1330	0761583H	1330	ECOLE ELEMENTAIRE LOUIS-PHILIPPE LANGE	0235281385	{(0761583H@ac-rouen.fr)}	elementaire	\N	\N
-1331	0761583H	1330	ECOLE MATERNELLE LOUIS-PHILIPPE LANGE	0235281385	{(0761583H@ac-rouen.fr)}	maternelle	\N	\N
-1332	0761002B	1332	\N	0235600886	{(0761002B@ac-rouen.fr)}	elementaire	\N	\N
+1330	0761583H	1331	ECOLE ELEMENTAIRE LOUIS-PHILIPPE LANGE	0235281385	{(0761583H@ac-rouen.fr)}	elementaire	\N	\N
+1331	0761583H	1331	ECOLE MATERNELLE LOUIS-PHILIPPE LANGE	0235281385	{(0761583H@ac-rouen.fr)}	maternelle	\N	\N
+1332	0761002B	1332	ECOLE ELEMENTAIRE DE SAINT-MACLOU-DE-FOLLEVILLE	0235600886	{(0761002B@ac-rouen.fr)}	elementaire	\N	\N
 1333	0761459Y	1333	ECOLE ELEMENTAIRE LES HIRONDELLES	0235277233	{(0761459Y@ac-rouen.fr)}	elementaire	\N	\N
-1334	0763416A	1334	\N	\N	{(0763416A@ac-rouen.fr)}	elementaire	\N	\N
-1335	0761053G	1335	\N	0235968210	{(0761053G@ac-rouen.fr)}	elementaire	\N	\N
-1336	0760506M	1336	ECOLE ELEMENTAIRE PIERRE GEORGES	0235979550	{(0760506M@ac-rouen.fr)}	elementaire	\N	\N
-1337	0760506M	1336	ECOLE MATERNELLE PIERRE GEORGES	0235979550	{(0760506M@ac-rouen.fr)}	maternelle	\N	\N
-1338	0762119R	1338	\N	0235320514	{(0762119R@ac-rouen.fr)}	elementaire	\N	\N
-1339	0762596J	1339	\N	0235325330	{(0762596J@ac-rouen.fr)}	maternelle	\N	\N
-1340	0760658C	1340	\N	0235200416	{(0760658C@ac-rouen.fr)}	elementaire	\N	\N
-1341	0760658C	1340	\N	0235200416	{(0760658C@ac-rouen.fr)}	maternelle	\N	\N
+1334	0763416A	1334	ECOLE ELEMENTAIRE DE SAINT-MARTIN-AU-BOSC	\N	{(0763416A@ac-rouen.fr)}	elementaire	\N	\N
+1335	0761053G	1335	ECOLE ELEMENTAIRE DE SAINT-MARTIN-AUX-ARBRES	0235968210	{(0761053G@ac-rouen.fr)}	elementaire	\N	\N
+1336	0760506M	1337	ECOLE ELEMENTAIRE PIERRE GEORGES	0235979550	{(0760506M@ac-rouen.fr)}	elementaire	\N	\N
+1337	0760506M	1337	ECOLE MATERNELLE PIERRE GEORGES	0235979550	{(0760506M@ac-rouen.fr)}	maternelle	\N	\N
+1338	0762119R	1338	ECOLE ELEMENTAIRE DE SAINT-MARTIN-DE-BOSCHERVILLE	0235320514	{(0762119R@ac-rouen.fr)}	elementaire	\N	\N
+1339	0762596J	1339	ECOLE MATERNELLE DE SAINT-MARTIN-DE-BOSCHERVILLE	0235325330	{(0762596J@ac-rouen.fr)}	maternelle	\N	\N
+1340	0760658C	1341	ECOLE ELEMENTAIRE DE SAINT-MARTIN-DU-BEC	0235200416	{(0760658C@ac-rouen.fr)}	elementaire	\N	\N
+1341	0760658C	1341	ECOLE MATERNELLE DE SAINT-MARTIN-DU-BEC	0235200416	{(0760658C@ac-rouen.fr)}	maternelle	\N	\N
 1342	0761150M	1342	ECOLE ELEMENTAIRE ASPIRANT LEMONNIER	0235555309	{(0761150M@ac-rouen.fr)}	elementaire	\N	\N
 1343	0762359B	1343	ECOLE MATERNELLE DU POINT DU JOUR	0235304837	{(0762359B@ac-rouen.fr)}	maternelle	\N	\N
-1344	0760463R	1344	ECOLE ELEMENTAIRE JOSEPH HEMERY	0235610959	{(0760463R@ac-rouen.fr)}	elementaire	\N	\N
-1345	0760463R	1344	ECOLE MATERNELLE JOSEPH HEMERY	0235610959	{(0760463R@ac-rouen.fr)}	maternelle	\N	\N
-1346	0761618W	1346	ECOLE ELEMENTAIRE GEORGES BRASSENS	0235838400	{(0761618W@ac-rouen.fr)}	elementaire	\N	\N
-1347	0762722W	1346	ECOLE MATERNELLE GEORGES BRASSENS	0235838401	{(0762722W@ac-rouen.fr)}	maternelle	\N	\N
-1348	0761558F	1348	\N	0235864438	{(0761558F@ac-rouen.fr)}	maternelle	\N	\N
-1349	0760301P	1349	\N	0235341405	{(0760301P@ac-rouen.fr)}	elementaire	\N	\N
-1350	0763230Y	1350	\N	0232803698	{(0763230Y@ac-rouen.fr)}	maternelle	\N	\N
+1344	0760463R	1345	ECOLE ELEMENTAIRE JOSEPH HEMERY	0235610959	{(0760463R@ac-rouen.fr)}	elementaire	\N	\N
+1345	0760463R	1345	ECOLE MATERNELLE JOSEPH HEMERY	0235610959	{(0760463R@ac-rouen.fr)}	maternelle	\N	\N
+1346	0761618W	1347	ECOLE ELEMENTAIRE GEORGES BRASSENS	0235838400	{(0761618W@ac-rouen.fr)}	elementaire	\N	\N
+1347	0762722W	1347	ECOLE MATERNELLE GEORGES BRASSENS	0235838401	{(0762722W@ac-rouen.fr)}	maternelle	\N	\N
+1348	0761558F	1348	ECOLE MATERNELLE DE SAINT-MARTIN-LE-GAILLARD	0235864438	{(0761558F@ac-rouen.fr)}	maternelle	\N	\N
+1349	0760301P	1349	ECOLE ELEMENTAIRE DE SAINT-MARTIN-OSMONVILLE	0235341405	{(0760301P@ac-rouen.fr)}	elementaire	\N	\N
+1350	0763230Y	1350	ECOLE MATERNELLE DE SAINT-MARTIN-OSMONVILLE	0232803698	{(0763230Y@ac-rouen.fr)}	maternelle	\N	\N
 1351	0760105B	1351	COLLEGE CLAUDE MONET	0235858143	{(0760105B@ac-rouen.fr)}	college	\N	\N
 1352	0761622A	1352	ECOLE ELEMENTAIRE DU BOUT AMONT	0235858071	{(0761622A@ac-rouen.fr)}	elementaire	\N	\N
 1353	0761621Z	1353	ECOLE ELEMENTAIRE JEAN ROSTAND	0235858043	{(0761621Z@ac-rouen.fr)}	elementaire	\N	\N
 1354	0761619X	1354	ECOLE MATERNELLE JACQUES DE THEVRAY	0235858395	{(0761619X@ac-rouen.fr)}	maternelle	\N	\N
 1355	0760676X	1355	ECOLE ELEMENTAIRE DE LA MARE JOUENNE	0235961492	{(0760676X@ac-rouen.fr)}	elementaire	\N	\N
-1356	0760677Y	1356	\N	0235390521	{(0760677Y@ac-rouen.fr)}	elementaire	\N	\N
-1357	0760933B	1357	ECOLE ELEMENTAIRE DES TROIS VILLAGES	0235325721	{(0760933B@ac-rouen.fr)}	elementaire	\N	\N
-1358	0760933B	1357	ECOLE MATERNELLE DES TROIS VILLAGES	0235325721	{(0760933B@ac-rouen.fr)}	maternelle	\N	\N
-1359	0760372S	1359	\N	0235044944	{(0760372S@ac-rouen.fr)}	maternelle	\N	\N
+1356	0760677Y	1356	ECOLE ELEMENTAIRE DE SAINT-NICOLAS-DE-LA-HAIE	0235390521	{(0760677Y@ac-rouen.fr)}	elementaire	\N	\N
+1357	0760933B	1358	ECOLE ELEMENTAIRE DES TROIS VILLAGES	0235325721	{(0760933B@ac-rouen.fr)}	elementaire	\N	\N
+1358	0760933B	1358	ECOLE MATERNELLE DES TROIS VILLAGES	0235325721	{(0760933B@ac-rouen.fr)}	maternelle	\N	\N
+1359	0760372S	1359	ECOLE MATERNELLE DE SAINT-OUEN-LE-MAUGER	0235044944	{(0760372S@ac-rouen.fr)}	maternelle	\N	\N
 1360	0761483Z	1360	ECOLE ELEMENTAIRE RAYMOND BASILE	0235378225	{(0761483Z@ac-rouen.fr)}	elementaire	\N	\N
 1361	0762674U	1361	ECOLE MATERNELLE JACQUES-YVES COUSTEAU	0235378019	{(0762674U@ac-rouen.fr)}	maternelle	\N	\N
-1362	0761003C	1362	\N	0235833197	{(0761003C@ac-rouen.fr)}	elementaire	\N	\N
-1363	0761202U	1363	ECOLE ELEMENTAIRE LOUIS PERGAUD	0235346220	{(0761202U@ac-rouen.fr)}	elementaire	\N	\N
-1364	0761202U	1363	ECOLE MATERNELLE LOUIS PERGAUD	0235346220	{(0761202U@ac-rouen.fr)}	maternelle	\N	\N
+1362	0761003C	1362	ECOLE ELEMENTAIRE DE SAINT-PIERRE-BENOUVILLE	0235833197	{(0761003C@ac-rouen.fr)}	elementaire	\N	\N
+1363	0761202U	1364	ECOLE ELEMENTAIRE LOUIS PERGAUD	0235346220	{(0761202U@ac-rouen.fr)}	elementaire	\N	\N
+1364	0761202U	1364	ECOLE MATERNELLE LOUIS PERGAUD	0235346220	{(0761202U@ac-rouen.fr)}	maternelle	\N	\N
 1365	0761487D	1365	ECOLE ELEMENTAIRE GERMAINE COTY	0235375259	{(0761487D@ac-rouen.fr)}	elementaire	\N	\N
 1366	0762670P	1366	ECOLE MATERNELLE JACQUES PREVERT	0235377207	{(0762670P@ac-rouen.fr)}	maternelle	\N	\N
-1367	0760692P	1367	\N	0235941797	{(0760692P@ac-rouen.fr)}	elementaire	\N	\N
-1368	0761023Z	1368	\N	0235274920	{(0761023Z@ac-rouen.fr)}	elementaire	\N	\N
-1369	0761023Z	1368	\N	0235274920	{(0761023Z@ac-rouen.fr)}	maternelle	\N	\N
-1370	0762612B	1370	ECOLE ELEMENTAIRE LES HIRONDELLES	0235862329	{(0762612B@ac-rouen.fr)}	elementaire	\N	\N
-1371	0762612B	1370	ECOLE MATERNELLE LES HIRONDELLES	0235862329	{(0762612B@ac-rouen.fr)}	maternelle	\N	\N
+1367	0760692P	1367	ECOLE ELEMENTAIRE DE SAINT-PIERRE-DES-JONQUIERES	0235941797	{(0760692P@ac-rouen.fr)}	elementaire	\N	\N
+1368	0761023Z	1369	ECOLE ELEMENTAIRE DE SAINT-PIERRE-EN-PORT	0235274920	{(0761023Z@ac-rouen.fr)}	elementaire	\N	\N
+1369	0761023Z	1369	ECOLE MATERNELLE DE SAINT-PIERRE-EN-PORT	0235274920	{(0761023Z@ac-rouen.fr)}	maternelle	\N	\N
+1370	0762612B	1371	ECOLE ELEMENTAIRE LES HIRONDELLES	0235862329	{(0762612B@ac-rouen.fr)}	elementaire	\N	\N
+1371	0762612B	1371	ECOLE MATERNELLE LES HIRONDELLES	0235862329	{(0762612B@ac-rouen.fr)}	maternelle	\N	\N
 1372	0761776T	1372	COLLEGE JACQUES-EMILE BLANCHE	0235772274	{(0761776T@ac-rouen.fr)}	college	\N	\N
 1373	0761527X	1373	ECOLE ELEMENTAIRE ALBERT CAMUS	0235771838	{(0761527X@ac-rouen.fr)}	elementaire	\N	\N
 1374	0761528Y	1374	ECOLE ELEMENTAIRE JACQUES MONOD	0235771925	{(0761528Y@ac-rouen.fr)}	elementaire	\N	\N
 1375	0762239W	1375	ECOLE ELEMENTAIRE JULES VERNE	0235775151	{(0762239W@ac-rouen.fr)}	elementaire	\N	\N
 1376	0762238V	1376	ECOLE MATERNELLE HECTOR MALOT	0235775500	{(0762238V@ac-rouen.fr)}	maternelle	\N	\N
-1377	0762825H	1377	ECOLE MATERNELLE MARIA MONTESSORI	0235785874	{(0762825H@ac-rouen.fr)}	maternelle	\N	\N
-1378	0761526W	1377	ECOLE MATERNELLE MARIE PAPE CARPENTIER	0235780354	{(0761526W@ac-rouen.fr)}	maternelle	\N	\N
-1379	0761561J	1379	\N	0235868819	{(0761561J@ac-rouen.fr)}	elementaire	\N	\N
-1380	0761163B	1380	\N	0235978958	{(0761163B@ac-rouen.fr)}	elementaire	\N	\N
-1381	0761163B	1380	\N	0235978958	{(0761163B@ac-rouen.fr)}	maternelle	\N	\N
-1382	0760263Y	1382	\N	0235205273	{(0760263Y@ac-rouen.fr)}	elementaire	\N	\N
-1383	0761309K	1383	\N	0235200609	{(0761309K@ac-rouen.fr)}	maternelle	\N	\N
+1377	0762825H	1378	ECOLE MATERNELLE MARIA MONTESSORI	0235785874	{(0762825H@ac-rouen.fr)}	maternelle	\N	\N
+1378	0761526W	1378	ECOLE MATERNELLE MARIE PAPE CARPENTIER	0235780354	{(0761526W@ac-rouen.fr)}	maternelle	\N	\N
+1379	0761561J	1379	ECOLE ELEMENTAIRE DE SAINT-REMY-BOSCROCOURT	0235868819	{(0761561J@ac-rouen.fr)}	elementaire	\N	\N
+1380	0761163B	1381	ECOLE ELEMENTAIRE DE SAINT-RIQUIER-ES-PLAINS	0235978958	{(0761163B@ac-rouen.fr)}	elementaire	\N	\N
+1381	0761163B	1381	ECOLE MATERNELLE DE SAINT-RIQUIER-ES-PLAINS	0235978958	{(0761163B@ac-rouen.fr)}	maternelle	\N	\N
+1382	0760263Y	1382	ECOLE ELEMENTAIRE DE SAINT-ROMAIN-DE-COLBOSC	0235205273	{(0760263Y@ac-rouen.fr)}	elementaire	\N	\N
+1383	0761309K	1383	ECOLE MATERNELLE DE SAINT-ROMAIN-DE-COLBOSC	0235200609	{(0761309K@ac-rouen.fr)}	maternelle	\N	\N
 1384	0761689Y	1384	COLLEGE ANDRE SIEGFRIED	0235205458	{(0761689Y@ac-rouen.fr)}	college	\N	\N
 1385	0761953K	1385	COLLEGE GUILLAUME LE CONQUERANT	0235345027	{(0761953K@ac-rouen.fr)}	college	\N	\N
 1386	0762980B	1386	ECOLE ELEMENTAIRE LA VARENNE	0235345228	{(0762980B@ac-rouen.fr)}	elementaire	\N	\N
 1387	0761988Y	1387	ECOLE ELEMENTAIRE SAINTE MARIE	0235345242	{(0761988Y@ac-rouen.fr)}	elementaire	\N	\N
 1388	0760288A	1388	ECOLE MATERNELLE LES PETITS TANNEURS	0235345235	{(0760288A@ac-rouen.fr)}	maternelle	\N	\N
 1389	0760778H	1389	ECOLE ELEMENTAIRE MARIUS GROUT	0235971087	{(0760778H@ac-rouen.fr)}	elementaire	\N	\N
-1390	0762537V	1390	ECOLE ELEMENTAIRE MAURICE LEBLANC	0235274154	{(0762537V@ac-rouen.fr)}	elementaire	\N	\N
-1391	0762537V	1390	ECOLE MATERNELLE MAURICE LEBLANC	0235274154	{(0762537V@ac-rouen.fr)}	maternelle	\N	\N
-1392	0762467U	1392	\N	0235839669	{(0762467U@ac-rouen.fr)}	elementaire	\N	\N
-1393	0762467U	1393	\N	0235839669	{(0762467U@ac-rouen.fr)}	maternelle	\N	\N
+1390	0762537V	1391	ECOLE ELEMENTAIRE MAURICE LEBLANC	0235274154	{(0762537V@ac-rouen.fr)}	elementaire	\N	\N
+1391	0762537V	1391	ECOLE MATERNELLE MAURICE LEBLANC	0235274154	{(0762537V@ac-rouen.fr)}	maternelle	\N	\N
+1392	0762467U	1392	ECOLE ELEMENTAIRE DE SAINT-VAAST-D EQUIQUEVILLE	0235839669	{(0762467U@ac-rouen.fr)}	elementaire	\N	\N
+1393	0762467U	1393	ECOLE MATERNELLE DE SAINT-VAAST-D EQUIQUEVILLE	0235839669	{(0762467U@ac-rouen.fr)}	maternelle	\N	\N
 1394	0760108E	1394	COLLEGE JEHAN LE POVREMOYNE	0235578510	{(0760108E@ac-rouen.fr)}	college	\N	\N
 1395	0762436K	1395	ECOLE ELEMENTAIRE COSTES ET BELLONTE	0235972134	{(0762436K@ac-rouen.fr)}	elementaire	\N	\N
 1396	0762590C	1396	ECOLE ELEMENTAIRE LE GRAND PAVOIS	0235971327	{(0762590C@ac-rouen.fr)}	elementaire	\N	\N
@@ -11061,11 +11326,11 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1398	0761153R	1398	ECOLE MATERNELLE JULES SAINT-SAENS	0235970732	{(0761153R@ac-rouen.fr)}	maternelle	\N	\N
 1399	0762466T	1399	ECOLE MATERNELLE LES GOELANDS	0235970607	{(0762466T@ac-rouen.fr)}	maternelle	\N	\N
 1400	0762953X	1400	LYCEE DE LA COTE D ALBATRE	0235578010	{(0762953X@ac-rouen.fr)}	lycee	\N	\N
-1401	0761005E	1401	\N	0235328558	{(0761005E@ac-rouen.fr)}	maternelle	\N	\N
-1402	0763015P	1402	ECOLE ELEMENTAIRE CLAUDE NOUGARO	0235305415	{(0763015P@ac-rouen.fr)}	elementaire	\N	\N
-1403	0763015P	1402	ECOLE MATERNELLE CLAUDE NOUGARO	0235305415	{(0763015P@ac-rouen.fr)}	maternelle	\N	\N
-1404	0760279R	1404	ECOLE ELEMENTAIRE JEAN-LOUIS DU DOUET	0235206591	{(0760279R@ac-rouen.fr)}	elementaire	\N	\N
-1405	0760279R	1404	ECOLE MATERNELLE JEAN-LOUIS DU DOUET	0235206591	{(0760279R@ac-rouen.fr)}	maternelle	\N	\N
+1401	0761005E	1401	ECOLE MATERNELLE DE SAINT-VICTOR-L ABBAYE	0235328558	{(0761005E@ac-rouen.fr)}	maternelle	\N	\N
+1402	0763015P	1403	ECOLE ELEMENTAIRE CLAUDE NOUGARO	0235305415	{(0763015P@ac-rouen.fr)}	elementaire	\N	\N
+1403	0763015P	1403	ECOLE MATERNELLE CLAUDE NOUGARO	0235305415	{(0763015P@ac-rouen.fr)}	maternelle	\N	\N
+1404	0760279R	1405	ECOLE ELEMENTAIRE JEAN-LOUIS DU DOUET	0235206591	{(0760279R@ac-rouen.fr)}	elementaire	\N	\N
+1405	0760279R	1405	ECOLE MATERNELLE JEAN-LOUIS DU DOUET	0235206591	{(0760279R@ac-rouen.fr)}	maternelle	\N	\N
 1406	0762539X	1406	ECOLE ELEMENTAIRE DE LA CAILLOUVILLE	0235962465	{(0762539X@ac-rouen.fr)}	elementaire	\N	\N
 1407	0762405B	1407	COLLEGE LA HEVE	0235467378	{(0762405B@ac-rouen.fr)}	college	\N	\N
 1408	0763158V	1408	ECOLE ELEMENTAIRE ANTOINE LAGARDE	0235468884	{(0763158V@ac-rouen.fr)}	elementaire	\N	\N
@@ -11073,142 +11338,142 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1410	0761226V	1410	ECOLE MATERNELLE ANTOINE LAGARDE	\N	{(0761226V@ac-rouen.fr)}	maternelle	\N	\N
 1411	0761766G	1411	ECOLE MATERNELLE DU MANOIR	0235462527	{(0761766G@ac-rouen.fr)}	maternelle	\N	\N
 1412	0761735Y	1412	LYCEE JEANNE D ARC	0235546550	{(0761735y@ac-rouen.fr)}	lycee	\N	\N
-1413	0760693R	1413	\N	0232971464	{(0760693R@ac-rouen.fr)}	elementaire	\N	\N
-1414	0760932A	1414	ECOLE ELEMENTAIRE LES GENETS	0235922547	{(0760932A@ac-rouen.fr)}	elementaire	\N	\N
-1415	0760932A	1414	ECOLE MATERNELLE LES GENÊTS	0235922547	{(0760932A@ac-rouen.fr)}	maternelle	\N	\N
-1416	0760779J	1416	\N	0235939754	{(0760779J@ac-rouen.fr)}	maternelle	\N	\N
-1417	0761165D	1417	\N	0235573933	{(0761165D@ac-rouen.fr)}	elementaire	\N	\N
-1418	0760487S	1418	\N	0232803743	{(0760487S@ac-rouen.fr)}	elementaire	\N	\N
-1419	0762823F	1418	\N	0235343670	{(0762823F@ac-rouen.fr)}	maternelle	\N	\N
-1420	0760723Y	1420	\N	0235046181	{(0760723Y@ac-rouen.fr)}	elementaire	\N	\N
-1421	0760723Y	1420	\N	0235046181	{(0760723Y@ac-rouen.fr)}	maternelle	\N	\N
-1422	0760302R	1422	\N	0235905736	{(0760302R@ac-rouen.fr)}	elementaire	\N	\N
-1423	0762837W	1423	\N	0235287322	{(0762837W@ac-rouen.fr)}	elementaire	\N	\N
-1424	0762837W	1423	\N	0235287322	{(0762837W@ac-rouen.fr)}	maternelle	\N	\N
+1413	0760693R	1413	ECOLE ELEMENTAIRE DE SAINTE-AGATHE-D ALIERMONT	0232971464	{(0760693R@ac-rouen.fr)}	elementaire	\N	\N
+1414	0760932A	1415	ECOLE ELEMENTAIRE LES GENETS	0235922547	{(0760932A@ac-rouen.fr)}	elementaire	\N	\N
+1415	0760932A	1415	ECOLE MATERNELLE LES GENÊTS	0235922547	{(0760932A@ac-rouen.fr)}	maternelle	\N	\N
+1416	0760779J	1416	ECOLE MATERNELLE DE SAINTE-BEUVE-EN-RIVIERE	0235939754	{(0760779J@ac-rouen.fr)}	maternelle	\N	\N
+1417	0761165D	1417	ECOLE ELEMENTAIRE DE SAINTE-COLOMBE	0235573933	{(0761165D@ac-rouen.fr)}	elementaire	\N	\N
+1418	0760487S	1418	ECOLE ELEMENTAIRE DE SAINTE-CROIX-SUR-BUCHY	0232803743	{(0760487S@ac-rouen.fr)}	elementaire	\N	\N
+1419	0762823F	1418	ECOLE MATERNELLE DE SAINTE-CROIX-SUR-BUCHY	0235343670	{(0762823F@ac-rouen.fr)}	maternelle	\N	\N
+1420	0760723Y	1421	ECOLE ELEMENTAIRE DE SAINTE-FOY	0235046181	{(0760723Y@ac-rouen.fr)}	elementaire	\N	\N
+1421	0760723Y	1421	ECOLE MATERNELLE DE SAINTE-FOY	0235046181	{(0760723Y@ac-rouen.fr)}	maternelle	\N	\N
+1422	0760302R	1422	ECOLE ELEMENTAIRE DE SAINTE-GENEVIEVE	0235905736	{(0760302R@ac-rouen.fr)}	elementaire	\N	\N
+1423	0762837W	1424	ECOLE ELEMENTAIRE DE SAINTE-HELENE-BONDEVILLE	0235287322	{(0762837W@ac-rouen.fr)}	elementaire	\N	\N
+1424	0762837W	1424	ECOLE MATERNELLE DE SAINTE-HELENE-BONDEVILLE	0235287322	{(0762837W@ac-rouen.fr)}	maternelle	\N	\N
 1425	0761489F	1425	ECOLE ELEMENTAIRE COMMANDANT COUSTEAU	0235378442	{(0761489F@ac-rouen.fr)}	elementaire	\N	\N
 1426	0762824G	1426	ECOLE MATERNELLE MARY POPPINS	0235372812	{(0762824G@ac-rouen.fr)}	maternelle	\N	\N
-1427	0760869G	1427	\N	0235851805	{(0760869G@ac-rouen.fr)}	elementaire	\N	\N
-1428	0762720U	1428	\N	0235856666	{(0762720U@ac-rouen.fr)}	maternelle	\N	\N
-1429	0760659D	1429	\N	0235294835	{(0760659D@ac-rouen.fr)}	elementaire	\N	\N
-1430	0760659D	1429	\N	0235294835	{(0760659D@ac-rouen.fr)}	maternelle	\N	\N
-1431	0761067X	1431	\N	0235953020	{(0761067X@ac-rouen.fr)}	elementaire	\N	\N
-1432	0761067X	1431	\N	0235953020	{(0761067X@ac-rouen.fr)}	maternelle	\N	\N
+1427	0760869G	1427	ECOLE ELEMENTAIRE DE SAINTE-MARGUERITE-SUR-MER	0235851805	{(0760869G@ac-rouen.fr)}	elementaire	\N	\N
+1428	0762720U	1428	ECOLE MATERNELLE DE SAINTE-MARGUERITE-SUR-MER	0235856666	{(0762720U@ac-rouen.fr)}	maternelle	\N	\N
+1429	0760659D	1429	ECOLE ELEMENTAIRE DE SAINTE-MARIE-AU-BOSC	0235294835	{(0760659D@ac-rouen.fr)}	elementaire	\N	\N
+1430	0760659D	1429	ECOLE MATERNELLE DE SAINTE-MARIE-AU-BOSC	0235294835	{(0760659D@ac-rouen.fr)}	maternelle	\N	\N
+1431	0761067X	1432	ECOLE ELEMENTAIRE DE SAINTE-MARIE-DES-CHAMPS	0235953020	{(0761067X@ac-rouen.fr)}	elementaire	\N	\N
+1432	0761067X	1432	ECOLE MATERNELLE DE SAINTE-MARIE-DES-CHAMPS	0235953020	{(0761067X@ac-rouen.fr)}	maternelle	\N	\N
 1433	0761901D	1433	ECOLE ELEMENTAIRE JACQUES PREVERT	0235208759	{(0761901D@ac-rouen.fr)}	elementaire	\N	\N
 1434	0761901D	1433	ECOLE MATERNELLE JACQUES PREVERT	0235208759	{(0761901D@ac-rouen.fr)}	maternelle	\N	\N
-1435	0762999X	1435	ECOLE ELEMENTAIRE MARTAINVILLE	0235283582	{(0762999X@ac-rouen.fr)}	elementaire	\N	\N
-1436	0762999X	1435	ECOLE MATERNELLE MARTAINVILLE	0235283582	{(0762999X@ac-rouen.fr)}	maternelle	\N	\N
-1437	0762677X	1437	\N	0235570378	{(0762677X@ac-rouen.fr)}	elementaire	\N	\N
-1438	0761625D	1438	\N	0235858981	{(0761625D@ac-rouen.fr)}	elementaire	\N	\N
+1435	0762999X	1436	ECOLE ELEMENTAIRE MARTAINVILLE	0235283582	{(0762999X@ac-rouen.fr)}	elementaire	\N	\N
+1436	0762999X	1436	ECOLE MATERNELLE MARTAINVILLE	0235283582	{(0762999X@ac-rouen.fr)}	maternelle	\N	\N
+1437	0762677X	1437	ECOLE ELEMENTAIRE DE SASSEVILLE	0235570378	{(0762677X@ac-rouen.fr)}	elementaire	\N	\N
+1438	0761625D	1438	ECOLE ELEMENTAIRE DE SAUCHAY	0235858981	{(0761625D@ac-rouen.fr)}	elementaire	\N	\N
 1439	0761433V	1439	ECOLE ELEMENTAIRE PIERRE ET MARIE CURIE	0235091084	{(0761433V@ac-rouen.fr)}	elementaire	\N	\N
-1440	0760870H	1440	\N	0235042973	{(0760870H@ac-rouen.fr)}	elementaire	\N	\N
-1441	0761054H	1441	\N	0235564898	{(0761054H@ac-rouen.fr)}	maternelle	\N	\N
+1440	0760870H	1440	ECOLE ELEMENTAIRE DE SAUQUEVILLE	0235042973	{(0760870H@ac-rouen.fr)}	elementaire	\N	\N
+1441	0761054H	1441	ECOLE MATERNELLE DE SAUSSAY	0235564898	{(0761054H@ac-rouen.fr)}	maternelle	\N	\N
 1442	0761462B	1442	ECOLE ELEMENTAIRE LES 4 SAISONS	0235107970	{(0761462B@ac-rouen.fr)}	elementaire	\N	\N
-1443	0761586L	1443	\N	0235280298	{(0761586L@ac-rouen.fr)}	elementaire	\N	\N
-1444	0761586L	1443	\N	0235280298	{(0761586L@ac-rouen.fr)}	maternelle	\N	\N
-1445	0761562K	1445	\N	0235869341	{(0761562K@ac-rouen.fr)}	elementaire	\N	\N
-1446	0762540Y	1446	ECOLE ELEMENTAIRE JEAN JAURES	0235098608	{(0762540Y@ac-rouen.fr)}	elementaire	\N	\N
-1447	0762540Y	1446	ECOLE MATERNELLE JEAN JAURES	0235098608	{(0762540Y@ac-rouen.fr)}	maternelle	\N	\N
-1448	0760464S	1448	ECOLE ELEMENTAIRE JOSEPH BARA	0235237578	{(0760464S@ac-rouen.fr)}	elementaire	\N	\N
-1449	0760464S	1448	ECOLE MATERNELLE JOSEPH BARA	0235237578	{(0760464S@ac-rouen.fr)}	maternelle	\N	\N
-1450	0763315R	1450	\N	0235971685	{(0763315R@ac-rouen.fr)}	maternelle	\N	\N
-1451	0760637E	1451	\N	0235327967	{(0760637E@ac-rouen.fr)}	elementaire	\N	\N
-1452	0760637E	1451	\N	0235327967	{(0760637E@ac-rouen.fr)}	maternelle	\N	\N
-1453	0760322M	1453	\N	0235906107	{(0760322M@ac-rouen.fr)}	elementaire	\N	\N
-1454	0760322M	1453	\N	0235906107	{(0760322M@ac-rouen.fr)}	maternelle	\N	\N
-1455	0760695T	1455	\N	0235943973	{(0760695T@ac-rouen.fr)}	elementaire	\N	\N
+1443	0761586L	1444	ECOLE ELEMENTAIRE DE SENNEVILLE-SUR-FECAMP	0235280298	{(0761586L@ac-rouen.fr)}	elementaire	\N	\N
+1444	0761586L	1444	ECOLE MATERNELLE DE SENNEVILLE-SUR-FECAMP	0235280298	{(0761586L@ac-rouen.fr)}	maternelle	\N	\N
+1445	0761562K	1445	ECOLE ELEMENTAIRE DE SEPT-MEULES	0235869341	{(0761562K@ac-rouen.fr)}	elementaire	\N	\N
+1446	0762540Y	1447	ECOLE ELEMENTAIRE JEAN JAURES	0235098608	{(0762540Y@ac-rouen.fr)}	elementaire	\N	\N
+1447	0762540Y	1447	ECOLE MATERNELLE JEAN JAURES	0235098608	{(0762540Y@ac-rouen.fr)}	maternelle	\N	\N
+1448	0760464S	1449	ECOLE ELEMENTAIRE JOSEPH BARA	0235237578	{(0760464S@ac-rouen.fr)}	elementaire	\N	\N
+1449	0760464S	1449	ECOLE MATERNELLE JOSEPH BARA	0235237578	{(0760464S@ac-rouen.fr)}	maternelle	\N	\N
+1450	0763315R	1450	ECOLE MATERNELLE DE SEVIS	0235971685	{(0763315R@ac-rouen.fr)}	maternelle	\N	\N
+1451	0760637E	1451	ECOLE ELEMENTAIRE DE SIERVILLE	0235327967	{(0760637E@ac-rouen.fr)}	elementaire	\N	\N
+1452	0760637E	1451	ECOLE MATERNELLE DE SIERVILLE	0235327967	{(0760637E@ac-rouen.fr)}	maternelle	\N	\N
+1453	0760322M	1454	ECOLE ELEMENTAIRE DE SIGY-EN-BRAY	0235906107	{(0760322M@ac-rouen.fr)}	elementaire	\N	\N
+1454	0760322M	1454	ECOLE MATERNELLE DE SIGY-EN-BRAY	0235906107	{(0760322M@ac-rouen.fr)}	maternelle	\N	\N
+1455	0760695T	1455	ECOLE ELEMENTAIRE DE SMERMESNIL	0235943973	{(0760695T@ac-rouen.fr)}	elementaire	\N	\N
 1456	0762442s	1456	LYCEE DANIEL BROTTIER	0235938551	{(0762442s@ac-rouen.fr)}	lycee	\N	\N
-1457	0762465S	1457	\N	0235090904	{(0762465S@ac-rouen.fr)}	elementaire	\N	\N
-1458	0762465S	1457	\N	0235090904	{(0762465S@ac-rouen.fr)}	maternelle	\N	\N
-1459	0761028E	1459	\N	0235298725	{(0761028E@ac-rouen.fr)}	maternelle	\N	\N
+1457	0762465S	1458	ECOLE ELEMENTAIRE DE SOMMERY	0235090904	{(0762465S@ac-rouen.fr)}	elementaire	\N	\N
+1458	0762465S	1458	ECOLE MATERNELLE DE SOMMERY	0235090904	{(0762465S@ac-rouen.fr)}	maternelle	\N	\N
+1459	0761028E	1459	ECOLE MATERNELLE DE SORQUAINVILLE	0235298725	{(0761028E@ac-rouen.fr)}	maternelle	\N	\N
 1460	0761691A	1460	COLLEGE EMILE ZOLA	0235622790	{(0761691A@ac-rouen.fr)}	college	\N	\N
 1461	0760173A	1461	COLLEGE JEAN ZAY	0235723329	{(0760173A@ac-rouen.fr)}	college	\N	\N
 1462	0762988K	1462	ECOLE ELEMENTAIRE B.FRANKLIN - F.RASPAIL	0235738334	{(0762988K@ac-rouen.fr)}	elementaire	\N	\N
-1463	0762870G	1463	ECOLE ELEMENTAIRE FERDINAND BUISSON	0235663400	{(0762870G@ac-rouen.fr)}	elementaire	\N	\N
+1463	0762870G	1470	ECOLE ELEMENTAIRE FERDINAND BUISSON	0235663400	{(0762870G@ac-rouen.fr)}	elementaire	\N	\N
 1464	0762463P	1464	ECOLE ELEMENTAIRE GADEAU DE KERVILLE	0235660156	{(0762463P@ac-rouen.fr)}	elementaire	\N	\N
-1465	0760944N	1465	ECOLE ELEMENTAIRE JEAN JAURES	0235737757	{(0760944N@ac-rouen.fr)}	elementaire	\N	\N
+1465	0760944N	1472	ECOLE ELEMENTAIRE JEAN JAURES	0235737757	{(0760944N@ac-rouen.fr)}	elementaire	\N	\N
 1466	0760952X	1466	ECOLE ELEMENTAIRE JEAN ROSTAND	0235738444	{(0760952X@ac-rouen.fr)}	elementaire	\N	\N
 1467	0760949U	1467	ECOLE ELEMENTAIRE JULES MICHELET	0235737841	{(0760949U@ac-rouen.fr)}	elementaire	\N	\N
 1468	0760942L	1462	ECOLE MATERNELLE BENJAMIN FRANKLIN	0235737784	{(0760942L@ac-rouen.fr)}	maternelle	\N	\N
 1469	0763369Z	1467	ECOLE MATERNELLE ERNEST RENAN	0235738945	{(0763369Z@ac-rouen.fr)}	maternelle	\N	\N
-1470	0760939H	1463	ECOLE MATERNELLE FERDINAND BUISSON	0235663408	{(0760939H@ac-rouen.fr)}	maternelle	\N	\N
+1470	0760939H	1470	ECOLE MATERNELLE FERDINAND BUISSON	0235663408	{(0760939H@ac-rouen.fr)}	maternelle	\N	\N
 1471	0762464R	1471	ECOLE MATERNELLE GADEAU DE KERVILLE	0235660095	{(0762464R@ac-rouen.fr)}	maternelle	\N	\N
-1472	0761756W	1465	ECOLE MATERNELLE JEAN JAURES	0235737756	{(0761756W@ac-rouen.fr)}	maternelle	\N	\N
+1472	0761756W	1472	ECOLE MATERNELLE JEAN JAURES	0235737756	{(0761756W@ac-rouen.fr)}	maternelle	\N	\N
 1473	0762066H	1473	ECOLE MATERNELLE JEAN ROSTAND	0235738443	{(0762066H@ac-rouen.fr)}	maternelle	\N	\N
 1474	0763243M	1474	ECOLE MATERNELLE JULES MICHELET	0235737843	{(0763243M@ac-rouen.fr)}	maternelle	\N	\N
 1475	0760109F	1475	LYCEE LES BRUYERES	0232816970	{(0760109F@ac-rouen.fr)}	lycee	\N	\N
-1476	0760110G	1476	LYCEE MARCEL SEMBAT	0232815050	{(0760110G@ac-rouen.fr)}	lycee	\N	\N
-1477	0760146W	1476	LYCEE METIER MARCEL SEMBAT	0232815050	{(0760146W@ac-rouen.fr)}	lycee	\N	\N
-1478	0761529Z	1478	ECOLE ELEMENTAIRE HERGE	0235788665	{(0761529Z@ac-rouen.fr)}	elementaire	\N	\N
-1479	0761529Z	1478	ECOLE MATERNELLE HERGE	0235788665	{(0761529Z@ac-rouen.fr)}	maternelle	\N	\N
+1476	0760110G	1477	LYCEE MARCEL SEMBAT	0232815050	{(0760110G@ac-rouen.fr)}	lycee	\N	\N
+1477	0760146W	1477	LYCEE METIER MARCEL SEMBAT	0232815050	{(0760146W@ac-rouen.fr)}	lycee	\N	\N
+1478	0761529Z	1479	ECOLE ELEMENTAIRE HERGE	0235788665	{(0761529Z@ac-rouen.fr)}	elementaire	\N	\N
+1479	0761529Z	1479	ECOLE MATERNELLE HERGE	0235788665	{(0761529Z@ac-rouen.fr)}	maternelle	\N	\N
 1480	0761411W	1480	ECOLE ELEMENTAIRE JEAN DE LA FONTAINE	0235571479	{(0761411W@ac-rouen.fr)}	elementaire	\N	\N
 1481	0762335A	1481	ECOLE ELEMENTAIRE ANDRE PICAN	0235397726	{(0762335A@ac-rouen.fr)}	elementaire	\N	\N
 1482	0760284W	1482	ECOLE ELEMENTAIRE MARIE LEBRETON	0235398712	{(0760284W@ac-rouen.fr)}	elementaire	\N	\N
 1483	0762747Y	1483	ECOLE MATERNELLE L OISEAU LYRE	0235398728	{(0762747Y@ac-rouen.fr)}	maternelle	\N	\N
-1484	0761029F	1484	\N	0235287436	{(0761029F@ac-rouen.fr)}	elementaire	\N	\N
-1485	0761030G	1485	\N	0235290357	{(0761030G@ac-rouen.fr)}	elementaire	\N	\N
-1486	0761031H	1486	\N	0235298362	{(0761031H@ac-rouen.fr)}	elementaire	\N	\N
-1487	0761032J	1487	\N	0235289790	{(0761032J@ac-rouen.fr)}	elementaire	\N	\N
-1488	0760374U	1488	\N	0235045652	{(0760374U@ac-rouen.fr)}	elementaire	\N	\N
-1489	0760897M	1489	\N	0235107095	{(0760897M@ac-rouen.fr)}	elementaire	\N	\N
-1490	0762678Y	1490	\N	0235850638	{(0762678Y@ac-rouen.fr)}	maternelle	\N	\N
-1491	0761463C	1491	\N	0235289625	{(0761463C@ac-rouen.fr)}	elementaire	\N	\N
-1492	0763021W	1492	\N	0235834435	{(0763021W@ac-rouen.fr)}	elementaire	\N	\N
-1493	0763021W	1492	\N	0235834435	{(0763021W@ac-rouen.fr)}	maternelle	\N	\N
-1494	0760726B	1494	\N	0235040545	{(0760726B@ac-rouen.fr)}	elementaire	\N	\N
-1495	0760726B	1494	\N	0235040545	{(0760726B@ac-rouen.fr)}	maternelle	\N	\N
+1484	0761029F	1484	ECOLE ELEMENTAIRE DE THEROULDEVILLE	0235287436	{(0761029F@ac-rouen.fr)}	elementaire	\N	\N
+1485	0761030G	1485	ECOLE ELEMENTAIRE DE THEUVILLE-AUX-MAILLOTS	0235290357	{(0761030G@ac-rouen.fr)}	elementaire	\N	\N
+1486	0761031H	1486	ECOLE ELEMENTAIRE DE THIERGEVILLE	0235298362	{(0761031H@ac-rouen.fr)}	elementaire	\N	\N
+1487	0761032J	1487	ECOLE ELEMENTAIRE DE THIETREVILLE	0235289790	{(0761032J@ac-rouen.fr)}	elementaire	\N	\N
+1488	0760374U	1488	ECOLE ELEMENTAIRE DE THIL-MANNEVILLE	0235045652	{(0760374U@ac-rouen.fr)}	elementaire	\N	\N
+1489	0760897M	1489	ECOLE ELEMENTAIRE DE THIOUVILLE	0235107095	{(0760897M@ac-rouen.fr)}	elementaire	\N	\N
+1490	0762678Y	1490	ECOLE MATERNELLE DE TOCQUEVILLE-EN-CAUX	0235850638	{(0762678Y@ac-rouen.fr)}	maternelle	\N	\N
+1491	0761463C	1491	ECOLE ELEMENTAIRE DE TOCQUEVILLE-LES-MURS	0235289625	{(0761463C@ac-rouen.fr)}	elementaire	\N	\N
+1492	0763021W	1493	ECOLE ELEMENTAIRE DE TORCY-LE-GRAND	0235834435	{(0763021W@ac-rouen.fr)}	elementaire	\N	\N
+1493	0763021W	1493	ECOLE MATERNELLE DE TORCY-LE-GRAND	0235834435	{(0763021W@ac-rouen.fr)}	maternelle	\N	\N
+1494	0760726B	1495	ECOLE ELEMENTAIRE DE TORCY-LE-PETIT	0235040545	{(0760726B@ac-rouen.fr)}	elementaire	\N	\N
+1495	0760726B	1495	ECOLE MATERNELLE DE TORCY-LE-PETIT	0235040545	{(0760726B@ac-rouen.fr)}	maternelle	\N	\N
 1496	0762615E	1496	ECOLE ELEMENTAIRE JEAN MONNET	0235329449	{(0762615E@ac-rouen.fr)}	elementaire	\N	\N
 1497	0762723X	1497	ECOLE MATERNELLE LA FARANDOLE	0235326971	{(0762723X@ac-rouen.fr)}	maternelle	\N	\N
 1498	0760678Z	1498	ECOLE MATERNELLE CHARLES PERRAULT	0235953292	{(0760678Z@ac-rouen.fr)}	maternelle	\N	\N
 1499	0761068Y	1499	ECOLE ELEMENTAIRE RENE ET HENRY BOSSIERE	0235955875	{(0761068Y@ac-rouen.fr)}	elementaire	\N	\N
 1500	0761068Y	1499	ECOLE MATERNELLE RENE ET HENRY BOSSIERE	0235955875	{(0761068Y@ac-rouen.fr)}	maternelle	\N	\N
-1501	0761564M	1501	\N	0235506342	{(0761564M@ac-rouen.fr)}	elementaire	\N	\N
-1502	0761627F	1502	\N	0232905584	{(0761627F@ac-rouen.fr)}	elementaire	\N	\N
-1503	0761627F	1502	\N	0232905584	{(0761627F@ac-rouen.fr)}	maternelle	\N	\N
+1501	0761564M	1501	ECOLE ELEMENTAIRE DE TOUFFREVILLE-SUR-EU	0235506342	{(0761564M@ac-rouen.fr)}	elementaire	\N	\N
+1502	0761627F	1503	ECOLE ELEMENTAIRE DE TOURVILLE-LA-CHAPELLE	0232905584	{(0761627F@ac-rouen.fr)}	elementaire	\N	\N
+1503	0761627F	1503	ECOLE MATERNELLE DE TOURVILLE-LA-CHAPELLE	0232905584	{(0761627F@ac-rouen.fr)}	maternelle	\N	\N
 1504	0761531B	1504	ECOLE ELEMENTAIRE LOUIS ARAGON	0235871154	{(0761531B@ac-rouen.fr)}	elementaire	\N	\N
 1505	0762462N	1505	ECOLE MATERNELLE LOUIS ARAGON	0235772231	{(0762462N@ac-rouen.fr)}	maternelle	\N	\N
 1506	0761587M	1506	ECOLE ELEMENTAIRE MARCEL PAGNOL	0235282956	{(0761587M@ac-rouen.fr)}	elementaire	\N	\N
-1507	0762617G	1507	\N	0235044623	{(0762617G@ac-rouen.fr)}	elementaire	\N	\N
-1508	0762776E	1507	ECOLE MATERNELLE LES P TITS MOTS PASSANT	0235041976	{(0762776E@ac-rouen.fr)}	maternelle	\N	\N
-1509	0761033K	1509	\N	0235294159	{(0761033K@ac-rouen.fr)}	elementaire	\N	\N
-1510	0761033K	1509	\N	0235294159	{(0761033K@ac-rouen.fr)}	maternelle	\N	\N
-1511	0760754G	1511	\N	0235385677	{(0760754G@ac-rouen.fr)}	elementaire	\N	\N
+1507	0762617G	1508	ECOLE ELEMENTAIRE DE TOURVILLE-SUR-ARQUES	0235044623	{(0762617G@ac-rouen.fr)}	elementaire	\N	\N
+1508	0762776E	1508	ECOLE MATERNELLE LES P TITS MOTS PASSANT	0235041976	{(0762776E@ac-rouen.fr)}	maternelle	\N	\N
+1509	0761033K	1510	ECOLE ELEMENTAIRE DE TOUSSAINT	0235294159	{(0761033K@ac-rouen.fr)}	elementaire	\N	\N
+1510	0761033K	1510	ECOLE MATERNELLE DE TOUSSAINT	0235294159	{(0761033K@ac-rouen.fr)}	maternelle	\N	\N
+1511	0760754G	1511	ECOLE ELEMENTAIRE DE TRIQUERVILLE	0235385677	{(0760754G@ac-rouen.fr)}	elementaire	\N	\N
 1512	0760583W	1512	ECOLE ELEMENTAIRE LES QUATRE VENTS	0235398813	{(0760583W@ac-rouen.fr)}	elementaire	\N	\N
 1513	0760661F	1513	ECOLE ELEMENTAIRE LES VIKINGS	0235202129	{(0760661F@ac-rouen.fr)}	elementaire	\N	\N
 1514	0762437L	1514	ECOLE MATERNELLE LES ECUREUILS	0235203803	{(0762437L@ac-rouen.fr)}	maternelle	\N	\N
-1515	0761203V	1515	ECOLE ELEMENTAIRE CAVELIER DE LA SALLE	0235320995	{(0761203V@ac-rouen.fr)}	elementaire	\N	\N
-1516	0761203V	1515	ECOLE MATERNELLE CAVELIER DE LA SALLE	0235320995	{(0761203V@ac-rouen.fr)}	maternelle	\N	\N
+1515	0761203V	1516	ECOLE ELEMENTAIRE CAVELIER DE LA SALLE	0235320995	{(0761203V@ac-rouen.fr)}	elementaire	\N	\N
+1516	0761203V	1516	ECOLE MATERNELLE CAVELIER DE LA SALLE	0235320995	{(0761203V@ac-rouen.fr)}	maternelle	\N	\N
 1517	0761007G	1517	ECOLE ELEMENTAIRE GUY DE MAUPASSANT	0235323156	{(0761007G@ac-rouen.fr)}	elementaire	\N	\N
 1518	0762781K	1518	ECOLE MATERNELLE FRANCOISE DOLTO	0235323287	{(0762781K@ac-rouen.fr)}	maternelle	\N	\N
 1519	0761069Z	1519	ECOLE ELEMENTAIRE JEHAN LE POVREMOYNE	0235960067	{(0761069Z@ac-rouen.fr)}	elementaire	\N	\N
 1520	0760116N	1520	COLLEGE EUGENE DELACROIX	0235298324	{(0760116N@ac-rouen.fr)}	college	\N	\N
 1521	0762188R	1521	ECOLE ELEMENTAIRE GEORGES CUVIER	0235298104	{(0762188R@ac-rouen.fr)}	elementaire	\N	\N
 1522	0762597K	1522	ECOLE MATERNELLE GRACE DE MONACO	0235298700	{(0762597K@ac-rouen.fr)}	maternelle	\N	\N
-1523	0762686G	1523	ECOLE ELEMENTAIRE JEAN LECANUET	0235851081	{(0762686G@ac-rouen.fr)}	elementaire	\N	\N
-1524	0762686G	1523	ECOLE MATERNELLE JEAN LECANUET	0235851081	{(0762686G@ac-rouen.fr)}	maternelle	\N	\N
-1525	0761009J	1525	\N	0232803284	{(0761009J@ac-rouen.fr)}	elementaire	\N	\N
+1523	0762686G	1524	ECOLE ELEMENTAIRE JEAN LECANUET	0235851081	{(0762686G@ac-rouen.fr)}	elementaire	\N	\N
+1524	0762686G	1524	ECOLE MATERNELLE JEAN LECANUET	0235851081	{(0762686G@ac-rouen.fr)}	maternelle	\N	\N
+1525	0761009J	1525	ECOLE ELEMENTAIRE DE VASSONVILLE	0232803284	{(0761009J@ac-rouen.fr)}	elementaire	\N	\N
 1526	0761464D	1526	ECOLE ELEMENTAIRE GERMAINE COTY	0235295814	{(0761464D@ac-rouen.fr)}	elementaire	\N	\N
-1527	0761588N	1527	\N	0235279760	{(0761588N@ac-rouen.fr)}	elementaire	\N	\N
-1528	0762334Z	1528	ECOLE ELEMENTAIRE BELCINAC	0235961034	{(0762334Z@ac-rouen.fr)}	elementaire	\N	\N
-1529	0762334Z	1528	ECOLE MATERNELLE BELCINAC	0235961034	{(0762334Z@ac-rouen.fr)}	maternelle	\N	\N
-1530	0763296V	1530	\N	0235569904	{(0763296V@ac-rouen.fr)}	maternelle	\N	\N
-1531	0761402L	1531	\N	0235853430	{(0761402L@ac-rouen.fr)}	elementaire	\N	\N
-1532	0760305U	1532	\N	0235341080	{(0760305U@ac-rouen.fr)}	maternelle	\N	\N
+1527	0761588N	1527	ECOLE ELEMENTAIRE DE VATTETOT-SUR-MER	0235279760	{(0761588N@ac-rouen.fr)}	elementaire	\N	\N
+1528	0762334Z	1529	ECOLE ELEMENTAIRE BELCINAC	0235961034	{(0762334Z@ac-rouen.fr)}	elementaire	\N	\N
+1529	0762334Z	1529	ECOLE MATERNELLE BELCINAC	0235961034	{(0762334Z@ac-rouen.fr)}	maternelle	\N	\N
+1530	0763296V	1530	ECOLE MATERNELLE DE VEAUVILLE-LES-BAONS	0235569904	{(0763296V@ac-rouen.fr)}	maternelle	\N	\N
+1531	0761402L	1531	ECOLE ELEMENTAIRE DE VENESTANVILLE	0235853430	{(0761402L@ac-rouen.fr)}	elementaire	\N	\N
+1532	0760305U	1532	ECOLE MATERNELLE DE VENTES-SAINT-REMY	0235341080	{(0760305U@ac-rouen.fr)}	maternelle	\N	\N
 1533	0760662G	1533	ECOLE ELEMENTAIRE ALBERT JACQUARD	0235283277	{(0760662G@ac-rouen.fr)}	elementaire	\N	\N
-1534	0761167F	1534	\N	0235976030	{(0761167F@ac-rouen.fr)}	maternelle	\N	\N
+1534	0761167F	1534	ECOLE MATERNELLE DE VEULES-LES-ROSES	0235976030	{(0761167F@ac-rouen.fr)}	maternelle	\N	\N
 1535	0760508P	1535	ECOLE ELEMENTAIRE LOUIS DELAMARE	0235975753	{(0760508P@ac-rouen.fr)}	elementaire	\N	\N
-1536	0761055J	1536	\N	0235566790	{(0761055J@ac-rouen.fr)}	maternelle	\N	\N
-1537	0760488T	1537	\N	0235340308	{(0760488T@ac-rouen.fr)}	elementaire	\N	\N
-1538	0762727B	1537	\N	0235349919	{(0762727B@ac-rouen.fr)}	maternelle	\N	\N
-1539	0762987J	1539	\N	0235941060	{(0762987J@ac-rouen.fr)}	elementaire	\N	\N
-1540	0762987J	1539	\N	0235941060	{(0762987J@ac-rouen.fr)}	maternelle	\N	\N
-1541	0760663H	1541	\N	0235272023	{(0760663H@ac-rouen.fr)}	elementaire	\N	\N
-1542	0763308H	1542	ECOLE ELEMENTAIRE PREVOST - FREINET	0235921601	{(0763308H@ac-rouen.fr)}	elementaire	\N	\N
-1543	0763308H	1542	ECOLE MATERNELLE PREVOST - FREINET	0235921601	{(0763308H@ac-rouen.fr)}	maternelle	\N	\N
-1544	0760610A	1544	\N	0235946249	{(0760610A@ac-rouen.fr)}	elementaire	\N	\N
-1545	0761568S	1545	\N	0235866475	{(0761568S@ac-rouen.fr)}	elementaire	\N	\N
-1546	0761902E	1546	\N	0235972662	{(0761902E@ac-rouen.fr)}	elementaire	\N	\N
-1547	0761902E	1546	\N	0235972662	{(0761902E@ac-rouen.fr)}	maternelle	\N	\N
-1548	0760696U	1548	\N	0235933139	{(0760696U@ac-rouen.fr)}	elementaire	\N	\N
+1536	0761055J	1536	ECOLE MATERNELLE DE VIBEUF	0235566790	{(0761055J@ac-rouen.fr)}	maternelle	\N	\N
+1537	0760488T	1538	ECOLE ELEMENTAIRE DE VIEUX-MANOIR	0235340308	{(0760488T@ac-rouen.fr)}	elementaire	\N	\N
+1538	0762727B	1538	ECOLE MATERNELLE DE VIEUX-MANOIR	0235349919	{(0762727B@ac-rouen.fr)}	maternelle	\N	\N
+1539	0762987J	1540	ECOLE ELEMENTAIRE DE VIEUX-ROUEN-SUR-BRESLE	0235941060	{(0762987J@ac-rouen.fr)}	elementaire	\N	\N
+1540	0762987J	1540	ECOLE MATERNELLE DE VIEUX-ROUEN-SUR-BRESLE	0235941060	{(0762987J@ac-rouen.fr)}	maternelle	\N	\N
+1541	0760663H	1541	ECOLE ELEMENTAIRE DE VILLAINVILLE	0235272023	{(0760663H@ac-rouen.fr)}	elementaire	\N	\N
+1542	0763308H	1543	ECOLE ELEMENTAIRE PREVOST - FREINET	0235921601	{(0763308H@ac-rouen.fr)}	elementaire	\N	\N
+1543	0763308H	1543	ECOLE MATERNELLE PREVOST - FREINET	0235921601	{(0763308H@ac-rouen.fr)}	maternelle	\N	\N
+1544	0760610A	1544	ECOLE ELEMENTAIRE DE VILLERS-SOUS-FOUCARMONT	0235946249	{(0760610A@ac-rouen.fr)}	elementaire	\N	\N
+1545	0761568S	1545	ECOLE ELEMENTAIRE DE VILLY-SUR-YERES	0235866475	{(0761568S@ac-rouen.fr)}	elementaire	\N	\N
+1546	0761902E	1546	ECOLE ELEMENTAIRE DE VITTEFLEUR	0235972662	{(0761902E@ac-rouen.fr)}	elementaire	\N	\N
+1547	0761902E	1546	ECOLE MATERNELLE DE VITTEFLEUR	0235972662	{(0761902E@ac-rouen.fr)}	maternelle	\N	\N
+1548	0760696U	1548	ECOLE ELEMENTAIRE DE WANCHY-CAPVAL	0235933139	{(0760696U@ac-rouen.fr)}	elementaire	\N	\N
 1549	0762376V	1549	ECOLE ELEMENTAIRE JULES FERRY	0235372205	{(0762376V@ac-rouen.fr)}	elementaire	\N	\N
 1550	0762352U	1550	ECOLE MATERNELLE CHARLES PERRAULT	0235379708	{(0762352U@ac-rouen.fr)}	maternelle	\N	\N
 1551	0763006E	1551	ECOLE ELEMENTAIRE ALBERT FERT	0235967765	{(0763006E@ac-rouen.fr)}	elementaire	\N	\N
@@ -11216,13 +11481,13 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1553	0761951H	1553	COLLEGE HENRI-DE-NAVARRE	0235959980	{(0761951H@ac-rouen.fr)}	college	\N	\N
 1554	0761036N	1554	ECOLE ELEMENTAIRE JULES GUEVILLE	0235968601	{(0761036N@ac-rouen.fr)}	elementaire	\N	\N
 1555	0762189S	1555	ECOLE MATERNELLE GEORGES CHOVET	0235968684	{(0762189S@ac-rouen.fr)}	maternelle	\N	\N
-1556	0760534T	1556	\N	0235791249	{(0760534T@ac-rouen.fr)}	elementaire	\N	\N
-1557	0762608X	1556	ECOLE MATERNELLE WIMARA	0235791296	{(0762608X@ac-rouen.fr)}	maternelle	\N	\N
+1556	0760534T	1557	ECOLE ELEMENTAIRE DE YMARE	0235791249	{(0760534T@ac-rouen.fr)}	elementaire	\N	\N
+1557	0762608X	1557	ECOLE MATERNELLE WIMARA	0235791296	{(0762608X@ac-rouen.fr)}	maternelle	\N	\N
 1558	0761589P	1558	ECOLE ELEMENTAIRE GEORGES BRASSENS	0235273063	{(0761589P@ac-rouen.fr)}	elementaire	\N	\N
 1559	0762450A	1559	ECOLE MATERNELLE CHARLES PERRAULT	0235273440	{(0762450A@ac-rouen.fr)}	maternelle	\N	\N
-1560	0761035M	1560	\N	0235277900	{(0761035M@ac-rouen.fr)}	maternelle	\N	\N
-1561	0760426A	1561	\N	0235960952	{(0760426A@ac-rouen.fr)}	elementaire	\N	\N
-1562	0760426A	1561	\N	0235960952	{(0760426A@ac-rouen.fr)}	maternelle	\N	\N
+1560	0761035M	1560	ECOLE MATERNELLE DE YPREVILLE-BIVILLE	0235277900	{(0761035M@ac-rouen.fr)}	maternelle	\N	\N
+1561	0760426A	1561	ECOLE ELEMENTAIRE DE YVECRIQUE	0235960952	{(0760426A@ac-rouen.fr)}	elementaire	\N	\N
+1562	0760426A	1561	ECOLE MATERNELLE DE YVECRIQUE	0235960952	{(0760426A@ac-rouen.fr)}	maternelle	\N	\N
 1563	0760118R	1563	COLLEGE ALBERT CAMUS	0235959795	{(0760118R@ac-rouen.fr)}	college	\N	\N
 1564	0761338S	1564	COLLEGE BOBEE	0235569607	{(0761338S@ac-rouen.fr)}	college	\N	\N
 1565	0763102J	1565	ECOLE ELEMENTAIRE CAHAN-LHERMITE	0235950576	{(0763102J@ac-rouen.fr)}	elementaire	\N	\N
@@ -11233,9 +11498,10 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1570	0761071B	1570	ECOLE MATERNELLE LEOPOLDINE HUGO	0235952132	{(0761071B@ac-rouen.fr)}	maternelle	\N	\N
 1571	0761721H	1571	LYCEE JEAN XXIII	0235950485	{(0761721h@ac-rouen.fr)}	lycee	\N	\N
 1572	0762880T	1572	LYCEE RAYMOND QUENEAU	0235951266	{(0762880T@ac-rouen.fr)}	lycee	\N	\N
-1573	0761501U	1573	\N	0235376957	{(0761501U@ac-rouen.fr)}	elementaire	\N	\N
-1574	0761501U	1573	\N	0235376957	{(0761501U@ac-rouen.fr)}	maternelle	\N	\N
-1	0762413K	1	ECOLE ELEMENTAIRE NICOLAS VANIER	0235960735	{}	elementaire	\N	\N
+1573	0761501U	1573	ECOLE ELEMENTAIRE DE YVILLE-SUR-SEINE	0235376957	{(0761501U@ac-rouen.fr)}	elementaire	\N	\N
+1574	0761501U	1573	ECOLE MATERNELLE DE YVILLE-SUR-SEINE	0235376957	{(0761501U@ac-rouen.fr)}	maternelle	\N	\N
+1	\N	1	ECOLE ELEMENTAIRE NICOLAS VANIER	0235960735	{(0762413K@ac-rouen.fr)}	elementaire	\N	\N
+852	\N	852	COLLEGE FERNAND LEGER	0235583010	{(0761949F@ac-rouen.fr)}	college	\N	\N
 \.
 
 
@@ -11250,7 +11516,18 @@ SELECT pg_catalog.setval('etablissement_id_seq', 1574, true);
 -- Data for Name: intervention; Type: TABLE DATA; Schema: public; Owner: unipik
 --
 
-COPY intervention (id, demande_id, benevole_id, comite_id, etablissement_id, date_intervention, lieu, nb_personne, remarques, heure, realisee, niveau_theme_id, materiel_dispo_plaidoyer, niveau_frimousse, materiaux_frimousse, description) FROM stdin;
+COPY intervention (id, demande_id, benevole_id, comite_id, etablissement_id, date_intervention, lieu, nb_personne, remarques, heure, realisee, type_intervention, niveau_theme_id, materiel_dispo_plaidoyer, niveau_frimousse, materiaux_frimousse, description) FROM stdin;
+21	6	\N	1	1160	\N	\N	25	\N	\N	f	plaidoyer	110	{(videoprojecteur),(enceinte)}	\N	\N	\N
+22	6	\N	1	1160	\N	\N	25	\N	\N	f	frimousse	\N	\N	CP	{(patron),(bourre)}	\N
+23	6	\N	1	1160	\N	\N	15	Intervention pour des enfants handicapés.	\N	f	autre_intervention	\N	\N	\N	\N	Petits jeux d'équipe sur le thème des enfants dans le monde.
+24	7	\N	1	1	\N	\N	25	\N	\N	f	frimousse	\N	\N	CM2	{(patron),(bourre)}	\N
+25	8	\N	1	11	\N	\N	20	\N	\N	f	plaidoyer	43	{(videoprojecteur)}	\N	\N	\N
+26	8	\N	1	11	\N	\N	18	\N	\N	f	plaidoyer	5	{(videoprojecteur)}	\N	\N	\N
+27	9	\N	1	852	\N	\N	28	\N	\N	f	plaidoyer	197	{(videoprojecteur),(enceinte)}	\N	\N	\N
+28	9	\N	1	852	\N	\N	32	\N	\N	f	plaidoyer	215	{(videoprojecteur),(enceinte)}	\N	\N	\N
+29	9	\N	1	852	\N	\N	24	\N	\N	f	plaidoyer	231	{(videoprojecteur),(enceinte)}	\N	\N	\N
+30	9	\N	1	852	\N	\N	29	\N	\N	f	plaidoyer	246	{(videoprojecteur),(enceinte)}	\N	\N	\N
+31	9	\N	1	852	\N	\N	14	Les enfants sont des enfants possédant quelques retards mais ils sont très calmes et très attentifs	\N	f	plaidoyer	218	{(videoprojecteur),(enceinte)}	\N	\N	\N
 \.
 
 
@@ -11258,7 +11535,22 @@ COPY intervention (id, demande_id, benevole_id, comite_id, etablissement_id, dat
 -- Name: intervention_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('intervention_id_seq', 22, true);
+SELECT pg_catalog.setval('intervention_id_seq', 31, true);
+
+
+--
+-- Data for Name: mailtask; Type: TABLE DATA; Schema: public; Owner: unipik
+--
+
+COPY mailtask (id, name, "interval", lastrun, id_etablissement, date_insert) FROM stdin;
+\.
+
+
+--
+-- Name: mailtask_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
+--
+
+SELECT pg_catalog.setval('mailtask_id_seq', 1, false);
 
 
 --
@@ -11266,16 +11558,18 @@ SELECT pg_catalog.setval('intervention_id_seq', 22, true);
 --
 
 COPY moment_hebdomadaire (id, jour, moment) FROM stdin;
-150	lundi	matin
-151	mardi	matin
-152	mercredi	matin
-153	jeudi	matin
-154	vendredi	matin
-155	lundi	matin
-156	mardi	matin
-157	mercredi	matin
-158	jeudi	matin
-159	vendredi	matin
+1	lundi	matin
+2	lundi	apres-midi
+3	mardi	matin
+4	mardi	apres-midi
+5	mercredi	matin
+6	mercredi	apres-midi
+7	jeudi	matin
+8	jeudi	apres-midi
+9	vendredi	matin
+10	vendredi	apres-midi
+11	samedi	matin
+12	samedi	apres-midi
 \.
 
 
@@ -11283,7 +11577,7 @@ COPY moment_hebdomadaire (id, jour, moment) FROM stdin;
 -- Name: moment_hebdomadaire_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('moment_hebdomadaire_id_seq', 159, true);
+SELECT pg_catalog.setval('moment_hebdomadaire_id_seq', 12, true);
 
 
 --
@@ -11291,243 +11585,370 @@ SELECT pg_catalog.setval('moment_hebdomadaire_id_seq', 159, true);
 --
 
 COPY niveau_theme (id, niveau, theme) FROM stdin;
-1	petite section	convention internationale des droits de l enfant
-2	petite section	education
-3	petite section	sante et alimentation
-4	petite section	eau
-5	petite section	harcelement
-6	petite-moyenne section	convention internationale des droits de l enfant
-7	petite-moyenne section	education
-8	petite-moyenne section	sante et alimentation
-9	petite-moyenne section	eau
-10	petite-moyenne section	harcelement
-11	moyenne section	convention internationale des droits de l enfant
-12	moyenne section	education
-13	moyenne section	sante et alimentation
-14	moyenne section	eau
-15	moyenne section	harcelement
-16	moyenne-grande section	convention internationale des droits de l enfant
-17	moyenne-grande section	education
-18	moyenne-grande section	sante et alimentation
-19	moyenne-grande section	eau
-20	moyenne-grande section	harcelement
-21	grande section	convention internationale des droits de l enfant
-22	grande section	education
-23	grande section	sante et alimentation
-24	grande section	eau
-25	grande section	harcelement
-26	petite-moyenne-grande section	convention internationale des droits de l enfant
-27	petite-moyenne-grande section	education
-28	petite-moyenne-grande section	sante et alimentation
-29	petite-moyenne-grande section	eau
-30	petite-moyenne-grande section	harcelement
-31	CP	convention internationale des droits de l enfant
-32	CP	education
-33	CP	sante et alimentation
-34	CP	eau
-35	CP	harcelement
-36	CP-CE1	convention internationale des droits de l enfant
-37	CP-CE1	education
-38	CP-CE1	sante et alimentation
-39	CP-CE1	eau
-40	CP-CE1	harcelement
-41	CE1	convention internationale des droits de l enfant
-42	CE1	education
-43	CE1	sante et alimentation
-44	CE1	eau
-45	CE1	harcelement
-46	CE1-CE2	convention internationale des droits de l enfant
-47	CE1-CE2	education
-48	CE1-CE2	sante et alimentation
-49	CE1-CE2	eau
-50	CE1-CE2	harcelement
-51	CE2	convention internationale des droits de l enfant
-52	CE2	education
-53	CE2	sante et alimentation
-54	CE2	eau
-55	CE2	harcelement
-56	CE2-CM1	convention internationale des droits de l enfant
-57	CE2-CM1	education
-58	CE2-CM1	sante et alimentation
-59	CE2-CM1	eau
-60	CE2-CM1	harcelement
-61	CM1	convention internationale des droits de l enfant
-62	CM1	education
-63	CM1	sante et alimentation
-64	CM1	eau
-65	CM1	harcelement
-66	CM1-CM2	convention internationale des droits de l enfant
-67	CM1-CM2	education
-68	CM1-CM2	sante et alimentation
-69	CM1-CM2	eau
-70	CM1-CM2	harcelement
-71	CM2	convention internationale des droits de l enfant
-72	CM2	education
-73	CM2	sante et alimentation
-74	CM2	eau
-75	CM2	harcelement
-76	6eme	convention internationale des droits de l enfant
-77	6eme	education
-78	6eme	sante et alimentation
-79	6eme	eau
-80	6eme	harcelement
-81	5eme	convention internationale des droits de l enfant
-82	5eme	education
-83	5eme	sante et alimentation
-84	5eme	eau
-85	5eme	harcelement
-86	4eme	convention internationale des droits de l enfant
-87	4eme	education
-88	4eme	sante et alimentation
-89	4eme	eau
-90	4eme	harcelement
-91	3eme	convention internationale des droits de l enfant
-92	3eme	education
-93	3eme	sante et alimentation
-94	3eme	eau
-95	3eme	harcelement
-96	2nde	convention internationale des droits de l enfant
-97	2nde	education
-98	2nde	sante et alimentation
-99	2nde	eau
-100	2nde	harcelement
-101	1ere	convention internationale des droits de l enfant
-102	1ere	education
-103	1ere	sante et alimentation
-104	1ere	eau
-105	1ere	harcelement
-106	terminale	convention internationale des droits de l enfant
-107	terminale	education
-108	terminale	sante et alimentation
-109	terminale	eau
-110	terminale	harcelement
-111	L1	convention internationale des droits de l enfant
-112	L1	education
-113	L1	sante et alimentation
-114	L1	eau
-115	L1	harcelement
-116	L2	convention internationale des droits de l enfant
-117	L2	education
-118	L2	sante et alimentation
-119	L2	eau
-120	L2	harcelement
-121	L3	convention internationale des droits de l enfant
-122	L3	education
-123	L3	sante et alimentation
-124	L3	eau
-125	L3	harcelement
-126	M1	convention internationale des droits de l enfant
-127	M1	education
-128	M1	sante et alimentation
-129	M1	eau
-130	M1	harcelement
-131	M2	convention internationale des droits de l enfant
-132	M2	education
-133	M2	sante et alimentation
-134	M2	eau
-135	M2	harcelement
-136	autre	convention internationale des droits de l enfant
-137	autre	education
-138	autre	sante et alimentation
-139	autre	eau
-140	autre	harcelement
-141	CP	sante en generale
-142	CP	travail des enfants
-143	CP-CE1	sante en generale
-144	CP-CE1	travail des enfants
-145	CE1	sante en generale
-146	CE1	travail des enfants
-147	CE1-CE2	sante en generale
-148	CE1-CE2	travail des enfants
-149	CE2	sante en generale
-150	CE2	travail des enfants
-151	CE2-CM1	sante en generale
-152	CE2-CM1	travail des enfants
-153	CM1	sante en generale
-154	CM1	travail des enfants
-155	CM1-CM2	sante en generale
-156	CM1-CM2	travail des enfants
-157	CM2	sante en generale
-158	CM2	travail des enfants
-159	6eme	sante en generale
-160	6eme	travail des enfants
-161	5eme	sante en generale
-162	5eme	travail des enfants
-163	4eme	sante en generale
-164	4eme	travail des enfants
-165	3eme	sante en generale
-166	3eme	travail des enfants
-167	2nde	sante en generale
-168	2nde	travail des enfants
-169	1ere	sante en generale
-170	1ere	travail des enfants
-171	terminale	sante en generale
-172	terminale	travail des enfants
-173	L1	sante en generale
-174	L1	travail des enfants
-175	L2	sante en generale
-176	L2	travail des enfants
-177	L3	sante en generale
-178	L3	travail des enfants
-179	M1	sante en generale
-180	M1	travail des enfants
-181	M2	sante en generale
-182	M2	travail des enfants
-183	autre	sante en generale
-184	autre	travail des enfants
-185	6eme	urgences mondiales
-186	6eme	enfants et soldats
-187	5eme	urgences mondiales
-188	5eme	enfants et soldats
-189	4eme	urgences mondiales
-190	4eme	enfants et soldats
-191	3eme	urgences mondiales
-192	3eme	enfants et soldats
-193	2nde	urgences mondiales
-194	2nde	enfants et soldats
-195	1ere	urgences mondiales
-196	1ere	enfants et soldats
-197	terminale	urgences mondiales
-198	terminale	enfants et soldats
-199	L1	urgences mondiales
-200	L1	enfants et soldats
-201	L2	urgences mondiales
-202	L2	enfants et soldats
-203	L3	urgences mondiales
-204	L3	enfants et soldats
-205	M1	urgences mondiales
-206	M1	enfants et soldats
-207	M2	urgences mondiales
-208	M2	enfants et soldats
-209	autre	urgences mondiales
-210	autre	enfants et soldats
-211	2nde	VIH et sida
-212	2nde	role de l Unicef
-213	2nde	millenaire pour le developpement
-214	1ere	VIH et sida
-215	1ere	role de l Unicef
-216	1ere	millenaire pour le developpement
-217	terminale	VIH et sida
-218	terminale	role de l Unicef
-219	terminale	millenaire pour le developpement
-220	L1	VIH et sida
-221	L1	role de l Unicef
-222	L1	millenaire pour le developpement
-223	L2	VIH et sida
-224	L2	role de l Unicef
-225	L2	millenaire pour le developpement
-226	L3	VIH et sida
-227	L3	role de l Unicef
-228	L3	millenaire pour le developpement
-229	M1	VIH et sida
-230	M1	role de l Unicef
-231	M1	millenaire pour le developpement
-232	M2	VIH et sida
-233	M2	role de l Unicef
-234	M2	millenaire pour le developpement
-235	autre	VIH et sida
-236	autre	role de l Unicef
-237	autre	millenaire pour le developpement
+1	petite section	education
+2	petite section	role unicef
+3	petite section	sante en generale
+4	petite section	sante et alimentation
+5	petite section	eau
+6	petite section	convention internationale des droits de l enfant
+7	petite section	enfants et soldats
+8	petite section	travail des enfants
+9	petite section	harcelement
+10	petite section	discrimination
+11	petite section	millenaire dev
+12	petite section	VIH et sida
+13	petite section	urgences mondiales
+14	petite-moyenne section	education
+15	petite-moyenne section	role unicef
+16	petite-moyenne section	sante en generale
+17	petite-moyenne section	sante et alimentation
+18	petite-moyenne section	eau
+19	petite-moyenne section	convention internationale des droits de l enfant
+20	petite-moyenne section	enfants et soldats
+21	petite-moyenne section	travail des enfants
+22	petite-moyenne section	harcelement
+23	petite-moyenne section	discrimination
+24	petite-moyenne section	millenaire dev
+25	petite-moyenne section	VIH et sida
+26	petite-moyenne section	urgences mondiales
+27	moyenne section	education
+28	moyenne section	role unicef
+29	moyenne section	sante en generale
+30	moyenne section	sante et alimentation
+31	moyenne section	eau
+32	moyenne section	convention internationale des droits de l enfant
+33	moyenne section	enfants et soldats
+34	moyenne section	travail des enfants
+35	moyenne section	harcelement
+36	moyenne section	discrimination
+37	moyenne section	millenaire dev
+38	moyenne section	VIH et sida
+39	moyenne section	urgences mondiales
+40	moyenne-grande section	education
+41	moyenne-grande section	role unicef
+42	moyenne-grande section	sante en generale
+43	moyenne-grande section	sante et alimentation
+44	moyenne-grande section	eau
+45	moyenne-grande section	convention internationale des droits de l enfant
+46	moyenne-grande section	enfants et soldats
+47	moyenne-grande section	travail des enfants
+48	moyenne-grande section	harcelement
+49	moyenne-grande section	discrimination
+50	moyenne-grande section	millenaire dev
+51	moyenne-grande section	VIH et sida
+52	moyenne-grande section	urgences mondiales
+53	grande section	education
+54	grande section	role unicef
+55	grande section	sante en generale
+56	grande section	sante et alimentation
+57	grande section	eau
+58	grande section	convention internationale des droits de l enfant
+59	grande section	enfants et soldats
+60	grande section	travail des enfants
+61	grande section	harcelement
+62	grande section	discrimination
+63	grande section	millenaire dev
+64	grande section	VIH et sida
+65	grande section	urgences mondiales
+66	petite-moyenne-grande section	education
+67	petite-moyenne-grande section	role unicef
+68	petite-moyenne-grande section	sante en generale
+69	petite-moyenne-grande section	sante et alimentation
+70	petite-moyenne-grande section	eau
+71	petite-moyenne-grande section	convention internationale des droits de l enfant
+72	petite-moyenne-grande section	enfants et soldats
+73	petite-moyenne-grande section	travail des enfants
+74	petite-moyenne-grande section	harcelement
+75	petite-moyenne-grande section	discrimination
+76	petite-moyenne-grande section	millenaire dev
+77	petite-moyenne-grande section	VIH et sida
+78	petite-moyenne-grande section	urgences mondiales
+79	CP	education
+80	CP	role unicef
+81	CP	sante en generale
+82	CP	sante et alimentation
+83	CP	eau
+84	CP	convention internationale des droits de l enfant
+85	CP	enfants et soldats
+86	CP	travail des enfants
+87	CP	harcelement
+88	CP	discrimination
+89	CP	millenaire dev
+90	CP	VIH et sida
+91	CP	urgences mondiales
+92	CP-CE1	education
+93	CP-CE1	role unicef
+94	CP-CE1	sante en generale
+95	CP-CE1	sante et alimentation
+96	CP-CE1	eau
+97	CP-CE1	convention internationale des droits de l enfant
+98	CP-CE1	enfants et soldats
+99	CP-CE1	travail des enfants
+100	CP-CE1	harcelement
+101	CP-CE1	discrimination
+102	CP-CE1	millenaire dev
+103	CP-CE1	VIH et sida
+104	CP-CE1	urgences mondiales
+105	CE1	education
+106	CE1	role unicef
+107	CE1	sante en generale
+108	CE1	sante et alimentation
+109	CE1	eau
+110	CE1	convention internationale des droits de l enfant
+111	CE1	enfants et soldats
+112	CE1	travail des enfants
+113	CE1	harcelement
+114	CE1	discrimination
+115	CE1	millenaire dev
+116	CE1	VIH et sida
+117	CE1	urgences mondiales
+118	CE1-CE2	education
+119	CE1-CE2	role unicef
+120	CE1-CE2	sante en generale
+121	CE1-CE2	sante et alimentation
+122	CE1-CE2	eau
+123	CE1-CE2	convention internationale des droits de l enfant
+124	CE1-CE2	enfants et soldats
+125	CE1-CE2	travail des enfants
+126	CE1-CE2	harcelement
+127	CE1-CE2	discrimination
+128	CE1-CE2	millenaire dev
+129	CE1-CE2	VIH et sida
+130	CE1-CE2	urgences mondiales
+131	CE2	education
+132	CE2	role unicef
+133	CE2	sante en generale
+134	CE2	sante et alimentation
+135	CE2	eau
+136	CE2	convention internationale des droits de l enfant
+137	CE2	enfants et soldats
+138	CE2	travail des enfants
+139	CE2	harcelement
+140	CE2	discrimination
+141	CE2	millenaire dev
+142	CE2	VIH et sida
+143	CE2	urgences mondiales
+144	CE2-CM1	education
+145	CE2-CM1	role unicef
+146	CE2-CM1	sante en generale
+147	CE2-CM1	sante et alimentation
+148	CE2-CM1	eau
+149	CE2-CM1	convention internationale des droits de l enfant
+150	CE2-CM1	enfants et soldats
+151	CE2-CM1	travail des enfants
+152	CE2-CM1	harcelement
+153	CE2-CM1	discrimination
+154	CE2-CM1	millenaire dev
+155	CE2-CM1	VIH et sida
+156	CE2-CM1	urgences mondiales
+157	CM1	education
+158	CM1	role unicef
+159	CM1	sante en generale
+160	CM1	sante et alimentation
+161	CM1	eau
+162	CM1	convention internationale des droits de l enfant
+163	CM1	enfants et soldats
+164	CM1	travail des enfants
+165	CM1	harcelement
+166	CM1	discrimination
+167	CM1	millenaire dev
+168	CM1	VIH et sida
+169	CM1	urgences mondiales
+170	CM1-CM2	education
+171	CM1-CM2	role unicef
+172	CM1-CM2	sante en generale
+173	CM1-CM2	sante et alimentation
+174	CM1-CM2	eau
+175	CM1-CM2	convention internationale des droits de l enfant
+176	CM1-CM2	enfants et soldats
+177	CM1-CM2	travail des enfants
+178	CM1-CM2	harcelement
+179	CM1-CM2	discrimination
+180	CM1-CM2	millenaire dev
+181	CM1-CM2	VIH et sida
+182	CM1-CM2	urgences mondiales
+183	CM2	education
+184	CM2	role unicef
+185	CM2	sante en generale
+186	CM2	sante et alimentation
+187	CM2	eau
+188	CM2	convention internationale des droits de l enfant
+189	CM2	enfants et soldats
+190	CM2	travail des enfants
+191	CM2	harcelement
+192	CM2	discrimination
+193	CM2	millenaire dev
+194	CM2	VIH et sida
+195	CM2	urgences mondiales
+196	6eme	education
+197	6eme	role unicef
+198	6eme	sante en generale
+199	6eme	sante et alimentation
+200	6eme	eau
+201	6eme	convention internationale des droits de l enfant
+202	6eme	enfants et soldats
+203	6eme	travail des enfants
+204	6eme	harcelement
+205	6eme	discrimination
+206	6eme	millenaire dev
+207	6eme	VIH et sida
+208	6eme	urgences mondiales
+209	5eme	education
+210	5eme	role unicef
+211	5eme	sante en generale
+212	5eme	sante et alimentation
+213	5eme	eau
+214	5eme	convention internationale des droits de l enfant
+215	5eme	enfants et soldats
+216	5eme	travail des enfants
+217	5eme	harcelement
+218	5eme	discrimination
+219	5eme	millenaire dev
+220	5eme	VIH et sida
+221	5eme	urgences mondiales
+222	4eme	education
+223	4eme	role unicef
+224	4eme	sante en generale
+225	4eme	sante et alimentation
+226	4eme	eau
+227	4eme	convention internationale des droits de l enfant
+228	4eme	enfants et soldats
+229	4eme	travail des enfants
+230	4eme	harcelement
+231	4eme	discrimination
+232	4eme	millenaire dev
+233	4eme	VIH et sida
+234	4eme	urgences mondiales
+235	3eme	education
+236	3eme	role unicef
+237	3eme	sante en generale
+238	3eme	sante et alimentation
+239	3eme	eau
+240	3eme	convention internationale des droits de l enfant
+241	3eme	enfants et soldats
+242	3eme	travail des enfants
+243	3eme	harcelement
+244	3eme	discrimination
+245	3eme	millenaire dev
+246	3eme	VIH et sida
+247	3eme	urgences mondiales
+248	2nde	education
+249	2nde	role unicef
+250	2nde	sante en generale
+251	2nde	sante et alimentation
+252	2nde	eau
+253	2nde	convention internationale des droits de l enfant
+254	2nde	enfants et soldats
+255	2nde	travail des enfants
+256	2nde	harcelement
+257	2nde	discrimination
+258	2nde	millenaire dev
+259	2nde	VIH et sida
+260	2nde	urgences mondiales
+261	1ere	education
+262	1ere	role unicef
+263	1ere	sante en generale
+264	1ere	sante et alimentation
+265	1ere	eau
+266	1ere	convention internationale des droits de l enfant
+267	1ere	enfants et soldats
+268	1ere	travail des enfants
+269	1ere	harcelement
+270	1ere	discrimination
+271	1ere	millenaire dev
+272	1ere	VIH et sida
+273	1ere	urgences mondiales
+274	terminale	education
+275	terminale	role unicef
+276	terminale	sante en generale
+277	terminale	sante et alimentation
+278	terminale	eau
+279	terminale	convention internationale des droits de l enfant
+280	terminale	enfants et soldats
+281	terminale	travail des enfants
+282	terminale	harcelement
+283	terminale	discrimination
+284	terminale	millenaire dev
+285	terminale	VIH et sida
+286	terminale	urgences mondiales
+287	L1	education
+288	L1	role unicef
+289	L1	sante en generale
+290	L1	sante et alimentation
+291	L1	eau
+292	L1	convention internationale des droits de l enfant
+293	L1	enfants et soldats
+294	L1	travail des enfants
+295	L1	harcelement
+296	L1	discrimination
+297	L1	millenaire dev
+298	L1	VIH et sida
+299	L1	urgences mondiales
+300	L2	education
+301	L2	role unicef
+302	L2	sante en generale
+303	L2	sante et alimentation
+304	L2	eau
+305	L2	convention internationale des droits de l enfant
+306	L2	enfants et soldats
+307	L2	travail des enfants
+308	L2	harcelement
+309	L2	discrimination
+310	L2	millenaire dev
+311	L2	VIH et sida
+312	L2	urgences mondiales
+313	L3	education
+314	L3	role unicef
+315	L3	sante en generale
+316	L3	sante et alimentation
+317	L3	eau
+318	L3	convention internationale des droits de l enfant
+319	L3	enfants et soldats
+320	L3	travail des enfants
+321	L3	harcelement
+322	L3	discrimination
+323	L3	millenaire dev
+324	L3	VIH et sida
+325	L3	urgences mondiales
+326	M1	education
+327	M1	role unicef
+328	M1	sante en generale
+329	M1	sante et alimentation
+330	M1	eau
+331	M1	convention internationale des droits de l enfant
+332	M1	enfants et soldats
+333	M1	travail des enfants
+334	M1	harcelement
+335	M1	discrimination
+336	M1	millenaire dev
+337	M1	VIH et sida
+338	M1	urgences mondiales
+339	M2	education
+340	M2	role unicef
+341	M2	sante en generale
+342	M2	sante et alimentation
+343	M2	eau
+344	M2	convention internationale des droits de l enfant
+345	M2	enfants et soldats
+346	M2	travail des enfants
+347	M2	harcelement
+348	M2	discrimination
+349	M2	millenaire dev
+350	M2	VIH et sida
+351	M2	urgences mondiales
+352	autre	education
+353	autre	role unicef
+354	autre	sante en generale
+355	autre	sante et alimentation
+356	autre	eau
+357	autre	convention internationale des droits de l enfant
+358	autre	enfants et soldats
+359	autre	travail des enfants
+360	autre	harcelement
+361	autre	discrimination
+362	autre	millenaire dev
+363	autre	VIH et sida
+364	autre	urgences mondiales
 \.
 
 
@@ -11535,14 +11956,14 @@ COPY niveau_theme (id, niveau, theme) FROM stdin;
 -- Name: niveau_theme_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('niveau_theme_id_seq', 237, true);
+SELECT pg_catalog.setval('niveau_theme_id_seq', 364, true);
 
 
 --
 -- Data for Name: participe; Type: TABLE DATA; Schema: public; Owner: unipik
 --
 
-COPY participe (projet_id, contact_id) FROM stdin;
+COPY participe (projet_id, contact_id, est_tuteur) FROM stdin;
 \.
 
 
@@ -11552,127 +11973,6 @@ COPY participe (projet_id, contact_id) FROM stdin;
 
 COPY pays (id, nom) FROM stdin;
 1	FRANCE
-2	France
-3	France
-6	France
-7	France
-174	France
-9	France
-10	France
-11	France
-14	France
-15	France
-175	France
-17	France
-18	France
-19	France
-22	France
-23	France
-25	France
-26	France
-27	France
-28	France
-178	France
-179	France
-33	France
-34	France
-37	France
-38	France
-40	France
-41	France
-42	France
-43	France
-182	France
-183	France
-185	France
-48	France
-49	France
-52	France
-53	France
-186	France
-55	France
-56	France
-57	France
-58	France
-187	France
-190	France
-191	France
-63	France
-64	France
-67	France
-68	France
-193	France
-70	France
-71	France
-72	France
-73	France
-194	France
-195	France
-196	France
-80	France
-81	France
-82	France
-203	France
-87	France
-88	France
-204	France
-205	France
-91	France
-92	France
-206	France
-207	France
-95	France
-96	France
-208	France
-98	France
-99	France
-100	France
-103	France
-104	France
-209	France
-106	France
-107	France
-108	France
-109	France
-210	France
-215	France
-116	France
-117	France
-118	France
-216	France
-217	France
-218	France
-219	France
-123	France
-124	France
-220	France
-127	France
-128	France
-131	France
-132	France
-134	France
-135	France
-136	France
-139	France
-140	France
-142	France
-143	France
-144	France
-145	France
-152	France
-153	France
-154	France
-155	France
-156	France
-157	France
-158	France
-159	France
-164	France
-165	France
-166	France
-167	France
-168	France
-169	France
 \.
 
 
@@ -11680,14 +11980,14 @@ COPY pays (id, nom) FROM stdin;
 -- Name: pays_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('pays_id_seq', 479, true);
+SELECT pg_catalog.setval('pays_id_seq', 1682, true);
 
 
 --
 -- Data for Name: projet; Type: TABLE DATA; Schema: public; Owner: unipik
 --
 
-COPY projet (id, chiffre_affaire, remarques, type, nom) FROM stdin;
+COPY projet (id, chiffre_affaire, remarques, type_projet, nom) FROM stdin;
 \.
 
 
@@ -11695,7 +11995,7 @@ COPY projet (id, chiffre_affaire, remarques, type, nom) FROM stdin;
 -- Name: projet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('projet_id_seq', 90, true);
+SELECT pg_catalog.setval('projet_id_seq', 24, true);
 
 
 --
@@ -11731,109 +12031,6 @@ COPY region (id, nom, pays_id) FROM stdin;
 26	LA REUNION	1
 27	SAINT-PIERRE-ET-MIQUELON	1
 28	MAYOTTE	1
-29	Aquitaine Limousin Poitou-Charentes	6
-30	Aquitaine Limousin Poitou-Charentes	7
-32	Region inexistante	9
-33	Aquitaine Limousin Poitou-Charentes	14
-34	Aquitaine Limousin Poitou-Charentes	15
-36	Region inexistante	17
-37	Normandie	22
-38	Normandie	23
-40	Region inexistante	25
-41	Normandie	26
-42	Normandie	27
-43	Normandie	28
-208	Normandie	217
-210	Normandie	219
-48	Normandie	37
-49	Normandie	38
-51	Region inexistante	40
-52	Normandie	41
-53	Normandie	42
-54	Normandie	43
-59	Normandie	52
-60	Normandie	53
-62	Region inexistante	55
-63	Normandie	56
-64	Normandie	57
-65	Normandie	58
-70	Normandie	67
-71	Normandie	68
-73	Region inexistante	70
-74	Normandie	71
-75	Normandie	72
-76	Normandie	73
-83	Normandie	80
-84	Normandie	81
-85	Normandie	82
-90	Normandie	87
-91	Normandie	88
-94	Normandie	91
-95	Normandie	92
-98	Normandie	95
-99	Normandie	96
-101	Normandie	98
-102	Normandie	103
-103	Normandie	104
-105	Region inexistante	106
-106	Normandie	107
-107	Normandie	108
-108	Normandie	109
-115	Normandie	116
-116	Normandie	117
-117	Normandie	118
-122	Normandie	123
-123	Normandie	124
-126	Normandie	127
-127	Normandie	128
-130	Normandie	131
-131	Normandie	132
-133	Normandie	134
-134	Normandie	139
-135	Normandie	140
-137	Region inexistante	142
-138	Normandie	143
-139	Normandie	144
-140	Normandie	145
-147	Normandie	152
-148	Normandie	153
-149	Normandie	154
-150	Normandie	155
-151	Normandie	156
-152	Normandie	157
-153	Normandie	158
-154	Normandie	159
-159	Normandie	164
-160	Normandie	165
-161	Normandie	166
-162	Normandie	167
-163	Normandie	168
-164	Normandie	169
-169	Normandie	174
-170	Normandie	175
-173	Normandie	178
-174	Normandie	179
-206	Normandie	215
-177	Normandie	182
-178	Normandie	183
-207	Normandie	216
-180	Normandie	185
-181	Normandie	190
-182	Normandie	191
-184	Region inexistante	193
-185	Normandie	194
-186	Normandie	195
-187	Normandie	196
-209	Normandie	218
-211	Normandie	220
-194	Normandie	203
-195	Normandie	204
-196	Normandie	205
-197	Normandie	206
-198	Normandie	207
-199	Normandie	208
-200	Normandie	209
-201	Normandie	210
 \.
 
 
@@ -11841,11 +12038,11 @@ COPY region (id, nom, pays_id) FROM stdin;
 -- Name: region_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('region_id_seq', 450, true);
+SELECT pg_catalog.setval('region_id_seq', 1694, true);
 
 
 --
--- Data for Name: spatial_ref_sys; Type: TABLE DATA; Schema: public; Owner: unipik
+-- Data for Name: spatial_ref_sys; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY spatial_ref_sys  FROM stdin;
@@ -11864,7 +12061,7 @@ COPY vente (id, etablissement_id, intervention_id, chiffre_affaire, date_vente, 
 -- Name: vente_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('vente_id_seq', 21, true);
+SELECT pg_catalog.setval('vente_id_seq', 5, true);
 
 
 --
@@ -45947,73 +46144,6 @@ COPY ville (id, nom) FROM stdin;
 34073	PAMANDZI
 34074	SADA
 34075	TSINGONI
-34076	Rouen
-34077	Rouen
-34078	Rouen
-34083	Rouen
-34084	Rouen
-34085	Rouen
-34090	Rouen
-34091	Rouen
-34092	Rouen
-34097	Rouen
-34098	Rouen
-34099	Rouen
-34106	Rouen
-34107	Rouen
-34108	Rouen
-34113	Rouen
-34114	Rouen
-34117	Rouen
-34118	Rouen
-34121	Rouen
-34122	Rouen
-34123	Rouen
-34130	Rouen
-34131	Rouen
-34132	Rouen
-34137	Rouen
-34138	Rouen
-34141	Rouen
-34142	Rouen
-34145	Rouen
-34146	Rouen
-34147	Rouen
-34154	Rouen
-34155	Rouen
-34156	Rouen
-34157	Rouen
-34158	Rouen
-34159	Rouen
-34160	Rouen
-34161	Rouen
-34166	Rouen
-34167	Rouen
-34168	Rouen
-34169	Rouen
-34170	Rouen
-34171	Rouen
-34176	Rouen
-34177	Rouen
-34180	Rouen
-34181	Rouen
-34184	Rouen
-34185	Rouen
-34186	Rouen
-34193	Rouen
-34194	Rouen
-34195	Rouen
-34196	Rouen
-34197	Rouen
-34198	Rouen
-34199	Rouen
-34200	Rouen
-34205	Rouen
-34206	Rouen
-34207	Rouen
-34208	Rouen
-34209	Rouen
-34210	Rouen
 \.
 
 
@@ -82762,7 +82892,7 @@ COPY ville_code_postal (ville_id, code_postal_id) FROM stdin;
 -- Name: ville_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('ville_id_seq', 34409, true);
+SELECT pg_catalog.setval('ville_id_seq', 34659, true);
 
 
 --
@@ -82894,6 +83024,14 @@ ALTER TABLE ONLY intervention
 
 
 --
+-- Name: mailtask_pkey; Type: CONSTRAINT; Schema: public; Owner: unipik; Tablespace: 
+--
+
+ALTER TABLE ONLY mailtask
+    ADD CONSTRAINT mailtask_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: moment_hebdomadaire_pkey; Type: CONSTRAINT; Schema: public; Owner: unipik; Tablespace: 
 --
 
@@ -82963,6 +83101,34 @@ ALTER TABLE ONLY ville_code_postal
 
 ALTER TABLE ONLY ville
     ADD CONSTRAINT ville_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: avant_insertion_intervention; Type: TRIGGER; Schema: public; Owner: unipik
+--
+
+CREATE TRIGGER avant_insertion_intervention BEFORE INSERT ON intervention FOR EACH ROW EXECUTE PROCEDURE inserer_intervention();
+
+
+--
+-- Name: avant_suppression_benevole; Type: TRIGGER; Schema: public; Owner: unipik
+--
+
+CREATE TRIGGER avant_suppression_benevole BEFORE DELETE ON benevole FOR EACH ROW EXECUTE PROCEDURE modifier_benevole_fictif();
+
+
+--
+-- Name: avant_suppression_etablissement; Type: TRIGGER; Schema: public; Owner: unipik
+--
+
+CREATE TRIGGER avant_suppression_etablissement BEFORE DELETE ON etablissement FOR EACH ROW EXECUTE PROCEDURE modifier_etablissement_fictif();
+
+
+--
+-- Name: insertion_benevole; Type: TRIGGER; Schema: public; Owner: unipik
+--
+
+CREATE TRIGGER insertion_benevole AFTER INSERT ON benevole FOR EACH ROW EXECUTE PROCEDURE ajouter_activites_potentielles_benevole();
 
 
 --

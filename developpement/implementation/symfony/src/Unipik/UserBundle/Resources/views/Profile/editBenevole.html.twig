@@ -285,7 +285,6 @@
             }else{
                 $('#erreurCode').hide();
             }
-            else {
                 var adresse = $("#user_registration_adresse_adresse").val() + ' ' + $('#user_registration_adresse_codePostal').val() + ' ' + $("#user_registration_adresse_ville").val();
                 var previousAdresse = "{{ benevole.adresse.adresse }} " + "{{ benevole.adresse.codePostal.code }} " + "{{ benevole.adresse.ville.nom }}";
                 if (adresse != previousAdresse) {
@@ -299,6 +298,7 @@
                                     if (dataVille.length > 0) {
                                         geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
                                         $("#user_registration_adresse_geolocalisation").val(geolocalisation);
+                                        $("#user_registration_adresse_ville").val($("#user_registration_adresse_ville").val().split(' (')[0]);
                                         $(".user_admin_edit").submit();
                                     }
                                     else {
@@ -309,8 +309,10 @@
                             case 1 :
                                 geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
                                 $("#user_registration_adresse_geolocalisation").val(geolocalisation);
+                                $("#user_registration_adresse_ville").val($("#user_registration_adresse_ville").val().split(' (')[0]);
                                 $(".user_admin_edit").submit();
                                 break;
+
                             default :
                                 var modal_content = "";
                                 data.forEach(function (item) {
@@ -326,7 +328,6 @@
                 else {
                     $(".user_admin_edit").submit();
                 }
-            }
 
         });
 
@@ -334,6 +335,7 @@
             var latlon = content.split(',');
             var geolocalisation = 'SRID=4326;POINT(' + latlon[1] + ' ' + latlon[0] + ')';
             $("#user_registration_adresse_geolocalisation").val(geolocalisation);
+            $("#user_registration_adresse_ville").val($("#user_registration_adresse_ville").val().split(' (')[0]);
             $(".user_admin_edit").submit();
         }
     </script>

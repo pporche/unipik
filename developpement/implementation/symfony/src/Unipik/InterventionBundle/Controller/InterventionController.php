@@ -485,7 +485,6 @@ class InterventionController extends Controller {
             'isCheck' => $dateChecked,
             'dateStart' => $start,
             'dateEnd' => $end,
-            //            'distance' => $distance,
             'user' => $user,
             'form' => $form->createView(),
             'formAttr' => $f->createView(),

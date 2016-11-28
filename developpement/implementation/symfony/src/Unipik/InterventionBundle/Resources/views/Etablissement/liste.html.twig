@@ -279,24 +279,33 @@
 
         $(':submit').on('click', function (e) {
             e.preventDefault();
-            if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
-                var ville = $('#recherche_avancee_ville').val();
-                var geolocalisation = '';
-                //Match numéro département avec nom ?
-                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
-                    if (dataVille.length > 0) {
-                        geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
-                        $("#recherche_avancee_geolocalisation").val(geolocalisation);
-                        $(".etablissement_list").submit();
-                    }
-                    else {
-                        //Que fait-on si 0 match ?
-                    }
-                });
-            }
-            else {
-                $(".etablissement_list").submit();
-            }
+//            if ($('#recherche_avancee_ville').val() != '' && $('#recherche_avancee_ville').val().indexOf(' (') < 0) {
+//                if (!$('.alert-warning').length) {
+//                    $('#recherche_avancee_ville').after("<div class='alert alert-warning'>Sélectionnez un code postal</div>");
+//                }
+//            }
+//            else {
+                if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
+                    var ville = $('#recherche_avancee_ville').val();
+                    var geolocalisation = '';
+                    //Match numéro département avec nom ?
+                    $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
+                        if (dataVille.length > 0) {
+                            geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                            $("#recherche_avancee_geolocalisation").val(geolocalisation);
+                            $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+                            $(".etablissement_list").submit();
+                        }
+                        else {
+                            //Que fait-on si 0 match ?
+                        }
+                    });
+                }
+                else {
+                    $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+                    $(".etablissement_list").submit();
+                }
+//            }
         });
 
     </script>

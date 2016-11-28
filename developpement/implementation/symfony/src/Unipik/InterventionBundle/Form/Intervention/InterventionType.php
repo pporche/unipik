@@ -104,8 +104,9 @@ class InterventionType extends AbstractFieldsetType {
             ->add('niveau', ChoiceType::class, $choiceClasse)
             ->add(
                 'heure', TimeType::class, array(
-                //                'input'  => 'string',
                 'widget' => 'choice',
+                'placeholder' => '',
+                'required' => false,
                 )
             )
             ->add('description', TextareaType::class, array('required' => false));

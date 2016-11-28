@@ -20,6 +20,19 @@ h1{
     margin-top: 0px;
 }
 
+.imprimente{
+    border-radius: 100px;
+    float: right;
+    margin-right: 20px;
+    height: 40px;
+    width: 40px;
+    padding: 3px 2px 2px 2px;
+    box-shadow: -1px 2px 5px 1px rgba(173, 173, 173, 0.7);
+    background-color: #2780e3;
+    border: none;
+    color: #fff;
+}
+
 .subtitle{
     font-family: 'Ubuntu Condensed', sans-serif;
 }

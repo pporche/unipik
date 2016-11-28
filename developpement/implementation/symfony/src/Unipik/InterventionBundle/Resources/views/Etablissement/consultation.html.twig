@@ -10,9 +10,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('vendor/leaflet/dist/leaflet.css') }}" />
-    <style>
-        #mapid { height: 380px; }
-    </style>
+
 {% endblock %}
 
 {% block javascripts %}
@@ -264,10 +262,33 @@
 {% endblock %}
 
 {% block body %}
+    <style>
+        #mapid { height: 380px; }
+        @media (max-width: 767px) {
+
+            .imprimente{
+                position: relative !important;
+                top: 150px;
+                right: 80px;
+                z-index: 2;
+                margin-top: 0px !important;
+                margin-right: 0px !important;
+            }
+        }
+        @media (min-width: 767px) and (max-width: 1200px) {
+
+            .imprimente{
+                position: relative !important;
+                top: 150px;
+                right: 240px;
+                z-index: 2;
+                margin-top: 0px !important;
+                margin-right:0px !important;
+            }
+        }
+    </style>
 <div class="container">
-    <div class="row">
-    <button type="button" class="imprimente" style="margin-top: 40px; margin-right: 80px;" onclick="imprimer()" ><span class="glyphicon glyphicon-print"></span></button>
-        </div>
+    <button type="button" class="imprimente" style="margin-top: 65px; margin-right: 80px;" onclick="imprimer()" ><span class="glyphicon glyphicon-print"></span></button>
 
     <div class="row">
 

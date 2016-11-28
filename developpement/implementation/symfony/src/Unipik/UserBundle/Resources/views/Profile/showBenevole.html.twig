@@ -107,14 +107,32 @@
         .alert-success{
             margin-top:30px;
         }
+        @media (max-width: 767px) {
+
+            .imprimente{
+                position: relative !important;
+                top: 130px;
+                right: 80px;
+                z-index: 2;
+                margin-top: 0px !important;
+                margin-right: 0px !important;
+            }
+        }
+        @media (min-width: 767px) and (max-width: 1200px) {
+
+            .imprimente{
+                position: relative !important;
+                top: 150px;
+                right: 240px;
+                z-index: 2;
+                margin-top: 0px !important;
+                margin-right:0px !important;
+            }
+        }
     </style>
 
+            <button type="button" class="imprimente" style="margin-top:60px; margin-right: 100px;" onclick="imprimer()" ><span class="glyphicon glyphicon-print"></span></button>
 
-    <div class="row">
-        <div class="btn-group" style="float: right; margin-top:20px;">
-            <button type="button" class="imprimente" style="margin-top: 40px; margin-right: 80px;" onclick="imprimer()" ><span class="glyphicon glyphicon-print"></span></button>
-        </div>
-    </div>
         <div class="row">
             <section class="jumbotron col-sm-12 col-lg-8 col-lg-offset-2">
                 <div class="infoPrincip">

@@ -338,7 +338,6 @@
             source: villes,
             limit: 50
         });
-
     </script>
 {% endblock %}
 
@@ -396,6 +395,7 @@
                             {% if app.request.query.get('rowsPerPage') is not null %}
                                 {% set pathReq = pathReq | merge({"rowsPerPage":app.request.query.get('rowsPerPage')}) %}
                             {% endif %}
+
                             {% if field == "dateVente" %}
                                 {% if desc %}
                                     <th> Lieu
@@ -427,7 +427,7 @@
                                         </a>
                                     </th>
                                 {% endif %}
-                            {% else %}
+                            {% elseif field == "lieu" %}
                                 {% if desc %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
@@ -460,9 +460,6 @@
                                     </th>
                                 {% endif %}
                             {% endif %}
-                            <th> Etablissement </th>
-                            <th> Intervention liée </th>
-                            <th> Chiffre d'affaire </th>
                             <th>Voir détails</th>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <th>Supprimer</th>
@@ -486,7 +483,7 @@
                                                 Frimousse à l'{{ vente.intervention.etablissement.nom | lower}}
                                             </a>
                                         {% else %}
-                                            -
+                                            <div style="text-align: center"> - </div>
                                         {% endif %}
                                     </td>
                                     <td data-title="ChiffreAffaire" style="text-align: center"> {{ vente.chiffreAffaire }} € </td>

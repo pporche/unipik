@@ -122,6 +122,7 @@ class VenteRepository extends EntityRepository {
      * @return QueryBuilder
      */
     private function _getVentes(QueryBuilder $qb, $start,  $end , $datesChecked) {
+
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
         }
@@ -138,9 +139,10 @@ class VenteRepository extends EntityRepository {
      */
     private function _whereInterventionsBetweenDates($start, $end, QueryBuilder $qb) {
         $qb
-            ->andWhere('i.dateVente BETWEEN :start AND :end')
+            ->andWhere('v.dateVente BETWEEN :start AND :end')
             ->setParameter('start', $start)
             ->setParameter('end', $end);
+
     }
 
     /**

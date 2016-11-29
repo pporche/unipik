@@ -12,3 +12,14 @@ vente_view:
 vente_add:
     path: /vente/ajouter
     defaults: {_controller: InterventionBundle:Vente:add}
+
+vente_etablissement:
+    path: /vente/etablissement/{id}
+    defaults:
+        _controller: InterventionBundle:Vente:listeEtablissement
+
+vente_intervention:
+    path: /vente/intervention/{id}
+    defaults:
+        _controller: InterventionBundle:Vente:listeIntervention
+

@@ -240,7 +240,7 @@
                     if (dataVille.length > 0) {
                         geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
                         $("#recherche_avancee_geolocalisation").val(geolocalisation);
-                        $(".vente_list").submit();
+                        $(".vente").submit();
                     }
                     else {
                         //Que fait-on si 0 match ?
@@ -248,7 +248,7 @@
                 });
             }
             else {
-                $(".vente_list").submit();
+                $(".vente").submit();
             }
         });
 
@@ -342,10 +342,27 @@
 {% endblock %}
 
 {% block body %}
+
+    {% if venteInterventionListe %}
+        {% set vue =  'vente_intervention' %}
+        {% set param =   interventionId  %}
+    {% elseif venteEtablissementListe  %}
+        {% set vue =  'vente_etablissement' %}
+        {% set param =   etablissementId  %}
+    {% else %}
+        {% set vue =  'vente_list' %}
+        {% set param =  'null' %}
+    {% endif %}
     <section class="col-lg-2 col-md-2 col-sm-2">
         <div class="row">
             <div class='well'>
-                {{ form_start(form, {'method': 'get', 'action': path('vente_list'), 'attr': {'class': 'vente_list form-sm'}}) }}
+                {% if venteInterventionListe %}
+                    {{ form_start(form, {'method': 'get', 'action': path('vente_intervention', {'id': interventionId}), 'attr': {'class': 'vente form-sm'}}) }}
+                {% elseif venteEtablissementListe  %}
+                    {{ form_start(form, {'method': 'get', 'action': path('vente_etablissement', {'id': etablissementId}), 'attr': {'class': 'vente form-sm'}}) }}
+                {% else %}
+                    {{ form_start(form, {'method': 'get', 'action': path('vente_list'), 'attr': {'class': 'vente form-sm'}}) }}
+                {% endif %}
                 <h5>Dates de vente :</h5>
                 {{ form_widget(form.date) }}
                 <div id="between_dates">
@@ -375,6 +392,7 @@
                     <input type="submit" value="OK" class="btn btn-primary"/>
                 </div>
                 </div>
+            {{ form_end(form) }}
         </div>
     </section>
     <section id="listeVente" class="col-lg-10 col-md-10 col-sm-10">
@@ -382,6 +400,7 @@
         {% if ventes %}
             <button type="button" class="imprimente" onclick="imprimer()"><span class="glyphicon glyphicon-print"></span></button><br>
         {% endif %}
+
         <div class="container">
             <div class="row">
                 <div class="table-responsive">
@@ -400,13 +419,13 @@
                                 {% if desc %}
                                     <th> Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                                 href="{{ path('vente_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                                 href="{{ path(vue, {'id': param}, pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
                                                  id="sortLieu" alt="sort Down"/>
                                         </a></th>
                                     <th> Date de la vente
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path('vente_list', pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
+                                           href="{{ path(vue, {'id': param},pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
                                                  id="sortDate" alt="sort Down"/>
                                         </a>
@@ -414,14 +433,14 @@
                                 {% else %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path('vente_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue, {'id': param}, {'id': param}, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class="sort sort-up"
                                                  id="sortLieu" alt="sort Down"/>
                                         </a>
                                     </th>
                                     <th> Date de la vente
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path('vente_list', pathReq | merge({"desc":true, "field":"dateVente"}) ) }}">
+                                           href="{{ path(vue, {'id': param},{'id': param}, pathReq| merge({"desc":true, "field":"dateVente"}) ) }}">
                                             <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
                                                  id="sortDate" alt="sort Up"/>
                                         </a>
@@ -431,14 +450,14 @@
                                 {% if desc %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path('vente_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue, {'id': param},pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
                                                  id="sortLieu" alt="sort Down"/>
                                         </a>
                                     </th>
                                     <th>Date de la vente
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path('vente_list', pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
+                                           href="{{ path(vue, {'id': param}, pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
                                                  id="sortDate" alt="sort Down"/>
                                         </a>
@@ -446,14 +465,14 @@
                                 {% else %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path('vente_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue, {'id': param}, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortLieu"
                                                  alt="sort Up"/>
                                         </a>
                                     </th>
                                     <th>Date de la vente
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path('vente_list', pathReq | merge({"desc":true, "field":"dateVente"}) ) }}">
+                                           href="{{ path(vue, {'id': param}, pathReq | merge({"desc":true, "field":"dateVente"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
                                                  id="sortDate" alt="sort Up"/>
                                         </a>
@@ -510,9 +529,6 @@
                     </table>
                 </div>
                 <div class="buttons">
-                    <a href="{{ path('vente_add') }}" class="btn btn-primary btn-success">
-                        Ajouter une vente
-                    </a>
                     {% if is_granted('ROLE_ADMIN') %}
                             <button type="button" class="btn btn-danger" onclick="deleteVentes()">Supprimer</button>
                     {% endif %}
@@ -526,11 +542,11 @@
                         {% set pathReq = pathReq | merge({"desc":app.request.query.get('desc')}) | merge({"field":app.request.query.get('field')}) %}
                     {% endif %}
                     <ul>Par page :
-                        <a href="{{ path('vente_list', pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
-                        <a href="{{ path('vente_list', pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
-                        <a href="{{ path('vente_list', pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
-                        <a href="{{ path('vente_list', pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
-                        <a href="{{ path('vente_list', pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
+                        <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
+                        <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
+                        <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
+                        <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
+                        <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
                     </ul>
                     <ul class="pagination pagination-lg pager" id="myPager"></ul>
                 </div>

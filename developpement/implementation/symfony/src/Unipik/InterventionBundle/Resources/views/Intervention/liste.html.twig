@@ -289,7 +289,7 @@
                     if (dataVille.length > 0) {
                         geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
                         $("#recherche_avancee_geolocalisation").val(geolocalisation);
-                        $(".intervention_list").submit();
+                        $(".intervention").submit();
                     }
                     else {
                         //Que fait-on si 0 match ?
@@ -297,7 +297,7 @@
                 });
             }
             else {
-                $(".intervention_list").submit();
+                $(".intervention").submit();
             }
         });
 
@@ -505,11 +505,11 @@
         <div class="row">
             <div class='well'>
                 {% if onlyMyIntervention %}
-                    {{ form_start(form, {'method': 'get', 'action': path('intervention_self'), 'attr': {'class': 'intervention_self form-sm'}}) }}
+                    {{ form_start(form, {'method': 'get', 'action': path('intervention_self'), 'attr': {'class': 'intervention form-sm'}}) }}
                 {% elseif onlyNonAttribues %}
-                    {{ form_start(form, {'method': 'get', 'action': path('demandes_recentes'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                    {{ form_start(form, {'method': 'get', 'action': path('demandes_recentes'), 'attr': {'class': 'intervention form-sm'}}) }}
                 {% else %}
-                    {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                    {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention form-sm'}}) }}
                 {% endif %}
 
                 <h5>Statut de l'intervention :</h5>

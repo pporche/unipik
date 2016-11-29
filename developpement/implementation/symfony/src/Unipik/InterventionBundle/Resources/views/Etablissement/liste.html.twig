@@ -188,56 +188,6 @@
             });
         });
 
-        function imprimer(){
-            var docDefinition = {
-                pageOrientation: 'landscape',
-                content: [
-                    {text: "Liste des établissements", style: ['header']},
-                    {text: " ", style: ['header']},
-                    {
-                        style: 'table',
-                        table: {
-                            headerRows: 1,
-                            widths: [80, 80, 150, 100, 100],
-                            body: [
-                                [{ text: 'Nom', style: 'tableHeader' },
-                                    { text: 'Type', style: 'tableHeader'},
-                                    { text: 'Téléphone', style: 'tableHeader' },
-                                    { text: 'Emails', style: 'tableHeader' },
-                                    { text: 'Adresse', style: 'tableHeader' }],
-                                {% for etablissement in liste %}
-                                [ "{{ etablissement.nom | capitalize}}",
-                                    {% if etablissement.centreLoisirs %}
-                                    "Centre de Loisirs",
-                                    {% elseif etablissement.autreEtablissement %}
-                                    "Autre établissement",
-                                    {% else %}
-                                    "Enseignement",
-                                    {% endif %}
-                                    " ",
-                                    " ",
-                                    "{{ etablissement.adresse.adresse }}, {{ etablissement.adresse.codePostal.code }} {{ etablissement.adresse.ville.nom }}"
-                                ],
-                                {% endfor %}
-                            ]
-                        },
-                        layout: 'lightHorizontalLines'
-                    }
-                ],
-                styles: {
-                    header: {
-                        fontSize: 13,
-                        alignment: 'center'
-                    },
-                    table: {
-                        fontSize: 9,
-                        alignment: 'left'
-                    }
-                }
-            };
-            pdfMake.createPdf(docDefinition).open();
-        }
-
         function deleteEtablissements() {
             var conf = confirm('Souhaitez vous vraiment supprimer ?');
 
@@ -279,24 +229,33 @@
 
         $(':submit').on('click', function (e) {
             e.preventDefault();
-            if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
-                var ville = $('#recherche_avancee_ville').val();
-                var geolocalisation = '';
-                //Match numéro département avec nom ?
-                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
-                    if (dataVille.length > 0) {
-                        geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
-                        $("#recherche_avancee_geolocalisation").val(geolocalisation);
-                        $(".etablissement_list").submit();
-                    }
-                    else {
-                        //Que fait-on si 0 match ?
-                    }
-                });
-            }
-            else {
-                $(".etablissement_list").submit();
-            }
+//            if ($('#recherche_avancee_ville').val() != '' && $('#recherche_avancee_ville').val().indexOf(' (') < 0) {
+//                if (!$('.alert-warning').length) {
+//                    $('#recherche_avancee_ville').after("<div class='alert alert-warning'>Sélectionnez un code postal</div>");
+//                }
+//            }
+//            else {
+                if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
+                    var ville = $('#recherche_avancee_ville').val();
+                    var geolocalisation = '';
+                    //Match numéro département avec nom ?
+                    $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
+                        if (dataVille.length > 0) {
+                            geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                            $("#recherche_avancee_geolocalisation").val(geolocalisation);
+                            $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+                            $(".etablissement_list").submit();
+                        }
+                        else {
+                            //Que fait-on si 0 match ?
+                        }
+                    });
+                }
+                else {
+                    $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+                    $(".etablissement_list").submit();
+                }
+//            }
         });
 
     </script>
@@ -401,6 +360,7 @@
     <section class="col-lg-10 col-md-10 col-sm-10">
         <h2>Liste des établissements :</h2>
         <div class="container">
+
             <div class="row">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover" id="tableEtablissements">

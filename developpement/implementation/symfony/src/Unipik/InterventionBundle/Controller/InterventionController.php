@@ -64,12 +64,9 @@ class InterventionController extends Controller {
         $repository = $this->getInterventionRepository();
 
         $intervention = $repository->find(array('id' => $id));
-
         $form = $this->createForm(InterventionType::class);
 
-        if ($form->handleRequest($request)->isValid()
-            && $request->isMethod('POST')
-        ) {
+        if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
 
             $intervention->setDateIntervention(
@@ -79,20 +76,26 @@ class InterventionController extends Controller {
             $intervention->setLieu($form->get('lieu')->getData());
             $intervention->setNbPersonne($form->get('nbPersonne')->getData());
 
-            if ($intervention->isFrimousse()) {
+            // Gestion des matériaux en fonction des types
+            if ($intervention->getTypeIntervention() == "frimousse") {
                 $intervention->removeAllMateriauxFrimousse();
                 $materiauxData = $form->get('materiauxFrimousse')->getData();
-                foreach (reset($materiauxData) as $mat) {
-                    $intervention->addMateriauxFrimousse($mat);
-                }
+                if(reset($materiauxData)) {
+                    foreach (reset($materiauxData) as $mat)
+                        $intervention->addMateriauxFrimousse($mat);
+                } else
+                    $intervention->setMateriauxFrimousse(null);
+
                 $niveauFrimousse = $form->get('niveau')->getData();
                 $intervention->setNiveauFrimousse($niveauFrimousse);
-            } elseif ($intervention->isPlaidoyer()) {
+            } elseif ($intervention->getTypeIntervention() == "plaidoyer") {
                 $intervention->removeAllMaterielDispoPlaidoyer();
                 $materiauxData = $form->get('materielDispoPlaidoyer')->getData();
-                foreach (reset($materiauxData) as $mat) {
-                    $intervention->addMaterielDispoPlaidoyer($mat);
-                }
+                if(reset($materiauxData)) {
+                    foreach (reset($materiauxData) as $mat)
+                        $intervention->addMaterielDispoPlaidoyer($mat);
+                } else
+                    $intervention->setMaterielDispoPlaidoyer(null);
 
                 $repositoryTheme = $em->getRepository("ArchitectureBundle:NiveauTheme");
                 $themeArray = $form->get('niveauTheme')->get('theme')->getData();
@@ -103,19 +106,24 @@ class InterventionController extends Controller {
                     )
                 );
                 $intervention->setNiveauTheme($niveauTheme);
-            } else {
-                $materiauxData = array();
             }
 
+            // Gestion des heures
             $heure = $form->get('heure')->get('hour')->getData();
-            $heure = sprintf("%02d", $heure);
             $minute = $form->get('heure')->get('minute')->getData();
-            $minute = sprintf("%02d", $minute);
-            $heure .= ":".$minute;
+            if(isset($heure) && isset($minute)) {
+                $heure = sprintf("%02d", $heure);
+                $minute = sprintf("%02d", $minute);
+                $heure .= ":".$minute;
+            } else
+                $heure = null;
             $intervention->setHeure($heure);
+
             $description = $form->get('description')->getData();
             $intervention->setDescription($description);
 
+            $remarques = $form->get('remarques')->getData();
+            $intervention->setRemarques($remarques);
 
             $em->persist($intervention);
             $em->flush();
@@ -133,11 +141,24 @@ class InterventionController extends Controller {
 
         $materiaux = json_encode($materiaux);
 
+        $momentsVoulus = $intervention->getDemande()->getMomentsVoulus();
+        $moments = array();
+        $moments['lundi'] = array();
+        $moments['mardi'] = array();
+        $moments['mercredi'] = array();
+        $moments['jeudi'] = array();
+        $moments['vendredi'] = array();
+        $moments['samedi'] = array();
+        foreach($momentsVoulus as $mv) {
+            array_push($moments, array_push($moments[$mv->getJour()], $mv->getMoment()));
+        }
+
         return $this->render(
             'InterventionBundle:Intervention:editIntervention.html.twig', array('form' => $form->createView(),
                                                                                  'intervention' => $intervention,
                                                                                  'materiaux' => $materiaux,
                                                                                  'demande' => $intervention->getDemande(),
+                                                                                 'moments' => $moments
             )
         );
     }
@@ -246,7 +267,8 @@ class InterventionController extends Controller {
                 ->setBody($this->renderView('MailBundle::emailConfirmationPriseEnCompte.html.twig'), 'text/html');
             $this->get('mailer')->send($message);
 
-            return $this->RedirectToRoute('architecture_homepage');
+
+            return $this->RedirectToRoute('demande_enregistree');
         }
 
         // Envoie de paramètres initiaux à la vue
@@ -360,7 +382,7 @@ class InterventionController extends Controller {
                 ->setBody($this->renderView('MailBundle::emailConfirmationPriseEnCompte.html.twig'), 'text/html');
             $this->get('mailer')->send($message);
 
-            return $this->RedirectToRoute('architecture_homepage');
+            return $this->RedirectToRoute('demande_enregistree');
         }
 
         return $this->render(
@@ -393,16 +415,17 @@ class InterventionController extends Controller {
         $repository = $em->getRepository('InterventionBundle:Intervention');
         $intervention = $repository->find($id);
         $user = $this->getUser();
+        $_SESSION['back'] = $_SERVER["HTTP_REFERER"];
 
         $formAttr = $this->get('form.factory')->createBuilder(AttributionType::class)->getForm()->createView();
 
         if ($intervention->isFrimousse()) {
             $idvente = $this->getDoctrine()->getManager()->getRepository("InterventionBundle:Vente")->findOneBy(array('intervention' => $intervention));
-            return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
+            return $this->render('InterventionBundle:Intervention/Frimousse:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr, 'precedentUrl'=>$_SESSION['back']));
         } elseif ($intervention->isPlaidoyer()) {
-            return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
+            return $this->render('InterventionBundle:Intervention/Plaidoyer:consultation.html.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr, 'precedentUrl'=>$_SESSION['back']));
         } else {
-            return $this->render('InterventionBundle:Intervention/Autre:consultation.htm.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr));
+            return $this->render('InterventionBundle:Intervention/Autre:consultation.htm.twig', array('intervention' => $intervention, 'user' => $user, 'formAttr' => $formAttr, 'precedentUrl'=>$_SESSION['back']));
         }
     }
 
@@ -421,7 +444,20 @@ class InterventionController extends Controller {
         $demande = $intervention->getDemande();
         $interventionsDeLaDemande = $repository->getInterventionsDeDemande($demande);
         $formAttr = $this->get('form.factory')->createBuilder(AttributionType::class)->getForm()->createView();
-        return $this->render('InterventionBundle:Intervention:demandeConsultation.html.twig', array('intervention'=>$intervention, 'interventionsAssociees'=>$interventionsDeLaDemande, 'user' => $user, 'formAttr' => $formAttr));
+
+
+        $momentsVoulus = $intervention->getDemande()->getMomentsVoulus();
+        $moments = array();
+        $moments['lundi'] = array();
+        $moments['mardi'] = array();
+        $moments['mercredi'] = array();
+        $moments['jeudi'] = array();
+        $moments['vendredi'] = array();
+        $moments['samedi'] = array();
+        foreach($momentsVoulus as $mv) {
+            array_push($moments, array_push($moments[$mv->getJour()], $mv->getMoment()));
+        }
+        return $this->render('InterventionBundle:Intervention:demandeConsultation.html.twig', array('intervention'=>$intervention, 'interventionsAssociees'=>$interventionsDeLaDemande, 'user' => $user, 'formAttr' => $formAttr, 'moments' => $moments));
 
     }
 
@@ -485,7 +521,6 @@ class InterventionController extends Controller {
             'isCheck' => $dateChecked,
             'dateStart' => $start,
             'dateEnd' => $end,
-            //            'distance' => $distance,
             'user' => $user,
             'form' => $form->createView(),
             'formAttr' => $f->createView(),

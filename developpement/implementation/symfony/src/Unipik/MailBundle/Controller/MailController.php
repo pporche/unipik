@@ -130,7 +130,6 @@ class MailController extends Controller {
             }
             return $this->redirectToRoute('architecture_homepage');
         }
-
         return $this->render('MailBundle:mailing:mailingEtablissements.html.twig', array('form' => $form->createView()));
     }
 }

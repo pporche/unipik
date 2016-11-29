@@ -398,7 +398,7 @@
     <section id="listeVente" class="col-lg-10 col-md-10 col-sm-10">
         <h2> Liste des Ventes : </h2>
         {% if ventes %}
-            <button type="button" class="btn btn-primary" onclick="imprimer()" style="float: right; margin-right: 20px;"><span class="glyphicon glyphicon-print"></span></button><br>
+            <button type="button" class="imprimente" onclick="imprimer()"><span class="glyphicon glyphicon-print"></span></button><br>
         {% endif %}
 
         <div class="container">
@@ -529,9 +529,6 @@
                     </table>
                 </div>
                 <div class="buttons">
-                    <a href="{{ path('vente_add') }}" class="btn btn-primary btn-success">
-                        Ajouter une vente
-                    </a>
                     {% if is_granted('ROLE_ADMIN') %}
                             <button type="button" class="btn btn-danger" onclick="deleteVentes()">Supprimer</button>
                     {% endif %}

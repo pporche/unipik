@@ -1,0 +1,103 @@
+{% extends "ArchitectureBundle::layoutArchitecture.html.twig" %}
+
+{% block title %}
+    Statistiques - {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(function () {
+            drawChart(0);
+            drawVisualization();
+        });
+
+        var interventions = {{ interventions|raw }};
+        interventions.forEach(function (value, i) {
+            $('#selectYears').append($('<option>', {
+                value: i,
+                text: '' + (new Date().getFullYear() - i + 1) + '/' + (new Date().getFullYear() - i)
+            }));
+        });
+
+        $('#selectYears').change(function () {
+            drawChart($('#selectYears').val());
+        })
+
+        // Callback pour créer le diagramme, l'instancier et le dessiner.
+        function drawChart(index) {
+
+            {#interventions = {{ interventions|raw }};#}
+            // Création de la datatable pour populer le diagramme.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Intervention');
+            data.addColumn('number', 'Nombre');
+            data.addRows([
+                ['Plaidoyer', parseInt(interventions[index]['plaidoyers'])],
+                ['Frimousse', parseInt(interventions[index]['frimousses'])],
+                ['Autre', parseInt(interventions[index]['autres'])]
+            ]);
+
+            // Options du diagramme.
+            var currentDate = new Date();
+            var options = {'title':"Nombre d'intervention(s) réalisée(s) durant l'année scolaire " + currentDate.getFullYear() + "/" + (currentDate.getFullYear() + 1),
+                //'pieHole': 0.4,
+                'width':600,
+                'height':300,
+                'is3D': true,
+                'animation':{
+                    duration: 2000,
+                    easing: 'out',
+                    startup: true
+                }
+            };
+
+            // Instancier et dessiner le diagramme (remplacer PieChart par BarChart pour avoir un diagramme bâtons).
+            var chart = new google.visualization.PieChart(document.getElementById('chart_intervention'));
+            chart.draw(data, options);
+        }
+
+        function drawVisualization() {
+            // Some raw data (not necessarily accurate)
+            var currentDate = new Date().getFullYear();
+            var data = google.visualization.arrayToDataTable([
+                ['Années scolaires', 'Plaidoyers', 'Frimousses', 'Autres'],
+                ['dummy', 0, 0, 0]
+            ]);
+
+            interventions.forEach(function (value, i) {
+                data.addRow(['' + (currentDate - i + 1) + '/' + (currentDate - i), parseInt(value['plaidoyers']), parseInt(value['frimousses']), parseInt(value['autres'])]);
+                if(data.getFormattedValue(0,0) == 'dummy')
+                    data.removeRow(0);
+            });
+
+            var options = {
+                title : 'Intervention(s) réalisée(s) par année scolaire',
+                vAxis: {title: "Nombre d'intervention"},
+                hAxis: {title: 'Année scolaire'},
+                seriesType: 'bars',
+                series: {5: {type: 'line'}},
+                'animation':{
+                    duration: 3000,
+                    easing: 'out',
+                    startup: true
+                }
+            };
+
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_intervention_years'));
+            chart.draw(data, options);
+        }
+    </script>
+{% endblock %}
+
+{% block body%}
+    <h1>Statistiques</h1>
+    <div id="chart_intervention"></div>
+    <select id="selectYears"></select>
+    <h1>KAKIIIIIIIIII</h1>
+    <div id="chart_intervention_years" style="width: 900px; height: 500px;"></div>
+    <h1>Osef</h1>
+    <div id="chart_intervention_etablissement"></div>
+{% endblock %}

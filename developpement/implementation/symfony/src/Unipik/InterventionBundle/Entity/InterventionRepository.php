@@ -20,6 +20,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Unipik\InterventionBundle\Form\Intervention\InterventionType;
+use Unipik\InterventionBundle\InterventionBundle;
 
 /**
  * Le repository qui gère les interventions
@@ -505,5 +506,39 @@ class InterventionRepository extends EntityRepository {
             )
             ->setParameter('geolocalisation', $geolocalisation)
             ->setParameter('distance', $distance*1000);
+    }
+
+    public function getNumberInterventionRealisee($dateSup = null, $dateInf = null, $typeEtablissement = null, $typeIntervention = null) {
+        $qb = $this->createQueryBuilder('i')
+            ->select('count(i)')
+            ->where('i.realisee = true')
+            ->join('i.etablissement', 'e')
+        ;
+
+        if(isset($typeIntervention)) {
+            $qb->andWhere('i.typeIntervention = :typeIntervention')
+                ->setParameter('typeIntervention', $typeIntervention)
+            ;
+        }
+
+        if(isset($dateSup)) {
+            $qb->andWhere('i.dateIntervention < :dateSup')
+                ->setParameter('dateSup', $dateSup)
+            ;
+        }
+
+        if(isset($dateInf)) {
+            $qb->andWhere('i.dateIntervention > :dateInf')
+                ->setParameter('dateInf', $dateInf)
+            ;
+        }
+
+        if(isset($typeEtablissement)) {
+            $qb->andWhere('e.typeEnseignement = :typeEtablissement')
+                ->setParameter('typeEtablissement', $typeEtablissement)
+            ;
+        }
+
+        return $qb->getQuery()->getSingleScalarResult();
     }
 }

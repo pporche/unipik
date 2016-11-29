@@ -321,6 +321,7 @@
                                 if (dataVille.length > 0) {
                                     geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
                                     $("#fos_user_registration_form_adresse_geolocalisation").val(geolocalisation);
+                                    $("#fos_user_registration_form_adresse_ville").val($("#fos_user_registration_form_adresse_ville").val().split(' (')[0]);
                                     $(".fos_user_admin_register").submit();
                                 }
                                 else {
@@ -331,6 +332,7 @@
                         case 1 :
                             geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
                             $("#fos_user_registration_form_adresse_geolocalisation").val(geolocalisation);
+                            $("#fos_user_registration_form_adresse_ville").val($("#fos_user_registration_form_adresse_ville").val().split(' (')[0]);
                             $(".fos_user_admin_register").submit();
                             break;
                         default :
@@ -351,6 +353,7 @@
             var latlon = content.split(',');
             var geolocalisation = 'SRID=4326;POINT(' + latlon[1] + ' ' + latlon[0] + ')';
             $("#fos_user_registration_form_adresse_geolocalisation").val(geolocalisation);
+            $("#fos_user_registration_form_adresse_ville").val($("#fos_user_registration_form_adresse_ville").val().split(' (')[0]);
             $(".fos_user_admin_register").submit();
         }
     </script>

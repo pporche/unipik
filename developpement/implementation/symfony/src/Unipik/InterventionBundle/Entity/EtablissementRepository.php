@@ -82,6 +82,20 @@ class EtablissementRepository extends EntityRepository {
                 } else {
                     $qb->orderBy('e.nom', 'ASC');
                 }
+            }else{
+                if ($desc) {
+                    $qb->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
+                        ->andWhere('e.adresse = a')
+                        ->from('Unipik\ArchitectureBundle\Entity\Ville', 'v')
+                        ->andWhere('a.ville = v')
+                        ->orderBy('v.nom ', 'DESC');
+                } else {
+                    $qb->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
+                        ->andWhere('e.adresse = a')
+                        ->from('Unipik\ArchitectureBundle\Entity\Ville', 'v')
+                        ->andWhere('a.ville = v')
+                        ->orderBy('v.nom ', 'ASC');
+                }
             }
 
             $qb->setParameter('type', $t);

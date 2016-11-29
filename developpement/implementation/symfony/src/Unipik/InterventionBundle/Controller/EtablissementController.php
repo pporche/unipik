@@ -170,7 +170,7 @@ class EtablissementController extends Controller {
         $types = $typeEtablissement!="" ? $form->get("type".ucfirst($typeEtablissement))->getData() : null;
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
-        $field = $request->get("field", "nom");
+        $field = $request->get("field", "ville");
         $desc = $request->get("desc", false);
 
         $repository = $this->getEtablissementRepository();

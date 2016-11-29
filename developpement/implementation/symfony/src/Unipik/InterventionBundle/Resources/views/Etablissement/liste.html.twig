@@ -373,13 +373,73 @@
                                 {% if app.request.query.get('rowsPerPage') is not null %}
                                     {% set pathReq = pathReq | merge({"rowsPerPage":app.request.query.get('rowsPerPage')})%}
                                 {% endif %}
+
                                 {% if field == "nom" %}
-                                    {%  if desc %}
-                                        <th>Nom <a class="sortButtonNom" id="sortButtonNom" href="{{ path('etablissement_list', pathReq | merge({"desc":false, "field":"nom"}) ) }}"><img src="{{ asset('img/sort-down.png') }}" class="sort sort-down" id="sortNom" alt="sortDown"/></a></th>
-                                        {% else %}
-                                        <th>Nom <a class="sortButtonNom" id="sortButtonNom" href="{{ path('etablissement_list', pathReq | merge({"desc":true, "field":"nom"}) ) }}"><img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortNom" alt="sortUp"/></a></th>
-                                        {% endif %}
+                                    {% if desc %}
+                                        <th>Nom
+                                            <a class="sortButtonLieu" id="sortButtonLieu"
+                                               href="{{ path('etablissement_list', pathReq | merge({"desc":false, "field":"nom"}) ) }}">
+                                                <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                     id="sortLieu" alt="sort Down"/>
+                                            </a>
+                                        </th>
+                                        <th>Ville
+                                            <a class="sortButtonDate" id="sortButtonDate"
+                                               href="{{ path('etablissement_list', pathReq | merge({"desc":false, "field":"ville"}) ) }}">
+                                                <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-down"
+                                                     id="sortDate" alt="sort Down"/>
+                                            </a>
+                                        </th>
+                                    {% else %}
+                                        <th>Nom
+                                            <a class="sortButtonLieu" id="sortButtonLieu"
+                                               href="{{ path('etablissement_list', pathReq | merge({"desc":true, "field":"nom"}) ) }}">
+                                                <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up"
+                                                     id="sortLieu" alt="sort Down"/>
+                                            </a>
+                                        </th>
+                                        <th>Ville
+                                            <a class="sortButtonDate" id="sortButtonDate"
+                                               href="{{ path('etablissement_list', pathReq | merge({"desc":true, "field":"ville"}) ) }}">
+                                                <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
+                                                     id="sortDate" alt="sort Up"/>
+                                            </a>
+                                        </th>
+                                    {% endif %}
+                                {% else %}
+                                    {% if desc %}
+                                        <th>Nom
+                                            <a class="sortButtonLieu" id="sortButtonLieu"
+                                               href="{{ path('etablissement_list', pathReq | merge({"desc":false, "field":"nom"}) ) }}">
+                                                <img src="{{ asset('img/sort-up.png') }}" class="sort sort-down"
+                                                     id="sortLieu" alt="sort Down"/>
+                                            </a>
+                                        </th>
+                                        <th>Ville
+                                            <a class="sortButtonDate" id="sortButtonDate"
+                                               href="{{ path('etablissement_list', pathReq | merge({"desc":false, "field":"ville"}) ) }}">
+                                                <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
+                                                     id="sortDate" alt="sort Down"/>
+                                            </a>
+                                        </th>
+                                    {% else %}
+                                        <th>Nom
+                                            <a class="sortButtonLieu" id="sortButtonLieu"
+                                               href="{{ path('etablissement_list', pathReq | merge({"desc":true, "field":"nom"}) ) }}">
+                                                <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortLieu"
+                                                     alt="sort Up"/>
+                                            </a>
+                                        </th>
+                                        <th>Ville
+                                            <a class="sortButtonDate" id="sortButtonDate"
+                                               href="{{ path('etablissement_list', pathReq | merge({"desc":true, "field":"ville"}) ) }}">
+                                                <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
+                                                     id="sortDate" alt="sort Up"/>
+                                            </a>
+                                        </th>
+                                    {% endif %}
                                 {% endif %}
+
 
                                 <th>Ville</th>
                                 <th>Type</th>

@@ -267,7 +267,8 @@ class InterventionController extends Controller {
                 ->setBody($this->renderView('MailBundle::emailConfirmationPriseEnCompte.html.twig'), 'text/html');
             $this->get('mailer')->send($message);
 
-            return $this->RedirectToRoute('architecture_homepage');
+
+            return $this->RedirectToRoute('demande_enregistree');
         }
 
         // Envoie de paramètres initiaux à la vue
@@ -381,7 +382,7 @@ class InterventionController extends Controller {
                 ->setBody($this->renderView('MailBundle::emailConfirmationPriseEnCompte.html.twig'), 'text/html');
             $this->get('mailer')->send($message);
 
-            return $this->RedirectToRoute('architecture_homepage');
+            return $this->RedirectToRoute('demande_enregistree');
         }
 
         return $this->render(

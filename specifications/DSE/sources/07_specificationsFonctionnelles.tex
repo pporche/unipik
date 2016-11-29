@@ -84,7 +84,7 @@ Cette fonctionnalité doit également permettre un envoi ciblé en fonction de p
 \item la non-réponse à une précédente sollicitation pour cette année scolaire (un mail de relance),
 \item la réponse à une précédente sollicitation pour cette année scolaire (les établissements ayant demandé une action de frimousses mais pas d'action éducative),
 \item un sous-ensemble spécifique des adresses obtenues soit manuellement soit par l'application d'un critère (les écoles d'une ville donnée, un type donné par exemple),
-\item exclure de la liste les établissements ayant fait une demande qui n'a pas pu être satisfaite par les plaideurs (pour des raisons d'emploi du temps, distance, ...). \\
+\item exclure de la liste les établissements ayant fait une demande qui n'a pas pu être satisfaite par les chargé d'action éducative (pour des raisons d'emploi du temps, distance, ...). \\
 \end{itemize}
 
 Chaque e-mail invitera l'établissement à se connecter à un lien (actif) contenant un formulaire à remplir pour effectuer une demande d'intervention. Les champs à remplir seront : 
@@ -122,46 +122,56 @@ Si un établissement annule une demande d'intervention (grâce à l'e-mail de co
 
 \subsubsection{Fonctionnalité 5}
 La fonctionnalité 5 permettra d'afficher une carte montrant les lieux où des demandes d'intervention ont été faites pour un créneau que l'utilisateur aura entré.
-La fonctionnalité 5 consistera également à planifier les interventions c'est-à-dire qu'un plaideur s'attribue une intervention.
-Lors de chaque affectation, un e-mail d'information de prise en charge de la demande par l'équipe de plaideur sera envoyé à l'établissement demandeur ainsi qu'au responsable de l'activité demandée.
+La fonctionnalité 5 consistera également à planifier les interventions c'est-à-dire qu'un chargé d'action éducative s'attribue une intervention.
+Lors de chaque affectation, un e-mail d'information de prise en charge de la demande par l'équipe de chargés d'action éducative sera envoyé à l'établissement demandeur ainsi qu'au responsable de l'activité demandée.
 Une intervention ne peut être attribuée qu'à un utilisateur. \\
 Cette fonctionnalité permettra aussi de visualiser la combinaison du nom du chargé d'action éducatives, du nom de la ville, du nom de l'établissement et de la date fixée de l'action éducative.
 
 \subsubsection{Fonctionnalité 6}
-Une fois que le chargé d'action éducatives a défini une date pour son intervention (suite à échange de courriers électroniques avec le contact de l'établissement), il met à jour les informations concernant l'intervention (date, heure, nombre d'élèves, ...). Le demandeur reçoit alors un mail de confirmation l'informant du jour de l'heure et du lieu de l'intervention avec le nom et les coordonnées (adresse électronique, téléphone) du plaideur. Le texte de ce message est à définir et à faire valider par le responsable des plaideurs. \\
+Une fois que le chargé d'action éducatives a défini une date pour son intervention (suite à échange de courriers électroniques avec le contact de l'établissement), il met à jour les informations concernant l'intervention (date, heure, nombre d'élèves, ...). Le demandeur reçoit alors un mail de confirmation l'informant du jour de l'heure et du lieu de l'intervention avec le nom et les coordonnées (adresse électronique, téléphone) du chargé d'action éducative. Le texte de ce message est à définir et à faire valider par le responsable des chargés d'action éducative. \\
 
 \subsubsection{Fonctionnalité 7}
-La fonctionnalité 7 permettra d'envoyer un e-mail de rappel à l'établissement et au contact dans l'établissement (si son adresse électronique est différente de celle de l'établissement), une semaine avant l'intervention. Le texte de ce message sera à définir avec \nomClient{} et à faire valider par le responsable des plaideurs. \\
-Trois jours avant l'intervention, le plaideur recevra un e-mail de rappel avec les informations associées (date, heure, lieu, thème, nombre d'élèves, remarques, niveau des élèves). 
+La fonctionnalité 7 permettra d'envoyer un e-mail de rappel à l'établissement et au contact dans l'établissement (si son adresse électronique est différente de celle de l'établissement), une semaine avant l'intervention. Le texte de ce message sera à définir avec \nomClient{} et à faire valider par le responsable des chargés d'action éducative. \\
+Trois jours avant l'intervention, le chargé d'action éducative recevra un e-mail de rappel avec les informations associées (date, heure, lieu, thème, nombre d'élèves, remarques, niveau des élèves). 
 \\
 
 \subsection{Lot 3}
-Le lot 3 devra faire état de cinq fonctionnalités additionnelles. Il devra être impérativement livré au client avant le vendredi 9 décembre 2016. Un hébergeur devra avoir été trouvé à la fin de ce lot et la livraison devra être effectuée sur celui-ci.
+Le lot 3 devra faire état de trois fonctionnalités additionnelles. Il devra être impérativement livré au client avant le vendredi 9 décembre 2016. Un hébergeur devra avoir été trouvé à la fin de ce lot et la livraison devra être effectuée sur celui-ci.
 
 \subsubsection{Fonctionnalité 8}
-La fonctionnalité 8 correspond au mailing des frimousses. Elle est très similaire à la fonctionnalité 3.
+La fonctionnalité 8 permet l'attribution d'intervention de type frimousse. 
+La fonctionnalité 8 consistera à considérer les interventions de type frimousse en sus des interventions de type action éducative.
+Le principe reste le même, un chargé d'action éducative s'attribue une intervention.
+Lors de chaque affectation, un e-mail d'information de prise en charge de la demande par l'équipe de chargés de frimousse sera envoyé à l'établissement demandeur ainsi qu'au responsable de l'activité demandée.
+Une intervention de type frimousse ne peut être attribuée qu'à un utilisateur. \\
+Cette fonctionnalité permettra aussi de visualiser la combinaison du nom du chargé de frimousse, du nom de la ville, du nom de l'établissement et de la date fixée de la frimousse.
 
 \subsubsection{Fonctionnalité 9}
-La fonctionnalité 9 permet l'attribution d'intervention de type frimousse. Elle est très similaire à la fonctionnalité 5.
+La fonctionnalité 9 permettra une gestion des ventes engrangées par une intervention de type frimousse ou effectuées dans un établissement. 
+Il devra être possible de tracer le montant collecté lors de la vente afin de permettre de faire un bilan en fin d'année.
+Les informations associées à la vente seront :
+\begin{itemize}
+\item la date de celle-ci,
+\item le chiffre d'affaire,
+\item l'établissement dans laquelle la vente a eu lieu,
+\item l'intervention étant à l'origine de celle-ci si tant donné qu'il y en ait une,
+\item les remarques éventuelles.
+\end{itemize}
+L'équipe \PIC{} devra être force de proposition compte au rendu de celle-ci.
 
 \subsubsection{Fonctionnalité 10}
-La fonctionnalité 10 correspond à la fonctionnalité F9 énoncé dans le cahier des charges. Les frimousses engrangent des ventes qui doivent être gérée par l'outil.
-Il devra être possible de tracer le montant collecté lors de la vente afin de permettre de faire un bilan en fin d'année.
-
-\subsubsection{Fonctionnalité 11}
-Une vente peut également avoir lieu dans un établissement, il devra être possible de tracer celle-ci.
-
-\subsubsection{Fonctionnalité 12}
-L'outil devra faciliter la géolocalisation des établissements, bénévoles et interventions. Une carte devra pouvoir être accessible quand l'une des entité possède une adresse et il devra être possible de filtrer ces entités en fonction de la distance à une ville ou un point géographique particulier.
+L'outil devra faciliter la géolocalisation des établissements, bénévoles et interventions. Une carte devra pouvoir être accessible quand l'une des entité possède une adresse et il devra être possible de filtrer ces entités en fonction de la distance à une ville ou un point géographique particulier à l'aide de liste.
 
 
 
 \subsection{Lot 4}
-Le lot 3 devra faire état d'une fonctionnalité additionnelle. Il devra être impérativement livré au client avant le vendredi 16 décembre 2016. 
+Le lot 4 devra faire état d'une fonctionnalité additionnelle. Il devra être impérativement livré au client avant le vendredi 16 décembre 2016. 
 
-\subsubsection{Fonctionnalité 13}
-La fonctionnalité 13 concerne le module de statistiques concernant les données de l'Unicef. Ce module de statistiques contribuera à effectuer le bilan annuel. 
+\subsubsection{Fonctionnalité 11}
+La fonctionnalité 11 concerne le module de statistiques concernant les données de l'Unicef. Ce module de statistiques contribuera à effectuer le bilan annuel. 
 Il devra permettre de comptabiliser le nombre d'établissement partenaires ainsi que leur type. Il devra aussi permettre de comptabiliser le nombre de personnes ayant été sensibilisé.
-Il devra permettre de comptabiliser le nombre d'intervention effectué, les thèmes les plus plebiscités en fonction de critère tel que le type d'établissement.
+Il devra permettre de comptabiliser le nombre d'intervention effectué, les thèmes les plus plebiscités en fonction de critère tel que le type d'établissement, le niveau scolaire des participants.
 Il devra enfin permettre de comptabiliser les ventes effectuées à l'année en fonction de la zone géographique et du chiffre d'affaire.
+Il devra être possible de générer un rapport au format PDF ou au format CSV figurant chacune de ces données pour l'année actuelle.
+L'équipe \PIC{} devra être force de proposition compte à la représentation graphique de celle-ci de celle-ci.
 

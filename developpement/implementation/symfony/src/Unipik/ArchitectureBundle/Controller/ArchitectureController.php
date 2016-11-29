@@ -39,6 +39,20 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 class ArchitectureController extends Controller {
 
     /**
+     * page de success demande enregistree
+     *
+     * @return Response
+     */
+    public function demandeEnregistreeAction() {
+
+        return $this->render(
+            'ArchitectureBundle::demandeEnregistree.html.twig', array(
+            )
+        );
+    }
+
+
+    /**
      * Render the home page
      *
      * @return \Symfony\Component\HttpFoundation\Response

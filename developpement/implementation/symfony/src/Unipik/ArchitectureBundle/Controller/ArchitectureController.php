@@ -160,35 +160,35 @@ class ArchitectureController extends Controller {
         return $response;
     }
 
-    /**
-     * Autocomplete du code postal
-     *
-     * @param Request $request La requete
-     *
-     * @return JsonResponse
-     */
-    public function autocompleteCodeAction(Request $request) {
-
-        $codes = array();
-        $term = trim(strip_tags($request->get('term')));
-
-        $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('ArchitectureBundle:CodePostal')->createQueryBuilder('c')
-            ->where('c.code LIKE :code')
-            ->setParameter('code', $term.'%')
-            ->orderBy('c.code', 'ASC')
-            ->getQuery()
-            ->getResult();
-
-        foreach ($entities as $entity) {
-            $codes[] = $entity->getCode();
-        }
-
-        $response = new JsonResponse();
-        $response->setData($codes);
-
-        return $response;
-    }
+//    /**
+//     * Autocomplete du code postal
+//     *
+//     * @param Request $request La requete
+//     *
+//     * @return JsonResponse
+//     */
+//    public function autocompleteCodeAction(Request $request) {
+//
+//        $codes = array();
+//        $term = trim(strip_tags($request->get('term')));
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $entities = $em->getRepository('ArchitectureBundle:CodePostal')->createQueryBuilder('c')
+//            ->where('c.code LIKE :code')
+//            ->setParameter('code', $term.'%')
+//            ->orderBy('c.code', 'ASC')
+//            ->getQuery()
+//            ->getResult();
+//
+//        foreach ($entities as $entity) {
+//            $codes[] = $entity->getCode();
+//        }
+//
+//        $response = new JsonResponse();
+//        $response->setData($codes);
+//
+//        return $response;
+//    }
 
     /**
      * Action code postal
@@ -200,45 +200,41 @@ class ArchitectureController extends Controller {
     public function codePostalAction(Request $request) {
         if ($request->isXmlHttpRequest()) {
 
-            $nomVille = $request->get('ville');
-
-            $em = $this->getDoctrine()->getManager();
-            $repository = $em->getRepository('ArchitectureBundle:Ville');
-            $ville = $repository->findOneBy(array('nom' => $nomVille));
-
-            $codePostal = ($ville != "") ? $ville->getCodePostal()[0] : "";
-
-            $code = $codePostal->getCode();
-
-            return new JsonResponse(array('codePostal' => $code));
-        }
-        return new Response();
-    }
-
-    /**
-     * Action ville
-     *
-     * @param Request $request La requete
-     *
-     * @return JsonResponse|Response
-     */
-    public function villeAction(Request $request) {
-        if ($request->isXmlHttpRequest()) {
-
             $code = $request->get('codePostal');
 
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('ArchitectureBundle:CodePostal');
             $codePostal = $repository->findOneBy(array('code' => $code));
 
-            $ville = ($codePostal != "") ? $codePostal->getVille()[0] : "";
-
-            $villeNom = $ville->getNom();
-
-            return new JsonResponse(array('ville' => $villeNom));
+            return new JsonResponse(array('codePostal' => $codePostal));
         }
         return new Response();
     }
+
+//    /**
+//     * Action ville
+//     *
+//     * @param Request $request La requete
+//     *
+//     * @return JsonResponse|Response
+//     */
+//    public function villeAction(Request $request) {
+//        if ($request->isXmlHttpRequest()) {
+//
+//            $code = $request->get('codePostal');
+//
+//            $em = $this->getDoctrine()->getManager();
+//            $repository = $em->getRepository('ArchitectureBundle:CodePostal');
+//            $codePostal = $repository->findOneBy(array('code' => $code));
+//
+//            $ville = ($codePostal != "") ? $codePostal->getVille()[0] : "";
+//
+//            $villeNom = $ville->getNom();
+//
+//            return new JsonResponse(array('ville' => $villeNom));
+//        }
+//        return new Response();
+//    }
 
     /**
      * VerifyDepartementAction permet de vérifier que le département est dans la BD

@@ -17,6 +17,7 @@
 namespace Unipik\InterventionBundle\Form\Vente;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -44,9 +45,12 @@ class VenteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('chiffreAffaire', NumberType::class)
-            ->add('dateVente', DateType::class)
-            ->add('remarques', TextareaType::class);
+        $builder->add('chiffreAffaire', MoneyType::class)
+            ->add('dateVente', DateType::class, array(
+                'widget' => 'single_text',
+                'format' => 'dd/MM/yyyy'
+            ))
+            ->add('remarques', TextareaType::class, array('attr'=> ['rows' => '5', 'maxlength' => '500'], 'required' => false));
     }
 
     /**

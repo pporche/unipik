@@ -42,7 +42,8 @@ use Geocoder\Provider\GoogleMaps;
  * @license  None None
  * @link     None
  */
-class RegistrationController extends BaseController {
+class RegistrationController extends BaseController
+{
 
     /**
      * Action for registration
@@ -51,7 +52,8 @@ class RegistrationController extends BaseController {
      *
      * @return null|RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function registerAction(Request $request) {
+    public function registerAction(Request $request)
+    {
 
         /**
          * Le form factory
@@ -90,48 +92,56 @@ class RegistrationController extends BaseController {
         $form->handleRequest($request);
 
         // Après le submit du formulaire
-        if ($form->isValid()) {
-            $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
-            foreach ($responsibilitiesArray as $responsabilite) {
-                $user->addResponsabiliteActivite($responsabilite);
-                if ($responsabilite != 'admin_region' && $responsabilite != 'admin_comite') {
-                    $user->addActivitesPotentielles($responsabilite);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $responsibilitiesArray = $form->get("responsabiliteActivite")->getData(); //récup les responsabilités choisies sur le form + format pour persist
+                foreach ($responsibilitiesArray as $responsabilite) {
+                    $user->addResponsabiliteActivite($responsabilite);
+                    if ($responsabilite != 'admin_region' && $responsabilite != 'admin_comite') {
+                        $user->addActivitesPotentielles($responsabilite);
+                    }
                 }
+
+                $activitesPotentiellesArray = $form->get("activitesPotentielles")->getData();
+                foreach ($activitesPotentiellesArray as $activite) {
+                    $user->addActivitesPotentielles($activite);
+                }
+
+                $nom = $form->get('nom')->getData();
+                $prenom = $form->get('prenom')->getData();
+                $user->setNom(ucfirst(strtolower($nom)));
+                $user->setPrenom(ucfirst(strtolower($prenom)));
+
+                $adresse = $form->get('adresse')->getData();
+                $adresse->setAdresse(strtoupper($adresse->getAdresse()));
+                $adresse->setComplement(strtoupper($adresse->getComplement()));
+
+                $user->setAdresse($adresse);
+
+                $event = new FormEvent($form, $request);
+                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+                $userManager->updateUser($user);
+
+                if (null === $response = $event->getResponse()) {
+                    $url = $this->generateUrl('fos_user_registration_confirmed');
+                    $response = new RedirectResponse($url);
+                }
+
+                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+
+                return $response;
             }
-
-            $activitesPotentiellesArray = $form->get("activitesPotentielles")->getData();
-            foreach ($activitesPotentiellesArray as $activite) {
-                $user->addActivitesPotentielles($activite);
-            }
-
-            $nom = $form->get('nom')->getData();
-            $prenom = $form->get('prenom')->getData();
-            $user->setNom(ucfirst(strtolower($nom)));
-            $user->setPrenom(ucfirst(strtolower($prenom)));
-
-            $adresse = $form->get('adresse')->getData();
-            $adresse->setAdresse(strtoupper($adresse->getAdresse()));
-            $adresse->setComplement(strtoupper($adresse->getComplement()));
-
-            $user->setAdresse($adresse);
 
             $event = new FormEvent($form, $request);
-            $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
-            $userManager->updateUser($user);
+            $dispatcher->dispatch(FOSUserEvents::REGISTRATION_FAILURE, $event);
 
-            if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_registration_confirmed');
-                $response = new RedirectResponse($url);
+            if (null !== $response = $event->getResponse()) {
+                return $response;
             }
-
-            $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-
-            return $response;
         }
-
         return $this->render(
             'FOSUserBundle:Registration:register.html.twig', array(
-            'form' => $form->createView(),
+                'form' => $form->createView(),
             )
         );
     }
@@ -141,7 +151,8 @@ class RegistrationController extends BaseController {
      *
      * @return RedirectResponse
      */
-    public function checkEmailAction() {
+    public function checkEmailAction()
+    {
         $email = $this->get('session')->get('fos_user_send_confirmation_email/email');
         $this->get('session')->remove('fos_user_send_confirmation_email/email');
         $user = $this->get('fos_user.user_manager')->findUserByEmail($email);
@@ -157,11 +168,12 @@ class RegistrationController extends BaseController {
      * Add values of responsibilities to the set of potential activities.
      *
      * @param array $responsibilitiesArray Le tableau de responsabilites
-     * @param array $activitiesString      Le tableau d'activites
+     * @param array $activitiesString Le tableau d'activites
      *
      * @return string
      */
-    public function setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString) {
+    public function setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString)
+    {
         $activitiesString = trim($activitiesString, '}');
         if ($activitiesString != '{') {
             $activitiesString = $activitiesString . ',';
@@ -176,12 +188,12 @@ class RegistrationController extends BaseController {
             $activitiesString = trim($activitiesString, ',');
         }
         foreach ($responsibilitiesArray as $value) {
-            $activitiesString = $activitiesString.$value;
+            $activitiesString = $activitiesString . $value;
             if ($value !== end($responsibilitiesArray)) {
-                $activitiesString = $activitiesString.',';
+                $activitiesString = $activitiesString . ',';
             }
         }
-        return $activitiesString.'}';
+        return $activitiesString . '}';
     }
 
     /**
@@ -189,7 +201,8 @@ class RegistrationController extends BaseController {
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function confirmedAction() {
+    public function confirmedAction()
+    {
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('L\'utilisateur n\'a pas accès à cette section.');
@@ -198,8 +211,8 @@ class RegistrationController extends BaseController {
 
         return $this->render(
             'UserBundle:Registration:confirmed.html.twig', array(
-            'user' => $user,
-            'targetUrl' => $this->_getTargetUrlFromSession(),
+                'user' => $user,
+                'targetUrl' => $this->_getTargetUrlFromSession(),
             )
         );
     }
@@ -209,7 +222,8 @@ class RegistrationController extends BaseController {
      *
      * @return mixed
      */
-    private function _getTargetUrlFromSession() {
+    private function _getTargetUrlFromSession()
+    {
         if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
             $tokenStorage = $this->get('security.token_storage');
         } else {

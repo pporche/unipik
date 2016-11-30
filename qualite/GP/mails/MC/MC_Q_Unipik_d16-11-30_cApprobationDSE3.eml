@@ -1,0 +1,77 @@
+Return-Path: <president.unicef76@laposte.net>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 86877238E6
+	for <pporche@insa-rouen.fr>; Wed, 30 Nov 2016 10:25:27 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0A9AQDyfzVXkGXVdcJeJwGEY4J9pCeLBIlBhhQCgXsBAQEBAQETAQEBAQcNCQkhL4RDAQEBAwwXDwEFCAEBNgIPCQIaAgUWCwICCQMCAQIBRQYNCAEBiBABAQIMD5BAnDZnhEEBAQWBW4VSEBcQExNEg2MpCIEBhGKFD4c/glkBmCIIAYIbjVaBWoYShVqPQYJaHoFXbIhaAQEB
+X-IPAS-Result: A0A9AQDyfzVXkGXVdcJeJwGEY4J9pCeLBIlBhhQCgXsBAQEBAQETAQEBAQcNCQkhL4RDAQEBAwwXDwEFCAEBNgIPCQIaAgUWCwICCQMCAQIBRQYNCAEBiBABAQIMD5BAnDZnhEEBAQWBW4VSEBcQExNEg2MpCIEBhGKFD4c/glkBmCIIAYIbjVaBWoYShVqPQYJaHoFXbIhaAQEB
+X-IronPort-AV: E=Sophos;i="5.24,612,1454972400"; 
+   d="scan'208";a="99096140"
+Received: from smtpoutz26.laposte.net (HELO smtp.laposte.net) ([194.117.213.101])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 30 Nov 2016 10:25:27 +0200
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout014 (Postfix) with ESMTP id 150141200DF
+	for <pierre.porche@insa-rouen.fr>; Wed, 30 Nov 2016 10:25:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1463124327; bh=2Jnb/3B8g8p4n+/9LDcTdk4Hllh34RzPKBGb5VMxVl0=;
+	h=Reply-To:Subject:References:To:From:Date:In-Reply-To;
+	b=l88XmQ9/E7Uokt2NuMVCYS49KO8Wz/3vRAxscCF6gn7wdSFWuPd2LjqtuZtQX8WvJ
+	 oW+ThXpksnlHVGD9vGBlWqi6xTkDrcAPaUJnnpyb7hsQZY9cA3w8ck669x8l0Tc8fT
+	 /zqy9Iwirm0hlAt+fg9Fr17DJpi6NzJkTnBNOuVR6CfSgRCutMNd7dqTXeoXwwKLZd
+	 j3ULCZx9/m3ZBrFw/L38K3EZvOfNO/BE0W1AuYm70LuXgOSMWWKJ8BtatV2est5S3/
+	 xs0RJqB/rwVLN3ZZ4uqsdHJP1MIJ+NGC2Z3lbl+MoFTFbqu1f2P6UPDxjxOV2TigyK
+	 LeFWLnFbBu7Xg==
+Received: from lpn-prd-vrin003 (lpn-prd-vrin003.prosodie [10.128.63.4])
+	by lpn-prd-vrout014 (Postfix) with ESMTP id BC5DB120167
+	for <pierre.porche@insa-rouen.fr>; Fri, 13 May 2016 10:25:22 +0200 (CEST)
+Received: from lpn-prd-vrin003 (localhost [127.0.0.1])
+	by lpn-prd-vrin003 (Postfix) with ESMTP id AE8E148DD9E
+	for <pierre.porche@insa-rouen.fr>; Fri, 13 May 2016 10:25:22 +0200 (CEST)
+Received: from [192.168.1.77] (LFbn-1-5727-78.w90-108.abo.wanadoo.fr [90.108.183.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin003 (Postfix) with ESMTPSA id 8C79748DC66
+	for <sergi.colomies@insa-rouen.fr>; Fri, 13 May 2016 10:25:22 +0200 (CEST)
+Reply-To: president.unicef76@laposte.net
+Subject: Re: Approbation DSE v3.00
+References: <5732E20C.6090603@insa-rouen.fr>
+To: =?UTF-8?Q?Pierre_Porche?= <pierre.porche@insa-rouen.fr>
+From: President <president.unicef76@laposte.net>
+Organization: UNICEF
+Message-ID: <57358166.6080409@laposte.net>
+Date: Wed, 30 Nov 2016 10:25:26 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101
+ Thunderbird/38.7.2
+MIME-Version: 1.0
+In-Reply-To: <5732E20C.6090603@insa-rouen.fr>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-VR-SrcIP: 90.108.183.78
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeekledrvddtgdduvdegucetufdoteggodetrfdotffvucfrrhho
+X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhht
+X-VR-Cause-3: shculddquddttddmnecujfgurheprhfufhfvhfhokffffgggjggtgfesthekrgdttdefjeenucfhrhho
+X-VR-Cause-4: mheprfhrvghsihguvghnthcuoehprhgvshhiuggvnhhtrdhunhhitggvfhejieeslhgrphhoshhtvgdr
+X-VR-Cause-5: nhgvtheqnecukfhppeeltddruddtkedrudekfedrjeeknecurfgrrhgrmhepmhhouggvpehsmhhtphho
+X-VR-Cause-6: uhhtpdhhvghloheplgduledvrdduieekrddurdejjegnpdhinhgvthepledtrddutdekrddukeefrdej
+X-VR-Cause-7: kedpmhgrihhlfhhrohhmpehprhgvshhiuggvnhhtrdhunhhitggvfhejieeslhgrphhoshhtvgdrnhgv
+X-VR-Cause-8: thdprhgtphhtthhopehsvghrghhirdgtohhlohhmihgvshesihhnshgrqdhrohhuvghnrdhfrh
+X-VR-AvState: No
+X-VR-State: 0
+
+Pas de problème, je l'approuve. VB
+
+Le 30/11/2016 10:01, Pierre Porche a écrit :
+> Bonjour Madame,
+>
+> Pourriez vous m'indiquer si vous approuvez le DSE dans sa version 2.01 afin de le faire passer en version 3.00 ?
+>
+> Merci,
+>
+> Salutations.
+>
+
+-- 
+Véronique BARBIER Présidente UNICEF Seine Maritime +33 2 35 88 98 88

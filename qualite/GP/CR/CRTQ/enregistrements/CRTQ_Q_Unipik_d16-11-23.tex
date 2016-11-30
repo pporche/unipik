@@ -1,0 +1,87 @@
+% version 1.00	date 30/11/2016	Auteur Kafui Atanley
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+\renewcommand{\footrulewidth}{0,01cm}
+
+\begin{document}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion de Tutorat Qualité}}					%titre
+
+23/11/2016
+\hfill   
+\hfill 	11:21 - 12:04 				% Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 30/11/2016 & \Kafui & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RGC & \Melissa & -- & -- \\[30pt]
+				\hline
+				Validateur & \CP & \Pierre & -- & -- \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Etude de la pertinence des indicateurs}
+\paragraph*{}
+Nous disposons actuellement de deux indicateurs spécifiques à la gestion de projet (temps de travail en salle PIC et retard de tâche). Nous avons également deux indicateurs spécifiques à la qualité du projet (temps de rédaction de compte-rendu et écart de date prévue/réelle de correction de \FT{}).
+Avec la mise en place récente de SonarQube, nous avons pensé à mettre en place deux indicateurs supplémentaires afin de veiller à la qualité du code que sont la duplication et le nombre de bug détectés. Ceux-ci sont en cours de référencement dans le \PQ{} mais ils sont déjà utilisés.
+Leurs seuils sont fixés respectivement à 15 \% de duplication maximum et à 2 bugs détectés au maximum.\\
+\nomTuteurQualite{} nous signifie que nos indicateurs sont plutôt pertinents mais que nous devrions rechercher un indicateur supplémentaire vis-à-vis de la qualité du projet.
+\section{Recommendation}
+\paragraph*{}
+\nomTuteurQualite{} nous conseille d'établir une documentation consistente car nous avons un client non technique. Cette documentation devra couvrir le déploiement et l'utilisation de l'outil.
+\nomTuteurQualite{} nous recommande de ne pas négliger cet étape car la partie "service après-vente" des \PIC{} posent souvent problème.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

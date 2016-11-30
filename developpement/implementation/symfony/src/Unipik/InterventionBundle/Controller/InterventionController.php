@@ -23,6 +23,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Intervention;
+use Unipik\InterventionBundle\Entity\InterventionRepository;
 use Unipik\InterventionBundle\Form\DemandeType;
 use Unipik\InterventionBundle\Form\DemandeAnonymeType;
 use Unipik\InterventionBundle\Form\Intervention\AttributionType;
@@ -191,7 +192,7 @@ class InterventionController extends Controller {
                     'alert' => 'danger'
                 )
             );
-            return $this->RedirectToRoute('intervention_request_anonyme');
+            return $this->redirectToRoute('intervention_request_anonyme');
         }
 
         // Pré-remplir les champs d'établissement
@@ -464,7 +465,7 @@ class InterventionController extends Controller {
     /**
      * Renvoie le repository Intervention.
      *
-     * @return RepositoryFactory
+     * @return InterventionRepository
      */
     public function getInterventionRepository() {
         $em = $this->getDoctrine()->getManager();
@@ -894,8 +895,8 @@ class InterventionController extends Controller {
     /**
      * Iterates over the interventions requested to get the parameters
      *
-     * @param List $interventionsRawList la liste brute
-     * @param List $interventionList     la liste
+     * @param array $interventionsRawList la liste brute
+     * @param array $interventionList     la liste
      *
      * @return object
      */

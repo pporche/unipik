@@ -1,0 +1,93 @@
+Return-Path: <president.unicef76@laposte.net>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 1E6CE23A12
+	for <pporche@insa-rouen.fr>; Wed, 30 Nov 2016 11:43:36 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0A8BAD6BP5Xh8eaFrJcHQEXAQcFAYJ0NQEBAQEBgR5SgwGiCo11h3iGGwMCAoJgAQIBAQEBAQITAQEBCgsJCRkvQQ4BhBICAQMMFx0BATgPCQY+AgICHTgGDQgBAYgxAQMMD5hwnEpnhEkBAQWDdBA6E0WDIQEBAQEGAQEBAQEBEwYJhXmCQQiGaRACAX6CIYJbgSYBmFYIAQEagSCCBpYmhgyJKYNQg3+EJoFgcII5hisBAQE
+X-IPAS-Result: A0A8BAD6BP5Xh8eaFrJcHQEXAQcFAYJ0NQEBAQEBgR5SgwGiCo11h3iGGwMCAoJgAQIBAQEBAQITAQEBCgsJCRkvQQ4BhBICAQMMFx0BATgPCQY+AgICHTgGDQgBAYgxAQMMD5hwnEpnhEkBAQWDdBA6E0WDIQEBAQEGAQEBAQEBEwYJhXmCQQiGaRACAX6CIYJbgSYBmFYIAQEagSCCBpYmhgyJKYNQg3+EJoFgcII5hisBAQE
+X-IronPort-AV: E=Sophos;i="5.31,333,1473112800"; 
+   d="xml'?bin'?scan'208,217,72,48?rels'208,217,72,48";a="107442664"
+Received: from smtpoutz299.laposte.net (HELO smtpoutz2.laposte.net) ([178.22.154.199])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 30 Nov 2016 11:43:35 +0200
+Received: from smtpoutz2.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout011 (Postfix) with ESMTP id 4980E52A98D
+	for <pierre.porche@insa-rouen.fr>; Wed, 30 Nov 2016 11:43:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1476265415; bh=NasykeMaPxD8qsrvdwwbgSwgyxvVjh7QBeNUNcpPRbE=;
+	h=Subject:References:To:From:Date:In-Reply-To;
+	b=lxxa5oYgtKto14vNPjtVRi+7lFW2ABQPaKliLZ/AvJ/6OVkoCTZkiXxYo2o+H/8e6
+	 KJWpeYPiiKMuCcT3/SxjXoXjMaeN6YxYsOF1EXA9lh5rHl78Kp1y1/UZnHb7eIKt72
+	 5sDbhWkfNWg051+kQDrlhEhAi7hIyJvJfFigkwimt4GUuUm5oaldDXLBpVB7uZC9D9
+	 MWcaLQ+i0sEAm0KhJBa2tueWKIMnFRdaB0YGu6uTLLyg6CnTbCClURJHSf9CMbyX0j
+	 fNmjLQOoU49+J/uBX+TziY11yzSWw9f7xJGq0bA744OP1xRs2U/qviazbMpysJHytG
+	 vkF1ThqjNGKig==
+Received: from smtpoutz2.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout011 (Postfix) with ESMTP id 3ABEA52A992
+	for <pierre.porche@insa-rouen.fr>; Wed, 30 Nov 2016 11:43:35 +0200 (CEST)
+Received: from lpn-prd-vrin001 (lpn-prd-vrin001.laposte [10.128.63.2])
+	by lpn-prd-vrout011 (Postfix) with ESMTP id 3678752A98D
+	for <pierre.porche@insa-rouen.fr>; Wed, 30 Nov 2016 11:43:35 +0200 (CEST)
+Received: from lpn-prd-vrin001 (localhost [127.0.0.1])
+	by lpn-prd-vrin001 (Postfix) with ESMTP id 25B27366CD3
+	for <pierre.porche@insa-rouen.fr>; Wed, 30 Nov 2016 11:43:35 +0200 (CEST)
+Received: from [192.168.1.15] (LFbn-1-5727-78.w90-108.abo.wanadoo.fr [90.108.183.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin001 (Postfix) with ESMTPSA id E18F3366BD7
+	for <pierre.porche@insa-rouen.fr>; Wed, 30 Nov 2016 11:43:34 +0200 (CEST)
+Subject: =?UTF-8?Q?Compte_rendu_de_la_r=c3=a9union_du_28/11/2016?=
+References: <CAM17bmLoX7=GN9DxP9Xu5b2dzccod_5TwmYwQWO+cYPBizW=tA@mail.gmail.com>
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+From: =?UTF-8?Q?Pr=c3=a9sident_UNICEF_76?= <president.unicef76@laposte.net>
+X-Forwarded-Message-Id: <CAM17bmLoX7=GN9DxP9Xu5b2dzccod_5TwmYwQWO+cYPBizW=tA@mail.gmail.com>
+Message-ID: <5b16c5d6-5867-3d89-c36b-fcbbb36b305f@laposte.net>
+Date: Wed, 30 Nov 2016 11:43:23 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <CAM17bmLoX7=GN9DxP9Xu5b2dzccod_5TwmYwQWO+cYPBizW=tA@mail.gmail.com>
+Content-Type: multipart/mixed;
+ boundary="------------D59300FC5AD7FDA115545910"
+X-VR-SrcIP: 90.108.183.78
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelvddrgedvgddulecutefuodetggdotefrodftvfcurfhrohhf
+X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhs
+X-VR-Cause-3: ucdlqddutddtmdenucfjughrpefufhfvhffkffgfgggjtgesmhdtreertdefjeenucfhrhhomheprfhr
+X-VR-Cause-4: rohsihguvghnthgpfgfpkfevgffhpgejiecuoehprhgvshhiuggvnhhtrdhunhhitggvfhejieeslhgr
+X-VR-Cause-5: phhoshhtvgdrnhgvtheqnecukfhppeeltddruddtkedrudekfedrjeeknecurfgrrhgrmhepmhhouggv
+X-VR-Cause-6: pehsmhhtphhouhhtpdhhvghloheplgduledvrdduieekrddurdduhegnpdhinhgvthepledtrddutdek
+X-VR-Cause-7: rddukeefrdejkedpmhgrihhlfhhrohhmpehprhgvshhiuggvnhhtrdhunhhitggvfhejieeslhgrphho
+X-VR-Cause-8: shhtvgdrnhgvthdprhgtphhtthhopehpihgvrhhrvgdrphhorhgthhgvsehinhhsrgdqrhhouhgvnhdr
+X-VR-Cause-9: fhhr
+X-VR-AvState: No
+X-VR-State: 0
+X-VR-State: 0
+
+This is a multi-part message in MIME format.
+--------------D59300FC5AD7FDA115545910
+Content-Type: multipart/alternative;
+ boundary="------------72A19BDBF02B63867E7DEFFC"
+
+
+--------------72A19BDBF02B63867E7DEFFC
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+OK pour le compte-rendu.
+
+Le 30/11/2016 10:01, Pierre Porche a écrit :
+> Bonjour Madame,
+>
+> Pourriez vous m'indiquer si vous approuvez le Compte rendu de la réunion du 28/11/2016?
+>
+> Merci,
+>
+> Salutations.
+>
+
+-- 
+Véronique BARBIER Présidente UNICEF Seine Maritime +33 2 35 88 98 88
+
+

@@ -138,3 +138,23 @@ INSERT INTO intervention (demande_id, benevole_id, comite_id, etablissement_id, 
 INSERT INTO intervention (demande_id, benevole_id, comite_id, etablissement_id, date_intervention, lieu, nb_personne, remarques, heure, realisee, niveau_frimousse, materiaux_frimousse, type_intervention) VALUES ('4', '9', '1', '17', '2016-09-30', 'le lieu', '21', 'la remarque',  '14:00', false, 'CM2','{(decoration), (patron)}', 'frimousse' );
 INSERT INTO intervention (demande_id,  comite_id, etablissement_id, lieu, nb_personne, remarques, heure, realisee, niveau_frimousse, materiaux_frimousse, type_intervention) VALUES ('4', '1', '18', 'le lieu', '21', 'la remarque',  '14:00', false , 'autre','{(decoration), (bourre)}', 'frimousse');
 INSERT INTO intervention (demande_id,  comite_id, etablissement_id, lieu, nb_personne, remarques, heure, realisee, niveau_frimousse, materiaux_frimousse, type_intervention) VALUES ('4', '1', '19', 'le lieu', '21', 'la remarque',  '14:00', false, 'autre','{(bourre), (patron)}', 'frimousse');
+
+ALTER SEQUENCE vente_id_seq RESTART WITH 1;
+INSERT INTO vente (etablissement_id, chiffre_affaire, date_vente) VALUES (1010,  60, '20-11-2016');
+INSERT INTO vente (etablissement_id, chiffre_affaire, date_vente) VALUES (1011,  70, '21-12-2016');
+INSERT INTO vente (etablissement_id, chiffre_affaire, date_vente) VALUES (1012,  80, '22-01-2017');
+INSERT INTO vente (etablissement_id, chiffre_affaire, date_vente) VALUES (1013,  90, '23-01-2017');
+INSERT INTO vente (etablissement_id, chiffre_affaire, date_vente) VALUES (1014,  100, '24-01-2017');
+INSERT INTO vente (etablissement_id, chiffre_affaire, date_vente) VALUES (1015,  110, '25-02-2017');
+INSERT INTO vente (etablissement_id, chiffre_affaire, date_vente) VALUES (1016,  30, '26-02-2017');
+INSERT INTO vente (etablissement_id, intervention_id, chiffre_affaire, date_vente) VALUES (13, 14,  100, '21-12-2016');
+INSERT INTO vente (etablissement_id, intervention_id, chiffre_affaire, date_vente) VALUES (13, 14,  50, '27-12-2016');
+INSERT INTO vente (etablissement_id, intervention_id, chiffre_affaire, date_vente) VALUES (13, 14,  55, '29-12-2016');
+INSERT INTO vente (etablissement_id, intervention_id, chiffre_affaire, date_vente) VALUES (13, 14,  58, '26-12-2017');
+INSERT INTO vente (etablissement_id, intervention_id, chiffre_affaire, date_vente) VALUES (13, 14,  63, '30-03-2017');
+INSERT INTO vente (etablissement_id, intervention_id, chiffre_affaire, date_vente) VALUES (14, 15,  89, '15-01-2017');
+INSERT INTO vente (etablissement_id, intervention_id, chiffre_affaire, date_vente) VALUES (14, 15,  51, '16-01-2017');
+INSERT INTO vente (etablissement_id, intervention_id, chiffre_affaire, date_vente) VALUES (14, 15,  89, '12-02-2017');
+INSERT INTO vente (etablissement_id, intervention_id, chiffre_affaire, date_vente) VALUES (14, 15,  32, '15-02-2017');
+INSERT INTO vente (etablissement_id, intervention_id, chiffre_affaire, date_vente) VALUES (16, 17,  78, '17-02-2017');
+INSERT INTO vente (etablissement_id, intervention_id, chiffre_affaire, date_vente) VALUES (16, 17,  54, '19-02-2017');

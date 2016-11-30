@@ -20,11 +20,14 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Unipik\ArchitectureBundle\Form\Adresse\VilleType;
 use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 
 /**
  * Le type recherche avancee
@@ -118,7 +121,10 @@ class RechercheAvanceeType extends AbstractType
             ->add('villeOuDomicile', ChoiceType::class, $villeOuDomicile)
             ->add('ville', VilleType::class, array('required' => false))
             ->add('geolocalisation', HiddenType::class)
-            ->add('distance', ChoiceType::class, $distanceChoiceType);
+            ->add('distance', ChoiceType::class, $distanceChoiceType)
+            ->add('CADebut', NumberType::class, array('required' => false))
+            ->add('CAFin', NumberType::class, array('required' => false)
+            );
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
     }

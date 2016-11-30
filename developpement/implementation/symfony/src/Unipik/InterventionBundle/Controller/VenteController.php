@@ -59,6 +59,8 @@ class VenteController extends Controller {
         $ville = $form->get("ville")->getData();
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
+        $borne1 = $form->get("CADebut")->getData();
+        $borne2 = $form->get("CAFin")->getData();
         $distance = $form->get("distance")->getData();
         $geolocalisation = $form->get("geolocalisation")->getData();
         $rowsPerPage = $request->get("rowsPerPage", 10);
@@ -66,7 +68,7 @@ class VenteController extends Controller {
         $desc = $request->get("desc", false);
 
         $venteRepository = $em->getRepository('InterventionBundle:Vente');
-        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, null, null);
+        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, null, null, $borne1, $borne2);
 
 
 
@@ -105,6 +107,8 @@ class VenteController extends Controller {
         $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
         $ville = $form->get("ville")->getData();
         $start = $form->get("start")->getData();
+        $borne1 = $form->get("CADebut")->getData();
+        $borne2 = $form->get("CAFin")->getData();
         $end = $form->get("end")->getData();
         $distance = $form->get("distance")->getData();
         $geolocalisation = $form->get("geolocalisation")->getData();
@@ -116,7 +120,7 @@ class VenteController extends Controller {
 
         $venteRepository = $em->getRepository('InterventionBundle:Vente');
 
-        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, $etablissement, null);
+        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, $etablissement, null, $borne1, $borne2);
 
 
 
@@ -159,6 +163,8 @@ class VenteController extends Controller {
         $ville = $form->get("ville")->getData();
         $start = $form->get("start")->getData();
         $end = $form->get("end")->getData();
+        $borne1 = $form->get("CADebut")->getData();
+        $borne2 = $form->get("CAFin")->getData();
         $distance = $form->get("distance")->getData();
         $geolocalisation = $form->get("geolocalisation")->getData();
         $rowsPerPage = $request->get("rowsPerPage", 10);
@@ -169,7 +175,7 @@ class VenteController extends Controller {
 
         $venteRepository = $em->getRepository('InterventionBundle:Vente');
 
-        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, null, $intervention);
+        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, null, $intervention, $borne1, $borne2);
 
 
 

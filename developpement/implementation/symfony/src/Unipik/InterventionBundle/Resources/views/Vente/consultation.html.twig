@@ -124,12 +124,10 @@
     </div>
     <div class="row">
         <div class="buttons">
-            {% if (is_granted('ROLE_ADMIN')) %}
-                <a id="boutonModifier" href="{{ path("vente_admin_edit", {'id': vente.id}) }}"
-                   class="btn btn-primary">
-                    <span class="glyphicon glyphicon-pencil"></span>&nbsp Modifier
-                </a>
-            {% endif %}
+            <a id="boutonModifier" href="{{ path("vente_edit", {'id': vente.id}) }}"
+               class="btn btn-primary">
+                <span class="glyphicon glyphicon-pencil"></span>&nbsp Modifier
+            </a>
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path("vente_admin_delete", {'id': vente.id}) }}" class="btn btn-danger"
                    onclick="return confirm('Souhaitez vous vraiment supprimer cette vente ?')">

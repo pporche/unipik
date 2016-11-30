@@ -99,6 +99,11 @@
             margin-top:30px;
         }
 
+        .filtresCalendrier{
+            display: inline-block;
+            margin-left: calc(50% - 150px);
+        }
+
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -109,13 +114,78 @@
                     }
                 {% endif %}
             {% endfor %}
+            $('#mesInterventionsNonRealisees').prop('checked', true);
+            $('#mesInterventionsRealisees').prop('checked', true);
+            $('#autresBenevoles').prop('checked', true);
+            remplirPlanning(listeInterventions());
 
+            $('#mesInterventionsNonRealisees').change(
+                    function(){
+                        $('#calendar').fullCalendar( 'removeEvents');
+                        $('#calendar').fullCalendar('addEventSource', listeInterventions());
+                        if(!($('#mesInterventionsRealisees').is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#82C46C';
+                            });
+                        }
+                        if(!($('#autresBenevoles').is(':checked'))) {
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#grey';
+                            });
+                        }
+                        if(!($(this).is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#3a87ad';
+                            });
+                        }
+                    });
+            $('#mesInterventionsRealisees').change(
+                    function(){
+                        $('#calendar').fullCalendar( 'removeEvents');
+                        $('#calendar').fullCalendar('addEventSource', listeInterventions());
+                        if(!($('#mesInterventionsNonRealisees').is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#3a87ad';
+                            });
+                        }
+                        if(!($('#autresBenevoles').is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == 'grey';
+                            });
+                        }
+                        if(!($(this).is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#82C46C';
+                            });
+                        }
+                    });
 
+            $('#autresBenevoles').change(
+                    function(){
+                        $('#calendar').fullCalendar( 'removeEvents');
+                        $('#calendar').fullCalendar('addEventSource', listeInterventions());
+                        if(!($('#mesInterventionsNonRealisees').is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#3a87ad';
+                            });
+                        }
+                        if(!($('#mesInterventionsRealisees').is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#82C46C';
+                            });
+                        }
+                        if(!($(this).is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == 'grey';
+                            });
+                        }
+                    });
+        });
+
+        function listeInterventions(){
             var interventions = [];
-            var typeIntervention;
-
-            {% for intervention in interventionsNonRealisees %}
-            {% if intervention.dateIntervention is not null %}
+            var typeIntervention ;{% for intervention in interventionsNonRealisees %}
+            {% if intervention.dateIntervention is not null  %}
             {% if intervention.plaidoyer %}
             typeIntervention = "Action éducative";
             {% elseif intervention.frimousse %}
@@ -123,7 +193,7 @@
             {% else %}
             typeIntervention = "Autre intervention";
             {% endif %}
-            {% if intervention.etablissement.nom != null %}
+            {% if intervention.etablissement.nom != null  %}
             typeEtablissement = "{{ intervention.etablissement.nom }}"
             {% elseif  intervention.etablissement.nom == null %}
             {% if intervention.etablissement.typeEnseignement is not empty %}
@@ -158,28 +228,26 @@
             {% endif %}
             {% endif %}
             {% endif %}
+
             {% if intervention.benevole is not null %}
             {% if user.id == intervention.benevole.id %}
-            interventions.push({
-                title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start: '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+            interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                allDay: false,
                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                allDay: false
-            });
+                color: '#3a87ad'});
             {% else %}
-            interventions.push({
-                title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start: '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+            interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                allDay: false,
                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                color: 'grey',
-                allDay: false
-            });
+                color  : 'grey' });
             {% endif %}
             {% endif %}
             {% endif %}
             {% endfor %}
             {% for intervention in interventionsRealisees %}
-            {% if intervention.dateIntervention is not null %}
+            {% if intervention.dateIntervention is not null  %}
             {% if intervention.plaidoyer %}
             typeIntervention = "Action éducative";
             {% elseif intervention.frimousse %}
@@ -187,7 +255,7 @@
             {% else %}
             typeIntervention = "Autre intervention";
             {% endif %}
-            {% if intervention.etablissement.nom != null %}
+            {% if intervention.etablissement.nom != null  %}
             typeEtablissement = "{{ intervention.etablissement.nom }}"
             {% elseif  intervention.etablissement.nom == null %}
             {% if intervention.etablissement.typeEnseignement is not empty %}
@@ -225,28 +293,27 @@
             {% if intervention.benevole is not null %}
             {% if user.id == intervention.benevole.id %}
             interventions.push({
-                title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start: '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
+                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                allDay: false,
                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                color: '#82C46C',
-                allDay: false
-            });
+                color  : '#82C46C' });
             {% else %}
-            interventions.push({
-                title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start: '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+            interventions.push({ title  : typeIntervention +  ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                allDay: false,
                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                color: 'grey',
-                allDay: false
-            });
+                color  : 'grey' });
             {% endif %}
             {% endif %}
             {% endif %}
             {% endfor %}
-
+            return interventions;
+        }
+        function remplirPlanning(liste){
             $('#calendar').fullCalendar({
                 locale: "fr",
-                events: interventions,
+                events: liste,
                 weekends: true,
                 header:
                 {
@@ -280,12 +347,12 @@
                     agendaWeek: {
                         eventLimit: 2
                     },
-
                 }
 
-            })
+            });
 
-        });
+            $('#calendar').fullCalendar( 'rerenderEvents' );
+        }
 
         function okRealiserIntervention() {
 
@@ -495,30 +562,21 @@
                 {% endif %}
             </section>
         </section>
-    </div>
+
 
     <div class="row">
         <section class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-11 col-xs-12">
             <h2 class="subtitle" style="margin-left: 15px"> Calendrier </h2>
+            <div class="row">
+                <div class="filtresCalendrier">
+                    <label><input type="checkbox" name="autresBenevoles" value="autresBenevoles" id="autresBenevoles"/>&nbsp <span class="legende1"></span> Interventions d'autres bénévoles</label><br/>
+                    <label><input type="checkbox" name="mesInterventionsRealisees" value="mesInterventionsRealisees" id="mesInterventionsRealisees"/>&nbsp <span class="legende2"></span>Mes interventions réalisées </label><br/>
+                    <label><input type="checkbox" name="mesInterventionsNonRealisees" value="mesInterventionsNonRealisees" id="mesInterventionsNonRealisees"/>&nbsp <span class="legende3"></span> Mes interventions à réaliser</label><br/>
+                </div>
+            </div>
             <div id="calendar" class="calendar" style="padding-left: 2%;"></div>
         </section>
     </div>
-
-    <div class="row">
-        <section
-            class="col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-8  col-md-offset-3 col-xs-10 col-xs-offset-1 ">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h4 class="bonjour" style="text-align:center"><strong>Légendes</strong></h4>
-                    <span class="legende1"></span>Interventions d'autres bénévoles
-                    </br>
-                    <span class="legende2"></span> Mes interventions réalisées
-                    </br>
-                    <span class="legende3"></span> Mes interventions à réaliser
-                    </br>
-                </div>
-            </div>
-        </section>
     </div>
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

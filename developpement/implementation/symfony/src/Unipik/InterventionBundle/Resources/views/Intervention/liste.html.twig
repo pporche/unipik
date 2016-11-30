@@ -296,7 +296,7 @@
                             geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
                             $("#recherche_avancee_geolocalisation").val(geolocalisation);
                             $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
-                            $(".intervention_list").submit();
+                            $(".intervention").submit();
                         }
                         else {
                             //Que fait-on si 0 match ?
@@ -305,7 +305,7 @@
                 }
                 else {
                     $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
-                    $(".intervention_list").submit();
+                    $(".intervention").submit();
                 }
 //            }
         });
@@ -462,6 +462,7 @@
         });
 
         function sendIdToModal(id) {
+            $('#attribution_benevole').val('');
             $("#attribution_idIntervention").attr("value", id);
         }
 
@@ -514,11 +515,11 @@
         <div class="row">
             <div class='well'>
                 {% if onlyMyIntervention %}
-                    {{ form_start(form, {'method': 'get', 'action': path('intervention_self'), 'attr': {'class': 'intervention_self form-sm'}}) }}
+                    {{ form_start(form, {'method': 'get', 'action': path('intervention_self'), 'attr': {'class': 'intervention form-sm'}}) }}
                 {% elseif onlyNonAttribues %}
-                    {{ form_start(form, {'method': 'get', 'action': path('demandes_recentes'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                    {{ form_start(form, {'method': 'get', 'action': path('demandes_recentes'), 'attr': {'class': 'intervention form-sm'}}) }}
                 {% else %}
-                    {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                    {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention form-sm'}}) }}
                 {% endif %}
 
                 <h5>Statut de l'intervention :</h5>
@@ -775,12 +776,9 @@
 
 
                                     {% if intervention.realisee %}
-                                        <p class="text-success"> Réalisée <span class="glyphicon glyphicon-ok"></span>
+                                        <p class="text-success"> Réalisée<span class="glyphicon glyphicon-ok"></span>
                                         </p>
                                     {% elseif intervention.benevole %}
-                                        {% if user==intervention.benevole %}
-                                                Attribuée à vous
-                                        {% else %}
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <button name="desattribution" type="button" class="btn btn-danger"
                                                         onclick="desattributeInterventionAdmin(this, {{ intervention.id }})" style="padding-right: 4px;padding-left: 4px; font-size: 14px; width: 100%; overflow: hidden; text-overflow: ellipsis; ">
@@ -790,7 +788,6 @@
                                             {% else %}
                                                 Attribuée à {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
                                             {% endif %}
-                                        {% endif %}
                                     {% else %}
                                         {% if is_granted('ROLE_ADMIN') %}
                                             <button name="attribuer{{ intervention.id }}" type="button"

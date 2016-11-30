@@ -26,7 +26,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Vente;
 use Unipik\InterventionBundle\Form\Vente\VenteType;
 
-use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
+use Unipik\InterventionBundle\Form\Vente\RechercheAvanceeType;
 
 /**
  * Le controller qui gère les ventes
@@ -50,6 +50,52 @@ class VenteController extends Controller {
         $user = $this->getUser();
 
         $em = $this->getDoctrine()->getManager();
+        $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+
+        $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
+
+        $ville = $form->get("ville")->getData();
+        $start = $form->get("start")->getData();
+        $end = $form->get("end")->getData();
+        $distance = $form->get("distance")->getData();
+        $geolocalisation = $form->get("geolocalisation")->getData();
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "dateVente");
+        $desc = $request->get("desc", false);
+
+        $venteRepository = $em->getRepository('InterventionBundle:Vente');
+        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, null, null);
+
+
+
+            return $this->render(
+                'InterventionBundle:Vente:liste.html.twig', array( 'ventes' => $listVente,
+                                                                    'rowsPerPage' => $rowsPerPage,
+                                                                    'field' => $field,
+                                                                    'desc' => $desc,
+                                                                    'isCheck' => $dateChecked,
+                                                                    'dateStart' => $start,
+                                                                    'dateEnd' => $end,
+                                                                    'user' => $user,
+                                                                    'form' => $form->createView(),
+                                                                    'venteEtablissementListe' => false,
+                                                                    'venteInterventionListe' => false)
+            );
+    }
+
+    /**
+     * Liste des ventes liées à un établissement action
+     *
+     * @param Request $request La requete
+     *
+     * @return mixed
+     */
+    public function listeEtablissementAction(Request $request, $id) {
+        $user = $this->getUser();
+
+        $em = $this->getDoctrine()->getManager();
         $listVente = [];
 
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
@@ -66,24 +112,85 @@ class VenteController extends Controller {
         $field = $request->get("field", "dateVente");
         $desc = $request->get("desc", false);
 
+        $etablissement = $em->getRepository('InterventionBundle:Etablissement')->find($id);
+
         $venteRepository = $em->getRepository('InterventionBundle:Vente');
 
-        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, $request->get('etablissement'), $request->get('intervention'));
+        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, $etablissement, null);
 
 
 
-            return $this->render(
-                'InterventionBundle:Vente:liste.html.twig', array( 'ventes' => $listVente,
-                                                                                    'rowsPerPage' => $rowsPerPage,
-                                                                                    'field' => $field,
-                                                                                    'desc' => $desc,
-                                                                                    'isCheck' => $dateChecked,
-                                                                                    'dateStart' => $start,
-                                                                                    'dateEnd' => $end,
-                                                                                    'user' => $user,
-                                                                                    'form' => $form->createView())
-            );
+        return $this->render(
+            'InterventionBundle:Vente:liste.html.twig', array( 'ventes' => $listVente,
+                'rowsPerPage' => $rowsPerPage,
+                'field' => $field,
+                'desc' => $desc,
+                'isCheck' => $dateChecked,
+                'dateStart' => $start,
+                'dateEnd' => $end,
+                'user' => $user,
+                'form' => $form->createView(),
+                'venteEtablissementListe' => true,
+                'venteInterventionListe' => false,
+                'etablissementId' => $id
+            )
+        );
     }
+
+    /**
+     * Liste des ventes liées à une intervention action
+     *
+     * @param Request $request La requete
+     *
+     * @return mixed
+     */
+    public function listeInterventionAction(Request $request, $id) {
+        $user = $this->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $listVente = [];
+
+        $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+
+        $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
+
+        $ville = $form->get("ville")->getData();
+        $start = $form->get("start")->getData();
+        $end = $form->get("end")->getData();
+        $distance = $form->get("distance")->getData();
+        $geolocalisation = $form->get("geolocalisation")->getData();
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+        $field = $request->get("field", "dateVente");
+        $desc = $request->get("desc", false);
+
+        $intervention = $em->getRepository('InterventionBundle:Intervention')->find($id);
+
+        $venteRepository = $em->getRepository('InterventionBundle:Vente');
+
+        $listVente = $venteRepository->getType($start, $end, $dateChecked, $field, $desc,  $user, $ville, $distance, $geolocalisation, null, $intervention);
+
+
+
+        return $this->render(
+            'InterventionBundle:Vente:liste.html.twig', array( 'ventes' => $listVente,
+                'rowsPerPage' => $rowsPerPage,
+                'field' => $field,
+                'desc' => $desc,
+                'isCheck' => $dateChecked,
+                'dateStart' => $start,
+                'dateEnd' => $end,
+                'user' => $user,
+                'form' => $form->createView(),
+                'venteEtablissementListe' => false,
+                'venteInterventionListe' => true,
+                'interventionId' => $id
+            )
+        );
+    }
+
+
 
     /**
      * Consultation action
@@ -189,6 +296,8 @@ class VenteController extends Controller {
         }
         return new Response();
     }
+
+
 
 }
 

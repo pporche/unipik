@@ -153,120 +153,101 @@
             limit: 50
         });
 
-        var codesPostaux = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
-            remote: {
-                url: '{{ path("architecture_code_autocomplete") }}?term=%QUERY',
-                wildcard: '%QUERY'
-            }
-        });
-
-        $('#user_registration_adresse_codePostal').typeahead(null, {
-            name: 'codesPostaux',
-            source: codesPostaux,
-            limit: 5
-        });
-
-
-        $('#user_registration_adresse_ville').change(function () {
-            var ville = $(user_registration_adresse_ville).val().toUpperCase();
-            $('#user_registration_adresse_codePostal').val("");
-            $.post("{{ path('architecture_code_postal') }}", {'ville': ville},
-                function (data, status) {
-                    $('#user_registration_adresse_codePostal').val(data.codePostal);
-                });
-        });
-
-        $('#user_registration_adresse_codePostal').change(function () {
-            var codePostal = $(user_registration_adresse_codePostal).val();
-            $('#user_registration_adresse_ville').val("");
-            $.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},
-                function (data, status) {
-                    $('#user_registration_adresse_ville').val(data.ville);
-                });
-        });
-
         $(":submit").on('click', function( e ) {
 
             e.preventDefault();
-            if($('#user_registration_telPortable').val().trim().length==0 && $('#user_registration_telFixe').val().trim().length==0){
-                if($('#erreurTelephone').prev()[0]==undefined){
+            var erreur = false;
+
+            if ($('#user_registration_telPortable').val().trim().length==0 && $('#user_registration_telFixe').val().trim().length==0) {
+                if ($('#erreurTelephone').prev()[0]==undefined) {
                     $('#user_registration_telPortable').after('<p id="erreurTelephone"  style="color: red; font-size: 13px; font-style: italic">Vous devez remplir au moins le téléphone fixe ou le téléphone portable</p>');
-                }else{
+                } else {
                     $('#erreurTelephone').show();
                 }
-            }else{
+                erreur = true;
+            } else {
                 $('#erreurTelephone').hide();
             }
 
-            if($('#user_registration_email').val().trim().length==0){
-                if($('#erreurEmail').prev()[0]==undefined){
+            if ($('#user_registration_email').val().trim().length==0) {
+                if ($('#erreurEmail').prev()[0]==undefined) {
                     $('#user_registration_email').after('<p id="erreurEmail"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
-                }else{
+                } else {
                     $('#erreurEmail').show();
                 }
-            }else{
+                erreur = true;
+            } else {
                 $('#erreurEmail').hide();
             }
-            if($('#user_registration_username').val().trim().length==0){
-                if($('#erreurUsername').prev()[0]==undefined){
+            if ($('#user_registration_username').val().trim().length==0) {
+                if ($('#erreurUsername').prev()[0]==undefined) {
                     $('#user_registration_username').after('<p id="erreurUsername"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
-                }else{
+                } else {
                     $('#erreurUsername').show();
                 }
-            }else{
+                erreur = true;
+            } else {
                 $('#erreurUsername').hide();
             }
 
-            if($('#user_registration_nom').val().trim().length==0){
-                if($('#erreurNom').prev()[0]==undefined){
+            if ($('#user_registration_nom').val().trim().length==0) {
+                if ($('#erreurNom').prev()[0]==undefined) {
                     $('#user_registration_nom').after('<p id="erreurNom"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
-                }else{
+                } else {
                     $('#erreurNom').show();
                 }
-            }else{
+                erreur = true;
+            } else {
                 $('#erreurNom').hide();
             }
-            if($('#user_registration_prenom').val().trim().length==0){
-                if($('#erreurPrenom').prev()[0]==undefined){
+
+            if ($('#user_registration_prenom').val().trim().length==0) {
+                if ($('#erreurPrenom').prev()[0]==undefined) {
                     $('#user_registration_prenom').after('<p id="erreurPrenom"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
-                }else{
+                } else {
                     $('#erreurPrenom').show();
                 }
-            }else{
+                erreur = true;
+            } else {
                 $('#erreurPrenom').hide();
             }
-            if($('#user_registration_adresse_ville').val().trim().length==0){
-                if($('#erreurVille').prev()[0]==undefined){
+
+            if ($('#user_registration_adresse_ville').val().trim().length==0) {
+                if ($('#erreurVille').prev()[0]==undefined) {
                     $('#user_registration_adresse_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
-                }else{
+                } else {
                     $('#erreurVille').show();
                 }
-            }else{
+                erreur = true;
+            } else {
                 $('#erreurVille').hide();
             }
-            if($('#user_registration_adresse_adresse').val().trim().length==0){
-                if($('#erreurAdresse').prev()[0]==undefined){
+
+            if ($('#user_registration_adresse_adresse').val().trim().length==0) {
+                if ($('#erreurAdresse').prev()[0]==undefined) {
                     $('#user_registration_adresse_adresse').after('<p id="erreurAdresse"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
-                }else{
+                } else {
                     $('#erreurAdresse').show();
                 }
-            }else{
+                erreur = true;
+            } else {
                 $('#erreurAdresse').hide();
             }
-            if($('#user_registration_adresse_codePostal').val().trim().length==0){
-                if($('#erreurCode').prev()[0]==undefined){
-                    $('#user_registration_adresse_codePostal').after('<p id="erreurCode"  style="color: red; font-size: 13px; font-style: italic">Ce champ est obligatoire</p>');
-                }else{
-                    $('#erreurCode').show();
+
+            if ($('#user_registration_adresse_ville').val().trim().length>0 && $('#user_registration_adresse_ville').val().indexOf(' (') < 0) {
+                if ($('#erreurCodePostal').prev()[0]==undefined) {
+                    $('#user_registration_adresse_ville').after('<p id="erreurCodePostal"  style="color: red; font-size: 13px; font-style: italic">Sélectionnez un code postal</p>');
+                } else {
+                    $('#erreurCodePostal').show();
                 }
-            }else{
-                $('#erreurCode').hide();
+                erreur = true;
+            } else {
+                $('#erreurCodePostal').hide();
             }
-                var adresse = $("#user_registration_adresse_adresse").val() + ' ' + $('#user_registration_adresse_codePostal').val() + ' ' + $("#user_registration_adresse_ville").val();
-                var previousAdresse = "{{ benevole.adresse.adresse }} " + "{{ benevole.adresse.codePostal.code }} " + "{{ benevole.adresse.ville.nom }}";
+
+            if (!erreur) {
+                var adresse = $("#user_registration_adresse_adresse").val() + ' ' + $("#user_registration_adresse_ville").val();
+                var previousAdresse = "{{ benevole.adresse.adresse }} {{ benevole.adresse.ville.nom }} ({{ benevole.adresse.codePostal.code }})";
                 if (adresse != previousAdresse) {
                     var geolocalisation = '';
                     $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + adresse, function (data) {
@@ -277,6 +258,7 @@
                                     if (dataVille.length > 0) {
                                         geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
                                         $("#user_registration_adresse_geolocalisation").val(geolocalisation);
+                                        $("#user_registration_adresse_codePostal").val($("#user_registration_adresse_ville").val().split(' (')[1].split(')')[0]);
                                         $("#user_registration_adresse_ville").val($("#user_registration_adresse_ville").val().split(' (')[0]);
                                         $(".user_admin_edit").submit();
                                     }
@@ -288,6 +270,7 @@
                             case 1 :
                                 geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
                                 $("#user_registration_adresse_geolocalisation").val(geolocalisation);
+                                $("#user_registration_adresse_codePostal").val($("#user_registration_adresse_ville").val().split(' (')[1].split(')')[0]);
                                 $("#user_registration_adresse_ville").val($("#user_registration_adresse_ville").val().split(' (')[0]);
                                 $(".user_admin_edit").submit();
                                 break;
@@ -305,15 +288,18 @@
                     });
                 }
                 else {
+                    $("#user_registration_adresse_codePostal").val($("#user_registration_adresse_ville").val().split(' (')[1].split(')')[0]);
+                    $("#user_registration_adresse_ville").val($("#user_registration_adresse_ville").val().split(' (')[0]);
                     $(".user_admin_edit").submit();
                 }
-
+            }
         });
 
         function setGeolocalisation(content){
             var latlon = content.split(',');
             var geolocalisation = 'SRID=4326;POINT(' + latlon[1] + ' ' + latlon[0] + ')';
             $("#user_registration_adresse_geolocalisation").val(geolocalisation);
+            $("#user_registration_adresse_codePostal").val($("#user_registration_adresse_ville").val().split(' (')[1].split(')')[0]);
             $("#user_registration_adresse_ville").val($("#user_registration_adresse_ville").val().split(' (')[0]);
             $(".user_admin_edit").submit();
         }

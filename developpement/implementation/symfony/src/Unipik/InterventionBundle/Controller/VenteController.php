@@ -217,8 +217,39 @@ class VenteController extends Controller {
      *
      * @return Response
      */
-    public function editAction($id) {
-        return new Response("Ici on pourra modifier la vente ".$id);
+    public function editAction(Request $request, $id) {
+        $repository = $this->getDoctrine()->getManager()->getRepository('InterventionBundle:Vente');
+
+        $vente = $repository->find(array('id' => $id));
+
+        $form = $this->createForm(VenteType::class, $vente);
+
+        if ($form->handleRequest($request)->isValid() && $request->isMethod('POST')) {
+            /*
+             * Faire le traitement de sauvegarde  de la vente
+             */
+            $this->getDoctrine()->getManager()->persist($vente);
+            $this->getDoctrine()->getManager()->flush();
+
+            // Message de félicitation
+            $session =$request->getSession();
+            $session->getFlashBag()->add(
+                'notice', array(
+                    'title' => 'Félicitation',
+                    'message' => 'La vente a bien été enregistrée',
+                    'alert' => 'success'
+                )
+            );
+            return $this->RedirectToRoute('vente_view', array('id' => $id));
+        }
+
+        return $this->render(
+            'InterventionBundle:Vente:ajouterVente.html.twig',
+            array('form' => $form->createView(),
+                'etablissement' => $vente->getEtablissement(),
+                'intervention' => $vente->getIntervention()
+            )
+        );
     }
 
     /**
@@ -232,32 +263,58 @@ class VenteController extends Controller {
         $vente = new Vente();
         $form = $this->createForm(VenteType::class, $vente);
 
+        $intervention = $request->get('intervention');
+        $etablissement = $request->get('etablissement');
+        if (is_null($intervention)) {
+            $etablissement = $this->getDoctrine()->getManager()->getRepository('InterventionBundle:Etablissement')->find($etablissement);
+        } else {
+            $intervention = $this->getDoctrine()->getManager()->getRepository('InterventionBundle:Intervention')->find($intervention);
+            $etablissement = $intervention->getEtablissement();
+        }
+
         if ($form->handleRequest($request)->isValid()) {
             /*
              * Faire le traitement de sauvegarde  de la vente
              */
-            $intervention = $request->get('intervention');
-            $etablissement = $request->get('etablissement');
 
             if (is_null($etablissement) && is_null($intervention)) {
-                return new Response(" t'as rien rentré pti bout");
+                // Message d'erreur
+                $session =$request->getSession();
+
+                $session->getFlashBag()->add(
+                    'notice', array(
+                        'title' => 'Erreur',
+                        'message' => 'Une erreur est survenue, vous ne pouvez pas ajouter de vente.',
+                        'alert' => 'danger'
+                    )
+                );
+                return $this->RedirectToRoute('architecture_homepage');
             }
-            if (is_null($intervention)) {
-                $etablissement = $this->getDoctrine()->getManager()->getRepository('InterventionBundle:Etablissement')->find($etablissement);
-                $vente->setEtablissement($etablissement);
-            } else {
-                $intervention = $this->getDoctrine()->getManager()->getRepository('InterventionBundle:Intervention')->find($intervention);
+            if (!is_null($intervention)) {
                 $vente->setIntervention($intervention);
-                $vente->setEtablissement($intervention->getEtablissement());
             }
+            $vente->setEtablissement($etablissement);
+
             $this->getDoctrine()->getManager()->persist($vente);
             $this->getDoctrine()->getManager()->flush();
-            return new Response("Voili voilou ");
+
+            // Message de félicitation
+            $session =$request->getSession();
+            $session->getFlashBag()->add(
+                'notice', array(
+                    'title' => 'Félicitation',
+                    'message' => 'La vente a bien été enregistrée',
+                    'alert' => 'success'
+                )
+            );
+            return $this->RedirectToRoute('vente_view', array('id' => $vente->getId()));
         }
 
         return $this->render(
             'InterventionBundle:Vente:ajouterVente.html.twig',
             array('form' => $form->createView(),
+                'etablissement' => $etablissement,
+                'intervention' => $intervention
                 )
         );
     }

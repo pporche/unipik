@@ -1,0 +1,18 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <style>
+        h3{
+            font-family: 'Ubuntu Condensed', sans-serif;
+        }
+    </style>
+    <div style="margin-top: 80px;" class="alert alert-success">
+        <h3>Réinitialisation mot de passe</h3>
+        <p>
+            {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime}) }}
+        </p>
+    </div>
+
+{% endblock %}

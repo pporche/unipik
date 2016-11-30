@@ -220,7 +220,6 @@
         if ($('#mailing_dansVilleOuParDistance_1').is(':checked')) {
             var ville = $('#mailing_ville').val();
             var geolocalisation = '';
-            //Match numéro département avec nom ?
             $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
                 console.log("length: " + dataVille.length);
                 if (dataVille.length > 0) {

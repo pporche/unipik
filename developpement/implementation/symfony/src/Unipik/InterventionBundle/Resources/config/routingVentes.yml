@@ -13,6 +13,12 @@ vente_add:
     path: /vente/ajouter
     defaults: {_controller: InterventionBundle:Vente:add}
 
+vente_edit:
+    path: /vente/edit/{id}
+    defaults: {_controller: InterventionBundle:Vente:edit}
+    requirements:
+        id: \d+
+
 vente_etablissement:
     path: /vente/etablissement/{id}
     defaults:

@@ -48,6 +48,7 @@
         $('input:checkbox').removeAttr('checked');
         
         $(document).ready(function() {
+
             if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')){
                 $('#ville').show();
                 $('#distanceKm').hide();
@@ -186,6 +187,7 @@
                     $("#recherche_avancee_distance").val("");
                 }
             });
+
         });
 
         function deleteEtablissements() {

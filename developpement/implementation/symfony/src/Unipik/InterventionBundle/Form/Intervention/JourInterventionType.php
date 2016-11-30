@@ -53,7 +53,8 @@ class JourInterventionType extends AbstractType {
             ->add('mardi', ChoiceType::class, $optionChoiceType)
             ->add('mercredi', ChoiceType::class, $optionChoiceType)
             ->add('jeudi', ChoiceType::class, $optionChoiceType)
-            ->add('vendredi', ChoiceType::class, $optionChoiceType);
+            ->add('vendredi', ChoiceType::class, $optionChoiceType)
+            ->add('samedi', ChoiceType::class, $optionChoiceType);
     }
 
     /**

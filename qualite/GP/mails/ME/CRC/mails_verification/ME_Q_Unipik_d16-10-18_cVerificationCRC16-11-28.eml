@@ -1,0 +1,43 @@
+Return-Path: <melissa.bignoux@insa-rouen.fr>
+Delivered-To: pporche@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 886B5238F0;
+	Wed, 30 Nov 2016 10:05:39 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DxAACF1wVYfXIKMcFbGwEBBAEBCgEBgz0BAQEBAYFhqFKSNi+FcxyBWUwBAgEBAQEBAhMBAQsUCUiEZAEmIjRdAgQYQ4hptVeMagwXD4g7B4obglsFmgYBXYJigXiLMnIBjhyMe4QAgUyESYcZK4ICAQEB
+X-IPAS-Result: A0DxAACF1wVYfXIKMcFbGwEBBAEBCgEBgz0BAQEBAYFhqFKSNi+FcxyBWUwBAgEBAQEBAhMBAQsUCUiEZAEmIjRdAgQYQ4hptVeMagwXD4g7B4obglsFmgYBXYJigXiLMnIBjhyMe4QAgUyESYcZK4ICAQEB
+X-IronPort-AV: E=Sophos;i="5.31,361,1473112800"; 
+   d="pdf'?scan'208";a="98068735"
+Received: from smtpout.insa-rouen.fr ([193.49.10.114])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 18 Oct 2016 10:05:27 +0200
+Received: from sogo.insa-rouen.fr (sogo.insa-rouen.fr [193.49.10.84])
+	by smtpout.insa-rouen.fr (8.13.8/8.13.8) with ESMTP id u9I85QU4021689;
+	Wed, 30 Nov 2016 10:05:26 +0200
+Received: from localhost (localhost [127.0.0.1])
+	by sogo.insa-rouen.fr (Postfix) with ESMTP id D0417402B0;
+	Wed, 30 Nov 2016 10:05:26 +0200 (CEST)
+to: "Pierre Porche" <pierre.porche@insa-rouen.fr>
+from: "Bignoux Melissa" <melissa.bignoux@insa-rouen.fr>
+message-id: <500a-5805d800-55-65608180@238012673>
+subject: CRC du =?utf-8?q?28=2F11=2F2016?==?utf-8?q?_v=C3=A9rifi=C3=A9?=
+X-Forward: 172.29.23.73
+date: Wed, 30 Nov 2016 10:05:26 +0200
+MIME-Version: 1.0
+content-type: multipart/mixed; boundary="----=_=-_OpenGroupware_org_NGMime-20490-1476777926.771544-1------"
+User-Agent: SOGoMail 2.3.8
+cc: "Kafui Atanley" <kafui.atanley@insa-rouen.fr>
+
+------=_=-_OpenGroupware_org_NGMime-20490-1476777926.771544-1------
+content-type: text/plain; charset=utf-8
+content-length: 131
+content-transfer-encoding: quoted-printable
+
+Pierre, 
+
+J'ai v=C3=A9rifi=C3=A9 le CRC du 28/11/2016, pourrais tu le valider s'i=
+l te pla=C3=AEt ?
+
+Merci 
+
+M=C3=A9lissa
+

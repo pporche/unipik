@@ -24,7 +24,7 @@
         #recherche_avancee_ville {
             text-transform: uppercase;
         }
-        @media only screen and (max-width: 650px) {
+        @media only screen and (max-width: 1000px) {
             /* Force table to not be like tables anymore */
             table,
             thead,
@@ -85,12 +85,12 @@
         }
 
 
-        #myTable {
+        #tableVente {
             display:block;
             max-height: 58vh;
             overflow:auto;
         }
-        #tableVente thead, #myTable tr {
+        #tableVente thead, #tableVente tr {
             display:table;
             width:100%;
             table-layout:fixed;
@@ -235,7 +235,6 @@
             if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && $('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
                 var ville = $('#recherche_avancee_ville').val();
                 var geolocalisation = '';
-                //Match numéro département avec nom ?
                 $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
                     if (dataVille.length > 0) {
                         geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
@@ -277,10 +276,10 @@
                                     { text: "{{ vente.dateVente|date('d-m-Y') }}", style: 'tableHeader' },
                                     { text: "{{ vente.etablissement.nom | capitalize }}", style: 'tableHeader' },
                                     {% if vente.intervention %}
-                                        { text: "FRIMOUSSE A L'{{ vente.intervention.etablissement.nom | capitalize }}", style: 'tableHeader' }
+                                        { text: "FRIMOUSSE A L'{{ vente.intervention.etablissement.nom | capitalize }}", style: 'tableHeader' },
                                     {% else %}
-                                        { text: "-", style: 'tableHeader' }
-                                    {% endif %},
+                                        { text: "-", style: 'tableHeader' },
+                                    {% endif %}
                                     { text: "{{ vente.chiffreAffaire }} €", style: 'tableHeader' },
                                 ],
                                 {% endfor %}
@@ -493,7 +492,7 @@
                             {% for vente in ventes %}
                                 <tr>
                                     <td data-title="Lieu">{{ vente.etablissement.adresse.ville.nom }}</td>
-                                    <td data-title="DateVente">{{ vente.dateVente|date("d-m-Y") }}</td>
+                                    <td data-title="Date Vente">{{ vente.dateVente|date("d-m-Y") }}</td>
                                     <td data-title="Etablissement">
                                         <a href="{{ path('etablissement_view', {'id':vente.etablissement.id}) }}">
                                             {{ vente.etablissement.nom | capitalize}}
@@ -508,7 +507,7 @@
                                             <div style="text-align: center"> - </div>
                                         {% endif %}
                                     </td>
-                                    <td data-title="ChiffreAffaire" style="text-align: center"> {{ vente.chiffreAffaire }} € </td>
+                                    <td data-title="Chiffre Affaire" style="text-align: center"> {{ vente.chiffreAffaire }} € </td>
                                     <td data-title="Voir Détails">
                                         <a href="{{ path('vente_view', {id: vente.id}) }}"
                                            class="btn btn-primary">Voir détails</a>

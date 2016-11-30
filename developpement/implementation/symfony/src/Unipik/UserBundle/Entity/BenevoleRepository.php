@@ -43,6 +43,8 @@ class BenevoleRepository extends EntityRepository
      */
     public function getType($field, $desc, $ville){
         $qb = $this->createQueryBuilder('b');
+        $qb = $qb->where('b.nom != :nom')
+                    ->setParameter('nom', 'anonyme');
 
         if ($ville) {
             $this->_whereVilleIs($qb, $ville);

@@ -215,5 +215,4 @@ class RechercheAvanceeType extends AbstractType
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
     }
-
 }

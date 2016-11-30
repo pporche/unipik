@@ -113,11 +113,6 @@ class RegistrationController extends BaseController {
             $adresse->setAdresse(strtoupper($adresse->getAdresse()));
             $adresse->setComplement(strtoupper($adresse->getComplement()));
 
-            //            $geolocalisation = $this->findGeolocalisation($adresse);
-            //            var_dump($geolocalisation);
-
-            //            $adresse->setGeolocalisation($geolocalisation);
-
             $user->setAdresse($adresse);
 
             $event = new FormEvent($form, $request);
@@ -227,17 +222,4 @@ class RegistrationController extends BaseController {
             return $this->get('session')->get($key);
         }
     }
-
-    //    /**
-    //     * Find the geolocalisation from an address.
-    //     *
-    //     * @param $adresse
-    //     * @return \Geocoder\Model\AddressCollection
-    //     */
-    //    private function findGeolocalisation($adresse) {
-    //        $adapter  = new Guzzle6HttpAdapter();
-    //        $geocoder = new GoogleMaps($adapter);
-    //
-    //        return $geocoder->geocode($adresse->getAdresse());
-    //    }
 }

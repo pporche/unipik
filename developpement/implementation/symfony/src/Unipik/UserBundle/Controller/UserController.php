@@ -278,7 +278,10 @@ class UserController extends Controller {
             ->getResult();
 
         foreach ($entities as $entity) {
-            $users[] = ucfirst($entity->getPrenom())." ".ucfirst($entity->getNom())." (".$entity->getUsername().")";
+
+            if($entity->getNom() != 'anonyme'){
+                $users[] = ucfirst($entity->getPrenom())." ".ucfirst($entity->getNom())." (".$entity->getUsername().")";
+            }
         }
 
         $response = new JsonResponse();

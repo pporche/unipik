@@ -28,7 +28,6 @@ use Unipik\InterventionBundle\Form\DemandeAnonymeType;
 use Unipik\InterventionBundle\Form\Intervention\AttributionType;
 use Unipik\InterventionBundle\Form\Intervention\InterventionType;
 use Unipik\InterventionBundle\Form\MomentType;
-use Unipik\InterventionBundle\InterventionBundle;
 use Unipik\UserBundle\Entity\Contact;
 use Unipik\InterventionBundle\Form\Intervention\RechercheAvanceeType;
 use Unipik\InterventionBundle\Entity\Etablissement;
@@ -482,21 +481,15 @@ class InterventionController extends Controller {
     public function listeAction(Request $request) {
         $user = $this->getUser();
 
+//        $form = $this->createFormBuilder(RechercheAvanceeType::class)
+//            ->setMethod('GET')
+//            ->getForm()
+//            ->handleRequest($request)
+//        ;
+
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
-
-        $dateChecked = ($request->isMethod('GET') && $form->isValid()) ? $form->get("date")->getData() : true;
-        $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
-        $statutIntervention = $form->get("statutIntervention")->getData(); //Récupération du statut de l'intervention
-        $niveauFrimousse = $form->get("niveauFrimousse")->getData();
-        $niveauPlaidoyer = $form->get("niveauPlaidoyer")->getData();
-        $ville = $form->get("ville")->getData();
-        $theme = $form->get("theme")->getData();
-        $start = $form->get("start")->getData();
-        $end = $form->get("end")->getData();
-        $distance = $form->get("distance")->getData();
-        $geolocalisation = $form->get("geolocalisation")->getData();
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
         $field = $request->get("field", "dateIntervention");
@@ -504,12 +497,37 @@ class InterventionController extends Controller {
 
         $repository = $this->getInterventionRepository();
 
-        $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, false, $user, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville, $distance, $geolocalisation);
+        if($request->isMethod('GET') && $form->isValid()) {
+            $dateChecked = $form->get("date")->getData();
+            $statutIntervention = $form->get("statutIntervention")->getData(); //Récupération du statut de l'intervention
+            $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
+            $niveauFrimousse = $form->get("niveauFrimousse")->getData();
+            $niveauPlaidoyer = $form->get("niveauPlaidoyer")->getData();
+            $ville = $form->get("ville")->getData();
+            $theme = $form->get("theme")->getData();
+            $start = $form->get("start")->getData();
+            $end = $form->get("end")->getData();
+            $distance = $form->get("distance")->getData();
+            $geolocalisation = $form->get("geolocalisation")->getData();
+
+            $listIntervention = $repository->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statutIntervention, false, $user, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville, $distance, $geolocalisation);
+        } else {
+            $typeIntervention = "";
+            $dateChecked = true;
+            $start = "";
+            $end = "";
+            $listIntervention = $repository->getType("", "", true, "", $field, $desc, "", false, $user, null, null, null, null, null, null);
+        }
+
 
         //        Création du formulaire pour la popup
         $fB = $this->get('form.factory')->createBuilder(AttributionType::class);
         $f = $fB->getForm();
         $f->handleRequest($request);
+
+//        $monfichier = fopen('/tmp/debug.txt', 'a+');
+//        fputs($monfichier, var_dump($form));
+//        fclose($monfichier);
 
         return $this->render(
             'InterventionBundle:Intervention:liste.html.twig', array(

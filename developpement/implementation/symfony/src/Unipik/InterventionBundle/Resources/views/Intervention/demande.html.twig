@@ -20,11 +20,6 @@
     <h5> Tel Fixe :</h5>
     {{ form_widget(form.Etablissement.telFixe) }}
 
-    {#<div class="emailDiv">#}
-        {#<h5> Emails :</h5>#}
-        {#{{ form_widget(form.Etablissement.emails) }}#}
-    {#</div>#}
-
     <h5> Type d'etablissement* :</h5>
     {{ form_widget(form.Etablissement.TypeGeneral) }}
 
@@ -56,11 +51,8 @@
 
     <h5> Ville* :</h5>
     {{ form_widget(form.Etablissement.adresse.ville) }}
-
-    <h5> Code Postal* :</h5>
-    {{ form_widget(form.Etablissement.adresse.codePostal) }}
     <div id="code">
-        Code postal au mauvais format
+        Sélectionnez un code postal
     </div>
 
     <h3> Plage de dates</h3>
@@ -209,37 +201,12 @@
             limit: 50
         });
 
-        var codesPostaux = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            //prefetch: '{{ path("architecture_ville_autocomplete") }}',
-            remote: {
-                url: '{{ path("architecture_code_autocomplete") }}?term=%QUERY',
-                wildcard: '%QUERY'
-            }
-        });
-
-        $('#demande_Etablissement_adresse_codePostal').typeahead(null, {
-            name: 'codesPostaux',
-            source: codesPostaux,
-            limit: 5
-        });
-
         $('#demande_Etablissement_adresse_ville').change(function () {
-            var ville = $(demande_Etablissement_adresse_ville).val().toUpperCase();
+            var codePostal = $('#demande_Etablissement_adresse_ville').val().split(' (')[1].split(')')[0];
             $('#demande_Etablissement_adresse_codePostal').val("");
-            $.post("{{ path('architecture_code_postal') }}", {'ville': ville},
+            $.post("{{ path('architecture_code_postal') }}", {'codePostal': codePostal},
                 function (data, status) {
                     $('#demande_Etablissement_adresse_codePostal').val(data.codePostal);
-                });
-        });
-
-        $('#demande_Etablissement_adresse_codePostal').change(function () {
-            var codePostal = $(demande_Etablissement_adresse_codePostal).val();
-            $('#demande_Etablissement_adresse_ville').val("");
-            $.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},
-                function (data, status) {
-                    $('#demande_Etablissement_adresse_ville').val(data.ville);
                 });
         });
 
@@ -633,15 +600,17 @@
         }
 
         function verifyCP(e) {
-            if (!(/[0-9]{5}/.test($('#demande_Etablissement_adresse_codePostal').val()))) {
+            if ($('#demande_Etablissement_adresse_ville').val().indexOf(' (') < 0) {
                 e.preventDefault();
                 e.stopPropagation();
                 $('#code').show();
-                $('#demande_Etablissement_adresse_codePostal').addClass('error');
-            } else
+                $('#demande_Etablissement_adresse_ville').addClass('error');
+            } else {
                 $('#code').hide();
-                $('#demande_Etablissement_adresse_codePostal').removeClass('error');
-
+                $('#demande_Etablissement_adresse_ville').removeClass('error');
+                $('#demande_Etablissement_adresse_codePostal').val($("#demande_Etablissement_adresse_ville").val().split(' (')[1].split(')')[0]);
+                $("#demande_Etablissement_adresse_ville").val($("#demande_Etablissement_adresse_ville").val().split(' (')[0]);
+            }
         }
 
         function verifyEmail(e) {
@@ -655,17 +624,6 @@
                 $('#email').hide();
                 $('#demande_Contact_email').removeClass('error');
             }
-            $('[id^=demande_Etablissement_emails_]').each(function () {
-                if (!re.test($(this).val())) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    $(this).addClass('errorMail');
-                    $("<div id='email'> Email au mauvais format <div>").insertAfter($(this))
-                } else {
-                    $(this).removeClass('errorMail');
-                    $(this).next().remove();
-                }
-            });
 
         }
 
@@ -763,6 +721,8 @@
 
         $(document).ready(function () {
 
+            $('#demande_Etablissement_adresse').parent().parent().attr('style','display:none;');
+
             // Pré-cocher les jours de l'intervention en "Jour à éviter"
             $('#demande_jour_lundi_3').prop("checked", true);
             $('#demande_jour_mardi_3').prop("checked", true);
@@ -843,53 +803,6 @@
             buttonAddElement.className = 'btn btn-success';
             buttonAddElement.textContent = 'Ajouter un Email';
             addInterElt.appendChild(buttonAddElement);
-            document.getElementById('demande_Etablissement_emails').appendChild(addInterElt);
-
-            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-            var $container_email = $('#demande_Etablissement_emails');
-
-            // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
-            var index_email = $container_email.find(':input').length;
-
-            // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-            $('#add_email').click(function (e) {
-                addEmail($container_email);
-
-                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-                return false;
-            });
-
-            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-            if (index_email == 0) {
-                addEmail($container_email);
-            } else {
-                // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
-                $container_email.children('div').each(function () {
-                    addDeleteLink($(this));
-                });
-            }
-
-            // La fonction qui ajoute un formulaire CategoryType
-            function addEmail($container) {
-                // Dans le contenu de l'attribut « data-prototype », on remplace :
-                // - le texte "__name__label__" qu'il contient par le label du champ
-                // - le texte "__name__" qu'il contient par le numéro du champ
-                var template = $container.attr('data-prototype')
-                    .replace(/__name__label__/g, '')
-                    .replace(/__name__/g, index_email);
-
-                // On crée un objet jquery qui contient ce template
-                var $prototype = $(template);
-
-                // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
-                addDeleteLink($prototype);
-
-                // On ajoute le prototype modifié à la fin de la balise <div>
-                $container.append($prototype);
-                $("#add_email").appendTo($container);
-                // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-                index_email++;
-            }
 
             // La fonction qui ajoute un lien de suppression d'une catégorie
             function addDeleteLink($prototype) {

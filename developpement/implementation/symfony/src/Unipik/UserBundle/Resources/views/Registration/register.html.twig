@@ -161,49 +161,6 @@
             limit: 50
         });
 
-        {#var codesPostaux = new Bloodhound({#}
-            {#datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),#}
-            {#queryTokenizer: Bloodhound.tokenizers.whitespace,#}
-            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
-            {#remote: {#}
-                {#url: '{{ path("architecture_code_autocomplete") }}?term=%QUERY',#}
-                {#wildcard: '%QUERY'#}
-            {#}#}
-        {#});#}
-
-        {#$('#fos_user_registration_form_adresse_codePostal').typeahead(null, {#}
-            {#name: 'codesPostaux',#}
-            {#source: codesPostaux,#}
-            {#limit: 5#}
-        {#});#}
-
-//        $('.tt-dataset.tt-dataset-villes').mouseleave(function(){
-//            $('#fos_user_registration_form_adresse_codePostal').val($("#fos_user_registration_form_adresse_ville").val().split(' (')[1].split(')')[0]);
-//        });
-//
-//
-//        $('#fos_user_registration_form_adresse_ville').change(function(){
-//            $('#fos_user_registration_form_adresse_codePostal').val($("#fos_user_registration_form_adresse_ville").val().split(' (')[1].split(')')[0]);
-//        });
-
-        {#$('.tt-dataset.tt-dataset-codesPostaux').mouseleave(function(){#}
-            {#var codePostal  = $(fos_user_registration_form_adresse_codePostal).val();#}
-            {#$('#fos_user_registration_form_adresse_ville').val("");#}
-            {#$.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},#}
-                    {#function (data, status) {#}
-                        {#$('#fos_user_registration_form_adresse_ville').val(data.ville);#}
-                    {#});#}
-        {#});#}
-
-        {#$('#fos_user_registration_form_adresse_codePostal').change(function(){#}
-            {#var codePostal  = $(fos_user_registration_form_adresse_codePostal).val();#}
-            {#$('#fos_user_registration_form_adresse_ville').val("");#}
-            {#$.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},#}
-                {#function (data, status) {#}
-                    {#$('#fos_user_registration_form_adresse_ville').val(data.ville);#}
-                {#});#}
-        {#});#}
-
         $(":submit").on('click', function( e ) {
             e.preventDefault();
             var erreur = false;

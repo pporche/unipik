@@ -2,6 +2,10 @@ architecture_homepage:
     path:     /
     defaults: { _controller: ArchitectureBundle:Architecture:index }
 
+demande_enregistree:
+    path:     /demande_enregistree
+    defaults: { _controller: ArchitectureBundle:Architecture:demandeEnregistree }
+
 architecture_noJavascript:
     path:     /erreurJS
     defaults: { _controller: ArchitectureBundle:Architecture:noJS }

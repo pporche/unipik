@@ -14,7 +14,7 @@
  * @link     None
  */
 
-namespace Unipik\InterventionBundle\Form\Intervention;
+namespace Unipik\InterventionBundle\Form\Vente;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;

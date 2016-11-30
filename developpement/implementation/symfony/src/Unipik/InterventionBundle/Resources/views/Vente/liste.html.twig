@@ -18,6 +18,16 @@
     <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
 
     <style>
+        #CAerrorIntervalle, #CAerrorType, #CAerrorChampsVide {
+            font-size : 13px;
+            font-style : italic;
+            color : red;
+        }
+
+        .error {
+            border: solid 2px #FF0000;
+        }
+
         #ville, #distanceKm, #filtrePar{
             margin-bottom: 15px;
         }
@@ -109,6 +119,10 @@
     <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
     <script>
         $(document).ready(function () {
+            $("#CAerrorType").hide();
+            $("#CAerrorIntervalle").hide();
+            $("#CAerrorChampsVide").hide();
+
             $('input:checkbox').removeAttr('checked');
             if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')){
                 $('#ville').show();
@@ -230,8 +244,76 @@
 
         });
 
-        $(':submit').on('click', function (e) {
-            e.preventDefault();
+        function verifyChampsVide(e){
+            if (    ($('#recherche_avancee_CADebut').val() == "" && $('#recherche_avancee_CAFin').val() != "")
+                ||  ($('#recherche_avancee_CADebut').val() != "" && $('#recherche_avancee_CAFin').val() == "") ) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#CAerrorChampsVide').show();
+                if ($('#recherche_avancee_CADebut').val() == null) {
+                    $('#recherche_avancee_CADebut').addClass('error');
+                }
+                if ($('#recherche_avancee_CAFin').val() == null) {
+                    $('#recherche_avancee_CAFin').addClass('error');
+                }
+
+                if ($('#recherche_avancee_CADebut').val() != null) {
+                    $('#recherche_avancee_CADebut').removeClass('error');
+                }
+                if ($('#recherche_avancee_CAFin').val() != null) {
+                    $('#recherche_avancee_CAFin').removeClass('error');
+                }
+            } else {
+                $('#CAerrorChampsVide').hide();
+                $('#recherche_avancee_CADebut').removeClass('error');
+                $('#recherche_avancee_CAFin').removeClass('error');
+            }
+        }
+
+        function verifyCAType(e) {
+            var re = /^([\d]+([.,][\d]+)?)?$/;
+            //borne du début
+            if (!re.test($('#recherche_avancee_CADebut').val()) || !re.test($('#recherche_avancee_CAFin').val())) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#CAerrorType').show();
+                if (!re.test($('#recherche_avancee_CADebut').val())) {
+                    $('#recherche_avancee_CADebut').addClass('error');
+                }
+                if (!re.test($('#recherche_avancee_CAFin').val())) {
+                    $('#recherche_avancee_CAFin').addClass('error');
+                }
+                if (re.test($('#recherche_avancee_CADebut').val())) {
+                    $('#recherche_avancee_CADebut').removeClass('error');
+                }
+                if (re.test($('#recherche_avancee_CAFin').val())) {
+                    $('#recherche_avancee_CAFin').removeClass('error');
+                }
+            } else {
+                $('#CAerrorType').hide();
+                $('#recherche_avancee_CADebut').removeClass('error');
+                $('#recherche_avancee_CAFin').removeClass('error');
+            }
+        }
+
+        function verifyCAIntervalle(e) {
+            if (   !( ($('#recherche_avancee_CADebut').val() == "" && $('#recherche_avancee_CAFin').val() != "")
+                ||  ($('#recherche_avancee_CADebut').val() != "" && $('#recherche_avancee_CAFin').val() == "") )) {
+                if (parseInt($('#recherche_avancee_CADebut').val()) > parseInt($('#recherche_avancee_CAFin').val())) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    $('#CAerrorIntervalle').show();
+                    $('#recherche_avancee_CADebut').addClass('error');
+                    $('#recherche_avancee_CAFin').addClass('error');
+                } else {
+                    $('#CAerrorIntervalle').hide();
+                    $('#recherche_avancee_CADebut').removeClass('error');
+                    $('#recherche_avancee_CAFin').removeClass('error');
+                }
+            }
+        }
+
+        function geolocalisation(e) {
             if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && $('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
                 var ville = $('#recherche_avancee_ville').val();
                 var geolocalisation = '';
@@ -239,17 +321,49 @@
                     if (dataVille.length > 0) {
                         geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
                         $("#recherche_avancee_geolocalisation").val(geolocalisation);
-                        $(".vente").submit();
                     }
                     else {
                         //Que fait-on si 0 match ?
+                        e.preventDefault();
+                        e.stopPropagation();
                     }
                 });
             }
-            else {
-                $(".vente").submit();
-            }
-        });
+        }
+
+
+        function verifyAll(e) {
+            verifyChampsVide(e)
+            verifyCAType(e);
+            verifyCAIntervalle(e);
+            geolocalisation(e);
+        }
+
+        document.addEventListener('submit', verifyAll);
+
+
+//        $(':submit').on('click', function (e) {
+//            verifyCA(e);
+//            e.preventDefault();
+//            if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && $('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
+//                var ville = $('#recherche_avancee_ville').val();
+//                var geolocalisation = '';
+//                //Match numéro département avec nom ?
+//                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
+//                    if (dataVille.length > 0) {
+//                        geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+//                        $("#recherche_avancee_geolocalisation").val(geolocalisation);
+//                        $(".vente").submit();
+//                    }
+//                    else {
+//                        //Que fait-on si 0 match ?
+//                    }
+//                });
+//            }
+//            else {
+//                $(".vente").submit();
+//            }
+//        });
 
 
         function imprimer(){
@@ -350,7 +464,7 @@
         {% set param =   etablissementId  %}
     {% else %}
         {% set vue =  'vente_list' %}
-        {% set param =  'null' %}
+        {% set param =  null %}
     {% endif %}
     <section class="col-lg-2 col-md-2 col-sm-2">
         <div class="row">
@@ -387,6 +501,14 @@
                     <h5> Distance en km :</h5>
                     {{ form_widget(form.distance) }}
                 </div>
+                <br/>
+                <div id="CA">
+                    <h5> Chiffre d'affaire entre :</h5>
+                    {{ form_widget(form.CADebut, { 'attr': {'class': 'input-sm'} }) }} et {{ form_widget(form.CAFin, { 'attr': {'class': 'input-sm'} }) }}
+                    <div id="CAerrorChampsVide">Les deux champs doivent être remplis</div>
+                    <div id="CAerrorType">Les champs doivent contenir des nombres</div>
+                    <div id="CAerrorIntervalle">Le premier champ doit être inférieur au deuxième</div>
+                </div>
                 <div>
                     <input type="submit" value="OK" class="btn btn-primary"/>
                 </div>
@@ -418,69 +540,147 @@
                                 {% if desc %}
                                     <th> Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                                 href="{{ path(vue, {'id': param}, pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                                 href="{{ path(vue, pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
                                                  id="sortLieu" alt="sort Down"/>
                                         </a></th>
                                     <th> Date de la vente
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path(vue, {'id': param},pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
                                                  id="sortDate" alt="sort Down"/>
                                         </a>
                                     </th>
+                                    <th> Etablissement </th>
+                                    <th> Intervention liée </th>
+                                    <th>  Chiffre d'affaire
+                                        <a class="sortButtonCA" id="sortButtonCA"
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"CA"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                 id="sortCA" alt="sort Down"/>
+                                    </a></th>
                                 {% else %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path(vue, {'id': param}, {'id': param}, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class="sort sort-up"
                                                  id="sortLieu" alt="sort Down"/>
                                         </a>
                                     </th>
                                     <th> Date de la vente
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path(vue, {'id': param},{'id': param}, pathReq| merge({"desc":true, "field":"dateVente"}) ) }}">
+                                           href="{{ path(vue,  pathReq| merge({"desc":true, "field":"dateVente"}) ) }}">
                                             <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
                                                  id="sortDate" alt="sort Up"/>
                                         </a>
                                     </th>
+                                    <th> Etablissement </th>
+                                    <th> Intervention liée </th>
+                                    <th>  Chiffre d'affaire
+                                        <a class="sortButtonCA" id="sortButtonCA"
+                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"CA"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                 id="sortCA" alt="sort Down"/>
+                                        </a></th>
                                 {% endif %}
                             {% elseif field == "lieu" %}
                                 {% if desc %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path(vue, {'id': param},pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue,pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
                                                  id="sortLieu" alt="sort Down"/>
                                         </a>
                                     </th>
                                     <th>Date de la vente
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path(vue, {'id': param}, pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
                                                  id="sortDate" alt="sort Down"/>
                                         </a>
                                     </th>
+                                    <th> Etablissement </th>
+                                    <th> Intervention liée </th>
+                                    <th>  Chiffre d'affaire
+                                        <a class="sortButtonCA" id="sortButtonCA"
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"CA"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                 id="sortCA" alt="sort Down"/>
+                                        </a></th>
                                 {% else %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path(vue, {'id': param}, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue,  pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortLieu"
                                                  alt="sort Up"/>
                                         </a>
                                     </th>
                                     <th>Date de la vente
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path(vue, {'id': param}, pathReq | merge({"desc":true, "field":"dateVente"}) ) }}">
+                                           href="{{ path(vue,  pathReq | merge({"desc":true, "field":"dateVente"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
-                                                 id="sortDate" alt="sort Up"/>
+                                                 id="sortDate" alt="sort Down"/>
                                         </a>
                                     </th>
+                                    <th> Etablissement </th>
+                                    <th> Intervention liée </th>
+                                    <th>  Chiffre d'affaire
+                                        <a class="sortButtonCA" id="sortButtonCA"
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"CA"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                 id="sortCA" alt="sort Down"/>
+                                        </a></th>
+                                {% endif %}
+                            {% elseif field == "CA" %}
+                                {% if desc %}
+                                    <th>Lieu
+                                        <a class="sortButtonLieu" id="sortButtonLieu"
+                                           href="{{ path(vue,pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                 id="sortLieu" alt="sort Down"/>
+                                        </a>
+                                    </th>
+                                    <th>Date de la vente
+                                        <a class="sortButtonDate" id="sortButtonDate"
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
+                                                 id="sortDate" alt="sort Down"/>
+                                        </a>
+                                    </th>
+                                    <th> Etablissement </th>
+                                    <th> Intervention liée </th>
+                                    <th>  Chiffre d'affaire
+                                        <a class="sortButtonCA" id="sortButtonCA"
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"CA"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                 id="sortCA" alt="sort Down"/>
+                                        </a></th>
+                                {% else %}
+                                    <th>Lieu
+                                        <a class="sortButtonLieu" id="sortButtonLieu"
+                                           href="{{ path(vue,pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                 id="sortLieu" alt="sort Down"/>
+                                        </a>
+                                    </th>
+                                    <th>Date de la vente
+                                        <a class="sortButtonDate" id="sortButtonDate"
+                                           href="{{ path(vue,  pathReq | merge({"desc":true, "field":"dateVente"}) ) }}">
+                                            <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
+                                                 id="sortDate" alt="sort Down"/>
+                                        </a>
+                                    </th>
+                                    <th> Etablissement </th>
+                                    <th> Intervention liée </th>
+                                    <th>  Chiffre d'affaire
+                                        <a class="sortButtonCA" id="sortButtonCA"
+                                           href="{{ path(vue,  pathReq | merge({"desc":true, "field":"CA"}) ) }}">
+                                            <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortCA"
+                                                 alt="sort Up"/>
+                                        </a></th>
                                 {% endif %}
                             {% endif %}
-                            <th> Etablissement </th>
-                            <th> Intervention liée </th>
-                            <th> Chiffre d'affaire </th>
+
                             <th>Voir détails</th>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <th>Supprimer</th>
@@ -541,11 +741,19 @@
                         {% set pathReq = pathReq | merge({"desc":app.request.query.get('desc')}) | merge({"field":app.request.query.get('field')}) %}
                     {% endif %}
                     <ul>Par page :
-                        <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
-                        <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
-                        <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
-                        <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
-                        <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
+                        {% if param is null %}
+                            <a href="{{ path(vue,  pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
+                            <a href="{{ path(vue,  pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
+                            <a href="{{ path(vue,  pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
+                            <a href="{{ path(vue,  pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
+                            <a href="{{ path(vue,  pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
+                        {% else %}
+                            <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
+                            <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
+                            <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
+                            <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
+                            <a href="{{ path(vue, {'id': param}, pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
+                        {% endif %}
                     </ul>
                     <ul class="pagination pagination-lg pager" id="myPager"></ul>
                 </div>

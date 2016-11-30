@@ -46,11 +46,12 @@ class VenteRepository extends EntityRepository {
      *
      * @return array
      */
-    public function getType($start, $end, $dateChecked, $field, $desc, $user, $ville = null, $distance = null, $geolocalisation = null, $etablissement = null, $intervention = null) {
+    public function getType($start, $end, $dateChecked, $field, $desc, $user, $ville = null, $distance = null, $geolocalisation = null, $etablissement = null, $intervention = null, $borne1 = null, $borne2 = null) {
 
         $qb = $this->createQueryBuilder('v');
 
-        $this->_getVentes($qb, $start, $end, $dateChecked);
+        $this->_getVentes($qb, $start, $end, $dateChecked, $borne1, $borne2);
+
 
         if ($etablissement != null) {
             $qb
@@ -86,11 +87,17 @@ class VenteRepository extends EntityRepository {
                     ->orderBy('vi.nom', 'ASC');
             }
 
-        } else {
+        } else if ($field=="dateVente"){
             if ($desc) {
                 $qb->orderBy('v.dateVente', 'DESC');
             } else {
                 $qb->orderBy('v.dateVente', 'ASC');
+            }
+        } else {
+            if ($desc) {
+                $qb->orderBy('v.chiffreAffaire', 'DESC');
+            } else {
+                $qb->orderBy('v.chiffreAffaire', 'ASC');
             }
         }
 
@@ -121,10 +128,14 @@ class VenteRepository extends EntityRepository {
      *
      * @return QueryBuilder
      */
-    private function _getVentes(QueryBuilder $qb, $start,  $end , $datesChecked) {
+    private function _getVentes(QueryBuilder $qb, $start,  $end , $datesChecked, $borne1, $borne2) {
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
+        }
+
+        if ($borne1!=null && $borne2!=null){
+            $this->_whereVentesBetweenPrix($borne1, $borne2, $qb);
         }
     }
 
@@ -142,6 +153,23 @@ class VenteRepository extends EntityRepository {
             ->andWhere('v.dateVente BETWEEN :start AND :end')
             ->setParameter('start', $start)
             ->setParameter('end', $end);
+
+    }
+
+    /**
+     * Where Ventes between two prices
+     *
+     * @param Double    $borne1 Le debut
+     * @param Double    $borne2   La fin
+     * @param QueryBuilder $qb    Le querybuilder
+     *
+     * @return object
+     */
+    private function _whereVentesBetweenPrix($borne1, $borne2, QueryBuilder $qb) {
+        $qb
+            ->andWhere('v.chiffreAffaire BETWEEN :borne1 AND :borne2')
+            ->setParameter('borne1', $borne1)
+            ->setParameter('borne2', $borne2);
 
     }
 

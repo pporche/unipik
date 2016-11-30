@@ -277,10 +277,10 @@
                                     { text: "{{ vente.dateVente|date('d-m-Y') }}", style: 'tableHeader' },
                                     { text: "{{ vente.etablissement.nom | capitalize }}", style: 'tableHeader' },
                                     {% if vente.intervention %}
-                                        { text: "FRIMOUSSE A L'{{ vente.intervention.etablissement.nom | capitalize }}", style: 'tableHeader' }
+                                        { text: "FRIMOUSSE A L'{{ vente.intervention.etablissement.nom | capitalize }}", style: 'tableHeader' },
                                     {% else %}
-                                        { text: "-", style: 'tableHeader' }
-                                    {% endif %},
+                                        { text: "-", style: 'tableHeader' },
+                                    {% endif %}
                                     { text: "{{ vente.chiffreAffaire }} €", style: 'tableHeader' },
                                 ],
                                 {% endfor %}
@@ -493,7 +493,7 @@
                             {% for vente in ventes %}
                                 <tr>
                                     <td data-title="Lieu">{{ vente.etablissement.adresse.ville.nom }}</td>
-                                    <td data-title="DateVente">{{ vente.dateVente|date("d-m-Y") }}</td>
+                                    <td data-title="Date Vente">{{ vente.dateVente|date("d-m-Y") }}</td>
                                     <td data-title="Etablissement">
                                         <a href="{{ path('etablissement_view', {'id':vente.etablissement.id}) }}">
                                             {{ vente.etablissement.nom | capitalize}}
@@ -508,7 +508,7 @@
                                             <div style="text-align: center"> - </div>
                                         {% endif %}
                                     </td>
-                                    <td data-title="ChiffreAffaire" style="text-align: center"> {{ vente.chiffreAffaire }} € </td>
+                                    <td data-title="Chiffre Affaire" style="text-align: center"> {{ vente.chiffreAffaire }} € </td>
                                     <td data-title="Voir Détails">
                                         <a href="{{ path('vente_view', {id: vente.id}) }}"
                                            class="btn btn-primary">Voir détails</a>

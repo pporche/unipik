@@ -462,6 +462,7 @@
         });
 
         function sendIdToModal(id) {
+            $('#attribution_benevole').val('');
             $("#attribution_idIntervention").attr("value", id);
         }
 
@@ -778,9 +779,6 @@
                                         <p class="text-success"> Réalisée <span class="glyphicon glyphicon-ok"></span>
                                         </p>
                                     {% elseif intervention.benevole %}
-                                        {% if user==intervention.benevole %}
-                                                Attribuée à vous
-                                        {% else %}
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <button name="desattribution" type="button" class="btn btn-danger"
                                                         onclick="desattributeInterventionAdmin(this, {{ intervention.id }})" style="padding-right: 4px;padding-left: 4px; font-size: 14px; width: 100%; overflow: hidden; text-overflow: ellipsis; ">
@@ -790,7 +788,6 @@
                                             {% else %}
                                                 Attribuée à {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
                                             {% endif %}
-                                        {% endif %}
                                     {% else %}
                                         {% if is_granted('ROLE_ADMIN') %}
                                             <button name="attribuer{{ intervention.id }}" type="button"

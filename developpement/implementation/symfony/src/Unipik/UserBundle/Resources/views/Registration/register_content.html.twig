@@ -5,12 +5,10 @@
 <div class="well">
     <div class="row">
         {{ form_widget(form, {'attr':{'class':'typeahead'}}) }}
-
     </div>
-
-
 </div>
 {{ form_end(form) }}
+
 <div CLASS="buttons">
     <a href="{{ path('user_admin_list') }}" class="btn btn-danger" style="margin-left:calc(50% - 140px)">Annuler</a>
     <input class="btn btn-success" type="submit" value="Inscrire" />

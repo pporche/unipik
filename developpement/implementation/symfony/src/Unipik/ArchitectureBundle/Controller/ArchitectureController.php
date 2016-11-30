@@ -163,9 +163,9 @@ class ArchitectureController extends Controller {
             ->getResult();
 
         foreach ($entities as $entity) {
-            //foreach ($entity->getCodePostal() as $codePostal) {
-                $names[] = $entity->getNom()/*.' ('.$codePostal->getCode().')'*/;
-            //}
+            foreach ($entity->getCodePostal() as $codePostal) {
+                $names[] = $entity->getNom().' ('.$codePostal->getCode().')';
+            }
         }
 
         $response = new JsonResponse();

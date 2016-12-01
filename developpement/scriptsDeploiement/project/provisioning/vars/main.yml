@@ -104,3 +104,11 @@ manala_npm_packages:
   - name:     bower
     version:  latest
     global:   true
+
+fail2ban_services:
+  - name: ssh
+    enabled: true
+    port: ssh
+    filter: sshd
+    logpath: /var/log/auth.log
+    maxretry: 6

@@ -1,4 +1,4 @@
-% version 1.00, date 20/02/16, auteur Michel Cressant
+% version 2.00, date 30/11/16, auteur Julie Pain
 
 \newpage
 
@@ -23,30 +23,10 @@ Le diagramme de classes réalisé est composé de plusieurs types, de plusieurs 
 
 \subsection{Les types}
 
-\subsubsection*{Geometry}
+\subsubsection*{Geography}
 
-Le type Geometry est un type de données respectant la norme de l'OGC (Open Geospatial Consortium) et qui définit la géolocalisation.
+Le type Geography est un type de données respectant la norme de l'OGC (Open Geospatial Consortium) et qui définit la géolocalisation.
 
-\subsubsection*{Adresse}
-
-La classe Adresse définit un type qui est l'adresse d'un bénévole ou d'un établissement.\\
-Cette classe a plusieurs attributs : 
-\begin{itemize}
-\item une ville;
-\item une rue;
-\item un code postal;
-\item un numéro de rue avec si besoin le supplément "bis", "ter" ou "quater";
-\item un complément si besoin;
-\item la géolocalisation associée à cette adresse.
-\end{itemize}
-
-\subsubsection*{Semaine}
-
-La classe Semaine définit un type qui est une semaine du calendrier.\\
-Cette classe a un attribut : 
-\begin{itemize}
-\item un identifiant.
-\end{itemize}
 
 \subsubsection*{Date}
 
@@ -73,7 +53,7 @@ Cette classe a plusieurs attributs :
 
 \subsubsection*{MomentQuotidien}
 
-Le type MomentQuotidien est une énumération qui définit les différents moments possibles dans une journée, donc matin ou après-midi ou soir.
+Le type MomentQuotidien est une énumération qui définit les différents moments possibles dans une journée, donc matin ou après-midi.
 
 \subsubsection*{TypeContact}
 
@@ -81,11 +61,11 @@ Le type TypeContact est une énumération qui définit les différents contacts 
 
 \subsubsection*{Activite}
 
-Le type Activite est une énumération qui définit les différentes activités que peuvent réaliser les bénévoles. il représente également l'Activité dont un Contact travaillant dans un Etablissement peut être responsable.
+Le type Activite est une énumération qui définit les différentes activités que peuvent réaliser les bénévoles. Il représente également l'Activité dont un Contact travaillant dans un Etablissement peut être responsable.
 
 \subsubsection*{ResponsabiliteActivite}
 
-Le type Activite est une énumération qui définit les différentes activités dont un bénévole peut être responsable, mais également si un bénébole est un administrateur d'un comité et/ou d'une région.
+Le type ResponsabiliteActivite est une énumération qui définit les différentes activités dont un bénévole peut être responsable, mais également si un bénébole est un administrateur d'un comité et/ou d'une région.
 
 \subsubsection*{TypeProjet}
 
@@ -152,7 +132,7 @@ Cette classe a plusieurs attributs :
 La classe Benevole est une classe fille de la classe Personne. Cette classe décrit les bénévoles de l'UNICEF qui réaliseront des interventions mais aussi ceux qui géreront des activités, des comités ou des régions.\\
 Cette classe a plusieurs attributs : 
 \begin{itemize}
-\item une adresse correspondant à la rue, au numéro de rue, au code postal, à la ville, au complément si besoin et à une géolocalisation;
+\item une adresse correspondant à la rue, au code postal, à la ville, au complément si besoin et à une géolocalisation;
 \item un mot de passe;
 \item aucune, une ou plusieurs activités potentielles (action ponctuelle, plaidoyer, frimousse, projet ou autre);
 \item aucune, une ou plusieurs responsabilités d'activité (action ponctuelle, plaidoyer, frimousse, projet, admin region ou admin comite). 
@@ -176,7 +156,7 @@ Cette classe a plusieurs attributs :
 \item un nom;
 \item un numéro de téléphone fixe;
 \item une ou plusieurs adresses e-mail;
-\item une adresse correspondant à la rue, au numéro de rue, au code postal, à la ville, au complément si besoin et à une géolocalisation.
+\item une adresse correspondant à la rue, au code postal, à la ville, au complément si besoin et à une géolocalisation.
 \end{itemize}
 
 \subsubsection*{Enseignement}
@@ -210,7 +190,8 @@ Cette classe a plusieurs attributs :
 \item un lieu dans l'établissement, c'est à dire la salle où aura lieu l'intervention;
 \item le nombre de personnes concernées par cette intervention (exemple : le nombre d'élèves d'une classe);
 \item un champ remarques permettant au contact de saisir des remarques spécifiques à cette intervention;
-\item un moment indiquant si l'intervention a lieu le matin, l'après-midi ou le soir.
+\item une heure indiquant l'heure à laquelle l'intervention aura lieu;
+\item un attribut "realisee" permettant de savoir si une intervention a été réalisée ou non.
 \end{itemize}
 
 \subsubsection*{Plaidoyer}
@@ -230,7 +211,7 @@ Cette classe a plusieurs attributs :
 \end{itemize}
 
 \subsubsection*{AutreIntervention}
-La classe AutreIntervention est une classe fille de la classe Intervention. Une AutreIntervention peut être réalisée dans un dans un établissement et n'est ni un plaidoyer ni une activité frimousse. Elle a la particularité de pouvoir être effectuée le soir contrairement aux Plaidoyers et aux Frimousses. \\
+La classe AutreIntervention est une classe fille de la classe Intervention. Une AutreIntervention peut être réalisée dans un dans un établissement et n'est ni un plaidoyer ni une activité frimousse.  \\
 Cette classe possède un attribut :
 \begin{itemize}
 \item une description permettant de décrire cette intervention, en quoi elle consiste et son public par exemple.
@@ -263,10 +244,11 @@ La classe Demande représente les demandes d'intervention effectuées par les co
 Cette classe a plusieurs attributs :
 \begin{itemize}
 \item un identifiant;
-\item une liste des semaines correspondant aux semaines où l'intervention peut se faire; 
+\item une date correspondant au moment où la demande a été faite;
+\item une date de début correspondant à la date à partir de laquelle l'intervention peut se faire; 
+\item une date de fin correspondant à la date butoire pour réaliser l'intervention;
 \item les moments voulus pour une semaine type (sera donc valable pour toutes les semaines où le contact est disponible);
-\item les moments à éviter pour une semaine type;
-\item une date correspondant au moment où la demande a été faite.
+\item les moments à éviter pour une semaine type.
 \end{itemize}
 
 \subsubsection*{Comite}
@@ -274,23 +256,56 @@ Cette classe a plusieurs attributs :
 La classe Comite représente les comités de bénévoles, il y a en général un comité par département. Il peut arriver qu'un département ne possède pas de comité.\\
 Cette classe a plusieurs attributs :
 \begin{itemize}
-\item un identifiant représentant le numéro du département;
-\item le nom du département;
+\item un identifiant unique;
+\item le nom du comité;
 \item la liste des thèmes du comité avec les niveaux associés à chaque thème. Un comité ne présente pas forcément les mêmes thèmes qu'un autre comité et, pour un même thème, les niveaux associés ne sont pas obligatoirement les mêmes en fonction des comités. 
 \end{itemize}
 
-\subsubsection*{Region}
 
-La classe Region représente les régions de l'UNICEF qui peuvent être différentes des régions administratives.\\
+\subsubsection*{Departement}
+
+La classe Departement représente les départements de France.\\
 Cette classe a plusieurs attributs :
 \begin{itemize}
-\item le nom de la région.
+\item un identifiant unique;
+\item le nom du département;
+\item le numéro du département.
 \end{itemize}
+
+\subsubsection*{CodePostal}
+
+La classe CodePostal représente les codes postaux de France.\\
+Cette classe a plusieurs attributs : 
+\begin{itemize}
+\item un identifiant unique;
+\item un code correspondant au code postal.
+\end{itemize}
+
+\subsubsection*{Ville}
+
+La classe Ville représente les villes de France. \\
+Cette classe a plusieurs attributs :
+\begin{itemize}
+\item un identifiant unique; 
+\item le nom de la ville.
+\end{itemize}
+
+\subsubsection*{Adresse}
+
+La classe Adresse définit un type qui est l'adresse d'un bénévole ou d'un établissement.\\
+Cette classe a plusieurs attributs : 
+\begin{itemize}
+\item un identifiant unique;
+\item une adresse correspondant au numéro de rue et à la rue par exemple;
+\item un complément si besoin;
+\item la géolocalisation associée à cette adresse.
+\end{itemize}
+
 
 \subsubsection*{Pays}
 
 La classe Pays représente la France.\\
-Cette classe a plusieurs attributs :
+Cette classe a un attribut :
 \begin{itemize}
 \item le nom du pays (donc "France").
 \end{itemize}
@@ -336,19 +351,36 @@ Cette association a plusieurs attributs :
 
 \subsubsection*{benevoleSeSitue}
 
-L'association \textit{benevoleSeSitue} relie un Benevole et un Comite. Un bénévole se situe dans un ou plusieurs comités, un comité a aucun, un ou plusieurs bénévoles.
+L'association \textit{benevoleSeSitue} relie un Benevole et un Comite. Un bénévole se situe dans un ou plusieurs comités. Un comité a aucun, un ou plusieurs bénévoles.
 
 \subsubsection*{interventionSeSitue}
 
-L'association \textit{interventionSeSitue} relie une Intervention et un Comite. Une intervention se situe dans un et un seul comité, un comité a aucune, une ou plusieurs interventions.
+L'association \textit{interventionSeSitue} relie une Intervention et un Comite. Une intervention se situe dans un et un seul comité. Un comité a aucune, une ou plusieurs interventions.
 
-\subsubsection*{regionContient}
+\subsubsection*{departementContient}
 
-L'association \textit{regionContient} relie une Region et un Comite. Une région contient aucun, un ou plusieurs comités, un comité est dans une et une seule région.
+L'association \textit{departementContient} relie un Departement et un Comite. Un département contient aucun, un ou plusieurs comités. Un comité est dans un et un seul département.
 
 \subsubsection*{paysContient}
 
-L'association \textit{paysContient} relie un Pays et une Region. Un pays contient aucune, une ou plusieurs régions, une région est dans un et un seul pays.
+L'association \textit{paysContient} relie un Pays et un Departement. Un pays contient aucun, un ou plusieurs départements. Un département est dans un et un seul pays.
+
+
+\subsubsection*{seSitueDansDepartement}
+
+L'association \textit{seSitueDansDepartement} relie un Departement et un CodePostal. Un codePostal se situe dans un et un seul département. Un département possède un à plusieurs codes postaux. 
+
+\subsubsection*{correspond}
+
+L'association \textit{correspond} relie un CodePostal et une Ville. Un code postal correspond à une ou plusieurs villes. Une ville correspond à un ou plusieurs code postaux.
+
+\subsubsection*{seSitueDansVille}
+
+L'association \textit{seSitueDansVille} relie une Ville et une Adresse. Une adresse se situe dans une et une seule ville. Une ville contient aucune ou plusieurs adresses.
+
+\subsubsection*{aCodePostal}
+
+L'association \textit{aCodePostal} relie une Adresse et un CodePostal. Une adresse a un et un seul code postal. Un code postal peut correspondre à aucune ou plusieurs adresses. 
 
 \section{Contraintes d'intégrité}
 
@@ -415,19 +447,19 @@ Clés :
 \subsubsection*{Enseignement}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
-	\item \textbf{type :} constante de type \textbf{TypeEnseignement}, attribut non nul.\\
+	\item \textbf{typeEnseignement :} constante de type \textbf{TypeEnseignement}, attribut non nul.\\
 \end{itemize}
 
 \subsubsection*{CentreLoisirs}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
-	\item \textbf{type :} constante de type \textbf{TypeCentre}, attribut non nul.\\
+	\item \textbf{typeCentre :} constante de type \textbf{TypeCentre}, attribut non nul.\\
 \end{itemize}
 
 \subsubsection*{AutreEtablissement}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
-	\item \textbf{type :} constante de type \textbf{TypeAutreEtablissement}, attribut non nul.\\
+	\item \textbf{typeAutreEtablissement :} constante de type \textbf{TypeAutreEtablissement}, attribut non nul.\\
 \end{itemize}
 
 \subsubsection*{Intervention} 
@@ -438,13 +470,14 @@ Contraintes de domaine et de nullité des attributs :
 	\item \textbf{lieu :} chaîne de caractère composée de chiffres et de lettres, attribut peut être nul;
 	\item \textbf{nbPersonnes :} entier positif non nul, attribut non nul;  
 	\item \textbf{remarques :} chaîne de caractères de longueur de 1000 caractères au maximum, peut être nul;
-	\item \textbf{moment :} constante de type \textbf{MomentQuotidien}, attribut peut être nul;\\
+	\item \textbf{heure :} constante de type \textbf{Time}, attribut peut être nul;
+	\item \textbf{realisee :} booléen, attribut non nul. \\
 \end{itemize}  
 
 Clés : 
 \begin{itemize}
 \item clé structurelle : \textbf{idIntervention} est unique;
-\item clé sémantique : \textbf{moment} (Intervention), \textbf{date} (Intervention), \textbf{nom} (Benevole), \textbf{prenom} (Benevole), \textbf{type} (Etablissement) et \textbf{adresse} (Etablissement) est une autre clé candidate. \\ 
+\item clé sémantique : \textbf{heure} (Intervention), \textbf{date} (Intervention), \textbf{nom} (Benevole), \textbf{prenom} (Benevole), \textbf{type} (Etablissement) et \textbf{adresse} (Etablissement) est une autre clé candidate. \\ 
 \end{itemize}
 
 \subsubsection*{Plaidoyer}
@@ -500,10 +533,11 @@ L'\textbf{idVente} est unique.\\
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{idDemande :} entier positif ou nul, attribut non nul;
- 	\item \textbf{listeSemaines :} constante de type \textbf{Semaine}, attribut multivalué non nul; 
+	\item \textbf{date :} variable de type \textbf{Date}, attribut non nul;
+ 	\item \textbf{dateDebut :} constante de type \textbf{Date}, attribut non nul;
+ 	\item \textbf{dateFin :} constante de type \textbf{Date}, attribut non nul;  
 	\item \textbf{momentsVoulus :} constante de type \textbf{MomentHebdomadaire}, attribut multivalué peut être nul;
-	\item \textbf{momentsAEviter :} constante de type \textbf{MomentHebdomadaire}, attribut multivalué peut être nul;
-	\item \textbf{date :} variable de type \textbf{Date}, attribut non nul.\\
+	\item \textbf{momentsAEviter :} constante de type \textbf{MomentHebdomadaire}, attribut multivalué peut être nul.\\
 \end{itemize} 
 
 Clés : 
@@ -516,7 +550,7 @@ Clés :
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
 	\item \textbf{id :} entier positif ou nul, attribut non;
-	\item \textbf{nomDepartement :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul;
+	\item \textbf{nom :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul;
 	\item \textbf{listeNiveauTheme :} constante de type \textbf{NiveauTheme}, attribut multivalué peut être nul. \\
 \end{itemize}
 
@@ -526,17 +560,60 @@ Clés :
 \item clé sémantique : \textbf{nomDepartement} est une autre clé candidate. \\ 
 \end{itemize}
 
-\subsubsection*{Region}
+\subsubsection*{Departement}
 Contraintes de domaine et de nullité des attributs :
 \begin{itemize}
+	\item \textbf{id :} entier positif ou nul, attribut non;
 	\item \textbf{nom :} chaîne de caractère unique de longueur de 100 caractères au maximum, attribut non nul.\\
 \end{itemize}
 
 Clés : 
 \begin{itemize}
-\item clé structurelle :  \textbf{nom} est une autre clé candidate. \\ 
+\item clé structurelle : \textbf{idDepartement} est unique;
+\item clé sémantique :  \textbf{nom} est une autre clé candidate. \\ 
 \end{itemize}
 
+\subsubsection*{CodePostal}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{id :} entier positif ou nul, attribut non;
+	\item \textbf{code :} chaîne de caractère unique de longueur de 5 caractères contenant des chiffres allant de 0 à 9, attribut non nul.\\
+\end{itemize}
+
+Clés : 
+\begin{itemize}
+\item clé structurelle : \textbf{id} est unique;
+\item clé sémantique :  \textbf{code} est une autre clé candidate. \\ 
+\end{itemize}
+
+\subsubsection*{Ville}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{id :} entier positif ou nul, attribut non;
+	\item \textbf{nom :} chaîne de caractère unique de longueur de 100 caractères maximum, attribut non nul.\\
+\end{itemize}
+
+Clés : 
+\begin{itemize}
+\item clé structurelle : \textbf{id} est unique;
+\item clé sémantique :  \textbf{nom} est une autre clé candidate. \\ 
+\end{itemize}
+
+
+\subsubsection*{Adresse}
+Contraintes de domaine et de nullité des attributs :
+\begin{itemize}
+	\item \textbf{id :} entier positif ou nul, attribut non;
+	\item \textbf{adresse :} chaîne de caractère de longueur de 500 caractères au maximum, attribut non nul;
+	\item \textbf{complement : } chaîne de caractère de longueur de 100 caractères au maximum, attribut peut être nul;
+	\item \textbf{geolocalisation : } attribut de type geoography, peut être nul.\\
+\end{itemize}
+
+Clés : 
+\begin{itemize}
+\item clé structurelle : \textbf{id} est unique;
+\item clé sémantique :  \textbf{geolocalisation} est une autre clé candidate. \\ 
+\end{itemize}
 
 
 \subsubsection*{Pays}
@@ -547,26 +624,9 @@ Contraintes de domaine et de nullité des attributs :
 
 Clés : 
 \begin{itemize}
-\item clé structurelle : \textbf{nom} est une autre clé candidate. \\ 
+\item clé structurelle : \textbf{nom} est unique. \\ 
 \end{itemize}
 
-
-\subsubsection*{Adresse}
-Contraintes de domaine et de nullité des attributs :
-\begin{itemize}
- 	\item \textbf{ville :} chaîne de caractère de longueur de 100 caractères au maximum, attribut non nul;
-	\item \textbf{rue :} chaîne de caractère de longueur de 500 caractères au maximum, attribut non nul;
-	\item \textbf{codePostal :} chaîne de caractère composée de 5 chiffres, attribut non nul;
-	\item \textbf{numeroDeRue :} chaîne de caractère composée d'un numéro et, si besoin, de "bis", "ter", "quater", attribut non nul; 
-	\item \textbf{complement : } chaîne de caractère de longueur de 100 caractères au maximum, attribut peut être nul;
-	\item \textbf{geolocalisation : } attribut de type geometry, peut être nul.\\
-\end{itemize}
-
-\subsubsection*{Semaine}
-Contraintes de domaine et de nullité des attributs : 
-\begin{itemize}
-	\item \textbf{idSemaine :} entier de valeur minimale 1 et de valeur maximale 53, attribut non nul.
-\end{itemize}
 
 \subsubsection*{Date}
 Contraintes de domaine et de nullité des attributs :
@@ -693,13 +753,15 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 \subsubsection*{Intervention}
 \begin{itemize}
 \item[]	idIntervention $\rightarrow$ date
+\item[]	idIntervention $\rightarrow$ dateDebut
+\item[]	idIntervention $\rightarrow$ dateFin
 \item[]	idIntervention $\rightarrow$ lieu
 \item[]	idIntervention $\rightarrow$ nbPersonnes
 \item[]	idIntervention $\rightarrow$ remarques
-\item[]	idIntervention $\rightarrow$ moment
-\item[] moment (Intervention), date (Intervention), type (Etablissement), adresse (Etablissement), nom (Benevole), prenom (Benevole) $\rightarrow$ lieu (Intervention)
-\item[] moment (Intervention), date (Intervention), type (Etablissement), adresse (Etablissement), nom (Benevole), prenom (Benevole) $\rightarrow$ nbPersonnes (Intervention)
-\item[] moment (Intervention), date (Intervention), type (Etablissement), adresse (Etablissement), nom (Benevole), prenom (Benevole) $\rightarrow$ remarques (Intervention)
+\item[]	idIntervention $\rightarrow$ heure
+\item[] heure (Intervention), date (Intervention), type (Etablissement), adresse (Etablissement), nom (Benevole), prenom (Benevole) $\rightarrow$ lieu (Intervention)
+\item[] heure (Intervention), date (Intervention), type (Etablissement), adresse (Etablissement), nom (Benevole), prenom (Benevole) $\rightarrow$ nbPersonnes (Intervention)
+\item[] heure (Intervention), date (Intervention), type (Etablissement), adresse (Etablissement), nom (Benevole), prenom (Benevole) $\rightarrow$ remarques (Intervention)
 \end{itemize}
 
 \subsubsection*{Plaidoyer}
@@ -782,8 +844,6 @@ Dans cette sous-partie, nous allons déterminer les dépendances fonctionnelles 
 \begin{itemize}
 \item[] idDemande $\rightarrow$ momentsVoulus
 \item[] idDemande $\rightarrow$ momentsAEviter
-\item[] idDemande $\rightarrow$ listeSemaines
-\item[] nom (Contact), prenom (Contact), adresse (Etablissement), type (Etablissement), date (Demande) $\rightarrow$ listeSemaines (Demande) 
 \item[] nom (Contact), prenom (Contact), adresse (Etablissement), type (Etablissement), date (Demande) $\rightarrow$ momentsAEviter (Demande) 
 \item[] nom (Contact), prenom (Contact), adresse (Etablissement), type (Etablissement), date (Demande) $\rightarrow$ momentsVoulus (Demande) 
 \end{itemize}

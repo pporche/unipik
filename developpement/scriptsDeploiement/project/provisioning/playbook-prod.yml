@@ -16,7 +16,8 @@
 #    - file: path=/var/www state=directory mode=0755 owner=www-data group=www-data
 
   roles:
-#    - geerlingguy.firewall
+    - tersmitten.fail2ban
+    - geerlingguy.firewall
     - geerlingguy.git
     - ANXS.postgresql
     - geerlingguy.apache

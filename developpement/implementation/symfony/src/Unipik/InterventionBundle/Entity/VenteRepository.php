@@ -233,7 +233,7 @@ class VenteRepository extends EntityRepository {
             ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'adresse')
             ->andWhere('b.adresse = adresse')
             ->from('Unipik\InterventionBundle\Entity\Etablissement', 'e')
-            ->andWhere('i.etablissement = e')
+            ->andWhere('v.etablissement = e')
             ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
             ->andWhere('e.adresse = a')
             ->andWhere(

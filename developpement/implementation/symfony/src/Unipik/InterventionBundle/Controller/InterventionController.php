@@ -962,14 +962,6 @@ class InterventionController extends Controller {
      * @return void
      */
     function treatmentEtablissement($institute, $etablissementRaw) {
-        $emails = $etablissementRaw->get("emails")->getData();
-        if (sizeof($emails) != 0) {
-            foreach ($emails as $email) {
-                if (!$institute->getEmails()->contains($email)) {
-                    $institute->addEmail($email);
-                }
-            }
-        }
 
         $nomEtablissement = $etablissementRaw->get("nom")->getData();
         $institute->setNom($nomEtablissement);

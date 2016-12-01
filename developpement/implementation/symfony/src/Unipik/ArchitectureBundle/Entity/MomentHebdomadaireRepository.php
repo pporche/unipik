@@ -43,10 +43,10 @@ class MomentHebdomadaireRepository  extends EntityRepository {
     public function getByDayAndMoment($day, $moment) {
         $qb = $this->createQueryBuilder('mh');
         $qb
-            -> where('mh.jour = :jour')
-            -> setParameter('jour', $day)
-            -> andWhere('mh.moment = :moment')
-            -> setParameter('moment', $moment);
+            ->where('mh.jour = :jour')
+            ->setParameter('jour', $day)
+            ->andWhere('mh.moment = :moment')
+            ->setParameter('moment', $moment);
 
         return $qb->getQuery()->getOneOrNullResult();
     }

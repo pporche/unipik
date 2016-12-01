@@ -15,13 +15,11 @@ use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\VilleMock;
 use Unipik\ArchitectureBundle\Entity\CodePostal;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
 
-class CodePostalTest extends EntityTestCase
-{
+class CodePostalTest extends EntityTestCase {
 
     protected static $repository = "ArchitectureBundle:CodePostal";
 
-    public static function testCreate() 
-    {
+    public static function testCreate() {
         self::bootKernel();
 
         $cp = CodePostalMock::create();
@@ -32,8 +30,7 @@ class CodePostalTest extends EntityTestCase
     /**
      * @depends testCreate
      */
-    public function testGettersSetters(CodePostal $cp) 
-    {
+    public function testGettersSetters(CodePostal $cp) {
         $this->assertEquals(null, $cp->getId());
         $this->assertEquals("76000", $cp->getCode());
 
@@ -53,12 +50,10 @@ class CodePostalTest extends EntityTestCase
         $this->assertEquals(null, $cp->getVille()[0]);
     }
 
-    public function badEntityProvider() 
-    {
+    public function badEntityProvider() {
         $cp = CodePostalMock::createMultiple(2);
 
         return [
-
             "Code postal with null name" => [$cp[0]->setCode(null)],
             "Code postal with incorrect type" => [$cp[1]->setCode("blabla")]
         ];

@@ -87,11 +87,17 @@ class VenteRepository extends EntityRepository {
                     ->orderBy('vi.nom', 'ASC');
             }
 
-        } else {
+        } else if ($field=="dateVente"){
             if ($desc) {
                 $qb->orderBy('v.dateVente', 'DESC');
             } else {
                 $qb->orderBy('v.dateVente', 'ASC');
+            }
+        } else {
+            if ($desc) {
+                $qb->orderBy('v.chiffreAffaire', 'DESC');
+            } else {
+                $qb->orderBy('v.chiffreAffaire', 'ASC');
             }
         }
 

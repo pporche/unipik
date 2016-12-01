@@ -32,7 +32,7 @@ class InterventionMock extends EntityMock
             ->setEtablissement($e)
             ->setNbPersonne(7)
             ->setRealisee(false)
-            ->setTypeIntervention("plaidoyers");
+            ->setTypeIntervention("plaidoyer");
 
         return $i;
     }

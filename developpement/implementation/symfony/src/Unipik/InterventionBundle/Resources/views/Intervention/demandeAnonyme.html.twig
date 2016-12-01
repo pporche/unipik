@@ -153,7 +153,7 @@
             padding-bottom: 0px !important;
         }
 
-        #demande_anonyme_ville, #demande_anonyme_departement, #demande_anonyme_codePostal, #demande_anonyme_nomEtablissement {
+        #demande_anonyme_ville, #demande_anonyme_departement, #demande_anonyme_nomEtablissement {
             text-transform: uppercase;
         }
 
@@ -228,13 +228,13 @@
                         + encodeURIComponent(uriEncodedQuery));
                     } else if ( $('#demande_anonyme_departement').val().length==0) {
                         var res = (url + "?term="
-                        + encodeURIComponent(uriEncodedQuery) + "&?ville=" + $('#demande_anonyme_ville').val() );
+                        + encodeURIComponent(uriEncodedQuery) + "&?ville=" + $('#demande_anonyme_ville').val().split(' (')[0] );
                     } else if ($('#demande_anonyme_ville').val().length==0) {
                         var res = (url +  "?term="
                         + encodeURIComponent(uriEncodedQuery) + "&?dep=" + $('#demande_anonyme_departement').val() );
                     } else {
                         var res = (url +  "?term="
-                        + encodeURIComponent(uriEncodedQuery) + "&?ville=" + $('#demande_anonyme_ville').val() + "&?dep=" + $('#demande_anonyme_departement').val() );
+                        + encodeURIComponent(uriEncodedQuery) + "&?ville=" + $('#demande_anonyme_ville').val().split(' (')[0] + "&?dep=" + $('#demande_anonyme_departement').val() );
                     }
                     console.log($('#demande_anonyme_typeGeneral').val());
                     switch ($('#demande_anonyme_typeGeneral').val()) {
@@ -375,7 +375,7 @@
         // Permet de enable/disable le champ "nom établissement" si les champ du dessus sont vides
         enable_or_disable_nom_etablissement = function() {
             var dep = $('#demande_anonyme_departement').val();
-            var ville = $('#demande_anonyme_ville').val();
+            var ville = $('#demande_anonyme_ville').val().split(' (')[0];
             if (dep.length==0 || ville.length==0){
                 $('#demande_anonyme_nomEtablissement').prop('disabled',true);
             }else {
@@ -427,7 +427,7 @@
 
         // Vérifier que la valeur du champs "ville" est correcte et correspond à une entité de la BD
         verify_ville = function() {
-            var ville = $('#demande_anonyme_ville').val();
+            var ville = $('#demande_anonyme_ville').val().split(' (')[0];
             $.post("{{ path('architecture_verify_ville') }}?ville="+ville+"",
                 function (data, status) {
                     if (data.result) {
@@ -437,7 +437,7 @@
                         $('#demande_anonyme_ville').addClass("error");
                         $('#ville').show();
                     }
-                })
+            });
         };
 
         $('#demande_anonyme_ville').focusout(verify_ville);
@@ -535,6 +535,7 @@
             verifyEmail(e);
             $('.error').focus();
             $('#intervention').focus();
+            $('#demande_anonyme_ville').val($('#demande_anonyme_ville').val().split(' (')[0]);
         }
 
         document.addEventListener('submit', verifyAll);

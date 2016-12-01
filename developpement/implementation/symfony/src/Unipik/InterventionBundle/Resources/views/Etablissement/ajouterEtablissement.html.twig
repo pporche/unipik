@@ -34,41 +34,6 @@
             limit: 50
         });
 
-        {#var codesPostaux = new Bloodhound({#}
-            {#datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),#}
-            {#queryTokenizer: Bloodhound.tokenizers.whitespace,#}
-            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
-            {#remote: {#}
-                {#url: '{{ path("architecture_code_autocomplete") }}?term=%QUERY',#}
-                {#wildcard: '%QUERY'#}
-            {#}#}
-        {#});#}
-
-        {#$('#etablissement_adresse_codePostal').typeahead(null, {#}
-            {#name: 'codesPostaux',#}
-            {#source: codesPostaux,#}
-            {#limit: 5#}
-        {#});#}
-
-
-        {#$('#etablissement_adresse_ville').change(function () {#}
-            {#var ville = $(etablissement_adresse_ville).val().toUpperCase();#}
-            {#$('#etablissement_adresse_codePostal').val("");#}
-            {#$.post("{{ path('architecture_code_postal') }}", {'ville': ville},#}
-                {#function (data, status) {#}
-                    {#$('#etablissement_adresse_codePostal').val(data.codePostal);#}
-                {#});#}
-        {#});#}
-
-        {#$('#etablissement_adresse_codePostal').change(function () {#}
-            {#var codePostal = $(etablissement_adresse_codePostal).val();#}
-            {#$('#etablissement_adresse_ville').val("");#}
-            {#$.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},#}
-                {#function (data, status) {#}
-                    {#$('#etablissement_adresse_ville').val(data.ville);#}
-                {#});#}
-        {#});#}
-
         $(document).ready(function() {
 
             $('#typeEnseignement').show();

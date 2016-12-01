@@ -34,8 +34,7 @@ class CodePostalMock extends EntityMock
      * @param $nb
      * @return CodePostal[]
      */
-    public static function createMultiple($nb)
-    {
+    public static function createMultiple($nb) {
         return parent::createMultiple($nb);
     }
 }

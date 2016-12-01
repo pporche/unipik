@@ -3,16 +3,10 @@ ntp_timezone: America/Chicago
 
 firewall_allowed_tcp_ports:
   - "22"
-  - "25"
   - "80"
   - "443"
-  - "8080"
 
-firewall_forwarded_tcp_ports:
-  - { src: "80", dest: "8080" }  
-  - { src: "443", dest: "8433" }
-
-
+firewall_forwarded_tcp_ports: []
 firewall_forwarded_udp_ports: []
 
 proxy_env:

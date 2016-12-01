@@ -137,7 +137,6 @@ class InterventionRepositoryTest extends RepositoryTestCase
         }
         $this->em->flush();
 
-
         // get ville
         $ville = $this->em
             ->getRepository('ArchitectureBundle:Ville')
@@ -151,12 +150,9 @@ class InterventionRepositoryTest extends RepositoryTestCase
             ->getRepository('InterventionBundle:Intervention')
             ->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $mesInterventions, $user, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville)
         ;
-
-
         // Prepare expected result
         $expectedIds = array();
         foreach ($expectedResult as $r) {
-            /*var_dump($interventions[$r]->getId());*/
             $expectedIds[$interventions[$r]->getId()] = true;
         }
 

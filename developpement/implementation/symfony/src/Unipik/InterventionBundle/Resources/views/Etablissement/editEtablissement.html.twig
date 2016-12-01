@@ -27,43 +27,7 @@
             source: villes,
             limit: 50
         });
-
-        var codesPostaux = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
-            remote: {
-                url: '{{ path("architecture_code_autocomplete") }}?term=%QUERY',
-                wildcard: '%QUERY'
-            }
-        });
-
-        $('#etablissement_adresse_codePostal').typeahead(null, {
-            name: 'codesPostaux',
-            source: codesPostaux,
-            limit: 5
-        });
-
-
-        $('#etablissement_adresse_ville').change(function () {
-            var ville = $(etablissement_adresse_ville).val().toUpperCase();
-            $('#etablissement_adresse_codePostal').val("");
-            $.post("{{ path('architecture_code_postal') }}", {'ville': ville},
-                    function (data, status) {
-                        $('#etablissement_adresse_codePostal').val(data.codePostal);
-                    });
-        });
-
-        $('#etablissement_adresse_codePostal').change(function () {
-            var codePostal = $(etablissement_adresse_codePostal).val();
-            $('#etablissement_adresse_ville').val("");
-            $.post("{{ path('architecture_ville') }}", {'codePostal': codePostal},
-                    function (data, status) {
-                        $('#etablissement_adresse_ville').val(data.ville);
-                    });
-        });
-    </script>
-    <script type="application/javascript">
+        
         document.getElementById('etablissement_TypeGeneral').addEventListener('change',function(e){
             switch (e.target.value){
                 case 'ens' :
@@ -159,74 +123,86 @@
 
         $(":submit").on('click', function( e ) {
             e.preventDefault();
+            var erreur = false;
+
             if ($('#etablissement_adresse_adresse').val().trim().length==0) {
                 if($('#erreurAdresse').prev()[0]==undefined){
                     $('#etablissement_adresse_adresse').after('<p id="erreurAdresse"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                } else {
+                    $('#erreurAdresse').show();
                 }
+                erreur = true;
+            } else {
+                $('#erreurAdresse').hide();
             }
-            else {
-                if ($('#erreurAdresse').prev()[0] != undefined) {
-                    $('#erreurAdresse').hide();
+
+            if ($('#etablissement_adresse_ville').val().trim().length == 0) {
+                if ($('#erreurVille').prev()[0] == undefined) {
+                    $('#etablissement_adresse_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                } else {
+                    $('#erreurVille').show();
                 }
-                if ($('#etablissement_adresse_ville').val().trim().length == 0) {
-                    if ($('#erreurVille').prev()[0] == undefined) {
-                        $('#etablissement_adresse_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
-                    }
+                erreur = true;
+            } else {
+                $('#erreurVille').hide();
+            }
+
+            if ($('#etablissement_adresse_ville').val().trim().length>0 && $('#etablissement_adresse_ville').val().indexOf(' (') < 0) {
+                if ($('#erreurCodePostal').prev()[0]==undefined) {
+                    $('#etablissement_adresse_ville').after('<p id="erreurCodePostal"  style="color: red; font-size: 13px; font-style: italic">Sélectionnez un code postal</p>');
+                } else {
+                    $('#erreurCodePostal').show();
                 }
-                else {
-                    if ($('#erreurVille').prev()[0] != undefined) {
-                        $('#erreurVille').hide();
-                    }
-                    if ($('#etablissement_adresse_codePostal').val().trim().length == 0) {
-                        if ($('#erreurCP').prev()[0] == undefined) {
-                            $('#etablissement_adresse_codePostal').after('<p id="erreurCP"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
-                        }
-                    } else {
-                        if ($('#erreurCP').prev()[0] != undefined) {
-                            $('#erreurCP').hide();
-                        }
-                        var adresse = $("#etablissement_adresse_adresse").val() + ' ' + $('#etablissement_adresse_codePostal').val() + ' ' + $("#etablissement_adresse_ville").val();
-                        var previousAdresse = "{{ etablissement.adresse.adresse }} " + "{{ etablissement.adresse.codePostal.code }} " + "{{ etablissement.adresse.ville.nom }}";
-                        if (adresse != previousAdresse) {
-                            var geolocalisation = '';
-                            $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + adresse, function (data) {
-                                switch (data.length) {
-                                    case 0 :
-                                        var ville = $("#etablissement_adresse_ville").val();
-                                        $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
-                                            if (dataVille.length > 0) {
-                                                geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
-                                                $("#etablissement_adresse_geolocalisation").val(geolocalisation);
-                                                $("#etablissement_adresse_ville").val($("#etablissement_adresse_ville").val().split(' (')[0]);
-                                                $(".etablissement_admin_edit").submit();
-                                            }
-                                            else {
-                                                //Que fait-on si 0 match ?
-                                            }
-                                        });
-                                        break;
-                                    case 1 :
-                                        geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
+                erreur = true;
+            } else {
+                $('#erreurCodePostal').hide();
+            }
+
+            if (!erreur) {
+                var adresse = $("#etablissement_adresse_adresse").val() + ' ' + $("#etablissement_adresse_ville").val();
+                var previousAdresse = "{{ etablissement.adresse.adresse }} {{ etablissement.adresse.ville.nom }} ({{ etablissement.adresse.codePostal.code }})";
+                if (adresse != previousAdresse) {
+                    var geolocalisation = '';
+                    $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + adresse, function (data) {
+                        switch (data.length) {
+                            case 0 :
+                                var ville = $("#etablissement_adresse_ville").val();
+                                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
+                                    if (dataVille.length > 0) {
+                                        geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
                                         $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+                                        $("#etablissement_adresse_codePostal").val($("#etablissement_adresse_ville").val().split(' (')[1].split(')')[0]);
                                         $("#etablissement_adresse_ville").val($("#etablissement_adresse_ville").val().split(' (')[0]);
                                         $(".etablissement_admin_edit").submit();
-                                        break;
-                                    default :
-                                        var modal_content = "";
-                                        data.forEach(function (item) {
-                                            var latlon = item["lat"] + "," + item["lon"];
-                                            modal_content += "<div class='row'><label class='radio-inline'><input type='radio' name='type' id='" + latlon + "'>" + item["display_name"] + "</label></div>";
-                                        });
-                                        $('#choices').html(modal_content);
-                                        $("input:radio[name=type]:first").attr('checked', true);
-                                        $("#myModal").modal('show');
-                                }
-                            });
+                                    }
+                                    else {
+                                        //Que fait-on si 0 match ?
+                                    }
+                                });
+                                break;
+                            case 1 :
+                                geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
+                                $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+                                $("#etablissement_adresse_codePostal").val($("#etablissement_adresse_ville").val().split(' (')[1].split(')')[0]);
+                                $("#etablissement_adresse_ville").val($("#etablissement_adresse_ville").val().split(' (')[0]);
+                                $(".etablissement_admin_edit").submit();
+                                break;
+                            default :
+                                var modal_content = "";
+                                data.forEach(function (item) {
+                                    var latlon = item["lat"] + "," + item["lon"];
+                                    modal_content += "<div class='row'><label class='radio-inline'><input type='radio' name='type' id='" + latlon + "'>" + item["display_name"] + "</label></div>";
+                                });
+                                $('#choices').html(modal_content);
+                                $("input:radio[name=type]:first").attr('checked', true);
+                                $("#myModal").modal('show');
                         }
-                        else {
-                            $(".etablissement_admin_edit").submit();
-                        }
-                    }
+                    });
+                }
+                else {
+                    $("#etablissement_adresse_codePostal").val($("#etablissement_adresse_ville").val().split(' (')[1].split(')')[0]);
+                    $("#etablissement_adresse_ville").val($("#etablissement_adresse_ville").val().split(' (')[0]);
+                    $(".etablissement_admin_edit").submit();
                 }
             }
         });
@@ -235,6 +211,7 @@
             var latlon = content.split(',');
             var geolocalisation = 'SRID=4326;POINT(' + latlon[1] + ' ' + latlon[0] + ')';
             $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+            $("#etablissement_adresse_codePostal").val($("#etablissement_adresse_ville").val().split(' (')[1].split(')')[0]);
             $("#etablissement_adresse_ville").val($("#etablissement_adresse_ville").val().split(' (')[0]);
             $(".etablissement_admin_edit").submit();
         }
@@ -472,8 +449,6 @@
     <h5> Ville :</h5>
     {{ form_widget(form.adresse.ville) }}
 
-    <h5> Code Postal :</h5>
-    {{  form_widget(form.adresse.codePostal) }}
     {{ form_widget(form) }}
     <div>
         <a href="{{ path('etablissement_list') }}" class="btn btn-danger" style="margin-left:calc(50% - 140px)">Annuler</a>

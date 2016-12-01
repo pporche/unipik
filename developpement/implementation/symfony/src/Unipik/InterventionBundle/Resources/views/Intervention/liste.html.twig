@@ -138,9 +138,7 @@
                 $('#recherche_avancee_villeOuDomicile div:first-child').hide();
             }
 
-
             $('#recherche_avancee_villeOuDomicile div:first-child').hide();
-
 
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',
@@ -276,7 +274,6 @@
                     $('#recherche_avancee_ville').val('');
                 }
             });
-
         });
 
         $(':submit').on('click', function (e) {
@@ -596,6 +593,7 @@
                     <h5> Distance en km :</h5>
                     {{ form_widget(form.distance) }}
                 </div>
+                <br/>
                 <div>
                     <input type="submit" value="OK" class="btn btn-primary"/>
                 </div>

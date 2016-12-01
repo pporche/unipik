@@ -53,15 +53,27 @@
                 $('#ville').show();
                 $('#distanceKm').hide();
                 $("#recherche_avancee_distance").val("");
+                $('#distVilleOuDom').hide();
+                $('#recherche_avancee_villeOuDomicile:first-child').hide();
             }else if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')){
-                $('#ville').show();
-                $('#distanceKm').show();
+                if($('#recherche_avancee_villeOuDomicile_0').is(':checked')){
+                    $('#ville').show();
+                    $('#distanceKm').show();
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                }else{
+                    $('#ville').hide();
+                    $('#distanceKm').show();
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                }
             }else {
                 $('#ville').hide();
-                $('#distanceKm').hide();
-                $("#recherche_avancee_ville").val("");
                 $("#recherche_avancee_distance").val("");
+                $('#distanceKm').hide();
+                $('#distVilleOuDom').hide();
+                $('#recherche_avancee_villeOuDomicile div:first-child').hide();
             }
+
+            $('#recherche_avancee_villeOuDomicile div:first-child').hide();
 
             $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:{{ rowsPerPage }} });
 
@@ -165,7 +177,10 @@
                 if($('#recherche_avancee_dansVilleOuParDistance_placeholder').is(':checked')) {
                     $('#ville').hide();
                     $('#distanceKm').hide();
+                    $('#distVilleOuDom').hide();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
                     $('#recherche_avancee_ville').val('');
+                    $('#recherche_avancee_villeOuDomicile div:first-child').prop('checked', true);
                     $("#recherche_avancee_distance").val("");
                 }
             });
@@ -174,7 +189,10 @@
                 if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')) {
                     $('#ville').show();
                     $('#distanceKm').hide();
+                    $('#distVilleOuDom').hide();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
                     $('#recherche_avancee_ville').val('');
+                    $('#recherche_avancee_villeOuDomicile div:first-child').prop('checked', true);
                     $("#recherche_avancee_distance").val("");
                 }
             });
@@ -182,12 +200,29 @@
             $('#recherche_avancee_dansVilleOuParDistance_1').click(function() {
                 if($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
                     $('#distanceKm').show();
-                    $('#ville').show();
+                    $('#ville').hide();
+                    $('#distVilleOuDom').show();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
+
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                    $('#recherche_avancee_villeOuDomicile_1').prop('checked', true);
                     $('#recherche_avancee_ville').val('');
-                    $("#recherche_avancee_distance").val("");
                 }
             });
 
+            $('#recherche_avancee_villeOuDomicile_0').click(function() {
+                if($('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
+                    $('#ville').show();
+                    $('#recherche_avancee_ville').val('');
+                }
+            });
+
+            $('#recherche_avancee_villeOuDomicile_1').click(function() {
+                if($('#recherche_avancee_villeOuDomicile_1').is(':checked')) {
+                    $('#ville').hide();
+                    $('#recherche_avancee_ville').val('');
+                }
+            });
         });
 
         function deleteEtablissements() {
@@ -233,7 +268,7 @@
             e.preventDefault();
             var erreur = false;
 
-            if (!$('#recherche_avancee_dansVilleOuParDistance_placeholder').is(':checked') && $('#recherche_avancee_ville').val().trim().length==0) {
+            if (($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked') || ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && ($('#recherche_avancee_villeOuDomicile_0').is(':checked')))) && $('#recherche_avancee_ville').val().trim().length==0) {
                 if ($('#erreurVille').prev()[0]==undefined) {
                     $('#recherche_avancee_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
                 } else {
@@ -267,7 +302,7 @@
             }
 
             if (!erreur){
-                if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
+                if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && $('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
                     var ville = $('#recherche_avancee_ville').val();
                     var geolocalisation = '';
                     $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
@@ -364,8 +399,12 @@
 
                 <br/>
                 <div id="filtrePar">
-                    <h5> Filtre par localisation :</h5>
+                    <h5> Filtre par lieu :</h5>
                     {{ form_widget(form.dansVilleOuParDistance) }}
+                </div>
+                <div id="distVilleOuDom">
+                    <h5> Distance de ville ou domicile ?</h5>
+                    {{ form_widget(form.villeOuDomicile) }}
                 </div>
                 <div id="ville">
                     <h5> Ville :</h5>
@@ -376,7 +415,6 @@
                     {{ form_widget(form.distance) }}
                 </div>
                 <br/>
-
                 <div>
                     <input type="submit" value="OK" class="btn btn-primary"/>
                 </div>

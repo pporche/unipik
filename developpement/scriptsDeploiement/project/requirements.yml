@@ -9,3 +9,4 @@
 - src: manala.nodejs
 - src: manala.npm
 - src: geerlingguy.nodejs
+- src: tersmitten.fail2ban

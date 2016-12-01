@@ -73,7 +73,6 @@ class InterventionController extends Controller {
                 $form->get('dateIntervention')
                     ->getData()
             );
-            $intervention->setLieu($form->get('lieu')->getData());
             $intervention->setNbPersonne($form->get('nbPersonne')->getData());
 
             // Gestion des matériaux en fonction des types
@@ -482,6 +481,12 @@ class InterventionController extends Controller {
     public function listeAction(Request $request) {
         $user = $this->getUser();
 
+//        $form = $this->createFormBuilder(RechercheAvanceeType::class)
+//            ->setMethod('GET')
+//            ->getForm()
+//            ->handleRequest($request)
+//        ;
+
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
@@ -514,10 +519,15 @@ class InterventionController extends Controller {
             $listIntervention = $repository->getType("", "", true, "", $field, $desc, "", false, $user, null, null, null, null, null, null);
         }
 
+
         //        Création du formulaire pour la popup
         $fB = $this->get('form.factory')->createBuilder(AttributionType::class);
         $f = $fB->getForm();
         $f->handleRequest($request);
+
+//        $monfichier = fopen('/tmp/debug.txt', 'a+');
+//        fputs($monfichier, var_dump($form));
+//        fclose($monfichier);
 
         return $this->render(
             'InterventionBundle:Intervention:liste.html.twig', array(

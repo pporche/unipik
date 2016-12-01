@@ -13,11 +13,48 @@
     <link rel='stylesheet' href="{{ asset('css/twitterTypeahead.css') }}"/>
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
     <link rel="stylesheet" href="{{ asset("vendor/chosen/chosen.css") }}"/>
-
-    <script src="{{ asset("vendor/pdfmake/build/pdfmake.min.js") }}"></script>
-    <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
-
+    <link rel="stylesheet" href="{{ asset('vendor/leaflet/dist/leaflet.css') }}" />
     <style>
+        #mapid {  height: 500px; }
+
+        /* Style the list */
+        ul.tab {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Float the list items side by side */
+        ul.tab li {float: left;}
+
+        /* Style the links inside the list items */
+        ul.tab li a {
+            display: inline-block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of links on hover */
+        ul.tab li a:hover {background-color: #ddd;}
+
+        /* Create an active/current tablink class */
+        ul.tab li a:focus, .active {background-color: #ccc;}
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
         #recherche_avancee_ville {
             text-transform: uppercase;
         }
@@ -111,8 +148,13 @@
     <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
+    <script src="{{ asset("vendor/pdfmake/build/pdfmake.min.js") }}"></script>
+    <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
+    <script src="{{ asset('vendor/leaflet/dist/leaflet.js') }}"></script>
     <script>
         $(document).ready(function () {
+            openDisplay($('#Liste'), 'Liste');
+
             $('input:checkbox').removeAttr('checked');
             if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')){
                 $('#ville').show();
@@ -528,10 +570,53 @@
             $('#myModal').modal('hide');
         });
 
+        function openDisplay(button, display) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
 
-        //        $('#recherche_avancee_statutIntervention_2').hide();
-        //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
-        //        $('#recherche_avancee_statutIntervention_2').next('label:first').html().hide();
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and (not done anymore ->) add an "active" class to the link that opened the tab
+            document.getElementById(display).style.display = "block";
+            button.className += " active";
+        }
+
+        var mymap = L.map('mapid');
+        var markers = [];
+        {% if liste is not empty %}
+            {% for intervention in liste %}
+                var lat = {{ intervention.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
+                var lon = {{ intervention.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
+                var marker = L.marker([lon, lat]).addTo(mymap).bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
+                marker.on('click', function (e) {
+                    mymap.setView(e.target.getLatLng());
+                });
+                markers.push(marker);
+            {% endfor %}
+        {% endif %}
+        var group = new L.featureGroup(markers);
+        mymap.fitBounds(group.getBounds());
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            id: 'mapbox.streets'
+        }).addTo(mymap);
+
+        $("body").on('click','#CarteLink', function() {
+            mymap.invalidateSize(false);
+        });
     </script>
 {% endblock %}
 
@@ -602,166 +687,171 @@
         </div>
     </section>
     <section id="listeIntervention" class="col-lg-10 col-md-10 col-sm-10">
-        <h2>
-            Liste des
-            {% if onlyNonAttribues %}
-                demandes récentes
-            {% elseif typeIntervention == "plaidoyer" %}
-                actions éducatives
-            {% elseif typeIntervention == "frimousse" %}
-                interventions frimousses
-            {% elseif typeIntervention == "autreIntervention" %}
-                autres interventions
-            {% else %}
-                interventions
-            {% endif %}
-            {% if isCheck is empty %}
-                {% if dateStart is not null %}
-                    entre le {{ dateStart.format('d-m-Y') }}
-                {% endif %}
-                {% if dateEnd is not null %}
-                    et le {{ dateEnd.format('d-m-Y') }}
-                {% endif %}
-            {% endif %}
-            :
-        </h2>
-
-        {% if liste %}
-            <button type="button" class="imprimente" onclick="imprimer()"><span class="glyphicon glyphicon-print"></span></button><br>
-        {% endif %}
-
+        <ul class="tab">
+            <li><a href="javascript:void(0)" class="tablinks" id="ListeLink" onclick="openDisplay($(this), 'Liste')">Liste</a></li>
+            <li><a href="javascript:void(0)" class="tablinks" id="CarteLink" onclick="openDisplay($(this), 'Carte')">Carte</a></li>
+        </ul>
         {% if onlyMyIntervention %}
             {% set vue =  'intervention_self' %}
         {% elseif  onlyNonAttribues %}
             {% set vue =  'demandes_recentes' %}
-            {% else %}
-                {% set vue =  'intervention_list' %}
+        {% else %}
+            {% set vue =  'intervention_list' %}
         {% endif %}
-        <div class="container">
-            <div class="row">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover" id="tableIntervention">
-                        <thead>
-                        <tr>
-                            {% set pathReq = [] %}
-                            {% if app.request.query.get('recherche_avancee') is not null %}
-                                {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
-                            {% endif %}
-                            {% if app.request.query.get('rowsPerPage') is not null %}
-                                {% set pathReq = pathReq | merge({"rowsPerPage":app.request.query.get('rowsPerPage')}) %}
-                            {% endif %}
-                            {% if field == "dateIntervention" %}
-                                {% if desc %}
-                                    <th>Lieu
-                                        <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
-                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
-                                                 id="sortLieu" alt="sort Down"/>
-                                        </a>
-                                    </th>
-                                    <th>Date
-                                        <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
-                                            <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
-                                                 id="sortDate" alt="sort Down"/>
-                                        </a>
-                                    </th>
-                                {% else %}
-                                    <th>Lieu
-                                        <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
-                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-up"
-                                                 id="sortLieu" alt="sort Down"/>
-                                        </a>
-                                    </th>
-                                    <th>Date
-                                        <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
-                                            <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
-                                                 id="sortDate" alt="sort Up"/>
-                                        </a>
-                                    </th>
-                                {% endif %}
-                            {% else %}
-                                {% if desc %}
-                                    <th>Lieu
-                                        <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
-                                            <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
-                                                 id="sortLieu" alt="sort Down"/>
-                                        </a>
-                                    </th>
-                                    <th>Date
-                                        <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
-                                            <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
-                                                 id="sortDate" alt="sort Down"/>
-                                        </a>
-                                    </th>
-                                {% else %}
-                                    <th>Lieu
-                                        <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
-                                            <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortLieu"
-                                                 alt="sort Up"/>
-                                        </a>
-                                    </th>
-                                    <th>Date
-                                        <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
-                                            <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
-                                                 id="sortDate" alt="sort Up"/>
-                                        </a>
-                                    </th>
-                                {% endif %}
-                            {% endif %}
-                            {% if onlyNonAttribues %}
-                                <th>Date de la Demande</th>
-                            {% endif %}
-                            <th>Type</th>
-                            <th>Etablissement</th>
-                            <th>Classe</th>
-                            <th>Thème</th>
-                            <th>Statut</th>
-                            <th>Détails</th>
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <th>Supprimer</th>
-                            {% endif %}
-                        </tr>
-                        </thead>
-                        <tbody id="myTable">
-                        {% if liste is not empty %}
-                        {% for intervention in liste %}
-                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention  %}
-                                {%  if intervention.benevole %}
-                                    {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
-                                        <tr class="dangerTable">
-                                    {% endif %}
-                                {% else %}
-                                    <tr class="dangerTable">
-                                {% endif %}
-                            {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) and intervention.dateIntervention %}
-                                {%  if intervention.benevole %}
-                                    {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
-                                        <tr class="warningTable" >
-                                    {% endif %}
-                                {% else %}
-                                    <tr class="warningTable" >
-                                {% endif %}
-                            {% else %}
+        <div id="Liste" class="tabcontent">
+            <h2>
+                Liste des
+                {% if onlyNonAttribues %}
+                    demandes récentes
+                {% elseif typeIntervention == "plaidoyer" %}
+                    actions éducatives
+                {% elseif typeIntervention == "frimousse" %}
+                    interventions frimousses
+                {% elseif typeIntervention == "autreIntervention" %}
+                    autres interventions
+                {% else %}
+                    interventions
+                {% endif %}
+                {% if isCheck is empty %}
+                    {% if dateStart is not null %}
+                        entre le {{ dateStart.format('d-m-Y') }}
+                    {% endif %}
+                    {% if dateEnd is not null %}
+                        et le {{ dateEnd.format('d-m-Y') }}
+                    {% endif %}
+                {% endif %}
+                :
+            </h2>
+
+            {% if liste %}
+                <button type="button" class="imprimente" onclick="imprimer()"><span class="glyphicon glyphicon-print"></span></button><br>
+            {% endif %}
+
+            <div class="container">
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="tableIntervention">
+                            <thead>
                             <tr>
-                            {% endif %}
-                                <td data-title="Lieu">{{ intervention.etablissement.adresse.ville.nom }}</td>
-                                <td data-title="Date">
-                                    {% if intervention.dateIntervention %}
-                                        {{ intervention.dateIntervention|date("d-m-Y") }}
-                                    {% else %}
-                                        <em style="color: #868282">Entre le {{ intervention.demande.dateDebutDisponibilite|date("d-m-Y")  }} et le {{ intervention.demande.dateFinDisponibilite|date("d-m-Y")  }}</em>
-                                    {% endif %} </td>
-                                {% if onlyNonAttribues %}
-                                    <td data-title="Date Demande">{{ intervention.demande.dateDemande|date("d-m-Y") }}</td>
+                                {% set pathReq = [] %}
+                                {% if app.request.query.get('recherche_avancee') is not null %}
+                                    {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
                                 {% endif %}
-                                <td data-title="Type">
+                                {% if app.request.query.get('rowsPerPage') is not null %}
+                                    {% set pathReq = pathReq | merge({"rowsPerPage":app.request.query.get('rowsPerPage')}) %}
+                                {% endif %}
+                                {% if field == "dateIntervention" %}
+                                    {% if desc %}
+                                        <th>Lieu
+                                            <a class="sortButtonLieu" id="sortButtonLieu"
+                                               href="{{ path(vue, pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                                <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                     id="sortLieu" alt="sort Down"/>
+                                            </a>
+                                        </th>
+                                        <th>Date
+                                            <a class="sortButtonDate" id="sortButtonDate"
+                                               href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
+                                                <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
+                                                     id="sortDate" alt="sort Down"/>
+                                            </a>
+                                        </th>
+                                    {% else %}
+                                        <th>Lieu
+                                            <a class="sortButtonLieu" id="sortButtonLieu"
+                                               href="{{ path(vue, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                                <img src="{{ asset('img/sort-down.png') }}" class="sort sort-up"
+                                                     id="sortLieu" alt="sort Down"/>
+                                            </a>
+                                        </th>
+                                        <th>Date
+                                            <a class="sortButtonDate" id="sortButtonDate"
+                                               href="{{ path(vue, pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
+                                                <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
+                                                     id="sortDate" alt="sort Up"/>
+                                            </a>
+                                        </th>
+                                    {% endif %}
+                                {% else %}
+                                    {% if desc %}
+                                        <th>Lieu
+                                            <a class="sortButtonLieu" id="sortButtonLieu"
+                                               href="{{ path(vue, pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                                <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
+                                                     id="sortLieu" alt="sort Down"/>
+                                            </a>
+                                        </th>
+                                        <th>Date
+                                            <a class="sortButtonDate" id="sortButtonDate"
+                                               href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
+                                                <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
+                                                     id="sortDate" alt="sort Down"/>
+                                            </a>
+                                        </th>
+                                    {% else %}
+                                        <th>Lieu
+                                            <a class="sortButtonLieu" id="sortButtonLieu"
+                                               href="{{ path(vue, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                                <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortLieu"
+                                                     alt="sort Up"/>
+                                            </a>
+                                        </th>
+                                        <th>Date
+                                            <a class="sortButtonDate" id="sortButtonDate"
+                                               href="{{ path(vue, pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
+                                                <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
+                                                     id="sortDate" alt="sort Up"/>
+                                            </a>
+                                        </th>
+                                    {% endif %}
+                                {% endif %}
+                                {% if onlyNonAttribues %}
+                                    <th>Date de la Demande</th>
+                                {% endif %}
+                                <th>Type</th>
+                                <th>Etablissement</th>
+                                <th>Classe</th>
+                                <th>Thème</th>
+                                <th>Statut</th>
+                                <th>Détails</th>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <th>Supprimer</th>
+                                {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody id="myTable">
+                            {% if liste is not empty %}
+                                {% for intervention in liste %}
+                                    {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention  %}
+                                        {%  if intervention.benevole %}
+                                            {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
+                                                <tr class="dangerTable">
+                                            {% endif %}
+                                        {% else %}
+                                            <tr class="dangerTable">
+                                        {% endif %}
+                                    {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) and intervention.dateIntervention %}
+                                        {%  if intervention.benevole %}
+                                            {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
+                                                <tr class="warningTable" >
+                                            {% endif %}
+                                        {% else %}
+                                            <tr class="warningTable" >
+                                        {% endif %}
+                                    {% else %}
+                                        <tr>
+                                    {% endif %}
+                                    <td data-title="Lieu">{{ intervention.etablissement.adresse.ville.nom }}</td>
+                                    <td data-title="Date">
+                                        {% if intervention.dateIntervention %}
+                                            {{ intervention.dateIntervention|date("d-m-Y") }}
+                                        {% else %}
+                                            <em style="color: #868282">Entre le {{ intervention.demande.dateDebutDisponibilite|date("d-m-Y")  }} et le {{ intervention.demande.dateFinDisponibilite|date("d-m-Y")  }}</em>
+                                        {% endif %} </td>
+                                    {% if onlyNonAttribues %}
+                                        <td data-title="Date Demande">{{ intervention.demande.dateDemande|date("d-m-Y") }}</td>
+                                    {% endif %}
+                                    <td data-title="Type">
                                         {% if intervention.plaidoyer %}
                                             Action éducative
                                         {% elseif intervention.frimousse %}
@@ -769,42 +859,42 @@
                                         {% else %}
                                             Autre intervention
                                         {% endif %}
-                                </td>
-                                <td data-title="Etablissement">
-                                    <a href="{{ path('etablissement_view', {'id':intervention.etablissement.id}) }}">
-                                        {% if intervention.etablissement.nom %}
-                                            {{ intervention.etablissement.nom | capitalize }} -
+                                    </td>
+                                    <td data-title="Etablissement">
+                                        <a href="{{ path('etablissement_view', {'id':intervention.etablissement.id}) }}">
+                                            {% if intervention.etablissement.nom %}
+                                                {{ intervention.etablissement.nom | capitalize }} -
+                                            {% endif %}
+                                            {{ intervention.etablissement.typeEnseignement | capitalize }} {{ intervention.etablissement.typeCentre | capitalize }} {{ intervention.etablissement.typeAutreEtablissement | capitalize }}
+                                        </a>
+                                    </td>
+                                    <td data-title="Classe">
+                                        {% if intervention.plaidoyer %}
+                                            {{ intervention.niveauTheme.niveau | capitalize }}
+                                        {% elseif intervention.frimousse %}
+                                            {{ intervention.niveauFrimousse | capitalize }}
+                                        {% else %}
+                                            -
                                         {% endif %}
-                                        {{ intervention.etablissement.typeEnseignement | capitalize }} {{ intervention.etablissement.typeCentre | capitalize }} {{ intervention.etablissement.typeAutreEtablissement | capitalize }}
-                                    </a>
-                                </td>
-                                <td data-title="Classe">
-                                    {% if intervention.plaidoyer %}
-                                        {{ intervention.niveauTheme.niveau | capitalize }}
-                                    {% elseif intervention.frimousse %}
-                                        {{ intervention.niveauFrimousse | capitalize }}
-                                    {% else %}
-                                        -
-                                    {% endif %}
 
-                                </td>
-                                <td data-title="Thème">
-                                    {% if intervention.plaidoyer %}
-                                        {{ intervention.niveauTheme.theme | capitalize }}
-                                    {% elseif intervention.frimousse %}
-                                        -
-                                    {% else %}
-                                        -
-                                    {% endif %}
+                                    </td>
+                                    <td data-title="Thème">
+                                        {% if intervention.plaidoyer %}
+                                            {{ intervention.niveauTheme.theme | capitalize }}
+                                        {% elseif intervention.frimousse %}
+                                            -
+                                        {% else %}
+                                            -
+                                        {% endif %}
 
-                                </td>
-                                <td data-title="Statut">
+                                    </td>
+                                    <td data-title="Statut">
 
 
-                                    {% if intervention.realisee %}
-                                        <p class="text-success"> Réalisée<span class="glyphicon glyphicon-ok"></span>
-                                        </p>
-                                    {% elseif intervention.benevole %}
+                                        {% if intervention.realisee %}
+                                            <p class="text-success"> Réalisée<span class="glyphicon glyphicon-ok"></span>
+                                            </p>
+                                        {% elseif intervention.benevole %}
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <button name="desattribution" type="button" class="btn btn-danger"
                                                         onclick="desattributeInterventionAdmin(this, {{ intervention.id }})" style="padding-right: 4px;padding-left: 4px; font-size: 14px; width: 100%; overflow: hidden; text-overflow: ellipsis; ">
@@ -814,66 +904,70 @@
                                             {% else %}
                                                 Attribuée à {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
                                             {% endif %}
-                                    {% else %}
-                                        {% if is_granted('ROLE_ADMIN') %}
-                                            <button name="attribuer{{ intervention.id }}" type="button"
-                                                    class="btn btn-primary" data-toggle="modal" data-target="#myModal"
-                                                    onclick="sendIdToModal({{ intervention.id }})"
-                                                    style="padding-right: 4px;padding-left: 4px; font-size: 14px; width: 100%; overflow: hidden; text-overflow: ellipsis; ">
-                                                Attribuer à
-                                            </button>
                                         {% else %}
-                                            <button name="attribution" type="button" class="btn btn-primary"
-                                                    onclick="attributeIntervention(this, {{ intervention.id }})">
-                                                Se l'attribuer
-                                            </button>
+                                            {% if is_granted('ROLE_ADMIN') %}
+                                                <button name="attribuer{{ intervention.id }}" type="button"
+                                                        class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+                                                        onclick="sendIdToModal({{ intervention.id }})"
+                                                        style="padding-right: 4px;padding-left: 4px; font-size: 14px; width: 100%; overflow: hidden; text-overflow: ellipsis; ">
+                                                    Attribuer à
+                                                </button>
+                                            {% else %}
+                                                <button name="attribution" type="button" class="btn btn-primary"
+                                                        onclick="attributeIntervention(this, {{ intervention.id }})">
+                                                    Se l'attribuer
+                                                </button>
+                                            {% endif %}
                                         {% endif %}
+                                    </td>
+                                    <td data-title="Voir Détails">
+                                        <a href="{{ path('intervention_view', {id: intervention.id}) }}"
+                                           class="btn btn-primary">Détails</a>
+                                    </td>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <td data-title="Supprimer">
+                                            <div class="checkbox" style="text-align: center">
+                                                <label>
+                                                    <input type="checkbox" name="type" id="{{ intervention.id }}">
+                                                </label>
+                                            </div>
+                                        </td>
                                     {% endif %}
-                                </td>
-                                <td data-title="Voir Détails">
-                                    <a href="{{ path('intervention_view', {id: intervention.id}) }}"
-                                       class="btn btn-primary">Détails</a>
-                                </td>
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <td data-title="Supprimer">
-                                    <div class="checkbox" style="text-align: center">
-                                        <label>
-                                            <input type="checkbox" name="type" id="{{ intervention.id }}">
-                                        </label>
-                                    </div>
-                                </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr></tr>
                             {% endif %}
-                            </tr>
-                        {% endfor %}
-                        {% else %}
-                            <tr></tr>
-                        {% endif %}
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
 
-                </div>
-
-                <div class="buttons">
-                    <button type="button" class="btn btn-danger" onclick="deleteInterventions()">Supprimer</button>
                     </div>
-                <div class="col-md-12 text-center">
-                    {% set pathReq = [] %}
-                    {% if app.request.query.get('recherche_avancee') is not null %}
-                        {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
-                    {% endif %}
-                    {% if app.request.query.get('desc') is not null %}
-                        {% set pathReq = pathReq | merge({"desc":app.request.query.get('desc')}) | merge({"field":app.request.query.get('field')}) %}
-                    {% endif %}
-                    <ul>Par page :
-                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
-                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
-                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
-                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
-                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
-                    </ul>
-                    <ul class="pagination pagination-lg pager" id="myPager"></ul>
+
+                    <div class="buttons">
+                        <button type="button" class="btn btn-danger" onclick="deleteInterventions()">Supprimer</button>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        {% set pathReq = [] %}
+                        {% if app.request.query.get('recherche_avancee') is not null %}
+                            {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
+                        {% endif %}
+                        {% if app.request.query.get('desc') is not null %}
+                            {% set pathReq = pathReq | merge({"desc":app.request.query.get('desc')}) | merge({"field":app.request.query.get('field')}) %}
+                        {% endif %}
+                        <ul>Par page :
+                            <a href="{{ path(vue, pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
+                            <a href="{{ path(vue, pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
+                            <a href="{{ path(vue, pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
+                            <a href="{{ path(vue, pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
+                            <a href="{{ path(vue, pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
+                        </ul>
+                        <ul class="pagination pagination-lg pager" id="myPager"></ul>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div id="Carte" class="tabcontent">
+            <div id="mapid"></div>
         </div>
     </section>
 

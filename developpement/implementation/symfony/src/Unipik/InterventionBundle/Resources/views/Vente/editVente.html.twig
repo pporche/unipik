@@ -1,0 +1,111 @@
+{# version 1.00, date 30/11/2016, auteur Julie Pain#}
+{% extends "InterventionBundle::layout.html.twig" %}
+{% block title %}
+
+    Modifier une vente - {{ parent() }}
+
+{% endblock %}
+
+{%  block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
+    <style>
+        #chiffre {
+            font-size : 13px;
+            font-style : italic;
+            color : red;
+        }
+
+        .error {
+            border: solid 2px #FF0000;
+        }
+
+        h1, h2, h3{
+            font-family: 'Ubuntu Condensed', sans-serif;
+            margin-top: 40px;
+        }
+        h5{
+            font-weight: 600;
+        }
+        .formContainer{
+            max-width: 450px;
+            margin: auto;
+        }
+        .btn{
+            margin-left: calc(50% - 40px);
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
+    <script type="application/javascript">
+        $('#unipik_interventionbundle_vente_dateVente').datepicker({
+            format: 'dd-mm-yyyy',
+            language: 'fr',
+            startDate: 'today',
+            autoclose: true
+        });
+
+        // Permet de vérifier le format du chiffre d'affaire
+        function verifyChiffreDAffaire(e) {
+            var re = /^[\d]+([\.\,][\d]+)?$/;
+            if (!(re.test($('#unipik_interventionbundle_vente_chiffreAffaire').val()))) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#chiffre').show();
+                $('#unipik_interventionbundle_vente_chiffreAffaire').addClass('error');
+            } else {
+                $('#chiffre').hide();
+                $('#unipik_interventionbundle_vente_chiffreAffaire').removeClass('error');
+            }
+        }
+
+        document.addEventListener('submit', verifyChiffreDAffaire);
+
+        $(document).ready(function () {
+            // Initialisation
+            $('#chiffre').hide();
+        });
+
+    </script>
+
+
+{% endblock %}
+
+
+{%  block body %}
+    <h1>Modification d'une vente </h1><hr>
+    <div class="formContainer">
+        {{ form_start(form) }}
+
+        {% if intervention %}
+            <h5> Vente suite à une intervention :</h5>
+            Frimousse - {{ intervention.dateIntervention }} - {{ intervention.niveauFrimousse }}
+        {% endif %}
+
+        {% if etablissement %}
+            <h5>Lieu : </h5>{{ etablissement.nom }}
+            <hr>
+        {% endif %}
+
+
+        <h5>Chiffre affaire* :</h5>
+        {{ form_widget(form.chiffreAffaire) }}
+        <div id="chiffre">
+            Le chiffre d'affaire doit correspondre à un nombre
+        </div>
+
+        <h5>Date vente* :</h5>
+        {{ form_widget(form.dateVente) }}
+
+        <h5>Remarques :</h5>
+        {{ form_widget(form.remarques) }}
+
+        <input type="submit" class="btn btn-success"/>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

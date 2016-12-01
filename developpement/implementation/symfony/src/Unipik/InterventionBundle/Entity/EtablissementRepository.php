@@ -301,7 +301,7 @@ class EtablissementRepository extends EntityRepository {
     }
 
     /**
-     * Retourne l'email de l'etablissement
+     * Retourne les etéblissements qui ont une intervention dans une semaine.
      *
      * @return array
      */

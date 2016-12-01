@@ -60,6 +60,7 @@ class InterventionRepositoryTest extends RepositoryTestCase
             ->setDateIntervention(new \DateTime("2005-12-31"))
             ->setBenevole($b[1])
             ->setRealisee(true)
+            ->setTypeIntervention("frimousse")
         ;
 
         $nt[4] = null;
@@ -67,11 +68,13 @@ class InterventionRepositoryTest extends RepositoryTestCase
             ->addMateriauxFrimousse("patron")
             ->setNiveauFrimousse("CM1-CM2")
             ->setDateIntervention(new \DateTime("2010-12-31"))
+            ->setTypeIntervention("frimousse")
         ;
 
         $nt[5] = null;
         $inter[5]
             ->setDescription("Intervention particulière")
+            ->setTypeIntervention("autre_intervention")
         ;
 
         // On test tous les types de requêtes possibles:
@@ -83,13 +86,13 @@ class InterventionRepositoryTest extends RepositoryTestCase
             "test5" =>  [2, [1, 2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, null, ['travail des enfants', 'enfants et soldats']],
             "test6" =>  [3, [0, 1, 2], $inter, $nt, null, null, true, "plaidoyer", "lieu", true, null, "POUIC POUIC"],
             "test7" =>  [3, [0, 1, 2], $inter, $nt, null, null, true, "plaidoyer", "lieu", false, null, "POUIC POUIC"],
-            "test8" =>  [1, [1], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "plaidoyer", null, null, null, "POUIC POUIC"],
+            "test8" =>  [0, [1], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, null, null, "SRID=4326;POINT(45 69)", "1"],
             "test9" =>  [2, [3, 4], $inter, $nt, null, null, true, "frimousse", null, true, null, "POUIC POUIC"],
             "test10" => [1, [4], $inter, $nt, null, null, true, "frimousse", null, null, null, "POUIC POUIC", null, null,["CM1-CM2"], null],
             "test11" => [2, [3, 4], $inter, $nt, null, null, true, "frimousse", null, null, null, "POUIC POUIC", null, null, ["CE1-CE2", "CM1-CM2"], null],
             "test12" => [1, [3], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "frimousse", null, null, null, "POUIC POUIC"],
             "test14" => [1, [5], $inter, $nt, null, null, true, "autreIntervention", null, null, null, "POUIC POUIC"],
-            "test15" => [0, [], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "autreIntervention", null, null, null, "POUIC POUIC"],
+            "test15" => [0, [], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "autreIntervention", null, null, null, "", null, null, null, null, null, "SRID=4326;POINT(45 69)", "1"],
             "test16" => [6, [0, 1, 2, 3, 4, 5], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC"],
             "test17" => [2, [1, 3], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, null, null, null, null, "POUIC POUIC"],
             "test18" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC", true, $b[0]],
@@ -122,14 +125,19 @@ class InterventionRepositoryTest extends RepositoryTestCase
         $user = null,
         $niveauFrimousse = null,
         $niveauPlaidoyer = null,
-        $theme = null
+        $theme = null,
+        $geolocalisation = null,
+        $distance = null
     ) {
         // Begin transaction
         $this->em->beginTransaction();
 
         // Persist
         $ville = VilleMock::create();
-        $ville->setNom($nomVille);
+        if($nomVille != "")
+            $ville->setNom($nomVille);
+        else
+            $ville->setNom("POUIC POUIC");
         foreach ($interventions as $key=>$i) {
             $i->getEtablissement()->getAdresse()->setVille($ville);
             $i->setNiveauTheme($niveauxThemes[$key]);
@@ -148,7 +156,7 @@ class InterventionRepositoryTest extends RepositoryTestCase
         // Test getType method
         $result = $this->em
             ->getRepository('InterventionBundle:Intervention')
-            ->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $mesInterventions, $user, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville)
+            ->getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $mesInterventions, $user, $niveauFrimousse, $niveauPlaidoyer, $theme, $ville, $distance, $geolocalisation)
         ;
         // Prepare expected result
         $expectedIds = array();
@@ -166,4 +174,63 @@ class InterventionRepositoryTest extends RepositoryTestCase
         // Rollback
         $this->em->rollBack();
     }
+
+    public function testGetInterventionsBenevole() {
+        $this->em->beginTransaction();
+
+        $inter = InterventionMock::createMultiple(3);
+        $benevole = BenevoleMock::create();
+        $benevole2 = BenevoleMock::create();
+        $this->em->persist($benevole);
+        $this->em->persist($benevole2);
+
+        $inter[0]->setBenevole($benevole);
+        $inter[1]->setBenevole($benevole);
+        $inter[2]->setBenevole($benevole2);
+
+        $this->em->persist($inter[0]);
+        $this->em->persist($inter[1]);
+        $this->em->persist($inter[2]);
+        $this->em->flush();
+        $this->em->clear();
+
+        // Test getInterventionsBenevole method
+        $result = $this->em
+            ->getRepository('InterventionBundle:Intervention')
+            ->getInterventionsBenevole($benevole);
+        ;
+
+        $this->assertCount(2, $result);
+        $this->em->rollBack();
+    }
+
+//    public function testGetInterventionsRealiseesOuNon() {
+//        $this->em->beginTransaction();
+//
+//        $inter = InterventionMock::createMultiple(3);
+//
+//        $inter[0]->setRealisee(true);
+//        $inter[1]->setRealisee(true);
+//        $inter[2]->setRealisee(false);
+//        $this->em->persist($inter[0]);
+//        $this->em->persist($inter[1]);
+//        $this->em->persist($inter[2]);
+//        $this->em->flush();
+//        $this->em->clear();
+//
+//        // Test getInterventionsBenevole method
+//        $result = $this->em
+//            ->getRepository('InterventionBundle:Intervention')
+//            ->getInterventionsRealiseesOuNon(true);
+//        ;
+//
+//        $result2 = $this->em
+//            ->getRepository('InterventionBundle:Intervention')
+//            ->getInterventionsRealiseesOuNon(false);
+//        ;
+//
+//        $this->assertCount(2, $result);
+//        $this->assertCount(1, $result2);
+//        $this->em->rollBack();
+//    }
 }

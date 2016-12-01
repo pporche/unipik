@@ -1,6 +1,6 @@
 % version 1.00, date 30/03/16, auteur Michel Cressant
 
-Ici sont décrits les différents tests d'intégration liés au lot 1.
+Ici sont décrits les différents tests d'intégration liés au lot 2.
 
 \section{TI001}
 	 Ce test vérifie la communication entre les packages FOSUserBundle et InterventionBundle.
@@ -8,8 +8,8 @@ Ici sont décrits les différents tests d'intégration liés au lot 1.
      	\begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
 		\hline
 			Eléments testés & FOSUserBundle <-> InterventionBundle \\\hline
-    			A faire & Cliquer sur le bouton "Go" sur la page d'accueil placé à côté d'un intitulé "Hello Unicef !" \\\hline
-    			Résultat attendu & Affichage d'une page où il est écrit "Hello Unicef" \\\hline
+    			A faire & Dans la liste des interventions, attribuer un bénévole à une intervention. \\\hline
+    			Résultat attendu & Affichage d'une mention "Attribuée à XXX" lors de la consultation de l'intervention \\\hline
      	\end{tabular}
   	\end{center}	
   	
@@ -19,8 +19,8 @@ Ici sont décrits les différents tests d'intégration liés au lot 1.
      	\begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
 		\hline
 			Eléments testés & FOSUserBundle <-> SwiftMailerBundle \\\hline
-    			A faire & \\\hline
-    			Résultat attendu & \\\hline
+    			A faire & Inscrire un nouveau bénévole \\\hline
+    			Résultat attendu & Un mail automatique est envoyé à l'adresse renseignée lors de l'inscription du bénévole. \\\hline
      	\end{tabular}
   	\end{center}	
   	
@@ -31,7 +31,7 @@ Ici sont décrits les différents tests d'intégration liés au lot 1.
      	\begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
 		\hline
 			Eléments testés & InterventionBundle <-> SwiftMailerBundle \\\hline
-    			A faire & \\\hline
-    			Résultat attendu & \\\hline
+    			A faire & Dans la page "Mailing", sélectionner l'envoi aux maternelles et cliquer sur "Envoyer". \\\hline
+    			Résultat attendu & Un mail est recu sur l'adresse "dev1@yopmail.com" nous redirigeant vers le formulaire de demande d'intervention. \\\hline
      	\end{tabular}
   	\end{center}		

@@ -159,15 +159,11 @@ class EtablissementController extends Controller {
      * @return Response
      */
     public function listeAction(Request $request) {
+        $user = $this->getUser();
+
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
-
-        $typeEtablissement = $form->get("typeEtablissement")->getData();
-        $ville = $form->get("ville")->getData();
-        $geolocalisation = $form->get("geolocalisation")->getData();
-        $distance = $form->get("distance")->getData();
-        $types = $typeEtablissement!="" ? $form->get("type".ucfirst($typeEtablissement))->getData() : null;
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
         $field = $request->get("field", "ville");
@@ -175,7 +171,18 @@ class EtablissementController extends Controller {
 
         $repository = $this->getEtablissementRepository();
 
-        $listEtablissement = $repository->getType($typeEtablissement, $types, $ville, $field, $desc, $geolocalisation, $distance);
+//        if($request->isMethod('GET') && $form->isValid()) {
+            $typeEtablissement = $form->get("typeEtablissement")->getData();
+            $ville = $form->get("ville")->getData();
+            $geolocalisation = $form->get("geolocalisation")->getData();
+            $distance = $form->get("distance")->getData();
+            $types = $typeEtablissement != "" ? $form->get("type" . ucfirst($typeEtablissement))->getData() : null;
+
+            $listEtablissement = $repository->getType($typeEtablissement, $types, $ville, $field, $desc, $geolocalisation, $distance, $user);
+//        } else {
+//            $typeEtablissement = "";
+//            $listEtablissement = $repository->getType("", "", null, $field, $desc, null, null);
+//        }
 
         return $this->render(
             'InterventionBundle:Etablissement:liste.html.twig', array(

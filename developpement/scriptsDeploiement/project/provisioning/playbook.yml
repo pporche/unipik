@@ -12,7 +12,7 @@
     - file: path=/var/www state=directory mode=0755 owner=www-data group=www-data
 
   roles:
-#    - geerlingguy.firewall
+    - geerlingguy.firewall
     - geerlingguy.git
     - ANXS.postgresql-ubuntu
     - geerlingguy.apache

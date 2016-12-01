@@ -2,9 +2,28 @@ architecture_homepage:
     path:     /
     defaults: { _controller: ArchitectureBundle:Architecture:index }
 
+demande_enregistree:
+    path:     /demande_enregistree
+    defaults: { _controller: ArchitectureBundle:Architecture:demandeEnregistree }
+
 architecture_noJavascript:
     path:     /erreurJS
     defaults: { _controller: ArchitectureBundle:Architecture:noJS }
+
+architecture_departement_autocomplete:
+    path: /departement/autocomplete
+    defaults:
+        _controller: ArchitectureBundle:Architecture:autocompleteDepartement
+
+architecture_verify_departement:
+    path: /departement/verify
+    defaults:
+        _controller: ArchitectureBundle:Architecture:verifyDepartement
+
+architecture_verify_ville:
+    path: /ville/verify
+    defaults:
+        _controller: ArchitectureBundle:Architecture:verifyVille
 
 architecture_ville_autocomplete:
     path: /ville/autocomplete

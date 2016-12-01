@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jpain01
- * Date: 19/09/16
- * Time: 12:06
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form\Etablissement;
@@ -11,18 +19,30 @@ namespace Unipik\InterventionBundle\Form\Etablissement;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Unipik\ArchitectureBundle\Form\Adresse\VilleType;
 use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
 
-
+/**
+ * Le type recherche avancee
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class RechercheAvanceeType  extends AbstractType
 {
     private $entityManager;
 
     /**
      * VilleType constructor.
-     * @param ObjectManager $entityManager
+     *
+     * @param ObjectManager $entityManager Le manager
+     *
+     * @return object
      */
     public function __construct(ObjectManager $entityManager)
     {
@@ -31,11 +51,37 @@ class RechercheAvanceeType  extends AbstractType
 
 
     /**
-     * form builder
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * Form builder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
+
+        $dansVilleOuParDistance = array('required' => false, 'expanded' => true, 'multiple' => false,
+            'placeholder' => 'Aucun',
+            'choices' => [
+                'Dans une ville' => 'dansVille',
+                'Par distance d\'un lieu' => 'distanceLieu'
+            ]);
+
+        $villeOuDomicile = array('required' => false, 'expanded' => true, 'multiple' => false,
+            'choices' => [
+                'Ville' => 'ville',
+                'Mon domicile' => 'domicile'
+            ]);
+
+        $distanceChoiceType = array('required' => false,
+            'choices' => [
+                5 => 5,
+                10 => 10,
+                20 => 20,
+                50 => 50,
+                100 => 100
+            ]);
+
         $optionChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
             'choices' => [
                 'Tous' => '',
@@ -70,14 +116,16 @@ class RechercheAvanceeType  extends AbstractType
 
 
 
-
         $builder
-            ->add('typeEtablissement',ChoiceType::class, $optionChoiceType)
+            ->add('typeEtablissement', ChoiceType::class, $optionChoiceType)
             ->add('typeEnseignement', ChoiceType::class, $optionEnseignementType)
             ->add('typeCentre', ChoiceType::class, $optionCentreType)
             ->add('typeAutreEtablissement', ChoiceType::class, $optionAutreEtablissementType)
-            ->add('ville', TextType::class, array('required' => false))
-        ;
+            ->add('dansVilleOuParDistance', ChoiceType::class, $dansVilleOuParDistance)
+            ->add('villeOuDomicile', ChoiceType::class, $villeOuDomicile)
+            ->add('ville', VilleType::class, array('required' => false))
+            ->add('geolocalisation', HiddenType::class)
+            ->add('distance', ChoiceType::class, $distanceChoiceType);
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
     }

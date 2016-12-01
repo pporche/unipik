@@ -1,0 +1,589 @@
+Return-Path: <cathyguest76@gmail.com>
+Delivered-To: pporche@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 8B06323ABC
+	for <pporche@insa-rouen.fr>; Wed,  5 Oct 2016 18:47:44 +0200 (CEST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0AyCgBfLvVXhq7YVdFdGgEBAQECAQEBAQgBAQEBgz0BAQEBATyBNQeCeqEviEOCCYF4gXxYTII3hBiGIAKBawdMAQIBAQEBAQITAQEBCAsLCRkvhGIBAQECAQwGER0BGxgGAwELBgMCCzcCAiIBEQEFARELBgESCBqFNoJbAQMPCI9zj02BMj4yi0KBa4JfBYNoChknDQZNgwgBAQEBBgEBAQEBARkDBhCLAYQkBgEBgx+CWgEEgTGHTJBzCAEBgSYIiWCEaY9zjHOCPBMegRGDeyCBXzw0hggBDRcHggIBAQE
+X-IPAS-Result: A0AyCgBfLvVXhq7YVdFdGgEBAQECAQEBAQgBAQEBgz0BAQEBATyBNQeCeqEviEOCCYF4gXxYTII3hBiGIAKBawdMAQIBAQEBAQITAQEBCAsLCRkvhGIBAQECAQwGER0BGxgGAwELBgMCCzcCAiIBEQEFARELBgESCBqFNoJbAQMPCI9zj02BMj4yi0KBa4JfBYNoChknDQZNgwgBAQEBBgEBAQEBARkDBhCLAYQkBgEBgx+CWgEEgTGHTJBzCAEBgSYIiWCEaY9zjHOCPBMegRGDeyCBXzw0hggBDRcHggIBAQE
+X-IronPort-AV: E=Sophos;i="5.31,449,1473112800"; 
+   d="scan'208,217";a="96827921"
+Received: from mail-qt0-f174.google.com ([209.85.216.174])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 05 Oct 2016 18:47:44 +0200
+Received: by mail-qt0-f174.google.com with SMTP id q7so5689272qtq.1
+        for <pierre.porche@insa-rouen.fr>; Wed, 05 Oct 2016 09:47:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to;
+        bh=+FxP88fpp8KNmHZTQL7m/hgK3N/IK7EfrrSyyHrzPuA=;
+        b=ZCCBOKiPEEtVXCfTlaCc9dojAS8yttO6pt0y451Fei2h4SBNwl/96dPld2tXslqO2Z
+         2IN7iEiYCRbM8aEQBczgWmJBKps0Vw41pjZMSu8jnEtvdR/AqFzUjVJDeCu+ny3Fkp7f
+         iEJwA3cxw1UiWQ34pIERaRuQmD+Xl0enkZsrM3ZVQb1lmeNdYmt4wRtt4wqam3Yjoye7
+         b7a4OgWLVq0/RWOtHcCXO7xm+YintJ4nsgf+yxFbUUreGhnAbB0LCp7GFI9qqnFxmADc
+         E20U0PkjTGovy1ZlpmAG7+IqhtDAAEmKiFdSu16fzK1EOHTqpLBQyhf3n3fzByxG8rZL
+         6mng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to;
+        bh=+FxP88fpp8KNmHZTQL7m/hgK3N/IK7EfrrSyyHrzPuA=;
+        b=Jt/xeZgclFoadZSs3b5zA0kwTjeC/AUGGO2pNhwu0IE9OT6wQO2mO3Crc6VPwyQFSK
+         4x7kuJTmmO/IaKr8ESPc+NjaKAjo6vzno+9G/uB4LjiGIGGENTFZfFCCRtf4kQaAXL/8
+         NG1rleKTn+Dnqqrsiapo7tfYB9pMwAmZAnM1KS8PlvCoIYg7AqRon1t4iTB+OfEk9tiI
+         9RqmK6oFfUhEPbUrz4HU/Krjd1aLL+FXm46ujqivZVYiCM8L3yxVNkh2JJX1C3Fpg0J1
+         0og97EiqXlNWEJKHRdsx8Df3rDaA89i4cGF92ygxDCWnVpuQVn4ZWgrB0aC0qKWZoSih
+         H3MQ==
+X-Gm-Message-State: AA6/9Rly052CG67AoidiHvbJKaORDTmpljiD+M6nU7zqcNr4S0LVxt5bImb0uWyNQow6+2qDavvMtVBq7Y8yBw==
+X-Received: by 10.200.44.53 with SMTP id d50mr9415351qta.27.1475686062514;
+ Wed, 05 Oct 2016 09:47:42 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.55.162.206 with HTTP; Wed, 5 Oct 2016 09:47:41 -0700 (PDT)
+In-Reply-To: <c4f7af2c-6809-6191-1a28-fa6796a6361d@laposte.net>
+References: <206adb38-e332-f1b4-a250-5a4fba391c2c@insa-rouen.fr> <c4f7af2c-6809-6191-1a28-fa6796a6361d@laposte.net>
+From: Guest catherine <cathyguest76@gmail.com>
+Date: Wed, 5 Oct 2016 18:47:41 +0200
+Message-ID: <CAM17bm+0ZJQ+CocDit68tEJKr47CtMq0aTXC2vX_0KBDqm72oQ@mail.gmail.com>
+Subject: =?UTF-8?B?UmU6IFJlOiBGd2Q6IFJlOiBQcm9qZXQgSU5TQSA6IFJlbnRyw6ll?=
+To: =?UTF-8?Q?Pr=C3=A9sident_UNICEF_76?= <president.unicef76@laposte.net>, 
+	pierre.porche@insa-rouen.fr, "veronique@davreux.com" <veronique@davreux.com>
+Content-Type: multipart/alternative; boundary=001a113b460a8e69d4053e20efe5
+
+--001a113b460a8e69d4053e20efe5
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+bonsoir,
+
+C'est possible pour moi d'=C3=AAtre au local pour 15H, surtout vous me
+reconfirmez que c'est bien d'accord, v=C3=A9ronique barbier nous rejoindra =
+pour
+16H
+
+A demain, cordialement
+
+catherine guest   06 03 93 50 18
+
+Le 5 octobre 2016 =C3=A0 17:09, Pr=C3=A9sident UNICEF 76 <
+president.unicef76@laposte.net> a =C3=A9crit :
+
+>
+> je te transf=C3=A8re le message de Pierre Porche. Peux-tu lui r=C3=A9pond=
+re
+> directement en fonction de ta disponibilit=C3=A9?
+> De mon c=C3=B4t=C3=A9, je serai au local pour la permanence qui commence =
+=C3=A0 16h. je
+> peux donc =C3=AAtre l=C3=A0 =C3=A0 15h, mais je ne suis pas l'utilisateur=
+ final, donc le
+> plus =C3=A0 m=C3=AAme de tester.
+> VB
+>
+> -------- Message transf=C3=A9r=C3=A9 --------
+> Sujet : Re: Fwd: Re: Projet INSA : Rentr=C3=A9e
+> Date : Wed, 5 Oct 2016 14:54:00 +0200
+> De : Pierre Porche <pierre.porche@insa-rouen.fr>
+> <pierre.porche@insa-rouen.fr>
+> Pour : Pr=C3=A9sident UNICEF 76 <president.unicef76@laposte.net>
+> <president.unicef76@laposte.net>
+>
+> Bonjour,
+>
+> Serait il possible de d=C3=A9caler le rendez-vous de demain =C3=A0 15h? L=
+'INSA a en
+> effet pr=C3=A9vu une rencontre avec des entreprises sur l'ensemble de la
+> matin=C3=A9e. S'il vous est possible de nous rencontrer =C3=A0 15h, cela =
+serait
+> arrangeant pour nous.
+>
+> Bien cordialement,
+>
+>
+> Pierre Porche
+>
+>
+>
+> Le 01/10/2016 =C3=A0 18:40, Pr=C3=A9sident UNICEF 76 a =C3=A9crit :
+>
+> Bonjour Pierre
+>
+> Un plaideur, utilisateur de l'application, peut =C3=AAtre libre le jeudi =
+6
+> octobre =C3=A0 10h. Et V=C3=A9ronique Davreux ou moi-m=C3=AAme seront l=
+=C3=A0 aussi.
+> Est-ce que ce moment vous convient?
+> D'autre part, ce test doit -il se faite obligatoirement dans vos locaux,
+> ou peut-on imaginer de le faire dans notre local?
+> Merci d'avance de votre r=C3=A9ponse. Bon we. Cordialement, V=C3=A9roniqu=
+e BARBIER
+>
+> Le 29/09/2016 =C3=A0 14:26, Pierre Porche a =C3=A9crit :
+>
+> Bonjour,
+>
+> Aucun probl=C3=A8me, le 17 octobre de 14h =C3=A0 17h sera parfait.
+> Il serait effectivement pratique de pouvoir avoir un retour sur le design
+> de l'application avant la livraison afin que nous puissions prendre en
+> compte les remarques avant celle ci. Il nous semblerait toutefois plus
+> pertinent dans le processus de livraison que l'une des personnes assistan=
+t
+> =C3=A0 la livraison puisse =C3=A9galement =C3=AAtre la personne qui essay=
+e l'application
+> en avance. Pourriez vous, ou V=C3=A9ronique Davreux, nous rencontrer dans=
+ le
+> courant de la semaine prochaine?
+>
+> Bien cordialement,
+>
+>
+> Pierre Porche
+>
+>
+>
+> Le 27/09/2016 =C3=A0 17:07, Pr=C3=A9sident UNICEF 76 a =C3=A9crit :
+>
+> Bonjour Pierre,
+>
+> D=C3=A9sol=C3=A9e pour la lenteur de ma r=C3=A9ponse. V=C3=A9ronique Davr=
+eux est moi-m=C3=AAme
+> pouvons =C3=AAtre =C3=A0 l'INSA le lundi 17 octobre de 14h =C3=A0 17h. Es=
+t-ce que cela
+> vous convient?
+> D'apr=C3=A8s votre message, je me demande s'il faut pr=C3=A9voir un autre
+> rendez-vous avec un utilisateur de l'application? vous devez avoir les
+> coordonn=C3=A9es d'Isabelle Becquart, responsable de l'=C3=A9quipe des pl=
+aideurs, et
+> qui a d=C3=A9j=C3=A0 particip=C3=A9 =C3=A0 des rencontres avec vous et ce=
+lles de Catherine
+> Guest, plaideur elle-m=C3=AAme.
+> Cordialement, V=C3=A9ronique BARBIER
+>
+> Le 26/09/2016 =C3=A0 14:57, Pierre Porche a =C3=A9crit :
+>
+> Bonjour,
+>
+> Je me permets de vous relancer suite =C3=A0 mon mail de mercredi dernier.=
+ La
+> date approchant et la livraison =C3=A9tant limit=C3=A9e par les =C3=A9tab=
+lissements, je
+> souhaiterais que nous puissions fixer la date au plus vite. Je vous deman=
+de
+> de m'excuser pour cet empressement et vous saurais gr=C3=A9 d'accepter me=
+s plus
+> amicales salutations. De plus, nous aimerions vous rencontrer au plus vit=
+e
+> avant cette date afin de vous faire valider l'interface de l'application =
+et
+> s'assurer que la navigation vous est confortable.
+>
+> Bien cordialement,
+>
+>
+> Pierre Porche
+>
+>
+> -------- Message transf=C3=A9r=C3=A9 --------
+> Sujet : Re: Projet INSA : Rentr=C3=A9e
+> Date : Wed, 21 Sep 2016 10:01:58 +0200
+> De : Pierre Porche <pierre.porche@insa-rouen.fr>
+> <pierre.porche@insa-rouen.fr>
+> Pour : Pr=C3=A9sident UNICEF 76 <president.unicef76@laposte.net>
+> <president.unicef76@laposte.net>
+>
+> Bonjour,
+>
+> Je vous =C3=A9cris afin de fixer avec vous la date de livraison du lot 2.
+> Selon nos plannings, nous serons en mesure d'effectuer avec vous la
+> livraison le 17/10/2016 (ou dans la semaine qui suit, selon vos
+> disponibilit=C3=A9s) =C3=A0 l'heure qui vous conviendra. La livraison se =
+d=C3=A9roulera
+> de la m=C3=AAme mani=C3=A8re que la fois pr=C3=A9c=C3=A9dente. Je vous pr=
+opose, juste avant
+> de passer =C3=A0 la livraison formelle, d'organiser une petite r=C3=A9uni=
+on afin
+> de faire un point sur l'=C3=A9quipe et sur les projets =C3=A0 l'INSA dont=
+ vous
+> souhaitiez nous parler. Je vous demanderais donc de pr=C3=A9voir trois he=
+ures
+> dans une journ=C3=A9e de la semaine du 17 octobre. Je reste disponible po=
+ur
+> toute question que vous vous poseriez.
+>
+> Bien cordialement,
+>
+>
+> Pierre Porche
+> Chef PIC
+> PIC UNICEF
+> INSA Rouen
+>
+>
+>
+> Le 12/09/2016 =C3=A0 09:52, Pr=C3=A9sident UNICEF 76 a =C3=A9crit :
+> > Bonjour Pierre,
+> >
+> > Merci de vos nouvelles. Nous esp=C3=A9rons que l'=C3=A9t=C3=A9 s'est bi=
+en pass=C3=A9 pour
+> > toute l'=C3=A9quipe et que vous avez de bonnes nouvelles de vos camarad=
+es
+> > partis en stage ou =C3=A0 l'=C3=A9tranger. Nous serons tr=C3=A8s heureu=
+x de vous
+> > retrouver. Nous avons aussi d'autres projets =C3=A0 l'INSA dont nous au=
+rons
+> > l'occasion de vous parler.
+> > Cordialement, V=C3=A9ronique BARBIER
+> >
+> >
+> > Le 08/09/2016 =C3=A0 08:45, Pierre Porche a =C3=A9crit :
+> >> Bonjour,
+> >> J'ai le plaisir de vous annoncer qu'avec la rentr=C3=A9e, le PIC UNICE=
+F
+> >> reprend. Avec cette nouvelle ann=C3=A9e vient =C3=A9galement un change=
+ment
+> >> d'=C3=A9quipe et j'ai donc le privil=C3=A8ge d'=C3=AAtre =C3=A0 pr=C3=
+=A9sent le chef du projet
+> >> en succ=C3=A9dant =C3=A0 Sergi. Nous avons un nouveau membre =C3=A0 l'=
+=C3=A9quipe,
+> >> Fran=C3=A7ois Decq qui revient de Nouvelle-Z=C3=A9lande, et trois memb=
+res en
+> >> moins pour cause d=C3=A9part =C3=A0 l'=C3=A9tranger. Nous continuons d=
+onc notre
+> >> projet sans Sergi, Michel et Mathieu.
+> >> Nous avons d=C3=A8s =C3=A0 pr=C3=A9sent repris l=C3=A0 o=C3=B9 nous no=
+us =C3=A9tions arr=C3=AAt=C3=A9s avant
+> >> le stage de cet =C3=A9t=C3=A9 afin de pouvoir effectuer la livraison c=
+ompl=C3=A8te
+> >> en octobre, comme il avait =C3=A9t=C3=A9 convenu avec Sergi. L'=C3=A9q=
+uipe et moi
+> >> m=C3=AAme redoublons de motivation afin de vous fournir un produit
+> >> correspondant =C3=A0 vos attentes dans les d=C3=A9lais attendus, et ce=
+ malgr=C3=A9
+> >> un retard pris pr=C3=A9c=C3=A9demment.
+> >> Je reste =C3=A9videmment disponible pour toute demande d'information e=
+t
+> >> vous souhaite une excellente rentr=C3=A9e.
+> >>
+> >> Bien cordialement,
+> >>
+> >>
+> >> Pierre Porche
+> >> Chef PIC
+> >> PIC ASI UNICEF
+> >> INSA Rouen
+> >
+>
+>
+>
+>
+>
+>
+>
+
+--001a113b460a8e69d4053e20efe5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">bonsoir,<div><br></div><div>C&#39;est possible pour moi d&=
+#39;=C3=AAtre au local pour 15H, surtout vous me reconfirmez que c&#39;est =
+bien d&#39;accord, v=C3=A9ronique barbier nous rejoindra pour 16H</div><div=
+><br></div><div>A demain, cordialement</div><div><br></div><div>catherine g=
+uest =C2=A0 06 03 93 50 18 =C2=A0</div></div><div class=3D"gmail_extra"><br=
+><div class=3D"gmail_quote">Le 5 octobre 2016 =C3=A0 17:09, Pr=C3=A9sident =
+UNICEF 76 <span dir=3D"ltr">&lt;<a href=3D"mailto:president.unicef76@lapost=
+e.net" target=3D"_blank">president.unicef76@laposte.net</a>&gt;</span> a =
+=C3=A9crit :<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
+x;border-left:1px #ccc solid;padding-left:1ex">
+ =20
+
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <p><br>
+    </p>
+    <div class=3D"m_6967682157685341981moz-forward-container">je te transf=
+=C3=A8re le message de
+      Pierre Porche. Peux-tu lui r=C3=A9pondre directement en fonction de t=
+a
+      disponibilit=C3=A9?<br>
+      De mon c=C3=B4t=C3=A9, je serai au local pour la permanence qui comme=
+nce =C3=A0
+      16h. je peux donc =C3=AAtre l=C3=A0 =C3=A0 15h, mais je ne suis pas l=
+&#39;utilisateur
+      final, donc le plus =C3=A0 m=C3=AAme de tester.<br>
+      VB<br>
+      <br>
+      -------- Message transf=C3=A9r=C3=A9 --------
+      <table class=3D"m_6967682157685341981moz-email-headers-table" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0">
+        <tbody>
+          <tr>
+            <th align=3D"RIGHT" nowrap valign=3D"BASELINE">Sujet=C2=A0:
+            </th>
+            <td>Re: Fwd: Re: Projet INSA : Rentr=C3=A9e</td>
+          </tr>
+          <tr>
+            <th align=3D"RIGHT" nowrap valign=3D"BASELINE">Date=C2=A0: </th=
+>
+            <td>Wed, 5 Oct 2016 14:54:00 +0200</td>
+          </tr>
+          <tr>
+            <th align=3D"RIGHT" nowrap valign=3D"BASELINE">De=C2=A0: </th>
+            <td>Pierre Porche <a class=3D"m_6967682157685341981moz-txt-link=
+-rfc2396E" href=3D"mailto:pierre.porche@insa-rouen.fr" target=3D"_blank">&l=
+t;pierre.porche@insa-rouen.fr&gt;</a></td>
+          </tr>
+          <tr>
+            <th align=3D"RIGHT" nowrap valign=3D"BASELINE">Pour=C2=A0: </th=
+>
+            <td>Pr=C3=A9sident UNICEF 76
+              <a class=3D"m_6967682157685341981moz-txt-link-rfc2396E" href=
+=3D"mailto:president.unicef76@laposte.net" target=3D"_blank">&lt;president.=
+unicef76@laposte.<wbr>net&gt;</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+     =20
+      <p>Bonjour,</p>
+      <p>Serait il possible de d=C3=A9caler le rendez-vous de demain =C3=A0=
+ 15h?
+        L&#39;INSA a en effet pr=C3=A9vu une rencontre avec des entreprises=
+ sur
+        l&#39;ensemble de la matin=C3=A9e. S&#39;il vous est possible de no=
+us
+        rencontrer =C3=A0 15h, cela serait arrangeant pour nous.</p><div><d=
+iv class=3D"h5">
+      <p>Bien cordialement,</p>
+      <p><br>
+      </p>
+      <p>Pierre Porche<br>
+      </p>
+      <p><br>
+      </p>
+      <br>
+      <div class=3D"m_6967682157685341981moz-cite-prefix">Le 01/10/2016 =C3=
+=A0 18:40, Pr=C3=A9sident
+        UNICEF 76 a =C3=A9crit=C2=A0:<br>
+      </div>
+      <blockquote type=3D"cite">
+       =20
+        <p>Bonjour Pierre</p>
+        <p>Un plaideur, utilisateur de l&#39;application, peut =C3=AAtre li=
+bre le
+          jeudi 6 octobre =C3=A0 10h. Et V=C3=A9ronique Davreux ou moi-m=C3=
+=AAme seront
+          l=C3=A0 aussi.<br>
+          Est-ce que ce moment vous convient?<br>
+          D&#39;autre part, ce test doit -il se faite obligatoirement dans
+          vos locaux, ou peut-on imaginer de le faire dans notre local?<br>
+          Merci d&#39;avance de votre r=C3=A9ponse. Bon we. Cordialement,
+          V=C3=A9ronique BARBIER<br>
+        </p>
+        <br>
+        <div class=3D"m_6967682157685341981moz-cite-prefix">Le 29/09/2016 =
+=C3=A0 14:26, Pierre
+          Porche a =C3=A9crit=C2=A0:<br>
+        </div>
+        <blockquote type=3D"cite">
+         =20
+          Bonjour,<br>
+          <br>
+          Aucun probl=C3=A8me, le 17 octobre de 14h =C3=A0 17h sera parfait=
+.<br>
+          Il serait effectivement pratique de pouvoir avoir un retour
+          sur le design de l&#39;application avant la livraison afin que
+          nous puissions prendre en compte les remarques avant celle ci.
+          Il nous semblerait toutefois plus pertinent dans le processus
+          de livraison que l&#39;une des personnes assistant =C3=A0 la livr=
+aison
+          puisse =C3=A9galement =C3=AAtre la personne qui essaye l&#39;appl=
+ication en
+          avance. Pourriez vous, ou V=C3=A9ronique Davreux, nous rencontrer
+          dans le courant de la semaine prochaine?<br>
+          <br>
+          Bien cordialement,<br>
+          <br>
+          <br>
+          Pierre Porche<br>
+          <br>
+          <br>
+          <br>
+          <div class=3D"m_6967682157685341981moz-cite-prefix">Le 27/09/2016=
+ =C3=A0 17:07, Pr=C3=A9sident
+            UNICEF 76 a =C3=A9crit=C2=A0:<br>
+          </div>
+          <blockquote type=3D"cite">
+           =20
+            <p>Bonjour Pierre,</p>
+            <p>D=C3=A9sol=C3=A9e pour la lenteur de ma r=C3=A9ponse. V=C3=
+=A9ronique Davreux
+              est moi-m=C3=AAme pouvons =C3=AAtre =C3=A0 l&#39;INSA le lund=
+i 17 octobre de
+              14h =C3=A0 17h. Est-ce que cela vous convient?<br>
+              D&#39;apr=C3=A8s votre message, je me demande s&#39;il faut p=
+r=C3=A9voir un
+              autre rendez-vous avec un utilisateur de l&#39;application?
+              vous devez avoir les coordonn=C3=A9es d&#39;Isabelle Becquart=
+,
+              responsable de l&#39;=C3=A9quipe des plaideurs, et qui a d=C3=
+=A9j=C3=A0
+              particip=C3=A9 =C3=A0 des rencontres avec vous et celles de
+              Catherine Guest, plaideur elle-m=C3=AAme.<br>
+              Cordialement, V=C3=A9ronique BARBIER<br>
+            </p>
+            <br>
+            <div class=3D"m_6967682157685341981moz-cite-prefix">Le 26/09/20=
+16 =C3=A0 14:57, Pierre
+              Porche a =C3=A9crit=C2=A0:<br>
+            </div>
+            <blockquote type=3D"cite">
+             =20
+              Bonjour,<br>
+              <br>
+              Je me permets de vous relancer suite =C3=A0 mon mail de
+              mercredi dernier. La date approchant et la livraison =C3=A9ta=
+nt
+              limit=C3=A9e par les =C3=A9tablissements, je souhaiterais que=
+ nous
+              puissions fixer la date au plus vite. Je vous demande de
+              m&#39;excuser pour cet empressement et vous saurais gr=C3=A9
+              d&#39;accepter mes plus amicales salutations. De plus, nous
+              aimerions vous rencontrer au plus vite avant cette date
+              afin de vous faire valider l&#39;interface de l&#39;applicati=
+on et
+              s&#39;assurer que la navigation vous est confortable.<br>
+              <br>
+              Bien cordialement,<br>
+              <br>
+              <br>
+              Pierre Porche<br>
+              <div class=3D"m_6967682157685341981moz-forward-container"><br=
+>
+                <br>
+                -------- Message transf=C3=A9r=C3=A9 --------
+                <table class=3D"m_6967682157685341981moz-email-headers-tabl=
+e">
+                  <tbody>
+                    <tr>
+                      <th nowrap>Sujet=C2=A0: </th>
+                      <td>Re: Projet INSA : Rentr=C3=A9e</td>
+                    </tr>
+                    <tr>
+                      <th nowrap>Date=C2=A0: </th>
+                      <td>Wed, 21 Sep 2016 10:01:58 +0200</td>
+                    </tr>
+                    <tr>
+                      <th nowrap>De=C2=A0: </th>
+                      <td>Pierre Porche <a class=3D"m_6967682157685341981mo=
+z-txt-link-rfc2396E" href=3D"mailto:pierre.porche@insa-rouen.fr" target=3D"=
+_blank">&lt;pierre.porche@insa-rouen.fr&gt;</a></td>
+                    </tr>
+                    <tr>
+                      <th nowrap>Pour=C2=A0: </th>
+                      <td>Pr=C3=A9sident UNICEF 76 <a class=3D"m_6967682157=
+685341981moz-txt-link-rfc2396E" href=3D"mailto:president.unicef76@laposte.n=
+et" target=3D"_blank">&lt;president.unicef76@laposte.<wbr>net&gt;</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br>
+                <br>
+                <pre>Bonjour,
+
+Je vous =C3=A9cris afin de fixer avec vous la date de livraison du lot 2.=
+=20
+Selon nos plannings, nous serons en mesure d&#39;effectuer avec vous la=20
+livraison le 17/10/2016 (ou dans la semaine qui suit, selon vos=20
+disponibilit=C3=A9s) =C3=A0 l&#39;heure qui vous conviendra. La livraison s=
+e d=C3=A9roulera=20
+de la m=C3=AAme mani=C3=A8re que la fois pr=C3=A9c=C3=A9dente. Je vous prop=
+ose, juste avant=20
+de passer =C3=A0 la livraison formelle, d&#39;organiser une petite r=C3=A9u=
+nion afin=20
+de faire un point sur l&#39;=C3=A9quipe et sur les projets =C3=A0 l&#39;INS=
+A dont vous=20
+souhaitiez nous parler. Je vous demanderais donc de pr=C3=A9voir trois heur=
+es=20
+dans une journ=C3=A9e de la semaine du 17 octobre. Je reste disponible pour=
+=20
+toute question que vous vous poseriez.
+
+Bien cordialement,
+
+
+Pierre Porche
+Chef PIC
+PIC UNICEF
+INSA Rouen
+
+
+
+Le 12/09/2016 =C3=A0 09:52, Pr=C3=A9sident UNICEF 76 a =C3=A9crit :
+&gt; Bonjour Pierre,
+&gt;
+&gt; Merci de vos nouvelles. Nous esp=C3=A9rons que l&#39;=C3=A9t=C3=A9 s&#=
+39;est bien pass=C3=A9 pour=20
+&gt; toute l&#39;=C3=A9quipe et que vous avez de bonnes nouvelles de vos ca=
+marades=20
+&gt; partis en stage ou =C3=A0 l&#39;=C3=A9tranger. Nous serons tr=C3=A8s h=
+eureux de vous=20
+&gt; retrouver. Nous avons aussi d&#39;autres projets =C3=A0 l&#39;INSA don=
+t nous aurons=20
+&gt; l&#39;occasion de vous parler.
+&gt; Cordialement, V=C3=A9ronique BARBIER
+&gt;
+&gt;
+&gt; Le 08/09/2016 =C3=A0 08:45, Pierre Porche a =C3=A9crit :
+&gt;&gt; Bonjour,
+&gt;&gt; J&#39;ai le plaisir de vous annoncer qu&#39;avec la rentr=C3=A9e, =
+le PIC UNICEF=20
+&gt;&gt; reprend. Avec cette nouvelle ann=C3=A9e vient =C3=A9galement un ch=
+angement=20
+&gt;&gt; d&#39;=C3=A9quipe et j&#39;ai donc le privil=C3=A8ge d&#39;=C3=AAt=
+re =C3=A0 pr=C3=A9sent le chef du projet=20
+&gt;&gt; en succ=C3=A9dant =C3=A0 Sergi. Nous avons un nouveau membre =C3=
+=A0 l&#39;=C3=A9quipe,=20
+&gt;&gt; Fran=C3=A7ois Decq qui revient de Nouvelle-Z=C3=A9lande, et trois =
+membres en=20
+&gt;&gt; moins pour cause d=C3=A9part =C3=A0 l&#39;=C3=A9tranger. Nous cont=
+inuons donc notre=20
+&gt;&gt; projet sans Sergi, Michel et Mathieu.
+&gt;&gt; Nous avons d=C3=A8s =C3=A0 pr=C3=A9sent repris l=C3=A0 o=C3=B9 nou=
+s nous =C3=A9tions arr=C3=AAt=C3=A9s avant=20
+&gt;&gt; le stage de cet =C3=A9t=C3=A9 afin de pouvoir effectuer la livrais=
+on compl=C3=A8te=20
+&gt;&gt; en octobre, comme il avait =C3=A9t=C3=A9 convenu avec Sergi. L&#39=
+;=C3=A9quipe et moi=20
+&gt;&gt; m=C3=AAme redoublons de motivation afin de vous fournir un produit=
+=20
+&gt;&gt; correspondant =C3=A0 vos attentes dans les d=C3=A9lais attendus, e=
+t ce malgr=C3=A9=20
+&gt;&gt; un retard pris pr=C3=A9c=C3=A9demment.
+&gt;&gt; Je reste =C3=A9videmment disponible pour toute demande d&#39;infor=
+mation et=20
+&gt;&gt; vous souhaite une excellente rentr=C3=A9e.
+&gt;&gt;
+&gt;&gt; Bien cordialement,
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; Pierre Porche
+&gt;&gt; Chef PIC
+&gt;&gt; PIC ASI UNICEF
+&gt;&gt; INSA Rouen
+&gt;
+
+</pre>
+              </div>
+            </blockquote>
+            <br>
+          </blockquote>
+          <br>
+        </blockquote>
+        <br>
+      </blockquote>
+      <br>
+    </div></div></div>
+  </div>
+
+</blockquote></div><br></div>
+
+--001a113b460a8e69d4053e20efe5--

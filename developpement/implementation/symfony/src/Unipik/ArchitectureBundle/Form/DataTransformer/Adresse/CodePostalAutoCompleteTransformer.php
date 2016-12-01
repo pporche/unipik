@@ -4,6 +4,14 @@
  * User: jpain01
  * Date: 29/09/16
  * Time: 11:08
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\ArchitectureBundle\Form\DataTransformer\Adresse;
@@ -15,15 +23,23 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Class CodePostalAutoCompleteTransformer
- * @package Unipik\ArchitectureBundle\Form\DataTransformer\Adresse
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
-class CodePostalAutoCompleteTransformer implements DataTransformerInterface
-{
+class CodePostalAutoCompleteTransformer implements DataTransformerInterface {
+
     private $entityManager;
 
     /**
      * VilleAutocompleteTransformer constructor.
-     * @param ObjectManager $entityManager
+     *
+     * @param ObjectManager $entityManager Le manager
+     *
+     * @return void
      */
     public function __construct(ObjectManager $entityManager)
     {
@@ -31,7 +47,10 @@ class CodePostalAutoCompleteTransformer implements DataTransformerInterface
     }
 
     /**
-     * @param $codePostal
+     * Transformer
+     *
+     * @param string $codePostal Le code postal
+     *
      * @return string
      */
     public function transform($codePostal)
@@ -44,22 +63,28 @@ class CodePostalAutoCompleteTransformer implements DataTransformerInterface
     }
 
     /**
-     * @param $codePostalNumero
+     * Transformer inverse
+     *
+     * @param int $codePostalNumero Le code postal
+     *
      * @return \Unipik\ArchitectureBundle\Entity\CodePostal|void
      */
     public function reverseTransform($codePostalNumero)
     {
         if (!$codePostalNumero) {
-            return '';
+            return null;
         }
 
         $codePostal = $this->entityManager
             ->getRepository('ArchitectureBundle:CodePostal')->findOneBy(array('code' => $codePostalNumero));
 
         if (null === $codePostal) {
-            throw new TransformationFailedException(sprintf('There is no "%s" exists',
-                $codePostalNumero
-            ));
+            throw new TransformationFailedException(
+                sprintf(
+                    'There is no "%s" exists',
+                    $codePostalNumero
+                )
+            );
         }
 
         return $codePostal;

@@ -2,6 +2,6 @@
 # version 1.00 date 26/02/2016 auteur(s) Pierre Porche, Michel Cressant
 
 # Définition du nom du document
-NOM_FICHIER=EC_Q_Unipik_d16-05-10_cInspection
+NOM_FICHIER=EC_Q_Unipik_d16-05-10_cInspection EC_Q_Unipik_d16-10-17_cLivraison
 
 LOCPATH=qualite/GC/EC

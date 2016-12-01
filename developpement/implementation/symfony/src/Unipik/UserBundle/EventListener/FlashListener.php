@@ -1,11 +1,19 @@
 <?php
-
 /**
  * Created by PhpStorm.
- * User: mmartinsbaltar
- * Date: 03/05/16
- * Time: 09:17
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
+
 namespace Unipik\UserBundle\EventListener;
 
 use FOS\UserBundle\FOSUserEvents;
@@ -16,7 +24,12 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class FlashListener
- * @package Unipik\UserBundle\EventListener
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class FlashListener implements EventSubscriberInterface
 {
@@ -37,8 +50,11 @@ class FlashListener implements EventSubscriberInterface
 
     /**
      * FlashListener constructor.
-     * @param Session $session
-     * @param TranslatorInterface $translator
+     *
+     * @param Session             $session    La session
+     * @param TranslatorInterface $translator Le translator
+     *
+     * @return object
      */
     public function __construct(Session $session, TranslatorInterface $translator)
     {
@@ -69,8 +85,10 @@ class FlashListener implements EventSubscriberInterface
     /**
      * Add a success Flash
      *
-     * @param Event $event
-     * @param null $eventName
+     * @param Event $event     L'event
+     * @param null  $eventName Le nom de l'event
+     *
+     * @return object
      */
     public function addSuccessFlash(Event $event, $eventName = null)
     {
@@ -84,22 +102,25 @@ class FlashListener implements EventSubscriberInterface
         }
 
         $this->session->getFlashBag()
-            ->add('notice', array(
-            'title'=>'Félicitations !',
-            'message'=> $this->trans(static::$successMessages[$eventName]),
-            'alert'=>'success'
-        ));
+            ->add(
+                'notice', array(
+                'title'=>'Félicitations !',
+                'message'=> $this->_trans(static::$successMessages[$eventName]),
+                'alert'=>'success'
+                )
+            );
 
     }
 
     /**
      * Translate
      *
-     * @param $message
-     * @param array $params
+     * @param array $message Les messages
+     * @param array $params  Les parametres
+     *
      * @return string
      */
-    private function trans($message, array $params = array())
+    private function _trans($message, array $params = array())
     {
         return $this->translator->trans($message, $params, 'FOSUserBundle');
     }

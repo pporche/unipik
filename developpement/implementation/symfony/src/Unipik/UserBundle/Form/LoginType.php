@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: florian
- * Date: 20/04/16
- * Time: 08:35
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\UserBundle\Form;
@@ -18,34 +26,56 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class LoginType
- * @package Unipik\UserBundle\Form
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class LoginType extends AbstractType {
+    /**
+     * Le formbuilder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
+     */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->setAction($options['action'])
             ->setMethod('POST')
             ->add('_username', TextType::class, array('label' => 'Nom d\'utilisateur'))
             ->add('_password', PasswordType::class, array('label' => 'Mot de passe'))
-            ->add('_remember_me', CheckboxType::class, array(
+            ->add(
+                '_remember_me', CheckboxType::class, array(
                 'label' => 'Rester connecté',
                 'required' => false,
-                ))
-            ->add('_submit', SubmitType::class, array('label' => 'Connexion'))
-        ;
+                )
+            )
+            ->add('_submit', SubmitType::class, array('label' => 'Connexion'));
 
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * Configuration des options
+     *
+     * @param OptionsResolver $resolver Le resolver
+     *
+     * @return object
      */
     public function configureOptions(OptionsResolver $resolver) {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults(
+            array(
             'action' => '/',
-        ));
+            )
+        );
     }
 
     /**
+     * Retourne chaine vide
+     *
      * @return string
      */
     public function getBlockPrefix() {

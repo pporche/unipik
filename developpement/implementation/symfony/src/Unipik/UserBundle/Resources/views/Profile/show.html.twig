@@ -8,9 +8,14 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
+    <style>
+
+        .alert-success{
+            margin-top:30px;
+        }
+    </style>
         <div class="row">
-            <section class="jumbotron col-sm-12 col-lg-9 col-lg-offset-1">
+            <section class="jumbotron col-sm-12 col-lg-8 col-lg-offset-2">
                 <div class="infoPrincip">
                     <div class="row">
                         <h2 class="col-lg-9 titre" style="margin-top: 40px;"> {{ user.nom | upper }} &nbsp {{ user.prenom | capitalize}}</h2>
@@ -85,7 +90,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 col-sm-12 col-lg-9 col-lg-offset-1 infoContainer">
+            <div class="col-sm-12 col-sm-12 col-lg-8 col-lg-offset-2 infoContainer">
                 <div class="col-sm-4 containerOne">
                     <div class="circle circleOne">
                         <img src="{{ asset('img/location.png') }}" alt="Location">
@@ -120,7 +125,7 @@
                         <ul class="list-group col-lg-offset-1 col-sm-7 ">
                             {% if ('plaidoyers' in user.responsabiliteActivite ) %}
                                 <li class="list-group-item">
-                                    Plaidoyer
+                                    Action éducative
                                 </li>
                             {% endif %}
                             {% if ('frimousses' in user.responsabiliteActivite) %}
@@ -168,7 +173,7 @@
                             <ul class="list-group col-lg-offset-1 col-sm-7 ">
                                 {% if ('plaidoyers' in user.activitesPotentielles ) %}
                                     <li class="list-group-item">
-                                        Plaidoyer
+                                        Actions éducatives
                                     </li>
                                 {% endif %}
                                 {% if ('frimousses' in user.activitesPotentielles) %}
@@ -202,7 +207,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-sm-offset-3 infoContainer">
+            <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3 infoContainer">
                 <div class="col-sm-6 containerFour">
                     <div class="circle circleFour">
                         <img src="{{ asset('img/speech-bubbles.png') }}" alt="bubbles">
@@ -219,7 +224,7 @@
                                 {% for intervention in listeInterventions %}
                                     <a href="{{ path('intervention_view', {'id': intervention.id}) }}" >
                                         {% if intervention.plaidoyer %}
-                                            Plaidoyer -
+                                            Action éducative -
                                         {% elseif intervention.frimousse %}
                                             Frimousse -
                                         {% else %}
@@ -264,6 +269,5 @@
 
         </div>
 
-    </div>
     </div>
 {% endblock %}

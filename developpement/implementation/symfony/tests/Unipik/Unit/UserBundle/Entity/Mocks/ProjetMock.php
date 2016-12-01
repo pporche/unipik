@@ -17,14 +17,14 @@ class ProjetMock extends EntityMock
     /**
      * @return Projet
      */
-    public static function create() 
+    public static function create()
     {
         $p = new Projet();
 
         $p
             ->setNom("Aquitaine Limousin Poitou-Charentes")
             ->setChiffreAffaire(500.0)
-            ->setType("college");
+            ->setTypeProjet("college");
 
         return $p;
     }

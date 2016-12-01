@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: kyle
- * Date: 04/10/16
- * Time: 10:51
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form\Intervention;
@@ -12,14 +20,27 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\AbstractType;
 
-class MaterielFrimousseType extends AbstractType{
+/**
+ * Le type materiel frimousse
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
+class MaterielFrimousseType extends AbstractType {
+
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     * form builder
+     * Form builder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
-        $optionChoiceType = array( 'expanded' => true, 'multiple' => true, 'label' => false,
+        $optionChoiceType = array( 'expanded' => true, 'multiple' => true, 'label' => false, 'required' => true,
             'choices' => [
                 'Patron' => 'patron',
                 'Bourre' => 'bourre',
@@ -27,13 +48,14 @@ class MaterielFrimousseType extends AbstractType{
             ],);
 
         $builder
-            ->add('materiel', ChoiceType::class, $optionChoiceType)
-        ;
+            ->add('materiel', ChoiceType::class, $optionChoiceType);
     }
 
     /**
      * {@inheritdoc}
-     * renvoie materielFrimousse
+     * Renvoie materielFrimousse
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'materielFrimousse';

@@ -1,6 +1,8 @@
 @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
 
-
+h1{
+    margin-left: 20px;
+}
 .jumbotron {
     border-radius: 20px !important;
     position: relative;
@@ -9,9 +11,32 @@
     background-color: #d3d3d3;
 }
 
+#recherche_avancee_distance {
+    width: 155px;
+}
+
 .jumbotron h4{
     font-family: 'Ubuntu Condensed', sans-serif;
     margin-top: 0px;
+}
+
+.imprimente{
+    border-radius: 100px;
+    float: right;
+    margin-right: 20px;
+    height: 40px;
+    width: 40px;
+    padding: 3px 2px 2px 2px;
+    box-shadow: -1px 2px 5px 1px rgba(173, 173, 173, 0.7);
+    background-color: #2780e3;
+    border: none;
+    color: #fff;
+}
+
+@media (min-width: 1030px){
+    .collapse {
+        display: none !important;
+    }
 }
 
 .subtitle{
@@ -45,6 +70,12 @@
     background-color: #dbdbdb;
     display: block;
     margin-top: 15px;
+}
+
+.row{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top:10px !important;
 }
 
 .bonjour{
@@ -120,8 +151,8 @@
 }
 
 .container{
-    padding-left: 30px !important;
-    padding-right: 30px !important;
+    padding-left: 5px !important;
+    padding-right: 10px !important;
     margin-top: 20px !important;
 }
 
@@ -192,14 +223,23 @@ iframe{
     font-family: 'Ubuntu Condensed', sans-serif;
 }
 
+.alert-warning{
+    background-color: #ffb733 !important;
+}
+
+.alert-info{
+    background-color: #4252ff !important;
+}
+
 .buttons .btn{
     font-family: 'Ubuntu Condensed', sans-serif !important;
-    font-size: 18px !important;
+    font-size: 15px !important;
 }
 
 .btn{
-    margin-top: 15px;
+    margin-top: 16px;
     font-family: 'Ubuntu Condensed', sans-serif !important;
+    padding: 8px 15px;
 }
 
 .container{
@@ -219,7 +259,7 @@ iframe{
 }
 
 section{
-    margin-top: 30px !important;
+    margin-top: 50px !important;
 }
 
 .fc{
@@ -422,6 +462,15 @@ dt{
 @media(max-width: 1200px){
     .droit, .gauche{
         width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .container{
+        padding: 5px 10px 0px 0px!important;
+    }
+    .accueilSq{
+        margin-left: 0px !important;
     }
 }
 

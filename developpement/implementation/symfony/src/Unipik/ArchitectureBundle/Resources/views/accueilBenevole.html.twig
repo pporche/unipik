@@ -9,6 +9,10 @@
     <script src="{{ asset('vendor/fullcalendar/dist/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('vendor/fullcalendar/dist/locale/fr.js') }}"></script>
     <style>
+
+        table a:not(.btn), .table a:not(.btn){
+            text-decoration: none !important;
+        }
         .fc-month-view span.fc-title {
             white-space: normal;
 
@@ -17,29 +21,179 @@
         #lien {
             float: right;
         }
+        @media only screen and (max-width: 770px) {
+            .accueilSq{
+                margin-left: 0px;
+            }
+        }
+
+        @media only screen and (max-width: 535px) {
+
+            .btn-danger{
+                max-width: 200px !important;
+            }
+
+            /* Force table to not be like tables anymore */
+            .interventions,
+            .interventions thead,
+            .interventions tbody,
+            .interventions th,
+            .interventions td,
+            .interventions tr {
+                display: block;
+            }
+
+            /* Hide table headers (but not display: none;, for accessibility) */
+            .interventions thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            .interventions tr {
+                border: 1px solid #ccc;
+            }
+
+            .interventions td {
+                /* Behave  like a "row" */
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50% !important;
+                white-space: normal;
+                text-align: left;
+            }
+
+            .interventions td:before {
+                /* Now like a table header */
+                position: absolute;
+                /* Top/left values mimic padding */
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            /*
+            Label the data
+            */
+            .interventions td:before {
+                content: attr(data-title);
+            }
+        }
+        .demandesRecentes .btn-primary{
+            font-family: 'Ubuntu Condensed', sans-serif;
+            font-size: 15px;
+            padding: 8px;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+        .demandesRecentes a:hover{
+            text-decoration: none;
+        }
+        .alert-success{
+            margin-top:30px;
+        }
+
+        .filtresCalendrier{
+            display: inline-block;
+            margin-left: calc(50% - 150px);
+        }
+
     </style>
     <script type="text/javascript">
         $(document).ready(function () {
             {% for intervention in interventionsNonRealiseesBenevole %}
                 {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
-                    $("#myModal").modal("show");
+                    if (sessionStorage["modalShown" + "{{ user }}"] != "shown") {
+                        $("#myModal").modal("show");
+                    }
                 {% endif %}
             {% endfor %}
+            $('#mesInterventionsNonRealisees').prop('checked', true);
+            $('#mesInterventionsRealisees').prop('checked', true);
+            $('#autresBenevoles').prop('checked', true);
+            remplirPlanning(listeInterventions());
 
+            $('#mesInterventionsNonRealisees').change(
+                    function(){
+                        $('#calendar').fullCalendar( 'removeEvents');
+                        $('#calendar').fullCalendar('addEventSource', listeInterventions());
+                        if(!($('#mesInterventionsRealisees').is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#82C46C';
+                            });
+                        }
+                        if(!($('#autresBenevoles').is(':checked'))) {
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#grey';
+                            });
+                        }
+                        if(!($(this).is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#3a87ad';
+                            });
+                        }
+                    });
+            $('#mesInterventionsRealisees').change(
+                    function(){
+                        $('#calendar').fullCalendar( 'removeEvents');
+                        $('#calendar').fullCalendar('addEventSource', listeInterventions());
+                        if(!($('#mesInterventionsNonRealisees').is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#3a87ad';
+                            });
+                        }
+                        if(!($('#autresBenevoles').is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == 'grey';
+                            });
+                        }
+                        if(!($(this).is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#82C46C';
+                            });
+                        }
+                    });
 
+            $('#autresBenevoles').change(
+                    function(){
+                        $('#calendar').fullCalendar( 'removeEvents');
+                        $('#calendar').fullCalendar('addEventSource', listeInterventions());
+                        if(!($('#mesInterventionsNonRealisees').is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#3a87ad';
+                            });
+                        }
+                        if(!($('#mesInterventionsRealisees').is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == '#82C46C';
+                            });
+                        }
+                        if(!($(this).is(':checked'))){
+                            $('#calendar').fullCalendar( 'removeEvents', function(event){
+                                return event.color == 'grey';
+                            });
+                        }
+                    });
+        });
+
+        function listeInterventions(){
             var interventions = [];
-            var typeIntervention;
-
-            {% for intervention in interventionsNonRealisees %}
-            {% if intervention.dateIntervention is not null %}
+            var typeIntervention ;{% for intervention in interventionsNonRealisees %}
+            {% if intervention.dateIntervention is not null  %}
             {% if intervention.plaidoyer %}
-            typeIntervention = "Plaidoyer";
+            typeIntervention = "Action éducative";
             {% elseif intervention.frimousse %}
             typeIntervention = "Frimousse";
             {% else %}
             typeIntervention = "Autre intervention";
             {% endif %}
-            {% if intervention.etablissement.nom != null %}
+            {% if intervention.etablissement.nom != null  %}
             typeEtablissement = "{{ intervention.etablissement.nom }}"
             {% elseif  intervention.etablissement.nom == null %}
             {% if intervention.etablissement.typeEnseignement is not empty %}
@@ -74,34 +228,34 @@
             {% endif %}
             {% endif %}
             {% endif %}
+
             {% if intervention.benevole is not null %}
             {% if user.id == intervention.benevole.id %}
-            interventions.push({
-                title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start: '{{ intervention.dateIntervention|date("Y-m-d") }}',
-                url: '{{ path('intervention_view', {id: intervention.id}) }}'
-            });
-            {% else %}
-            interventions.push({
-                title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start: '{{ intervention.dateIntervention|date("Y-m-d") }}',
+            interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                allDay: false,
                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                color: 'grey'
-            });
+                color: '#3a87ad'});
+            {% else %}
+            interventions.push({ title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                allDay: false,
+                url: '{{ path('intervention_view', {id: intervention.id}) }}',
+                color  : 'grey' });
             {% endif %}
             {% endif %}
             {% endif %}
             {% endfor %}
             {% for intervention in interventionsRealisees %}
-            {% if intervention.dateIntervention is not null %}
+            {% if intervention.dateIntervention is not null  %}
             {% if intervention.plaidoyer %}
-            typeIntervention = "Plaidoyer";
+            typeIntervention = "Action éducative";
             {% elseif intervention.frimousse %}
             typeIntervention = "Frimousse";
             {% else %}
             typeIntervention = "Autre intervention";
             {% endif %}
-            {% if intervention.etablissement.nom != null %}
+            {% if intervention.etablissement.nom != null  %}
             typeEtablissement = "{{ intervention.etablissement.nom }}"
             {% elseif  intervention.etablissement.nom == null %}
             {% if intervention.etablissement.typeEnseignement is not empty %}
@@ -139,34 +293,70 @@
             {% if intervention.benevole is not null %}
             {% if user.id == intervention.benevole.id %}
             interventions.push({
-                title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start: '{{ intervention.dateIntervention|date("Y-m-d") }}',
+                title  : typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
+                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                allDay: false,
                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                color: '#82C46C'
-            });
+                color  : '#82C46C' });
             {% else %}
-            interventions.push({
-                title: typeIntervention + ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} ',
-                start: '{{ intervention.dateIntervention|date("Y-m-d") }}',
+            interventions.push({ title  : typeIntervention +  ' - ' + typeEtablissement + ' - {{ intervention.etablissement.adresse.ville.nom }} '   ,
+                start  : '{{ intervention.dateIntervention|date("Y-m-d") }}T{{ intervention.heure }}',
+                allDay: false,
                 url: '{{ path('intervention_view', {id: intervention.id}) }}',
-                color: 'grey'
-            });
+                color  : 'grey' });
             {% endif %}
             {% endif %}
             {% endif %}
             {% endfor %}
-
+            return interventions;
+        }
+        function remplirPlanning(liste){
             $('#calendar').fullCalendar({
                 locale: "fr",
-                events: interventions
-            })
+                events: liste,
+                weekends: true,
+                header:
+                {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                eventLimit: 2,
+                views: {
+                    basic: {
+                        eventLimit: 2
+                    },
+                    agenda: {
+                        eventLimit: 2
+                    },
+                    week: {
+                        eventLimit: 2
+                    },
+                    agendaDay: {
+                        eventLimit: 2
+                    },
+                    month: {
+                        eventLimit: 2
+                    },
+                    basicWeek: {
+                        eventLimit: 2
+                    },
+                    basicDay: {
+                        eventLimit: 2
+                    },
+                    agendaWeek: {
+                        eventLimit: 2
+                    },
+                }
 
-        });
+            });
+
+            $('#calendar').fullCalendar( 'rerenderEvents' );
+        }
 
         function okRealiserIntervention() {
 
             var selected = [];
-            //"input[name^='type']:checked").val
             $("input:radio:checked").each(function () {
                 var $this = $(this);
                 if ($this.val() == "oui") {
@@ -176,6 +366,8 @@
             });
 
             var interventions = JSON.stringify(selected);
+
+            sessionStorage["modalShown" + "{{ user }}"] = 'shown';
 
             $.post("{{ path('intervention_multiple_done') }}", {'interventions': interventions},
                 function (data, status) {
@@ -194,9 +386,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel='stylesheet' href="{{ asset('vendor/fullcalendar/dist/fullcalendar.css') }}"
-
-    />
+    <link rel='stylesheet' href="{{ asset('vendor/fullcalendar/dist/fullcalendar.css') }}"/>
 {% endblock %}
 
 
@@ -213,7 +403,7 @@
                         <li class="active"><a href="#">Accueil</a></li>
                         <li><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
                         <li><a href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a></li>
-                        <li><a href="{{ path('fos_user_change_password') }}">Modifier mon mot de passe</a></li>
+                        <li><a href="{{ path('fos_user_change_password') }}">Modifier mot de passe</a></li>
                         <li><a href="{{ path('etablissement_list') }}">Liste des établissements</a></li>
                         <li><a href="{{ path('intervention_self') }}">Mes interventions</a></li>
                         <li><a href="{{ path('fos_user_planning_show') }}">Mon planning</a></li>
@@ -238,12 +428,16 @@
             </ul>
         </section>
 
-
         <section class="col-lg-9 col-md-8 col-sm-9">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <h2 class="bonjour">&nbsp &nbsp Bonjour, &nbsp <strong
                             style="color: #2780e3; font-size: 40px;"> {{ user.prenom | capitalize }} </strong>!</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3 demandesRecentes">
+                    <a href="{{ path('demandes_recentes') }}" class="btn-primary">Voir les demandes récentes</a>
                 </div>
             </div>
 
@@ -252,7 +446,7 @@
                 <h2 class="subtitle">Prochaines interventions </h2>
                 {% if interventionsNonRealiseesBenevole is not empty %}
                     <div class="table_outer">
-                        <table class="table table-striped table-hover ">
+                        <table class="table table-striped table-hover interventions">
                             <thead>
                             <tr>
                                 <th>Lieu
@@ -269,15 +463,15 @@
                                 {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) %}
                                     <tr class="dangerTable">
                                 {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) %}
-                                    <tr class="warningTable" >
+                                    <tr class="warningTable">
                                 {% else %}
-                                    <tr>
+                                    <tr >
                                 {% endif %}
-                                <td>{{ intervention.etablissement.adresse.ville.nom }}</td>
-                                <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
-                                <td>
+                                <td data-title="Lieu">{{ intervention.etablissement.adresse.ville.nom }}</td>
+                                <td data-title="Date">{{ intervention.dateIntervention|date("d-m-Y") }}</td>
+                                <td data-title="Type">
                                     {% if intervention.plaidoyer %}
-                                        Plaidoyer
+                                        Action éducative
                                     {% elseif intervention.frimousse %}
                                         Frimousse
                                     {% else %}
@@ -312,7 +506,7 @@
                 <h2 class="subtitle">Interventions réalisées </h2>
                 {% if interventionsRealiseesBenevole is not empty %}
                     <div class="table_outer">
-                        <table class="table table-striped table-hover ">
+                        <table class="table table-striped table-hover interventions">
                             <thead>
                             <tr>
                                 <th>Lieu
@@ -334,11 +528,11 @@
                                 {% else %}
                                     <tr>
                                 {% endif %}
-                                <td>{{ intervention.etablissement.adresse.ville.nom }}</td>
-                                <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
-                                <td>
+                                <td data-title="Lieu">{{ intervention.etablissement.adresse.ville.nom }}</td>
+                                <td data-title="Date">{{ intervention.dateIntervention|date("d-m-Y") }}</td>
+                                <td data-title="Type">
                                     {% if intervention.plaidoyer %}
-                                        Plaidoyer
+                                        Action éducative
                                     {% elseif intervention.frimousse %}
                                         Frimousse
                                     {% else %}
@@ -368,30 +562,21 @@
                 {% endif %}
             </section>
         </section>
-    </div>
+
 
     <div class="row">
         <section class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-11 col-xs-12">
             <h2 class="subtitle" style="margin-left: 15px"> Calendrier </h2>
+            <div class="row">
+                <div class="filtresCalendrier">
+                    <label><input type="checkbox" name="autresBenevoles" value="autresBenevoles" id="autresBenevoles"/>&nbsp <span class="legende1"></span> Interventions d'autres bénévoles</label><br/>
+                    <label><input type="checkbox" name="mesInterventionsRealisees" value="mesInterventionsRealisees" id="mesInterventionsRealisees"/>&nbsp <span class="legende2"></span>Mes interventions réalisées </label><br/>
+                    <label><input type="checkbox" name="mesInterventionsNonRealisees" value="mesInterventionsNonRealisees" id="mesInterventionsNonRealisees"/>&nbsp <span class="legende3"></span> Mes interventions à réaliser</label><br/>
+                </div>
+            </div>
             <div id="calendar" class="calendar" style="padding-left: 2%;"></div>
         </section>
     </div>
-
-    <div class="row">
-        <section
-            class="col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-8  col-md-offset-3 col-xs-10 col-xs-offset-1 ">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h4 class="bonjour" style="text-align:center"><strong>Légendes</strong></h4>
-                    <span class="legende1"></span>Interventions d'autres bénévoles
-                    </br>
-                    <span class="legende2"></span> Mes interventions réalisées
-                    </br>
-                    <span class="legende3"></span> Mes interventions à réaliser
-                    </br>
-                </div>
-            </div>
-        </section>
     </div>
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -424,7 +609,7 @@
                                         <td>{{ intervention.dateIntervention|date("d-m-Y") }}</td>
                                         <td>
                                             {% if intervention.plaidoyer %}
-                                                Plaidoyer
+                                                Action éducative
                                             {% elseif intervention.frimousse %}
                                                 Frimousse
                                             {% else %}
@@ -451,7 +636,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
                         <button id="realiserModal" type="button" class="btn btn-primary"
                                 onclick="okRealiserIntervention()">
                             OK

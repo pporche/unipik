@@ -1,5 +1,5 @@
 {# version 1.00, date 12/09/2016, auteur Florian Leriche #}
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "UserBundle::layout.html.twig" %}
 
 {% block title %}
 
@@ -7,11 +7,26 @@
 
 {% endblock %}
 
-{% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-        <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
+    <style>
+        .alert-success{
+            margin-botton: 10px !important;
+            margin-top: 50px !important;
+        }
+        h5{
+            font-size: 18px;
+            font-weight: 400;
+        }
+        .btn{
+            margin-left: calc(50% - 50px);
+        }
+    </style>
+    <div class="alert alert-success">
+        <h4>Bienvenue, {{ user }}</h4>
+        <h5>Votre compte a été activé avec succès</h5>
+    </div>
+    <a href="{{ path('architecture_homepage') }}" class="btn btn-primary">Accueil &nbsp>></a>
+
+
 {% endblock fos_user_content %}

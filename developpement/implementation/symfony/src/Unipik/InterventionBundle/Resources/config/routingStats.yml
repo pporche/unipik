@@ -1,0 +1,4 @@
+stats_nombre_interventions:
+    path : /interventions
+    defaults:
+         _controller: InterventionBundle:Stats:interventions

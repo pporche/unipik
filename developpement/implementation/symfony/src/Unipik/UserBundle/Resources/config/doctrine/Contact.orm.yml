@@ -51,13 +51,6 @@ Unipik\UserBundle\Entity\Contact:
             options:
                 fixed: false
             column: type_contact
-        estTuteur:
-            type: boolean
-            nullable: true
-            length: 10
-            options:
-                fixed: false
-            column: est_tuteur
         respoEtablissement:
             type: boolean
             nullable: true
@@ -90,21 +83,10 @@ Unipik\UserBundle\Entity\Contact:
                         name: etablissement_id
                         referencedColumnName: id
             orderBy: null
-        projet:
-            targetEntity: Projet
+    oneToMany:
+        participe:
+            targetEntity: Unipik\UserBundle\Entity\Participe
             cascade: [ "persist" ]
-            fetch: LAZY
-            mappedBy: null
-            inversedBy: contact
-            joinTable:
-                name: participe
-                joinColumns:
-                    -
-                        name: projet_id
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    -
-                        name: contact_id
-                        referencedColumnName: id
-            orderBy: null
+            mappedBy: contact
+
     lifecycleCallbacks: {  }

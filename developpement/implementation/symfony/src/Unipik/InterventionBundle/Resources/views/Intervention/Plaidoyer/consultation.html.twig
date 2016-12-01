@@ -3,7 +3,7 @@
 
 {% block title %}
 
-    Consultation plaidoyer - {{ parent() }}
+    Consultation action éducative - {{ parent() }}
 
 {% endblock %}
 
@@ -36,17 +36,17 @@
     <div class="col-sm-4 col-xs-12">
         <dl>
             <dt>
-                <span class="glyphicon glyphicon-picture"></span> Matériel disp:
+                <span class="glyphicon glyphicon-picture"></span> Matériel dispo.:
             </dt>
         </dl>
     </div>
 
     <div class="col-sm-6 col-xs-offset-1 col-xs-11">
-            {% set materiels = intervention.materielDispoPlaidoyer | replace({'\\\")\",(': '),('}) | replace({'\"(\\\"': ''}) | split('),(')   %}
-            {% if materiels is not empty %}
+        {% set materiels = intervention.materielDispoPlaidoyer | replace({'),\"(\\\"': '),('}) | replace({'\\\")\",(': '),('}) | replace({'\\\")\"': ''}) | replace({'\"(\\\"': ''}) | replace({'{(': ''}) | replace({')}': ''}) | replace({'}': ''})  | replace({'{': ''}) | split ('),(') %}
+        {% if materiels is not empty %}
                 <ul class="list-group col-sm-7 ">
                     {% for materiel in materiels %}
-                        {{ materiel | trim ('{(') | trim (')}') | capitalize }}
+                         {{ materiel  | capitalize }} <br/>
                     {% endfor %}
                 </ul>
             {% else %}

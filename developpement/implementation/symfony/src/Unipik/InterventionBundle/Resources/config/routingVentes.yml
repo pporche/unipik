@@ -1,0 +1,31 @@
+vente_list:
+    path:   /vente
+    defaults:
+        _controller: InterventionBundle:Vente:liste
+
+vente_view:
+    path: /vente/{id}
+    defaults: {_controller: InterventionBundle:Vente:consultation}
+    requirements:
+        id: \d+
+
+vente_add:
+    path: /vente/ajouter
+    defaults: {_controller: InterventionBundle:Vente:add}
+
+vente_edit:
+    path: /vente/edit/{id}
+    defaults: {_controller: InterventionBundle:Vente:edit}
+    requirements:
+        id: \d+
+
+vente_etablissement:
+    path: /vente/etablissement/{id}
+    defaults:
+        _controller: InterventionBundle:Vente:listeEtablissement
+
+vente_intervention:
+    path: /vente/intervention/{id}
+    defaults:
+        _controller: InterventionBundle:Vente:listeIntervention
+

@@ -1,16 +1,40 @@
 {# version 1.00, date 13/05/2016, auteur Matthieu Martins-Baltar #}
 
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_admin_register'), 'attr': {'class': 'fos_user_admin_register'}}) }}
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_admin_register'), 'attr': {'class': 'fos_user_admin_register', 'id': 'submit_formulaire'}}) }}
 <div class="well">
     <div class="row">
         {{ form_widget(form, {'attr':{'class':'typeahead'}}) }}
-{#{{ form_widget(form,{'attr':{'class':'col-sm-9'}}) }}#}
-
-    </div>
-
-    <div>
-        <input class="btn btn-primary" type="submit" value="Inscrire" />
     </div>
 </div>
 {{ form_end(form) }}
+
+<div CLASS="buttons">
+    <a href="{{ path('user_admin_list') }}" class="btn btn-danger" style="margin-left:calc(50% - 140px)">Annuler</a>
+    <input class="btn btn-success" type="submit" value="Inscrire" />
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Plusieurs résultats concordent avec l'adresse que vous avez donnée !</h4>
+            </div>
+            <div class="modal-body">
+                <p> Veuillez choisir l'adresse dans la liste ci-dessous : </p>
+                <div id="choices"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                    <button id="realiserModal" type="button" class="btn btn-primary"
+                            onclick="setGeolocalisation($('input:radio[name=type]:checked').attr('id'))">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

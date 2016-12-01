@@ -17,13 +17,13 @@ class NiveauThemeMock extends EntityMock
     /**
      * @return NiveauTheme
      */
-    public static function create() 
+    public static function create()
     {
         $r = new NiveauTheme();
 
         $r
             ->setNiveau("CM1-CM2")
-            ->setTheme("convention internationale des droits de l enfant");
+            ->setTheme("education");
 
         return $r;
     }

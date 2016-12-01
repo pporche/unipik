@@ -9,7 +9,15 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
     <script>
+        $('#intervention_dateIntervention').datepicker({
+            format: 'dd-mm-yyyy',
+            language: 'fr',
+            startDate: 'today',
+            autoclose: true
+        });
         {% if intervention.plaidoyer %}
         {% autoescape false %}
         var materiauxPlaidoyer = {{ materiaux }};
@@ -60,7 +68,6 @@
             }
         });
         {% else %}
-        console.log("autre");
         {% endif %}
 
 
@@ -117,10 +124,8 @@
                     for (i = 0; i < taille; i++) {
                         if (i >= 7) {
                             $(template).find('option:eq(' + i + ')').fadeOut().prop('disabled', true);
-                            console.log(">7");
                         } else {
                             $(template).find('option:eq(' + i + ')').fadeIn().prop('disabled', false);
-                            console.log("<7");
                         }
                     }
                     break;
@@ -168,13 +173,30 @@
             }
         }
 
+
+
         $(document).ready(function () {
+            // Initialisation de la date et de l'heure
+            {%  if not intervention.dateIntervention %}
+                $('#intervention_dateIntervention').val("");
+            {% endif %}
+            {%  if intervention.heure %}
+                var heure = '{{ intervention.heure }}'.split(':',2);
+                $("#intervention_heure_hour").val(heure[0]);
+                $("#intervention_heure_minute").val(heure[1]);
+            {% else %}
+                $("#intervention_heure_hour").val("");
+                $("#intervention_heure_minute").val("");
+            {%  endif %}
+
+            $(':input[type="number"]').attr("min", 0).keyup(function () {
+                this.value = this.value.replace(/[^0-9\.]/g,'');
+            });
             var etablissement;
             var typeEtablissement;
             {% if intervention.etablissement.enseignement %}
             etablissement = 'ens';
             typeEtablissement = '{{ intervention.etablissement.typeEnseignement }}';
-            console.log("onch");
             {% elseif intervention.etablissement.centreLoisirs %}
             etablissement = 'centre';
             typeEtablissement = '{{ intervention.etablissement.typeCentre }}';
@@ -182,7 +204,6 @@
             etablissement = 'autre';
             typeEtablissement = '{{ intervention.etablissement.typeAutreEtablissement }}';
             {% endif %}
-            console.log(typeEtablissement);
             switch (etablissement) {
                 case 'ens' :
                     $('.form-annee-scolaire').each(function () {
@@ -202,12 +223,104 @@
             }
         });
 
+        $(document).ready(compareDateAvailable);
+        $(document).ready(checkMoment);
+        $("#intervention_dateIntervention").change(function () {
+            compareDateAvailable();
+            checkMoment();
+        });
+
+        function compareDateAvailable(){
+            var dateBegin = formatDate("{{ intervention.demande.dateDebutDisponibilite| date('d-m-Y') }}");
+            var dateEnd = formatDate("{{ intervention.demande.dateFinDisponibilite| date('d-m-Y')}}");
+            var dateWanted = formatDate(document.getElementsByClassName("js-datepicker")[0].value);
+            if(!(dateWanted >= dateBegin && dateWanted <= dateEnd)){
+                $("#checkDate").removeClass("alert-info").addClass("alert-warning");
+            }else{
+                $("#checkDate").removeClass("alert-warning").addClass("alert-info");
+            }
+
+            document.getElementById("checkDate").textContent = "L'établissement a une plage de disponibilité entre le " + dateBegin.toLocaleDateString() +" et le " +dateEnd.toLocaleDateString();
+        }
+
+        function formatDate(date){
+            var tabDate = date.split('-');
+            return new Date(tabDate[2],(tabDate[1]-1),tabDate[0]);
+        }
+
+        $('#intervention_heure_hour').change(function () {
+            checkMoment();
+        });
+
+
+        function checkMoment() {
+            var moment;
+            var hour = $("#intervention_heure_hour").val();
+            var weekday = new Array(7);
+            var day;
+            var date = formatDate($("#intervention_dateIntervention").val());
+            var momentsVoulus = [];
+            var momentsEviter = [];
+            var momentFinal;
+
+            if(hour > 0 && hour < 12)
+                moment = 'matin';
+            else
+                moment = 'apres-midi';
+
+            weekday[0]=  "dimanche";
+            weekday[1] = "lundi";
+            weekday[2] = "mardi";
+            weekday[3] = "mercredi";
+            weekday[4] = "jeudi";
+            weekday[5] = "vendredi";
+            weekday[6] = "samedi";
+            day = weekday[date.getDay()];
+
+            momentFinal = day + " " + moment;
+
+            {% for moment in demande.momentsVoulus %}
+            momentsVoulus.push('{{ moment.jour|capitalize }} {{ moment.moment }}'.toLowerCase());
+            {% endfor %}
+
+            {% for moment in demande.momentsAEviter %}
+            momentsEviter.push('{{ moment.jour|capitalize }} {{ moment.moment }}'.toLowerCase());
+            {% endfor %}
+
+            if ($('#intervention_dateIntervention').val()) {
+                if($.inArray(momentFinal, momentsVoulus) != -1) {
+                    document.getElementById("checkMoment").textContent = "Cet horaire correspond à un "+day+" "+moment+"."
+                    $("#checkMoment").removeClass("alert-warning").addClass("alert-info");
+                } else {
+                    document.getElementById("checkMoment").textContent = "Le "+day+" "+moment+" est un moment à éviter !";
+                    $("#checkMoment").removeClass("alert-info").addClass("alert-warning");
+                }
+            } else {
+                $('#checkMoment').hide();
+            }
+
+
+        }
+
     </script>
 {% endblock %}
 
 {% block body %}
     <style>
         @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+
+        table {
+            font-size: 14px;
+            text-align: center;
+            border-color: #333;
+            margin: 15px 0px 15px;
+            table-layout: auto;
+        }
+
+        td{
+            padding: 5px;
+            border-bottom: 1px solid #333;
+        }
 
         .required{
             display: inline;
@@ -256,38 +369,212 @@
 
     </style>
 
-    <h1>Modification d'une intervention</h1>
+    {% if intervention.plaidoyer %}
+        <h1>Modification d'une  action éducative</h1>
+    {% elseif intervention.frimousse %}
+        <h1>Modification d'une frimousse</h1>
+    {% else %}
+        <h1>Modification d'une intervention</h1>
+    {% endif %}
+
     <hr>
     <div class='well'>
 
         {{ form_start(form, {'method': 'post', 'action': path('intervention_edit', {'id': intervention.id}), 'attr': {'class': 'intervention_edit'}}) }}
         {{ form_label(form.dateIntervention, 'Date d\'intervention') }}
         {{ form_widget(form.dateIntervention, {'value' : intervention.dateIntervention|date('d-m-Y') }) }}
+        <p class="alert" id="checkDate" style="margin-bottom: 2.5%; margin-top : 2.5%"></p>
+        {{ form_label(form.heure) }}
+        {{ form_widget(form.heure) }}
+        <p class="alert" id="checkMoment" style="margin-bottom: 2.5%; margin-top : 2.5%"></p>
+        <p style="margin-bottom: 2.5%; margin-top : 2.5%">
+            {% if demande.momentsVoulus %}
+                Ici figurent les moments voulus pour l'intervention :
+                <table class="table-hover col-sm-offset-1 col-sm-10">
+                    <thead>
+                    <td></td>
+                    <td><strong>Matin</strong></td>
+                    <td><strong>Après-Midi</strong></td>
+                    <td><strong>Matin/Après-Midi</strong></td>
+                    <td><strong>Éviter</strong></td>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Lun</strong></td>
+                        <td>
+                            {%  if moments['lundi']|length == 1 and moments['lundi'][0]=='matin' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['lundi']|length == 1 and moments['lundi'][0]=='apres-midi' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['lundi']|length == 2 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['lundi']|length == 0   %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mar</strong></td>
+                        <td>
+                            {%  if moments['mardi']|length == 1 and moments['mardi'][0]=='matin' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['mardi']|length == 1 and moments['mardi'][0]=='apres-midi' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['mardi']|length == 2 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['mardi']|length == 0   %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mer</strong></td>
+                        <td>
+                            {%  if moments['mercredi']|length == 1 and moments['mercredi'][0]=='matin' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['mercredi']|length == 1 and moments['mercredi'][0]=='apres-midi' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['mercredi']|length == 2 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['mercredi']|length == 0   %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Jeu</strong></td>
+                        <td>
+                            {%  if moments['jeudi']|length == 1 and moments['jeudi'][0]=='matin' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['jeudi']|length == 1 and moments['jeudi'][0]=='apres-midi' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['jeudi']|length == 2 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['jeudi']|length == 0   %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ven</strong></td>
+                        <td>
+                            {%  if moments['vendredi']|length == 1 and moments['vendredi'][0]=='matin' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['vendredi']|length == 1 and moments['vendredi'][0]=='apres-midi' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['vendredi']|length == 2 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['vendredi']|length == 0   %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sam</strong></td>
+                        <td>
+                            {%  if moments['samedi']|length == 1 and moments['samedi'][0]=='matin' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['samedi']|length == 1 and moments['samedi'][0]=='apres-midi' %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['samedi']|length == 2 %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                        <td>
+                            {%  if moments['samedi']|length == 0   %}
+                                <span class="glyphicon glyphicon-ok"></span>
+                            {%  endif %}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            {% endif %}
+        </p>
         {{ form_label(form.lieu, 'Lieu') }}
         {{ form_widget(form.lieu, {'value' : intervention.lieu}) }}
-        {{ form_label(form.nbPersonne, 'Nb de participants') }}
+        {{ form_label(form.nbPersonne, 'Nombre de participants') }}
         {{ form_widget(form.nbPersonne, {'value' : intervention.nbPersonne}) }}
         {% if intervention.plaidoyer %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveau, {'attr': {'style': 'display: none'}}) }}
-            {{ form_label(form.niveauTheme.niveau, "Année scolaire") }}
+            {{ form_label(form.niveauTheme.niveau, "Niveau Scolaire") }}
             {{ form_widget(form.niveauTheme.niveau, {'value' : intervention.niveauTheme.niveau })  }}
             {{ form_label(form.niveauTheme.theme, "Choix des thèmes") }}
             {{ form_widget(form.niveauTheme.theme.themes, {'value' : intervention.niveauTheme.theme })  }}
+            {{ form_widget(form.description, {'value' : intervention.description, 'attr': {'style': 'display: none'}}) }}
         {% elseif intervention.frimousse %}
             {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveauTheme, {'attr': {'style': 'display: none'}}) }}
-            {{ form_label(form.niveau, "Année scolaire") }}
+            {{ form_label(form.niveau, "Niveau scolaire") }}
             {{ form_widget(form.niveau, {'value' : intervention.niveauFrimousse })  }}
+            {{ form_widget(form.description, {'value' : intervention.description, 'attr': {'style': 'display: none'}}) }}
         {% else %}
             {{ form_widget(form.materiauxFrimousse, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveauTheme, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveau, {'attr': {'style': 'display: none'}}) }}
         {% endif %}
+        {% if not intervention.plaidoyer and not intervention.frimousse  %}
+            {{ form_widget(form.description, {'value' : intervention.description, 'attr': {'style': 'display: none'}}) }}
+            {{ form_label(form.description, 'Description') }}
+        {% endif %}
+
+
         {{ form_widget(form) }}
         <div>
-            <input type="submit" value="Modifier" class="btn btn-primary"/>
+            <a href="{{ path('intervention_list') }}" class="btn btn-danger" style="margin-left:calc(50% - 140px)">Annuler</a>
+            <input type="submit" value="Modifier" class="btn btn-success"/>
         </div>
         {{ form_end(form) }}
 

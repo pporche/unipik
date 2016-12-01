@@ -1,0 +1,21 @@
+etablissement_list:
+    path:   /etablissement
+    defaults:
+        _controller: InterventionBundle:Etablissement:liste
+
+etablissement_view:
+    path:   /etablissement/{id}
+    defaults:
+        _controller: InterventionBundle:Etablissement:consultation
+    requirements:
+        id: \d+
+
+etablissement_autocomplete:
+    path : /etablissement/autocomplete
+    defaults:
+         _controller: InterventionBundle:Etablissement:etablissementAutocomplete
+
+etablissement_verify_nom:
+    path : /etablissement/verify
+    defaults:
+        _controller: InterventionBundle:Etablissement:verifyEtablissement

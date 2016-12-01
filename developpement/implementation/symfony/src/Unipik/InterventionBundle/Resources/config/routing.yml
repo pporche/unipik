@@ -1,64 +1,20 @@
 # version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
-intervention_request:
-    path:     /intervention/demande/{id}
-    defaults:
-        _controller: InterventionBundle:Intervention:demande
-    requirements:
-        id:  \d+
 
-intervention_list:
-    path:   /intervention
-    defaults:
-        _controller: InterventionBundle:Intervention:liste
+# Route intervention
+intervention:
+    resource: "@InterventionBundle/Resources/config/routingIntervention.yml"
 
-intervention_self:
-    path: /intervention/maliste
-    defaults: {_controller: InterventionBundle:Intervention:maListe}
+# Route etablissement
+etablissement:
+    resource: "@InterventionBundle/Resources/config/routingEtablissement.yml"
 
-intervention_view:
-    path: /intervention/{id}
-    defaults: {_controller: InterventionBundle:Intervention:consultation}
-    requirements:
-        id: \d+
+# Route Vente
+ventes:
+    resource: "@InterventionBundle/Resources/config/routingVentes.yml"
 
-intervention_edit:
-    path: /intervention/edit/{id}
-    defaults: {_controller: InterventionBundle:Intervention:edit}
-    requirements:
-        id: \d+
+# Route statistiques
+statistiques:
+    resource: "@InterventionBundle/Resources/config/routingStats.yml"
+    prefix: /stats
 
-intervention_self_attribute:
-    path: /intervention/attribution
-    defaults: {_controller: InterventionBundle:Intervention:attribution}
 
-intervention_self_desattribute:
-    path: /intervention/desattribution
-    defaults: {_controller: InterventionBundle:Intervention:desattribution}
-
-intervention_done:
-    path: /intervention/realisation
-    defaults: {_controller: InterventionBundle:Intervention:realisation}
-
-intervention_multiple_done:
-    path: /intervention/multiple/realisation
-    defaults: {_controller: InterventionBundle:Intervention:realisationInterventions}
-
-intervention_cancel:
-    path: /intervention/annuler/{id}
-    defaults: {_controller: InterventionBundle:Intervention:annuler}
-
-etablissement_list:
-    path:   /etablissement
-    defaults:
-        _controller: InterventionBundle:Etablissement:liste
-
-etablissement_view:
-    path:   /etablissement/{id}
-    defaults:
-        _controller: InterventionBundle:Etablissement:consultation
-    requirements:
-        id: \d+
-
-interventions_benevole:
-    path: /intervention/toast
-    defaults: {_controller: InterventionBundle:Intervention:toast}

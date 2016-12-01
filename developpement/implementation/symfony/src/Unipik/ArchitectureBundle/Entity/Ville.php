@@ -4,6 +4,14 @@
  * User: jpain01
  * Date: 26/09/16
  * Time: 10:26
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\ArchitectureBundle\Entity;
@@ -14,15 +22,23 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ville
  *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ *
  * @ORM\Table(name="ville")
  * @ORM\Entity
  */
 class Ville
 {
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                              type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="ville_id_seq", allocationSize=1, initialValue=1)
@@ -30,13 +46,16 @@ class Ville
     private $id;
 
     /**
-     * @var string
+     * Le nom
      *
+     * @var                    string
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
     private $nom;
 
     /**
+     * Le code postal
+     *
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Unipik\ArchitectureBundle\Entity\CodePostal", mappedBy="ville", cascade={"persist"})
@@ -64,7 +83,7 @@ class Ville
     /**
      * Set nom
      *
-     * @param string $nom
+     * @param string $nom Le nom
      *
      * @return Ville
      */
@@ -88,7 +107,7 @@ class Ville
     /**
      * Add codePostal
      *
-     * @param \Unipik\ArchitectureBundle\Entity\CodePostal $codePostal
+     * @param \Unipik\ArchitectureBundle\Entity\CodePostal $codePostal Le code postal
      *
      * @return Ville
      */
@@ -102,7 +121,9 @@ class Ville
     /**
      * Remove codePostal
      *
-     * @param \Unipik\ArchitectureBundle\Entity\CodePostal $codePostal
+     * @param \Unipik\ArchitectureBundle\Entity\CodePostal $codePostal Le code postal
+     *
+     * @return void
      */
     public function removeCodePostal(\Unipik\ArchitectureBundle\Entity\CodePostal $codePostal)
     {

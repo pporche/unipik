@@ -1,5 +1,19 @@
 <?php
-// version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
+
 namespace Unipik\ArchitectureBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -10,13 +24,21 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="adresse")
  * @ORM\Entity
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
-class Adresse
-{
+class Adresse {
+
     /**
+     * L'id
+     *
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id",                                type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="adresse_id_seq", allocationSize=1, initialValue=1)
@@ -24,36 +46,43 @@ class Adresse
     private $id;
 
     /**
-     * @var \Unipik\ArchitectureBundle\Entity\Ville
+     * La ville
+     *
+     * @var               \Unipik\ArchitectureBundle\Entity\Ville
      * @Assert\NotBlank()
      *
      * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\Ville", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ville_id", referencedColumnName="id" )
+     *   @ORM\JoinColumn(name="ville_id",                                      referencedColumnName="id" )
      * })
      */
     private $ville;
 
     /**
-     * @var \Unipik\ArchitectureBundle\Entity\CodePostal
+     * Le code postal
+     *
+     * @var               \Unipik\ArchitectureBundle\Entity\CodePostal
      * @Assert\NotBlank()
      *
      * @ORM\ManyToOne(targetEntity="Unipik\ArchitectureBundle\Entity\CodePostal", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="code_postal_id", referencedColumnName="id" )
+     *   @ORM\JoinColumn(name="code_postal_id",                                     referencedColumnName="id" )
      * })
      */
     private $codePostal;
 
     /**
+     * L'adresse
+     *
      * @var string
      *
      * @ORM\Column(name="adresse", type="string", length=500, nullable=false)
      */
     private $adresse;
 
-
     /**
+     * Le complement
+     *
      * @var string
      *
      * @ORM\Column(name="complement", type="string", length=100, nullable=true)
@@ -61,6 +90,8 @@ class Adresse
     private $complement;
 
     /**
+     * La geoloc
+     *
      * @var string
      *
      * @ORM\Column(name="geolocalisation", type="geography", options={"geography_type"="POINT", "srid"=4326}, nullable=true)
@@ -82,7 +113,7 @@ class Adresse
     /**
      * Set ville
      *
-     * @param \Unipik\ArchitectureBundle\Entity\Ville $ville
+     * @param \Unipik\ArchitectureBundle\Entity\Ville $ville La ville
      *
      * @return Adresse
      */
@@ -106,7 +137,7 @@ class Adresse
     /**
      * Set code postal
      *
-     * @param \Unipik\ArchitectureBundle\Entity\CodePostal $codePostal
+     * @param \Unipik\ArchitectureBundle\Entity\CodePostal $codePostal Le code postal
      *
      * @return Adresse
      */
@@ -131,7 +162,7 @@ class Adresse
     /**
      * Set adresse
      *
-     * @param string $adresse
+     * @param string $adresse L'adresse
      *
      * @return Adresse
      */
@@ -156,7 +187,7 @@ class Adresse
     /**
      * Set complement
      *
-     * @param string $complement
+     * @param string $complement Le complement
      *
      * @return Adresse
      */
@@ -180,7 +211,7 @@ class Adresse
     /**
      * Set geolocalisation
      *
-     * @param string $geolocalisation
+     * @param string $geolocalisation La geolocalisation
      *
      * @return Adresse
      */

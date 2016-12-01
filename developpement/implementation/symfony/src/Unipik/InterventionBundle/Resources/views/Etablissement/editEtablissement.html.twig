@@ -1,10 +1,33 @@
 {# version 1.00, date 03/10/2016, auteur Florian Leriche #}
 {% extends "InterventionBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel='stylesheet' href="{{ asset('css/styleFormEtablissement.css') }}"/>
+
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('vendor/typeahead.js/dist/typeahead.jquery.js') }}"></script>
+    <script src="{{ asset('vendor/typeahead.js/dist/bloodhound.js') }}"></script>
+    <script>
+        var villes = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            {#//prefetch: '{{ path("architecture_ville_autocomplete") }}',#}
+            remote: {
+                url: '{{ path("architecture_ville_autocomplete") }}?term=%QUERY',
+                wildcard: '%QUERY'
+            }
+        });
 
-    <script type="application/javascript">
+        $('#etablissement_adresse_ville').typeahead(null, {
+            name: 'villes',
+            source: villes,
+            limit: 50
+        });
+        
         document.getElementById('etablissement_TypeGeneral').addEventListener('change',function(e){
             switch (e.target.value){
                 case 'ens' :
@@ -98,6 +121,101 @@
             $("#typeCentre").hide().prop("disabled",true);
         }
 
+        $(":submit").on('click', function( e ) {
+            e.preventDefault();
+            var erreur = false;
+
+            if ($('#etablissement_adresse_adresse').val().trim().length==0) {
+                if($('#erreurAdresse').prev()[0]==undefined){
+                    $('#etablissement_adresse_adresse').after('<p id="erreurAdresse"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                } else {
+                    $('#erreurAdresse').show();
+                }
+                erreur = true;
+            } else {
+                $('#erreurAdresse').hide();
+            }
+
+            if ($('#etablissement_adresse_ville').val().trim().length == 0) {
+                if ($('#erreurVille').prev()[0] == undefined) {
+                    $('#etablissement_adresse_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                } else {
+                    $('#erreurVille').show();
+                }
+                erreur = true;
+            } else {
+                $('#erreurVille').hide();
+            }
+
+            if ($('#etablissement_adresse_ville').val().trim().length>0 && $('#etablissement_adresse_ville').val().indexOf(' (') < 0) {
+                if ($('#erreurCodePostal').prev()[0]==undefined) {
+                    $('#etablissement_adresse_ville').after('<p id="erreurCodePostal"  style="color: red; font-size: 13px; font-style: italic">Sélectionnez un code postal</p>');
+                } else {
+                    $('#erreurCodePostal').show();
+                }
+                erreur = true;
+            } else {
+                $('#erreurCodePostal').hide();
+            }
+
+            if (!erreur) {
+                var adresse = $("#etablissement_adresse_adresse").val() + ' ' + $("#etablissement_adresse_ville").val();
+                var previousAdresse = "{{ etablissement.adresse.adresse }} {{ etablissement.adresse.ville.nom }} ({{ etablissement.adresse.codePostal.code }})";
+                if (adresse != previousAdresse) {
+                    var geolocalisation = '';
+                    $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + adresse, function (data) {
+                        switch (data.length) {
+                            case 0 :
+                                var ville = $("#etablissement_adresse_ville").val();
+                                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
+                                    if (dataVille.length > 0) {
+                                        geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                                        $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+                                        $("#etablissement_adresse_codePostal").val($("#etablissement_adresse_ville").val().split(' (')[1].split(')')[0]);
+                                        $("#etablissement_adresse_ville").val($("#etablissement_adresse_ville").val().split(' (')[0]);
+                                        $(".etablissement_admin_edit").submit();
+                                    }
+                                    else {
+                                        //Que fait-on si 0 match ?
+                                    }
+                                });
+                                break;
+                            case 1 :
+                                geolocalisation = 'SRID=4326;POINT(' + data[0]['lon'] + ' ' + data[0]['lat'] + ')';
+                                $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+                                $("#etablissement_adresse_codePostal").val($("#etablissement_adresse_ville").val().split(' (')[1].split(')')[0]);
+                                $("#etablissement_adresse_ville").val($("#etablissement_adresse_ville").val().split(' (')[0]);
+                                $(".etablissement_admin_edit").submit();
+                                break;
+                            default :
+                                var modal_content = "";
+                                data.forEach(function (item) {
+                                    var latlon = item["lat"] + "," + item["lon"];
+                                    modal_content += "<div class='row'><label class='radio-inline'><input type='radio' name='type' id='" + latlon + "'>" + item["display_name"] + "</label></div>";
+                                });
+                                $('#choices').html(modal_content);
+                                $("input:radio[name=type]:first").attr('checked', true);
+                                $("#myModal").modal('show');
+                        }
+                    });
+                }
+                else {
+                    $("#etablissement_adresse_codePostal").val($("#etablissement_adresse_ville").val().split(' (')[1].split(')')[0]);
+                    $("#etablissement_adresse_ville").val($("#etablissement_adresse_ville").val().split(' (')[0]);
+                    $(".etablissement_admin_edit").submit();
+                }
+            }
+        });
+
+        function setGeolocalisation(content){
+            var latlon = content.split(',');
+            var geolocalisation = 'SRID=4326;POINT(' + latlon[1] + ' ' + latlon[0] + ')';
+            $("#etablissement_adresse_geolocalisation").val(geolocalisation);
+            $("#etablissement_adresse_codePostal").val($("#etablissement_adresse_ville").val().split(' (')[1].split(')')[0]);
+            $("#etablissement_adresse_ville").val($("#etablissement_adresse_ville").val().split(' (')[0]);
+            $(".etablissement_admin_edit").submit();
+        }
+
         $(document).ready(function() {
 
 
@@ -156,7 +274,7 @@
             // La fonction qui ajoute un lien de suppression
             function addDeleteLink($prototype) {
                 // Création du lien
-                var $deleteLink = $('<a href="#" class="btn btn-danger" style="display: inline; font-weight: 600; font-size: 25px; padding: 5px; height: 30px">×</a>');
+                var $deleteLink = $('<a href="#" class="btn" style="padding-top: 0px !important; padding-bottom: 0px !important;  color:#3c3c3c; background-color:#fff;  display: inline; font-weight: 600; font-size: 25px; padding: 5px; height: 30px">×</a>');
 
                 // Ajout du lien
                 $prototype.append($deleteLink);
@@ -181,6 +299,9 @@
 
 {% block body %}
     <style>
+        input{
+            font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif !important;
+        }
 
         @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
         h1{
@@ -328,13 +449,37 @@
     <h5> Ville :</h5>
     {{ form_widget(form.adresse.ville) }}
 
-    <h5> Code Postal :</h5>
-    {{  form_widget(form.adresse.codePostal) }}
     {{ form_widget(form) }}
     <div>
-        <input type="submit" value="Modifier" class="btn btn-primary"/>
+        <a href="{{ path('etablissement_list') }}" class="btn btn-danger" style="margin-left:calc(50% - 140px)">Annuler</a>
+        <input type="submit" value="Modifier" class="btn btn-success"/>
     </div>
 
     {{ form_end(form) }}
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Plusieurs résultats concordent avec l'adresse que vous avez donnée !</h4>
+                </div>
+                <div class="modal-body">
+                    <p> Veuillez choisir l'adresse dans la liste ci-dessous : </p>
+                    <div id="choices"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                        <button id="realiserModal" type="button" class="btn btn-primary"
+                                onclick="setGeolocalisation($('input:radio[name=type]:checked').attr('id'))">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

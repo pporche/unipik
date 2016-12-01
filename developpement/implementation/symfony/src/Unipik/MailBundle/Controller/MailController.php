@@ -1,24 +1,43 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 
 namespace Unipik\MailBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Unipik\MailBundle\Entity\MailTask;
 use Unipik\MailBundle\Form\MailingType;
-use Unipik\MailBundle\Service\SecondMail;
 
 /**
- * Created by PhpStorm.
- * User: florian
- * Date: 19/04/16
- * Time: 11:52
+ * Class MailBundle
+ *
+ * @category None
+ * @package  MailBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class MailController extends Controller {
 
     /**
      * Render the mailing view
      *
-     * @param $name
+     * @param string $name Le nom
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function sendFormAction($name) {
@@ -32,8 +51,7 @@ class MailController extends Controller {
                     array('name' => $name)
                 ),
                 'text/html'
-            )
-        ;
+            );
 
         $this->get('mailer')->send($message);
 
@@ -43,48 +61,75 @@ class MailController extends Controller {
     /**
      * Render the view to send the email
      *
-     * @param Request $request
+     * @param Request $request La requete
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function mailingEtablissementAction(Request $request) {
         $form = $this->get('form.factory')
             ->createBuilder(MailingType::class)
-            ->getForm()
-        ;
+            ->getForm();
 
-        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
-//            $repository = $em->getRepository('InterventionBundle:Etablissement');
-//
-//            $type = $form->get("type")->getData();
-//
-//            $etablissements = $repository->getEnseignementsByType(array($type));
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Etablissement');
 
-            $emails = array("dev1@yopmail.com", "dev2@yopmail.com");
-
-            $i = 0;
-            foreach ($emails as $email) {
-                $i++;
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Intervention de l\'unicef')
-                    ->setFrom('unipik.dev@gmail.com')
-                    ->setTo($email)
-                    ->setBody(
-                        $this->renderView(
-                            'MailBundle::emailMaternelle.html.twig',
-                            array('id' => $i)
-                        ),
-                        'text/html'
-                    )
-                ;
-
-                $this->get('mailer')->send($message);
+            // On récupère les données du formulaire
+            $typeInstitute = $form->get("typeInstitute")->getData();
+            $typeCenter = $form->get("typeCenter")->getData();
+            $typeOther = $form->get("typeAutre")->getData();
+            $relance = $form->get("typeRelance")->getData();
+            $ville = $form->get("ville")->getData();
+            $geolocalisation = $form->get("geolocalisation")->getData();
+            $distance = $form->get("distance")->getData();
+            if ($ville=='') {
+                $ville = null;
+            }
+            if ($geolocalisation=='') {
+                $geolocalisation = null;
+            }
+            if ($distance=='') {
+                $distance = null;
             }
 
+            $ids = array();
+            $instituteExclude = $repository->getEtablissementDemandeNonSatisfaite(); // Les établissements qui ont fait une demande non satisfaite durant cette année scoalire
+
+            if ($relance == 'relance') { // Les établissements qui ont pas fait de demande durant cette année scolaire
+                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement', $typeInstitute, null, $ville, $geolocalisation, $distance) : array();
+                $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, null, $ville, $geolocalisation, $distance) : array();
+                $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, null, $ville, $geolocalisation, $distance) : array();
+                $ids = array_merge($institutesArray, $centersArray, $othersArray);
+            } else if ($relance == 'relancePlaidoyer') { // Les établissements qui ont pas fait de demande  de plaidoyers durant cette année scolaire
+                $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement', $typeInstitute, 'plaidoyers', $ville, $geolocalisation, $distance) : array();
+                $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, 'plaidoyers', $ville, $geolocalisation, $distance) : array();
+                $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, 'plaidoyers', $ville, $geolocalisation, $distance) : array();
+                $ids = array_merge($institutesArray, $centersArray, $othersArray);
+            } else { // Les établissements en général
+                $institutesArray = !empty($typeInstitute) ? $repository->getType("enseignement", $typeInstitute, $ville, null, null, $geolocalisation, $distance) : array();
+                $centersArray = !empty($typeCenter) ? $repository->getType("centre", $typeCenter, $ville, null, null, $geolocalisation, $distance) : array();
+                $othersArray = !empty($typeOther) ? $repository->getType("autreEtablissement", $typeOther, $ville, null, null, $geolocalisation, $distance) : array();
+                $mergedArray = array_merge($institutesArray, $centersArray, $othersArray);
+                foreach ($mergedArray as $institute) {
+                    array_push($ids, $institute->getId());
+                }
+            }
+            $ids = array_diff($ids, $instituteExclude); // On dégage les établissements dont la demande a pas été satisfaite durant cette année scolaire
+
+            if (!empty($ids)) { // Si la recherche donne pas d'établissement on créé pas d'entrée BD pour rien
+                $mailtask = new MailTask();
+                $mailtask
+                    ->setName('Mail task')
+                    ->setInterval(300) // Interval pour savoir quand on peut exécuter la tâche
+                    ->setDateInsert(new \DateTime()) // Date d'insertion ie date à laquelle on effectue la demande d'envoi de mail
+                    ->setIdEtablissement($ids); // id des établissements à qui on fait l'envoi
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($mailtask);
+                $em->flush();
+            }
             return $this->redirectToRoute('architecture_homepage');
         }
-
         return $this->render('MailBundle:mailing:mailingEtablissements.html.twig', array('form' => $form->createView()));
     }
-
 }

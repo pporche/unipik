@@ -10,9 +10,6 @@
 -- Définition des Domaines --
 CREATE EXTENSION postgis; 
 
-CREATE DOMAIN  domaine_semaine AS INT
-CHECK (VALUE <54 AND VALUE >0);
-
 CREATE DOMAIN  domaine_entier_nb_personne AS INT
 CHECK (VALUE >0);
 
@@ -20,7 +17,7 @@ CREATE DOMAIN domaine_jour AS VARCHAR(:longueurChaineCourte)
 CHECK (VALUE IN ('lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'));
 
 CREATE DOMAIN domaine_moment_quotidien AS VARCHAR(:longueurChaineCourte)
-CHECK (VALUE IN ('matin', 'apres-midi', 'soir'));
+CHECK (VALUE IN ('matin', 'apres-midi'));
 
 CREATE DOMAIN domaine_type_contact AS VARCHAR(:longueurChaineCourte)
 CHECK (VALUE IN ('enseignant', 'animateur', 'eleve', 'etudiant', 'autre'));
@@ -63,10 +60,10 @@ CREATE DOMAIN domaine_niveau_scolaire_limite AS VARCHAR(:longueurChaineCourte)
 CHECK (VALUE IN ('CP', 'CP-CE1', 'CE1', 'CE1-CE2', 'CE2', 'CE2-CM1', 'CM1', 'CM1-CM2', 'CM2', 'autre'));
 
 CREATE DOMAIN domaine_theme AS VARCHAR(:longueurChaineMoyenne)
-CHECK (VALUE IN ('convention internationale des droits de l enfant', 'education', 'sante en generale', 'sante et alimentation', 'VIH et sida', 'eau', 'urgences mondiales', 'travail des enfants', 'enfants et soldats', 'harcelement', 'role de l Unicef', 'millenaire pour le developpement' ));
+CHECK (VALUE IN ('education', 'role unicef', 'sante en generale', 'sante et alimentation', 'eau', 'convention internationale des droits de l enfant', 'enfants et soldats', 'travail des enfants', 'harcelement', 'discrimination', 'millenaire dev', 'VIH et sida', 'urgences mondiales'));
 
 CREATE DOMAIN domaine_email AS VARCHAR(:longueurChaineMoyenne)
-CHECK (VALUE ~ '^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$' );
+CHECK (VALUE ~ '^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$' );
 
 
 CREATE DOMAIN domaine_tel_portable AS VARCHAR(:longueurChaineCourte)
@@ -81,6 +78,9 @@ CHECK (VALUE ~ '^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}');
 
 CREATE DOMAIN domaine_code_postal AS VARCHAR(:longueurChaineCourte)
 CHECK (VALUE ~ '^[0-9]{5}$');
+
+CREATE DOMAIN domaine_type_intervention AS VARCHAR(:longueurChaineCourte)
+CHECK (VALUE IN ('plaidoyer', 'frimousse', 'autre_intervention'));
 
 
 -- il faut rajouter un domaine sur l'UAI d'un établissement (enseignement) --
@@ -133,14 +133,23 @@ CREATE TABLE IF NOT EXISTS adresse (
 
 CREATE TABLE IF NOT EXISTS niveau_theme (
 	id SERIAL PRIMARY KEY,
-	niveau domaine_niveau_scolaire_complet,
-	theme domaine_theme
+	niveau domaine_niveau_scolaire_complet NOT NULL,
+	theme domaine_theme NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS moment_hebdomadaire (
 	id SERIAL PRIMARY KEY,
 	jour domaine_jour NOT NULL, 
 	moment domaine_moment_quotidien NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS mailtask (
+	id SERIAL PRIMARY KEY, 
+	name TEXT, 
+	interval INT, 
+	lastrun DATE, 
+	id_etablissement TEXT NOT NULL, 
+	date_insert DATE NOT NULL
 );
 
 
@@ -151,7 +160,6 @@ CREATE TYPE type_activite as (activite_potentielle domaine_activite);
 CREATE TYPE type_email as (email  domaine_email);	
 CREATE TYPE type_materiel_frimousse as (materiel_frimousse domaine_materiel_frimousse);
 CREATE TYPE type_materiel_plaidoyer as (materiel_plaidoyer domaine_materiel_plaidoyer);	
-CREATE TYPE type_semaine as (semaine domaine_semaine);	
 CREATE TYPE type_responsabilite_activite as(responsabilite_activite domaine_reponsabilite_activite);
 
 -- Création des tables --
@@ -204,13 +212,14 @@ CREATE TABLE IF NOT EXISTS projet (
 	id SERIAL PRIMARY KEY, 
 	chiffre_affaire DOUBLE PRECISION NOT NULL, 
 	remarques VARCHAR(:longueurChaineLongue) DEFAULT NULL, 
-	type domaine_type_projet NOT NULL, 
+	type_projet domaine_type_projet NOT NULL, 
 	nom VARCHAR(:longueurChaineMoyenne) NOT NULL
 );
 
 
 CREATE TABLE IF NOT EXISTS comite (
-	id SERIAL PRIMARY KEY
+	id SERIAL PRIMARY KEY,
+	nom VARCHAR(:longueurChaineMoyenne) NOT NULL
 );
 
 -- changement --
@@ -225,8 +234,10 @@ CREATE TABLE IF NOT EXISTS demande (
 	id SERIAL PRIMARY KEY, 
 	contact_id INT NOT NULL REFERENCES contact(id) ON DELETE CASCADE, 
 	date_demande DATE NOT NULL,
-	liste_semaine type_semaine[] NOT NULL
-
+	date_debut_disponibilite DATE NOT NULL,
+	date_fin_disponibilite DATE NOT NULL
+	CHECK(date_demande <= date_debut_disponibilite),
+	CHECK(date_debut_disponibilite <= date_fin_disponibilite)
 );
 
 CREATE TABLE demande_moments_voulus (
@@ -279,7 +290,8 @@ CREATE TABLE IF NOT EXISTS intervention (
 	nb_personne domaine_entier_nb_personne NOT NULL, 
 	remarques VARCHAR(:longueurChaineLongue) DEFAULT NULL, 
 	heure domaine_heure DEFAULT NULL,
-	realisee BOOLEAN NOT NULL
+	realisee BOOLEAN NOT NULL, 
+	type_intervention domaine_type_intervention NOT NULL
 );
 
 -- Attributs de plaidoyer
@@ -340,6 +352,7 @@ CREATE TABLE IF NOT EXISTS appartient (
 CREATE TABLE IF NOT EXISTS participe (
 	projet_id INT REFERENCES projet(id) ON DELETE CASCADE, 
 	contact_id INT REFERENCES contact(id) ON DELETE CASCADE, 
+	est_tuteur boolean NOT NULL,
 	PRIMARY KEY(projet_id, contact_id)
 );
 
@@ -401,6 +414,168 @@ CREATE VIEW autre_etablissement AS (
 	WHERE type_autre_etablissement is not null
 );
 
+-- AVANT LA SUPPRESSION D'UN BENEVOLE
+-- fonction qui crée ou modifie le bénévole fictif afin de lui ajouter les projets et les interventions du bénévole que l'utilisateur supprime
+CREATE FUNCTION modifier_benevole_fictif() returns trigger AS $$
+	DECLARE 
+		benevole_fictif_id int;
+    BEGIN
+    	SELECT id INTO benevole_fictif_id FROM benevole WHERE username = 'anonyme' ;
+    	IF benevole_fictif_id IS NULL THEN 
+    		INSERT INTO benevole (username, username_canonical, email, email_canonical, enabled, salt, password, last_login, locked, expired, expires_at, confirmation_token, password_requested_at, roles, credentials_expired, credentials_expire_at, nom, prenom, tel_fixe, tel_portable,adresse_id) VALUES ('anonyme', 'xxxxxx', 'xxxxxx@xxxxxx.xxxxxx', 'xxxxxx@xxxxxx.xxxxxx', true, '3ar576dvu76soswskk8gwsks8cgkg44', '$2y$13$iUW6/KVzaux5HD0rVkpAq.MJyyKEo8XdKBdFe/DRJKobRauMal3Um', NULL, false, false, NULL, NULL, NULL, 'a:0:{}', false, NULL,'anonyme','benevole','0000000000','0000000000',1);
+    		SELECT id INTO benevole_fictif_id FROM benevole WHERE username = 'anonyme' ;
+    	END IF;
+        UPDATE intervention SET  benevole_id = benevole_fictif_id
+          WHERE  benevole_id = OLD.id;
+        UPDATE benevole_projet SET  benevole_id = benevole_fictif_id
+          WHERE  benevole_id = OLD.id;
+        RETURN OLD;
+    END;
+$$ LANGUAGE 'plpgsql';
+
+-- trigger qui vérifie que les classes de l'intervention correspond bien aux classes de l'établissement
+CREATE TRIGGER avant_suppression_benevole 
+	BEFORE DELETE ON benevole
+	FOR EACH ROW 
+	EXECUTE PROCEDURE modifier_benevole_fictif();
+
+-- LORS DE LA CREATION OU LA MODIFICATION D'UN BENEVOLE
+-- fonction qui crée ou modifie le bénévole fictif afin de lui ajouter les projets et les interventions du bénévole que l'utilisateur supprime
+CREATE FUNCTION ajouter_activites_potentielles_benevole() returns trigger AS $$
+	DECLARE 
+	responsabilites VARCHAR(100);
+	activites VARCHAR(100);
+	chaine_activites type_activite[];
+    BEGIN
+    	SELECT responsabilite_activite INTO responsabilites FROM benevole WHERE id = NEW.id ;
+    	SELECT activites_potentielles INTO activites FROM benevole WHERE id = NEW.id ;
+    	-- plaidoyers
+    	IF responsabilites LIKE '%plaidoyers%' THEN 
+    		IF activites IS NULL THEN 
+    			chaine_activites = '{(plaidoyers)}';
+    		ELSE 
+    			IF activites NOT LIKE '%plaidoyers%' THEN 
+    				SELECT SUBSTR(activites, 1, length(activites)-1) INTO activites;
+    				SELECT RPAD(activites, length(activites)+length(',(plaidoyers)}'), ',(plaidoyers)}')  INTO chaine_activites ;
+    			ELSE 
+    				chaine_activites = activites ; 
+    			END IF;
+    		END IF;	
+			UPDATE benevole SET activites_potentielles = chaine_activites
+				WHERE id = NEW.id;
+    	END IF;
+    	SELECT responsabilite_activite INTO responsabilites FROM benevole WHERE id = NEW.id ;
+    	SELECT activites_potentielles INTO activites FROM benevole WHERE id = NEW.id ;
+    	-- frimousses
+    	IF responsabilites LIKE '%frimousses%' THEN 
+    		IF activites IS NULL THEN 
+    			chaine_activites = '{(frimousses)}';
+    		ELSE 
+    			IF activites NOT LIKE '%frimousses%' THEN 
+    				SELECT SUBSTR(activites, 1, length(activites)-1) INTO activites;
+    				SELECT RPAD(activites, length(activites)+length(',(frimousses)}'), ',(frimousses)}')  INTO chaine_activites ;
+    			ELSE 
+    				chaine_activites = activites ; 
+    			END IF;
+    		END IF;	
+			UPDATE benevole SET activites_potentielles = chaine_activites
+				WHERE id = NEW.id;
+    	END IF;
+    	SELECT responsabilite_activite INTO responsabilites FROM benevole WHERE id = NEW.id ;
+    	SELECT activites_potentielles INTO activites FROM benevole WHERE id = NEW.id ;
+    	-- actions ponctuelles
+    	IF responsabilites LIKE '%actions_ponctuelles%' THEN 
+    		IF activites IS NULL THEN 
+    			chaine_activites = '{(actions_ponctuelles)}';
+    		ELSE 
+    			IF activites NOT LIKE '%actions_ponctuelles%' THEN 
+    				SELECT SUBSTR(activites, 1, length(activites)-1) INTO activites;
+    				SELECT RPAD(activites, length(activites)+length(',(actions_ponctuelles)}'), ',(actions_ponctuelles)}')  INTO chaine_activites ;
+    			ELSE 
+    				chaine_activites = activites ; 
+    			END IF;
+    		END IF;	
+			UPDATE benevole SET activites_potentielles = chaine_activites
+				WHERE id = NEW.id;
+    	END IF;
+    	SELECT responsabilite_activite INTO responsabilites FROM benevole WHERE id = NEW.id ;
+    	SELECT activites_potentielles INTO activites FROM benevole WHERE id = NEW.id ;
+    	-- projets
+    	IF responsabilites LIKE '%projets%' THEN 
+    		IF activites IS NULL THEN 
+    			chaine_activites = '{(projets)}';
+    		ELSE 
+    			IF activites NOT LIKE '%projets%' THEN 
+    				SELECT SUBSTR(activites, 1, length(activites)-1) INTO activites;
+    				SELECT RPAD(activites, length(activites)+length(',(projets)}'), ',(projets)}')  INTO chaine_activites ;
+    			ELSE 
+    				chaine_activites = activites ; 
+    			END IF;
+    		END IF;	
+			UPDATE benevole SET activites_potentielles = chaine_activites
+				WHERE id = NEW.id;
+    	END IF;
+        RETURN NEW;
+    END;
+$$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER insertion_benevole 
+	AFTER INSERT ON benevole
+	FOR EACH ROW 
+	EXECUTE PROCEDURE ajouter_activites_potentielles_benevole();
+
+--CREATE TRIGGER insertion_miseAJour_benevole 
+--	AFTER UPDATE ON benevole
+--	FOR EACH ROW 
+--	EXECUTE PROCEDURE ajouter_activites_potentielles_benevole();
+
+-- AVANT SUPPRESSION ETABLISSEMENT
+-- fonction qui crée ou modifie l'etablissement fictif afin de lui ajouter les interventions, le contact et les ventes de l'etablissement que l'utilisateur supprime
+CREATE FUNCTION modifier_etablissement_fictif() returns trigger AS $$
+	DECLARE 
+		adresse_id int;
+		etablissement_fictif_id int;
+    BEGIN
+    	SELECT id INTO etablissement_fictif_id FROM etablissement WHERE nom = 'etablissement fictif' ;
+    	IF etablissement_fictif_id IS NULL THEN 
+    		INSERT INTO adresse (adresse, ville_id, code_postal_id) VALUES ('adresse de l''etablissement fictif', '1','1');   
+    		SELECT id INTO adresse_id FROM adresse WHERE adresse = 'adresse de l''etablissement fictif' ;
+			INSERT INTO etablissement (nom, adresse_id, emails) VALUES ('etablissement fictif', adresse_id, '{(email-etablissement-fictif@fausse.fr)}');    		
+			SELECT id INTO etablissement_fictif_id FROM etablissement WHERE nom = 'etablissement fictif' ;
+    	END IF;
+        UPDATE intervention SET  etablissement_id = etablissement_fictif_id
+          WHERE  etablissement_id = OLD.id;
+        UPDATE vente SET  etablissement_id = etablissement_fictif_id
+          WHERE  etablissement_id = OLD.id;
+        RETURN OLD;
+    END;
+$$ LANGUAGE 'plpgsql';
+
+-- trigger qui vérifie que les classes de l'intervention correspond bien aux classes de l'établissement
+CREATE TRIGGER avant_suppression_etablissement
+	BEFORE DELETE ON etablissement
+	FOR EACH ROW 
+	EXECUTE PROCEDURE modifier_etablissement_fictif();
+
+
+--AVANT INSERTION INTERVENTION 
+-- fonction qui vérifie que les classes entrées pour une intervention correspondent bien aux classes de l'établissement
+CREATE FUNCTION inserer_intervention() returns trigger AS $$
+	DECLARE 
+	BEGIN
+
+	RETURN NEW;
+	END;
+$$ LANGUAGE 'plpgsql';
+
+-- trigger qui vérifie que les classes entrées pour une intervention correspondent bien aux classes de l'établissement
+CREATE TRIGGER avant_insertion_intervention
+	BEFORE INSERT ON intervention
+	FOR EACH ROW 
+	EXECUTE PROCEDURE inserer_intervention();
+
+
+
 -- Définition d une adresse fictive pour gérer le cas des bénévoles fictifs
 --delete from adresse where id = 1;
 
@@ -416,8 +591,6 @@ CREATE VIEW autre_etablissement AS (
 
 -- Définition des fonctions --
 
-create function recupererProjets(integer) returns setof integer as 
-	'select projet_id from benevole_projet where benevole_id = $1 ;' language 'sql';
 
 -- Définition des Triggers --
 

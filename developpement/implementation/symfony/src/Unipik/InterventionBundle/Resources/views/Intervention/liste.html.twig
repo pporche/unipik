@@ -3,75 +3,23 @@
 {% extends "InterventionBundle::layout.html.twig" %}
 
 {% block title %}
-
-    Liste des interventions - {{ parent() }}
+        Liste des interventions - {{ parent() }}
 
 {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
+
+    <link rel='stylesheet' href="{{ asset('css/twitterTypeahead.css') }}"/>
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
     <link rel="stylesheet" href="{{ asset("vendor/chosen/chosen.css") }}"/>
+
+    <script src="{{ asset("vendor/pdfmake/build/pdfmake.min.js") }}"></script>
+    <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
+
     <style>
         #recherche_avancee_ville {
             text-transform: uppercase;
-        }
-
-        .twitter-typeahead .tt-query,
-        .twitter-typeahead .tt-hint {
-            margin-bottom: 0;
-        }
-
-        .tt-hint {
-            display: none;
-            width: 100%;
-            height: 43px;
-            padding: 10px 18px;
-            font-size: 14px;
-            line-height: 1.428571429;
-            color: #999;
-            vertical-align: middle;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-        }
-
-        .tt-menu {
-            min-width: 160px;
-            margin-top: 2px;
-            padding: 5px 0;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border: 1px solid rgba(0, 0, 0, 0.15);
-            border-radius: 4px;
-            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-            background-clip: padding-box;
-            max-height: 150px;
-            overflow-y: auto;
-
-        }
-
-        .tt-suggestion {
-            display: block;
-            padding: 3px 20px;
-        }
-
-        .tt-suggestion.tt-is-under-cursor {
-            color: #fff;
-            background-color: #428bca;
-        }
-
-        .tt-suggestion.tt-is-under-cursor a {
-            color: #fff;
-        }
-
-        .tt-suggestion p {
-            margin: 0;
         }
 
         @media only screen and (max-width: 1090px) {
@@ -140,12 +88,12 @@
         }
 
 
-        tbody {
+        #myTable {
             display:block;
             max-height: 58vh;
             overflow:auto;
         }
-        thead, tbody tr {
+        #tableIntervention thead, #myTable tr {
             display:table;
             width:100%;
             table-layout:fixed;
@@ -165,8 +113,32 @@
     <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
     <script>
         $(document).ready(function () {
-
             $('input:checkbox').removeAttr('checked');
+            if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')){
+                $('#ville').show();
+                $('#distanceKm').hide();
+                $("#recherche_avancee_distance").val("");
+                $('#distVilleOuDom').hide();
+                $('#recherche_avancee_villeOuDomicile:first-child').hide();
+            }else if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')){
+                if($('#recherche_avancee_villeOuDomicile_0').is(':checked')){
+                    $('#ville').show();
+                    $('#distanceKm').show();
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                }else{
+                    $('#ville').hide();
+                    $('#distanceKm').show();
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                }
+            }else {
+                $('#ville').hide();
+                $("#recherche_avancee_distance").val("");
+                $('#distanceKm').hide();
+                $('#distVilleOuDom').hide();
+                $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+            }
+
+            $('#recherche_avancee_villeOuDomicile div:first-child').hide();
 
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',
@@ -234,11 +206,16 @@
 
 
             {% if onlyMyIntervention==1 %}
-            $("#recherche_avancee_statutIntervention").hide();
-            $("#recherche_avancee_statutMesInterventions").show();
+                $("#recherche_avancee_statutIntervention").hide();
+                $("#recherche_avancee_statutMesInterventions").show();
             {% else %}
-            $("#recherche_avancee_statutIntervention").show();
-            $("#recherche_avancee_statutMesInterventions").hide();
+                $("#recherche_avancee_statutIntervention").show();
+                $("#recherche_avancee_statutMesInterventions").hide();
+            {% endif %}
+            {% if onlyNonAttribues==1 %}
+                $("#recherche_avancee_statutIntervention").hide();
+                $("#recherche_avancee_statutMesInterventions").hide();
+                $("form h5").first().hide();
             {% endif %}
 
 
@@ -247,13 +224,200 @@
 
             $("#recherche_avancee_typeIntervention").change(hide_or_show_intervention);
 
+            $('#recherche_avancee_dansVilleOuParDistance_placeholder').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_placeholder').is(':checked')) {
+                    $('#ville').hide();
+                    $('#distanceKm').hide();
+                    $('#distVilleOuDom').hide();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
+                    $('#recherche_avancee_ville').val('');
+                    $('#recherche_avancee_villeOuDomicile div:first-child').prop('checked', true);
+                    $("#recherche_avancee_distance").val("");
+                }
+            });
 
+            $('#recherche_avancee_dansVilleOuParDistance_0').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')) {
+                    $('#ville').show();
+                    $('#distanceKm').hide();
+                    $('#distVilleOuDom').hide();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
+                    $('#recherche_avancee_ville').val('');
+                    $('#recherche_avancee_villeOuDomicile div:first-child').prop('checked', true);
+                    $("#recherche_avancee_distance").val("");
+                }
+            });
+
+            $('#recherche_avancee_dansVilleOuParDistance_1').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
+                    $('#distanceKm').show();
+                    $('#ville').hide();
+                    $('#distVilleOuDom').show();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
+
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                    $('#recherche_avancee_villeOuDomicile_1').prop('checked', true);
+                    $('#recherche_avancee_ville').val('');
+                }
+            });
+
+            $('#recherche_avancee_villeOuDomicile_0').click(function() {
+                if($('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
+                    $('#ville').show();
+                    $('#recherche_avancee_ville').val('');
+                }
+            });
+
+            $('#recherche_avancee_villeOuDomicile_1').click(function() {
+                if($('#recherche_avancee_villeOuDomicile_1').is(':checked')) {
+                    $('#ville').hide();
+                    $('#recherche_avancee_ville').val('');
+                }
+            });
+        });
+
+        $(':submit').on('click', function (e) {
+            e.preventDefault();
+            var erreur = false;
+
+            if (($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked') || ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && ($('#recherche_avancee_villeOuDomicile_0').is(':checked')))) && $('#recherche_avancee_ville').val().trim().length==0) {
+                if ($('#erreurVille').prev()[0]==undefined) {
+                    $('#recherche_avancee_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                } else {
+                    $('#erreurVille').show();
+                }
+                erreur = true;
+            } else {
+                $('#erreurVille').hide();
+            }
+
+            if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && $('#recherche_avancee_distance').val().trim().length==0) {
+                if ($('#erreurDistance').prev()[0]==undefined) {
+                    $('#recherche_avancee_distance').after('<p id="erreurDistance"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                } else {
+                    $('#erreurDistance').show();
+                }
+                erreur = true;
+            } else {
+                $('#erreurDistance').hide();
+            }
+
+            if ($('#recherche_avancee_ville').val().trim().length!=0 && $('#recherche_avancee_ville').val().indexOf(' (') < 0) {
+                if ($('#erreurCodePostal').prev()[0]==undefined) {
+                    $('#recherche_avancee_ville').after('<p id="erreurCodePostal"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Sélectionnez un code postal</p>');
+                } else {
+                    $('#erreurCodePostal').show();
+                }
+                erreur = true;
+            } else {
+                $('#erreurCodePostal').hide();
+            }
+
+            if (!erreur){
+                if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && $('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
+                    var ville = $('#recherche_avancee_ville').val();
+                    var geolocalisation = '';
+                    $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
+                        if (dataVille.length > 0) {
+                            geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                            $("#recherche_avancee_geolocalisation").val(geolocalisation);
+                            $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+                            $(".intervention").submit();
+                        }
+                        else {
+                            //Que fait-on si 0 match ?
+                        }
+                    });
+                }
+                else {
+                    $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+                    $(".intervention").submit();
+                }
+            }
         });
 
 
+        function imprimer(){
+            var docDefinition = {
+                pageOrientation: 'landscape',
+                content: [
+                    {text: "Liste d'interventions", style: ['header']},
+                    {text: " ", style: ['header']},
+                    {
+                        style: 'table',
+                        table: {
+                            headerRows: 1,
+                            widths: [80, 50,50, 60, 80, 50, 80, 50, 50, 80],
+                            body: [
+                                [
+                                    { text: 'Lieu', style: 'tableHeader' },
+                                    { text: 'Date de la demande', style: 'tableHeader'},
+                                    { text: 'Plage de dates', style: 'tableHeader'},
+                                    { text: 'Type', style: 'tableHeader' },
+                                    { text: 'Établissement', style: 'tableHeader' },
+                                    { text: 'Classe', style: 'tableHeader' },
+                                    { text: 'Thème', style: 'tableHeader' },
+                                    { text: 'Statut', style: 'tableHeader' },
+                                    { text: 'Contact', style: 'tableHeader' },
+                                    { text: 'Email contact', style: 'tableHeader' }
+                                ],
+                                {% for intervention in liste %}
+                                    [ { text: "{{ intervention.etablissement.adresse.ville.nom }}", style: 'tableHeader' },
+                                      { text: "{{ intervention.demande.dateDemande|date('d-m-Y') }}", style: 'tableHeader' },
+                                      { text: "PLAGE DE DATES", style: 'tableHeader' },
+                                        {% if intervention.plaidoyer %}
+                                        { text: "Action éducative", style: 'tableHeader' },
+                                        {% elseif intervention.frimousse %}
+                                        { text: "Frimousse", style: 'tableHeader' },
+                                        {% else %}
+                                        { text: "Autre intervention", style: 'tableHeader' },
+                                        {% endif %}
+                                        { text: "{{ intervention.etablissement.nom | capitalize }}", style: 'tableHeader' },
+                                        {% if intervention.plaidoyer %}
+                                        { text: "{{ intervention.niveauTheme.niveau | capitalize }}", style: 'tableHeader' },
+                                        {% elseif intervention.frimousse %}
+                                        { text: "{{ intervention.niveauFrimousse | capitalize }}", style: 'tableHeader' },
+                                        {% else %}
+                                        { text: "-", style: 'tableHeader' },
+                                        {% endif %}
+                                        {% if intervention.plaidoyer %}
+                                        { text: "{{ intervention.niveauTheme.theme | capitalize }}", style: 'tableHeader' },
+                                        {% else %}
+                                        { text: "-", style: 'tableHeader' },
+                                        {% endif %}
+                                        {% if intervention.realisee %}
+                                        { text: "Réalisée", style: 'tableHeader' },
+                                        {% elseif intervention.benevole %}
+                                        { text: "{{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}", style: 'tableHeader' },
+                                        {% else %}
+                                        { text: " ", style: 'tableHeader' },
+                                        {% endif %}
+                                        { text: "{{ intervention.demande.contact.prenom | capitalize }} {{ intervention.demande.contact.nom | capitalize }}", style: 'tableHeader' },
+                                        { text: "{{ intervention.demande.contact.email }}", style: 'tableHeader' }
+                                    ],
+                                {% endfor %}
+                            ]
+                        },
+                        layout: 'lightHorizontalLines'
+                    }
+                ],
+                styles: {
+                    header: {
+                        fontSize: 13,
+                        alignment: 'center'
+                    },
+                    tableHeader: {
+                        fontSize: 9,
+                        alignment: 'left'
+                    }
+                }
+            };
+
+            pdfMake.createPdf(docDefinition).download("liste-d'interventions.pdf");
+        }
+
         function deleteInterventions() {
             var conf = confirm('Souhaitez vous vraiment supprimer ces interventions ?');
-
             if (conf) {
                 var selected = [];
                 $("input:checkbox[name=type]:checked").each(function () {
@@ -282,9 +446,7 @@
         function attributeIntervention(event, id) {
             $.post("{{ path('intervention_self_attribute') }}", {'id': id},
                 function (data, status) {
-                    $(event).attr('class', 'btn btn-danger');
-                    $(event).text('Se la désattribuer');
-                    $(event).attr("onclick", "desattributeIntervention(this, " + id + ")");
+                    $(event).hide();
                 })
                     .fail(function() {
                         alert( "Cette intervention a déjà été attribuée à un bénévole !" );
@@ -325,15 +487,19 @@
         });
 
         function sendIdToModal(id) {
+            $('#attribution_benevole').val('');
             $("#attribution_idIntervention").attr("value", id);
         }
 
         function attributeInterventionAdmin(event, username, id) {
+            username = parseUsername(username);
             $.post("{{ path('intervention_attribute') }}", {'username': username, 'id': id},
                 function (data, status) {
                     var selector = "button[name=attribuer" + id + "]";
                     $(selector).attr('class', 'btn btn-danger');
-                    $(selector).text('Retirer ' + data.prenom + ' ' + data.nom );
+                    $(selector).text('Retirer ' + data.prenom.charAt(0).toUpperCase() + data.prenom.slice(1) + ' '
+                            + data.nom.charAt(0).toUpperCase() + data.nom.slice(1) );
+                    $(selector).attr('text-overflow', 'ellipsis');
                     $(selector).attr("onclick", "desattributeInterventionAdmin(this, " + id + ")");
                     $(selector).removeAttr("data-target");
                     $(selector).removeAttr("data-toggle");
@@ -344,12 +510,18 @@
             $.post("{{ path('intervention_self_desattribute') }}", {'id': id},
                 function (data, status) {
                     $(event).attr('class', 'btn btn-primary');
-                    $(event).text('Attribuer l\'intervention à');
+                    $(event).text('Attribuer à');
                     $(event).attr("onclick", "sendIdToModal(" + id + ")");
                     $(event).attr("data-target", "#myModal");
                     $(event).attr("data-toggle", "modal");
                     $(event).attr("name", "attribuer" + id);
                 });
+        }
+
+        function parseUsername(username){
+            var regexUsername = /\((.*?)\)/;
+            username = regexUsername.exec(username)[0].substring(1);
+            return username.substring(0,username.length-1);
         }
 
         $('#attribuerModal').click(function () {
@@ -364,16 +536,15 @@
 {% endblock %}
 
 {% block body %}
-
-
     <section class="col-lg-2 col-md-2 col-sm-2">
         <div class="row">
             <div class='well'>
                 {% if onlyMyIntervention %}
-                    {{ form_start(form, {'method': 'get', 'action': path('intervention_self'), 'attr': {'class': 'intervention_self form-sm'}}) }}
+                    {{ form_start(form, {'method': 'get', 'action': path('intervention_self'), 'attr': {'class': 'intervention form-sm'}}) }}
+                {% elseif onlyNonAttribues %}
+                    {{ form_start(form, {'method': 'get', 'action': path('demandes_recentes'), 'attr': {'class': 'intervention form-sm'}}) }}
                 {% else %}
-                    {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
-
+                    {{ form_start(form, {'method': 'get', 'action': path('intervention_list'), 'attr': {'class': 'intervention form-sm'}}) }}
                 {% endif %}
 
                 <h5>Statut de l'intervention :</h5>
@@ -406,10 +577,25 @@
                     {{ form_widget(form.end, { 'attr': {'class': 'input-sm'} }) }}
                 </div>
                 <br/>
-                <h5> Ville </h5>
-                {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
+                <div id="filtrePar">
+                    <h5> Filtre par lieu :</h5>
+                    {{ form_widget(form.dansVilleOuParDistance) }}
+                </div>
+                <div id="distVilleOuDom">
+                    <h5> Distance de ville ou domicile ?</h5>
+                    {{ form_widget(form.villeOuDomicile) }}
+                </div>
+                <div id="ville">
+                    <h5> Ville :</h5>
+                    {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
+                </div>
+                <div id="distanceKm">
+                    <h5> Distance en km :</h5>
+                    {{ form_widget(form.distance) }}
+                </div>
+                <br/>
                 <div>
-                    <input id="submit" type="submit" value="OK" class="btn btn-primary"/>
+                    <input type="submit" value="OK" class="btn btn-primary"/>
                 </div>
                 {{ form_end(form) }}
             </div>
@@ -418,8 +604,10 @@
     <section id="listeIntervention" class="col-lg-10 col-md-10 col-sm-10">
         <h2>
             Liste des
-            {% if typeIntervention == "plaidoyer" %}
-                plaidoyers
+            {% if onlyNonAttribues %}
+                demandes récentes
+            {% elseif typeIntervention == "plaidoyer" %}
+                actions éducatives
             {% elseif typeIntervention == "frimousse" %}
                 interventions frimousses
             {% elseif typeIntervention == "autreIntervention" %}
@@ -437,6 +625,18 @@
             {% endif %}
             :
         </h2>
+
+        {% if liste %}
+            <button type="button" class="imprimente" onclick="imprimer()"><span class="glyphicon glyphicon-print"></span></button><br>
+        {% endif %}
+
+        {% if onlyMyIntervention %}
+            {% set vue =  'intervention_self' %}
+        {% elseif  onlyNonAttribues %}
+            {% set vue =  'demandes_recentes' %}
+            {% else %}
+                {% set vue =  'intervention_list' %}
+        {% endif %}
         <div class="container">
             <div class="row">
                 <div class="table-responsive">
@@ -454,14 +654,14 @@
                                 {% if desc %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
                                                  id="sortLieu" alt="sort Down"/>
                                         </a>
                                     </th>
                                     <th>Date
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
                                                  id="sortDate" alt="sort Down"/>
                                         </a>
@@ -469,14 +669,14 @@
                                 {% else %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class="sort sort-up"
                                                  id="sortLieu" alt="sort Down"/>
                                         </a>
                                     </th>
                                     <th>Date
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
                                             <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
                                                  id="sortDate" alt="sort Up"/>
                                         </a>
@@ -486,14 +686,14 @@
                                 {% if desc %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
                                                  id="sortLieu" alt="sort Down"/>
                                         </a>
                                     </th>
                                     <th>Date
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateIntervention"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
                                                  id="sortDate" alt="sort Down"/>
                                         </a>
@@ -501,26 +701,29 @@
                                 {% else %}
                                     <th>Lieu
                                         <a class="sortButtonLieu" id="sortButtonLieu"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"lieu"}) ) }}">
                                             <img src="{{ asset('img/sort-up.png') }}" class="sort sort-up" id="sortLieu"
                                                  alt="sort Up"/>
                                         </a>
                                     </th>
                                     <th>Date
                                         <a class="sortButtonDate" id="sortButtonDate"
-                                           href="{{ path('intervention_list', pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
+                                           href="{{ path(vue, pathReq | merge({"desc":true, "field":"dateIntervention"}) ) }}">
                                             <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
                                                  id="sortDate" alt="sort Up"/>
                                         </a>
                                     </th>
                                 {% endif %}
                             {% endif %}
+                            {% if onlyNonAttribues %}
+                                <th>Date de la Demande</th>
+                            {% endif %}
                             <th>Type</th>
                             <th>Etablissement</th>
                             <th>Classe</th>
                             <th>Thème</th>
                             <th>Statut</th>
-                            <th>Voir détails</th>
+                            <th>Détails</th>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <th>Supprimer</th>
                             {% endif %}
@@ -529,10 +732,22 @@
                         <tbody id="myTable">
                         {% if liste is not empty %}
                         {% for intervention in liste %}
-                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention %}
-                            <tr class="dangerTable">
+                            {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention  %}
+                                {%  if intervention.benevole %}
+                                    {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
+                                        <tr class="dangerTable">
+                                    {% endif %}
+                                {% else %}
+                                    <tr class="dangerTable">
+                                {% endif %}
                             {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and not (intervention.realisee) and intervention.dateIntervention %}
-                            <tr class="warningTable" >
+                                {%  if intervention.benevole %}
+                                    {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
+                                        <tr class="warningTable" >
+                                    {% endif %}
+                                {% else %}
+                                    <tr class="warningTable" >
+                                {% endif %}
                             {% else %}
                             <tr>
                             {% endif %}
@@ -540,16 +755,20 @@
                                 <td data-title="Date">
                                     {% if intervention.dateIntervention %}
                                         {{ intervention.dateIntervention|date("d-m-Y") }}
-                                    {% else %} -
-                                    {% endif %} </td>
-                                <td data-title="Type">
-                                    {% if intervention.plaidoyer %}
-                                        Plaidoyer
-                                    {% elseif intervention.frimousse %}
-                                        Frimousse
                                     {% else %}
-                                        Autre intervention
-                                    {% endif %}
+                                        <em style="color: #868282">Entre le {{ intervention.demande.dateDebutDisponibilite|date("d-m-Y")  }} et le {{ intervention.demande.dateFinDisponibilite|date("d-m-Y")  }}</em>
+                                    {% endif %} </td>
+                                {% if onlyNonAttribues %}
+                                    <td data-title="Date Demande">{{ intervention.demande.dateDemande|date("d-m-Y") }}</td>
+                                {% endif %}
+                                <td data-title="Type">
+                                        {% if intervention.plaidoyer %}
+                                            Action éducative
+                                        {% elseif intervention.frimousse %}
+                                            Frimousse
+                                        {% else %}
+                                            Autre intervention
+                                        {% endif %}
                                 </td>
                                 <td data-title="Etablissement">
                                     <a href="{{ path('etablissement_view', {'id':intervention.etablissement.id}) }}">
@@ -583,27 +802,24 @@
 
 
                                     {% if intervention.realisee %}
-                                        <p class="text-success"> Réalisée <span class="glyphicon glyphicon-ok"></span>
+                                        <p class="text-success"> Réalisée<span class="glyphicon glyphicon-ok"></span>
                                         </p>
                                     {% elseif intervention.benevole %}
-                                        {% if user==intervention.benevole %}
-                                                Attribuée à vous
-                                        {% else %}
                                             {% if is_granted('ROLE_ADMIN') %}
                                                 <button name="desattribution" type="button" class="btn btn-danger"
                                                         onclick="desattributeInterventionAdmin(this, {{ intervention.id }})" style="padding-right: 4px;padding-left: 4px; font-size: 14px; width: 100%; overflow: hidden; text-overflow: ellipsis; ">
-                                                    Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}.
+                                                    Retirer {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
 
                                                 </button>
                                             {% else %}
                                                 Attribuée à {{ intervention.benevole.prenom | capitalize }} {{ intervention.benevole.nom | capitalize }}
                                             {% endif %}
-                                        {% endif %}
                                     {% else %}
                                         {% if is_granted('ROLE_ADMIN') %}
                                             <button name="attribuer{{ intervention.id }}" type="button"
                                                     class="btn btn-primary" data-toggle="modal" data-target="#myModal"
-                                                    onclick="sendIdToModal({{ intervention.id }})">
+                                                    onclick="sendIdToModal({{ intervention.id }})"
+                                                    style="padding-right: 4px;padding-left: 4px; font-size: 14px; width: 100%; overflow: hidden; text-overflow: ellipsis; ">
                                                 Attribuer à
                                             </button>
                                         {% else %}
@@ -616,7 +832,7 @@
                                 </td>
                                 <td data-title="Voir Détails">
                                     <a href="{{ path('intervention_view', {id: intervention.id}) }}"
-                                       class="btn btn-primary">Voir détails</a>
+                                       class="btn btn-primary">Détails</a>
                                 </td>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <td data-title="Supprimer">
@@ -636,7 +852,10 @@
                     </table>
 
                 </div>
-                <button type="button" class="btn btn-danger" onclick="deleteInterventions()">Supprimer</button>
+
+                <div class="buttons">
+                    <button type="button" class="btn btn-danger" onclick="deleteInterventions()">Supprimer</button>
+                    </div>
                 <div class="col-md-12 text-center">
                     {% set pathReq = [] %}
                     {% if app.request.query.get('recherche_avancee') is not null %}
@@ -646,11 +865,11 @@
                         {% set pathReq = pathReq | merge({"desc":app.request.query.get('desc')}) | merge({"field":app.request.query.get('field')}) %}
                     {% endif %}
                     <ul>Par page :
-                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
-                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
-                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
-                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
-                        <a href="{{ path('intervention_list', pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
+                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
+                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,
+                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":20}) ) }}">20</a>,
+                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":50}) ) }}">50</a>,
+                        <a href="{{ path(vue, pathReq | merge({"rowsPerPage":100}) ) }}">100</a>
                     </ul>
                     <ul class="pagination pagination-lg pager" id="myPager"></ul>
                 </div>
@@ -668,11 +887,11 @@
                     <h4 class="modal-title" id="myModalLabel">Attribuer l'intervention à</h4>
                 </div>
                 <div class="modal-body">
-                    {{ form_start(formAttr, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
+                    {{ form_start(formAttr, {'method': 'post', 'action': path(vue), 'attr': {'class': "{{ vue }} form-sm"}}) }}
                     <h5>Bénévole : {{ form_widget(formAttr.benevole) }}</h5>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
                     <button id="attribuerModal" type="button" class="btn btn-primary"
                             onclick="attributeInterventionAdmin(this, $('#attribution_benevole').val(), $('#attribution_idIntervention').val())">
                         Attribuer

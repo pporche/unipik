@@ -22,6 +22,7 @@
             <link rel="stylesheet" href="{{ asset('vendor/bootswatch-dist/css/bootstrap.min.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/stylePersonalized.css') }}" />
+
         {% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -33,7 +34,6 @@
 
     {% block misc %}
 
-    <div class="container">
 
         <div id="header"></div>
 
@@ -45,9 +45,6 @@
 
             {% block body %}{% endblock %}
         </div>
-
-
-    </div>
 
     {% endblock %}
 

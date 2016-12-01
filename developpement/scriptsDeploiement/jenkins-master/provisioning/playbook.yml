@@ -1,0 +1,16 @@
+---
+- hosts: jenkins
+  gather_facts: yes
+
+  vars_files:
+    - vars/main.yml
+
+  roles:
+    - geerlingguy.firewall
+    - geerlingguy.ntp
+    - geerlingguy.git
+    - geerlingguy.java
+    - geerlingguy.jenkins
+    - ANXS.postgresql
+
+  environment: "{{proxy_env}}"

@@ -34,13 +34,13 @@ abstract class EntityTestCase extends KernelTestCase
         //static::$em->rollBack();
     }
 
-    public function validEntityProvider() 
+    public function validEntityProvider()
     {
         $e = $this->testCreate();
 
         return [
             "1 Entity" => [$e],
-            "3 Entities" => [clone $e, clone $e, clone $e]
+            "3 Entities" => [[clone $e, clone $e, clone $e]]
         ];
     }
 
@@ -48,22 +48,29 @@ abstract class EntityTestCase extends KernelTestCase
     /**
      * @dataProvider validEntityProvider
      */
-    public function testPersist($e)
+    public function testPersist($entities)
     {
         // Begin transaction
         self::bootKernel();
         static::$em->beginTransaction();
 
         // test Persist
-        static::$em->persist($e);
+        foreach ($entities as $e) {
+            static::$em->persist($e);
+        }
         static::$em->flush();
 
         // test retrieve
-        $repository = static::$em->getRepository(static::$repository);
-        $entities = $repository->find($e->getId());
+        $entities = array();
+        foreach ($entities as $e) {
+            $repository = static::$em->getRepository(static::$repository);
+            array_push($entities, $repository->find($e->getId()));
+        }
 
         // test remove
-        static::$em->remove($entities);
+        foreach ($entities as $e) {
+            static::$em->remove($e);
+        }
         static::$em->flush();
 
         // rollBack
@@ -73,7 +80,7 @@ abstract class EntityTestCase extends KernelTestCase
     /**
      * @dataProvider badEntityProvider
      */
-    public function testBadEntities($e) 
+    public function testBadEntities($e)
     {
         self::bootKernel();
         static::$em->beginTransaction();
@@ -81,9 +88,9 @@ abstract class EntityTestCase extends KernelTestCase
         try{
             static::$em->persist($e);
             static::$em->flush();
-        } catch (\Doctrine\DBAL\Exception\DriverException $e){
+        } catch (\Doctrine\DBAL\Exception\DriverException $e) {
 
-        } catch (\Doctrine\ORM\ORMInvalidArgumentException $e){
+        } catch (\Doctrine\ORM\ORMInvalidArgumentException $e) {
 
         } catch (Exception $e) {
             $this->hasFailed();

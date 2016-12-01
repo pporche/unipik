@@ -9,62 +9,15 @@
 
 {% block stylesheets %}
     {{ parent() }}
+
+    <link rel='stylesheet' href="{{ asset('css/twitterTypeahead.css') }}"/>
+
+    <script src="{{ asset("vendor/pdfmake/build/pdfmake.min.js") }}"></script>
+    <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
     <style>
         #recherche_avancee_ville {
             text-transform: uppercase;
         }
-        .twitter-typeahead .tt-query,
-        .twitter-typeahead .tt-hint {
-            margin-bottom: 0;
-        }
-        .tt-hint {
-            display: none;
-            width: 100%;
-            height: 43px;
-            padding: 10px 18px;
-            font-size: 14px;
-            line-height: 1.428571429;
-            color: #999;
-            vertical-align: middle;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-            -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-            transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-        }
-        .tt-menu {
-            min-width: 160px;
-            margin-top: 2px;
-            padding: 5px 0;
-            background-color: #ffffff;
-            border: 1px solid #cccccc;
-            border: 1px solid rgba(0, 0, 0, 0.15);
-            border-radius: 4px;
-            -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-            background-clip: padding-box;
-            max-height: 150px;
-            overflow-y: auto;
-
-        }
-        .tt-suggestion {
-            display: block;
-            padding: 3px 20px;
-        }
-        .tt-suggestion.tt-is-under-cursor {
-            color: #fff;
-            background-color: #428bca;
-        }
-        .tt-suggestion.tt-is-under-cursor a {
-            color: #fff;
-        }
-        .tt-suggestion p {
-            margin: 0;
-        }
-
-
 
     </style>
 
@@ -96,8 +49,51 @@
             }
         }
 
-        //        formatMultiple("act");
-        //        formatMultiple("resp");
+        function imprimer(){
+            var docDefinition = {
+                pageOrientation: 'landscape',
+                content: [
+                    {text: "Liste de benevoles", style: ['header']},
+                    {text: " ", style: ['header']},
+                    {
+                        style: 'table',
+                        table: {
+                            headerRows: 1,
+                            widths: [80, 80, 150, 100, 100, 150],
+                            body: [
+                                [{ text: 'Nom', style: 'tableHeader' },
+                                    { text: 'Prenom', style: 'tableHeader'},
+                                    { text: 'Email', style: 'tableHeader' },
+                                    { text: 'Téléphone portable', style: 'tableHeader' },
+                                    { text: 'Téléphone fixe', style: 'tableHeader' },
+                                    { text: 'Adresse', style: 'tableHeader' }],
+                                {% for benevole in listBenevoles %}
+                                [ "{{ benevole.nom | capitalize}}",
+                                    "{{ benevole.prenom | capitalize }}",
+                                    "{{ benevole.email }}",
+                                    "{{ benevole.telFixe }}",
+                                    "{{ benevole.telPortable }}",
+                                    "{{ benevole.adresse.getAdresse() }}, {{ benevole.adresse.codePostal.code }} {{ benevole.adresse.ville.nom }}"
+                                ],
+                                {% endfor %}
+                            ]
+                        },
+                        layout: 'lightHorizontalLines'
+                    }
+                ],
+                styles: {
+                    header: {
+                        fontSize: 13,
+                        alignment: 'center'
+                    },
+                    table: {
+                        fontSize: 9,
+                        alignment: 'left'
+                    }
+                }
+            };
+            pdfMake.createPdf(docDefinition).download("liste-de-benevoles.pdf");
+        }
 
         function deleteBenevoles() {
             var conf = confirm('Souhaitez vous vraiment supprimer ces bénévoles ?');
@@ -304,7 +300,9 @@
 
     <section class="col-lg-10 col-md-10 col-sm-10">
         <h1>Liste des Bénévoles</h1>
-
+        {% if listBenevoles %}
+            <button type="button" class="imprimente" onclick="imprimer()"><span class="glyphicon glyphicon-print"></span></button>
+        {% endif %}
         <table class="table table-striped table-hover ">
             <thead>
             <tr>
@@ -400,7 +398,7 @@
                         {% else %}
 
                                 {% if ('plaidoyers' in benevole.responsabiliteActivite ) %}
-                                        Plaidoyer <br>
+                                        Action éducative <br>
                                 {% endif %}
                                 {% if ('frimousses' in benevole.responsabiliteActivite) %}
                                         Frimousse <br>
@@ -429,7 +427,7 @@
                         {% else %}
                                 {% for activite in benevole.activitesPotentielles %}
                                     {% if ('plaidoyers' == activite) %}
-                                        Plaidoyer <br>
+                                        Action éducative <br>
                                     {% endif %}
                                     {% if ('frimousses' == activite) %}
                                         Frimousse <br>
@@ -484,7 +482,9 @@
                 <em class="glyphicon glyphicon-alert"></em> Ajouter un bénévole
             </a>
             <button type="button" class="btn btn-danger" onclick="deleteBenevoles()">Supprimer</button>
+
         </div>
+
     {% endif %}
 
     <div class="col-md-12 text-center">

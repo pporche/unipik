@@ -19,7 +19,7 @@ class InterventionMock extends EntityMock
     /**
      * @return Intervention
      */
-    public static function create() 
+    public static function create()
     {
         $d = DemandeMock::create();
         $c = ComiteMock::create();
@@ -31,7 +31,8 @@ class InterventionMock extends EntityMock
             ->setComite($c)
             ->setEtablissement($e)
             ->setNbPersonne(7)
-            ->setRealisee(false);
+            ->setRealisee(false)
+            ->setTypeIntervention("plaidoyer");
 
         return $i;
     }

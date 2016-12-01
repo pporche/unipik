@@ -2,24 +2,24 @@
 \speaker{\Julie}
 
 \begin{frame}
-\frametitle{Aide à l'attribution des interventions}
+\frametitle{F5 : Aide à l'attribution des interventions}
 	\begin{minipage}[c]{.40\linewidth}
       \begin{figure}[r]
-		\includegraphics[scale=0.35]{images/filtreListeIntervention.png}
-		%\caption{Imprim-écran des possibilités de tris}
+		\includegraphics[scale=0.3]{images/filtreListeIntervention.png}
+		\caption{Capture d'écran des possibilités de tris}
 	  \end{figure}
    \end{minipage} \hfill
    \begin{minipage}[c]{.52\linewidth}
       \begin{block}{Les filtres}
 		\begin{itemize}
-			\item requêtes sur la base de données
-			\item notion de \texttt{Repository}
+			\item Requêtes sur la base de données
+			\item Notion de \texttt{Repository}
 		\end{itemize}
 	  \end{block}
 	  \begin{block}{Rôle des \texttt{Repository}}
-		Un repository permet de centraliser tout ce qui touche à la récupération des entités.
+		Un \texttt{Repository} permet de centraliser tout ce qui touche à la récupération des entités.
 		\begin{itemize}
-		\item \texttt{class} PHP
+		\item \texttt{PHP class} 
 		\item \texttt{extends EntityRepository}
 		\end{itemize}
 	  \end{block}
@@ -27,12 +27,42 @@
 \end{frame}
 
 \begin{frame}
+\frametitle{F5 : Aide à l'attribution des interventions}
 	\begin{block}{Les méthodes de récupération des entités}
 		\begin{itemize}
-			\item méthodes de récupération de base : \\
+			\item Méthodes de récupération de base : \\
 			 \texttt{find, findAll, findBy, findOneBy, findByX, findOneByX}
-			\item méthodes de récupération personnelle : \\
-			\texttt{DQL} et \texttt{Query Builder}
+			\item Méthodes de récupération personnalisées : \\
+			\begin{itemize}
+			\item \texttt{DQL (Doctrine Query Language)} : SQL adapté à la vision objets
+			\item \texttt{Query Builder}: construction de la requête étape par étape
+			\end{itemize}			
 		\end{itemize}
 	  \end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{F5 : Aide à l'attribution des interventions}
+	\textbf{But :} récupérer les interventions attribuées au bénévole courant. \\
+	\vskip 0.5cm
+	\begin{block}{Requête SQL }	
+	\texttt{ 
+	%\noindent \textbackslash \texttt{set idUtilisateurCourant }\\
+	SELECT \textcolor{red}{i}.* FROM intervention \textcolor{red}{i} \\
+	\setlength{\parindent}{1cm}	WHERE \textcolor{red}{i}.id\_benevole = \textcolor{blue}{10};}
+	\end{block}
+	\begin{block}{Requête Query Builder }
+	\noindent \texttt{\$qb = \$this->createQueryBuilder('\textcolor{red}{i}'); \\
+	\noindent \$qb \\
+	\setlength{\parindent}{1cm} ->where('\textcolor{red}{i}.benevole = :user') \\
+    \setlength{\parindent}{1cm} ->setParameter('user', \textcolor{blue}{\$user});}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{F6 : Attribution/réalisation d'une intervention}
+      \begin{figure}[r]
+		\includegraphics[scale=0.35]{images/ajax.png}
+		\caption{Schéma explicatif d'AJAX}
+	  \end{figure}
 \end{frame}

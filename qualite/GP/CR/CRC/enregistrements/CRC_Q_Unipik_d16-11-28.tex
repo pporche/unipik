@@ -1,0 +1,105 @@
+% version 1.00	Kafui Atanley	30/11/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion avec le client}}					%titre
+\begin{document}
+
+28/11/2016			 				%Date 
+\hfill   
+\hfill 	 15:00 - 17:00 				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% version
+%--- Fin en-t�te et pied de page ---%
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 30/11/2016 & \Kafui & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RGC & \Melissa & 30/11/2016 & email \\[30pt]
+				\hline
+				Validateur & \CP & \Pierre & 30/11/2016 & email \\[30pt]	
+				\hline
+				Approbateur & Client & \nomClient & 30/11/2016 & email \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+%--- Réunion --%
+
+\section{Rappel du sujet de la réunion}
+\Pierre{} rappelle que cette réunion permettra de mettre en avant les remarques qu'un bénévole non formé à l'outil pourrait faire remonter.
+
+\section{Remarques client}
+Au cours de la réunion, plusieurs remarques sont apparues  : 
+\begin{itemize}
+	\item Le mail automatique à l'établissement lors de l'attribution de l'intervention doit être supprimé ;
+	\item Les mails automatiques doivent contenir la mention "Ceci est un message automatique" ;
+	\item Il n'est pas clair que lors de l'autocompletion, il est obligatoire de cliquer sur une proposition ;
+	\item Le niveau scolaire ne reste pas coché lors de l'envoi du formulaire dans la liste des établissements ;
+	\item Le tri par défaut dans la liste des établissements doit être sur la ville ;
+	\item Les villes proposées doivent être recherchées en \%nom\% au lieu de \%nom ;
+	\item Le planning doit être filtrable ;
+	\item Il faudrait qu'un historique des mails envoyés via l'application soit consultable ;
+	\item Le champ concernant le mail de l'établissement dans le formulaire de demande ne doit pas être présent.
+\end{itemize}
+
+%--- fin de réunion ---%
+\newpage
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

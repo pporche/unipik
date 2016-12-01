@@ -1,8 +1,24 @@
 # version 1.00 date 13/05/2016 auteur(s) Michel Cressant, Julie Pain
+
+# Route intervention
 intervention_admin_add:
     path:     /intervention/ajouter
     defaults: { _controller: InterventionBundle:Intervention:add }
 
+intervention_admin_deletes:
+    path:   /intervention/supprimer
+    defaults: { _controller: InterventionBundle:Intervention:deleteInterventions }
+
+
+intervention_attribute:
+    path: /intervention/attributionA
+    defaults: {_controller: InterventionBundle:Intervention:attributionABenevole}
+
+intervention_desattribute:
+    path: /intervention/desattributionA
+    defaults: {_controller: InterventionBundle:Intervention:desattributionA}
+
+# Route etablissement
 etablissement_admin_add:
     path:     /etablissement/ajouter
     defaults: { _controller: InterventionBundle:Etablissement:add }
@@ -19,10 +35,6 @@ etablissement_admin_delete:
     requirements:
         id: \d+
 
-intervention_admin_deletes:
-    path:   /intervention/supprimer
-    defaults: { _controller: InterventionBundle:Intervention:deleteInterventions }
-
 etablissement_admin_deletes:
     path:   /etablissement/supprimer
     defaults: { _controller: InterventionBundle:Etablissement:deleteEtablissements }
@@ -31,10 +43,18 @@ etablissement_admin_edit:
     path:   /etablissement/edit/{id}
     defaults: { _controller: InterventionBundle:Etablissement:edit }
 
-intervention_attribute:
-    path: /intervention/attributionA
-    defaults: {_controller: InterventionBundle:Intervention:attributionABenevole}
+vente_admin_edit:
+    path: /vente/edit/{id}
+    defaults: {_controller: InterventionBundle:Vente:edit}
+    requirements:
+        id: \d+
 
-intervention_desattribute:
-    path: /intervention/desattributionA
-    defaults: {_controller: InterventionBundle:Intervention:desattributionA}
+vente_admin_delete:
+    path: /vente/supprimer/{id}
+    defaults: {_controller: InterventionBundle:Vente:deleteVente}
+    requirements:
+        id: \d+
+
+vente_admin_deletes:
+    path: /vente/supprimer
+    defaults: { _controller: InterventionBundle:Vente:deleteVentes }

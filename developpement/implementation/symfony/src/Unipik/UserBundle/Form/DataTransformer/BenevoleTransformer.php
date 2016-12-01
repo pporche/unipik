@@ -1,4 +1,18 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 
 namespace Unipik\UserBundle\Form\DataTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -6,18 +20,23 @@ use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
- * Created by PhpStorm.
- * User: jpain01
- * Date: 05/10/16
- * Time: 18:32
+ * Benevole transformer
+ *
+ * @category None
+ * @package  UserBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
-class BenevoleTransformer  implements DataTransformerInterface
-{
+class BenevoleTransformer  implements DataTransformerInterface {
     private $entityManager;
 
     /**
      * VilleAutocompleteTransformer constructor.
-     * @param ObjectManager $entityManager
+     *
+     * @param ObjectManager $entityManager Le manager
+     *
+     * @return object
      */
     public function __construct(ObjectManager $entityManager)
     {
@@ -27,7 +46,8 @@ class BenevoleTransformer  implements DataTransformerInterface
     /**
      * Return the string represetnation of a volunteer, his/her name
      *
-     * @param mixed $benevole
+     * @param mixed $benevole Le benevole
+     *
      * @return string
      */
     public function transform($benevole)
@@ -42,7 +62,8 @@ class BenevoleTransformer  implements DataTransformerInterface
     /**
      * Return the volunteer that has the name $benevoleNom
      *
-     * @param mixed $benevoleNom
+     * @param mixed $benevoleNom Le nom du benevole
+     *
      * @return Benevole|void
      */
     public function reverseTransform($benevoleNom)
@@ -55,9 +76,12 @@ class BenevoleTransformer  implements DataTransformerInterface
             ->getRepository('UserBundle:Benevole')->findOneBy(array('nom' => $benevoleNom));
 
         if (null === $benevole) {
-            throw new TransformationFailedException(sprintf('There is no "%s" exists',
-                $benevoleNom
-            ));
+            throw new TransformationFailedException(
+                sprintf(
+                    'There is no "%s" exists',
+                    $benevoleNom
+                )
+            );
         }
 
         return $benevole;

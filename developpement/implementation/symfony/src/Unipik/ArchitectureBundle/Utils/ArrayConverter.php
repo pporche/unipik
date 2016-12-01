@@ -1,19 +1,29 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: florian
+ * Date: 19/04/16
+ * Time: 11:59
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 
 namespace Unipik\ArchitectureBundle\Utils;
 
 /**
- * Created by PhpStorm.
- * User: fleriche
- * Date: 29/09/16
- * Time: 09:52
- */
-
-/**
  * Conversion tools between PHP arrays and Postgresql arrays
  *
- * Class ArrayConverter
- * @package Unipik\ArchitectureBundle\Utils
+ * @category None
+ * @package  ArchitectureBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 class ArrayConverter {
 
@@ -21,7 +31,8 @@ class ArrayConverter {
      * Convert a PHP array into a string formatted for the database's domain
      * http://stackoverflow.com/a/5632171/6612380
      *
-     * @param $array
+     * @param array $set Le phparray
+     *
      * @return String
      */
     public static function phpArrayToPgArray($set) {
@@ -44,15 +55,16 @@ class ArrayConverter {
      * Convert a string formatted for the database's domain into a PHP array
      * http://stackoverflow.com/a/27964420/6612380
      *
-     * @param $s
-     * @param int $start
-     * @param null $end
+     * @param string $s     Le pgarray
+     * @param int    $start Debut de chaine
+     * @param null   $end   Fin de chaine
+     *
      * @return array|null
      */
-    public static function pgArrayToPhpArray($s, $start = 0, &$end = NULL)
+    public static function pgArrayToPhpArray($s, $start = 0, &$end = null)
     {
         if (empty($s) || $s[0] != '{') {
-            return NULL;
+            return null;
         }
         $return = array();
         $string = false;
@@ -75,15 +87,15 @@ class ArrayConverter {
                 $return[] = $v;
                 $v = '';
             } else if (!$string && ($ch == '"' || $ch == "'")) {
-                $string = TRUE;
+                $string = true;
                 $quote = $ch;
-            } else if (!$string && ($ch = '(')){
-                $string = TRUE;
+            } else if (!$string && ($ch = '(')) {
+                $string = true;
                 $quote = ')';
             } else if ($string && $ch == $quote && $s[$i - 1] == "\\") {
                 $v = substr($v, 0, -1) . $ch;
             } else if ($string && $ch == $quote && $s[$i - 1] != "\\") {
-                $string = FALSE;
+                $string = false;
             } else {
                 $v .= $ch;
             }
@@ -98,8 +110,8 @@ class ArrayConverter {
      * L'array est passé en valeur, le nouveau tableau
      * est passé en sortie.
      *
-     * @param String $pgArray
-     * @param $element
+     * @param String $pgArray Le pgarray
+     * @param array  $element L'element
      *
      * @return String
      */
@@ -119,8 +131,8 @@ class ArrayConverter {
      * L'array est passé en valeur, le nouveau tableau
      * est passé en sortie.
      *
-     * @param String $pgArray
-     * @param $element
+     * @param String $pgArray Le pgarray
+     * @param array  $element L'element
      *
      * @return String
      */

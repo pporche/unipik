@@ -1,0 +1,5 @@
+- name: Ensure curl is installed on all nodes.
+  apt:
+    name: "curl"
+    state: installed
+    update_cache: yes

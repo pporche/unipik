@@ -1,0 +1,95 @@
+% version 1.00, date 07/03/16, auteur Mélissa Bignoux
+
+\documentclass[asi]{picInsa}
+
+%Pour le schéma d'architecture
+\usepackage{etex}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,chains,backgrounds,fit}
+%FIN Pour le shéma d'architecture
+
+\DeclareGraphicsRule{*}{pdf}{*}{}
+\usepackage{pdfpages}
+\usepackage{vocabulaireUnipik}
+
+
+
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\newcommand{\ligneMaj}[3] {
+	\rowcolor[gray]{0.55} \textbf{\textit{#1}} & #2  &  #3\\
+	\hline
+}
+\newcommand{\ligneSup}[3] {
+	\rowcolor[gray]{0.65} |\textunderscore \textbf{\textit{#1}} & #2  &  #3\\
+	\hline
+}
+\newcommand{\ligneMed}[3] {
+	\rowcolor[gray]{0.75} \hspace{0.25cm} |\textunderscore #1  & #2 & #3 \\
+	\hline
+}
+\newcommand{\ligneSub}[3] {
+	\rowcolor[gray]{0.85}  \hspace{0.5cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\newcommand{\ligneSubSub}[3] {
+	\rowcolor[gray]{0.95}  \hspace{0.75cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\newcommand{\ligneTache}[3] {
+	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
+	\hline
+}
+\title{\DCP{}}
+\author{\Florian{}, \Kafui{}, \Melissa{}, \Julie{}, \Mathieu{}} %à changer
+
+
+\titreGeneral{\DCP}
+\sousTitreGeneral{\nomEquipe}
+\titreAcronyme{\DCPCourt}
+
+\titreDetaille{\DCPCourt\_D\_\nomEquipe\_l2}
+\referenceVersion{\DCPCourt\_D\_\nomEquipe\_\versionPrive}
+\auteurs{\Melissa{} \& \Florian{} \& \Michel{}}
+\destinataires{\nomEquipe}
+\resume{Le présent document contient la présentation du \DCP{} \nomEquipe.}
+\motsCles{\DCPCourt{}}
+\natureDerniereModification{Création}
+\modeDiffusionControle{}
+
+\begin{document}
+
+\couverture{}
+
+ \informationsGenerales{}
+\input{sources/00_pageService.tex}
+
+\tableofcontents
+
+\setcounter{chapter}{0}
+
+
+\chapter*{Introduction}
+\label{intro}
+\input{sources/01_introduction.tex}
+
+\chapter{Cas d'utilisation}
+\label{casUtilisation}
+\input{sources/02_casUtilisation.tex}
+
+\chapter{Maquettes}
+\label{maquettes}
+\input{sources/03_maquettes.tex}
+
+\begin{appendix}
+\part*{Annexes}
+\listoffigures
+\addcontentsline{toc}{chapter}{Table des figures}
+	 
+\listoftables
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+\end{appendix}
+\pageQuatriemeCouverture
+
+\end{document}

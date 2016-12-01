@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: mmartinsbaltar
- * Date: 27/04/16
- * Time: 12:07
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form\Etablissement;
@@ -16,20 +24,35 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Unipik\ArchitectureBundle\Form\AbstractFieldsetType;
 
+/**
+ * Le type info etablissement
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class InfoEtablissementType extends AbstractFieldsetType {
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * Formbuilder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options){
         $builder
-            ->add('nom', TextType::class, array('label' => "Nom de l'établissement"))
-        ;
+            ->add('nom', TextType::class, array('label' => "Nom de l'établissement"));
     }
 
     /**
      * {@inheritdoc}
+     * Renvoie adresse
+     *
+     * @return string
      */
     public function getBlockPrefix() {
         return 'adresse';

@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: jpain01
- * Date: 14/09/16
- * Time: 13:59
+ * User: Kafui
+ * Date: 13/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Form\Intervention;
@@ -11,6 +19,7 @@ namespace Unipik\InterventionBundle\Form\Intervention;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -18,14 +27,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Unipik\ArchitectureBundle\Form\Adresse\VilleType;
 use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
 
-
+/**
+ * Le type recherche avancee
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class RechercheAvanceeType extends AbstractType
 {
     private $entityManager;
 
     /**
      * VilleType constructor.
-     * @param ObjectManager $entityManager
+     *
+     * @param ObjectManager $entityManager Le manager
      */
     public function __construct(ObjectManager $entityManager)
     {
@@ -33,16 +51,41 @@ class RechercheAvanceeType extends AbstractType
     }
 
     /**
-     * form builder
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * Form builder
+     *
+     * @param FormBuilderInterface $builder Le builder
+     * @param array                $options Les options
+     *
+     * @return object
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
+
+        $dansVilleOuParDistance = array('required' => false, 'expanded' => true, 'multiple' => false,
+            'placeholder' => 'Aucun',
+            'choices' => [
+                'Dans une ville' => 'dansVille',
+                'Par distance d\'un lieu' => 'distanceLieu'
+            ]);
+
+        $villeOuDomicile = array('required' => false, 'expanded' => true, 'multiple' => false,
+            'choices' => [
+                'Ville' => 'ville',
+                'Mon domicile' => 'domicile'
+            ]);
+
+        $distanceChoiceType = array('required' => false,
+            'choices' => [
+                5 => 5,
+                10 => 10,
+                20 => 20,
+                50 => 50,
+                100 => 100
+            ]);
 
         $optionChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
             'choices' => [
                 'Toutes' => '',
-                'Plaidoyers' => 'plaidoyer',
+                'Action éducative' => 'plaidoyer',
                 'Frimousses' => 'frimousse',
                 'Autres interventions' => 'autreIntervention'
             ],);
@@ -60,7 +103,7 @@ class RechercheAvanceeType extends AbstractType
                 'Toutes' => '',
                 'En cours' => 'attribuees',
                 'Réalisées' => 'realisees',
-        ],);
+            ],);
 
         $niveauFrimousse = array( 'expanded' => false, 'multiple' => true, 'mapped' => false, 'required' => false,
             'choices' => [
@@ -132,11 +175,14 @@ class RechercheAvanceeType extends AbstractType
             ->add('niveauFrimousse', ChoiceType::class, $niveauFrimousse)
             ->add('niveauPlaidoyer', ChoiceType::class, $niveauPlaidoyer)
             ->add('theme', ChoiceType::class, $theme)
-            ->add('date', CheckboxType::class, array(
+            ->add(
+                'date', CheckboxType::class, array(
                 'label'    => 'Toutes',
                 'required' => false,
-            ))
-            ->add('start', DateType::class, array(
+                )
+            )
+            ->add(
+                'start', DateType::class, array(
                 'widget' => 'single_text',
 
                 // do not render as type="date", to avoid HTML5 date pickers
@@ -146,8 +192,10 @@ class RechercheAvanceeType extends AbstractType
                 'attr' => ['class' => 'js-datepicker'],
                 'format' => 'dd-MM-yyyy',
                 'required' => false
-            ))
-            ->add('end', DateType::class, array(
+                )
+            )
+            ->add(
+                'end', DateType::class, array(
                 'widget' => 'single_text',
 
                 // do not render as type="date", to avoid HTML5 date pickers
@@ -157,11 +205,14 @@ class RechercheAvanceeType extends AbstractType
                 'attr' => ['class' => 'js-datepicker'],
                 'format' => 'dd-MM-yyyy',
                 'required' => false
-            ))
-            ->add('ville',VilleType::class, array('required' => false) )
-        ;
+                )
+            )
+            ->add('dansVilleOuParDistance', ChoiceType::class, $dansVilleOuParDistance)
+            ->add('villeOuDomicile', ChoiceType::class, $villeOuDomicile)
+            ->add('ville', VilleType::class, array('required' => false))
+            ->add('geolocalisation', HiddenType::class)
+            ->add('distance', ChoiceType::class, $distanceChoiceType);
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
     }
-
 }

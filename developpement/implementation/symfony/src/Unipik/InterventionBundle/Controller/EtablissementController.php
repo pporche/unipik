@@ -4,6 +4,14 @@
  * User: mmartinsbaltar
  * Date: 04/05/16
  * Time: 09:48
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\InterventionBundle\Controller;
@@ -12,6 +20,7 @@ namespace Unipik\InterventionBundle\Controller;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Unipik\InterventionBundle\Entity\Etablissement;
@@ -19,12 +28,23 @@ use Unipik\InterventionBundle\Form\EtablissementType;
 use Unipik\InterventionBundle\Form\Etablissement\RechercheAvanceeType;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
 
+/**
+ * Le controller qui gère les etablissements
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
+ */
 class EtablissementController extends Controller {
 
     /**
-     * @param $id integer Id de l'établissement souhaitant réaliser une demande.
-     * @return Response
      * Renvoie vers la page de consultation liée à l'établissement.
+     *
+     * @param integer $id Id de l'établissement souhaitant réaliser une demande.
+     *
+     * @return Response
      */
     public function consultationAction($id) {
         $em = $this->getDoctrine()->getManager();
@@ -33,19 +53,21 @@ class EtablissementController extends Controller {
         $repositoryIntervention =  $em->getRepository('InterventionBundle:Intervention');
         $interventionsRealisees = $repositoryIntervention->getInterventionsRealiseesOuNonEtablissement($etablissement, true);
         $interventionsDemandeesNonRealisees = $repositoryIntervention->getInterventionsRealiseesOuNonEtablissement($etablissement, false);
-        return $this->render('InterventionBundle:Etablissement:consultation.html.twig',array('etablissement' => $etablissement, 'listeInterventionsRealisees'=> $interventionsRealisees, 'listeInterventionsDemandeesNonRealisees'=> $interventionsDemandeesNonRealisees));
+        return $this->render('InterventionBundle:Etablissement:consultation.html.twig', array('etablissement' => $etablissement, 'listeInterventionsRealisees'=> $interventionsRealisees, 'listeInterventionsDemandeesNonRealisees'=> $interventionsDemandeesNonRealisees));
     }
 
     /**
-     * @param Request $request
+     * Ajoute un etablissement
+     *
+     * @param Request $request la requete
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * ajoute un etablissement
      */
     public function addAction(Request $request) {
         $institute = new Etablissement();
         $form = $this->get('form.factory')->create(EtablissementType::class, $institute)->remove('etablissement_typeEnseignement_placeholder');
 
-        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $educationTypeArray = $form->get("typeEnseignement")->getData();
             $institute->setTypeEnseignement($educationTypeArray);
 
@@ -81,9 +103,11 @@ class EtablissementController extends Controller {
     }
 
     /**
-     * @param $id
+     * Supprime un etablissement
+     *
+     * @param Int $id id
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * supprime un etablissement
      */
     public function deleteEtablissementAction($id) {
         $em = $this->getDoctrine()->getEntityManager();
@@ -95,12 +119,14 @@ class EtablissementController extends Controller {
     }
 
     /**
-     * @param Request $request
+     * Supprime des etablissements
+     *
+     * @param Request $request la requete
+     *
      * @return Response
-     * supprime des etablissements
      */
     public function deleteEtablissementsAction(Request $request) {
-        if($request->isXmlHttpRequest()) {
+        if ($request->isXmlHttpRequest()) {
             $ids = json_decode($request->request->get('ids'));
 
             $em = $this->getDoctrine()->getManager();
@@ -116,8 +142,9 @@ class EtablissementController extends Controller {
     }
 
     /**
+     * Renvoie les etablissements
+     *
      * @return \Doctrine\Common\Persistence\ObjectRepository|\Unipik\InterventionBundle\Entity\EtablissementRepository
-     * renvoie les etablissements
      */
     public function getEtablissementRepository(){
         $em = $this->getDoctrine()->getManager();
@@ -125,41 +152,57 @@ class EtablissementController extends Controller {
     }
 
     /**
-     * @return Response
      * Renvoie vers la page affichant la liste des données des établissements.
+     *
+     * @param Request $request la requete
+     *
+     * @return Response
      */
     public function listeAction(Request $request) {
+        $user = $this->getUser();
+
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
 
-        $typeEtablissement = $form->get("typeEtablissement")->getData();
-        $ville = $form->get("ville")->getData();
-        $typeEnseignement = $form->get("typeEnseignement")->getData();
-        $typeCentre = $form->get("typeCentre")->getData();
-        $typeAutre = $form->get("typeAutreEtablissement")->getData();
-
         $rowsPerPage = $request->get("rowsPerPage", 10);
-        $field = $request->get("field", "nom");
+        $field = $request->get("field", "ville");
         $desc = $request->get("desc", false);
 
         $repository = $this->getEtablissementRepository();
 
-        $listEtablissement = $repository->getType($typeEtablissement, $typeEnseignement, $typeCentre, $typeAutre, $ville, $field, $desc);
+//        if($request->isMethod('GET') && $form->isValid()) {
+            $typeEtablissement = $form->get("typeEtablissement")->getData();
+            $ville = $form->get("ville")->getData();
+            $geolocalisation = $form->get("geolocalisation")->getData();
+            $distance = $form->get("distance")->getData();
+            $types = $typeEtablissement != "" ? $form->get("type" . ucfirst($typeEtablissement))->getData() : null;
 
-        return $this->render('InterventionBundle:Etablissement:liste.html.twig', array(
+            $listEtablissement = $repository->getType($typeEtablissement, $types, $ville, $field, $desc, $geolocalisation, $distance, $user);
+//        } else {
+//            $typeEtablissement = "";
+//            $listEtablissement = $repository->getType("", "", null, $field, $desc, null, null);
+//        }
+
+        return $this->render(
+            'InterventionBundle:Etablissement:liste.html.twig', array(
             'field' => $field,
             'desc' => $desc,
             'rowsPerPage' => $rowsPerPage,
             'liste' => $listEtablissement,
             'typeEtablissement' => $typeEtablissement,
             'form' => $form->createView()
-        ));
+            )
+        );
     }
 
     /**
+     * Modification d'un etablissement
+     *
+     * @param Request $request la requete
+     * @param int     $id      l'id
+     *
      * @return mixed
-     * modification d'un etablissement
      */
     public function editAction(Request $request, $id) {
         $institute = $this->getEtablissementRepository()
@@ -180,11 +223,11 @@ class EtablissementController extends Controller {
 
             $instituteType =  $form->get('TypeGeneral')->getData();
 
-            if($instituteType == 'ens') {
+            if ($instituteType == 'ens') {
                 $institute->setTypeEnseignement($form->get('typeEnseignement')->getData());
                 $institute->setTypeCentre(null);
                 $institute->setTypeAutreEtablissement(null);
-            } else if($instituteType == 'centre') {
+            } else if ($instituteType == 'centre') {
                 $institute->setTypeCentre($form->get('typeCentre')->getData());
                 $institute->setTypeEnseignement(null);
                 $institute->setTypeAutreEtablissement(null);
@@ -211,9 +254,102 @@ class EtablissementController extends Controller {
         }
 
         $emails = json_encode($institute->getEmails()->toArray());
-        return $this->render('InterventionBundle:Etablissement:editEtablissement.html.twig', array('form' => $form->createView(),
+        return $this->render(
+            'InterventionBundle:Etablissement:editEtablissement.html.twig', array('form' => $form->createView(),
                                                                                    'etablissement' => $institute,
                                                                                    'emails' => $emails,
-        ));
+            )
+        );
+    }
+
+    /**
+     * Autocomplétion du nom d'un établissement
+     *
+     * @param Request $request La requete
+     *
+     * @return JsonResponse
+     */
+    public function etablissementAutocompleteAction(Request $request) {
+        $names = array();
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('InterventionBundle:Etablissement');
+
+
+        // Récupération de ce qui est tapé
+        $term = trim(strip_tags($request->get('term')));
+        $term = strtoupper($term);
+        // Récupération du département
+        if ($request->get('?dep')) {
+            $dep = trim(strip_tags($request->get('?dep')));
+            $dep = strtoupper($dep);
+        } else {
+            $dep = null;
+        }
+        // Récupération de la ville
+        if ($request->get('?ville')) {
+            $ville = trim(strip_tags($request->get('?ville')));
+            $ville = strtoupper($ville);
+        } else {
+            $ville = null;
+        }
+        // Récupération du type Enseignement
+        if ($request->get('?ens')) {
+            $typeEns = trim(strip_tags($request->get('?ens')));
+        } else {
+            $typeEns = null;
+        }
+        // Récupération du type Centre
+        if ($request->get('?centre')) {
+            $typeCentre = trim(strip_tags($request->get('?centre')));
+        } else {
+            $typeCentre = null;
+        }
+        // Récupération du type Autre Etablissement
+        if ($request->get('?autre')) {
+            $typeAutre = trim(strip_tags($request->get('?autre')));
+        } else {
+            $typeAutre = null;
+        }
+
+        $entities = $repository->etablissementAutocomplete($term, $dep, $ville, $typeEns, $typeCentre, $typeAutre);
+
+        foreach ($entities as $entity) {
+            $names[] = $entity->getNom();
+        }
+
+        $response = new JsonResponse();
+        $response->setData($names);
+
+        return $response;
+
+    }
+
+    /**
+     * Verify etablissement action
+     *
+     * @param Request $request La requete
+     *
+     * @return JsonResponse|Response
+     */
+    public function verifyEtablissementAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $etablissementNom = $request->get('etablissement');
+            $etablissementNom = strtoupper($etablissementNom);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('InterventionBundle:Etablissement');
+
+            $etablissement = $repository->findOneBy(array('nom' => $etablissementNom));
+
+            if ($etablissement) {
+                return new JsonResponse(array('result' => true));
+            } else {
+                return new JsonResponse(array('result' => false));
+            }
+
+        }
+        return new Response();
     }
 }

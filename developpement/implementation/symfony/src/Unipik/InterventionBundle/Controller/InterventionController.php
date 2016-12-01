@@ -73,7 +73,6 @@ class InterventionController extends Controller {
                 $form->get('dateIntervention')
                     ->getData()
             );
-            $intervention->setLieu($form->get('lieu')->getData());
             $intervention->setNbPersonne($form->get('nbPersonne')->getData());
 
             // Gestion des matériaux en fonction des types

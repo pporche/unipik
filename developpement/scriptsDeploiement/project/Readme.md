@@ -1,3 +1,7 @@
+installation des roles:
+
+sudo -E ansible-galaxy install -r requirements.yml #-E: pour avoir les paramètres de proxy http_proxy
+
 pour déployer integ:
 
 

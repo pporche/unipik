@@ -64,7 +64,13 @@ class RechercheAvanceeType  extends AbstractType
             'placeholder' => 'Aucun',
             'choices' => [
                 'Dans une ville' => 'dansVille',
-                'Par distance d\'une ville' => 'distanceVille'
+                'Par distance d\'un lieu' => 'distanceLieu'
+            ]);
+
+        $villeOuDomicile = array('required' => false, 'expanded' => true, 'multiple' => false,
+            'choices' => [
+                'Ville' => 'ville',
+                'Mon domicile' => 'domicile'
             ]);
 
         $distanceChoiceType = array('required' => false,
@@ -116,6 +122,7 @@ class RechercheAvanceeType  extends AbstractType
             ->add('typeCentre', ChoiceType::class, $optionCentreType)
             ->add('typeAutreEtablissement', ChoiceType::class, $optionAutreEtablissementType)
             ->add('dansVilleOuParDistance', ChoiceType::class, $dansVilleOuParDistance)
+            ->add('villeOuDomicile', ChoiceType::class, $villeOuDomicile)
             ->add('ville', VilleType::class, array('required' => false))
             ->add('geolocalisation', HiddenType::class)
             ->add('distance', ChoiceType::class, $distanceChoiceType);

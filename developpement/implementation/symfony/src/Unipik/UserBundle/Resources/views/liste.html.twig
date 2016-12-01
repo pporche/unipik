@@ -183,11 +183,149 @@
 //        $("#recherche_avancee_activitesToutes").change(hide_or_show);
 //        $("#recherche_avancee_respoActivitesToutes").change(hide_or_show);
         $(document).ready(function() {
+
+            if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')){
+                $('#ville').show();
+                $('#distanceKm').hide();
+                $("#recherche_avancee_distance").val("");
+                $('#distVilleOuDom').hide();
+                $('#recherche_avancee_villeOuDomicile:first-child').hide();
+            }else if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')){
+                if($('#recherche_avancee_villeOuDomicile_0').is(':checked')){
+                    $('#ville').show();
+                    $('#distanceKm').show();
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                }else{
+                    $('#ville').hide();
+                    $('#distanceKm').show();
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                }
+            }else {
+                $('#ville').hide();
+                $("#recherche_avancee_distance").val("");
+                $('#distanceKm').hide();
+                $('#distVilleOuDom').hide();
+                $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+            }
+
+            $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+
+            $('#recherche_avancee_dansVilleOuParDistance_placeholder').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_placeholder').is(':checked')) {
+                    $('#ville').hide();
+                    $('#distanceKm').hide();
+                    $('#distVilleOuDom').hide();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
+                    $('#recherche_avancee_ville').val('');
+                    $('#recherche_avancee_villeOuDomicile div:first-child').prop('checked', true);
+                    $("#recherche_avancee_distance").val("");
+                }
+            });
+
+            $('#recherche_avancee_dansVilleOuParDistance_0').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')) {
+                    $('#ville').show();
+                    $('#distanceKm').hide();
+                    $('#distVilleOuDom').hide();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
+                    $('#recherche_avancee_ville').val('');
+                    $('#recherche_avancee_villeOuDomicile div:first-child').prop('checked', true);
+                    $("#recherche_avancee_distance").val("");
+                }
+            });
+
+            $('#recherche_avancee_dansVilleOuParDistance_1').click(function() {
+                if($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
+                    $('#distanceKm').show();
+                    $('#ville').hide();
+                    $('#distVilleOuDom').show();
+                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
+
+                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
+                    $('#recherche_avancee_villeOuDomicile_1').prop('checked', true);
+                    $('#recherche_avancee_ville').val('');
+                }
+            });
+
+            $('#recherche_avancee_villeOuDomicile_0').click(function() {
+                if($('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
+                    $('#ville').show();
+                    $('#recherche_avancee_ville').val('');
+                }
+            });
+
+            $('#recherche_avancee_villeOuDomicile_1').click(function() {
+                if($('#recherche_avancee_villeOuDomicile_1').is(':checked')) {
+                    $('#ville').hide();
+                    $('#recherche_avancee_ville').val('');
+                }
+            });
+
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',
                 showPrevNext: true,
                 hidePageNumbers: false,
                 perPage:{{ rowsPerPage }} });
+        });
+
+        $(':submit').on('click', function (e) {
+            e.preventDefault();
+            var erreur = false;
+
+            if (($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked') || ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && ($('#recherche_avancee_villeOuDomicile_0').is(':checked')))) && $('#recherche_avancee_ville').val().trim().length==0) {
+                if ($('#erreurVille').prev()[0]==undefined) {
+                    $('#recherche_avancee_ville').after('<p id="erreurVille"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                } else {
+                    $('#erreurVille').show();
+                }
+                erreur = true;
+            } else {
+                $('#erreurVille').hide();
+            }
+
+            if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && $('#recherche_avancee_distance').val().trim().length==0) {
+                if ($('#erreurDistance').prev()[0]==undefined) {
+                    $('#recherche_avancee_distance').after('<p id="erreurDistance"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                } else {
+                    $('#erreurDistance').show();
+                }
+                erreur = true;
+            } else {
+                $('#erreurDistance').hide();
+            }
+
+            if ($('#recherche_avancee_ville').val().trim().length!=0 && $('#recherche_avancee_ville').val().indexOf(' (') < 0) {
+                if ($('#erreurCodePostal').prev()[0]==undefined) {
+                    $('#recherche_avancee_ville').after('<p id="erreurCodePostal"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Sélectionnez un code postal</p>');
+                } else {
+                    $('#erreurCodePostal').show();
+                }
+                erreur = true;
+            } else {
+                $('#erreurCodePostal').hide();
+            }
+
+            if (!erreur){
+                if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && $('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
+                    var ville = $('#recherche_avancee_ville').val();
+                    var geolocalisation = '';
+                    $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q=' + ville, function (dataVille) {
+                        if (dataVille.length > 0) {
+                            geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
+                            $("#recherche_avancee_geolocalisation").val(geolocalisation);
+                            $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+                            $(".user_admin_list").submit();
+                        }
+                        else {
+                            //Que fait-on si 0 match ?
+                        }
+                    });
+                }
+                else {
+                    $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+                    $(".user_admin_list").submit();
+                }
+            }
         });
     </script>
 {% endblock %}
@@ -284,13 +422,27 @@
                 {#{{ form_widget(form.responsabilitesActivites) }}#}
                 {#<br/>#}
 
-                <h5>Ville :</h5>
-                {{ form_widget(form.ville) }}
-                <br/>
+                <div id="filtrePar">
+                    <h5> Filtre par lieu :</h5>
+                    {{ form_widget(form.dansVilleOuParDistance) }}
+                </div>
+                <div id="distVilleOuDom">
+                    <h5> Distance de ville ou domicile ?</h5>
+                    {{ form_widget(form.villeOuDomicile) }}
+                </div>
+                <div id="ville">
+                    <h5> Ville :</h5>
+                    {{ form_widget(form.ville, { 'attr': {'class': 'input-sm'} }) }}
+                </div>
+                <div id="distanceKm">
+                    <h5> Distance en km :</h5>
+                    {{ form_widget(form.distance) }}
+                </div>
+                {{ form_widget(form.geolocalisation) }} {#A enlever lorsque le form_end est présent#}
                 <br/>
 
                 <div>
-                    <input id="submit" type="submit" value="OK" class="btn btn-primary"/>
+                    <input type="submit" value="OK" class="btn btn-primary"/>
                 </div>
                 {#{{ form_end(form) }}#}
 

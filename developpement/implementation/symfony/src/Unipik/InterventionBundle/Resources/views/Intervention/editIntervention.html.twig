@@ -12,12 +12,20 @@
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
     <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
     <script>
-        $('#intervention_dateIntervention').datepicker({
-            format: 'dd-mm-yyyy',
-            language: 'fr',
-            startDate: 'today',
-            autoclose: true
-        });
+        {% if is_granted('ROLE_ADMIN') %}
+            $('#intervention_dateIntervention').datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'fr',
+                autoclose: true
+            });
+        {% else %}
+            $('#intervention_dateIntervention').datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'fr',
+                startDate: 'today',
+                autoclose: true
+            });
+        {% endif %}
         {% if intervention.plaidoyer %}
         {% autoescape false %}
         var materiauxPlaidoyer = {{ materiaux }};
@@ -182,8 +190,15 @@
             {% endif %}
             {%  if intervention.heure %}
                 var heure = '{{ intervention.heure }}'.split(':',2);
-                $("#intervention_heure_hour").val(heure[0]);
-                $("#intervention_heure_minute").val(heure[1]);
+                if (heure[0].substring(0, 1)=="0")
+                    $("#intervention_heure_hour").val(heure[0].substring(1, 2));
+                else
+                    $("#intervention_heure_hour").val(heure[0]);
+
+                if (heure[1].substring(0, 1)=="0")
+                    $("#intervention_heure_minute").val(heure[1].substring(1, 2));
+                else
+                    $("#intervention_heure_minute").val(heure[1]);
             {% else %}
                 $("#intervention_heure_hour").val("");
                 $("#intervention_heure_minute").val("");
@@ -541,8 +556,6 @@
                 </table>
             {% endif %}
         </p>
-        {{ form_label(form.lieu, 'Lieu') }}
-        {{ form_widget(form.lieu, {'value' : intervention.lieu}) }}
         {{ form_label(form.nbPersonne, 'Nombre de participants') }}
         {{ form_widget(form.nbPersonne, {'value' : intervention.nbPersonne}) }}
         {% if intervention.plaidoyer %}

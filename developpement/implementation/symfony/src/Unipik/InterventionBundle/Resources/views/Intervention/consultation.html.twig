@@ -274,14 +274,6 @@
                                         },
                                     ]
                                 },
-                                {
-                                    width: 'auto',
-                                    stack: [
-                                        {text: " Lieu:\n\n", style: ['title'] },
-                                        {text: "{{ intervention.lieu | capitalize }}\n\n", style: ['body'] }
-                                    ]
-                                },
-
                             ]
                         },
 
@@ -583,20 +575,6 @@
                                             {{ intervention.heure }}
                                         {% endif %}
                                     </em>
-                                </div>
-
-
-                                <div class="col-sm-5 col-xs-12  col-md-4">
-                                    <dt>
-                                        <span class="glyphicon glyphicon-circle-arrow-right"></span> &nbsp Lieu:
-                                    </dt>
-                                </div>
-                                <div class="col-sm-5 col-xs-offset-1 col-xs-11 col-md-7">
-                                    <em>{% if intervention.lieu is empty %}
-                                            -
-                                        {% else %}
-                                            {{ intervention.lieu | capitalize }}
-                                        {% endif %}</em>
                                 </div>
 
                                 <div class="col-sm-5 col-xs-12  col-md-4">

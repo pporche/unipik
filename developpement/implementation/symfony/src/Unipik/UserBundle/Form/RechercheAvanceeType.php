@@ -20,8 +20,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Unipik\ArchitectureBundle\Form\Adresse\VilleType;
 use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
 
 /**
@@ -58,6 +60,28 @@ class RechercheAvanceeType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
+        $dansVilleOuParDistance = array('required' => false, 'expanded' => true, 'multiple' => false,
+            'placeholder' => 'Aucun',
+            'choices' => [
+                'Dans une ville' => 'dansVille',
+                'Par distance d\'un lieu' => 'distanceLieu'
+            ]);
+
+        $villeOuDomicile = array('required' => false, 'expanded' => true, 'multiple' => false,
+            'choices' => [
+                'Ville' => 'ville',
+                'Mon domicile' => 'domicile'
+            ]);
+
+        $distanceChoiceType = array('required' => false,
+            'choices' => [
+                5 => 5,
+                10 => 10,
+                20 => 20,
+                50 => 50,
+                100 => 100
+            ]);
+
         $activitesChoiceType = array('expanded' => true, 'multiple' => true, 'mapped' => false, 'required' => false,
             'choices' => [
                 'Actions pontuelles' => 'actions_ponctuelles',
@@ -81,9 +105,12 @@ class RechercheAvanceeType extends AbstractType {
             ->add('activites', ChoiceType::class, $activitesChoiceType)
             ->add('respoActivitesToutes', CheckboxType::class, array('label' => 'Toutes', 'required' => false))
             ->add('responsabilitesActivites', ChoiceType::class, $responsabilitesChoiceType)
-            ->add('ville', TextType::class, array('required' => false));
+            ->add('dansVilleOuParDistance', ChoiceType::class, $dansVilleOuParDistance)
+            ->add('villeOuDomicile', ChoiceType::class, $villeOuDomicile)
+            ->add('ville', VilleType::class, array('required' => false))
+            ->add('geolocalisation', HiddenType::class)
+            ->add('distance', ChoiceType::class, $distanceChoiceType);
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
-
     }
 }

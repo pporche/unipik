@@ -55,7 +55,7 @@ class UserController extends Controller {
      * @return Response
      */
     public function listeAction(Request $request) {
-
+        $user = $this->getUser();
 
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
@@ -68,8 +68,16 @@ class UserController extends Controller {
 
         $repository = $this->getBenevoleRepository();
 
-        $listBenevoles = $repository->getType($field, $desc, $ville);
+        //        if($request->isMethod('GET') && $form->isValid()) {
+        $ville = $form->get("ville")->getData();
+        $geolocalisation = $form->get("geolocalisation")->getData();
+        $distance = $form->get("distance")->getData();
 
+        $listBenevoles = $repository->getType($field, $desc, $ville, $geolocalisation, $distance, $user);
+//        } else {
+//            $typeEtablissement = "";
+//            $listEtablissement = $repository->getType("", "", null, $field, $desc, null, null);
+//        }
 
         return $this->render(
             'UserBundle::liste.html.twig', array(

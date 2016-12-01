@@ -3,3 +3,13 @@ proxy_env:
   https_proxy: 
   NO_PROXY:
 
+acme_tiny_challenges_directory: /var/www/my-app/current/
+acme_tiny_commit: 'daba51d37efd7c1f205f9da383b9b09968e30d29'
+
+letsencrypt_certs:
+  - 
+    name: "unicef-cert"
+    keypath: "/etc/ssl/letsencrypt/keys/unicef.key"
+    certpath: "/etc/ssl/letsencrypt/unicef.crt"
+    chainedcertpath: "/etc/ssl/letsencrypt/unicef.pem"
+    host: "178.62.122.122"

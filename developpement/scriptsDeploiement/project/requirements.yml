@@ -10,3 +10,4 @@
 - src: manala.npm
 - src: geerlingguy.nodejs
 - src: tersmitten.fail2ban
+- src: andreaswolf.letsencrypt

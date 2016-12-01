@@ -42,7 +42,7 @@ class EtablissementRepository extends EntityRepository {
      *
      * @return array
      */
-    public function getType($typeEtablissement, $type, $ville, $field, $desc, $geolocalisation=null, $distance=null) {
+    public function getType($typeEtablissement, $type, $ville, $field, $desc, $geolocalisation=null, $distance=null, $user=null) {
         $results = array();
         if (!isset($type)) {
             $type = array("maternelle", "elementaire", "college", "lycee", "superieur", "adolescent", "maison de retraite", "mairie", "autre", "");
@@ -68,10 +68,14 @@ class EtablissementRepository extends EntityRepository {
                 break;
             }
 
-            if ($ville) {
-                if ($distance) {
+            if ($distance) {
+                if ($ville) {
                     $this->_withinXkmVille($qb, $geolocalisation, $distance);
                 } else {
+                    $this->_withinXkmDomicile($qb, $user, $distance);
+                }
+            } else {
+                if ($ville) {
                     $this->_whereVilleIs($qb, $ville);
                 }
             }
@@ -275,6 +279,33 @@ class EtablissementRepository extends EntityRepository {
             ->andWhere('e.adresse = a')
             ->andWhere('a.ville = :ville')
             ->setParameter('ville', $ville);
+    }
+
+    /**
+     * Verifie si un point est dans une distance du domicile
+     *
+     * @param QueryBuilder $qb       Le querybuilder
+     * @param user         $user     L'utilisateur
+     * @param distance     $distance La distance
+     *
+     * @return void
+     */
+    private function _withinXkmDomicile(QueryBuilder $qb, $user, $distance) {
+        $qb
+            ->from('Unipik\UserBundle\Entity\Benevole', 'b')
+            ->andWhere('b = :user')
+            ->setParameter('user', $user)
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'adresse')
+            ->andWhere('b.adresse = adresse')
+            ->from('Unipik\ArchitectureBundle\Entity\Adresse', 'a')
+            ->andWhere('e.adresse = a')
+            ->andWhere(
+                $qb->expr()->eq(
+                    sprintf("STDWithin(a.geolocalisation, adresse.geolocalisation, :distance)"),
+                    $qb->expr()->literal(true)
+                )
+            )
+            ->setParameter('distance', $distance*1000);
     }
 
     /**

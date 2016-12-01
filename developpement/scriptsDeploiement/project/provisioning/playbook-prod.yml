@@ -33,6 +33,7 @@
 #    - manala.npm
     - geerlingguy.nodejs
     - parameters
+#    - andreaswolf.letsencrypt
 
   post_tasks:
     - npm: name=bower global=yes

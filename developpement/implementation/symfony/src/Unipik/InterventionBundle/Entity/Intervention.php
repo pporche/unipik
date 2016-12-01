@@ -725,7 +725,7 @@ class Intervention
      */
     public function isAutreIntervention()
     {
-        return !($this->getTypeIntervention() == "autre_intervention");
+        return ($this->getTypeIntervention() == "autre_intervention");
     }
 
 }

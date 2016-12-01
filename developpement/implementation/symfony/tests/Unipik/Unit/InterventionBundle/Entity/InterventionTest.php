@@ -59,7 +59,8 @@ class InterventionTest extends  EntityTestCase
             ->setHeure("18:00")
             ->setLieu("nulle part")
             ->setRemarques("remarque très intéressante")
-            ->setNiveauFrimousse("CE2-CM1");
+            ->setNiveauFrimousse("CE2-CM1")
+            ->setTypeIntervention("frimousse");
 
 
         $this->assertEquals($d,                             $i->getDemande());
@@ -78,27 +79,34 @@ class InterventionTest extends  EntityTestCase
         $this->assertEquals(false,                          $i->isPlaidoyer());
         $i->addMaterielDispoPlaidoyer("videoprojecteur");
         $this->assertEquals("videoprojecteur", $i->getMaterielDispoPlaidoyer()[0]);
+        $i->removeAllMateriauxFrimousse();
+        $i->setTypeIntervention("plaidoyer");
         $this->assertEquals(true,                           $i->isPlaidoyer());
         $i->removeMaterielDispoPlaidoyer("videoprojecteur");
+        $i->removeAllMaterielDispoPlaidoyer();
         $this->assertEquals(null, $i->getMaterielDispoPlaidoyer()[0]);
+        $i->setTypeIntervention("autre_intervention");
         $this->assertEquals(false,                          $i->isPlaidoyer());
-
 
         $this->assertEquals(false,                          $i->isFrimousse());
         $i->addMateriauxFrimousse("patron");
         $this->assertEquals("patron", $i->getMateriauxFrimousse()[0]);
+        $i->setTypeIntervention("frimousse");
         $this->assertEquals(true,                           $i->isFrimousse());
         $i->removeMateriauxFrimousse("patron");
         $this->assertEquals(null, $i->getMateriauxFrimousse()[0]);
+        $i->setTypeIntervention("plaidoyer");
         $this->assertEquals(false,                          $i->isFrimousse());
 
 
         $this->assertEquals(false,                           $i->isAutreIntervention());
         $i->setDescription("Long texte de description");
         $this->assertEquals("Long texte de description",    $i->getDescription());
+        $i->setTypeIntervention("autre_intervention");
         $this->assertEquals(true,                           $i->isAutreIntervention());
         $i->setDescription("");
         $this->assertEquals("",    $i->getDescription());
+        $i->setTypeIntervention("plaidoyer");
         $this->assertEquals(false,                           $i->isAutreIntervention());
 
     }

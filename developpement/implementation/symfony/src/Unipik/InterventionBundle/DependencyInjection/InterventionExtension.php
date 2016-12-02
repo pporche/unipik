@@ -30,8 +30,8 @@ use Symfony\Component\DependencyInjection\Loader;
  * @license  None None
  * @link     None
  */
-class InterventionExtension extends Extension
-{
+class InterventionExtension extends Extension {
+
     /**
      * {@inheritdoc}
      *
@@ -40,8 +40,7 @@ class InterventionExtension extends Extension
      *
      * @return object
      */
-    public function load(array $configs, ContainerBuilder $container)
-    {
+    public function load(array $configs, ContainerBuilder $container) {
         $configuration = new Configuration();
         $this->processConfiguration($configuration, $configs);
 

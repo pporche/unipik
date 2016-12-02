@@ -35,8 +35,7 @@ class ComplementType extends AbstractType {
      *
      * @return TextType
      */
-    public function getParent()
-    {
+    public function getParent() {
         return TextType::class;
     }
 

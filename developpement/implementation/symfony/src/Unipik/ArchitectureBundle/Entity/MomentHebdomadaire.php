@@ -99,8 +99,7 @@ class MomentHebdomadaire {
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->demandeMomentsVoulus = new \Doctrine\Common\Collections\ArrayCollection();
         $this->demandeMomentsAEviter = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -111,8 +110,7 @@ class MomentHebdomadaire {
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -123,8 +121,7 @@ class MomentHebdomadaire {
      *
      * @return MomentHebdomadaire
      */
-    public function setJour($jour)
-    {
+    public function setJour($jour) {
         $this->jour = $jour;
 
         return $this;
@@ -135,8 +132,7 @@ class MomentHebdomadaire {
      *
      * @return string
      */
-    public function getJour()
-    {
+    public function getJour() {
         return $this->jour;
     }
 
@@ -147,8 +143,7 @@ class MomentHebdomadaire {
      *
      * @return MomentHebdomadaire
      */
-    public function setMoment($moment)
-    {
+    public function setMoment($moment) {
         $this->moment = $moment;
 
         return $this;
@@ -159,8 +154,7 @@ class MomentHebdomadaire {
      *
      * @return string
      */
-    public function getMoment()
-    {
+    public function getMoment() {
         return $this->moment;
     }
 
@@ -171,8 +165,7 @@ class MomentHebdomadaire {
      *
      * @return MomentHebdomadaire
      */
-    public function addDemandeMomentsVoulus(\Unipik\InterventionBundle\Entity\Demande $demande)
-    {
+    public function addDemandeMomentsVoulus(\Unipik\InterventionBundle\Entity\Demande $demande) {
         $this->demandeMomentsVoulus[] = $demande;
 
         return $this;
@@ -185,8 +178,7 @@ class MomentHebdomadaire {
      *
      * @return MomentHebdomadaire
      */
-    public function addDemandeMomentsAEviter(\Unipik\InterventionBundle\Entity\Demande $demande)
-    {
+    public function addDemandeMomentsAEviter(\Unipik\InterventionBundle\Entity\Demande $demande) {
         $this->demandeMomentsAEviter[] = $demande;
 
         return $this;

@@ -31,6 +31,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @link     None
  */
 class MailTask {
+
     /**
      * L'id
      *

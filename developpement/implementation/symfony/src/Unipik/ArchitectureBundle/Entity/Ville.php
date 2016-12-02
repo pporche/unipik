@@ -31,8 +31,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="ville")
  * @ORM\Entity
  */
-class Ville
-{
+class Ville {
+
     /**
      * L'id
      *
@@ -65,8 +65,7 @@ class Ville
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->codePostal = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -75,8 +74,7 @@ class Ville
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -87,8 +85,7 @@ class Ville
      *
      * @return Ville
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -99,8 +96,7 @@ class Ville
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -111,8 +107,7 @@ class Ville
      *
      * @return Ville
      */
-    public function addCodePostal(\Unipik\ArchitectureBundle\Entity\CodePostal $codePostal)
-    {
+    public function addCodePostal(\Unipik\ArchitectureBundle\Entity\CodePostal $codePostal) {
         $this->codePostal[] = $codePostal;
 
         return $this;
@@ -125,8 +120,7 @@ class Ville
      *
      * @return void
      */
-    public function removeCodePostal(\Unipik\ArchitectureBundle\Entity\CodePostal $codePostal)
-    {
+    public function removeCodePostal(\Unipik\ArchitectureBundle\Entity\CodePostal $codePostal) {
         $this->codePostal->removeElement($codePostal);
     }
 
@@ -135,8 +129,7 @@ class Ville
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCodePostal()
-    {
+    public function getCodePostal() {
         return $this->codePostal;
     }
 

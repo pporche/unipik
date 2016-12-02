@@ -40,7 +40,7 @@ class ThemesType extends AbstractType {
      *
      * @return object
      */
-    public function buildForm(FormBuilderInterface $builder, array $options){
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $optionChoiceType = array( 'label' => false, 'attr' => ['class' => 'form-theme-pld'],
             'choices' => [
                 "Convention internationale des Droits de l'Enfant" => 'convention internationale des droits de l enfant',

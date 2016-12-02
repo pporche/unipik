@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * L'entity qui gère les ventes
  *
- * @ORM\Table(name="vente", indexes={@ORM\Index(name="IDX_888A2A4C8EAE3863", columns={"intervention_id"}), @ORM\Index(name="IDX_888A2A4CFF631228", columns={"etablissement_id"})})
+ * @ORM\Table(name="vente",                                                        indexes={@ORM\Index(name="IDX_888A2A4C8EAE3863", columns={"intervention_id"}), @ORM\Index(name="IDX_888A2A4CFF631228", columns={"etablissement_id"})})
  * @ORM\Entity(repositoryClass="Unipik\InterventionBundle\Entity\VenteRepository")
  *
  * @category None
@@ -29,8 +29,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @license  None None
  * @link     None
  */
-class Vente
-{
+class Vente {
+
     /**
      * L'id
      *
@@ -101,8 +101,7 @@ class Vente
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -113,8 +112,7 @@ class Vente
      *
      * @return Vente
      */
-    public function setChiffreAffaire($chiffreAffaire)
-    {
+    public function setChiffreAffaire($chiffreAffaire) {
         $this->chiffreAffaire = $chiffreAffaire;
 
         return $this;
@@ -125,8 +123,7 @@ class Vente
      *
      * @return float
      */
-    public function getChiffreAffaire()
-    {
+    public function getChiffreAffaire() {
         return $this->chiffreAffaire;
     }
 
@@ -137,8 +134,7 @@ class Vente
      *
      * @return Vente
      */
-    public function setDateVente($date)
-    {
+    public function setDateVente($date) {
         $this->dateVente = $date;
 
         return $this;
@@ -149,8 +145,7 @@ class Vente
      *
      * @return \DateTime
      */
-    public function getDateVente()
-    {
+    public function getDateVente() {
         return $this->dateVente;
     }
 
@@ -161,8 +156,7 @@ class Vente
      *
      * @return Vente
      */
-    public function setRemarques($remarques)
-    {
+    public function setRemarques($remarques) {
         $this->remarques = $remarques;
 
         return $this;
@@ -173,8 +167,7 @@ class Vente
      *
      * @return string
      */
-    public function getRemarques()
-    {
+    public function getRemarques() {
         return $this->remarques;
     }
 
@@ -185,8 +178,7 @@ class Vente
      *
      * @return Vente
      */
-    public function setIntervention(Intervention $intervention = null)
-    {
+    public function setIntervention(Intervention $intervention = null) {
         $this->intervention = $intervention;
 
         return $this;
@@ -197,8 +189,7 @@ class Vente
      *
      * @return \Unipik\InterventionBundle\Entity\Intervention
      */
-    public function getIntervention()
-    {
+    public function getIntervention() {
         return $this->intervention;
     }
 
@@ -209,8 +200,7 @@ class Vente
      *
      * @return Vente
      */
-    public function setEtablissement(Etablissement $etablissement)
-    {
+    public function setEtablissement(Etablissement $etablissement) {
         $this->etablissement = $etablissement;
 
         return $this;
@@ -221,8 +211,7 @@ class Vente
      *
      * @return \Unipik\InterventionBundle\Entity\Etablissement
      */
-    public function getEtablissement()
-    {
+    public function getEtablissement() {
         return $this->etablissement;
     }
 }

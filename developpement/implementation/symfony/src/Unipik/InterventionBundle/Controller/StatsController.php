@@ -38,7 +38,7 @@ class StatsController extends Controller {
     /**
      * Intervention action
      *
-     * @return void
+     * @return object
      */
     public function interventionsAction() {
         $em = $this->getDoctrine()->getManager();
@@ -46,7 +46,7 @@ class StatsController extends Controller {
 
         $interventionsArray = array();
         $currentYear = date('Y') + 1;
-        for($i = 0; $i < self::NUMBER_YEAR; $i++) {
+        for ($i = 0; $i < self::NUMBER_YEAR; $i++) {
             $currentYearSup = $currentYear - $i;
             $currentYearInf = $currentYear - $i - 1;
             $countPlaidoyer = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::PLAIDOYER);
@@ -55,8 +55,10 @@ class StatsController extends Controller {
             array_push($interventionsArray, array('plaidoyers' => $countPlaidoyer, 'frimousses' => $countFrimousse, 'autres' => $countAutre));
         }
 
-        return $this->render('InterventionBundle:Statistiques:statsIntervention.html.twig', array(
+        return $this->render(
+            'InterventionBundle:Statistiques:statsIntervention.html.twig', array(
             'interventions' => json_encode($interventionsArray)
-        ));
+            )
+        );
     }
 }

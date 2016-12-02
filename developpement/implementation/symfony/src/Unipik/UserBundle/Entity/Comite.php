@@ -30,8 +30,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @license  None None
  * @link     None
  */
-class Comite
-{
+class Comite {
+
     /**
      * L'id
      *
@@ -95,8 +95,7 @@ class Comite
      *
      * @return object
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->niveauTheme = new \Doctrine\Common\Collections\ArrayCollection();
         $this->benevole = new \Doctrine\Common\Collections\ArrayCollection();
         $this->departement = new \Doctrine\Common\Collections\ArrayCollection();
@@ -108,8 +107,7 @@ class Comite
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -121,8 +119,7 @@ class Comite
      *
      * @return Comite
      */
-    public function addNiveauTheme(\Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme)
-    {
+    public function addNiveauTheme(\Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme) {
         $this->niveauTheme[] = $niveauTheme;
 
         return $this;
@@ -135,8 +132,7 @@ class Comite
      *
      * @return object
      */
-    public function removeNiveauTheme(\Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme)
-    {
+    public function removeNiveauTheme(\Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme) {
         $this->niveauTheme->removeElement($niveauTheme);
     }
 
@@ -145,8 +141,7 @@ class Comite
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getNiveauTheme()
-    {
+    public function getNiveauTheme() {
         return $this->niveauTheme;
     }
 
@@ -157,8 +152,7 @@ class Comite
      *
      * @return Comite
      */
-    public function addBenevole(\Unipik\UserBundle\Entity\Benevole $benevole)
-    {
+    public function addBenevole(\Unipik\UserBundle\Entity\Benevole $benevole) {
         $this->benevole[] = $benevole;
 
         return $this;
@@ -171,8 +165,7 @@ class Comite
      *
      * @return object
      */
-    public function removeBenevole(\Unipik\UserBundle\Entity\Benevole $benevole)
-    {
+    public function removeBenevole(\Unipik\UserBundle\Entity\Benevole $benevole) {
         $this->benevole->removeElement($benevole);
     }
 
@@ -181,8 +174,7 @@ class Comite
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getBenevole()
-    {
+    public function getBenevole() {
         return $this->benevole;
     }
 
@@ -194,8 +186,7 @@ class Comite
      *
      * @return Comite
      */
-    public function addDepartement(\Unipik\ArchitectureBundle\Entity\Departement $departement)
-    {
+    public function addDepartement(\Unipik\ArchitectureBundle\Entity\Departement $departement) {
         $this->departement[] = $departement;
 
         return $this;
@@ -208,8 +199,7 @@ class Comite
      *
      * @return object
      */
-    public function removeDepartement(\Unipik\ArchitectureBundle\Entity\Departement $departement)
-    {
+    public function removeDepartement(\Unipik\ArchitectureBundle\Entity\Departement $departement) {
         $this->departement->removeElement($departement);
     }
 
@@ -218,8 +208,7 @@ class Comite
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getDepartement()
-    {
+    public function getDepartement() {
         return $this->departement;
     }
 
@@ -230,8 +219,7 @@ class Comite
      *
      * @return Departement
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -242,8 +230,7 @@ class Comite
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 }

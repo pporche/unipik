@@ -60,7 +60,8 @@ class RechercheAvanceeType extends AbstractType
      *
      * @return object
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options) 
+    {
 
         $dansVilleOuParDistance = array('required' => false, 'expanded' => true, 'multiple' => false,
             'placeholder' => 'Aucun',
@@ -123,7 +124,8 @@ class RechercheAvanceeType extends AbstractType
             ->add('geolocalisation', HiddenType::class)
             ->add('distance', ChoiceType::class, $distanceChoiceType)
             ->add('CADebut', NumberType::class, array('required' => false))
-            ->add('CAFin', NumberType::class, array('required' => false)
+            ->add(
+                'CAFin', NumberType::class, array('required' => false)
             );
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));

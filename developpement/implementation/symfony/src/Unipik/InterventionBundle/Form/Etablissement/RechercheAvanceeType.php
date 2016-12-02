@@ -33,8 +33,7 @@ use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTran
  * @license  None None
  * @link     None
  */
-class RechercheAvanceeType  extends AbstractType
-{
+class RechercheAvanceeType  extends AbstractType {
     private $entityManager;
 
     /**
@@ -44,8 +43,7 @@ class RechercheAvanceeType  extends AbstractType
      *
      * @return object
      */
-    public function __construct(ObjectManager $entityManager)
-    {
+    public function __construct(ObjectManager $entityManager) {
         $this->entityManager = $entityManager;
     }
 

@@ -54,7 +54,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return array
      */
-    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $mesInterventions, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null, $distance = null, $geolocalisation = null ){
+    public function getType($start, $end, $dateChecked, $typeIntervention, $field, $desc, $statut, $mesInterventions, $user = null, $niveauFrimousse = null, $niveauPlaidoyer = null, $theme = null, $ville = null, $distance = null, $geolocalisation = null ) {
 
         $qb = $this->createQueryBuilder('i');
 
@@ -294,7 +294,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return ArrayCollection
      */
-    public function getInterventionsDeDemande($demande){
+    public function getInterventionsDeDemande($demande) {
         $query = $this->_em->createQuery('SELECT i FROM InterventionBundle:Intervention i  WHERE i.demande = :r ');
         $query->setParameter('r', $demande);
 
@@ -358,7 +358,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    private function _whereInterventionIsAttribuee(QueryBuilder $qb){
+    private function _whereInterventionIsAttribuee(QueryBuilder $qb) {
         $qb
             ->andWhere($qb->expr()->isNotNull('i.benevole'))
             ->andWhere($qb->expr()->eq('i.realisee', $qb->expr()->literal(false)));
@@ -371,7 +371,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    private function _whereInterventionIsNotAttribuee(QueryBuilder $qb){
+    private function _whereInterventionIsNotAttribuee(QueryBuilder $qb) {
         $qb
             ->andWhere($qb->expr()->isNull('i.benevole'));
     }
@@ -383,7 +383,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return object
      */
-    private function _whereInterventionIsRealisee(QueryBuilder $qb){
+    private function _whereInterventionIsRealisee(QueryBuilder $qb) {
         $qb
             ->andWhere($qb->expr()->isNotNull('i.benevole'))
             ->andWhere($qb->expr()->eq('i.realisee', $qb->expr()->literal(true)));
@@ -508,35 +508,41 @@ class InterventionRepository extends EntityRepository {
             ->setParameter('distance', $distance*1000);
     }
 
+
+    /**
+     * Renvoie le nombre d'interventions réalisées
+     *
+     * @param null $dateSup           La date superieure
+     * @param null $dateInf           La date Inferieure
+     * @param null $typeEtablissement Le type d'etablissement
+     * @param null $typeIntervention  Le type d'intervention
+     *
+     * @return mixed
+     */
     public function getNumberInterventionRealisee($dateSup = null, $dateInf = null, $typeEtablissement = null, $typeIntervention = null) {
         $qb = $this->createQueryBuilder('i')
             ->select('count(i)')
             ->where('i.realisee = true')
-            ->join('i.etablissement', 'e')
-        ;
+            ->join('i.etablissement', 'e');
 
-        if(isset($typeIntervention)) {
+        if (isset($typeIntervention)) {
             $qb->andWhere('i.typeIntervention = :typeIntervention')
-                ->setParameter('typeIntervention', $typeIntervention)
-            ;
+                ->setParameter('typeIntervention', $typeIntervention);
         }
 
-        if(isset($dateSup)) {
+        if (isset($dateSup)) {
             $qb->andWhere('i.dateIntervention < :dateSup')
-                ->setParameter('dateSup', $dateSup)
-            ;
+                ->setParameter('dateSup', $dateSup);
         }
 
-        if(isset($dateInf)) {
+        if (isset($dateInf)) {
             $qb->andWhere('i.dateIntervention > :dateInf')
-                ->setParameter('dateInf', $dateInf)
-            ;
+                ->setParameter('dateInf', $dateInf);
         }
 
-        if(isset($typeEtablissement)) {
+        if (isset($typeEtablissement)) {
             $qb->andWhere('e.typeEnseignement = :typeEtablissement')
-                ->setParameter('typeEtablissement', $typeEtablissement)
-            ;
+                ->setParameter('typeEtablissement', $typeEtablissement);
         }
 
         return $qb->getQuery()->getSingleScalarResult();

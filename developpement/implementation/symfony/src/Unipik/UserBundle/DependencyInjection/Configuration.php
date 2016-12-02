@@ -28,16 +28,15 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * @license  None None
  * @link     None
  */
-class Configuration implements ConfigurationInterface
-{
+class Configuration implements ConfigurationInterface {
+
     /**
      * {@inheritdoc}
      * Renvoie le configtreebuilder
      *
      * @return TreeBuilder
      */
-    public function getConfigTreeBuilder()
-    {
+    public function getConfigTreeBuilder() {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('user');
 

@@ -39,6 +39,7 @@ use Symfony\Component\Form\Extension\Core\Type\RadioType;
  * @link     None
  */
 class EtablissementType extends AbstractType {
+
     /**
      * Form builder
      *

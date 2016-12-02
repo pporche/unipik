@@ -32,7 +32,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class AbstractFieldsetType extends AbstractType {
 
-
     /**
      * {@inheritdoc}
      * Builds the view
@@ -60,7 +59,7 @@ abstract class AbstractFieldsetType extends AbstractType {
      *
      * @return void
      */
-    public function configureOptions(OptionsResolver $resolver){
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(
             array(
             'fieldset' => true,

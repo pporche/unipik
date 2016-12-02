@@ -40,7 +40,7 @@ class ElevesType extends AbstractType {
      *
      * @return object
      */
-    public function buildForm(FormBuilderInterface $builder){
+    public function buildForm(FormBuilderInterface $builder) {
         $builder
             ->add('nbEleves', IntegerType::class, array('label' => 'Nombre'));
     }

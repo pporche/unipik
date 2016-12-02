@@ -40,7 +40,7 @@ class MomentHebdomadaireRepository  extends EntityRepository {
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getByDayAndMoment($day, $moment) {
+    public function getByDayAndMoment($day, $moment)  {
         $qb = $this->createQueryBuilder('mh');
         $qb
             ->where('mh.jour = :jour')

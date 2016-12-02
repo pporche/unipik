@@ -146,7 +146,7 @@ class EtablissementController extends Controller {
      *
      * @return \Doctrine\Common\Persistence\ObjectRepository|\Unipik\InterventionBundle\Entity\EtablissementRepository
      */
-    public function getEtablissementRepository(){
+    public function getEtablissementRepository() {
         $em = $this->getDoctrine()->getManager();
         return $em->getRepository('InterventionBundle:Etablissement');
     }
@@ -171,7 +171,7 @@ class EtablissementController extends Controller {
 
         $repository = $this->getEtablissementRepository();
 
-//        if($request->isMethod('GET') && $form->isValid()) {
+        //        if($request->isMethod('GET') && $form->isValid()) {
             $typeEtablissement = $form->get("typeEtablissement")->getData();
             $ville = $form->get("ville")->getData();
             $geolocalisation = $form->get("geolocalisation")->getData();
@@ -179,10 +179,10 @@ class EtablissementController extends Controller {
             $types = $typeEtablissement != "" ? $form->get("type" . ucfirst($typeEtablissement))->getData() : null;
 
             $listEtablissement = $repository->getType($typeEtablissement, $types, $ville, $field, $desc, $geolocalisation, $distance, $user);
-//        } else {
-//            $typeEtablissement = "";
-//            $listEtablissement = $repository->getType("", "", null, $field, $desc, null, null);
-//        }
+        //        } else {
+        //            $typeEtablissement = "";
+        //            $listEtablissement = $repository->getType("", "", null, $field, $desc, null, null);
+        //        }
 
         return $this->render(
             'InterventionBundle:Etablissement:liste.html.twig', array(

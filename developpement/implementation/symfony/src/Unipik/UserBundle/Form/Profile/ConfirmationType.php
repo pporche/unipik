@@ -47,7 +47,7 @@ class ConfirmationType extends AbstractFieldsetType {
      *
      * @return object
      */
-    public function buildForm(FormBuilderInterface $builder, array $options){
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add(
                 'current_password', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'), array(

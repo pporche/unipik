@@ -29,6 +29,7 @@ use Doctrine\ORM\QueryBuilder;
  * @link     None
  */
 class VenteRepository extends EntityRepository {
+
     /**
      * Generic function for DB queries.
      *
@@ -43,6 +44,8 @@ class VenteRepository extends EntityRepository {
      * @param geoloc        $geolocalisation La geolocalisation
      * @param etablissement $etablissement   L'établissement qui fait la vente
      * @param intervention  $intervention    L'intervention liée à la vente
+     * @param int           $borne1          La borne min
+     * @param int           $borne2          La borne max
      *
      * @return array
      */
@@ -87,7 +90,7 @@ class VenteRepository extends EntityRepository {
                     ->orderBy('vi.nom', 'ASC');
             }
 
-        } else if ($field=="dateVente"){
+        } else if ($field=="dateVente") {
             if ($desc) {
                 $qb->orderBy('v.dateVente', 'DESC');
             } else {
@@ -125,6 +128,8 @@ class VenteRepository extends EntityRepository {
      * @param date         $start        La date de debut
      * @param date         $end          La date de fin
      * @param bool         $datesChecked La date est cochee
+     * @param int          $borne1       La borne min
+     * @param int          $borne2       La borne max
      *
      * @return QueryBuilder
      */
@@ -134,7 +139,7 @@ class VenteRepository extends EntityRepository {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
         }
 
-        if ($borne1!=null && $borne2!=null){
+        if ($borne1!=null && $borne2!=null) {
             $this->_whereVentesBetweenPrix($borne1, $borne2, $qb);
         }
     }
@@ -159,9 +164,9 @@ class VenteRepository extends EntityRepository {
     /**
      * Where Ventes between two prices
      *
-     * @param Double    $borne1 Le debut
-     * @param Double    $borne2   La fin
-     * @param QueryBuilder $qb    Le querybuilder
+     * @param Double       $borne1 Le debut
+     * @param Double       $borne2 La fin
+     * @param QueryBuilder $qb     Le querybuilder
      *
      * @return object
      */

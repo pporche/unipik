@@ -42,7 +42,7 @@ class UserController extends Controller {
      *
      * @return \Doctrine\Common\Persistence\ObjectRepository|BenevoleRepository
      */
-    public function getBenevoleRepository(){
+    public function getBenevoleRepository() {
         $em = $this->getDoctrine()->getManager();
         return $em->getRepository('UserBundle:Benevole');
     }
@@ -74,10 +74,10 @@ class UserController extends Controller {
         $distance = $form->get("distance")->getData();
 
         $listBenevoles = $repository->getType($field, $desc, $ville, $geolocalisation, $distance, $user);
-//        } else {
-//            $typeEtablissement = "";
-//            $listEtablissement = $repository->getType("", "", null, $field, $desc, null, null);
-//        }
+        //        } else {
+        //            $typeEtablissement = "";
+        //            $listEtablissement = $repository->getType("", "", null, $field, $desc, null, null);
+        //        }
 
         return $this->render(
             'UserBundle::liste.html.twig', array(
@@ -269,7 +269,7 @@ class UserController extends Controller {
      *
      * @return JsonResponse
      */
-    public function autocompleteAction(Request $request){
+    public function autocompleteAction(Request $request) {
         $users = array();
         $term = trim(strip_tags($request->get('term')));
 
@@ -287,7 +287,7 @@ class UserController extends Controller {
 
         foreach ($entities as $entity) {
 
-            if($entity->getNom() != 'anonyme'){
+            if ($entity->getNom() != 'anonyme') {
                 $users[] = ucfirst($entity->getPrenom())." ".ucfirst($entity->getNom())." (".$entity->getUsername().")";
             }
         }

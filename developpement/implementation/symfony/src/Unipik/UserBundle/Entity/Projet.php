@@ -94,8 +94,7 @@ class Projet {
      *
      * @return object
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->benevole = new \Doctrine\Common\Collections\ArrayCollection();
         //$this->contact = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -106,8 +105,7 @@ class Projet {
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -118,8 +116,7 @@ class Projet {
      *
      * @return Projet
      */
-    public function setChiffreAffaire($chiffreAffaire)
-    {
+    public function setChiffreAffaire($chiffreAffaire) {
         $this->chiffreAffaire = $chiffreAffaire;
 
         return $this;
@@ -130,8 +127,7 @@ class Projet {
      *
      * @return float
      */
-    public function getChiffreAffaire()
-    {
+    public function getChiffreAffaire() {
         return $this->chiffreAffaire;
     }
 
@@ -142,8 +138,7 @@ class Projet {
      *
      * @return Projet
      */
-    public function setRemarques($remarques)
-    {
+    public function setRemarques($remarques) {
         $this->remarques = $remarques;
 
         return $this;
@@ -154,8 +149,7 @@ class Projet {
      *
      * @return string
      */
-    public function getRemarques()
-    {
+    public function getRemarques() {
         return $this->remarques;
     }
 
@@ -166,8 +160,7 @@ class Projet {
      *
      * @return Projet
      */
-    public function setTypeProjet($typeProjet)
-    {
+    public function setTypeProjet($typeProjet) {
         $this->typeProjet = $typeProjet;
 
         return $this;
@@ -178,8 +171,7 @@ class Projet {
      *
      * @return string
      */
-    public function getTypeProjet()
-    {
+    public function getTypeProjet() {
         return $this->typeProjet;
     }
 
@@ -190,8 +182,7 @@ class Projet {
      *
      * @return Projet
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -202,8 +193,7 @@ class Projet {
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -214,8 +204,7 @@ class Projet {
      *
      * @return Projet
      */
-    public function addBenevole(\Unipik\UserBundle\Entity\Benevole $benevole)
-    {
+    public function addBenevole(\Unipik\UserBundle\Entity\Benevole $benevole) {
         $this->benevole[] = $benevole;
 
         return $this;
@@ -228,8 +217,7 @@ class Projet {
      *
      * @return object
      */
-    public function removeBenevole(\Unipik\UserBundle\Entity\Benevole $benevole)
-    {
+    public function removeBenevole(\Unipik\UserBundle\Entity\Benevole $benevole) {
         $this->benevole->removeElement($benevole);
     }
 
@@ -238,8 +226,7 @@ class Projet {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getBenevole()
-    {
+    public function getBenevole() {
         return $this->benevole;
     }
 

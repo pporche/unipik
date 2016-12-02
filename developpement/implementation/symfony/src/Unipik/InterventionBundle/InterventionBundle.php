@@ -27,6 +27,5 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * @license  None None
  * @link     None
  */
-class InterventionBundle extends Bundle
-{
+class InterventionBundle extends Bundle {
 }

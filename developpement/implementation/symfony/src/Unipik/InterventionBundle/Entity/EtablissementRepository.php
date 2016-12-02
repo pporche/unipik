@@ -39,6 +39,7 @@ class EtablissementRepository extends EntityRepository {
      * @param bool   $desc              Descendant ou non
      * @param geoloc $geolocalisation   La geolocalisation
      * @param int    $distance          La distance
+     * @param int    $user              L'utilisateur
      *
      * @return array
      */
@@ -86,7 +87,7 @@ class EtablissementRepository extends EntityRepository {
                 } else {
                     $qb->orderBy('e.nom', 'ASC');
                 }
-            }else{
+            } else {
                 if ($desc) {
                     $qb->from('Unipik\ArchitectureBundle\Entity\Adresse', 'ad')
                         ->andWhere('e.adresse = ad')

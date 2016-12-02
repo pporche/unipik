@@ -88,8 +88,7 @@ class NiveauThemeType extends AbstractType {
      *
      * @return void
      */
-    public function configureOptions(OptionsResolver $resolver)
-    {
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(
             array(
             'data_class' => 'Unipik\ArchitectureBundle\Entity\NiveauTheme'

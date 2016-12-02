@@ -33,6 +33,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @link     None
  */
 class Participe {
+
     /**
      * Le contact
      *
@@ -64,8 +65,7 @@ class Participe {
      *
      * @return void
      */
-    public function __construct(Contact $contact, Projet $projet, $estTuteur)
-    {
+    public function __construct(Contact $contact, Projet $projet, $estTuteur) {
         $this->contact = $contact;
         $this->projet = $projet;
         $this->estTuteur = $estTuteur;
@@ -76,8 +76,7 @@ class Participe {
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -86,8 +85,7 @@ class Participe {
      *
      * @return Contact
      */
-    public function getContact()
-    {
+    public function getContact() {
         return $this->contact;
     }
 
@@ -96,8 +94,7 @@ class Participe {
      *
      * @return projet
      */
-    public function getProjet()
-    {
+    public function getProjet() {
         return $this->projet;
     }
 
@@ -106,8 +103,7 @@ class Participe {
      *
      * @return boolean
      */
-    public function getEstTuteur()
-    {
+    public function getEstTuteur() {
         return $this->estTuteur;
     }
 
@@ -118,8 +114,7 @@ class Participe {
      *
      * @return Participe
      */
-    public function setEstTuteur($estTuteur)
-    {
+    public function setEstTuteur($estTuteur) {
         $this->estTuteur = $estTuteur;
 
         return $this;

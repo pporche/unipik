@@ -34,6 +34,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @link     None
  */
 class LoginType extends AbstractType {
+
     /**
      * Le formbuilder
      *

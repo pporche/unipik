@@ -105,8 +105,7 @@ class Adresse {
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -117,8 +116,7 @@ class Adresse {
      *
      * @return Adresse
      */
-    public function setVille(\Unipik\ArchitectureBundle\Entity\Ville $ville)
-    {
+    public function setVille(\Unipik\ArchitectureBundle\Entity\Ville $ville) {
         $this->ville = $ville;
 
         return $this;
@@ -129,8 +127,7 @@ class Adresse {
      *
      * @return \Unipik\ArchitectureBundle\Entity\Ville
      */
-    public function getVille()
-    {
+    public function getVille() {
         return $this->ville;
     }
 
@@ -141,8 +138,7 @@ class Adresse {
      *
      * @return Adresse
      */
-    public function setCodePostal(\Unipik\ArchitectureBundle\Entity\CodePostal $codePostal)
-    {
+    public function setCodePostal(\Unipik\ArchitectureBundle\Entity\CodePostal $codePostal) {
         $this->codePostal = $codePostal;
 
         return $this;
@@ -153,8 +149,7 @@ class Adresse {
      *
      * @return \Unipik\ArchitectureBundle\Entity\CodePostal
      */
-    public function getCodePostal()
-    {
+    public function getCodePostal() {
         return $this->codePostal;
     }
 
@@ -166,8 +161,7 @@ class Adresse {
      *
      * @return Adresse
      */
-    public function setAdresse($adresse)
-    {
+    public function setAdresse($adresse) {
         $this->adresse = $adresse;
 
         return $this;
@@ -178,8 +172,7 @@ class Adresse {
      *
      * @return string
      */
-    public function getAdresse()
-    {
+    public function getAdresse() {
         return $this->adresse;
     }
 
@@ -191,8 +184,7 @@ class Adresse {
      *
      * @return Adresse
      */
-    public function setComplement($complement)
-    {
+    public function setComplement($complement) {
         $this->complement = $complement;
 
         return $this;
@@ -203,8 +195,7 @@ class Adresse {
      *
      * @return string
      */
-    public function getComplement()
-    {
+    public function getComplement() {
         return $this->complement;
     }
 
@@ -215,8 +206,7 @@ class Adresse {
      *
      * @return Adresse
      */
-    public function setGeolocalisation($geolocalisation)
-    {
+    public function setGeolocalisation($geolocalisation) {
         $this->geolocalisation = $geolocalisation;
 
         return $this;
@@ -227,8 +217,7 @@ class Adresse {
      *
      * @return string
      */
-    public function getGeolocalisation()
-    {
+    public function getGeolocalisation() {
         return $this->geolocalisation;
     }
 }

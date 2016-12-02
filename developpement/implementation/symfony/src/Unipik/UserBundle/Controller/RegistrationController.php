@@ -42,8 +42,7 @@ use Geocoder\Provider\GoogleMaps;
  * @license  None None
  * @link     None
  */
-class RegistrationController extends BaseController
-{
+class RegistrationController extends BaseController {
 
     /**
      * Action for registration
@@ -52,8 +51,7 @@ class RegistrationController extends BaseController
      *
      * @return null|RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function registerAction(Request $request)
-    {
+    public function registerAction(Request $request) {
 
         /**
          * Le form factory
@@ -151,8 +149,7 @@ class RegistrationController extends BaseController
      *
      * @return RedirectResponse
      */
-    public function checkEmailAction()
-    {
+    public function checkEmailAction() {
         $email = $this->get('session')->get('fos_user_send_confirmation_email/email');
         $this->get('session')->remove('fos_user_send_confirmation_email/email');
         $user = $this->get('fos_user.user_manager')->findUserByEmail($email);
@@ -168,12 +165,11 @@ class RegistrationController extends BaseController
      * Add values of responsibilities to the set of potential activities.
      *
      * @param array $responsibilitiesArray Le tableau de responsabilites
-     * @param array $activitiesString Le tableau d'activites
+     * @param array $activitiesString      Le tableau d'activites
      *
      * @return string
      */
-    public function setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString)
-    {
+    public function setActivitesPotentiellesValues($responsibilitiesArray, $activitiesString) {
         $activitiesString = trim($activitiesString, '}');
         if ($activitiesString != '{') {
             $activitiesString = $activitiesString . ',';
@@ -201,8 +197,7 @@ class RegistrationController extends BaseController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function confirmedAction()
-    {
+    public function confirmedAction() {
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('L\'utilisateur n\'a pas accès à cette section.');
@@ -222,8 +217,7 @@ class RegistrationController extends BaseController
      *
      * @return mixed
      */
-    private function _getTargetUrlFromSession()
-    {
+    private function _getTargetUrlFromSession() {
         if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
             $tokenStorage = $this->get('security.token_storage');
         } else {

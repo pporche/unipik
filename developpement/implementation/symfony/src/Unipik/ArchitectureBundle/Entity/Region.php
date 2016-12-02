@@ -65,15 +65,12 @@ class Region {
      */
     private $pays;
 
-
-
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -84,8 +81,7 @@ class Region {
      *
      * @return Region
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -96,8 +92,7 @@ class Region {
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -108,8 +103,7 @@ class Region {
      *
      * @return Region
      */
-    public function setPays(\Unipik\ArchitectureBundle\Entity\Pays $pays)
-    {
+    public function setPays(\Unipik\ArchitectureBundle\Entity\Pays $pays) {
         $this->pays = $pays;
 
         return $this;
@@ -120,8 +114,7 @@ class Region {
      *
      * @return \Unipik\ArchitectureBundle\Entity\Pays
      */
-    public function getPays()
-    {
+    public function getPays() {
         return $this->pays;
     }
 }

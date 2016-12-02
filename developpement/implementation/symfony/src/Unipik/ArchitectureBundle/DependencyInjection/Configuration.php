@@ -37,8 +37,7 @@ class Configuration implements ConfigurationInterface {
      *
      * @return TreeBuilder
      */
-    public function getConfigTreeBuilder()
-    {
+    public function getConfigTreeBuilder() {
         $treeBuilder = new TreeBuilder();
 
         // Here you should define the parameters that are allowed to

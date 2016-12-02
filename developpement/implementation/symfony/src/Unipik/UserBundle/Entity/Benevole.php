@@ -36,8 +36,8 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
  * @license  None None
  * @link     None
  */
-class Benevole extends BaseUser
-{
+class Benevole extends BaseUser {
+
     /**
      * L'id
      *
@@ -379,7 +379,7 @@ class Benevole extends BaseUser
      *
      * @return $this
      */
-    public function removeAllResponsabilitesActivites(){
+    public function removeAllResponsabilitesActivites() {
         $this->responsabiliteActivite = "{}";
         $this->activitesPotentielles = "{}";
         return $this;

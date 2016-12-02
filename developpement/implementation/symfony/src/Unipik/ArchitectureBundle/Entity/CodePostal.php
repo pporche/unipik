@@ -95,8 +95,7 @@ class CodePostal {
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -107,8 +106,7 @@ class CodePostal {
      *
      * @return CodePostal
      */
-    public function setCode($code)
-    {
+    public function setCode($code) {
         $this->code = $code;
 
         return $this;
@@ -119,8 +117,7 @@ class CodePostal {
      *
      * @return string
      */
-    public function getCode()
-    {
+    public function getCode() {
         return $this->code;
     }
 
@@ -131,8 +128,7 @@ class CodePostal {
      *
      * @return Departement
      */
-    public function setDepartement(\Unipik\ArchitectureBundle\Entity\Departement $departement)
-    {
+    public function setDepartement(\Unipik\ArchitectureBundle\Entity\Departement $departement) {
         $this->departement = $departement;
 
         return $this;
@@ -143,8 +139,7 @@ class CodePostal {
      *
      * @return \Unipik\ArchitectureBundle\Entity\Departement
      */
-    public function getDepartement()
-    {
+    public function getDepartement() {
         return $this->departement;
     }
 
@@ -155,8 +150,7 @@ class CodePostal {
      *
      * @return CodePostal
      */
-    public function addVille(\Unipik\ArchitectureBundle\Entity\Ville $ville)
-    {
+    public function addVille(\Unipik\ArchitectureBundle\Entity\Ville $ville) {
         $this->ville[] = $ville;
 
         return $this;
@@ -169,8 +163,7 @@ class CodePostal {
      *
      * @return void
      */
-    public function removeVille(\Unipik\ArchitectureBundle\Entity\Ville $ville)
-    {
+    public function removeVille(\Unipik\ArchitectureBundle\Entity\Ville $ville) {
         $this->ville->removeElement($ville);
     }
 
@@ -179,8 +172,7 @@ class CodePostal {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getVille()
-    {
+    public function getVille() {
         return $this->ville;
     }
 

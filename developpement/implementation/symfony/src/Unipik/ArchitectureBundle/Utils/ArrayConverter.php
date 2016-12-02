@@ -61,8 +61,7 @@ class ArrayConverter {
      *
      * @return array|null
      */
-    public static function pgArrayToPhpArray($s, $start = 0, &$end = null)
-    {
+    public static function pgArrayToPhpArray($s, $start = 0, &$end = null) {
         if (empty($s) || $s[0] != '{') {
             return null;
         }

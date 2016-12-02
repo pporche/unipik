@@ -43,7 +43,7 @@ class InfoEtablissementType extends AbstractFieldsetType {
      *
      * @return object
      */
-    public function buildForm(FormBuilderInterface $builder, array $options){
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('nom', TextType::class, array('label' => "Nom de l'établissement"));
     }

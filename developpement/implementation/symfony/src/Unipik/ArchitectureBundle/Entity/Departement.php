@@ -95,8 +95,7 @@ class Departement {
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->comite = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -106,8 +105,7 @@ class Departement {
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -118,8 +116,7 @@ class Departement {
      *
      * @return Departement
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -130,8 +127,7 @@ class Departement {
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -142,8 +138,7 @@ class Departement {
      *
      * @return Departement
      */
-    public function setNumero($numero)
-    {
+    public function setNumero($numero) {
         $this->numero = $numero;
 
         return $this;
@@ -154,8 +149,7 @@ class Departement {
      *
      * @return string
      */
-    public function getNumero()
-    {
+    public function getNumero() {
         return $this->numero;
     }
 
@@ -166,8 +160,7 @@ class Departement {
      *
      * @return Departement
      */
-    public function setRegion(\Unipik\ArchitectureBundle\Entity\Region $region)
-    {
+    public function setRegion(\Unipik\ArchitectureBundle\Entity\Region $region) {
         $this->region = $region;
 
         return $this;
@@ -178,8 +171,7 @@ class Departement {
      *
      * @return \Unipik\ArchitectureBundle\Entity\Region
      */
-    public function getRegion()
-    {
+    public function getRegion() {
         return $this->region;
     }
 
@@ -190,8 +182,7 @@ class Departement {
      *
      * @return Departement
      */
-    public function addComite(\Unipik\UserBundle\Entity\Comite $comite)
-    {
+    public function addComite(\Unipik\UserBundle\Entity\Comite $comite) {
         $this->comite[] = $comite;
 
         return $this;
@@ -204,8 +195,7 @@ class Departement {
      *
      * @return object
      */
-    public function removeComite(\Unipik\UserBundle\Entity\Comite $comite)
-    {
+    public function removeComite(\Unipik\UserBundle\Entity\Comite $comite) {
         $this->comite->removeElement($comite);
     }
 
@@ -214,8 +204,7 @@ class Departement {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getComite()
-    {
+    public function getComite() {
         return $this->comite;
     }
 

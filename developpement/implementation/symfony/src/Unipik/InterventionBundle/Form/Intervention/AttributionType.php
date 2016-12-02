@@ -41,8 +41,7 @@ class AttributionType extends AbstractFieldsetType {
      *
      * @param ObjectManager $entityManager Le manager
      */
-    public function __construct(ObjectManager $entityManager)
-    {
+    public function __construct(ObjectManager $entityManager) {
         $this->entityManager = $entityManager;
     }
 

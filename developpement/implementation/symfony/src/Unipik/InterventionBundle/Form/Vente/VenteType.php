@@ -46,10 +46,12 @@ class VenteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('chiffreAffaire', MoneyType::class)
-            ->add('dateVente', DateType::class, array(
+            ->add(
+                'dateVente', DateType::class, array(
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy'
-            ))
+                )
+            )
             ->add('remarques', TextareaType::class, array('attr'=> ['rows' => '5', 'maxlength' => '500'], 'required' => false));
     }
 

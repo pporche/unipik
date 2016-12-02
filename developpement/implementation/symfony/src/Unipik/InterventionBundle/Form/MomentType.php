@@ -29,8 +29,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
  * @license  None None
  * @link     None
  */
-class MomentType extends AbstractType
-{
+class MomentType extends AbstractType {
 
     /**
      * Form builder
@@ -40,7 +39,7 @@ class MomentType extends AbstractType
      *
      * @return object
      */
-    public function buildForm(FormBuilderInterface $builder, array $options){
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $optionChoiceType = array( 'expanded' => true, 'multiple' => true,
             'choices' => [
                 'Matin' => 'matin',

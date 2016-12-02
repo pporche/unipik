@@ -42,8 +42,7 @@ class VilleAutocompleteTransformer implements DataTransformerInterface {
      *
      * @return void
      */
-    public function __construct(ObjectManager $entityManager)
-    {
+    public function __construct(ObjectManager $entityManager) {
         $this->entityManager = $entityManager;
     }
 
@@ -54,8 +53,7 @@ class VilleAutocompleteTransformer implements DataTransformerInterface {
      *
      * @return string
      */
-    public function transform($ville)
-    {
+    public function transform($ville) {
         if (null === $ville) {
             return '';
         }
@@ -70,8 +68,7 @@ class VilleAutocompleteTransformer implements DataTransformerInterface {
      *
      * @return Ville|void
      */
-    public function reverseTransform($villeNom)
-    {
+    public function reverseTransform($villeNom) {
         if (!$villeNom) {
             return null;
         }

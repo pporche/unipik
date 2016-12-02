@@ -40,8 +40,7 @@ class EtablissementAutocompleteTransformer implements DataTransformerInterface {
      *
      * @return void
      */
-    public function __construct(ObjectManager $entityManager)
-    {
+    public function __construct(ObjectManager $entityManager) {
         $this->entityManager = $entityManager;
     }
 
@@ -52,8 +51,7 @@ class EtablissementAutocompleteTransformer implements DataTransformerInterface {
      *
      * @return string
      */
-    public function transform($etablissement)
-    {
+    public function transform($etablissement) {
         if (null === $etablissement) {
             return '';
         }
@@ -68,8 +66,7 @@ class EtablissementAutocompleteTransformer implements DataTransformerInterface {
      *
      * @return \Unipik\InterventionBundle\Entity\Etablissement|void
      */
-    public function reverseTransform($etablissementNom)
-    {
+    public function reverseTransform($etablissementNom) {
         if (!$etablissementNom) {
             return '';
         }

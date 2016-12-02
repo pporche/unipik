@@ -52,8 +52,7 @@ class DemandeAnonymeType extends AbstractType {
      *
      * @return void
      */
-    public function __construct(ObjectManager $entityManager)
-    {
+    public function __construct(ObjectManager $entityManager) {
         $this->entityManager = $entityManager;
     }
 
@@ -65,8 +64,7 @@ class DemandeAnonymeType extends AbstractType {
      *
      * @return object
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $generalType = array('required' => true, 'mapped' => false,
             'label' => 'Type d\'établissement',
             'choices' => [
@@ -136,7 +134,7 @@ class DemandeAnonymeType extends AbstractType {
      *
      * @return object
      */
-    public function configureOptions(OptionsResolver $resolver){
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(
             array(
                 'data_class' => 'Unipik\InterventionBundle\Entity\Demande'

@@ -30,21 +30,24 @@ use OpsWay\Doctrine\ORM\Query\AST\Functions\Contains;
  * @license  None None
  * @link     None
  */
-class BenevoleRepository extends EntityRepository
-{
+class BenevoleRepository extends EntityRepository {
+
     /**
      * Generic function for DB queries.
      *
-     * @param string $field Le champs
-     * @param bool   $desc  Descendant ou non
-     * @param string $ville La ville
+     * @param string $field           Le champs
+     * @param bool   $desc            Descendant ou non
+     * @param string $ville           La ville
+     * @param geoloc $geolocalisation La geolocalisation
+     * @param geoloc $distance        La distance
+     * @param User   $user            L'utilisateur
      *
      * @return array
      */
-    public function getType($field, $desc, $ville, $geolocalisation=null, $distance=null, $user=null){
+    public function getType($field, $desc, $ville, $geolocalisation=null, $distance=null, $user=null) {
         $qb = $this->createQueryBuilder('b');
         $qb = $qb->where('b.nom != :nom')
-                    ->setParameter('nom', 'anonyme');
+            ->setParameter('nom', 'anonyme');
 
         if ($distance) {
             if ($ville) {
@@ -87,7 +90,7 @@ class BenevoleRepository extends EntityRepository
      *
      * @deprecated
      */
-    private function _getBenevolesByActivites(QueryBuilder $qb, $act){
+    private function _getBenevolesByActivites(QueryBuilder $qb, $act) {
         $qb
             ->andWhere('b.activitePotentielle @> array_append(ARRAY[]::type_activite[],:a)')
             ->setParameter('a', '('.$act[0].')');
@@ -110,7 +113,7 @@ class BenevoleRepository extends EntityRepository
      *
      * @deprecated
      */
-    private function _getBenevolesByResponsabilites(QueryBuilder $qb, $resp){
+    private function _getBenevolesByResponsabilites(QueryBuilder $qb, $resp) {
         $qb
             ->andWhere('b.responsabiliteActivite @> array_append(ARRAY[]::type_responsabilite_activite[],:a)')
             ->setParameter('a', '('.$resp[0].')');

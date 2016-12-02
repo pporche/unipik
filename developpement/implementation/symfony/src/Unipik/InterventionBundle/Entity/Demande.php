@@ -32,8 +32,8 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
  * @ORM\Table(name="demande", indexes={@ORM\Index(name="IDX_2694D7A5E7A1254A", columns={"contact_id"})})
  * @ORM\Entity
  */
-class Demande
-{
+class Demande {
+
     /**
      * L'id
      *
@@ -106,8 +106,7 @@ class Demande
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->momentsVoulus = new \Doctrine\Common\Collections\ArrayCollection();
         $this->momentsAEviter = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -118,8 +117,7 @@ class Demande
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -130,8 +128,7 @@ class Demande
      *
      * @return Demande
      */
-    public function setDateDemande($date)
-    {
+    public function setDateDemande($date) {
         $this->dateDemande = $date;
 
         return $this;
@@ -142,8 +139,7 @@ class Demande
      *
      * @return \DateTime
      */
-    public function getDateDemande()
-    {
+    public function getDateDemande() {
         return $this->dateDemande;
     }
 
@@ -152,8 +148,7 @@ class Demande
      *
      * @return \DateTime
      */
-    public function getDateDebutDisponibilite()
-    {
+    public function getDateDebutDisponibilite() {
         return $this->dateDebutDisponibilite;
     }
 
@@ -164,8 +159,7 @@ class Demande
      *
      * @return Demande
      */
-    public function setDateDebutDisponibilite($dateDebutDisponibilite)
-    {
+    public function setDateDebutDisponibilite($dateDebutDisponibilite) {
         $this->dateDebutDisponibilite = $dateDebutDisponibilite;
 
         return $this;
@@ -176,8 +170,7 @@ class Demande
      *
      * @return \DateTime
      */
-    public function getDateFinDisponibilite()
-    {
+    public function getDateFinDisponibilite() {
         return $this->dateFinDisponibilite;
     }
 
@@ -188,8 +181,7 @@ class Demande
      *
      * @return Demande
      */
-    public function setDateFinDisponibilite($dateFinDisponibilite)
-    {
+    public function setDateFinDisponibilite($dateFinDisponibilite) {
         $this->dateFinDisponibilite = $dateFinDisponibilite;
 
         return $this;
@@ -202,8 +194,7 @@ class Demande
      *
      * @return Demande
      */
-    public function setContact(\Unipik\UserBundle\Entity\Contact $contact)
-    {
+    public function setContact(\Unipik\UserBundle\Entity\Contact $contact) {
         $this->contact = $contact;
 
         return $this;
@@ -214,8 +205,7 @@ class Demande
      *
      * @return \Unipik\UserBundle\Entity\Contact
      */
-    public function getContact()
-    {
+    public function getContact() {
         return $this->contact;
     }
 
@@ -226,8 +216,7 @@ class Demande
      *
      * @return Demande
      */
-    public function addMomentsVoulus(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus)
-    {
+    public function addMomentsVoulus(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus) {
         $this->momentsVoulus[] = $momentsVoulus;
         $momentsVoulus->addDemandeMomentsVoulus($this);
 
@@ -241,8 +230,7 @@ class Demande
      *
      * @return object
      */
-    public function removeMomentsVoulus(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus)
-    {
+    public function removeMomentsVoulus(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsVoulus) {
         $this->momentsVoulus->removeElement($momentsVoulus);
     }
 
@@ -251,8 +239,7 @@ class Demande
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMomentsVoulus()
-    {
+    public function getMomentsVoulus() {
         return $this->momentsVoulus;
     }
 
@@ -263,8 +250,7 @@ class Demande
      *
      * @return Demande
      */
-    public function addMomentsAEviter(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsAEviter)
-    {
+    public function addMomentsAEviter(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsAEviter) {
         $this->momentsAEviter[] = $momentsAEviter;
         $momentsAEviter->addDemandeMomentsAEviter($this);
         return $this;
@@ -277,8 +263,7 @@ class Demande
      *
      * @return object
      */
-    public function removeMomentsAEviter(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsAEviter)
-    {
+    public function removeMomentsAEviter(\Unipik\ArchitectureBundle\Entity\MomentHebdomadaire $momentsAEviter) {
         $this->momentsAEviter->removeElement($momentsAEviter);
     }
 
@@ -287,8 +272,7 @@ class Demande
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMomentsAEviter()
-    {
+    public function getMomentsAEviter() {
         return $this->momentsAEviter;
     }
 }

@@ -39,7 +39,7 @@ class PlageDateType extends AbstractType {
      *
      * @return object
      */
-    public function buildForm(FormBuilderInterface $builder, array $options){
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add(
                 'debut', DateType::class, array(

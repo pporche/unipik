@@ -36,8 +36,8 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
  * @license  None None
  * @link     None
  */
-class Contact
-{
+class Contact {
+
     /**
      * L'id
      *
@@ -168,8 +168,7 @@ class Contact
      *
      * @return object
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->etablissement = new \Doctrine\Common\Collections\ArrayCollection();
         //$this->projet = new \Doctrine\Common\Collections\ArrayCollection();
         $this->participe = new \Doctrine\Common\Collections\ArrayCollection();
@@ -181,8 +180,7 @@ class Contact
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -193,8 +191,7 @@ class Contact
      *
      * @return Contact
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
@@ -205,8 +202,7 @@ class Contact
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -217,8 +213,7 @@ class Contact
      *
      * @return Contact
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -229,8 +224,7 @@ class Contact
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -240,8 +234,7 @@ class Contact
      *
      * @return Participe
      */
-    public function getParticipe()
-    {
+    public function getParticipe() {
         return $this->participe;
     }
 
@@ -252,8 +245,7 @@ class Contact
      *
      * @return Contact
      */
-    public function setPrenom($prenom)
-    {
+    public function setPrenom($prenom) {
         $this->prenom = $prenom;
 
         return $this;
@@ -264,8 +256,7 @@ class Contact
      *
      * @return string
      */
-    public function getPrenom()
-    {
+    public function getPrenom() {
         return $this->prenom;
     }
 
@@ -276,8 +267,7 @@ class Contact
      *
      * @return Contact
      */
-    public function setTelFixe($telFixe)
-    {
+    public function setTelFixe($telFixe) {
         $this->telFixe = $telFixe;
 
         return $this;
@@ -288,8 +278,7 @@ class Contact
      *
      * @return string
      */
-    public function getTelFixe()
-    {
+    public function getTelFixe() {
         return $this->telFixe;
     }
 
@@ -300,8 +289,7 @@ class Contact
      *
      * @return Contact
      */
-    public function setTelPortable($telPortable)
-    {
+    public function setTelPortable($telPortable) {
         $this->telPortable = $telPortable;
 
         return $this;
@@ -312,8 +300,7 @@ class Contact
      *
      * @return string
      */
-    public function getTelPortable()
-    {
+    public function getTelPortable() {
         return $this->telPortable;
     }
 
@@ -324,8 +311,7 @@ class Contact
      *
      * @return Contact
      */
-    public function setTypeContact($typeContact)
-    {
+    public function setTypeContact($typeContact) {
         $this->typeContact = $typeContact;
 
         return $this;
@@ -336,8 +322,7 @@ class Contact
      *
      * @return string
      */
-    public function getTypeContact()
-    {
+    public function getTypeContact() {
         return $this->typeContact;
     }
 
@@ -348,8 +333,7 @@ class Contact
      *
      * @return Contact
      */
-    public function addEtablissement(\Unipik\InterventionBundle\Entity\Etablissement $etablissement)
-    {
+    public function addEtablissement(\Unipik\InterventionBundle\Entity\Etablissement $etablissement) {
         $this->etablissement[] = $etablissement;
 
         return $this;
@@ -362,8 +346,7 @@ class Contact
      *
      * @return object
      */
-    public function removeEtablissement(\Unipik\InterventionBundle\Entity\Etablissement $etablissement)
-    {
+    public function removeEtablissement(\Unipik\InterventionBundle\Entity\Etablissement $etablissement) {
         $this->etablissement->removeElement($etablissement);
     }
 
@@ -372,8 +355,7 @@ class Contact
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEtablissement()
-    {
+    public function getEtablissement() {
         return $this->etablissement;
     }
 
@@ -384,8 +366,7 @@ class Contact
      *
      * @return Contact
      */
-    public function addProjet(\Unipik\UserBundle\Entity\Projet $projet)
-    {
+    public function addProjet(\Unipik\UserBundle\Entity\Projet $projet) {
         $this->projet[] = $projet;
             //TODO
         return $this;
@@ -398,8 +379,7 @@ class Contact
      *
      * @return object
      */
-    public function removeProjet(\Unipik\UserBundle\Entity\Projet $projet)
-    {
+    public function removeProjet(\Unipik\UserBundle\Entity\Projet $projet) {
         $this->projet->removeElement($projet);
     }
 
@@ -408,8 +388,7 @@ class Contact
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getProjet()
-    {
+    public function getProjet() {
         return $this->projet;
     }
 
@@ -449,8 +428,7 @@ class Contact
      *
      * @return boolean
      */
-    public function isRespoEtablissement()
-    {
+    public function isRespoEtablissement() {
         return $this->respoEtablissement;
     }
 
@@ -461,8 +439,7 @@ class Contact
      *
      * @return Contact
      */
-    public function setRespoEtablissement($respoEtablissement)
-    {
+    public function setRespoEtablissement($respoEtablissement) {
         $this->respoEtablissement = $respoEtablissement;
 
         return $this;
@@ -477,8 +454,7 @@ class Contact
      *
      * @deprecated
      */
-    public function setTypeActivite($typeActivite)
-    {
+    public function setTypeActivite($typeActivite) {
         $this->typeActivite = $typeActivite;
 
         return $this;

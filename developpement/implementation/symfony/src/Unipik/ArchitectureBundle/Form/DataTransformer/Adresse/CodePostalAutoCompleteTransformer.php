@@ -41,8 +41,7 @@ class CodePostalAutoCompleteTransformer implements DataTransformerInterface {
      *
      * @return void
      */
-    public function __construct(ObjectManager $entityManager)
-    {
+    public function __construct(ObjectManager $entityManager) {
         $this->entityManager = $entityManager;
     }
 
@@ -53,8 +52,7 @@ class CodePostalAutoCompleteTransformer implements DataTransformerInterface {
      *
      * @return string
      */
-    public function transform($codePostal)
-    {
+    public function transform($codePostal) {
         if (null === $codePostal) {
             return '';
         }
@@ -69,8 +67,7 @@ class CodePostalAutoCompleteTransformer implements DataTransformerInterface {
      *
      * @return \Unipik\ArchitectureBundle\Entity\CodePostal|void
      */
-    public function reverseTransform($codePostalNumero)
-    {
+    public function reverseTransform($codePostalNumero) {
         if (!$codePostalNumero) {
             return null;
         }

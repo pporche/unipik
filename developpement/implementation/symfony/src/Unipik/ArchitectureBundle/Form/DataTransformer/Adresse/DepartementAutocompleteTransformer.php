@@ -40,8 +40,7 @@ class DepartementAutocompleteTransformer implements DataTransformerInterface {
      *
      * @return void
      */
-    public function __construct(ObjectManager $entityManager)
-    {
+    public function __construct(ObjectManager $entityManager) {
         $this->entityManager = $entityManager;
     }
 
@@ -52,8 +51,7 @@ class DepartementAutocompleteTransformer implements DataTransformerInterface {
      *
      * @return string
      */
-    public function transform($departement)
-    {
+    public function transform($departement) {
         if (null === $departement) {
             return '';
         }
@@ -68,8 +66,7 @@ class DepartementAutocompleteTransformer implements DataTransformerInterface {
      *
      * @return Departement|void
      */
-    public function reverseTransform($departementNom)
-    {
+    public function reverseTransform($departementNom) {
         if (!$departementNom) {
             return '';
         }

@@ -45,7 +45,7 @@ class InterventionTemplateType extends AbstractFieldsetType {
      *
      * @return object
      */
-    public function buildForm(FormBuilderInterface $builder, array $options){
+    public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $generalType = array('required' => true,
             'label' => 'Type d\'Intervention*',

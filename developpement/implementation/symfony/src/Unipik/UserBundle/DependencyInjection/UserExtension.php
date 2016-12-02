@@ -30,8 +30,8 @@ use Symfony\Component\DependencyInjection\Loader;
  * @license  None None
  * @link     None
  */
-class UserExtension extends Extension
-{
+class UserExtension extends Extension {
+
     /**
      * {@inheritdoc}
      * Load la configuration
@@ -41,8 +41,7 @@ class UserExtension extends Extension
      *
      * @return object
      */
-    public function load(array $configs, ContainerBuilder $container)
-    {
+    public function load(array $configs, ContainerBuilder $container) {
         $configuration = new Configuration();
         $this->processConfiguration($configuration, $configs);
 

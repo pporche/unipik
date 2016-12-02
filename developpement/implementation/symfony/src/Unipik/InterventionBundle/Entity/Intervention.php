@@ -33,8 +33,8 @@ use Unipik\ArchitectureBundle\Utils\ArrayConverter;
  * @license  None None
  * @link     None
  */
-class Intervention
-{
+class Intervention {
+
     /**
      * L'id
      *
@@ -215,8 +215,7 @@ class Intervention
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -227,8 +226,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setDateIntervention($date)
-    {
+    public function setDateIntervention($date) {
         $this->dateIntervention = $date;
 
         return $this;
@@ -239,8 +237,7 @@ class Intervention
      *
      * @return \DateTime
      */
-    public function getDateIntervention()
-    {
+    public function getDateIntervention() {
         return $this->dateIntervention;
     }
 
@@ -251,8 +248,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setLieu($lieu)
-    {
+    public function setLieu($lieu) {
         $this->lieu = $lieu;
 
         return $this;
@@ -263,8 +259,7 @@ class Intervention
      *
      * @return string
      */
-    public function getLieu()
-    {
+    public function getLieu() {
         return $this->lieu;
     }
 
@@ -275,8 +270,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setNbPersonne($nbPersonne)
-    {
+    public function setNbPersonne($nbPersonne) {
         $this->nbPersonne = $nbPersonne;
 
         return $this;
@@ -287,8 +281,7 @@ class Intervention
      *
      * @return integer
      */
-    public function getNbPersonne()
-    {
+    public function getNbPersonne() {
         return $this->nbPersonne;
     }
 
@@ -299,10 +292,8 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setRemarques($remarques)
-    {
+    public function setRemarques($remarques) {
         $this->remarques = $remarques;
-
         return $this;
     }
 
@@ -311,8 +302,7 @@ class Intervention
      *
      * @return string
      */
-    public function getRemarques()
-    {
+    public function getRemarques() {
         return $this->remarques;
     }
 
@@ -323,8 +313,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setHeure($heure)
-    {
+    public function setHeure($heure) {
         $this->heure = $heure;
 
         return $this;
@@ -336,8 +325,7 @@ class Intervention
      *
      * @return string
      */
-    public function getHeure()
-    {
+    public function getHeure() {
         return $this->heure;
     }
 
@@ -349,8 +337,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setRealisee($realisee)
-    {
+    public function setRealisee($realisee) {
         $this->realisee = $realisee;
 
         return $this;
@@ -362,8 +349,7 @@ class Intervention
      *
      * @return boolean
      */
-    public function isRealisee()
-    {
+    public function isRealisee() {
         return $this->realisee;
     }
 
@@ -377,8 +363,7 @@ class Intervention
      *
      * @deprecated
      */
-    public function setMaterielDispoPlaidoyer($materielDispoPlaidoyer)
-    {
+    public function setMaterielDispoPlaidoyer($materielDispoPlaidoyer) {
         $this->materielDispoPlaidoyer = $materielDispoPlaidoyer;
 
         return $this;
@@ -444,8 +429,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setNiveauFrimousse($niveauFrimousse)
-    {
+    public function setNiveauFrimousse($niveauFrimousse) {
         $this->niveauFrimousse = $niveauFrimousse;
 
         return $this;
@@ -456,8 +440,7 @@ class Intervention
      *
      * @return string
      */
-    public function getNiveauFrimousse()
-    {
+    public function getNiveauFrimousse() {
         return $this->niveauFrimousse;
     }
 
@@ -470,8 +453,7 @@ class Intervention
      *
      * @deprecated
      */
-    public function setMateriauxFrimousse($materiauxFrimousse)
-    {
+    public function setMateriauxFrimousse($materiauxFrimousse) {
         $this->materiauxFrimousse = $materiauxFrimousse;
 
         return $this;
@@ -537,8 +519,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -549,8 +530,7 @@ class Intervention
      *
      * @return string
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -561,8 +541,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setTypeIntervention($typeIntervention)
-    {
+    public function setTypeIntervention($typeIntervention) {
         $this->typeIntervention = $typeIntervention;
 
         return $this;
@@ -573,8 +552,7 @@ class Intervention
      *
      * @return string
      */
-    public function getTypeIntervention()
-    {
+    public function getTypeIntervention() {
         return $this->typeIntervention;
     }
 
@@ -585,8 +563,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setNiveauTheme(\Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme = null)
-    {
+    public function setNiveauTheme(\Unipik\ArchitectureBundle\Entity\NiveauTheme $niveauTheme = null) {
         $this->niveauTheme = $niveauTheme;
 
         return $this;
@@ -597,8 +574,7 @@ class Intervention
      *
      * @return \Unipik\ArchitectureBundle\Entity\NiveauTheme
      */
-    public function getNiveauTheme()
-    {
+    public function getNiveauTheme() {
         return $this->niveauTheme;
     }
 
@@ -609,8 +585,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setEtablissement(\Unipik\InterventionBundle\Entity\Etablissement $etablissement)
-    {
+    public function setEtablissement(\Unipik\InterventionBundle\Entity\Etablissement $etablissement) {
         $this->etablissement = $etablissement;
 
         return $this;
@@ -621,8 +596,7 @@ class Intervention
      *
      * @return \Unipik\InterventionBundle\Entity\Etablissement
      */
-    public function getEtablissement()
-    {
+    public function getEtablissement() {
         return $this->etablissement;
     }
 
@@ -633,8 +607,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setComite(\Unipik\UserBundle\Entity\Comite $comite)
-    {
+    public function setComite(\Unipik\UserBundle\Entity\Comite $comite) {
         $this->comite = $comite;
 
         return $this;
@@ -645,8 +618,7 @@ class Intervention
      *
      * @return \Unipik\UserBundle\Entity\Comite
      */
-    public function getComite()
-    {
+    public function getComite() {
         return $this->comite;
     }
 
@@ -657,8 +629,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setBenevole(\Unipik\UserBundle\Entity\Benevole $benevole = null)
-    {
+    public function setBenevole(\Unipik\UserBundle\Entity\Benevole $benevole = null) {
         $this->benevole = $benevole;
 
         return $this;
@@ -669,8 +640,7 @@ class Intervention
      *
      * @return \Unipik\UserBundle\Entity\Benevole
      */
-    public function getBenevole()
-    {
+    public function getBenevole() {
         return $this->benevole;
     }
 
@@ -681,8 +651,7 @@ class Intervention
      *
      * @return Intervention
      */
-    public function setDemande(\Unipik\InterventionBundle\Entity\Demande $demande)
-    {
+    public function setDemande(\Unipik\InterventionBundle\Entity\Demande $demande) {
         $this->demande = $demande;
 
         return $this;
@@ -693,8 +662,7 @@ class Intervention
      *
      * @return \Unipik\InterventionBundle\Entity\Demande
      */
-    public function getDemande()
-    {
+    public function getDemande() {
         return $this->demande;
     }
 
@@ -703,8 +671,7 @@ class Intervention
      *
      * @return boolean
      */
-    public function isPlaidoyer()
-    {
+    public function isPlaidoyer() {
         return ($this->getTypeIntervention() == "plaidoyer");
     }
 
@@ -713,8 +680,7 @@ class Intervention
      *
      * @return boolean
      */
-    public function isFrimousse()
-    {
+    public function isFrimousse() {
         return ($this->getTypeIntervention() == "frimousse");
     }
 
@@ -723,8 +689,7 @@ class Intervention
      *
      * @return boolean
      */
-    public function isAutreIntervention()
-    {
+    public function isAutreIntervention() {
         return ($this->getTypeIntervention() == "autre_intervention");
     }
 

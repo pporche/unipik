@@ -38,8 +38,7 @@ class BenevoleTransformer  implements DataTransformerInterface {
      *
      * @return object
      */
-    public function __construct(ObjectManager $entityManager)
-    {
+    public function __construct(ObjectManager $entityManager) {
         $this->entityManager = $entityManager;
     }
 
@@ -50,8 +49,7 @@ class BenevoleTransformer  implements DataTransformerInterface {
      *
      * @return string
      */
-    public function transform($benevole)
-    {
+    public function transform($benevole) {
         if (null === $benevole) {
             return '';
         }
@@ -66,8 +64,7 @@ class BenevoleTransformer  implements DataTransformerInterface {
      *
      * @return Benevole|void
      */
-    public function reverseTransform($benevoleNom)
-    {
+    public function reverseTransform($benevoleNom) {
         if (!$benevoleNom) {
             return '';
         }

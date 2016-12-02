@@ -30,8 +30,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @license  None None
  * @link     None
  */
-class NiveauTheme
-{
+class NiveauTheme {
+
     /**
      * L'id
      *
@@ -74,8 +74,7 @@ class NiveauTheme
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->comite = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -85,8 +84,7 @@ class NiveauTheme
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -97,8 +95,7 @@ class NiveauTheme
      *
      * @return NiveauTheme
      */
-    public function setNiveau($niveau)
-    {
+    public function setNiveau($niveau) {
         $this->niveau = $niveau;
 
         return $this;
@@ -109,8 +106,7 @@ class NiveauTheme
      *
      * @return string
      */
-    public function getNiveau()
-    {
+    public function getNiveau() {
         return $this->niveau;
     }
 
@@ -121,8 +117,7 @@ class NiveauTheme
      *
      * @return NiveauTheme
      */
-    public function setTheme($theme)
-    {
+    public function setTheme($theme) {
         $this->theme = $theme;
 
         return $this;
@@ -133,8 +128,7 @@ class NiveauTheme
      *
      * @return string
      */
-    public function getTheme()
-    {
+    public function getTheme() {
         return $this->theme;
     }
 
@@ -145,8 +139,7 @@ class NiveauTheme
      *
      * @return NiveauTheme
      */
-    public function addComite(\Unipik\UserBundle\Entity\Comite $comite)
-    {
+    public function addComite(\Unipik\UserBundle\Entity\Comite $comite) {
         $this->comite[] = $comite;
 
         return $this;
@@ -159,8 +152,7 @@ class NiveauTheme
      *
      * @return object
      */
-    public function removeComite(\Unipik\UserBundle\Entity\Comite $comite)
-    {
+    public function removeComite(\Unipik\UserBundle\Entity\Comite $comite) {
         $this->comite->removeElement($comite);
     }
 
@@ -169,8 +161,7 @@ class NiveauTheme
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getComites()
-    {
+    public function getComites() {
         return $this->comite;
     }
 }

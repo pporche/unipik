@@ -34,8 +34,8 @@ use Unipik\InterventionBundle\Form\EtablissementType;
  * @license  None None
  * @link     None
  */
-class Etablissement
-{
+class Etablissement {
+
     /**
      * L'id
      *
@@ -136,8 +136,7 @@ class Etablissement
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->contact = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -147,8 +146,7 @@ class Etablissement
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -159,8 +157,7 @@ class Etablissement
      *
      * @return Etablissement
      */
-    public function setUai($uai)
-    {
+    public function setUai($uai) {
         $this->uai = $uai;
 
         return $this;
@@ -171,8 +168,7 @@ class Etablissement
      *
      * @return string
      */
-    public function getUai()
-    {
+    public function getUai() {
         return $this->uai;
     }
 
@@ -183,8 +179,7 @@ class Etablissement
      *
      * @return Etablissement
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -195,8 +190,7 @@ class Etablissement
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -207,8 +201,7 @@ class Etablissement
      *
      * @return Etablissement
      */
-    public function setTelFixe($telFixe)
-    {
+    public function setTelFixe($telFixe) {
         $this->telFixe = $telFixe;
 
         return $this;
@@ -219,8 +212,7 @@ class Etablissement
      *
      * @return string
      */
-    public function getTelFixe()
-    {
+    public function getTelFixe() {
         return $this->telFixe;
     }
 
@@ -233,8 +225,7 @@ class Etablissement
      *
      * @deprecated
      */
-    public function setEmails($emails)
-    {
+    public function setEmails($emails) {
         $this->emails = $emails;
 
         return $this;
@@ -300,8 +291,7 @@ class Etablissement
      *
      * @return Etablissement
      */
-    public function setTypeEnseignement($typeEnseignement)
-    {
+    public function setTypeEnseignement($typeEnseignement) {
         $this->typeEnseignement = $typeEnseignement;
 
         return $this;
@@ -312,8 +302,7 @@ class Etablissement
      *
      * @return string
      */
-    public function getTypeEnseignement()
-    {
+    public function getTypeEnseignement() {
         return $this->typeEnseignement;
     }
 
@@ -324,8 +313,7 @@ class Etablissement
      *
      * @return Etablissement
      */
-    public function setTypeCentre($typeCentre)
-    {
+    public function setTypeCentre($typeCentre) {
         $this->typeCentre = $typeCentre;
 
         return $this;
@@ -336,8 +324,7 @@ class Etablissement
      *
      * @return string
      */
-    public function getTypeCentre()
-    {
+    public function getTypeCentre() {
         return $this->typeCentre;
     }
 
@@ -348,8 +335,7 @@ class Etablissement
      *
      * @return Etablissement
      */
-    public function setTypeAutreEtablissement($typeAutreEtablissement)
-    {
+    public function setTypeAutreEtablissement($typeAutreEtablissement) {
         $this->typeAutreEtablissement = $typeAutreEtablissement;
 
         return $this;
@@ -360,8 +346,7 @@ class Etablissement
      *
      * @return string
      */
-    public function getTypeAutreEtablissement()
-    {
+    public function getTypeAutreEtablissement() {
         return $this->typeAutreEtablissement;
     }
 
@@ -372,8 +357,7 @@ class Etablissement
      *
      * @return Etablissement
      */
-    public function setAdresse(\Unipik\ArchitectureBundle\Entity\Adresse $adresse)
-    {
+    public function setAdresse(\Unipik\ArchitectureBundle\Entity\Adresse $adresse) {
         $this->adresse = $adresse;
 
         return $this;
@@ -384,8 +368,7 @@ class Etablissement
      *
      * @return \Unipik\ArchitectureBundle\Entity\Adresse
      */
-    public function getAdresse()
-    {
+    public function getAdresse() {
         return $this->adresse;
     }
 
@@ -396,8 +379,7 @@ class Etablissement
      *
      * @return Etablissement
      */
-    public function addContact(\Unipik\UserBundle\Entity\Contact $contact)
-    {
+    public function addContact(\Unipik\UserBundle\Entity\Contact $contact) {
         $this->contact[] = $contact;
 
         return $this;
@@ -410,8 +392,7 @@ class Etablissement
      *
      * @return object
      */
-    public function removeContact(\Unipik\UserBundle\Entity\Contact $contact)
-    {
+    public function removeContact(\Unipik\UserBundle\Entity\Contact $contact) {
         $this->contact->removeElement($contact);
     }
 
@@ -420,8 +401,7 @@ class Etablissement
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getContacts()
-    {
+    public function getContacts() {
         return $this->contact;
     }
 
@@ -430,8 +410,7 @@ class Etablissement
      *
      * @return boolean
      */
-    public function isEnseignement()
-    {
+    public function isEnseignement() {
         $type = $this->getTypeEnseignement();
         return isset($type);
     }
@@ -441,8 +420,7 @@ class Etablissement
      *
      * @return boolean
      */
-    public function isCentreLoisirs()
-    {
+    public function isCentreLoisirs() {
         $type = $this->getTypeCentre();
         return isset($type);
     }
@@ -452,8 +430,7 @@ class Etablissement
      *
      * @return boolean
      */
-    public function isAutreEtablissement()
-    {
+    public function isAutreEtablissement() {
         $type = $this->getTypeAutreEtablissement();
         return isset($type);
     }

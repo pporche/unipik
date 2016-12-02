@@ -30,8 +30,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="pays")
  * @ORM\Entity
  */
-class Pays
-{
+class Pays {
+
     /**
      * L'id
      *
@@ -60,8 +60,7 @@ class Pays
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -72,8 +71,7 @@ class Pays
      *
      * @return Pays
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -84,8 +82,7 @@ class Pays
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 }

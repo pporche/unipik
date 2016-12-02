@@ -79,22 +79,26 @@ class InterventionController extends Controller {
             if ($intervention->getTypeIntervention() == "frimousse") {
                 $intervention->removeAllMateriauxFrimousse();
                 $materiauxData = $form->get('materiauxFrimousse')->getData();
-                if(reset($materiauxData)) {
-                    foreach (reset($materiauxData) as $mat)
+                if (reset($materiauxData)) {
+                    foreach (reset($materiauxData) as $mat) {
                         $intervention->addMateriauxFrimousse($mat);
-                } else
+                    }
+                } else {
                     $intervention->setMateriauxFrimousse(null);
+                }
 
                 $niveauFrimousse = $form->get('niveau')->getData();
                 $intervention->setNiveauFrimousse($niveauFrimousse);
             } elseif ($intervention->getTypeIntervention() == "plaidoyer") {
                 $intervention->removeAllMaterielDispoPlaidoyer();
                 $materiauxData = $form->get('materielDispoPlaidoyer')->getData();
-                if(reset($materiauxData)) {
-                    foreach (reset($materiauxData) as $mat)
+                if (reset($materiauxData)) {
+                    foreach (reset($materiauxData) as $mat) {
                         $intervention->addMaterielDispoPlaidoyer($mat);
-                } else
+                    }
+                } else {
                     $intervention->setMaterielDispoPlaidoyer(null);
+                }
 
                 $repositoryTheme = $em->getRepository("ArchitectureBundle:NiveauTheme");
                 $themeArray = $form->get('niveauTheme')->get('theme')->getData();
@@ -110,12 +114,13 @@ class InterventionController extends Controller {
             // Gestion des heures
             $heure = $form->get('heure')->get('hour')->getData();
             $minute = $form->get('heure')->get('minute')->getData();
-            if(isset($heure) && isset($minute)) {
+            if (isset($heure) && isset($minute)) {
                 $heure = sprintf("%02d", $heure);
                 $minute = sprintf("%02d", $minute);
                 $heure .= ":".$minute;
-            } else
+            } else {
                 $heure = null;
+            }
             $intervention->setHeure($heure);
 
             $description = $form->get('description')->getData();
@@ -148,7 +153,7 @@ class InterventionController extends Controller {
         $moments['jeudi'] = array();
         $moments['vendredi'] = array();
         $moments['samedi'] = array();
-        foreach($momentsVoulus as $mv) {
+        foreach ($momentsVoulus as $mv) {
             array_push($moments, array_push($moments[$mv->getJour()], $mv->getMoment()));
         }
 
@@ -453,7 +458,7 @@ class InterventionController extends Controller {
         $moments['jeudi'] = array();
         $moments['vendredi'] = array();
         $moments['samedi'] = array();
-        foreach($momentsVoulus as $mv) {
+        foreach ($momentsVoulus as $mv) {
             array_push($moments, array_push($moments[$mv->getJour()], $mv->getMoment()));
         }
         return $this->render('InterventionBundle:Intervention:demandeConsultation.html.twig', array('intervention'=>$intervention, 'interventionsAssociees'=>$interventionsDeLaDemande, 'user' => $user, 'formAttr' => $formAttr, 'moments' => $moments));
@@ -481,11 +486,11 @@ class InterventionController extends Controller {
     public function listeAction(Request $request) {
         $user = $this->getUser();
 
-//        $form = $this->createFormBuilder(RechercheAvanceeType::class)
-//            ->setMethod('GET')
-//            ->getForm()
-//            ->handleRequest($request)
-//        ;
+        //        $form = $this->createFormBuilder(RechercheAvanceeType::class)
+        //            ->setMethod('GET')
+        //            ->getForm()
+        //            ->handleRequest($request)
+        //        ;
 
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
         $form = $formBuilder->getForm();
@@ -497,7 +502,7 @@ class InterventionController extends Controller {
 
         $repository = $this->getInterventionRepository();
 
-        if($request->isMethod('GET') && $form->isValid()) {
+        if ($request->isMethod('GET') && $form->isValid()) {
             $dateChecked = $form->get("date")->getData();
             $statutIntervention = $form->get("statutIntervention")->getData(); //Récupération du statut de l'intervention
             $typeIntervention = $form->get("typeIntervention")->getData(); //Récupération des infos de filtre
@@ -525,9 +530,9 @@ class InterventionController extends Controller {
         $f = $fB->getForm();
         $f->handleRequest($request);
 
-//        $monfichier = fopen('/tmp/debug.txt', 'a+');
-//        fputs($monfichier, var_dump($form));
-//        fclose($monfichier);
+        //        $monfichier = fopen('/tmp/debug.txt', 'a+');
+        //        fputs($monfichier, var_dump($form));
+        //        fclose($monfichier);
 
         return $this->render(
             'InterventionBundle:Intervention:liste.html.twig', array(
@@ -556,7 +561,7 @@ class InterventionController extends Controller {
      *
      * @return Response
      */
-    public function recentDemandesListeAction(Request $request){
+    public function recentDemandesListeAction(Request $request) {
         $user = $this->getUser();
 
         $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
@@ -1025,7 +1030,7 @@ class InterventionController extends Controller {
      *
      * @return object
      */
-    function treatmentMorning(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande){
+    function treatmentMorning(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande) {
         foreach ($days as $day) {
             $em = $this->getDoctrine()->getManager();
             $repositoryMomentHebdomadaire = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');
@@ -1043,7 +1048,7 @@ class InterventionController extends Controller {
      *
      * @return object
      */
-    function treatmentAftNoon(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande){
+    function treatmentAftNoon(Array $days, \Unipik\InterventionBundle\Entity\Demande &$demande) {
         foreach ($days as $day) {
             $em = $this->getDoctrine()->getManager();
             $repositoryMomentHebdomadaire = $em->getRepository('ArchitectureBundle:MomentHebdomadaire');

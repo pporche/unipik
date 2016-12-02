@@ -30,8 +30,8 @@ use Symfony\Component\DependencyInjection\Loader;
  * @license  None None
  * @link     http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class MailExtension extends Extension
-{
+class MailExtension extends Extension {
+
     /**
      * {@inheritdoc}
      *
@@ -40,8 +40,7 @@ class MailExtension extends Extension
      *
      * @return void
      */
-    public function load(array $configs, ContainerBuilder $container)
-    {
+    public function load(array $configs, ContainerBuilder $container) {
         $configuration = new Configuration();
         $this->processConfiguration($configuration, $configs);
 

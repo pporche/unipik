@@ -39,7 +39,7 @@ class JourInterventionType extends AbstractType {
      *
      * @return object
      */
-    public function buildForm(FormBuilderInterface $builder, array $options){
+    public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $optionChoiceType = array( 'expanded' => true, 'multiple' => false, 'choices' => [
             'Matin' => 'matin',

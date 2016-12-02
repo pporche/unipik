@@ -31,8 +31,7 @@ use Symfony\Component\Translation\TranslatorInterface;
  * @license  None None
  * @link     None
  */
-class FlashListener implements EventSubscriberInterface
-{
+class FlashListener implements EventSubscriberInterface {
     private static $successMessages = array(
         FOSUserEvents::CHANGE_PASSWORD_COMPLETED => 'change_password.flash.success',
         FOSUserEvents::GROUP_CREATE_COMPLETED => 'group.flash.created',
@@ -56,8 +55,7 @@ class FlashListener implements EventSubscriberInterface
      *
      * @return object
      */
-    public function __construct(Session $session, TranslatorInterface $translator)
-    {
+    public function __construct(Session $session, TranslatorInterface $translator) {
         $this->session = $session;
         $this->translator = $translator;
     }
@@ -67,8 +65,7 @@ class FlashListener implements EventSubscriberInterface
      *
      * @return array
      */
-    public static function getSubscribedEvents()
-    {
+    public static function getSubscribedEvents() {
         return array(
             FOSUserEvents::CHANGE_PASSWORD_COMPLETED => 'addSuccessFlash',
             FOSUserEvents::GROUP_CREATE_COMPLETED => 'addSuccessFlash',
@@ -90,8 +87,7 @@ class FlashListener implements EventSubscriberInterface
      *
      * @return object
      */
-    public function addSuccessFlash(Event $event, $eventName = null)
-    {
+    public function addSuccessFlash(Event $event, $eventName = null) {
         // BC for SF < 2.4
         if (null === $eventName) {
             $eventName = $event->getName();
@@ -120,8 +116,7 @@ class FlashListener implements EventSubscriberInterface
      *
      * @return string
      */
-    private function _trans($message, array $params = array())
-    {
+    private function _trans($message, array $params = array()) {
         return $this->translator->trans($message, $params, 'FOSUserBundle');
     }
 }

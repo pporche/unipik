@@ -27,6 +27,7 @@ use Unipik\InterventionBundle\Form\Intervention\InterventionTemplateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Unipik\InterventionBundle\Form\Intervention\PlageDateType;
 use Unipik\InterventionBundle\Form\Intervention\JourInterventionType;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 
 /**
  * Le type demande
@@ -60,6 +61,7 @@ class DemandeType extends AbstractType {
                 )
             )
             ->add('Contact', ContactType::class, array('label' => false))
+            ->add('Code_visuel', CaptchaType::class)
             ->add('Valider_la_demande', SubmitType::class);
     }
 

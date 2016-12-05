@@ -1,6 +1,5 @@
-% version 1.00, date 01/12/16, auteur Julie Pain
-
-\documentclass[asi]{picInsa}
+% version 1.00, date 30/03/16, auteur Michel Cressant
+\documentclass[asi,sansVersion]{picInsa}
 
 %Pour le schéma d'architecture
 \usepackage{etex}
@@ -8,12 +7,13 @@
 \usetikzlibrary{shapes,arrows,chains,backgrounds,fit}
 %FIN Pour le shéma d'architecture
 
+
 \DeclareGraphicsRule{*}{pdf}{*}{}
 \usepackage{pdfpages}
+
+%\input{../../ressources/AjoutezVosPackagesIci.tex}
 \usepackage{vocabulaireUnipik}
-
-
-
+%\usepackage{../../ressources/Unipik/vocabulaire/vocabulaireEastpic}
 
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
@@ -41,23 +41,21 @@
 	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
 	\hline
 }
-\title{\DCP{}}
-\author{\Pierre, \Julie{}} %à changer
+\title{\PTU{}}
+\author{\Michel} %à changer
 
 
-\titreGeneral{\DCP}
+\titreGeneral{\PTU}
 \sousTitreGeneral{\nomEquipe}
-\titreAcronyme{\DCPCourt}
-
-\titreDetaille{\DCPCourt\_D\_\nomEquipe\_l3}
-\version{l3}
-\referenceVersion{\DCPCourt\_D\_\nomEquipe\_\versionPrive}
-\auteurs{\Melissa{} \& \Florian{} \& \Julie{}}
-\destinataires{\nomEquipe}
-\resume{Le présent document contient la présentation du \DCP{} \nomEquipe.}
-\motsCles{\DCPCourt{}}
+\titreAcronyme{\PTUCourt}
+\titreDetaille{\PTUCourt\_D\_\nomEquipe\_l3}
+\referenceVersion{\PTUCourt\_D\_\nomEquipe\_l3}
+\auteurs{\Michel{} }
+\destinataires{\nomEquipe}%\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
+\resume{Le présent document contient la présentation du \PTU{} du Lot 3 de \nomEquipe.}
+\motsCles{\PTUCourt{}}
 \natureDerniereModification{Création}
-\modeDiffusionControle{}
+\modeDiffusionNonControle{}
 
 \begin{document}
 
@@ -70,36 +68,26 @@
 
 \setcounter{chapter}{0}
 
-
 \chapter*{Introduction}
-\label{intro}
+\label{introduction}
 \input{sources/01_introduction.tex}
 
-\chapter{Cas d'utilisation}
-\label{casUtilisation}
-\input{sources/02_casUtilisation.tex}
+\chapter{Stratégie des tests unitaires}
+\label{strategieDeTest}
+\input{sources/02_strategieDeTest.tex}
 
-\chapter{Maquettes}
-\label{maquettes}
-\input{sources/03_maquettes.tex}
+\chapter{Données de Tests}
+\label{donneesDeTests}
+\input{sources/03_donneesDeTests.tex}
 
-\chapter{Diagramme de classes de conception préliminaire}
-\label{diagrammeClasses}
-\input{sources/07_diagrammeClasses.tex}
+\chapter{Outil de test}
+\label{outilDeTest}
+\input{sources/04_outilDeTest.tex}
 
-\begin{appendix}
-\part*{Annexes}
-\addcontentsline{toc}{part}{Annexes}
-\chapter{Dictionnaire de données}
-\label{dico_donnees}
-\input{diagrammeClasses/sources/descriptionDiagrammeDeClasseSource.tex}
+\chapter{Tests Unitaires}
+\label{testsUnitaires}
+\input{sources/05_testsUnitaires.tex}
 
-\listoffigures
-\addcontentsline{toc}{chapter}{Table des figures}
-	 
-\listoftables
-\addcontentsline{toc}{chapter}{Liste des tableaux}
-\end{appendix}
 \pageQuatriemeCouverture
 
 \end{document}

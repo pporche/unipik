@@ -1,6 +1,5 @@
-% version 1.00, date 01/12/16, auteur Julie Pain
-
-\documentclass[asi]{picInsa}
+% version 1.00, date 30/03/16, auteur Michel Cressant
+\documentclass[asi,sansVersion]{picInsa}
 
 %Pour le schéma d'architecture
 \usepackage{etex}
@@ -8,12 +7,13 @@
 \usetikzlibrary{shapes,arrows,chains,backgrounds,fit}
 %FIN Pour le shéma d'architecture
 
+
 \DeclareGraphicsRule{*}{pdf}{*}{}
 \usepackage{pdfpages}
+
+%\input{../../ressources/AjoutezVosPackagesIci.tex}
 \usepackage{vocabulaireUnipik}
-
-
-
+%\usepackage{../../ressources/Unipik/vocabulaire/vocabulaireEastpic}
 
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
@@ -41,21 +41,19 @@
 	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
 	\hline
 }
-\title{\DCP{}}
-\author{\Pierre, \Julie{}} %à changer
+\title{\JTI{}}
+\author{\Michel} %à changer
 
 
-\titreGeneral{\DCP}
+\titreGeneral{\JTI}
 \sousTitreGeneral{\nomEquipe}
-\titreAcronyme{\DCPCourt}
-
-\titreDetaille{\DCPCourt\_D\_\nomEquipe\_l3}
-\version{l3}
-\referenceVersion{\DCPCourt\_D\_\nomEquipe\_\versionPrive}
-\auteurs{\Melissa{} \& \Florian{} \& \Julie{}}
-\destinataires{\nomEquipe}
-\resume{Le présent document contient la présentation du \DCP{} \nomEquipe.}
-\motsCles{\DCPCourt{}}
+\titreAcronyme{\JTICourt}
+\titreDetaille{\JTICourt\_D\_\nomEquipe\_l3}
+\referenceVersion{\JTICourt\_D\_\nomEquipe\_l3}
+\auteurs{\Michel{} }
+\destinataires{\nomEquipe}%\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
+\resume{Le présent document contient la présentation du \JTI{} du Lot 3 de \nomEquipe.}
+\motsCles{\JTICourt{}}
 \natureDerniereModification{Création}
 \modeDiffusionControle{}
 
@@ -70,36 +68,13 @@
 
 \setcounter{chapter}{0}
 
-
-\chapter*{Introduction}
-\label{intro}
+\chapter{Introduction}
+\label{introduction}
 \input{sources/01_introduction.tex}
 
-\chapter{Cas d'utilisation}
-\label{casUtilisation}
-\input{sources/02_casUtilisation.tex}
-
-\chapter{Maquettes}
-\label{maquettes}
-\input{sources/03_maquettes.tex}
-
-\chapter{Diagramme de classes de conception préliminaire}
-\label{diagrammeClasses}
-\input{sources/07_diagrammeClasses.tex}
-
-\begin{appendix}
-\part*{Annexes}
-\addcontentsline{toc}{part}{Annexes}
-\chapter{Dictionnaire de données}
-\label{dico_donnees}
-\input{diagrammeClasses/sources/descriptionDiagrammeDeClasseSource.tex}
-
-\listoffigures
-\addcontentsline{toc}{chapter}{Table des figures}
-	 
-\listoftables
-\addcontentsline{toc}{chapter}{Liste des tableaux}
-\end{appendix}
+\chapter{Historique des Tests d'Intégration}
+\label{historiqueDesTestsDIntegration}
+\input{sources/02_historiqueDesTestsDIntegration.tex}
 \pageQuatriemeCouverture
 
 \end{document}

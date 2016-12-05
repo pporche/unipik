@@ -1,19 +1,13 @@
-% version 1.00, date 01/12/16, auteur Julie Pain
-
+% version 1.00, date 20/02/16, auteur Michel Cressant
+% version 1.01, date 02/03/16, auteur Michel Cressant
+% version 1.02, date 29/03/16, auteur Michel Cressant
 \documentclass[asi]{picInsa}
-
-%Pour le schéma d'architecture
-\usepackage{etex}
-\usepackage{tikz}
-\usetikzlibrary{shapes,arrows,chains,backgrounds,fit}
-%FIN Pour le shéma d'architecture
-
 \DeclareGraphicsRule{*}{pdf}{*}{}
 \usepackage{pdfpages}
+
+%\input{../../ressources/AjoutezVosPackagesIci.tex}
 \usepackage{vocabulaireUnipik}
-
-
-
+%\usepackage{../../ressources/Unipik/vocabulaire/vocabulaireEastpic}
 
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
@@ -41,22 +35,21 @@
 	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
 	\hline
 }
-\title{\DCP{}}
-\author{\Pierre, \Julie{}} %à changer
+\title{\PTV{}}
+\author{\Michel} %à changer
 
 
-\titreGeneral{\DCP}
+\titreGeneral{\PTV}
 \sousTitreGeneral{\nomEquipe}
-\titreAcronyme{\DCPCourt}
-
-\titreDetaille{\DCPCourt\_D\_\nomEquipe\_l3}
-\version{l3}
-\referenceVersion{\DCPCourt\_D\_\nomEquipe\_\versionPrive}
-\auteurs{\Melissa{} \& \Florian{} \& \Julie{}}
-\destinataires{\nomEquipe}
-\resume{Le présent document contient la présentation du \DCP{} \nomEquipe.}
-\motsCles{\DCPCourt{}}
-\natureDerniereModification{Création}
+\titreAcronyme{\PTVCourt}
+\version{v3.00}
+\titreDetaille{\PTVCourt\_S\_\nomEquipe\_\versionPrive}
+\referenceVersion{\PTVCourt\_S\_\nomEquipe\_\versionPrive}
+\auteurs{\Matthieu{} \& \Kafui{} \& \Melissa{} \& \Sergi{} \& \Michel{} \& \Pierre{}}
+\destinataires{\nomClient{}, \nomEquipe{}}%\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
+\resume{Le présent document contient la présentation du \PTV{} \nomEquipe.}
+\motsCles{\PTVCourt{}}
+\natureDerniereModification{Ajout du lot 3}
 \modeDiffusionControle{}
 
 \begin{document}
@@ -71,35 +64,32 @@
 \setcounter{chapter}{0}
 
 
-\chapter*{Introduction}
-\label{intro}
+\chapter{Introduction}
+\label{introduction}
 \input{sources/01_introduction.tex}
 
-\chapter{Cas d'utilisation}
-\label{casUtilisation}
-\input{sources/02_casUtilisation.tex}
+\chapter{Lot 1}
+\label{lot1}
+\input{sources/02_lot1.tex}
 
-\chapter{Maquettes}
-\label{maquettes}
-\input{sources/03_maquettes.tex}
+\chapter{Lot 2}
+\label{lot2}
+\input{sources/03_lot2.tex}
 
-\chapter{Diagramme de classes de conception préliminaire}
-\label{diagrammeClasses}
-\input{sources/07_diagrammeClasses.tex}
+\chapter{Lot 3}
+\label{lot3}
+\input{sources/04_lot3.tex}
+
 
 \begin{appendix}
 \part*{Annexes}
 \addcontentsline{toc}{part}{Annexes}
-\chapter{Dictionnaire de données}
-\label{dico_donnees}
-\input{diagrammeClasses/sources/descriptionDiagrammeDeClasseSource.tex}
-
 \listoffigures
 \addcontentsline{toc}{chapter}{Table des figures}
-	 
-\listoftables
-\addcontentsline{toc}{chapter}{Liste des tableaux}
+
 \end{appendix}
+
+
 \pageQuatriemeCouverture
 
 \end{document}

@@ -573,7 +573,6 @@ CREATE FUNCTION modifier_id_intervention_vente() returns trigger AS $$
 $$ LANGUAGE 'plpgsql';
 
 
--- trigger qui vérifie que les classes de l'intervention correspond bien aux classes de l'établissement
 CREATE TRIGGER avant_suppression_intervention
 	BEFORE DELETE ON intervention
 	FOR EACH ROW 

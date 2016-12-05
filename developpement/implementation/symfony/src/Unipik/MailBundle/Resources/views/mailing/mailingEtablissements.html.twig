@@ -190,6 +190,32 @@
     }
 
     $(document).ready(function () {
+        $('#centreDeLoisirs').hide();
+        $('#autreEtablissements').hide();
+
+            $('#enseignement').change(function(){
+                if(!($(this).is(':checked'))){
+                    $('#enseignements').hide();
+                }else{
+                    $('#enseignements').show();
+                }
+            });
+
+            $('#centre').change(function(){
+                if(!($(this).is(':checked'))){
+                    $('#centreDeLoisirs').hide();
+                }else{
+                    $('#centreDeLoisirs').show();
+                }
+            });
+
+            $('#autre').change(function(){
+                if(!($(this).is(':checked'))){
+                    $('#autreEtablissements').hide();
+                }else{
+                    $('#autreEtablissements').show();
+                }
+            });
 
         if ($('#mailing_dansVilleOuParDistance_placeholder').is(':checked')) {
             $('#mailing_ville').parent().parent().parent().hide();
@@ -298,6 +324,12 @@
         label{
             font-size: 16px !important;
             font-family: "Open Sans", sans-serif;
+            font-weight: 400;
+        }
+
+        h5{
+            font-weight: bold;
+            margin-bottom: 0px;
         }
 
         .checkbox, .radio{
@@ -310,18 +342,49 @@
             font-size: 17px;
         }
 
+        .well{
+            max-width: 700px;
+        }
+
 
     </style>
+
     <h1>Mailing<h1>
     <hr>
     <div class='well'>
+        <h5>Type d'Établissements</h5>
+        <label><input type="checkbox"  name="enseignement" value="enseignement" id="enseignement" checked/>Enseignements</label><br>
+        <label><input type="checkbox" name="centre" value="centre" id="centre"/>Centre de loisirs</label><br>
+        <label><input type="checkbox" name="autre" value="autre" id="autre"/>Autre Établissement</label><br><br>
 
         {{ form_start(form, {'method': 'post', 'action': path('etablissements_mailing'), 'attr': {'class': 'etablissements_mailing'}}) }}
-        {{ form_widget(form) }}
+
+        <div id="enseignements">
+            <h5>Type Enseignements</h5>
+            {{ form_widget(form.typeInstitute) }}<br>
+        </div>
+
+        <div id="centreDeLoisirs">
+            <h5>Type Centre de loisirs</h5>
+            {{ form_widget(form.typeCenter) }}<br>
+        </div>
+
+        <div id="autreEtablissements">
+            <h5>Type Autre Établissement</h5>
+            {{ form_widget(form.typeAutre) }}<br>
+        </div>
+
+        <h5>Type d'envoi</h5>
+        {{ form_widget(form.typeRelance) }}
+        <br>
+
+        <h5>Envoi par localisation</h5>
+        {{ form_widget(form.dansVilleOuParDistance) }}
+        <br>
+        {{ form_end(form) }}
         <div>
             <input type="submit" value="Envoyer" class="btn btn-primary"  style="margin-top: 60px; margin-bottom: 20px;"/>
         </div>
-        {{ form_end(form) }}
 
     </div>
 {% endblock %}

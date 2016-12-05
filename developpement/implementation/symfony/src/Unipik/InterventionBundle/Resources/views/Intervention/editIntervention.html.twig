@@ -577,10 +577,8 @@
             {{ form_widget(form.materielDispoPlaidoyer, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveauTheme, {'attr': {'style': 'display: none'}}) }}
             {{ form_widget(form.niveau, {'attr': {'style': 'display: none'}}) }}
-        {% endif %}
-        {% if not intervention.plaidoyer and not intervention.frimousse  %}
-            {{ form_widget(form.description, {'value' : intervention.description, 'attr': {'style': 'display: none'}}) }}
             {{ form_label(form.description, 'Description') }}
+            {{ form_widget(form.description, {'value' : intervention.description}) }}
         {% endif %}
 
 

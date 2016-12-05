@@ -10,7 +10,7 @@ namespace Tests\Unipik\Unit\UserBundle\Entity;
 
 use Tests\Unipik\Unit\InterventionBundle\Entity\Mocks\EtablissementMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ContactMock;
-use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ProjetMock;
+//use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ProjetMock;
 use Unipik\UserBundle\Entity\Contact;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
 
@@ -82,12 +82,12 @@ class ContactTest extends  EntityTestCase
     public function validEntityProvider()
     {
         $c = ContactMock::createMultiple(4);
-        $p = ProjetMock::create();
-        $c[1]->addProjet($p);
-        $p2 = clone $p;
-        $p3 = clone $p;
-        $c[2]->addProjet($p2);
-        $c[2]->addProjet($p3);
+//        $p = ProjetMock::create();
+//        $c[1]->addProjet($p);
+//        $p2 = clone $p;
+//        $p3 = clone $p;
+//        $c[2]->addProjet($p2);
+//        $c[2]->addProjet($p3);
 
         $c[3]->setNom("Dupont")
             ->setEmail("dupont@super-univ.fr")
@@ -101,8 +101,6 @@ class ContactTest extends  EntityTestCase
         return [
             "1 Contact" => [$c[0]],
             "3 Contacts" => [clone $c[0], clone $c[0], clone $c[0]],
-            "1 contact with 1 projet" => [$p, $c[1]],
-            "1 contact with 3 projets" => [$p2, $p3, $c[2]],
             "1 Contact with all optional values" => [$c[3]]
         ];
     }

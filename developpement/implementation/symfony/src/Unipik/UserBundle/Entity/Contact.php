@@ -19,7 +19,7 @@ namespace Unipik\UserBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Unipik\UserBundle\Entity\Participe;
+//use Unipik\UserBundle\Entity\Participe;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Unipik\ArchitectureBundle\Utils\ArrayConverter;
@@ -157,9 +157,8 @@ class Contact {
     /**
      * Participe
      *
-     * @var \Doctrine\Common\Collections\Collection
+     * @var string
      *
-     * @OneToMany(targetEntity="Participe", mappedBy="contact", nullable=true)
      */
     private $participe;
 
@@ -171,7 +170,7 @@ class Contact {
     public function __construct() {
         $this->etablissement = new \Doctrine\Common\Collections\ArrayCollection();
         //$this->projet = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->participe = new \Doctrine\Common\Collections\ArrayCollection();
+//        $this->participe = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -229,14 +228,14 @@ class Contact {
     }
 
 
-    /**
-     * Get participe
-     *
-     * @return Participe
-     */
-    public function getParticipe() {
-        return $this->participe;
-    }
+//    /**
+//     * Get participe
+//     *
+//     * @return Participe
+//     */
+//    public function getParticipe() {
+//        return $this->participe;
+//    }
 
     /**
      * Set prenom

@@ -90,15 +90,14 @@ class InterventionRepositoryTest extends RepositoryTestCase
             "test9" =>  [2, [3, 4], $inter, $nt, null, null, true, "frimousse", null, true, null, "POUIC POUIC"],
             "test10" => [1, [4], $inter, $nt, null, null, true, "frimousse", null, null, null, "POUIC POUIC", null, null,["CM1-CM2"], null],
             "test11" => [2, [3, 4], $inter, $nt, null, null, true, "frimousse", null, null, null, "POUIC POUIC", null, null, ["CE1-CE2", "CM1-CM2"], null],
-            "test12" => [1, [3], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "frimousse", null, null, null, "POUIC POUIC"],
-            "test14" => [1, [5], $inter, $nt, null, null, true, "autreIntervention", null, null, null, "POUIC POUIC"],
-            "test15" => [0, [], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "autreIntervention", null, null, null, "", null, null, null, null, null, "SRID=4326;POINT(45 69)", "1"],
-            "test16" => [6, [0, 1, 2, 3, 4, 5], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC"],
-            "test17" => [2, [1, 3], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, null, null, null, null, "POUIC POUIC"],
-            "test18" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC", true, $b[0]],
-            "test19" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, "attribuees", "POUIC POUIC"],
-            "test20" => [2, [4, 5], $inter, $nt, null, null, true, null, null, null, "nonAttribuees", "POUIC POUIC"],
-            "test21" => [2, [1, 3], $inter, $nt, null, null, true, null, null, null, "realisees", "POUIC POUIC"],
+            "test13" => [1, [5], $inter, $nt, null, null, true, "autreIntervention", null, null, null, "POUIC POUIC"],
+            "test14" => [0, [], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "autreIntervention", null, null, null, "", null, null, null, null, null, "SRID=4326;POINT(45 69)", "1"],
+            "test15" => [6, [0, 1, 2, 3, 4, 5], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC"],
+            "test16" => [2, [1, 3], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, null, null, null, null, "POUIC POUIC"],
+            "test17" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC", true, $b[0]],
+            "test18" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, "attribuees", "POUIC POUIC"],
+            "test19" => [2, [4, 5], $inter, $nt, null, null, true, null, null, null, "nonAttribuees", "POUIC POUIC"],
+            "test20" => [2, [1, 3], $inter, $nt, null, null, true, null, null, null, "realisees", "POUIC POUIC"],
 
         ));
     }

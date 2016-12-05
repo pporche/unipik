@@ -11,7 +11,7 @@ namespace Tests\Unipik\Unit\UserBundle\Entity;
 use Tests\Unipik\Unit\ArchitectureBundle\Entity\Mocks\AdresseMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\BenevoleMock;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ComiteMock;
-use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ProjetMock;
+//use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ProjetMock;
 use Unipik\UserBundle\Entity\Benevole;
 use Tests\Unipik\Unit\Utils\EntityTestCase;
 
@@ -54,11 +54,11 @@ class BenevoleTest extends  EntityTestCase
         $this->assertEquals($b->getTelPortable(), "0601020304");
         $this->assertEquals($b->getAdresse(), $ad);
 
-        $p = ProjetMock::create();
-        $b->addProjet($p);
-        $this->assertEquals($b->getProjet()[0], $p);
-        $b->removeProjet($p);
-        $this->assertEquals($b->getProjet()[0], null);
+//        $p = ProjetMock::create();
+//        $b->addProjet($p);
+//        $this->assertEquals($b->getProjet()[0], $p);
+//        $b->removeProjet($p);
+//        $this->assertEquals($b->getProjet()[0], null);
 
         $c = ComiteMock::create();
         $b->addComite($c);

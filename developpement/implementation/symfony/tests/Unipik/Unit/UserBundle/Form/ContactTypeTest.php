@@ -11,7 +11,7 @@ namespace Tests\Unipik\Unit\UserBundle\Form;
 use Tests\Unipik\Unit\UserBundle\Entity\Mocks\ContactMock;
 use Tests\Unipik\Unit\Utils\FormTestCase;
 use Unipik\UserBundle\Form\ContactType;
-use Unipik\UserBundle\Entity\Participe;
+//use Unipik\UserBundle\Entity\Participe;
 
 class ContactTypeTest extends FormTestCase
 {

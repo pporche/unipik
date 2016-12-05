@@ -477,7 +477,7 @@
             {% for benevole in listBenevoles %}
                 var lat = {{ benevole.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
                 var lon = {{ benevole.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
-                var marker = L.marker([lon, lat]).bindPopup("<b>{{ benevole.nom|upper }} {{ benevole.prenom|capitalize }}</b><br>{{ benevole.adresse.ville.nom }}<br><a href='{{ path('intervention_view', {id: benevole.id}) }}'>Détails de {{ benevole.prenom|capitalize }}</a>");
+                var marker = L.marker([lon, lat]).bindPopup("<b>{{ benevole.nom|upper }} {{ benevole.prenom|capitalize }}</b><br>{{ benevole.adresse.ville.nom }}<br><a href='{{ path('user_admin_profil_benevole', {username: benevole.username}) }}'>Détails de {{ benevole.prenom|capitalize }}</a>");
                 marker.on('click', function (e) {
                     mymap.setView(e.target.getLatLng());
                 });

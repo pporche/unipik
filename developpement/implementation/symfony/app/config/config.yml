@@ -105,3 +105,5 @@ fos_user:
     profile:
             form:
                     type: Unipik\UserBundle\Form\ProfileFormType
+
+gregwar_captcha: ~

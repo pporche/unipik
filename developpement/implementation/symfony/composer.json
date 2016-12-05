@@ -27,7 +27,8 @@
         "symfony/validator": "^3.1",
         "opsway/doctrine-dbal-postgresql": "~0.1",
         "creof/doctrine2-spatial": "^1.1",
-        "asm89/twig-lint": "@stable"
+        "asm89/twig-lint": "@stable",
+        "gregwar/captcha-bundle": "^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

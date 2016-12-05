@@ -33,7 +33,7 @@
                 id: 'mapbox.streets'
             }).addTo(mymap);
             var marker = L.marker([lon, lat]).addTo(mymap);
-            marker.bindPopup("<b>{{ etablissement.nom }}</b><br>{{ etablissement.adresse.ville.nom }}").openPopup();
+            marker.bindPopup("<b>{{ etablissement.nom }}</b><br>{{ etablissement.adresse.ville.nom }}<br><a target='_blank' href='" + location.protocol + "//maps.google.fr/maps?saddr={{ user.adresse.geolocalisation|split(' ')[1]|split(')')[0] }},{{ user.adresse.geolocalisation|split('(')[1]|split(' ')[0] }}&daddr=" + lon + ',' + lat +"'>S'y rendre</a>").openPopup();
         {% else %}
             $("#mapid").html("Les coordonnées de l'établissement ne sont pas renseignées.");
         {% endif %}

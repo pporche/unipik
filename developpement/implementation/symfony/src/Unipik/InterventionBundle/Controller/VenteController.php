@@ -91,7 +91,6 @@ class VenteController extends Controller {
      * Liste des ventes liées à un établissement action
      *
      * @param Request $request La requete
-     * @param int     $id      L'id
      *
      * @return mixed
      */
@@ -146,7 +145,6 @@ class VenteController extends Controller {
      * Liste des ventes liées à une intervention action
      *
      * @param Request $request La requete
-     * @param int     $id      L'id
      *
      * @return mixed
      */
@@ -193,7 +191,8 @@ class VenteController extends Controller {
                 'form' => $form->createView(),
                 'venteEtablissementListe' => false,
                 'venteInterventionListe' => true,
-                'interventionId' => $id
+                'interventionId' => $id,
+
             )
         );
     }
@@ -209,14 +208,13 @@ class VenteController extends Controller {
      */
     public function consultationAction($id) {
         $vente = $this->getDoctrine()->getManager()->getRepository("InterventionBundle:Vente")->find($id);
-        return $this->render('InterventionBundle:Vente:consultation.html.twig', array('vente' => $vente));
+        return $this->render('InterventionBundle:Vente:consultation.html.twig', array('vente' => $vente, 'precedentUrl'=>$_SESSION['back']));
     }
 
     /**
      * Edit action
      *
-     * @param Request $request La requete
-     * @param int     $id      L'id
+     * @param int $id L'id
      *
      * @return Response
      */
@@ -247,7 +245,7 @@ class VenteController extends Controller {
         }
 
         return $this->render(
-            'InterventionBundle:Vente:ajouterVente.html.twig',
+            'InterventionBundle:Vente:editVente.html.twig',
             array('form' => $form->createView(),
                 'etablissement' => $vente->getEtablissement(),
                 'intervention' => $vente->getIntervention()
@@ -329,7 +327,7 @@ class VenteController extends Controller {
      *
      * @return mixed
      */
-    public function deleteVenteAction($id) {
+    public function deleteVenteAction($id){
         $em = $this->getDoctrine()->getEntityManager();
         $vente = $em->getRepository('InterventionBundle:Vente')->findOneBy(array('id' => $id));
         $em->remove($vente);

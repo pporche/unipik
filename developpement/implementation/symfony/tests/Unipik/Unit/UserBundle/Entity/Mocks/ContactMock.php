@@ -10,7 +10,7 @@ namespace Tests\Unipik\Unit\UserBundle\Entity\Mocks;
 
 use Tests\Unipik\Unit\Utils\EntityMock;
 use Unipik\UserBundle\Entity\Contact;
-use Unipik\UserBundle\Entity\Participe;
+//use Unipik\UserBundle\Entity\Participe;
 
 class ContactMock extends EntityMock
 {

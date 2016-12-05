@@ -59,6 +59,34 @@ class MailController extends Controller {
     }
 
     /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository|\Unipik\MailBundle\Entity\MailTaskRepository
+     */
+    public function getMailTaskRepository() {
+        $em = $this->getDoctrine()->getManager();
+        return $em->getRepository('MailBundle:MailTask');
+    }
+
+    /**
+     * Render the view of the list of mails sent
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function mailingHistoriqueAction(Request $request) {
+
+        $rowsPerPage = $request->get("rowsPerPage", 10);
+
+        $repository = $this->getMailTaskRepository();
+
+        $mails = $repository->getType(date('d/m/Y'),date('d/m/Y'));
+
+        return $this->render('MailBundle::historiqueEmails.html.twig', array(
+            'mails' => $mails,
+            'rowsPerPage' => $rowsPerPage,
+        ));
+    }
+
+    /**
      * Render the view to send the email
      *
      * @param Request $request La requete

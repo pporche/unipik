@@ -1,7 +1,13 @@
-% version 1.00, date 20/02/16, auteur Michel Cressant
-% version 1.01, date 02/03/16, auteur Michel Cressant
-% version 1.02, date 29/03/16, auteur Michel Cressant
-\documentclass[asi]{picInsa}
+% version 1.00, date 30/03/16, auteur Michel Cressant
+\documentclass[asi,sansVersion]{picInsa}
+
+%Pour le schéma d'architecture
+\usepackage{etex}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,chains,backgrounds,fit}
+%FIN Pour le shéma d'architecture
+
+
 \DeclareGraphicsRule{*}{pdf}{*}{}
 \usepackage{pdfpages}
 
@@ -35,21 +41,20 @@
 	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
 	\hline
 }
-\title{\PTV{}}
+\title{\JTU{}}
 \author{\Michel} %à changer
 
 
-\titreGeneral{\PTV}
+\titreGeneral{\JTU}
 \sousTitreGeneral{\nomEquipe}
-\titreAcronyme{\PTVCourt}
-\version{v2.00}
-\titreDetaille{\PTVCourt\_S\_\nomEquipe\_\versionPrive}
-\referenceVersion{\PTVCourt\_S\_\nomEquipe\_\versionPrive}
-\auteurs{\Matthieu{} \& \Kafui{} \& \Melissa{} \& \Sergi{} \& \Michel{} \& \Pierre{}}
-\destinataires{\nomClient{}, \nomEquipe{}}%\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
-\resume{Le présent document contient la présentation du \PTV{} \nomEquipe.}
-\motsCles{\PTVCourt{}}
-\natureDerniereModification{Ajout du lot 2}
+\titreAcronyme{\JTUCourt}
+\titreDetaille{\JTUCourt\_D\_\nomEquipe\_l3}
+\referenceVersion{\JTUCourt\_D\_\nomEquipe\_l3}
+\auteurs{\Michel{} }
+\destinataires{\nomEquipe}%\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
+\resume{Le présent document contient la présentation du \JTU{} du Lot 3 de \nomEquipe.}
+\motsCles{\JTUCourt{}}
+\natureDerniereModification{Création}
 \modeDiffusionControle{}
 
 \begin{document}
@@ -63,27 +68,14 @@
 
 \setcounter{chapter}{0}
 
-
-\chapter{Introduction}
+\chapter*{Introduction}
 \label{introduction}
 \input{sources/01_introduction.tex}
 
-\chapter{Lot 1}
-\label{lot1}
-\input{sources/02_lot1.tex}
+\chapter{Historique des Tests Unitaires}
+\label{historiquesDesTestsUnitaires}
+\input{sources/02_historiqueDesTestsUnitaires.tex}
 
-\chapter{Lot 2}
-\label{lot2}
-\input{sources/03_lot2.tex}
-
-
-\begin{appendix}
-\part*{Annexes}
-\addcontentsline{toc}{part}{Annexes}
-\listoffigures
-\addcontentsline{toc}{chapter}{Table des figures}
-
-\end{appendix}
 
 
 \pageQuatriemeCouverture

@@ -30,6 +30,26 @@ use Doctrine\ORM\EntityRepository;
 class MailTaskRepository extends EntityRepository {
 
     /**
+     * @param $startDate
+     * @return array
+     */
+    public function getType($startDate, $endDate){
+        $qb = $this->createQueryBuilder('m');
+
+        $from = new \DateTime($startDate." 00:00:00");
+        $to   = new \DateTime($endDate." 23:59:59");
+
+        $qb
+            ->andWhere('m.date_insert BETWEEN :from AND :to')
+            ->setParameter('from', $from )
+            ->setParameter('to', $to);
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * Retourne le dernier mail
      *
      * @return mixed

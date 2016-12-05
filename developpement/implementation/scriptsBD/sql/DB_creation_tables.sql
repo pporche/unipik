@@ -524,6 +524,11 @@ CREATE TRIGGER insertion_benevole
 	FOR EACH ROW 
 	EXECUTE PROCEDURE ajouter_activites_potentielles_benevole();
 
+CREATE TRIGGER mise_a_jour_benevole
+	AFTER UPDATE ON benevole
+	FOR EACH ROW 
+	EXECUTE PROCEDURE ajouter_activites_potentielles_benevole();
+
 --CREATE TRIGGER insertion_miseAJour_benevole 
 --	AFTER UPDATE ON benevole
 --	FOR EACH ROW 
@@ -557,22 +562,25 @@ CREATE TRIGGER avant_suppression_etablissement
 	FOR EACH ROW 
 	EXECUTE PROCEDURE modifier_etablissement_fictif();
 
-
---AVANT INSERTION INTERVENTION 
--- fonction qui vérifie que les classes entrées pour une intervention correspondent bien aux classes de l'établissement
-CREATE FUNCTION inserer_intervention() returns trigger AS $$
-	DECLARE 
-	BEGIN
-
-	RETURN NEW;
-	END;
+-- AVANT SUPPRESSION INTERVENTION
+-- fonction qui remplace l'id de l'intervention par null dans la table vente lorsque l'utilisateur supprime une intervention
+CREATE FUNCTION modifier_id_intervention_vente() returns trigger AS $$
+    BEGIN
+        UPDATE vente SET  intervention_id = null
+                  WHERE  intervention_id = OLD.id;
+        RETURN OLD;
+    END;
 $$ LANGUAGE 'plpgsql';
 
--- trigger qui vérifie que les classes entrées pour une intervention correspondent bien aux classes de l'établissement
-CREATE TRIGGER avant_insertion_intervention
-	BEFORE INSERT ON intervention
+
+-- trigger qui vérifie que les classes de l'intervention correspond bien aux classes de l'établissement
+CREATE TRIGGER avant_suppression_intervention
+	BEFORE DELETE ON intervention
 	FOR EACH ROW 
-	EXECUTE PROCEDURE inserer_intervention();
+	EXECUTE PROCEDURE modifier_id_intervention_vente();
+
+
+
 
 
 

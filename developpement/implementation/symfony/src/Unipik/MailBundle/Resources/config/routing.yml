@@ -7,3 +7,8 @@ etablissements_mailing:
     path: /mailing/etablissements
     defaults:
         _controller: MailBundle:Mail:mailingEtablissement
+
+historique_mailing:
+    path: /mailing/historique
+    defaults:
+        _controller: MailBundle:Mail:mailingHistorique

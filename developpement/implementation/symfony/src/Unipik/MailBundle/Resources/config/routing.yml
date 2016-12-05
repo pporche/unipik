@@ -12,3 +12,8 @@ historique_mailing:
     path: /mailing/historique
     defaults:
         _controller: MailBundle:Mail:mailingHistorique
+
+historiquegfhj_mailing:
+    path: /mailing/histo
+    defaults:
+        _controller: MailBundle:Mail:kaki

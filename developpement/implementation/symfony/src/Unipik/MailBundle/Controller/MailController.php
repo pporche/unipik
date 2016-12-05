@@ -19,6 +19,7 @@ namespace Unipik\MailBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Unipik\MailBundle\Entity\MailHistorique;
 use Unipik\MailBundle\Entity\MailTask;
 use Unipik\MailBundle\Form\MailingType;
 
@@ -148,7 +149,7 @@ class MailController extends Controller {
                 $mailtask = new MailTask();
                 $mailtask
                     ->setName('Mail task')
-                    ->setInterval(300) // Interval pour savoir quand on peut exécuter la tâche
+                    ->setInterval(3600) // Interval pour savoir quand on peut exécuter la tâche
                     ->setDateInsert(new \DateTime()) // Date d'insertion ie date à laquelle on effectue la demande d'envoi de mail
                     ->setIdEtablissement($ids); // id des établissements à qui on fait l'envoi
 
@@ -159,5 +160,19 @@ class MailController extends Controller {
             return $this->redirectToRoute('architecture_homepage');
         }
         return $this->render('MailBundle:mailing:mailingEtablissements.html.twig', array('form' => $form->createView()));
+    }
+
+    public function kakiAction() {
+        $em = $this->getDoctrine()->getManager();
+
+        $mailHistorique = new MailHistorique();
+        $mailHistorique
+            ->setDateEnvoi(new \DateTime())
+            ->setTypeEmail('relance')
+            ->setIdEtablissement(12)
+        ;
+
+        $em->persist($mailHistorique);
+        $em->flush();
     }
 }

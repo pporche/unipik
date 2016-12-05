@@ -182,6 +182,28 @@
         }
 
 
+        function showSomeTheme(type, themesElt) {
+            switch (type) {
+                case 'maternelle' :
+                    $(themesElt).find('option').each(function (index) {
+                        if (index > 5) {
+                            $(this).fadeOut();
+                        } else {
+                            $(this).fadeIn();
+                        }
+                    });
+                    break;
+                case 'elementaire' :
+                case 'college' :
+                case 'adolescent' :
+                case 'lycee' :
+                case 'Supérieur' :
+                default :
+                    showAllTheme(themesElt);
+                    break;
+
+            }
+        }
 
         $(document).ready(function () {
             // Initialisation de la date et de l'heure
@@ -236,6 +258,13 @@
                     });
                     break;
             }
+
+            {% if intervention.etablissement.typeEnseignement %}
+            showSomeTheme('{{ intervention.etablissement.typeEnseignement }}',document.getElementsByClassName('form-theme-pld'));
+            {%  endif %}
+            {% if intervention.etablissement.typeCentre %}
+            showSomeTheme('{{ intervention.etablissement.typeCentre }}',$('intervention_niveauTheme_theme_themes'));
+            {% endif %}
         });
 
         $(document).ready(compareDateAvailable);

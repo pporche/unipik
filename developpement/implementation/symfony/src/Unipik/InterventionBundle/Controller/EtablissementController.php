@@ -68,14 +68,20 @@ class EtablissementController extends Controller {
         $form = $this->get('form.factory')->create(EtablissementType::class, $institute)->remove('etablissement_typeEnseignement_placeholder');
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $educationTypeArray = $form->get("typeEnseignement")->getData();
-            $institute->setTypeEnseignement($educationTypeArray);
-
-            $otherTypeArray = $form->get("typeAutreEtablissement")->getData();
-            $institute->setTypeAutreEtablissement($otherTypeArray);
-
-            $centreTypeArray = $form->get("typeCentre")->getData();
-            $institute->setTypeCentre($centreTypeArray);
+            switch ($form->get('TypeGeneral')->getData()) {
+                case 'ens' :
+                    $educationTypeArray = $form->get("typeEnseignement")->getData();
+                    $institute->setTypeEnseignement($educationTypeArray);
+                    break;
+                case 'centre' :
+                    $centreTypeArray = $form->get("typeCentre")->getData();
+                    $institute->setTypeCentre($centreTypeArray);
+                    break;
+                case 'autre' :
+                    $otherTypeArray = $form->get("typeAutreEtablissement")->getData();
+                    $institute->setTypeAutreEtablissement($otherTypeArray);
+                    break;
+            }
 
             $emails = $form->get("emails")->getData();
             foreach ($emails as $email) {

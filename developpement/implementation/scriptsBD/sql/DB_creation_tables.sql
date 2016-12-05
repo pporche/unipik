@@ -294,6 +294,13 @@ CREATE TABLE IF NOT EXISTS intervention (
 	type_intervention domaine_type_intervention NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS mail_historique (
+	id SERIAL PRIMARY KEY,
+	type_email text,
+	date_envoi DATE,
+	id_etablissement INT NOT NULL
+);
+
 -- Attributs de plaidoyer
 ALTER TABLE intervention 
 	add niveau_theme_id INT REFERENCES niveau_theme; 							-- stats --

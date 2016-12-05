@@ -88,7 +88,7 @@ class MailingType extends AbstractFieldsetType {
             'placeholder' => 'Par défaut',
             'choices' => [
                 'Non réponse à une précédente sollicitation pour ce niveau scolaire' => 'relance',
-                'Réponse à une précédente sollicitation (frimousses ou action pontuelles mais pas plaidoyers)' => 'relancePlaidoyer'
+                'Réponse à une précédente sollicitation (frimousses ou action ponctuelles mais pas plaidoyers)' => 'relancePlaidoyer'
             ],);
 
         $dansVilleOuParDistance = array('required' => false, 'expanded' => true, 'multiple' => false, 'label' => 'Envoi par localisation',

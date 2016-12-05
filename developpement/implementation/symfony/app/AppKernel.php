@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Unipik\MailBundle\MailBundle(),
             new Unipik\ArchitectureBundle\ArchitectureBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

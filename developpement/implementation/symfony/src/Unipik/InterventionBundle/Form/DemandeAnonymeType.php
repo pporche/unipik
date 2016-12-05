@@ -31,6 +31,7 @@ use Unipik\InterventionBundle\Form\Intervention\InterventionTemplateType;
 use Unipik\InterventionBundle\Form\Intervention\JourInterventionType;
 use Unipik\InterventionBundle\Form\Intervention\PlageDateType;
 use Unipik\UserBundle\Form\ContactType;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 
 
 /**
@@ -118,7 +119,8 @@ class DemandeAnonymeType extends AbstractType {
                 )
             )
             ->add('Contact', ContactType::class, array('label' => false))
-            ->add('Valider_la_demande', SubmitType::class);
+            ->add('Code_visuel', CaptchaType::class)
+            ->add('Valider_la_demande', SubmitType::class)
             ;
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));

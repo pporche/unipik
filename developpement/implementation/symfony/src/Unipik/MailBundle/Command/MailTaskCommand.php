@@ -19,7 +19,10 @@ namespace Unipik\MailBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Unipik\MailBundle\Entity\MailHistorique;
 
+//sudo php bin/console mailInstituteTask:run
+//* */1 * * * php /var/www/your-project/app/console crontasks:run
 /**
  * Class MailTaskCommand
  *
@@ -31,7 +34,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class MailTaskCommand extends ContainerAwareCommand {
     private $output;
-    private $limitEmails = 4;
+    private $limitEmails = 6;
 
     /**
      * Configurer les options
@@ -105,6 +108,14 @@ class MailTaskCommand extends ContainerAwareCommand {
                     ->getContainer()
                     ->get('mailer')
                     ->send($message);
+
+                $mailHistorique = new MailHistorique();
+                $mailHistorique
+                    ->setDateEnvoi(new \DateTime())
+                    ->setTypeEmail('prospection')
+                    ->setIdEtablissement($etablissement->getId())
+                ;
+                $em->persist($mailHistorique);
             }
 
             if (!empty($etablissementsToPersist)) {

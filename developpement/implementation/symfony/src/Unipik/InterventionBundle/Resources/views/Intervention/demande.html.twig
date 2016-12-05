@@ -720,6 +720,9 @@
 
 
         $(document).ready(function () {
+            if ($('#demande_Etablissement_adresse_ville').val().indexOf(' (') < 0) {
+                $('#demande_Etablissement_adresse_ville').val($('#demande_Etablissement_adresse_ville').val() + ' ({{ etablissement.adresse.codePostal.code }})');
+            }
 
             $('#demande_Etablissement_adresse').parent().parent().attr('style','display:none;');
 

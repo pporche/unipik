@@ -1,0 +1,53 @@
+# version 1.00, date 20/02/16, auteur Michel Cressant
+
+Unipik/ArchitectureBundle/Resources/views/
+|
+|_Debug
+|	|
+|	|_pourDebug
+|
+|_Intervention
+|	|
+|	|_demande
+|	|
+|	|_erreurSuccesDemande
+|	|
+|	|_recherche
+|	|
+|	|_consultation
+|	|
+|	|_modification
+|	|
+|	|_liste
+|	|
+|	|_listePlanning
+|	|
+|	|_modificationPlanning
+|
+|_Benevole
+|	|
+|	|_profil
+|	|
+|	|_liste
+|	|
+|	|_ajout
+|	|
+|	|_suppression
+|
+|_Etablissement
+|	|
+|	|_liste
+|	|
+|	|_recherche
+|	|
+|	|_consultation
+|
+|_accueilBenevole
+|
+|_accueilAdmin
+|
+|_accueilAnonyme
+|
+|_connexion
+|
+|_deconnexion

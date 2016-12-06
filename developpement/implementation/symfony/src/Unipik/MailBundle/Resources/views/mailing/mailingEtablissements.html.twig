@@ -82,6 +82,7 @@
     label{
         font-family: "Source Sans Pro",Calibri,Candara,Arial,sans-serif !important;
     }
+
     </style>
 {% endblock %}
 
@@ -196,6 +197,9 @@
             $('#enseignement').change(function(){
                 if(!($(this).is(':checked'))){
                     $('#enseignements').hide();
+                    for(i=0; i<6;i++){
+                        $('#mailing_typeInstitute_'+i).prop('checked', false);
+                    }
                 }else{
                     $('#enseignements').show();
                 }
@@ -204,6 +208,9 @@
             $('#centre').change(function(){
                 if(!($(this).is(':checked'))){
                     $('#centreDeLoisirs').hide();
+                    for(i=0; i<5;i++){
+                        $('#mailing_typeCenter_'+i).prop('checked', false);
+                    }
                 }else{
                     $('#centreDeLoisirs').show();
                 }
@@ -212,6 +219,9 @@
             $('#autre').change(function(){
                 if(!($(this).is(':checked'))){
                     $('#autreEtablissements').hide();
+                    for(i=0; i<4;i++){
+                        $('#mailing_typeAutre_'+i).prop('checked', false);
+                    }
                 }else{
                     $('#autreEtablissements').show();
                 }
@@ -344,6 +354,11 @@
 
         .well{
             max-width: 700px;
+        }
+        #enseignements, #centreDeLoisirs, #autreEtablissements{
+            display: inline-block;
+            width: 200px;
+            vertical-align: top;
         }
 
 

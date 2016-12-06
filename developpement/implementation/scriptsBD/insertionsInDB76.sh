@@ -46,9 +46,9 @@ EOF
 
 psql -U $username -w -d $dbname  -h 127.0.0.1 -c "ALTER SEQUENCE niveau_theme_id_seq RESTART WITH 1;"
 
+list0=( "petite section" "petite-moyenne section" "moyenne section" "moyenne-grande section" "grande section" "petite-moyenne-grande section" "CP" "CP-CE1" "CE1" "CE1-CE2" "CE2" "CE2-CM1" "CM1" "CM1-CM2" "CM2" "6eme" "5eme" "4eme" "3eme" "2nde" "1ere" "terminale" "L1" "L2" "L3" "M1" "M2" "autre")   
 
-list1=( "petite section" "petite-moyenne section" "moyenne section" "moyenne-grande section" "grande section" "petite-moyenne-grande section" "CP" "CP-CE1" "CE1" "CE1-CE2" "CE2" "CE2-CM1" "CM1" "CM1-CM2" "CM2" "6eme" "5eme" "4eme" "3eme" "2nde" "1ere" "terminale" "L1" "L2" "L3" "M1" "M2" "autre")   
-for element in "${list1[@]}"    
+for element in "${list0[@]}"    
 do   
     psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'education');"  
 	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'role unicef');" 
@@ -56,6 +56,11 @@ do
 	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'sante et alimentation');" 
 	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'eau');" 
 	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'convention internationale des droits de l enfant');" 
+done
+
+list1=("CP" "CP-CE1" "CE1" "CE1-CE2" "CE2" "CE2-CM1" "CM1" "CM1-CM2" "CM2" "6eme" "5eme" "4eme" "3eme" "2nde" "1ere" "terminale" "L1" "L2" "L3" "M1" "M2" "autre")   
+for element in "${list1[@]}"    
+do   
 	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'enfants et soldats');" 
 	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'travail des enfants');" 
 	psql -U $username -w -d $dbname  -h 127.0.0.1 -c "INSERT INTO niveau_theme (niveau, theme) VALUES ('$element', 'harcelement');" 

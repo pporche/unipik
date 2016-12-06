@@ -83,7 +83,7 @@
 
         {% if intervention %}
             <h5> Vente suite à une intervention :</h5>
-            Frimousse - {{ intervention.dateIntervention }} - {{ intervention.niveauFrimousse }}
+            Frimousse - {{ intervention.dateIntervention | date('dd/mm/YY') }} - {{ intervention.niveauFrimousse }}
         {% endif %}
 
         {% if etablissement %}

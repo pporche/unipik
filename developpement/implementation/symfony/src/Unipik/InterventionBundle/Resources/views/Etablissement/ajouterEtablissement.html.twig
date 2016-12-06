@@ -35,12 +35,11 @@
         });
 
         $(document).ready(function() {
-
             $('#typeEnseignement').show();
             $('#typeCentre').hide();
             $('#typeAutreEtablissement').hide();
 
-            $('#etablissement_TypeGeneral').on('change', function(){
+            function checkTypeEtablissement(){
                 if($('#etablissement_TypeGeneral').find(":selected").text() == "Enseignement"){
                     $('#typeEnseignement').show();
                     $('#typeCentre').hide();
@@ -49,6 +48,8 @@
                     $('#typeCentre').show();
                     $('#typeEnseignement').hide();
                     $('#typeAutreEtablissement').hide();
+                    $('#etablissement_uai').hide();
+                    $('#uai_label').hide();
                 }
                 else
                 {
@@ -56,7 +57,10 @@
                     $('#typeCentre').hide();
                     $('#typeEnseignement').hide();
                 }
-            });
+            }
+            checkTypeEtablissement();
+
+            $('#etablissement_TypeGeneral').on('change', checkTypeEtablissement);
 
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
             var $container = $('div#etablissement_emails');
@@ -177,6 +181,28 @@
             e.preventDefault();
             var erreur = false;
 
+            if ($('#etablissement_telFixe').val().trim().length==0) {
+                if ($('#erreurTelFixeVide').prev()[0]==undefined) {
+                    $('#etablissement_telFixe').after('<p id="erreurTelFixeVide"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
+                } else {
+                    $('#erreurTelFixeVide').show();
+                }
+                erreur = true;
+            } else {
+                $('#erreurTelFixeVide').hide();
+            }
+
+            if (($('#etablissement_telFixe').val().trim().length!=10 || isNaN($('#etablissement_telFixe').val().trim())) && $('#etablissement_telFixe').val().trim().length!=0) {
+                if ($('#erreurTelFixeNonConforme').prev()[0]==undefined) {
+                    $('#etablissement_telFixe').after('<p id="erreurTelFixeNonConforme"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Veuillez entrer un numéro de téléphone valide</p>');
+                } else {
+                    $('#erreurTelFixeNonConforme').show();
+                }
+                erreur = true;
+            } else {
+                $('#erreurTelFixeNonConforme').hide();
+            }
+
             if ($('#etablissement_adresse_adresse').val().trim().length==0) {
                 if ($('#erreurAdresse').prev()[0]==undefined) {
                     $('#etablissement_adresse_adresse').after('<p id="erreurAdresse"  style="color: red; font-size: 13px; font-style: italic">&nbsp &nbsp Ce champ est obligatoire</p>');
@@ -198,6 +224,17 @@
             }
             else {
                 $('#erreurVille').hide();
+            }
+
+            if ($('#etablissement_adresse_ville').val().trim().length>0 && $('#etablissement_adresse_ville').val().indexOf(' (') < 0) {
+                if ($('#erreurCodePostal').prev()[0]==undefined) {
+                    $('#etablissement_adresse_ville').after('<p id="erreurCodePostal"  style="color: red; font-size: 13px; font-style: italic">Sélectionnez un code postal</p>');
+                } else {
+                    $('#erreurCodePostal').show();
+                }
+                erreur = true;
+            } else {
+                $('#erreurCodePostal').hide();
             }
 
             if (!erreur) {
@@ -292,7 +329,7 @@
             {{ form_widget(form.typeAutreEtablissement) }}
         </div>
 
-    <h5> UAI :</h5>
+    <h5 id="uai_label"> UAI :</h5>
     {{ form_widget(form.uai) }}
 
     <h5> Adresse* :</h5>

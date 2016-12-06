@@ -68,6 +68,15 @@ class MailController extends Controller {
     }
 
     /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository|\Unipik\MailBundle\Entity\MailHistoriqueRepository
+     */
+    public function getMailHistoriqueRepository() {
+        $em = $this->getDoctrine()->getManager();
+        return $em->getRepository('MailBundle:MailHistorique');
+    }
+
+
+    /**
      * Render the view of the list of mails sent
      *
      * @param Request $request
@@ -77,7 +86,7 @@ class MailController extends Controller {
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
 
-        $repository = $this->getMailTaskRepository();
+        $repository = $this->getMailHistoriqueRepository();
 
         $mails = $repository->getType(date('d/m/Y'),date('d/m/Y'));
 

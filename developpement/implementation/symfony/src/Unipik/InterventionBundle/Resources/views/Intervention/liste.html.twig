@@ -55,6 +55,11 @@
             border-top: none;
         }
 
+        .leaflet-popup-content {
+            max-height: 173px;
+            overflow-y: auto;
+        }
+
         #recherche_avancee_ville {
             text-transform: uppercase;
         }
@@ -135,8 +140,6 @@
             width:100%;
             table-layout:fixed;
         }
-
-
 
     </style>
 {% endblock %}
@@ -591,32 +594,54 @@
             button.className += " active";
         }
 
-        var mymap = L.map('mapid');
-        var markers = [];
         {% if liste is not empty %}
+            var mymap = L.map('mapid');
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+                maxZoom: 20,
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                id: 'mapbox.streets'
+            }).addTo(mymap);
+            var markers = [];
             {% for intervention in liste %}
-                var lat = {{ intervention.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
-                var lon = {{ intervention.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
-                var marker = L.marker([lon, lat]).addTo(mymap).bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
-                marker.on('click', function (e) {
-                    mymap.setView(e.target.getLatLng());
-                });
-                markers.push(marker);
+                {% if intervention.etablissement.adresse.geolocalisation is not null %}
+                    var lat = {{ intervention.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
+                    var lon = {{ intervention.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
+                    var marker = L.marker([lon, lat]);
+                    marker.on('click', function (e) {
+                        mymap.setView(e.target.getLatLng());
+                    });
+                    var alreadyExists = false;
+                    for (var i=0; i<markers.length; i++) {
+                        if (marker.getLatLng()["lat"] == markers[i].getLatLng()["lat"] && marker.getLatLng()["lon"] == markers[i].getLatLng()["lon"]) {
+                            {% if intervention.dateIntervention %}
+                                {% set date = intervention.dateIntervention|date("d-m-Y") %}
+                            {% else %}
+                                {% set date = "Date non définie" %}
+                            {% endif %}
+                            marker.bindPopup(markers[i].getPopup().getContent() + "<br><br><b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br>{{ date }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
+                            markers[i] = marker;
+                            alreadyExists = true;
+                            break;
+                        }
+                    }
+                    if (!alreadyExists) {
+                        marker.bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br>{{ date }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
+                        markers.push(marker);
+                    }
+                {% endif %}
             {% endfor %}
-        {% endif %}
-        var group = new L.featureGroup(markers);
-        mymap.fitBounds(group.getBounds());
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
-            maxZoom: 18,
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-            'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-            id: 'mapbox.streets'
-        }).addTo(mymap);
+            if (markers.length > 0) {
+                var group = new L.featureGroup(markers).addTo(mymap);
+                mymap.fitBounds(group.getBounds());
+            }
+            mymap.setZoom(9);
 
-        $("body").on('click','#CarteLink', function() {
-            mymap.invalidateSize(false);
-        });
+            $("body").on('click','#CarteLink', function() {
+                mymap.invalidateSize(false);
+            });
+        {% endif %}
     </script>
 {% endblock %}
 
@@ -699,6 +724,7 @@
             {% set vue =  'intervention_list' %}
         {% endif %}
         <div id="Liste" class="tabcontent">
+            {% if liste is not empty %}
             <h2>
                 Liste des
                 {% if onlyNonAttribues %}
@@ -722,10 +748,7 @@
                 {% endif %}
                 :
             </h2>
-
-            {% if liste %}
-                <button type="button" class="imprimente" onclick="imprimer()"><span class="glyphicon glyphicon-print"></span></button><br>
-            {% endif %}
+            <button type="button" class="imprimente" onclick="imprimer()"><span class="glyphicon glyphicon-print"></span></button><br>
 
             <div class="container">
                 <div class="row">
@@ -820,7 +843,6 @@
                             </tr>
                             </thead>
                             <tbody id="myTable">
-                            {% if liste is not empty %}
                                 {% for intervention in liste %}
                                     {% if (date("now")>=(intervention.dateIntervention)) and not (intervention.realisee) and intervention.dateIntervention  %}
                                         {%  if intervention.benevole %}
@@ -935,12 +957,8 @@
                                     {% endif %}
                                     </tr>
                                 {% endfor %}
-                            {% else %}
-                                <tr></tr>
-                            {% endif %}
                             </tbody>
                         </table>
-
                     </div>
 
                     <div class="buttons">
@@ -965,9 +983,16 @@
                     </div>
                 </div>
             </div>
+            {% else %}
+                <div class="text-warning">Aucune intervention ne correspond à votre requête, veuillez lancer une nouvelle recherche.</div>
+            {% endif %}
         </div>
         <div id="Carte" class="tabcontent">
-            <div id="mapid"></div>
+            {% if liste is not empty %}
+                <div id="mapid"></div>
+            {% else %}
+                <div class="text-warning">Aucune intervention ne correspond à votre requête, veuillez lancer une nouvelle recherche.</div>
+            {% endif %}
         </div>
     </section>
 

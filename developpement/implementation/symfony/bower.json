@@ -14,7 +14,6 @@
     "jquery": "^2.2.0",
     "chosen": "^1.6.2",
     "leaflet": "^1.0.1",
-    "leaflet-geosearch": "^1.1.0",
     "pdfmake": "^0.1.20"
   }
 }

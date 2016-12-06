@@ -1,0 +1,27 @@
+MailHistorique:
+    type: entity
+    repositoryClass: Unipik\MailBundle\Entity\MailHistoriqueRepository
+    table: mail_historique
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        id_etablissement:
+            type: integer
+            nullable: false
+        date_envoi:
+            type: datetime
+            nullable: true
+        type_email:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

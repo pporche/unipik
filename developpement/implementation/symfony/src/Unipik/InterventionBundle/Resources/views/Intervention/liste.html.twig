@@ -600,16 +600,20 @@
             }).addTo(mymap);
             var markers = [];
             {% for intervention in liste %}
-                var lat = {{ intervention.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
-                var lon = {{ intervention.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
-                var marker = L.marker([lon, lat]).bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
-                marker.on('click', function (e) {
-                    mymap.setView(e.target.getLatLng());
-                });
-                markers.push(marker);
+                {% if intervention.etablissement.adresse.geolocalisation is not null %}
+                    var lat = {{ intervention.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
+                    var lon = {{ intervention.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
+                    var marker = L.marker([lon, lat]).bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
+                    marker.on('click', function (e) {
+                        mymap.setView(e.target.getLatLng());
+                    });
+                    markers.push(marker);
+                {% endif %}
             {% endfor %}
-            var group = new L.featureGroup(markers).addTo(mymap);
-            mymap.fitBounds(group.getBounds());
+            if (markers.length > 0) {
+                var group = new L.featureGroup(markers).addTo(mymap);
+                mymap.fitBounds(group.getBounds());
+            }
             mymap.setZoom(9);
 
             $("body").on('click','#CarteLink', function() {

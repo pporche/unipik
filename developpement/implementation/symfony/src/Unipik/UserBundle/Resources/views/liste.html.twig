@@ -475,16 +475,20 @@
             }).addTo(mymap);
             var markers = [];
             {% for benevole in listBenevoles %}
-                var lat = {{ benevole.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
-                var lon = {{ benevole.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
-                var marker = L.marker([lon, lat]).bindPopup("<b>{{ benevole.nom|upper }} {{ benevole.prenom|capitalize }}</b><br>{{ benevole.adresse.ville.nom }}<br><a href='{{ path('user_admin_profil_benevole', {username: benevole.username}) }}'>Détails de {{ benevole.prenom|capitalize }}</a>");
-                marker.on('click', function (e) {
-                    mymap.setView(e.target.getLatLng());
-                });
-                markers.push(marker);
+                {% if benevole.adresse.geolocalisation is not null %}
+                    var lat = {{ benevole.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
+                    var lon = {{ benevole.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
+                    var marker = L.marker([lon, lat]).bindPopup("<b>{{ benevole.nom|upper }} {{ benevole.prenom|capitalize }}</b><br>{{ benevole.adresse.ville.nom }}<br><a href='{{ path('user_admin_profil_benevole', {username: benevole.username}) }}'>Détails de {{ benevole.prenom|capitalize }}</a>");
+                    marker.on('click', function (e) {
+                        mymap.setView(e.target.getLatLng());
+                    });
+                    markers.push(marker);
+                {% endif %}
             {% endfor %}
-            var group = new L.featureGroup(markers).addTo(mymap);
-            mymap.fitBounds(group.getBounds());
+            if (markers.length > 0) {
+                var group = new L.featureGroup(markers).addTo(mymap);
+                mymap.fitBounds(group.getBounds());
+            }
             mymap.setZoom(9);
 
             $("body").on('click','#CarteLink', function() {

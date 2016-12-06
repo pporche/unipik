@@ -340,7 +340,7 @@ class EtablissementRepository extends EntityRepository {
     public function getEmailEtablissementRappel() {
         $dateTime = new \DateTime();
         $dateTime->add(new \DateInterval('P7D'));
-        $date = ''.$dateTime->format('d/m/Y');
+        $date = ''.$dateTime->format('Y-m-d');
 
         $qb = $this->createQueryBuilder('e')
             ->select('e.id')
@@ -357,8 +357,8 @@ class EtablissementRepository extends EntityRepository {
      * @return array
      */
     public function getEtablissementDemandeNonSatisfaite() {
-        $dateInf = '01/09/'.date('Y');
-        $dateSup = '01/09/'.(date('Y')+1);
+        $dateInf = date('Y').'-09-01';
+        $dateSup = (date('Y')+1).'-09-01';
 
         $sub = $this
             ->getEntityManager()
@@ -370,7 +370,7 @@ class EtablissementRepository extends EntityRepository {
             ->andWhere('d.dateDemande < :dateSup')
             ->andWhere('i.dateIntervention < :date')
             ->andWhere('i.realisee = false')
-            ->setParameters(array('date' => (new \DateTime())->format('d/m/Y'), 'dateInf' => $dateInf, 'dateSup' => $dateSup))
+            ->setParameters(array('date' => (new \DateTime())->format('Y-m-d'), 'dateInf' => $dateInf, 'dateSup' => $dateSup))
             ->getQuery()
             ->getResult();
 

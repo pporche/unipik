@@ -1,6 +1,5 @@
-% version 1.00, date 19/04/16, auteur Michel Cressant
-
-\documentclass[asi]{picInsa}
+% version 1.00, date 30/03/16, auteur Michel Cressant
+\documentclass[asi,sansVersion]{picInsa}
 
 %Pour le schéma d'architecture
 \usepackage{etex}
@@ -8,12 +7,13 @@
 \usetikzlibrary{shapes,arrows,chains,backgrounds,fit}
 %FIN Pour le shéma d'architecture
 
+
 \DeclareGraphicsRule{*}{pdf}{*}{}
 \usepackage{pdfpages}
+
+%\input{../../ressources/AjoutezVosPackagesIci.tex}
 \usepackage{vocabulaireUnipik}
-
-
-
+%\usepackage{../../ressources/Unipik/vocabulaire/vocabulaireEastpic}
 
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
@@ -41,20 +41,19 @@
 	\hspace{1.00cm} |\textunderscore #1 & #2 & #3\\
 	\hline
 }
-\title{\DCD{}}
-\author{\Florian{}, \Kafui{}, \Melissa{}, \Julie{}, \Mathieu{}, \Michel{}} %à changer
+\title{\JTU{}}
+\author{\Michel} %à changer
 
 
-\titreGeneral{\DCD}
+\titreGeneral{\JTU}
 \sousTitreGeneral{\nomEquipe}
-\titreAcronyme{\DCDCourt}
-
-\titreDetaille{\DCDCourt\_D\_\nomEquipe\_l2}
-\referenceVersion{\DCDCourt\_D\_\nomEquipe\_\versionPrive}
-\auteurs{\Melissa{} \& \Florian{} \& \Michel{} \& \Julie \& \Mathieu \& \Matthieu \& \Kafui}
-\destinataires{\nomEquipe}
-\resume{Le présent document contient la présentation du \DCD{} \nomEquipe.}
-\motsCles{\DCDCourt{}}
+\titreAcronyme{\JTUCourt}
+\titreDetaille{\JTUCourt\_D\_\nomEquipe\_l3}
+\referenceVersion{\JTUCourt\_D\_\nomEquipe\_l3}
+\auteurs{\Michel{} }
+\destinataires{\nomEquipe}%\nomApprobateur{}, \nomTuteurQualite, \nomEquipe, \nomPIC{}}
+\resume{Le présent document contient la présentation du \JTU{} du Lot 3 de \nomEquipe.}
+\motsCles{\JTUCourt{}}
 \natureDerniereModification{Création}
 \modeDiffusionControle{}
 
@@ -69,32 +68,16 @@
 
 \setcounter{chapter}{0}
 
-
 \chapter*{Introduction}
-\label{intro}
+\label{introduction}
 \input{sources/01_introduction.tex}
 
-\chapter{Diagramme de package}
-\label{diagrammeDePackage}
-\input{sources/02_diagrammeDePackage.tex}
+\chapter{Historique des Tests Unitaires}
+\label{historiquesDesTestsUnitaires}
+\input{sources/02_historiqueDesTestsUnitaires.tex}
 
-\chapter{Carte de navigation}
-\label{diagrammeNavigation}
-\input{sources/03_diagrammeDeNavigation}
 
-\chapter{Diagramme de séquence système}
-\label{diagrammeSequenceSystem}
-\input{sources/04_diagrammeDeSequenceSystem.tex}
 
-\begin{appendix}
-\part*{Annexes}
-\addcontentsline{toc}{part}{Annexes}
-\listoffigures
-\addcontentsline{toc}{chapter}{Table des figures}
-	 
-\listoftables
-\addcontentsline{toc}{chapter}{Liste des tableaux}
-\end{appendix}
 \pageQuatriemeCouverture
 
 \end{document}

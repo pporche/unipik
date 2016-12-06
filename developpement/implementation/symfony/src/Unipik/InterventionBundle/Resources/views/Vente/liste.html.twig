@@ -538,16 +538,20 @@
             }).addTo(mymap);
             var markers = [];
             {% for vente in ventes %}
-                var lat = {{ vente.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
-                var lon = {{ vente.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
-                var marker = L.marker([lon, lat]).bindPopup("<b>{{ vente.etablissement.nom }}</b><br>{{ vente.etablissement.adresse.ville.nom }}<br><a href='{{ path('vente_view', {id: vente.id}) }}'>Détails de la vente</a>");
-                marker.on('click', function (e) {
-                    mymap.setView(e.target.getLatLng());
-                });
-                markers.push(marker);
+                {% if vente.etablissement.adresse.geolocalisation is not null %}
+                    var lat = {{ vente.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
+                    var lon = {{ vente.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
+                    var marker = L.marker([lon, lat]).bindPopup("<b>{{ vente.etablissement.nom }}</b><br>{{ vente.etablissement.adresse.ville.nom }}<br><a href='{{ path('vente_view', {id: vente.id}) }}'>Détails de la vente</a>");
+                    marker.on('click', function (e) {
+                        mymap.setView(e.target.getLatLng());
+                    });
+                    markers.push(marker);
+                {% endif %}
             {% endfor %}
-            var group = new L.featureGroup(markers).addTo(mymap);
-            mymap.fitBounds(group.getBounds());
+            if (markers.length > 0) {
+                var group = new L.featureGroup(markers).addTo(mymap);
+                mymap.fitBounds(group.getBounds());
+            }
             mymap.setZoom(9);
 
             $("body").on('click','#CarteLink', function() {

@@ -56,14 +56,14 @@ class MailHistorique{
      *
      * @ORM\Column(name="date_envoi", type="datetime", nullable=true)
      */
-    private $date;
+    private $date_envoi;
 
     /**
      * Le type de mail
      *
      * @ORM\Column(name="type_email", type="string")
      */
-    private $typeEmail;
+    private $type_email;
 
     /**
      * @return int
@@ -75,10 +75,13 @@ class MailHistorique{
 
     /**
      * @param int $id
+     *
+     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -91,10 +94,12 @@ class MailHistorique{
 
     /**
      * @param mixed $id_etablissement
+     *
+     * @return $this
      */
-    public function setIdEtablissement($id_etablissement)
-    {
+    public function setIdEtablissement($id_etablissement) {
         $this->id_etablissement = $id_etablissement;
+        return $this;
     }
 
     /**
@@ -107,10 +112,31 @@ class MailHistorique{
 
     /**
      * @param \DateTime $date
+     *
+     * @return $this
      */
-    public function setDate($date)
-    {
+    public function setDate($date) {
         $this->date = $date;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateEnvoi()
+    {
+        return $this->date_envoi;
+    }
+
+    /**
+     * @param \DateTime $date_envoi
+     *
+     * @return $this
+     */
+    public function setDateEnvoi($date_envoi)
+    {
+        $this->date_envoi = $date_envoi;
+        return $this;
     }
 
     /**
@@ -118,17 +144,19 @@ class MailHistorique{
      */
     public function getTypeEmail()
     {
-        return $this->typeEmail;
+        return $this->type_email;
     }
 
     /**
-     * @param mixed $typeEmail
+     * @param mixed $type_email
+     *
+     * @return $this
      */
-    public function setTypeEmail($typeEmail)
+    public function setTypeEmail($type_email)
     {
-        $this->typeEmail = $typeEmail;
+        $this->type_email = $type_email;
+        return $this;
     }
-
 
 
 }

@@ -654,6 +654,9 @@
                                 {% set date = "Date non définie" %}
                             {% endif %}
                             marker.bindPopup(markers[i].getPopup().getContent() + "<br><br><b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br>{{ date }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
+                            if (markers[i].icon == redMarker || (markers[i].icon == orangeMarker && marker.icon != redMarker)/* || (markers[i].icon != greenMarker && marker.icon == L.marker([lon,lat]).icon )*/) {
+                                marker.setIcon(markers[i].icon);
+                            }
                             markers[i] = marker;
                             alreadyExists = true;
                             break;

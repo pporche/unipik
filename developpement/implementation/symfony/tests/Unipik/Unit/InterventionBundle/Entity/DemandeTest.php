@@ -35,9 +35,9 @@ class DemandeTest extends  EntityTestCase
     public function testGettersSetters(Demande $d)
     {
         $this->assertEquals(null, $d->getId());
-        $this->assertEquals(new \DateTime('2000-01-15'), $d->getDateDebutDisponibilite());
-        $this->assertEquals(new \DateTime('2000-01-30'), $d->getDateFinDisponibilite());
-        $this->assertEquals(new \DateTime('2000-01-01'), $d->getDateDemande());
+        $this->assertEquals(new \DateTime(date('Y').'-12-15'), $d->getDateDebutDisponibilite());
+        $this->assertEquals(new \DateTime(date('Y').'-12-30'), $d->getDateFinDisponibilite());
+        $this->assertEquals(new \DateTime(date('Y').'-01-01'), $d->getDateDemande());
 
         $c = ContactMock::create();
 

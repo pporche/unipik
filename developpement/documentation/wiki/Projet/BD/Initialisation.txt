@@ -38,7 +38,7 @@ Si vous souhaitez réinsérez les adresses,  les établissements, les informatio
 1. Exécuter les deux commandes :
 
 '''
-sudo su
-postgres pg_dump bdunicef > /tmp/bdunicef.sql
+sudo su postgres
+pg_dump bdunicef > /tmp/bdunicef.sql
 '''
 

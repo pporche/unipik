@@ -142,7 +142,7 @@ class UserController extends Controller {
         $interventions = $repositoryIntervention->findBy(array('benevole' => $volunteer)); // On récupère toutes les interventions réalisées par le bénévole à supprimer.
 
         if (!empty($interventions)) {
-            $fictiveVolunteer = $repositoryVolunteer->findBy(array('id' => '1'))[0]; // On récupère le bénévole fictif.
+            $fictiveVolunteer = $repositoryVolunteer->findBy(array('nom' => 'anonyme', 'prenom' => 'benevole'))[0]; // On récupère le bénévole fictif.
 
             foreach ($interventions as $intervention) {
                 $intervention->setBenevole($fictiveVolunteer); // On remplace le bénévole à supprimer par le fictif dans les interventions.

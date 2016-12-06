@@ -22,7 +22,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Unipik\MailBundle\Entity\MailHistorique;
 
 //sudo php bin/console mailInstituteTask:run
-//* */1 * * * php /var/www/your-project/app/console crontasks:run
+//* */1 * * * php /path/to/your/console crontasks:run
 /**
  * Class MailTaskCommand
  *

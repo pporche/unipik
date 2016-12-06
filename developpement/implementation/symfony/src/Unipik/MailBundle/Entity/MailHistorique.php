@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: scolomies
- * Date: 05/12/16
- * Time: 10:51
+ * User: julie
+ * Date: 09/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\MailBundle\Entity;
@@ -11,18 +19,16 @@ namespace Unipik\MailBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class MailBundle
- *
- * @ORM\Entity(repositoryClass="Unipik\MailBundle\Entity\MailHistoriqueRepository")
- * @ORM\Table(name="mail_historique")
+ * Le repository qui gère les interventions
  *
  * @category None
- * @package  MailBundle
+ * @package  InterventionBundle
  * @author   Unipik <unipik.unicef@laposte.com>
  * @license  None None
  * @link     None
  */
-class MailHistorique {
+
+class MailHistorique{
 
     /**
      * L'id
@@ -38,84 +44,94 @@ class MailHistorique {
     /**
      * L'id de l'etablissement
      *
-     * @ORM\Column(name="id_etablissement", type="integer", nullable=false)
+     * @ORM\Column(name="id_etablissement", type="array")
      */
+
     private $id_etablissement;
 
     /**
-     * La date
+     * Date d'envoi de mail
      *
      * @var \DateTime
      *
      * @ORM\Column(name="date_envoi", type="datetime", nullable=true)
      */
-    private $date_envoi;
+    private $date;
 
     /**
-     * Le type d'email
+     * Le type de mail
      *
      * @ORM\Column(name="type_email", type="string")
      */
-    private $type_email;
-
+    private $typeEmail;
 
     /**
-     * Retourne l'id
-     *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
-     * @return \DateTime
+     * @param int $id
      */
-    public function getDateEnvoi() {
-        return $this->date_envoi;
-    }
-
-    /**
-     * @param \DateTime $date_envoi
-     *
-     * @return $this
-     */
-    public function setDateEnvoi($date_envoi) {
-        $this->date_envoi = $date_envoi;
-        return $this;
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
      * @return mixed
      */
-    public function getTypeEmail() {
-        return $this->type_email;
-    }
-
-    /**
-     * @param mixed $type_email
-     *
-     * @return $this
-     */
-    public function setTypeEmail($type_email) {
-        $this->type_email = $type_email;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdEtablissement() {
+    public function getIdEtablissement()
+    {
         return $this->id_etablissement;
     }
 
     /**
      * @param mixed $id_etablissement
-     *
-     * @return $this
      */
-    public function setIdEtablissement($id_etablissement) {
+    public function setIdEtablissement($id_etablissement)
+    {
         $this->id_etablissement = $id_etablissement;
-        return $this;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeEmail()
+    {
+        return $this->typeEmail;
+    }
+
+    /**
+     * @param mixed $typeEmail
+     */
+    public function setTypeEmail($typeEmail)
+    {
+        $this->typeEmail = $typeEmail;
+    }
+
+
+
 }
+
+
+?>

@@ -238,8 +238,8 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('etablissement_admin_add') }}" class="adminOnly"><em class="glyphicon glyphicon-alert"></em> Ajouter</a></li>
                         <li><a href="{{ path('etablissements_mailing') }}" class="adminOnly"><em class="glyphicon glyphicon-alert"></em> Mailing</a></li>
+                        <li><a href="{{ path('historique_mailing') }}"><em class="glyphicon glyphicon-alert"></em> Historique de mails</a></li>
                     {% endif %}
-                    <li><a href="{{ path('historique_mailing') }}">Historique de mails</a></li>
                 </ul>
             </li>
             <li class="dropdown">

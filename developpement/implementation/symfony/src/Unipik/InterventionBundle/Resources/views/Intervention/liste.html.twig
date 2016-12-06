@@ -603,11 +603,23 @@
                 {% if intervention.etablissement.adresse.geolocalisation is not null %}
                     var lat = {{ intervention.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
                     var lon = {{ intervention.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
-                    var marker = L.marker([lon, lat]).bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
+                    var marker = L.marker([lon, lat]);
                     marker.on('click', function (e) {
                         mymap.setView(e.target.getLatLng());
                     });
-                    markers.push(marker);
+                    var alreadyExists = false;
+                    for (var i=0; i<markers.length; i++) {
+                        if (marker.getLatLng()["lat"] == markers[i].getLatLng()["lat"] && marker.getLatLng()["lon"] == markers[i].getLatLng()["lon"]) {
+                            marker.bindPopup(markers[i].getPopup().getContent() + "<br><br><b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
+                            markers[i] = marker;
+                            alreadyExists = true;
+                            break;
+                        }
+                    }
+                    if (!alreadyExists) {
+                        marker.bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
+                        markers.push(marker);
+                    }
                 {% endif %}
             {% endfor %}
             if (markers.length > 0) {

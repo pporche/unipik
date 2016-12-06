@@ -182,8 +182,8 @@ class InterventionRepository extends EntityRepository {
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
-//        } else {
-//            $this->_whereInterventionsInTheTwoLastYear($qb);
+        } else {
+            $this->_whereInterventionsInTheTwoLastYear($qb);
         }
     }
 
@@ -204,8 +204,8 @@ class InterventionRepository extends EntityRepository {
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
-//        } else {
-//            $this->_whereInterventionsInTheTwoLastYear($qb);
+        } else {
+            $this->_whereInterventionsInTheTwoLastYear($qb);
         }
     }
 
@@ -226,8 +226,8 @@ class InterventionRepository extends EntityRepository {
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
-//        } else {
-//            $this->_whereInterventionsInTheTwoLastYear($qb);
+        } else {
+            $this->_whereInterventionsInTheTwoLastYear($qb);
         }
     }
 
@@ -246,8 +246,8 @@ class InterventionRepository extends EntityRepository {
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
-//        } else {
-//            $this->_whereInterventionsInTheTwoLastYear($qb);
+        } else {
+            $this->_whereInterventionsInTheTwoLastYear($qb);
         }
 
     }
@@ -373,8 +373,7 @@ class InterventionRepository extends EntityRepository {
      * @return object
      */
     private function _whereInterventionsInTheTwoLastYear(QueryBuilder $qb) {
-        $dateNow = new \DateTime('now');
-        $date = date(strtotime('-2 years', strtotime($dateNow)));
+        $date = date('Y-m-d',strtotime('-2 years', strtotime('now')));
         $qb
             ->join('i.demande','d')
             ->andWhere('d.dateDemande >= :twoYearsAgo')

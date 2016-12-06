@@ -55,6 +55,11 @@
             border-top: none;
         }
 
+        .leaflet-popup-content {
+            max-height: 173px;
+            overflow-y: auto;
+        }
+
         #recherche_avancee_ville {
             text-transform: uppercase;
         }
@@ -610,14 +615,19 @@
                     var alreadyExists = false;
                     for (var i=0; i<markers.length; i++) {
                         if (marker.getLatLng()["lat"] == markers[i].getLatLng()["lat"] && marker.getLatLng()["lon"] == markers[i].getLatLng()["lon"]) {
-                            marker.bindPopup(markers[i].getPopup().getContent() + "<br><br><b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
+                            {% if intervention.dateIntervention %}
+                                {% set date = intervention.dateIntervention|date("d-m-Y") %}
+                            {% else %}
+                                {% set date = "Date non définie" %}
+                            {% endif %}
+                            marker.bindPopup(markers[i].getPopup().getContent() + "<br><br><b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br>{{ date }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
                             markers[i] = marker;
                             alreadyExists = true;
                             break;
                         }
                     }
                     if (!alreadyExists) {
-                        marker.bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
+                        marker.bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br>{{ date }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
                         markers.push(marker);
                     }
                 {% endif %}

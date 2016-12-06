@@ -347,15 +347,9 @@ class InterventionRepository extends EntityRepository {
     private function _whereInterventionsBetweenDates($start, $end, QueryBuilder $qb) {
         $qb
             ->join('i.demande', 'd')
-            ->orWhere('d.dateDebutDisponibilite >= :start') /* 1er block or */
-            ->andWhere('d.dateDebutDisponibilite <= :end')
-            ->andWhere($qb->expr()->isNull('i.dateIntervention'))
-            ->orWhere('d.dateFinDisponibilite >= :start') /* 2eme block or */
-            ->andWhere('d.dateFinDisponibilite <= :end')
-            ->andWhere($qb->expr()->isNull('i.dateIntervention'))
-            ->orWhere('d.dateDebutDisponibilite <= :start') /* 3eme block or */
-            ->andWhere('d.dateFinDisponibilite >= :end')
-            ->andWhere($qb->expr()->isNull('i.dateIntervention'))
+            ->orWhere('d.dateDebutDisponibilite >= :start AND d.dateDebutDisponibilite <= :end AND i.dateIntervention IS NULL ') /* 1er block or */
+            ->orWhere('d.dateFinDisponibilite >= :start AND d.dateFinDisponibilite <= :end AND i.dateIntervention IS NULL ') /* 2eme block or */
+            ->orWhere('d.dateDebutDisponibilite <= :start AND d.dateFinDisponibilite >= :end AND i.dateIntervention IS NULL ') /* 3eme block or */
             ->orWhere('i.dateIntervention BETWEEN :start AND :end') /* 4eme block or */
             ->setParameter('start', $start)
             ->setParameter('end', $end)

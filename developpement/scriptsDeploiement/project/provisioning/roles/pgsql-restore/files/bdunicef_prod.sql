@@ -463,6 +463,17 @@ $$;
 
 ALTER FUNCTION public.modifier_etablissement_fictif() OWNER TO unipik;
 
+--
+-- Name: modifier_id_intervention_vente(); Type: FUNCTION; Schema: public; Owner: unipik
+--
+
+CREATE FUNCTION modifier_id_intervention_vente() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$ BEGIN  UPDATE vente SET  intervention_id = null WHERE  intervention_id = OLD.id; RETURN OLD; END; $$;
+
+
+ALTER FUNCTION public.modifier_id_intervention_vente() OWNER TO unipik;
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -1014,6 +1025,41 @@ ALTER SEQUENCE intervention_id_seq OWNED BY intervention.id;
 
 
 --
+-- Name: mail_historique; Type: TABLE; Schema: public; Owner: unipik; Tablespace: 
+--
+
+CREATE TABLE mail_historique (
+    id integer NOT NULL,
+    type_email text,
+    date_envoi date,
+    id_etablissement integer NOT NULL
+);
+
+
+ALTER TABLE public.mail_historique OWNER TO unipik;
+
+--
+-- Name: mail_historique_id_seq; Type: SEQUENCE; Schema: public; Owner: unipik
+--
+
+CREATE SEQUENCE mail_historique_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.mail_historique_id_seq OWNER TO unipik;
+
+--
+-- Name: mail_historique_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: unipik
+--
+
+ALTER SEQUENCE mail_historique_id_seq OWNED BY mail_historique.id;
+
+
+--
 -- Name: mailtask; Type: TABLE; Schema: public; Owner: unipik; Tablespace: 
 --
 
@@ -1427,6 +1473,13 @@ ALTER TABLE ONLY intervention ALTER COLUMN id SET DEFAULT nextval('intervention_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: unipik
 --
 
+ALTER TABLE ONLY mail_historique ALTER COLUMN id SET DEFAULT nextval('mail_historique_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: unipik
+--
+
 ALTER TABLE ONLY mailtask ALTER COLUMN id SET DEFAULT nextval('mailtask_id_seq'::regclass);
 
 
@@ -1572,6 +1625,7 @@ COPY adresse (id, adresse, complement, ville_id, code_postal_id, geolocalisation
 206	3 PLACE JACQUES CLATOT	\N	29236	4827	\N
 215	LE CHATEAU	\N	29480	4851	\N
 227	18 ROUTE DES ESSARTS	\N	29482	4850	\N
+414	RUE DU GENERAL DE GAULLE	\N	29392	4838	\N
 197	VILLAGE	\N	29232	4825	0101000020E61000005F3EFE77E90BE63F60C56F2BB9E04840
 191	ROUTE DE TENDOS	\N	29231	4822	0101000020E6100000C7EA5987D8D5F13FFB93F8DC89C54840
 203	VILLAGE	\N	10756	5738	0101000020E61000001DC272300D96EC3F71C971A7F4C74840
@@ -1662,7 +1716,6 @@ COPY adresse (id, adresse, complement, ville_id, code_postal_id, geolocalisation
 403	2 RUE D ALSACE	\N	28979	4786	\N
 406	9 COURS GAMBETTA	\N	28979	4786	\N
 413	RUE DE LA HALLE	\N	29392	4838	\N
-414	RUE DU GENERAL DE GAULLE	\N	29392	4838	\N
 483	VILLAGE	\N	29510	4853	0101000020E61000002E11981CB1CDF63F80819C0762D64840
 275	4 RUE DES ECOLES	\N	28978	4785	0101000020E61000004BABCB70D67CF03F4D89C14FDEA74840
 364	33 QUAI HENRI IV	\N	29390	4836	0101000020E6100000EF3BF363AD48F13F536253BED2F64840
@@ -11536,6 +11589,21 @@ COPY intervention (id, demande_id, benevole_id, comite_id, etablissement_id, dat
 --
 
 SELECT pg_catalog.setval('intervention_id_seq', 31, true);
+
+
+--
+-- Data for Name: mail_historique; Type: TABLE DATA; Schema: public; Owner: unipik
+--
+
+COPY mail_historique (id, type_email, date_envoi, id_etablissement) FROM stdin;
+\.
+
+
+--
+-- Name: mail_historique_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
+--
+
+SELECT pg_catalog.setval('mail_historique_id_seq', 1, false);
 
 
 --
@@ -83021,6 +83089,14 @@ ALTER TABLE ONLY etablissement
 
 ALTER TABLE ONLY intervention
     ADD CONSTRAINT intervention_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mail_historique_pkey; Type: CONSTRAINT; Schema: public; Owner: unipik; Tablespace: 
+--
+
+ALTER TABLE ONLY mail_historique
+    ADD CONSTRAINT mail_historique_pkey PRIMARY KEY (id);
 
 
 --

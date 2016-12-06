@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
     <link rel="stylesheet" href="{{ asset("vendor/chosen/chosen.css") }}"/>
     <link rel="stylesheet" href="{{ asset('vendor/leaflet/dist/leaflet.css') }}" />
+    <link rel="stylesheet" href="{{ asset('vendor/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css') }}">
     <style>
         #mapid {  height: 500px; }
 
@@ -154,6 +155,7 @@
     <script src="{{ asset("vendor/pdfmake/build/pdfmake.min.js") }}"></script>
     <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
     <script src="{{ asset('vendor/leaflet/dist/leaflet.js') }}"></script>
+    <script src="{{ asset('vendor/Leaflet.awesome-markers/dist/leaflet.awesome-markers.min.js') }}"></script>
     <script>
         $(document).ready(function () {
             openDisplay($('#Liste'), 'Liste');
@@ -608,7 +610,38 @@
                 {% if intervention.etablissement.adresse.geolocalisation is not null %}
                     var lat = {{ intervention.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
                     var lon = {{ intervention.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
+                    var redMarker = L.AwesomeMarkers.icon({
+                        icon: 'glyphicon-exclamation-sign',
+                        markerColor: 'red'
+                    });
+                    var orangeMarker = L.AwesomeMarkers.icon({
+                        icon: 'glyphicon-exclamation-sign',
+                        markerColor: 'orange'
+                    });
+                    var greenMarker = L.AwesomeMarkers.icon({
+                        icon: 'glyphicon-ok',
+                        markerColor: 'green'
+                    });
                     var marker = L.marker([lon, lat]);
+                    {% if intervention.realisee %}
+                        marker.setIcon(greenMarker);
+                    {% elseif (date("now")>=(intervention.dateIntervention)) and intervention.dateIntervention  %}
+                        {%  if intervention.benevole %}
+                            {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
+                                marker.setIcon(redMarker);
+                            {% endif %}
+                        {% else %}
+                            marker.setIcon(redMarker);
+                        {% endif %}
+                    {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and intervention.dateIntervention %}
+                        {%  if intervention.benevole %}
+                            {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
+                                marker.setIcon(orangeMarker);
+                            {% endif %}
+                        {% else %}
+                            marker.setIcon(orangeMarker);
+                        {% endif %}
+                    {% endif %}
                     marker.on('click', function (e) {
                         mymap.setView(e.target.getLatLng());
                     });

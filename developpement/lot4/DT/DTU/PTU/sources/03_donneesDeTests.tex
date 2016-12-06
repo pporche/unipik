@@ -1,0 +1,40 @@
+% version 1.00, date 15/03/16, auteur Michel Cressant
+
+
+Ici sont décris nos données de tests.
+
+\section{Données de test du lot3}
+	Ici sont décrits les données de tests utilisées pour le lot3
+
+\section{Plaideurs}
+	Les données sur les plaideurs, situées dans le fichier plaideurs.csv, seront utilisées pour remplir la table Benevole de la base de données. \\
+	
+	Ces données sont composées d'un pseudo, d'une adresse e-mail d'un nom et d'un prénom.	
+\section{Etablissement}
+	Les données sur les établissements, situées dans le fichier etablissement.csv, seront utilisées pour remplir la table Etablissement de la base de données. \\
+	
+	Ces données sont composées d'une ville, d'un établissement, lui même composé d'un type d'enseignement (Exemple : MATERNELLE) et parfois d'un nom d'établissement. Ces données sont aussi composées d'un type d'établissement, d'une adresse, parfois un contact, un numéro de téléphone fixe, une adresse e-mail de l'académie de Rouen (de la forme : UAI:@ac-rouen.fr) ou autre, une UAI et parfois des remarques.
+	
+\section{Code Postal}
+	Les données sur les codes postaux, situées dans le fichier codePostalCommunes.csv, seront utilisées pour remplir la table Adresse de la base de données. \\
+	
+	Ces données sont composées des codes postaux des communes, et de leurs noms, où il existe un établissement.
+	
+\section{Géolocalisation}
+	Les données de géolocalisation des établissements, situées dans le fichier geolocalisation.csv, seront utilisées pour remplir la table Etablissement de la base de données. \\
+	
+	Ces données sont composées des UAI des établissements, de la latitude et la longitude en degrès décimaux WGS84 compatible OSM.
+	
+\section{Interventions}
+	Les données concernant les interventions, situées dans le fichier interventions.csv, seront utilisées pour remplir la table Intervention de la base de données. \\
+	
+	Ces données sont composées d'une dtae, d'une ville, d'un établissement, d'une classe (composée du type d'établissement et de la ou les classes), du nombre d'élèves (parfois non renseigné), du plaideur ayant effectué l'intervention (parfois non renseigné), du thème abordé (parfois non renseigné), de l'horaire de la journée (parfois non renseigné), du matériel disponible (parfois non renseigné), du genre du contact, du contact de l'établissement (parfois non rensigné), et parfois des remarques.
+	
+\section{Thèmes}
+	Les données concernant les thèmes abordés lors des interventions, situées dans le fichier themes.csv, serviront à remplir la table Theme de la base de données. \\
+	
+	Ces données sont composées des thèmes pouvant être abordés lors d'une intervention plaidoyer.
+	
+\section{Projets}
+	Les données concernant les projets encadrés par \nomClient seront rentrées à la main car les fichiers sont inutilisables pour l'utilisation de scripts permettant le remlpissage automatique de la base de données. \\
+	

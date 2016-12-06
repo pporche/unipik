@@ -1,0 +1,6 @@
+# version 1.00 date 06/11/2016 auteur(s) Pierre Porche
+
+# Définition du nom du document
+NOM_FICHIER=DCP_D_Unipik_l4
+
+LOCPATH=developpement/lot3/DCP

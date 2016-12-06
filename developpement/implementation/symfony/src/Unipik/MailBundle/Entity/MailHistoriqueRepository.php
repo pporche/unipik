@@ -28,17 +28,26 @@ use Doctrine\ORM\EntityRepository;
  * @link     None
  */
 class MailHistoriqueRepository extends EntityRepository {
+<<<<<<< HEAD
     /**
      * @param $startDate
      * @param $endDate
+=======
+
+    /**
+     * @param $startDate
+>>>>>>> 522fbbdf2f2f57edbe40cd1ebbbc9a0aaed2deaf
      * @return array
      */
     public function getType($startDate, $endDate){
         $qb = $this->createQueryBuilder('m');
 
+<<<<<<< HEAD
         $from = new \DateTime($startDate);
         $to   = new \DateTime($endDate);
 
+=======
+>>>>>>> 522fbbdf2f2f57edbe40cd1ebbbc9a0aaed2deaf
         return $qb
             ->getQuery()
             ->getResult();

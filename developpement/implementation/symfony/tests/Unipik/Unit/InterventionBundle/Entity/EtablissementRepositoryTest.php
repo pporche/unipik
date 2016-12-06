@@ -71,7 +71,7 @@ class EtablissementRepositoryTest extends RepositoryTestCase
             "tout"               => [$etab, "POUIC POUIC", null, ["maternelle", "elementaire", "college", "lycee", "maison de retraite"], "nom", true, 9],
             "tout2"              => [$etab, "POUIC POUIC", null, null, "nom", false, 10],
             "toutes maternelles" => [$etab, "POUIC POUIC", null, ["maternelle"], "nom", false, 2],
-            "lycées2"            => [$etab, "POUIC POUIC", "enseignement", ["lycee"], "nom", true, 0, "SRID=4326;POINT(45 69)", "1"]
+            "lycées2"            => [$etab, "POUIC POUIC", "enseignement", ["lycee"], "nom", true, 0, "SRID=4326;POINT(45 69)", "1"],
         ));
     }
 
@@ -446,7 +446,7 @@ class EtablissementRepositoryTest extends RepositoryTestCase
         // Begin transaction
         $this->em->beginTransaction();
 
-        $expectedResult = 9;
+        $expectedResult = 8;
 
         $contact = ContactMock::create();
         $d = new Demande();
@@ -477,11 +477,11 @@ class EtablissementRepositoryTest extends RepositoryTestCase
         }
 
         $dateTime->add(new \DateInterval('P7D'));
-        $interventions[0]->setDateIntervention(new \DateTime(date('Y').'-11-15'));
+        $interventions[0]->setDateIntervention(new \DateTime(date('Y').(date('m')-1).'-15'));
         $interventions[0]->setDemande($d);
         $interventions[0]->setRealisee(true);
         $interventions[0]->setEtablissement($etablissements[5]);
-        $interventions[2]->setDateIntervention(new \DateTime(date('Y').'-11-16'));
+        $interventions[2]->setDateIntervention(new \DateTime(date('Y').(date('m')-1).'.-16'));
         $interventions[2]->setEtablissement($etablissements[5]);
         $interventions[2]->setDemande($d);
         $interventions[2]->setRealisee(true);

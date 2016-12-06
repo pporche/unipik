@@ -57,6 +57,11 @@
             border-top: none;
         }
 
+        .leaflet-popup-content {
+            max-height: 173px;
+            overflow-y: auto;
+        }
+
         #CAerrorIntervalle, #CAerrorType, #CAerrorChampsVide, #codeError, #villeError, #distanceError {
             font-size : 13px;
             font-style : italic;
@@ -541,11 +546,23 @@
                 {% if vente.etablissement.adresse.geolocalisation is not null %}
                     var lat = {{ vente.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
                     var lon = {{ vente.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
-                    var marker = L.marker([lon, lat]).bindPopup("<b>{{ vente.etablissement.nom }}</b><br>{{ vente.etablissement.adresse.ville.nom }}<br><a href='{{ path('vente_view', {id: vente.id}) }}'>Détails de la vente</a>");
+                    var marker = L.marker([lon, lat]);
                     marker.on('click', function (e) {
                         mymap.setView(e.target.getLatLng());
                     });
-                    markers.push(marker);
+                    var alreadyExists = false;
+                    for (var i=0; i<markers.length; i++) {
+                        if (marker.getLatLng()["lat"] == markers[i].getLatLng()["lat"] && marker.getLatLng()["lon"] == markers[i].getLatLng()["lon"]) {
+                            marker.bindPopup(markers[i].getPopup().getContent() + "<br><br><b>{{ vente.etablissement.nom }}</b><br>{{ vente.etablissement.adresse.ville.nom }}<br>{{ vente.dateVente|date("d-m-Y") }}<br><a href='{{ path('vente_view', {id: vente.id}) }}'>Détails de la vente</a>");
+                            markers[i] = marker;
+                            alreadyExists = true;
+                            break;
+                        }
+                    }
+                    if (!alreadyExists) {
+                        marker.bindPopup("<b>{{ vente.etablissement.nom }}</b><br>{{ vente.etablissement.adresse.ville.nom }}<br>{{ vente.dateVente|date("d-m-Y") }}<br><a href='{{ path('vente_view', {id: vente.id}) }}'>Détails de la vente</a>");
+                        markers.push(marker);
+                    }
                 {% endif %}
             {% endfor %}
             if (markers.length > 0) {

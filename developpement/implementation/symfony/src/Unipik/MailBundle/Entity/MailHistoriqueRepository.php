@@ -27,18 +27,20 @@ use Doctrine\ORM\EntityRepository;
  * @license  None None
  * @link     None
  */
-class MailTaskRepository extends EntityRepository {
-
+class MailHistoriqueRepository extends EntityRepository {
     /**
-     * Retourne le dernier mail
-     *
-     * @return mixed
+     * @param $startDate
+     * @param $endDate
+     * @return array
      */
-    public function getLastMailTask() {
-        return $this->createQueryBuilder('mt')
-            ->orderBy('mt.date_insert', 'ASC')
-            ->setMaxResults(1)
+    public function getType($startDate, $endDate){
+        $qb = $this->createQueryBuilder('m');
+
+        $from = new \DateTime($startDate);
+        $to   = new \DateTime($endDate);
+
+        return $qb
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult();
     }
 }

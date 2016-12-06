@@ -30,9 +30,9 @@
                     <tbody id="myTable">
                     {% if mails is not empty %}
                         {% for mail in mails %}
-                            <td data-title="Établissement">{{ mail.etablissement.nom }}</td>
-                            <td data-title="Date">{{ mail.date_insert }}</td>
-                            <td data-title="Mail">{{ mail.name }}</td>
+                            <td data-title="Établissement">{{ mail.getIdEtablissement() }}</td>
+                            <td data-title="Date">{{ mail.getDateEnvoi | date("d/m/Y") }}</td>
+                            <td data-title="Mail">{{ mail.getTypeEmail }}</td>
                         {% endfor %}
                     {% else %}
                         <tr></tr>

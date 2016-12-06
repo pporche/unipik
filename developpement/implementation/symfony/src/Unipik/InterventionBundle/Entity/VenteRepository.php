@@ -171,7 +171,7 @@ class VenteRepository extends EntityRepository {
      * @return object
      */
     private function _whereVenteInTheTwoLastYear(QueryBuilder $qb) {
-        $date = date('Y-m-d',strtotime('-2 years', strtotime('now')));
+        $date = date('Y-m-d', strtotime('-2 years', strtotime('now')));
         $qb
             ->andWhere('v.dateVente >= :twoYearsAgo')
             ->setParameter('twoYearsAgo', $date);

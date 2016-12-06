@@ -79,7 +79,7 @@ class MailController extends Controller {
     /**
      * Render the view of the list of mails sent
      *
-     * @param Request $request
+     * @param  Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function mailingHistoriqueAction(Request $request) {
@@ -88,12 +88,14 @@ class MailController extends Controller {
 
         $repository = $this->getMailHistoriqueRepository();
 
-        $mails = $repository->getType(date('d/m/Y'),date('d/m/Y'));
+        $mails = $repository->getType(date('d/m/Y'), date('d/m/Y'));
 
-        return $this->render('MailBundle::historiqueEmails.html.twig', array(
+        return $this->render(
+            'MailBundle::historiqueEmails.html.twig', array(
             'mails' => $mails,
             'rowsPerPage' => $rowsPerPage,
-        ));
+            )
+        );
     }
 
     /**
@@ -178,8 +180,7 @@ class MailController extends Controller {
         $mailHistorique
             ->setDateEnvoi(new \DateTime())
             ->setTypeEmail('relance')
-            ->setIdEtablissement(12)
-        ;
+            ->setIdEtablissement(12);
 
         $em->persist($mailHistorique);
         $em->flush();

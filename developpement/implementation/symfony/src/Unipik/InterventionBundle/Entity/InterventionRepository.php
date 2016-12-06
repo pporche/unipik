@@ -356,13 +356,14 @@ class InterventionRepository extends EntityRepository {
     private function _whereInterventionsBetweenDates($start, $end, QueryBuilder $qb) {
         $qb
             ->join('i.demande', 'd')
-            ->andWhere('( d.dateDebutDisponibilite >= :start AND d.dateDebutDisponibilite <= :end AND i.dateIntervention IS NULL) OR
+            ->andWhere(
+                '( d.dateDebutDisponibilite >= :start AND d.dateDebutDisponibilite <= :end AND i.dateIntervention IS NULL) OR
             (d.dateFinDisponibilite >= :start AND d.dateFinDisponibilite <= :end AND i.dateIntervention IS NULL ) OR
             (d.dateDebutDisponibilite <= :start AND d.dateFinDisponibilite >= :end AND i.dateIntervention IS NULL ) OR
-            (i.dateIntervention BETWEEN :start AND :end )')
+            (i.dateIntervention BETWEEN :start AND :end )'
+            )
             ->setParameter('start', $start)
-            ->setParameter('end', $end)
-        ;
+            ->setParameter('end', $end);
     }
 
     /**
@@ -373,9 +374,9 @@ class InterventionRepository extends EntityRepository {
      * @return object
      */
     private function _whereInterventionsInTheTwoLastYear(QueryBuilder $qb) {
-        $date = date('Y-m-d',strtotime('-2 years', strtotime('now')));
+        $date = date('Y-m-d', strtotime('-2 years', strtotime('now')));
         $qb
-            ->join('i.demande','d')
+            ->join('i.demande', 'd')
             ->andWhere('d.dateDemande >= :twoYearsAgo')
             ->setParameter('twoYearsAgo', $date);
     }

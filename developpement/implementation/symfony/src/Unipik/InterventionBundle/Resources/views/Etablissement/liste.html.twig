@@ -415,6 +415,7 @@
     </section>
 
     <section class="col-lg-10 col-md-10 col-sm-10">
+        {% if liste is not empty %}
         <h2>Liste des établissements :</h2>
         <div class="container">
 
@@ -567,6 +568,9 @@
                 </div>
             </div>
         </div>
+        {% else %}
+            <div class="text-warning">Aucun établissement ne correspond à votre requête, veuillez lancer une nouvelle recherche.</div>
+        {% endif %}
     </section>
 
 {% endblock %}

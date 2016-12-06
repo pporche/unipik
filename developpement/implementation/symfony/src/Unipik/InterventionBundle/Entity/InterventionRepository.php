@@ -159,6 +159,7 @@ class InterventionRepository extends EntityRepository {
         }
 
         return $qb
+
             ->getQuery()
             ->getResult();
     }
@@ -181,6 +182,8 @@ class InterventionRepository extends EntityRepository {
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
+//        } else {
+//            $this->_whereInterventionsInTheTwoLastYear($qb);
         }
     }
 
@@ -201,6 +204,8 @@ class InterventionRepository extends EntityRepository {
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
+//        } else {
+//            $this->_whereInterventionsInTheTwoLastYear($qb);
         }
     }
 
@@ -221,6 +226,8 @@ class InterventionRepository extends EntityRepository {
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
+//        } else {
+//            $this->_whereInterventionsInTheTwoLastYear($qb);
         }
     }
 
@@ -239,6 +246,8 @@ class InterventionRepository extends EntityRepository {
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
+//        } else {
+//            $this->_whereInterventionsInTheTwoLastYear($qb);
         }
 
     }
@@ -347,13 +356,29 @@ class InterventionRepository extends EntityRepository {
     private function _whereInterventionsBetweenDates($start, $end, QueryBuilder $qb) {
         $qb
             ->join('i.demande', 'd')
-            ->orWhere('d.dateDebutDisponibilite >= :start AND d.dateDebutDisponibilite <= :end AND i.dateIntervention IS NULL ') /* 1er block or */
+            ->andWhere('d.dateDebutDisponibilite >= :start AND d.dateDebutDisponibilite <= :end AND i.dateIntervention IS NULL ') /* 1er block or */
             ->orWhere('d.dateFinDisponibilite >= :start AND d.dateFinDisponibilite <= :end AND i.dateIntervention IS NULL ') /* 2eme block or */
             ->orWhere('d.dateDebutDisponibilite <= :start AND d.dateFinDisponibilite >= :end AND i.dateIntervention IS NULL ') /* 3eme block or */
-            ->orWhere('i.dateIntervention BETWEEN :start AND :end') /* 4eme block or */
+            ->orWhere('i.dateIntervention BETWEEN :start AND :end ') /* 4eme block or */
             ->setParameter('start', $start)
             ->setParameter('end', $end)
         ;
+    }
+
+    /**
+     * where intervention in the two last years
+     *
+     * @param QueryBuilder $qb
+     *
+     * @return object
+     */
+    private function _whereInterventionsInTheTwoLastYear(QueryBuilder $qb) {
+        $dateNow = new \DateTime('now');
+        $date = date(strtotime('-2 years', strtotime($dateNow)));
+        $qb
+            ->join('i.demande','d')
+            ->andWhere('d.dateDemande >= :twoYearsAgo')
+            ->setParameter('twoYearsAgo', $date);
     }
 
     /**

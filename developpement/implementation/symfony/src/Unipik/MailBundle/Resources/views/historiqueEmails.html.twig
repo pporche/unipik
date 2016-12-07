@@ -285,43 +285,6 @@
             };
 
             $("#recherche_avancee_typeEtablissement").change(hide_or_show);
-
-            $('#recherche_avancee_dansVilleOuParDistance_placeholder').click(function() {
-                if($('#recherche_avancee_dansVilleOuParDistance_placeholder').is(':checked')) {
-                    $('#ville').hide();
-                    $('#distanceKm').hide();
-                    $('#distVilleOuDom').hide();
-                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
-                    $('#recherche_avancee_ville').val('');
-                    $('#recherche_avancee_villeOuDomicile div:first-child').prop('checked', true);
-                    $("#recherche_avancee_distance").val("");
-                }
-            });
-
-            $('#recherche_avancee_dansVilleOuParDistance_0').click(function() {
-                if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')) {
-                    $('#ville').show();
-                    $('#distanceKm').hide();
-                    $('#distVilleOuDom').hide();
-                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
-                    $('#recherche_avancee_ville').val('');
-                    $('#recherche_avancee_villeOuDomicile div:first-child').prop('checked', true);
-                    $("#recherche_avancee_distance").val("");
-                }
-            });
-
-            $('#recherche_avancee_dansVilleOuParDistance_1').click(function() {
-                if($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
-                    $('#distanceKm').show();
-                    $('#ville').hide();
-                    $('#distVilleOuDom').show();
-                    $('#recherche_avancee_villeOuDomicile_placeholder').prop('checked', true);
-
-                    $('#recherche_avancee_villeOuDomicile div:first-child').hide();
-                    $('#recherche_avancee_villeOuDomicile_1').prop('checked', true);
-                    $('#recherche_avancee_ville').val('');
-                }
-            });
         });
     </script>
 {% endblock %}

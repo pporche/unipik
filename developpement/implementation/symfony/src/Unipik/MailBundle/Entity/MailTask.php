@@ -167,7 +167,7 @@ class MailTask {
     /**
      * Fixe la date d'insertion
      *
-     * @param date $date_insert La date
+     * @param \DateTime $date_insert La date
      *
      * @return $this
      */

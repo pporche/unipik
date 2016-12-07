@@ -12,9 +12,6 @@ MailHistorique:
             generator:
                 strategy: SEQUENCE
     fields:
-        id_etablissement:
-            type: integer
-            nullable: false
         date_envoi:
             type: datetime
             nullable: true
@@ -24,4 +21,15 @@ MailHistorique:
             length: 255
             options:
                 fixed: false
+    manyToOne:
+        id_etablissement:
+            targetEntity: Unipik\InterventionBundle\Entity\Etablissement
+            cascade: ["persist"]
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_etablissement:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }

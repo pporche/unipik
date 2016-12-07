@@ -167,7 +167,9 @@
     <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
     <script>
         $(document).ready(function () {
-            console.log({{ start|date('d-m-Y') }});
+            $('#recherche_avancee_start').val("{{ start| date('d-m-Y')  }}");
+            $('#recherche_avancee_end').val("{{ end| date('d-m-Y')  }}");
+
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',
                 showPrevNext: true,

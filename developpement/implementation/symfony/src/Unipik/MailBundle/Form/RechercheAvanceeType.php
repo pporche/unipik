@@ -57,12 +57,6 @@ class RechercheAvanceeType extends AbstractType {
 
         $builder
             ->add(
-                'date', CheckboxType::class, array(
-                    'label'    => 'Toutes',
-                    'required' => false,
-                )
-            )
-            ->add(
                 'start', DateType::class, array(
                     'widget' => 'single_text',
 
@@ -72,7 +66,6 @@ class RechercheAvanceeType extends AbstractType {
                     // add a class that can be selected in JavaScript
                     'attr' => ['class' => 'js-datepicker'],
                     'format' => 'dd-MM-yyyy',
-                    'required' => false,
                     'label' => false
                 )
             )
@@ -86,7 +79,6 @@ class RechercheAvanceeType extends AbstractType {
                     // add a class that can be selected in JavaScript
                     'attr' => ['class' => 'js-datepicker'],
                     'format' => 'dd-MM-yyyy',
-                    'required' => false,
                     'label' => false
                 )
             );

@@ -6,6 +6,7 @@
     Historique de mails - {{ parent() }}
 {% endblock %}
 
+
 {% block stylesheets %}
     {{ parent() }}
 
@@ -65,7 +66,7 @@
             }
 
             /* Force table to not be like tables anymore */
-            table,
+            .table,
             thead,
             tbody,
             th,
@@ -124,12 +125,12 @@
         }
 
 
-        table {
+        .table {
             display:block;
             max-height: 58vh;
             overflow:auto;
         }
-        table thead, table tr {
+        .table thead, .table tr {
             display:table;
             width:100%;
             table-layout:fixed;
@@ -139,16 +140,54 @@
             margin-top: 40px;
         }
 
+        .container{
+            padding-left: 0px !important;
+        }
+
+        form{
+            max-width: 200px;
+            margin:auto;
+        }
+
+        .btn-primary{
+            margin: auto;
+            display: inherit;
+            margin-bottom: 20px;
+        }
+
     </style>
 {% endblock %}
-{% block javascript %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js") }}"></script>
+    <script src="{{ asset("vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js") }}"></script>
+    <script src="{{ asset("vendor/typeahead.js/dist/typeahead.jquery.js") }}"></script>
+    <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
+    <script src="{{ asset("vendor/chosen/chosen.jquery.js") }}"></script>
     <script>
         $(document).ready(function () {
+            console.log({{ start|date('d-m-Y') }});
             $('#myTable').pageMe({
                 pagerSelector: '#myPager',
                 showPrevNext: true,
                 hidePageNumbers: false,
                 perPage:{{ rowsPerPage }}
+            });
+
+            $('#recherche_avancee_start').datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'fr',
+                autoclose: true
+            }).on('changeDate', function (selected) {
+                $('#recherche_avancee_end').datepicker('setStartDate', new Date(selected.date.valueOf()));
+            });
+            $('#recherche_avancee_end').datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'fr',
+                autoclose: true
+            }).on('changeDate', function (selected) {
+                $('#recherche_avancee_start').datepicker('setEndDate', new Date(selected.date.valueOf()));
             });
         });
     </script>
@@ -161,9 +200,15 @@
         <div class="row">
             <div class="col-md-2">
                 {{ form_start(form, {'method': 'get', 'action': path('historique_mailing'), 'attr': {'class': 'intervention form-sm'}}) }}
-                {{ form_widget(form.date) }}
-                {{ form_widget(form.start) }}
-                {{ form_widget(form.end) }}
+                <br><br><br><h5 style="font-weight: bold">Filtre par date:</h5>
+                <h5>Entre:</h5>
+                {{ form_widget(form.start, { 'attr': {'class': 'input-sm'} }) }}
+                <h5>et le:</h5>
+                {{ form_widget(form.end, { 'attr': {'class': 'input-sm'} }) }}<br>
+
+                <div>
+                    <input type="submit" value="OK" class="btn btn-primary"/>
+                </div>
                 {{ form_end(form) }}
             </div>
             <div class="table-responsive  col-md-10">
@@ -198,6 +243,9 @@
     </div>
     <div class="col-md-12 text-center">
         {% set pathReq = [] %}
+        {% if app.request.query.get('recherche_avancee') is not null %}
+            {% set pathReq = {"recherche_avancee":app.request.query.get('recherche_avancee')} %}
+        {% endif %}
         <ul>Par page :
             <a href="{{ path('historique_mailing', pathReq | merge({"rowsPerPage":5}) ) }}">5</a>,
             <a href="{{ path('historique_mailing', pathReq | merge({"rowsPerPage":10}) ) }}">10</a>,

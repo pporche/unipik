@@ -9,8 +9,14 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('vendor/leaflet/dist/leaflet.css') }}" />
+    <link rel="stylesheet" href="{{ asset('vendor/leaflet/dist/leaflet.css') }}" xmlns="http://www.w3.org/1999/html"/>
     <style>
+        #benevoleInexistant {
+            font-size : 13px;
+            font-style : italic;
+            color : red;
+        }
+
         #mapid { height: 380px; }
 
         .tt-menu{
@@ -60,6 +66,14 @@
     <script src="{{ asset("vendor/typeahead.js/dist/bloodhound.js") }}"></script>
     <script src="{{ asset('vendor/leaflet/dist/leaflet.js') }}"></script>
     <script>
+        $(document).ready(function () {
+            // Initialisation
+            $('#benevoleInexistant').hide();
+            {% if intervention.benevole %}
+                $("#attribueA").text("Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}");
+
+            {% endif %}
+        });
 
         {% if intervention.etablissement.adresse.geolocalisation is not null %}
             var lat = {{ intervention.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
@@ -78,9 +92,7 @@
             $("#mapid").html("Les coordonnées de l'établissement ne sont pas renseignées.");
         {% endif %}
 
-        {% if intervention.benevole %}
-        $("#attribueA").text("Attribuée à {{ intervention.benevole.prenom }} {{ intervention.benevole.nom }}");
-        {% endif %}
+
 
 
         function desattributeIntervention(event, id) {
@@ -144,13 +156,18 @@
                     $("button[data-target='#myModal']").removeAttr("data-target");
                     $("button[data-target='#myModal']").removeAttr("data-toggle");
                     $("#attribueA").text("Attribuée à " + data.prenom + " " + data.nom);
+                    $("#attribueA").show();
                 });
         }
 
         function parseUsername(username){
             var regexUsername = /\((.*?)\)/;
-            username = regexUsername.exec(username)[0].substring(1);
-            return username.substring(0,username.length-1);
+            if  (regexUsername.exec(username) != null) {
+                username = regexUsername.exec(username)[0].substring(1);
+                return username.substring(0, username.length - 1)
+            } else {
+                return null
+            }
         }
 
         function sendIdToModal(id) {
@@ -174,11 +191,38 @@
             limit: 50
         });
 
-        $('#attribuerModal').click(function () {
-            $('#myModal').modal('hide');
-        });
+//        $('#attribuerModal').click(function () {
+//            $('#myModal').modal('hide');
+//        });
 
+        // Vérifier que la valeur du champs "bénévole" est correcte et correspond à une entité de la BD
+        verify_benevole = function(e) {
+            var username = parseUsername($('#attribution_benevole').val());
+            if (username != null ) {
+                $.post("{{ path('user_admin_verify_benevole') }}?username=" + username + "",
+                    function (data, status) {
+                        if (data.result) {
+                            $('#attribution_benevole').removeClass("error");
+                            $('#benevoleInexistant').hide();
+                            attributeInterventionAdmin(this, $('#attribution_benevole').val(), $('#attribution_idIntervention').val());
+                            $('#myModal').modal('hide');
+                        } else {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            $('#attribution_benevole').addClass("error");
+                            $('#benevoleInexistant').show();
 
+                        }
+                    })
+            } else {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#attribution_benevole').addClass("error");
+                $('#benevoleInexistant').show();
+            }
+        };
+
+        $('#attribuerModal').on('click', verify_benevole);
 
 
     </script>
@@ -510,6 +554,7 @@
                                 {% endif %}
                         {% else %}
                             {% if is_granted('ROLE_ADMIN') %}
+                                <h4 class="col-lg-12" id="attribueA"></h4>
                                 <button id="btnAttribuerAdmin" type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#myModal" onclick="sendIdToModal({{ intervention.id }})">
                                     Attribuer l'intervention à
@@ -773,13 +818,12 @@
                     <div class="modal-body">
                         {{ form_start(formAttr, {'method': 'post', 'action': path('intervention_list'), 'attr': {'class': 'intervention_list form-sm'}}) }}
                         <h5>Bénévole : {{ form_widget(formAttr.benevole) }}</h5>
-
-
+                        <div id="benevoleInexistant"> Ce bénévole n'existe pas, veuillez entrer un bénévole qui existe. </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <button id="attribuerModal" type="button" class="btn btn-primary"
-                                onclick="attributeInterventionAdmin(this, $('#attribution_benevole').val(), $('#attribution_idIntervention').val())">
+                                onclick="verify_benevole">
                             Attribuer
                         </button>
                     </div>

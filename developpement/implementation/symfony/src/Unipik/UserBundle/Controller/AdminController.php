@@ -16,6 +16,11 @@
 
 namespace Unipik\UserBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+
+
 /**
  * Controller pour l'admin
  *
@@ -61,5 +66,24 @@ class AdminController extends UserController {
      */
     public function deleteAccountAction() {
 
+    }
+
+    public function verifyBenevoleAction(Request $request) {
+        if ($request->isXmlHttpRequest()) {
+            $benevoleUsername = $request->get('username');
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('UserBundle:Benevole');
+
+            $benevole = $repository->findOneBy(array('username' => $benevoleUsername));
+
+            if ($benevole) {
+                return new JsonResponse(array('result' => true));
+            } else {
+                return new JsonResponse(array('result' => false));
+            }
+
+        }
+        return new Response();
     }
 }

@@ -158,7 +158,6 @@ class Contact {
      * Participe
      *
      * @var string
-     *
      */
     private $participe;
 
@@ -170,7 +169,7 @@ class Contact {
     public function __construct() {
         $this->etablissement = new \Doctrine\Common\Collections\ArrayCollection();
         //$this->projet = new \Doctrine\Common\Collections\ArrayCollection();
-//        $this->participe = new \Doctrine\Common\Collections\ArrayCollection();
+        //        $this->participe = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -228,14 +227,14 @@ class Contact {
     }
 
 
-//    /**
-//     * Get participe
-//     *
-//     * @return Participe
-//     */
-//    public function getParticipe() {
-//        return $this->participe;
-//    }
+    //    /**
+    //     * Get participe
+    //     *
+    //     * @return Participe
+    //     */
+    //    public function getParticipe() {
+    //        return $this->participe;
+    //    }
 
     /**
      * Set prenom

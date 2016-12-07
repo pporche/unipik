@@ -102,7 +102,7 @@ class MailController extends Controller {
             $end = $form->get("end")->getData();
             $mails = $repository->getType($start, $end);
         } else {
-            $start = date('d-m-Y');
+            $start = date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "-1 month" ) );
             $end = date('d-m-Y');
             $mails = $repository->getType($start, $end);
         }
@@ -111,7 +111,7 @@ class MailController extends Controller {
             'MailBundle::historiqueEmails.html.twig', array(
             'mails' => $mails,
             'start' => $start,
-            'end' => date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "+1 month" ) ),
+            'end' => $end,
             'rowsPerPage' => $rowsPerPage,
             'form' => $form->createView()
         ));

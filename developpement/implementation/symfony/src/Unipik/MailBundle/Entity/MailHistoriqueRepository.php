@@ -39,9 +39,16 @@ class MailHistoriqueRepository extends EntityRepository {
      */
     public function getType($startDate, $endDate){
         $qb = $this->createQueryBuilder('m');
+        $qb = $qb
+            ->where(
+                '(m.date_envoi BETWEEN :start AND :end )'
+            )
+            ->setParameter('start', $startDate)
+            ->setParameter('end', $endDate);
 
         return $qb
             ->getQuery()
             ->getResult();
     }
+
 }

@@ -72,8 +72,6 @@ class MailHistorique{
     private $type_email;
 
     /**
-     * Renvoie l'id
-     *
      * @return int
      */
     public function getId()
@@ -82,65 +80,30 @@ class MailHistorique{
     }
 
     /**
-     * Set l'id
-     *
-     * @param int $id L'id
-     *
-     * @return $this
+     * @param int $id
      */
     public function setId($id)
     {
         $this->id = $id;
-        return $this;
     }
 
     /**
-     * Renvoie l'id de l'etablissement
-     *
-     * @return mixed
+     * @return \Unipik\InterventionBundle\Entity\Etablissement
      */
-    public function getIdEtablissement()
+    public function getEtablissement()
     {
-        return $this->id_etablissement;
+        return $this->etablissement;
     }
 
     /**
-     * Set l'id de l'etablissement
-     *
-     * @param mixed $id_etablissement L'id de l'etablissement
-     *
-     * @return $this
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement
      */
-    public function setIdEtablissement($id_etablissement) {
-        $this->id_etablissement = $id_etablissement;
-        return $this;
-    }
-
-    /**
-     * Renvoie la date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
+    public function setEtablissement($etablissement)
     {
-        return $this->date;
+        $this->etablissement = $etablissement;
     }
 
     /**
-     * Set la date
-     *
-     * @param \DateTime $date La date
-     *
-     * @return $this
-     */
-    public function setDate($date) {
-        $this->date = $date;
-        return $this;
-    }
-
-    /**
-     * Renvoie la date d'envoi
-     *
      * @return \DateTime
      */
     public function getDateEnvoi()
@@ -149,37 +112,14 @@ class MailHistorique{
     }
 
     /**
-     * Set la date d'envoi
-     *
-     * @param \DateTime $date_envoi La date d'envoi
-     *
-     * @return $this
+     * @param \DateTime $date_envoi
      */
     public function setDateEnvoi($date_envoi)
     {
         $this->date_envoi = $date_envoi;
-        return $this;
     }
 
     /**
-<<<<<<< HEAD
-     * Set etablissement
-     *
-     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement L'etablissement
-     *
-     * @return Intervention
-     */
-    public function setEtablissement(\Unipik\InterventionBundle\Entity\Etablissement $etablissement) {
-        $this->etablissement = $etablissement;
-
-        return $this;
-    }
-
-    /**
-     * Get etablissement
-=======
-     * Renvoie le type de mail
-     *
      * @return mixed
      */
     public function getTypeEmail()
@@ -188,30 +128,18 @@ class MailHistorique{
     }
 
     /**
-     * Set le type de mail
-     *
-     * @param mixed $type_email Le type de mail
->>>>>>> d98272361ab6fa04c1d63f1e72e7f6e497c47117
-     *
-     * @return \Unipik\InterventionBundle\Entity\Etablissement
+     * @param mixed $type_email
      */
-<<<<<<< HEAD
-    public function getEtablissement() {
-        return $this->etablissement;
-    }
-
-
-}
-=======
     public function setTypeEmail($type_email)
     {
         $this->type_email = $type_email;
-        return $this;
     }
+
+
+
 
 
 }
 
 
 ?>
->>>>>>> d98272361ab6fa04c1d63f1e72e7f6e497c47117

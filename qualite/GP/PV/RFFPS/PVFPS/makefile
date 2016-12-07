@@ -9,7 +9,7 @@ include makevars $(UNIPIKGENPATH)/pic_unicef/makevars
 all : pvfps cleanrep cleaneps
 
 pvfps : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements PVFPS_Q_Unipik_d16-03-07 PVFPS_Q_Unipik_d16-05-13
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements PVFPS_Q_Unipik_d16-03-07 PVFPS_Q_Unipik_d16-05-13 PVFPS_Q_Unipik_d16-12-05
 
 
 # Archivage

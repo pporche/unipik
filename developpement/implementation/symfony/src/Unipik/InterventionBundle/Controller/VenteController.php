@@ -91,6 +91,7 @@ class VenteController extends Controller {
      * Liste des ventes liées à un établissement action
      *
      * @param Request $request La requete
+     * @param int     $id      L'id
      *
      * @return mixed
      */
@@ -145,6 +146,7 @@ class VenteController extends Controller {
      * Liste des ventes liées à une intervention action
      *
      * @param Request $request La requete
+     * @param int     $id      L'id
      *
      * @return mixed
      */
@@ -214,7 +216,8 @@ class VenteController extends Controller {
     /**
      * Edit action
      *
-     * @param int $id L'id
+     * @param Request $request La requete
+     * @param int     $id      L'id
      *
      * @return Response
      */

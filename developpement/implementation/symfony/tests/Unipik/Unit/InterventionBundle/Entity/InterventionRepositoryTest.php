@@ -31,7 +31,7 @@ class InterventionRepositoryTest extends RepositoryTestCase
         $inter[0]
             ->setTypeIntervention("plaidoyer")
             ->addMaterielDispoPlaidoyer("videoprojecteur")
-            ->setDateIntervention(new \DateTime("2000-12-30"))
+            ->setDateIntervention(new \DateTime(date('Y')."-01-01"))
             ->setBenevole($b[0])
         ;
 
@@ -41,7 +41,7 @@ class InterventionRepositoryTest extends RepositoryTestCase
         $inter[1]
             ->setTypeIntervention("plaidoyer")
             ->addMaterielDispoPlaidoyer("videoprojecteur")
-            ->setDateIntervention(new \DateTime("2005-12-30"))
+            ->setDateIntervention(new \DateTime(date('Y')."-05-12"))
             ->setBenevole($b[1])
             ->setRealisee(true)
         ;
@@ -52,7 +52,7 @@ class InterventionRepositoryTest extends RepositoryTestCase
         $inter[2]
             ->setTypeIntervention("plaidoyer")
             ->addMaterielDispoPlaidoyer("videoprojecteur")
-            ->setDateIntervention(new \DateTime("2010-12-30"))
+            ->setDateIntervention(new \DateTime(date('Y')."-10-12"))
             ->setBenevole($b[0])
         ;
 
@@ -61,12 +61,12 @@ class InterventionRepositoryTest extends RepositoryTestCase
             ->setTypeIntervention("frimousse")
             ->addMateriauxFrimousse("bourre")
             ->setNiveauFrimousse("CE1-CE2")
-            ->setDateIntervention(new \DateTime("2005-11-30"))
+            ->setDateIntervention(new \DateTime(date('Y')."-05-11"))
             ->setBenevole($b[1])
             ->setRealisee(true)
             ->getDemande()
-            ->setDateDebutDisponibilite(new \DateTime("2005-10-31"))
-            ->setDateFinDisponibilite(new \DateTime("2005-12-30"))
+            ->setDateDebutDisponibilite(new \DateTime(date('Y')."-05-10"))
+            ->setDateFinDisponibilite(new \DateTime(date('Y')."-05-12"))
         ;
 
         $nt[4] = null;
@@ -74,10 +74,10 @@ class InterventionRepositoryTest extends RepositoryTestCase
             ->setTypeIntervention("frimousse")
             ->addMateriauxFrimousse("patron")
             ->setNiveauFrimousse("CM1-CM2")
-            ->setDateIntervention(new \DateTime("2010-11-30"))
+            ->setDateIntervention(new \DateTime(date('Y')."-10-11"))
             ->getDemande()
-            ->setDateDebutDisponibilite(new \DateTime("2010-10-31"))
-            ->setDateFinDisponibilite(new \DateTime("2010-12-30"))
+            ->setDateDebutDisponibilite(new \DateTime(date('Y')."-10-10"))
+            ->setDateFinDisponibilite(new \DateTime(date('Y')."-10-12"))
         ;
 
         $nt[5] = null;
@@ -95,15 +95,15 @@ class InterventionRepositoryTest extends RepositoryTestCase
             "test5" =>  [2, [1, 2], $inter, $nt, null, null, true, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, null, ['travail des enfants', 'enfants et soldats']],
             "test6" =>  [3, [0, 1, 2], $inter, $nt, null, null, true, "plaidoyer", "lieu", true, null, "POUIC POUIC"],
             "test7" =>  [3, [0, 1, 2], $inter, $nt, null, null, true, "plaidoyer", "lieu", false, null, "POUIC POUIC"],
-            "test8" =>  [0, [1], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, null, null, "SRID=4326;POINT(45 69)", "1"],
+            "test8" =>  [0, [1], $inter, $nt, new \DateTime(date('Y')."04-12"), new \DateTime(date('Y')."06-12"), false, "plaidoyer", null, null, null, "POUIC POUIC", null, null, null, null, null, "SRID=4326;POINT(45 69)", "1"],
             "test9" =>  [2, [3, 4], $inter, $nt, null, null, true, "frimousse", null, true, null, "POUIC POUIC"],
             "test10" => [1, [4], $inter, $nt, null, null, true, "frimousse", null, null, null, "POUIC POUIC", null, null,["CM1-CM2"], null],
             "test11" => [2, [3, 4], $inter, $nt, null, null, true, "frimousse", null, null, null, "POUIC POUIC", null, null, ["CE1-CE2", "CM1-CM2"], null],
-            "test12" => [1, [3], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "frimousse", null, null, null, "POUIC POUIC"],
+            "test12" => [1, [3], $inter, $nt, new \DateTime(date('Y')."-04-12"), new \DateTime(date('Y')."-06-12"), false, "frimousse", null, null, null, "POUIC POUIC"],
             "test13" => [1, [5], $inter, $nt, null, null, true, "autreIntervention", null, null, null, "POUIC POUIC"],
-            "test14" => [0, [], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, "autreIntervention", null, null, null, "", null, null, null, null, null, "SRID=4326;POINT(45 69)", "1"],
+            "test14" => [0, [], $inter, $nt, new \DateTime(date('Y')."-04-12"), new \DateTime(date('Y')."-06-12"), false, "autreIntervention", null, null, null, "", null, null, null, null, null, "SRID=4326;POINT(45 69)", "1"],
             "test15" => [6, [0, 1, 2, 3, 4, 5], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC"],
-            "test16" => [2, [1, 3], $inter, $nt, new \DateTime("2004-12-31"), new \DateTime("2006-12-31"), false, null, null, null, null, "POUIC POUIC"],
+            "test16" => [2, [1, 3], $inter, $nt, new \DateTime(date('Y')."-04-12"), new \DateTime(date('Y')."-06-12"), false, null, null, null, null, "POUIC POUIC"],
             "test17" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, null, "POUIC POUIC", true, $b[0]],
             "test18" => [2, [0, 2], $inter, $nt, null, null, true, null, null, null, "attribuees", "POUIC POUIC"],
             "test19" => [2, [4, 5], $inter, $nt, null, null, true, null, null, null, "nonAttribuees", "POUIC POUIC"],
@@ -178,8 +178,11 @@ class InterventionRepositoryTest extends RepositoryTestCase
         foreach ($result as $r) {
 
             //var_dump($r->getId());
-            //$this->assertArrayHasKey($r->getId(), $expectedIds);
+            $this->assertArrayHasKey($r->getId(), $expectedIds);
 
+//            var_dump($r->getTypeIntervention());
+//            var_dump($r->getDateIntervention());
+//            var_dump($r->getMateriauxFrimousse());
         }
         $this->assertCount($expectedCount, $result);
 

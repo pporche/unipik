@@ -120,8 +120,7 @@ class DemandeAnonymeType extends AbstractType {
             )
             ->add('Contact', ContactType::class, array('label' => false))
             ->add('Code_visuel', CaptchaType::class)
-            ->add('Valider_la_demande', SubmitType::class)
-            ;
+            ->add('Valider_la_demande', SubmitType::class);
 
         $builder->get("ville")->addModelTransformer(new VilleAutocompleteTransformer($this->entityManager));
         $builder->get("departement")->addModelTransformer(new DepartementAutocompleteTransformer($this->entityManager));

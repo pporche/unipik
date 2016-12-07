@@ -49,7 +49,7 @@ class NiveauTheme {
      *
      * @var string
      *
-     * @ORM\Column(name="niveau", type="string", length=30, nullable=true)
+     * @ORM\Column(name="niveau", type="string", length=30)
      */
     private $niveau;
 
@@ -58,7 +58,7 @@ class NiveauTheme {
      *
      * @var string
      *
-     * @ORM\Column(name="theme", type="string", length=100, nullable=true)
+     * @ORM\Column(name="theme", type="string", length=100)
      */
     private $theme;
 

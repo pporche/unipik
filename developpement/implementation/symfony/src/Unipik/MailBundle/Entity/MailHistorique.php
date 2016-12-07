@@ -42,12 +42,18 @@ class MailHistorique{
     private $id;
 
     /**
-     * L'id de l'etablissement
+     * L'etablissement
      *
-     * @ORM\Column(name="id_etablissement", type="array")
+<<<<<<< HEAD
+     * @var \Unipik\InterventionBundle\Entity\Etablissement
+     *
+     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_etablissement",                                      referencedColumnName="id")
+     * })
      */
+    private $etablissement;
 
-    private $id_etablissement;
 
     /**
      * Date d'envoi de mail
@@ -56,14 +62,14 @@ class MailHistorique{
      *
      * @ORM\Column(name="date_envoi", type="datetime", nullable=true)
      */
-    private $date;
+    private $date_envoi;
 
     /**
      * Le type de mail
      *
      * @ORM\Column(name="type_email", type="string")
      */
-    private $typeEmail;
+    private $type_email;
 
     /**
      * @return int
@@ -82,35 +88,35 @@ class MailHistorique{
     }
 
     /**
-     * @return mixed
+     * @return \Unipik\InterventionBundle\Entity\Etablissement
      */
-    public function getIdEtablissement()
+    public function getEtablissement()
     {
-        return $this->id_etablissement;
+        return $this->etablissement;
     }
 
     /**
-     * @param mixed $id_etablissement
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement
      */
-    public function setIdEtablissement($id_etablissement)
+    public function setEtablissement($etablissement)
     {
-        $this->id_etablissement = $id_etablissement;
+        $this->etablissement = $etablissement;
     }
 
     /**
      * @return \DateTime
      */
-    public function getDate()
+    public function getDateEnvoi()
     {
-        return $this->date;
+        return $this->date_envoi;
     }
 
     /**
-     * @param \DateTime $date
+     * @param \DateTime $date_envoi
      */
-    public function setDate($date)
+    public function setDateEnvoi($date_envoi)
     {
-        $this->date = $date;
+        $this->date_envoi = $date_envoi;
     }
 
     /**
@@ -118,16 +124,18 @@ class MailHistorique{
      */
     public function getTypeEmail()
     {
-        return $this->typeEmail;
+        return $this->type_email;
     }
 
     /**
-     * @param mixed $typeEmail
+     * @param mixed $type_email
      */
-    public function setTypeEmail($typeEmail)
+    public function setTypeEmail($type_email)
     {
-        $this->typeEmail = $typeEmail;
+        $this->type_email = $type_email;
     }
+
+
 
 
 

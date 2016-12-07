@@ -100,10 +100,9 @@ class MailController extends Controller {
         if ($request->isMethod('GET') && $form->isValid()) {
             $start = $form->get("start")->getData();
             $end = $form->get("end")->getData();
-
             $mails = $repository->getType($start, $end);
         } else {
-            $start = "";
+            $start = date('d-m-Y');
             $end = "";
             $mails = $repository->getType($start, $end);
         }
@@ -111,6 +110,8 @@ class MailController extends Controller {
         return $this->render(
             'MailBundle::historiqueEmails.html.twig', array(
             'mails' => $mails,
+            'start' => $start,
+            'end' => $end,
             'rowsPerPage' => $rowsPerPage,
             'form' => $form->createView()
         ));

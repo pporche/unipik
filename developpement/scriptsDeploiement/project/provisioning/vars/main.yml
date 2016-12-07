@@ -63,7 +63,7 @@ php_packages:
   - php-curl
   - php-pgsql #php5-pgsql
   - libapache2-mod-php #libapache2-mod-php5
-  - php5-gd
+  - php-gd
 
 php_conf_paths:
   - /etc/php5/fpm

@@ -1,9 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: scolomies
- * Date: 05/12/16
- * Time: 10:51
+ * User: julie
+ * Date: 09/09/16
+ * Time: 11:55
+ *
+ * PHP version 5
+ *
+ * @category None
+ * @package  InterventionBundle
+ * @author   Unipik <unipik.unicef@laposte.com>
+ * @license  None None
+ * @link     None
  */
 
 namespace Unipik\MailBundle\Entity;
@@ -11,18 +19,16 @@ namespace Unipik\MailBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class MailBundle
- *
- * @ORM\Entity(repositoryClass="Unipik\MailBundle\Entity\MailHistoriqueRepository")
- * @ORM\Table(name="mail_historique")
+ * Le repository qui gère les interventions
  *
  * @category None
- * @package  MailBundle
+ * @package  InterventionBundle
  * @author   Unipik <unipik.unicef@laposte.com>
  * @license  None None
  * @link     None
  */
-class MailHistorique {
+
+class MailHistorique{
 
     /**
      * L'id
@@ -38,6 +44,7 @@ class MailHistorique {
     /**
      * L'etablissement
      *
+<<<<<<< HEAD
      * @var \Unipik\InterventionBundle\Entity\Etablissement
      *
      * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", cascade={"persist"})
@@ -49,7 +56,7 @@ class MailHistorique {
 
 
     /**
-     * La date
+     * Date d'envoi de mail
      *
      * @var \DateTime
      *
@@ -58,57 +65,104 @@ class MailHistorique {
     private $date_envoi;
 
     /**
-     * Le type d'email
+     * Le type de mail
      *
      * @ORM\Column(name="type_email", type="string")
      */
     private $type_email;
 
-
     /**
-     * Retourne l'id
+     * Renvoie l'id
      *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
     /**
+     * Set l'id
+     *
+     * @param int $id L'id
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * Renvoie l'id de l'etablissement
+     *
+     * @return mixed
+     */
+    public function getIdEtablissement()
+    {
+        return $this->id_etablissement;
+    }
+
+    /**
+     * Set l'id de l'etablissement
+     *
+     * @param mixed $id_etablissement L'id de l'etablissement
+     *
+     * @return $this
+     */
+    public function setIdEtablissement($id_etablissement) {
+        $this->id_etablissement = $id_etablissement;
+        return $this;
+    }
+
+    /**
+     * Renvoie la date
+     *
      * @return \DateTime
      */
-    public function getDateEnvoi() {
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set la date
+     *
+     * @param \DateTime $date La date
+     *
+     * @return $this
+     */
+    public function setDate($date) {
+        $this->date = $date;
+        return $this;
+    }
+
+    /**
+     * Renvoie la date d'envoi
+     *
+     * @return \DateTime
+     */
+    public function getDateEnvoi()
+    {
         return $this->date_envoi;
     }
 
     /**
-     * @param \DateTime $date_envoi
+     * Set la date d'envoi
+     *
+     * @param \DateTime $date_envoi La date d'envoi
      *
      * @return $this
      */
-    public function setDateEnvoi($date_envoi) {
+    public function setDateEnvoi($date_envoi)
+    {
         $this->date_envoi = $date_envoi;
         return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getTypeEmail() {
-        return $this->type_email;
-    }
-
-    /**
-     * @param mixed $type_email
-     *
-     * @return $this
-     */
-    public function setTypeEmail($type_email) {
-        $this->type_email = $type_email;
-        return $this;
-    }
-
-    /**
+<<<<<<< HEAD
      * Set etablissement
      *
      * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement L'etablissement
@@ -123,12 +177,41 @@ class MailHistorique {
 
     /**
      * Get etablissement
+=======
+     * Renvoie le type de mail
+     *
+     * @return mixed
+     */
+    public function getTypeEmail()
+    {
+        return $this->type_email;
+    }
+
+    /**
+     * Set le type de mail
+     *
+     * @param mixed $type_email Le type de mail
+>>>>>>> d98272361ab6fa04c1d63f1e72e7f6e497c47117
      *
      * @return \Unipik\InterventionBundle\Entity\Etablissement
      */
+<<<<<<< HEAD
     public function getEtablissement() {
         return $this->etablissement;
     }
 
 
 }
+=======
+    public function setTypeEmail($type_email)
+    {
+        $this->type_email = $type_email;
+        return $this;
+    }
+
+
+}
+
+
+?>
+>>>>>>> d98272361ab6fa04c1d63f1e72e7f6e497c47117

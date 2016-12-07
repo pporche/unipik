@@ -1,0 +1,96 @@
+% version 1.00, date 30/03/16, auteur Michel Cressant
+  
+  Ce chapitre a pour but de présenter les éléments de test, les fonctionnalités qui devront être testées, les documents et éléments nécessaires à la réalisation des tests d'intégration, la procédure à suivre une fois un test exécuté, l'environnement de travail nécessaire à la réalisation d'un test et la validation d'un test. 
+ 
+ 
+  \section{Elements de test}
+ 	Les éléments qui seront testés permettront de vérifier l'intégration des modules de code développés par l'équipe \nomEquipe.
+ 	
+ \section{Fonctionnalités à tester}
+ 	Ce paragraphe décrit l'organisation de notre application ainsi que les différents tests d'intégrations qui devront être réalisés. \\
+ 	
+ 	La figure suivante (figure \ref{diagrammeDeBundles}) représente le diagramme de package (ici ce sont des bundles) de notre application.
+ 	\begin{figure}[H]
+ 		\centering
+ 		\includegraphics[scale=0.49]{images/diagrammeDeBundles.png}
+ 		\caption{Diagramme de package}
+ 		\label{diagrammeDeBundles}
+ 	\end{figure}
+ 	
+ 	Le but des tests d'intégration est de vérifier la bonne communication entre les bundles. Les tests seront donc les suivants :
+ 	
+ 	\subsection*{Tests d'Intégration entre le package FOSUserBundle et le package InterventionBundle}
+ 	
+ 	\begin{center}
+    		\begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
+		\hline
+			ID & Test d'intégration \\\hline
+			TI001 & FOSUserBundle <-> InterventionBundle \\\hline
+    	 	\end{tabular}
+  	\end{center}
+  	
+  	
+  	\subsection*{Tests d'Intégration entre le package FOSUserBundle et le package SwiftMailerBundle}
+ 	
+ 	\begin{center}
+    		\begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
+		\hline
+			ID & Test d'intégration \\\hline
+			TI002 & FOSUserBundle <-> SwiftMailerBundle \\\hline
+    	 	\end{tabular}
+  	\end{center}
+  	
+  	\subsection*{Tests d'Intégration entre le package InterventionBundle et le package SwiftMailerBundle}
+ 	
+ 	\begin{center}
+    		\begin{tabular}[h]{|p{0.45\textwidth}|p{0.45\textwidth}|}
+		\hline
+			ID & Test d'intégration \\\hline
+			TI003 & InterventionBundle <-> SwiftMailerBundle \\\hline
+    	 	\end{tabular}
+  	\end{center}
+  	
+  	
+  	
+ 	
+  \section{Eléments nécessaires pour les Test d'Intégration}
+  	Ce paragraphe décrit les éléments livrés nécessaires à la réalisation des tests d'intégration. \\
+  	
+  	Les éléments suivant doivent être livrés avant que les tests d'intégrations puissent commencer :
+  	\begin{itemize}
+  		\item Le \PTU du lot 3,
+  		\item Les chapitres 1, 2 et 3 de ce document.
+  	\end{itemize}
+  	
+  	Les éléments suivant doivent être livrés avant qu'un test d'intégration spécifique ne commence :
+  	\begin{itemize}
+  		\item Le \JTU du lot 3,
+  		\item Les composants impliqués,
+  		\item Les données tests spécifiques à ce test d'intégration.
+  	\end{itemize}
+  
+  \section{Rapport de Test d'Intégration}  
+  	Ce paragraphe décrit la procédure à exécuter une fois un test exécuté.  \\
+  	
+  	Les éléments suivants sont à réaliser lorsqu'un test d'intégration spécifique est fini : 
+  	\begin{itemize}
+  		\item Remplir le rapport du test dans le \JTI du lot 3, qui listera tous les tests d'intégration,
+  		\item Rapporter les problèmes rencontrés (si nécessaire).
+  	\end{itemize}
+  	
+  	Les éléments suivant sont à réaliser lorsque la session de test sur tous les modules de code sont finis : 
+  	\begin{itemize}
+  		\item Remplir tous les rapports de test dans le \JTI du lot 3.
+  	\end{itemize}
+  
+  \section{Environnement de Test}
+	  Ce paragraphe décrit l'environnement nécessaire à la réalisation des tests d'intégration. \\
+	  
+	  Afin de réaliser les tests d'intégration il suffit d'un ordinateur ayant une connexion Internet.
+  
+  \section{Validation d'un Test}
+	Ce paragraphe décrit les conditions à remplir pour qu'un test d'intégration soit validé.\\
+  
+  	Un test d'intégration est validé s'il ne provoque aucune erreur, et retourne les résultats escomptés. 
+  	
+  	

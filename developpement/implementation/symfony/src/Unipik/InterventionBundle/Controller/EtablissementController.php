@@ -69,18 +69,18 @@ class EtablissementController extends Controller {
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             switch ($form->get('TypeGeneral')->getData()) {
-                case 'ens' :
-                    $educationTypeArray = $form->get("typeEnseignement")->getData();
-                    $institute->setTypeEnseignement($educationTypeArray);
-                    break;
-                case 'centre' :
-                    $centreTypeArray = $form->get("typeCentre")->getData();
-                    $institute->setTypeCentre($centreTypeArray);
-                    break;
-                case 'autre' :
-                    $otherTypeArray = $form->get("typeAutreEtablissement")->getData();
-                    $institute->setTypeAutreEtablissement($otherTypeArray);
-                    break;
+            case 'ens' :
+                $educationTypeArray = $form->get("typeEnseignement")->getData();
+                $institute->setTypeEnseignement($educationTypeArray);
+                break;
+            case 'centre' :
+                $centreTypeArray = $form->get("typeCentre")->getData();
+                $institute->setTypeCentre($centreTypeArray);
+                break;
+            case 'autre' :
+                $otherTypeArray = $form->get("typeAutreEtablissement")->getData();
+                $institute->setTypeAutreEtablissement($otherTypeArray);
+                break;
             }
 
             $emails = $form->get("emails")->getData();

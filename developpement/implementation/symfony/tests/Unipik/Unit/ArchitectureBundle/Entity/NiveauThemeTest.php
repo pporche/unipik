@@ -49,21 +49,6 @@ class NiveauThemeTest extends EntityTestCase
         $this->assertEquals(null, $nt->getComites()[0]);
     }
 
-    /**
-     * @dataProvider badEntityProvider
-     * @expectedException \Doctrine\DBAL\Exception\DriverException
-     *
-     * @TODO: changer la BD pour empêcher que Niveau et theme soient nuls
-     */
-    public function testBadEntities($e)
-    {
-        parent::testBadEntities($e);
-
-        $this->markTestIncomplete(
-            'Entité NiveauTheme à modifier, niveau et theme ne doivent pas pouvoir être nuls'
-        );
-    }
-
     public function badEntityProvider()
     {
         $nt = NiveauThemeMock::createMultiple(5);

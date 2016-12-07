@@ -3117,6 +3117,7 @@ COPY adresse (id, adresse, complement, ville_id, code_postal_id, geolocalisation
 255	RUE DE LA SAINTE-GERTRUDE	\N	29006	4793	0101000020E610000054082830442EE73FEF5EC51472C34840
 338	22 RUE JACQUES PREVERT	\N	29390	4836	0101000020E610000025EBB74921A5F13F75CC9AD4A7F54840
 70	351 BOULEVARD DE NORMANDIE	\N	28998	4794	0101000020E6100000C259936C4A39B93FEB69B03E58C34840
+3196	18 AVENUE DES MURIERS		11612	1824	0101000020E6100000DD6FFE70A13CF43F34901D0A55CA4540
 \.
 
 
@@ -3124,7 +3125,7 @@ COPY adresse (id, adresse, complement, ville_id, code_postal_id, geolocalisation
 -- Name: adresse_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('adresse_id_seq', 3195, true);
+SELECT pg_catalog.setval('adresse_id_seq', 3196, true);
 
 
 --
@@ -3157,6 +3158,7 @@ COPY benevole (id, username, username_canonical, email, email_canonical, enabled
 11	julie	julie	julie@julie.julie	julie@julie.julie	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$k6aYJVTNDARc3ijhSsx07u8Yje3Aan83dEyv8j984nELn2tc1BS.K	\N	f	f	\N	\N	\N	a:0:{}	f	\N	pain	julie	0235555555	0655555555	700	{(actions_ponctuelles),(projets),(frimousses)}	{(actions_ponctuelles)}
 10	michel	michel	michel@michel.michel	michel@michel.michel	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$Nx3Hj5J3Y3BMBUZKau8PWOMhLG5xrhv2Wa0mVYPVdaRdXnCZbjzTW	\N	f	f	\N	\N	\N	a:0:{}	f	\N	cressant	michel	0235555555	0655555555	500	{(actions_ponctuelles),(projets),(frimousses),(plaidoyers)}	{(plaidoyers)}
 12	melissa	melissa	melissa@melissa.melissa	melissa@melissa.melissa	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$3DO5ZLcfjkiNU3yeaO8kfuaz3xwvec3S3H8juC.8x6gfNoxBFMmvO	\N	f	f	\N	\N	\N	a:0:{}	f	\N	bignoux	melissa	0235490983	0647282552	900	{(actions_ponctuelles),(projets),(frimousses)}	{(admin_comite)}
+13	benevoleanonyme	benevoleanonyme	unipik@yopmail.com	unipik@yopmail.com	f	e49fclbfn3wck0404sggowc8so80g0o	$2y$13$MfHmfCn0IcWzmHq1LWHMd.mdJFuZR4O2ptt7lQBHRb/m3pWQQ6FW2	\N	f	f	\N	PHa9NlpNHSthbEoK0FQCts9Nm9su2zz2y1r3i0zPvY4	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	anonyme	benevole	0102030405	\N	3196	\N	\N
 \.
 
 
@@ -3183,7 +3185,7 @@ COPY benevole_comite (benevole_id, comite_id) FROM stdin;
 -- Name: benevole_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('benevole_id_seq', 12, true);
+SELECT pg_catalog.setval('benevole_id_seq', 13, true);
 
 
 --
@@ -10014,6 +10016,7 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 88	0761415A	88	ECOLE ELEMENTAIRE DE BEAUBEC-LA-ROSIERE	0232890090	{(0761415A@ac-rouen.fr)}	elementaire	\N	\N
 89	0761628G	89	ECOLE ELEMENTAIRE DE BEAUMONT-LE-HARENG	0235338493	{(0761628G@ac-rouen.fr)}	elementaire	\N	\N
 90	0760644M	90	ECOLE ELEMENTAIRE DE BEAUREPAIRE	0235287261	{(0760644M@ac-rouen.fr)}	elementaire	\N	\N
+367	0760024N	367	LYCEE EMULATION DIEPPOISE	0235842221	{(0760024N@ac-rouen.fr)}	lycee	\N	\N
 91	0761416B	91	ECOLE MATERNELLE DE BEAUSSAULT	0235092971	{(0761416B@ac-rouen.fr)}	maternelle	\N	\N
 92	0760988L	92	ECOLE MATERNELLE DE BEAUVAL-EN-CAUX	0235326028	{(0760988L@ac-rouen.fr)}	maternelle	\N	\N
 93	0760307W	93	ECOLE ELEMENTAIRE DE BEAUVOIR-EN-LYONS	0235096971	{(0760307W@ac-rouen.fr)}	elementaire	\N	\N
@@ -10290,7 +10293,6 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 364	0760406D	364	ECOLE MATERNELLE THOMAS	0235061206	{(0760406D@ac-rouen.fr)}	maternelle	\N	\N
 365	0760404B	365	ECOLE MATERNELLE VALENTIN FELDMANN	0235061207	{(0760404B@ac-rouen.fr)}	maternelle	\N	\N
 366	0763002A	366	LYCEE DU GOLF	0235069340	{(0763002A@ac-rouen.fr)}	lycee	\N	\N
-367	0760024N	367	LYCEE EMULATION DIEPPOISE	0235842221	{(0760024N@ac-rouen.fr)}	lycee	\N	\N
 368	0760023M	368	LYCEE JEHAN ANGO	0232140120	{(0760023M@ac-rouen.fr)}	lycee	\N	\N
 369	0761707T	346	LYCEE LA PROVIDENCE	0232146146	{(0761707t@ac-rouen.fr)}	lycee	\N	\N
 370	0762169V	370	LYCEE PABLO NERUDA	0235065500	{(0762169V@ac-rouen.fr)}	lycee	\N	\N
@@ -10567,6 +10569,7 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 641	0762995T	641	ECOLE MATERNELLE ANNE SYLVESTRE	0235382654	{(0762995T@ac-rouen.fr)}	maternelle	\N	\N
 642	0760314D	642	ECOLE ELEMENTAIRE DE LA HALLOTIERE	0235091247	{(0760314D@ac-rouen.fr)}	elementaire	\N	\N
 643	0760626T	643	ECOLE ELEMENTAIRE DE LA HOUSSAYE-BERANGER	0235331735	{(0760626T@ac-rouen.fr)}	elementaire	\N	\N
+690	0761782Z	690	COLLEGE EUGENE VARLIN	0235472832	{(0761782Z@ac-rouen.fr)}	college	\N	\N
 644	0762779H	644	ECOLE MATERNELLE DE LA HOUSSAYE-BERANGER	0235331619	{(0762779H@ac-rouen.fr)}	maternelle	\N	\N
 645	0762428B	645	ECOLE ELEMENTAIRE DE LA LONDE	0235872934	{(0762428B@ac-rouen.fr)}	elementaire	\N	\N
 646	0762427A	646	ECOLE MATERNELLE DE LA LONDE	0235871364	{(0762427A@ac-rouen.fr)}	maternelle	\N	\N
@@ -10613,7 +10616,6 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 687	0761742F	688	LYCEE VAL DE SEINE	0235182969	{(0761742F@ac-rouen.fr)}	lycee	\N	\N
 688	0760145V	688	LYCEE VAL DE SEINE	0235182969	{(0760145V@ac-rouen.fr)}	lycee	\N	\N
 689	0761697G	689	COLLEGE CLAUDE BERNARD	0235448061	{(0761697G@ac-rouen.fr)}	college	\N	\N
-690	0761782Z	690	COLLEGE EUGENE VARLIN	0235472832	{(0761782Z@ac-rouen.fr)}	college	\N	\N
 691	0761698H	691	COLLEGE GERARD PHILIPPE	0235241165	{(0761698H@ac-rouen.fr)}	college	\N	\N
 692	0761700K	692	COLLEGE GUY MOQUET	0235471966	{(0761700K@ac-rouen.fr)}	college	\N	\N
 693	0762127Z	693	COLLEGE HENRI WALLON	0235464243	{(0762127Z@ac-rouen.fr)}	college	\N	\N

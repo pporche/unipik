@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset("vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css") }}"/>
     <link rel="stylesheet" href="{{ asset("vendor/chosen/chosen.css") }}"/>
     <link rel="stylesheet" href="{{ asset('vendor/leaflet/dist/leaflet.css') }}" />
+    <link rel="stylesheet" href="{{ asset('vendor/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css') }}">
     <style>
         #mapid {  height: 500px; }
 
@@ -53,6 +54,11 @@
             padding: 6px 12px;
             border: 1px solid #ccc;
             border-top: none;
+        }
+
+        .leaflet-popup-content {
+            max-height: 173px;
+            overflow-y: auto;
         }
 
         #recherche_avancee_ville {
@@ -149,6 +155,7 @@
     <script src="{{ asset("vendor/pdfmake/build/pdfmake.min.js") }}"></script>
     <script src="{{ asset("vendor/pdfmake/build/vfs_fonts.js") }}"></script>
     <script src="{{ asset('vendor/leaflet/dist/leaflet.js') }}"></script>
+    <script src="{{ asset('vendor/Leaflet.awesome-markers/dist/leaflet.awesome-markers.min.js') }}"></script>
     <script>
         $(document).ready(function () {
             openDisplay($('#Liste'), 'Liste');
@@ -603,21 +610,57 @@
                 {% if intervention.etablissement.adresse.geolocalisation is not null %}
                     var lat = {{ intervention.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }};
                     var lon = {{ intervention.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }};
+                    var redMarker = L.AwesomeMarkers.icon({
+                        icon: 'glyphicon-exclamation-sign',
+                        markerColor: 'red'
+                    });
+                    var orangeMarker = L.AwesomeMarkers.icon({
+                        icon: 'glyphicon-exclamation-sign',
+                        markerColor: 'orange'
+                    });
+                    var greenMarker = L.AwesomeMarkers.icon({
+                        icon: 'glyphicon-ok',
+                        markerColor: 'green'
+                    });
                     var marker = L.marker([lon, lat]);
+                    {% if intervention.realisee %}
+                        marker.setIcon(greenMarker);
+                    {% elseif (date("now")>=(intervention.dateIntervention)) and intervention.dateIntervention  %}
+                        {%  if intervention.benevole %}
+                            {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
+                                marker.setIcon(redMarker);
+                            {% endif %}
+                        {% else %}
+                            marker.setIcon(redMarker);
+                        {% endif %}
+                    {% elseif  (date("now")|date_modify("+5 day"))>=(intervention.dateIntervention) and intervention.dateIntervention %}
+                        {%  if intervention.benevole %}
+                            {% if (user.nom==intervention.benevole.nom or user.nom=="admin" ) %}
+                                marker.setIcon(orangeMarker);
+                            {% endif %}
+                        {% else %}
+                            marker.setIcon(orangeMarker);
+                        {% endif %}
+                    {% endif %}
                     marker.on('click', function (e) {
                         mymap.setView(e.target.getLatLng());
                     });
                     var alreadyExists = false;
                     for (var i=0; i<markers.length; i++) {
                         if (marker.getLatLng()["lat"] == markers[i].getLatLng()["lat"] && marker.getLatLng()["lon"] == markers[i].getLatLng()["lon"]) {
-                            marker.bindPopup(markers[i].getPopup().getContent() + "<br><br><b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
+                            {% if intervention.dateIntervention %}
+                                {% set date = intervention.dateIntervention|date("d-m-Y") %}
+                            {% else %}
+                                {% set date = "Date non définie" %}
+                            {% endif %}
+                            marker.bindPopup(markers[i].getPopup().getContent() + "<br><br><b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br>{{ date }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
                             markers[i] = marker;
                             alreadyExists = true;
                             break;
                         }
                     }
                     if (!alreadyExists) {
-                        marker.bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
+                        marker.bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br>{{ date }}<br><a href='{{ path('intervention_view', {id: intervention.id}) }}'>Détails de l'intervention</a>");
                         markers.push(marker);
                     }
                 {% endif %}

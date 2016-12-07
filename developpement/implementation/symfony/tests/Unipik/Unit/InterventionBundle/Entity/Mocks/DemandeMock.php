@@ -25,9 +25,9 @@ class DemandeMock extends EntityMock
 
         $d = new Demande();
         $d  ->setContact($c)
-            ->setDateDemande(new \DateTime('2000-01-01'))
-            ->setDateDebutDisponibilite(new \DateTime('2000-01-15'))
-            ->setDateFinDisponibilite(new \DateTime('2000-01-30')) ;
+            ->setDateDemande(new \DateTime(date('Y').'-01-01'))
+            ->setDateDebutDisponibilite(new \DateTime(date('Y').'-12-15'))
+            ->setDateFinDisponibilite(new \DateTime(date('Y').'-12-30')) ;
 
         return $d;
     }

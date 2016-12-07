@@ -137,6 +137,8 @@ class VenteRepository extends EntityRepository {
 
         if (!$datesChecked) {
             $this->_whereInterventionsBetweenDates($start, $end, $qb);
+        } else {
+            $this->_whereVenteInTheTwoLastYear($qb);
         }
 
         if ($borne1!=null && $borne2!=null) {
@@ -159,6 +161,20 @@ class VenteRepository extends EntityRepository {
             ->setParameter('start', $start)
             ->setParameter('end', $end);
 
+    }
+
+    /**
+     * Where intervention in the two last years
+     *
+     * @param QueryBuilder $qb Le queryBuilder
+     *
+     * @return object
+     */
+    private function _whereVenteInTheTwoLastYear(QueryBuilder $qb) {
+        $date = date('Y-m-d', strtotime('-2 years', strtotime('now')));
+        $qb
+            ->andWhere('v.dateVente >= :twoYearsAgo')
+            ->setParameter('twoYearsAgo', $date);
     }
 
     /**

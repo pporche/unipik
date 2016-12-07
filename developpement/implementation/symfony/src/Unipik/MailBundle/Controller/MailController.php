@@ -102,7 +102,7 @@ class MailController extends Controller {
             $end = $form->get("end")->getData();
             $mails = $repository->getType($start, $end);
         } else {
-            $start = date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "-1 month" ) );
+            $start = date('d-m-Y');
             $end = date('d-m-Y');
             $mails = $repository->getType($start, $end);
         }
@@ -111,7 +111,7 @@ class MailController extends Controller {
             'MailBundle::historiqueEmails.html.twig', array(
             'mails' => $mails,
             'start' => $start,
-            'end' => $end,
+            'end' => date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "+1 month" ) ),
             'rowsPerPage' => $rowsPerPage,
             'form' => $form->createView()
         ));
@@ -176,11 +176,10 @@ class MailController extends Controller {
             $ids = array_diff($ids, $instituteExclude); // On dégage les établissements dont la demande a pas été satisfaite durant cette année scolaire
 
             if (!empty($ids)) { // Si la recherche donne pas d'établissement on créé pas d'entrée BD pour rien
-                date_default_timezone_set("Europe/Paris");
                 $mailtask = new MailTask();
                 $mailtask
                     ->setName('Mail task')
-                    ->setInterval(300) // Interval pour savoir quand on peut exécuter la tâche
+                    ->setInterval(3600) // Interval pour savoir quand on peut exécuter la tâche
                     ->setDateInsert(new \DateTime()) // Date d'insertion ie date à laquelle on effectue la demande d'envoi de mail
                     ->setIdEtablissement($ids); // id des établissements à qui on fait l'envoi
 

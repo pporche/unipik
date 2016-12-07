@@ -22,14 +22,14 @@ MailHistorique:
             options:
                 fixed: false
     manyToOne:
-        id_etablissement:
-            targetEntity: Unipik\InterventionBundle\Entity\Etablissement
-            cascade: ["persist"]
-            fetch: LAZY
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                id_etablissement:
-                    referencedColumnName: id
-            orphanRemoval: false
+                etablissement:
+                    targetEntity: Etablissement
+                    cascade: ["persist"]
+                    fetch: LAZY
+                    mappedBy: null
+                    inversedBy: null
+                    joinColumns:
+                        etablissement_id:
+                            referencedColumnName: id
+                    orphanRemoval: false
     lifecycleCallbacks: {  }

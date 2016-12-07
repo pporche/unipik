@@ -98,7 +98,7 @@ class InterventionType extends AbstractFieldsetType {
             )
             ->add('materielDispoPlaidoyer', MaterielType::class, array('label' => 'Matériel'))
             ->add('materiauxFrimousse', MaterielFrimousseType::class, array('label' => 'Matériel frimousse'))
-            ->add('nbPersonne', IntegerType::class, array('label' => 'Participants'))
+            ->add('nbPersonne', IntegerType::class, array('label' => 'Participants', 'attr' => ['maxlength' => '5']))
             ->add('niveauTheme', NiveauThemeType::class)
             ->add('niveau', ChoiceType::class, $choiceClasse)
             ->add(
@@ -108,8 +108,8 @@ class InterventionType extends AbstractFieldsetType {
                 'required' => false,
                 )
             )
-            ->add('description', TextareaType::class, array('required' => false))
-            ->add('remarques', TextareaType::class, array('required' => false));
+            ->add('description', TextareaType::class, array('required' => false, 'attr' => ['maxlength' => '500', 'rows' => '5']))
+            ->add('remarques', TextareaType::class, array('required' => false, 'attr' => ['maxlength' => '500', 'rows' => '5']));
     }
 
     /**

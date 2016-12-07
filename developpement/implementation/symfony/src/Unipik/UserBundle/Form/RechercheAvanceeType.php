@@ -106,7 +106,7 @@ class RechercheAvanceeType extends AbstractType {
             ->add('responsabilitesActivites', ChoiceType::class, $responsabilitesChoiceType)
             ->add('dansVilleOuParDistance', ChoiceType::class, $dansVilleOuParDistance)
             ->add('villeOuDomicile', ChoiceType::class, $villeOuDomicile)
-            ->add('ville', VilleType::class, array('required' => false))
+            ->add('ville', VilleType::class, array('required' => false, 'attr' => ['maxlength' => '100']))
             ->add('geolocalisation', HiddenType::class)
             ->add('distance', ChoiceType::class, $distanceChoiceType);
 

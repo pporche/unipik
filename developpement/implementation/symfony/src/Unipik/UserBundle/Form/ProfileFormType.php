@@ -95,12 +95,12 @@ class ProfileFormType extends BaseType {
         parent::buildUserForm($builder, $options);
 
         $builder
-            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
-            ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
-            ->add('nom')
-            ->add('prenom', TextType::class, array('label' => 'Prénom'))
-            ->add('telfixe', TextType::class, array( 'required'=>false, 'label' => 'Téléphone fixe'))
-            ->add('telportable', TextType::class, array( 'required'=>false, 'label' => 'Téléphone portable'));
+            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle', 'attr' => ['maxlength' => '100']))
+            ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle', 'attr' => ['maxlength' => '100']))
+            ->add('nom', TextType::class, array('attr'=> ['maxlength' => '100']))
+            ->add('prenom', TextType::class, array('label' => 'Prénom', 'attr'=> ['maxlength' => '100']))
+            ->add('telfixe', TextType::class, array( 'required'=>false, 'label' => 'Téléphone fixe', 'attr' => ['maxlength' => '30']))
+            ->add('telportable', TextType::class, array( 'required'=>false, 'label' => 'Téléphone portable', 'attr' => ['maxlength' => '30']));
     }
 
     /**

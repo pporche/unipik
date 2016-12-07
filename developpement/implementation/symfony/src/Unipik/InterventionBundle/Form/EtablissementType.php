@@ -91,6 +91,7 @@ class EtablissementType extends AbstractType {
             ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe', 'required' => false, 'attr' => ['maxlength' => '30']))
             ->add(
                 'emails', CollectionType::class, array('label'=> '','mapped' => false,
+                'attr'=> ['maxlength' => '100'],
                 'entry_type'   => TextType::class,
                 'allow_add'    => true,
                 'allow_delete' => true

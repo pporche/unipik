@@ -21,6 +21,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 /**
  * Class RechercheAvanceeType
  *
@@ -55,13 +56,42 @@ class RechercheAvanceeType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
+        $optionChoiceType = array( 'expanded' => true, 'multiple' => false, 'mapped' => false, 'required' => false,
+            'choices' => [
+                'Tous' => '',
+                'Enseignements' => 'enseignement',
+                'Centres de Loisirs' => 'centre',
+                'Autres établissements' => 'autreEtablissement'
+            ],);
+        $optionEnseignementType = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'required' => false,
+            'choices' => [
+                'Maternelle' => 'maternelle',
+                'Elémentaire' => 'elementaire',
+                'Collège' => 'college',
+                'Lycée' => 'lycee',
+                'Supérieur' => 'superieur'
+            ],);
+
+        $optionCentreType = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'required' => false,
+            'choices' => [
+                'Maternelle' => 'maternelle',
+                'Elémentaire' => 'elementaire',
+                'Adolescent' => 'adolescent',
+                'Autre' => 'autre'
+            ],);
+
+        $optionAutreEtablissementType = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'required' => false,
+            'choices' => [
+                'Mairie' => 'mairie',
+                'Maison de retraite' => 'maisonRetraite',
+                'Autre' => 'autre'
+            ],);
+
         $builder
-            ->add(
-                'date', CheckboxType::class, array(
-                    'label'    => 'Toutes',
-                    'required' => false,
-                )
-            )
+            ->add('typeEtablissement', ChoiceType::class, $optionChoiceType)
+            ->add('typeEnseignement', ChoiceType::class, $optionEnseignementType)
+            ->add('typeCentre', ChoiceType::class, $optionCentreType)
+            ->add('typeAutreEtablissement', ChoiceType::class, $optionAutreEtablissementType)
             ->add(
                 'start', DateType::class, array(
                     'widget' => 'single_text',
@@ -72,7 +102,6 @@ class RechercheAvanceeType extends AbstractType {
                     // add a class that can be selected in JavaScript
                     'attr' => ['class' => 'js-datepicker'],
                     'format' => 'dd-MM-yyyy',
-                    'required' => false,
                     'label' => false
                 )
             )
@@ -86,7 +115,6 @@ class RechercheAvanceeType extends AbstractType {
                     // add a class that can be selected in JavaScript
                     'attr' => ['class' => 'js-datepicker'],
                     'format' => 'dd-MM-yyyy',
-                    'required' => false,
                     'label' => false
                 )
             );

@@ -60,7 +60,7 @@ class InterventionTemplateType extends AbstractFieldsetType {
             ->add('TypeGeneral', ChoiceType::class, $generalType)
             ->add('materielDispoPlaidoyer', MaterielType::class, array('label' => 'Matériel disponible'))
             ->add('materiauxFrimousse', MaterielFrimousseType::class, array('label' => 'Matériel diponible'))
-            ->add('nbPersonne', IntegerType::class, array('label' => 'Nb de participants*'))
+            ->add('nbPersonne', IntegerType::class, array('label' => 'Nb de participants*', 'maxlength' => '5'))
             ->add('niveauTheme', NiveauThemeType::class, array('label' => false))
             ->add('description', TextareaType::class, array('label' => 'Description', 'attr'=> ['class' => 'form-description', 'rows' => '5', 'maxlength' => '500'], 'required' => false))
             ->add('remarques', TextareaType::class, array('label' => 'Remarques', 'attr'=> ['class' => 'form-remarques', 'rows' => '5', 'maxlength' => '500'], 'required' => false));

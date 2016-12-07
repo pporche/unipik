@@ -44,7 +44,6 @@ class MailHistorique{
     /**
      * L'etablissement
      *
-<<<<<<< HEAD
      * @var \Unipik\InterventionBundle\Entity\Etablissement
      *
      * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", cascade={"persist"})
@@ -134,8 +133,6 @@ class MailHistorique{
     {
         $this->type_email = $type_email;
     }
-
-
 
 
 

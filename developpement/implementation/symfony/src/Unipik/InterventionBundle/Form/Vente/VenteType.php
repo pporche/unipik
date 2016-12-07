@@ -45,7 +45,7 @@ class VenteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('chiffreAffaire', MoneyType::class)
+        $builder->add('chiffreAffaire', MoneyType::class, array('attr' => ['maxlength' => '5']))
             ->add(
                 'dateVente', DateType::class, array(
                 'widget' => 'single_text',

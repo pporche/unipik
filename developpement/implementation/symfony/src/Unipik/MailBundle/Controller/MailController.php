@@ -100,17 +100,18 @@ class MailController extends Controller {
         if ($request->isMethod('GET') && $form->isValid()) {
             $start = $form->get("start")->getData();
             $end = $form->get("end")->getData();
-
             $mails = $repository->getType($start, $end);
         } else {
-            $start = "";
-            $end = "";
+            $start = date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "-1 month" ) );
+            $end = date('d-m-Y');
             $mails = $repository->getType($start, $end);
         }
 
         return $this->render(
             'MailBundle::historiqueEmails.html.twig', array(
             'mails' => $mails,
+            'start' => $start,
+            'end' => $end,
             'rowsPerPage' => $rowsPerPage,
             'form' => $form->createView()
         ));

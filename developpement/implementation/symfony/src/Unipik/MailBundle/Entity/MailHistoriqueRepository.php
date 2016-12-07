@@ -31,6 +31,7 @@ class MailHistoriqueRepository extends EntityRepository {
 
     /**
      * @param $startDate
+     * @param $endDate
      * @return array
      */
     public function getType($startDate, $endDate){

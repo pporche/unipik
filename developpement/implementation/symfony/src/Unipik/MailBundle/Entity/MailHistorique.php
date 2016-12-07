@@ -36,11 +36,17 @@ class MailHistorique {
     private $id;
 
     /**
-     * L'id de l'etablissement
+     * L'etablissement
      *
-     * @ORM\Column(name="id_etablissement", type="integer", nullable=false)
+     * @var \Unipik\InterventionBundle\Entity\Etablissement
+     *
+     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_etablissement",                                      referencedColumnName="id")
+     * })
      */
-    private $id_etablissement;
+    private $etablissement;
+
 
     /**
      * La date
@@ -103,19 +109,26 @@ class MailHistorique {
     }
 
     /**
-     * @return mixed
+     * Set etablissement
+     *
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement L'etablissement
+     *
+     * @return Intervention
      */
-    public function getIdEtablissement() {
-        return $this->id_etablissement;
+    public function setEtablissement(\Unipik\InterventionBundle\Entity\Etablissement $etablissement) {
+        $this->etablissement = $etablissement;
+
+        return $this;
     }
 
     /**
-     * @param mixed $id_etablissement
+     * Get etablissement
      *
-     * @return $this
+     * @return \Unipik\InterventionBundle\Entity\Etablissement
      */
-    public function setIdEtablissement($id_etablissement) {
-        $this->id_etablissement = $id_etablissement;
-        return $this;
+    public function getEtablissement() {
+        return $this->etablissement;
     }
+
+
 }

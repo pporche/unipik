@@ -129,6 +129,7 @@
             for(i=0; i<4; i++){
                 responsabiliteChecked("#user_registration_responsabiliteActivite_" + i, "#user_registration_activitesPotentielles_" + i);
             }
+            $( ".col-sm-10:has(button[type='submit'])" ).css('width', '100px');
         });
 
         function responsabiliteChecked(responsabilite, activite) {

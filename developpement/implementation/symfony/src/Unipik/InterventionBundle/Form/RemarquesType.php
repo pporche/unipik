@@ -41,7 +41,7 @@ class RemarquesType extends AbstractFieldsetType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('remarques', TextareaType::class);
+            ->add('remarques', TextareaType::class, array('attr' => ['rows' => '5', 'maxlength' => '500']));
     }
 
     /**

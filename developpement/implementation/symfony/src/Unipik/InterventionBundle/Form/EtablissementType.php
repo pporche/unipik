@@ -87,10 +87,11 @@ class EtablissementType extends AbstractType {
 
         $builder
 
-            ->add('nom', TextType::class, array('required' => false))
-            ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe', 'required' => false))
+            ->add('nom', TextType::class, array('required' => false, 'attr' => ['maxlength' => '100']))
+            ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe', 'required' => false, 'attr' => ['maxlength' => '30']))
             ->add(
                 'emails', CollectionType::class, array('label'=> '','mapped' => false,
+                'attr'=> ['maxlength' => '100'],
                 'entry_type'   => TextType::class,
                 'allow_add'    => true,
                 'allow_delete' => true
@@ -100,7 +101,7 @@ class EtablissementType extends AbstractType {
             ->add('typeEnseignement', ChoiceType::class, $educationChoiceType)
             ->add('typeAutreEtablissement', ChoiceType::class, $otherChoiceType)
             ->add('typeCentre', ChoiceType::class, $centerChoiceType)
-            ->add('uai', TextType::class, array('label' => 'UAI' ,'required' => false))
+            ->add('uai', TextType::class, array('label' => 'UAI' ,'required' => false, 'attr' => ['maxlength' => '100']))
             ->add('adresse', AdresseType::class, array('label' =>false, 'required' => true));
     }
     /**

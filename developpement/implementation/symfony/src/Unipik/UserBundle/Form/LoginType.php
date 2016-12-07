@@ -47,8 +47,8 @@ class LoginType extends AbstractType {
         $builder
             ->setAction($options['action'])
             ->setMethod('POST')
-            ->add('_username', TextType::class, array('label' => 'Nom d\'utilisateur'))
-            ->add('_password', PasswordType::class, array('label' => 'Mot de passe'))
+            ->add('_username', TextType::class, array('label' => 'Nom d\'utilisateur', 'attr' => ['maxlength' => '100']))
+            ->add('_password', PasswordType::class, array('label' => 'Mot de passe', 'attr' => ['maxlength' => '100']))
             ->add(
                 '_remember_me', CheckboxType::class, array(
                 'label' => 'Rester connecté',

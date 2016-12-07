@@ -102,13 +102,13 @@ class DemandeAnonymeType extends AbstractType {
             ],);
 
         $builder
-            ->add('departement', TextType::class, array('mapped' => false, 'label' => 'Département'))
-            ->add('ville', TextType::class, array('mapped' => false, 'label' => 'Ville'))
+            ->add('departement', TextType::class, array('mapped' => false, 'label' => 'Département', 'attr' => ['maxlength' => '100']))
+            ->add('ville', TextType::class, array('mapped' => false, 'label' => 'Ville', 'attr' => ['maxlength' => '100']))
             ->add('typeGeneral', ChoiceType::class, $generalType)
             ->add('typeEnseignement', ChoiceType::class, $educationChoiceType)
             ->add('typeAutreEtablissement', ChoiceType::class, $otherChoiceType)
             ->add('typeCentre', ChoiceType::class, $centerChoiceType)
-            ->add('nomEtablissement', TextType::class, array('mapped' => false, 'label' => 'Nom établissement*', 'required' => 'true'))
+            ->add('nomEtablissement', TextType::class, array('mapped' => false, 'label' => 'Nom établissement*', 'required' => 'true', 'attr' => ['maxlength' => '100']))
             ->add('plageDate', PlageDateType::class, array('label' => 'Plage de dates', 'mapped' => false))
             ->add('jour', JourInterventionType::class, array('label' => "Jour de l'intervention", 'mapped' => false))
             ->add(

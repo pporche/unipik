@@ -76,17 +76,18 @@ class RegistrationType extends AbstractType {
             ],);
 
         $builder
-            ->add('nom')
-            ->add('prenom', TextType::class, array('label' => 'Prénom'))
-            ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe', 'required' => false))
-            ->add('telPortable', TextType::class, array('label' => 'Téléphone portable', 'required' => false))
-            ->add('email', TextType::class, array('label' => 'E-mail'))
-            ->add('username', TextType::class, array('label' => 'Nom d\'utilisateur'))
+            ->add('nom', TextType::class, array('attr'=> ['maxlength' => '100']))
+            ->add('prenom', TextType::class, array('label' => 'Prénom', 'attr'=> ['maxlength' => '100']))
+            ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe', 'required' => false, 'attr' => ['maxlength' => '30']))
+            ->add('telPortable', TextType::class, array('label' => 'Téléphone portable', 'required' => false, 'attr' => ['maxlength' => '30']))
+            ->add('email', TextType::class, array('label' => 'E-mail', 'attr' => ['maxlength' => '100']))
+            ->add('username', TextType::class, array('label' => 'Nom d\'utilisateur', 'attr' => ['maxlength' => '100']))
             ->add(
                 'plainPassword', RepeatedType::class,
                 array('type' => PasswordType::class,
                           'first_options'  => array('label' => 'Mot de passe'),
-                          'second_options' => array('label' => 'Confirmer le mot de passe')
+                          'second_options' => array('label' => 'Confirmer le mot de passe'),
+                    'attr' => ['maxlength' => '100']
                     )
             )
             ->add('adresse', AdresseType::class)

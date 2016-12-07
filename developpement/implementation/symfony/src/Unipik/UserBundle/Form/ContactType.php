@@ -45,11 +45,11 @@ class ContactType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('email', TextType::class)
-            ->add('nom', TextType::class, array('label' => false))
-            ->add('prenom', TextType::class, array('label' => false, 'required' => false))
-            ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe', 'required' => false))
-            ->add('telPortable', TextType::class, array('label' => 'Téléphone portable', 'required' => false))
+            ->add('email', TextType::class, array('attr' => ['maxlength' => '100']))
+            ->add('nom', TextType::class, array('label' => false, 'attr' => ['maxlength' => '100']))
+            ->add('prenom', TextType::class, array('label' => false, 'required' => false, 'attr' => ['maxlength' => '100']))
+            ->add('telFixe', TextType::class, array('label' => 'Téléphone fixe', 'required' => false, 'attr' => ['maxlength' => '30']))
+            ->add('telPortable', TextType::class, array('label' => 'Téléphone portable', 'required' => false, 'attr' => ['maxlength' => '30']))
             ->add(
                 'typeContact', ChoiceType::class, array(
                 'choices' => array(

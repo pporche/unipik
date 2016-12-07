@@ -113,7 +113,7 @@ class MailingType extends AbstractFieldsetType {
             ->add('typeAutre', ChoiceType::class, $typeAutreEtablissement)
             ->add('typeRelance', ChoiceType::class, $relance)
             ->add('dansVilleOuParDistance', ChoiceType::class, $dansVilleOuParDistance)
-            ->add('ville', VilleType::class, array('required' => false))
+            ->add('ville', VilleType::class, array('required' => false, 'attr' => ['maxlength' => '100']))
             ->add('geolocalisation', HiddenType::class)
             ->add('distance', ChoiceType::class, $distanceChoiceType);
 

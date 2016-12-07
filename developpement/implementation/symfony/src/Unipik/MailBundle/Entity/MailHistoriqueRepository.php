@@ -37,18 +37,43 @@ class MailHistoriqueRepository extends EntityRepository {
      *
      * @return array
      */
-    public function getType($startDate, $endDate){
-        $qb = $this->createQueryBuilder('m');
-        $qb = $qb
-            ->where(
-                '(m.date_envoi BETWEEN :start AND :end )'
-            )
-            ->setParameter('start', $startDate)
-            ->setParameter('end', $endDate);
+    public function getType($startDate, $endDate, $typeEtablissement, $type){
+        if (!isset($type)) {
+            $type = array("maternelle", "elementaire", "college", "lycee", "superieur", "adolescent", "maison de retraite", "mairie", "autre", "");
+        }
+        $results = array();
 
-        return $qb
-            ->getQuery()
-            ->getResult();
+        foreach ($type as $t) {
+            $qb = $this->createQueryBuilder('m');
+
+            $qb->where('(m.date_envoi BETWEEN :start AND :end )')
+                ->setParameter('start', $startDate)
+                ->setParameter('end', $endDate);
+
+            $qb =$qb ->join('m.etablissement', 'e');
+
+            switch ($typeEtablissement) {
+                case "enseignement":
+                    $qb->andWhere('e.typeEnseignement = :type');
+                    break;
+                case "centre":
+                    $qb->andWhere('e.typeCentre = :type');
+                    break;
+                case "autreEtablissement":
+                    $qb->andWhere('e.typeAutreEtablissement = :type');
+                    break;
+                default:
+                    $qb->andWhere('e.typeEnseignement = :type');
+                    $qb->orWhere('e.typeCentre = :type');
+                    $qb->orWhere('e.typeAutreEtablissement = :type');
+                    break;
+            }
+            $qb->setParameter('type', $t);
+
+            $results = array_merge($results, ($qb->getQuery()->getResult()));
+        }
+
+        return $results;
     }
 
 }

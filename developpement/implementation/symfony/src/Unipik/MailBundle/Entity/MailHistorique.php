@@ -42,12 +42,18 @@ class MailHistorique{
     private $id;
 
     /**
-     * L'id de l'etablissement
+     * L'etablissement
      *
-     * @ORM\Column(name="id_etablissement", type="array")
+<<<<<<< HEAD
+     * @var \Unipik\InterventionBundle\Entity\Etablissement
+     *
+     * @ORM\ManyToOne(targetEntity="Unipik\InterventionBundle\Entity\Etablissement", cascade={"persist"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_etablissement",                                      referencedColumnName="id")
+     * })
      */
+    private $etablissement;
 
-    private $id_etablissement;
 
     /**
      * Date d'envoi de mail
@@ -75,49 +81,26 @@ class MailHistorique{
 
     /**
      * @param int $id
-     *
-     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
-        return $this;
     }
 
     /**
-     * @return mixed
+     * @return \Unipik\InterventionBundle\Entity\Etablissement
      */
-    public function getIdEtablissement()
+    public function getEtablissement()
     {
-        return $this->id_etablissement;
+        return $this->etablissement;
     }
 
     /**
-     * @param mixed $id_etablissement
-     *
-     * @return $this
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement
      */
-    public function setIdEtablissement($id_etablissement) {
-        $this->id_etablissement = $id_etablissement;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getDate()
+    public function setEtablissement($etablissement)
     {
-        return $this->date;
-    }
-
-    /**
-     * @param \DateTime $date
-     *
-     * @return $this
-     */
-    public function setDate($date) {
-        $this->date = $date;
-        return $this;
+        $this->etablissement = $etablissement;
     }
 
     /**
@@ -130,13 +113,10 @@ class MailHistorique{
 
     /**
      * @param \DateTime $date_envoi
-     *
-     * @return $this
      */
     public function setDateEnvoi($date_envoi)
     {
         $this->date_envoi = $date_envoi;
-        return $this;
     }
 
     /**
@@ -149,14 +129,14 @@ class MailHistorique{
 
     /**
      * @param mixed $type_email
-     *
-     * @return $this
      */
     public function setTypeEmail($type_email)
     {
         $this->type_email = $type_email;
-        return $this;
     }
+
+
+
 
 
 }

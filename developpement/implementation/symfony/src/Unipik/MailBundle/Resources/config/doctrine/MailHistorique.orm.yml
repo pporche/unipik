@@ -2,6 +2,10 @@ Unipik\MailBundle\Entity\MailHistorique:
     type: entity
     repositoryClass: Unipik\MailBundle\Entity\MailHistoriqueRepository
     table: mail_historique
+    indexes:
+        IDX_D11814ABFF631228:
+            columns:
+            - id_etablissement
     id:
         id:
             type: integer
@@ -12,9 +16,6 @@ Unipik\MailBundle\Entity\MailHistorique:
             generator:
                 strategy: SEQUENCE
     fields:
-        id_etablissement:
-            type: integer
-            nullable: false
         date_envoi:
             type: datetime
             nullable: true
@@ -24,4 +25,15 @@ Unipik\MailBundle\Entity\MailHistorique:
             length: 255
             options:
                 fixed: false
+    manyToOne:
+        etablissement:
+            targetEntity: Unipik\InterventionBundle\Entity\Etablissement
+            cascade: ["persist"]
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_etablissement:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }

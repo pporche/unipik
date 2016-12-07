@@ -28,9 +28,13 @@ use Doctrine\ORM\EntityRepository;
  * @link     None
  */
 class MailHistoriqueRepository extends EntityRepository {
-    /**
-     * @param $startDate
-     * @param $endDate
+
+     /**
+     * Renvoie le type
+     *
+     * @param Date $startDate La date de debut
+     * @param Date $endDate   La date de fin
+     *
      * @return array
      */
     public function getType($startDate, $endDate){

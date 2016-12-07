@@ -164,9 +164,9 @@ class VenteRepository extends EntityRepository {
     }
 
     /**
-     * where intervention in the two last years
+     * Where intervention in the two last years
      *
-     * @param QueryBuilder $qb
+     * @param QueryBuilder $qb Le queryBuilder
      *
      * @return object
      */

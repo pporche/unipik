@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Unipik\MailBundle\Entity\MailHistorique;
 use Unipik\MailBundle\Entity\MailTask;
 use Unipik\MailBundle\Form\MailingType;
+use Unipik\MailBundle\Form\RechercheAvanceeType;
 
 /**
  * Class MailBundle
@@ -60,6 +61,8 @@ class MailController extends Controller {
     }
 
     /**
+     * Renvoie le repository pour la mailtask
+     *
      * @return \Doctrine\Common\Persistence\ObjectRepository|\Unipik\MailBundle\Entity\MailTaskRepository
      */
     public function getMailTaskRepository() {
@@ -68,6 +71,8 @@ class MailController extends Controller {
     }
 
     /**
+     * Renvoie le repository pour le mail historique
+     *
      * @return \Doctrine\Common\Persistence\ObjectRepository|\Unipik\MailBundle\Entity\MailHistoriqueRepository
      */
     public function getMailHistoriqueRepository() {
@@ -79,23 +84,36 @@ class MailController extends Controller {
     /**
      * Render the view of the list of mails sent
      *
-     * @param  Request $request
+     * @param Request $request La requete
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function mailingHistoriqueAction(Request $request) {
+        $formBuilder = $this->get('form.factory')->createBuilder(RechercheAvanceeType::class)->setMethod('GET'); // Creation du formulaire en GET
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
 
         $repository = $this->getMailHistoriqueRepository();
 
-        $mails = $repository->getType(date('d/m/Y'), date('d/m/Y'));
+        if ($request->isMethod('GET') && $form->isValid()) {
+            $start = $form->get("start")->getData();
+            $end = $form->get("end")->getData();
+
+            $mails = $repository->getType($start, $end);
+        } else {
+            $start = "";
+            $end = "";
+            $mails = $repository->getType($start, $end);
+        }
 
         return $this->render(
             'MailBundle::historiqueEmails.html.twig', array(
             'mails' => $mails,
             'rowsPerPage' => $rowsPerPage,
-            )
-        );
+            'form' => $form->createView()
+        ));
     }
 
     /**
@@ -173,6 +191,11 @@ class MailController extends Controller {
         return $this->render('MailBundle:mailing:mailingEtablissements.html.twig', array('form' => $form->createView()));
     }
 
+    /**
+     * Une fonction de test
+     *
+     * @return void
+     */
     public function kakiAction() {
         $em = $this->getDoctrine()->getManager();
 

@@ -22,7 +22,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Unipik\MailBundle\Entity\MailHistorique;
 
 //sudo php bin/console mailInstituteTask:run
-//* */1 * * * php /path/to/your/console crontasks:run
+//* */1 * * * php /path/to/your/console mailInstituteTask:run
 /**
  * Class MailTaskCommand
  *
@@ -113,7 +113,7 @@ class MailTaskCommand extends ContainerAwareCommand {
                 $mailHistorique
                     ->setDateEnvoi(new \DateTime())
                     ->setTypeEmail('prospection')
-                    ->setIdEtablissement($etablissement->getId());
+                    ->setIdEtablissement($etablissement);
                 $em->persist($mailHistorique);
             }
 

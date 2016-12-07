@@ -102,8 +102,8 @@ class MailController extends Controller {
             $end = $form->get("end")->getData();
             $mails = $repository->getType($start, $end);
         } else {
-            $start = date('d-m-Y');
-            $end = "";
+            $start = date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "-1 month" ) );
+            $end = date('d-m-Y');
             $mails = $repository->getType($start, $end);
         }
 

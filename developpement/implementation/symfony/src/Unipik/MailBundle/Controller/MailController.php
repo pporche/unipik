@@ -60,6 +60,8 @@ class MailController extends Controller {
     }
 
     /**
+     * Renvoie le repository pour la mailtask
+     *
      * @return \Doctrine\Common\Persistence\ObjectRepository|\Unipik\MailBundle\Entity\MailTaskRepository
      */
     public function getMailTaskRepository() {
@@ -68,6 +70,8 @@ class MailController extends Controller {
     }
 
     /**
+     * Renvoie le repository pour le mail historique
+     *
      * @return \Doctrine\Common\Persistence\ObjectRepository|\Unipik\MailBundle\Entity\MailHistoriqueRepository
      */
     public function getMailHistoriqueRepository() {
@@ -79,7 +83,8 @@ class MailController extends Controller {
     /**
      * Render the view of the list of mails sent
      *
-     * @param  Request $request
+     * @param Request $request La requete
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function mailingHistoriqueAction(Request $request) {
@@ -173,6 +178,11 @@ class MailController extends Controller {
         return $this->render('MailBundle:mailing:mailingEtablissements.html.twig', array('form' => $form->createView()));
     }
 
+    /**
+     * Une fonction de test
+     *
+     * @return void
+     */
     public function kakiAction() {
         $em = $this->getDoctrine()->getManager();
 

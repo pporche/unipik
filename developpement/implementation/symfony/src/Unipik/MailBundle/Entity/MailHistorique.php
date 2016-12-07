@@ -66,6 +66,8 @@ class MailHistorique{
     private $type_email;
 
     /**
+     * Renvoie l'id
+     *
      * @return int
      */
     public function getId()
@@ -74,7 +76,9 @@ class MailHistorique{
     }
 
     /**
-     * @param int $id
+     * Set l'id
+     *
+     * @param int $id L'id
      *
      * @return $this
      */
@@ -85,6 +89,8 @@ class MailHistorique{
     }
 
     /**
+     * Renvoie l'id de l'etablissement
+     *
      * @return mixed
      */
     public function getIdEtablissement()
@@ -93,7 +99,9 @@ class MailHistorique{
     }
 
     /**
-     * @param mixed $id_etablissement
+     * Set l'id de l'etablissement
+     *
+     * @param mixed $id_etablissement L'id de l'etablissement
      *
      * @return $this
      */
@@ -103,6 +111,8 @@ class MailHistorique{
     }
 
     /**
+     * Renvoie la date
+     *
      * @return \DateTime
      */
     public function getDate()
@@ -111,7 +121,9 @@ class MailHistorique{
     }
 
     /**
-     * @param \DateTime $date
+     * Set la date
+     *
+     * @param \DateTime $date La date
      *
      * @return $this
      */
@@ -121,6 +133,8 @@ class MailHistorique{
     }
 
     /**
+     * Renvoie la date d'envoi
+     *
      * @return \DateTime
      */
     public function getDateEnvoi()
@@ -129,7 +143,9 @@ class MailHistorique{
     }
 
     /**
-     * @param \DateTime $date_envoi
+     * Set la date d'envoi
+     *
+     * @param \DateTime $date_envoi La date d'envoi
      *
      * @return $this
      */
@@ -140,6 +156,8 @@ class MailHistorique{
     }
 
     /**
+     * Renvoie le type de mail
+     *
      * @return mixed
      */
     public function getTypeEmail()
@@ -148,7 +166,9 @@ class MailHistorique{
     }
 
     /**
-     * @param mixed $type_email
+     * Set le type de mail
+     *
+     * @param mixed $type_email Le type de mail
      *
      * @return $this
      */

@@ -610,6 +610,42 @@ class InterventionRepository extends EntityRepository {
         return $qb->getQuery()->getSingleScalarResult();
     }
 
+    public function getNumberInterventionByNiveau($dateSup = null, $dateInf = null, $niveau) {
+        $qb = $this->createQueryBuilder('i')
+            ->select('count(i)')
+            ->where('i.realisee = true')
+            ->andWhere('i.typeIntervention = \'plaidoyer\'')
+            ->join('i.etablissement', 'e')
+            ->andWhere('e.typeEnseignement = :niveau')
+            ->setParameter('niveau', $niveau)
+        ;
+
+        if (isset($dateSup)) {
+            $qb->andWhere('i.dateIntervention < :dateSup')
+                ->setParameter('dateSup', $dateSup);
+        }
+
+        if (isset($dateInf)) {
+            $qb->andWhere('i.dateIntervention > :dateInf')
+                ->setParameter('dateInf', $dateInf);
+        }
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function getNumberInterventionPerMonth($dateSup, $dateInf) {
+        $qb = $this->createQueryBuilder('i')
+            ->select('i.dateIntervention')
+            ->where('i.realisee = true')
+            ->andWhere('i.dateIntervention < :dateSup')
+            ->setParameter('dateSup', $dateSup)
+            ->andWhere('i.dateIntervention > :dateInf')
+            ->setParameter('dateInf', $dateInf)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
     /**
      * Renvoie le nombre d'interventions réalisées
      *

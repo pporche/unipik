@@ -59,28 +59,46 @@ class StatsController extends Controller {
             'enfants et soldats' => 0
         );
 
+        $niveaux = array('maternelle' => 0,
+            'elementaire' => 0,
+            'college' => 0,
+            'lycee' => 0,
+            'superieur' => 0
+        );
+
         $themesArray = array();
+        $niveauxArray = array();
 
         $interventionsArray = array();
         $currentYear = date('Y') + 1;
         for ($i = 0; $i < self::NUMBER_YEAR; $i++) {
             $currentYearSup = $currentYear - $i;
             $currentYearInf = $currentYear - $i - 1;
+
             $countPlaidoyer = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::PLAIDOYER);
             $countFrimousse = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::FRIMOUSSE);
             $countAutre = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::AUTRE);
+
             foreach ($themes as $theme => $value) {
                 $countTheme = $repository->getNumberInterventionByTheme('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, $theme);
                 $themes[$theme] = $countTheme;
             }
+
+            foreach ($niveaux as $niveau => $value) {
+                $countNiveau = $repository->getNumberInterventionByNiveau('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, $niveau);
+                $niveaux[$niveau] = $countNiveau;
+            }
+
             array_push($interventionsArray, array('plaidoyers' => $countPlaidoyer, 'frimousses' => $countFrimousse, 'autres' => $countAutre));
             array_push($themesArray, $themes);
+            array_push($niveauxArray, $niveaux);
         }
 
         return $this->render(
             'InterventionBundle:Statistiques:statsIntervention.html.twig', array(
             'interventions' => json_encode($interventionsArray),
-            'themes' => json_encode($themesArray)
+            'themes' => json_encode($themesArray),
+            'niveaux' => json_encode($niveauxArray)
             )
         );
     }

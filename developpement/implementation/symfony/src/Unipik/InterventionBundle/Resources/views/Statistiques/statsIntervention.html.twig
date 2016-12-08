@@ -13,6 +13,8 @@
             drawChart(0);
             drawVisualization();
             drawThemes(0);
+            drawNiveaux(0);
+            drawPerMonth();
         });
 
         var interventions = {{ interventions|raw }};
@@ -24,7 +26,7 @@
         });
         $('#selectYears').change(function () {
             drawChart($('#selectYears').val());
-        })
+        });
 
         var themes = {{ themes|raw }};
         themes.forEach(function (value, i) {
@@ -35,7 +37,18 @@
         });
         $('#selectYearsThemes').change(function () {
             drawThemes($('#selectYearsThemes').val());
-        })
+        });
+
+        var niveaux = {{ niveaux|raw }};
+        niveaux.forEach(function (value, i) {
+            $('#selectYearsNiveaux').append($('<option>', {
+                value: i,
+                text: '' + (new Date().getFullYear() - i + 1) + '/' + (new Date().getFullYear() - i)
+            }));
+        });
+        $('#selectYearsNiveaux').change(function () {
+            drawNiveaux($('#selectYearsNiveaux').val());
+        });
 
         // Callback pour créer le diagramme, l'instancier et le dessiner.
         function drawChart(index) {
@@ -139,6 +152,36 @@
             chart.draw(data, options);
         }
 
+        function drawNiveaux(index) {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Element', 'Nombre d\'actions éducatives', { role: 'style' }],
+                ['Maternelle', parseInt(niveaux[index]['maternelle']), 'silver'],
+                ['Elémentaire', parseInt(niveaux[index]['elementaire']), 'silver'],
+                ['College', parseInt(niveaux[index]['college']), 'silver'],
+                ['Lycée', parseInt(niveaux[index]['lycee']), 'silver'],
+                ['Supérieur', parseInt(niveaux[index]['superieur']), 'silver']
+            ]);
+
+            var options = {
+                title: 'Nombre de plaidoyers réalisés par niveau scolaire',
+                colors: ['silver', 'silver'],
+                hAxis: {
+                    title: 'Type d\'enseignement',
+                    viewWindow: {
+                        min: [7, 30, 0],
+                        max: [17, 30, 0]
+                    }
+                },
+                vAxis: {
+                    title: 'Nombre de plaidoyers'
+                }
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_intervention_niveaux'));
+            chart.draw(data, options);
+        }
+
     </script>
 {% endblock %}
 
@@ -151,4 +194,8 @@
     <h1>Osef</h1>
     <div id="chart_intervention_themes" style="width: 1100px; height: 500px;"></div>
     <select id="selectYearsThemes"></select>
+    <h1>Osef le retour !</h1>
+    <div id="chart_intervention_niveaux" style="width: 1100px; height: 500px;"></div>
+    <select id="selectYearsNiveaux"></select>
+    <h1>Bambi dans la prairie</h1>
 {% endblock %}

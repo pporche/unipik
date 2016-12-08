@@ -23,11 +23,13 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <dl class="dl-horizontal">
+                        {#<dl class="dl-horizontal">#}
                             <div class="col-sm-4 col-xs-12">
-                                <dt>
-                                    <span class="glyphicon glyphicon-envelope"></span>  Email :
-                                </dt>
+                                <dl>
+                                    <dt>
+                                        <span class="glyphicon glyphicon-envelope"></span>  Email :
+                                    </dt>
+                                </dl>
                             </div>
                             <div  class="col-sm-8">
                                 {% if (user.email == "" or user.email == NULL) %}
@@ -37,9 +39,11 @@
                                 {% endif %}
                             </div>
                             <div class="col-sm-4 col-xs-12">
-                                <dt >
-                                    <span class="glyphicon glyphicon-phone-alt"></span>  Téléphone fixe :
-                                </dt>
+                                <dl>
+                                    <dt >
+                                        <span class="glyphicon glyphicon-phone-alt"></span>  Téléphone fixe :
+                                    </dt>
+                                </dl>
                             </div>
                             <div  class="col-sm-8">
                                 {% if (user.telFixe == "" or user.telFixe == NULL) %}
@@ -49,9 +53,11 @@
                                 {% endif %}
                             </div>
                             <div class="col-sm-4 col-xs-12">
-                                <dt>
-                                    <span class="glyphicon glyphicon-phone"></span>  Téléphone portable : </dt>
-                                </dt>
+                                <dl>
+                                    <dt>
+                                        <span class="glyphicon glyphicon-phone"></span>  Téléphone portable :
+                                    </dt>
+                                </dl>
                             </div>
                             <div  class="col-sm-8">
                                 {% if (user.telPortable == "" or user.telPortable == NULL) %}
@@ -63,10 +69,9 @@
                             <div class="col-sm-4 col-xs-12">
                                 <dl>
                                     <dt >
-                                        <span class="glyphicon glyphicon-home"></span>  Adresse :</td>
+                                        <span class="glyphicon glyphicon-home"></span>  Adresse :
                                     </dt>
                                 </dl>
-
                             </div>
                             <div  class="col-sm-8">
                                 {{ user.adresse.getAdresse()}},
@@ -76,12 +81,9 @@
                                 {{ user.adresse.codePostal.code}}
                                 {{ user.adresse.ville.nom}}
                             </div>
-                        </dl>
-
+                        {#</dl>#}
                     </div>
                 </div>
-
-
             </section>
         </div>
         <div class="row">
@@ -97,22 +99,19 @@
                     </div>
                     <h3>Comité(s) de rattachement : </h3>
                     <div class="row">
-                        {#{% if user.comite is not empty %}#}
+                        {% if user.comite is not empty %}
                         <ul class="list-group col-lg-offset-1 col-sm-7 ">
-                            {#{% for comite in user.comite %}#}
+                            {% for comite in user.comite %}
                             <li class="list-group-item">
-                                {#{% for dep in c.departement %}#}
-                                {#<li> {{ dep.nom }} </li>#}
-                                {#{% endfor %}#}
-                                Seine-Maritime
+                                {{ comite.nom }}
                             </li>
-                            {#{% endfor %}#}
+                            {% endfor %}
                         </ul>
-                        {#{% else %}#}
-                        {#<div class="col-lg-offset-1 col-sm-7">#}
-                        {#Aucun#}
-                        {#</div>#}
-                        {#{% endif %}#}
+                        {% else %}
+                        <div class="col-lg-offset-1 col-sm-7">
+                        Aucun
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-sm-4 containerTwo">
@@ -232,7 +231,6 @@
                                                 Autre intervention -
                                             {% endif %}
                                             {{ intervention.etablissement.adresse.ville.nom }}
-                                            </br>
                                         </a>
                                     {% endif %}
                                 {% endfor %}
@@ -243,33 +241,8 @@
                             </div>
                         {% endif %}
                     </div>
-                    <h3>Projets en cours : </h3>
-                    <div class="row">
-                        {% if user.projet is not empty %}
-                            <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
-                                    height: 200px;
-                                    overflow: auto;
-                                    position: relative;
-                                    border:1px solid #cccccc;
-                                    padding:10px;">
-                                {% for projet in user.projet %}
-                                    <a href="" >
-                                        {{ projet.getNom() }}
-                                        </br>
-                                    </a>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                                <div class="col-lg-offset-1 col-sm-7">
-                                    Aucun
-                                </div>
-                        {% endif %}
-                        </div>
                     </div>
                 </div>
             </div>
 
-        </div>
-
-    </div>
 {% endblock %}

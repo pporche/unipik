@@ -3,7 +3,7 @@
 {% extends "InterventionBundle::layout.html.twig" %}
 
 {% block title %}
-    Liste des Ventes - {{ parent() }}
+    Liste des Ventes/Dons - {{ parent() }}
 
 {% endblock %}
 
@@ -438,7 +438,7 @@
             var docDefinition = {
                 pageOrientation: 'portrait',
                 content: [
-                    {text: "Liste des ventes", style: ['header']},
+                    {text: "Liste des ventes/dons", style: ['header']},
                     {text: " ", style: ['header']},
                     {
                         style: 'table',
@@ -448,7 +448,7 @@
                             body: [
                                 [
                                     { text: 'Lieu', style: 'tableHeader' },
-                                    { text: 'Date de la vente', style: 'tableHeader'},
+                                    { text: 'Date', style: 'tableHeader'},
                                     { text: 'Établissement', style: 'tableHeader' },
                                     { text: 'Intervention liée', style: 'tableHeader' },
                                     { text: 'Chiffre d\'affaire', style: 'tableHeader' }
@@ -562,14 +562,14 @@
                     var alreadyExists = false;
                     for (var i=0; i<markers.length; i++) {
                         if (marker.getLatLng()["lat"] == markers[i].getLatLng()["lat"] && marker.getLatLng()["lon"] == markers[i].getLatLng()["lon"]) {
-                            marker.bindPopup(markers[i].getPopup().getContent() + "<br><br><b>{{ vente.etablissement.nom }}</b><br>{{ vente.etablissement.adresse.ville.nom }}<br>{{ vente.dateVente|date("d-m-Y") }}<br><a href='{{ path('vente_view', {id: vente.id}) }}'>Détails de la vente</a>");
+                            marker.bindPopup(markers[i].getPopup().getContent() + "<br><br><b>{{ vente.etablissement.nom }}</b><br>{{ vente.etablissement.adresse.ville.nom }}<br>{{ vente.dateVente|date("d-m-Y") }}<br><a href='{{ path('vente_view', {id: vente.id}) }}'>Détails</a>");
                             markers[i] = marker;
                             alreadyExists = true;
                             break;
                         }
                     }
                     if (!alreadyExists) {
-                        marker.bindPopup("<b>{{ vente.etablissement.nom }}</b><br>{{ vente.etablissement.adresse.ville.nom }}<br>{{ vente.dateVente|date("d-m-Y") }}<br><a href='{{ path('vente_view', {id: vente.id}) }}'>Détails de la vente</a>");
+                        marker.bindPopup("<b>{{ vente.etablissement.nom }}</b><br>{{ vente.etablissement.adresse.ville.nom }}<br>{{ vente.dateVente|date("d-m-Y") }}<br><a href='{{ path('vente_view', {id: vente.id}) }}'>Détails</a>");
                         markers.push(marker);
                     }
                 {% endif %}
@@ -609,10 +609,10 @@
                 {% else %}
                     {{ form_start(form, {'method': 'get', 'action': path('vente_list'), 'attr': {'class': 'vente form-sm'}}) }}
                 {% endif %}
-                <h5>Dates de vente :</h5>
+                <h5>Dates de vente/Don :</h5>
                 {{ form_widget(form.date) }}
                 <div id="between_dates">
-                    Ventes entre le
+                    Ventes/Dons entre le
                     {{ form_widget(form.start, { 'attr': {'class': 'input-sm'} }) }}
                     et le
                     {{ form_widget(form.end, { 'attr': {'class': 'input-sm'} }) }}
@@ -665,7 +665,7 @@
         </ul>
         <div id="Liste" class="tabcontent">
             {% if ventes is not empty %}
-            <h2> Liste des Ventes : </h2>
+            <h2> Liste des Ventes/Dons : </h2>
             <button type="button" class="imprimente" onclick="imprimer()"><span class="glyphicon glyphicon-print"></span></button><br>
 
             <div class="container">
@@ -690,7 +690,7 @@
                                                 <img src="{{ asset('img/sort-down.png') }}" class="sort sort-down"
                                                      id="sortLieu" alt="sort Down"/>
                                             </a></th>
-                                        <th> Date de la vente
+                                        <th> Date
                                             <a class="sortButtonDate" id="sortButtonDate"
                                                href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
                                                 <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
@@ -713,7 +713,7 @@
                                                      id="sortLieu" alt="sort Down"/>
                                             </a>
                                         </th>
-                                        <th> Date de la vente
+                                        <th> Date
                                             <a class="sortButtonDate" id="sortButtonDate"
                                                href="{{ path(vue,  pathReq| merge({"desc":true, "field":"dateVente"}) ) }}">
                                                 <img src="{{ asset('img/sort-up.png') }}" class=" sort sort-up"
@@ -738,7 +738,7 @@
                                                      id="sortLieu" alt="sort Down"/>
                                             </a>
                                         </th>
-                                        <th>Date de la vente
+                                        <th>Date
                                             <a class="sortButtonDate" id="sortButtonDate"
                                                href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
                                                 <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
@@ -761,7 +761,7 @@
                                                      alt="sort Up"/>
                                             </a>
                                         </th>
-                                        <th>Date de la vente
+                                        <th>Date
                                             <a class="sortButtonDate" id="sortButtonDate"
                                                href="{{ path(vue,  pathReq | merge({"desc":true, "field":"dateVente"}) ) }}">
                                                 <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
@@ -786,7 +786,7 @@
                                                      id="sortLieu" alt="sort Down"/>
                                             </a>
                                         </th>
-                                        <th>Date de la vente
+                                        <th>Date
                                             <a class="sortButtonDate" id="sortButtonDate"
                                                href="{{ path(vue, pathReq | merge({"desc":false, "field":"dateVente"}) ) }}">
                                                 <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-down"
@@ -809,7 +809,7 @@
                                                      id="sortLieu" alt="sort Down"/>
                                             </a>
                                         </th>
-                                        <th>Date de la vente
+                                        <th>Date
                                             <a class="sortButtonDate" id="sortButtonDate"
                                                href="{{ path(vue,  pathReq | merge({"desc":true, "field":"dateVente"}) ) }}">
                                                 <img src="{{ asset('img/sort-down.png') }}" class=" sort sort-up"
@@ -907,14 +907,14 @@
                 </div>
             </div>
             {% else %}
-                <div class="text-warning">Aucune vente ne correspond à votre requête, veuillez lancer une nouvelle recherche.</div>
+                <div class="text-warning">Aucun(e) don/vente ne correspond à votre requête, veuillez lancer une nouvelle recherche.</div>
             {% endif %}
         </div>
         <div id="Carte" class="tabcontent">
             {% if ventes is not empty %}
                 <div id="mapid"></div>
             {% else %}
-                <div class="text-warning">Aucune vente ne correspond à votre requête, veuillez lancer une nouvelle recherche.</div>
+                <div class="text-warning">Aucun(e) don/vente correspond à votre requête, veuillez lancer une nouvelle recherche.</div>
             {% endif %}
         </div>
     </section>

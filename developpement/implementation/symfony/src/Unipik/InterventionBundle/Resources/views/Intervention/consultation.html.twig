@@ -681,10 +681,10 @@
                 {% endif %}
                 {% if intervention.niveauFrimousse %}
                     <a href="{{ path("vente_intervention", {'id': intervention.id}) }}" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-list"> </span> Ventes associées
+                        <span class="glyphicon glyphicon-list"> </span> Dons/Ventes associé(e)s
                     </a>
                     <a href="{{ path("vente_add", {'intervention': intervention.id}) }}" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-euro"> </span> Ajouter une vente
+                        <span class="glyphicon glyphicon-euro"> </span> Ajouter un(e) don/vente
                     </a>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}

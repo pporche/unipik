@@ -439,12 +439,13 @@
                         style: 'table',
                         table: {
                             headerRows: 1,
-                            widths: [80, 50,50, 60, 80, 50, 80, 50, 50, 80],
+                            widths: [65, 50,50,50, 50, 65, 50, 65, 50, 50, 80],
                             body: [
                                 [
                                     { text: 'Lieu', style: 'tableHeader' },
                                     { text: 'Date de la demande', style: 'tableHeader'},
-                                    { text: 'Plage de dates', style: 'tableHeader'},
+                                    { text: 'Plage de dates de la demande', style: 'tableHeader'},
+                                    { text: 'Date de l\'intervention', style: 'tableHeader'},
                                     { text: 'Type', style: 'tableHeader' },
                                     { text: 'Établissement', style: 'tableHeader' },
                                     { text: 'Classe', style: 'tableHeader' },
@@ -456,7 +457,8 @@
                                 {% for intervention in liste %}
                                     [ { text: "{{ intervention.etablissement.adresse.ville.nom }}", style: 'tableHeader' },
                                       { text: "{{ intervention.demande.dateDemande|date('d-m-Y') }}", style: 'tableHeader' },
-                                      { text: "PLAGE DE DATES", style: 'tableHeader' },
+                                      { text: "{{ intervention.demande.dateDebutDisponibilite|date('d-m-Y') }}-{{ intervention.demande.dateFinDisponibilite|date('d-m-Y') }}", style: 'tableHeader' },
+                                        { text: "{% if intervention.dateIntervention|date('d-m-Y') %}{{ intervention.dateIntervention|date('d-m-Y') }}{% else %}"-"{% endif %}", style: 'tableHeader' },
                                         {% if intervention.plaidoyer %}
                                         { text: "Action éducative", style: 'tableHeader' },
                                         {% elseif intervention.frimousse %}
@@ -499,7 +501,7 @@
                         alignment: 'center'
                     },
                     tableHeader: {
-                        fontSize: 9,
+                        fontSize: 8,
                         alignment: 'left'
                     }
                 }

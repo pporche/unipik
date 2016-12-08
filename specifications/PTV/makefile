@@ -1,5 +1,4 @@
-# version 1.02 date 18/03/2016 auteur(s) Mathieu Medici
-# version 1.01 date 26/02/2016 auteur(s) Michel Cressant, Pierre Porche
+# version 2.00 date 08/12/2016 auteur(s) Pierre Porche
 
 # Importation des variables
 include makevars $(UNIPIKGENPATH)/pic_unicef/makevars  $(UNIPIKGENPATH)/pic_unicef/gestionConfigurations

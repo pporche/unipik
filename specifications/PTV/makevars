@@ -1,5 +1,4 @@
-# version 1.02 date 18/03/2016 auteur(s) Mathieu Medici
-# version 1.01 date 02/03/2016 auteur(s) Pierre Porche, Michel Cressant
+# version 2.00 date 08/12/2016 auteur(s) Pierre Porche
 
 # Définition du nom du document
 NOM_FICHIER=PTV_S_Unipik_$(VERSIONPTV)

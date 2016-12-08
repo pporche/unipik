@@ -1,0 +1,152 @@
+Return-Path: <president.unicef76@laposte.net>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id E053E23A0E
+	for <pporche@insa-rouen.fr>; Mon, 21 Nov 2016 11:39:04 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0APAQD5zTJYh2jVdcJcHQEFAQsBgzgBAQEBAYEjVIMDn0eOdYoEhiECgl8BAgEBAQEBAhMBAQEKCwkJHTCEaQEBAQMMFw8BBQgBASwLAQ8JAhoCJgICHzgGDQgBAYhOAQMMD403nF5ngimDDAEBBYNUEDoTRoNCAQEBAQEFAQEBARsIgQmEcIJACIJVhCwBAYMfgl2BKgEBmRwIAQEbkF6KAYYkiX+DYIQLgjSCbCCBaXGGAg0XB4IPAQEB
+X-IPAS-Result: A0APAQD5zTJYh2jVdcJcHQEFAQsBgzgBAQEBAYEjVIMDn0eOdYoEhiECgl8BAgEBAQEBAhMBAQEKCwkJHTCEaQEBAQMMFw8BBQgBASwLAQ8JAhoCJgICHzgGDQgBAYhOAQMMD403nF5ngimDDAEBBYNUEDoTRoNCAQEBAQEFAQEBARsIgQmEcIJACIJVhCwBAYMfgl2BKgEBmRwIAQEbkF6KAYYkiX+DYIQLgjSCbCCBaXGGAg0XB4IPAQEB
+X-IronPort-AV: E=Sophos;i="5.31,674,1473112800"; 
+   d="scan'208";a="110320417"
+Received: from smtpoutz29.laposte.net (HELO smtp.laposte.net) ([194.117.213.104])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 21 Nov 2016 11:39:04 +0100
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout017 (Postfix) with ESMTP id 64705A04218
+	for <pierre.porche@insa-rouen.fr>; Mon, 21 Nov 2016 11:39:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1479724744; bh=T4u4xeoxi19xIJMmXriK9lCr/k9o39zjMLz0+xD6rvs=;
+	h=Subject:To:References:Cc:From:Date:In-Reply-To;
+	b=Dotohqxyuwzqu0iwx1g/EYioOUrDzk+xpe/1xY18G8qWTgirOmsglXM36fG1PKD1I
+	 BJfJIgHnWkm9cL87Oz/TjSErbtaQZbNiHc/OBHveK4iCqFkwWO62yiSSyx0/pik6Gh
+	 68lQGEhwFISNLWl6kwcezosyq3ULAN69x8bjBUo5x/xHG104ksOxgneQk1oGbjUXOn
+	 zqcG0OaMOhtHMHMawnIvRe3frwZ8COjfFqzL0mbQkY/XZj4D3tcPICdwquLDVazK8f
+	 WmLDz3brhEeXGRgPsDXhTfSH8o5+VLedTZgu3OfeHgvkGIaqUqe2/ROkyBvPR6caYr
+	 wLWQrZUWRp1fg==
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout017 (Postfix) with ESMTP id 57A9AA047CE
+	for <pierre.porche@insa-rouen.fr>; Mon, 21 Nov 2016 11:39:04 +0100 (CET)
+Received: from lpn-prd-vrin004 (lpn-prd-vrin004.prosodie [10.128.63.5])
+	by lpn-prd-vrout017 (Postfix) with ESMTP id 4B56AA04218
+	for <pierre.porche@insa-rouen.fr>; Mon, 21 Nov 2016 11:39:04 +0100 (CET)
+Received: from lpn-prd-vrin004 (localhost [127.0.0.1])
+	by lpn-prd-vrin004 (Postfix) with ESMTP id 39D2D7102E0
+	for <pierre.porche@insa-rouen.fr>; Mon, 21 Nov 2016 11:39:04 +0100 (CET)
+Received: from [192.168.1.15] (LFbn-1-5727-78.w90-108.abo.wanadoo.fr [90.108.183.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin004 (Postfix) with ESMTPSA id 07EDC71023A;
+	Mon, 21 Nov 2016 11:39:04 +0100 (CET)
+Subject: Re: PIC unicef : suite et fin du projet
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+References: <a9a0af6f-e647-753e-f339-43d7625a33a8@insa-rouen.fr>
+ <fc978309-a021-148d-eb95-1ee280337ee5@laposte.net>
+ <d7d391f5-6975-db7a-62fd-92cfc41ab4dc@insa-rouen.fr>
+Cc: Guest catherine <cathyguest76@gmail.com>
+From: =?UTF-8?Q?Pr=c3=a9sident_UNICEF_76?= <president.unicef76@laposte.net>
+Message-ID: <42478531-1bd7-132d-76a0-cc3ce512a176@laposte.net>
+Date: Mon, 21 Nov 2016 11:38:53 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <d7d391f5-6975-db7a-62fd-92cfc41ab4dc@insa-rouen.fr>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-VR-SrcIP: 90.108.183.78
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelfedrvdefgddujecutefuodetggdotefrodftvfcurfhrohhf
+X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhs
+X-VR-Cause-3: ucdlqddutddtmdenucfjughrpefuvfhfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefr
+X-VR-Cause-4: rhorshhiuggvnhhtpggfpffkvefghfgpjeeiuceophhrvghsihguvghnthdruhhnihgtvghfjeeisehl
+X-VR-Cause-5: rghpohhsthgvrdhnvghtqeenucfkphepledtrddutdekrddukeefrdejkeenucfrrghrrghmpehmohgu
+X-VR-Cause-6: vgepshhmthhpohhuthdphhgvlhhopegludelvddrudeikedruddrudehngdpihhnvghtpeeltddruddt
+X-VR-Cause-7: kedrudekfedrjeekpdhmrghilhhfrhhomhepphhrvghsihguvghnthdruhhnihgtvghfjeeisehlrghp
+X-VR-Cause-8: ohhsthgvrdhnvghtpdhrtghpthhtohepphhivghrrhgvrdhpohhrtghhvgesihhnshgrqdhrohhuvghn
+X-VR-Cause-9: rdhfrh
+X-VR-AvState: No
+X-VR-State: 0
+X-VR-State: 0
+
+Rebonjour Pierre,
+
+Je fais suivre cette conversation à Catherine Guest, plus à même que moi 
+de répondre dans le détail.
+Merci d'avance à Catherine de le faire. Bonne journée à tous les 2
+Véronique BARBIER
+
+
+Le 21/11/2016 à 11:29, Pierre Porche a écrit :
+> Bonjour,
+>
+> Merci pour cette réponse sur le lotissement. Les remarques qui ont été 
+> remontés par Catherine Guest ont été prises en compte et feront partie 
+> du prochain déploiement qui aura lieu, nous l'espérons dans le courant 
+> de cette semaine.
+>
+> Concernant la livraison, il serait souhaitable qu'elle se déroule dans 
+> les locaux INSA le lundi 5 ou le mercredi 7, à la convenance des 
+> bénévoles présents. Votre présence n'est pas obligatoire mais il 
+> serait souhaitable qu'au moins une personne présente soit au courant 
+> du projet.
+>
+> De plus, pouvez vous nous fournir la liste des interventions qui ont 
+> été faite l'année passée (pour une utilisation en tests de notre 
+> côté)? Finalement, pouvez vous nous fournir les mails types qui nous 
+> manquent (pour rappel :
+> - Le bénévole reçoit un mail lorsque l'administrateur l'inscrit,
+> - L'établissement reçoit un mail l'informant que l'intervention qu'il 
+> a demandé a été attribuée à un bénévole,
+> - Le bénévole reçoit un mail une semaine avant le jour de 
+> l'intervention qu'il a prise en charge pour lui rappeler celle-ci,
+> - L'établissement reçoit un mail une semaine avant le jour de 
+> l'intervention qui a été prise en charge pour lui rappeler celle-ci.)
+>
+> Merci d'avance,
+>
+>
+> Pierre Porche
+>
+>
+>
+> Le 21/11/2016 à 10:28, Président UNICEF 76 a écrit :
+>> Bonjour Pierre,
+>>
+>> Ces propositions me paraissent bien. Catherine Guest vous a envoyé un 
+>> certain nombre de suggestions et l'important est que toutes les 
+>> corrections puissent être testées le plus rapidement possible en 
+>> décembre avec les informations réelles des plaideurs pour cette année 
+>> scolaire 2016-2017. Comment procèdera-t-on pour cette remise lot? 
+>> Date, lieu, horaire et autres renseignements. (à titre indicatif, je 
+>> suis absente la semaine du 5 décembre mais je ne suis pas 
+>> indispensable). Bon travail, Véronique BARBIER
+>>
+>>
+>> Le 16/11/2016 à 16:13, Pierre Porche a écrit :
+>>> Bonjour,
+>>>
+>>> Comme vous le savez, le semestre touche à sa fin. Je vous propose 
+>>> donc de valider un nouveau lotissement de maintenant jusqu'à la fin 
+>>> du projet qui correspond au travail qu'il nous reste à fournir avant 
+>>> la dite fin de projet.
+>>> Nous vous proposons le lotissement suivant :
+>>>
+>>> Lot 3 [livraison le 5 décembre] :
+>>>     - finalisation du formulaire de demande
+>>>     - prise en compte de vos remarques sur le lot 2
+>>>     - implémentation des fonctionnalités de géolocalisation
+>>>     - finalisation du mailing
+>>>     - finalisation des fonctionnalités des frimousses et de leur vente
+>>>
+>>> Lot 4 [livraison le 14 ou 15 décembre]
+>>>     - implémentation des statistiques
+>>>
+>>> Pouvez vous me confirmer le nouveau contenu de ces lots ainsi que 
+>>> les dates effectives de livraison de ceux ci?
+>>>
+>>> Bien cordialement,
+>>>
+>>>
+>>> Pierre Porche
+>>
+>
+

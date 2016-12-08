@@ -1,0 +1,473 @@
+Return-Path: <cathyguest76@gmail.com>
+Delivered-To: pporche@insa-rouen.fr
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 1D84423AD2
+	for <pporche@insa-rouen.fr>; Fri, 18 Nov 2016 17:16:21 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0AHAQCgKC9YhrLcVdFeHAEBBAEBCgEBgzcBAQEBAT06gQAHgnyhS4I2ijWCYIciIIJ7gwYCggMHUwECAQEBAQECEwEBAQgLCwkdMIRpAQEBAgEMBhEdAQgTHgMBCwYDAgsJLgICIQEBEQEFARwGARIiiC8BAwYJCI5Kj1KBMj8yi1CCBAUBH4MLBYNhChknCQMBBg5AgzEBAQgBAQEBARoCBhCLBoJIgVMRATyCZIJdBYElAQGFXwyBQ5FBKwgBAYEvCYttAQWDR5AniS+ELIJIEx6BEoEyVyOCaiCBaT00AYYcgi0BAQE
+X-IPAS-Result: A0AHAQCgKC9YhrLcVdFeHAEBBAEBCgEBgzcBAQEBAT06gQAHgnyhS4I2ijWCYIciIIJ7gwYCggMHUwECAQEBAQECEwEBAQgLCwkdMIRpAQEBAgEMBhEdAQgTHgMBCwYDAgsJLgICIQEBEQEFARwGARIiiC8BAwYJCI5Kj1KBMj8yi1CCBAUBH4MLBYNhChknCQMBBg5AgzEBAQgBAQEBARoCBhCLBoJIgVMRATyCZIJdBYElAQGFXwyBQ5FBKwgBAYEvCYttAQWDR5AniS+ELIJIEx6BEoEyVyOCaiCBaT00AYYcgi0BAQE
+X-IronPort-AV: E=Sophos;i="5.31,510,1473112800"; 
+   d="scan'208,217";a="100115201"
+Received: from mail-qk0-f178.google.com ([209.85.220.178])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 18 Nov 2016 17:16:20 +0100
+Received: by mail-qk0-f178.google.com with SMTP id n21so269345563qka.3
+        for <pierre.porche@insa-rouen.fr>; Fri, 18 Nov 2016 08:16:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to;
+        bh=JyghvA2KteY9+K65nBYlaH1F/80kOqYRinQXku9/eEw=;
+        b=kl/cpVM0c3k7DOECXgj1JqTKmibjl1sWtnfOqwxkHmayR5dtBEW/0LDT6u8KC8cycr
+         n/0Ko7nbH5da4Ml/OKs5lRJoWiJsaW/hWuyN/lej52xE51+1bu4rM+zPWzpRgLnyMlII
+         3h7B7wV6U7cuHHKyOBqF5D3ClcwrRnmzWuJ++vggmEW9F+0uExbW87Sq+c3hGMrh6Iba
+         H2FkRuv9aZwa4+cahNY8A9AzVNlfOhn+A4YRdO6sAQUr2oougV88+IlteTND7OXDJhRX
+         72aWMF4bAoedWh6cjrGJaHkXFE1MB1DjYZZWWYhNXgflfNFGj3ZJ6HJOqiaEPCBvj/CQ
+         tk+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to;
+        bh=JyghvA2KteY9+K65nBYlaH1F/80kOqYRinQXku9/eEw=;
+        b=G5xA/LATMJOngZSdlpNGWEcIxyePH4/Sa38FpSNA/Ql/eJKHaCfQ5mW7kya7xMs0UA
+         cjUmtRpYSK/IiPjmOJqqhmOzFooLPdwTG9xcd3UGyJLAdma0zJBfZHhYj7dV2TGh4gWR
+         b7wEMjf0BcVyO0pTDCckW4fmSdFnGtLxxvshJwORwPaZyo+9xm3xJHlJCEwPVg5/U3vK
+         rPVU0oqzFkE4ppsHsLHRUn8DcwrW9RrEUaYYhpWY/LL4rXQqOuuHSaVbNrgjqTktp+KY
+         vazdXklHfJhIkMOLk3mVEgj/ua8pB4b6IREq8ZGz9p3jmVM0fS/SKv1lxf7dkZ1g2o7M
+         FB+Q==
+X-Gm-Message-State: AKaTC02RzNc/JocVhtp2kEH0Ny+0U/vtwrA90FvcgF6Ghyn7NLnTfrliUQKBuTHc1Yyii8zjXxPTxmIBPnq3gA==
+X-Received: by 10.55.36.149 with SMTP id k21mr593212qkk.252.1479485779143;
+ Fri, 18 Nov 2016 08:16:19 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.55.201.18 with HTTP; Fri, 18 Nov 2016 08:16:18 -0800 (PST)
+In-Reply-To: <1024457974.5063259.1479469982584@mail.yahoo.com>
+References: <1024457974.5063259.1479469982584.ref@mail.yahoo.com> <1024457974.5063259.1479469982584@mail.yahoo.com>
+From: Guest catherine <cathyguest76@gmail.com>
+Date: Fri, 18 Nov 2016 17:16:18 +0100
+Message-ID: <CAM17bmJkvWQrH_3cXb7M0-_fGW4spiSidCFu6cq_6GhdtkwfZg@mail.gmail.com>
+Subject: =?UTF-8?Q?Re=3A_=C3=A0_propos_de_L=C3=A9a_et_Milana?=
+To: =?UTF-8?Q?likibi_marie=2Djos=C3=A9e?= <likibimj@yahoo.fr>, 
+	UNICEF-76 <president.unicef76@unicef.fr>, 
+	Vauchelle jean Pierre <jpvauchelles@gmail.com>, isabelle becquart <isareg_becquart@yahoo.fr>, 
+	Pierre Porche <pierre.porche@insa-rouen.fr>
+Content-Type: multipart/alternative; boundary=001a114517f450f138054195a0bd
+
+--001a114517f450f138054195a0bd
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+bonsoir Marie Jos=C3=A9,
+
+c'est entendu pour le lundi 28/11 au comit=C3=A9 =C3=A0 14H30 pour L=C3=A9a=
+ et Milana,
+avec nos =C3=A9tudiants pour la pr=C3=A9sentation de l'application, jean pi=
+erre
+vauchelles aussi sera l=C3=A0......Des d=C3=A9tails importants sont encore =
+=C3=A0 mettre
+au point.....
+
+Je ferais un plaidoyer =C3=A0 l'=C3=A9cole de Fontaine Le Bourg le 05/12 pr=
+ochain =C3=A0
+13H30 (2 classes) jusqu'=C3=A0 16H30, peuvent elles venir en voiture..... ?=
+ Je
+partirais pour ma part =C3=A0 13H du Houlme o=C3=B9 je r=C3=A9side,
+
+Apr=C3=A8s ce sera courant janvier, le 12/01 matin =C3=A0 l'=C3=A9cole Les =
+Portes de la
+For=C3=AAt de Bois Guillaume avec Jean Pierre, int=C3=A9ressant car 2 plaid=
+eurs......
+
+Je suis le 29/11 matin =C3=A0 10H =C3=A0 Rouen =C3=A0 l'=C3=A9cole Vauqueli=
+n-Dubocage, mais je
+crois qu'elles ne sont pas dispos....., me semble t il ?
+
+Bonne soir=C3=A9e, cordialement
+catherine
+
+Le 18 novembre 2016 =C3=A0 12:53, likibi marie-jos=C3=A9e <likibimj@yahoo.f=
+r> a =C3=A9crit
+:
+
+> Bonjour Catherine,
+>
+> Merci pour ton email. La pr=C3=A9sentation de la nouvelle application par=
+ les
+> =C3=A9tudiants de L'INSA le 28 novembre serait int=C3=A9ressant pour nos =
+deux
+> Volontaires Lea et Milana, aussi je te confirme leur participation =C3=A0=
+ cet
+> entrevue... elles sont aussi disponibles pour le Jeudi 01 d=C3=A9cembre d=
+ans la
+> matin=C3=A9e... selon la date retenue.
+>
+> Concernant les actions Educatives si tu as des dates pour le mois de
+> d=C3=A9cembre elles sont prenantes.
+>
+> Je te remercie d'avance
+>
+> Cordialement;
+> Marie-Jos=C3=A9e L.
+> --------------------------------------------
+> En date de : Mar 15.11.16, Guest catherine <cathyguest76@gmail.com> a
+> =C3=A9crit :
+>
+>  Objet: Re: =C3=A0 propos de L=C3=A9a et Milana
+>  =C3=80: "76 UNICEF Seine Maritime" <unicef76@unicef.fr>
+>  Cc: "DEVARS Janine" <j.devars@wanadoo.fr>, "EMONET Genevi=C3=A8ve" <
+> genevieve@famille-emonet.com>, "CUVILLIER (1) Monique" <gemo4722@gmail.co=
+m>,
+> "PREVOST Mich=C3=A8le" <micheleannaprevost@yahoo.fr>, "LEBLANC Jacques
+> (Tr=C3=A9sorier 76)" <leblanc.jacques.76@orange.fr>, "Veronique DAVREUX p=
+erso"
+> <veronique@davreux.com>, "HAMEL C=C3=A9cile" <hamel-jacques2@numericable.=
+fr>,
+> "MAINGUENAUD Michel" <michel.mainguenaud@laposte.net>, "YACHINE Alexis
+> (Mus & chant E.I.J. MSA)" <yachine.alexis@gmail.com>, "CUVILLIER (2)
+> Monique" <cuvillier.gemo@orange.fr>, "GUERY Naoual" <
+> naoual.guery@gmail.com>, "GIRARD St=C3=A9phanie" <stephanie.girard112@dbm=
+ail.
+> com>, "LIKIBI Marie Jos=C3=A9e" <likibimj@yahoo.fr>, "NATAEVA Milana (ser=
+vice
+> civique)" <milana.nataeva@hotmail.fr>, "FAYARD L=C3=A9a (service civique)=
+" <
+> lea.fayard@gmail.com>, "LEROY Catherine" <cathyorel@free.fr>, "VAUCHELLES
+> Jean-Pierre (76)" <vauchelles@yahoo.fr>, "HOENRAET Jean-Pierre" <
+> jean-pierre.hoenraet@wanadoo.fr>, "CHAZELLE Christine" <
+> chrighi@aliceadsl.fr>, "Isabelle BECQUART" <isareg_becquart@yahoo.fr>,
+> "BARBIER V=C3=A9ronique (Pr=C3=A9sidente UNICEF 76)" <v.barbier568@lapost=
+e.net>
+>  Date: Mardi 15 novembre 2016, 20h24
+>
+>  bonsoir,
+>  Bienvenue
+>  =C3=A0 L=C3=A9a et Milana,
+>  Le
+>  24/11 prochain nous serons en action =C3=A9ducative =C3=A0
+>  l'=C3=A9cole Albert Camus de Mt St Aignan, plusieurs
+>  classes, Jean pierre et moi le matin, l'apr=C3=A8s midi
+>  Isabelle et Catherine Leroy ? (pas sur), L=C3=A9a et Milana
+>  pourraient peut =C3=AAtre assister =C3=A0 quelques interventions
+>  .....? D=C3=A9but =C3=A0 9H le matin jusqu'=C3=A0 11H30 - 11H45,
+>  l'apr=C3=A8s midi =C3=A0 reboucler avec
+>  isabelle....
+>  Je serais
+>  =C3=A9galement le 29/11 matin  =C3=A0 l'=C3=A9cole
+>  Vauquelin-Dubocage , =C3=A0 c=C3=B4t=C3=A9 du centre Saint Sever, de 10h
+>  =C3=A0 11h30, classe de CM2.....
+>   et =C3=A0 reboucler aussi avec
+>  v=C3=A9ronique pour la pr=C3=A9sentation de la nouvelle application,
+>  pr=C3=A9vu le 28/11 apr=C3=A8s midi au comit=C3=A9 avec les jeunes de
+>  l'insa, mais en attente,  peut =C3=AAtre d=C3=A9cal=C3=A9 au 01/12
+>  matin si jean pierre est dispo ...... Il faut bloquer la
+>  date rapidement, pour le moment c'est le 28 qui est
+>  retenu, j'attends que v=C3=A9ronique me dise si nos 2
+>  services civiques pourraient =C3=AAtre dispo le jeudi matin
+>  01/12 pour reboucler avec Pierre Porch=C3=A9....
+>  D=C3=A9j=C3=A0 un peu de formation avec les
+>  plaideurs pour commencer.....Bonne
+>  soir=C3=A9ecatherine
+>  Le 15 novembre 2016 =C3=A0
+>  13:55, 76 UNICEF Seine Maritime <unicef76@unicef.fr>
+>  a =C3=A9crit :
+>
+>
+>
+>
+>
+>
+>  Bonjour
+>  =C3=A0 tous,
+>
+>  Encore un message.... c'est la p=C3=A9riode de (tr=C3=A8s)
+>  grande activit=C3=A9.
+>
+>  Comme nous avons d=C3=A9j=C3=A0 eu l'occasion d'en parler,
+>  nous venons d'accueillir L=C3=A9a et Milana, et vous ferez
+>  peu =C3=A0 peu leur connaissance, ainsi que celle de
+>  Marie-Jos=C3=A9e qui est leur tutrice.
+>
+>  Nous attendons maintenant que chacun pr=C3=A9cise les demandes
+>  qui peuvent leur =C3=AAtre faites:
+>
+>  quelle mission, quelles dates (=C3=A9ventuellement), le temps
+>  pr=C3=A9visible pour la dur=C3=A9e de la mission, le lieu,
+>  etc.....
+>
+>  N'h=C3=A9sitez pas. Elles sont engag=C3=A9es pour 24 h/semaine.
+>  Elles peuvent s'impliquer dans toutes sortes de
+>  partenariats, actions =C3=A9ducatives, pr=C3=A9sence ici ou l=C3=A0,
+>  accompagnement.
+>
+>  Evidemment dans un premier temps, elles doivent se former,
+>  mais je pense qu'elles seront tr=C3=A8s vite autonomes.
+>
+>
+>
+>  Nous comptons vivement sur vous pour leur donner du grain =C3=A0
+>  moudre.
+>
+>  V=C3=A9ronique Barbier et Marie-Jos=C3=A9e Likibi
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>  Comit=C3=A9 de la
+>  Seine Maritime pour l'UNICEF   Rouen
+>
+>
+>
+>  +33 2 35 88 98
+>  88
+>
+>  26 rue Saint Nicolas 76000
+>  ROUEN
+>
+>  www.unicef.fr
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+--001a114517f450f138054195a0bd
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">bonsoir Marie Jos=C3=A9,<div><br></div><div>c&#39;est ente=
+ndu pour le lundi 28/11 au comit=C3=A9 =C3=A0 14H30 pour L=C3=A9a et Milana=
+, avec nos =C3=A9tudiants pour la pr=C3=A9sentation de l&#39;application, j=
+ean pierre vauchelles aussi sera l=C3=A0......Des d=C3=A9tails importants s=
+ont encore =C3=A0 mettre au point.....</div><div><br></div><div>Je ferais u=
+n plaidoyer =C3=A0 l&#39;=C3=A9cole de Fontaine Le Bourg le 05/12 prochain =
+=C3=A0 13H30 (2 classes) jusqu&#39;=C3=A0 16H30, peuvent elles venir en voi=
+ture..... ? Je partirais pour ma part =C3=A0 13H du Houlme o=C3=B9 je r=C3=
+=A9side,</div><div><br></div><div>Apr=C3=A8s ce sera courant janvier, le 12=
+/01 matin =C3=A0 l&#39;=C3=A9cole Les Portes de la For=C3=AAt de Bois Guill=
+aume avec Jean Pierre, int=C3=A9ressant car 2 plaideurs......</div><div><br=
+></div><div>Je suis le 29/11 matin =C3=A0 10H =C3=A0 Rouen =C3=A0 l&#39;=C3=
+=A9cole Vauquelin-Dubocage, mais je crois qu&#39;elles ne sont pas dispos..=
+..., me semble t il ?</div><div><br></div><div>Bonne soir=C3=A9e, cordialem=
+ent</div><div>catherine=C2=A0</div></div><div class=3D"gmail_extra"><br><di=
+v class=3D"gmail_quote">Le 18 novembre 2016 =C3=A0 12:53, likibi marie-jos=
+=C3=A9e <span dir=3D"ltr">&lt;<a href=3D"mailto:likibimj@yahoo.fr" target=
+=3D"_blank">likibimj@yahoo.fr</a>&gt;</span> a =C3=A9crit :<br><blockquote =
+class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
+;padding-left:1ex">Bonjour Catherine,<br>
+<br>
+Merci pour ton email. La pr=C3=A9sentation de la nouvelle application par l=
+es =C3=A9tudiants de L&#39;INSA le 28 novembre serait int=C3=A9ressant pour=
+ nos deux Volontaires Lea et Milana, aussi je te confirme leur participatio=
+n =C3=A0 cet entrevue... elles sont aussi disponibles pour le Jeudi 01 d=C3=
+=A9cembre dans la matin=C3=A9e... selon la date retenue.<br>
+<br>
+Concernant les actions Educatives si tu as des dates pour le mois de d=C3=
+=A9cembre elles sont prenantes.<br>
+<br>
+Je te remercie d&#39;avance<br>
+<br>
+Cordialement;<br>
+Marie-Jos=C3=A9e L.<br>
+<div class=3D"hm HOEnZb">------------------------------<wbr>--------------<=
+br>
+En date de=C2=A0: Mar 15.11.16, Guest catherine &lt;<a href=3D"mailto:cathy=
+guest76@gmail.com">cathyguest76@gmail.com</a>&gt; a =C3=A9crit=C2=A0:<br>
+<br>
+=C2=A0Objet: Re: =C3=A0 propos de L=C3=A9a et Milana<br>
+=C2=A0=C3=80: &quot;76 UNICEF Seine Maritime&quot; &lt;<a href=3D"mailto:un=
+icef76@unicef.fr">unicef76@unicef.fr</a>&gt;<br>
+=C2=A0Cc: &quot;DEVARS Janine&quot; &lt;<a href=3D"mailto:j.devars@wanadoo.=
+fr">j.devars@wanadoo.fr</a>&gt;, &quot;EMONET Genevi=C3=A8ve&quot; &lt;<a h=
+ref=3D"mailto:genevieve@famille-emonet.com">genevieve@famille-emonet.com</a=
+>&gt;<wbr>, &quot;CUVILLIER (1) Monique&quot; &lt;<a href=3D"mailto:gemo472=
+2@gmail.com">gemo4722@gmail.com</a>&gt;, &quot;PREVOST Mich=C3=A8le&quot; &=
+lt;<a href=3D"mailto:micheleannaprevost@yahoo.fr">micheleannaprevost@yahoo.=
+fr</a>&gt;, &quot;LEBLANC Jacques (Tr=C3=A9sorier 76)&quot; &lt;<a href=3D"=
+mailto:leblanc.jacques.76@orange.fr">leblanc.jacques.76@orange.fr</a>&gt;<w=
+br>, &quot;Veronique DAVREUX perso&quot; &lt;<a href=3D"mailto:veronique@da=
+vreux.com">veronique@davreux.com</a>&gt;, &quot;HAMEL C=C3=A9cile&quot; &lt=
+;<a href=3D"mailto:hamel-jacques2@numericable.fr">hamel-jacques2@numericabl=
+e.fr</a><wbr>&gt;, &quot;MAINGUENAUD Michel&quot; &lt;<a href=3D"mailto:mic=
+hel.mainguenaud@laposte.net">michel.mainguenaud@laposte.<wbr>net</a>&gt;, &=
+quot;YACHINE Alexis (Mus &amp; chant E.I.J. MSA)&quot; &lt;<a href=3D"mailt=
+o:yachine.alexis@gmail.com">yachine.alexis@gmail.com</a>&gt;, &quot;CUVILLI=
+ER (2) Monique&quot; &lt;<a href=3D"mailto:cuvillier.gemo@orange.fr">cuvill=
+ier.gemo@orange.fr</a>&gt;, &quot;GUERY Naoual&quot; &lt;<a href=3D"mailto:=
+naoual.guery@gmail.com">naoual.guery@gmail.com</a>&gt;, &quot;GIRARD St=C3=
+=A9phanie&quot; &lt;<a href=3D"mailto:stephanie.girard112@dbmail.com">steph=
+anie.girard112@dbmail.<wbr>com</a>&gt;, &quot;LIKIBI Marie Jos=C3=A9e&quot;=
+ &lt;<a href=3D"mailto:likibimj@yahoo.fr">likibimj@yahoo.fr</a>&gt;, &quot;=
+NATAEVA Milana (service civique)&quot; &lt;<a href=3D"mailto:milana.nataeva=
+@hotmail.fr">milana.nataeva@hotmail.fr</a>&gt;, &quot;FAYARD L=C3=A9a (serv=
+ice civique)&quot; &lt;<a href=3D"mailto:lea.fayard@gmail.com">lea.fayard@g=
+mail.com</a>&gt;, &quot;LEROY Catherine&quot; &lt;<a href=3D"mailto:cathyor=
+el@free.fr">cathyorel@free.fr</a>&gt;, &quot;VAUCHELLES Jean-Pierre (76)&qu=
+ot; &lt;<a href=3D"mailto:vauchelles@yahoo.fr">vauchelles@yahoo.fr</a>&gt;,=
+ &quot;HOENRAET Jean-Pierre&quot; &lt;<a href=3D"mailto:jean-pierre.hoenrae=
+t@wanadoo.fr">jean-pierre.hoenraet@wanadoo.<wbr>fr</a>&gt;, &quot;CHAZELLE =
+Christine&quot; &lt;<a href=3D"mailto:chrighi@aliceadsl.fr">chrighi@alicead=
+sl.fr</a>&gt;, &quot;Isabelle BECQUART&quot; &lt;<a href=3D"mailto:isareg_b=
+ecquart@yahoo.fr">isareg_becquart@yahoo.fr</a>&gt;, &quot;BARBIER V=C3=A9ro=
+nique (Pr=C3=A9sidente UNICEF 76)&quot; &lt;<a href=3D"mailto:v.barbier568@=
+laposte.net">v.barbier568@laposte.net</a>&gt;<br>
+=C2=A0Date: Mardi 15 novembre 2016, 20h24<br>
+</div><div class=3D"HOEnZb"><div class=3D"h5"><br>
+=C2=A0bonsoir,<br>
+=C2=A0Bienvenue<br>
+=C2=A0=C3=A0 L=C3=A9a et Milana,<br>
+=C2=A0Le<br>
+=C2=A024/11 prochain nous serons en action =C3=A9ducative =C3=A0<br>
+=C2=A0l&#39;=C3=A9cole Albert Camus de Mt St Aignan, plusieurs<br>
+=C2=A0classes, Jean pierre et moi le matin, l&#39;apr=C3=A8s midi<br>
+=C2=A0Isabelle et Catherine Leroy ? (pas sur), L=C3=A9a et Milana<br>
+=C2=A0pourraient peut =C3=AAtre assister =C3=A0 quelques interventions<br>
+=C2=A0.....? D=C3=A9but =C3=A0 9H le matin jusqu&#39;=C3=A0 11H30 - 11H45,<=
+br>
+=C2=A0l&#39;apr=C3=A8s midi =C3=A0 reboucler avec<br>
+=C2=A0isabelle....<br>
+=C2=A0Je serais<br>
+=C2=A0=C3=A9galement le 29/11 matin =C2=A0=C3=A0 l&#39;=C3=A9cole<br>
+=C2=A0Vauquelin-Dubocage , =C3=A0 c=C3=B4t=C3=A9 du centre Saint Sever, de =
+10h<br>
+=C2=A0=C3=A0 11h30, classe de CM2.....<br>
+=C2=A0=C2=A0et =C3=A0 reboucler aussi avec<br>
+=C2=A0v=C3=A9ronique pour la pr=C3=A9sentation de la nouvelle application,<=
+br>
+=C2=A0pr=C3=A9vu le 28/11 apr=C3=A8s midi au comit=C3=A9 avec les jeunes de=
+<br>
+=C2=A0l&#39;insa, mais en attente, =C2=A0peut =C3=AAtre d=C3=A9cal=C3=A9 au=
+ 01/12<br>
+=C2=A0matin si jean pierre est dispo ...... Il faut bloquer la<br>
+=C2=A0date rapidement, pour le moment c&#39;est le 28 qui est<br>
+=C2=A0retenu, j&#39;attends que v=C3=A9ronique me dise si nos 2<br>
+=C2=A0services civiques pourraient =C3=AAtre dispo le jeudi matin<br>
+=C2=A001/12 pour reboucler avec Pierre Porch=C3=A9....<br>
+=C2=A0D=C3=A9j=C3=A0 un peu de formation avec les<br>
+=C2=A0plaideurs pour commencer.....Bonne<br>
+=C2=A0soir=C3=A9ecatherine<br>
+=C2=A0Le 15 novembre 2016 =C3=A0<br>
+=C2=A013:55, 76 UNICEF Seine Maritime &lt;<a href=3D"mailto:unicef76@unicef=
+.fr">unicef76@unicef.fr</a>&gt;<br>
+=C2=A0a =C3=A9crit :<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+=C2=A0Bonjour<br>
+=C2=A0=C3=A0 tous,<br>
+<br>
+=C2=A0Encore un message.... c&#39;est la p=C3=A9riode de (tr=C3=A8s)<br>
+=C2=A0grande activit=C3=A9.<br>
+<br>
+=C2=A0Comme nous avons d=C3=A9j=C3=A0 eu l&#39;occasion d&#39;en parler,<br=
+>
+=C2=A0nous venons d&#39;accueillir L=C3=A9a et Milana, et vous ferez<br>
+=C2=A0peu =C3=A0 peu leur connaissance, ainsi que celle de<br>
+=C2=A0Marie-Jos=C3=A9e qui est leur tutrice.<br>
+<br>
+=C2=A0Nous attendons maintenant que chacun pr=C3=A9cise les demandes<br>
+=C2=A0qui peuvent leur =C3=AAtre faites:<br>
+<br>
+=C2=A0quelle mission, quelles dates (=C3=A9ventuellement), le temps<br>
+=C2=A0pr=C3=A9visible pour la dur=C3=A9e de la mission, le lieu,<br>
+=C2=A0etc.....<br>
+<br>
+=C2=A0N&#39;h=C3=A9sitez pas. Elles sont engag=C3=A9es pour 24 h/semaine.<b=
+r>
+=C2=A0Elles peuvent s&#39;impliquer dans toutes sortes de<br>
+=C2=A0partenariats, actions =C3=A9ducatives, pr=C3=A9sence ici ou l=C3=A0,<=
+br>
+=C2=A0accompagnement.<br>
+<br>
+=C2=A0Evidemment dans un premier temps, elles doivent se former,<br>
+=C2=A0mais je pense qu&#39;elles seront tr=C3=A8s vite autonomes.<br>
+<br>
+<br>
+<br>
+=C2=A0Nous comptons vivement sur vous pour leur donner du grain =C3=A0<br>
+=C2=A0moudre.<br>
+<br>
+=C2=A0V=C3=A9ronique Barbier et Marie-Jos=C3=A9e Likibi<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div></div><div class=3D"HOEnZb"><div class=3D"h5">=C2=A0Comit=C3=A9 de la=
+<br>
+=C2=A0Seine Maritime pour l&#39;UNICEF=C2=A0=C2=A0=C2=A0Rouen=C2=A0=C2=A0=
+=C2=A0<br>
+<br>
+<br>
+<br>
+=C2=A0+33 2 35 88 98<br>
+=C2=A088<br>
+<br>
+=C2=A026 rue Saint Nicolas 76000<br>
+=C2=A0ROUEN=C2=A0=C2=A0<br>
+<br>
+=C2=A0<a href=3D"http://www.unicef.fr" rel=3D"noreferrer" target=3D"_blank"=
+>www.unicef.fr</a><br>
+<br>
+<br>
+<br>
+=C2=A0=C2=A0<br>
+<br>
+<br>
+<br>
+<br>
+=C2=A0=C2=A0<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div></div></blockquote></div><br></div>
+
+--001a114517f450f138054195a0bd--

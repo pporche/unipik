@@ -12,7 +12,7 @@
         google.charts.setOnLoadCallback(function () {
             drawChart(0);
             drawVisualization();
-            drawThemes();
+            drawThemes(0);
         });
 
         var interventions = {{ interventions|raw }};
@@ -22,9 +22,19 @@
                 text: '' + (new Date().getFullYear() - i + 1) + '/' + (new Date().getFullYear() - i)
             }));
         });
-
         $('#selectYears').change(function () {
             drawChart($('#selectYears').val());
+        })
+
+        var themes = {{ themes|raw }};
+        themes.forEach(function (value, i) {
+            $('#selectYearsThemes').append($('<option>', {
+                value: i,
+                text: '' + (new Date().getFullYear() - i + 1) + '/' + (new Date().getFullYear() - i)
+            }));
+        });
+        $('#selectYearsThemes').change(function () {
+            drawThemes($('#selectYearsThemes').val());
         })
 
         // Callback pour créer le diagramme, l'instancier et le dessiner.
@@ -91,30 +101,23 @@
             chart.draw(data, options);
         }
 
-        function drawThemes() {
-//            var data = google.visualization.arrayToDataTable([
-//                ['Element', 'Density', { role: 'style' }],
-//                ['Copper', 8.94, '#b87333'],            // RGB value
-//                ['Silver', 10.49, 'silver'],            // English color name
-//                ['Gold', 19.30, 'gold'],
-//
-//                ['Platinum', 21.45, 'color: #e5e4e2' ], // CSS-style declaration
-//            ]);
+        function drawThemes(index) {
+
             var data = google.visualization.arrayToDataTable([
                 ['Element', 'Nombre de plaidoyers', { role: 'style' }],
-                ['Convention internationale des droits de l\'enfant', 8.94, 'silver'],            // RGB value
-                ['Education', 10.49, 'silver'],            // English color name
-                ['Santé en générale', 19.30, 'silver'],
-                ['Santé et alimentation', 21.45, 'silver'],
-                ['VIH et sida', 21.45, 'silver'],
-                ['Eau', 21.45, 'silver'],
-                ['Urgences mondiales', 21.45, 'silver'],
-                ['Travail des enfants', 21.45, 'silver'],
-                ['Enfants soldats', 21.45, 'silver'],
-                ['harcelement', 21.45, 'silver'],
-                ['Rôle de l\'unicef', 21.45, 'silver'],
-                ['Millénaire pour le développement', 21.45, 'silver'],
-                ['Discrimination', 21.45, 'silver'],
+                ['Convention internationale des droits de l\'enfant', parseInt(themes[index]['convention internationale des droits de l enfant']), 'silver'],
+                ['Education', parseInt(themes[index]['education']), 'silver'],
+                ['Santé en générale', parseInt(themes[index]['sante en generale']), 'silver'],
+                ['Santé et alimentation', parseInt(themes[index]['sante et alimentation']), 'silver'],
+                ['VIH et sida', parseInt(themes[index]['VIH et sida']), 'silver'],
+                ['Eau', parseInt(themes[index]['eau']), 'silver'],
+                ['Urgences mondiales', parseInt(themes[index]['urgences mondiales']), 'silver'],
+                ['Travail des enfants', parseInt(themes[index]['travail des enfants']), 'silver'],
+                ['Enfants soldats', parseInt(themes[index]['enfants et soldats']), 'silver'],
+                ['harcelement', parseInt(themes[index]['harcelement']), 'silver'],
+                ['Rôle de l\'unicef', parseInt(themes[index]['role unicef']), 'silver'],
+                ['Millénaire pour le développement', parseInt(themes[index]['millenaire dev']), 'silver'],
+                ['Discrimination', parseInt(themes[index]['discrimination']), 'silver']
             ]);
 
             var options = {
@@ -147,4 +150,5 @@
     <div id="chart_intervention_years" style="width: 900px; height: 500px;"></div>
     <h1>Osef</h1>
     <div id="chart_intervention_themes" style="width: 1100px; height: 500px;"></div>
+    <select id="selectYearsThemes"></select>
 {% endblock %}

@@ -44,19 +44,19 @@ class StatsController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('InterventionBundle:Intervention');
 
-        $themes = array('education',
-            'role unicef',
-            'sante en generale',
-            'sante et alimentation',
-            'eau',
-            'convention internationale des droits de l enfant',
-            'enfants et soldats',
-            'travail des enfants',
-            'harcelement',
-            'discrimination',
-            'millenaire dev',
-            'VIH et sida',
-            'urgences mondiales'
+        $themes = array('education' => 0,
+            'role unicef' => 0,
+            'sante en generale' => 0,
+            'sante et alimentation' => 0,
+            'eau' => 0,
+            'convention internationale des droits de l enfant' => 0,
+            'travail des enfants' => 0,
+            'harcelement' => 0,
+            'discrimination' => 0,
+            'millenaire dev' => 0,
+            'VIH et sida' => 0,
+            'urgences mondiales' => 0,
+            'enfants et soldats' => 0
         );
 
         $themesArray = array();
@@ -69,7 +69,7 @@ class StatsController extends Controller {
             $countPlaidoyer = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::PLAIDOYER);
             $countFrimousse = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::FRIMOUSSE);
             $countAutre = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::AUTRE);
-            foreach ($themes as $theme) {
+            foreach ($themes as $theme => $value) {
                 $countTheme = $repository->getNumberInterventionByTheme('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, $theme);
                 $themes[$theme] = $countTheme;
             }
@@ -77,12 +77,10 @@ class StatsController extends Controller {
             array_push($themesArray, $themes);
         }
 
-        var_dump($themesArray[0][1]);
-        var_dump($themesArray[0][0]);
-
         return $this->render(
             'InterventionBundle:Statistiques:statsIntervention.html.twig', array(
-            'interventions' => json_encode($interventionsArray)
+            'interventions' => json_encode($interventionsArray),
+            'themes' => json_encode($themesArray)
             )
         );
     }

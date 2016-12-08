@@ -586,6 +586,10 @@ CREATE TRIGGER avant_suppression_intervention
 	EXECUTE PROCEDURE modifier_id_intervention_vente();
 
 
+CREATE INDEX region_nom_index ON region(nom);
+CREATE INDEX ville_nom_index ON ville(nom);
+CREATE INDEX departement_nom_index ON departement(nom);
+CREATE INDEX departement_numero_index ON departement(numero);
 
 
 

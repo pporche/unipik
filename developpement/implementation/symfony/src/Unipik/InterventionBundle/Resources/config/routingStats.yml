@@ -1,4 +1,9 @@
 stats_nombre_interventions:
     path : /interventions
     defaults:
-         _controller: InterventionBundle:Stats:interventions
+        _controller: InterventionBundle:Stats:interventions
+
+stats_ventes:
+    path: /ventes
+    defaults:
+        _controller: InterventionBundle:Stats:ventes

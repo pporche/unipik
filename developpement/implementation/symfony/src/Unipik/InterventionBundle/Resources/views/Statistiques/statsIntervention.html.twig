@@ -12,6 +12,7 @@
         google.charts.setOnLoadCallback(function () {
             drawChart(0);
             drawVisualization();
+            drawThemes();
         });
 
         var interventions = {{ interventions|raw }};
@@ -89,6 +90,52 @@
             var chart = new google.visualization.ComboChart(document.getElementById('chart_intervention_years'));
             chart.draw(data, options);
         }
+
+        function drawThemes() {
+//            var data = google.visualization.arrayToDataTable([
+//                ['Element', 'Density', { role: 'style' }],
+//                ['Copper', 8.94, '#b87333'],            // RGB value
+//                ['Silver', 10.49, 'silver'],            // English color name
+//                ['Gold', 19.30, 'gold'],
+//
+//                ['Platinum', 21.45, 'color: #e5e4e2' ], // CSS-style declaration
+//            ]);
+            var data = google.visualization.arrayToDataTable([
+                ['Element', 'Nombre de plaidoyers', { role: 'style' }],
+                ['Convention internationale des droits de l\'enfant', 8.94, 'silver'],            // RGB value
+                ['Education', 10.49, 'silver'],            // English color name
+                ['Santé en générale', 19.30, 'silver'],
+                ['Santé et alimentation', 21.45, 'silver'],
+                ['VIH et sida', 21.45, 'silver'],
+                ['Eau', 21.45, 'silver'],
+                ['Urgences mondiales', 21.45, 'silver'],
+                ['Travail des enfants', 21.45, 'silver'],
+                ['Enfants soldats', 21.45, 'silver'],
+                ['harcelement', 21.45, 'silver'],
+                ['Rôle de l\'unicef', 21.45, 'silver'],
+                ['Millénaire pour le développement', 21.45, 'silver'],
+                ['Discrimination', 21.45, 'silver'],
+            ]);
+
+            var options = {
+                title: 'Nombre de plaidoyers réalisés par thème',
+                colors: ['silver', 'silver'],
+                hAxis: {
+                    title: 'Thèmes',
+                    viewWindow: {
+                        min: [7, 30, 0],
+                        max: [17, 30, 0]
+                    }
+                },
+                vAxis: {
+                    title: 'Nombre de plaidoyers'
+                }
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_intervention_themes'));
+            chart.draw(data, options);
+        }
+
     </script>
 {% endblock %}
 
@@ -99,5 +146,5 @@
     <h1>KAKIIIIIIIIII</h1>
     <div id="chart_intervention_years" style="width: 900px; height: 500px;"></div>
     <h1>Osef</h1>
-    <div id="chart_intervention_etablissement"></div>
+    <div id="chart_intervention_themes" style="width: 1100px; height: 500px;"></div>
 {% endblock %}

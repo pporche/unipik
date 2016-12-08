@@ -577,4 +577,66 @@ class InterventionRepository extends EntityRepository {
 
         return $qb->getQuery()->getSingleScalarResult();
     }
+
+    /**
+     * Renvoie le nombre d'interventions réalisées
+     *
+     * @param null $dateSup           La date superieure
+     * @param null $dateInf           La date Inferieure
+     * @param $theme string Le thème
+     *
+     * @return mixed
+     */
+    public function getNumberInterventionByTheme($dateSup = null, $dateInf = null, $theme) {
+        $qb = $this->createQueryBuilder('i')
+            ->select('count(i)')
+            ->where('i.realisee = true')
+            ->andWhere('i.typeIntervention = \'plaidoyer\'')
+            ->join('i.niveauTheme', 'nt')
+            ->andWhere('nt.theme = :theme')
+            ->setParameter('theme', $theme)
+        ;
+
+        if (isset($dateSup)) {
+            $qb->andWhere('i.dateIntervention < :dateSup')
+                ->setParameter('dateSup', $dateSup);
+        }
+
+        if (isset($dateInf)) {
+            $qb->andWhere('i.dateIntervention > :dateInf')
+                ->setParameter('dateInf', $dateInf);
+        }
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    /**
+     * Renvoie le nombre d'interventions réalisées
+     *
+     * @param null $dateSup           La date superieure
+     * @param null $dateInf           La date Inferieure
+     *
+     * @return mixed
+     */
+    public function getNumberInterventionByAllTheme($dateSup = null, $dateInf = null) {
+        $qb = $this->createQueryBuilder('i')
+            ->select('count(i)')
+            ->where('i.realisee = true')
+            ->andWhere('i.typeIntervention = \'plaidoyer\'')
+            ->join('i.niveauTheme', 'nt')
+            ->orderBy("nt.theme")
+        ;
+
+        if (isset($dateSup)) {
+            $qb->andWhere('i.dateIntervention < :dateSup')
+                ->setParameter('dateSup', $dateSup);
+        }
+
+        if (isset($dateInf)) {
+            $qb->andWhere('i.dateIntervention > :dateInf')
+                ->setParameter('dateInf', $dateInf);
+        }
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

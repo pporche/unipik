@@ -86,4 +86,29 @@ class StatsController extends Controller {
             )
         );
     }
+
+    /**
+     * @return Response
+     */
+    public function ventesAction() {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('InterventionBundle:Vente');
+
+        $ventesArray = array();
+        $currentYear = date('Y') + 1;
+        for ($i = 0; $i < self::NUMBER_YEAR; $i++) {
+            $currentYearSup = $currentYear - $i;
+            $currentYearInf = $currentYear - $i - 1;
+            $countPlaidoyer = $repository->getNumberVenteRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+            $countFrimousse = $repository->getNumberVenteRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+            $countAutre = $repository->getNumberVenteRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+            array_push($ventesArray, array());
+        }
+
+        return $this->render(
+            'InterventionBundle:Statistiques:statsVente.html.twig', array(
+                'ventes' => json_encode($ventesArray)
+            )
+        );
+    }
 }

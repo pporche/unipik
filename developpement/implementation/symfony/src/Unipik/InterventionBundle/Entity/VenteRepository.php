@@ -266,6 +266,27 @@ class VenteRepository extends EntityRepository {
             ->setParameter('distance', $distance*1000);
     }
 
+    /**
+     * @param null $dateSup
+     * @param null $dateInf
+     * @return mixed
+     */
+    public function getNumberVenteRealisee($dateSup = null, $dateInf = null) {
+        $qb = $this->createQueryBuilder('v')
+            ->select('count(v)')
+            ->where('v.realisee = true')
+            ->join('v.etablissement', 'e');
 
+        if (isset($dateSup)) {
+            $qb->andWhere('v.dateIntervention < :dateSup')
+                ->setParameter('dateSup', $dateSup);
+        }
 
+        if (isset($dateInf)) {
+            $qb->andWhere('v.dateIntervention > :dateInf')
+                ->setParameter('dateInf', $dateInf);
+        }
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

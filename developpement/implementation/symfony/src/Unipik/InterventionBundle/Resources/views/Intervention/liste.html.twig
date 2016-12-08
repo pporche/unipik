@@ -168,7 +168,7 @@
             openDisplay($('#Liste'), 'Liste');
             $('#benevoleInexistant').hide();
             $('input:checkbox').removeAttr('checked');
-            if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')){
+            if ($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')) {
                 $('#ville').show();
                 $('#distanceKm').hide();
                 $("#recherche_avancee_distance").val("");
@@ -177,7 +177,7 @@
                 if ($('#recherche_avancee_ville').val().indexOf(' (') < 0) {
                     $('#recherche_avancee_ville').val($('#recherche_avancee_ville').val() + " (" + $("#recherche_avancee_codePostal").val() + ")");
                 }
-            }else if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')){
+            } else if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
                 if($('#recherche_avancee_villeOuDomicile_0').is(':checked')){
                     $('#ville').show();
                     $('#distanceKm').show();
@@ -185,12 +185,12 @@
                     if ($('#recherche_avancee_ville').val().indexOf(' (') < 0) {
                         $('#recherche_avancee_ville').val($('#recherche_avancee_ville').val() + " (" + $("#recherche_avancee_codePostal").val() + ")");
                     }
-                }else{
+                } else {
                     $('#ville').hide();
                     $('#distanceKm').show();
                     $('#recherche_avancee_villeOuDomicile div:first-child').hide();
                 }
-            }else {
+            } else {
                 $('#ville').hide();
                 $("#recherche_avancee_distance").val("");
                 $('#distanceKm').hide();

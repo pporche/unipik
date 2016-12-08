@@ -10,7 +10,7 @@
 #      become: yes
 #      apt: pkg=acl
     - file: path=/var/www state=directory mode=0755 owner=www-data group=www-data
-    - lineinfile: dest=/etc/crontab regexp="mailInstituteTask:run" line="* */1 * * * php /var/www/my-app/current/bin/console mailInstituteTask:run"
+    - lineinfile: dest=/etc/crontab regexp="mailInstituteTask:run" line="* */1   * * *   root    php /var/www/my-app/current/bin/console --env=prod mailInstituteTask:run"
 
   roles:
     - tersmitten.fail2ban

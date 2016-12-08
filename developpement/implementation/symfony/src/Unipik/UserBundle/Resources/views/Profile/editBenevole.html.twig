@@ -126,6 +126,10 @@
         }
 
         $(document).ready(function() {
+            if ($('#user_registration_adresse_ville').val().indexOf(' (') < 0) {
+                $('#user_registration_adresse_ville').val($('#user_registration_adresse_ville').val() + ' ({{ benevole.adresse.codePostal.code }})');
+            }
+
             for(i=0; i<4; i++){
                 responsabiliteChecked("#user_registration_responsabiliteActivite_" + i, "#user_registration_activitesPotentielles_" + i);
             }

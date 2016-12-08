@@ -217,7 +217,9 @@
         }
 
         $(document).ready(function() {
-
+            if ($('#etablissement_adresse_ville').val().indexOf(' (') < 0) {
+                $('#etablissement_adresse_ville').val($('#etablissement_adresse_ville').val() + ' ({{ etablissement.adresse.codePostal.code }})');
+            }
 
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
             var $container = $('div#etablissement_emails');

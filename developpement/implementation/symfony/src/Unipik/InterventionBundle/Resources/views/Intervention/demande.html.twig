@@ -578,22 +578,25 @@
         }
 
         function verifyAll(e) {
-            verifyNumber(e);
-            verifyCP(e);
-            verifyEmail(e);
-            verifyIntervention(e);
+            var erreur = verifyNumber(e) || verifyCP(e) || verifyEmail(e) || verifyIntervention(e);
             $('.error').focus();
             $('.errorMail').focus();
             $('#add_intervention').focus();
+            if (!erreur) {
+                $('#demande_Etablissement_adresse_codePostal').val($("#demande_Etablissement_adresse_ville").val().split(' (')[1].split(')')[0]);
+                $("#demande_Etablissement_adresse_ville").val($("#demande_Etablissement_adresse_ville").val().split(' (')[0]);
+            }
         }
 
         function verifyNumber(e) {
+            var erreur = false;
             var re = /^((0)[1-9][0-9]{8})?$/;
             if (!(re.test($('#demande_Contact_telFixe').val()))){
                 e.preventDefault();
                 e.stopPropagation();
                 $('#numeroFixe').show();
                 $('#demande_Contact_telFixe').addClass('error');
+                erreur = true;
             } else {
                 $('#numeroFixe').hide();
                 $('#demande_Contact_telFixe').removeClass('error');
@@ -603,38 +606,43 @@
                 e.stopPropagation();
                 $('#numeroPortable').show();
                 $('#demande_Contact_telPortable').addClass('error');
+                erreur = true;
             } else {
                 $('#numeroPortable').hide();
                 $('#demande_Contact_telPortable').removeClass('error');
             }
+            return erreur;
         }
 
         function verifyCP(e) {
+            var erreur = false;
             if ($('#demande_Etablissement_adresse_ville').val().indexOf(' (') < 0) {
                 e.preventDefault();
                 e.stopPropagation();
                 $('#code').show();
                 $('#demande_Etablissement_adresse_ville').addClass('error');
+                erreur = true;
             } else {
                 $('#code').hide();
                 $('#demande_Etablissement_adresse_ville').removeClass('error');
-                $('#demande_Etablissement_adresse_codePostal').val($("#demande_Etablissement_adresse_ville").val().split(' (')[1].split(')')[0]);
-                $("#demande_Etablissement_adresse_ville").val($("#demande_Etablissement_adresse_ville").val().split(' (')[0]);
             }
+            return erreur;
         }
 
         function verifyEmail(e) {
+            var erreur = false;
             var re = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$/;
             if (!(re.test($('#demande_Contact_email').val()))) {
                 e.preventDefault();
                 e.stopPropagation();
                 $('#email').show();
                 $('#demande_Contact_email').addClass('error');
+                erreur = true;
             } else {
                 $('#email').hide();
                 $('#demande_Contact_email').removeClass('error');
             }
-
+            return erreur;
         }
 
         function verifyCodeUai(codeUai) {
@@ -659,17 +667,19 @@
         }
 
         function verifyIntervention(e) {
+            var erreur = false;
             if ($('div#demande_Intervention fieldset:first-child').length==0) {
                 e.preventDefault();
                 e.stopPropagation();
                 $('#intervention').show();
+                erreur = true;
             } else {
                 $('#intervention').hide();
             }
+            return erreur;
         }
 
         document.addEventListener('submit', verifyAll);
-
 
         function construction(item) {
             var newLineElt = document.createElement('tr');

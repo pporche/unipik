@@ -24,6 +24,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Unipik\ArchitectureBundle\Form\Adresse\CodePostalType;
 use Unipik\ArchitectureBundle\Form\Adresse\VilleType;
 use Unipik\ArchitectureBundle\Form\DataTransformer\Adresse\VilleAutocompleteTransformer;
 
@@ -208,6 +209,7 @@ class RechercheAvanceeType extends AbstractType {
             ->add('dansVilleOuParDistance', ChoiceType::class, $dansVilleOuParDistance)
             ->add('villeOuDomicile', ChoiceType::class, $villeOuDomicile)
             ->add('ville', VilleType::class, array('required' => false, 'attr' => ['maxlength' => '100']))
+            ->add('codePostal', CodePostalType::class)
             ->add('geolocalisation', HiddenType::class)
             ->add('distance', ChoiceType::class, $distanceChoiceType);
 

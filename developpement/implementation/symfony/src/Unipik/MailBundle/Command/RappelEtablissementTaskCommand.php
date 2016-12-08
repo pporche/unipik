@@ -69,7 +69,7 @@ class RappelEtablissementTaskCommand extends ContainerAwareCommand {
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Rappel intervention de l\'unicef')
                     ->setFrom('unipik.dev@gmail.com')
-                    //->setTo($emails)
+                    //->setTo($emails[0])
                     ->setTo('dev1@yopmail.com')
                     ->setBody(
                         $this

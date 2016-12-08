@@ -255,7 +255,7 @@
 
             if ($('#fos_user_registration_form_adresse_ville').val().trim().length>0 && $('#fos_user_registration_form_adresse_ville').val().indexOf(' (') < 0) {
                 if ($('#erreurCodePostal').prev()[0]==undefined) {
-                    $('#fos_user_registration_form_adresse_ville').after('<p id="erreurCodePostal"  style="color: red; font-size: 13px; font-style: italic">Sélectionnez un code postal</p>');
+                    $('#fos_user_registration_form_adresse_ville').after('<p id="erreurCodePostal"  style="color: red; font-size: 13px; font-style: italic">Sélectionnez un champ valide dans la liste déroulante proposée</p>');
                 } else {
                     $('#erreurCodePostal').show();
                 }

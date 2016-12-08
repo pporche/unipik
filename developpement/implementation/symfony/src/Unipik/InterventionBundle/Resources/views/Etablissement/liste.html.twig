@@ -94,23 +94,29 @@
 
         $(document).ready(function() {
 
-            if($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')){
+            if ($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked')) {
                 $('#ville').show();
                 $('#distanceKm').hide();
                 $("#recherche_avancee_distance").val("");
                 $('#distVilleOuDom').hide();
                 $('#recherche_avancee_villeOuDomicile:first-child').hide();
-            }else if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')){
-                if($('#recherche_avancee_villeOuDomicile_0').is(':checked')){
+                if ($('#recherche_avancee_ville').val().indexOf(' (') < 0) {
+                    $('#recherche_avancee_ville').val($('#recherche_avancee_ville').val() + " (" + $("#recherche_avancee_codePostal").val() + ")");
+                }
+            } else if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked')) {
+                if ($('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
                     $('#ville').show();
                     $('#distanceKm').show();
                     $('#recherche_avancee_villeOuDomicile div:first-child').hide();
-                }else{
+                    if ($('#recherche_avancee_ville').val().indexOf(' (') < 0) {
+                        $('#recherche_avancee_ville').val($('#recherche_avancee_ville').val() + " (" + $("#recherche_avancee_codePostal").val() + ")");
+                    }
+                } else {
                     $('#ville').hide();
                     $('#distanceKm').show();
                     $('#recherche_avancee_villeOuDomicile div:first-child').hide();
                 }
-            }else {
+            } else {
                 $('#ville').hide();
                 $("#recherche_avancee_distance").val("");
                 $('#distanceKm').hide();
@@ -354,6 +360,7 @@
                         if (dataVille.length > 0) {
                             geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
                             $("#recherche_avancee_geolocalisation").val(geolocalisation);
+                            $("#recherche_avancee_codePostal").val($("#recherche_avancee_ville").val().split(' (')[1].split(')')[0]);
                             $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
                             $(".etablissement_list").submit();
                         }
@@ -363,7 +370,10 @@
                     });
                 }
                 else {
-                    $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+                    if ($('#recherche_avancee_ville').val().indexOf(' (') >= 0) {
+                        $("#recherche_avancee_codePostal").val($("#recherche_avancee_ville").val().split(' (')[1].split(')')[0]);
+                        $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+                    }
                     $(".etablissement_list").submit();
                 }
             }

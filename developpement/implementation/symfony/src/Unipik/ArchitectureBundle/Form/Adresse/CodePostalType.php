@@ -33,7 +33,7 @@ class CodePostalType extends AbstractType {
     /**
      * {@inheritdoc}
      *
-     * @return TextType
+     * @return HiddenType
      */
     public function getParent() {
         return HiddenType::class;

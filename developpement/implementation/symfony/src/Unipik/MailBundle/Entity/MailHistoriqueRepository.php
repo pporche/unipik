@@ -37,10 +37,14 @@ class MailHistoriqueRepository extends EntityRepository {
      *
      * @return array
      */
-    public function getType($startDate, $endDate, $typeEtablissement, $type){
+    public function getType($startDate, $endDate, $typeEtablissement, $type, $typeMail){
         if (!isset($type)) {
             $type = array("maternelle", "elementaire", "college", "lycee", "superieur", "adolescent", "maison de retraite", "mairie", "autre", "");
         }
+        if (!isset($typeMail)) {
+            $typeMail = array("parDefaut", "reponse", "nonReponse");
+        }
+
         $results = array();
 
         foreach ($type as $t) {
@@ -71,6 +75,12 @@ class MailHistoriqueRepository extends EntityRepository {
             $qb->setParameter('type', $t);
 
             $results = array_merge($results, ($qb->getQuery()->getResult()));
+        }
+
+        foreach ($results as $index=>$mail) {
+            if(!in_array($mail->getTypeEmail(),$typeMail)){
+                array_splice($results, $index, 1);
+            }
         }
 
         return $results;

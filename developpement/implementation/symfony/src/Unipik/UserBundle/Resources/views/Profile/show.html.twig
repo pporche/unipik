@@ -212,7 +212,7 @@
                     <div class="circle circleFour">
                         <img src="{{ asset('img/speech-bubbles.png') }}" alt="bubbles">
                     </div>
-                    <h3>Interventions : </h3>
+                    <h3>Prochaines Interventions : </h3>
                     <div class="row">
                         {% if listeInterventions is not empty %}
                             <div class="scrollspy-example col-lg-offset-1 col-sm-11" data-offset="0" data-target="#navbar-example" data-spy="scroll" style="
@@ -222,17 +222,19 @@
                                     border:1px solid #cccccc;
                                     padding:10px;">
                                 {% for intervention in listeInterventions %}
-                                    <a href="{{ path('intervention_view', {'id': intervention.id}) }}" >
-                                        {% if intervention.plaidoyer %}
-                                            Action éducative -
-                                        {% elseif intervention.frimousse %}
-                                            Frimousse -
-                                        {% else %}
-                                            Autre intervention -
-                                        {% endif %}
-                                        {{ intervention.etablissement.adresse.ville.nom }}
-                                        </br>
-                                    </a>
+                                    {% if (date("now")<=(intervention.dateIntervention)) %}
+                                        <a href="{{ path('intervention_view', {'id': intervention.id}) }}" >
+                                            {% if intervention.plaidoyer %}
+                                                Action éducative -
+                                            {% elseif intervention.frimousse %}
+                                                Frimousse -
+                                            {% else %}
+                                                Autre intervention -
+                                            {% endif %}
+                                            {{ intervention.etablissement.adresse.ville.nom }}
+                                            </br>
+                                        </a>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         {% else %}

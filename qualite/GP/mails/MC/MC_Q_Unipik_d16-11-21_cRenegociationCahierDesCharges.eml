@@ -1,0 +1,104 @@
+Return-Path: <president.unicef76@laposte.net>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 0973723AE3
+	for <pporche@insa-rouen.fr>; Mon, 21 Nov 2016 10:28:18 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DQAACBvTJYh8aaFrJdHgYMgzgBAQEBAYEjVKJJjnWKBIYhAoJcAQIBAQEBAQITAQEBCgsJCR0whGkBAQEDIw8BBQgBASwMDwsaAiYCAh84Bg0IAQGITgEDDA+oeGeCKYMMAQEFg1MQOhNGg0IBCx0IgQmEcIJAgl2FLIIhgl2BKgEBmRwIAQEbml+GJIl/g2CEC4I0gmwggWlxhgIrgg8BAQE
+X-IPAS-Result: A0DQAACBvTJYh8aaFrJdHgYMgzgBAQEBAYEjVKJJjnWKBIYhAoJcAQIBAQEBAQITAQEBCgsJCR0whGkBAQEDIw8BBQgBASwMDwsaAiYCAh84Bg0IAQGITgEDDA+oeGeCKYMMAQEFg1MQOhNGg0IBCx0IgQmEcIJAgl2FLIIhgl2BKgEBmRwIAQEbml+GJIl/g2CEC4I0gmwggWlxhgIrgg8BAQE
+X-IronPort-AV: E=Sophos;i="5.31,674,1473112800"; 
+   d="scan'208";a="110314181"
+Received: from smtpoutz298.laposte.net (HELO smtp.laposte.net) ([178.22.154.198])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 21 Nov 2016 10:28:17 +0100
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout010 (Postfix) with ESMTP id 7904845B90F
+	for <pierre.porche@insa-rouen.fr>; Mon, 21 Nov 2016 10:28:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1479720497; bh=RMlz58SNlcDh5JVwcwfACCiPnbj2yGPPWggQH/HJ7zs=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=TUbIi0TRHkbVi6LBzQIUz0PMMYG+hlIfsIHBsdkUDJIZ6TEUYcOGgCLEWtuz/k44a
+	 L/d36N+GT0MEw6JIMf5km5igPXz/dcd9fifDiqjLXmTKAJ9QxX0uO35AswBCHcMlcc
+	 6dUArKB3M4GZG9vZglcAP2xnAmXJwZjayeM0/tE3B6wcuQS9Xtf/6MWPaq1+Udiz7u
+	 uyj7sO+0WX68HHeBa3IVMPGNjHFMtx7alMpxpizwc4hAN0hrmBrIaapbTGTRFBmEkS
+	 X4pRG/jpYlxycgXrsCT1i/ufiX1eASB0f8l4dLt5lKRy8YUvNwa3SUbQdHpc36paj3
+	 oUVaII3hwm+Cg==
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout010 (Postfix) with ESMTP id 6A3F945B0D8
+	for <pierre.porche@insa-rouen.fr>; Mon, 21 Nov 2016 10:28:17 +0100 (CET)
+Received: from lpn-prd-vrin002 (lpn-prd-vrin002.prosodie [10.128.63.3])
+	by lpn-prd-vrout010 (Postfix) with ESMTP id 68CDD45B90F
+	for <pierre.porche@insa-rouen.fr>; Mon, 21 Nov 2016 10:28:17 +0100 (CET)
+Received: from lpn-prd-vrin002 (localhost [127.0.0.1])
+	by lpn-prd-vrin002 (Postfix) with ESMTP id 559BF5BF521
+	for <pierre.porche@insa-rouen.fr>; Mon, 21 Nov 2016 10:28:17 +0100 (CET)
+Received: from [192.168.1.15] (LFbn-1-5727-78.w90-108.abo.wanadoo.fr [90.108.183.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin002 (Postfix) with ESMTPSA id 28E3D5BF4E9
+	for <pierre.porche@insa-rouen.fr>; Mon, 21 Nov 2016 10:28:17 +0100 (CET)
+Subject: Re: PIC unicef : suite et fin du projet
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+References: <a9a0af6f-e647-753e-f339-43d7625a33a8@insa-rouen.fr>
+From: =?UTF-8?Q?Pr=c3=a9sident_UNICEF_76?= <president.unicef76@laposte.net>
+Message-ID: <fc978309-a021-148d-eb95-1ee280337ee5@laposte.net>
+Date: Mon, 21 Nov 2016 10:28:06 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <a9a0af6f-e647-753e-f339-43d7625a33a8@insa-rouen.fr>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-VR-SrcIP: 90.108.183.78
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelfedrvdefucetufdoteggodetrfdotffvucfrrhhofhhilhgv
+X-VR-Cause-2: mecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddq
+X-VR-Cause-3: uddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomheprfhrrohs
+X-VR-Cause-4: ihguvghnthgpfgfpkfevgffhpgejiecuoehprhgvshhiuggvnhhtrdhunhhitggvfhejieeslhgrphho
+X-VR-Cause-5: shhtvgdrnhgvtheqnecukfhppeeltddruddtkedrudekfedrjeeknecurfgrrhgrmhepmhhouggvpehs
+X-VR-Cause-6: mhhtphhouhhtpdhhvghloheplgduledvrdduieekrddurdduhegnpdhinhgvthepledtrddutdekrddu
+X-VR-Cause-7: keefrdejkedpmhgrihhlfhhrohhmpehprhgvshhiuggvnhhtrdhunhhitggvfhejieeslhgrphhoshht
+X-VR-Cause-8: vgdrnhgvthdprhgtphhtthhopehpihgvrhhrvgdrphhorhgthhgvsehinhhsrgdqrhhouhgvnhdrfhhr
+X-VR-AvState: No
+X-VR-State: 0
+X-VR-State: 0
+
+Bonjour Pierre,
+
+Ces propositions me paraissent bien. Catherine Guest vous a envoyé un 
+certain nombre de suggestions et l'important est que toutes les 
+corrections puissent être testées le plus rapidement possible en 
+décembre avec les informations réelles des plaideurs pour cette année 
+scolaire 2016-2017. Comment procèdera-t-on pour cette remise lot? Date, 
+lieu, horaire et autres renseignements. (à titre indicatif, je suis 
+absente la semaine du 5 décembre mais je ne suis pas indispensable). Bon 
+travail, Véronique BARBIER
+
+
+Le 16/11/2016 à 16:13, Pierre Porche a écrit :
+> Bonjour,
+>
+> Comme vous le savez, le semestre touche à sa fin. Je vous propose donc 
+> de valider un nouveau lotissement de maintenant jusqu'à la fin du 
+> projet qui correspond au travail qu'il nous reste à fournir avant la 
+> dite fin de projet.
+> Nous vous proposons le lotissement suivant :
+>
+> Lot 3 [livraison le 5 décembre] :
+>     - finalisation du formulaire de demande
+>     - prise en compte de vos remarques sur le lot 2
+>     - implémentation des fonctionnalités de géolocalisation
+>     - finalisation du mailing
+>     - finalisation des fonctionnalités des frimousses et de leur vente
+>
+> Lot 4 [livraison le 14 ou 15 décembre]
+>     - implémentation des statistiques
+>
+> Pouvez vous me confirmer le nouveau contenu de ces lots ainsi que les 
+> dates effectives de livraison de ceux ci?
+>
+> Bien cordialement,
+>
+>
+> Pierre Porche
+

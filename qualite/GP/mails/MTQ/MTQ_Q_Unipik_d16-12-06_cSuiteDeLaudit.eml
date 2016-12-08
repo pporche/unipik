@@ -1,0 +1,120 @@
+Return-Path: <asi5-owner@insa-rouen.fr>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 7C20023AD4;
+	Tue,  6 Dec 2016 15:37:49 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0BfAAB+zEZYfXIKMcFeHQYMgzoBAQEBAYFvELQwhyQjAYgkUwECAQEBAQECEwEBCxQJKiOEXxECIAkaNgMBAQEGBgkBPgICAwEbSwYCAQEBiG6pVYIpLgGLRYg7hwkBAWeCOII/HgWJLJE6G0qKY49ihi2KIIdxhHkBAQiCQnGGYIIuAQEB
+X-IPAS-Result: A0BfAAB+zEZYfXIKMcFeHQYMgzoBAQEBAYFvELQwhyQjAYgkUwECAQEBAQECEwEBCxQJKiOEXxECIAkaNgMBAQEGBgkBPgICAwEbSwYCAQEBiG6pVYIpLgGLRYg7hwkBAWeCOII/HgWJLJE6G0qKY49ihi2KIIdxhHkBAQiCQnGGYIIuAQEB
+X-IronPort-AV: E=Sophos;i="5.33,310,1477954800"; 
+   d="scan'208,217";a="111111802"
+Received: from smtpout.insa-rouen.fr ([193.49.10.114])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 06 Dec 2016 15:37:49 +0100
+Received: from newlistdiff.insa-rouen.fr (newlistdiff.insa-rouen.fr [193.49.10.34])
+	by smtpout.insa-rouen.fr (8.13.8/8.13.8) with ESMTP id uB6Ebmsx018128;
+	Tue, 6 Dec 2016 15:37:48 +0100
+Received: from newlistdiff.insa-rouen.fr (localhost.localdomain [127.0.0.1])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id uB6Ebm6g029647;
+	Tue, 6 Dec 2016 15:37:48 +0100
+Received: (from sympa@localhost)
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6/Submit) id uB6EbmrQ029645;
+	Tue, 6 Dec 2016 15:37:48 +0100
+X-Authentication-Warning: newlistdiff.insa-rouen.fr: sympa set sender to asi5-owner@insa-rouen.fr using -f
+Received: from b1.relay.syrhano.net (b1.relay.syrhano.net [193.52.218.30])
+	by newlistdiff.insa-rouen.fr (8.13.6/8.13.6) with ESMTP id uB6Ebj0t029642
+	for <asi5@newlistdiff.insa-rouen.fr>; Tue, 6 Dec 2016 15:37:45 +0100
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0BcAAAmzEZYfQ8V3cNeg2kBAQEBAYFvELQwhykZiCpTAQIBAQEBAQITAQELFAlNhF8zawkBPgIhSwYCAQGIb5laj3uCKS+LRYg7hwkBAWeCOII/HgWJLJE6G0qKY49ihi2KIIdxhHkBCwGCP3GGYIIuAQEB
+X-IPAS-Result: A0BcAAAmzEZYfQ8V3cNeg2kBAQEBAYFvELQwhykZiCpTAQIBAQEBAQITAQELFAlNhF8zawkBPgIhSwYCAQGIb5laj3uCKS+LRYg7hwkBAWeCOII/HgWJLJE6G0qKY49ihi2KIIdxhHkBCwGCP3GGYIIuAQEB
+X-IronPort-AV: E=Sophos;i="5.33,310,1477954800"; 
+   d="scan'208,217";a="100969879"
+Received: from mail-smtp-a.crihan.fr ([195.221.21.15])
+  by b-mx-insar.insa-rouen.fr with ESMTP; 06 Dec 2016 15:37:46 +0100
+Received: from [193.49.8.228] (po-5558kv1.etu.insa-rouen.fr [193.49.8.228])
+	by mail-smtp-a.crihan.fr (Postfix) with ESMTPSA id B57CAFD17
+	for <asi5@insa-rouen.fr>; Tue,  6 Dec 2016 15:37:44 +0100 (CET)
+To: asi5@insa-rouen.fr
+X-Priority: 1 (Highest)
+From: Benjamin COELHO DE MATOS <benjamin.coelho-de-matos@insa-rouen.fr>
+Message-ID: <510465c6-b215-a506-e6a6-bf969ed58531@insa-rouen.fr>
+Date: Tue, 6 Dec 2016 15:37:44 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.5.1
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------033C050A3E2242653AEF0638"
+Subject: [asi5] Documents suite =?UTF-8?Q?=C3=A0?= l'audit
+X-Loop: asi5@insa-rouen.fr
+X-Sequence: 2902
+Errors-to: asi5-owner@insa-rouen.fr
+Precedence: list
+X-no-archive: yes
+List-Id: <asi5.insa-rouen.fr>
+List-Help: <mailto:sympa@insa-rouen.fr?subject=help>
+List-Owner: <mailto:asi5-request@insa-rouen.fr>
+List-Post: <mailto:asi5@insa-rouen.fr>
+List-Subscribe: <mailto:sympa@insa-rouen.fr?subject=subscribe%20asi5>
+List-Unsubscribe: <mailto:sympa@insa-rouen.fr?subject=unsubscribe%20asi5>
+
+This is a multi-part message in MIME format.
+--------------033C050A3E2242653AEF0638
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+
+
+Merci de me communiquer le plus vite possible par retour de mail le scan 
+du rapport d'audit préliminaire mais aussi vos réponses aux remarques et 
+non-conformités détectées.
+
+
+Cordialement,
+
+
+-- 
+*Benjamin Coelho de Matos*
+/Ingénieur de la Mission Qualité de l'INSA de ROUEN
+Tuteur Qualité pour les PIC ASI et MRIE
+INSA de Rouen, bureau DA AR 110
+685 Avenue de l'Université BP 08,
+76801 Saint Etienne du Rouvray Cedex
+/ Tel: (33).02.32.95.66.95
+mail: benjamin.coelho-de-matos@insa-rouen.fr
+
+--------------033C050A3E2242653AEF0638
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Bonjour,</p>
+    <p><br>
+    </p>
+    <p>Merci de me communiquer le plus vite possible par retour de mail
+      le scan du rapport d'audit préliminaire mais aussi vos réponses
+      aux remarques et non-conformités détectées.</p>
+    <p><br>
+    </p>
+    <p>Cordialement,<br>
+    </p>
+    <br>
+    <div class="moz-signature">-- <br>
+      <b>Benjamin Coelho de Matos</b><br>
+      <i>Ingénieur de la Mission Qualité de l'INSA de ROUEN<br>
+        Tuteur Qualité pour les PIC ASI et MRIE<br>
+        INSA de Rouen, bureau DA AR 110<br>
+        685 Avenue de l'Université BP 08,<br>
+        76801 Saint Etienne du Rouvray Cedex<br>
+      </i>
+      Tel: (33).02.32.95.66.95<br>
+      mail: <a class="moz-txt-link-abbreviated" href="mailto:benjamin.coelho-de-matos@insa-rouen.fr">benjamin.coelho-de-matos@insa-rouen.fr</a>
+    </div>
+  </body>
+</html>
+
+--------------033C050A3E2242653AEF0638--

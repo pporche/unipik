@@ -1,0 +1,35 @@
+Return-Path: <francois.decq@insa-rouen.fr>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 1104923ADD
+	for <pporche@insa-rouen.fr>; Wed, 30 Nov 2016 09:04:52 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DtAADNhz5YfXIKMcFdHQEFAQsBgzgBAQEBAYFqpXODGotvhnkZiABTAQIBAQEBAQITAQELFAkqI4USgQsCJgJJFokEnEePfIIpjAWBC4cxB4QPhhSCXQWDcpZjAWSQK2R2AY5NCDuRQ4QSYQEKAQEBgj6JQAEBAQ
+X-IPAS-Result: A0DtAADNhz5YfXIKMcFdHQEFAQsBgzgBAQEBAYFqpXODGotvhnkZiABTAQIBAQEBAQITAQELFAkqI4USgQsCJgJJFokEnEePfIIpjAWBC4cxB4QPhhSCXQWDcpZjAWSQK2R2AY5NCDuRQ4QSYQEKAQEBgj6JQAEBAQ
+X-IronPort-AV: E=Sophos;i="5.31,720,1473112800"; 
+   d="scan'208";a="110822466"
+Received: from smtpout.insa-rouen.fr ([193.49.10.114])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 30 Nov 2016 09:04:16 +0100
+Received: from sogo.insa-rouen.fr (sogo.insa-rouen.fr [193.49.10.84])
+	by smtpout.insa-rouen.fr (8.13.8/8.13.8) with ESMTP id uAU84Ge9009782
+	for <pierre.porche@insa-rouen.fr>; Wed, 30 Nov 2016 09:04:16 +0100
+Received: from localhost (localhost [127.0.0.1])
+	by sogo.insa-rouen.fr (Postfix) with ESMTP id 21AB63F971
+	for <pierre.porche@insa-rouen.fr>; Wed, 30 Nov 2016 09:04:16 +0100 (CET)
+from: "Decq Francois" <francois.decq@insa-rouen.fr>
+X-Forward: 172.29.23.73
+content-type: text/plain; charset="utf-8"
+date: Wed, 30 Nov 2016 09:04:16 +0100
+subject: DSE
+MIME-Version: 1.0
+to: "Pierre Porche" <pierre.porche@insa-rouen.fr>
+message-id: <4396-583e8800-21-6fa5bb00@159941686>
+User-Agent: SOGoMail 2.3.8
+content-transfer-encoding: quoted-printable
+
+J'ai v=C3=A9rifi=C3=A9 le DSE dans sa version 2.01.
+
+Cordialement,
+-- 
+Fran=C3=A7ois DECQ.
+

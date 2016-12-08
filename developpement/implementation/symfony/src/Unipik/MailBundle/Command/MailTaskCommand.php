@@ -112,8 +112,8 @@ class MailTaskCommand extends ContainerAwareCommand {
                 $mailHistorique = new MailHistorique();
                 $mailHistorique
                     ->setDateEnvoi(new \DateTime())
-                    ->setTypeEmail('prospection')
-                    ->setIdEtablissement($etablissement);
+                    ->setTypeEmail('Par défaut')
+                    ->setEtablissement($etablissement);
                 $em->persist($mailHistorique);
             }
 

@@ -458,7 +458,7 @@
                                     [ { text: "{{ intervention.etablissement.adresse.ville.nom }}", style: 'tableHeader' },
                                       { text: "{{ intervention.demande.dateDemande|date('d-m-Y') }}", style: 'tableHeader' },
                                       { text: "{{ intervention.demande.dateDebutDisponibilite|date('d-m-Y') }}-{{ intervention.demande.dateFinDisponibilite|date('d-m-Y') }}", style: 'tableHeader' },
-                                        { text: "{% if intervention.dateIntervention|date('d-m-Y') %}{{ intervention.dateIntervention|date('d-m-Y') }}{% else %}"-"{% endif %}", style: 'tableHeader' },
+                                        { text: "{% if intervention.dateIntervention %}{{ intervention.dateIntervention|date('d-m-Y') }}{% else %}-{% endif %}", style: 'tableHeader' },
                                         {% if intervention.plaidoyer %}
                                         { text: "Action éducative", style: 'tableHeader' },
                                         {% elseif intervention.frimousse %}

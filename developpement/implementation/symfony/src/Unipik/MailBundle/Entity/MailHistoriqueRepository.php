@@ -79,7 +79,7 @@ class MailHistoriqueRepository extends EntityRepository {
 
         foreach ($results as $index=>$mail) {
             if(!in_array($mail->getTypeEmail(),$typeMail)){
-                array_splice($results, $index, 1);
+                unset($results[$index]);
             }
         }
 

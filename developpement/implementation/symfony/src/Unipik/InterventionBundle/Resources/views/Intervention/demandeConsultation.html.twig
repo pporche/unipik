@@ -689,7 +689,7 @@
                             <div class="col-sm-8 col-sm-offset-0 col-xs-offset-1 col-xs-11">
                                 <em>{% if intervention.etablissement.emails %}
                                         {% for email in intervention.etablissement.emails %}
-                                            {{ email }}
+                                            <a style="color:#fff" href="mailto:{{ email }}">{{ email }}</a>
                                         {% endfor %}
                                     {% else %}
                                         -
@@ -762,7 +762,8 @@
                             </div>
                             <div class="col-sm-8 col-sm-offset-0 col-xs-offset-1 col-xs-11">
                                 <em>{% if intervention.demande.contact.email %}
-                                        {{ intervention.demande.contact.email }}
+
+                                        <a style="color:#fff" href="mailto: {{ intervention.demande.contact.email }}"> {{ intervention.demande.contact.email }}</a>
                                     {% else %}
                                         -
                                     {% endif %}</em>

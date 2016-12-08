@@ -768,6 +768,23 @@
                                                 -
                                             {% endif %}</em>
                                     </div>
+
+
+
+                                    <div class="col-sm-4 col-xs-12">
+                                        <dt>
+                                            Email:
+                                        </dt>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-2">
+                                        <em>{% if intervention.demande.contact.email is not empty %}
+                                                <a style="color:#fff" href="mailto:{{ intervention.demande.contact.email }}">{{ intervention.demande.contact.email }}</a>
+                                            {% else %}
+                                                -
+                                            {% endif %}
+                                        </em>
+                                    </div>
+
                                     <div class="col-sm-4 col-xs-12">
                                         <dt>
                                             Tel fixe :

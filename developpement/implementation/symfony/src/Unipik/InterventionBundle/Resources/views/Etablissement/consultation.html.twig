@@ -348,7 +348,7 @@
                                 {% if etablissement.emails is not empty %}
                                     <ul class="list-group col-sm-12 " style="list-style-type: none;">
                                         {% for email in etablissement.emails %}
-                                           <li> <em>{{ email }}</em> </li>
+                                           <li> <em><a href="mailto:{{ email }}">{{ email}}</a></em> </li>
                                         {% endfor %}
                                     </ul>
                                 {% else %}
@@ -477,12 +477,25 @@
                                                     Nom:
                                                 </dt>
                                             </div>
-
                                             <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
                                                 <em>{% if contact.nom is not empty %}
                                                     {{ contact.nom |capitalize }}
                                                     {% else %}
                                                     -
+                                                    {% endif %}
+                                                </em>
+                                            </div>
+
+                                            <div class="col-sm-6 col-xs-12">
+                                                <dt>
+                                                    Email:
+                                                </dt>
+                                            </div>
+                                            <div class="col-sm-6 col-xs-offset-1 col-xs-11 col-sm-offset-0">
+                                                <em>{% if contact.email is not empty %}
+                                                        <a style="color:#fff" href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+                                                    {% else %}
+                                                        -
                                                     {% endif %}
                                                 </em>
                                             </div>

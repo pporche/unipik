@@ -51,7 +51,7 @@ class MailHistorique {
      *   @ORM\JoinColumn(name="id_etablissement",                                      referencedColumnName="id")
      * })
      */
-    private $id_etablissement;
+    private $etablissement;
 
 
     /**
@@ -124,19 +124,19 @@ class MailHistorique {
     /**
      * @return \Unipik\InterventionBundle\Entity\Etablissement
      */
-    public function getIdEtablissement() {
-        return $this->id_etablissement;
+    public function getEtablissement()
+    {
+        return $this->etablissement;
     }
 
     /**
      * @param \Unipik\InterventionBundle\Entity\Etablissement $id_etablissement
-     *
-     * @return $this
      */
-    public function setIdEtablissement($id_etablissement) {
-        $this->id_etablissement = $id_etablissement;
-        return $this;
+    public function setEtablissement($etablissement)
+    {
+        $this->etablissement = $etablissement;
     }
+
 }
 
 ?>

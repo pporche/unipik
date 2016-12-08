@@ -141,7 +141,8 @@ class ProfileController extends BaseController {
         }
         $em = $this->getDoctrine()->getManager();
         $repositoryIntervention = $em->getRepository('InterventionBundle:Intervention');
-        $listeInterventions = $repositoryIntervention->getInterventionsBenevole($user);
+
+        $listeInterventions = $repositoryIntervention->getNInterventionsRealiseesOuNonBenevole($user, false, 5);
 
         return $this->render(
             'FOSUserBundle:Profile:show.html.twig', array(

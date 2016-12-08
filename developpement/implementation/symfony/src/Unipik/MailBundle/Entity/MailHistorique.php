@@ -28,7 +28,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @link     None
  */
 
-class MailHistorique{
+class MailHistorique {
 
     /**
      * L'id
@@ -73,17 +73,52 @@ class MailHistorique{
     /**
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
     /**
      * @param int $id
+     *
+     * @return $this
      */
-    public function setId($id)
-    {
+    public function setId($id) {
         $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateEnvoi() {
+        return $this->date_envoi;
+    }
+
+    /**
+     * @param \DateTime $date_envoi
+     *
+     * @return $this
+     */
+    public function setDateEnvoi($date_envoi) {
+        $this->date_envoi = $date_envoi;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeEmail() {
+        return $this->type_email;
+    }
+
+    /**
+     * @param mixed $type_email
+     *
+     * @return $this
+     */
+    public function setTypeEmail($type_email) {
+        $this->type_email = $type_email;
+        return $this;
     }
 
     /**
@@ -95,48 +130,13 @@ class MailHistorique{
     }
 
     /**
-     * @param \Unipik\InterventionBundle\Entity\Etablissement $etablissement
+     * @param \Unipik\InterventionBundle\Entity\Etablissement $id_etablissement
      */
     public function setEtablissement($etablissement)
     {
         $this->etablissement = $etablissement;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getDateEnvoi()
-    {
-        return $this->date_envoi;
-    }
-
-    /**
-     * @param \DateTime $date_envoi
-     */
-    public function setDateEnvoi($date_envoi)
-    {
-        $this->date_envoi = $date_envoi;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTypeEmail()
-    {
-        return $this->type_email;
-    }
-
-    /**
-     * @param mixed $type_email
-     */
-    public function setTypeEmail($type_email)
-    {
-        $this->type_email = $type_email;
-    }
-
-
-
 }
-
 
 ?>

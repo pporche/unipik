@@ -87,7 +87,15 @@ class RechercheAvanceeType extends AbstractType {
                 'Autre' => 'autre'
             ],);
 
+        $typeMailChoiceType = array( 'expanded' => true, 'multiple' => true, 'mapped' => false, 'required' => false,
+            'choices' => [
+                'Par défaut' => 'parDefaut',
+                'Non réponse à une précédente sollicitation' => 'nonReponse',
+                'Réponse à une précédente sollicitation' => 'reponse'
+            ],);
+
         $builder
+            ->add('typeMail', ChoiceType::class, $typeMailChoiceType)
             ->add('typeEtablissement', ChoiceType::class, $optionChoiceType)
             ->add('typeEnseignement', ChoiceType::class, $optionEnseignementType)
             ->add('typeCentre', ChoiceType::class, $optionCentreType)

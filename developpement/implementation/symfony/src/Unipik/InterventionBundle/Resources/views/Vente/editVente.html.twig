@@ -2,7 +2,7 @@
 {% extends "InterventionBundle::layout.html.twig" %}
 {% block title %}
 
-    Modifier une vente - {{ parent() }}
+    Modifier un(e) don/vente - {{ parent() }}
 
 {% endblock %}
 
@@ -77,12 +77,12 @@
 
 
 {%  block body %}
-    <h1>Modification d'une vente </h1><hr>
+    <h1>Modification d'un(e) don/vente </h1><hr>
     <div class="formContainer">
         {{ form_start(form) }}
 
         {% if intervention %}
-            <h5> Vente suite à une intervention :</h5>
+            <h5> Vente/don suite à une intervention :</h5>
             Frimousse - {{ intervention.dateIntervention | date('dd/mm/YY') }} - {{ intervention.niveauFrimousse }}
         {% endif %}
 
@@ -98,7 +98,7 @@
             Le chiffre d'affaire doit correspondre à un nombre
         </div>
 
-        <h5>Date de la vente* :</h5>
+        <h5>Date * :</h5>
         {{ form_widget(form.dateVente) }}
 
         <h5>Remarques :</h5>

@@ -95,24 +95,28 @@ class MailController extends Controller {
 
         $rowsPerPage = $request->get("rowsPerPage", 10);
 
+        $typeMail = $request->get("typeMail", ['parDefaut', 'reponse', 'nonReponse']);
+
         $repository = $this->getMailHistoriqueRepository();
 
         if ($request->isMethod('GET') && $form->isValid()) {
+            $typeMail = $form->get("typeMail")->getData();
             $start = $form->get("start")->getData();
             $end = $form->get("end")->getData();
             $typeEtablissement = $form->get("typeEtablissement")->getData();
             $types = $typeEtablissement != "" ? $form->get("type" . ucfirst($typeEtablissement))->getData() : null;
-            $mails = $repository->getType($start, $end, $typeEtablissement, $types);
+            $mails = $repository->getType($start, $end, $typeEtablissement, $types, $typeMail);
         } else {
             $typeEtablissement = $form->get("typeEtablissement")->getData();
             $types = $typeEtablissement != "" ? $form->get("type" . ucfirst($typeEtablissement))->getData() : null;
             $start = date("Y-m-d", strtotime( date( "Y-m-d", strtotime( date("Y-m-d") ) ) . "-1 month" ) );
             $end = date('d-m-Y');
-            $mails = $repository->getType($start, $end, $typeEtablissement, $types);
+            $mails = $repository->getType($start, $end, $typeEtablissement, $types, null);
         }
 
         return $this->render(
             'MailBundle::historiqueEmails.html.twig', array(
+            'typeMail' => $typeMail,
             'mails' => $mails,
             'start' => $start,
             'end' => $end,

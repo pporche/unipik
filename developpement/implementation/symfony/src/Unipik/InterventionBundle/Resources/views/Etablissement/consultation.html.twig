@@ -385,8 +385,8 @@
         <div class="buttons">
             {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path("etablissement_admin_edit", {'id': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"> </span>&nbsp Modifier</a>
-            <a href="{{ path("vente_etablissement", {'id': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-list"> </span> Consulter les ventes associées</a>
-            <a href="{{ path("vente_add", {'etablissement': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-euro"> </span> Ajouter une vente</a>
+            <a href="{{ path("vente_etablissement", {'id': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-list"> </span> Consulter les ventes/dons associé(e)s</a>
+            <a href="{{ path("vente_add", {'etablissement': etablissement.id}) }}" class="btn btn-primary"><span class="glyphicon glyphicon-euro"> </span> Ajouter un(e) don/vente</a>
             <a href="{{ path("etablissement_admin_delete", {'id': etablissement.id}) }}" class="btn btn-danger" onclick="return confirm('Souhaitez vous vraiment supprimer l\'établissment {{ etablissement.nom }} ?')"><span class="glyphicon glyphicon-trash">  </span>&nbsp Supprimer </a>
             {% endif %}
         </div>

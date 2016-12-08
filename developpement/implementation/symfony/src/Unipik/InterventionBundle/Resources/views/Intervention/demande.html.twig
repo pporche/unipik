@@ -8,6 +8,12 @@
 {% endblock %}
 
 {% block body %}
+    <style>
+        .captcha_image{
+            margin-left: calc(50% - 100px);
+            margin-bottom: 15px;
+        }
+    </style>
     <h2>Demande d'intervention</h2>
     <hr>
     {{ form_start(form, {'method': 'post', 'action': path('intervention_request', {id: id, etablissement: etablissement}), 'attr': {'class': 'intervention_request form-sm'}}) }}

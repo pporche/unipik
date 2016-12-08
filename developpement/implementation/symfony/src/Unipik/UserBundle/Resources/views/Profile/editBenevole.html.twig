@@ -126,6 +126,10 @@
         }
 
         $(document).ready(function() {
+            if ($('#user_registration_adresse_ville').val().indexOf(' (') < 0) {
+                $('#user_registration_adresse_ville').val($('#user_registration_adresse_ville').val() + ' ({{ benevole.adresse.codePostal.code }})');
+            }
+
             for(i=0; i<4; i++){
                 responsabiliteChecked("#user_registration_responsabiliteActivite_" + i, "#user_registration_activitesPotentielles_" + i);
             }
@@ -237,7 +241,7 @@
 
             if ($('#user_registration_adresse_ville').val().trim().length>0 && $('#user_registration_adresse_ville').val().indexOf(' (') < 0) {
                 if ($('#erreurCodePostal').prev()[0]==undefined) {
-                    $('#user_registration_adresse_ville').after('<p id="erreurCodePostal"  style="color: red; font-size: 13px; font-style: italic">Sélectionnez un code postal</p>');
+                    $('#user_registration_adresse_ville').after('<p id="erreurCodePostal"  style="color: red; font-size: 13px; font-style: italic">Sélectionnez un champ valide dans la liste déroulante proposée</p>');
                 } else {
                     $('#erreurCodePostal').show();
                 }

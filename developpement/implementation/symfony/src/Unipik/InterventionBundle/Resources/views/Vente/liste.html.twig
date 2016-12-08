@@ -303,16 +303,17 @@
         });
 
         function verifyChampsVide(e){
+            var erreur = false;
             if (    ($('#recherche_avancee_CADebut').val() == "" && $('#recherche_avancee_CAFin').val() != "")
                 ||  ($('#recherche_avancee_CADebut').val() != "" && $('#recherche_avancee_CAFin').val() == "") ) {
-                e.preventDefault();
-                e.stopPropagation();
                 $('#CAerrorChampsVide').show();
                 if ($('#recherche_avancee_CADebut').val() == null) {
                     $('#recherche_avancee_CADebut').addClass('error');
+                    erreur = true;
                 }
                 if ($('#recherche_avancee_CAFin').val() == null) {
                     $('#recherche_avancee_CAFin').addClass('error');
+                    erreur = true;
                 }
 
                 if ($('#recherche_avancee_CADebut').val() != null) {
@@ -327,37 +328,37 @@
                 $('#recherche_avancee_CAFin').removeClass('error');
             }
             if (($('#recherche_avancee_dansVilleOuParDistance_0').is(':checked') || ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && ($('#recherche_avancee_villeOuDomicile_0').is(':checked')))) && $('#recherche_avancee_ville').val().trim().length==0) {
-                e.preventDefault();
-                e.stopPropagation();
                 $('#villeError').show();
                 $('#recherche_avancee_ville').addClass('error');
+                erreur = true;
             } else {
                 $('#villeError').hide();
                 $('#recherche_avancee_ville').removeClass('error');
             }
             if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && $('#recherche_avancee_distance').val().trim().length==0) {
-                e.preventDefault();
-                e.stopPropagation();
                 $('#distanceError').show();
                 $('#recherche_avancee_distance').addClass('error');
+                erreur = true;
             } else {
                 $('#distanceError').hide();
                 $('#recherche_avancee_distance').removeClass('error');
             }
+            return erreur;
         }
 
         function verifyCAType(e) {
+            var erreur = false;
             var re = /^([\d]+([.,][\d]+)?)?$/;
             //borne du début
             if (!re.test($('#recherche_avancee_CADebut').val()) || !re.test($('#recherche_avancee_CAFin').val())) {
-                e.preventDefault();
-                e.stopPropagation();
                 $('#CAerrorType').show();
                 if (!re.test($('#recherche_avancee_CADebut').val())) {
                     $('#recherche_avancee_CADebut').addClass('error');
+                    erreur = true;
                 }
                 if (!re.test($('#recherche_avancee_CAFin').val())) {
                     $('#recherche_avancee_CAFin').addClass('error');
+                    erreur = true;
                 }
                 if (re.test($('#recherche_avancee_CADebut').val())) {
                     $('#recherche_avancee_CADebut').removeClass('error');
@@ -370,66 +371,77 @@
                 $('#recherche_avancee_CADebut').removeClass('error');
                 $('#recherche_avancee_CAFin').removeClass('error');
             }
+            return erreur;
         }
 
         function verifyCAIntervalle(e) {
+            var erreur = false;
             if (   !( ($('#recherche_avancee_CADebut').val() == "" && $('#recherche_avancee_CAFin').val() != "")
                 ||  ($('#recherche_avancee_CADebut').val() != "" && $('#recherche_avancee_CAFin').val() == "") )) {
                 if (parseInt($('#recherche_avancee_CADebut').val()) > parseInt($('#recherche_avancee_CAFin').val())) {
-                    e.preventDefault();
-                    e.stopPropagation();
                     $('#CAerrorIntervalle').show();
                     $('#recherche_avancee_CADebut').addClass('error');
                     $('#recherche_avancee_CAFin').addClass('error');
+                    erreur = true;
                 } else {
                     $('#CAerrorIntervalle').hide();
                     $('#recherche_avancee_CADebut').removeClass('error');
                     $('#recherche_avancee_CAFin').removeClass('error');
                 }
             }
+            return erreur;
         }
 
         function verifyCP(e){
+            var erreur = false;
             if ($('#recherche_avancee_ville').val().trim().length!=0 && $('#recherche_avancee_ville').val().indexOf(' (') < 0) {
-                e.preventDefault();
-                e.stopPropagation();
                 $('#codeError').show();
                 $('#recherche_avancee_ville').addClass('error');
+                erreur = true;
             } else {
                 $('#codeError').hide();
                 $('#recherche_avancee_ville').removeClass('error');
             }
+            return erreur;
         }
 
         function geolocalisation(e) {
             if ($('#recherche_avancee_dansVilleOuParDistance_1').is(':checked') && $('#recherche_avancee_villeOuDomicile_0').is(':checked')) {
-                e.preventDefault();
-                e.stopPropagation();
                 var ville = $('#recherche_avancee_ville').val();
                 var geolocalisation = '';
                 $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+ville, function (dataVille) {
                     if (dataVille.length > 0) {
                         geolocalisation = 'SRID=4326;POINT(' + dataVille[0]['lon'] + ' ' + dataVille[0]['lat'] + ')';
                         $("#recherche_avancee_geolocalisation").val(geolocalisation);
+                        $("#recherche_avancee_codePostal").val($("#recherche_avancee_ville").val().split(' (')[1].split(')')[0]);
+                        $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
                         $('.vente').submit();
                     }
                     else {
                         //Que fait-on si 0 match ?
-                        e.preventDefault();
-                        e.stopPropagation();
+                        if (!$('#recherche_avancee_ville').is(':hidden')) {
+                            $("#recherche_avancee_codePostal").val($("#recherche_avancee_ville").val().split(' (')[1].split(')')[0]);
+                            $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+                        }
+                        $('.vente').submit();
                     }
                 });
+            }
+            else {
+                if (!$('#recherche_avancee_ville').is(':hidden')) {
+                    $("#recherche_avancee_codePostal").val($("#recherche_avancee_ville").val().split(' (')[1].split(')')[0]);
+                    $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+                }
+                $('.vente').submit();
             }
         }
 
         function verifyAll(e) {
-            verifyChampsVide(e);
-            verifyCAType(e);
-            verifyCAIntervalle(e);
-            verifyCP(e);
-            geolocalisation(e);
-            $("#recherche_avancee_codePostal").val($("#recherche_avancee_ville").val().split(' (')[1].split(')')[0]);
-            $("#recherche_avancee_ville").val($("#recherche_avancee_ville").val().split(' (')[0]);
+            e.preventDefault();
+            var erreur = verifyChampsVide(e) || verifyCAType(e) || verifyCAIntervalle(e) || verifyCP(e);
+            if (!erreur) {
+                geolocalisation(e);
+            }
         }
 
         document.addEventListener('submit', verifyAll);
@@ -634,7 +646,7 @@
                     Ce champ est obligatoire
                 </div>
                 <div id="codeError">
-                    Sélectionnez un code postal
+                    Sélectionnez un champ valide dans la liste déroulante proposée
                 </div>
                 <div id="distanceKm">
                     <h5> Distance en km :</h5>

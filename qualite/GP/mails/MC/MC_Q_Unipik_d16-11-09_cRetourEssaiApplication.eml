@@ -1,0 +1,86 @@
+Return-Path: <cathyguest76@gmail.com>
+Delivered-To: pporche@insa-rouen.fr
+Received: from a1.relay.syrhano.net (a1.relay.syrhano.net [193.52.218.20])
+	by mail-imap-insar.crihan.fr (Postfix) with ESMTP id 1A7B2238F9
+	for <pporche@insa-rouen.fr>; Wed,  9 Nov 2016 17:58:36 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: A0DmAAAMVSNYhq3cVdFdHQEFAQsBgy8BAQEBAYF2B4J8qhxHg0KCAYNlhBcLiCcHUwECAQEBAQECEwEBAQgLCwkdHBSEWBwGER0BGx4DEgMFAQc3AiQBEQEFASI1iB8BAxeTQI1JggmBMj8yi1CCDAYBLYMaBYNnChknDVSDOwIGEJJUglwFgSUBAZkACAEBgSsIjxyQGo98Ex6BEoF3HYItNyCBaT00h2cBAQE
+X-IPAS-Result: A0DmAAAMVSNYhq3cVdFdHQEFAQsBgy8BAQEBAYF2B4J8qhxHg0KCAYNlhBcLiCcHUwECAQEBAQECEwEBAQgLCwkdHBSEWBwGER0BGx4DEgMFAQc3AiQBEQEFASI1iB8BAxeTQI1JggmBMj8yi1CCDAYBLYMaBYNnChknDVSDOwIGEJJUglwFgSUBAZkACAEBgSsIjxyQGo98Ex6BEoF3HYItNyCBaT00h2cBAQE
+X-IronPort-AV: E=Sophos;i="5.31,614,1473112800"; 
+   d="scan'208,217";a="109808831"
+Received: from mail-qk0-f173.google.com ([209.85.220.173])
+  by a-mx-insar.relay.syrhano.net with ESMTP; 09 Nov 2016 17:58:35 +0100
+Received: by mail-qk0-f173.google.com with SMTP id x190so261491174qkb.0
+        for <pierre.porche@insa-rouen.fr>; Wed, 09 Nov 2016 08:58:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=A+xzMIUdBYxRguYW60dka3r6YYhRQ1sQGz+cYFCKXBE=;
+        b=F581aOn5wb+fs8+J3/rrt4KWH3W0ignXQp63imTT0VZZ+Y2IFlARPHliqPllKmibAB
+         EplR0EHgMnnTLK2L+4FaptNs/CwAU3UMraWmGqlcm5eTtEe+OsHMFrTww7TbP0IaecG8
+         4ZEYQ8Lc8OoDujIJenN3e2L8FOIJ1rLcl6oi58klg8Qo7zkXdZXHz67tpuyeQLKJ1ThK
+         JnB9PE15/Xe0LQrk8S255CGYhpRzRYyXs3Oo49R2+6TkG82Ync5otaY5Od88tTDzX5W6
+         OtfWk/u+iNWnj8gLWpLYpyAYcuZeOVDNlaYo/ed+Dby7iR6ZUwFoi2yMVUubVXSeUXJu
+         BcGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=A+xzMIUdBYxRguYW60dka3r6YYhRQ1sQGz+cYFCKXBE=;
+        b=XzfMZqNQzDCsX8mfIWPzEN6A5eYeOXW1qaYd7md6wqVdjaNuzp7kM8pPy3CCkK26Fe
+         0vuJdEp+BRE+twzFLae0UTSuB4dg8tB0sRBjsMbHd0BmPfWncyJ/7MH8MxETmCBZ60YF
+         y4AxL0UkzPPNFzsN/JD9pNghedg06W++Qct6BN74O55J5yAPoPgbH0Z0NRTY8JK3SC8E
+         f+xJ2vLdcMYQueJ5z3tjyjlRh4QCxTTtLlIBd1/qvoRE3BRG6TvASnoA2fJUhzPiCgVj
+         ZKOYDJYk81NxpQiSET6uvNe7AtTGvoqueHsppldp7oru2RV8Dd70DtskEzhpQ2d6gR6m
+         VALQ==
+X-Gm-Message-State: ABUngvfohOzX8N0XdomsN31yKvs+Oa3TezXZIFGrB/i49MP00M68t8kagq5dt7W91hwvyAmuWLsfwqC/tiMpeg==
+X-Received: by 10.55.38.80 with SMTP id y77mr653641qkg.51.1478710714757; Wed,
+ 09 Nov 2016 08:58:34 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.55.201.18 with HTTP; Wed, 9 Nov 2016 08:58:34 -0800 (PST)
+From: Guest catherine <cathyguest76@gmail.com>
+Date: Wed, 9 Nov 2016 17:58:34 +0100
+Message-ID: <CAM17bmK4zB6zW_qgnQSqTjDw=C7imS8-8yGSRKrt9xQg9uKKDA@mail.gmail.com>
+Subject: APPICATION PLAIDEURS
+To: Pierre Porche <pierre.porche@insa-rouen.fr>
+Content-Type: multipart/alternative; boundary=001a11454c6ce117780540e12ada
+
+--001a11454c6ce117780540e12ada
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+bonsoir Pierre,
+
+Dans l'appli je retrouve bien la liste des interventions cr=C3=A9es avec le=
+s
+demanes fictives, je veux attribuer les interventions =C3=A0 des b=C3=A9n=
+=C3=A9voles, pour
+l'instant 2 seulement dans la liste, je peux en rentrer d'autres pour les
+plaideurs, mais quand je clic sur attribuer et rentrer mon nom par exemple,
+=C3=A7=C3=A0 ne marche pas.....
+
+Dans le fichier excel qui reprendra toutes les demandes comme demand=C3=A9,=
+ =C3=A7=C3=A0
+serait bien que l'on puisse les retrouver par ordre alphab=C3=A9thique des
+villes par exemple, plus facile ensuite pour les attribuer....
+
+Merci de votre aide, bien cordialement
+
+catherine guest
+
+--001a11454c6ce117780540e12ada
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">bonsoir Pierre,<div><br></div><div>Dans l&#39;appli je ret=
+rouve bien la liste des interventions cr=C3=A9es avec les demanes fictives,=
+ je veux attribuer les interventions =C3=A0 des b=C3=A9n=C3=A9voles, pour l=
+&#39;instant 2 seulement dans la liste, je peux en rentrer d&#39;autres pou=
+r les plaideurs, mais quand je clic sur attribuer et rentrer mon nom par ex=
+emple, =C3=A7=C3=A0 ne marche pas.....</div><div><br></div><div>Dans le fic=
+hier excel qui reprendra toutes les demandes comme demand=C3=A9, =C3=A7=C3=
+=A0 serait bien que l&#39;on puisse les retrouver par ordre alphab=C3=A9thi=
+que des villes par exemple, plus facile ensuite pour les attribuer....</div=
+><div><br></div><div>Merci de votre aide, bien cordialement</div><div><br><=
+/div><div>catherine guest</div><div><br></div></div>
+
+--001a11454c6ce117780540e12ada--

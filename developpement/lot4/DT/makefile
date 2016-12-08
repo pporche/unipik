@@ -1,4 +1,4 @@
-# version 1.00 date 30/03/2016 auteur(s) Michel Cressant
+# version 1.00, date 08/12/16, auteur Pierre Porche
 
 # Compilation
 all: dti dtu

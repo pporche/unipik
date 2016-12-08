@@ -1,6 +1,6 @@
 # version 1.00 date 30/11/2016 auteur(s) Pierre Porche
 
 # Définition du nom du document
-NOM_FICHIER=CDR_D_Unipik_$(VERSIONCDRTROIS)
+NOM_FICHIER=CDR_D_Unipik_$(VERSIONCDRQUATRE)
 
-LOCPATH=developpement/lot3/CDR
+LOCPATH=developpement/lot4/CDR

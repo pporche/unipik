@@ -1,10 +1,13 @@
 # version 1.00 date 05/12/2016 auteur(s) Kafui Atanley
 
 # Compilation
-all: dcp dt
+all: dcp dcd dt cdr
 
 dcp:
 	make -C DCP
+
+dcd:
+	make -C DCD
 
 dt:
 	make -C DT
@@ -13,10 +16,13 @@ cdr:
 	make -C CDR
 
 # Archivage
-archive: archivedcp archivedt archivecdr
+archive: archivedcp archivedcd archivedt archivecdr
 
 archivedcp:
 	make -C DCP archive
+
+archivedcd:
+	make -C DCD archive
 
 archivedt:
 	make -C DT archive
@@ -25,10 +31,13 @@ archivecdr:
 	make -C CDR archive
 
 # Nettoyage
-clean: cleandcp cleandt cleancdr
+clean: cleandcp cleandcd cleandt cleancdr
 
 cleandcp:
 	make -C DCP clean
+
+cleandcd:
+	make -C DCD clean
 
 cleandt:
 	make -C DT clean

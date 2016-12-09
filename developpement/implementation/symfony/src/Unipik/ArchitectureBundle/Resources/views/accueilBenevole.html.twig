@@ -119,29 +119,27 @@
             }
             {% endif %}
             {% endfor %}
-
-
-            function okRealiserIntervention() {
-
-                var selected = [];
-                $("input:radio:checked").each(function () {
-                    var $this = $(this);
-                    if ($this.val() == "oui") {
-                        selected.push($this.attr("id"));
-                    }
-
-                });
-
-                var interventions = JSON.stringify(selected);
-
-                sessionStorage["modalShown" + "{{ user }}"] = 'shown';
-
-                $.post("{{ path('intervention_multiple_done') }}", {'interventions': interventions},
-                        function (data, status) {
-                            location.reload(true);
-                        });
-            }
         });
+        function okRealiserIntervention() {
+            console.log("coucou")
+            var selected = [];
+            $("input:radio:checked").each(function () {
+                var $this = $(this);
+                if ($this.val() == "oui") {
+                    selected.push($this.attr("id"));
+                }
+
+            });
+
+            var interventions = JSON.stringify(selected);
+
+            sessionStorage["modalShown" + "{{ user }}"] = 'shown';
+
+            $.post("{{ path('intervention_multiple_done') }}", {'interventions': interventions},
+                    function (data, status) {
+                        location.reload(true);
+                    });
+        }
 
     </script>
 {% endblock %}
@@ -386,7 +384,7 @@
                                                            id="{{ intervention.id }}" value="oui">Oui
                                                 </label>
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="type{{ intervention.id }}"
+                                                    <input type="radio" name="type{{ intervention.id }}" checked="checked"
                                                            id="{{ intervention.id }}" value="non">Non
                                                 </label>
                                             </div>

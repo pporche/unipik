@@ -271,19 +271,17 @@ class VenteRepository extends EntityRepository {
      * @param null $dateInf
      * @return mixed
      */
-    public function getNumberVenteRealisee($dateSup = null, $dateInf = null) {
+    public function getNumberVente($dateSup = null, $dateInf = null) {
         $qb = $this->createQueryBuilder('v')
-            ->select('count(v)')
-            ->where('v.realisee = true')
-            ->join('v.etablissement', 'e');
+            ->select('count(v)');
 
         if (isset($dateSup)) {
-            $qb->andWhere('v.dateIntervention < :dateSup')
+            $qb->andWhere('v.dateVente < :dateSup')
                 ->setParameter('dateSup', $dateSup);
         }
 
         if (isset($dateInf)) {
-            $qb->andWhere('v.dateIntervention > :dateInf')
+            $qb->andWhere('v.dateVente > :dateInf')
                 ->setParameter('dateInf', $dateInf);
         }
 

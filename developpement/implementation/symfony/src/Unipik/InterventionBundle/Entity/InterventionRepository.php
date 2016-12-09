@@ -581,13 +581,13 @@ class InterventionRepository extends EntityRepository {
     /**
      * Renvoie le nombre d'interventions réalisées
      *
+     * @param $theme string Le thème
      * @param null $dateSup           La date superieure
      * @param null $dateInf           La date Inferieure
-     * @param $theme string Le thème
      *
      * @return mixed
      */
-    public function getNumberInterventionByTheme($dateSup = null, $dateInf = null, $theme) {
+    public function getNumberInterventionByTheme($theme, $dateSup = null, $dateInf = null) {
         $qb = $this->createQueryBuilder('i')
             ->select('count(i)')
             ->where('i.realisee = true')
@@ -610,7 +610,16 @@ class InterventionRepository extends EntityRepository {
         return $qb->getQuery()->getSingleScalarResult();
     }
 
-    public function getNumberInterventionByNiveau($dateSup = null, $dateInf = null, $niveau) {
+    /**
+     * Renvoie le nombre d'intervention par niveau
+     *
+     * @param Niveau $niveau Le niveau
+     * @param null $dateSup La date sup
+     * @param null $dateInf La date inf
+     *
+     * @return mixed
+     */
+    public function getNumberInterventionByNiveau($niveau, $dateSup = null, $dateInf = null) {
         $qb = $this->createQueryBuilder('i')
             ->select('count(i)')
             ->where('i.realisee = true')

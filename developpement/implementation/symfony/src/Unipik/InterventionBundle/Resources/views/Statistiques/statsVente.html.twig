@@ -32,7 +32,7 @@
             {#ventes = {{ ventes|raw }};#}
             // Création de la datatable pour populer le diagramme.
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Intervention');
+            data.addColumn('string', 'Vente');
             data.addColumn('number', 'Nombre');
             data.addRows([
                 ['Plaidoyer', parseInt(ventes[index]['plaidoyers'])],
@@ -63,18 +63,18 @@
             // Some raw data (not necessarily accurate)
             var currentDate = new Date().getFullYear();
             var data = google.visualization.arrayToDataTable([
-                ['Années scolaires', 'Plaidoyers', 'Frimousses', 'Autres'],
-                ['dummy', 0, 0, 0]
+                ['Années scolaires', 'Ventes'],
+                ['dummy', 0]
             ]);
 
             ventes.forEach(function (value, i) {
-                data.addRow(['' + (currentDate - i + 1) + '/' + (currentDate - i), parseInt(value['plaidoyers']), parseInt(value['frimousses']), parseInt(value['autres'])]);
+                data.addRow(['' + (currentDate - i + 1) + '/' + (currentDate - i), parseInt(value['ventes'])]);
                 if(data.getFormattedValue(0,0) == 'dummy')
                     data.removeRow(0);
             });
 
             var options = {
-                title : 'Intervention(s) réalisée(s) par année scolaire',
+                title : 'Vente(s) réalisée(s) par année scolaire',
                 vAxis: {title: "Nombre de ventes"},
                 hAxis: {title: 'Année scolaire'},
                 seriesType: 'bars',
@@ -97,7 +97,7 @@
     <h1>Statistiques sur les ventes</h1>
     <div id="chart_vente"></div>
     <select id="selectYears"></select>
-    <h1>KAKIIIIIIIIII</h1>
+    {#<h1>KAKIIIIIIIIII</h1>#}
     <div id="chart_vente_years" style="width: 900px; height: 500px;"></div>
 {% endblock %}
 

@@ -14,7 +14,6 @@
             drawVisualization();
             drawThemes(0);
             drawNiveaux(0);
-            drawPerMonth();
         });
 
         var interventions = {{ interventions|raw }};
@@ -49,6 +48,9 @@
         $('#selectYearsNiveaux').change(function () {
             drawNiveaux($('#selectYearsNiveaux').val());
         });
+
+        var topEtablissements = {{ topEtablissements|raw }};
+        console.log(topEtablissements[0]);
 
         // Callback pour créer le diagramme, l'instancier et le dessiner.
         function drawChart(index) {

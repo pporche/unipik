@@ -376,4 +376,19 @@ class EtablissementRepository extends EntityRepository {
 
         return array_map('current', $sub);
     }
+
+    public function getTop10Etablissements() {
+//        SELECT e.*, COUNT(i.id) FROM etablissement e, intervention i WHERE e.id = i.etablissement_id GROUP BY e.id ORDER BY COUNT(i.id) DESC LIMIT 10
+
+        $qb = $this->createQueryBuilder('e')
+            ->addSelect('e, count(i.id) as count1')
+            ->from('InterventionBundle:Intervention', 'i')
+            ->where('i.etablissement = e')
+            ->groupBy('e.id')
+            ->orderBy('count1', 'DESC')
+            ->setMaxResults(10)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

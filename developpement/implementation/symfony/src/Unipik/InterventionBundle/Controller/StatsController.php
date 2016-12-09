@@ -94,11 +94,14 @@ class StatsController extends Controller {
             array_push($niveauxArray, $niveaux);
         }
 
+        $topEtablissements = $em->getRepository('InterventionBundle:Etablissement')->getTop10Etablissements();
+
         return $this->render(
             'InterventionBundle:Statistiques:statsIntervention.html.twig', array(
             'interventions' => json_encode($interventionsArray),
             'themes' => json_encode($themesArray),
-            'niveaux' => json_encode($niveauxArray)
+            'niveaux' => json_encode($niveauxArray),
+            'topEtablissements' => json_encode($topEtablissements)
             )
         );
     }

@@ -590,6 +590,7 @@ CREATE INDEX region_nom_index ON region(nom);
 CREATE INDEX ville_nom_index ON ville(nom);
 CREATE INDEX departement_nom_index ON departement(nom);
 CREATE INDEX departement_numero_index ON departement(numero);
+CREATE INDEX code_postal_code_index ON code_postal(code);
 
 
 

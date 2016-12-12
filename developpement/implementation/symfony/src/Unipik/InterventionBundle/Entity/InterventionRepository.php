@@ -587,7 +587,7 @@ class InterventionRepository extends EntityRepository {
      *
      * @return mixed
      */
-    public function getNumberInterventionByTheme($theme, $dateSup = null, $dateInf = null) {
+    public function getNumberInterventionByThemeAndNiveau($theme, $dateSup = null, $dateInf = null, $niveau = null) {
         $qb = $this->createQueryBuilder('i')
             ->select('count(i)')
             ->where('i.realisee = true')
@@ -596,6 +596,13 @@ class InterventionRepository extends EntityRepository {
             ->andWhere('nt.theme = :theme')
             ->setParameter('theme', $theme)
         ;
+
+        if(isset($niveau)) {
+            $qb->join('i.etablissement', 'e')
+                ->andWhere('e.typeEnseignement = :niveau')
+                ->setParameter('niveau', $niveau)
+            ;
+        }
 
         if (isset($dateSup)) {
             $qb->andWhere('i.dateIntervention < :dateSup')

@@ -155,7 +155,6 @@
             var chart = new google.visualization.ComboChart(document.getElementById('chart_vente_years_CA'));
             chart.draw(data, options);
         }
-
     </script>
 {% endblock %}
 
@@ -192,7 +191,6 @@
 {% endblock %}
 
 {% block body%}
-
     <h1>Statistiques sur les ventes</h1>
     <hr>
     <h4>Nombre de vente(s) réalisée(s) sur une année scolaire </h4>
@@ -204,6 +202,8 @@
     <div id="chart_vente_years"></div>
     <h4>Chiffre d'affaires par année scolaire </h4>
     <div id="chart_vente_years_CA"></div>
+
+    <button type="button" class="btn btn-primary" onclick="window.print();"> Imprimer </button>
 {% endblock %}
 
 {#https://developers.google.com/chart/interactive/docs/gallery#}

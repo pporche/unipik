@@ -48,12 +48,9 @@
             // Options du diagramme.
             var currentDate = new Date();
             var options = {
-                title: "Nombre de vente(s) réalisée(s) durant l'année scolaire " + (currentDate.getFullYear() - ventesYear.length + index + 1) + "/" + (currentDate.getFullYear() - ventesYear.length + index + 2),
                 vAxis: {title: "Nombre de ventes"},
                 hAxis: {title: 'Mois'},
                 seriesType: 'bars',
-                width: 1500,
-                height: 300,
                 animation:{
                     duration: 2000,
                     easing: 'out',
@@ -116,8 +113,6 @@
                 vAxis: {title: "Nombre de ventes"},
                 hAxis: {title: 'Année scolaire'},
                 seriesType: 'bars',
-                width: ventesYear.length*200,
-                height: 300,
                 animation:{
                     duration: 3000,
                     easing: 'out',
@@ -182,16 +177,16 @@
             margin: auto;
         }
         #chart_vente{
-            max-width: 600px;
-            margin: auto;
-            min-height: 400px;
-            margin-bottom: 100px;
-        }
-        #chart_vente_years{
             max-width: 1100px;
             margin: auto;
             min-height: 400px;
-            margin-bottom: 100px;
+            margin-bottom: 40px;
+        }
+        #chart_vente_years{
+            max-width: 600px;
+            margin: auto;
+            min-height: 400px;
+            margin-bottom: 40px;
         }
     </style>
 {% endblock %}
@@ -200,8 +195,8 @@
 
     <h1>Statistiques sur les ventes</h1>
     <hr>
-    <select id="selectYears"></select>
     <h4>Nombre de vente(s) réalisée(s) sur une année scolaire </h4>
+    <select id="selectYears"></select>
     <div id="chart_vente"></div>
     <h4>Chiffre d'affaires sur une année scolaire </h4>
     <div id="chart_vente_CA"></div>

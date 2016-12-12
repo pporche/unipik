@@ -80,12 +80,12 @@ class StatsController extends Controller {
             $countAutre = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::AUTRE);
 
             foreach ($themes as $theme => $value) {
-                $countTheme = $repository->getNumberInterventionByTheme('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, $theme);
+                $countTheme = $repository->getNumberInterventionByTheme($theme, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
                 $themes[$theme] = $countTheme;
             }
 
             foreach ($niveaux as $niveau => $value) {
-                $countNiveau = $repository->getNumberInterventionByNiveau('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, $niveau);
+                $countNiveau = $repository->getNumberInterventionByNiveau($niveau, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
                 $niveaux[$niveau] = $countNiveau;
             }
 

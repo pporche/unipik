@@ -113,18 +113,36 @@ class StatsController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('InterventionBundle:Vente');
 
-        $ventesArray = array();
+        $months = array('09', '10', '11', '12', '01', '02', '03', '04', '05', '06', '07', '08', '09');
+
+        $ventesYearArray = array();
+        $ventesMonthArray = array();
         $currentYear = date('Y') + 1;
         for ($i = 0; $i < self::NUMBER_YEAR; $i++) {
+            $ventesOneYearArray = array();
             $currentYearSup = $currentYear - $i;
             $currentYearInf = $currentYear - $i - 1;
-            $countVente = $repository->getNumberVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
-            array_push($ventesArray, array('ventes' => $countVente));
+            $countVenteYear = $repository->getNumberVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+            for ($j = 1; $j < count($months); $j++) {
+                if ($j < 4) {
+                    $countVenteMonth = $repository->getNumberVenteMonth('01/' . $months[$j] . '/' . $currentYearInf, '01/' . $months[$j - 1] . '/' . $currentYearInf);
+                }
+                elseif ($j > 4) {
+                    $countVenteMonth = $repository->getNumberVenteMonth('01/' . $months[$j] . '/' . $currentYearSup, '01/' . $months[$j - 1] . '/' . $currentYearSup);
+                }
+                else {
+                    $countVenteMonth = $repository->getNumberVenteMonth('01/' . $months[$j] . '/' . $currentYearSup, '01/' . $months[$j - 1] . '/' . $currentYearInf);
+                }
+                array_push($ventesOneYearArray, $countVenteMonth);
+            }
+            array_push($ventesMonthArray, $ventesOneYearArray);
+            array_push($ventesYearArray, $countVenteYear);
         }
 
         return $this->render(
             'InterventionBundle:Statistiques:statsVente.html.twig', array(
-                'ventes' => json_encode($ventesArray)
+                'ventesYear' => json_encode($ventesYearArray),
+                'ventesMonth' => json_encode($ventesMonthArray),
             )
         );
     }

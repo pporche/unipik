@@ -211,15 +211,20 @@ class MailController extends Controller {
      * @return void
      */
     public function kakiAction() {
-        $em = $this->getDoctrine()->getManager();
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('florian.leriche@neuf.fr')
+            ->setTo('onch1@yopmail.com')
+            ->setBody(
+                $this->renderView(
+                    'MailBundle:mailsEtablissement:emailCollege.html.twig',
+                    array('id' => 10)
+                ),
+                'text/html'
+            );
 
-        $mailHistorique = new MailHistorique();
-        $mailHistorique
-            ->setDateEnvoi(new \DateTime())
-            ->setTypeEmail('relance')
-            ->setIdEtablissement(12);
+        $this->get('second_mailer')->send($message);
 
-        $em->persist($mailHistorique);
-        $em->flush();
+        return $this->redirectToRoute('architecture_homepage');
     }
 }

@@ -93,6 +93,7 @@ class MailTaskCommand extends ContainerAwareCommand {
                     ->setSubject('Intervention de l\'unicef')
                     ->setFrom('unipik.dev@gmail.com')
                     //->setTo($etablissement->getEmails()[0])
+                    //->setFrom(''.$type.'-plaideurs.unicef76@laposte.net')
                     ->setTo('dev1@yopmail.com')
                     ->setBody(
                         $this
@@ -106,6 +107,7 @@ class MailTaskCommand extends ContainerAwareCommand {
                     );
                 $this
                     ->getContainer()
+                    //->get('mailer_'.$type)
                     ->get('mailer')
                     ->send($message);
 

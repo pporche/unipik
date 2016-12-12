@@ -77,14 +77,54 @@ swiftmailer:
             encryption: "%mailer_encryption%"
             port: "%mailer_port%"
             spool:     { type: memory }
-#        second_mailer:
-#            transport: "%second_mailer_transport%"
-#            host:      "%second_mailer_host%"
-#            username:  "%second_mailer_user%"
-#            password:  "%second_mailer_password%"
-#            encryption: "%second_mailer_encryption%"
-#            port: "%second_mailer_port%"
-#            spool:     { type: memory }
+        second_mailer:
+            transport: "%mailer_transport%"
+            host:      "%mailer_kaki_host%"
+            username:  "%mailer_kaki_user%"
+            password:  "%mailer_kaki_password%"
+            encryption: "%mailer_encryption%"
+            port: "%mailer_port%"
+            spool:     { type: memory }
+        mailer_maternelle:
+            transport: "%mailer_plaideurs_transport%"
+            host:      "%mailer_plaideurs_host%"
+            username:  "%mailer_maternelle_user%"
+            password:  "%mailer_maternelle_password%"
+            encryption: "%mailer_plaideurs_encryption%"
+            port: "%mailer_plaideurs_port%"
+            spool:     { type: memory }
+        mailer_elementaire:
+            transport: "%mailer_plaideurs_transport%"
+            host:      "%mailer_plaideurs_host%"
+            username:  "%mailer_elementaire_user%"
+            password:  "%mailer_elementaire_password%"
+            encryption: "%mailer_plaideurs_encryption%"
+            port: "%mailer_plaideurs_port%"
+            spool:     { type: memory }
+        mailer_college:
+            transport: "%mailer_plaideurs_transport%"
+            host:      "%mailer_plaideurs_host%"
+            username:  "%mailer_college_user%"
+            password:  "%mailer_college_password%"
+            encryption: "%mailer_plaideurs_encryption%"
+            port: "%mailer_plaideurs_port%"
+            spool:     { type: memory }
+        mailer_lycee:
+            transport: "%mailer_plaideurs_transport%"
+            host:      "%mailer_plaideurs_host%"
+            username:  "%mailer_lycee_user%"
+            password:  "%mailer_lycee_password%"
+            encryption: "%mailer_plaideurs_encryption%"
+            port: "%mailer_plaideurs_port%"
+            spool:     { type: memory }
+        mailer_superieur:
+            transport: "%mailer_plaideurs_transport%"
+            host:      "%mailer_plaideurs_host%"
+            username:  "%mailer_superieur_user%"
+            password:  "%mailer_superieur_password%"
+            encryption: "%mailer_plaideurs_encryption%"
+            port: "%mailer_plaideurs_port%"
+            spool:     { type: memory }
 
 fos_user:
     db_driver:     orm

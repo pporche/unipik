@@ -77,14 +77,6 @@ swiftmailer:
             encryption: "%mailer_encryption%"
             port: "%mailer_port%"
             spool:     { type: memory }
-        second_mailer:
-            transport: "%mailer_transport%"
-            host:      "%mailer_kaki_host%"
-            username:  "%mailer_kaki_user%"
-            password:  "%mailer_kaki_password%"
-            encryption: "%mailer_encryption%"
-            port: "%mailer_port%"
-            spool:     { type: memory }
         mailer_maternelle:
             transport: "%mailer_plaideurs_transport%"
             host:      "%mailer_plaideurs_host%"

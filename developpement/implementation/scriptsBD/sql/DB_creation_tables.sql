@@ -149,7 +149,8 @@ CREATE TABLE IF NOT EXISTS mailtask (
 	interval INT, 
 	lastrun DATE, 
 	id_etablissement TEXT NOT NULL, 
-	date_insert DATE NOT NULL
+	date_insert DATE NOT NULL, 
+	type_email TEXT
 );
 
 
@@ -591,7 +592,8 @@ CREATE INDEX ville_nom_index ON ville(nom);
 CREATE INDEX departement_nom_index ON departement(nom);
 CREATE INDEX departement_numero_index ON departement(numero);
 CREATE INDEX code_postal_code_index ON code_postal(code);
-
+CREATE INDEX etablissement_ville_index ON etablissement(adresse_id);
+CREATE INDEX etablissement_nom_index ON etablissement(nom);
 
 
 

@@ -7,6 +7,8 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{{ asset('vendor/jq/jqPlugin.js') }}"></script>
+
     <script>
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(function () {
@@ -50,7 +52,11 @@
         });
 
         var topEtablissements = {{ topEtablissements|raw }};
-        console.log(topEtablissements[0]);
+        for(i=0; i<topEtablissements.length; i++){
+            var id = "/unicef/app_dev.php/etablissement/"+topEtablissements[i]['etabId'];
+            var html = "<a href="+id+"><p style='margin-top: 10px;'><span class='index'>"+ (i+1) +"</span>"+topEtablissements[i]['etabNom']+"<span style='float:right;'>"+topEtablissements[i]['count1']+" Interventions</span></p></a>";
+            $("#topTen").append(html);
+        }
 
         // Callback pour créer le diagramme, l'instancier et le dessiner.
         function drawChart(index) {
@@ -193,7 +199,7 @@
 {% block body%}
     <style>
         @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
-        #chart_intervention{
+        #chart_intervention, .topTen{
             max-width: 500px;
             margin: auto;
             margin-bottom: 100px;
@@ -229,9 +235,28 @@
             display: block;
             margin: auto;
         }
+        section{
+            width: 650px !important;
+            margin: auto;
+        }
+        .index{
+            width: 25px;
+            height: 25px;
+            background-color: #333;
+            color: #fff;
+            display: inline-block;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: bold;
+            padding-top: 1px;
+            margin-right: 15px;
+        }
+        a, a:hover, a:visited{
+            color: #333;
+            text-decoration: none;
+        }
     </style>
     <h1>Statistiques</h1><hr>
-
     <h4>Nombre d'intervention(s) réalisée(s) durant année</h4>
     <select id="selectYears"></select>
     <div id="chart_intervention"></div>
@@ -246,4 +271,14 @@
     <h4>Nombre de plaidoyers réalisés par niveau scolaire</h4>
     <select id="selectYearsNiveaux"></select>
     <div id="chart_intervention_niveaux"></div>
+
+    <h4>Ranking d'Établissements par nombre d'Interventions réalisées</h4>
+    <div class="topTen">
+        <section class="accueilSq gauche" id="topTen">
+            <img src="{{ asset('img/logo-gris.png') }}" alt="logo" class="logoGauche">
+
+        </section>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="window.print();"> Imprimer </button>
+
 {% endblock %}

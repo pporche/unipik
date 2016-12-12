@@ -676,6 +676,27 @@ class InterventionController extends Controller {
     }
 
     /**
+     * Supprimer demande
+     *
+     * @param Int $id id
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function supprimerDemandeAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getInterventionRepository();
+        $intervention = $repository->find($id);
+        $demande = $intervention->getDemande();
+        $interventionsDeLaDemande = $repository->getInterventionsDeDemande($demande);
+        foreach ($interventionsDeLaDemande as $intervention) {
+            $em->remove($intervention);
+        }
+        $em->remove($demande);
+        $em->flush();
+        return $this->redirectToRoute('intervention_list');
+    }
+
+    /**
      * Supprimer intervention
      *
      * @param Request $request Une requete

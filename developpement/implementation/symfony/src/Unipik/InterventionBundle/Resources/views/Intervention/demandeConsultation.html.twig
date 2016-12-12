@@ -75,7 +75,7 @@
                 id: 'mapbox.streets'
             }).addTo(mymap);
             var marker = L.marker([lon, lat]).addTo(mymap);
-            marker.bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a target='_blank' href='" + location.protocol + "//maps.google.fr/maps?saddr={{ intervention.etablissement.adresse.geolocalisation|split(' ')[1]|split(')')[0] }},{{ intervention.etablissement.adresse.geolocalisation|split('(')[1]|split(' ')[0] }}&daddr=" + lon + ',' + lat +"'>S'y rendre</a>").openPopup();
+            marker.bindPopup("<b>{{ intervention.etablissement.nom }}</b><br>{{ intervention.etablissement.adresse.ville.nom }}<br><a target='_blank' href='" + location.protocol + "//maps.google.fr/maps?saddr={{ user.adresse.geolocalisation|split(' ')[1]|split(')')[0] }},{{ user.adresse.geolocalisation|split('(')[1]|split(' ')[0] }}&daddr=" + lon + ',' + lat +"'>S'y rendre</a>").openPopup();
         {% else %}
             $("#mapid").html("Les coordonnées de l'établissement ne sont pas renseignées.");
         {% endif %}
@@ -616,10 +616,18 @@
                             <div id="mapid"></div>
                         </div>
                     </div>
-
-
                 </div>
             </section>
+        </div>
+        <div class="row">
+            <div class="buttons">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path("demande_admin_delete", {'id': intervention.id}) }}" class="btn btn-danger"
+                       onclick="return confirm('Souhaitez vous vraiment supprimer cette demande ? Cela supprimera également les interventions associées !')">
+                        <span class="glyphicon glyphicon-trash"> </span>&nbsp Supprimer
+                    </a>
+                {% endif %}
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-12 col-sm-12 col-lg-8 col-lg-offset-2 infoContainer">

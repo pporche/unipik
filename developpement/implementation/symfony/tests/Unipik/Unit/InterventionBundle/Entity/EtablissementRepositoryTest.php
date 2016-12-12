@@ -446,7 +446,7 @@ class EtablissementRepositoryTest extends RepositoryTestCase
         // Begin transaction
         $this->em->beginTransaction();
 
-        $expectedResult = 8;
+        $expectedResult = 4;
 
         $contact = ContactMock::create();
         $d = new Demande();

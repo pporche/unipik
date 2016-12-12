@@ -80,8 +80,15 @@
             };
 
             // Instancier et dessiner le diagramme (remplacer PieChart par BarChart pour avoir un diagramme bâtons).
-            var chart = new google.visualization.PieChart(document.getElementById('chart_intervention'));
-            chart.draw(data, options);
+
+
+            // Instancier et dessiner le diagramme (remplacer PieChart par BarChart pour avoir un diagramme bâtons)
+            if(parseInt(interventions[index]['plaidoyers']) == 0 && parseInt(interventions[index]['frimousses'])==0 && parseInt(interventions[index]['autres'])==0){
+                $("#chart_intervention").html("<h4 style='text-align: center'>Il n'y a pas de données disponibles</h4>");
+            }else{
+                var chart = new google.visualization.PieChart(document.getElementById('chart_intervention'));
+                chart.draw(data, options);
+            }
         }
 
         function drawVisualization() {

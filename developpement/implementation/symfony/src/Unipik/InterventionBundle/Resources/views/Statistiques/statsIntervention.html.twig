@@ -68,8 +68,7 @@
 
             // Options du diagramme.
             var currentDate = new Date();
-            var options = {'title':"Nombre d'intervention(s) réalisée(s) durant l'année scolaire " + currentDate.getFullYear() + "/" + (currentDate.getFullYear() + 1),
-                //'pieHole': 0.4,
+            var options = {
                 'width':600,
                 'height':300,
                 'is3D': true,
@@ -100,7 +99,6 @@
             });
 
             var options = {
-                title : 'Intervention(s) réalisée(s) par année scolaire',
                 vAxis: {title: "Nombre d'intervention"},
                 hAxis: {title: 'Année scolaire'},
                 seriesType: 'bars',
@@ -136,7 +134,6 @@
             ]);
 
             var options = {
-                title: 'Nombre de plaidoyers réalisés par thème',
                 colors: ['silver', 'silver'],
                 hAxis: {
                     title: 'Thèmes',
@@ -166,7 +163,6 @@
             ]);
 
             var options = {
-                title: 'Nombre de plaidoyers réalisés par niveau scolaire',
                 colors: ['silver', 'silver'],
                 hAxis: {
                     title: 'Type d\'enseignement',
@@ -229,7 +225,7 @@
     </style>
     <h1>Statistiques</h1><hr>
 
-    <h4>Nombre d'intervention(s) réalisée(s) par année</h4>
+    <h4>Nombre d'intervention(s) réalisée(s) durant année</h4>
     <select id="selectYears"></select>
     <div id="chart_intervention"></div>
 

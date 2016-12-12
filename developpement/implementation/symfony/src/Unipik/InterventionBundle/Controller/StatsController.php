@@ -115,10 +115,8 @@ class StatsController extends Controller {
         for ($i = 0; $i < self::NUMBER_YEAR; $i++) {
             $currentYearSup = $currentYear - $i;
             $currentYearInf = $currentYear - $i - 1;
-            $countPlaidoyer = $repository->getNumberVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
-            $countFrimousse = $repository->getNumberVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
-            $countAutre = $repository->getNumberVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
-            array_push($ventesArray, array());
+            $countVente = $repository->getNumberVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+            array_push($ventesArray, array('ventes' => $countVente));
         }
 
         return $this->render(

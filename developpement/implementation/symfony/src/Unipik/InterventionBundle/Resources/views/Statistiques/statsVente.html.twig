@@ -29,6 +29,7 @@
         // Callback pour créer le diagramme, l'instancier et le dessiner.
         function drawChart(index) {
 
+
             {#ventes = {{ ventes|raw }};#}
             // Création de la datatable pour populer le diagramme.
             var data = new google.visualization.DataTable();
@@ -55,7 +56,7 @@
             };
 
             // Instancier et dessiner le diagramme (remplacer PieChart par BarChart pour avoir un diagramme bâtons).
-            var chart = new google.visualization.PieChart(document.getElementById('chart_vente'));
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_vente'));
             chart.draw(data, options);
         }
 

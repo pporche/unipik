@@ -66,8 +66,16 @@ class StatsController extends Controller {
             'superieur' => 0
         );
 
+        $eleves = array('maternelle' => 0,
+            'elementaire' => 0,
+            'college' => 0,
+            'lycee' => 0,
+            'superieur' => 0
+        );
+
         $themesArray = array();
         $niveauxArray = array();
+        $elevesArray = array();
 
         $interventionsArray = array();
         $currentYear = date('Y') + 1;
@@ -80,18 +88,24 @@ class StatsController extends Controller {
             $countAutre = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::AUTRE);
 
             foreach ($themes as $theme => $value) {
-                $countTheme = $repository->getNumberInterventionByTheme('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, $theme);
+                $countTheme = $repository->getNumberInterventionByTheme($theme, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
                 $themes[$theme] = $countTheme;
             }
 
             foreach ($niveaux as $niveau => $value) {
-                $countNiveau = $repository->getNumberInterventionByNiveau('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, $niveau);
+                $countNiveau = $repository->getNumberInterventionByNiveau($niveau, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
                 $niveaux[$niveau] = $countNiveau;
+            }
+
+            foreach ($eleves as $niveau => $value) {
+                $countEleves = $em->getRepository('InterventionBundle:Intervention')->getElevesSensibilise($niveau, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+                $eleves[$niveau] = $countEleves;
             }
 
             array_push($interventionsArray, array('plaidoyers' => $countPlaidoyer, 'frimousses' => $countFrimousse, 'autres' => $countAutre));
             array_push($themesArray, $themes);
             array_push($niveauxArray, $niveaux);
+            array_push($elevesArray, $eleves);
         }
 
         $topEtablissements = $em->getRepository('InterventionBundle:Etablissement')->getTop10Etablissements();
@@ -101,7 +115,8 @@ class StatsController extends Controller {
             'interventions' => json_encode($interventionsArray),
             'themes' => json_encode($themesArray),
             'niveaux' => json_encode($niveauxArray),
-            'topEtablissements' => json_encode($topEtablissements)
+            'topEtablissements' => json_encode($topEtablissements),
+            'eleves' => json_encode($elevesArray)
             )
         );
     }

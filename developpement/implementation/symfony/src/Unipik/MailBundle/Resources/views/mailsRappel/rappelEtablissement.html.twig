@@ -1,4 +1,18 @@
-<p>Mail de rappel établissement</p>
+Bonjour,
 {% for intervention in interventions %}
-    <p>{{ intervention.id }}</p>
+    <p>Ceci est un email de rappel d'intervention.</p>
+    <p>Un bénévole interviendra dans au sein de votre établissement le {{intervention.dateIntervention|date('Y-m-d')}} à {{intervention.heure}}.</p>
+    <p>Il y aura {{ intervention.nbPersonne }} participants.</p>
+
+    <p>
+        {% if intervention.typeIntervention == 'plaidoyer' %}
+            Cette action éducative portera sur le thème {{ intervention.niveauTheme.theme }}.
+        {% else %}
+            Cette intervention est de type {{intervention.typeIntervention }} .
+        {% endif %}
+    </p>
+    <p>Veuillez contacter {{ intervention.benevole }} par email au {{ intervention.benevole.email }} ou par téléphone au {{ intervention.benevole.telPortable }} en cas de changement.</p>
+
+    <p>A bientôt,</p>
+    <p>L'équipe Unicef.</p>
 {% endfor %}

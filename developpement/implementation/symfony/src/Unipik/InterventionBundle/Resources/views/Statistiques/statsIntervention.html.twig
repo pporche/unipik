@@ -68,8 +68,7 @@
 
             // Options du diagramme.
             var currentDate = new Date();
-            var options = {'title':"Nombre d'intervention(s) réalisée(s) durant l'année scolaire " + currentDate.getFullYear() + "/" + (currentDate.getFullYear() + 1),
-                //'pieHole': 0.4,
+            var options = {
                 'width':600,
                 'height':300,
                 'is3D': true,
@@ -100,7 +99,6 @@
             });
 
             var options = {
-                title : 'Intervention(s) réalisée(s) par année scolaire',
                 vAxis: {title: "Nombre d'intervention"},
                 hAxis: {title: 'Année scolaire'},
                 seriesType: 'bars',
@@ -136,7 +134,6 @@
             ]);
 
             var options = {
-                title: 'Nombre de plaidoyers réalisés par thème',
                 colors: ['silver', 'silver'],
                 hAxis: {
                     title: 'Thèmes',
@@ -166,7 +163,6 @@
             ]);
 
             var options = {
-                title: 'Nombre de plaidoyers réalisés par niveau scolaire',
                 colors: ['silver', 'silver'],
                 hAxis: {
                     title: 'Type d\'enseignement',
@@ -188,16 +184,59 @@
 {% endblock %}
 
 {% block body%}
-    <h1>Statistiques</h1>
-    <div id="chart_intervention"></div>
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+        #chart_intervention{
+            max-width: 500px;
+            margin: auto;
+            margin-bottom: 100px;
+        }
+        #chart_intervention_years{
+            max-width: 900px;
+            margin: auto;
+            min-height: 400px;
+            margin-bottom: 100px;
+        }
+        #chart_intervention_themes{
+            max-width: 1100px;
+            min-height: 400px;
+            margin: auto;
+            margin-bottom: 100px;
+        }
+        #chart_intervention_niveaux{
+            max-width: 1100px;
+            margin: auto;
+            min-height: 400px;
+            margin-bottom: 100px;
+        }
+        h1{
+            margin-top: 50px;
+            font-family: 'Ubuntu Condensed', sans-serif;
+        }
+        h4{
+            margin-top: 30px;
+            margin-left: 20px;
+            font-family: 'Ubuntu Condensed', sans-serif;
+        }
+        select{
+            display: block;
+            margin: auto;
+        }
+    </style>
+    <h1>Statistiques</h1><hr>
+
+    <h4>Nombre d'intervention(s) réalisée(s) durant année</h4>
     <select id="selectYears"></select>
-    <h1>KAKIIIIIIIIII</h1>
-    <div id="chart_intervention_years" style="width: 900px; height: 500px;"></div>
-    <h1>Osef</h1>
-    <div id="chart_intervention_themes" style="width: 1100px; height: 500px;"></div>
+    <div id="chart_intervention"></div>
+
+    <h4>Intervention(s) réalisée(s) par année scolaire</h4>
+    <div id="chart_intervention_years"></div>
+
+    <h4>Nombre de plaidoyers réalisés par thème</h4>
     <select id="selectYearsThemes"></select>
-    <h1>Osef le retour !</h1>
-    <div id="chart_intervention_niveaux" style="width: 1100px; height: 500px;"></div>
+    <div id="chart_intervention_themes"></div>
+
+    <h4>Nombre de plaidoyers réalisés par niveau scolaire</h4>
     <select id="selectYearsNiveaux"></select>
-    <h1>Bambi dans la prairie</h1>
+    <div id="chart_intervention_niveaux"></div>
 {% endblock %}

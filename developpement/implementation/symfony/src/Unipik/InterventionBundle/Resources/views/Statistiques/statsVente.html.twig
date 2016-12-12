@@ -73,7 +73,6 @@
             });
 
             var options = {
-                title : 'Vente(s) réalisée(s) par année scolaire',
                 vAxis: {title: "Nombre de ventes"},
                 hAxis: {title: 'Année scolaire'},
                 seriesType: 'bars',
@@ -94,10 +93,41 @@
 {% endblock %}
 
 {% block body%}
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
+        h1{
+            margin-top: 50px;
+            font-family: 'Ubuntu Condensed', sans-serif;
+        }
+        h4{
+            margin-top: 30px;
+            margin-left: 20px;
+            font-family: 'Ubuntu Condensed', sans-serif;
+        }
+        select{
+            display: block;
+            margin: auto;
+        }
+        #chart_vente{
+            max-width: 600px;
+            margin: auto;
+            min-height: 400px;
+            margin-bottom: 100px;
+        }
+        #chart_vente_years{
+            max-width: 1100px;
+            margin: auto;
+            min-height: 400px;
+            margin-bottom: 100px;
+        }
+    </style>
     <h1>Statistiques sur les ventes</h1>
+    <hr>
     <select id="selectYears"></select>
+    <h4>Nombre de vente(s) réalisée(s) durant année scolaire </h4>
     <div id="chart_vente"></div>
-    <div id="chart_vente_years" {#style="width: 900px; height: 500px;"#}></div>
+    <h4>Nombre de vente(s) réalisée(s) par année scolaire </h4>
+    <div id="chart_vente_years" style="width: 900px; height: 500px;"></div>
 {% endblock %}
 
 {#https://developers.google.com/chart/interactive/docs/gallery#}

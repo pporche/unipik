@@ -7,6 +7,8 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{{ asset('vendor/jq/jqPlugin.js') }}"></script>
+
     <script>
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(function () {
@@ -193,7 +195,7 @@
 {% block body%}
     <style>
         @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
-        #chart_intervention{
+        #chart_intervention, .topTen{
             max-width: 500px;
             margin: auto;
             margin-bottom: 100px;
@@ -231,7 +233,9 @@
         }
     </style>
     <h1>Statistiques</h1><hr>
-
+    <a href="#" onclick="return xepOnline.Formatter.Format('chart_intervention',{render:'download'});">
+        <em class="glyphicon glyphicon-print"></em>
+    </a>
     <h4>Nombre d'intervention(s) réalisée(s) durant année</h4>
     <select id="selectYears"></select>
     <div id="chart_intervention"></div>
@@ -246,4 +250,12 @@
     <h4>Nombre de plaidoyers réalisés par niveau scolaire</h4>
     <select id="selectYearsNiveaux"></select>
     <div id="chart_intervention_niveaux"></div>
+
+    <h4>Liste des 10 Établissements avec les plus d'interventions</h4>
+    <div class="topTen">
+        <section class="accueilSq gauche">
+            <img src="{{ asset('img/logo-gris.png') }}" alt="logo" class="logoGauche">
+            
+        </section>
+    </div>
 {% endblock %}

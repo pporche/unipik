@@ -684,4 +684,33 @@ class InterventionRepository extends EntityRepository {
 
         return $qb->getQuery()->getSingleScalarResult();
     }
+
+    /**
+     * @param $niveau
+     * @param null $dateSup
+     * @param null $dateInf
+     * @return mixed
+     */
+    public function getElevesSensibilise($niveau, $dateSup = null, $dateInf = null) {
+        $qb = $this->createQueryBuilder('i')
+            ->select('sum(i.nbPersonne)')
+            ->where('i.realisee = true')
+            ->andWhere('i.typeIntervention = \'plaidoyer\'')
+            ->join('i.etablissement', 'e')
+            ->andWhere('e.typeEnseignement = :niveau')
+            ->setParameter('niveau', $niveau)
+        ;
+
+        if (isset($dateSup)) {
+            $qb->andWhere('i.dateIntervention < :dateSup')
+                ->setParameter('dateSup', $dateSup);
+        }
+
+        if (isset($dateInf)) {
+            $qb->andWhere('i.dateIntervention > :dateInf')
+                ->setParameter('dateInf', $dateInf);
+        }
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

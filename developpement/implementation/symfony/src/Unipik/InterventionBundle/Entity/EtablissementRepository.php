@@ -381,7 +381,7 @@ class EtablissementRepository extends EntityRepository {
 //        SELECT e.*, COUNT(i.id) FROM etablissement e, intervention i WHERE e.id = i.etablissement_id GROUP BY e.id ORDER BY COUNT(i.id) DESC LIMIT 10
 
         $qb = $this->createQueryBuilder('e')
-            ->addSelect('e, count(i.id) as count1')
+            ->addSelect('e.nom as etabNom, e.id as etabId, count(i.id) as count1')
             ->from('InterventionBundle:Intervention', 'i')
             ->where('i.etablissement = e')
             ->groupBy('e.id')

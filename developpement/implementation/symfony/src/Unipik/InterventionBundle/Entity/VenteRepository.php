@@ -285,6 +285,9 @@ class VenteRepository extends EntityRepository {
                 ->setParameter('dateInf', $dateInf);
         }
 
+        $qb->andWhere('v.dateVente <= :today')
+            ->setParameter('today', new \DateTime());
+
         return $qb->getQuery()->getSingleScalarResult();
     }
 
@@ -306,6 +309,9 @@ class VenteRepository extends EntityRepository {
             $qb->andWhere('v.dateVente >= :dateInf')
                 ->setParameter('dateInf', $dateInf);
         }
+
+        $qb->andWhere('v.dateVente <= :today')
+            ->setParameter('today', new \DateTime());
 
         return $qb->getQuery()->getSingleScalarResult();
     }

@@ -19,6 +19,7 @@ namespace Unipik\InterventionBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Le controller qui gère les statistiques
@@ -118,6 +119,8 @@ class StatsController extends Controller {
         }
 
         $topEtablissements = $em->getRepository('InterventionBundle:Etablissement')->getTop10Etablissements();
+        var_dump('---');
+//        var_dump($topEtablissements);
 
         return $this->render(
             'InterventionBundle:Statistiques:statsIntervention.html.twig', array(
@@ -143,7 +146,7 @@ class StatsController extends Controller {
         $ventesYearArray = array();
         $ventesMonthArray = array();
         $currentYear = date('Y') + 1;
-        for ($i = 0; $i < self::NUMBER_YEAR; $i++) {
+        for ($i = self::NUMBER_YEAR-1; $i > -1; $i--) {
             $ventesOneYearArray = array();
             $currentYearSup = $currentYear - $i;
             $currentYearInf = $currentYear - $i - 1;

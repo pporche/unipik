@@ -1,6 +1,6 @@
-# version 1.00 date 29/03/2016 auteur(s) Michel Cressant
+# version 1.00 date 01/12/12 Kafui Atanley
 
 # Définition du nom du document
-NOM_FICHIER=DCD_D_Unipik_l3
+NOM_FICHIER=DCD_D_Unipik_l4
 
-LOCPATH=developpement/lot3/DCD
+LOCPATH=developpement/lot4/DCD

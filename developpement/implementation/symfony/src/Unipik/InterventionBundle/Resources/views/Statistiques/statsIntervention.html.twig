@@ -53,9 +53,8 @@
 
         var topEtablissements = {{ topEtablissements|raw }};
         for(i=0; i<topEtablissements.length; i++){
-            var id = topEtablissements[i]['etabId'];
-            console.log(id);
-            var html = "<p style='margin-top: 10px;'><span class='index'>"+ (i+1) +"</span>"+topEtablissements[i]['etabNom']+"<span style='float:right;'>"+topEtablissements[i]['count1']+" Interventions</span></p>";
+            var id = "/unicef/app_dev.php/etablissement/"+topEtablissements[i]['etabId'];
+            var html = "<a href="+id+"><p style='margin-top: 10px;'><span class='index'>"+ (i+1) +"</span>"+topEtablissements[i]['etabNom']+"<span style='float:right;'>"+topEtablissements[i]['count1']+" Interventions</span></p></a>";
             $("#topTen").append(html);
         }
 
@@ -251,6 +250,10 @@
             font-weight: bold;
             padding-top: 1px;
             margin-right: 15px;
+        }
+        a, a:hover, a:visited{
+            color: #333;
+            text-decoration: none;
         }
     </style>
     <h1>Statistiques</h1><hr>

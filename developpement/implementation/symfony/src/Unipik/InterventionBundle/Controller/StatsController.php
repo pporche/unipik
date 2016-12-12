@@ -142,33 +142,45 @@ class StatsController extends Controller {
         $months = array('09', '10', '11', '12', '01', '02', '03', '04', '05', '06', '07', '08', '09');
 
         $ventesYearArray = array();
+        $cAYearArray = array();
         $ventesMonthArray = array();
+        $cAMonthArray = array();
         $currentYear = date('Y') + 1;
         for ($i = self::NUMBER_YEAR-1; $i > -1; $i--) {
             $ventesOneYearArray = array();
+            $cAOneYearArray = array();
             $currentYearSup = $currentYear - $i;
             $currentYearInf = $currentYear - $i - 1;
             $countVenteYear = $repository->getNumberVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+            $cAYear = $repository->getCAVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
             for ($j = 1; $j < count($months); $j++) {
                 if ($j < 4) {
                     $countVenteMonth = $repository->getNumberVenteMonth('01/' . $months[$j] . '/' . $currentYearInf, '01/' . $months[$j - 1] . '/' . $currentYearInf);
+                    $cAMonth = $repository->getCAVenteMonth('01/' . $months[$j] . '/' . $currentYearInf, '01/' . $months[$j - 1] . '/' . $currentYearInf);
                 }
                 elseif ($j > 4) {
                     $countVenteMonth = $repository->getNumberVenteMonth('01/' . $months[$j] . '/' . $currentYearSup, '01/' . $months[$j - 1] . '/' . $currentYearSup);
+                    $cAMonth = $repository->getCAVenteMonth('01/' . $months[$j] . '/' . $currentYearSup, '01/' . $months[$j - 1] . '/' . $currentYearSup);
                 }
                 else {
                     $countVenteMonth = $repository->getNumberVenteMonth('01/' . $months[$j] . '/' . $currentYearSup, '01/' . $months[$j - 1] . '/' . $currentYearInf);
+                    $cAMonth = $repository->getCAVenteMonth('01/' . $months[$j] . '/' . $currentYearSup, '01/' . $months[$j - 1] . '/' . $currentYearInf);
                 }
                 array_push($ventesOneYearArray, $countVenteMonth);
+                array_push($cAOneYearArray, $cAMonth);
             }
             array_push($ventesMonthArray, $ventesOneYearArray);
             array_push($ventesYearArray, $countVenteYear);
+            array_push($cAMonthArray, $cAOneYearArray);
+            array_push($cAYearArray, $cAYear);
         }
 
         return $this->render(
             'InterventionBundle:Statistiques:statsVente.html.twig', array(
                 'ventesYear' => json_encode($ventesYearArray),
                 'ventesMonth' => json_encode($ventesMonthArray),
+                'caYear' => json_encode($cAYearArray),
+                'caMonth' => json_encode($cAMonthArray),
             )
         );
     }

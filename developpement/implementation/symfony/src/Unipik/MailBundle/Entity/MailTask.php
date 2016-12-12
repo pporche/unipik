@@ -82,6 +82,13 @@ class MailTask {
      */
     private $date_insert;
 
+    /**
+     * Le type de mail
+     *
+     * @ORM\Column(name="type_email", type="string")
+     */
+    private $type_email;
+
 
     /**
      * Retourne l'id
@@ -194,6 +201,23 @@ class MailTask {
      */
     public function setIdEtablissement($id_etablissement) {
         $this->id_etablissement = $id_etablissement;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeEmail() {
+        return $this->type_email;
+    }
+
+    /**
+     * @param mixed $type_email
+     *
+     * @return $this
+     */
+    public function setTypeEmail($type_email) {
+        $this->type_email = $type_email;
         return $this;
     }
 }

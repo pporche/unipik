@@ -142,6 +142,7 @@ class MailController extends Controller {
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('InterventionBundle:Etablissement');
+            $mailtask = new MailTask();
 
             // On récupère les données du formulaire
             $typeInstitute = $form->get("typeInstitute")->getData();
@@ -169,11 +170,13 @@ class MailController extends Controller {
                 $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, null, $ville, $geolocalisation, $distance) : array();
                 $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, null, $ville, $geolocalisation, $distance) : array();
                 $ids = array_merge($institutesArray, $centersArray, $othersArray);
+                $mailtask->setTypeEmail('nonReponse');
             } else if ($relance == 'relancePlaidoyer') { // Les établissements qui ont pas fait de demande  de plaidoyers durant cette année scolaire
                 $institutesArray = !empty($typeInstitute) ? $repository->getTypeAndNoInterventionThisYear('enseignement', $typeInstitute, 'plaidoyers', $ville, $geolocalisation, $distance) : array();
                 $centersArray = !empty($typeCenter) ? $repository->getTypeAndNoInterventionThisYear('centre', $typeCenter, 'plaidoyers', $ville, $geolocalisation, $distance) : array();
                 $othersArray = !empty($typeOther) ? $repository->getTypeAndNoInterventionThisYear('autreEtablissement', $typeOther, 'plaidoyers', $ville, $geolocalisation, $distance) : array();
                 $ids = array_merge($institutesArray, $centersArray, $othersArray);
+                $mailtask->setTypeEmail('reponse');
             } else { // Les établissements en général
                 $institutesArray = !empty($typeInstitute) ? $repository->getType("enseignement", $typeInstitute, $ville, null, null, $geolocalisation, $distance) : array();
                 $centersArray = !empty($typeCenter) ? $repository->getType("centre", $typeCenter, $ville, null, null, $geolocalisation, $distance) : array();
@@ -182,11 +185,11 @@ class MailController extends Controller {
                 foreach ($mergedArray as $institute) {
                     array_push($ids, $institute->getId());
                 }
+                $mailtask->setTypeEmail('parDefaut');
             }
             $ids = array_diff($ids, $instituteExclude); // On dégage les établissements dont la demande a pas été satisfaite durant cette année scolaire
 
             if (!empty($ids)) { // Si la recherche donne pas d'établissement on créé pas d'entrée BD pour rien
-                $mailtask = new MailTask();
                 $mailtask
                     ->setName('Mail task')
                     ->setInterval(3600) // Interval pour savoir quand on peut exécuter la tâche
@@ -208,15 +211,20 @@ class MailController extends Controller {
      * @return void
      */
     public function kakiAction() {
-        $em = $this->getDoctrine()->getManager();
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('florian.leriche@neuf.fr')
+            ->setTo('onch1@yopmail.com')
+            ->setBody(
+                $this->renderView(
+                    'MailBundle:mailsEtablissement:emailCollege.html.twig',
+                    array('id' => 10)
+                ),
+                'text/html'
+            );
 
-        $mailHistorique = new MailHistorique();
-        $mailHistorique
-            ->setDateEnvoi(new \DateTime())
-            ->setTypeEmail('relance')
-            ->setIdEtablissement(12);
+        $this->get('second_mailer')->send($message);
 
-        $em->persist($mailHistorique);
-        $em->flush();
+        return $this->redirectToRoute('architecture_homepage');
     }
 }

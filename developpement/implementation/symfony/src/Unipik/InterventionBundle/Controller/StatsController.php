@@ -77,6 +77,7 @@ class StatsController extends Controller {
         $themesArray = array();
         $niveauxArray = array();
         $elevesArray = array();
+        $themesNiveauxArray = array();
 
         $interventionsArray = array();
         $currentYear = date('Y') + 1;
@@ -89,24 +90,32 @@ class StatsController extends Controller {
             $countAutre = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::AUTRE);
 
             foreach ($themes as $theme => $value) {
-                $countTheme = $repository->getNumberInterventionByTheme($theme, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+                $countTheme = $repository->getNumberInterventionByThemeAndNiveau($theme, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
                 $themes[$theme] = $countTheme;
+            }
+            array_push($themesArray, $themes);
+
+            foreach ($niveaux as $niveau => $valueNiveau) {
+                foreach ($themes as $theme => $value) {
+                    $countThemeNiveau = $repository->getNumberInterventionByThemeAndNiveau($theme, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf, $niveau);
+                    $themes[$theme] = $countThemeNiveau;
+                }
+                array_push($themesNiveauxArray, $themes);
             }
 
             foreach ($niveaux as $niveau => $value) {
                 $countNiveau = $repository->getNumberInterventionByNiveau($niveau, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
                 $niveaux[$niveau] = $countNiveau;
             }
+            array_push($niveauxArray, $niveaux);
 
             foreach ($eleves as $niveau => $value) {
                 $countEleves = $em->getRepository('InterventionBundle:Intervention')->getElevesSensibilise($niveau, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
                 $eleves[$niveau] = $countEleves;
             }
+            array_push($elevesArray, $eleves);
 
             array_push($interventionsArray, array('plaidoyers' => $countPlaidoyer, 'frimousses' => $countFrimousse, 'autres' => $countAutre));
-            array_push($themesArray, $themes);
-            array_push($niveauxArray, $niveaux);
-            array_push($elevesArray, $eleves);
         }
 
         $topEtablissements = $em->getRepository('InterventionBundle:Etablissement')->getTop10Etablissements();
@@ -117,7 +126,8 @@ class StatsController extends Controller {
             'themes' => json_encode($themesArray),
             'niveaux' => json_encode($niveauxArray),
             'topEtablissements' => json_encode($topEtablissements),
-            'eleves' => json_encode($elevesArray)
+            'eleves' => json_encode($elevesArray),
+            'themesNiveaux' => json_encode($themesNiveauxArray)
             )
         );
     }

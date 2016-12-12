@@ -8,23 +8,26 @@
     {{ parent() }}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(function () {
-            drawChartOneYear(0);
-            drawChartAllYears();
-        });
-
         var ventesYear = {{ ventesYear|raw }};
         var ventesMonths = {{ ventesMonth|raw }};
+
         ventesYear.forEach(function (value, i) {
             $('#selectYears').append($('<option>', {
                 value: i,
-                text: (new Date().getFullYear() - i) + '/' + (new Date().getFullYear() - i + 1)
+                text: (new Date().getFullYear() - ventesYear.length + i + 1) + '/' + (new Date().getFullYear() - ventesYear.length + i + 2)
             }));
         });
 
+        $('#selectYears').val(ventesYear.length-1);
+
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(function () {
+            drawChartOneYear(ventesYear.length-1);
+            drawChartAllYears();
+        });
+
         $('#selectYears').change(function () {
-            drawChartOneYear($('#selectYears').val());
+            drawChartOneYear(parseInt($('#selectYears').val()));
         });
 
         // Callback pour créer le diagramme, l'instancier et le dessiner.
@@ -32,7 +35,6 @@
 
             // Création de la datatable pour populer le diagramme.
             var data = new google.visualization.DataTable();
-            console.log(ventesMonths[index]);
             data.addColumn('string', 'Vente');
             data.addColumn('number', 'Nombre');
             var months = ['Septembre', 'Octobre', 'Novembre', 'Décembre', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août'];
@@ -43,7 +45,7 @@
             // Options du diagramme.
             var currentDate = new Date();
             var options = {
-                title: "Nombre de vente(s) réalisée(s) durant l'année scolaire " + (currentDate.getFullYear() - index) + "/" + (currentDate.getFullYear() - index + 1),
+                title: "Nombre de vente(s) réalisée(s) durant l'année scolaire " + (currentDate.getFullYear() - ventesYear.length + index + 1) + "/" + (currentDate.getFullYear() - ventesYear.length + index + 2),
                 vAxis: {title: "Nombre de ventes"},
                 hAxis: {title: 'Mois'},
                 seriesType: 'bars',
@@ -63,13 +65,13 @@
 
         function drawChartAllYears() {
             // Some raw data (not necessarily accurate)
-            var currentDate = new Date().getFullYear();
+            var currentDate = new Date().getFullYear() + 1;
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Vente');
             data.addColumn('number', 'Nombre');
 
-            ventesYear.reverse().forEach(function (value, i) {
-                data.addRow(['' + (currentDate - i) + '/' + (currentDate - i + 1), parseInt(value['ventes'])]);
+            ventesYear.forEach(function (value, i) {
+                data.addRow(['' + (currentDate - ventesYear.length + i) + '/' + (currentDate - ventesYear.length + i + 1), parseInt(ventesYear[i])]);
             });
 
             var options = {
@@ -124,7 +126,7 @@
     <h1>Statistiques sur les ventes</h1>
     <hr>
     <select id="selectYears"></select>
-    <h4>Nombre de vente(s) réalisée(s) durant année scolaire </h4>
+    <h4>Nombre de vente(s) réalisée(s) sur une année scolaire </h4>
     <div id="chart_vente"></div>
     <h4>Nombre de vente(s) réalisée(s) par année scolaire </h4>
     <div id="chart_vente_years" style="width: 900px; height: 500px;"></div>

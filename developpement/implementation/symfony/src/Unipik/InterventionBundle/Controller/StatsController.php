@@ -120,7 +120,7 @@ class StatsController extends Controller {
 
         $topEtablissements = $em->getRepository('InterventionBundle:Etablissement')->getTop10Etablissements();
         var_dump('---');
-        var_dump($topEtablissements);
+//        var_dump($topEtablissements);
 
         return $this->render(
             'InterventionBundle:Statistiques:statsIntervention.html.twig', array(

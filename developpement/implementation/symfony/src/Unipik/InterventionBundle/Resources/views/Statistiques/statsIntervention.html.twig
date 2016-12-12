@@ -50,7 +50,8 @@
         });
 
         var topEtablissements = {{ topEtablissements|raw }};
-        console.log(topEtablissements[0]);
+        console.log(topEtablissements[0]['etabNom']);
+        console.log(topEtablissements[0]['etabId']);
 
         // Callback pour créer le diagramme, l'instancier et le dessiner.
         function drawChart(index) {

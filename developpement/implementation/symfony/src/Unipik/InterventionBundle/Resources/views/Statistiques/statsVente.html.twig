@@ -8,43 +8,50 @@
     {{ parent() }}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(function () {
-            drawChart(0);
-            drawVisualization();
-        });
+        var ventesYear = {{ ventesYear|raw }};
+        var ventesMonths = {{ ventesMonth|raw }};
 
-        var ventes = {{ ventes|raw }};
-        ventes.forEach(function (value, i) {
+        ventesYear.forEach(function (value, i) {
             $('#selectYears').append($('<option>', {
                 value: i,
-                text: '' + (new Date().getFullYear() - i + 1) + '/' + (new Date().getFullYear() - i)
+                text: (new Date().getFullYear() - ventesYear.length + i + 1) + '/' + (new Date().getFullYear() - ventesYear.length + i + 2)
             }));
         });
 
+        $('#selectYears').val(ventesYear.length-1);
+
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(function () {
+            drawChartOneYear(ventesYear.length-1);
+            drawChartAllYears();
+        });
+
         $('#selectYears').change(function () {
-            drawChart($('#selectYears').val());
+            drawChartOneYear(parseInt($('#selectYears').val()));
         });
 
         // Callback pour créer le diagramme, l'instancier et le dessiner.
-        function drawChart(index) {
+        function drawChartOneYear(index) {
 
-            {#ventes = {{ ventes|raw }};#}
             // Création de la datatable pour populer le diagramme.
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Vente');
             data.addColumn('number', 'Nombre');
-            data.addRows([
-                ['Plaidoyer', parseInt(ventes[index]['plaidoyers'])],
-                ['Frimousse', parseInt(ventes[index]['frimousses'])],
-                ['Autre', parseInt(ventes[index]['autres'])]
-            ]);
+            var months = ['Septembre', 'Octobre', 'Novembre', 'Décembre', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août'];
+            for (var i=0; i<ventesMonths[index].length; i++) {
+                data.addRow([months[i], parseInt(ventesMonths[index][i])]);
+            }
 
             // Options du diagramme.
             var currentDate = new Date();
             var options = {
-                'is3D': true,
-                'animation':{
+                title: "Nombre de vente(s) réalisée(s) durant l'année scolaire " + (currentDate.getFullYear() - ventesYear.length + index + 1) + "/" + (currentDate.getFullYear() - ventesYear.length + index + 2),
+                vAxis: {title: "Nombre de ventes"},
+                hAxis: {title: 'Mois'},
+                seriesType: 'bars',
+                width: 1500,
+                height: 300,
+                animation:{
                     duration: 2000,
                     easing: 'out',
                     startup: true
@@ -52,30 +59,28 @@
             };
 
             // Instancier et dessiner le diagramme (remplacer PieChart par BarChart pour avoir un diagramme bâtons).
-            var chart = new google.visualization.PieChart(document.getElementById('chart_vente'));
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_vente'));
             chart.draw(data, options);
         }
 
-        function drawVisualization() {
+        function drawChartAllYears() {
             // Some raw data (not necessarily accurate)
-            var currentDate = new Date().getFullYear();
-            var data = google.visualization.arrayToDataTable([
-                ['Années scolaires', 'Ventes'],
-                ['dummy', 0]
-            ]);
+            var currentDate = new Date().getFullYear() + 1;
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Vente');
+            data.addColumn('number', 'Nombre');
 
-            ventes.forEach(function (value, i) {
-                data.addRow(['' + (currentDate - i + 1) + '/' + (currentDate - i), parseInt(value['ventes'])]);
-                if(data.getFormattedValue(0,0) == 'dummy')
-                    data.removeRow(0);
+            ventesYear.forEach(function (value, i) {
+                data.addRow(['' + (currentDate - ventesYear.length + i) + '/' + (currentDate - ventesYear.length + i + 1), parseInt(ventesYear[i])]);
             });
 
             var options = {
                 vAxis: {title: "Nombre de ventes"},
                 hAxis: {title: 'Année scolaire'},
                 seriesType: 'bars',
-                series: {5: {type: 'line'}},
-                'animation':{
+                width: ventesYear.length*200,
+                height: 300,
+                animation:{
                     duration: 3000,
                     easing: 'out',
                     startup: true
@@ -120,12 +125,10 @@
     </style>
     <h1>Statistiques sur les ventes</h1>
     <hr>
-
-    <h4>Nombre de vente(s) réalisée(s) durant année scolaire </h4>
-    <div id="chart_vente"></div>
-
-    <h4>Nombre de vente(s) réalisée(s) par année scolaire </h4>
     <select id="selectYears"></select>
+    <h4>Nombre de vente(s) réalisée(s) sur une année scolaire </h4>
+    <div id="chart_vente"></div>
+    <h4>Nombre de vente(s) réalisée(s) par année scolaire </h4>
     <div id="chart_vente_years" style="width: 900px; height: 500px;"></div>
 {% endblock %}
 

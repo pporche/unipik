@@ -19,6 +19,7 @@ namespace Unipik\InterventionBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Le controller qui gère les statistiques
@@ -76,6 +77,7 @@ class StatsController extends Controller {
         $themesArray = array();
         $niveauxArray = array();
         $elevesArray = array();
+        $themesNiveauxArray = array();
 
         $interventionsArray = array();
         $currentYear = date('Y') + 1;
@@ -88,24 +90,32 @@ class StatsController extends Controller {
             $countAutre = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::AUTRE);
 
             foreach ($themes as $theme => $value) {
-                $countTheme = $repository->getNumberInterventionByTheme($theme, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+                $countTheme = $repository->getNumberInterventionByThemeAndNiveau($theme, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
                 $themes[$theme] = $countTheme;
+            }
+            array_push($themesArray, $themes);
+
+            foreach ($niveaux as $niveau => $valueNiveau) {
+                foreach ($themes as $theme => $value) {
+                    $countThemeNiveau = $repository->getNumberInterventionByThemeAndNiveau($theme, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf, $niveau);
+                    $themes[$theme] = $countThemeNiveau;
+                }
+                array_push($themesNiveauxArray, $themes);
             }
 
             foreach ($niveaux as $niveau => $value) {
                 $countNiveau = $repository->getNumberInterventionByNiveau($niveau, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
                 $niveaux[$niveau] = $countNiveau;
             }
+            array_push($niveauxArray, $niveaux);
 
             foreach ($eleves as $niveau => $value) {
                 $countEleves = $em->getRepository('InterventionBundle:Intervention')->getElevesSensibilise($niveau, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
                 $eleves[$niveau] = $countEleves;
             }
+            array_push($elevesArray, $eleves);
 
             array_push($interventionsArray, array('plaidoyers' => $countPlaidoyer, 'frimousses' => $countFrimousse, 'autres' => $countAutre));
-            array_push($themesArray, $themes);
-            array_push($niveauxArray, $niveaux);
-            array_push($elevesArray, $eleves);
         }
 
         $topEtablissements = $em->getRepository('InterventionBundle:Etablissement')->getTop10Etablissements();
@@ -116,7 +126,8 @@ class StatsController extends Controller {
             'themes' => json_encode($themesArray),
             'niveaux' => json_encode($niveauxArray),
             'topEtablissements' => json_encode($topEtablissements),
-            'eleves' => json_encode($elevesArray)
+            'eleves' => json_encode($elevesArray),
+            'themesNiveaux' => json_encode($themesNiveauxArray)
             )
         );
     }
@@ -128,20 +139,36 @@ class StatsController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('InterventionBundle:Vente');
 
-        $ventesArray = array();
+        $months = array('09', '10', '11', '12', '01', '02', '03', '04', '05', '06', '07', '08', '09');
+
+        $ventesYearArray = array();
+        $ventesMonthArray = array();
         $currentYear = date('Y') + 1;
-        for ($i = 0; $i < self::NUMBER_YEAR; $i++) {
+        for ($i = self::NUMBER_YEAR-1; $i > -1; $i--) {
+            $ventesOneYearArray = array();
             $currentYearSup = $currentYear - $i;
             $currentYearInf = $currentYear - $i - 1;
-            $countPlaidoyer = $repository->getNumberVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
-            $countFrimousse = $repository->getNumberVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
-            $countAutre = $repository->getNumberVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
-            array_push($ventesArray, array());
+            $countVenteYear = $repository->getNumberVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+            for ($j = 1; $j < count($months); $j++) {
+                if ($j < 4) {
+                    $countVenteMonth = $repository->getNumberVenteMonth('01/' . $months[$j] . '/' . $currentYearInf, '01/' . $months[$j - 1] . '/' . $currentYearInf);
+                }
+                elseif ($j > 4) {
+                    $countVenteMonth = $repository->getNumberVenteMonth('01/' . $months[$j] . '/' . $currentYearSup, '01/' . $months[$j - 1] . '/' . $currentYearSup);
+                }
+                else {
+                    $countVenteMonth = $repository->getNumberVenteMonth('01/' . $months[$j] . '/' . $currentYearSup, '01/' . $months[$j - 1] . '/' . $currentYearInf);
+                }
+                array_push($ventesOneYearArray, $countVenteMonth);
+            }
+            array_push($ventesMonthArray, $ventesOneYearArray);
+            array_push($ventesYearArray, $countVenteYear);
         }
 
         return $this->render(
             'InterventionBundle:Statistiques:statsVente.html.twig', array(
-                'ventes' => json_encode($ventesArray)
+                'ventesYear' => json_encode($ventesYearArray),
+                'ventesMonth' => json_encode($ventesMonthArray),
             )
         );
     }

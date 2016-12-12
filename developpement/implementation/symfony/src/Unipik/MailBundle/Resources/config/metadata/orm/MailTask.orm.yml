@@ -31,4 +31,10 @@ MailTask:
         date_insert:
             type: datetime
             nullable: true
+        type_email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
     lifecycleCallbacks: {  }

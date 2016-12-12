@@ -10,6 +10,8 @@
     <script>
         var ventesYear = {{ ventesYear|raw }};
         var ventesMonths = {{ ventesMonth|raw }};
+        var caYear = {{ caYear|raw }};
+        var caMonths = {{ caMonth|raw }};
 
         ventesYear.forEach(function (value, i) {
             $('#selectYears').append($('<option>', {
@@ -23,16 +25,17 @@
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(function () {
             drawChartOneYear(ventesYear.length-1);
+            drawChartCAOneYear(ventesYear.length-1);
             drawChartAllYears();
+            drawChartCAAllYears();
         });
 
         $('#selectYears').change(function () {
             drawChartOneYear(parseInt($('#selectYears').val()));
+            drawChartCAOneYear(parseInt($('#selectYears').val()));
         });
 
-        // Callback pour créer le diagramme, l'instancier et le dessiner.
         function drawChartOneYear(index) {
-
             // Création de la datatable pour populer le diagramme.
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Vente');
@@ -57,6 +60,41 @@
 
             // Instancier et dessiner le diagramme (remplacer PieChart par BarChart pour avoir un diagramme bâtons).
             var chart = new google.visualization.ComboChart(document.getElementById('chart_vente'));
+            chart.draw(data, options);
+        }
+
+        function drawChartCAOneYear(index) {
+            // Création de la datatable pour populer le diagramme.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Vente');
+            data.addColumn('number', "Chiffre d'affaires");
+            var months = ['Septembre', 'Octobre', 'Novembre', 'Décembre', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août'];
+            for (var i=0; i<ventesMonths[index].length; i++) {
+                var chiffreDAffaire = 0;
+                caMonths[index][i].forEach(function (value) {
+                    chiffreDAffaire += value["chiffreAffaire"];
+                });
+                data.addRow([months[i], chiffreDAffaire]);
+            }
+
+            // Options du diagramme.
+            var currentDate = new Date();
+            var options = {
+                title: "Chiffre d'affaires durant l'année scolaire " + (currentDate.getFullYear() - ventesYear.length + index + 1) + "/" + (currentDate.getFullYear() - ventesYear.length + index + 2),
+                vAxis: {title: "Chiffre d'affaires"},
+                hAxis: {title: 'Mois'},
+                seriesType: 'bars',
+                width: 1500,
+                height: 300,
+                animation:{
+                    duration: 2000,
+                    easing: 'out',
+                    startup: true
+                }
+            };
+
+            // Instancier et dessiner le diagramme (remplacer PieChart par BarChart pour avoir un diagramme bâtons).
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_vente_CA'));
             chart.draw(data, options);
         }
 
@@ -86,10 +124,43 @@
             chart.draw(data, options);
         }
 
+        function drawChartCAAllYears() {
+            // Some raw data (not necessarily accurate)
+            var currentDate = new Date().getFullYear() + 1;
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Vente');
+            data.addColumn('number', "Chiffre d'affaires");
+
+            ventesYear.forEach(function (value, i) {
+                var chiffreDAffaire = 0;
+                caYear[i].forEach(function (value) {
+                    chiffreDAffaire += value["chiffreAffaire"];
+                });
+                data.addRow(['' + (currentDate - ventesYear.length + i) + '/' + (currentDate - ventesYear.length + i + 1), chiffreDAffaire]);
+            });
+
+            var options = {
+                vAxis: {title: "Chiffre d'affaires"},
+                hAxis: {title: 'Année scolaire'},
+                seriesType: 'bars',
+                width: ventesYear.length*200,
+                height: 300,
+                animation:{
+                    duration: 3000,
+                    easing: 'out',
+                    startup: true
+                }
+            };
+
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_vente_years_CA'));
+            chart.draw(data, options);
+        }
+
     </script>
 {% endblock %}
 
-{% block body%}
+{% block stylesheets %}
+    {{ parent() }}
     <style>
         @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
         h1{
@@ -118,13 +189,21 @@
             margin-bottom: 40px;
         }
     </style>
+{% endblock %}
+
+{% block body%}
+
     <h1>Statistiques sur les ventes</h1>
     <hr>
     <h4>Nombre de vente(s) réalisée(s) sur une année scolaire </h4>
     <select id="selectYears"></select>
     <div id="chart_vente"></div>
+    <h4>Chiffre d'affaires sur une année scolaire </h4>
+    <div id="chart_vente_CA"></div>
     <h4>Nombre de vente(s) réalisée(s) par année scolaire </h4>
-    <div id="chart_vente_years" style="width: 900px; height: 500px;"></div>
+    <div id="chart_vente_years"></div>
+    <h4>Chiffre d'affaires par année scolaire </h4>
+    <div id="chart_vente_years_CA"></div>
 {% endblock %}
 
 {#https://developers.google.com/chart/interactive/docs/gallery#}

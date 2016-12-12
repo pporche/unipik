@@ -315,4 +315,54 @@ class VenteRepository extends EntityRepository {
 
         return $qb->getQuery()->getSingleScalarResult();
     }
+
+    /**
+     * @param null $dateSup
+     * @param null $dateInf
+     * @return mixed
+     */
+    public function getCAVente($dateSup = null, $dateInf = null) {
+        $qb = $this->createQueryBuilder('v')
+            ->select('v.chiffreAffaire');
+
+        if (isset($dateSup)) {
+            $qb->andWhere('v.dateVente <= :dateSup')
+                ->setParameter('dateSup', $dateSup);
+        }
+
+        if (isset($dateInf)) {
+            $qb->andWhere('v.dateVente >= :dateInf')
+                ->setParameter('dateInf', $dateInf);
+        }
+
+        $qb->andWhere('v.dateVente <= :today')
+            ->setParameter('today', new \DateTime());
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param null $dateSup
+     * @param null $dateInf
+     * @return mixed
+     */
+    public function getCAVenteMonth($dateSup = null, $dateInf = null) {
+        $qb = $this->createQueryBuilder('v')
+            ->select('v.chiffreAffaire');
+
+        if (isset($dateSup)) {
+            $qb->andWhere("v.dateVente < :dateSup")
+                ->setParameter('dateSup', $dateSup);
+        }
+
+        if (isset($dateInf)) {
+            $qb->andWhere('v.dateVente >= :dateInf')
+                ->setParameter('dateInf', $dateInf);
+        }
+
+        $qb->andWhere('v.dateVente <= :today')
+            ->setParameter('today', new \DateTime());
+
+        return $qb->getQuery()->getResult();
+    }
 }

@@ -22,7 +22,7 @@
         interventions.forEach(function (value, i) {
             $('#selectYears').append($('<option>', {
                 value: i,
-                text: '' + (new Date().getFullYear() - i + 1) + '/' + (new Date().getFullYear() - i)
+                text: '' + (new Date().getFullYear() - i) + '/' + (new Date().getFullYear() - i + 1)
             }));
         });
         $('#selectYears').change(function () {
@@ -33,9 +33,11 @@
         themes.forEach(function (value, i) {
             $('#selectYearsThemes').append($('<option>', {
                 value: i,
-                text: '' + (new Date().getFullYear() - i + 1) + '/' + (new Date().getFullYear() - i)
+                text: '' + (new Date().getFullYear() - i) + '/' + (new Date().getFullYear() - i + 1)
             }));
         });
+
+
         $('#selectYearsThemes').change(function () {
             drawThemes($('#selectYearsThemes').val());
         });
@@ -44,7 +46,7 @@
         niveaux.forEach(function (value, i) {
             $('#selectYearsNiveaux').append($('<option>', {
                 value: i,
-                text: '' + (new Date().getFullYear() - i + 1) + '/' + (new Date().getFullYear() - i)
+                text: '' + (new Date().getFullYear() - i) + '/' + (new Date().getFullYear() - i + 1)
             }));
         });
         $('#selectYearsNiveaux').change(function () {
@@ -56,6 +58,16 @@
             var id = "/unicef/app_dev.php/etablissement/"+topEtablissements[i]['etabId'];
             var html = "<a href="+id+"><p style='margin-top: 10px;'><span class='index'>"+ (i+1) +"</span>"+topEtablissements[i]['etabNom']+"<span style='float:right;'>"+topEtablissements[i]['count1']+" Interventions</span></p></a>";
             $("#topTen").append(html);
+        }
+
+
+        var eleves = {{ eleves|raw }};
+        var eleves1 = '{{ eleves|slice(0, 1)|raw }}';
+        var eleves2 = '{{ eleves|slice(1, 1)|raw }}';
+        var eleves3 = '{{ eleves|slice(2, 1)|raw }}';
+        for(i=0; i<eleves1.length; i++){
+            var html = "<p style='margin-top: 10px;'><span class='index'>"+ (i+1) +"</span></p>";
+            $("#tableaux").append(html);
         }
 
         // Callback pour créer le diagramme, l'instancier et le dessiner.
@@ -192,7 +204,197 @@
             var chart = new google.visualization.ColumnChart(document.getElementById('chart_intervention_niveaux'));
             chart.draw(data, options);
         }
+        $(document).ready(function(){
+            var currentYear = new Date().getFullYear();
 
+            changeTableau1(1);
+            changeTableau2(1);
+
+            html = "<select id='select1'>";
+            html+="<option value='"+ currentYear +"/" + (currentYear+1) + "'>"+ (currentYear) +"/" + (currentYear+1) + "</option>";
+            html+="<option value='"+ (currentYear-1) +"/" + (currentYear) + "'>"+ (currentYear-1) +"/" + currentYear + "</option>";
+            html+="<option value='"+ (currentYear-2) +"/" + (currentYear-1) + "'>"+ (currentYear-2) +"/" + (currentYear-1) + "</option>";
+            html+="</select>";
+            $("#tableauxSelect").append(html);
+
+            html = "<select id='select2'>";
+            html+="<option value='"+ (currentYear) +"/" + (currentYear+1) + "'>"+ (currentYear) +"/" + (currentYear+1) + "</option>";
+            html+="<option value='"+ (currentYear-1) +"/" + currentYear + "'>"+ (currentYear-1) +"/" + currentYear + "</option>";
+            html+="<option value='"+ (currentYear-2) +"/" + (currentYear-1) + "'>"+ (currentYear-2) +"/" + (currentYear-1) + "</option>";
+            html+="</select>";
+            $("#tableaux2Select").append(html);
+
+
+            $("#select1").change(function(){
+                var selected = $('#select1').find(":selected").text();
+                if(selected == (""+(currentYear) + "/" + (currentYear+1))){
+                    changeTableau1(1);
+                }else if(selected==""+(currentYear-1) + "/" + currentYear){
+                    changeTableau1(2);
+                }else{
+                    changeTableau1(3);
+                }
+            });
+
+            $("#select2").change(function(){
+                var selected = $('#select2').find(":selected").text();
+                if(selected == (""+(currentYear) + "/" + (currentYear+1))){
+                    changeTableau2(1);
+                }else if(selected==""+(currentYear-1) + "/" + currentYear){
+                    changeTableau2(2);
+                }else{
+                    changeTableau2(3);
+                }
+            });
+
+            function changeTableau1(annee){
+                var html = "<table class='table table-striped'><thead><tr><td></td><td>Maternelle</td><td>Écoles Primaires</td><td>Collèges</td><td>Lycées</td><td> Bac +</td></tr></thead><tbody>";
+                var themesNiveaux = {{ themesNiveaux|raw }};
+                if(annee==1){
+                    var themes1 = themesNiveaux[annee-1];
+                    html += "<tr><td>Education</td><td>"
+                            + themes1['maternelle'] +"</td><td>"
+                            + themes1['elementaire'] +"</td><td>"
+                            + themes1['college'] +"</td><td>"
+                            + themes1['lycee'] +"</td><td>"
+                            + themes1['superieur']
+                            +"</td></tr>";
+
+                    html += "<tr><td>Travail des enfants</td><td>"
+                            + themes1['maternelle'] +"</td><td>"
+                            + themes1['elementaire'] +"</td><td>"
+                            + themes1['college'] +"</td><td>"
+                            + themes1['lycee'] +"</td><td>"
+                            + themes1['superieur']
+                            +"</td></tr>";
+
+                    html += "<tr><td>Santé</td><td>"
+                            + themes1['maternelle'] +"</td><td>"
+                            + themes1['elementaire'] +"</td><td>"
+                            + themes1['college'] +"</td><td>"
+                            + themes1['lycee'] +"</td><td>"
+                            + themes1['superieur']
+                            +"</td></tr>";
+
+                    html += "<tr><td>Alimentation - Nutrition</td><td>"
+                            + eleves1['maternelle'] +"</td><td>"
+                            + eleves1['elementaire'] +"</td><td>"
+                            + eleves1['college'] +"</td><td>"
+                            + eleves1['lycee'] +"</td><td>"
+                            + eleves1['superieur']
+                            +"</td></tr>";
+
+                    html += "<tr><td>VHI / Sida</td><td>"
+                            + eleves1['maternelle'] +"</td><td>"
+                            + eleves1['elementaire'] +"</td><td>"
+                            + eleves1['college'] +"</td><td>"
+                            + eleves1['lycee'] +"</td><td>"
+                            + eleves1['superieur']
+                            +"</td></tr>";
+
+                    html += "<tr><td>Enfants Soldats</td><td>"
+                            + eleves1['maternelle'] +"</td><td>"
+                            + eleves1['elementaire'] +"</td><td>"
+                            + eleves1['college'] +"</td><td>"
+                            + eleves1['lycee'] +"</td><td>"
+                            + eleves1['superieur']
+                            +"</td></tr>";
+
+                    html += "<tr><td>Rôle et missions de l'UNICEF</td><td>"
+                            + eleves1['maternelle'] +"</td><td>"
+                            + eleves1['elementaire'] +"</td><td>"
+                            + eleves1['college'] +"</td><td>"
+                            + eleves1['lycee'] +"</td><td>"
+                            + eleves1['superieur']
+                            +"</td></tr>";
+
+                    html += "<tr><td>Convention et droits de l'enfant</td><td>"
+                            + eleves1['maternelle'] +"</td><td>"
+                            + eleves1['elementaire'] +"</td><td>"
+                            + eleves1['college'] +"</td><td>"
+                            + eleves1['lycee'] +"</td><td>"
+                            + eleves1['superieur']
+                            +"</td></tr>";
+
+                    html += "<tr><td>Millénaire pour le développement</td><td>"
+                            + eleves1['maternelle'] +"</td><td>"
+                            + eleves1['elementaire'] +"</td><td>"
+                            + eleves1['college'] +"</td><td>"
+                            + eleves1['lycee'] +"</td><td>"
+                            + eleves1['superieur']
+                            +"</td></tr>";
+
+                    html += "<tr><td>Eau et assainissement</td><td>"
+                            + eleves1['maternelle'] +"</td><td>"
+                            + eleves1['elementaire'] +"</td><td>"
+                            + eleves1['college'] +"</td><td>"
+                            + eleves1['lycee'] +"</td><td>"
+                            + eleves1['superieur']
+                            +"</td></tr>";
+
+                    html += "<tr><td>Urgence</td><td>"
+                            + eleves1['maternelle'] +"</td><td>"
+                            + eleves1['elementaire'] +"</td><td>"
+                            + eleves1['college'] +"</td><td>"
+                            + eleves1['lycee'] +"</td><td>"
+                            + eleves1['superieur']
+                            +"</td></tr></tbody></table>";
+                    $("#tableaux").html(html);
+                }else if(annee==2){
+                    var eleves2 = eleves[1];
+                    html += "<tr><td>Nb d'élèves sensibilisés</td><td>"
+                            + eleves2['maternelle'] +"</td><td>"
+                            + eleves2['elementaire'] +"</td><td>"
+                            + eleves2['college'] +"</td><td>"
+                            + eleves2['lycee'] +"</td><td>"
+                            + eleves2['superieur'] +"</td></tr></tbody></table>";
+                    $("#tableaux").html(html);
+                }else{
+                    var eleves3 = eleves[2];
+                    html += "<tr><td>Nb d'élèves sensibilisés</td><td>"
+                            + eleves3['maternelle'] +"</td><td>"
+                            + eleves3['elementaire'] +"</td><td>"
+                            + eleves3['college'] +"</td><td>"
+                            + eleves3['lycee'] +"</td><td>"
+                            + eleves3['superieur'] +"</td></tr></tbody></table>";
+                    $("#tableaux").html(html);
+                }
+            }
+
+            function changeTableau2(annee){
+                var html = "<table class='table table-striped'><thead><tr><td></td><td>Maternelle</td><td>Écoles Primaires</td><td>Collèges</td><td>Lycées</td><td> Bac +</td></tr></thead><tbody>";
+                var eleves = {{ eleves|raw }};
+                if(annee==1){
+                    var eleves1 = eleves[0];
+                    html += "<tr><td>Nb d'élèves sensibilisés</td><td>"
+                            + eleves1['maternelle'] +"</td><td>"
+                            + eleves1['elementaire'] +"</td><td>"
+                            + eleves1['college'] +"</td><td>"
+                            + eleves1['lycee'] +"</td><td>"
+                            + eleves1['superieur']
+                            +"</td></tr></tbody></table>";
+                    $("#tableaux2").html(html);
+                }else if(annee==2){
+                    var eleves2 = eleves[1];
+                    html += "<tr><td>Nb d'élèves sensibilisés</td><td>"
+                            + eleves2['maternelle'] +"</td><td>"
+                            + eleves2['elementaire'] +"</td><td>"
+                            + eleves2['college'] +"</td><td>"
+                            + eleves2['lycee'] +"</td><td>"
+                            + eleves2['superieur'] +"</td></tr></tbody></table>";
+                    $("#tableaux2").html(html);
+                }else{
+                    var eleves3 = eleves[2];
+                    html += "<tr><td>Nb d'élèves sensibilisés</td><td>"
+                            + eleves3['maternelle'] +"</td><td>"
+                            + eleves3['elementaire'] +"</td><td>"
+                            + eleves3['college'] +"</td><td>"
+                            + eleves3['lycee'] +"</td><td>"
+                            + eleves3['superieur'] +"</td></tr></tbody></table>";
+                    $("#tableaux2").html(html);
+                }
+            }
+        });
     </script>
 {% endblock %}
 
@@ -226,6 +428,12 @@
             margin-top: 50px;
             font-family: 'Ubuntu Condensed', sans-serif;
         }
+        .table{
+            width: 600px;
+            margin:auto;
+            margin-top: 30px;
+            margin-bottom: 60px;
+        }
         h4{
             margin-top: 30px;
             margin-left: 20px;
@@ -255,6 +463,10 @@
             color: #333;
             text-decoration: none;
         }
+        .btn{
+            display: block;
+            margin: auto;
+        }
     </style>
     <h1>Statistiques</h1><hr>
     <h4>Nombre d'intervention(s) réalisée(s) durant année</h4>
@@ -278,6 +490,15 @@
             <img src="{{ asset('img/logo-gris.png') }}" alt="logo" class="logoGauche">
 
         </section>
+    </div>
+    {{ dump(themesNiveaux) }}
+    <div id="tableauxSelect">
+    </div>
+    <div id="tableaux">
+    </div>
+    <div id="tableaux2Select">
+    </div>
+    <div id="tableaux2">
     </div>
     <button type="button" class="btn btn-primary" onclick="window.print();"> Imprimer </button>
 

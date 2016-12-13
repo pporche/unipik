@@ -102,7 +102,7 @@ class StatsController extends Controller {
                 }
                 $themes[$theme] = $niveaux;
             }
-            array_push($themesNiveauxArray, json_encode($themes));
+            array_push($themesNiveauxArray, $themes);
 
             foreach ($niveaux as $niveau => $value) {
                 $countNiveau = $repository->getNumberInterventionByNiveau($niveau, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);

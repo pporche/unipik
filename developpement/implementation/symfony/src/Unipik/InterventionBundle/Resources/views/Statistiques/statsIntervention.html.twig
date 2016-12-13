@@ -248,121 +248,109 @@
             });
 
             function changeTableau1(annee){
-                var html = "<table class='table table-striped'><thead><tr><td></td><td>Maternelle</td><td>Écoles Primaires</td><td>Collèges</td><td>Lycées</td><td> Bac +</td></tr></thead><tbody>";
+                var html = "<table class='table table-striped'><thead><tr><td></td><td>Maternelles</td><td>Primaires</td><td>Collèges</td><td>Lycées</td><td> Bac +</td></tr></thead><tbody>";
                 var themesNiveaux = {{ themesNiveaux|raw }};
-                if(annee==1){
                     var themes1 = themesNiveaux[annee-1];
                     html += "<tr><td>Education</td><td>"
-                            + themes1['maternelle'] +"</td><td>"
-                            + themes1['elementaire'] +"</td><td>"
-                            + themes1['college'] +"</td><td>"
-                            + themes1['lycee'] +"</td><td>"
-                            + themes1['superieur']
+                            + themes1['education']['maternelle'] +"</td><td>"
+                            + themes1['education']['elementaire'] +"</td><td>"
+                            + themes1['education']['college'] +"</td><td>"
+                            + themes1['education']['lycee'] +"</td><td>"
+                            + themes1['education']['superieur']
                             +"</td></tr>";
 
                     html += "<tr><td>Travail des enfants</td><td>"
-                            + themes1['maternelle'] +"</td><td>"
-                            + themes1['elementaire'] +"</td><td>"
-                            + themes1['college'] +"</td><td>"
-                            + themes1['lycee'] +"</td><td>"
-                            + themes1['superieur']
+                            + themes1['travail des enfants']['maternelle'] +"</td><td>"
+                            + themes1['travail des enfants']['elementaire'] +"</td><td>"
+                            + themes1['travail des enfants']['college'] +"</td><td>"
+                            + themes1['travail des enfants']['lycee'] +"</td><td>"
+                            + themes1['travail des enfants']['superieur']
                             +"</td></tr>";
 
-                    html += "<tr><td>Santé</td><td>"
-                            + themes1['maternelle'] +"</td><td>"
-                            + themes1['elementaire'] +"</td><td>"
-                            + themes1['college'] +"</td><td>"
-                            + themes1['lycee'] +"</td><td>"
-                            + themes1['superieur']
+                    html += "<tr><td>Santé et Alimentation</td><td>"
+                            + themes1['sante et alimentation']['maternelle'] +"</td><td>"
+                            + themes1['sante et alimentation']['elementaire'] +"</td><td>"
+                            + themes1['sante et alimentation']['college'] +"</td><td>"
+                            + themes1['sante et alimentation']['lycee'] +"</td><td>"
+                            + themes1['sante et alimentation']['superieur']
                             +"</td></tr>";
 
-                    html += "<tr><td>Alimentation - Nutrition</td><td>"
-                            + eleves1['maternelle'] +"</td><td>"
-                            + eleves1['elementaire'] +"</td><td>"
-                            + eleves1['college'] +"</td><td>"
-                            + eleves1['lycee'] +"</td><td>"
-                            + eleves1['superieur']
+                    html += "<tr><td>VIH / Sida</td><td>"
+                            + themes1['VIH et sida']['maternelle'] +"</td><td>"
+                            + themes1['VIH et sida']['elementaire'] +"</td><td>"
+                            + themes1['VIH et sida']['college'] +"</td><td>"
+                            + themes1['VIH et sida']['lycee'] +"</td><td>"
+                            + themes1['VIH et sida']['superieur']
                             +"</td></tr>";
 
-                    html += "<tr><td>VHI / Sida</td><td>"
-                            + eleves1['maternelle'] +"</td><td>"
-                            + eleves1['elementaire'] +"</td><td>"
-                            + eleves1['college'] +"</td><td>"
-                            + eleves1['lycee'] +"</td><td>"
-                            + eleves1['superieur']
+                    html += "<tr><td>Santé en général</td><td>"
+                            + themes1['sante en generale']['maternelle'] +"</td><td>"
+                            + themes1['sante en generale']['elementaire'] +"</td><td>"
+                            + themes1['sante en generale']['college'] +"</td><td>"
+                            + themes1['sante en generale']['lycee'] +"</td><td>"
+                            + themes1['sante en generale']['superieur']
                             +"</td></tr>";
 
                     html += "<tr><td>Enfants Soldats</td><td>"
-                            + eleves1['maternelle'] +"</td><td>"
-                            + eleves1['elementaire'] +"</td><td>"
-                            + eleves1['college'] +"</td><td>"
-                            + eleves1['lycee'] +"</td><td>"
-                            + eleves1['superieur']
+                            + themes1['enfants et soldats']['maternelle'] +"</td><td>"
+                            + themes1['enfants et soldats']['elementaire'] +"</td><td>"
+                            + themes1['enfants et soldats']['college'] +"</td><td>"
+                            + themes1['enfants et soldats']['lycee'] +"</td><td>"
+                            + themes1['enfants et soldats']['superieur']
                             +"</td></tr>";
 
                     html += "<tr><td>Rôle et missions de l'UNICEF</td><td>"
-                            + eleves1['maternelle'] +"</td><td>"
-                            + eleves1['elementaire'] +"</td><td>"
-                            + eleves1['college'] +"</td><td>"
-                            + eleves1['lycee'] +"</td><td>"
-                            + eleves1['superieur']
+                            + themes1['role unicef']['maternelle'] +"</td><td>"
+                            + themes1['role unicef']['elementaire'] +"</td><td>"
+                            + themes1['role unicef']['college'] +"</td><td>"
+                            + themes1['role unicef']['lycee'] +"</td><td>"
+                            + themes1['role unicef']['superieur']
                             +"</td></tr>";
 
                     html += "<tr><td>Convention et droits de l'enfant</td><td>"
-                            + eleves1['maternelle'] +"</td><td>"
-                            + eleves1['elementaire'] +"</td><td>"
-                            + eleves1['college'] +"</td><td>"
-                            + eleves1['lycee'] +"</td><td>"
-                            + eleves1['superieur']
+                            + themes1['convention internationale des droits de l enfant']['maternelle'] +"</td><td>"
+                            + themes1['convention internationale des droits de l enfant']['elementaire'] +"</td><td>"
+                            + themes1['convention internationale des droits de l enfant']['college'] +"</td><td>"
+                            + themes1['convention internationale des droits de l enfant']['lycee'] +"</td><td>"
+                            + themes1['convention internationale des droits de l enfant']['superieur']
                             +"</td></tr>";
 
                     html += "<tr><td>Millénaire pour le développement</td><td>"
-                            + eleves1['maternelle'] +"</td><td>"
-                            + eleves1['elementaire'] +"</td><td>"
-                            + eleves1['college'] +"</td><td>"
-                            + eleves1['lycee'] +"</td><td>"
-                            + eleves1['superieur']
+                            + themes1['millenaire dev']['maternelle'] +"</td><td>"
+                            + themes1['millenaire dev']['elementaire'] +"</td><td>"
+                            + themes1['millenaire dev']['college'] +"</td><td>"
+                            + themes1['millenaire dev']['lycee'] +"</td><td>"
+                            + themes1['millenaire dev']['superieur']
                             +"</td></tr>";
 
                     html += "<tr><td>Eau et assainissement</td><td>"
-                            + eleves1['maternelle'] +"</td><td>"
-                            + eleves1['elementaire'] +"</td><td>"
-                            + eleves1['college'] +"</td><td>"
-                            + eleves1['lycee'] +"</td><td>"
-                            + eleves1['superieur']
+                            + themes1['eau']['maternelle'] +"</td><td>"
+                            + themes1['eau']['elementaire'] +"</td><td>"
+                            + themes1['eau']['college'] +"</td><td>"
+                            + themes1['eau']['lycee'] +"</td><td>"
+                            + themes1['eau']['superieur']
                             +"</td></tr>";
 
-                    html += "<tr><td>Urgence</td><td>"
-                            + eleves1['maternelle'] +"</td><td>"
-                            + eleves1['elementaire'] +"</td><td>"
-                            + eleves1['college'] +"</td><td>"
-                            + eleves1['lycee'] +"</td><td>"
-                            + eleves1['superieur']
+                    html += "<tr><td>Discrimination</td><td>"
+                            + themes1['discrimination']['maternelle'] +"</td><td>"
+                            + themes1['discrimination']['elementaire'] +"</td><td>"
+                            + themes1['discrimination']['college'] +"</td><td>"
+                            + themes1['discrimination']['lycee'] +"</td><td>"
+                            + themes1['discrimination']['superieur']
+                            +"</td></tr>";
+
+                    html += "<tr><td>Urgences mondiales</td><td>"
+                            + themes1['urgences mondiales']['maternelle'] +"</td><td>"
+                            + themes1['urgences mondiales']['elementaire'] +"</td><td>"
+                            + themes1['urgences mondiales']['college'] +"</td><td>"
+                            + themes1['urgences mondiales']['lycee'] +"</td><td>"
+                            + themes1['urgences mondiales']['superieur']
                             +"</td></tr></tbody></table>";
                     $("#tableaux").html(html);
-                }else if(annee==2){
-                    var eleves2 = eleves[1];
-                    html += "<tr><td>Nb d'élèves sensibilisés</td><td>"
-                            + eleves2['maternelle'] +"</td><td>"
-                            + eleves2['elementaire'] +"</td><td>"
-                            + eleves2['college'] +"</td><td>"
-                            + eleves2['lycee'] +"</td><td>"
-                            + eleves2['superieur'] +"</td></tr></tbody></table>";
-                    $("#tableaux").html(html);
-                }else{
-                    var eleves3 = eleves[2];
-                    html += "<tr><td>Nb d'élèves sensibilisés</td><td>"
-                            + eleves3['maternelle'] +"</td><td>"
-                            + eleves3['elementaire'] +"</td><td>"
-                            + eleves3['college'] +"</td><td>"
-                            + eleves3['lycee'] +"</td><td>"
-                            + eleves3['superieur'] +"</td></tr></tbody></table>";
-                    $("#tableaux").html(html);
-                }
             }
 
             function changeTableau2(annee){
-                var html = "<table class='table table-striped'><thead><tr><td></td><td>Maternelle</td><td>Écoles Primaires</td><td>Collèges</td><td>Lycées</td><td> Bac +</td></tr></thead><tbody>";
+                var html = "<table class='table table-striped'><thead><tr><td></td><td>Maternelles</td><td>Primaires</td><td>Collèges</td><td>Lycées</td><td> Bac +</td></tr></thead><tbody>";
                 var eleves = {{ eleves|raw }};
                 if(annee==1){
                     var eleves1 = eleves[0];
@@ -429,7 +417,7 @@
             font-family: 'Ubuntu Condensed', sans-serif;
         }
         .table{
-            width: 600px;
+            width: 700px;
             margin:auto;
             margin-top: 30px;
             margin-bottom: 60px;
@@ -484,14 +472,13 @@
     <select id="selectYearsNiveaux"></select>
     <div id="chart_intervention_niveaux"></div>
 
-    <h4>Ranking d'Établissements par nombre d'Interventions réalisées</h4>
+    <h4>Classement des établissements par nombre d'Interventions réalisées</h4>
     <div class="topTen">
         <section class="accueilSq gauche" id="topTen">
             <img src="{{ asset('img/logo-gris.png') }}" alt="logo" class="logoGauche">
 
         </section>
     </div>
-    {{ dump(themesNiveaux) }}
     <div id="tableauxSelect">
     </div>
     <div id="tableaux">

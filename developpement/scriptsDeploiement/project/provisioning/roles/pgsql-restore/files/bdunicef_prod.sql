@@ -469,7 +469,13 @@ ALTER FUNCTION public.modifier_etablissement_fictif() OWNER TO unipik;
 
 CREATE FUNCTION modifier_id_intervention_vente() RETURNS trigger
     LANGUAGE plpgsql
-    AS $$ BEGIN  UPDATE vente SET  intervention_id = null WHERE  intervention_id = OLD.id; RETURN OLD; END; $$;
+    AS $$
+    BEGIN
+        UPDATE vente SET  intervention_id = null
+                  WHERE  intervention_id = OLD.id;
+        RETURN OLD;
+    END;
+$$;
 
 
 ALTER FUNCTION public.modifier_id_intervention_vente() OWNER TO unipik;
@@ -1069,7 +1075,8 @@ CREATE TABLE mailtask (
     "interval" integer,
     lastrun date,
     id_etablissement text NOT NULL,
-    date_insert date NOT NULL
+    date_insert date NOT NULL,
+    type_email text
 );
 
 
@@ -3111,11 +3118,10 @@ COPY adresse (id, adresse, complement, ville_id, code_postal_id, geolocalisation
 255	RUE DE LA SAINTE-GERTRUDE	\N	29006	4793	0101000020E610000054082830442EE73FEF5EC51472C34840
 338	22 RUE JACQUES PREVERT	\N	29390	4836	0101000020E610000025EBB74921A5F13F75CC9AD4A7F54840
 70	351 BOULEVARD DE NORMANDIE	\N	28998	4794	0101000020E6100000C259936C4A39B93FEB69B03E58C34840
-3197	365 AV. DE L'UNIVERSITé	DEPT. ASI	28975	4782	0101000020E61000000ECD8646C1FDF03F15E06014A9B14840
-3198	40 RUE DES PRAIRIES	\N	28937	4769	0101000020E610000063145F48E280F13FE0DCBAF660B84840
-3199	26 RUE SAINT NICOLAS		28937	4769	0101000020E61000001460B3B7EF8CF13F24EAAAE573B84840
-3200	40 RUE DES PRAIRIES		28937	4769	0101000020E610000063145F48E280F13FE0DCBAF660B84840
-3196	365 AV. DE L'UNIVERSITé	CéDEX	28937	4769	0101000020E610000063145F48E280F13FE0DCBAF660B84840
+3196	18 AVENUE DES MURIERS		11612	1824	0101000020E6100000DD6FFE70A13CF43F34901D0A55CA4540
+3197	365 AVENUE DE L'UNIVERSITé		28975	4782	0101000020E6100000390A10053306F13F3123618495B14840
+3198	RUE SAINT NICOLAS		28937	4769	0101000020E61000001460B3B7EF8CF13F24EAAAE573B84840
+3199	RUE SAINT NICOLAS		28937	4769	0101000020E61000001460B3B7EF8CF13F24EAAAE573B84840
 \.
 
 
@@ -3123,7 +3129,7 @@ COPY adresse (id, adresse, complement, ville_id, code_postal_id, geolocalisation
 -- Name: adresse_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('adresse_id_seq', 3200, true);
+SELECT pg_catalog.setval('adresse_id_seq', 3199, true);
 
 
 --
@@ -3144,12 +3150,14 @@ COPY appartient (etablissement_id, contact_id) FROM stdin;
 --
 
 COPY benevole (id, username, username_canonical, email, email_canonical, enabled, salt, password, last_login, locked, expired, expires_at, confirmation_token, password_requested_at, roles, credentials_expired, credentials_expire_at, nom, prenom, tel_fixe, tel_portable, adresse_id, activites_potentielles, responsabilite_activite) FROM stdin;
-14	unipik	unipik	unipik@yopmail.com	unipik@yopmail.com	t	8gakvp2i1fcww4wk04oosg0sc480k0o	$2y$13$0xs7ikxcD6X.lUSuAQXBO.KQvQDWbifel/lA3x/e029bbkMk0/ZRu	2016-11-28 11:13:29	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Unipik	Pic	0102030404	0605040302	3196	{}	{}
-16	mmainguenaud	mmainguenaud	michel.mainguenaud@insa-rouen.fr	michel.mainguenaud@insa-rouen.fr	t	f68odffw2ds8wkw40sw444g4kg04wc4	$2y$13$17y05HJoUePaT5rzPbaFl.c47.6rKy9BNiuBleQClw6w.VhaFRUdu	2016-11-28 10:02:36	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Mainguenaud	Michel	0102030405	0605040302	3197	{}	{}
-15	anonyme	xxxxxx	xxxxxx@xxxxxx.xxxxxx	xxxxxx@xxxxxx.xxxxxx	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$iUW6/KVzaux5HD0rVkpAq.MJyyKEo8XdKBdFe/DRJKobRauMal3Um	\N	f	f	\N	\N	\N	a:0:{}	f	\N	anonyme	benevole	0000000000	0000000000	1	\N	\N
-18	vbarbier	vbarbier	veroniquebarbier@yopmail.com	veroniquebarbier@yopmail.com	t	fhk7tj7bcs0s0ggcow844coggss0osg	$2y$13$70d98oDzS7Jgwhw4ohpXyODUt4of.xt9vnlZL/Q5aGYD7ISa/Z/SO	2016-11-28 10:15:47	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Barbier	Véronique	0235889888	0622564030	3199	{(actions_ponctuelles),(plaidoyers),(projets)}	\N
-17	cguest	cguest	cathyguest76@gmail.com	cathyguest76@gmail.com	t	m4an32sh6j4cgwo4gok44kw088o008s	$2y$13$BWR8v/9MMmR8XlRqJ9u0UeO4ocVNBoSuaajTMe3k2k0f3IS/LA5d6	2016-11-28 10:09:58	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Guest	Catherine	0276002224	0603935018	3198	{}	{}
-19	unicef	unicef	simple.utilisateur@yopmail.com	simple.utilisateur@yopmail.com	t	oazx2psi340wg8ckcc48kggsccgkw0k	$2y$13$cNNw057oTZDmSZwaEiULAOD2jzfUliOF8kjzOQzLc3un8oPV4sWNm	2016-11-28 11:03:14	f	f	\N	\N	\N	a:0:{}	f	\N	Unicef	Utilisateur	\N	\N	3200	\N	\N
+1	admin	admin	admin@admin.admin	admin@admin.admin	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$fsnayRSVYRetrleFXGOL..65t.xWreOilUNSEiRtOfrQeYj28Hmp6	\N	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	admin	admin	\N	\N	1	\N	\N
+6	pierre	pierre	pierre@pierre.pierre	pierre@pierre.pierre	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$hh6tioNoNLVyXG7DzjcRteAovbqjqyxn9NE1vH8YtJpipbjO6DS2S	\N	f	f	\N	\N	\N	a:0:{}	f	\N	porche	pierre	0235444444	0644444444	56	{(actions_ponctuelles),(plaidoyers),(frimousses)}	\N
+8	juliana	juliana	juliana@juliana.juliana	juliana@juliana.juliana	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$Wbzf.EviRRg.mncygof/nOSUz/GCu.YuXLUSbHZqKhBqL0hwa01C.	\N	f	f	\N	\N	\N	a:0:{}	f	\N	rossi	juliana	\N	\N	109	{(actions_ponctuelles),(projets),(frimousses)}	\N
+13	benevoleanonyme	benevoleanonyme	unipik@yopmail.com	unipik@yopmail.com	f	e49fclbfn3wck0404sggowc8so80g0o	$2y$13$MfHmfCn0IcWzmHq1LWHMd.mdJFuZR4O2ptt7lQBHRb/m3pWQQ6FW2	\N	f	f	\N	PHa9NlpNHSthbEoK0FQCts9Nm9su2zz2y1r3i0zPvY4	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	anonyme	benevole	0102030405	\N	3196	\N	\N
+14	anonyme	xxxxxx	xxxxxx@xxxxxx.xxxxxx	xxxxxx@xxxxxx.xxxxxx	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$iUW6/KVzaux5HD0rVkpAq.MJyyKEo8XdKBdFe/DRJKobRauMal3Um	\N	f	f	\N	\N	\N	a:0:{}	f	\N	anonyme	benevole	0000000000	0000000000	1	\N	\N
+15	mmainguenaud	mmainguenaud	michel.mainguenaud@yopmail.com	michel.mainguenaud@yopmail.com	t	b6czq082iw8owsw8kg84ggscosw4g4g	$2y$13$pQBGjRMnY4zlxuKU8Z0iserXo69hp8HJV0YYCv5b6EskGxPFxS07W	2016-12-13 13:51:45	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Mainguenaud	Michel	0102030405	\N	3197	\N	\N
+16	cguest	cguest	catherine.guest@yopmail.com	catherine.guest@yopmail.com	t	502qkph6eh0k8wkggcsc08wkokss8w4	$2y$13$FvnzlI36yi6hqXm1szWef.my5IBy3fRfQBKwmH58LqyzbdxuqRrJ.	2016-12-13 13:54:05	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Guest	Catherine	0102030405	\N	3198	\N	\N
+17	vbarbier	vbarbier	veronique.barbier@yopmail.com	veronique.barbier@yopmail.com	t	1bz4kkriafdwwwwcgc44s484wk48ocs	$2y$13$qv19nxkQBhXPGytVvLYg2u3jXfulVFkKKOlheeeaFdU62lB9wOgKe	2016-12-13 13:55:37	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Barbier	Veronique	0102030405	\N	3199	\N	\N
 \.
 
 
@@ -3158,6 +3166,8 @@ COPY benevole (id, username, username_canonical, email, email_canonical, enabled
 --
 
 COPY benevole_comite (benevole_id, comite_id) FROM stdin;
+6	1
+8	1
 \.
 
 
@@ -3165,7 +3175,7 @@ COPY benevole_comite (benevole_id, comite_id) FROM stdin;
 -- Name: benevole_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('benevole_id_seq', 19, true);
+SELECT pg_catalog.setval('benevole_id_seq', 17, true);
 
 
 --
@@ -9335,7 +9345,7 @@ COPY comite_departement (comite_id, departement_id) FROM stdin;
 -- Name: comite_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('comite_id_seq', 1, false);
+SELECT pg_catalog.setval('comite_id_seq', 2, true);
 
 
 --
@@ -9665,48 +9675,6 @@ COPY comite_niveau_theme (comite, niveau_theme) FROM stdin;
 1	320
 1	321
 1	322
-1	323
-1	324
-1	325
-1	326
-1	327
-1	328
-1	329
-1	330
-1	331
-1	332
-1	333
-1	334
-1	335
-1	336
-1	337
-1	338
-1	339
-1	340
-1	341
-1	342
-1	343
-1	344
-1	345
-1	346
-1	347
-1	348
-1	349
-1	350
-1	351
-1	352
-1	353
-1	354
-1	355
-1	356
-1	357
-1	358
-1	359
-1	360
-1	361
-1	362
-1	363
-1	364
 \.
 
 
@@ -9720,8 +9688,6 @@ COPY contact (id, email, nom, prenom, tel_fixe, tel_portable, type_contact, est_
 3	contact3@contact.fr	nom3	prenom3	\N	0247282552	eleve	\N	f	{(plaidoyers),(actions_ponctuelles)}
 4	contact4@contact.fr	nom4	prenom4	\N	\N	etudiant	t	\N	\N
 5	contact5@contact.fr	nom5	prenom5	\N	\N	autre	\N	t	{(frimousses),(projets),(autre)}
-6	mon.email@yopmail.com	Marie	Jean	0102030405	\N	enseignant	\N	f	\N
-7	contact@yopmail.com	Marie	Jean	\N	\N	enseignant	\N	f	\N
 \.
 
 
@@ -9729,7 +9695,7 @@ COPY contact (id, email, nom, prenom, tel_fixe, tel_portable, type_contact, est_
 -- Name: contact_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('contact_id_seq', 7, true);
+SELECT pg_catalog.setval('contact_id_seq', 5, true);
 
 
 --
@@ -9742,10 +9708,6 @@ COPY demande (id, contact_id, date_demande, date_debut_disponibilite, date_fin_d
 3	3	2016-10-05	2016-10-15	2016-12-02
 4	4	2016-09-30	2016-10-02	2016-12-16
 5	5	2016-12-15	2017-01-02	2017-03-02
-6	6	2016-11-28	2016-12-01	2017-03-31
-7	7	2016-11-28	2016-11-28	2017-04-30
-8	7	2016-11-28	2017-01-01	2017-05-31
-9	7	2016-11-28	2016-11-28	2017-04-30
 \.
 
 
@@ -9753,7 +9715,7 @@ COPY demande (id, contact_id, date_demande, date_debut_disponibilite, date_fin_d
 -- Name: demande_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('demande_id_seq', 9, true);
+SELECT pg_catalog.setval('demande_id_seq', 5, true);
 
 
 --
@@ -9801,14 +9763,6 @@ COPY demande_moments_a_eviter (demande_moments_a_eviter, moments_a_eviter) FROM 
 5	10
 5	11
 5	12
-6	5
-6	6
-7	5
-7	6
-7	7
-7	8
-9	9
-9	10
 \.
 
 
@@ -9837,25 +9791,6 @@ COPY demande_moments_voulus (demande_moments_voulus, moments_voulus) FROM stdin;
 4	6
 5	8
 5	9
-6	7
-6	8
-6	1
-6	4
-6	10
-7	9
-7	10
-7	1
-7	4
-8	1
-8	3
-8	5
-8	7
-8	9
-9	7
-9	8
-9	5
-9	2
-9	4
 \.
 
 
@@ -9981,6 +9916,7 @@ SELECT pg_catalog.setval('departement_id_seq', 1753, true);
 --
 
 COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignement, type_centre, type_autre_etablissement) FROM stdin;
+1	0762413K	1	ECOLE ELEMENTAIRE NICOLAS VANIER	0235960735	{(0762413K@ac-rouen.fr)}	elementaire	\N	\N
 2	0761377J	2	ECOLE MATERNELLE DE ALVIMARE	0235960379	{(0761377J@ac-rouen.fr)}	maternelle	\N	\N
 3	0760847H	3	ECOLE ELEMENTAIRE DE AMBRUMESNIL	0235830779	{(0760847H@ac-rouen.fr)}	elementaire	\N	\N
 4	0762519A	4	ECOLE ELEMENTAIRE GERARD PHILIPE	0235234523	{(0762519A@ac-rouen.fr)}	elementaire	\N	\N
@@ -9990,6 +9926,7 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 8	0760389K	8	ECOLE MATERNELLE DE ANCOURT	0235041332	{(0760389K@ac-rouen.fr)}	maternelle	\N	\N
 9	0760885Z	9	ECOLE ELEMENTAIRE DE ANCOURTEVILLE-SUR-HERICOURT	0235969229	{(0760885Z@ac-rouen.fr)}	elementaire	\N	\N
 10	0761038R	11	ECOLE ELEMENTAIRE DE ANCRETIEVILLE-SAINT-VICTOR	0235560319	{(0761038R@ac-rouen.fr)}	elementaire	\N	\N
+11	0761038R	11	ECOLE MATERNELLE DE ANCRETIEVILLE-SAINT-VICTOR	0235560319	{(0761038R@ac-rouen.fr)}	maternelle	\N	\N
 12	0761439B	12	ECOLE ELEMENTAIRE DE ANGERVILLE-BAILLEUL	0235277083	{(0761439B@ac-rouen.fr)}	elementaire	\N	\N
 13	0761878D	14	ECOLE ELEMENTAIRE BERNARD GAUVAIN	0235209375	{(0761878D@ac-rouen.fr)}	elementaire	\N	\N
 14	0761878D	14	ECOLE MATERNELLE BERNARD GAUVAIN	0235209375	{(0761878D@ac-rouen.fr)}	maternelle	\N	\N
@@ -10024,7 +9961,6 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 43	0760323N	43	ECOLE MATERNELLE CHARLES PERRAULT	0235934065	{(0760323N@ac-rouen.fr)}	maternelle	\N	\N
 44	0760350T	45	ECOLE ELEMENTAIRE DE AUPPEGARD	0235041218	{(0760350T@ac-rouen.fr)}	elementaire	\N	\N
 45	0760350T	45	ECOLE MATERNELLE DE AUPPEGARD	0235041218	{(0760350T@ac-rouen.fr)}	maternelle	\N	\N
-11	\N	11	ECOLE MATERNELLE DE ANCRETIEVILLE-SAINT-VICTOR	0235560319	{(0761038R@ac-rouen.fr)}	maternelle	\N	\N
 46	0760614E	46	ECOLE ELEMENTAIRE DE AUTHIEUX-RATIEVILLE	0235331003	{(0760614E@ac-rouen.fr)}	elementaire	\N	\N
 47	0761061R	48	ECOLE ELEMENTAIRE DE AUTRETOT	0235566573	{(0761061R@ac-rouen.fr)}	elementaire	\N	\N
 48	0761061R	48	ECOLE MATERNELLE DE AUTRETOT	0235566573	{(0761061R@ac-rouen.fr)}	maternelle	\N	\N
@@ -10831,6 +10767,7 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 849	0761479V	850	ECOLE ELEMENTAIRE LES ABEILLES	0235370911	{(0761479V@ac-rouen.fr)}	elementaire	\N	\N
 850	0761479V	850	ECOLE MATERNELLE LES ABEILLES	0235370911	{(0761479V@ac-rouen.fr)}	maternelle	\N	\N
 851	0761737A	851	COLLEGE DENIS DIDEROT	0235620496	{(0761737A@ac-rouen.fr)}	college	\N	\N
+852	0761949F	852	COLLEGE FERNAND LEGER	0235583010	{(0761949F@ac-rouen.fr)}	college	\N	\N
 853	0762771Z	853	ECOLE ELEMENTAIRE CHEVREUL - GAY	0235723170	{(0762771Z@ac-rouen.fr)}	elementaire	\N	\N
 854	0762106B	854	ECOLE ELEMENTAIRE HENRI WALLON	0235725253	{(0762106B@ac-rouen.fr)}	elementaire	\N	\N
 855	0762374T	855	ECOLE ELEMENTAIRE IRENE JOLIOT-CURIE	0235622213	{(0762374T@ac-rouen.fr)}	elementaire	\N	\N
@@ -11553,8 +11490,6 @@ COPY etablissement (id, uai, adresse_id, nom, tel_fixe, emails, type_enseignemen
 1572	0762880T	1572	LYCEE RAYMOND QUENEAU	0235951266	{(0762880T@ac-rouen.fr)}	lycee	\N	\N
 1573	0761501U	1573	ECOLE ELEMENTAIRE DE YVILLE-SUR-SEINE	0235376957	{(0761501U@ac-rouen.fr)}	elementaire	\N	\N
 1574	0761501U	1573	ECOLE MATERNELLE DE YVILLE-SUR-SEINE	0235376957	{(0761501U@ac-rouen.fr)}	maternelle	\N	\N
-1	\N	1	ECOLE ELEMENTAIRE NICOLAS VANIER	0235960735	{(0762413K@ac-rouen.fr)}	elementaire	\N	\N
-852	\N	852	COLLEGE FERNAND LEGER	0235583010	{(0761949F@ac-rouen.fr)}	college	\N	\N
 \.
 
 
@@ -11570,17 +11505,6 @@ SELECT pg_catalog.setval('etablissement_id_seq', 1574, true);
 --
 
 COPY intervention (id, demande_id, benevole_id, comite_id, etablissement_id, date_intervention, lieu, nb_personne, remarques, heure, realisee, type_intervention, niveau_theme_id, materiel_dispo_plaidoyer, niveau_frimousse, materiaux_frimousse, description) FROM stdin;
-21	6	\N	1	1160	\N	\N	25	\N	\N	f	plaidoyer	110	{(videoprojecteur),(enceinte)}	\N	\N	\N
-22	6	\N	1	1160	\N	\N	25	\N	\N	f	frimousse	\N	\N	CP	{(patron),(bourre)}	\N
-23	6	\N	1	1160	\N	\N	15	Intervention pour des enfants handicapés.	\N	f	autre_intervention	\N	\N	\N	\N	Petits jeux d'équipe sur le thème des enfants dans le monde.
-24	7	\N	1	1	\N	\N	25	\N	\N	f	frimousse	\N	\N	CM2	{(patron),(bourre)}	\N
-25	8	\N	1	11	\N	\N	20	\N	\N	f	plaidoyer	43	{(videoprojecteur)}	\N	\N	\N
-26	8	\N	1	11	\N	\N	18	\N	\N	f	plaidoyer	5	{(videoprojecteur)}	\N	\N	\N
-27	9	\N	1	852	\N	\N	28	\N	\N	f	plaidoyer	197	{(videoprojecteur),(enceinte)}	\N	\N	\N
-28	9	\N	1	852	\N	\N	32	\N	\N	f	plaidoyer	215	{(videoprojecteur),(enceinte)}	\N	\N	\N
-29	9	\N	1	852	\N	\N	24	\N	\N	f	plaidoyer	231	{(videoprojecteur),(enceinte)}	\N	\N	\N
-30	9	\N	1	852	\N	\N	29	\N	\N	f	plaidoyer	246	{(videoprojecteur),(enceinte)}	\N	\N	\N
-31	9	\N	1	852	\N	\N	14	Les enfants sont des enfants possédant quelques retards mais ils sont très calmes et très attentifs	\N	f	plaidoyer	218	{(videoprojecteur),(enceinte)}	\N	\N	\N
 \.
 
 
@@ -11588,7 +11512,7 @@ COPY intervention (id, demande_id, benevole_id, comite_id, etablissement_id, dat
 -- Name: intervention_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('intervention_id_seq', 31, true);
+SELECT pg_catalog.setval('intervention_id_seq', 20, true);
 
 
 --
@@ -11610,7 +11534,7 @@ SELECT pg_catalog.setval('mail_historique_id_seq', 1, false);
 -- Data for Name: mailtask; Type: TABLE DATA; Schema: public; Owner: unipik
 --
 
-COPY mailtask (id, name, "interval", lastrun, id_etablissement, date_insert) FROM stdin;
+COPY mailtask (id, name, "interval", lastrun, id_etablissement, date_insert, type_email) FROM stdin;
 \.
 
 
@@ -11659,266 +11583,266 @@ COPY niveau_theme (id, niveau, theme) FROM stdin;
 4	petite section	sante et alimentation
 5	petite section	eau
 6	petite section	convention internationale des droits de l enfant
-7	petite section	enfants et soldats
-8	petite section	travail des enfants
-9	petite section	harcelement
-10	petite section	discrimination
-11	petite section	millenaire dev
-12	petite section	VIH et sida
-13	petite section	urgences mondiales
-14	petite-moyenne section	education
-15	petite-moyenne section	role unicef
-16	petite-moyenne section	sante en generale
-17	petite-moyenne section	sante et alimentation
-18	petite-moyenne section	eau
-19	petite-moyenne section	convention internationale des droits de l enfant
-20	petite-moyenne section	enfants et soldats
-21	petite-moyenne section	travail des enfants
-22	petite-moyenne section	harcelement
-23	petite-moyenne section	discrimination
-24	petite-moyenne section	millenaire dev
-25	petite-moyenne section	VIH et sida
-26	petite-moyenne section	urgences mondiales
-27	moyenne section	education
-28	moyenne section	role unicef
-29	moyenne section	sante en generale
-30	moyenne section	sante et alimentation
-31	moyenne section	eau
-32	moyenne section	convention internationale des droits de l enfant
-33	moyenne section	enfants et soldats
-34	moyenne section	travail des enfants
-35	moyenne section	harcelement
-36	moyenne section	discrimination
-37	moyenne section	millenaire dev
-38	moyenne section	VIH et sida
-39	moyenne section	urgences mondiales
-40	moyenne-grande section	education
-41	moyenne-grande section	role unicef
-42	moyenne-grande section	sante en generale
-43	moyenne-grande section	sante et alimentation
-44	moyenne-grande section	eau
-45	moyenne-grande section	convention internationale des droits de l enfant
-46	moyenne-grande section	enfants et soldats
-47	moyenne-grande section	travail des enfants
-48	moyenne-grande section	harcelement
-49	moyenne-grande section	discrimination
-50	moyenne-grande section	millenaire dev
-51	moyenne-grande section	VIH et sida
-52	moyenne-grande section	urgences mondiales
-53	grande section	education
-54	grande section	role unicef
-55	grande section	sante en generale
-56	grande section	sante et alimentation
-57	grande section	eau
-58	grande section	convention internationale des droits de l enfant
-59	grande section	enfants et soldats
-60	grande section	travail des enfants
-61	grande section	harcelement
-62	grande section	discrimination
-63	grande section	millenaire dev
-64	grande section	VIH et sida
-65	grande section	urgences mondiales
-66	petite-moyenne-grande section	education
-67	petite-moyenne-grande section	role unicef
-68	petite-moyenne-grande section	sante en generale
-69	petite-moyenne-grande section	sante et alimentation
-70	petite-moyenne-grande section	eau
-71	petite-moyenne-grande section	convention internationale des droits de l enfant
-72	petite-moyenne-grande section	enfants et soldats
-73	petite-moyenne-grande section	travail des enfants
-74	petite-moyenne-grande section	harcelement
-75	petite-moyenne-grande section	discrimination
-76	petite-moyenne-grande section	millenaire dev
-77	petite-moyenne-grande section	VIH et sida
-78	petite-moyenne-grande section	urgences mondiales
-79	CP	education
-80	CP	role unicef
-81	CP	sante en generale
-82	CP	sante et alimentation
-83	CP	eau
-84	CP	convention internationale des droits de l enfant
-85	CP	enfants et soldats
-86	CP	travail des enfants
-87	CP	harcelement
-88	CP	discrimination
-89	CP	millenaire dev
-90	CP	VIH et sida
-91	CP	urgences mondiales
-92	CP-CE1	education
-93	CP-CE1	role unicef
-94	CP-CE1	sante en generale
-95	CP-CE1	sante et alimentation
-96	CP-CE1	eau
-97	CP-CE1	convention internationale des droits de l enfant
-98	CP-CE1	enfants et soldats
-99	CP-CE1	travail des enfants
-100	CP-CE1	harcelement
-101	CP-CE1	discrimination
-102	CP-CE1	millenaire dev
-103	CP-CE1	VIH et sida
-104	CP-CE1	urgences mondiales
-105	CE1	education
-106	CE1	role unicef
-107	CE1	sante en generale
-108	CE1	sante et alimentation
-109	CE1	eau
-110	CE1	convention internationale des droits de l enfant
-111	CE1	enfants et soldats
-112	CE1	travail des enfants
-113	CE1	harcelement
-114	CE1	discrimination
-115	CE1	millenaire dev
-116	CE1	VIH et sida
-117	CE1	urgences mondiales
-118	CE1-CE2	education
-119	CE1-CE2	role unicef
-120	CE1-CE2	sante en generale
-121	CE1-CE2	sante et alimentation
-122	CE1-CE2	eau
-123	CE1-CE2	convention internationale des droits de l enfant
-124	CE1-CE2	enfants et soldats
-125	CE1-CE2	travail des enfants
-126	CE1-CE2	harcelement
-127	CE1-CE2	discrimination
-128	CE1-CE2	millenaire dev
-129	CE1-CE2	VIH et sida
-130	CE1-CE2	urgences mondiales
-131	CE2	education
-132	CE2	role unicef
-133	CE2	sante en generale
-134	CE2	sante et alimentation
-135	CE2	eau
-136	CE2	convention internationale des droits de l enfant
-137	CE2	enfants et soldats
-138	CE2	travail des enfants
-139	CE2	harcelement
-140	CE2	discrimination
-141	CE2	millenaire dev
-142	CE2	VIH et sida
-143	CE2	urgences mondiales
-144	CE2-CM1	education
-145	CE2-CM1	role unicef
-146	CE2-CM1	sante en generale
-147	CE2-CM1	sante et alimentation
-148	CE2-CM1	eau
-149	CE2-CM1	convention internationale des droits de l enfant
-150	CE2-CM1	enfants et soldats
-151	CE2-CM1	travail des enfants
-152	CE2-CM1	harcelement
-153	CE2-CM1	discrimination
-154	CE2-CM1	millenaire dev
-155	CE2-CM1	VIH et sida
-156	CE2-CM1	urgences mondiales
-157	CM1	education
-158	CM1	role unicef
-159	CM1	sante en generale
-160	CM1	sante et alimentation
-161	CM1	eau
-162	CM1	convention internationale des droits de l enfant
-163	CM1	enfants et soldats
-164	CM1	travail des enfants
-165	CM1	harcelement
-166	CM1	discrimination
-167	CM1	millenaire dev
-168	CM1	VIH et sida
-169	CM1	urgences mondiales
-170	CM1-CM2	education
-171	CM1-CM2	role unicef
-172	CM1-CM2	sante en generale
-173	CM1-CM2	sante et alimentation
-174	CM1-CM2	eau
-175	CM1-CM2	convention internationale des droits de l enfant
-176	CM1-CM2	enfants et soldats
-177	CM1-CM2	travail des enfants
-178	CM1-CM2	harcelement
-179	CM1-CM2	discrimination
-180	CM1-CM2	millenaire dev
-181	CM1-CM2	VIH et sida
-182	CM1-CM2	urgences mondiales
-183	CM2	education
-184	CM2	role unicef
-185	CM2	sante en generale
-186	CM2	sante et alimentation
-187	CM2	eau
-188	CM2	convention internationale des droits de l enfant
-189	CM2	enfants et soldats
-190	CM2	travail des enfants
-191	CM2	harcelement
-192	CM2	discrimination
-193	CM2	millenaire dev
-194	CM2	VIH et sida
-195	CM2	urgences mondiales
-196	6eme	education
-197	6eme	role unicef
-198	6eme	sante en generale
-199	6eme	sante et alimentation
-200	6eme	eau
-201	6eme	convention internationale des droits de l enfant
-202	6eme	enfants et soldats
-203	6eme	travail des enfants
-204	6eme	harcelement
-205	6eme	discrimination
-206	6eme	millenaire dev
-207	6eme	VIH et sida
-208	6eme	urgences mondiales
-209	5eme	education
-210	5eme	role unicef
-211	5eme	sante en generale
-212	5eme	sante et alimentation
-213	5eme	eau
-214	5eme	convention internationale des droits de l enfant
-215	5eme	enfants et soldats
-216	5eme	travail des enfants
-217	5eme	harcelement
-218	5eme	discrimination
-219	5eme	millenaire dev
-220	5eme	VIH et sida
-221	5eme	urgences mondiales
-222	4eme	education
-223	4eme	role unicef
-224	4eme	sante en generale
-225	4eme	sante et alimentation
-226	4eme	eau
-227	4eme	convention internationale des droits de l enfant
-228	4eme	enfants et soldats
-229	4eme	travail des enfants
-230	4eme	harcelement
-231	4eme	discrimination
-232	4eme	millenaire dev
-233	4eme	VIH et sida
-234	4eme	urgences mondiales
-235	3eme	education
-236	3eme	role unicef
-237	3eme	sante en generale
-238	3eme	sante et alimentation
-239	3eme	eau
-240	3eme	convention internationale des droits de l enfant
-241	3eme	enfants et soldats
-242	3eme	travail des enfants
-243	3eme	harcelement
-244	3eme	discrimination
-245	3eme	millenaire dev
-246	3eme	VIH et sida
-247	3eme	urgences mondiales
-248	2nde	education
-249	2nde	role unicef
-250	2nde	sante en generale
-251	2nde	sante et alimentation
-252	2nde	eau
-253	2nde	convention internationale des droits de l enfant
-254	2nde	enfants et soldats
-255	2nde	travail des enfants
-256	2nde	harcelement
-257	2nde	discrimination
-258	2nde	millenaire dev
-259	2nde	VIH et sida
-260	2nde	urgences mondiales
-261	1ere	education
-262	1ere	role unicef
-263	1ere	sante en generale
-264	1ere	sante et alimentation
-265	1ere	eau
-266	1ere	convention internationale des droits de l enfant
+7	petite-moyenne section	education
+8	petite-moyenne section	role unicef
+9	petite-moyenne section	sante en generale
+10	petite-moyenne section	sante et alimentation
+11	petite-moyenne section	eau
+12	petite-moyenne section	convention internationale des droits de l enfant
+13	moyenne section	education
+14	moyenne section	role unicef
+15	moyenne section	sante en generale
+16	moyenne section	sante et alimentation
+17	moyenne section	eau
+18	moyenne section	convention internationale des droits de l enfant
+19	moyenne-grande section	education
+20	moyenne-grande section	role unicef
+21	moyenne-grande section	sante en generale
+22	moyenne-grande section	sante et alimentation
+23	moyenne-grande section	eau
+24	moyenne-grande section	convention internationale des droits de l enfant
+25	grande section	education
+26	grande section	role unicef
+27	grande section	sante en generale
+28	grande section	sante et alimentation
+29	grande section	eau
+30	grande section	convention internationale des droits de l enfant
+31	petite-moyenne-grande section	education
+32	petite-moyenne-grande section	role unicef
+33	petite-moyenne-grande section	sante en generale
+34	petite-moyenne-grande section	sante et alimentation
+35	petite-moyenne-grande section	eau
+36	petite-moyenne-grande section	convention internationale des droits de l enfant
+37	CP	education
+38	CP	role unicef
+39	CP	sante en generale
+40	CP	sante et alimentation
+41	CP	eau
+42	CP	convention internationale des droits de l enfant
+43	CP-CE1	education
+44	CP-CE1	role unicef
+45	CP-CE1	sante en generale
+46	CP-CE1	sante et alimentation
+47	CP-CE1	eau
+48	CP-CE1	convention internationale des droits de l enfant
+49	CE1	education
+50	CE1	role unicef
+51	CE1	sante en generale
+52	CE1	sante et alimentation
+53	CE1	eau
+54	CE1	convention internationale des droits de l enfant
+55	CE1-CE2	education
+56	CE1-CE2	role unicef
+57	CE1-CE2	sante en generale
+58	CE1-CE2	sante et alimentation
+59	CE1-CE2	eau
+60	CE1-CE2	convention internationale des droits de l enfant
+61	CE2	education
+62	CE2	role unicef
+63	CE2	sante en generale
+64	CE2	sante et alimentation
+65	CE2	eau
+66	CE2	convention internationale des droits de l enfant
+67	CE2-CM1	education
+68	CE2-CM1	role unicef
+69	CE2-CM1	sante en generale
+70	CE2-CM1	sante et alimentation
+71	CE2-CM1	eau
+72	CE2-CM1	convention internationale des droits de l enfant
+73	CM1	education
+74	CM1	role unicef
+75	CM1	sante en generale
+76	CM1	sante et alimentation
+77	CM1	eau
+78	CM1	convention internationale des droits de l enfant
+79	CM1-CM2	education
+80	CM1-CM2	role unicef
+81	CM1-CM2	sante en generale
+82	CM1-CM2	sante et alimentation
+83	CM1-CM2	eau
+84	CM1-CM2	convention internationale des droits de l enfant
+85	CM2	education
+86	CM2	role unicef
+87	CM2	sante en generale
+88	CM2	sante et alimentation
+89	CM2	eau
+90	CM2	convention internationale des droits de l enfant
+91	6eme	education
+92	6eme	role unicef
+93	6eme	sante en generale
+94	6eme	sante et alimentation
+95	6eme	eau
+96	6eme	convention internationale des droits de l enfant
+97	5eme	education
+98	5eme	role unicef
+99	5eme	sante en generale
+100	5eme	sante et alimentation
+101	5eme	eau
+102	5eme	convention internationale des droits de l enfant
+103	4eme	education
+104	4eme	role unicef
+105	4eme	sante en generale
+106	4eme	sante et alimentation
+107	4eme	eau
+108	4eme	convention internationale des droits de l enfant
+109	3eme	education
+110	3eme	role unicef
+111	3eme	sante en generale
+112	3eme	sante et alimentation
+113	3eme	eau
+114	3eme	convention internationale des droits de l enfant
+115	2nde	education
+116	2nde	role unicef
+117	2nde	sante en generale
+118	2nde	sante et alimentation
+119	2nde	eau
+120	2nde	convention internationale des droits de l enfant
+121	1ere	education
+122	1ere	role unicef
+123	1ere	sante en generale
+124	1ere	sante et alimentation
+125	1ere	eau
+126	1ere	convention internationale des droits de l enfant
+127	terminale	education
+128	terminale	role unicef
+129	terminale	sante en generale
+130	terminale	sante et alimentation
+131	terminale	eau
+132	terminale	convention internationale des droits de l enfant
+133	L1	education
+134	L1	role unicef
+135	L1	sante en generale
+136	L1	sante et alimentation
+137	L1	eau
+138	L1	convention internationale des droits de l enfant
+139	L2	education
+140	L2	role unicef
+141	L2	sante en generale
+142	L2	sante et alimentation
+143	L2	eau
+144	L2	convention internationale des droits de l enfant
+145	L3	education
+146	L3	role unicef
+147	L3	sante en generale
+148	L3	sante et alimentation
+149	L3	eau
+150	L3	convention internationale des droits de l enfant
+151	M1	education
+152	M1	role unicef
+153	M1	sante en generale
+154	M1	sante et alimentation
+155	M1	eau
+156	M1	convention internationale des droits de l enfant
+157	M2	education
+158	M2	role unicef
+159	M2	sante en generale
+160	M2	sante et alimentation
+161	M2	eau
+162	M2	convention internationale des droits de l enfant
+163	autre	education
+164	autre	role unicef
+165	autre	sante en generale
+166	autre	sante et alimentation
+167	autre	eau
+168	autre	convention internationale des droits de l enfant
+169	CP	enfants et soldats
+170	CP	travail des enfants
+171	CP	harcelement
+172	CP	discrimination
+173	CP	millenaire dev
+174	CP	VIH et sida
+175	CP	urgences mondiales
+176	CP-CE1	enfants et soldats
+177	CP-CE1	travail des enfants
+178	CP-CE1	harcelement
+179	CP-CE1	discrimination
+180	CP-CE1	millenaire dev
+181	CP-CE1	VIH et sida
+182	CP-CE1	urgences mondiales
+183	CE1	enfants et soldats
+184	CE1	travail des enfants
+185	CE1	harcelement
+186	CE1	discrimination
+187	CE1	millenaire dev
+188	CE1	VIH et sida
+189	CE1	urgences mondiales
+190	CE1-CE2	enfants et soldats
+191	CE1-CE2	travail des enfants
+192	CE1-CE2	harcelement
+193	CE1-CE2	discrimination
+194	CE1-CE2	millenaire dev
+195	CE1-CE2	VIH et sida
+196	CE1-CE2	urgences mondiales
+197	CE2	enfants et soldats
+198	CE2	travail des enfants
+199	CE2	harcelement
+200	CE2	discrimination
+201	CE2	millenaire dev
+202	CE2	VIH et sida
+203	CE2	urgences mondiales
+204	CE2-CM1	enfants et soldats
+205	CE2-CM1	travail des enfants
+206	CE2-CM1	harcelement
+207	CE2-CM1	discrimination
+208	CE2-CM1	millenaire dev
+209	CE2-CM1	VIH et sida
+210	CE2-CM1	urgences mondiales
+211	CM1	enfants et soldats
+212	CM1	travail des enfants
+213	CM1	harcelement
+214	CM1	discrimination
+215	CM1	millenaire dev
+216	CM1	VIH et sida
+217	CM1	urgences mondiales
+218	CM1-CM2	enfants et soldats
+219	CM1-CM2	travail des enfants
+220	CM1-CM2	harcelement
+221	CM1-CM2	discrimination
+222	CM1-CM2	millenaire dev
+223	CM1-CM2	VIH et sida
+224	CM1-CM2	urgences mondiales
+225	CM2	enfants et soldats
+226	CM2	travail des enfants
+227	CM2	harcelement
+228	CM2	discrimination
+229	CM2	millenaire dev
+230	CM2	VIH et sida
+231	CM2	urgences mondiales
+232	6eme	enfants et soldats
+233	6eme	travail des enfants
+234	6eme	harcelement
+235	6eme	discrimination
+236	6eme	millenaire dev
+237	6eme	VIH et sida
+238	6eme	urgences mondiales
+239	5eme	enfants et soldats
+240	5eme	travail des enfants
+241	5eme	harcelement
+242	5eme	discrimination
+243	5eme	millenaire dev
+244	5eme	VIH et sida
+245	5eme	urgences mondiales
+246	4eme	enfants et soldats
+247	4eme	travail des enfants
+248	4eme	harcelement
+249	4eme	discrimination
+250	4eme	millenaire dev
+251	4eme	VIH et sida
+252	4eme	urgences mondiales
+253	3eme	enfants et soldats
+254	3eme	travail des enfants
+255	3eme	harcelement
+256	3eme	discrimination
+257	3eme	millenaire dev
+258	3eme	VIH et sida
+259	3eme	urgences mondiales
+260	2nde	enfants et soldats
+261	2nde	travail des enfants
+262	2nde	harcelement
+263	2nde	discrimination
+264	2nde	millenaire dev
+265	2nde	VIH et sida
+266	2nde	urgences mondiales
 267	1ere	enfants et soldats
 268	1ere	travail des enfants
 269	1ere	harcelement
@@ -11926,97 +11850,55 @@ COPY niveau_theme (id, niveau, theme) FROM stdin;
 271	1ere	millenaire dev
 272	1ere	VIH et sida
 273	1ere	urgences mondiales
-274	terminale	education
-275	terminale	role unicef
-276	terminale	sante en generale
-277	terminale	sante et alimentation
-278	terminale	eau
-279	terminale	convention internationale des droits de l enfant
-280	terminale	enfants et soldats
-281	terminale	travail des enfants
-282	terminale	harcelement
-283	terminale	discrimination
-284	terminale	millenaire dev
-285	terminale	VIH et sida
-286	terminale	urgences mondiales
-287	L1	education
-288	L1	role unicef
-289	L1	sante en generale
-290	L1	sante et alimentation
-291	L1	eau
-292	L1	convention internationale des droits de l enfant
-293	L1	enfants et soldats
-294	L1	travail des enfants
-295	L1	harcelement
-296	L1	discrimination
-297	L1	millenaire dev
-298	L1	VIH et sida
-299	L1	urgences mondiales
-300	L2	education
-301	L2	role unicef
-302	L2	sante en generale
-303	L2	sante et alimentation
-304	L2	eau
-305	L2	convention internationale des droits de l enfant
-306	L2	enfants et soldats
-307	L2	travail des enfants
-308	L2	harcelement
-309	L2	discrimination
-310	L2	millenaire dev
-311	L2	VIH et sida
-312	L2	urgences mondiales
-313	L3	education
-314	L3	role unicef
-315	L3	sante en generale
-316	L3	sante et alimentation
-317	L3	eau
-318	L3	convention internationale des droits de l enfant
-319	L3	enfants et soldats
-320	L3	travail des enfants
-321	L3	harcelement
-322	L3	discrimination
-323	L3	millenaire dev
-324	L3	VIH et sida
-325	L3	urgences mondiales
-326	M1	education
-327	M1	role unicef
-328	M1	sante en generale
-329	M1	sante et alimentation
-330	M1	eau
-331	M1	convention internationale des droits de l enfant
-332	M1	enfants et soldats
-333	M1	travail des enfants
-334	M1	harcelement
-335	M1	discrimination
-336	M1	millenaire dev
-337	M1	VIH et sida
-338	M1	urgences mondiales
-339	M2	education
-340	M2	role unicef
-341	M2	sante en generale
-342	M2	sante et alimentation
-343	M2	eau
-344	M2	convention internationale des droits de l enfant
-345	M2	enfants et soldats
-346	M2	travail des enfants
-347	M2	harcelement
-348	M2	discrimination
-349	M2	millenaire dev
-350	M2	VIH et sida
-351	M2	urgences mondiales
-352	autre	education
-353	autre	role unicef
-354	autre	sante en generale
-355	autre	sante et alimentation
-356	autre	eau
-357	autre	convention internationale des droits de l enfant
-358	autre	enfants et soldats
-359	autre	travail des enfants
-360	autre	harcelement
-361	autre	discrimination
-362	autre	millenaire dev
-363	autre	VIH et sida
-364	autre	urgences mondiales
+274	terminale	enfants et soldats
+275	terminale	travail des enfants
+276	terminale	harcelement
+277	terminale	discrimination
+278	terminale	millenaire dev
+279	terminale	VIH et sida
+280	terminale	urgences mondiales
+281	L1	enfants et soldats
+282	L1	travail des enfants
+283	L1	harcelement
+284	L1	discrimination
+285	L1	millenaire dev
+286	L1	VIH et sida
+287	L1	urgences mondiales
+288	L2	enfants et soldats
+289	L2	travail des enfants
+290	L2	harcelement
+291	L2	discrimination
+292	L2	millenaire dev
+293	L2	VIH et sida
+294	L2	urgences mondiales
+295	L3	enfants et soldats
+296	L3	travail des enfants
+297	L3	harcelement
+298	L3	discrimination
+299	L3	millenaire dev
+300	L3	VIH et sida
+301	L3	urgences mondiales
+302	M1	enfants et soldats
+303	M1	travail des enfants
+304	M1	harcelement
+305	M1	discrimination
+306	M1	millenaire dev
+307	M1	VIH et sida
+308	M1	urgences mondiales
+309	M2	enfants et soldats
+310	M2	travail des enfants
+311	M2	harcelement
+312	M2	discrimination
+313	M2	millenaire dev
+314	M2	VIH et sida
+315	M2	urgences mondiales
+316	autre	enfants et soldats
+317	autre	travail des enfants
+318	autre	harcelement
+319	autre	discrimination
+320	autre	millenaire dev
+321	autre	VIH et sida
+322	autre	urgences mondiales
 \.
 
 
@@ -12024,7 +11906,7 @@ COPY niveau_theme (id, niveau, theme) FROM stdin;
 -- Name: niveau_theme_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('niveau_theme_id_seq', 364, true);
+SELECT pg_catalog.setval('niveau_theme_id_seq', 322, true);
 
 
 --
@@ -12129,7 +12011,7 @@ COPY vente (id, etablissement_id, intervention_id, chiffre_affaire, date_vente, 
 -- Name: vente_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('vente_id_seq', 5, true);
+SELECT pg_catalog.setval('vente_id_seq', 18, true);
 
 
 --
@@ -83180,6 +83062,41 @@ ALTER TABLE ONLY ville
 
 
 --
+-- Name: code_postal_code_index; Type: INDEX; Schema: public; Owner: unipik; Tablespace: 
+--
+
+CREATE INDEX code_postal_code_index ON code_postal USING btree (code);
+
+
+--
+-- Name: departement_nom_index; Type: INDEX; Schema: public; Owner: unipik; Tablespace: 
+--
+
+CREATE INDEX departement_nom_index ON departement USING btree (nom);
+
+
+--
+-- Name: departement_numero_index; Type: INDEX; Schema: public; Owner: unipik; Tablespace: 
+--
+
+CREATE INDEX departement_numero_index ON departement USING btree (numero);
+
+
+--
+-- Name: region_nom_index; Type: INDEX; Schema: public; Owner: unipik; Tablespace: 
+--
+
+CREATE INDEX region_nom_index ON region USING btree (nom);
+
+
+--
+-- Name: ville_nom_index; Type: INDEX; Schema: public; Owner: unipik; Tablespace: 
+--
+
+CREATE INDEX ville_nom_index ON ville USING btree (nom);
+
+
+--
 -- Name: avant_insertion_intervention; Type: TRIGGER; Schema: public; Owner: unipik
 --
 
@@ -83198,6 +83115,13 @@ CREATE TRIGGER avant_suppression_benevole BEFORE DELETE ON benevole FOR EACH ROW
 --
 
 CREATE TRIGGER avant_suppression_etablissement BEFORE DELETE ON etablissement FOR EACH ROW EXECUTE PROCEDURE modifier_etablissement_fictif();
+
+
+--
+-- Name: avant_suppression_intervention; Type: TRIGGER; Schema: public; Owner: unipik
+--
+
+CREATE TRIGGER avant_suppression_intervention BEFORE DELETE ON intervention FOR EACH ROW EXECUTE PROCEDURE modifier_id_intervention_vente();
 
 
 --

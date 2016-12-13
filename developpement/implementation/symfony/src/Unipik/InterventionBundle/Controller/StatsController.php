@@ -95,13 +95,14 @@ class StatsController extends Controller {
             }
             array_push($themesArray, $themes);
 
-            foreach ($niveaux as $niveau => $valueNiveau) {
-                foreach ($themes as $theme => $value) {
+            foreach ($themes as $theme => $value) {
+                foreach ($niveaux as $niveau => $valueNiveau) {
                     $countThemeNiveau = $repository->getNumberInterventionByThemeAndNiveau($theme, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf, $niveau);
-                    $themes[$theme] = $countThemeNiveau;
+                    $niveaux[$niveau] = $countThemeNiveau;
                 }
-                array_push($themesNiveauxArray, $themes);
+                $themes[$theme] = $niveaux;
             }
+            array_push($themesNiveauxArray, json_encode($themes));
 
             foreach ($niveaux as $niveau => $value) {
                 $countNiveau = $repository->getNumberInterventionByNiveau($niveau, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);

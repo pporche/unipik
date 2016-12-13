@@ -55,8 +55,7 @@
 
         var topEtablissements = {{ topEtablissements|raw }};
         for(i=0; i<topEtablissements.length; i++){
-            var id = "/unicef/app_dev.php/etablissement/"+topEtablissements[i]['etabId'];
-            var html = "<a href="+id+"><p style='margin-top: 10px;'><span class='index'>"+ (i+1) +"</span>"+topEtablissements[i]['etabNom']+"<span style='float:right;'>"+topEtablissements[i]['count1']+" Interventions</span></p></a>";
+            var html = "<p style='margin-top: 10px;'><span class='index'>"+ (i+1) +"</span>"+topEtablissements[i]['etabNom']+"<span style='float:right;'>"+topEtablissements[i]['count1']+" Interventions</span></p>";
             $("#topTen").append(html);
         }
 
@@ -352,35 +351,15 @@
             function changeTableau2(annee){
                 var html = "<table class='table table-striped'><thead><tr><td></td><td>Maternelles</td><td>Primaires</td><td>Collèges</td><td>Lycées</td><td> Bac +</td></tr></thead><tbody>";
                 var eleves = {{ eleves|raw }};
-                if(annee==1){
-                    var eleves1 = eleves[0];
+                    var eleves1 = eleves[annee - 1];
                     html += "<tr><td>Nb d'élèves sensibilisés</td><td>"
-                            + eleves1['maternelle'] +"</td><td>"
-                            + eleves1['elementaire'] +"</td><td>"
-                            + eleves1['college'] +"</td><td>"
-                            + eleves1['lycee'] +"</td><td>"
+                            + eleves1['maternelle'] + "</td><td>"
+                            + eleves1['elementaire'] + "</td><td>"
+                            + eleves1['college'] + "</td><td>"
+                            + eleves1['lycee'] + "</td><td>"
                             + eleves1['superieur']
-                            +"</td></tr></tbody></table>";
+                            + "</td></tr></tbody></table>";
                     $("#tableaux2").html(html);
-                }else if(annee==2){
-                    var eleves2 = eleves[1];
-                    html += "<tr><td>Nb d'élèves sensibilisés</td><td>"
-                            + eleves2['maternelle'] +"</td><td>"
-                            + eleves2['elementaire'] +"</td><td>"
-                            + eleves2['college'] +"</td><td>"
-                            + eleves2['lycee'] +"</td><td>"
-                            + eleves2['superieur'] +"</td></tr></tbody></table>";
-                    $("#tableaux2").html(html);
-                }else{
-                    var eleves3 = eleves[2];
-                    html += "<tr><td>Nb d'élèves sensibilisés</td><td>"
-                            + eleves3['maternelle'] +"</td><td>"
-                            + eleves3['elementaire'] +"</td><td>"
-                            + eleves3['college'] +"</td><td>"
-                            + eleves3['lycee'] +"</td><td>"
-                            + eleves3['superieur'] +"</td></tr></tbody></table>";
-                    $("#tableaux2").html(html);
-                }
             }
         });
     </script>
@@ -389,7 +368,7 @@
 {% block body%}
     <style>
         @import 'https://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin-ext';
-        #chart_intervention, .topTen{
+        #chart_intervention{
             max-width: 500px;
             margin: auto;
             margin-bottom: 100px;
@@ -431,9 +410,11 @@
             display: block;
             margin: auto;
         }
-        section{
+        .gauche{
             width: 650px !important;
             margin: auto;
+            margin-top: 20px;
+            margin-bottom: 80px;
         }
         .index{
             width: 25px;
@@ -467,17 +448,16 @@
     <h4>Nombre de plaidoyers réalisés par thème</h4>
     <select id="selectYearsThemes"></select>
     <div id="chart_intervention_themes"></div>
-{{ dump(themesNiveaux) }}
     <h4>Nombre de plaidoyers réalisés par niveau scolaire</h4>
     <select id="selectYearsNiveaux"></select>
     <div id="chart_intervention_niveaux"></div>
 
     <h4>Classement des établissements par nombre d'Interventions réalisées</h4>
     <div class="topTen">
-        <section class="accueilSq gauche" id="topTen">
+        <div class="accueilSq gauche" id="topTen">
             <img src="{{ asset('img/logo-gris.png') }}" alt="logo" class="logoGauche">
 
-        </section>
+        </div>
     </div>
     <div id="tableauxSelect">
     </div>

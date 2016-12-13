@@ -114,8 +114,6 @@ class MailController extends Controller {
             $mails = $repository->getType($start, $end, $typeEtablissement, $types, null);
         }
 
-        var_dump('eee');
-        var_dump($typeEtablissement);
         return $this->render(
             'MailBundle::historiqueEmails.html.twig', array(
             'typeMail' => $typeMail,

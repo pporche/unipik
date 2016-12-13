@@ -351,14 +351,38 @@
             function changeTableau2(annee){
                 var html = "<table class='table table-striped'><thead><tr><td></td><td>Maternelles</td><td>Primaires</td><td>Collèges</td><td>Lycées</td><td> Bac +</td></tr></thead><tbody>";
                 var eleves = {{ eleves|raw }};
-                    var eleves1 = eleves[annee - 1];
+                var niveaux = {{ niveaux|raw }};
+                var eleves1 = eleves[annee - 1];
+                var niveaux1 = niveaux[annee - 1];
+                    if(eleves1['maternelle']==null){
+                        eleves1['maternelle'] = 0;
+                    }
+                    if(eleves1['elementaire']==null){
+                        eleves1['elementaire'] = 0;
+                    }
+                    if(eleves1['college']==null){
+                        eleves1['college'] = 0;
+                    }
+                    if(eleves1['lycee']==null){
+                        eleves1['lycee'] = 0;
+                    }
+                    if(eleves1['superieur']==null){
+                        eleves1['superieur'] = 0;
+                    }
                     html += "<tr><td>Nb d'élèves sensibilisés</td><td>"
                             + eleves1['maternelle'] + "</td><td>"
                             + eleves1['elementaire'] + "</td><td>"
                             + eleves1['college'] + "</td><td>"
                             + eleves1['lycee'] + "</td><td>"
                             + eleves1['superieur']
-                            + "</td></tr></tbody></table>";
+                            + "</td></tr>";
+                    html += "<tr><td>Nb d'interventions realisées</td><td>"
+                        + niveaux1['maternelle'] + "</td><td>"
+                        + niveaux1['elementaire'] + "</td><td>"
+                        + niveaux1['college'] + "</td><td>"
+                        + niveaux1['lycee'] + "</td><td>"
+                        + niveaux1['superieur']
+                        + "</td></tr></tbody></table>";
                     $("#tableaux2").html(html);
             }
         });
@@ -411,21 +435,21 @@
             margin: auto;
         }
         .gauche{
-            width: 650px !important;
+            width: 700px !important;
             margin: auto;
             margin-top: 20px;
             margin-bottom: 80px;
         }
         .index{
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height:30px;
             background-color: #333;
             color: #fff;
             display: inline-block;
             border-radius: 20px;
             text-align: center;
             font-weight: bold;
-            padding-top: 1px;
+            padding-top: 4px;
             margin-right: 15px;
         }
         a, a:hover, a:visited{
@@ -459,10 +483,12 @@
 
         </div>
     </div>
+    <h4>Nombre d'interventions réalisées par thème et par niveau</h4>
     <div id="tableauxSelect">
     </div>
     <div id="tableaux">
     </div>
+    <h4>Autres statistiques</h4>
     <div id="tableaux2Select">
     </div>
     <div id="tableaux2">

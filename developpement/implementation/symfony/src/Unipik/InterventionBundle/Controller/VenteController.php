@@ -210,7 +210,7 @@ class VenteController extends Controller {
      */
     public function consultationAction($id) {
         $vente = $this->getDoctrine()->getManager()->getRepository("InterventionBundle:Vente")->find($id);
-        return $this->render('InterventionBundle:Vente:consultation.html.twig', array('vente' => $vente, 'precedentUrl'=>$_SESSION['back'], 'user' => $this->getUser()));
+        return $this->render('InterventionBundle:Vente:consultation.html.twig', array('vente' => $vente, 'user' => $this->getUser()));
     }
 
     /**

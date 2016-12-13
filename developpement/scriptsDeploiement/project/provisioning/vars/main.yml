@@ -40,6 +40,10 @@ postgresql_databases:
   - name: bdunicef
     owner: unipik
 
+postgresql_datestyle:
+  - iso
+  - dmy
+
 
 # Apache
 

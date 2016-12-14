@@ -31,6 +31,6 @@ security:
         - { path: ^/intervention/demande($|/), role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/intervention($|/), role: IS_AUTHENTICATED_FULLY }
         - { path: ^/etablissement($|/), role: IS_AUTHENTICATED_FULLY }
-        - { path: ^/stats/, role: ROLE_ADMIN }
+        - { path: ^/stats/, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/mailing/, role: ROLE_ADMIN }
         - { path: ^/planning, role: IS_AUTHENTICATED_FULLY }

@@ -10,7 +10,7 @@ all : cri cleanrep cleaneps
 
 
 cri : 
-	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements CRI_Q_Unipik_d16-01-22 CRI_Q_Unipik_d16-01-29 CRI_Q_Unipik_d16-02-02 CRI_Q_Unipik_d16-02-23 CRI_Q_Unipik_d16-03-04 CRI_Q_Unipik_d16-03-10 CRI_Q_Unipik_d16-03-14 CRI_Q_Unipik_d16-03-22 CRI_Q_Unipik_d16-03-29 CRI_Q_Unipik_d16-04-19 CRI_Q_Unipik_d16-04-26 CRI_Q_Unipik_d16-05-03 CRI_Q_Unipik_d16-05-10 
+	$(BASHMAKEPATH)/texToPdf.sh $(PDFDIR) $(CLSPATH) $(VOCPATH) enregistrements CRI_Q_Unipik_d16-01-22 CRI_Q_Unipik_d16-01-29 CRI_Q_Unipik_d16-02-02 CRI_Q_Unipik_d16-02-23 CRI_Q_Unipik_d16-03-04 CRI_Q_Unipik_d16-03-10 CRI_Q_Unipik_d16-03-14 CRI_Q_Unipik_d16-03-22 CRI_Q_Unipik_d16-03-29 CRI_Q_Unipik_d16-04-19 CRI_Q_Unipik_d16-04-26 CRI_Q_Unipik_d16-05-03 CRI_Q_Unipik_d16-05-10 CRI_Q_Unipik_d16-09-05 CRI_Q_Unipik_d16-09-12 CRI_Q_Unipik_d16-09-19 CRI_Q_Unipik_d16-10-03 CRI_Q_Unipik_d16-10-10 CRI_Q_Unipik_d16-10-17 CRI_Q_Unipik_d16-11-07 CRI_Q_Unipik_d16-11-14 CRI_Q_Unipik_d16-11-21 CRI_Q_Unipik_d16-12-05 CRI_Q_Unipik_d16-12-12
 
 
 # Archivage

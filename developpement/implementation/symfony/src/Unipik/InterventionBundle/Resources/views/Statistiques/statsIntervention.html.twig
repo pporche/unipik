@@ -116,8 +116,8 @@
                 ['dummy', 0, 0, 0]
             ]);
 
-            interventions.forEach(function (value, i) {
-                data.addRow(['' + (currentDate - i + 1) + '/' + (currentDate - i), parseInt(value['plaidoyers']), parseInt(value['frimousses']), parseInt(value['autres'])]);
+            interventions.reverse().forEach(function (value, i) {
+                data.addRow(['' + (currentDate - interventions.length + i + 1) + '/' + (currentDate - interventions.length + i + 2), parseInt(value['plaidoyers']), parseInt(value['frimousses']), parseInt(value['autres'])]);
                 if(data.getFormattedValue(0,0) == 'dummy')
                     data.removeRow(0);
             });

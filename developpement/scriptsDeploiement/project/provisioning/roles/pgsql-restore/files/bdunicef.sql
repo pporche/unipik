@@ -1075,7 +1075,8 @@ CREATE TABLE mailtask (
     "interval" integer,
     lastrun date,
     id_etablissement text NOT NULL,
-    date_insert date NOT NULL
+    date_insert date NOT NULL,
+    type_email text
 );
 
 
@@ -11563,7 +11564,7 @@ SELECT pg_catalog.setval('mail_historique_id_seq', 1, false);
 -- Data for Name: mailtask; Type: TABLE DATA; Schema: public; Owner: unipik
 --
 
-COPY mailtask (id, name, "interval", lastrun, id_etablissement, date_insert) FROM stdin;
+COPY mailtask (id, name, "interval", lastrun, id_etablissement, date_insert, type_email) FROM stdin;
 \.
 
 
@@ -83106,6 +83107,41 @@ ALTER TABLE ONLY ville_code_postal
 
 ALTER TABLE ONLY ville
     ADD CONSTRAINT ville_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: code_postal_code_index; Type: INDEX; Schema: public; Owner: unipik; Tablespace: 
+--
+
+CREATE INDEX code_postal_code_index ON code_postal USING btree (code);
+
+
+--
+-- Name: departement_nom_index; Type: INDEX; Schema: public; Owner: unipik; Tablespace: 
+--
+
+CREATE INDEX departement_nom_index ON departement USING btree (nom);
+
+
+--
+-- Name: departement_numero_index; Type: INDEX; Schema: public; Owner: unipik; Tablespace: 
+--
+
+CREATE INDEX departement_numero_index ON departement USING btree (numero);
+
+
+--
+-- Name: region_nom_index; Type: INDEX; Schema: public; Owner: unipik; Tablespace: 
+--
+
+CREATE INDEX region_nom_index ON region USING btree (nom);
+
+
+--
+-- Name: ville_nom_index; Type: INDEX; Schema: public; Owner: unipik; Tablespace: 
+--
+
+CREATE INDEX ville_nom_index ON ville USING btree (nom);
 
 
 --

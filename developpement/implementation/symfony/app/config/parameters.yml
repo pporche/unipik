@@ -17,14 +17,14 @@ parameters:
     mailer_plaideurs_encryption: tls
     mailer_plaideurs_port: 587
     mailer_maternelle_user: maternelle-plaideurs.unicef76@laposte.net
-    mailer_maternelle_password: token
+    mailer_maternelle_password: SXfSvhqyL6Hn
     mailer_elementaire_user: elementaire-plaideurs.unicef76@laposte.net
-    mailer_elementaire_password: token
+    mailer_elementaire_password: 3RScWuGqpbJY
     mailer_college_user: college-plaideurs.unicef76@laposte.net
-    mailer_college_password: token
+    mailer_college_password: unpApnR68Kac
     mailer_lycee_user: lycee-plaideurs.unicef76@laposte.net
-    mailer_lycee_password: token
+    mailer_lycee_password: wdXLBnFukb4Q
     mailer_superieur_user: superieur-plaideurs.unicef76@laposte.net
-    mailer_superieur_password: token
+    mailer_superieur_password: 3gttKvNW2f
     locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt

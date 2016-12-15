@@ -91,9 +91,9 @@ class MailTaskCommand extends ContainerAwareCommand {
                 $type = !empty($etablissement->getTypeEnseignement()) ? $etablissement->getTypeEnseignement() : $etablissement->getTypeCentre();
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Intervention de l\'unicef')
-                    ->setFrom('unipik.dev@gmail.com')
+                    //->setFrom('unipik.dev@gmail.com')
                     //->setTo($etablissement->getEmails()[0])
-                    //->setFrom(''.$type.'-plaideurs.unicef76@laposte.net')
+                    ->setFrom(''.$type.'-plaideurs.unicef76@laposte.net')
                     ->setTo('dev1@yopmail.com')
                     ->setBody(
                         $this
@@ -107,8 +107,8 @@ class MailTaskCommand extends ContainerAwareCommand {
                     );
                 $this
                     ->getContainer()
-                    //->get('mailer_'.$type)
-                    ->get('mailer')
+                    ->get('mailer_'.$type)
+                    //->get('mailer')
                     ->send($message);
 
                 $mailHistorique = new MailHistorique();

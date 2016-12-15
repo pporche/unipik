@@ -92,9 +92,9 @@ class MailTaskCommand extends ContainerAwareCommand {
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Intervention de l\'unicef')
                     //->setFrom('unipik.dev@gmail.com')
-                    //->setTo($etablissement->getEmails()[0])
+                    ->setTo($etablissement->getEmails()[0])
                     ->setFrom(''.$type.'-plaideurs.unicef76@laposte.net')
-                    ->setTo('dev1@yopmail.com')
+                    //->setTo('dev1@yopmail.com')
                     ->setBody(
                         $this
                             ->getContainer()

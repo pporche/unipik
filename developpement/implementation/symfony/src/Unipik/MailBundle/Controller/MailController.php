@@ -211,7 +211,7 @@ class MailController extends Controller {
     public function kakiAction() {
         $message = \Swift_Message::newInstance()
             ->setSubject('Hello Email')
-            ->setFrom('florian.leriche@neuf.fr')
+            ->setFrom('dev.dev@dev.fr')
             ->setTo('onch1@yopmail.com')
             ->setBody(
                 $this->renderView(

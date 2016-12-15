@@ -68,9 +68,10 @@ class RappelEtablissementTaskCommand extends ContainerAwareCommand {
                 $interventions = $em->getRepository('InterventionBundle:Intervention')->getInterventionByEtablissementIdRappel($id);
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Rappel intervention de l\'unicef')
-                    ->setFrom('unipik.dev@gmail.com')
-                    //->setTo($emails[0])
-                    ->setTo('dev1@yopmail.com')
+                    //->setFrom('unipik.dev@gmail.com')
+                    ->setFrom('maternelle-plaideurs.unicef76@laposte.net')
+                    ->setTo($emails[0])
+                    //->setTo('dev1@yopmail.com')
                     ->setBody(
                         $this
                             ->getContainer()
@@ -83,7 +84,7 @@ class RappelEtablissementTaskCommand extends ContainerAwareCommand {
                     );
                 $this
                     ->getContainer()
-                    ->get('mailer')
+                    ->get('mailer_maternelle')
                     ->send($message);
             }
         }

@@ -1,2 +1,0 @@
-[prod]
-integ ansible_ssh_host=185.132.73.125 ansible_ssh_port=22 ansible_ssh_user=root

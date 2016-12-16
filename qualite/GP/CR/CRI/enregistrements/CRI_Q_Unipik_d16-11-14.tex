@@ -1,0 +1,78 @@
+% version 1.00	Auteur Kafui Atanley		Date 14/11/2016
+
+\documentclass [a4paper] {article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[top=2cm, bottom=4cm, left=2cm, right=2cm]{geometry} 
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage{longtable}
+\usepackage{vocabulaireUnipik}
+\pagestyle{fancy}
+\definecolor{Gray}{gray}{0.8}
+\definecolor{White}{gray}{1.0}
+
+
+%--- En-t�te et pied de page ---%
+
+\renewcommand{\footrulewidth}{0,01cm}
+\rhead{}
+\chead{\huge{Compte-rendu de réunion interne}}					%titre
+\begin{document}
+
+14/11/2016			 				%Date 
+\hfill   
+\hfill 	 14:38 - 15:00				%Heure de d�but, heure de fin.
+
+
+\lfoot{Version : 1.00} 			% Version
+%--- Fin en-t�te et pied de page ---%
+
+\section*{Historique des révisions}
+\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Version & Date & Auteur(s) & Modification(s) & Partie(s) modifiée(s)		 \\
+				\hline
+				1.00 & 16/11/2016 & \Kafui & Création & Toutes \\
+		\hline		
+			\end{tabular}
+		\end{center}
+
+\section*{Signatures}
+
+		\begin{center}
+			\begin{tabular}{| c | c | c | c | p{4cm} |}
+				\hline
+				\rowcolor{Gray}
+				Rôle & Fonction & Nom & Date & Visa		 \\
+				\hline
+				Vérificateur & \RQ & \Melissa & 21/11/2016 & courriel \\[30pt]
+				\hline
+				Validateur & \CP & \Pierre & 21/11/2016 & courriel \\[30pt]	
+				\hline
+			\end{tabular}
+		\end{center}
+
+\section{Semaine à venir}
+Les fonctionnalités à prioriser dans notre Kanban sont celles ciblant le formulaire de demande anonyme et l'impression des listes d'entité au format PDF. Il faudra également rendre accessible les entités de type demande (indépendamment des entités interventions).
+La base de données devra être sécurisée (rajout de trigger).
+\Pierre{} se chargera de contacter le client afin de confirmer le lotissement pour le lot 3 et 4.
+Une inspection aura lieu jeudi. Dans ce cadre il faut préparer un état de configuration.
+%\section{PRO}
+
+
+
+%--- fin de réunion ---%
+
+
+\end{document}
+
+
+
+
+
+
+

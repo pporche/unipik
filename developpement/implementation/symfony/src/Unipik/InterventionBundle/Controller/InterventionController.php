@@ -266,10 +266,10 @@ class InterventionController extends Controller {
             // Envoie de l'email
             $message = \Swift_Message::newInstance()
                 ->setSubject('Intervention de l\'unicef')
-                ->setFrom('unipik.dev@gmail.com')
-                ->setTo('dev1@yopmail.com')
+                ->setFrom('elementaire-plaideurs.unicef76@laposte.net')
+                ->setTo($institute->getEmails()[0])
                 ->setBody($this->renderView('MailBundle::emailConfirmationPriseEnCompte.html.twig'), 'text/html');
-            $this->get('mailer')->send($message);
+            $this->get('mailer_elementaire')->send($message);
 
 
             return $this->RedirectToRoute('demande_enregistree');
@@ -381,10 +381,10 @@ class InterventionController extends Controller {
             // Envoie de l'email
             $message = \Swift_Message::newInstance()
                 ->setSubject('Intervention de l\'unicef')
-                ->setFrom('unipik.dev@gmail.com')
-                ->setTo('dev1@yopmail.com')
+                ->setFrom('elementaire-plaideurs.unicef76@laposte.net')
+                ->setTo($etablissement->getEmails()[0])
                 ->setBody($this->renderView('MailBundle::emailConfirmationPriseEnCompte.html.twig'), 'text/html');
-            $this->get('mailer')->send($message);
+            $this->get('mailer_elementaire')->send($message);
 
             return $this->RedirectToRoute('demande_enregistree');
         }
@@ -744,18 +744,6 @@ class InterventionController extends Controller {
 
             $infos = array('nom' => $volunteer->getNom(), 'prenom' => $volunteer->getPrenom());
 
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Intervention de l\'unicef')
-                ->setFrom('unipik.dev@gmail.com')
-                ->setTo('dev1@yopmail.com')
-                ->setBody(
-                    $this->renderView(
-                        'MailBundle::emailConfirmationPriseEnCharge.html.twig'
-                    ),
-                    'text/html'
-                );
-            $this->get('mailer')->send($message);
-
             return new JsonResponse($infos);
         }
         return new Response();
@@ -809,18 +797,6 @@ class InterventionController extends Controller {
 
             $em->persist($intervention);
             $em->flush();
-
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Intervention de l\'unicef')
-                ->setFrom('unipik.dev@gmail.com')
-                ->setTo('dev1@yopmail.com')
-                ->setBody(
-                    $this->renderView(
-                        'MailBundle::emailConfirmationPriseEnCharge.html.twig'
-                    ),
-                    'text/html'
-                );
-            $this->get('mailer')->send($message);
 
             return new Response();
         }

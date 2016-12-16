@@ -85,32 +85,33 @@ class StatsController extends Controller {
             $currentYearSup = $currentYear - $i;
             $currentYearInf = $currentYear - $i - 1;
 
-            $countPlaidoyer = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::PLAIDOYER);
-            $countFrimousse = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::FRIMOUSSE);
-            $countAutre = $repository->getNumberInterventionRealisee('31/08/'.$currentYearSup, '01/09/'.$currentYearInf, null, self::AUTRE);
+            $countPlaidoyer = $repository->getNumberInterventionRealisee('31-08-'.$currentYearSup, '01-09-'.$currentYearInf, null, self::PLAIDOYER);
+            $countFrimousse = $repository->getNumberInterventionRealisee('31-08-'.$currentYearSup, '01-09-'.$currentYearInf, null, self::FRIMOUSSE);
+            $countAutre = $repository->getNumberInterventionRealisee('31-08-'.$currentYearSup, '01-09-'.$currentYearInf, null, self::AUTRE);
 
             foreach ($themes as $theme => $value) {
-                $countTheme = $repository->getNumberInterventionByThemeAndNiveau($theme, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+                $countTheme = $repository->getNumberInterventionByThemeAndNiveau($theme, '31-08-'.$currentYearSup, '01-09-'.$currentYearInf);
                 $themes[$theme] = $countTheme;
             }
             array_push($themesArray, $themes);
 
-            foreach ($niveaux as $niveau => $valueNiveau) {
-                foreach ($themes as $theme => $value) {
-                    $countThemeNiveau = $repository->getNumberInterventionByThemeAndNiveau($theme, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf, $niveau);
-                    $themes[$theme] = $countThemeNiveau;
+            foreach ($themes as $theme => $value) {
+                foreach ($niveaux as $niveau => $valueNiveau) {
+                    $countThemeNiveau = $repository->getNumberInterventionByThemeAndNiveau($theme, '31-08-'.$currentYearSup, '01-09-'.$currentYearInf, $niveau);
+                    $niveaux[$niveau] = $countThemeNiveau;
                 }
-                array_push($themesNiveauxArray, $themes);
+                $themes[$theme] = $niveaux;
             }
+            array_push($themesNiveauxArray, $themes);
 
             foreach ($niveaux as $niveau => $value) {
-                $countNiveau = $repository->getNumberInterventionByNiveau($niveau, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+                $countNiveau = $repository->getNumberInterventionByNiveau($niveau, '31-08-'.$currentYearSup, '01-09-'.$currentYearInf);
                 $niveaux[$niveau] = $countNiveau;
             }
             array_push($niveauxArray, $niveaux);
 
             foreach ($eleves as $niveau => $value) {
-                $countEleves = $em->getRepository('InterventionBundle:Intervention')->getElevesSensibilise($niveau, '31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+                $countEleves = $em->getRepository('InterventionBundle:Intervention')->getElevesSensibilise($niveau, '31-08-'.$currentYearSup, '01-09-'.$currentYearInf);
                 $eleves[$niveau] = $countEleves;
             }
             array_push($elevesArray, $eleves);
@@ -119,8 +120,6 @@ class StatsController extends Controller {
         }
 
         $topEtablissements = $em->getRepository('InterventionBundle:Etablissement')->getTop10Etablissements();
-        var_dump('---');
-//        var_dump($topEtablissements);
 
         return $this->render(
             'InterventionBundle:Statistiques:statsIntervention.html.twig', array(
@@ -153,20 +152,20 @@ class StatsController extends Controller {
             $cAOneYearArray = array();
             $currentYearSup = $currentYear - $i;
             $currentYearInf = $currentYear - $i - 1;
-            $countVenteYear = $repository->getNumberVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
-            $cAYear = $repository->getCAVente('31/08/'.$currentYearSup, '01/09/'.$currentYearInf);
+            $countVenteYear = $repository->getNumberVente('31-08-'.$currentYearSup, '01-09-'.$currentYearInf);
+            $cAYear = $repository->getCAVente('31-08-'.$currentYearSup, '01-09-'.$currentYearInf);
             for ($j = 1; $j < count($months); $j++) {
                 if ($j < 4) {
-                    $countVenteMonth = $repository->getNumberVenteMonth('01/' . $months[$j] . '/' . $currentYearInf, '01/' . $months[$j - 1] . '/' . $currentYearInf);
-                    $cAMonth = $repository->getCAVenteMonth('01/' . $months[$j] . '/' . $currentYearInf, '01/' . $months[$j - 1] . '/' . $currentYearInf);
+                    $countVenteMonth = $repository->getNumberVenteMonth('01-' . $months[$j] . '-' . $currentYearInf, '01-' . $months[$j - 1] . '-' . $currentYearInf);
+                    $cAMonth = $repository->getCAVenteMonth('01-' . $months[$j] . '-' . $currentYearInf, '01-' . $months[$j - 1] . '-' . $currentYearInf);
                 }
                 elseif ($j > 4) {
-                    $countVenteMonth = $repository->getNumberVenteMonth('01/' . $months[$j] . '/' . $currentYearSup, '01/' . $months[$j - 1] . '/' . $currentYearSup);
-                    $cAMonth = $repository->getCAVenteMonth('01/' . $months[$j] . '/' . $currentYearSup, '01/' . $months[$j - 1] . '/' . $currentYearSup);
+                    $countVenteMonth = $repository->getNumberVenteMonth('01-' . $months[$j] . '-' . $currentYearSup, '01-' . $months[$j - 1] . '-' . $currentYearSup);
+                    $cAMonth = $repository->getCAVenteMonth('01-' . $months[$j] . '-' . $currentYearSup, '01-' . $months[$j - 1] . '-' . $currentYearSup);
                 }
                 else {
-                    $countVenteMonth = $repository->getNumberVenteMonth('01/' . $months[$j] . '/' . $currentYearSup, '01/' . $months[$j - 1] . '/' . $currentYearInf);
-                    $cAMonth = $repository->getCAVenteMonth('01/' . $months[$j] . '/' . $currentYearSup, '01/' . $months[$j - 1] . '/' . $currentYearInf);
+                    $countVenteMonth = $repository->getNumberVenteMonth('01-' . $months[$j] . '-' . $currentYearSup, '01-' . $months[$j - 1] . '-' . $currentYearInf);
+                    $cAMonth = $repository->getCAVenteMonth('01-' . $months[$j] . '-' . $currentYearSup, '01-' . $months[$j - 1] . '-' . $currentYearInf);
                 }
                 array_push($ventesOneYearArray, $countVenteMonth);
                 array_push($cAOneYearArray, $cAMonth);

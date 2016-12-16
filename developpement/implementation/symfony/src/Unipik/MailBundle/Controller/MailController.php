@@ -114,8 +114,6 @@ class MailController extends Controller {
             $mails = $repository->getType($start, $end, $typeEtablissement, $types, null);
         }
 
-        var_dump('eee');
-        var_dump($typeEtablissement);
         return $this->render(
             'MailBundle::historiqueEmails.html.twig', array(
             'typeMail' => $typeMail,
@@ -213,7 +211,7 @@ class MailController extends Controller {
     public function kakiAction() {
         $message = \Swift_Message::newInstance()
             ->setSubject('Hello Email')
-            ->setFrom('florian.leriche@neuf.fr')
+            ->setFrom('dev.dev@dev.fr')
             ->setTo('onch1@yopmail.com')
             ->setBody(
                 $this->renderView(

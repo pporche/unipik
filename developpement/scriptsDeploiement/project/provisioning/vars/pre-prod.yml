@@ -40,12 +40,20 @@ mailer_password: taistoijulie
 mailer_port: 587
 mailer_encryption: tls
 mailer_auth_mode: login
-second_mailer_host: smtp.sfr.fr
-second_mailer_user: florian.leriche@neuf.fr
-second_mailer_password: biscotte
-second_mailer_port: 587
-second_mailer_encryption: tls
-second_mailer_auth_mode: login
-second_mailer_transport: smtp
+mailer_plaideurs_transport: smtp
+mailer_plaideurs_host: smtp.laposte.net
+mailer_plaideurs_encryption: tls
+mailer_plaideurs_port: 587
+mailer_maternelle_user: maternelle-plaideurs.unicef76@laposte.net
+mailer_maternelle_password: token
+mailer_elementaire_user: elementaire-plaideurs.unicef76@laposte.net
+mailer_elementaire_password: token
+mailer_college_user: college-plaideurs.unicef76@laposte.net
+mailer_college_password: token
+mailer_lycee_user: lycee-plaideurs.unicef76@laposte.net
+mailer_lycee_password: token
+mailer_superieur_user: superieur-plaideurs.unicef76@laposte.net
+mailer_superieur_password: token
+
 locale: fr
 secret: ThisTokenIsNotSoSecretChangeIt

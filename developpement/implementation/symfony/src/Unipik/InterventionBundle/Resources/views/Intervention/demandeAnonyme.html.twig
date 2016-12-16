@@ -349,9 +349,33 @@
 
 
         // Permet de précocher les radio buttons
-        $("input[name='demande_anonyme[typeEnseignement]']:first").attr('checked', true);
-        $("input[name='demande_anonyme[typeCentre]']:first").attr('checked', true);
-        $("input[name='demande_anonyme[typeAutreEtablissement]']:first").attr('checked', true);
+        var estCocheEnseignement = false;
+        $('[id^=demande_anonyme_typeEnseignement_]').each(function() {
+            if($(this).is(':checked')){
+                estCocheEnseignement = true;
+            }
+        });
+        if(!estCocheEnseignement) {
+            $("input[name='demande_anonyme[typeEnseignement]']:first").attr('checked', true);
+        }
+        var estCocheCentre = false;
+        $('[id^=demande_anonyme_typeCentre_]').each(function() {
+            if($(this).is(':checked')){
+                estCocheCentre = true;
+            }
+        });
+        if(!estCocheCentre) {
+            $("input[name='demande_anonyme[typeCentre]']:first").attr('checked', true);
+        }
+        var estCocheAutreEtablissement = false;
+        $('[id^=demande_anonyme_typeAutreEtablissement_]').each(function() {
+            if($(this).is(':checked')){
+                estCocheAutreEtablissement = true;
+            }
+        });
+        if(!estCocheAutreEtablissement) {
+            $("input[name='demande_anonyme[typeAutreEtablissement]']:first").attr('checked', true);
+        }
 
         // Permet de cacher/montrer les types des établissement (type enseignement, type centre, type autre) en fonction du type d'etablissement sélectionné
         hide_or_show_types_etablissement = function() {
@@ -381,12 +405,60 @@
 
 
         // Pré-cocher les jours de l'intervention en "Jour à éviter"
-        $('#demande_anonyme_jour_lundi_3').prop("checked", true);
-        $('#demande_anonyme_jour_mardi_3').prop("checked", true);
-        $('#demande_anonyme_jour_mercredi_3').prop("checked", true);
-        $('#demande_anonyme_jour_jeudi_3').prop("checked", true);
-        $('#demande_anonyme_jour_vendredi_3').prop("checked", true);
-        $('#demande_anonyme_jour_samedi_3').prop("checked", true);
+        var estCocheLundi = false;
+        $('[id^=demande_anonyme_jour_lundi_]').each(function() {
+            if($(this).is(':checked')){
+                estCocheLundi = true;
+            }
+        });
+        if(!estCocheLundi) {
+            $('#demande_anonyme_jour_lundi_3').prop("checked", true);
+        }
+        var estCocheMardi = false;
+        $('[id^=demande_anonyme_jour_mardi_]').each(function() {
+            if($(this).is(':checked')){
+                estCocheMardi = true;
+            }
+        });
+        if(!estCocheMardi) {
+            $('#demande_anonyme_jour_mardi_3').prop("checked", true);
+        }
+        var estCocheMercredi = false;
+        $('[id^=demande_anonyme_jour_mercredi_]').each(function() {
+            if($(this).is(':checked')){
+                estCocheMercredi = true;
+            }
+        });
+        if(!estCocheMercredi) {
+            $('#demande_anonyme_jour_mercredi_3').prop("checked", true);
+        }
+        var estCocheJeudi = false;
+        $('[id^=demande_anonyme_jour_jeudi_]').each(function() {
+            if($(this).is(':checked')){
+                estCocheJeudi = true;
+            }
+        });
+        if(!estCocheJeudi) {
+            $('#demande_anonyme_jour_jeudi_3').prop("checked", true);
+        }
+        var estCocheVendredi = false;
+        $('[id^=demande_anonyme_jour_vendredi_]').each(function() {
+            if($(this).is(':checked')){
+                estCocheVendredi = true;
+            }
+        });
+        if(!estCocheVendredi) {
+            $('#demande_anonyme_jour_vendredi_3').prop("checked", true);
+        }
+        var estCocheSamedi = false;
+        $('[id^=demande_anonyme_jour_samedi_]').each(function() {
+            if($(this).is(':checked')){
+                estCocheSamedi = true;
+            }
+        });
+        if(!estCocheSamedi) {
+            $('#demande_anonyme_jour_samedi_3').prop("checked", true);
+        }
 
 
         // Permet de enable/disable le champ "nom établissement" si les champ du dessus sont vides
@@ -896,6 +968,13 @@
                 });
             }
 
+            $('.form-type-intervention').each(function() {
+                treatmentSelect();
+                displayThemeIntervention();
+                displayTypeIntervention($(this).get(0));
+                $(this).on("change", displayTypeIntervention);
+            });
+
 
             function addDeleteLink($prototype) {
                 // Création du lien
@@ -913,10 +992,10 @@
             var centerElt = document.getElementById("demande_anonyme_Etablissement_typeCentre").parentNode.parentNode;
             var instituteElt = document.getElementById("demande_anonyme_Etablissement_typeEnseignement").parentNode.parentNode;
             var othersElt = document.getElementById("demande_anonyme_Etablissement_typeAutreEtablissement").parentNode.parentNode;
-            $(instituteElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
-            $(centerElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
-            $(othersElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
-            document.getElementById('demande_anonyme_Etablissement_TypeGeneral').addEventListener('change', displayThemeIntervention);
+            $(instituteElt).find("input").on("click", displayThemeIntervention).on("load", treatmentSelect);
+            $(centerElt).find("input").on("click", displayThemeIntervention).on("load", treatmentSelect);
+            $(othersElt).find("input").on("click", displayThemeIntervention).on("load", treatmentSelect);
+            treatmentSelect();
 
         });
 

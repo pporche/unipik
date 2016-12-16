@@ -404,42 +404,37 @@
         }
 
         function treatmentSelect() {
-            var choiceEtabElt = document.getElementsByTagName('select')[0];
             var type;
-            switch (choiceEtabElt.value) {
-                case 'ens' :
-                    var inputElt = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked');
-                    if (inputElt != null) {
-                        type = inputElt.value;
-                        $('.form-annee-scolaire').each(function () {
-                            treatmentInstitute($(this).get(0), type);
-                        });
-                        $('.form-type-intervention').each(function () {
-                            treatmentInterventionType($(this).get(0), type);
-                        });
-                    }
-                    break;
-                case 'centre' :
-                    var inputElt = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked');
-                    if (inputElt != null) {
-                        type = inputElt.value;
-                        $('.form-annee-scolaire').each(function () {
-                            treatmentCenter($(this).get(0), type);
-                        });
-                        $('.form-type-intervention').each(function () {
-                            treatmentInterventionType($(this).get(0), type);
-                        });
-                    }
-                    break;
-                case 'autre' :
-                    var inputElt = document.querySelector('input[name="demande[Etablissement][typeAutreEtablissement]"]:checked');
-                    if (inputElt != null) {
-                        type = inputElt.value;
-                        $('.form-annee-scolaire').each(function () {
-                            treatmentOthers($(this).get(0), type);
-                        });
-                    }
-                    break;
+            if ('ens' in JSON.parse('{{ typEnseignement|raw }}')) {
+                var inputElt = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked');
+                if (inputElt != null) {
+                    type = inputElt.value;
+                    $('.form-annee-scolaire').each(function () {
+                        treatmentInstitute($(this).get(0), type);
+                    });
+                    $('.form-type-intervention').each(function () {
+                        treatmentInterventionType($(this).get(0), type);
+                    });
+                }
+            } else if ('centre' in JSON.parse('{{ typEnseignement|raw }}')) {
+                var inputElt = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked');
+                if (inputElt != null) {
+                    type = inputElt.value;
+                    $('.form-annee-scolaire').each(function () {
+                        treatmentCenter($(this).get(0), type);
+                    });
+                    $('.form-type-intervention').each(function () {
+                        treatmentInterventionType($(this).get(0), type);
+                    });
+                }
+            } else if ('autre' in JSON.parse('{{ typEnseignement|raw }}')) {
+                var inputElt = document.querySelector('input[name="demande[Etablissement][typeAutreEtablissement]"]:checked');
+                if (inputElt != null) {
+                    type = inputElt.value;
+                    $('.form-annee-scolaire').each(function () {
+                        treatmentOthers($(this).get(0), type);
+                    });
+                }
             }
         }
 
@@ -477,33 +472,28 @@
             if (themesElts.length == 0) {
                 return;
             }
-            var choiceEtabElt = document.getElementsByTagName('select')[0];
+
             var type;
-            switch (choiceEtabElt.value) {
-                case 'ens' :
-                    var inputElt = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked');
-                    if (inputElt != null) {
-                        type = inputElt.value;
-                        for (i = 0; i < themesElts.length; i++) {
-                            showSomeTheme(type, themesElts[i]);
-                        }
-                    }
-                    break;
-                case 'centre' :
-                    var inputElt = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked');
-                    if (inputElt != null) {
-                        type = inputElt.value;
-                        for (i = 0; i < themesElts.length; i++) {
-                            showSomeTheme(type, themesElts[i]);
-                        }
-                    }
-                    break;
-                case 'autre' :
-                default :
+            if ('ens' in JSON.parse('{{ typEnseignement|raw }}')) {
+                var inputElt = document.querySelector('input[name="demande[Etablissement][typeEnseignement]"]:checked');
+                if (inputElt != null) {
+                    type = inputElt.value;
                     for (i = 0; i < themesElts.length; i++) {
-                        showAllTheme(themesElts[i]);
+                        showSomeTheme(type, themesElts[i]);
                     }
-                    break;
+                }
+            } else if ('centre' in JSON.parse('{{ typEnseignement|raw }}')) {
+                var inputElt = document.querySelector('input[name="demande[Etablissement][typeCentre]"]:checked');
+                if (inputElt != null) {
+                    type = inputElt.value;
+                    for (i = 0; i < themesElts.length; i++) {
+                        showSomeTheme(type, themesElts[i]);
+                    }
+                }
+            } else if ('autre' in JSON.parse('{{ typEnseignement|raw }}')) {
+                for (i = 0; i < themesElts.length; i++) {
+                    showAllTheme(themesElts[i]);
+                }
             }
 
         }
@@ -744,6 +734,14 @@
                 break;
         }
 
+        var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
+        var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
+        var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
+        $(instituteElt).find("input").on("click", displayThemeIntervention).on("load", treatmentSelect);
+        $(centerElt).find("input").on("click", displayThemeIntervention).on("load", treatmentSelect);
+        $(othersElt).find("input").on("click", displayThemeIntervention).on("load", treatmentSelect);
+        treatmentSelect();
+
 
         $(document).ready(function () {
             if ($('#demande_Etablissement_adresse_ville').val().indexOf(' (') < 0) {
@@ -753,12 +751,60 @@
             $('#demande_Etablissement_adresse').parent().parent().attr('style','display:none;');
 
             // Pré-cocher les jours de l'intervention en "Jour à éviter"
-            $('#demande_jour_lundi_3').prop("checked", true);
-            $('#demande_jour_mardi_3').prop("checked", true);
-            $('#demande_jour_mercredi_3').prop("checked", true);
-            $('#demande_jour_jeudi_3').prop("checked", true);
-            $('#demande_jour_vendredi_3').prop("checked", true);
-            $('#demande_jour_samedi_3').prop("checked", true);
+            var estCocheLundi = false;
+            $('[id^=demande_jour_lundi_]').each(function() {
+                if($(this).is(':checked')){
+                    estCocheLundi = true;
+                }
+            });
+            if(!estCocheLundi) {
+                $('#demande_jour_lundi_3').prop("checked", true);
+            }
+            var estCocheMardi = false;
+            $('[id^=demande_jour_mardi_]').each(function() {
+                if($(this).is(':checked')){
+                    estCocheMardi = true;
+                }
+            });
+            if(!estCocheMardi) {
+                $('#demande_jour_mardi_3').prop("checked", true);
+            }
+            var estCocheMercredi = false;
+            $('[id^=demande_jour_mercredi_]').each(function() {
+                if($(this).is(':checked')){
+                    estCocheMercredi = true;
+                }
+            });
+            if(!estCocheMercredi) {
+                $('#demande_jour_mercredi_3').prop("checked", true);
+            }
+            var estCocheJeudi = false;
+            $('[id^=demande_jour_jeudi_]').each(function() {
+                if($(this).is(':checked')){
+                    estCocheJeudi = true;
+                }
+            });
+            if(!estCocheJeudi) {
+                $('#demande_jour_jeudi_3').prop("checked", true);
+            }
+            var estCocheVendredi = false;
+            $('[id^=demande_jour_vendredi_]').each(function() {
+                if($(this).is(':checked')){
+                    estCocheVendredi = true;
+                }
+            });
+            if(!estCocheVendredi) {
+                $('#demande_jour_vendredi_3').prop("checked", true);
+            }
+            var estCocheSamedi = false;
+            $('[id^=demande_jour_samedi_]').each(function() {
+                if($(this).is(':checked')){
+                    estCocheSamedi = true;
+                }
+            });
+            if(!estCocheSamedi) {
+                $('#demande_jour_samedi_3').prop("checked", true);
+            }
 
             // Initialisation
             $('#code').hide();
@@ -812,6 +858,13 @@
                 });
             }
 
+            $('.form-type-intervention').each(function() {
+                treatmentSelect();
+                displayThemeIntervention();
+                displayTypeIntervention($(this).get(0));
+                $(this).on("change", displayTypeIntervention);
+            });
+
 
             function addDeleteLink($prototype) {
                 // Création du lien
@@ -851,13 +904,6 @@
             }
 
         });
-        var centerElt = document.getElementById("demande_Etablissement_typeCentre").parentNode.parentNode;
-        var instituteElt = document.getElementById("demande_Etablissement_typeEnseignement").parentNode.parentNode;
-        var othersElt = document.getElementById("demande_Etablissement_typeAutreEtablissement").parentNode.parentNode;
-        $(instituteElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
-        $(centerElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
-        $(othersElt).find("input").on("click", displayThemeIntervention).on("click", treatmentSelect);
-        document.getElementById('demande_Etablissement_TypeGeneral').addEventListener('change', displayThemeIntervention);
     </script>
 
 {% endblock %}

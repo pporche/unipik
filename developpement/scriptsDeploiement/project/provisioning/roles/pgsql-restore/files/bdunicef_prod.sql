@@ -1073,7 +1073,7 @@ CREATE TABLE mailtask (
     id integer NOT NULL,
     name text,
     "interval" integer,
-    lastrun date,
+    lastrun timestamp without time zone,
     id_etablissement text NOT NULL,
     date_insert date NOT NULL,
     type_email text
@@ -3122,6 +3122,7 @@ COPY adresse (id, adresse, complement, ville_id, code_postal_id, geolocalisation
 3197	365 AVENUE DE L'UNIVERSITé		28975	4782	0101000020E6100000390A10053306F13F3123618495B14840
 3198	RUE SAINT NICOLAS		28937	4769	0101000020E61000001460B3B7EF8CF13F24EAAAE573B84840
 3199	RUE SAINT NICOLAS		28937	4769	0101000020E61000001460B3B7EF8CF13F24EAAAE573B84840
+3200	365 AVENUE DE L'UNIVERSITé		28975	4782	0101000020E6100000390A10053306F13F3123618495B14840
 \.
 
 
@@ -3129,7 +3130,7 @@ COPY adresse (id, adresse, complement, ville_id, code_postal_id, geolocalisation
 -- Name: adresse_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('adresse_id_seq', 3199, true);
+SELECT pg_catalog.setval('adresse_id_seq', 3200, true);
 
 
 --
@@ -3150,14 +3151,12 @@ COPY appartient (etablissement_id, contact_id) FROM stdin;
 --
 
 COPY benevole (id, username, username_canonical, email, email_canonical, enabled, salt, password, last_login, locked, expired, expires_at, confirmation_token, password_requested_at, roles, credentials_expired, credentials_expire_at, nom, prenom, tel_fixe, tel_portable, adresse_id, activites_potentielles, responsabilite_activite) FROM stdin;
-1	admin	admin	admin@admin.admin	admin@admin.admin	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$fsnayRSVYRetrleFXGOL..65t.xWreOilUNSEiRtOfrQeYj28Hmp6	\N	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	admin	admin	\N	\N	1	\N	\N
-6	pierre	pierre	pierre@pierre.pierre	pierre@pierre.pierre	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$hh6tioNoNLVyXG7DzjcRteAovbqjqyxn9NE1vH8YtJpipbjO6DS2S	\N	f	f	\N	\N	\N	a:0:{}	f	\N	porche	pierre	0235444444	0644444444	56	{(actions_ponctuelles),(plaidoyers),(frimousses)}	\N
-8	juliana	juliana	juliana@juliana.juliana	juliana@juliana.juliana	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$Wbzf.EviRRg.mncygof/nOSUz/GCu.YuXLUSbHZqKhBqL0hwa01C.	\N	f	f	\N	\N	\N	a:0:{}	f	\N	rossi	juliana	\N	\N	109	{(actions_ponctuelles),(projets),(frimousses)}	\N
 13	benevoleanonyme	benevoleanonyme	unipik@yopmail.com	unipik@yopmail.com	f	e49fclbfn3wck0404sggowc8so80g0o	$2y$13$MfHmfCn0IcWzmHq1LWHMd.mdJFuZR4O2ptt7lQBHRb/m3pWQQ6FW2	\N	f	f	\N	PHa9NlpNHSthbEoK0FQCts9Nm9su2zz2y1r3i0zPvY4	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	anonyme	benevole	0102030405	\N	3196	\N	\N
 14	anonyme	xxxxxx	xxxxxx@xxxxxx.xxxxxx	xxxxxx@xxxxxx.xxxxxx	t	3ar576dvu76soswskk8gwsks8cgkg44	$2y$13$iUW6/KVzaux5HD0rVkpAq.MJyyKEo8XdKBdFe/DRJKobRauMal3Um	\N	f	f	\N	\N	\N	a:0:{}	f	\N	anonyme	benevole	0000000000	0000000000	1	\N	\N
 15	mmainguenaud	mmainguenaud	michel.mainguenaud@yopmail.com	michel.mainguenaud@yopmail.com	t	b6czq082iw8owsw8kg84ggscosw4g4g	$2y$13$pQBGjRMnY4zlxuKU8Z0iserXo69hp8HJV0YYCv5b6EskGxPFxS07W	2016-12-13 13:51:45	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Mainguenaud	Michel	0102030405	\N	3197	\N	\N
-16	cguest	cguest	catherine.guest@yopmail.com	catherine.guest@yopmail.com	t	502qkph6eh0k8wkggcsc08wkokss8w4	$2y$13$FvnzlI36yi6hqXm1szWef.my5IBy3fRfQBKwmH58LqyzbdxuqRrJ.	2016-12-13 13:54:05	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Guest	Catherine	0102030405	\N	3198	\N	\N
 17	vbarbier	vbarbier	veronique.barbier@yopmail.com	veronique.barbier@yopmail.com	t	1bz4kkriafdwwwwcgc44s484wk48ocs	$2y$13$qv19nxkQBhXPGytVvLYg2u3jXfulVFkKKOlheeeaFdU62lB9wOgKe	2016-12-13 13:55:37	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Barbier	Veronique	0102030405	\N	3199	\N	\N
+18	unipik	unipik	equipe-unipik@yopmail.com	equipe-unipik@yopmail.com	t	bvexh74npzww8kcocsc0088so0sg0k8	$2y$13$bu3FFVjVhZiFlpUV3vh8..zzERcnqR5NmUowMUlfCwoKmG64yCxdi	2016-12-14 12:35:43	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Unipik	Pic	0102030405	\N	3200	\N	\N
+16	cguest	cguest	catherine.guest@yopmail.com	catherine.guest@yopmail.com	t	502qkph6eh0k8wkggcsc08wkokss8w4	$2y$13$FvnzlI36yi6hqXm1szWef.my5IBy3fRfQBKwmH58LqyzbdxuqRrJ.	2016-12-15 09:58:16	f	f	\N	\N	\N	a:1:{i:0;s:10:"ROLE_ADMIN";}	f	\N	Guest	Catherine	0102030405	\N	3198	\N	\N
 \.
 
 
@@ -3166,8 +3165,6 @@ COPY benevole (id, username, username_canonical, email, email_canonical, enabled
 --
 
 COPY benevole_comite (benevole_id, comite_id) FROM stdin;
-6	1
-8	1
 \.
 
 
@@ -3175,7 +3172,7 @@ COPY benevole_comite (benevole_id, comite_id) FROM stdin;
 -- Name: benevole_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('benevole_id_seq', 17, true);
+SELECT pg_catalog.setval('benevole_id_seq', 18, true);
 
 
 --
@@ -11520,6 +11517,30 @@ SELECT pg_catalog.setval('intervention_id_seq', 20, true);
 --
 
 COPY mail_historique (id, type_email, date_envoi, id_etablissement) FROM stdin;
+1	parDefaut	2016-12-15	37
+2	parDefaut	2016-12-15	39
+3	parDefaut	2016-12-15	40
+4	parDefaut	2016-12-15	59
+5	parDefaut	2016-12-15	70
+6	parDefaut	2016-12-15	71
+7	parDefaut	2016-12-15	50
+8	parDefaut	2016-12-15	84
+9	parDefaut	2016-12-15	85
+10	parDefaut	2016-12-15	177
+11	parDefaut	2016-12-15	178
+12	parDefaut	2016-12-15	215
+13	parDefaut	2016-12-15	2
+14	parDefaut	2016-12-15	5
+15	parDefaut	2016-12-15	7
+16	parDefaut	2016-12-15	8
+17	parDefaut	2016-12-15	11
+18	parDefaut	2016-12-15	14
+19	parDefaut	2016-12-15	1
+20	parDefaut	2016-12-15	3
+21	parDefaut	2016-12-15	4
+22	parDefaut	2016-12-15	6
+23	parDefaut	2016-12-15	9
+24	parDefaut	2016-12-15	10
 \.
 
 
@@ -11527,7 +11548,7 @@ COPY mail_historique (id, type_email, date_envoi, id_etablissement) FROM stdin;
 -- Name: mail_historique_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('mail_historique_id_seq', 1, false);
+SELECT pg_catalog.setval('mail_historique_id_seq', 24, true);
 
 
 --
@@ -11535,6 +11556,7 @@ SELECT pg_catalog.setval('mail_historique_id_seq', 1, false);
 --
 
 COPY mailtask (id, name, "interval", lastrun, id_etablissement, date_insert, type_email) FROM stdin;
+4	Mail task	3600	2016-12-15 10:11:21	a:773:{i:0;i:12;i:1;i:13;i:2;i:15;i:3;i:16;i:4;i:18;i:5;i:19;i:6;i:20;i:7;i:22;i:8;i:23;i:9;i:25;i:10;i:26;i:11;i:27;i:12;i:29;i:13;i:31;i:14;i:32;i:15;i:33;i:16;i:34;i:17;i:35;i:18;i:38;i:19;i:41;i:20;i:42;i:21;i:44;i:22;i:46;i:23;i:47;i:24;i:49;i:25;i:52;i:26;i:53;i:27;i:54;i:28;i:55;i:29;i:56;i:30;i:57;i:31;i:60;i:32;i:61;i:33;i:63;i:34;i:65;i:35;i:68;i:36;i:72;i:37;i:73;i:38;i:74;i:39;i:75;i:40;i:76;i:41;i:77;i:42;i:86;i:43;i:87;i:44;i:88;i:45;i:89;i:46;i:90;i:47;i:93;i:48;i:95;i:49;i:97;i:50;i:99;i:51;i:102;i:52;i:104;i:53;i:105;i:54;i:106;i:55;i:107;i:56;i:108;i:57;i:109;i:58;i:111;i:59;i:113;i:60;i:115;i:61;i:117;i:62;i:119;i:63;i:120;i:64;i:122;i:65;i:124;i:66;i:127;i:67;i:128;i:68;i:129;i:69;i:130;i:70;i:131;i:71;i:136;i:72;i:137;i:73;i:138;i:74;i:140;i:75;i:143;i:76;i:145;i:77;i:146;i:78;i:149;i:79;i:150;i:80;i:151;i:81;i:152;i:82;i:158;i:83;i:159;i:84;i:160;i:85;i:161;i:86;i:164;i:87;i:165;i:88;i:166;i:89;i:167;i:90;i:168;i:91;i:169;i:92;i:179;i:93;i:181;i:94;i:184;i:95;i:186;i:96;i:188;i:97;i:189;i:98;i:191;i:99;i:193;i:100;i:194;i:101;i:195;i:102;i:196;i:103;i:197;i:104;i:199;i:105;i:200;i:106;i:201;i:107;i:202;i:108;i:203;i:109;i:205;i:110;i:207;i:111;i:208;i:112;i:210;i:113;i:211;i:114;i:212;i:115;i:214;i:116;i:216;i:117;i:219;i:118;i:220;i:119;i:222;i:120;i:223;i:121;i:224;i:122;i:226;i:123;i:228;i:124;i:229;i:125;i:231;i:126;i:232;i:127;i:235;i:128;i:236;i:129;i:237;i:130;i:238;i:131;i:239;i:132;i:240;i:133;i:249;i:134;i:251;i:135;i:252;i:136;i:254;i:137;i:256;i:138;i:257;i:139;i:260;i:140;i:261;i:141;i:262;i:142;i:263;i:143;i:264;i:144;i:268;i:145;i:270;i:146;i:271;i:147;i:272;i:148;i:275;i:149;i:276;i:150;i:281;i:151;i:284;i:152;i:285;i:153;i:286;i:154;i:288;i:155;i:290;i:156;i:291;i:157;i:292;i:158;i:294;i:159;i:295;i:160;i:298;i:161;i:299;i:162;i:301;i:163;i:303;i:164;i:305;i:165;i:307;i:166;i:309;i:167;i:310;i:168;i:311;i:169;i:314;i:170;i:315;i:171;i:316;i:172;i:317;i:173;i:318;i:174;i:324;i:175;i:327;i:176;i:328;i:177;i:329;i:178;i:330;i:179;i:342;i:180;i:343;i:181;i:344;i:182;i:345;i:183;i:346;i:184;i:347;i:185;i:348;i:186;i:349;i:187;i:350;i:188;i:351;i:189;i:352;i:190;i:353;i:191;i:372;i:192;i:373;i:193;i:375;i:194;i:378;i:195;i:380;i:196;i:381;i:197;i:384;i:198;i:387;i:199;i:388;i:200;i:389;i:201;i:390;i:202;i:391;i:203;i:392;i:204;i:393;i:205;i:394;i:206;i:407;i:207;i:408;i:208;i:409;i:209;i:411;i:210;i:412;i:211;i:415;i:212;i:417;i:213;i:420;i:214;i:422;i:215;i:423;i:216;i:426;i:217;i:427;i:218;i:428;i:219;i:430;i:220;i:431;i:221;i:433;i:222;i:435;i:223;i:436;i:224;i:438;i:225;i:439;i:226;i:442;i:227;i:443;i:228;i:448;i:229;i:450;i:230;i:451;i:231;i:457;i:232;i:458;i:233;i:459;i:234;i:460;i:235;i:461;i:236;i:462;i:237;i:463;i:238;i:475;i:239;i:478;i:240;i:479;i:241;i:480;i:242;i:483;i:243;i:484;i:244;i:486;i:245;i:488;i:246;i:490;i:247;i:491;i:248;i:494;i:249;i:495;i:250;i:498;i:251;i:500;i:252;i:501;i:253;i:505;i:254;i:507;i:255;i:508;i:256;i:510;i:257;i:511;i:258;i:512;i:259;i:514;i:260;i:515;i:261;i:517;i:262;i:519;i:263;i:521;i:264;i:523;i:265;i:524;i:266;i:527;i:267;i:528;i:268;i:532;i:269;i:533;i:270;i:534;i:271;i:535;i:272;i:536;i:273;i:542;i:274;i:546;i:275;i:549;i:276;i:550;i:277;i:554;i:278;i:556;i:279;i:558;i:280;i:560;i:281;i:561;i:282;i:562;i:283;i:566;i:284;i:567;i:285;i:568;i:286;i:569;i:287;i:575;i:288;i:577;i:289;i:578;i:290;i:579;i:291;i:581;i:292;i:583;i:293;i:585;i:294;i:587;i:295;i:588;i:296;i:589;i:297;i:591;i:298;i:592;i:299;i:593;i:300;i:598;i:301;i:599;i:302;i:601;i:303;i:602;i:304;i:603;i:305;i:605;i:306;i:607;i:307;i:609;i:308;i:611;i:309;i:612;i:310;i:613;i:311;i:615;i:312;i:617;i:313;i:618;i:314;i:619;i:315;i:621;i:316;i:622;i:317;i:625;i:318;i:626;i:319;i:628;i:320;i:629;i:321;i:630;i:322;i:632;i:323;i:634;i:324;i:635;i:325;i:636;i:326;i:638;i:327;i:640;i:328;i:642;i:329;i:643;i:330;i:645;i:331;i:647;i:332;i:649;i:333;i:652;i:334;i:653;i:335;i:654;i:336;i:656;i:337;i:658;i:338;i:659;i:339;i:661;i:340;i:663;i:341;i:664;i:342;i:665;i:343;i:666;i:344;i:667;i:345;i:672;i:346;i:673;i:347;i:674;i:348;i:675;i:349;i:676;i:350;i:677;i:351;i:678;i:352;i:709;i:353;i:710;i:354;i:711;i:355;i:712;i:356;i:713;i:357;i:714;i:358;i:715;i:359;i:716;i:360;i:717;i:361;i:718;i:362;i:719;i:363;i:720;i:364;i:721;i:365;i:722;i:366;i:723;i:367;i:724;i:368;i:725;i:369;i:726;i:370;i:727;i:371;i:728;i:372;i:729;i:373;i:730;i:374;i:731;i:375;i:732;i:376;i:733;i:377;i:734;i:378;i:735;i:379;i:736;i:380;i:737;i:381;i:738;i:382;i:739;i:383;i:740;i:384;i:741;i:385;i:742;i:386;i:743;i:387;i:744;i:388;i:745;i:389;i:746;i:390;i:747;i:391;i:748;i:392;i:749;i:393;i:750;i:394;i:751;i:395;i:752;i:396;i:753;i:397;i:754;i:398;i:755;i:399;i:756;i:400;i:757;i:401;i:758;i:402;i:759;i:403;i:760;i:404;i:761;i:405;i:762;i:406;i:763;i:407;i:764;i:408;i:765;i:409;i:766;i:410;i:835;i:411;i:837;i:412;i:842;i:413;i:843;i:414;i:844;i:415;i:848;i:416;i:849;i:417;i:853;i:418;i:854;i:419;i:855;i:420;i:856;i:421;i:857;i:422;i:858;i:423;i:859;i:424;i:870;i:425;i:871;i:426;i:874;i:427;i:875;i:428;i:876;i:429;i:881;i:430;i:885;i:431;i:887;i:432;i:889;i:433;i:891;i:434;i:895;i:435;i:896;i:436;i:897;i:437;i:898;i:438;i:899;i:439;i:900;i:440;i:906;i:441;i:907;i:442;i:909;i:443;i:911;i:444;i:912;i:445;i:915;i:446;i:916;i:447;i:918;i:448;i:920;i:449;i:923;i:450;i:924;i:451;i:927;i:452;i:929;i:453;i:930;i:454;i:934;i:455;i:936;i:456;i:937;i:457;i:940;i:458;i:941;i:459;i:942;i:460;i:943;i:461;i:950;i:462;i:951;i:463;i:953;i:464;i:956;i:465;i:957;i:466;i:960;i:467;i:961;i:468;i:962;i:469;i:963;i:470;i:964;i:471;i:968;i:472;i:969;i:473;i:973;i:474;i:974;i:475;i:975;i:476;i:978;i:477;i:979;i:478;i:980;i:479;i:981;i:480;i:982;i:481;i:983;i:482;i:989;i:483;i:991;i:484;i:996;i:485;i:997;i:486;i:998;i:487;i:999;i:488;i:1000;i:489;i:1001;i:490;i:1009;i:491;i:1012;i:492;i:1013;i:493;i:1016;i:494;i:1017;i:495;i:1018;i:496;i:1020;i:497;i:1022;i:498;i:1023;i:499;i:1025;i:500;i:1027;i:501;i:1032;i:502;i:1033;i:503;i:1035;i:504;i:1037;i:505;i:1039;i:506;i:1040;i:507;i:1042;i:508;i:1044;i:509;i:1046;i:510;i:1047;i:511;i:1048;i:512;i:1049;i:513;i:1053;i:514;i:1054;i:515;i:1055;i:516;i:1056;i:517;i:1060;i:518;i:1062;i:519;i:1064;i:520;i:1067;i:521;i:1071;i:522;i:1072;i:523;i:1073;i:524;i:1074;i:525;i:1079;i:526;i:1081;i:527;i:1082;i:528;i:1084;i:529;i:1085;i:530;i:1087;i:531;i:1089;i:532;i:1091;i:533;i:1092;i:534;i:1094;i:535;i:1095;i:536;i:1096;i:537;i:1099;i:538;i:1102;i:539;i:1103;i:540;i:1104;i:541;i:1108;i:542;i:1110;i:543;i:1111;i:544;i:1113;i:545;i:1116;i:546;i:1117;i:547;i:1119;i:548;i:1121;i:549;i:1123;i:550;i:1125;i:551;i:1126;i:552;i:1128;i:553;i:1129;i:554;i:1130;i:555;i:1131;i:556;i:1132;i:557;i:1136;i:558;i:1137;i:559;i:1139;i:560;i:1141;i:561;i:1142;i:562;i:1159;i:563;i:1160;i:564;i:1161;i:565;i:1162;i:566;i:1163;i:567;i:1164;i:568;i:1165;i:569;i:1166;i:570;i:1167;i:571;i:1168;i:572;i:1169;i:573;i:1170;i:574;i:1171;i:575;i:1172;i:576;i:1173;i:577;i:1174;i:578;i:1175;i:579;i:1176;i:580;i:1177;i:581;i:1178;i:582;i:1179;i:583;i:1180;i:584;i:1181;i:585;i:1182;i:586;i:1183;i:587;i:1184;i:588;i:1185;i:589;i:1186;i:590;i:1187;i:591;i:1188;i:592;i:1189;i:593;i:1190;i:594;i:1191;i:595;i:1192;i:596;i:1238;i:597;i:1240;i:598;i:1241;i:599;i:1243;i:600;i:1245;i:601;i:1247;i:602;i:1249;i:603;i:1250;i:604;i:1253;i:605;i:1254;i:606;i:1256;i:607;i:1257;i:608;i:1258;i:609;i:1260;i:610;i:1263;i:611;i:1264;i:612;i:1265;i:613;i:1266;i:614;i:1271;i:615;i:1274;i:616;i:1275;i:617;i:1276;i:618;i:1277;i:619;i:1282;i:620;i:1283;i:621;i:1284;i:622;i:1285;i:623;i:1286;i:624;i:1287;i:625;i:1288;i:626;i:1289;i:627;i:1290;i:628;i:1291;i:629;i:1303;i:630;i:1305;i:631;i:1308;i:632;i:1309;i:633;i:1311;i:634;i:1312;i:635;i:1313;i:636;i:1314;i:637;i:1316;i:638;i:1318;i:639;i:1320;i:640;i:1322;i:641;i:1324;i:642;i:1327;i:643;i:1328;i:644;i:1330;i:645;i:1332;i:646;i:1333;i:647;i:1334;i:648;i:1335;i:649;i:1336;i:650;i:1338;i:651;i:1340;i:652;i:1342;i:653;i:1344;i:654;i:1346;i:655;i:1349;i:656;i:1352;i:657;i:1353;i:658;i:1355;i:659;i:1356;i:660;i:1357;i:661;i:1360;i:662;i:1362;i:663;i:1363;i:664;i:1365;i:665;i:1367;i:666;i:1368;i:667;i:1370;i:668;i:1373;i:669;i:1374;i:670;i:1375;i:671;i:1379;i:672;i:1380;i:673;i:1382;i:674;i:1386;i:675;i:1387;i:676;i:1389;i:677;i:1390;i:678;i:1392;i:679;i:1395;i:680;i:1396;i:681;i:1397;i:682;i:1402;i:683;i:1404;i:684;i:1406;i:685;i:1408;i:686;i:1409;i:687;i:1413;i:688;i:1414;i:689;i:1417;i:690;i:1418;i:691;i:1420;i:692;i:1422;i:693;i:1423;i:694;i:1425;i:695;i:1427;i:696;i:1429;i:697;i:1431;i:698;i:1433;i:699;i:1435;i:700;i:1437;i:701;i:1438;i:702;i:1439;i:703;i:1440;i:704;i:1442;i:705;i:1443;i:706;i:1445;i:707;i:1446;i:708;i:1448;i:709;i:1451;i:710;i:1453;i:711;i:1455;i:712;i:1457;i:713;i:1462;i:714;i:1463;i:715;i:1464;i:716;i:1465;i:717;i:1466;i:718;i:1467;i:719;i:1478;i:720;i:1480;i:721;i:1481;i:722;i:1482;i:723;i:1484;i:724;i:1485;i:725;i:1486;i:726;i:1487;i:727;i:1488;i:728;i:1489;i:729;i:1491;i:730;i:1492;i:731;i:1494;i:732;i:1496;i:733;i:1499;i:734;i:1501;i:735;i:1502;i:736;i:1504;i:737;i:1506;i:738;i:1507;i:739;i:1509;i:740;i:1511;i:741;i:1512;i:742;i:1513;i:743;i:1515;i:744;i:1517;i:745;i:1519;i:746;i:1521;i:747;i:1523;i:748;i:1525;i:749;i:1526;i:750;i:1527;i:751;i:1528;i:752;i:1531;i:753;i:1533;i:754;i:1535;i:755;i:1537;i:756;i:1539;i:757;i:1541;i:758;i:1542;i:759;i:1544;i:760;i:1545;i:761;i:1546;i:762;i:1548;i:763;i:1549;i:764;i:1551;i:765;i:1554;i:766;i:1556;i:767;i:1558;i:768;i:1561;i:769;i:1565;i:770;i:1566;i:771;i:1567;i:772;i:1573;}	2016-12-15	parDefaut
 \.
 
 
@@ -11542,7 +11564,7 @@ COPY mailtask (id, name, "interval", lastrun, id_etablissement, date_insert, typ
 -- Name: mailtask_id_seq; Type: SEQUENCE SET; Schema: public; Owner: unipik
 --
 
-SELECT pg_catalog.setval('mailtask_id_seq', 1, false);
+SELECT pg_catalog.setval('mailtask_id_seq', 4, true);
 
 
 --

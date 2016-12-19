@@ -91,7 +91,7 @@ Le \DSECourt{} doit être approuvé par le client pour pouvoir passer à la phas
 \subsubsection{Conception}
 
 \textbf{Entrées :} \DSECourt, \DSICourt \\
-\textbf{Sorties :} \DCPCourt , \DCDCourt , \PTICourt , \PTUCourt{} mis à jour\\
+\textbf{Sorties :} \hl{\DCPCourt , \DCDCourt }, \PTICourt , \PTUCourt{} mis à jour\\
 Cette phase permet d’analyser le problème et a pour but de spécifier ce qui sera codé en accord avec le \DSECourt{} et le \DSICourt. \\
 Pour cela, les documents suivants seront mis à jour. \\
 
@@ -112,7 +112,7 @@ Ce document définit comment sera menée la campagne de tests unitaires des fonc
 
 \subsubsection{Réalisation et tests unitaires et d’intégration}
 
-\textbf{Entrées :} \DCPCourt , \DCDCourt , \PTUCourt , \PTICourt \\
+\textbf{Entrées :} \hl{\DCPCourt , \DCDCourt} , \PTUCourt , \PTICourt \\
 \textbf{Sorties :} code source, documentation mis à jour \\
 Cette phase a pour but de mettre à jour le code source de l’application afin d’intégrer les nouvelles fonctionnalités demandées par le client pour le cycle. Cette phase se déroulera en utilisant les méthodes d’intégration, c’est-à-dire que le code source sera continuellement testé afin de vérifier que les tests d’intégration sont validés.\\ 
 Cette phase se décompose en deux étapes :

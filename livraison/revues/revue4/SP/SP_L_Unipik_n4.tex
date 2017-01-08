@@ -1,0 +1,87 @@
+% version 1.00, date 12/05/16, auteur(s) Pierre Porche, Sergi Colomies
+\documentclass[compress,xcolor=dvipsnames]{beamer}
+
+%Pour les schémas d'architecture
+\usepackage{etex}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,chains,backgrounds,fit}
+%FIN Pour les shémas d'architecture
+
+\usepackage[french]{babel}
+\selectlanguage{french}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{hhline}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+%\usepackage{pgf-pie}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
+\usepackage{vocabulaireUnipikPresentation}
+\usepackage{commun/vocabulaireCommun}
+\usepackage{hyperref}
+\usepackage{movie15}
+\usepackage{xcolor}
+\usepackage{lscape}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{color}
+
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
+\usetheme{eastpic}%{Berlin}%{Madrid}
+
+ 
+ 
+%Information to be included in the title page:
+\title{Revue de PIC}
+\date{\today}
+\author{Unipik}
+\institute{\insa}
+
+\setbeameroption{show notes}
+
+ 
+\begin{document}
+
+\speaker{\Pierre} 
+
+\begin{frame}[plain]
+	\titlepage
+\end{frame}
+
+\begin{frame}{Sommaire}
+	\tableofcontents[hideallsubsections]
+\end{frame}
+ 
+\section[Présentation]{Présentation}
+\input{sources/01_presentation.tex}
+
+\section[Projet]{Déroulement du projet}
+\input{sources/02_deroulement.tex}
+
+\section[Modélisation]{Modélisation}
+\input{sources/03_modelisation.tex}
+
+\section[Lots]{Constitution des lots}
+\input{sources/04_lots.tex}
+
+\section[Client]{Prise en compte du client}
+\input{sources/05_client.tex}
+
+\section[Gestion]{Gestion de projet}
+\input{sources/06_gp.tex}
+
+\section[Retour]{Retour d'expérience}
+\input{sources/07_retour_exp.tex}
+
+\section[Conclusion]{Conclusion}
+\input{sources/08_conclu.tex}
+
+
+\end{document}
+
